@@ -75,12 +75,13 @@ Being optimized for use via typing, you can key in your desired commands to TinS
 Then, press the <button>Enter</button> to confirm your command and instruct TinS to execute them.
 
 ### How to use the User Guide
-* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the process of
-installing TinS and provide you with a brief introduction to TinS. 
-* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what features
-TinS has to offer. Embedded in this section, there are also tips on how you can maximize your efficiency while using TinS. 
-* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section might 
-be helpful for you.
+* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the
+  process of installing TinS and provide you with a brief introduction to TinS. 
+* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what 
+  features TinS has to offer. Embedded in this section is also tips on how you can maximize your efficiency while using
+  TinS. 
+* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section
+  might be helpful for you.
 
 <div style="page-break-after: always;"></div>
 
@@ -108,7 +109,7 @@ be helpful for you.
     * `add`
     * `delete`
 
-6. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
+6. Refer to the [Command Summary](#command-summary) below for your desired TinS Commands. More details on each specific
 TinS command can be found [here](#features).
 
 <div style="page-break-after: always;"></div>
@@ -139,6 +140,7 @@ TinS command can be found [here](#features).
 ![data organisation](images/ug/ug-internship-organisation.png)
 
 **Internships**
+
 In TinS, an internship application is stored as an **Internship**. Within an Internship, you would be able to store the
 following fields:
 * `POSITION`: The Name of Internship Position.
@@ -150,6 +152,7 @@ following fields:
 `COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**. 
 
 Example: The following internships will be identified as same internship in TinS.
+
 * Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`
 * Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`
 
@@ -171,6 +174,7 @@ Example: The following internships will be identified as same internship in TinS
 An Internship can also store zero or more than one **Event**. 
 
 **Events**
+
 In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. Within
 an Event, you would be able to store the following fields:
 * `EVENT_NAME`: The Name of the Event.
@@ -242,78 +246,94 @@ their associated prefixes.
 
 </table>
 
-**Important Information for Use of Prefixes**
-*
-
 #### Notes about the Command Format
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
+* Words in `UPPER_CASE` are the fields to be supplied by you.
+
+  E.g. in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
-* Items in square brackets are optional.<br>
-  e.g `[t/TAG]` means that the user input is optional.
+* Items in square brackets are optional.
 
+  E.g `[t/TAG]` means in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]` means the commands
+  `add p/Software Engineer c/Grab s/0 d/NA` and `add p/Software Engineer c/Grab s/0 d/NA t/IMPORTANT` are both
+  valid.
 
+* Items with `...` after them can be used multiple times including zero times.
 
+  E.g. `[t/TAG]...` in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` means the command
+  `add p/Software Engineer c/Grab s/0 d/NA` and `add p/Software Engineer c/Grab s/0 d/NA t/IMPORTANT t/PRIORITY` is
+  valid.
+
+* Items without `...` after them should only be used **once**. 
+
+  <div markdown="span" class="alert alert-primary">
+
+  :information_source: **Info:** If an item without `...` after it is used more than once, TinS will identify the last
+  occurrence of that item as the input for that field.
+
+  Example: `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` means that the item, `p/POSITION` should only be
+  used once. Hence, if `add p/Software Engineer c/Grab s/0 d/NA t/IMPORTANT p/Data Analyst p/Machine Learning` is
+  entered, TinS would identify the input for the field `POSITION` as `Machine Learning`.
+  </div>
+
+* Fields can be in any order.
+
+  E.g. `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` is the same as 
+  `add c/COMPANY s/STATUS d/DESCRIPTION p/POSITION [t/TAG]...`
+
+* If the command does not require you to input a field, any extra field/values enter after the identified
+  command is ignored.
+
+  The commands in TinS that do not require additional input of fields from user are `list`, `clash`, `home`, `calendar`,
+  `stats`, `help` and `exit`.
+  E.g. If `clash help` is entered, TinS will identify your command as a `clash` command, ignoring all the extra 
+  fields/values found after `clash`, and execute the command `clash`. 
+  
+  
 <div style="page-break-after: always;"></div>
 
 ## Features
 
-### Feature List
-
-1. Opening Home Page: [`home`](#opens-the-home-page-:-home)
-2. Opening Statistics Page: [`stats`](#stats_function)
-3. Opening Calendar Page: [`calendar`](#calendar_function)
-4. Adding an Internship Application: [`add`](#add_function)
-6. Listing all Internship Applications in TinS: [`list`](#list_function)
-7. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-8. Editing Details of an Internship Application: [`edit`](#edit_function)
-9. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-10. Deleting an Internship Application: [`delete`](#delete_function)
-11. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-12. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-13. Finding a Particular Event: [`event find`](#eventfind_function)
-14. Finding all Clashing Events: [`clash`](#clash_function)
-15. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-16. Getting help: [`help`](#help_function)
-17. Exiting the program: [`exit`](#exit_function)
-18. [Saving data in TinS](#save_function)
-
-<div style="page-break-after: always;"></div>
-
 ### Opens the Home Page : `home`
 
-Returns user to the home page. 
+Opens the Home Page in the Display Panel. 
 
-> Note: Command can also be used to refresh home page.
+<div markdown="span" class="alert alert-success">
 
-* After keying in the `home` command, TinS displays the home page.
-* Home page shows the today's events and useful commands.
+    :bulb: **Tip:**  The `home` command can also be used to refresh the Home Page in the Display Panel.
+</div>
+
+* Home Page reminds you of your upcoming deadlines and interviews, occurring either today or tomorrow, and the command
+  format for useful commands, by conveniently displaying them in the Display Panel.
 
 Example: `home`
 
-![home_page](images/home_page.png)
+![home_page](images/ug/home_page.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Opens the Statistics Page : `stats`
 
-Displays the user's statistics.
+Calculates statistics based on your current internship applications and displays personalized statistics in the
+Display Panel.
 
-> Note: Command can also be used to refresh stats page.
+<div markdown="span" class="alert alert-success">
 
-* After keying in the `stats` command, TinS displays users statistics on the stats page.
-* Summary shows pie chart of current internships' statuses.
+    :bulb: **Tip:**  The `stats` command can also be used to refresh the Statistic Page in the Display Panel.
+</div>
+
+* Statistics Page shows you a summary of how your internship-seeking journey has been. The pie chart provides you with a
+  visual representation of the current status of your internship applications.
 
 Example: `stats`
 
-![stats_page](images/stats_page.jpeg)
+![stats_page](images/ug/stats_page.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Opens the Calendar Page : `calendar`
 
-Displays the user's events on a Calendar.
+Displays a calendar.
 
 > Note: Command can also be used to refresh calendar page.
 
