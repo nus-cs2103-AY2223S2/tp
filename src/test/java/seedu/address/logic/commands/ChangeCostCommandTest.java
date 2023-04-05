@@ -19,7 +19,7 @@ public class ChangeCostCommandTest {
 
     @Test
     public void execute_success() {
-        Pet changedCostPet = new PetBuilder().build();
+        Pet changedCostPet = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
         ChangeCostCommand changeCostCommand = new ChangeCostCommand(INDEX_FIRST_PET, 0.1, 10);
 
         String expectedMessage = String.format(ChangeCostCommand.MESSAGE_SUCCESS, changedCostPet);
