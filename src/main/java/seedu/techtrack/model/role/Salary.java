@@ -8,7 +8,7 @@ import static seedu.techtrack.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
 public class Salary {
-    public static final String MESSAGE_CONSTRAINTS = "Salary should be more than 0!";
+    public static final String MESSAGE_CONSTRAINTS = "Salaries should be more than 0!";
     public static final String VALIDATION_REGEX = "^[1-9]\\d*";
     public final String salary;
 
