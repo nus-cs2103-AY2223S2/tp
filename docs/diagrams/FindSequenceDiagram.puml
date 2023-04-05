@@ -45,7 +45,7 @@ destroy FindCommandParser
 TrackerParser --> LogicManager : f
 deactivate TrackerParser
 
-LogicManager -> FindCommand : execute()
+LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
 FindCommand -> FindCommand : filterByVideoList(model)
@@ -60,7 +60,7 @@ create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindCommand
+CommandResult --> FindCommand : result
 deactivate CommandResult
 
 FindCommand --> LogicManager : result

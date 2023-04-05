@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant "l:ListCommand" as ListCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list /mod CS2040S")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand("list /mod CS2040S")
+activate TrackerParser
+
+create ListCommandParser
+TrackerParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> TrackerParser
+deactivate ListCommandParser
+
+TrackerParser -> ListCommandParser : parse("/mod CS2040S")
+activate ListCommandParser
+
+ref over ListCommandParser
+    List lectures of module CS2040S
+end ref
+
+create ListCommand
+ListCommandParser -> ListCommand : ListCommand(code)
+activate ListCommand
+
+ListCommand --> ListCommandParser
+deactivate ListCommand
+
+ListCommandParser --> TrackerParser : l
+deactivate ListCommandParser
+
+ListCommandParser -[hidden]-> TrackerParser
+destroy ListCommandParser
+
+TrackerParser --> LogicManager : l
+deactivate TrackerParser
+
+LogicManager -> ListCommand : execute(model)
+activate ListCommand
+
+ListCommand -> ListCommand : filterByLectureList(model)
+
+ListCommand -> Model : updateFilteredLectureList(predicate)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand : result
+deactivate CommandResult
+
+ListCommand --> LogicManager : result
+deactivate ListCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

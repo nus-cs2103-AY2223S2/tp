@@ -38,10 +38,10 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Edit a Module](#edit-a-module)
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
-  - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Delete Module](#delete-module)
   - [Delete Lecture](#delete-lecture)
   - [Delete Video](#delete-video)
+  - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
   - [Tag a video](#tag-a-video)
@@ -54,10 +54,13 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
   - [Find Videos in a Lecture](#find-videos-in-a-lecture)
   - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
-  - [Clear](#clear-1)
-  - [Note](#note)
-  - [Warning](#warning)
-  - [FAQ](#faq)
+  - [Clear all Modules](#clear-all-modules)
+  - [Exit the App](#exit-the-app)
+  - [Export Data](#export-data)
+  - [Import Data](#import-data)
+- [Note](#note)
+- [Warning](#warning)
+- [FAQ](#faq)
 
 ---
 
@@ -146,22 +149,26 @@ Refer to the [Features](#features) below for details of each command.
 
 **:information_source: The following are rules applicable to all commands:**
 
-1. Words encapsulated in `{}` are the parameters to be supplied by the user.\
-  e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
+1. Words encapsulated in `{}` are the argument values to be supplied by the user.\
+   e.g. For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
 
 2. Items in square brackets are optional.\
-  e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+   e.g. For a command with format `add {module_code} [/name {module_name}]`, the `/name` argument is optional. The command can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
 
-3. Named parameters can be specified in any order as long as it is after all unnamed parameters (if any).\
-  e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).\
+   e.g. For a command with format `edit {module_code} /code {updated_code} /name {updated_name}`, `{module_code}` is an unnamed argument, while `/code` and `/name` are named arguments. The command can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
 
-4. If a named parameter is expected only once in the command but the user specified it multiple times, only the last occurrence of the parameter will be taken.\
-  e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
+4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.\
+   e.g. For a command with format `add {module_code} [/name {module_name}]`, if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be taken as the value of the `/name` argument.
 
-5. Extraneous parameters will be ignored.\
-  e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
+5. Extraneous arguments will be ignored.\
+   e.g. For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
 
-6. Arguments must be specified in the format `/{argument_name} {value}`, if the argument takes a value, or `/{argument_name}`, if the argument takes no value, and there must be a whitespace before `/{argument_name}`.
+6. Named arguments that take a value must be specified in the format `/{argument_name} {value}` and there must be a whitespace before `/{argument_name}`.\
+   e.g. `list /mod CS2040S`.
+
+7. Named arguments that do not take any value must be specified in the format `/{argument_name}` and there must be a whitespace before `/{argument_name}`. The format `/{argument_name} {value}` can be used as well but the value will be ignored.\
+   e.g. `find Heavy /byTag`.
 
 ---
 
@@ -227,24 +234,27 @@ Format: `navb`
 
 ### List Modules or Lectures or Videos
 
-> Root context: modules, Module context: lectures, Lecture context: videos
+> `list`
 
-Format: `list`
+Root context: modules, Module context: lectures, Lecture context: videos
+
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
 
 ### List Modules
 
-> Lists all modules
+> `list /r`
 
-Format: `list /r`
+Lists all modules
 
 ### List Lectures of Modules
 
-> Lists all lectures belonging to a specified module code
+> `list [/mod {module_code}]`
 
-Format: `list [/mod {module_code}]`
+Lists all lectures belonging to a specified module code
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
@@ -252,16 +262,17 @@ Examples:
 
 ### List Videos of Lectures
 
-> Lists all videos belonging to a specified lecture code of a navigated/specified module code
+> In module context: `list [/lec {lecture_name}]`\
+> In any context: `list [/mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `list [/lec {lecture_name}]`\
-In any context: `list [/mod {module_code} /lec {lecture_name}]`
+Lists all videos belonging to a specified lecture code of a navigated/specified module code
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the module context (if any)
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
 Examples:
 
@@ -418,33 +429,6 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
-### Mark or Unmark Video
-
-> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
-
-Format:
-
-- `mark {video_name} /mod {module_name} /lec {lecture_index}`
-- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
-
-Parameters:
-
-- `mark` marks `{video_name}` as watched
-- `unmark` marks `{video_name}` as unwatched
-- `{video_name}` can be names of multiple videos, separated by commas (",")
-- if `{video_name}` contains repeated names, the repeats will be ignored
-
-Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
-
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
-- Video Names must be of valid format
-- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
-
-- `mark Vid 1 /mod CS2040 /lec Week 1`
-- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-
 ### Delete Module
 
 > Deletes the specified module(s) and all its embodied content from the application
@@ -492,6 +476,33 @@ Examples:
 
 - `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
 - `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
+
+### Mark or Unmark Video
+
+> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
+
+Format:
+
+- `mark {video_name} /mod {module_name} /lec {lecture_index}`
+- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
+
+Parameters:
+
+- `mark` marks `{video_name}` as watched
+- `unmark` marks `{video_name}` as unwatched
+- `{video_name}` can be names of multiple videos, separated by commas (",")
+- if `{video_name}` contains repeated names, the repeats will be ignored
+
+Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
+
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
+- Video Names must be of valid format
+- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
+
+- `mark Vid 1 /mod CS2040 /lec Week 1`
+- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
 
 ### Tag a module
 
@@ -588,9 +599,9 @@ Examples:
 
 ### Find Modules or Lectures or Videos
 
-> Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s)
+> `find {keywords}`
 
-Format: `find {keywords}`
+Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s) and case is insensitive.
 
 Examples:
 
@@ -598,13 +609,15 @@ Examples:
 - In module level within `CS2040S`, `find week 1, week 2` searches for lectures `week 1` or `week 2` from the lecture list of module `CS2040S`.
 - In lecture level within `week2` of `CS2040S`, `find vid1, vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
 
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
+
 ### Find Modules or Lectures or Videos By Tag
 
-> Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
+> `find {keywords} [/byTag]`
 
-Format: `find {keywords} [/byTag]`
+Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has tags `["heavy", 'math']`\
 Lecture `Week 1` of `CS2040S` has tags `["Arrays", "Sorting"]`\
 Video `Vid 1` of `Week 1` of `CS2040S` has tags `["content"]`
@@ -617,11 +630,13 @@ Examples:
 
 ### Find Lectures in a Module
 
-> Find all lectures in a specified module whose name starts with any of the keyword(s)
+> `find {keywords} [/mod {module_code}]`
 
-Format: `find {keywords} [/mod {module_code}]`
+Find all lectures in a specified module whose name starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
@@ -629,13 +644,15 @@ Examples:
 
 ### Find Lectures in a Module By Tag
 
-> Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
+> `find {keywords} [/byTag /mod {module_code}]`
 
-Format: `find {keywords} [/byTag /mod {module_code}]`
+Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has lecture `Week 1` which has tags `["array", 'sorting']`
 
 Examples:
@@ -644,14 +661,17 @@ Examples:
 
 ### Find Videos in a Lecture
 
-> Find all videos in a specified lecture in a navigated/specified module whose name starts with any of the keyword(s)
+> In module context: `find {keywords} [/lec {lecture_name}]`\
+> In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `find {keywords} [/lec {lecture_name}]`\
-In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
+Find all videos in a specified lecture in a navigated/specified module whose name starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
 Examples:
 
@@ -662,16 +682,19 @@ _\* Both commands searches for videos `vid1` or `vid2` from the video list of le
 
 ### Find Videos in a Lecture By Tag
 
-> Find all videos in a specified lecture in a navigated/specified module whose tag list contains any tag that starts with any of the keyword(s)
+> In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
+> In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
-In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
+Find all videos in a specified lecture in a navigated/specified module whose tag list contains any tag that starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has lecture `Week 2` which has video `Vid 1` which has tags `["content"]`
 
 Examples:
@@ -681,7 +704,7 @@ Examples:
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
 
-### Clear
+### Clear all Modules
 
 > Clears all information (modules, lectures, videos, tags) from Le Tracker
 
@@ -692,9 +715,23 @@ Format:
 - any following term entered after `clear` is ignored
 - calling `clear` will result in an empty Tracker
 
+### Exit the App
+
+> `exit`
+
+Exit the application.
+
+### Export Data
+
+<!-- TODO: fill this in -->
+
+### Import Data
+
+<!-- TODO: fill this in -->
+
 ---
 
-### Note
+## Note
 
 - Saving the data\
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -704,13 +741,13 @@ Format:
 
 ---
 
-### Warning
+## Warning
 
 :warning: If your changes to the data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
 
 ---
 
-### FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?\
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Le Tracker home folder.
@@ -726,4 +763,4 @@ Format:
 | **Add a Lecture** | `add-lecture /module {module_code}` / e.g., `add-lecture /module CS2040`                                                                              |
 | **Add a Video**   | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` / e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
 | **Tag a Lecture** | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` / e.g, `tag /module CS2040 /lecture 1 /description Boohoo`           |
-| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | --> |
+| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | -->
