@@ -156,9 +156,9 @@ Here are all the prefixes that can be used:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
-| f      | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
@@ -260,7 +260,7 @@ When using edit, the command looks for each parameter in the `SuperField`:
   * e.g. `edit t/10x Coder t/Intern Friend`
     * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
     * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
-  
+
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
 | n      | Name                            | No        |
@@ -271,9 +271,9 @@ When using edit, the command looks for each parameter in the `SuperField`:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
-
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -286,11 +286,18 @@ Examples:
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts using keywords and fields you specify!
+Use this command to find contacts by specifying the fiegit lds and corresponding keywords you wish to search!
 
 **Syntax:**
 
-`find KEYWORD PREFIX/KEYWORDS...`
+`find PREFIX/KEYWORD...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+`KEYWORD` can contain more than 1 word.
+
+E.g `find n/Peter James`
+</div>
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
@@ -302,25 +309,28 @@ Use this command to find contacts using keywords and fields you specify!
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
+* At least 1 field and corresponding keyword must be specified.
+  * i.e `find PREFIX/KEYWORD`
 * The keywords are case-insensitive.
   * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
-
-* For each field specified, as long as one of the keywords is contained
-in that field, then the person will be returned.
+* If multiple same prefixes are specified, as long as one of the keyword is contained
+in the corresponding field, the person will be returned.
   * i.e. `find n/John n/Peter James`
-    * Can return:
-      * people with names of 'John', 'Peter James', 'Peter James John'
-    * Cannot return:
-      * A person with name of 'Peter'.
+    * Keywords: `john`, `peter james`
+        * Can return:
+          * people with names of 'John', 'Peter James', 'Peter James John'
+        * Cannot return:
+          * A person with name of 'Peter'.
 
-* All fields specified must have at least one keyword contained within that
-field for that person to be returned.
-  * i.e. `find n/Caleb p/9123 p/456`
+* All unique prefixes specified must be contained within the corresponding fields of the person
+ for that person to be returned.
+  * i.e. `find n/Caleb p/9123`
     * Can return: 
       * A person with a name of 'Caleb' who
 has a phone number of '91234567', 
