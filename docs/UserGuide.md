@@ -342,7 +342,7 @@ have a default value based on the commands. These are documented in the [Command
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
 **Let's try an example!**
@@ -605,7 +605,7 @@ After:
     <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
 fully matches the specified search.</li> 
     <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
-<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>. 
 </li> 
     <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
 </code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
@@ -622,6 +622,10 @@ hour.</li>
         </ul> 
     </li> 
 </ul> </div>
+
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<code>INTERVIEW DATETIME</code> cannot be earlier than current time when you advance an applicant! </div>
+
 
 
 **Example:**
@@ -718,7 +722,9 @@ For example, "15" would represent 15th hour of the day. </li>
             <li> "MM": Minute of the day, ranging from 0-59. For example, 
 "50" would represent the 50th minute of the hour. </li> 
         </ul>
-    </li> 
+    </li>
+    <li> You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time using edit command. 
+</li>
 </ul> </div>
 
 
@@ -823,18 +829,19 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.1. Applicant Commands
 
-| Action                                 | Format                                                                                                                                                                   | Example                                                                     |
-|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                       | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                                 | `find n/Thomas p/98764321`                                                  |
-| List all applicants                    | `list`                                                                                                                                                                   | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                                  | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `SHORTLISTED`  | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                                  | `reject n/Thomas p/98765432`                                                |
-| View the interview dates of applicants | `interview`                                                                                                                                                              | `interview`                                                                 |
-| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date   | `remind`                                                                                                                                                                 | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                                | `remind`                                                                    |
+| Action                                 | Format                                                                                                                                                               | Example                                                                     |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Tom p/98763213`                                                     |
+| List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Tom p/98763213`                                                   |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Tom p/98763213`                                                   |
+| View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
+| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
+| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
+
 
 [Back to Table of Contents](#table-of-contents)
 
