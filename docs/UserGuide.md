@@ -6,6 +6,7 @@ title: User Guide
 ## Table of Contents
 *  **[Overview](#overview)**
 *  **[Quick start](#quick-start)**
+*  **[User input restrictions](#User-input-restrictions)**
 *  **[Features](#features)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
@@ -33,7 +34,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `mathutoring.jar` (Stay tuned for our release!).
+2. Download the latest `MATHUTORING.jar`. 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
@@ -46,7 +47,7 @@ If you need to switch to a new device, you can also export and import your previ
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all students in the student list.
+   * `list` : Lists all students in the student list.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/87849999 t/female t/primary` : Adds a student named `John Doe` to the student list in MATHUTORING with two tags attached.
 
@@ -56,7 +57,17 @@ If you need to switch to a new device, you can also export and import your previ
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Recommended minimum screen size: 740 x 700.
+
+7. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User input restrictions
+To achieve the best performance, we have set a few restrictions regarding the user input.
+
+* Phone number must have at least 3 digits and no more than 15 digits.
+* A tag should not have more than 20 letters.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -115,7 +126,8 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation:
 Caution: </div> 
 
-* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them. <br>
+* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
+  e.g. Emily and Emily 2 are acceptable names.
 * We allow `PHONE_NUMBER` and `CONTACT_PARENT` to be the same as not all student have their own phone.
 
 
@@ -134,8 +146,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, all the existing tags of the student will be removed. i.e adding of tags is not cumulative.
+* When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without specifying any tags after it.
+* We allow you to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
+* You are not allowed to change the name to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -148,7 +162,7 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -158,7 +172,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
 ### 6. Deleting a student: `delete`
