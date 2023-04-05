@@ -18,11 +18,11 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import javafx.collections.ObservableList;
 import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
-import seedu.address.model.score.ScoreList;
+import seedu.address.model.score.UniqueScoreList;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Converts student's progress (tasks and scores) to pdf format
@@ -66,9 +66,9 @@ public class PdfConverter {
     private PDPageContentStream contentStream;
 
     /**
-     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code AddressBook}.
+     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code Mathutoring}.
      */
-    public PDDocument exportProgress(Person key) throws IOException {
+    public PDDocument exportProgress(Student key) throws IOException {
         requireAllNonNull(key);
         this.document = new PDDocument();
         this.page = new PDPage();
@@ -113,7 +113,7 @@ public class PdfConverter {
      * Creates table for task list.
      * @param tasks Task list of the student
      */
-    public void createTaskTable(TaskList tasks) throws IOException {
+    public void createTaskTable(UniqueTaskList tasks) throws IOException {
         if (tasks.size() == 0) {
             wrapText("No task found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -132,7 +132,7 @@ public class PdfConverter {
      * Creates table for score list.
      * @param scores Score list of the student
      */
-    public void createScoreTable(ScoreList scores) throws IOException {
+    public void createScoreTable(UniqueScoreList scores) throws IOException {
         if (scores.size() == 0) {
             wrapText("No score history found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -230,8 +230,8 @@ public class PdfConverter {
      * @param font font of the text contents
      * @param fontSize font size of the text contents
      */
-    public void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
-                                           int fontSize)
+    public void createTableContentForTask(UniqueTaskList tasks, List<String> maxContentWidthString, PDFont font,
+                                          int fontSize)
             throws IOException {
         float yFinal = this.y;
         ObservableList<Task> sortedTaskList = tasks.getInternalList();
@@ -261,10 +261,10 @@ public class PdfConverter {
      * @param font font of the text contents
      * @param fontSize font size of the text contents
      */
-    public void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
-                                            int fontSize) throws IOException {
+    public void createTableContentForScore(UniqueScoreList scores, List<String> maxContentWidthString, PDFont font,
+                                           int fontSize) throws IOException {
         float yFinal = this.y;
-        ObservableList<Score> sortedScoreList = scores.getInternalList();
+        ObservableList<Score> sortedScoreList = scores.getSortedScoreList();
         for (int i = 0; i < scores.size(); i++) {
             Score currentScore = sortedScoreList.get(i);
             double value = currentScore.getValue().value;

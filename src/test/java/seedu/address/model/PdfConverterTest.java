@@ -61,7 +61,7 @@ public class PdfConverterTest {
     }
 
     @Test
-    public void exportProgress_nullPerson_throwsNullPointerException() {
+    public void exportProgress_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> pdfConverter.exportProgress(null));
     }
 

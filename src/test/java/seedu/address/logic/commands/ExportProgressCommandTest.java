@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -19,14 +19,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code ExportProgressCommand}.
  */
 class ExportProgressCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMathutoring(), new UserPrefs());
 
     @Test
     public void constructor_nullIndexes_throwsNullPointerException() {
@@ -35,16 +35,16 @@ class ExportProgressCommandTest {
 
     @Test
     void execute_invalidStudentIndexDefaultDir_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ExportProgressCommand exportProgressCommand = new ExportProgressCommand(outOfBoundIndex, "");
 
-        assertCommandFailure(exportProgressCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(exportProgressCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     void execute_validStudentIndexDefaultDir_success() throws IOException {
-        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
+        Student studentToExport = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_STUDENT, "");
 
         String studentName = studentToExport.getName().fullName;
         String defaultDir = Paths.get("").toAbsolutePath().toString();
@@ -52,7 +52,7 @@ class ExportProgressCommandTest {
         String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                 studentName + "'s Progress Report.pdf");
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
         expectedModel.exportProgress(studentToExport, defaultPath);
 
         assertCommandSuccess(exportProgressCommand, model, expectedMessage, expectedModel);
@@ -60,8 +60,8 @@ class ExportProgressCommandTest {
 
     @Test
     void execute_validStudentIndexValidCustomDir_success() throws IOException {
-        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON,
+        Student studentToExport = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_STUDENT,
                 System.getProperty("user.home"));
 
         String studentName = studentToExport.getName().fullName;
@@ -70,7 +70,7 @@ class ExportProgressCommandTest {
         String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, customDir,
                 studentName + "'s Progress Report.pdf");
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
         expectedModel.exportProgress(studentToExport, customPath);
 
         assertCommandSuccess(exportProgressCommand, model, expectedMessage, expectedModel);
@@ -78,14 +78,14 @@ class ExportProgressCommandTest {
 
     @Test
     public void equals() {
-        ExportProgressCommand exportProgressFirstCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
-        ExportProgressCommand exportProgressSecondCommand = new ExportProgressCommand(INDEX_SECOND_PERSON, "");
+        ExportProgressCommand exportProgressFirstCommand = new ExportProgressCommand(INDEX_FIRST_STUDENT, "");
+        ExportProgressCommand exportProgressSecondCommand = new ExportProgressCommand(INDEX_SECOND_STUDENT, "");
 
         // same object -> returns true
         assertTrue(exportProgressFirstCommand.equals(exportProgressFirstCommand));
 
         // same values -> returns true
-        ExportProgressCommand exportProgressFirstCommandCopy = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
+        ExportProgressCommand exportProgressFirstCommandCopy = new ExportProgressCommand(INDEX_FIRST_STUDENT, "");
         assertTrue(exportProgressFirstCommand.equals(exportProgressFirstCommandCopy));
 
         // different types -> returns false
