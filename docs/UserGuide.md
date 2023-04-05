@@ -323,4 +323,5 @@ Action | Format, Examples
 **Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
 **Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
 **Clear** | `clear`
+**Exit** | `exit`
 **Help** | `help`

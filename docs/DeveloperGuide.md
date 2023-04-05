@@ -197,7 +197,7 @@ Each book in the `books` array will contain these fields:
 
 <div markdown="span" class="alert alert-warning">
 
- :warning: **Note:** If editing the file manually, note that borrowDate and dueDate has to be included if isBorrowed is true and vice versa. Otherwise, the data file will be invalid.
+ :warning: **Note:** If editing the file manually, note that `borrowDate` and `dueDate` must be included if `isBorrowed` is true and vice versa. Otherwise, the data file will be invalid.
 </div>
 
 ### Borrow/return feature
@@ -446,3 +446,13 @@ testers are expected to do more _exploratory_ testing.
 :information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved).
 
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Given below are some of the planned enhancements to ExpressLibrary current features.
+
+1. Currently all ExpressLibrary fields do not have any character limit, resulting in extreme inputs being truncated in the GUI. We plan to set an appropriate character limit for each field in order to counteract this and wrap the fields if the GUI cannot fit the fields in one line.
+
+2. Currently each person can borrow an unlimited books, we plan to fix this by limiting the number of books a person can borrow in a future update.
