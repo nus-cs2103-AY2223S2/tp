@@ -588,23 +588,29 @@ The following is a description of the code execution flow:
 
 **Target user profile**:
 
-- NUS Students
-- has a need to manage a significant number of lectures
-- falling behind on lectures
+- NUS students
+- has a need to keep track of a significant number of modules, lectures, and lecture videos
+- has a need to categorize and organize modules, lectures, and videos with tags
+- falling behind on lecture materials
 - feeling lost regarding lecture content
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is afraid of losing current data
-- wants to track productivity level during a specific time period
+- wants to track productivity level
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: fun, fast and stress-free way to organise and track lecture material
+**Value proposition**: fast and stress-free way to organise and track module progress and lecture material
 
-- gamified tracking application
-- easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
-- tailored to needs of students: provides additional information specific to lecture media such as watch progress and topics
-- faster than a typical mouse/GUI driven app
+- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a 
+  stress-free learning environment
+- Tailored to needs of students: provides additional information specific to lecture media such as watch progress, 
+  topics, and tags
+- Allow students to track progress of all modules
+- Offer the users great control over their current modules progress
+- Allow the users to back up their current progress, as well as import progress from backed up files
+- Faster than a typical mouse/GUI driven app
+- Intuitive, easy to navigate GUI
 
 ### User stories
 
@@ -1248,7 +1254,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2d1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-    - ### Change
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Import some modules from a file**
 
@@ -1285,7 +1326,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2d1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-    - ### Change
 
 - 2e. Specified modules do not exist in the saved file.
 

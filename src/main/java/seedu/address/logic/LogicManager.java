@@ -88,7 +88,7 @@ public class LogicManager implements Logic {
         if (!commandResult.getPath().isEmpty()) {
             if (commandResult.isExporting()) {
                 archive.exportToArchive(commandResult.getPath().get(),
-                        model.getTracker(), commandResult.isOverwriting());
+                        model.getTracker(), commandResult.isOverwriting(), storage.getTrackerFilePath());
             } else {
                 archive.importFromArchive(commandResult.getPath().get(), model,
                         commandResult.isImportingWholeArchive(),

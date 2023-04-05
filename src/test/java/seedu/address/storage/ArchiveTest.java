@@ -51,22 +51,36 @@ public class ArchiveTest {
             DataConversionException {
         Tracker tracker = TypicalModules.getTypicalTracker();
         assertThrows(CommandException.class, () -> archive.exportToArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
-                tracker, false));
+                tracker, false, testFolder.resolve(EXISTING_FILE_IN_ARCHIVE)));
         assertFalse(storage.readTracker().get().hasModule(TypicalModules.getCs2040s().getCode()));
     }
 
     @Test
     public void exportToArchive_saveToNewFile_success() throws CommandException, DataConversionException, IOException {
         Tracker tracker = TypicalModules.getTypicalTracker();
-        archive.exportToArchive(testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE), tracker, false);
+        archive.exportToArchive(testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE), tracker, false,
+                testFolder.resolve(EXISTING_FILE_IN_ARCHIVE));
         assertTrue(storage.readTracker().get().hasModule(TypicalModules.getCs2040s().getCode()));
     }
 
     @Test
-    public void exportToArchive_saveToExistTingFileWithOverwrite_success() throws CommandException,
-            DataConversionException, IOException {
+    public void exportToArchive_saveToCurrentDirectoryWithOverwrite_throwsCommandException() {
         Tracker tracker = TypicalModules.getTypicalTracker();
-        archive.exportToArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE), tracker, true);
+        assertThrows(CommandException.class, () -> archive.exportToArchive(testFolder.resolve(EXISTING_FILE_IN_ARCHIVE),
+                tracker, true,
+                testFolder.resolve(EXISTING_FILE_IN_ARCHIVE)));
+        //assertTrue(storage.readTracker().get().hasModule(TypicalModules.getCs2040s().getCode()));
+    }
+
+    @Test
+    public void exportToArchive_saveToExistingFileWithOverwrite_success() throws CommandException,
+            DataConversionException, IOException {
+        archive.exportToArchive(testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE),
+                new Tracker(), false,
+                testFolder.resolve(EXISTING_FILE_IN_ARCHIVE));
+        archive.exportToArchive(testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE),
+                TypicalModules.getTypicalTracker(), true,
+                testFolder.resolve(EXISTING_FILE_IN_ARCHIVE));
         assertTrue(storage.readTracker().get().hasModule(TypicalModules.getCs2040s().getCode()));
     }
 
@@ -77,7 +91,7 @@ public class ArchiveTest {
         Archive archiveThrowIoe = new Archive(storageThrowIoe);
         assertThrows(CommandException.class, () -> archiveThrowIoe.exportToArchive(
                 testFolder.resolve(NON_EXISTING_FILE_IN_ARCHIVE),
-                        tracker, false));
+                        tracker, false, testFolder.resolve(EXISTING_FILE_IN_ARCHIVE)));
     }
 
 
