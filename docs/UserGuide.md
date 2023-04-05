@@ -31,8 +31,6 @@ such as flight scheduling and management of crew, pilot, plane and location.
     - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight)**
     - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight)**
     - **[Checking a resource's availability: `check`](#5-checking-a-resources-availability)**
-  - **[Application Commands](#application-commands)**
-    - **[Exiting from Wingman: `exit`](#1-exiting-from-wingman)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -57,7 +55,7 @@ To find an in depth description of Wingman's features, simply search for the fea
 Each section contains a detailed description of the feature, and it's command format
 along with some examples of possible uses and expected outputs.
 
-For the description of commands, `{resource}_index` (e.g. `plane_index`) acts a placeholder in the command format where
+For the description of commands, `{resource}-index` (e.g. `plane-index`) acts a placeholder in the command format where
 a plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please
 refer to the image below for clarity.
 
@@ -145,7 +143,7 @@ For clarity, we will detail what the placeholders are expecting.
 
 For example,
 
-`linklocation /lo location_index /resource_prefix resource_index`
+`linklocation /lo location-index /resource-prefix resource-index`
 
 where `resource-prefix` might be replaced by a resource entity's (recall [resource definition](#glossary)) prefix.
 Furthermore,
@@ -193,16 +191,16 @@ The response box describes the addition that was made and the new entity should 
 
 <img src="images/ug/UG-add.jpg" width="2032">
 
-##### Crew mode: `add /n name /r rank`
+###### Crew mode: `add /n name /r rank`
 
 Required prefixes:
 
 - `/n`: the name of the crew.
 - `/r`: the rank of the crew.
-    - `0`: Cabin Service Director,
-    - `1`: Senior Flight Attendant,
-    - `2`: Flight Attendant,
-    - `3`: Trainee.
+  - `0`: Senior Crew Member,
+  - `1`: Crew Member,
+  - `2`: Junior Crew Member,
+  - `3`: Trainee.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: Your selection is limited to the designated ranks
@@ -215,10 +213,10 @@ Input:
 add /n John Smith /r 0
 
 Output: 
-Added Cabin Service Director John Smith.
+Added Senior Crew Member John Smith.
 ```
 
-##### Flight mode: `add /c code`
+###### Flight mode: `add /c code`
 
 Required prefixes:
 
@@ -234,7 +232,7 @@ Output:
 Added SQ230.
 ```
 
-##### Location mode: `add /n name`
+###### Location mode: `add /n name`
 
 Required prefixes:
 
@@ -250,7 +248,7 @@ Output:
 Added Tokyo.
 ```
 
-##### Pilot mode: `add /n name /r rank /a age /g gender /fh flight-hours`
+###### Pilot mode: `add /n name /r rank /a age /g gender /fh flight-hours`
 
 Required prefixes:
 
@@ -283,7 +281,7 @@ Output:
 Added Cadet Amelia Earhart.
 ```
 
-##### Plane mode: `add /m model /a age`
+###### Plane mode: `add /m model /a age`
 
 Required prefixes:
 
@@ -345,6 +343,10 @@ Output:
 Deleted A380.
 ```
 
+For instance, Junior Crew Member Mary will have an index number of 1 in the image below.
+
+<img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
+
 [Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -386,7 +388,7 @@ If the command is valid, Wingman will return a response confirming the link that
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: `linklocation /lo location_index /cr crew_index`
+###### Crew mode: `linklocation /lo location-index /cr crew-index`
 
 Required prefixes:
 
@@ -400,10 +402,10 @@ Input:
 linklocation /lo 1 /cr 1
 
 Output: 
-Linked Cabin Service Director John Smith to Tokyo.
+Linked Senior Crew Member John Smith to Tokyo.
 ```
 
-##### Flight mode: `linklocation /fl flight-index /from location-index /to location-index`
+###### Flight mode: `linklocation /fl flight-index /from location-index /to location-index`
 
 Required prefixes:
 
@@ -421,7 +423,7 @@ Output:
 Linked Tokyo, Paris to SQ230.
 ```
 
-##### Pilot mode: `linklocation /lo location-index /pi pilot-index`
+###### Pilot mode: `linklocation /lo location-index /pi pilot-index`
 
 Required prefixes:
 
@@ -438,7 +440,7 @@ Output:
 Linked Cadet Amelia Earhart to Tokyo.
 ```
 
-##### Plane mode: `linklocation /lo location-index /pl plane-index`
+###### Plane mode: `linklocation /lo location-index /pl plane-index`
 
 Prefixes:
 
@@ -465,7 +467,7 @@ Use this command when you wish to unlink a resource entity from a location (e.g.
 you can unlink it from Tokyo, so you get the correct information when filtering planes by location).
 
 ```
-unlinklocation /lo location_index /resource_prefix resource_index
+unlinklocation /lo location-index /resource-prefix resource-index
 ```
 
 Required prefixes:
@@ -492,7 +494,7 @@ If the command is valid, Wingman will return a response confirming the link that
 <strong>Note:</strong>s The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: `unlinklocation /lo location-index /cr crew-index`
+###### Crew mode: `unlinklocation /lo location-index /cr crew-index`
 
 Required prefixes:
 
@@ -506,10 +508,10 @@ Input:
 unlinklocation /lo 1 /cr 1
 
 Output: 
-Unlinked Cabin Service Director John Smith from Tokyo.
+Unlinked Senior Crew Member John Smith from Tokyo.
 ```
 
-##### Flight mode: `unlinklocation /fl flight-index /from departure-index /to arrival-index`
+###### Flight mode: `unlinklocation /fl flight-index /from departure-index /to arrival-index`
 
 Required prefixes:
 
@@ -527,7 +529,7 @@ Output:
 Unlinked Tokyo, Paris from SQ230.
 ```
 
-##### Pilot mode: `unlinklocation /lo location-index /pi pilot-index`
+###### Pilot mode: `unlinklocation /lo location-index /pi pilot-index`
 
 Required prefixes:
 
@@ -544,7 +546,7 @@ Output:
 Unlinked Cadet Amelia Earhart from Tokyo.
 ```
 
-##### Plane mode: `unlinklocation /lo location-index /pl plane-index`
+###### Plane mode: `unlinklocation /lo location-index /pl plane-index`
 
 Prefixes:
 
@@ -603,9 +605,7 @@ If the command is valid, Wingman will return a response confirming the link that
 
 <img src="images/ug/UG-linkflight.jpg" width="2032">
 
-##### Crew mode:
-
-`linkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
+###### Crew mode: `linkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
 
 Required prefixes:
 
@@ -633,7 +633,7 @@ Output:
 Linked Cabin Service Director John Smith to SQ230.
 ```
 
-##### Pilot mode: `linkflight /fl flight-index /pf pilot-index /pm pilot-index`
+###### Pilot mode: `linkflight /fl flight-index /pf pilot-index /pm pilot-index`
 
 Required prefixes:
 
@@ -659,7 +659,7 @@ Output:
 Linked Cadet Amelia Earhart to SQ230.
 ```
 
-##### Plane mode: `linkflight /fl flight_index /pl plane_index`
+###### Plane mode: `linkflight /fl flight-index /pl plane-index`
 
 Required prefixes:
 
@@ -686,7 +686,7 @@ Use this command when you wish to unlink a resource entity from a flight (e.g. w
 you can use this command to unlink the crew members from the flight).
 
 ```
-unlinkflight /fl flight_index /resource_prefix resource_index 
+unlinkflight /fl flight-index /resource-prefix resource-index 
 ```
 
 Required prefixes:
@@ -707,8 +707,9 @@ This command is **ONLY** available in the following modes: `crew`, `pilot` and `
 
 This command unlinks an entity of the current resource mode from a specified flight in Wingman's database.
 
-For example, if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight
-in the database.
+For example, if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the 
+database. The 'resource entity - flight' link is specified in brackets besides the entity name in the list of flights.
+This is useful to help you identify which prefix to use to unlink a particular entity from a flight.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
@@ -718,9 +719,7 @@ If the command is valid, Wingman will return a response confirming the link that
 
 <img src="images/ug/UG-unlinkflight.jpg" width="2032">
 
-##### Crew mode:
-
-##### `unlinkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
+###### Crew mode: `unlinkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
 
 Required prefixes:
 
@@ -748,7 +747,7 @@ Output:
 Unlinked Cabin Service Director John Smith from SQ230.
 ```
 
-##### Pilot mode: `unlinkflight /fl flight-index /pf pilot-index /pm pilot-index`
+###### Pilot mode: `unlinkflight /fl flight-index /pf pilot-index /pm pilot-index`
 
 Required prefixes:
 
@@ -774,7 +773,7 @@ Output:
 Unlinked Cadet Amelia Earhart from SQ230.
 ```
 
-##### Plane mode: `unlink /fl flight_index /pl plane_index`
+###### Plane mode: `unlink /fl flight-index /pl plane-index`
 
 Required prefixes:
 
@@ -797,7 +796,7 @@ Use this command when you wish to check a resource's availability (i.e. when dec
 can use this command to check whether the resource is already currently linked to another flight).
 
 ```
-check /id resource_index
+check /id resource-index
 ```
 
 Required input value:
@@ -824,20 +823,6 @@ A380 is available.
 
 <div style="page-break-after: always;"></div>
 
-### Application Commands
-
-#### 1. Exiting from Wingman
-
-```
-exit
-```
-
-This will close the application window and exit the program.
-All your changes to your resources will be saved for you to get back to when you reopen the application.
-
-[Back to contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
 
 ## Prefix Summary
 
@@ -874,13 +859,12 @@ All your changes to your resources will be saved for you to get back to when you
 | **Action**      | **Format**                                                          | **Examples**                   |
 |-----------------|---------------------------------------------------------------------|--------------------------------|
 | Add             | `add /prefix_A value_A /prefix_B value_B`                           | `add /n Bob /r 2`              |
-| Delete          | `delete resource_index`                                             | `delete 1`                     |
-| Link location   | `linklocation /lo location_index /resource_prefix resource_index`   | `linklocation /lo 0 /cr 1`     |
-| Unlink location | `unlinklocation /lo location_index /resource_prefix resource_index` | `unlinklocation /lo 0 /fl 1`   |
-| Link flight     | `linkflight /fl flight_index /resource_prefix resource_index `      | `linkflight /fl 0 /pf 1 /pm 2` |
-| Unlink flight   | `unlinkflight /fl flight_index /resource_prefix resource_index `    | `unlinkflight /fl 0 /pu 1`     |
-| Check           | `check /id resource_index`                                          | `check /id 0`                  |
-| Exit            | `exit`                                                              | `exit`                         |
+| Delete          | `delete resource-index`                                             | `delete 1`                     |
+| Link location   | `linklocation /lo location-index /resource-prefix resource-index`   | `linklocation /lo 0 /cr 1`     |
+| Unlink location | `unlinklocation /lo location-index /resource-prefix resource-index` | `unlinklocation /lo 0 /fl 1`   |
+| Link flight     | `linkflight /fl flight-index /resource-prefix resource-index `      | `linkflight /fl 0 /pf 1 /pm 2` |
+| Unlink flight   | `unlinkflight /fl flight-index /resource-prefix resource-index `    | `unlinkflight /fl 0 /pu 1`     |
+| Check           | `check /id resource-index`                                          | `check /id 0`                  |
 
 [Back to contents](#table-of-contents)
 
