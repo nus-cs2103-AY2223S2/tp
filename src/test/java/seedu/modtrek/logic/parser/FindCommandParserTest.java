@@ -85,6 +85,13 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void invalidFindByModuleCodeThrowsException() {
+        String invalidFindCommandString = " CS";
+        assertParseFailure(parser, invalidFindCommandString, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgsAllPrefix_returnsFindCommand() {
         HashSet<String> codePrefixes = new HashSet<>();
         codePrefixes.add("CS");
