@@ -226,7 +226,7 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "patients"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "patients", deathEx.getMessage()));
+                    "patients", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "patients"));
         }
         model.setPatientManager(patientManager);
@@ -242,7 +242,7 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "vaccinations"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "vaccinations", deathEx.getMessage()));
+                    "vaccinations", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "vaccinations"));
         }
         model.setVaxTypeManager(vaxTypeManager);
@@ -258,7 +258,7 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "appointments", deathEx.getMessage()));
+                    "appointments", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         }
         validateAppointments(appointmentManager, patientManager, vaxTypeManager);
@@ -275,7 +275,7 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "keywords"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
-                    "keywords", deathEx.getMessage()));
+                    "keywords", deathEx.toString()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "keywords"));
         }
         model.setKeywordManager(keywordManager);
