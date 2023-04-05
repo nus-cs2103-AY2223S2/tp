@@ -54,9 +54,7 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Guide
 Before you start using CoDoc, you are recommended to read the
-[Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format)
-
-sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
+[Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format) sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 User Guide and help you navigate it with ease.
 
 If you are first time users of CoDoc, we highly recommend that you read through the **entire user guide** in order to become 
@@ -64,6 +62,10 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
 how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
+
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. **All first time users** are recommended to read through the **entire user guide**.
+</div>
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
 
@@ -132,16 +134,22 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
+    <td><strong>:information_source: Note</strong></td>
+    <td>
+      To inform you of relevant information that might be useful to take note of as a user.
+    </td>
+  </tr>
+  <tr>
     <td><strong>:bulb: Tip</strong></td>
     <td>
-      To provide you with suggestions on how to use the commands as well as address potential confusions when using
+      To provide you with relevant suggestions on how to use the commands as well as address potential confusions when using
       these commands, so you will be able to better understand how the commands work.
     </td>
   </tr>
   <tr>
     <td><strong>:exclamation: Caution</strong></td>
     <td>
-      To inform you of some unintended consequences that may occur when you use the commands, so you will be
+      To inform you of some unintended or unexpected consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
     </td>
   </tr>
