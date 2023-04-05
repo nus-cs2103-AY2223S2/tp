@@ -43,8 +43,30 @@ and `filter` command, such as `FilterByPayrollPredicate`, `NameContainsAllKeywor
 - Helped fix general bugs received after the Practical Exam dry-run. 
 
 **Review/mentoring contributions :**
-- Pull Requests reviewed and merged: #177, 
+- Pull Requests reviewed and merged: 
+[#177](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/177),
+[#168](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/168),
+[#164](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/164),
+[#155](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/155),
+[#146](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/146),
+[#137](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/137),
+[#133](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/133),
+[#113](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/113),
+[#94](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/94),
+[#79](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/79),
+[#78](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/78),
+[#59](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/59),
+[#58](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/58),
+[#51](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/51),
+[#21](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/21),
+[#19](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/19),
+[#16](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/16),
+[#13](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/13),
+[#8](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/8)
+
 
 **Contributions beyond the project team :**
-To be added soon
+- Reported numerous bugs for team [_CS2103T-W12-4(Medimeet)_](https://github.com/AY2223S2-CS2103T-W12-4/tp)  
+  Some examples are: [#136](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/136), [#128](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/128),
+[#133](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/133)
 
