@@ -1,5 +1,7 @@
 package ezschedule.model.event;
 
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
 import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,5 +53,60 @@ public class TimeTest {
         // latest possible valid time will not be passed
         time = new Time("23:59");
         assertFalse(time.isPastTime());
+    }
+
+    @Test
+    public void isBefore() {
+        Time time = new Time("12:00");
+
+        // time is before -> returns true
+        Time otherTime = new Time("12:01");
+        assertTrue(time.isBefore(otherTime));
+
+        // time is the same -> returns false
+        otherTime = new Time("12:00");
+        assertFalse(time.isBefore(otherTime));
+
+        // time is before -> returns true
+        otherTime = new Time("11:59");
+        assertFalse(time.isBefore(otherTime));
+    }
+
+    @Test
+    public void isAfter() {
+        Time time = new Time("12:00");
+
+        // time is after -> returns true
+        Time otherTime = new Time("11:59");
+        assertTrue(time.isAfter(otherTime));
+
+        // time is the same -> returns false
+        otherTime = new Time("12:00");
+        assertFalse(time.isAfter(otherTime));
+
+        // time is before -> returns true
+        otherTime = new Time("12:01");
+        assertFalse(time.isAfter(otherTime));
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns equal
+        Time time = new Time(VALID_START_TIME_A);
+        assertTrue(time.equals(time));
+
+        // same values -> returns equal
+        Time timeCopy = new Time(VALID_START_TIME_A);
+        assertTrue(time.equals(timeCopy));
+
+        // null -> returns not equal
+        assertFalse(time.equals(null));
+
+        // different type -> returns not equal
+        assertFalse(time.equals(5));
+
+        // different date -> returns not equal
+        Time differentTime = new Time(VALID_START_TIME_B);
+        assertFalse(time.equals(differentTime));
     }
 }
