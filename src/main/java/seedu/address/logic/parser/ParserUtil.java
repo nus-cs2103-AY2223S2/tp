@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.date.DateUtil.parseFeedingIntervalDays;
+import static seedu.address.model.date.DateUtil.parseFeedingIntervalHours;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -86,6 +88,16 @@ public class ParserUtil {
         String trimmedFeedingInterval = feedingInterval.trim();
         if (!FeedingInterval.isValidFeedingInterval(trimmedFeedingInterval)) {
             throw new ParseException(FeedingInterval.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            parseFeedingIntervalDays(trimmedFeedingInterval);
+        } catch (NumberFormatException e) {
+            throw new ParseException("The days integer provided is not a valid integer.");
+        }
+        try {
+            parseFeedingIntervalHours(trimmedFeedingInterval);
+        } catch (NumberFormatException e) {
+            throw new ParseException("The hours integer provided is not a valid integer.");
         }
         return new FeedingInterval(trimmedFeedingInterval);
     }

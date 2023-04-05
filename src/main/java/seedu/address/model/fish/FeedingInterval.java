@@ -46,7 +46,7 @@ public class FeedingInterval {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid feeding interval.
      */
     public static boolean isValidFeedingInterval(String test) {
         return test.matches(VALIDATION_REGEX);
