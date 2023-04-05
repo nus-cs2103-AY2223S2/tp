@@ -33,7 +33,8 @@ public class ParentDeleteCommandTest {
         assert parentToDelete != null : "Parent to delete should not be null!";
 
         ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
-        String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS, parentToDelete);
+        String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS,
+                parentToDelete.getName(), parentToDelete.getPhone());
 
         ModelManager expectedModel = new ModelManager(model.getParents(), new UserPrefs());
         expectedModel.deleteParent(parentToDelete);
@@ -61,7 +62,8 @@ public class ParentDeleteCommandTest {
         assert parentToDelete != null : "Parent to delete should not be null!";
 
         ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
-        String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS, parentToDelete);
+        String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS,
+                parentToDelete.getName(), parentToDelete.getPhone());
 
         Model expectedModel = new ModelManager(model.getParents(), new UserPrefs());
         expectedModel.deleteParent(parentToDelete);
