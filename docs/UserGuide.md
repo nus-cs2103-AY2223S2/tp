@@ -569,4 +569,10 @@ If your changes to the data file makes its format invalid, TeamBuilder will disc
 # Future features
 These are features that will improve your experience using TeamBuilder, to be added in the future. Look forward to them!
 
+## Support for long tags
+Currently, whether it is a skill tag or a team tag, TeamBuilder will try to display the whole tag regardless of how long it is, causing it to overflow out of the window and be un-readable.
+In the future,
+- Tags that exceed a character count of 20 characters will be truncated and have a "..." after it.
+- Users will be able to view the full tag by hovering their cursor over the tag.
+  - This will not change the behaviour of the `add`, `edit`, or `find` commands.
 
