@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.model.student.Name;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
