@@ -149,6 +149,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Tags the given Person {@code taggingPerson} to the event at {@code index}.
      */
     public void tagPersonToEvent(Index index, Person taggingPerson) {
+        requireAllNonNull(index, taggingPerson);
         Event eventCopy = getEvent(index).addTaggedPerson(taggingPerson);
         internalList.set(index.getZeroBased(), eventCopy);
     }
@@ -157,6 +158,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Untags the given Person {@code taggingPerson} from the event at {@code index}.
      */
     public void untagPersonToEvent(Index index, Person taggingPerson) {
+        requireAllNonNull(index, taggingPerson);
         Event eventCopy = getEvent(index).deleteTaggedPerson(taggingPerson);
         internalList.set(index.getZeroBased(), eventCopy);
     }
