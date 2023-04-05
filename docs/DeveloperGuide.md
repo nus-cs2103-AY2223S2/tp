@@ -927,3 +927,60 @@ long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` caus
 ![text-wrap2](images/text-wrap2.png)
 - Ideally, this wrap-text would be implemented on all text fields
 
+
+### 7.2 Enabling `find` by subsection
+
+- As brought up by issue [#173](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/173), the application currently does not support finding
+a task by its subsection name or description.
+#### Possible Solution
+- One possible solution is to add a predicate in the `model.task` package that allows the list to be filtered based on whether the task has a certain subsection name/description.
+- The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d`.
+- Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description. 
+- The new command will look something like `find sub-n/Name`, which finds a task by its subsection name. Find by subsection description command can look like 
+`find sub-d/Description`.
+- The result of the command will be a  displayed list of tasks found:
+![text-wrap0](images/find-bysubsectionname.png)
+
+
+### 7.3 Enabling `edit` by subsection
+
+- The application currently does not support editing a task's subsection names or descriptions.
+#### Possible Solution
+- One possible solution is to modify the edit command and its parser so that the user can enter a new subsection name or description.
+- Inside the `execute` method of the `EditCommand`, we will create a new task with the subsection specified by the user changed to a new name/description.
+- The new command will look something like `edit INDEX I/Index sub-n/Name`, which edits a task's subsection name. Edit by subsection description command can look like
+  `edit INDEX I/Index sub-d/Description`. Here, the first index corresponds to the main task's index in the current task list displayed and the index after
+prefix `I/` corresponds to the index of the subsection in the parent task.
+- The result of the command will be a displayed list of tasks found:
+  ![text-wrap0](images/edit-subsection.png)
+
+
+### 7.4 Enabling `schedule` by subsection
+
+- The application currently does not support scheduling subsections so that they can be completed on different days.
+#### Possible Solution
+- One possible solution is to allocate the main task's effort level to the subtask and the scheduling algorithm will allocate big tasks by putting the same task on different days with different subsections on each day.
+- The new `subsection` command will look something like `subsection n/homework d/cs2109s [E/20]`. If the effort level is not specified, then the effort level of the main task will be even distributed among the subsections.
+- The command will still look like `schedule E/EFFORT D/DATE` but the result will only be the parent tasks along with part of the subsections that is set to be completed on that day.
+- For example, if the task list only contains a parent task has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/50 D/2023-05-04` and today is 2023-05-04, the displayed result 
+will only be the parent task and the subsection "homework A". If the user enters `schedule E/50 D/2023-05-05` then, the same parent task but with subsection "homework B" will be displayed.
+- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadlines, even if the total effort on a certain
+date must be above daily effort level. 
+
+
+### 7.4 Enabling `sort` by subsection
+
+- The application currently does not support sorting subsections so that they can be completed on different days.
+#### Possible Solution
+- One possible solution is to implement a `compareTo` function in the `Subtask` class. This is so that we can call `list.sort()` for the list of subsections in a task with a custom `compareTo` method.
+- The command will now look like `sort-sub INDEX`, where the index is the index of the main task in the task list currently displayed to the user. The result of the command will be that all the subsections
+of the selected parent task will be sorted. The sorting will sort by the effort level of the subsections, breaking ties using the subsection names' alphabetical order.
+- The result of the sorted subtasks will be displayed with new indexes inside the parent task.
+- To sort all the tasks, use `sort-sub all/` and the command will call the sorting function on the subsection list of each of the main tasks displayed.
+
+
+
+
+
+
+
