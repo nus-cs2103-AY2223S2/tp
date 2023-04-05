@@ -58,6 +58,7 @@ public class IdDataMap<T> {
     public IdData<T> add(T value) throws LimitExceededException {
         Objects.requireNonNull(value);
         IdData<T> data = new IdData<>(getNextId(), value);
+        nextId++;
         return add(data);
     }
 
@@ -74,7 +75,7 @@ public class IdDataMap<T> {
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         internalMap.put(data.getId(), data);
-        nextId = Math.max(nextId, data.getId());
+        nextId = Math.max(nextId, data.getId() + 1);
         return data;
     }
 
@@ -171,9 +172,10 @@ public class IdDataMap<T> {
         if (internalMap.size() >= limit) {
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
-        while (contains(nextId)) {
-            nextId++;
-            if (!isValidId(nextId)) {
+        while (contains(nextId) || !isValidId(nextId)) {
+            if (isValidId(nextId)) {
+                nextId++;
+            } else {
                 nextId = 0;
             }
         }

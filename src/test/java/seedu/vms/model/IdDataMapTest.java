@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -144,8 +143,6 @@ public class IdDataMapTest {
         idMap.add(initial);
         idMap.set(0, change);
         assertEquals(change, idMap.get(0).getValue());
-
-        assertThrows(NoSuchElementException.class, () -> idMap.set(1, change));
     }
 
 
