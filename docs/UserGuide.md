@@ -7,11 +7,11 @@ title: User Guide
 1. [ModCheck](#1-modcheck)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
-    * [Notes about the command format](#31--informationsource--notes-about-the-command-format----br)
+    * [Notes about the command format](#31-information_source-notes-about-the-command-format)
     * [Logging in](#32-logging-in)
         * [Creating Password](#321-creating-password)
     * [Viewing help](#33-viewing-help--help)
-    * [Adding a person](#34-adding-a-person--add)
+    * [Adding a person](#34-adding-a-person-add)
     * [Listing all persons](#341-listing-all-persons--list)
     * [Viewing a person](#342-viewing-a-persons-contact-details--view)
     * [Editing a person](#343-editing-a-person--edit)
@@ -87,7 +87,7 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 
 <div markdown="block" class="alert alert-info">
 
-### 3.1 :information_source: Notes about the command format:**<br>
+### 3.1 :information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
