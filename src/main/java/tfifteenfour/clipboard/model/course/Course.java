@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
@@ -13,8 +12,8 @@ import javafx.collections.ObservableList;
  */
 public class Course {
 
-    public static final String MESSAGE_CONSTRAINTS = "Course codes should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Course codes can only contain alphanumeric and special characters";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     public final String courseCode;
     private final UniqueGroupsList groups;
@@ -29,7 +28,6 @@ public class Course {
      */
     public Course(String courseCode) {
         requireNonNull(courseCode);
-        checkArgument(isValidCourseCode(courseCode), MESSAGE_CONSTRAINTS);
         this.courseCode = courseCode;
     }
 
