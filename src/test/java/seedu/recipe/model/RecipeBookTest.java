@@ -3,7 +3,6 @@ package seedu.recipe.model;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.testutil.TypicalRecipes.BLUEBERRY_PANCAKES;
@@ -181,11 +180,15 @@ public class RecipeBookTest {
 
     @Test
     public void test_equals() {
-        // null -> returns false
-        assertNotEquals(null, recipeBook);
+        assertFalse(recipeBook.equals(null));
 
         // same object -> returns true
         assertEquals(recipeBook, recipeBook);
+
+        RecipeBook recipeBookWithCacio = new RecipeBook();
+        recipeBookWithCacio.addRecipe(CACIO_E_PEPE);
+
+        assertFalse(recipeBook.equals(recipeBookWithCacio));
     }
 
 }
