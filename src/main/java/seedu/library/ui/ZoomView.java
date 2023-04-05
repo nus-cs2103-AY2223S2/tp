@@ -4,7 +4,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -98,12 +97,22 @@ public class ZoomView extends UiPart<Region> {
      * @param url url to open
      */
     public void openLink(String url) {
+        URI targetUrl = URI.create(url);
+        String os = System.getProperty("os.name").toLowerCase();
         try {
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (IOException | URISyntaxException ex) {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(targetUrl);
+            } else { //Desktop package not supported in this system
+                if (os.contains("nix")) {
+                    Runtime runtime = Runtime.getRuntime();
+                    runtime.exec("xdg-open" + url);
+                }
+            }
+        } catch (IOException ex) {
             throw new AssertionError(ex);
         }
     }
+
 
     /**
      * Helps set rating image in bookmarkcard
