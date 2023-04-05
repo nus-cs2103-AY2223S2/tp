@@ -496,3 +496,29 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+### Appendix: Planned Enhancement
+In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
+**1. Making the command box scrollable**
+- Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
+- Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
+- We plan to make content in the command box wrap and the command box itself scrollable.
+
+#### Figure 1.1 Current Non Scrollable Command Box
+![Current Non Scrollable Command Box](images/current_command_box.png)
+
+#### Figure 1.2 Planned Enhancement: Scrollable Command Box
+![Scrollable Command Box](images/scrollable_command_box_enhancement.png)
+
+**2. Review by untagged cards**
+- Currently, a user can only review all cards or cards that are specifically tagged with a difficulty.
+- However, a user may want to review only untagged cards (which they have yet to review).
+- Hence, the `review` command should support a flag `-u` where untagged cards will be reviewed.
+
+**3. Enable removing of tags**
+- Currently, if a user intends to remove a tag from a card, they need to delete the card and create a new card without a tag.
+- Hence, it would be more convenient if the user is able to untag a card directly from the edit command.
+- Example: `editCard 2 t\` would untag card with displayed index 2.
+- Additionally, a user may want to clear all tags of a deck before sharing with others.
+- Hence, it would be more convenient if there is a `clearTags` command to untag all cards in a deck
+- Example: `clearTags`
