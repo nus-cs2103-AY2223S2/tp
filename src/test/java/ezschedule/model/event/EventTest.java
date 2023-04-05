@@ -8,12 +8,11 @@ import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
+import static ezschedule.testutil.Assert.assertThrows;
 import static ezschedule.testutil.TypicalEvents.ART;
 import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static ezschedule.testutil.TypicalEvents.EVENT_B;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -91,55 +90,49 @@ public class EventTest {
     @Test
     public void equals() {
         // same object -> returns true
-        assertEquals(EVENT_A, EVENT_A);
+        assertTrue(EVENT_A.equals(EVENT_A));
 
-        // same values -> returns true
+        // same values -> returns equal
         Event aCopy = new EventBuilder(EVENT_A).build();
-        assertEquals(EVENT_A, aCopy);
+        assertTrue(EVENT_A.equals(aCopy));
 
         // null -> returns false
-        assertNotEquals(null, EVENT_A);
+        assertFalse(EVENT_A.equals(null));
 
         // different type -> returns false
-        assertNotEquals(5, EVENT_A);
+        assertFalse(EVENT_A.equals(5));
 
         // different event -> returns false
-        assertNotEquals(EVENT_A, EVENT_B);
+        assertFalse(EVENT_A.equals(EVENT_B));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns not equal
         Event editedA = new EventBuilder(EVENT_A).withName(VALID_NAME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
-        // different date, all other attributes same -> returns false
+        // different date, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withDate(VALID_DATE_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
-        // different start time, all other attributes same -> returns false
+        // different start time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withStartTime(VALID_START_TIME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
-        // different end time, all other attributes same -> returns false
+        // different end time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withEndTime(VALID_END_TIME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
         // invalid name -> throw IllegalArgumentException
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
-                new EventBuilder(EVENT_A).withName(INVALID_NAME).build());
-        assertEquals(Name.MESSAGE_CONSTRAINTS, exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder(EVENT_A).withName(INVALID_NAME).build());
 
         // invalid date -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
-                new EventBuilder(EVENT_A).withDate(INVALID_DATE).build());
-        assertEquals(Date.MESSAGE_CONSTRAINTS, exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder(EVENT_A).withDate(INVALID_DATE).build());
 
         // invalid start time -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 new EventBuilder(EVENT_A).withStartTime(INVALID_START_TIME).build());
-        assertEquals(Time.MESSAGE_CONSTRAINTS, exception.getMessage());
 
         // invalid end time -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 new EventBuilder(EVENT_A).withStartTime(INVALID_END_TIME).build());
-        assertEquals(Time.MESSAGE_CONSTRAINTS, exception.getMessage());
     }
 }

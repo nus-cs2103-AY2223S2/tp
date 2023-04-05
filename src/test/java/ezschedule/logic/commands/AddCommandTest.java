@@ -3,7 +3,8 @@ package ezschedule.logic.commands;
 import static ezschedule.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -75,20 +76,20 @@ public class AddCommandTest {
         AddCommand addEventBCommand = new AddCommand(b);
 
         // same object -> returns true
-        assertEquals(addEventACommand, addEventACommand);
+        assertTrue(addEventACommand.equals(addEventACommand));
 
         // same values -> returns true
         AddCommand addEventACommandCopy = new AddCommand(a);
-        assertEquals(addEventACommand, addEventACommandCopy);
+        assertTrue(addEventACommand.equals(addEventACommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, addEventACommand);
+        assertFalse(addEventACommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, addEventACommand);
+        assertFalse(addEventACommand.equals(null));
 
         // different event -> returns false
-        assertNotEquals(addEventACommand, addEventBCommand);
+        assertFalse(addEventACommand.equals(addEventBCommand));
     }
 
     /**
@@ -278,7 +279,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearRecent() {}
+        public void clearRecent() {
+        }
 
         @Override
         public ReadOnlyScheduler getScheduler() {
