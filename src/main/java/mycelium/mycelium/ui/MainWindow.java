@@ -286,6 +286,15 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.requestFocus();
     }
 
+    /**
+     * Forces the command box to submit the command.
+     *
+     * @see CommandBox#handleCommandEntered()
+     */
+    public void forceCommandBoxSubmit() {
+        commandBox.handleInputSubmit();
+    }
+
     // CommandLog methods ======================================================
     /**
      * Sets the feedback to the user.

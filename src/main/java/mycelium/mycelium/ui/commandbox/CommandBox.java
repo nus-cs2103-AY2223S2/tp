@@ -37,7 +37,7 @@ public class CommandBox extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    public void handleInputSubmit() {
         Optional<Mode> nextMode = mode.onInputSubmit(commandTextField.getText());
         if (nextMode.isPresent()) {
             setMode(nextMode.get());
@@ -85,9 +85,16 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Requests focus on the command box.
+     *
+     * If the command box is already focused, this method does nothing.
+     * Otherwise, the command box will be focused and the cursor will be moved to the end of the line.
      */
     public void requestFocus() {
+        if (commandTextField.isFocused()) {
+            return;
+        }
         commandTextField.requestFocus();
+        moveToEndOfLine();
     }
 
     /**

@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.uievent.key.ClearKey;
 import mycelium.mycelium.logic.uievent.key.EndOfLineKey;
+import mycelium.mycelium.logic.uievent.key.EnterKey;
 import mycelium.mycelium.logic.uievent.key.FindKey;
 import mycelium.mycelium.logic.uievent.key.HelpKey;
 import mycelium.mycelium.logic.uievent.key.NextItemKey;
@@ -70,6 +71,7 @@ public class UiEventManager implements UiEvent {
      * @param event the key event
      */
     public void catchAndExecute(KeyEvent event) {
+        mainWindow.focusCommandBox();
         if (isIgnored(event)) {
 
         } else if (HelpKey.KEY_COMBINATION.match(event)) {
@@ -92,8 +94,9 @@ public class UiEventManager implements UiEvent {
             new EndOfLineKey().execute(logic, mainWindow);
         } else if (QuitKey.KEY_COMBINATION.match(event)) {
             new QuitKey().execute(logic, mainWindow);
+        } else if (EnterKey.KEY_COMBINATION.match(event)) {
+            new EnterKey().execute(logic, mainWindow);
         } else {
-            mainWindow.focusCommandBox();
             return;
         }
         event.consume();
