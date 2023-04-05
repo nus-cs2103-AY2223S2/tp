@@ -308,9 +308,9 @@ Format: `addNote note -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
 
 Examples:
 
-* `addNote note -content rmb to bring along apple pencil -type Tutorial -name DummyTutorial`
-* `addNote note -content grade student labs timely -type Lab -name DummyLab`
-* `addNote note -content solve this student's query via email -type Recur -name DummyRecur`
+* `addNote note -content Bring pen -type Tutorial -name Tut1`
+* `addNote note -content Bring goggles -type Lab -name Lab1`
+* `addNote note -content Prepare questions -type Consultation -name Consult1`
 
 <div id='delete-note-from-event'></div>
 
@@ -324,9 +324,9 @@ Format: `deleteNote -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index 
 
 Examples:
 
-* `deleteNote -type Tutorial -name 2 -index 3`
-* `deleteNote -type Lab -name 2 -index 1`
-* `deleteNote -type Recur -name 2 -index 0`
+* `deleteNote -type Tutorial -name Tut1 -index 3`
+* `deleteNote -type Lab -name Lab1 -index 1`
+* `deleteNote -type Consultation -name Consult1 -index 0`
 
 <div id='edit-note-in-event'></div>
 
@@ -343,9 +343,9 @@ Format:
 Examples:
 
 
-* `editNote -content rmb to bring along apple pencil -type Tutorial -name 2 -index 3`
-* `editNote -content grade student labs timely -type Lab -name 2 -index 1`
-* `editNote -content solve this student's query via email -type Recur -name 2 -index 0`
+* `editNote -content Bring apple pencil -type Tutorial -name Tut1 -index 3`
+* `editNote -content Bring goggles and lab coat -type Lab -name Lab1 -index 1`
+* `editNote -content Prepare practice questions -type Consultation -name Consult1 -index 0`
 
 --------------------------------------------------------------------
 
@@ -509,11 +509,11 @@ By double-clicking on events, the notes section will appear
    <tr>
       <td><strong>Edit event</strong>
       </td>
-      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE]</code>
+      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_FILEPATH]</code>
       </td>
       <td>
          <ul>
-            <li><code>editEvent 2 Lab/VisuAlgo</code>
+            <li><code>editEvent 2 Lab/VisuAlgo -file C:\Users\student.pdf</code>
             <li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00</code>
             </li>
          </ul>
@@ -600,39 +600,39 @@ By double-clicking on events, the notes section will appear
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>addNote note -content hello world -type tutorial -name 2</code>
+      <td><code>addNote note -content [NOTE] -type [EVENT_TYPE] -name [EVENT_NAME]</code>
       </td>
       <td>
          <ul>
-            <li><code>addNote note -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
-            <li><code>addNote note -content grade student labs timely\n -type Lab -name 2</code></li>
-            <li><code>addNote note -content solve this student's query via email\n -type Recur -name 2</code></li>
+            <li><code>addNote note -content Bring pen -type Tutorial -name Tut1</code>
+            <li><code>addNote note -content Bring goggles -type Lab -name Lab1</code></li>
+            <li><code>addNote note -content Prepare questions -type Consultation -name Consult1</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
-      <td><code>deleteNote [TYPE] [NAME or INDEX] [NOTE_INDEX]</code>
+      <td><code>deleteNote -type [EVENT_TYPE] -name [EVENT_NAME/INDEX] -index [NOTE_INDEX]</code>
       </td>
       <td>
          <ul>
-            <li><code>deleteNote -type Tutorial -name 2 -index 3</code>
-            <li><code>deleteNote -type Lab -name 2 -index 1</code></li>
-            <li><code>deleteNote -type Recur -name 2 -index 0</code></li>
+            <li><code>deleteNote -type Tutorial -name Tut1 -index 3</code>
+            <li><code>deleteNote -type Lab -name Lab1 -index 1</code></li>
+            <li><code>deleteNote -type Consultation -name Consult1 -index 0</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>editNote [TYPE] [NAME or INDEX] [NOTE_INDEX] [NEW_CONTENT]</code>
+      <td><code>editNote -content [NEW_NOTE] -type [EVENT_TYPE] -name [EVENT_NAME/INDEX] -index [NOTE_INDEX]</code>
       </td>
       <td>
          <ul>
-            <li><code>editNote -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3</code>
-            <li><code>editNote -content grade student labs timely\n -type Lab -name 2 -index 1</code></li>
-            <li><code>editNote -content solve this student's query via email\n -type Recur -name 2 -index 0</code></li>
+            <li><code>editNote -content Bring apple pencil -type Tutorial -name Tut1 -index 3</code>
+            <li><code>editNote -content Bring goggles and lab coat -type Lab -name Lab1 -index 1</code></li>
+            <li><code>editNote -content Prepare practice questions -type Consultation -name Consult1 -index 0</code></li>
          </ul>
       </td>
    </tr>
@@ -644,9 +644,12 @@ By double-clicking on events, the notes section will appear
       <td>
          <ul>
             <li><code>help</code>
-            <li><code>help tutorial</code>
-            <li><code>help lab</code>
-            <li><code>help consultation</code>
+            <li><code>help student</code>
+            <li><code>help event</code>
+            <li><code>help event tutorial</code>
+            <li><code>help event lab</code>
+            <li><code>help event consultation</code>
+            <li><code>help organisation</code>
             </li>
          </ul>
       </td>
