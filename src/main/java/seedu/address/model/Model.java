@@ -93,5 +93,15 @@ public interface Model {
      */
     void updateSortedListingBook(ListingComparator comparator);
 
+    /**
+     * Undoes the last command which modifies the listingBook
+     * There must be undo-able commands that were executed.
+     * Closing and reopening the app clears all previous states and so does the history of previous command.
+     */
     void undo();
+
+    /**
+     * @return false if there are no previous states to undo into.
+     */
+    boolean hasPreviousState();
 }
