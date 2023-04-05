@@ -34,6 +34,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             } else {
                 metric = terms[METRIC_INDEX];
                 threshold = Integer.valueOf(terms[THRESHOLD_INDEX]);
+                double checkDouble = Double.valueOf(terms[THRESHOLD_INDEX]);
+                if (threshold < 0 || threshold > 100 || (int)checkDouble != threshold) {
+                    throw new IllegalArgumentException("Invalid integer format!");
+                }
             }
         } catch (IllegalArgumentException iae) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), iae);
