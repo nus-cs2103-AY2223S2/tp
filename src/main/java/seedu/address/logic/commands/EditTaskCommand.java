@@ -79,7 +79,7 @@ public class EditTaskCommand extends Command {
         if (!taskToEdit.isSame(editedTask) && taskModelManager.hasItem(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        officeConnectModel.setTaskModelManagerItem(taskToEdit, editedTask);
+        officeConnectModel.setTask(taskToEdit, editedTask);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

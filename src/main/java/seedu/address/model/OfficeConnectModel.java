@@ -61,19 +61,28 @@ public class OfficeConnectModel {
 
     private void updateTaskToPersonsMapping() {
         for (Task task : taskModelManager.getReadOnlyRepository().getData()) {
-            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
-            List<Person> persons = personModelManger.getAddressBook().getPersonList()
-                .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
-            taskModelManager.setItem(task, Task.ofUpdatePeoples(task, persons));
+            setTaskToPersons(task);
         }
     }
+
+    private void setTaskToPersons(Task task) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+        List<Person> persons = personModelManger.getAddressBook().getPersonList()
+            .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
+        taskModelManager.setItem(task, Task.ofUpdatePeoples(task, persons));
+    }
+
+    private void setPersonToTasks(Person person) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+
+        List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
+            .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
+        personModelManger.setPerson(person, Person.ofUpdateTasks(person, tasks));
+    }
+
     private void updatePersonToTasksMapping() {
         for (Person person : personModelManger.getAddressBook().getPersonList()) {
-            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
-
-            List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
-                .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
-            personModelManger.setPerson(person, Person.ofUpdateTasks(person, tasks));
+            setPersonToTasks(person);
         }
     }
 
@@ -134,9 +143,36 @@ public class OfficeConnectModel {
      * @param target     target task to be edited
      * @param editedTask edited task
      */
-    public void setTaskModelManagerItem(Task target, Task editedTask) {
+    public void setTask(Task target, Task editedTask) {
         taskModelManager.setItem(target, editedTask);
+        updatePersonsOnTaskChanged(editedTask);
+
     }
+
+    private void updatePersonsOnTaskChanged(Task task) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+
+        List<Person> persons = personModelManger.getAddressBook().getPersonList()
+            .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
+
+        for (Person person : persons) {
+            setPersonToTasks(person);
+        }
+
+    }
+
+    private void updateTaskOnPersonChanged(Person person) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+
+        List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
+            .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
+
+        for (Task task : tasks) {
+            setTaskToPersons(task);
+        }
+
+    }
+
 
     /**
      * Deletes task from task model manager.

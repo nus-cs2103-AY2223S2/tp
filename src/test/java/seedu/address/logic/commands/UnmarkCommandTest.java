@@ -43,7 +43,7 @@ public class UnmarkCommandTest {
         Task unmarkedTask = new TaskBuilder(task).withStatus(false).build();
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
 
-        expectedOfficeConnectModel.setTaskModelManagerItem(task, unmarkedTask);
+        expectedOfficeConnectModel.setTask(task, unmarkedTask);
 
 
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);

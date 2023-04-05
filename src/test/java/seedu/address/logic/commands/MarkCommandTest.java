@@ -43,7 +43,7 @@ public class MarkCommandTest {
         Task markedTask = new TaskBuilder(task).withStatus(true).build();
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
 
-        expectedOfficeConnectModel.setTaskModelManagerItem(task, markedTask);
+        expectedOfficeConnectModel.setTask(task, markedTask);
 
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);
     }

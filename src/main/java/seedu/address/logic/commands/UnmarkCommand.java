@@ -55,7 +55,7 @@ public class UnmarkCommand extends Command {
         }
 
         Task unmarkedTask = new TaskBuilder(taskToUnmark).withStatus(false).build();
-        officeConnectModel.setTaskModelManagerItem(taskToUnmark, unmarkedTask);
+        officeConnectModel.setTask(taskToUnmark, unmarkedTask);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
     }
