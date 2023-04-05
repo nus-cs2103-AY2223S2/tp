@@ -48,10 +48,22 @@ public class Pair {
                 && getVolunteer().isSamePerson(otherPair.getVolunteer());
     }
 
+    /**
+     * Checks if the elderly and volunteer of this pair belong in suitable regions for each other.
+     *
+     * @return True if the elderly and volunteer of this pair belongs in suitable regions for each other,
+     *      and false otherwise.
+     */
     public boolean checkRegion() {
         return elderly.isSuitableRegion(volunteer);
     }
 
+    /**
+     * Checks if the elderly and volunteer of this pair have suitable available dates with each other.
+     *
+     * @return True if the elderly and volunteer of this pair have suitable available dates with each other,
+     *      and false otherwise.
+     */
     public boolean checkAvailableDates() {
         return elderly.hasSuitableAvailableDates(volunteer);
     }
