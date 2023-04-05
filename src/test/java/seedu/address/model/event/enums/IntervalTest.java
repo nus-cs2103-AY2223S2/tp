@@ -1,9 +1,10 @@
 package seedu.address.model.event.enums;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.fields.Recurrence;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.event.fields.Recurrence;
 
 class IntervalTest {
 

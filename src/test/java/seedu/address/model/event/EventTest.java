@@ -1,16 +1,5 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.enums.Interval;
-import seedu.address.model.event.fields.DateTime;
-import seedu.address.model.event.fields.Description;
-import seedu.address.model.event.fields.Recurrence;
-import seedu.address.model.person.Person;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -19,6 +8,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.event.enums.Interval;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 
 class EventTest {
     private static final Description DESCRIPTION = new Description("Hello world!");

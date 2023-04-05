@@ -1,15 +1,16 @@
 package seedu.address.model.event.fields;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.enums.Interval;
-
-import java.time.temporal.ChronoUnit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.temporal.ChronoUnit;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.event.enums.Interval;
 
 class RecurrenceTest {
     private final Recurrence recurrenceNone = new Recurrence(Interval.NONE);
