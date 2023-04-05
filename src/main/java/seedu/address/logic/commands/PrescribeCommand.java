@@ -37,8 +37,8 @@ public class PrescribeCommand extends Command {
             + PREFIX_MEDICATION + "paracetamol "
             + PREFIX_COST + "3.5";
 
-    public static final String MESSAGE_ADD_SUCCESS = "Prescription of patient added!: %1$s";
-    public static final String MESSAGE_EDIT_SUCCESS = "Cost of prescription changed!: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "Prescription of patient added: %1$s";
+    public static final String MESSAGE_EDIT_SUCCESS = "Cost of prescription changed: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
 
     public final Nric nric;
