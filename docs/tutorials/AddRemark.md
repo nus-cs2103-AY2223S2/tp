@@ -164,7 +164,7 @@ Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input.
  */
 ```
 
-We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` and it will return us an instance of `ArgumentMultimap`. Now let’s find out what we need to do in order to obtain the Index and String that we need. Let’s look through `ArgumentMultimap` :
+We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` and it will return us an instance of `ArgumentMultimap`. Now let’s find out what we need to do in orderParser to obtain the Index and String that we need. Let’s look through `ArgumentMultimap` :
 
 **`ArgumentMultimap.java`:**
 
@@ -284,7 +284,7 @@ Unfortunately, a change to `Role` will cause other commands to break, you will h
 
 </div>
 
-Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in order!
+Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in orderParser!
 
 
 ## Updating Storage

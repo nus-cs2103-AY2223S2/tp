@@ -28,7 +28,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `company` field in `Role` is actually an instance of the `seedu.roles.model.job.Company` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `company` field in `Role` is actually an instance of the `seedu.techtrack.model.role.Company` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
@@ -82,7 +82,7 @@ private Label company;
 
 ``` xml
 ...
-<Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+<Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
 <Label fx:id="company" styleClass="cell_small_label" text="\$company" />
 <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
 ...
@@ -102,7 +102,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 {
   "roles": [ {
     "name": "Role with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
+    "contact": "9482424",
     "email": "hans@example.com",
     "company": "4th street"
   } ]

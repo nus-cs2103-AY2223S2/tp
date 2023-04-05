@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":CompanyCommandParser" as CompanyCommandParser LOGIC_COLOR
 participant ":CompanyCommand" as CompanyCommand LOGIC_COLOR
 participant ":CompanyContainsKeywordsPredicate" as CompanyContainsKeywordsPredicate LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("company Google")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("company Google")
-activate AddressBookParser
+LogicManager -> RoleBookParser : parseCommand("company Google")
+activate RoleBookParser
 
 create CompanyCommandParser
-AddressBookParser -> CompanyCommandParser
+RoleBookParser -> CompanyCommandParser
 activate CompanyCommandParser
 
-CompanyCommandParser --> AddressBookParser
+CompanyCommandParser --> RoleBookParser
 deactivate CompanyCommandParser
 
-AddressBookParser -> CompanyCommandParser : parse("Google")
+RoleBookParser -> CompanyCommandParser : parse("Google")
 activate CompanyCommandParser
 
 create CompanyCommand
@@ -46,14 +46,14 @@ CompanyContainsKeywordsPredicate --> CompanyCommand
 deactivate CompanyContainsKeywordsPredicate
 
 
-CompanyCommandParser --> AddressBookParser
+CompanyCommandParser --> RoleBookParser
 deactivate CompanyCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-CompanyCommandParser -[hidden]-> AddressBookParser
+CompanyCommandParser -[hidden]-> RoleBookParser
 destroy CompanyCommandParser
 
-AddressBookParser --> LogicManager
-deactivate AddressBookParser
+RoleBookParser --> LogicManager
+deactivate RoleBookParser
 
 
 LogicManager -> CompanyCommand : execute(model)

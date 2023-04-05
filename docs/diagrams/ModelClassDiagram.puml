@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyRoleBook" as ReadOnlyRoleBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as Model2
+Class RoleBook
 Class ModelManager
 Class UserPrefs
 
@@ -28,19 +28,19 @@ Class Experience
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model2
 
-AddressBook .up.|> ReadOnlyAddressBook
+RoleBook .up.|> ReadOnlyRoleBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up.|> Model2
+Model2 .right.> ReadOnlyUserPrefs
+Model2 .left.> ReadOnlyRoleBook
+ModelManager -left-> "1" RoleBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueRoleList
-UniqueRoleList --> "~* all" Role
+RoleBook *--> "1" UniqueRoleList
+
 Role *--> Name
 Role *--> Phone
 Role *--> Email
@@ -53,8 +53,9 @@ Role *--> JobDescription
 Role *--> Experience
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Role
+Role -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Role
+UniqueRoleList --> "~* all" Role
 @enduml
