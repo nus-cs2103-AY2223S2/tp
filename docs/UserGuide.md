@@ -156,9 +156,9 @@ Here are all the prefixes that can be used:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
-| f      | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
@@ -248,19 +248,19 @@ _Here are some important requirements for you to take note:_
   * `INDEX` must be a **positive integer** and must be greater than 0.
 * At least one field must be provided.
 
-For the following fields, they are considered a `SuperField`.
+For the following fields, they are considered a `FieldGroup`.
 * Modules
 * Tags
 
-A `SuperField` can contain many parameters in that single field.
-When using edit, the command looks for each parameter in the `SuperField`:
-* If the parameter already exists in the `SuperField` it will be removed.
-* Otherwise, the parameter will be added into the `SuperField`.
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
   * e.g. `edit t/10x Coder t/Intern Friend`
     * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
     * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
-  
+
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
 | n      | Name                            | No        |
@@ -271,26 +271,44 @@ When using edit, the command looks for each parameter in the `SuperField`:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
-
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 [Back To Contents](#table-of-contents)
+
 <hr style="border:2px solid gray">
 
-### Finding Particular Contacts: `find`
+### Editing the details of the user : `edituser`
 
-Want to narrow down your displayed contacts to a certain few?
+Want to change one of your own details, perhaps something was out of date?
 
-Use this command to find contacts using keywords and fields you specify!
+Use this command to edit your details easily!
 
 **Syntax:**
 
-`find KEYWORD PREFIX/KEYWORDS...`
+`edituser PREFIX/PARAMETER...`
+
+_Here are some important requirements for you to take note:_
+
+* At least one field must be provided.
+
+For the following fields, they are considered a `FieldGroup`.
+* Modules
+* Tags
+
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
+    * e.g. `edituser mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
+    * e.g. `edituser t/10x Coder t/Intern Friend`
+        * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
+        * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
@@ -305,22 +323,64 @@ Use this command to find contacts using keywords and fields you specify!
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
+
+More examples:
+*  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
+*  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
+
+### Finding Particular Contacts: `find`
+
+Want to narrow down your displayed contacts to a certain few?
+
+Use this command to find contacts by specifying the fiegit lds and corresponding keywords you wish to search!
+
+**Syntax:**
+
+`find PREFIX/KEYWORD...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+`KEYWORD` can contain more than 1 word.
+
+E.g `find n/Peter James`
+</div>
+
+| Prefix | Name of Field                   | Optional? |
+|--------|---------------------------------|-----------|
+| n      | Name                            | No        |
+| e      | Email address                   | Yes       |
+| p      | Phone Number                    | Yes       |
+| a      | Address                         | Yes       |
+| m      | Major                           | Yes       |
+| mt     | Mods Taken                      | Yes       |
+| f      | Faculty                         | Yes       |
+| g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
+| t      | Tags                            | Yes       |
+| c      | Preferred Communication Channel | Yes       |
+
 _Here are some important requirements for you to take note:_
+* At least 1 field and corresponding keyword must be specified.
+  * i.e `find PREFIX/KEYWORD`
 * The keywords are case-insensitive.
   * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
-
-* For each field specified, as long as one of the keywords is contained
-in that field, then the person will be returned.
+* If multiple same prefixes are specified, as long as one of the keyword is contained
+in the corresponding field, the person will be returned.
   * i.e. `find n/John n/Peter James`
-    * Can return:
-      * people with names of 'John', 'Peter James', 'Peter James John'
-    * Cannot return:
-      * A person with name of 'Peter'.
+    * Keywords: `john`, `peter james`
+        * Can return:
+          * people with names of 'John', 'Peter James', 'Peter James John'
+        * Cannot return:
+          * A person with name of 'Peter'.
 
-* All fields specified must have at least one keyword contained within that
-field for that person to be returned.
-  * i.e. `find n/Caleb p/9123 p/456`
+* All unique prefixes specified must be contained within the corresponding fields of the person
+ for that person to be returned.
+  * i.e. `find n/Caleb p/9123`
     * Can return: 
       * A person with a name of 'Caleb' who
 has a phone number of '91234567', 
@@ -405,19 +465,20 @@ Use this command to exit the application!
 
 ### NeoBook Command Summary
 
-| Action      | Format, Examples                                                                                                                                 |
-|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME [PREFIX/PARAMETERS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**   | `clear`                                                                                                                                          |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
-| **Edit**    | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |  
-| **Fav**     | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
-| **Unfav**   | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
-| **Find**    | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
-| **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                             |
-| **List**    | `list`                                                                                                                                           |
-| **Help**    | `help`                                                                                                                                           |
-| **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
+| Action       | Format, Examples                                                                                                                                 |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME [PREFIX/PARAMETERS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                          |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
+| **Edit**     | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |
+| **EditUser** | `edituser [PREFIX/PARAMETERS]…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com`                                                          |
+| **Fav**      | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
+| **Unfav**    | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
+| **Find**     | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
+| **Select**   | `select INDEX` <br> e.g., `select 2`                                                                                                             |
+| **List**     | `list`                                                                                                                                           |
+| **Help**     | `help`                                                                                                                                           |
+| **Exit**     | `exit`                                                                                                                                           |
 
 [Back To Contents](#table-of-contents)
 
@@ -530,7 +591,7 @@ _Here are some important requirements for you to take note:_
 | r      | Recurrence Interval           | Yes       |
 
 Examples:
-*  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
+*  `editevent 1 d/read book r/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
 *  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
@@ -612,8 +673,8 @@ _For more advanced users_
 | **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
 | **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
 | **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
-| **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
-| **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
+| **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                |
+| **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 ## UI Features

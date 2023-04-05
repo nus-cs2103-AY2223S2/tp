@@ -35,15 +35,16 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         DateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         DateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
 
-        if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()) {
-            // Non-recurring event
-            return new AddEventCommand(new OneTimeEvent(desc, startDateTime, endDateTime, new HashSet<>()));
-        } else {
-            // Recurring event
+        if (argMultimap.getValue(PREFIX_RECURRENCE).isPresent()) {
             Recurrence recurrence = ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get());
-            return new AddEventCommand(new RecurringEvent(desc, startDateTime, endDateTime,
-                    recurrence, new HashSet<>()));
+            if (recurrence.isRecurring()) {
+                // Recurring event
+                return new AddEventCommand(new RecurringEvent(desc, startDateTime, endDateTime,
+                        recurrence, new HashSet<>()));
+            }
         }
+        // Non-recurring event
+        return new AddEventCommand(new OneTimeEvent(desc, startDateTime, endDateTime, new HashSet<>()));
     }
 
     /**

@@ -126,12 +126,18 @@ public abstract class Event {
         return taggedPeople.stream().anyMatch(p -> Objects.equals(person, p));
     }
 
+    /**
+     * Returns a copy of the start date time.
+     */
     public DateTime getEffectiveStartDateTime() {
-        return startDateTime;
+        return new DateTime(this.startDateTime.getDateTime());
     }
 
+    /**
+     * Returns a copy of the end date time.
+     */
     public DateTime getEffectiveEndDateTime() {
-        return endDateTime;
+        return new DateTime(this.endDateTime.getDateTime());
     }
 
     /**
