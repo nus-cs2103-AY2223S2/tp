@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wingman.testutil.Assert.assertThrows;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +17,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
-import wingman.testutil.Assert;
 
 
 /**
@@ -192,12 +189,14 @@ public class CommandParamTest {
         );
         // execute
         assertThrows(
-                ParseException.class,
-                () -> param.getNamedValuesOrThrow(PREFIX_A)
+                ParseException.class, () -> {
+                    param.getNamedValuesOrThrow(PREFIX_A);
+                }
         );
         assertThrows(
-                ParseException.class,
-                () -> param2.getNamedValuesOrThrow(PREFIX_A)
+                ParseException.class, () -> {
+                    param2.getNamedValuesOrThrow(PREFIX_A);
+                }
         );
     }
 
@@ -245,8 +244,9 @@ public class CommandParamTest {
         );
         // execute
         assertThrows(
-                ParseException.class,
-                () -> param.getNamedIntOrThrow(PREFIX_A)
+                ParseException.class, () -> {
+                    param.getNamedIntOrThrow(PREFIX_A);
+                }
         );
     }
 
@@ -259,8 +259,9 @@ public class CommandParamTest {
         );
         // execute
         assertThrows(
-                ParseException.class,
-                () -> param.getNamedIntOrThrow(PREFIX_A)
+                ParseException.class, () -> {
+                    param.getNamedIntOrThrow(PREFIX_A);
+                }
         );
     }
 

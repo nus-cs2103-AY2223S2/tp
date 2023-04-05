@@ -1,7 +1,5 @@
 package wingman.logic.core.exceptions;
 
-import java.util.Objects;
-
 import wingman.commons.exceptions.IllegalValueException;
 
 /**
@@ -17,6 +15,13 @@ public class ParseException extends IllegalValueException {
         super(message, cause);
     }
 
+    /**
+     * Formats a message with the given arguments.
+     *
+     * @param message the message to format
+     * @param objects the arguments to format the message with
+     * @return the formatted message
+     */
     public static ParseException formatted(String message, Object... objects) {
         return new ParseException(String.format(
                 message,
