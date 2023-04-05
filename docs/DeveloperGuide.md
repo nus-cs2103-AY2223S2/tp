@@ -341,6 +341,7 @@ In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#
 
 The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
 ![ClearByActivityDiagram](images/ClearByActivityDiagram.png)
+![GroupCompanyName](images/GroupCompanyName.png) ![GroupJobTitle](images/GroupJobTitle.png) ![GroupStatus](images/GroupStatus.png)
 
 There are 3 constructors `ClearByCommand::new` provided for 3 different cases stated below : 
 
