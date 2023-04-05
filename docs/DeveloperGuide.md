@@ -49,66 +49,23 @@ below. Here is what each of them means.
 :warning: This box indicates a warning or caution.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+### Content overview
 
-## Setting Up, Getting Started
+This guide has been divided into five main parts.
 
-### Cloning the repo
+* [Design](#design) discusses the high level architecture of Mycelium
+* [User Interface](#user-interface) discusses GUI concerns
+* [Command Handling](#command-handling) discusses the parsing and executing of commands
+* [Storage](#storage) briefly explains Mycelium's approach to persisting data
+* [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
 
-First, fork [the repo](https://github.com/AY2223S2-CS2103T-W14-1/tp), and clone
-the fork into your local machine.
+We strive to write each section in a relatively self-contained manner, but some
+cross-referencing might be necessary.
 
-If you plan to use Intellij IDEA:
+### Setting up locally
 
-1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring
-   the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to
-   ensure Intellij is configured to use **JDK 11**.
-1. **Import the project as a Gradle project**: Follow the guide
-   [_[se-edu/guides] IDEA: Importing a Gradle
-   project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
-   to import the project into IDEA.<br> :information_source: Note: Importing a Gradle
-   project is slightly different from importing a normal Java project.
-
-If you plan to use other development environments, please seek out the
-appropriate guides on setting up JDK 11 and Gradle.
-
-Now, assuming you have successfully set up the project, let us verify that the
-code works as intended. In a terminal, navigate to the directory where you
-cloned the repo and execute the following command: `./gradlew test`. This will
-run all of Mycelium's automated tests. If you don't see any error messages
-printed, then you're all set.
-
-<div markdown="span" class="alert alert-success">
-:bulb: Did `./gradlew test` not work for you? Depending on your operating
-system and shell, there might be different ways to run the Gradle wrapper file.
-We advise you to
-
-1. Check that the file has execute permissions
-1. Check [Gradle's
-   website](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper)
-   for more information
-</div>
-
-### Before writing code
-
-1. **Configure the coding style**
-
-   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code
-   style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to
-   set up IDEA's coding style to match ours.
-
-1. **Set up CI**
-
-   This project comes with a GitHub Actions config files (in
-   `.github/workflows` folder). When GitHub detects those files, it will run
-   the CI for your project automatically at each push to the `master` branch or
-   to any PR. No set up required.
-
-1. **Learn the design**
-
-   When you are ready to start coding, we recommend that you get some sense of
-   the overall design by reading about [Mycelium’s
-   architecture](#architecture).
+This guide assumes that you have already set up Mycelium on your computer. For
+information on how to do this, see the [setting up guide](/tp/SettingUp.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -463,8 +420,6 @@ for interactive changes to the displayed projects and clients as the user types.
 
 ### Fuzzy searching
 
-{TODO fix diagrams}
-
 A fuzzy search searches for text that matches a term closely instead of exactly.
 In Mycelium, this is implemented using a modified version of [Levenshtein
 distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which measures
@@ -556,19 +511,10 @@ three-step process.
    performs fuzzy ranking on the lists of clients and projects
 1. Apply the two ranked lists to the `MainWindow`
 
-#### `CommandBox` state
-
-The section on the [changing Command Box modes](#changing-modes) introduced the
-role of this class in managing state between `SearchMode` and `CommandMode`. We
-can now contextualize the differences between these two modes in relation to
-fuzzy searching. This is illustrated in the activity diagram below.
-
-![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
-
 #### Updating the UI
 
-From the second sequence diagram above, we see that updates to the UI after
-fuzzy ranking is achieved by having `SearchMode` *set* the list of items in
+From the sequence diagram above, we see that updates to the UI after fuzzy
+ranking is achieved by having `SearchMode` *set* the list of items in
 `MainWindow`. This departs from the approach used in our CRUD operations, where
 (immutable) references to a `FilteredList` of clients and projects were
 obtained upon UI initialization, and any changes such as the creation or
@@ -588,6 +534,15 @@ sorting and filtering it requires without worrying about any unintentional
 side effects on the UI. After the user exits from fuzzy finding mode, the UI
 then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
+
+#### `CommandBox` state
+
+The section on the [changing Command Box modes](#changing-modes) introduced the
+role of this class in managing state between `SearchMode` and `CommandMode`. We
+can now contextualize the differences between these two modes in relation to
+fuzzy searching. This is illustrated in the activity diagram below.
+
+![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
 ## Command Handling
 
@@ -621,189 +576,6 @@ The following sequence diagram shows how the `UiAction` that switches the tab to
 Upon being executed, `UiAction` instance calls the appropriate method in `MainWindow` to perform the action from a successful command. In this case, the `UiAction` calls `MainWindow#selectProjectTab` to switch the tab to the Projects tab.
 
 ### Parser
-
---------------------------------------------------------------------------------------------------------------------
-
-## Testing
-
-### Running tests
-
-There are two ways to run tests.
-
-* **Method 1: Using IntelliJ JUnit test runner**
-    * To run all tests, right-click on the `src/test/java` folder and choose `Run 'All Tests'`
-    * To run a subset of tests, you can right-click on a test package,
-      test class, or a test and choose `Run 'ABC'`
-* **Method 2: Using Gradle**
-    * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
-
-<div markdown="span" class="alert alert-secondary">:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
-</div>
-
-### Types of tests
-
-This project has three types of tests:
-
-1. *Unit tests* targeting the lowest level methods/classes.<br>
-   e.g. `mycelium.mycelium.commons.StringUtilTest`
-2. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
-   e.g. `mycelium.mycelium.storage.StorageManagerTest`
-3. Hybrids of *unit* and *integration tests*. These test are checking multiple code units as well as how they are connected together.<br>
-   e.g. `mycelium.mycelium.logic.LogicManagerTest`
-
-
-
-## DevOps
-
-### Build automation
-
-This project uses Gradle for **build automation and dependency management**.
-**You are recommended to read [this Gradle Tutorial from the
-se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
-
-Given below are how to use Gradle for some important project tasks.
-
-* **`clean`**: Deletes the files created during the previous build tasks (e.g.
-  files in the `build` folder).<br>e.g. `./gradlew clean`
-
-* **`shadowJar`**: Uses the ShadowJar plugin to create a fat JAR file in the
-  `build/lib` folder, *if the current file is outdated*.<br>e.g. `./gradlew shadowJar`.
-
-* **`run`**: Builds and runs the application.<br>
-  **`runShadow`**: Builds the application as a fat JAR, and then runs it.
-
-* **`checkstyleMain`**: Runs the code style check for the main code base.<br>
-  **`checkstyleTest`**: Runs the code style check for the test code base.
-
-* **`test`**: Runs all tests.
-  * `./gradlew test` — Runs all tests
-  * `./gradlew clean test` — Cleans the project and runs tests
-
---------------------------------------------------------------------------------------------------------------------
-
-### Continuous integration (CI)
-
-This project uses GitHub Actions for CI. The project comes with the necessary
-GitHub Actions configurations files (in the `.github/workflows` folder). No
-further setting up required.
-
-#### Code coverage
-
-As part of CI, this project uses Codecov to generate coverage reports. When CI
-runs, it will generate code coverage data (based on the tests run by CI) and
-upload that data to the CodeCov website, which in turn can provide you more
-info about the coverage of your tests.
-
-However, because Codecov is known to run into intermittent problems (e.g.,
-report upload fails) due to issues on the Codecov service side, the CI is
-configured to pass even if the Codecov task failed. Therefore, developers are
-advised to check the code coverage levels periodically and take corrective
-actions if the coverage level falls below desired levels.
-
-To enable Codecov for forks of this project, follow the steps given in [this
-se-edu guide](https://se-education.org/guides/tutorials/codecov.html).
-
-#### Repository-wide checks
-
-In addition to running Gradle checks, CI includes some repository-wide checks.
-Unlike the Gradle checks which only cover files used in the build process,
-these repository-wide checks cover all files in the repository. They check for
-repository rules which are hard to enforce on development machines such as line
-ending requirements.
-
-These checks are implemented as POSIX shell scripts, and thus can only be run
-on POSIX-compliant operating systems such as macOS and Linux. To run all checks
-locally on these operating systems, execute the following in the repository
-root directory:
-
-`./config/travis/run-checks.sh`
-
-Any warnings or errors will be printed out to the console.
-
-**If adding new checks:**
-
-* Checks are implemented as executable `check-*` scripts within the `.github`
-  directory. The `run-checks.sh` script will automatically pick up and run
-  files named as such. That is, you can add more such files if you need and the
-  CI will do the rest.
-
-* Check scripts should print out errors in the format `SEVERITY:FILENAME:LINE:
-  MESSAGE`
-  * SEVERITY is either ERROR or WARN.
-  * FILENAME is the path to the file relative to the current directory.
-  * LINE is the line of the file where the error occurred and MESSAGE is the
-    message explaining the error.
-
-* Check scripts must exit with a non-zero exit code if any errors occur.
-
---------------------------------------------------------------------------------------------------------------------
-
-### Making a release
-
-Here are the steps to create a new release.
-
-1. Update the version number in
-   [`MainApp.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/MainApp.java).
-1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
-1. Tag the repo with the version number. e.g. `v0.1`
-1. [Create a new release using
-   GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR
-   file you created.
-
-## Logging
-
-* We are using `java.util.logging` package for logging.
-* The `LogsCenter` class is used to manage the logging levels and logging
-  destinations.
-* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)`
-  which will log messages according to the specified logging level.
-* Log messages are output through the console and to a `.log` file.
-* The output logging level can be controlled using the `logLevel` setting in
-  the configuration file (See the [Configurations](#configurations)
-  section).
-* **When choosing a level for a log message**, follow the conventions given in
-  [_[se-edu/guides] Java: Logging
-  conventions_](https://se-education.org/guides/conventions/java/logging.html).
-
-## Documentation
-
-**Setting up and maintaining the project website:**
-
-* We use [**Jekyll**](https://jekyllrb.com/) to manage documentation.
-* The `docs/` folder is used for documentation.
-* To learn how set it up and maintain the project website, follow the guide
-  [_[se-edu/guides] **Using Jekyll for project
-  documentation**_](https://se-education.org/guides/tutorials/jekyll.html).
-* Note these points when adapting the documentation to a different
-  project/product:
-  * The 'Site-wide settings' section of the page linked above has information
-    on how to update site-wide elements such as the top navigation bar.
-  * :bulb: In addition to updating content files, you might have to update the
-    config files `docs\_config.yml` and `docs\_sass\minima\_base.scss` (which
-    contains a reference to `Mycelium` that comes into play when converting
-    documentation pages to PDF format).
-
-**Style guidance:**
-
-* Follow the [**_Google developer documentation style
-  guide_**](https://developers.google.com/style).
-* Also relevant is the [_[se-edu/guides] **Markdown coding
-  standard**_](https://se-education.org/guides/conventions/markdown.html)
-
-**Diagrams:**
-
-We use both [draw.io](https://app.diagrams.net/) and
-[PlantUML](https://plantuml.com/) as diagramming tools. The former is a drag
-and drop editor, while the latter defines UML diagrams through plain text
-files.
-
-* The `docs/images` directory contains ready-for-use pictures in PNG format
-* The `docs/diagrams` directory contains `.puml` files (for PlantUML) and
-  `.xml` files (for draw.io) which allow editing and regenerating of diagrams
-
-## Configurations
-
-Certain properties of the application can be controlled (e.g. user preferences file location, logging level) through the configuration file (default: `config.json`). The configuration file is created the first time the application is run. It is in JSON format and contains name-value pairs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -950,18 +722,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+## Glossary
 
 The terms in this glossary are sorted in alphabetical order.
 
-
-* **Client**: An individual associated with a particular project
-* **Console-first Interface**: An interface with interactions primarily through
-  text commands
+* **Client**: An individual associated with a particular project, presumably
+  the one who posted or requested it
+* **Console-first interface**: An interface with interactions primarily through
+  text commands or hotkeys
 * **Draw.io**: A drag-and-drop diagramming tool. Available at
   [draw.io](https://app.diagrams.net/).
 * **Fuzzy search**: A feature to search for items which partially match a query
   rather than exactly
+* **Hotkey**: A convenient combination of key presses meant to invoke some app
+  functionality
 * **PlantUML**: A text-based diagramming tool. See
   [plantuml.com](https://plantuml.com/) for more information.
 * **Project**: A freelance software development gig
@@ -970,5 +744,186 @@ The terms in this glossary are sorted in alphabetical order.
 
 ## Appendix: Instructions for manual testing
 
-{TODO maybe add}
+<div markdown="span" class="alert alert-success">
+:bulb: When testing commands, it is recommended to test different combinations
+of the optional arguments to ensure that the program can handle different use
+cases.
+</div>
 
+### Client commands
+
+**Creating a client**
+
+1. Type the command "c" followed by a space and then the client's name (-cn
+   name) and email (-e email).
+1. Verify that the new client's name and email are displayed on the interface
+   after successfully creating the contact.
+1. Optionally, add any combination of the year of birth (-y argument), platform
+   source (-src argument), and mobile number (-mn argument) after the email in
+   the command. Verify that the corresponding information is displayed on the
+   interface.
+1. Test that an error message is displayed if a client with the same email
+   already exists.
+1. Test that an error message is displayed if no client name or email is
+   provided.
+1. Test that an error message is displayed if an invalid argument is entered.
+
+**Deleting a client**
+
+1. Identify an existing client contact to delete and note down their email
+   address.
+1. Type the command "dc" followed by a space and then the email address of the
+   client to be deleted (-e email).
+1. Verify that the interface displays the name and email of the deleted client.
+1. Confirm that the deleted client's information is no longer accessible
+   through the interface.
+1. Test that an error message is displayed if no email address is provided.
+1. Test that an error message is displayed if the email address provided does
+   not correspond to an existing client contact.
+
+**Updating a client**
+
+1. Identify an existing client contact to update and note down their email
+   address.
+1. Type the command "uc" followed by a space and then the email address of the
+   client to be updated (-e email).
+1. Optionally, add any combination of the client's new name (-cn client_name),
+   new email (-e2 email), new year of birth (-y year_of_birth), new platform
+   source (-src source), or new mobile number (-mn mobile_number) after the
+   email address in the command. Verify that the corresponding information is
+   displayed on the interface after successful update.
+1. Test that the client information is updated correctly by checking that the
+   updated information is displayed on the interface.
+1. Test that an error message is displayed if no email address is provided.
+1. Test that an error message is displayed if the email address provided does
+   not correspond to an existing client contact.
+1. Test that an error message is displayed if a new email address is provided
+   that is already associated with an existing client contact.
+1. Test that if an optional argument is not provided, the corresponding field
+   is not updated and the existing information is retained.
+
+### Project commands
+
+**Creating a project**
+
+1. Type the command "p" followed by a space and then the project's name (-pn
+   project_name) and the email of the client who submitted the project (-e
+   client_email).
+1. Verify that a message confirming the addition of the project is displayed.
+1. Optionally, add any combination of the project's status (-s status), source
+   (-src source), description (-d description), accepted date (-ad
+   accepted_date), and deadline date (-dd deadline_date) after the client's
+   email in the command. Verify that the corresponding information is displayed
+   on the interface.
+1. Test that an error message is displayed if no project name or client email
+   is provided.
+1. Test that an error message is displayed if a project with the same name
+   already exists.
+1. Test that the project information is stored correctly by checking that the
+   information is displayed on the interface after successful creation.
+1. Test that the default values are assigned correctly for the optional
+   arguments.
+1. Test that an error message is displayed if an invalid argument is entered.
+
+**Deleting a project**
+
+1. Identify an existing project to delete and note down its name.
+1. Type the command "dp" followed by a space and then the project's name (-pn
+   project_name).
+1. Verify that a message confirming the deletion of the project is displayed.
+1. Confirm that the deleted project's information is no longer accessible
+   through the interface.
+1. Test that an error message is displayed if no project name is provided.
+1. Test that an error message is displayed if the project name provided does
+   not correspond to an existing project.
+
+**Updating a project**
+
+1. Identify an existing project to update and note down its name.
+1. Type the command "up" followed by a space and then the project's name (-pn
+   project_name).
+1. Optionally, add any combination of a new project name (-pn2
+   new_project_name), a new client email (-e client_email), a new project
+   status (-s status), a new source for the project (-src source), a new
+   description for the project (-d description), a new accepted-on date for the
+   project (-ad accepted_date), and a new deadline for the project (-dd
+   deadline_date) after the project name in the command. Verify that the
+   corresponding information is displayed on the interface after successful
+   update.
+1. Test that the project information is updated correctly by checking that the
+   updated information is displayed on the interface.
+1. Test that an error message is displayed if no project name is provided.
+1. Test that an error message is displayed if the project name provided does
+   not correspond to an existing project.
+1. Test that if an optional argument is not provided, the corresponding field
+   is not updated and the existing information is retained.
+1. Test that an error message is displayed if an invalid argument is entered.
+
+### Fuzzy search
+
+1. Press (CTRL+F) to toggle to search mode, and note that the command box
+   should switch color as an indication.
+1. Type a query into the command box that partially matches a project name, and
+   verify that the projects with matching names are displayed in the UI. Note
+   that closer matches should be placed at the top.
+1. Verify that the search is interactive and the UI automatically updates as
+   you type your query.
+1. Verify that only projects that have a partial match with the query are
+   shown. Projects that don't match at all should not be shown.
+1. Verify that the search is not case-sensitive.
+1. Test that exiting search mode by pressing (CTRL+F) again returns the command
+   box to its original color.
+1. Repeat the above steps for client names.
+
+The following steps test the feature for extracting project names and emails
+with (ENTER).
+
+1. Ensure there are some projects and clients in Mycelium.
+1. Press (CTRL+F) to enter search mode.
+1. In the search box, type a query for a project or client name that exists in
+   the list, but do not press enter.
+1. Use (CTRL+J) and (CTRL+K) to navigate and select the desired project or
+   client in the search results.
+1. Press (ENTER) to exit search mode and append the name or email of the
+   selected project or client to the command box.
+1. Verify that the selected project or client name/email is appended to the
+   command box correctly.
+1. Try executing some commands while in search mode and verify that they are
+   not executed.
+1. Try searching while in command mode and verify that no searching can be
+   done.
+
+### Hotkeys
+
+1. Verify that the Help page can be accessed by pressing (F1).
+1. Verify that Mycelium can be quickly quit by pressing (CTRL+Q).
+1. Verify that the cursor can be moved to the start of the line in the command
+   box by pressing (CTRL+W).
+1. Verify that the cursor can be moved to the end of the line in the command
+   box by pressing (CTRL+E).
+1. Verify that the current line in the command box can be quickly cleared by
+   pressing (CTRL+D).
+1. Verify that the command log found below the command box is also cleared when
+   using (CTRL+D).
+1. Verify that the focus can be switched between the Entity panel and the
+   Statistics panel by pressing (CTRL+S).
+1. Verify that the panel in focus is highlighted with a blue header.
+1. Verify that the tabs can be switched in the currently selected panel by
+   pressing (CTRL+L).
+1. Verify that the next item on the list in the currently selected tab can be
+   selected by pressing (CTRL+J).
+1. If the last item is selected, verify that the next item is the first item in
+   the list.
+1. Verify that the previous item on the list in the currently selected tab can
+   be selected by pressing (CTRL+K).
+1. If the first item is selected, verify that the previous item is the last
+   item in the list.
+
+
+## Appendix: Documentation, Logging, Testing, Configuration, and DevOps
+
+* [Documentation guide](/tp/Documentation.html)
+* [Logging guide](/tp/Logging.html)
+* [Testing guide](/tp/Testing.html)
+* [Configuration guide](/tp/Configuration.html)
+* [DevOps guide](/tp/DevOps.html)
