@@ -8,6 +8,7 @@ import static seedu.task.testutil.TypicalEvents.MEETING;
 import static seedu.task.testutil.TypicalEvents.STUDY;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -24,6 +25,36 @@ public class EventTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new EventBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+    }
+
+    @Test
+    public void isDuringEvent() {
+        // start date -> return true
+        assertTrue(STUDY.isDuringEvent(LocalDate.parse("2023-01-02")));
+
+        // end date -> return true
+        assertTrue(STUDY.isDuringEvent(LocalDate.parse("2023-01-03")));
+
+        // before event -> return false
+        assertFalse(STUDY.isDuringEvent(LocalDate.parse("2023-01-01")));
+
+        // after event -> return false
+        assertFalse(STUDY.isDuringEvent(LocalDate.parse("2023-01-04")));
+    }
+
+    @Test
+    public void isSimpleTask() {
+        assertFalse(STUDY.isSimpleTask());
+    }
+
+    @Test
+    public void isDeadline() {
+        assertFalse(STUDY.isDeadline());
+    }
+
+    @Test
+    public void isEvent() {
+        assertTrue(STUDY.isEvent());
     }
 
     @Test

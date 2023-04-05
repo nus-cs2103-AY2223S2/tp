@@ -62,6 +62,18 @@ public class SimpleTaskList extends CategoricalTaskList {
         return false;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof SimpleTaskList) {
+            SimpleTaskList list = (SimpleTaskList) other;
+            return taskList.equals(list.taskList);
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Utility class to help order tasks in descending order of effort required.
      */

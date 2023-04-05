@@ -34,6 +34,15 @@ public class TypicalDeadlines {
             .withEffort(5)
             .build();
 
+    public static final Deadline CHICKEN_EXPIRY = new DeadlineBuilder().withName("Chicken")
+            .withDate("2023-04-29 1800")
+            .withEffort(28)
+            .build();
+
+    public static final Deadline SUSHI_EXPIRY = new DeadlineBuilder().withName("Sushi")
+            .withDate("2023-04-30 1800")
+            .withEffort(12)
+            .build();
 
     private TypicalDeadlines() {} // prevents instantiation
 
@@ -50,5 +59,9 @@ public class TypicalDeadlines {
 
     public static List<Task> getTypicalDeadlines() {
         return new ArrayList<>(Arrays.asList(RETURN_BOOK, ASSIGNMENT, PROJECT));
+    }
+
+    public static List<Task> getTypicalDeadlinesInApril() {
+        return new ArrayList<>(Arrays.asList(CHICKEN_EXPIRY, SUSHI_EXPIRY));
     }
 }

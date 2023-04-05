@@ -8,6 +8,7 @@ import static seedu.task.testutil.TypicalDeadlines.ASSIGNMENT;
 import static seedu.task.testutil.TypicalDeadlines.RETURN_BOOK;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -24,6 +25,18 @@ public class DeadlineTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new DeadlineBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+    }
+
+    @Test
+    public void isValidDeadline() {
+        // before deadline -> return true
+        assertTrue(ASSIGNMENT.isValidDate(LocalDate.parse("2022-12-12")));
+
+        // after deadline -> return false
+        assertFalse(ASSIGNMENT.isValidDate(LocalDate.parse("2023-02-12")));
+
+        // same day as deadline -> return false
+        assertFalse(ASSIGNMENT.isValidDate(LocalDate.parse("2023-01-01")));
     }
 
     @Test

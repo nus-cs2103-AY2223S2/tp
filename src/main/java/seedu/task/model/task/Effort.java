@@ -8,7 +8,7 @@ import seedu.task.model.task.exceptions.InvalidEffortException;
  * Represent a Task's required effort in the task book.
  */
 public class Effort {
-    public static final String MESSAGE_CONSTRAINTS = "Effort must be greater than or equal to 0!";
+    public static final String MESSAGE_CONSTRAINTS = "Effort must be an integer greater than or equal to 0.";
     public static final long DEFAULT_DAILY_EFFORT = 24;
     private long effort;
 
