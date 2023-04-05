@@ -217,7 +217,12 @@ public class ParserUtil {
      * @param rawString The String
      * @return The String.
      */
-    public static String parseString(String rawString) {
-        return rawString;
+    public static String parseString(String rawString) throws ParseException {
+        requireNonNull(rawString);
+        String ret = rawString.trim();
+        if (ret.isBlank()) {
+            throw new ParseException("Provided string is empty!");
+        }
+        return ret;
     }
 }

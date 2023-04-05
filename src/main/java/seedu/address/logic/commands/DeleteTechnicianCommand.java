@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entity.person.Technician;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewcustomer.
+ * Deletes a technician identified using it's displayed index from viewtechnician or listtechnicians.
  */
 public class DeleteTechnicianCommand extends RedoableCommand {
 
@@ -47,7 +47,7 @@ public class DeleteTechnicianCommand extends RedoableCommand {
 
         model.deleteTechnician(technicianToDelete);
         IdGenerator.setStaffIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_TECHNICIAN_SUCCESS, technicianToDelete), Tab.TECHNICIANS);
+        return new CommandResult(String.format(MESSAGE_DELETE_TECHNICIAN_SUCCESS, id), Tab.TECHNICIANS);
     }
 
     @Override

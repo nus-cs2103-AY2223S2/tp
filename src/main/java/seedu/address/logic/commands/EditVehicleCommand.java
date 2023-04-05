@@ -44,7 +44,7 @@ public class EditVehicleCommand extends RedoableCommand {
             + PREFIX_PLATE_NUM + "SBA1234A "
             + PREFIX_VEHICLE_COLOR + "blue";
 
-    public static final String MESSAGE_EDIT_VEHICLE_SUCCESS = "Edited vehicle: %1$s";
+    public static final String MESSAGE_EDIT_VEHICLE_SUCCESS = "Edited vehicle: %d";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer %d does not exist.";
@@ -89,6 +89,10 @@ public class EditVehicleCommand extends RedoableCommand {
                 .filter(c -> c.getId() == vehicleToEdit.getOwnerId())
                 .findFirst().orElseThrow();
             prevOwner.removeVehicle(vehicleToEdit);
+
+            System.out.println(vehicleToEdit.getOwnerId());
+            System.out.println(editedVehicle.getOwnerId());
+
             Customer newOwner = model.getFilteredCustomerList().stream()
                 .filter(c -> c.getId() == editedVehicle.getOwnerId())
                 .findFirst().orElseThrow();
@@ -99,7 +103,7 @@ public class EditVehicleCommand extends RedoableCommand {
         model.selectVehicle(editedVehicle);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, editedVehicle), Tab.VEHICLES);
+        return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, editedVehicle.getId()), Tab.VEHICLES);
     }
 
     /**
