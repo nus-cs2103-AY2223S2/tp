@@ -25,7 +25,7 @@ Without further ado, let's get started!
 3. [Features](#features)
     1. [Legend](#legend)
     2. [Student Features: `student`](#student)
-         1. [Add student: `add`](#addstudent)
+         1. [Add student: `add`](#adding-a-student-student-class-add)
          2. [Add attendance to students: `attendance`](#attendance)
          3. [Add students' grade: `grade`](#gradestudent)
          4. [Deletes students' grade: `gradedelete`](#gradedelete)
