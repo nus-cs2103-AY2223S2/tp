@@ -91,7 +91,10 @@ public class ElderlyCard extends UiPart<Region> {
         riskLevel.getChildren().add(riskLabel);
         elderly.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tags.getChildren().add(tagLabel);
+                });
         elderly.getAvailableDates().stream()
                 .sorted(Comparator.comparing(AvailableDate::getStartDate))
                 .forEach(availableDate -> availableDates.getChildren().add(new Label(availableDate.toString())));

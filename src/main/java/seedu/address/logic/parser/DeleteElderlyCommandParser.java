@@ -5,7 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
 import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.DeleteElderlyCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
@@ -37,13 +39,26 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
         return new DeleteElderlyCommand(new Nric(trimmedArgs));
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                DeleteElderlyCommand.COMMAND_WORD,
+                DeleteElderlyCommand.COMMAND_PROMPTS,
+                DeleteElderlyCommandParser::validate, "<NRIC>");
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().split(" ").length > 1);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (map.getPreamble().contains(" ")) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (map.getPreamble().isEmpty()) {
+            throw new RecommendationException("Requires NRIC to be specified.");
+        }
+        return true;
     }
 }

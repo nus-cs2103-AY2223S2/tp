@@ -65,7 +65,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC + "S1234567A "
             + PREFIX_BIRTH_DATE + "2002-12-01 "
             + PREFIX_REGION + "NORTH "
-            + PREFIX_MEDICAL_TAG + "CPR BASIC "
+            + PREFIX_MEDICAL_TAG + "CPR, BASIC "
             + PREFIX_TAG + "new "
             + PREFIX_TAG + "undergradStudent "
             + PREFIX_AVAILABILITY + "2023-05-11,2023-05-12";

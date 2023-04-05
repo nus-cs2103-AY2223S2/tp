@@ -17,6 +17,8 @@ import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddElderlyCommand;
+import seedu.address.logic.commands.CommandInfo;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Address;
@@ -34,6 +36,9 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddElderlyCommand object.
  */
 public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
+    private static final Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
+        PREFIX_ADDRESS, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG };
+    private static final Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_BIRTH_DATE };
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddElderlyCommand
@@ -47,11 +52,6 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
      */
     public AddElderlyCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
-        Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG };
-        Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_BIRTH_DATE };
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
         if (!PrefixUtil.arePrefixesPresent(argMultimap, compulsoryPrefixes)
@@ -75,6 +75,14 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         return new AddElderlyCommand(person);
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                AddElderlyCommand.COMMAND_WORD,
+                AddElderlyCommand.COMMAND_PROMPTS,
+                AddElderlyCommandParser::validate);
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain
      * criteria.
@@ -82,7 +90,15 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().length() > 0);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
+        } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
+            throw new RecommendationException("Length of tag is too long.");
+        } else if (map.getValue(PREFIX_NAME).orElse("").length() > 100) {
+            throw new RecommendationException("Length of name is too long.");
+        } else {
+            return true;
+        }
     }
 }

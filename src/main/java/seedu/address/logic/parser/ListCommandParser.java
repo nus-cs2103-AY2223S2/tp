@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -33,14 +35,24 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                ListCommand.COMMAND_WORD,
+                ListCommand.COMMAND_PROMPTS,
+                ListCommandParser::validate, "<[UNPAIRED \\ PAIRED]>");
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        String preamble = map.getPreamble().toLowerCase();
-        return preamble.equals("paired") || preamble.equals("unpaired");
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (map.getPreamble().contains(" ")) {
+            throw new RecommendationException("Too many arguments.");
+        }
+        return true;
     }
 }

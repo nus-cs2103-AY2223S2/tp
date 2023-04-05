@@ -23,7 +23,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.PrefixUtil;
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
@@ -32,6 +35,9 @@ import seedu.address.model.person.information.Nric;
  * Parses input arguments for editing.
  */
 public class EditCommandParser implements Parser <EditCommand> {
+    private static final Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_RISK, PREFIX_TAG,
+        PREFIX_MEDICAL_TAG};
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -43,9 +49,7 @@ public class EditCommandParser implements Parser <EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY,
-                        PREFIX_RISK, PREFIX_TAG, PREFIX_MEDICAL_TAG);
+                ArgumentTokenizer.tokenize(args, availablePrefixes);
 
         Nric nric = checkPreamble(argMultimap.getPreamble());
 
@@ -96,6 +100,14 @@ public class EditCommandParser implements Parser <EditCommand> {
         return new EditCommand(nric, editDescriptor);
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                EditCommand.COMMAND_WORD,
+                EditCommand.COMMAND_PROMPTS,
+                EditCommandParser::validate, "<NRIC>");
+    }
+
     private Nric checkPreamble(String preamble) throws ParseException {
         if (preamble.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -134,7 +146,15 @@ public class EditCommandParser implements Parser <EditCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().split(" ").length > 1);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
+        } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
+            throw new RecommendationException("Length of tag is too long.");
+        } else if (map.getValue(PREFIX_NAME).orElse("").length() > 100) {
+            throw new RecommendationException("Length of name is too long.");
+        } else {
+            return true;
+        }
     }
 }

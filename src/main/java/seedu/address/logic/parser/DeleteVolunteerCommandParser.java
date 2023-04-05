@@ -5,7 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
 import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
@@ -43,7 +45,19 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().split(" ").length > 1);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (map.getPreamble().contains(" ")) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (map.getPreamble().isEmpty()) {
+            throw new RecommendationException("Requires NRIC to be specified.");
+        }
+        return true;
+    }
+
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                DeleteVolunteerCommand.COMMAND_WORD,
+                DeleteVolunteerCommand.COMMAND_PROMPTS,
+                DeleteVolunteerCommandParser::validate, "<NRIC>");
     }
 }

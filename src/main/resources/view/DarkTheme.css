@@ -138,6 +138,12 @@
     -fx-text-fill: -fx-morning-green;
 }
 
+.pairLabel {
+    -fx-font-size: 20;
+    -fx-text-fill: black;
+    -fx-font-weight: 700
+}
+
 .list-cell {
     -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
