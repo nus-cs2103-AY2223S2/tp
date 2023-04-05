@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditCategory object
  */
-public class EditCategoryParser implements Parser<EditCategoryCommand> {
+public class EditCategoryCommandParser implements Parser<EditCategoryCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCategory

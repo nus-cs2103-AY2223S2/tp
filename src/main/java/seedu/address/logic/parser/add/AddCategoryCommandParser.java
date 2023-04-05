@@ -18,7 +18,7 @@ import seedu.address.model.category.Category;
 /**
  * Parses input arguments and creates a new AddCategoryCommand object
  */
-public class AddCategoryParser implements Parser<AddCategoryCommand> {
+public class AddCategoryCommandParser implements Parser<AddCategoryCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
