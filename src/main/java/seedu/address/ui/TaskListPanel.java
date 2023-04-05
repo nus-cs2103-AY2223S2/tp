@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,27 +26,26 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(Person person) {
+    public TaskListPanel(Student student) {
         super(FXML);
 
         name.setText("No student being checked now");
 
-        if (person != null) {
-            taskListView.setItems(person.getTaskList().getInternalList());
+        if (student != null) {
+            taskListView.setItems(student.getTaskList().getInternalList());
         }
         taskListView.setCellFactory(listView -> new TaskListViewCell());
 
-        if (person != null) {
-            if (person.getTaskList().getInternalList().size() != 0) {
-                name.setText("Tasks for " + person.getName().fullName);
-                if (person.getName().fullName.length() >= 30) {
-                    name.setText("Tasks for " + person.getName().fullName.substring(0, 29) + "...");
+        if (student != null) {
+            if (student.getTaskList().getInternalList().size() != 0) {
+                name.setText("Tasks for " + student.getName().fullName);
+                if (student.getName().fullName.length() >= 30) {
+                    name.setText("Tasks for " + student.getName().fullName.substring(0, 29) + "...");
                 }
-
             } else {
-                name.setText("No task found for " + person.getName().fullName);
-                if (person.getName().fullName.length() >= 30) {
-                    name.setText("No task found for " + person.getName().fullName.substring(0, 29) + "...");
+                name.setText("No task found for " + student.getName().fullName);
+                if (student.getName().fullName.length() >= 30) {
+                    name.setText("No task found for " + student.getName().fullName.substring(0, 29) + "...");
                 }
             }
         }

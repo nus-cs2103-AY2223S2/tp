@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the score title in a score.
- * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidLabel(String)}
  */
 public class Label {
 
@@ -17,9 +17,9 @@ public class Label {
     public final String label;
 
     /**
-     * Constructs a {@code Title}.
+     * Constructs a {@code label}.
      *
-     * @param label A valid title.
+     * @param label A valid label.
      */
     public Label(String label) {
         requireNonNull(label);
