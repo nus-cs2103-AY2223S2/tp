@@ -7,6 +7,9 @@ import static seedu.wife.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class ExpiryDateTest {
 
     @Test
@@ -22,6 +25,8 @@ public class ExpiryDateTest {
 
     @Test
     public void isValid() {
+        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
         // null ExpiryDate
         assertThrows(NullPointerException.class, () -> isValidDateFormat(null));
 
@@ -30,7 +35,7 @@ public class ExpiryDateTest {
         assertFalse(isValidDateFormat(" ")); // spaces only
 
         // valid ExpiryDatees
-        assertTrue(isValidDateFormat("13-11-2024"));
+        assertTrue(isValidDateFormat(currentDate));
         assertTrue(isValidDateFormat("13-11-2026")); // long ExpiryDate
     }
 }
