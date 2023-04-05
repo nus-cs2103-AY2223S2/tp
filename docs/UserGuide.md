@@ -261,6 +261,45 @@ Examples:
 
 ---
 
+### Delete a student: `delete`
+
+Deletes the specified student(s) from the student list.
+
+> Format: `delete INDEX [INDEX]...`
+
+- Deletes the student at the specified `INDEX`.
+- More than 1 `INDEX` can be specified, and all of them will be deleted.
+- The index refers to the index number shown in the displayed student list.
+- The index **must be a positive integer** 1, 2, 3, ...
+
+<div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
+none of the students will be deleted.
+</div>
+
+Examples:
+
+- `list` followed by `delete 2` deletes the 2nd student in the student list.
+
+<p align=center>
+    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
+</p>
+
+<p align=center>
+    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
+</p>
+
+- `delete 1 4` deletes the 1st and 4th student in the student list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
+<br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
+</div>
+
+[↑ Back to top](#table-of-contents)
+
+---
+
 ### Editing a student: `edit`
 
 Edits a student's information _(all information except remarks)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
@@ -414,7 +453,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<div markdown="block" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
 <p align=center>
@@ -431,44 +470,10 @@ Examples:
 are shown too.
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Tip:** `find` followed by an `edit` will result in the full student list being shown! (similar to running a third command `list`)
+</div>
+
 [↑ Back to top](#table-of-contents)
-
----
-
-### Delete a student: `delete`
-
-Deletes the specified student(s) from the student list.
-
-> Format: `delete INDEX [INDEX]...`
-
-- Deletes the student at the specified `INDEX`.
-- More than 1 `INDEX` can be specified, and all of them will be deleted.
-- The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, ...
-
-<div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
-none of the students will be deleted.
-</div>
-
-Examples:
-
-- `list` followed by `delete 2` deletes the 2nd student in the student list.
-
-<p align=center>
-    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
-</p>
-
-- `delete 1 4` deletes the 1st and 4th student in the student list.
-
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
-<br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
-</div>
 
 ---
 
@@ -550,7 +555,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                                  |
 | Index                          | The number displayed next to the student entry's name after `list` is used.                                     | 1. Alex Yeoh, 1 would be the index for Alex Yeoh.                                                                                                                                                                                                          |
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                                       |
-| Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | <div align=center> - </div>                                                                                                                                                                                                                                |
+| Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | -                                                                                                                                                                                                                                                          |
 | Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `STUDENT_NAME`, `PHONE_NUMBER` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. | 
 | Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `STUDENT_NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                                  |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                        |
