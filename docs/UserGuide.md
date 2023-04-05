@@ -33,6 +33,11 @@ This user guide aims to provide comprehensive instructions for you to learn how 
 providing details on the installation process and features provided by InternBuddy. If you are a more
 advanced user of InternBuddy, this user guide would help to further customise your experience.
 
+[//]: # (@@author eugenetangkj - reused with modifications)
+
+[//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
+
+[//]: # ()
 ### Using the User Guide
 This uses guide uses a set of formatting standards and visuals to better communicate information.
 
@@ -127,13 +132,13 @@ Table 1 explains what each part is used for.
 <p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
 <br/>
 
-| Part            | Usage                                                                                        |
-|-----------------|----------------------------------------------------------------------------------------------|
-| Input Box       | You can type in your commands here to interact with InternBuddy.                             |
-| Results Display | This is where the results of your command will be displayed.                                 |
-| List Panel      | Displays a list of internship entries.                                                       |
-| View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
-| Location Bar    | States where your InternBuddy data file is located on your computer.                         |
+| Part           | Usage                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------|
+| Command Box    | You can type in your commands here to interact with InternBuddy.                             |
+| Result Display | This is where the results of your command will be displayed.                                 |
+| List Panel     | Displays a list of internship entries.                                                       |
+| View Panel     | Displays either the welcome message or detailed information of a specified internship entry. |
+| Status Bar     | States where your InternBuddy data file is located on your computer.                         |
 
 <p style="text-align: center;">Table 1: Explanation of the different parts of InternBuddy's GUI</p>
 
@@ -835,4 +840,4 @@ Table 8 provides a glossary for the technical terms used in this user guide.
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
   , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (for the purposes of GUI testing and the feature of navigating through past commands).
+  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
