@@ -10,7 +10,7 @@ import seedu.event.commons.core.index.Index;
 import seedu.event.logic.commands.exceptions.CommandException;
 import seedu.event.model.Model;
 import seedu.event.model.contact.Contact;
-import seedu.event.model.contact.UniqueContactList;
+import seedu.event.model.contact.ContactPhone;
 import seedu.event.model.event.Address;
 import seedu.event.model.event.Event;
 import seedu.event.model.event.Mark;
@@ -35,13 +35,13 @@ public class LinkContactCommand extends Command {
     public static final String MESSAGE_LINK_CONTACT_SUCCESS = "Successfully linked! %1$s";
 
     private final Index eventIndex;
-    private final String addContact;
+    private final ContactPhone addContact;
 
     /**
      * Creates a LinkContactCommand to link the specified {@code Contact} to event
      * specified by the {@code Index}.
      */
-    public LinkContactCommand(Index index, String contact) {
+    public LinkContactCommand(Index index, ContactPhone contact) {
         requireNonNull(index);
         requireNonNull(contact);
         eventIndex = index;
@@ -61,7 +61,7 @@ public class LinkContactCommand extends Command {
         Event toAdd = lastShownList.get(eventIndex.getZeroBased());
 
         try {
-            Contact contactToAdd = contactList.get(UniqueContactList.getNumberMap().get(addContact));
+            Contact contactToAdd = getMatchingContact(addContact, contactList);
             Event eventToLink = createLinkedEvent(toAdd, contactToAdd);
             model.linkContact(toAdd, eventToLink);
             model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
@@ -70,6 +70,13 @@ public class LinkContactCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_LINK_CONTACT_SUCCESS, toAdd));
+    }
+
+    private Contact getMatchingContact(ContactPhone addContact, List<Contact> contactList) {
+        return contactList.stream()
+                .filter(contact -> contact.isSameContactPhone(addContact))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
