@@ -72,14 +72,15 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/Potential Sale Value c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
 
-- Name: Refers to the name of the specified person. (Duplicates are not allowed)
-- Phone Number: The handphone number of the specified person (Must be a minimum of 3 digits)
-- Email: The email of the specified person. (Must be a valid email with a domain)
-- Address: The full address of the specified person.
-- Potential Sale Value: The expected value of revenue to be brought in by the client.
-- Company Name: Name of the specified person's company. (Put 'NIL' if not applicable)
-- Priority: How much this client should be prioritized.
-- Transaction Count: The number of previous transaction between the user and this client.
+- Name `n/`: Refers to the name of the specified person. (Duplicates are not allowed)
+- Phone Number `p/`: The mobile phone number of the specified person (Must be a minimum of 3 digits)
+- Email `e/`: The email of the specified person. (Must be a valid email with a domain)
+- Address `a/`: The full address of the specified person.
+- Potential Sale Value `s/`: The expected value of revenue to be brought in by the client.
+- Company Name `c/`: Name of the specified person's company. (Put 'NIL' if not applicable)
+- Priority `pr/`: How much this client should be prioritized. (Must be one of [`HIGH`, `MEDIUM`, `LOW`])
+- Transaction Count `tr/`: The number of previous transaction between the user and this client.
+- Tags `t/TAG [t/TAG]...` : The tags associated with the client. Tags are optional and multiple tags can be specified - for every tag, use`t/` as a prefix.
 
 Examples:
 
