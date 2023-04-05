@@ -1,4 +1,4 @@
-package seedu.address.ui.enums;
+package seedu.address.logic.enums;
 
 /**
  * Enum that represents the transition state of the light/dark mode of NeoBook.
