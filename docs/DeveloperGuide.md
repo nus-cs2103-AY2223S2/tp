@@ -3,12 +3,40 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
+---
+
+## **FastTrack**
+FastTrack is an easy-to-use financial management desktop application designed for NUS SoC undergraduate students who are living on a tight budget. With a combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), our app provides a user-friendly and efficient way to track your expenses and manage your finances.
+
 --------------------------------------------------------------------------------------------------------------------
+## **Purpose of this guide**
+
+The purpose of this guide is to give you a comprehensive insight for developing and maintaining FastTrack.
+
+If you are a developer, this guide will give you an overview of the high-level [design](#design) and architecture of FastTrack. It also delves into the [implementation](#implementation) and design considerations of FastTrack features, allowing you to learn the ins and outs of FastTrack in no time. If you are lost now, you can start by first looking at the [set up](#setting-up-getting-started) portion.
+
+If you like to know more about the motivation behind FastTrack, checkout the [requirements](#appendix-requirements) section where we cover the [product scope](#product-scope) as well as the [user stories](#user-stories) and [use cases](#use-cases).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use this guide
+
+Here are some notations used in this guide.
+
+### Format
+* `Command` is used to label commands and components.
+* {Placeholder} are used to label placeholders.
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org/)
+* Libraries used: 
+  * [JavaFX](https://openjfx.io/)
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,6 +48,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
+This section gives you an overview of the different components of FastTrack and how they interact with each other. 
+
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -27,21 +57,21 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
+The ***Architecture Diagram*** given below explains the high-level design of the FastTrack and how each component is connected.
+
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
-
-Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of five components.
+FastTrack also consists of five other components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -53,6 +83,8 @@ The rest of the App consists of five components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+#replace
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,11 +101,30 @@ The sections below give more details of each component.
 
 ### UI component
 
+This component is responsible for displaying and interacting with users of FastTrack through the GUI.
+
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+#replace
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of the following parts.
+* `CategoryListPanel`
+  * `CategoryCard`
+* `ExpenseListPanel`
+  * `ExpenseCard`
+* `RecurringExpensePanel`
+  * `RecurringExpenseCard`
+* `StatisticsPanel`
+* `CommandBox`
+  * `SuggestionListPanel`
+    * `SuggestionCard`
+* `ResultDisplay`
+  * `ResultsHeader`
+  * `ResultsDetails`
+
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
