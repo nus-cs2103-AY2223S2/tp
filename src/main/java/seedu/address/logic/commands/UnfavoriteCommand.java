@@ -60,4 +60,10 @@ public class UnfavoriteCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritedPerson));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || ((other instanceof UnfavoriteCommand) && index.equals(((UnfavoriteCommand) other).index));
+    }
 }
