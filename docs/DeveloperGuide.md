@@ -571,7 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -579,6 +579,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+## General
 
 ### Launch and shutdown
 
@@ -588,31 +590,148 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+## Address-book related
+
+### Adding a person
+1. Adding a person while all persons/no persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` <br>
+         - Testing for: Command successful execution
+         - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
+      
+      2. **Test case 2**: `add p/91238917 a/Serangoon Central` <br>
+         - Testing for: No name specified
+         - Expected: No contact is added. Error details show in the status message.
+      3. **Test case 3**: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
+         - Testing for: Invalid fields
+         - Expected: Same as test case 2
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test Cases
+      1. **Test case 1**: `delete 1`<br>
+         - Testing for: Command successful execution
+         - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      2. **Test case 2**: `delete 0`<br>
+         - Testing for: Erroneous index results in command failure
+         - Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` <br>
+         - Testing for: Erroneous index results in command failure
+         - Expected: Similar to test case 2.
 
-1. _{ more test cases …​ }_
+### Editing data of a contact
+1. Edit data of contact.
+    1. Prerequisites: Non-empty address-book. Navigate to the `Address book` tab using `tab 1`
+    2. Test Cases
+        1. Test case 1: `edit N n/Pierce`, `edit N a/Serangoon Central`, ... where N is a number between 1 and the number of contacts in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first contact updates to that specified in the command
+        2. Test case 2: `edit 1 n/@#`, `edit 1 e/123`, ...
+            - Testing for: Invalid fields results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        3. Test case 3: `edit 1 x n/Pierce`, ... where x is anything that does not have a field specifier and is not a number between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        4. Test case 4: `edit M n/Pierce`, ... where M is a number not between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        5. Test case 4: `edit`
+            - Testing for: No fields specified results in command failure
+            - Expected: User does not update. Error details shown in the status message.
+
+### Finding a person
+1. Finding a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. Test case 1: `find n/Pi`
+         - Testing for: Command successful execution 
+         - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
+      2. Test case 2: `find n/Stan n/Pierce`
+        <br>
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
+      3. Test case 3: `find n/Pie m/Comp`
+        <br>
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
+      4. Test case 4: `find`
+        <br>
+         - Testing for: No fields specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+      5. Test case 5: `find 1 n/Pi`
+         <br>
+         - Testing for: Index specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+2. Find a contact when there are no contacts
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. Test case 1: `find n/pierce`
+          - Testing for: Successful command execution
+          - Expected: Command executes, but list does not change as there are no contacts.
+      3. Test case 5: `find 1 n/Pierce`
+          - Testing for: Index specified results in command failure
+          - Expected: List does not update. Error details shown in the status message.
+
+## User-related
+### Editing data of User
+1. Edit data of User specified in Me tab.
+    1. Prerequisites: Navigate to Me tab using `tab 3`
+    2. Test Cases
+       1. Test case 1: `edituser n/Pierce`, `edituser a/Serangoon Central`, ...
+           - Testing for: Successful command execution
+           - Expected: Field of user updates to that specified in the command
+       2. Test case 2: `edituser n/@#`, `edituser e/123`, ...
+          - Testing for: Invalid fields results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       3. Test case 3: `edituser x`, `edituser x n/Pierce`, ... where x is anything that does not have a field specifier.
+          - Testing for: Unspecified field results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       4. Test case 4: `edituser`
+          - Testing for: No fields specified results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+
+## UI-related
+### Light/Dark mode
+1. Set UI to light mode from dark mode
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+    2. Test Cases
+       1. Test case 1: `light`
+          - Testing for: Successful command execution
+          - Expected: UI updates to light mode
+1. Set UI to light mode from light mode
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+    2. Test Cases
+        1. Test case 1: `light`
+            - Testing for: Successful command execution
+            - Expected: UI updates to light mode
+1. Set UI to dark mode from light mode
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
+1. Set UI to light mode from light mode
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
 
 ### Saving data
 
