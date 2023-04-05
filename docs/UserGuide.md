@@ -205,7 +205,7 @@ Use this command to favourite it so that you have easy access to it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
 
 Here's how NeoBook would look like after you favourite a contact!
 ![Fav](images/userguide/fav.png)
@@ -227,7 +227,7 @@ Use this command to unfavourite it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and (must be greater than 0).
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -245,8 +245,8 @@ Use this command to edit his/her details easily!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
-* At least one field must be provided.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
+* All the fields are optional. However, at least one field must be provided.
 
 For the following fields, they are considered a `FieldGroup`.
 * Modules
@@ -256,14 +256,19 @@ A `FieldGroup` can contain many parameters in that single field.
 When using edit, the command looks for each parameter in the `FieldGroup`:
 * If the parameter already exists in the `FieldGroup` it will be removed.
 * Otherwise, the parameter will be added into the `FieldGroup`.
-  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
-  * e.g. `edit t/10x Coder t/Intern Friend`
-    * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
-    * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
+
+* Examples:
+  * The first contact has `CS2103T`, `MA2001` and `GEA1000` as its modules, 
+    * `edit 1 mt/CS2103T` removes CS2103T from the Modules field since it is already a part of its Modules field.
+    * So the first contact in your Neobook will have `MA2001` and `GEA1000` as its only modules
+  * The second contact has the following tags `Friend`, `Amazing Coder`
+    * `edit 2 t/10x Coder t/Intern Friend` adds both `10x Coder` and `Intern Friend` as tags to the contact as neither existed in its Tags field.
+    * So the second contact in your NeoBook would have `Friend`, `Amazing Coder`, `10x Coder` and `Intern Friend` in its Tags field.
+
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -312,7 +317,7 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -320,6 +325,7 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
@@ -336,7 +342,7 @@ More examples:
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts by specifying the fiegit lds and corresponding keywords you wish to search!
+Use this command to find contacts by specifying the fields and corresponding keywords you wish to search!
 
 **Syntax:**
 
@@ -351,7 +357,7 @@ E.g `find n/Peter James`
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -374,21 +380,19 @@ in the corresponding field, the person will be returned.
   * i.e. `find n/John n/Peter James`
     * Keywords: `john`, `peter james`
         * Can return:
-          * people with names of 'John', 'Peter James', 'Peter James John'
+          * People with names of 'John', 'Peter James', 'Peter James John'
         * Cannot return:
-          * A person with name of 'Peter'.
+          * A person with name of 'Peter'
 
 * All unique prefixes specified must be contained within the corresponding fields of the person
  for that person to be returned.
   * i.e. `find n/Caleb p/9123`
     * Can return: 
-      * A person with a name of 'Caleb' who
-has a phone number of '91234567', 
+      * A person with a name of 'Caleb' who has a phone number of '91234567'
     * Cannot return:
-      * A person whose name is 'Caleb' but has
-a phone number of '98765432'
-      * A person whose name is 'Joshua' even though
-his phone number is '91234567'
+      * A person whose name is 'Caleb' but has a phone number of '98765432'
+      * A person whose name is 'Joshua' even though his phone number is '91234567'
+* At least one field must be provided.
 
 
 [Back To Contents](#table-of-contents)
@@ -406,7 +410,7 @@ Use this command to expand and view more information about the selected contact.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
-    * `INDEX` must be a positive integer.
+    * `INDEX` must be a **positive integer** (must be greater than 0). 
 
 _Examples:_
 * `select 1` expands the details of the first contact in your list.
@@ -427,7 +431,7 @@ Use this command to delete the specified contact from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
 
 _Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
@@ -558,7 +562,7 @@ Use this command to delete the specified event from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** (must be greater than 0).
 
 _Examples:_
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
@@ -579,7 +583,7 @@ Use this command to edit the specified event in your NeoBook.
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** (must be greater than 0).
 * At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
@@ -612,6 +616,16 @@ _Here are some important requirements for you to take note:_
 * NAME is the name of the person you want to tag to the event.
   * NAME is **case_sensitive**.
   * NAME must be the name of a contact already registered in NeoBook
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+`END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
+
+![img.png](images/UntaggedEvent.png)
+
+`tagpersonevent et/4 pt/Baljeet FF` Tags Baljeet FF to this Weekly Hackathon Meeting.
+
+![img_1.png](images/TaggedEvent.png)
+
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
@@ -638,6 +652,16 @@ _Here are some important requirements for you to take note:_
     * NAME is **case_sensitive**.
     * NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
+
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+  `END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` and `Baljeet FF` tagged to this Event.
+
+![img_1.png](images/TaggedEvent.png)
+
+`untagpersonevent et/4 pt/Baljeet FF` untags Baljeet FF from this Weekly Hackathon Meeting.
+
+![img.png](images/UntaggedEvent.png)
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
