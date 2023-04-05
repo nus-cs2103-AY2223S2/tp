@@ -8,13 +8,14 @@ import java.util.function.Predicate;
  */
 public class UpcomingEventPredicate implements Predicate<Event> {
 
-    private static int upcomingCount;
+    private static int upcomingCount = 1;
     private int count;
 
     /**
      * Constructor for UpcomingEventPredicate to reuse the given count.
      */
     public UpcomingEventPredicate() {
+        assert upcomingCount > 0;
         count = upcomingCount;
     }
 
@@ -22,6 +23,10 @@ public class UpcomingEventPredicate implements Predicate<Event> {
      * Constructor for UpcomingEventPredicate with given count.
      */
     public UpcomingEventPredicate(int count) {
+        if (count <= 0) {
+            throw new IllegalArgumentException("Count must be positive.");
+        }
+
         upcomingCount = count;
         this.count = count;
     }
