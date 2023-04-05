@@ -16,23 +16,22 @@
          <children>
             <HBox fx:id="zoomed" maxWidth="1.7976931348623157E308">
                <children>
-                  <Label fx:id="viewTitle"  style="-fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Label" translateX="12.0" translateY="15.0" wrapText="true"/>
+                  <Label fx:id="viewTitle" minHeight="-Infinity"  style="-fx-font-family: 'Britannic Bold'; -fx-font-size: 30; -fx-text-fill: black;" text="Label" translateX="12.0" translateY="15.0" wrapText="true"/>
                </children>
             </HBox>
-            <HBox minHeight="29.0" prefWidth="555.0">
+            <HBox minHeight="29.0" prefWidth="555.0" maxWidth="1.7976931348623157E308">
                <children>
-                  <Label fx:id="authorView" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="17.0" wrapText="true" />
+                  <Label fx:id="authorView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="17.0" wrapText="true" />
                </children>
             </HBox>
             <HBox minHeight="35.0" prefWidth="630.0">
                <children>
-                  <Label fx:id="progressView" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="13.0" wrapText="true" />
+                  <Label fx:id="progressView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="18.0" translateY="13.0" wrapText="true" />
                </children>
             </HBox>
-            <HBox minHeight="23.0" prefHeight="23.0" prefWidth="568.0">
+            <HBox fx:id="hyperbox" minHeight="23.0" prefHeight="23.0" prefWidth="568.0" nodeOrientation="LEFT_TO_RIGHT">
                <children>
-                  <Label fx:id="urlView" style="-fx-font-family: Arial; -fx-font-size: 15; -fx-text-fill: black;" text="Url:" translateX="17.0" translateY="2.0" wrapText="true" />
-                  <Hyperlink fx:id="urlLink" style="-fx-text-fill: Black;" text="Hyperlink" translateX="18.0" translateY="-3.0" wrapText="true">
+                  <Hyperlink fx:id="urlLink" minHeight="-Infinity" style="-fx-text-fill: Black; -fx-font-size: 15;"  text="Hyperlink" translateX="12.0" translateY="-3.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -41,18 +40,18 @@
             </HBox>
             <HBox minHeight="29.0" prefHeight="29.0" prefWidth="568.0">
                <children>
-                  <Label fx:id="genreView" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="17.0" translateY="5.0" wrapText="true" />
+                  <Label fx:id="genreView" minHeight="-Infinity" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Label" translateX="17.0" translateY="5.0" wrapText="true" />
                </children>
             </HBox>
             <HBox>
                <children>
-                  <Label fx:id="zoomTag" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Tags:" translateX="15.0" translateY="-2.0" />
+                  <Label fx:id="zoomTag" minHeight="-Infinity" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" style="-fx-font-family: 'Arial'; -fx-font-size: 15; -fx-text-fill: black;" text="Tags:" translateX="17.0" translateY="-2.0" wrapText="true" />
                   <FlowPane fx:id="tagsView" prefHeight="10.0" prefWidth="600.0" translateX="17.0" translateY="-2.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="555.0">
                <children>
-                  <Label fx:id="labelHeader" style="-fx-font-family: Arial; -fx-font-size: 15;" text="Rating:" translateX="15.0" translateY="3.0" />
+                  <Label fx:id="labelHeader" minHeight="-Infinity" style="-fx-font-family: Arial; -fx-font-size: 15;" text="Rating:" translateX="17.0" translateY="3.0" wrapText="true"  />
                   <ImageView fx:id="ratingStar" fitHeight="20.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="1.0" />
                </children>
             </HBox>

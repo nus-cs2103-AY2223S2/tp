@@ -133,12 +133,15 @@ The bookmark in the BookmarkList panel will only contain the:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * List of prefixes used in commands :
-  * `n/` - TITLE
-  * `a/` - AUTHOR
-  * `p/` - PROGRESS
-  * `g/` - GENRE
-  * `u/` - URL
-  * `t/` - TAGS
+
+| Prefix | Parameter |                                 restrictions                                 |
+|:------:|:---------:|:----------------------------------------------------------------------------:|
+|  `n/`  |   TITLE   |                                     None                                     |
+|  `a/`  |  AUTHOR   |                                     None                                     |
+|  `p/`  | PROGRESS  |          3 positive integers with space between [Vol] [Chap] [Page]          |
+|  `g/`  |   GENRE   | Must be one from pre-defined genre list :information_source: Case sensitive  |
+|  `u/`  |    URL    | Must contain [Protocol][Domain name] for example: [http://]www.[example.com] |
+|  `t/`  |   TAGS    |        Must only cotains Alphabets and Numbers no spaces are allowed         |
 
 </div>
 <div style="page-break-after: always;"></div>
@@ -301,7 +304,7 @@ Examples:
    </em></figcaption>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
+Our Application also supports this feature in GUI format, simply click onto the bookmark you want and watch the magic happen.
 But do note that there will not be a response in result box since this is not a CLI command.
 </div>
 <div style="page-break-after: always;"></div>
@@ -321,7 +324,7 @@ Examples:
 * `find n/Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
+Our Application also supports this feature in GUI format, clicking on the url in the right panel will open it on your default browser .
 But do note that there will not be a response in result box since this is not a CLI command.
 </div>
 
@@ -398,4 +401,16 @@ Action | Format, Examples
 **Add a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
 **Delete a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
 **List all genres** | `genre`
+--------------------------------------------------------------------------------------------------------------------
+
+## **Glossary**
+
+|           Term           |                                                            Explanation                                                             |
+|:------------------------:|:----------------------------------------------------------------------------------------------------------------------------------:|
+|  Command Line Interface  |           A text-based user interface used to run programs and interact with the computer  by typing in textual commands           |
+| Graphical User Interface |  interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system  |
+|         Terminal         |                             Text-based interface used to interact with the computer's operating system                             |
+|        Parameter         |                A named value that is passed in by the user. This value changes depending on what the user  enters.                 |
+|        Hard disk         |                            A data storage device that maintain stored data when computer is  turned off                            |
+|         Bookmark         | The type of data being tracked by our app, It contains a compulsory TITLE and GENRE associated to it and other optional Parameters |
 

@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Rating;
@@ -49,6 +50,8 @@ public class ZoomView extends UiPart<Region> {
     private ImageView ratingStar;
     @FXML
     private Label labelHeader;
+    @FXML
+    private HBox hyperbox;
 
 
     /**
@@ -79,15 +82,15 @@ public class ZoomView extends UiPart<Region> {
         genreView.setText("Genre: " + bookmark.getGenre().value);
         String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
         progressView.setText("Progress: " + progressString);
-        urlLink.setText(bookmark.getUrl().value);
-        urlLink.setMaxWidth(450);
+        urlLink.setText("Url: " + bookmark.getUrl().value);;
+        hyperbox.setMinHeight(urlLink.getMaxHeight());
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
         avatar.setImage(new Image(image));
         urlLink.setOnAction(e -> {
             this.isGuiAction = true;
-            openLink(urlLink.getText());
+            openLink(bookmark.getUrl().value);
         });
         rate(bookmark);
 
@@ -174,7 +177,6 @@ public class ZoomView extends UiPart<Region> {
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
         urlLink.setVisible(false);
-        urlView.setVisible(false);
         ratingStar.setVisible(false);
         labelHeader.setVisible(false);
 
