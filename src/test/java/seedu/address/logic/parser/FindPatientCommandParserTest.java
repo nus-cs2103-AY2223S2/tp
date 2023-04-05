@@ -15,6 +15,9 @@ import seedu.address.model.person.patient.PatientFilter;
 
 public class FindPatientCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            FindPatientCommand.MESSAGE_USAGE);
+
     private FindPatientCommandParser parser = new FindPatientCommandParser();
 
     @Test
@@ -22,45 +25,45 @@ public class FindPatientCommandParserTest {
 
         //Empty String
         assertParseFailure(parser, "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
 
         //Whitespace
         assertParseFailure(parser, " \t\r\n",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
 
         //Missing Prefix
         assertParseFailure(parser, " bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
 
         //Missing Values
         assertParseFailure(parser, " n/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " p/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " e/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " h/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " w/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " d/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " st/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " r/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " t/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " n/ p/ e/ h/ w/ d/ st/ r/ t/",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
 
         //Invalid Prefix Sequence
         assertParseFailure(parser, "n /bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, " n /bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_FORMAT);
 
     }
 
