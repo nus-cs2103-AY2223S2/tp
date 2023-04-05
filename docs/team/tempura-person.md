@@ -3,49 +3,60 @@ layout: page
 title: Leon Lim's Project Portfolio Page
 ---
 
-### Project: SportSync
+## Project: SportSync
 
 SportSync is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
 
 
-* **New Feature**:
-    * What it does:
-    * Justification:
-    * Highlights:
-    * Credits:
+## New Features:
 
-* **New Feature**: Added the ability to sort the contact list.
-  * What it does: Calling sort will automatically sort the list of contacts in alphabetical order.
-  * Justification: This feature gives convenience to the user by letting them know where a specific contact can be found in relation to others.
-  * Highlights: Implementing this feature involved understanding the complex code flow and the relationship between many classes.
+### **Sort function** [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/29)
 
-* **New Feature**: Added the ability to undo and redo previously entered commands.
-  * What it does: Calling undo will undo the last user-entered command while calling redo will redo the last user-entered command.
-  * Justification: This feature saves the user's time when they accidentally make mistakes while typing.
-  * Highlights: Implementing this feature involved rigorous understanding of class instances and the pass-by-reference concept.
-  * Credits: The previous team that worked on AddressBook 3, as I used their proposed implementation for this.
+Added the ability to sort the contact list.
 
-* **Code contributed**: [RepoSense link]()
+  * **What it does:** Calling sort will automatically sort the list of contacts in alphabetical order.
+  * **Justification:** This feature gives convenience to the user by letting them know where a specific contact can be found in relation to others.
+  * **Highlights:** Implementing this feature involved understanding the complex code flow and the relationship between many classes.
 
-* **Project management**:
+### **Undo/Redo function** [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/50)
 
-* **Enhancements to existing features**:
-    * Updated aesthetics of GUI with curated colour scheme and custom app icon.
+Added the ability to undo and redo previously entered commands.
 
-* **Documentation**:
-    * User Guide: Features as of v1.2b
-    * Developer Guide: Features as of v1.2b
+  * **What it does:** Calling undo will undo the last user-entered command while calling redo will redo the last user-entered command.
+  * **Justification:** This feature saves the user's time when they accidentally make mistakes while typing.
+  * **Highlights:** Implementing this feature involved rigorous understanding of class instances and the pass-by-reference concept.
+  * **Credits:** The previous team that worked on AddressBook 3, as I used their proposed implementation for this.
 
-* **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#1](https://github.com/nus-cs2103-AY2223S2/ip/pull/268/files/4ab762fcdf788b39ccd9a54756e40336b1284ef4), [\#2](https://github.com/nus-cs2103-AY2223S2/ip/pull/236/files/c28028a6dfb59dee69061e00e77305dad24c2931)
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-    * Integrated a third party library * to the project ([\#42]())
+## Code contributed:
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=temp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Tempura-Person&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* _{you can add/remove categories in the list above}_
+
+## Project management:
+* Helped with debugging and testing the app to ensure correct functionality.
+* Delegated tasks amongst team members and reminded them of upcoming deliverables.
+* Regularly reviewed team pull requests and merged them once done.
+
+
+## Enhancements to existing features:
+
+### **New GUI Colour Scheme** [\#47](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/47)
+* Updated aesthetics of GUI with curated colour scheme and custom app icon.
+
+### **Improved Session Panel UI** [\#95](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/95)
+* Adjusted session panel UI layout to lessen text truncation and focus pie chart.
+
+
+## Documentation:
+
+### **User Guide & Developer Guide** [\#5](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/5) [\#46](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/46) [\#68](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/68) [\#148](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/148)
+* Regularly updated User and Developer Guides to add/modify documentation of new functionality.
+* Improved consistency by removing erroneous or incorrect descriptions of functions.
+* Updated pictures within User Guide to reflect UI changes and ensure user understanding.
+
+
+## Community:
+* PRs reviewed (with non-trivial review comments): [\#1](https://github.com/nus-cs2103-AY2223S2/ip/pull/268/files/4ab762fcdf788b39ccd9a54756e40336b1284ef4), [\#2](https://github.com/nus-cs2103-AY2223S2/ip/pull/236/files/c28028a6dfb59dee69061e00e77305dad24c2931)
 
