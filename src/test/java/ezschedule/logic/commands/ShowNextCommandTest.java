@@ -3,8 +3,8 @@ package ezschedule.logic.commands;
 import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,23 +63,25 @@ public class ShowNextCommandTest {
     @Test
     public void equals() {
         int predicateCount = 1;
-        final ShowNextCommand standardCommand = new ShowNextCommand(new UpcomingEventPredicate(predicateCount));
+        ShowNextCommand standardCommand = new ShowNextCommand(new UpcomingEventPredicate(predicateCount));
 
         // same values -> returns true
         ShowNextCommand commandWithSameValues = new ShowNextCommand(new UpcomingEventPredicate(predicateCount));
-        assertEquals(standardCommand, commandWithSameValues);
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
-        assertEquals(standardCommand, standardCommand);
+        assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
-        assertNotEquals(null, standardCommand);
+        assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different predicate count -> returns false
         int differentPredicateCount = 2;
-        assertNotEquals(standardCommand, new ShowNextCommand(new UpcomingEventPredicate(differentPredicateCount)));
+        ShowNextCommand commandWithDifferentPredicate =
+                new ShowNextCommand(new UpcomingEventPredicate(differentPredicateCount));
+        assertFalse(standardCommand.equals(commandWithDifferentPredicate));
     }
 }
