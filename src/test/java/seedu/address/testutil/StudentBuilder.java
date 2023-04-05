@@ -12,7 +12,6 @@ import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
-import seedu.address.model.person.exceptions.DuplicateClassException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
@@ -98,15 +97,11 @@ public class StudentBuilder {
         homework = new HashSet<>();
         test = new HashSet<>();
         comment = new Comment(DEFAULT_COMMENT);
-        try {
-            studentClass = new Class(DEFAULT_CLASS);
-        } catch (DuplicateClassException dc) {
-            dc.printStackTrace();
-        }
+        studentClass = Class.of(DEFAULT_CLASS);
         parent = new Parent(parentName, parentAge, parentImage, parentEmail, parentPhone, parentAddress, tags);
-        student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
-                studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
-                tags, comment);
+        //student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
+        // studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
+        // tags, comment);
     }
 
     /**
@@ -138,6 +133,58 @@ public class StudentBuilder {
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withAddress(String address) {
+        this.studentAddress = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withEmail(String email) {
+        this.studentEmail = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withPhone(String phone) {
+        this.studentPhone = new Phone(phone);
+        return this;
+    }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withAge(String age) {
+        this.age = new Age(age);
+        return this;
+    }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withImage(String image) {
+        this.studentImage = new Image(image);
+        return this;
+    }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withClass(String studentClass) {
+        this.studentClass = Class.of(studentClass);
+        return this;
+    }
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public StudentBuilder withIndexNumber(String indexNumber) {
+        this.indexNumber = new IndexNumber(indexNumber);
         return this;
     }
 
