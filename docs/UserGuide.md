@@ -791,8 +791,6 @@ Output:
 Unlinked A380 from SQ230.
 ```
 
-[//]: # (still include this in the UG if we're deleting it?)
-
 #### **5. Checking a resource's availability**
 
 Use this command when you wish to check a resource's availability (i.e. when deciding to use a resource for flight, you
