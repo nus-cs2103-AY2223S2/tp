@@ -74,7 +74,10 @@ Here is a short overview of the features and capabilities of CookHub:
     - `add d/Delicious t/Corndogs i/Flour, 3.5, Cup, 0.30 s/Mix batter`
 
 * Items in square brackets are optional.
-  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command, even though the command flag `tag/` is missing
+  - e.g  For the [add command](#add-a-recipe--add), `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command, even though the command flag `tag/` is missing. 
+
+* Items with `...` after them can be used multiple times, including zero times.
+  - e.g. For the [add command](#add-a-recipe--add)`add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter s/Fry` is a valid command that has two `s/` flags
 
 * *TITLE*, *DESCRIPTION*, *STEP*, *TAG* must be a word or sentence.
   - e.g. *TITLE* can be `I am a title`
@@ -97,7 +100,7 @@ Here is a short overview of the features and capabilities of CookHub:
 
 This command adds a recipe to your recipe book.
 
-Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
+Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`<br>
 :bulb: Reminder: A recipe can have one or more ingredients, and one or more steps. A recipe can also have zero or more tags.
 
 Below shows how you can add an *Orange juice* recipe.
@@ -308,15 +311,13 @@ Our initial recipe book:
 <img src="images/SortResult.png" width=500 height=400>
 
 ---
-### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
+#### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
 
-Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes. 
-
-If two or more recipes share ingredients, their quantities will be automatically added together. 
-
-The `indices` have to be seperated by a comma (`,`).
+Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes.
 
 Format: `groceries RECIPE_NUMBER, ...`
+- If two or more recipes share ingredients, their quantities will be automatically added together.
+- The `indices` have to be separated by a comma (`,`).
 
 Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
 <p align="center" width="100%">
