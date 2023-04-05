@@ -29,8 +29,9 @@ public class CreateSessionCommand extends Command {
             + PREFIX_LOCATION + "Leon Lim Sports Hall Of Champions";
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the address book";
-    public static final String MESSAGE_SESSION_OVERLAP = "This session overlaps with an existing session";
+    public static final String MESSAGE_DUPLICATE_SESSION = "This session name already exists in the address book.\n"
+            + "Try a different session name instead.";
+    public static final String MESSAGE_SESSION_OVERLAP = "This session overlaps with an existing session.";
 
     private final Session toAdd;
 
