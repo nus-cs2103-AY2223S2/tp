@@ -59,7 +59,8 @@ public abstract class Retriever<K, V> {
         try {
             return list.get(index);
         } catch (IndexOutOfBoundsException oobEx) {
-            throw new IllegalValueException(oobEx.getMessage());
+            throw new IllegalValueException(String.format("Index %d out of bounds for length %d",
+                    index + 1, list.size()));
         }
     }
 

@@ -9,6 +9,7 @@ import seedu.vms.model.UserPrefs;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
+import seedu.vms.model.vaccination.ReadOnlyVaxTypeManage;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.keyword.KeywordStorage;
@@ -81,7 +82,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveVaxTypes(VaxTypeManager manager) throws IOException {
+    public void saveVaxTypes(ReadOnlyVaxTypeManage manager) throws IOException {
         vaxTypeStorage.saveVaxTypes(manager);
     }
 

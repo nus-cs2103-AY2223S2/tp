@@ -20,6 +20,7 @@ import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
+import seedu.vms.model.vaccination.ReadOnlyVaxTypeManage;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
@@ -160,7 +161,7 @@ public interface Model {
 
 
     /** Returns the {@code VaxTypeManager} the model is using. */
-    VaxTypeManager getVaxTypeManager();
+    ReadOnlyVaxTypeManage getVaxTypeManager();
 
     ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException;
 

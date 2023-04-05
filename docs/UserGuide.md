@@ -10,41 +10,97 @@ An increasing number of vaccination are now having more complicated prerequisite
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Start up
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `vms.jar` from [here](https://github.com/AY2223S2-CS2103-F11-3/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your VMS.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vms.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Ensure that java `11` or above is properly installed on your device.
+2. Download the latest [`VMS.jar`](https://github.com/AY2223S2-CS2103-F11-3/tp/releases).
+3. Copy the file to an appropriate folder for VMS to execute in.
+4. Open the command terminal, `cd` into the folder in step 3 and start VMS with `java -jar vms.jar` command. A GUI similar similar to what is shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+<div markdown="block" class="alert alert-info" id="start-up-warning-info">
+:information_source: **Start up warning messages**
 
-   * `patient list` : Lists all patients.
-   * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+` : Adds a patient named `John Doe` to the Patient List.
-   * `patient delete 3` : Deletes the 3rd patient shown in the current list.
-   * `patient clear` : Deletes all patients.
-   * `exit` : Exits the app.
+If this is your first time starting up the application, you might be greeted with a few warning messages. However, do not be alarmed as this is to protect your save data. They will only show if VMS is unable to find or load your save data for whatever reason.
 
-1. Refer to the [Command line syntax](#command-line-syntax) below for details of each command.
+Any successful command execution will save the current state of VMS and stop the warning messages from showing, assuming that the data files are not tempered with. You can try entering the `help` or `exit` commands to initialize the starting data files.
+
+View the [data files section](#data-files) to learn more about these data files.
+</div>
+
+<div markdown="block" class="alert alert-danger" id="start-up-warning-warning">
+:warning: **Potential loss of data**
+
+If this is not your first time using VMS, do **<u>NOT</u>** attempt to execute any commands. Review the warning messages first ensuring that the warnings are expected due to intentional tempering with the data files (eg. deleting the entire data folder or one of the data files) before continuing.
+
+**If any commands were to successfully be executed, <u>ALL</u> previous data in the data folder, if present, will be overwritten and lost forever.**
+</div>
+
+## GUI of VMS
+
+<img src="images/AnnotatedUiDisplay.png" id="annotated-ui-display">
+
+| Number                                | Name                     | Detail                                       |
+| ------------------------------------- | ------------------------ | -------------------------------------------- |
+| <span class="circled-number">1</span> | Command input field      | Where commands are entered                   |
+| <span class="circled-number">2</span> | Message panel            | Where messages are displayed                 |
+| <span class="circled-number">3</span> | Patient list panel       | A list view of patients                      |
+| <span class="circled-number">3</span> | Patient detail panel     | Panel where patients are shown in detail     |
+| <span class="circled-number">5</span> | Vaccination list panel   | A list view of vaccinations                  |
+| <span class="circled-number">6</span> | Vaccination detail panel | Panel where vaccinations are shown in detail |
+| <span class="circled-number">7</span> | Appointment list panel   | A list view of appointments                  |
+
+## Usage guide
+
+##### Initializing
+
+Before diving into VMS, first initialize the data of the vaccinations that your clinic supports.
+
+* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clears-all-vaccination-data) command.
+* See [`add`](#add---add-a-vaccination-type) on how you can add a vaccination.
+
+##### Normal usage
+
+After initializing the vaccination data of your clinic, you are ready to go! All you will have to do is follow these simple steps and VMS will ease your receptionist duties.
+
+1. Wait for a patient to call in to book an appointment for a vaccination.
+2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
+3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
+4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---displays-the-detail-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+
+##### Example scenario
+
+Here is an scenario example usage using <u>VMS start up sample data</u> immediately after [start up](#start-up):
+
+1. A patient calls, he provides information that his name is **Tan Xiao Ming**, born on **1999 April 15**, blood type **A+**, allergic to nothing and has already taken **Dose 1 (Moderna)**. From your clinic phone, the number is **97643158**. The following command will add this patient into the system:
+```text
+patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)
+```
+2. He mentions that he wishes to take **Dose 2 (Pfizer)** on **2024 March 5th at 1600**. You clinic's average vaccination appointment take roughly about 30mins. From step 2, it is shown that Xiao Ming has an ID of **7** as well. The following command will attempt to schedule an appointment for him:
+```text
+appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
+```
+3. Uah! An error message shows saying that the he cannot take that vaccination. According to MOH, this is so as patient's first and second COVID-19 vaccination doses must be of the same brand. You inform him of this and he decides that he will take Dose 2 (Moderna) instead. Without scrolling, you see that this vaccination is in index **4** of the vaccination list panel. To attempt to schedule this new appointment for Xiao Ming, enter the following command:
+```text
+appointment add --p 7 --v 4 --s 2024-3-5 1600 --e 2024-3-5 1630
+```
+4. The appointment get successfully added and you inform him that you have schedule the appointment for him.
+
+With this, VMS has automated the validation of patient's appointment scheduling, making your receptionist duties easier!
+
+This example also highlights the adaptive nature of VMS CLI syntax from steps 2 and 3. See the [features](#features) to understand more about VMS full capabilities.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command line syntax
+## Features
 
 <div markdown="block" class="alert alert-info" id="CLI-presentation-format">
 
 **:information_source: Command syntaxes presentation**<br>
 
-* **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a
-  variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
-* **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and
-  backslash are to be replaced with aN EMPTY character. For example,<br>
+* **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
+* **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and backslash are to be replaced with an EMPTY character. For example,<br>
   <pre>
   appointment add --p <var>PATIENT_ID</var> \
       --s <var>START_TIME</var> --e <var>END_TIME</var> \
@@ -54,18 +110,18 @@ An increasing number of vaccination are now having more complicated prerequisite
   <pre>
   appointment add --p <var>PATIENT_ID</var> --s <var>START_TIME</var> --e <var>END_TIME</var> --v <var>VAX_NAME</var>
   </pre>
-* **Square brackets** (`[` and `]`) around arguments indicate that the argument is optional. For example,
+* **Square brackets** (`[` and `]`) around arguments indicate that the argument is _optional_. For example,
   <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
-* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of
-  argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that
-  <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
-* **Three dots with no space** <u>before</u> and <u>after</u> an argument would indicate that a list of that argument
-  is required. The elements of a list are delimited by commas (`,`) and the keyword `{EMPTY}` is used to represent an
-  empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of
-  <code><var>GROUP</var></code> is required. Accepted arguments may be
-  <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g {EMPTY}`
-  for an empty list of groups.'
+* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
+* **Plus** (`+`) indicates that the argument before must occur at least once but may be repeated multiple times.
+* **Three dots with no space** (`...`) <u>before</u> and <u>after</u> an argument would indicate that a _list_ of that argument is required. The elements of a list are delimited by commas (`,`) and the keyword `<EMPTY>` (case sensitive) is used to represent an empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of <code><var>GROUP</var></code> is required. Accepted arguments may be <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g <EMPTY>` for an empty list of groups.
 * **Triangle brackets** (`<` and `>`) around words represent a [type](#types).
+* **Braces** (`{` and `}`) are represents _argument groups_.
+* **Pipe** (`|`) represents _mutually exclusive arguments_. For example,<br>
+  <pre>
+  {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
+  </pre>
+  would mean that the user will have to choose between entering the argument of the form <code><var>PATIENT_NAME</var></code> or <code>[--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+</code> but not both.
 
 </div>
 
@@ -90,12 +146,25 @@ The general command line syntax is as follows:<br>
 * `--` is used to delimit flags and cannot be present in any of the argument placeholders.
 * Some arguments may require parts which are delimited by `::`.
 * Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
+* For flag arguments, if the command only requires one occurrence of it but multiple are given, only the last argument will be taken.
+  * Example: If a command only requires one <code>--force <var>IS_FORCE</var></code>, but `--force false --force true` is present in the command input, only the last argument, `--force true`, will be taken.
 
 ### Types
 
 #### `<component>`
 
 The list of available components are given in the [components section](#components).
+
+#### `<boolean>`
+
+Represents logical `true` or `false`. Only an input "true" (case insensitive) will result in logical `true`. All other values will result in `false`.
+
+Therefore, the following values are allowed an will evaluate to `false`:
+
+* `false`
+* `true with additional characters`
+* `123`
+* A blank argument.
 
 #### `<string>`
 
@@ -110,13 +179,17 @@ A non-blank character sequence consisting of only alphanumeric character and all
 
 An integer value between `-2147483648` and `2147483647`.
 
+#### `<index>`
+
+An extension of `<integer>` allowing only positive non-zero values (ie. `x > 0`).
+
 #### `<age>`
 
 An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
 allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
 value will be evaluated to be equal.
 
-#### `<bloodType>`
+#### `<blood-type>`
 
 The list of blood types are:
 
@@ -136,17 +209,21 @@ All other values will be rejected
 The supported date formats are:
 
 * `yyyy-mm-ddThh:mm`<br>
-    eg. 2023-05-03T04:45
+  eg. 2023-05-03T04:45
 * `yyyy-m-d hhmm` - single and double digit day and months are supported.<br>
   eg. 2023-5-3 0455
-  * The following formats are also acceptable:
-  * `yyyy-mm-d hhmm`
-  * `yyyy-mm-dd hhmm`
-  * `yyyy-m-dd hhmm`
+
+<div markdown="block" class="alert alert-info" id="date-limitation-info">
+:information_source: **Day and month restrictions**
+
+**Month** can only take the values <u>1 to 12 inclusive</u>. Any other number are not allowed.
+
+**Days of the month** can take any values from <u>1 to 31 inclusive</u>. Any other numbers are not allowed. If the entered day of the month is greater than the number of days in that month, the last day of that month will be assumed. Meaning, `2023-2-31` (Feb 31st) will become `2023-2-28` (Feb 28th).
+</div>
 
 #### `<phone-number>`
 
-Only 8 digit Singapore numbers are allowed.
+Any number that is at least three digits long is allowed. So that anyone, regardless of nationality, are allowed to be vaccinated. Only digits are allowed.
 
 #### `<vax-retriever>`
 
@@ -176,13 +253,10 @@ These values are not case sensitive.
 
 #### `<req>`
 
-`<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
-requirement. For every vaccination that a patient has taken, that vaccination's groups are tested on all requirements
-that the vaccination has. A check is done to check if that vaccination's groups contains any or all of the groups
-within the requirement set and its truth value depends on the [type](#req-type) of the requirement. If all requirements
-are satisfied, the check passes and the patient satisfies the history requirement of the vaccination and vice versa.
+Represents a requirement that is used to evaluate if a patient's vaccination records meets a vaccination history
+requirement. It contains a [`<req-type>`](#req-type) and a set of [`<group-name>`](#group-name), which represents its requirement set.
 
-`<req>` arguments require 2 and only 2 parts. The general syntax is as follows:
+The general syntax is as follows:
 
 <pre>
 <var>REQ_TYPE</var> :: ...<var>REQUIREMENT</var>...
@@ -225,7 +299,7 @@ help
 Keywords are identified by their sub and main keywords. Following is the list of the attributes that a keyword has.
 
 * **Keyword name** : `<keyword>` - the name of the user-defined keyword.
-* **Main Keyword** : `<mainKeyword>` - the main keyword that the user-defined keyword is paired to.
+* **Main Keyword** : `<string>` - the main keyword that the user-defined keyword is paired to.
 
 Default keywords implemented are shown in the list below.
 * pat-->patient
@@ -242,19 +316,18 @@ Adds a new keyword as defined in the command into the system.
 keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 </pre>
 
-* <code><var>MAIN_KEYWORD</var></code> : `<mainKeyword>`
-* <code><var>KEYWORD</var></code> : `<keyword>`
+* <code><var>MAIN_KEYWORD</var></code> : `<keyword>`
+* <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
 
 Example assumes that the keyword does not exist yet.
 
 ```text
-keyword add --k patient --n pa 
+keyword add --k patient --n pa
 ```
 
-<br><br>
-Output:<br>
+Output:
 
 ```text
 [INFO] New keyword added: pa-->patient
@@ -270,7 +343,7 @@ Deletes a keyword as defined in the command in the system.
 keyword delete <var>KEYWORD</var>
 </pre>
 
-* <code><var>KEYWORD</var></code> : `<keyword>`
+* <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
 
@@ -280,14 +353,15 @@ Example assumes that the keyword already exists.
 keyword delete pat
 ```
 
-<br><br>
-Output:<br>
+Output:
 
 ```text
 [INFO] Deleted keyword: pa-->patient
 ```
 
 ### `patient` - Patient functionalities
+
+A patient is uniquely identified by a generated `PATIENT_ID`. Duplicate patients are **allowed** in the system as there might be patients with the exact same attributes that want to be vaccinated.
 
 ##### Patient data
 
@@ -296,13 +370,19 @@ Output:<br>
 | `name`        | YES       | `<name>`               | NO              |
 | `phone`       | YES       | `<phone-number>`       | NO              |
 | `dateOfBirth` | YES       | `<date>`               | NO              |
-| `bloodType`   | YES       | `<bloodType>`          | NO              |
+| `bloodType`   | YES       | `<blood-type>`         | NO              |
 | `allergies`   | NO        | list of `<group-name>` | YES             |
 | `vaccines`    | NO        | list of `<group-name>` | YES             |
+
+###### dateOfBirth
+
+It accepts any `<date>` that is before current system time.
 
 #### `add` - Add a patient
 
 Adds a new Patient type as defined in the command into the system. If any of the optional arguments are omitted, the list will be empty.
+
+`vaccines` and `vaccinations` are different. The Patient allows any vaccines to be added as they may want to include other vaccinations that they have taken to check for conflicts during the new vaccination. Patients are **allowed** to have vaccines that are not offered in this vaccination center.
 
 ##### Syntax
 
@@ -313,15 +393,17 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
 * <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<dob>`
-* <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
 * <code><var>ALLERGIES</var></code> : `<group-name>`
 * <code><var>VACCINES</var></code> : `<group-name>`
 
 ##### Example
 
-* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
-* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+```text
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+
+```
 
 Output:
 
@@ -336,7 +418,7 @@ Output:
 ##### Syntax
 
 <pre>
-patient detail <var>patient</var>
+patient detail <var>PATIENT_ID</var>
 </pre>
 
 ##### Example
@@ -355,15 +437,19 @@ Output:
 
 ![Patient Detail Example](images/patient/ug/PatientDetailExample.png)
 
+##### Restrictions
+
+* <code><var>PATIENT_ID</var></code> must exist in the system.
+
 #### `list` - List all patients
 
 Resets the view of the patient pane to display all the Patients. Useful command after using the find command.
 
 ##### Syntax
 
-```text
+<pre>
 patient list
-```
+</pre>
 
 Output:
 
@@ -375,20 +461,40 @@ Output:
 
 #### `find` - Locate a patient
 
-Finds patients whose names contain any of the given keywords. You can also include flags to search based on the patient's attributes. If no flags are given, the search string given will be assumed to be searching the patient's name. Multiple flags can be used concurrently!
+Finds patients whose names contain the given keywords. You can also include flags to search based on the patient's attributes. If no flags are given, the search string given will be assumed to be searching the patient's name. Multiple flags can be used concurrently! At least one flag or `PATIENT_NAME` must be present.
 
 ##### Syntax
 
-```text
-patient find <string>
-patient find --name <string> --phone <phone-number> --d <date> \
-    --bloodtype <bloodType> --a <group-name> --v <group-name>
-```
+<pre>
+patient find {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
+</pre>
+
+* <code><var>PATIENT_NAME</var></code> : `<string>`
+
+##### Find by flag
+
+<code><var>ATTRIBUTE_FLAG</var></code> and their corresponding <code><var>FLAG_ARGUMENT</var></code> have similar mappings and requirements to to patient's [`add`](#add---add-a-patient). That is,
+
+* `--n` -> <code><var>PATIENT_NAME</var></code> : `<name>`
+* `--p` -> <code><var>PHONE</var></code> : `<phone>`
+* `--d` -> <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* `--b` -> <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* `--a` -> <code><var>ALLERGIES</var></code> : `<group-name>`
+* `--v` -> <code><var>VACCINES</var></code> : `<group-name>`
+
+Where the right side of `->` represents <code><var>ATTRIBUTE_FLAG</var></code> and the left represent <code><var>FLAG_ARGUMENT</var></code>
+
+However, the following exceptions apply:
+
+* Only one `ALLERGIES` flag can be used at one find command.
+* Only one `VACCINES` flag can be used at one find command.
 
 ##### Example
 
-* `patient find john`
-* `patient find --name john --b B+`
+```text
+patient find john
+patient find --n john --b B+
+```
 
 Output:
 
@@ -405,14 +511,14 @@ Updates the Patient using it's PATIENT_ID. It will update the attributes of the 
 ##### Syntax
 
 <pre>
-patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
+patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE</var>] [--d <var>DATE_OF_BIRTH</var>] \
+    [--b <var>BLOODTYPE</var>] [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
 * <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<dob>`
-* <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
 * <code><var>ALLERGIES</var></code> : `<group-name>`
 * <code><var>VACCINES</var></code> : `<group-name>`
 * <code><var>IS_SET</var></code> : `<boolean>`
@@ -423,7 +529,9 @@ patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</v
 
 Basic edit, changing patient's attributes that is not related to list-like attributes
 
-* `patient edit 7 --n John Deer`
+```text
+patient edit 7 --n John Deer
+```
 
 Output:
 
@@ -437,7 +545,12 @@ Output:
 
 Appending patient's allergies and vaccination details
 
-* `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
+```text
+patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ \
+    --a dogfur --a fern --v norovax
+```
+
+Copy and paste: `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
 
 Output:
 
@@ -451,7 +564,12 @@ Output:
 
 Setting patient's allergies and vaccination details, values prior will be overridden
 
-* `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true`
+```text
+patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ \
+    --a nofur --a grass --v protovax --set true
+```
+
+Copy and paste: `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true`
 
 Output:
 
@@ -461,19 +579,25 @@ Output:
 
 ![Patient Edit Detail Card Set](images/patient/ug/PatientEditDetailCardSet.png)
 
+##### Restrictions
+
+* <code><var>PATIENT_ID</var></code> must exist in the system.
+
 #### `delete` - Delete a patient
 
 Deletes the patient using the PATIENT_ID
 
 ##### Syntax
 
-```text
-patient delete <PATIENT_ID>
-```
+<pre>
+patient delete <var>PATIENT_ID</var>
+</pre>
 
 ##### Example
 
-* `patent delete 7`
+```text
+patient delete 7
+```
 
 Output:
 
@@ -481,19 +605,25 @@ Output:
 [INFO] Deleted Patient: John Der
 ```
 
-#### `clear` - Delete a patient
+##### Restrictions
+
+* <code><var>PATIENT_ID</var></code> must exist in the system.
+
+#### `clear` - Clear Patients
 
 Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
 
 ##### Syntax
 
-```text
+<pre>
 patient clear
-```
+</pre>
 
 ##### Example
 
-* `patent clear`
+```text
+patient clear
+```
 
 Output:
 
@@ -503,7 +633,7 @@ Output:
 
 ### `vaccination` - Vaccination functionalities
 
-Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description.
+Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description:
 
 * **Name** : `<group-name>` - the name of the vaccination.
 * **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
@@ -514,9 +644,35 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `200`.
 * **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
   * Default value = `empty list`.
-* **History requirements** - the list requirements of vaccination groups to take the vaccination.
+* **History requirements** : list of `<req>` - the list requirements of vaccination groups to take the vaccination.
   * Default value = `empty list`.
   * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
+
+<div markdown="block" class="alert alert-info" id="vaccination-case-sensitive-name-info">
+:information_source: **Case sensitivity of names in vaccinations**
+
+Vaccination **name** and the names of their **ingredients** are <u>case sensitive</u> to differentiate between simple chemical formulas, company names containing the same characters but in different case or certain serial numbers that are case sensitive.
+
+Therefore these vaccination names are different:
+
+* `VAX ABC (No CO)` - "CO" for carbon monoxide.
+* `VAX ABC (No Co)` - "Co" for cobalt.
+
+</div>
+
+In order for a patient to take a specific vaccination, the patient will have to satisfy <u>ALL</u> of the following:
+
+* Patient's age should be between the vaccination's **minimum age** and **maximum age** range inclusive.
+* The patient should not be allergic to any of the **ingredients** of the vaccination.
+* The patient should have a vaccination history record that satisfies <u>ALL</u> requirements of the vaccination's **history requirements**.
+
+<div markdown="block" class="alert alert-info" id="vaccination-history-requirement-check-info">
+:information_source: **History requirement checks**
+
+When checking if a patient satisfies the history requirements of a vaccination, the group classifications of the vaccination that the patient has taken will be extracted and tested against the requirement's group set. The requirement [type](#req-type) of the requirement will decide if the requirement is satisfied.
+
+In other words, a patient can satisfy a requirement by taking vaccinations with certain group types for `ALL` and `ANY` requirement types or not taking any vaccinations with certain group types for `NONE` requirement types.
+</div>
 
 #### `add` - Add a vaccination type
 
@@ -526,8 +682,10 @@ they will be set to their default values.
 ##### Syntax
 
 <pre>
-vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...]... \
+    [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--a ...<var>INGREDIENT</var>...]... \
+    [--h <var>HISTORY_REQ</var>]...
 </pre>
 
 * <code><var>VAX_NAME</var></code> : `<group-name>`
@@ -537,21 +695,47 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
-##### Example
+<div markdown="block" class="alert alert-info" id="vaccination-min-max-age-flag">
+:information_source: **Age flags**
+
+The flags `--lal` and `--ual` for minimum and maximum age stand for **<u>L</u>ower <u>A</u>ge <u>L</u>imit** and **<u>U</u>pper <u>A</u>ge <u>L</u>imit** respectively.
+</div>
+
+<div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
+:bulb: **Breaking up vaccination `add` syntax**
+
+Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination-type) command.
+
+This can be done by:
+
+1. Adding a vaccination with only its name and without the rest of its attributes.
+2. Editing the added vaccination in step 1 to add an attribute.
+3. Repeating step 2 until all desired attributes are added to the vaccination.
+
+For example, to add the same vaccination as in the <a href="#vaccination-add-example">example</a>, one can execute commands in the following order:
+
+1. `vaccination add ABC VAX`
+2. `vaccination edit ABC VAX --g ABC, VACCINATION`
+3. `vaccination edit ABC VAX --lal 5 --ual 50`
+4. `vaccination edit ABC VAX --i ALC-0315, ALC-0159`
+5. `vaccination edit ABC VAX --h NONE::ABC`
+
+</div>
+
+<h5 id="vaccination-add-example">Example</h5>
 
 Example assumes that the vaccination `ABC VAX` does not exist yet.
 
 ```text
-vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
-    --lal 5 \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 1 \
+vaccination add ABC VAX --g ABC, VACCINATION \
+    --lal 5 --ual 50 \
+    --i ALC-0315, ALC-0159 \
+    --h NONE::ABC
 ```
 
-Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
-<br><br>
-Output:<br>
+Copy and paste: `vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
+
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX added
@@ -563,6 +747,88 @@ Output:<br>
 
 * The name of the vaccination being added must not exist in the system.
 
+#### `detail` - Displays the detail of a vaccination
+
+##### Syntax
+
+<pre>
+vaccination detail <var>VACCINATION</var>
+</pre>
+
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+
+##### Example
+
+Example assumes none of the default start-up vaccinations are deleted yet.
+
+```text
+vaccination detail Dose 1 (Moderna)
+```
+
+Output:
+
+```text
+[INFO] Detailing vaccination: Dose 1 (Moderna)
+```
+
+![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
+
+##### Restrictions
+
+* <code><var>VACCINATION</var></code> must exist in the system.
+
+#### `list` - Lists all vaccination
+
+Clears previously set filters and list all vaccinations in the list view.
+
+##### Syntax
+
+<pre>
+vaccination list
+</pre>
+
+#### `find` - Finds a vaccination
+
+Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
+
+For example, if given `Dose Dose 1`, the following will match:
+
+* `Dose Dose 1`
+* `Dose abc dose abc 1`
+
+However, the following will not:
+
+* `Dose 1` - Missing a `dose`.
+* `1 Dose Dose` - Wrong order.
+* `Dose dose` - Missing `1`.
+
+##### Syntax
+
+<pre>
+vaccination find <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<string>`
+  * The character sequence in the vaccination's name to search for.
+
+##### Example
+
+```text
+vaccination find dose 1
+```
+
+Output:
+
+```text
+[INFO] 3 vaccinations listed!
+```
+
+![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
+
+##### Restrictions
+
+* <code><var>VAX_NAME</var></code> cannot be blank.
+
 #### `edit` - Edit a vaccination type
 
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
@@ -571,7 +837,7 @@ are omitted, they will be set to what they were before.
 ##### Syntax
 
 <pre>
-vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+vaccination edit <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
     [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
     [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]... \
     [--set <var>IS_SET</var>]
@@ -590,7 +856,7 @@ vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GR
 
 ##### Example
 
-Following examples are independent of each other and follow after vaccination add example.
+Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example.
 
 ###### Set example
 
@@ -598,7 +864,7 @@ Following examples are independent of each other and follow after vaccination ad
 vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH --set true
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX updated
@@ -612,7 +878,7 @@ Output:<br>
 vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX updated
@@ -645,22 +911,22 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 Examples follow after vaccination clear and then add command examples.
 
 ```text
-vaccination 1
+vaccination delete 1
 ```
 
 ```text
-vaccination INDEX::1
+vaccination delete INDEX::1
 ```
 
 ```text
-vaccination ABC VAX
+vaccination delete ABC VAX
 ```
 
 ```text
-vaccination NAME::ABC VAX
+vaccination delete NAME::ABC VAX
 ```
 
-Output:<br>
+Output:
 
 ```text
 vaccination: ABC VAX deleted
@@ -668,17 +934,19 @@ vaccination: ABC VAX deleted
 
 ##### Restrictions
 
-* Vaccination must exist in the system.
+* <code><var>VACCINATION</var></code> must exist in the system.
 
 #### `clear` - Clears all vaccination data
 
-##### Syntax
-
 Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
 
+##### Syntax
+
 <pre>
-vaccination clear
+vaccination clear --force <var>IS_FORCE</var>
 </pre>
+
+* <code><var>IS_FORCE</var></code> : `<boolean>`
 
 ##### Example
 
@@ -686,107 +954,21 @@ vaccination clear
 vaccination clear
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccinations successfully cleared
 ```
 
-#### `find` - Finds a vaccination
-
-Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
-
-For example, if given `Dose Dose 1`, the following will match:
-
-* `Dose Dose 1`
-* `Dose abc dose abc 1`
-
-However, the following will not:
-
-* `Dose 1` - Missing a `dose`.
-* `1 Dose Dose` - Wrong order.
-* `Dose dose` - Missing `1`.
-
-##### Syntax
-
-<pre>
-vaccination find <var>VAX_NAME</var>
-</pre>
-
-* <code><var>VAX_NAME</var></code> : `<string>`
-  * The character sequence in the vaccination's name to search for.
-
-##### Example
-
-```text
-vaccination find dose 1
-```
-
-Output:<br>
-
-```text
-[INFO] 3 vaccinations listed!
-```
-
-![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
-
-##### Restrictions
-
-* <code><var>VAX_NAME</var></code> cannot be blank.
-
-#### `list` - Lists all vaccination
-
-Clears previously set filters and list all vaccinations in the list view.
-
-##### Syntax
-
-<pre>
-vaccination list
-</pre>
-
-#### `detail` - Displays the detail of a vaccination
-
-##### Syntax
-
-<pre>
-vaccination detail <var>VACCINATION</var>
-</pre>
-
-* <code><var>VACCINATION</var></code> : `<vax-retriever>`
-
-##### Example
-
-Example assumes none of the default start-up vaccinations are deleted yet.
-
-```text
-vaccination detail Dose 1 (Moderna)
-```
-
-Output:<br>
-
-```text
-[INFO] Detailing vaccination: Dose 1 (Moderna)
-```
-
-![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
-
-##### Restrictions
-
-* <code><var>VACCINATION</var></code> must exist in the system.
-
-<br></br>
-
 ### `appointment` - Appointment functionalities
 
-| Attribute     | Type              | Description                                |
-|---------------|-------------------|--------------------------------------------|
-| Patient id    | `<Index>`         | The patient id of the appointment.         |
-| Starting time | `<localDateTime>` | The starting time of the appointment.      |
-| Ending time   | `<localDateTime>` | The ending time of the appointment.        |
-| Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
-| Status        | `<Boolean>`       | The completion status of the appointment.  |
-
-<br></br>
+| Attribute     | Type           | Description                                |
+| ------------- | -------------- | ------------------------------------------ |
+| Patient id    | `<index>`      | The patient id of the appointment.         |
+| Starting time | `<date>`       | The starting time of the appointment.      |
+| Ending time   | `<date>`       | The ending time of the appointment.        |
+| Vaccination   | `<group-name>` | The vaccine type used for the appointment. |
+| Status        | `<boolean>`    | The completion status of the appointment.  |
 
 #### `add` - Add an appointment
 
@@ -794,82 +976,28 @@ Adds a new appointment to the appointment manager
 
 ##### Syntax
 
-```text
-appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
-```
+<pre>
+appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>ENDING_TIME</var> --v <var>VACCINATION</var>
+</pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+* <code><var>PATIENT_ID</var></code> : `<index>`
+* <code><var>STARTING_TIME</var></code> : `<date>`
+* <code><var>ENDING_TIME</var></code> : `<date>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 
 ##### Example
 
-* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)`
+```text
+appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)
+```
 
 ##### Restrictions
 
-* The patient id must be an existing index in the patient manager.
+* The patient id must be an existing PATIENT_ID in the patient manager.
 * The patient id must for a patient that does not already have an upcoming appointment.
 * The starting time must be after the current locale time.
 * The ending time must be after the given starting time.
 * The vaccination must be an existing vaccination type in the vaxtype manager.
-
-<br></br>
-
-#### `delete` - Delete an appointment
-
-Removes the specified appointment from the appointment manager.
-
-##### Syntax
-
-```text
-appointment delete INDEX
-```
-
-* <code><var>INDEX</var></code> : `<Index>`
-
-##### Example
-
-* `appointment delete 5`
-
-##### Restrictions
-
-* The index must be an existing index in the appointment manager.
-
-<br></br>
-
-#### `edit` - Edit an appointment
-
-Edits the details of an existing appointment.
-
-##### Syntax
-
-```text
-appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
-    [--v VAX_GROUP]
-```
-
-* <code><var>INDEX</var></code> : `<Index>`
-* <code><var>PATIENT_ID</var></code> : `<Index>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
-
-##### Example
-
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Dose 1 (Pfizer)`
-
-##### Restrictions
-
-* The index must be an existing index in the appointment manager.
-* The index must be of an appointment that has not yet passed.
-* The patient id must be an existing index in the patient manager.
-* The starting time must be after the current locale time.
-* The ending time must be after the given starting time.
-* The vaccination must be an existing vaccination type in the vaxtype manager.
-
-<br></br>
 
 #### `list` - List all appointments
 
@@ -877,43 +1005,76 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 
 ##### Syntax
 
-```text
+<pre>
 appointment list
-```
-
-<br></br>
+</pre>
 
 #### `find` - Find all matching appointments
 
 List all the appointments that matches the predicates provided.
 
-* <code><var>INDEX</var></code> : List appointments of a specific patient
+* <code><var>PATIENT_ID</var></code> : List appointments of a specific patient
 * <code><var>STARTING_TIME</var></code> : List appointments after the starting time
 * <code><var>ENDING_TIME</var></code> : List appointments before the ending time
-* <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
+* <code><var>VAX_NAME</var></code> : List appointments that uses the specific vaccination
 * <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
 
 ##### Syntax
 
-```text
-appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
-    [--v ...VAX_GROUP...]`
+<pre>
+appointment find {...<var>KEYWORDS</var>... | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
+</pre>
 
-appointment find [...KEYWORDS...]
-```
+* <code><var>KEYWORD</var></code> : `<string>`
 
-* <code><var>INDEX</var></code> : `<Index>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
-* <code><var>KEYWORDS</var></code> : `<String>`
+##### Find by flag
+
+<code><var>ATTRIBUTE_FLAG</var></code> and their corresponding <code><var>FLAG_ARGUMENT</var></code> have similar mappings and requirements to to appointment's [`add`](#add---add-an-appointment). That is,
+
+* `--p` -> <code><var>PATIENT_ID</var></code> : `<integer>`
+* `--s` -> <code><var>STARTING_TIME</var></code> : `<date>`
+* `--e` -> <code><var>ENDING_TIME</var></code> : `<date>`
+* `--v` -> <code><var>VAX_NAME</var></code> : `<group-name>`
 
 ##### Example
 
-* `appointment find --p 1`
-* `appointment find Dose 1`
+```text
+appointment find --p 1
+appointment find Dose 1
+```
 
-<br></br>
+#### `edit` - Edit an appointment
+
+Edits the details of an existing appointment.
+
+##### Syntax
+
+<pre>
+appointment edit <var>APPOINTMENT_ID</var> [--p <var>PATIENT_ID</var>] \
+    [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
+    [--v <var>VACCINATION</var>]
+</pre>
+
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
+* <code><var>PATIENT_ID</var></code> : `<index>`
+* <code><var>STARTING_TIME</var></code> : `<date>`
+* <code><var>ENDING_TIME</var></code> : `<date>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+
+##### Example
+
+```text
+appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)
+```
+
+##### Restrictions
+
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
+* The <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The <code><var>START_TIME</var></code> must be after the current locale time.
+* The <code><var>END_TIME</var></code> must be after the given starting time.
+* The <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
 #### `mark` - Marks an appointment as completed
 
@@ -921,22 +1082,22 @@ Marks an existing appointment as completed.
 
 ##### Syntax
 
-```text
-appointment mark INDEX
-```
+<pre>
+appointment mark <var>APPOINTMENT_ID</var>
+</pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
 
 ##### Example
 
-* `appointment mark 1`
+```text
+appointment mark 1
+```
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should not already be done.
-
-<br></br>
 
 #### `unmark` - Changes an appointment's status to not done
 
@@ -944,24 +1105,46 @@ Changes the completion status to not done.
 
 ##### Syntax
 
-```text
-appointment unmark INDEX
-```
+<pre>
+appointment unmark <var>APPOINTMENT_ID</var>
+</pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
 
 ##### Example
 
-* `appointment unmark 1`
+```text
+appointment unmark 1
+```
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should already be done.
 
-<br></br>
+#### `delete` - Delete an appointment
 
-## Advance
+Removes the specified appointment from the appointment manager.
+
+##### Syntax
+
+<pre>
+appointment delete <var>APPOINTMENT_ID</var>
+</pre>
+
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
+
+##### Example
+
+```text
+appointment delete 5
+```
+
+##### Restrictions
+
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
+
+## Data files
 
 VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -973,7 +1156,7 @@ If your changes to the data file makes its format invalid, VMS will discard all 
 
 **:information_source: JSON syntax presentation**<br>
 
-* The following will have the same meaning as <a href="CLI-presentation-format">CLI presentation</a>.
+* The following will have the same meaning as <a href="#CLI-presentation-format">CLI presentation</a>.
   * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
   * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
   * **Triangle brackets** (`<` and `>`)
