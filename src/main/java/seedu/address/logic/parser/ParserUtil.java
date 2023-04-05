@@ -157,7 +157,7 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static Sex parseSex(String sex) throws ParseException {
-        String trimmedSex = sex.trim().toUpperCase();
+        String trimmedSex = sex.trim();
         if (!Sex.isValidSex(trimmedSex)) {
             throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }

@@ -36,7 +36,6 @@ public class Sex {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidSex(String test) {
-        test = test.toUpperCase();
         if (isDefaultSex(test)) {
             return true;
         }
@@ -50,7 +49,7 @@ public class Sex {
      * @return Boolean value true if the string given is the default string by the system.
      */
     public static boolean isDefaultSex(String test) {
-        return test.equals("INSERT STUDENT SEX HERE!");
+        return test.equals("Insert student sex here!");
     }
 
     @Override
