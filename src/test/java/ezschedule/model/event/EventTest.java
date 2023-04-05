@@ -90,35 +90,35 @@ public class EventTest {
 
     @Test
     public void equals() {
-        // same object -> returns true
+        // same object -> returns equal
         assertEquals(EVENT_A, EVENT_A);
 
-        // same values -> returns true
+        // same values -> returns equal
         Event aCopy = new EventBuilder(EVENT_A).build();
         assertEquals(EVENT_A, aCopy);
 
-        // null -> returns false
+        // null -> returns not equal
         assertNotEquals(null, EVENT_A);
 
-        // different type -> returns false
+        // different type -> returns not equal
         assertNotEquals(5, EVENT_A);
 
-        // different event -> returns false
+        // different event -> returns not equal
         assertNotEquals(EVENT_A, EVENT_B);
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns not equal
         Event editedA = new EventBuilder(EVENT_A).withName(VALID_NAME_B).build();
         assertNotEquals(EVENT_A, editedA);
 
-        // different date, all other attributes same -> returns false
+        // different date, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withDate(VALID_DATE_B).build();
         assertNotEquals(EVENT_A, editedA);
 
-        // different start time, all other attributes same -> returns false
+        // different start time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withStartTime(VALID_START_TIME_B).build();
         assertNotEquals(EVENT_A, editedA);
 
-        // different end time, all other attributes same -> returns false
+        // different end time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withEndTime(VALID_END_TIME_B).build();
         assertNotEquals(EVENT_A, editedA);
 
