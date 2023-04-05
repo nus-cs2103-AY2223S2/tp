@@ -415,5 +415,9 @@ public class RemoveEmployeeFromDepartmentCommandTest {
 
         }
 
+        @Override
+        public void refresh() {
+        }
+
     }
 }

@@ -442,5 +442,9 @@ public class DeleteEmployeeFromLeaveCommandTest {
             return sudoHr.checkEmployeeExists(id);
         }
 
+        @Override
+        public void refresh() {
+        }
+
     }
 }

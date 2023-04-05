@@ -498,6 +498,10 @@ public class AddEmployeeToLeaveFromToCommandTest {
         }
 
         @Override
+        public void refresh() {
+        }
+
+        @Override
         public boolean checkEmployeeExists(Id id) {
             requireNonNull(id);
             return sudoHr.checkEmployeeExists(id);

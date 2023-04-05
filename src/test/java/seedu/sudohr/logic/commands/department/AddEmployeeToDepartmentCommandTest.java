@@ -409,5 +409,9 @@ public class AddEmployeeToDepartmentCommandTest {
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
 
         }
+
+        @Override
+        public void refresh() {
+        }
     }
 }

@@ -476,5 +476,9 @@ public class AddEmployeeToLeaveCommandTest {
             return sudoHr.checkEmployeeExists(id);
         }
 
+        @Override
+        public void refresh() {
+        }
+
     }
 }
