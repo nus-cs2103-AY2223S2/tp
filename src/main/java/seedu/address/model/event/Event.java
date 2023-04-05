@@ -282,6 +282,11 @@ public abstract class Event {
         notes.add(note);
     }
 
+    /**
+     * Removes from note list
+     * @param note A note object
+     * @return Remove outcome
+     */
     public boolean removeNote(Note note) {
         try {
             return notes.remove(note);
@@ -290,6 +295,11 @@ public abstract class Event {
         }
     }
 
+    /**
+     * Removes a note from note list by index
+     * @param index The index of note to remove
+     * @return Removal outcome
+     */
     public boolean removeNote(int index) {
         try {
             return notes.remove(index);
