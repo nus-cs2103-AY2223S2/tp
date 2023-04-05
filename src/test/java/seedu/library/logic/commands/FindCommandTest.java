@@ -62,7 +62,6 @@ public class FindCommandTest {
                 preparePredicate("Alice", null, null, "wall street");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredBookmarkList(predicate);
-        System.out.println(expectedModel.getFilteredBookmarkList());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredBookmarkList());
     }

@@ -25,4 +25,11 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.setText(feedbackToUser);
     }
 
+    /**
+     * Method which cleats result display
+     */
+    public void clearDisplay() {
+        resultDisplay.setText("");
+    }
+
 }

@@ -302,6 +302,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
+But do note that there will not be a response in result box since this is not a CLI command.
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -321,6 +322,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
+But do note that there will not be a response in result box since this is not a CLI command.
 </div>
 
 ### Clearing all entries : `clear`
