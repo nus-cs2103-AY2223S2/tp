@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -73,8 +72,20 @@ public class SortStudentCommandParserTest {
         sortStudentCommand = new SortStudentCommand("tutorial", "name", false);
         assertParseSuccess(sortStudentParser, "sort-student tutorial name reverse", sortStudentCommand);
 
+        sortStudentCommand = new SortStudentCommand("all", "name", true);
+        assertParseSuccess(sortStudentParser, "sort-student all name nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "name", true);
+        assertParseSuccess(sortStudentParser, "sort-student lab name nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "name", true);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial name nonreverse", sortStudentCommand);
+
         sortStudentCommand = new SortStudentCommand("consultation", "name", false);
         assertParseSuccess(sortStudentParser, "sort-student consultation name reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("consultation", "name", true);
+        assertParseSuccess(sortStudentParser, "sort-student consultation name nonreverse", sortStudentCommand);
 
         sortStudentCommand = new SortStudentCommand("consultation", "address", false);
         assertParseSuccess(sortStudentParser, "sort-student consultation address reverse", sortStudentCommand);
@@ -87,6 +98,97 @@ public class SortStudentCommandParserTest {
 
         sortStudentCommand = new SortStudentCommand("consultation", "performance", false);
         assertParseSuccess(sortStudentParser, "sort-student consultation performance reverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab","address", false);
+        assertParseSuccess(sortStudentParser, "sort-student lab address reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "remark", false);
+        assertParseSuccess(sortStudentParser, "sort-student lab remark reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "email", false);
+        assertParseSuccess(sortStudentParser, "sort-student lab email reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "performance", false);
+        assertParseSuccess(sortStudentParser, "sort-student lab performance reverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all","address", false);
+        assertParseSuccess(sortStudentParser, "sort-student all address reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "remark", false);
+        assertParseSuccess(sortStudentParser, "sort-student all remark reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "email", false);
+        assertParseSuccess(sortStudentParser, "sort-student all email reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "performance", false);
+        assertParseSuccess(sortStudentParser, "sort-student all performance reverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial","address", false);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial address reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "remark", false);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial remark reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "email", false);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial email reverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "performance", false);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial performance reverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("consultation", "address", true);
+        assertParseSuccess(sortStudentParser, "sort-student consultation address nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("consultation", "remark", true);
+        assertParseSuccess(sortStudentParser, "sort-student consultation remark nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("consultation", "email", true);
+        assertParseSuccess(sortStudentParser, "sort-student consultation email nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("consultation", "performance", true);
+        assertParseSuccess(sortStudentParser, "sort-student consultation performance nonreverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab","address", true);
+        assertParseSuccess(sortStudentParser, "sort-student lab address nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "remark", true);
+        assertParseSuccess(sortStudentParser, "sort-student lab remark nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "email", true);
+        assertParseSuccess(sortStudentParser, "sort-student lab email nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("lab", "performance", true);
+        assertParseSuccess(sortStudentParser, "sort-student lab performance nonreverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all","address", true);
+        assertParseSuccess(sortStudentParser, "sort-student all address nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "remark", true);
+        assertParseSuccess(sortStudentParser, "sort-student all remark nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "email", true);
+        assertParseSuccess(sortStudentParser, "sort-student all email nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("all", "performance", true);
+        assertParseSuccess(sortStudentParser, "sort-student all performance nonreverse",
+                sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial","address", true);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial address nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "remark", true);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial remark nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "email", true);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial email nonreverse", sortStudentCommand);
+
+        sortStudentCommand = new SortStudentCommand("tutorial", "performance", true);
+        assertParseSuccess(sortStudentParser, "sort-student tutorial performance nonreverse",
                 sortStudentCommand);
     }
 }
