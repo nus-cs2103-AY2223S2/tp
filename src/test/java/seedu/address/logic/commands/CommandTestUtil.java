@@ -4,12 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRENCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -73,6 +77,24 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_DESCRIPTION_1 = "Hello world!";
+    public static final String VALID_DESCRIPTION_2 = "Goodbye world!";
+    public static final String VALID_START_DATETIME_1 = "2023-01-01 0000";
+    public static final String VALID_START_DATETIME_2 = "2077-07-07 0707";
+    public static final String VALID_END_DATETIME_1 = "2023-01-01 0001";
+    public static final String VALID_END_DATETIME_2 = "2088-08-08 0808";
+    public static final String VALID_RECURRENCE_1 = "daily";
+    public static final String VALID_RECURRENCE_2 = "yearly";
+
+    public static final String DESCRIPTION_DESC_1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_1;
+    public static final String DESCRIPTION_DESC_2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_2;
+    public static final String START_DATETIME_DESC_1 = " " + PREFIX_START_DATE_TIME + VALID_START_DATETIME_1;
+    public static final String START_DATETIME_DESC_2 = " " + PREFIX_START_DATE_TIME + VALID_START_DATETIME_2;
+    public static final String END_DATETIME_DESC_1 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_1;
+    public static final String END_DATETIME_DESC_2 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_2;
+    public static final String RECURRENCE_DESC_1 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_1;
+    public static final String RECURRENCE_DESC_2 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_2;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
