@@ -240,10 +240,10 @@ How the `Logic` component works:
 
 Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteIndexSequenceDiagram.png)
 
 
-<p style="text-align: center;">Figure 7: Sequence diagram for the delete command </p>
+<p style="text-align: center;">Figure 7: Sequence diagram for the delete-index command </p>
 <br/>
 
 
@@ -251,7 +251,7 @@ Figure 7 below illustrates the interactions within the `Logic` component for the
 
 
 <div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for
-`DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a
+`DeleteIndexCommandParser` and `DeleteIndexCommand` should end at the destroy marker (X) but due to a
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -621,7 +621,7 @@ The following gives a more detailed explanation of the `upcoming` command.
 #### Implementation
 Figure 18 shows how the `delete-field` command works.
 
-![DeleteFieldSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteFieldSequenceDiagram](images/DeleteFieldSequenceDiagram.png)
 <p style="text-align: center;">Figure 18: Sequence diagram for the delete-field command</p>
 <br/>
 
@@ -638,50 +638,35 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 #### Design Considerations
 
-- Whether to use an AND relationship or an OR relationship for predicate matching
+**Aspect**: Whether to use an AND relationship or an OR relationship betweeen different fields. For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name as Google AND role as Software Engineer, or delete internships that have company name as Google OR role as Software Engineer
 
 1. **Alternative 1 (current choice):**  Use an AND relationship
-    * Pros:
-        * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
-    * Cons:
-        * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
+    * Pros: More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company AND role.
+    * Cons: If users want to delete internships based on an OR relationships, they need to call `delete-field` multiple times.
 
 2. **Alternative 2:** Use an OR relationship
-    * Pros:
-        * The current `delete` command takes in no arguments.
-    * Cons:
-        * Less fine-grained control over `delete`.
+    * Pros: Much easier for the user to reason about which internships will be deleted.
+    * Cons: Less fine-grained control over `delete`. For example, there is no way to delete internships that have company name as Google AND role as Software Engineer
 
 
-- Whether to add this enhancement to `clear` or `delete` command
+**Aspect**: Whether to add this enhancement to `clear` or `delete` command, or to create a new command entirely.
 
-1. **Alternative 1 (current choice):** Enhance the `delete` command
-    * Pros:
-        * Combine all delete features into one keyword.
-    * Cons:
-        * Delete now has 2 formats, and this may be a source of confusion.
-2. **Alternative 2:**  Enhance the `clear` command
-    * Pros:
-        * The current `clear` command takes in no arguments, so it is much easier to implement.
-    * Cons:
-        * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
-
-- Whether to merge both formats
-
-1. **Alternative 1 (current choice):** Separate both formats
-    * Pros:
-        * Combine all delete features into one keyword, which may be easier to remember.
-    * Cons:
-        * Delete now has 2 formats, and this may be a source of confusion for beginners.
-
-2. **Alternative 2:**  Combine both formats
-    * Pros:
-        * Offers extreme fine-grained control over what to delete for expert users.
-    * Cons:
-        * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case
-      is to mass delete internships that are no longer required.
-        * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
+1. **Alternative 1 (current choice):** Split the `delete` command into `delete-index` and `delete-field`. `delete-index` will delete only indexes, while `delete-field` will only delete by field.
+    * Pros: Both commands now share the same prefix `delete`, so it is easier to remember.
+    * Cons: Delete now has 2 formats, and this may be a source of confusion.
+2. **Alternative 2:** Enhance the `delete` command only. For example, `delete 1 2 n/Google` will delete any of the first 2 entries if they have the company name as 'Google'.
+    * Pros: Combine all delete features into one keyword, so it is much easier to remember.
+    * Cons: 
+      * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case is to mass delete internships that are no longer required.
+      * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
+      
+3. **Alternative 3:**  Enhance the `clear` command
+    * Pros: The current `clear` command takes in no arguments, so it is much easier to implement.
+    * Cons: May be confusing to the user, since there will be no clear distinction between `delete` and `clear`.
+
+
+
 
 
 
