@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.commons.Deadline;
-import trackr.model.commons.Name;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
@@ -64,7 +62,7 @@ class JsonAdaptedTask {
                     TaskName.class.getSimpleName()));
         }
         if (!TaskName.isValidName(taskName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
         final TaskName modelTaskName = new TaskName(taskName);
 
@@ -73,7 +71,7 @@ class JsonAdaptedTask {
                     TaskDeadline.class.getSimpleName()));
         }
         if (!TaskDeadline.isValidDeadline(taskDeadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
         final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
 
