@@ -54,6 +54,8 @@ public class Person implements Comparable<Person> {
 
     public String getNameString() { return getName().fullName; }
 
+    public String getStandardisedNameString() { return getNameString().toLowerCase(); }
+
     public Phone getPhone() {
         return phone;
     }
