@@ -755,7 +755,8 @@ ___
 
 **MSS**
 
-1. User requests to find applications using the company name as the keyword.
+1. User requests to find applications using the role, company name, or the application
+status as the keyword.
 2. sprINT displays the filtered list of entries.
 
    Use case ends.
@@ -786,9 +787,29 @@ ___
 
 * 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
 upcoming tasks of closer deadlines being showed first.
+  * sprINT shows list of entries that have tasks (and therefore deadlines). 
+  This list is sorted with earlier deadlines being showed first.
+
+      Use case ends.
+
+---
+
+**Use case 6: Undo a command**
+
+**MSS**
+
+1. User requests to sort applications by alphabetical order.
+2. sprINT displays the sorted list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
+  upcoming tasks of closer deadlines being showed first.
 * sprINT displays the sorted list of entries.
 
-    Use case ends.
+  Use case ends.
 
 ---
 
