@@ -30,7 +30,7 @@ TrackerParser -> EditCommandParser : parse(\n"CS2040S \n/name DSAG")
 activate EditCommandParser
 
 create EditModuleCommand
-EditCommandParser -> EditModuleCommand : EditModuleCommand(\ncode, descriptor)
+EditCommandParser -> EditModuleCommand : code, descriptor
 activate EditModuleCommand
 
 EditModuleCommand --> EditCommandParser : c

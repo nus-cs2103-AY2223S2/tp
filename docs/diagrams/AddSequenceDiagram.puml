@@ -30,7 +30,7 @@ TrackerParser -> AddCommandParser : parse("CS2040S")
 activate AddCommandParser
 
 create AddModuleCommand
-AddCommandParser -> AddModuleCommand : AddModuleCommand(\nmod)
+AddCommandParser -> AddModuleCommand : mod
 activate AddModuleCommand
 
 AddModuleCommand --> AddCommandParser : c
