@@ -45,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_SKILLTAG_TEAM = "Python";
     public static final String VALID_TEAMNAME_A = "Team A";
     public static final String VALID_TEAMDESC_A = "This is a valid description.";
+    public static final String VALID_ORDER = "asc";
+    public static final String VALID_SORT_BY = "tcount";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
