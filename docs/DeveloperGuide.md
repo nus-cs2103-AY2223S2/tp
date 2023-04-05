@@ -203,23 +203,27 @@ Internally, the `Region` class has a list of all major town names in Singapore, 
 
 ### 4. Update Meeting Feature
 
-The find meeting feature is handled by the following classes:
-* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+The update meeting feature is handled by the following classes:
+* `UpdateMeetingCommandParser` - Checks that the command is in the right format, then
   parses the input to extract PersonID, MeetingID and updated Meeting details.
-    * `FindMeetingCommandParser#parse()` is called and returns an
-      `FindMeetingCommand` object with the extracted PersonID, MeetingID
-* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
-    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+    * After doing so, an `editMeetingDescriptor` object is created. The `editMeetingDescriptor` object
+      stores the details to edit the Meeting's description, start or end with.
+    * Thereafter, `UpdateMeetingCommandParser#parse()` is called and returns an
+      `UpdateMeetingCommand` object with the extracted PersonID, MeetingID and `editMeetingDescriptor`
+* `UpdateMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `UpdateMeetingCommand` extends the `Command` interface and implements the `Command#execute()`  
+      method.
 
-Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+Just like other commands, the `Command#execute()` method of `UpdateMeetingCommand` is handled by
 `Logic` component. Please refer to the 'Logic component' under 'Design' for more
 information on how the `Logic` component handles a command.
 
-The parsing and execution of FindMeeting command can be shown with the following
+The parsing and execution of updateMeeting command can be shown with the following
 sequence diagram:
 
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
+
 ### 5. Find Meeting Feature
-### 5.1 Update Meeting Feature
 
 The find meeting feature is handled by the following classes:
 * `FindMeetingCommandParser` - Checks that the command is in the right format, then
