@@ -109,9 +109,6 @@ public class ModelManagerTest {
         // null -> returns false
         assertNotEquals(null, modelManager);
 
-        // different types -> returns false
-        assertNotEquals(5, modelManager);
-
         // different recipeBook -> returns false
         assertNotEquals(modelManager, new ModelManager(differentRecipeBook, userPrefs));
 

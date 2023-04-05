@@ -3,12 +3,18 @@ package seedu.recipe.model;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.recipe.testutil.TypicalRecipes.BLUEBERRY_PANCAKES;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
+import static seedu.recipe.testutil.TypicalRecipes.CacioHashCode;
+import static seedu.recipe.testutil.TypicalRecipes.FISH_AND_CHIPS;
+import static seedu.recipe.testutil.TypicalRecipes.GRILLED_CHEESE;
 import static seedu.recipe.testutil.TypicalRecipes.MASALA_DOSA;
 import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
+import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipesObservableList;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,6 +40,7 @@ public class RecipeBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), recipeBook.getRecipeList());
+        assertEquals(SubstitutionsUtil.getPreloadedSubstitutions(), recipeBook.getPreloadedSubstitutes());
     }
 
     @Test
@@ -86,6 +93,22 @@ public class RecipeBookTest {
     @Test
     public void getRecipeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> recipeBook.getRecipeList().remove(0));
+    }
+
+    @Test
+    public void addRecipe(){
+        recipeBook.addRecipes(getTypicalRecipesObservableList());
+
+        // trying to add a duplicate recipe will throw an exception
+        assertThrows(DuplicateRecipeException.class, () -> recipeBook.addRecipe(CACIO_E_PEPE));
+
+        RecipeBook newBook = new RecipeBook();
+        newBook.addRecipe(BLUEBERRY_PANCAKES);
+        newBook.addRecipe(CACIO_E_PEPE);
+        newBook.addRecipe(FISH_AND_CHIPS);
+        newBook.addRecipe(GRILLED_CHEESE);
+        newBook.addRecipe(MASALA_DOSA);
+        assertEquals(recipeBook, newBook);
     }
 
     @Test
@@ -148,4 +171,21 @@ public class RecipeBookTest {
             return preloadedSubs;
         }
     }
+
+    @Test
+    public void test_hashcode() {
+        int expected = CacioHashCode();
+        recipeBook.addRecipe(CACIO_E_PEPE);
+        assertEquals(expected, recipeBook.hashCode());
+    }
+
+    @Test
+    public void test_equals() {
+        // null -> returns false
+        assertNotEquals(null, recipeBook);
+
+        // same object -> returns true
+        assertEquals(recipeBook, recipeBook);
+    }
+
 }
