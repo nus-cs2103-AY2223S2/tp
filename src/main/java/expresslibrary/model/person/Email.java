@@ -9,13 +9,12 @@ import static java.util.Objects.requireNonNull;
  */
 public class Email {
 
-    private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "The email address must consist of two parts separated by the @ symbol: a local part and a domain part.\n"
-            + "The local part can contain letters, digits, and certain special characters, such as period, hyphen, and underscore.\n"
-            + "However, it cannot begin or end with a period, and it cannot contain consecutive periods.\n"
-            + "The local part cannot exceed 64 characters in length.\n"
+            + "The local part can contain letters, digits, and certain special characters, such as period, hyphen, \n"
+            + "and underscore. However, it cannot begin or end with a period, and it cannot contain \n"
+            + "consecutive periods. The local part cannot exceed 64 characters in length.\n"
             + "The domain part can contain letters, digits, hyphens, and periods.\n"
             + "However, it must contain at least one period and cannot begin or end with a hyphen or period.\n"
             + "Also, each label within the domain name must not exceed 63 characters in length, "
@@ -23,13 +22,8 @@ public class Email {
             + "The domain name must conform to the DNS naming conventions, including restrictions on the characters "
             + "that can be used and the maximum length of each label.\n"
             + "The overall length of the email address cannot exceed 256 characters.";
-    // alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    public static final String VALIDATION_REGEX = "^(?=.{1,256}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@([a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$";
+    public static final String VALIDATION_REGEX = "^(?=.{1,256}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]"
+            + "+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@([a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$";
     public final String value;
 
     /**
