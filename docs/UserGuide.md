@@ -218,7 +218,7 @@ In general, the command format is as follows:<br>
 
 > :exclamation: Warning: Alphanumeric parameters like descriptions and names may be truncated it they are too long!
 > Adjust the window size of *Fish Ahoy!* to better show such truncated fields. If it is still not fully showing,
-> the name you picked might be too long!
+> the name you picked might be too long! Consider adding the information of fish that cannot be displayed in tags!
 
 #### Description `d/<DESCRIPTION>`
   * Type: `Tank`
@@ -845,7 +845,7 @@ App data are saved as a JSON file `[JAR file location]/data/fishahoy.json`. Adva
 > :bulb: Tip: If you have a set of ammonia, pH and temperature readings you want to input in bulk,
 you might want to insert it directly in the `readings.json` file!
 
-> :exclamation: Warning: If your changes to the data file makes its format invalid, Fish Ahoy! will discard all data and start with an empty data file at the next run
+> :exclamation: Warning: If your changes to the data file makes its format invalid, *Fish Ahoy!* will discard all data and start with an empty data file at the next run
 
 ## Help
 ### Viewing help : `help`
