@@ -331,8 +331,11 @@ Step 3. The user wants to mark a particular student as present. The user execute
 
 Step 4. The attendance is saved to the storage file automatically after each command. Attendance is saved as the string representation of LocalDate in JsonAdaptedAttendance.
 
-Full implementation sequence diagram
 
+**Activity Diagram**
+![Activity Diagram](images/AttendanceActivityDiagram.png)
+
+**Full implementation sequence diagram**
 ![Sequence Diagram](images/AttendanceSequenceDiagram.jpg)
 
 <div style="page-break-after: always;"></div>
@@ -381,7 +384,7 @@ Step 3. The user wants to add a test to a student. The user executes the `grade`
 
 Step 4. The test/homework is saved to the storage file automatically after each command.
 
-Full implementation sequence diagram
+**Full implementation sequence diagram**
 
 ![Sequence Diagram](images/GradeSequentialDiagram.png)
 

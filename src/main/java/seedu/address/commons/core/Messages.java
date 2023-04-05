@@ -24,7 +24,7 @@ public class Messages {
     //        + "parent name attached to given phone number.";
     public static final String MESSAGE_INVALID_PARENT = "The parent name and parent number provided does not match "
             + "any of the parents in our parent list!";
-    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance already exists!";
+    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "Attendance already marked!";
     public static final String MESSAGE_BLANK_FIND = "Please enter letters to find a name!";
 
     public static final String MESSAGE_INVALID_WEIGHTAGE =
