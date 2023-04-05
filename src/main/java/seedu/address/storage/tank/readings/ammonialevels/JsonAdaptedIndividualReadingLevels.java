@@ -19,6 +19,8 @@ public class JsonAdaptedIndividualReadingLevels {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tank's %s field is missing!";
 
+    public static final String MESSAGE_CORRUPTED_READINGS = "Some readings data is corrupted";
+
     private final String tankName;
 
     private final String commaSeperatedValuesAmmonia;
@@ -88,6 +90,16 @@ public class JsonAdaptedIndividualReadingLevels {
         }
         final TankName modelTankName = new TankName(tankName);
         Tank tank = new Tank(modelTankName, new AddressBook(), new UniqueIndividualReadingLevels());
+
+        boolean hasCorruptedData = commaSeperatedDatesAmmonia == null
+                || commaSeperatedDatesPH == null
+                || commaSeperatedDatesTemp == null
+                || commaSeperatedValuesAmmonia == null
+                || commaSeperatedValuesPH == null
+                || commaSeperatedValuesTemp == null;
+        if (hasCorruptedData) {
+            throw new IllegalValueException(MESSAGE_CORRUPTED_READINGS);
+        }
 
         String[] valuesAmmonia = commaSeperatedValuesAmmonia.split(",");
         String[] datesAmmonia = commaSeperatedDatesAmmonia.split(",");
