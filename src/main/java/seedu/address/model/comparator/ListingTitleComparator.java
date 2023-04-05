@@ -10,6 +10,8 @@ import seedu.address.model.listing.Listing;
 public class ListingTitleComparator implements Comparator<Listing> {
     @Override
     public int compare(Listing o1, Listing o2) {
-        return o1.getTitle().fullTitle.compareTo(o2.getTitle().fullTitle);
+        return o1.getTitle().fullTitle.toLowerCase().compareTo(
+                o2.getTitle().fullTitle.toLowerCase()
+        );
     }
 }

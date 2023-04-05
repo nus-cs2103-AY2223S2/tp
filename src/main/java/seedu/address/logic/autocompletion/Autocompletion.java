@@ -3,6 +3,7 @@ package seedu.address.logic.autocompletion;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
@@ -42,13 +43,15 @@ public class Autocompletion {
             put(AddApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT + "APPLICANT");
             put(AddCommand.COMMAND_WORD, PREFIX_TITLE + "TITLE "
                     + PREFIX_DESCRIPTION + "DESCRIPTION "
-                    + PREFIX_APPLICANT + "APPLICANT");
+                    + PREFIX_APPLICANT + "APPLICANT "
+                    + PREFIX_PLATFORM + "PLATFORM");
             put(DeleteApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT_WITH_ID + "APPLICANT#ID");
             put(DeleteCommand.COMMAND_WORD, "INDEX");
             put(EditCommand.COMMAND_WORD, "INDEX "
                     + PREFIX_TITLE + "TITLE "
                     + PREFIX_DESCRIPTION + "DESCRIPTION "
-                    + PREFIX_APPLICANT + "APPLICANT");
+                    + PREFIX_APPLICANT + "APPLICANT"
+                    + PREFIX_PLATFORM + "PLATFORM");
             put(FindCommand.COMMAND_WORD, "QUERY");
         }
     };

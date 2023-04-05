@@ -42,7 +42,7 @@ public class DeleteApplicantCommand extends Command {
     private final String targetApplicantId;
 
     /**
-     * Creates a DeleteApplicantCommand to remove a applicant from a listing.
+     * Creates a DeleteApplicantCommand to remove an applicant from a listing.
      * @param targetIndex index of the listing to delete the applicant from
      * @param targetApplicantId id of the applicant to be deleted
      */
@@ -106,7 +106,7 @@ public class DeleteApplicantCommand extends Command {
     }
 
     /**
-     * Create a identical listing with applicant removed.
+     * Create an identical listing with applicant removed.
      * @param listing previous listing for reference
      * @param applicantToDelete applicant to delete
      * @return

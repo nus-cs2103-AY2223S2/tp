@@ -7,7 +7,7 @@ title: User Guide
 
 ## **Overview**
 
-GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -146,7 +146,7 @@ Adds a listing to the listing book.
 
 **Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT]...`
 
-**Tips:**
+**Notes:**
 
 - A listing can have any number of applicants (including 0)
 
@@ -161,7 +161,7 @@ You should see a confirmation message showing the job title, description and app
 ```ignorelang
 Added new listing:
 Job Title: Chicken Rice Uncle
-JobDescription: Cooks tasty chicken rice
+Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
 ```
 
@@ -172,7 +172,7 @@ If the above format is not followed, an error message will be displayed.
 ```ignorelang
 Invalid Command Format!
 add: Adds a listing to the listing book.
-Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
+Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
 
@@ -184,9 +184,9 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 
 Edits the details of a job listing.
 
-**Format:** `edit NUMBER t/TITLE d/DESCRIPTION [a/APPLICANTS...]`
+**Format:** `edit NUMBER [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
 
-**Tips:**
+**Notes:**
 
 - Ensure that `NUMBER` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. E.g. if the command entered is:
@@ -226,7 +226,7 @@ Example: edit 1 t/Cool job title a/John a/Sam
 ```
 
 ```ignorelang
-The listing index provided is invalid!
+The listing index provided exceeded the number of listings shown!
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
@@ -239,7 +239,7 @@ Deletes a job listing from the listing book.
 
 **Format:** `delete NUMBER`
 
-**Tips:**
+**Notes:**
 
 - Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 
@@ -269,7 +269,7 @@ Example: delete 1
 ```
 
 ```ignorelang
-The listing index provided is invalid
+The listing index provided exceeded the number of listings shown!
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
@@ -282,7 +282,7 @@ Finds job listings whose titles contain any of the given keywords.
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-**Tips:**
+**Notes:**
 
 - The search is case-insensitive. eg. `software` will match `Software`
 - The order of the keywords does not matter. e.g. `Software Developer` will match `Developer Software`
@@ -332,11 +332,13 @@ Sort job listings by the field specified by the user and display the sorted list
 
 - The possible fields are: `title` , `description` , `applicants`
 
-**Tips:**
+**Notes:**
 
+- The sorting logic will always be applied until it is overridden by a `sort f/none` command.
 - The `title` field sorts the listings in alphabetical order of their title fields.
 - The `description` field sorts the listings in alphabetical order of their listings.
 - The `applicants` field sorts the listings in increasing number of applicants.
+- The `none` field resets the sorter and stop sorting the listings.
 - Note that if more than one field is provided, the last field will be taken into consideration.
 
 **Examples:**
@@ -394,7 +396,7 @@ Sort job listings by the field specified by the user and display the sorted list
 
 **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
 
-**Tips:**
+**Notes:**
 
 - The possible fields are: `expiry date` , `num_of_applicants` , `...`
 - Fields have to be numerical

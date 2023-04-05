@@ -48,7 +48,7 @@ public class DeletePlatformCommandTest {
                 new ArrayList<>(Arrays.asList(new Platform[] {GLINTS}))
         ).build());
 
-        String expectedMessage = String.format(DeleteApplicantCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(DeletePlatformCommand.MESSAGE_SUCCESS,
                 VALID_PLATFORM_NAME_LINKEDIN,
                 originalListing.getTitle().fullTitle);
 
