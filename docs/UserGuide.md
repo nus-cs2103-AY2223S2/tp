@@ -3,29 +3,30 @@ layout: page
 title: User Guide
 ---
 <!-- omit in toc -->
-### Welcome to Docedex, your solution to doctor and patient management <!-- omit in toc -->
-With Docedex, taking control of patient management is just a few keystrokes away!
+## Docedex
+<!-- omit in toc -->
+### Taking control of hospital administrative management is just a few keystrokes away!
 
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
 
+Here's a quick snapshot of how Docedex can help you
+streamline your hospital management processes.
+- Store and edit information about your patients and doctors
+- Track the status of your patients and doctors
+- Assign patients to doctors upon triaging
 
-
-Here's a quick snapshot of how Docedex can streamline your hospital management processes.
-- 
-
-Docedex is **optimized for** use via a **Command Line Interface (CLI)**
+On top of these functionalities, we believe that patient management must be efficient.
+Therefore, Docedex is **optimized for** use via a **Command Line Interface (CLI)**
 while still having the benefits of a **Graphical User Interface (GUI).**
-If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.
-
-
-
-
-
+If you type fast, Docedex can get your hospital management tasks done faster
+than current GUI apps in the industry.
 
 ![NewUi](images/NewUi.png)
 
-For **new users** visit [quick start](#quick-start).
+<!-- omit in toc -->
+### If you are new here
+Visit [quick start](#quick-start) to onboard onto Docedex smoothly!
 
 <!-- omit in toc -->
 ## Table of Contents
