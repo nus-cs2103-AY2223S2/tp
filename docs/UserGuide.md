@@ -447,13 +447,13 @@ Examples:
 
 Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the teacher.
 
-Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
+Format: `student <class> edit in/<INDEX_NUMBER> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
 imgS/[IMAGE] cca/[CCA] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
 
 ***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 Examples:
-* `student 1A edit in/3 cca/basketball`
+* `student 1A edit in/13 cca/basketball`
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 * Edited student: Tan Ah Cow; Student Class: 1A; Index Number: 13;
