@@ -62,7 +62,7 @@ generated with markdown-toc</a></i></small>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the Features below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
@@ -155,17 +155,17 @@ you can use the `view-exams` command to view the list of exams.
 
 :information_source: **How to interpret the Command format:**<br>
 
-* The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `add n/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `add n/John Doe`.
+* The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `new-student name/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `new-student n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Ho` etc.
+  e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Doe` etc.
 
 * Extraneous parameters for commands that don't take in parameters
   (such as `help`, `exit,` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 * Unless otherwise specified, the order of prefixes doesn't matter.<br>
-  e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable unless stated otherwise in a particular command.
+  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable unless stated otherwise in a particular command.
 
 * Parameters can be in any order.<br>
 
