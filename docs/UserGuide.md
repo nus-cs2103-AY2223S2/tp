@@ -7,7 +7,12 @@ title: User Guide
 </p>
 
 ## Greetings from CookHub!
-**CookHub** is a powerful, but lightweight application for your recipe management needs. 
+
+How many times have you jotted down a recipe on a slip of paper, only to lose it when you actually need it? How many times have you 
+searched through your cookbook, in hopes of finding a recipe with a short-enough cooking time, so that you can cook yourself healthy meal despite your busy university schedule?
+If you are a student cook whose cookbook is stuffed with tons of sticky notes, loose-leaf papers, and old family recipes, **CookHub** is the app for you!
+
+**CookHub** is a powerful, but lightweight application for your recipe management needs.
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
 **CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists who aim to manage their recipes quickly, while still 
@@ -17,7 +22,7 @@ enjoying the benefits of a Graphical User Interface(GUI).
 It supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
 minimal setup, it is perfect for the contemporary student cook!
 
-Here is a short overview of the features and capabilities of CookHub:
+Here is a short overview of the features and capabilities of **CookHub**:
 * Creating recipes with specified titles, ingredients, steps, and tags.
 * [Starring](#glossary) and [unstarring](#glossary) each recipe.
 * Getting all your [favourite](#glossary) recipes. 
@@ -59,6 +64,29 @@ Here is a short overview of the features and capabilities of CookHub:
 1. Refer to the [Features](#features) below for details of each command.
 
 <hr style="border:2px solid gray">
+
+## Command Line Interface (CLI) Tutorial
+The CLI is a medium in which the application interacts with the user, through text-based inputs. 
+As **CookHub** mainly uses the CLI, this tutorial will equip you with the CLI fundamentals required for **CookHub**. However, if you are already familiar with the CLI, you can skip to the [Features](#features)
+section to get started with our features.
+This tutorial will give walk through the most fundamental commands to equip you with basic understanding of our command format.
+First, let's look at the most basic command, the `add` command. A sample `add` command is shown below: <br>
+```
+add t/Cookies d/Yummy s/Mix the batter i/Flour, 30, grams, 0.20 
+```
+The first word of the command, `add`, tells **CookHub** that you have the intention of adding a recipe. Subsequently, the `t/` command flag
+tells **CookHub** that the following words make up the *title* of the recipe. Hence, **CookHub** will recognise that the title of the recipe is 'Cookies'.
+Then, the `d/` command flag signifies that 'Yummy' is the *description* of the recipe, and the `s/` command flag signifies that the sentences 'Mix the batter' is a *step* in the recipe. 
+Lastly, the `i/` flag signifies that the recipe has ingredient 'Flour, 30, grams, 0.20'. 'Flour, 30, grams, 0.20' is to be interpreted as
+30 grams of flour, in which it costs $0.20 for each gram of flour.
+
+Another fundamental command is the `edit` command. A sample `edit` command is shown below: <br>
+```
+edit 1 d/Disgusting
+```
+This command has a similar format to the above `add` command, except that the `edit` is followed by a number. The number `1` signifies that 
+you want to edit the first recipe in **CookHub**. Similarly to the `add` command, the `d/` flag signifies that the *description* of the recipe should be 'Disgusting'.
+In essence, this command edits the description of the first recipe in **CookHub** to 'Disgusting'.
 
 ## Features
 
