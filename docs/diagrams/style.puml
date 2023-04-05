@@ -57,6 +57,8 @@ skinparam Sequence {
     BoxPadding 0
     BoxFontColor #FFFFFF
     FontName Arial
+
+    ReferenceBackgroundColor #FFFFFF
 }
 
 skinparam Participant {
