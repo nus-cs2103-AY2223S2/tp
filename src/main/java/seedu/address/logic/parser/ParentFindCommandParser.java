@@ -18,7 +18,6 @@ public class ParentFindCommandParser implements Parser<ParentFindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ParentFindCommand parse(String args) throws ParseException {
-        //String trimmedArgs = args.trim();
         String[] argList = args.split("find", 2);
         String trimmedArgs = argList[1].trim();
         if (trimmedArgs.isEmpty()) {
