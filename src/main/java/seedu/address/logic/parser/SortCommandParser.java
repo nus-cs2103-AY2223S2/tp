@@ -9,10 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.comparator.CompanyNameComparator;
-import seedu.address.model.person.comparator.InterviewDateComparator;
-import seedu.address.model.person.comparator.JobTitleComparator;
-import seedu.address.model.person.comparator.StatusComparator;
+import seedu.address.model.application.comparator.CompanyNameComparator;
+import seedu.address.model.application.comparator.InterviewDateComparator;
+import seedu.address.model.application.comparator.JobTitleComparator;
+import seedu.address.model.application.comparator.StatusComparator;
 
 /**
  * Parses input arguments and creates a new FindCommand object

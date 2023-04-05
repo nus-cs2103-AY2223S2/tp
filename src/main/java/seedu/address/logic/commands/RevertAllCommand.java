@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Reverts all deleted or cleared internship applications that are stored in the cache list for current session only.

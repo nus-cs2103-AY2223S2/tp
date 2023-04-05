@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ClearByCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.JobTitle;
 
 /**
  * Parses input arguments and creates a new ClearByCommand object

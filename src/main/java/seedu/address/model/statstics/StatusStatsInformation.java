@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.StatusPredicate;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.StatusPredicate;
 
 /**
  * Encapsulates the statistics information for a given status.

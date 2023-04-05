@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_APPLICATIONS;
 import java.util.List;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Lists all internship applications which are archived in the list of internship applications to the user.

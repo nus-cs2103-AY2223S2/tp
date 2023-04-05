@@ -7,9 +7,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearByCommand;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.JobTitle;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

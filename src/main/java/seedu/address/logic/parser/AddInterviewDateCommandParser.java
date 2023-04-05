@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddInterviewDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.InterviewDate;
+import seedu.address.model.application.InterviewDate;
 
 /**
  * Parses input arguments and creates a new AddInterviewDateCommand object

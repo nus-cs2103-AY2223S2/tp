@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.application.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all internship application in record whose CompanyName

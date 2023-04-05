@@ -11,7 +11,7 @@ import java.util.Comparator;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Sorts and lists all internship application by any one of the following attributes: CompanyName,

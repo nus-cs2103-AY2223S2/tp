@@ -10,8 +10,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InterviewDate;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
 
 /**
