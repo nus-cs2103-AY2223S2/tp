@@ -98,19 +98,25 @@ Here is a quick summary of each GUI component within Docedex.
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
 
-### Note about the GUI
+### Notes about the GUI
 
 **Selecting doctors or patients through commands**
 
-Certain commands involve the selection of doctors and patients immediately after
-they are entered.
+Some users have mentioned being alarmed by sudden disappearances of
+their Doctor Cards and Patient Cards within their respective lists
+after entering certain commands. Fret not, as this is part of the functionality
+of Docedex. Your storage is still secure.
+
+**Here is why this happens.** Certain commands involve the selection of doctors
+and patients immediately after they are entered.
 
 For example, when you type in the `add-doc` command, Docedex will automatically select
 the newly added doctor and display their details to you. This gives the user (you!) 
 a nice visual feedback that the command is successful.
 
-However, when selecting a new doctor, the patients list will be cleared, as it 
-displays the patients assigned to the selected doctor.
+Upon selecting a doctor, the Patient List displays the patients assigned
+to the selected doctor. However, if the doctor is newly added, said doctor will have
+no patients, and thus the Patient List will be empty.
 
 
 **Unselecting doctors or patients**
