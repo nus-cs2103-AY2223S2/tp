@@ -329,9 +329,11 @@ Meiji Milk (expires on: 03-03-2033)
 
 ### Delete tag(s) : `deltag`
 
-Deletes specified defined tags from WIFE. It also removes all the tags that are tagged on the food item, if any.
+Deletes specified tags from WIFE. This command will delete all occurrences of the specified tags that are
+tagged to food items in the food list, if any.
 
 Format: `deltag n/TAG NAME [n/TAG NAME]...`
+* `TAG NAME` must match an existing tag in WIFE.
 
 Examples:
 
