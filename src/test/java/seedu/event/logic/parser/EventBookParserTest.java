@@ -130,7 +130,7 @@ public class EventBookParserTest {
         LinkContactCommand command = (LinkContactCommand) parser.parseCommand(
                 LinkContactCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased() + " "
                         + contact.getPhone().value);
-        assertEquals(new LinkContactCommand(INDEX_FIRST_EVENT, contact.getPhone().value), command);
+        assertEquals(new LinkContactCommand(INDEX_FIRST_EVENT, contact.getPhone()), command);
     }
 
     @Test
