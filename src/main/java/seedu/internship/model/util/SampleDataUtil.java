@@ -44,12 +44,15 @@ public class SampleDataUtil {
     private static Internship internship6 = new Internship(new Position("Software Testing"),
             new Company("Razor"), new Status(0),
             new Description("This is a dummy internship"), getTagSet());
+    private static Internship internship7 = new Internship(new Position("Software Testing"),
+            new Company("GovTech"), new Status(1),
+            new Description("This is a dummy internship"), getTagSet());
 
 
 
     public static Internship[] getSampleInternships() {
         return new Internship[] {
-            internship1, internship2, internship3, internship4, internship5, internship6
+            internship1, internship2, internship3, internship4, internship5, internship6, internship7
         };
     }
 

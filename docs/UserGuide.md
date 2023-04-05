@@ -75,12 +75,13 @@ Being optimized for use via typing, you can key in your desired commands to TinS
 Then, press the <button>Enter</button> to confirm your command and instruct TinS to execute them.
 
 ### How to use the User Guide
-* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the process of
-installing TinS and provide you with a brief introduction to TinS. 
-* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what features
-TinS has to offer. Embedded in this section, there are also tips on how you can maximize your efficiency while using TinS. 
-* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section might 
-be helpful for you.
+* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the
+  process of installing TinS and provide you with a brief introduction to TinS. 
+* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what 
+  features TinS has to offer. Embedded in this section is also tips on how you can maximize your efficiency while using
+  TinS. 
+* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section
+  might be helpful for you.
 
 <div style="page-break-after: always;"></div>
 
@@ -97,6 +98,7 @@ be helpful for you.
    ![Ui](images/ug/home_page.png)
 
    <div markdown="span" class="alert alert-primary">
+    
         :information source: **Info:** The default TinS application contains some sample data. These sample data can
         come in handy for you to try out the various commands of TinS. To remove all sample data, use the 
         <code>deleteall</code> feature.
@@ -104,11 +106,11 @@ be helpful for you.
 
 5. Type your command into the Command Box, then press <button>Enter</button> to instruct TinS to execute your command.
    Here are some basic commands you can try:
-    * `list`
-    * `add`
-    * `delete`
+    * `list` : List all internships in the List Panel
+    * `add p/Data Analyst c/Google s/0 d/NA t/IMPORTANT t/PRIORITY` : Add an internship to TinS
+    * `delete 1` : Delete the first internship in the List Panel from TinS
 
-6. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
+6. Refer to the [Command Summary](#command-summary) below for your desired TinS Commands. More details on each specific
 TinS command can be found [here](#features).
 
 <div style="page-break-after: always;"></div>
@@ -139,6 +141,7 @@ TinS command can be found [here](#features).
 ![data organisation](images/ug/ug-internship-organisation.png)
 
 **Internships**
+
 In TinS, an internship application is stored as an **Internship**. Within an Internship, you would be able to store the
 following fields:
 * `POSITION`: The Name of Internship Position.
@@ -150,6 +153,7 @@ following fields:
 `COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**. 
 
 Example: The following internships will be identified as same internship in TinS.
+
 * Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`
 * Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`
 
@@ -166,14 +170,31 @@ Example: The following internships will be identified as same internship in TinS
   Webpage, Requirements of Internship). This field can be left blank if you have nothing to include for this field.
 
 * `TAG` : Customised Tag (E.g. `IMPORTANT`, `PRIORITY`). An Internship can have zero or more than one tag. All Tags in
-  TinS are written in capitalised letters.
+  TinS are displayed in capitalised letters.
+  * `TAG` must be alphanumeric (i.e. a `TAG` should not contain any blank-spaces, hyphens, colons, dashes etc)
+
+<div markdown="span" class="alert alert-success">
+
+    :bulb: **Tip:** It is recommanded to ensure that your entries for `POSITION`, `COMPANY` and `TAG`to  have a maximum
+    of **40 characters**. While TinS will still allow the addition of entries with more than 40 characters, without
+    giving a warning, the addition of these fields could affect the visual display (i.e. truncated fields).
+</div>
 
 An Internship can also store zero or more than one **Event**. 
 
 **Events**
+
 In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. Within
 an Event, you would be able to store the following fields:
 * `EVENT_NAME`: The Name of the Event.
+
+<div markdown="span" class="alert alert-success">
+
+    :bulb: **Tip:** It is recommanded to ensure that your entry for `EVENT_NAME` to have a maximum
+    of **40 characters**. While TinS will still allow the addition of entries with more than 40 characters, without
+    giving a warning, the addition of this field could affect the visual display (i.e. truncated field).
+</div>
+
 * `START_DATETIME`: The Starting Time of an Event (in the format: DD/MM/YYYY HHMM).
 * `END_DATETIME`: The Ending Time of an Event (in the format: DD/MM/YYYY HHMM).
   * If the Event is a **Deadline**, the `START_DATETIME` will be the same as the `END_DATETIME`.
@@ -242,86 +263,119 @@ their associated prefixes.
 
 </table>
 
-**Important Information for Use of Prefixes**
-*
-
 #### Notes about the Command Format
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
+* Command words are case-insensitive.
+
+  E.g. The command `LIST` is the same as the command `list`.
+
+* Prefixes are case-sensitive.
+
+  E.g. Entering the prefix `P/` will not be recognised by TinS as `p/`
+
+* Words in `UPPER_CASE` are the fields to be supplied by you.
+
+  E.g. in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
-* Items in square brackets are optional.<br>
-  e.g `[t/TAG]` means that the user input is optional.
+* Items in square brackets are optional.
 
+  E.g `[t/TAG]` means in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]` means the commands
+  `add p/Software Engineer c/Grab s/0 d/` and `add p/Software Engineer c/Grab s/0 d/ t/IMPORTANT` are both
+  valid.
 
+* Items with `...` after them can be used multiple times including zero times.
 
+  E.g. `[t/TAG]...` in `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` means the command
+  `add p/Software Engineer c/Grab s/0 d/` and `add p/Software Engineer c/Grab s/0 d/ t/IMPORTANT t/PRIORITY` is
+  valid.
+
+* Items without `...` after them should only be used **once**. 
+
+  <div markdown="span" class="alert alert-primary">
+
+  :information_source: **Info:** If an item without `...` after it is used more than once, TinS will identify the last
+  occurrence of that item as the input for that field.
+
+  Example: `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` means that the item, `p/POSITION` should only be
+  used once. Hence, if `add p/Software Engineer c/Grab s/0 d/ t/IMPORTANT p/Data Analyst p/Machine Learning` is
+  entered, TinS would identify the input for the field `POSITION` as `Machine Learning`.
+  </div>
+
+* Fields can be in any order.
+
+  E.g. `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` is the same as 
+  `add c/COMPANY s/STATUS d/DESCRIPTION p/POSITION [t/TAG]...`
+
+* If the command does not require you to input a field, any extra field/values enter after the identified
+  command is ignored.
+
+  The commands in TinS that do not require additional input of fields from user are `list`, `clash`, `home`, `calendar`,
+  `stats`, `help` and `exit`.
+  E.g. If `clash help` is entered, TinS will identify your command as a `clash` command, ignoring all the extra 
+  fields/values found after `clash`, and execute the command `clash`. 
+  
+  
 <div style="page-break-after: always;"></div>
 
 ## Features
 
-### Feature List
-
-1. Opening Home Page: [`home`](#opens-the-home-page-:-home)
-2. Opening Statistics Page: [`stats`](#stats_function)
-3. Opening Calendar Page: [`calendar`](#calendar_function)
-4. Adding an Internship Application: [`add`](#add_function)
-6. Listing all Internship Applications in TinS: [`list`](#list_function)
-7. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-8. Editing Details of an Internship Application: [`edit`](#edit_function)
-9. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-10. Deleting an Internship Application: [`delete`](#delete_function)
-11. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-12. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-13. Finding a Particular Event: [`event find`](#eventfind_function)
-14. Finding all Clashing Events: [`clash`](#clash_function)
-15. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-16. Getting help: [`help`](#help_function)
-17. Exiting the program: [`exit`](#exit_function)
-18. [Saving data in TinS](#save_function)
-
-<div style="page-break-after: always;"></div>
-
 ### Opens the Home Page : `home`
 
-Returns user to the home page. 
+Opens the Home Page in the Display Panel. 
 
-> Note: Command can also be used to refresh home page.
+<div markdown="span" class="alert alert-success">
 
-* After keying in the `home` command, TinS displays the home page.
-* Home page shows the today's events and useful commands.
+    :bulb: **Tip:**  The `home` command can also be used to refresh the Home Page in the Display Panel.
+</div>
+
+* Home Page reminds you of your upcoming deadlines and interviews, occurring either today or tomorrow, and the command
+  format for useful commands, by conveniently displaying them in the Display Panel.
 
 Example: `home`
 
-![home_page](images/home_page.png)
+![home_page](images/ug/home_page.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Opens the Statistics Page : `stats`
 
-Displays the user's statistics.
+Calculates statistics based on your current internship applications and displays personalized statistics in the
+Display Panel.
 
-> Note: Command can also be used to refresh stats page.
+<div markdown="span" class="alert alert-success">
 
-* After keying in the `stats` command, TinS displays users statistics on the stats page.
-* Summary shows pie chart of current internships' statuses.
+    :bulb: **Tip:**  The `stats` command can also be used to refresh the Statistic Page in the Display Panel.
+</div>
+
+* Statistics Page shows you a summary of how your internship-seeking journey has been. The pie chart provides you with a
+  visual representation of the current status of your internship applications.
 
 Example: `stats`
 
-![stats_page](images/stats_page.jpeg)
+![stats_page](images/ug/stats_page.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Opens the Calendar Page : `calendar`
 
-Displays the user's events on a Calendar.
+Displays a calendar view of all your events in the Display Panel.
 
-> Note: Command can also be used to refresh calendar page.
+<div markdown="span" class="alert alert-success">
 
-* After keying in the `calendar` command, TinS displays user's events on the calendar page.
+    :bulb: **Tip:**  The `calendar` command can also be used to refresh the Calendar Page in the Display Panel.
+</div>
+
+* Clicking on an event displayed in the calendar view shows you more details about the event.
+
+<div markdown="span" class="alert alert-success">
+
+    :bulb: **Tip:**  If there are too many events on one day, you can use the `event find` function to find events by
+    their starting and ending timings.
+</div>
 
 Example: `calendar`
 
-![calendar_page](images/calendar_page.png)
+![calendar_page](images/ug/calendar_page.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -331,83 +385,81 @@ Adds an internship and its details to TinS.
 
 Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...`
 
-* `POSITION`: Name of Internship Position
-* `COMPANY_NAME` : Name of Hiring Company
+<div markdown="span" class="alert alert-primary">
 
-> Note: `POSITION` and `COMPANY_NAME` have to be unique. <br>
-> If there is an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` already saved in TinS:
-> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` is not valid
-> * Adding an Internship with `POSITION` as `Software Engineer 1` and `COMPANY_NAME` as `Grab` is valid
-> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab 1` is valid
+:information_source: **Info:** In TinS, each internship stored must be unique (no duplicates). Since an internships
+is uniquely identified by the combination of `POSITION` and `COMPANY` fields, you would not be able to `add` an
+internship application to TinS, if there is a pre-existing internship in TinS with the same `POSITION` and `COMPANY`
+(comparison is case-insensitive).
 
-* `APPLICATION_STATUS` : Status of Application
-    * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer
-      values:
-        * `0` : Interested
-        * `1` : Applied
-        * `2` : Offered
-        * `3` : Rejected
-* `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details, Link to Webpage, Requirements of
-  Internship)
-* `TAG` : Customised Tag
-    * This is optional.
-    * An Internship can have more than one tag.
-    * Example of commonly used Tags: `Important`, `Priority`
+Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
+below will not be allowed.
 
-<div style="page-break-after: always;"></div>
+* `add p/Software Engineer c/Grab s/0 d/`
+* `add p/SOFTWARE engineer c/Grab s/3 d/`
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** In TinS, Tags are standardised to be all in capitalised letters. If you enter
+`t/important`, TinS will automatically save it as `t/IMPORTANT` for you.
+</div>
 
 Example: `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java t/Important t/Priority`
 
-![Ui](images/ug-add.png)
+![Ui](images/ug/ug-add.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Listing all Internships Applications : `list`
 
-List all the internships in Internship List panel of TinS.
+List all the internships in List panel.
 
-* After keying in the `list` command, TinS displays **all** the Internships stored in TinS in the Internship List panel.
-* Only the `POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS` and `TAG` are display in the
-[Internship List Panel](#about_gui) for each Internship.
+* After keying in the `list` command, TinS displays **all** the Internships stored in TinS in the List panel.
+* Only the `POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS` and `TAG` are display in the List Panel for each Internship.
 
 Example: `list` 
 
-![internship_list_panel](images/internship_list_panel.png)
+![internship_list_panel](images/ug/ug-list.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Finding Internships: `find`
 
-Finds an Internships by their fields (`POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS`, `TAGS`).
-Format: `find p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS] t/[TAG] t/[TAG]`
+Finds an Internships by their fields (`POSITION`, `COMPANY`, `STATUS`, `TAG`).
 
-* Choose the fields you would like to filter the Internship Catalogue by. One or more fields can be used to filter
-  the Internship Catalogue.
+Format: `find [p/POSITION] [c/COMPANY] [s/STATUS] [t/TAG]...`
+
+* Choose the fields you would like to filter the Internship Catalogue by. One or more fields can be used to find an 
+  internship.
 * For each chosen field, enter a keyword you would like to find corresponding Internship Applications for.
-* After keying in the `find` command, TinS will filter the internship catalogue based on your chosen fields and
-  provided keywords.
-* To view all Internship Applications in TinS again, simply enter the `list` command.
+* An internship is will be included in the filtered list if the internship's field contains the keyword you indicated.
+* `find` is case-insensitive.
+* After keying in the `find` command, TinS will find related internships based on your chosen fields and
+  provided keywords, displaying them in the List Panel.
+* To view all Internship in TinS again, simply enter the `list` command.
 
-Example: Default TinS has 6 internship listings. `find c/GovTech` would return the list of internships with company name
-GovTech.
+Example: TinS has 7 internship listings. `find c/tech t/important` would return the list of internships with `COMPANY`
+containing the word "gov" and `TAG` as `IMPORTANT`.
 
-![find_internship](images/ug-find.png)
+![find_internship](images/ug/ug-find.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Viewing Details of a Particular Internship Application : `select`
 
-View details of the internship application selected by ID.
+View more details of the internship application selected by ID.
 
 Format: `select ID`
 
-* `ID`: The number of the selected internship in the [Internship List Panel](#about_GUI)
-* After keying in the `select` command, TinS will return the all details of the selected internship in the 
-  [Internship Display Panel](#about_GUI).
+* `ID`: The number of the selected internship in the List Panel.
+* After keying in the `select` command, TinS will return the all details of the selected internship in the Display
+  Panel.
 
 Example: `select 2`
 
-![select_internship](images/ug-select.png)
+![select_internship](images/ug/ug-select.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -415,38 +467,36 @@ Example: `select 2`
 
 Edit details of the internship application selected by ID.
 
-Format: `edit ID p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS] d/[DESCRIPTION] t/[TAG] ...`
+Format: `edit ID [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG] ...`
 
-* `ID`: Identification number of the Internship.
-* `[POSITION]`: Name of Internship Position (optional).
-* `[COMPANY_NAME]` : Name of hiring company (optional).
-* `[APPLICATION_STATUS]` : Status of Application (`ACCEPTED`, `APPLIED`, `PENDING`, `REJECTED`) (optional).
-* `[DESCRIPTION]`: Additional details of the internship application (optional).
-* `[TAG]`: Labels for the internship application (optional).
+* `ID`: The number of the selected internship in the List Panel.
 * After keying in the `edit` command, along with the selected fields the user wishes to edit, TinS will update the
   corresponding fields of the internship application accordingly.
 
-Example: <br>
-After keying in the `edit` command followed by an existing `ID` and the fields `APPLICATION_STATUS` and `DESCRIPTION`, 
-TinS will update the `APPLICATION_STATUS` and `DESCRIPTION` fields of the internship application with the specified 
+Example: 
+
+After keying in the `edit` command followed by an existing `ID` and the fields `STATUS` and `DESCRIPTION`, 
+TinS will update the `STATUS` and `DESCRIPTION` fields of the internship application with the specified 
 `ID`, then display the newly updated internship application. This command `edit 1 s/1 d/Learn C++` will return the
 following results.
 
-![view_internship](images/ug-edit.png)
+![view_internship](images/ug/ug-edit.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Deleting an Internship Application : `delete`
 
-Deletes an internship along with its details by its ID.
+Deletes an internship along with its details by ID.
 
 Format: `delete ID`
-* Deletes the person at the specified `ID` in the [Internship List Panel](#about_GUI).
 
-Example: `delete 3` deletes the 3rd internship listed in the [Internship List Panel](#about_GUI). In this example, the
-internship application with `POSITION` as Data Analytics and `COMPANY_NAME` as Google is removed.
+* `ID`: The number of the selected internship in the List Panel.
+* Deletes the internship application at the specified `ID` in the List Panel.
 
-![delete_internship](images/ug-delete.png)
+Example: `delete 3` deletes the 3rd internship listed in the List Panel. In this example, the
+internship application with `POSITION` as `Data Analytics` and `COMPANY_NAME` as `Google` is removed.
+
+![delete_internship](images/ug/ug-delete.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -454,14 +504,19 @@ internship application with `POSITION` as Data Analytics and `COMPANY_NAME` as G
 
 Adds an Event along with its details to the selected internship.
 
-> Note: Before adding an event, you have to select an internship using `select ID`.
+<div markdown="span" class="alert alert-primary">
 
-Format: `event add na/EVENT_NAME st/[START_DATETIME] en/END_DATETIME de/DESCRIPTION`
+:information_source: **Info:** Before adding an event, you have to select an internship using `select ID`.
+</div>
 
-* `EVENT_NAME`: Name of the Event
-* `START_DATETIME`: Starting time of an event (optional) (in the format: DD/MM/YYYY HHMM)
-* `END_DATETIME`: Ending time of an event (in the format: DD/MM/YYYY HHMM)
-* `DESCRIPTION`: Description of the Event (e.g. Venue, Things to take note of)
+Format: `event add na/EVENT_NAME [st/START_DATETIME] en/END_DATETIME de/EVENT_DESCRIPTION`
+
+* `START_DATETIME` and `END_DATETIME` fields need to be in the format : DD/MM/YYYY HHMM
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** `event add` enables you to add events even if the events occurred in the past.
+</div>
 
 Examples:
 1. If you would like to add an Internship Application Submission Deadline:
@@ -469,7 +524,7 @@ Examples:
 2. If you would like to add an Interview:
   `event add na/Technical Interview st/10/05/2023 1500 en/10/05/2023 1700 de/On Zoom`
 
-![eventadd_internship](images/ug-eventadd.png)
+![eventadd_internship](images/ug/ug-eventadd.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -477,12 +532,17 @@ Examples:
 
 Deletes selected Event along with its details from the selected internship.
 
-> Note: Before deleting an event, you have to select an internship using `select ID`
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Before deleting an event, you have to select an internship using `select ID`.
+</div>
 
 Format: `event delete ID`
 * `ID`: The ID of the selected event in the list
 
 Examples: `event delete 1` entered after `select 1` deletes the first event in the first internship.
+
+![event delete](images/ug/ug-eventdelete.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -490,37 +550,69 @@ Examples: `event delete 1` entered after `select 1` deletes the first event in t
 
 Finds events based on certain filters.
 
-Format: `event add na/[EVENT_NAME] st/[START_DATETIME] en/[END_DATETIME]`
+Format: `event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]`
 
-Example: `event add na/Technical Interview st/20/03/2023 1400` returns a list of events with the name Technical
+* Choose the fields you would like to find an event by. One or more fields can be used to find an event.
+* For `EVENT_NAME` field, TinS will find events with `EVENT_NAME` containing the keyword provided by you. This is 
+  case-insensitive.
+* For `START_DATETIME` and `END_DATETIME`, enter a `DATETIME` in the format DD/MM/YYYY HHMM. TinS will find events with
+  the corresponding `START_DATETIME` or `END_DATETIME`.
+* The results of `event find` will be displayed in the Display Panel.
+
+Example: `event find na/Technical Interview st/20/03/2023 1400` returns a list of events with the name Technical
 Interview and starting time 20 March 2023, 2pm.
 
 <div style="page-break-after: always;"></div>
 
 ### Finding all Clashing Events : `clash`
 
-Displays all events with clashing timings in the [Internship Display Panel](#about_gui).
+Displays all events with clashing timings in the Display Panel.
+
+* Clashing Events are arranged by date.
+* Clicking on any date, you will be able to see all events with clashing timing on that particular day. 
 
 Format: `clash`
 
 Example:
 
-![clash_function](images/ug-clash.png)
+![clash_function](images/ug/ug-clash.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Clearing all Internship Applications in TinS : `deleteall`
 
-Deletes all existing Internship Applications in TinS.
+Deletes all existing Internship Applications and Events in TinS.
 
-> Caution: This command is irreversible. Only use it when you would like to clear <b>all</b> internship applications in
-> your Internship Catalogue.
+* When you enter the command `deleteall`, TinS will prompt you to double confirm that you would like to delete **all**
+  Internship Applications and Events currently stored in TinS.
+* To proceed with executing the command, enter `deleteall confirm`.
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  The `deleteall` command can come in handy if you need to delete all the dummy data initially stored in
+TinS or to reset the data in TinS in preparation for your next Internship Application season.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:** This command is irreversible. Only use it when you would like to clear **all** internship
+applications and events in TinS.
+
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:** If you enter `deleteall confirm` directly, without first entering `deleteall`, TinS will delete
+all internship application and events in TinS immediately. Hence, you are advised to avoid entering the command
+`deleteall confirm` directly.
+
+</div>
 
 Format: `deleteall`
 
 ### Getting Help : `help`
 
-Provides you with the link to The Intern's Ship - User Guide.
+Provides you with a link to helpful instructions on how to use TinS.
 
 Format: `help`
 
@@ -549,13 +641,13 @@ There is no need to save manually.
 </tr>
 
 <tr>
-<td><b><a href="#add_function">Add</a></b></td>
+<td><b>Add</b></td>
 <td><code>add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...</code><br>
 E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/Important t/Priority</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#list_function">List</a></b></td>
+<td><b>List</b></td>
 <td><code>list</code></td>
 </tr>
 
