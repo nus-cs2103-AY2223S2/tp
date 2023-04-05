@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-An increasing number of vaccination are now having more complicated prerequisites to take them and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments** its operations are **optimized for fast typist who prefer the use of a Command Line Interface** (CLI). If you type fast, VMS can get your vaccination appointment validated with great efficiency!
+An increasing number of vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI). If you type fast, VMS can efficiently validate your vaccination appointment!vaccination appointment validated with great efficiency!
 
 * Table of Contents
 {:toc}

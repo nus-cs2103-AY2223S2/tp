@@ -5,7 +5,7 @@ title: Francis' Project Portfolio Page
 
 ### Project: Vaccination Management System
 
-Just the headings are enough. You can write to be added soon as placeholders for content.
+An increasing number of vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. **VMS is a desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI).
 
 * **New Feature**: To be added soon
   * What it does: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
