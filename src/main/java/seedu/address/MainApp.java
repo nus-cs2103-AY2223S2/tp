@@ -121,7 +121,7 @@ public class MainApp extends Application {
         return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
     }
 
-    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) throws  DataConversionException,
+    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) throws DataConversionException,
             IOException {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
@@ -133,7 +133,7 @@ public class MainApp extends Application {
         return initialData;
     }
 
-    private ReadOnlyTaskList readTaskListFromStorage(Storage storage) throws  DataConversionException,
+    private ReadOnlyTaskList readTaskListFromStorage(Storage storage) throws DataConversionException,
             IOException {
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialData;
@@ -145,7 +145,7 @@ public class MainApp extends Application {
         return initialData;
     }
 
-    private ReadOnlyTankList readTankListFromStorage(Storage storage) throws  DataConversionException,
+    private ReadOnlyTankList readTankListFromStorage(Storage storage) throws DataConversionException,
             IOException {
         Optional<ReadOnlyTankList> tankListOptional;
         ReadOnlyTankList initialData;
@@ -157,7 +157,7 @@ public class MainApp extends Application {
         return initialData;
     }
 
-    private ReadOnlyReadingLevels readReadingLevelsFromStorage(Storage storage) throws  DataConversionException,
+    private ReadOnlyReadingLevels readReadingLevelsFromStorage(Storage storage) throws DataConversionException,
             IOException {
         Optional<ReadOnlyReadingLevels> readingLevelsOptional;
         ReadOnlyReadingLevels initialData;
