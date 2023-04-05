@@ -11,6 +11,7 @@ Ultron is a **desktop app for compiling job and internship openings, optimized f
 ---
 
 ## Quick start
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `Ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
