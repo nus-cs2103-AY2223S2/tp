@@ -1002,13 +1002,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br> Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -1018,13 +1018,48 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Test case: `delete-app 1`<br>
+   2. Test case: `delete-app 1`<br>
       Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete-app 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete-app 0`<br>
+      Expected: No application is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Sorting the application list
+
+1. Sorting the application list while all applications are being shown
+
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
+   
+   2. Test case: `sort a alphabetical` <br>
+      Expected: Applications are listed in alphabetical order of their role from A to Z. 
+      Applications with the same role will have their company name as a tiebreaker.
+
+   3. Test case: `sort d alphabetical` <br>
+      Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
+      in reverse from Z to A.
+
+   4. Test case: `sort a deadline` <br>
+      Expected: Applications without tasks are **not** shown. Applications with tasks are listed by order of the deadline of their task. 
+      Applications with closer deadlines will be shown first.
+
+   5. Test case: `sort d deadline` <br>
+      Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
+      applications with further deadlines will be shown first.
+   
+   6. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+      `sort` (nothing specified), `...` <br>
+      Expected: No sorting is done and application list remains the same. Error details shown in the status message.
       
+2. Sorting the application list when it is a filtered state, due to a previously executed `find` command
+
+   1. Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
+   
+   2. Valid test cases: Same as above <br>
+      Expected: Same as above. Check that no application entries that are not in the currently displayed list of applications
+      shows up after sorting.
+
+   3. Other incorrect sort commands to try:  Same as above <br>
+      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
