@@ -20,6 +20,7 @@ import seedu.library.model.bookmark.Bookmark;
  * UI component that is responsible for displaying the details of a single bookmark.
  */
 public class ZoomView extends UiPart<Region> {
+    private static final String NOT_SUPPORTED = "this function is not supported on your OS ";
     private static final String FXML = "ZoomView.fxml";
     private Bookmark bookmark;
     private boolean isGuiAction;
@@ -97,19 +98,19 @@ public class ZoomView extends UiPart<Region> {
      * @param url url to open
      */
     public void openLink(String url) {
-        URI targetUrl = URI.create(url);
-        String os = System.getProperty("os.name").toLowerCase();
         try {
-            if (Desktop.isDesktopSupported()) {
+            URI targetUrl = URI.create(url);
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("win") || os.contains("mac")) {
                 Desktop.getDesktop().browse(targetUrl);
             } else { //Desktop package not supported in this system
-                if (os.contains("nix")) {
+                if (os.contains("nix") || os.contains("nux")) {
                     Runtime runtime = Runtime.getRuntime();
-                    runtime.exec("xdg-open" + url);
+                    runtime.exec(String.format("xdg-open %s", url));
                 }
             }
-        } catch (IOException ex) {
-            throw new AssertionError(ex);
+        } catch (IOException e) {
+            throw new AssertionError(e);
         }
     }
 
