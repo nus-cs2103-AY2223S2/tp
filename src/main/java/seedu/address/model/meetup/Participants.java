@@ -64,6 +64,10 @@ public class Participants {
         return this.participants;
     }
 
+    public boolean containsParticipant(Person person) {
+        return this.participants.contains(person);
+    }
+
     /**
      * Compares two Participants to check whether all contact indexes are the same.
      */

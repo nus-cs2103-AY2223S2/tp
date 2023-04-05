@@ -26,7 +26,8 @@ public class MeetUpIndexHandler {
      */
     public MeetUpIndex assignMeetUpIndex() {
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
-        if (meetUpList.isEmpty()) {
+        if (meetUpList.isEmpty() || meetUpList.stream()
+                .noneMatch(meetUp -> meetUp.getMeetUpIndex().equals(new MeetUpIndex(1)))) {
             return new MeetUpIndex(1);
         }
 

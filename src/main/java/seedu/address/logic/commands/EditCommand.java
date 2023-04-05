@@ -105,6 +105,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateObservablePersonList();
+        model.updateObservableMeetUpList(Model.COMPARATOR_CONTACT_INDEX_MEETUP);
         return new ViewCommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), editedPerson);
     }
 
