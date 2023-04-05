@@ -31,6 +31,18 @@ public class EventContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new EventContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new EventBuilder().withName("Alice Bob").build()));
+
+        // Partially matching one keyword
+        predicate = new EventContainsKeywordsPredicate(Collections.singletonList("Al"));
+        assertTrue(predicate.test(new EventBuilder().withName("Alice Bob").build()));
+
+        // Only one partially matching keyword
+        predicate = new EventContainsKeywordsPredicate(Arrays.asList("Al", "Bob"));
+        assertTrue(predicate.test(new EventBuilder().withName("Alice Carol").build()));
+
+        // Multiple partially matching keywords
+        predicate = new EventContainsKeywordsPredicate(Arrays.asList("Al", "Bo"));
+        assertTrue(predicate.test(new EventBuilder().withName("Alice Bob").build()));
     }
 
     @Test
