@@ -640,7 +640,7 @@ their *names* only.
 </div>
 
 First, press (CTRL+F) to toggle to **search mode** (if you are not already in
-search mode). You should see the command box turn teal; now we can begin
+**search mode**). You should see the command box turn teal; now we can begin
 searching. Suppose we wanted to search for *Clash of Clans* listed at the
 bottom in the screenshot above. With the power of fuzzy matching, just typing
 *coc* is enough, as shown below.
@@ -652,7 +652,7 @@ listed.
 
 <img src="images/FuzzyDemoSearchingNoResults.png" />
 
-To exit search mode, press (CTRL+F) again. The command box should return to its
+To exit **search mode**, press (CTRL+F) again. The command box should return to its
 original dark color.
 
 <div markdown="span" class="alert alert-info">
@@ -662,7 +662,7 @@ quite a quality-of-life feature!
 </div>
 
 <div markdown="span" class="alert alert-success">
-:bulb: Still confused about search mode? You may check out the [section
+:bulb: Still confused about **search mode**? You may check out the [section
 below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
 </div>
 
@@ -674,8 +674,8 @@ emails, and not their names.
 
 ### Extracing client and project info
 
-While in search mode, you can use the (ENTER) key to extract a client's email
-or a project's name. This will automatically switch you back to command mode
+While in **search mode**, you can use the (ENTER) key to extract a client's email
+or a project's name. This will automatically switch you back to **command mode**
 while appending the name or email to the command box. This is useful if you
 want to quickly reference a project or client in your command.
 
@@ -691,7 +691,7 @@ is selected when the project's box is coloured blue, as shown below.
 
 ![step2](images/SearchAndSelectStep2.png)
 
-You can then press (ENTER) to switch back to **command mode** and append the project name to the command box.
+You can then press (ENTER) to switch back to **command mode** and append the project name to the command box. The project's name will be highlighted (this is not shown in the screenshot below due to to limitations of the screenshot program).
 
 ![step3](images/SearchAndSelectStep3.png)
 
@@ -716,7 +716,7 @@ might wish to note:
 * Each fuzzy query will be applied to both clients and project. That is, when
   you query for something, say, "coc", this query is applied to both the Clients
   tab and the Projects tab, regardless of which tab is currently being displayed.
-* You might experience some input lag while in search mode. This is expected to
+* You might experience some input lag while in **search mode**. This is expected to
   improve as we refine the implementation.
 
 ## Command summary
