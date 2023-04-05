@@ -778,6 +778,9 @@ Parameters:
     
 > :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit at least 1 parameter!
 
+> :exclamation: Warning: Feeding reminders are automated and managed by *Fish Ahoy!* so you cannot
+> edit a feeding reminder
+
 Example:
 * You have a task with description 'Clean tank' of index 1, and it is attached to 'freshwater tank'. `task edit 1 d/clean tank again` will change the task to have the following details:
   * Description: 'clean tank again'
@@ -816,6 +819,9 @@ Parameters: No parameters
 > :bulb: Tip: Get rid of this reminder and feed your fish at the same time with the [`tank feed` command!](#feeding-a-tank-tank-feed)
 
 > :bulb: Tip: Feeding reminders have a high priority! They will appear at the top of the tasks panel
+
+> :exclamation: Warning: Feeding reminders are automated and managed by *Fish Ahoy!* so you cannot
+> edit a feeding reminder
 
 Example:
 * It is the 6th of April 2023, 11am. You have a fish named 'Dory' in 'saltwater tank' with a last fed date of 05/04/2023 10:00
