@@ -34,7 +34,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `MATHUTORING.jar`. 
+2. Download the latest `mathutoring.jar`. 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
@@ -278,6 +278,8 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The given `VALUE_OF_SCORE` can be **any number from 0 to 100**.
 * The given `VALUE_OF_SCORE` can either be **an integer or a number with one decimal place**
+* Different exams can have the same `Label`.
+* No two exams can have the same `Date`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -321,27 +323,31 @@ Format: `clear`
 
 ### 14. Exiting the program: `exit`
 
-Exits the program.
+Exits from MATHUTORING.
 
 Format: `exit`
 
 
 ### 15. Filtering students by tag: `filter`
 
-Filters students whose tags contain any of the given keywords.
+Filters students whose tags match with any of the given keywords.
 
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-* The filter is case-insensitive. e.g `primary` will match `Primary`
+* The filter is case-insensitive. e.g. `primary` will match `Primary`
 * The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
-  e.g. `primary primary4` will return `primary`, `primary4`
+  e.g. `primary primary4` will return `primary`, `primary4`, and `primary primary4`.
 
 Examples:
-* `filter primary` returns `primary`, `Primary`
-* `filter primary primary4` returns `primary`, `primary4`
+* `filter primary` returns tag `primary`, `Primary`.
+* `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
+
+Addition:
+* The avatar will change if the student has "gender" tag. 
+* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 
 
 ### 16. Switch between tabs: `switch`
@@ -349,14 +355,14 @@ Examples:
 Switches between the score list and score chart tabs.
 
 Format: There we support using CLI or mouse.
-CLI - `switch`
-Mouse - click the tab.
+CLI format - `switch` 
+Mouse format - click the tab.
 
 
 ### 17. Export the student data out: `export`
 
 Exports all the student's data out. Users can export with or without specifying the path.
-The default exported position for CLI will be under the _home folder_.
+The default exported position for CLI will be under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
 Format: There we support using CLI or mouse.
@@ -364,7 +370,7 @@ CLI - `export [FILE_PATH]`
 Mouse - Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
 
 Examples:
-* `export` will export the file under the _home folder_.
+* `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 * For Windows users
   * `export` p/C:\bin export `data.json` to bin folder under C disk.
 * For Mac users
@@ -378,7 +384,7 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
@@ -406,7 +412,7 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
@@ -447,7 +453,7 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
@@ -458,9 +464,9 @@ MATHUTORING data is saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-MATHUTORING data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MATHUTORING data are saved as a JSON file `[JAR file location]/data/mathutoring.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If your changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -490,9 +496,9 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 | **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markcomplete`, `marklate` or `markinprogress`)<br> e.g. `markComplete 1 2`<br>                                   |
 | **Add Score**      | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                 |
 | **Delete Score**   | `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deletescore 3 4`                                                                                                                      |
-| **Import Data**   | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
-| **Export Data**   | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
-| **Export Progress**   | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
+| **Import Data**    | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
+| **Export Data**    | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
+| **Export Progress** | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
 | **Help**           | `help`                                                                                                                                                                                        |
-
-
+| **Switch**         | `switch`                                                                                                                                                                                      |
+| **Exit**           | `exit`                                                                                                                                                                                        |
