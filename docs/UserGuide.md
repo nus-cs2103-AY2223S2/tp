@@ -50,10 +50,52 @@ TeachMeSenpai has been designed to work for all Operating Systems!
     <img alt="TeachMeSenpai upon launch" src="images/user-guide/sample_GUI.jpg" />
 </p>
 
-1.  Ensure you have `Java 11` or above installed in your computer (you may refer to [Java Help Resources](https://www.java.com/en/download/help/version_manual.html) if you're not sure how to do so).
-2.  Download the latest `teachmesenpai.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-2/tp/releases/latest).
-3.  Copy or move the file to the folder you want to use as the home folder for your application.
-4.  Double-click the file to start the app.
+1. Ensure you have `Java 11` or above installed in your computer (you may refer to [Java Help Resources](https://www.java.com/en/download/help/version_manual.html) if you're not sure how to do so).
+2. Download the latest `teachmesenpai.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-2/tp/releases/latest).
+3. Copy or move the file to the folder you want to use as the home folder for your application.
+4. Double-click the file to start the app.
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+## Guide on TeachMeSenpai's GUI
+
+TeachMeSenpai has several important components as part of its display. Here is a quick walk-through each component.
+
+<p align=center>
+  <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
+</p>
+
+<h3 style="color:black">**Menu bar**</h3>
+* Clicking `FILE` will give you the option to exit the app
+* Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
+
+<h3 style="color:MediumSeaGreen">**Command line**</h3>
+* This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
+to [Features](#features).
+
+<h3 style="color:DodgerBlue">**Feedback Box**</h3>
+* This is where TeachMeSenpai will provide you with feedback for your commands! Whether they were successfully done or not.
+You will see more examples of the feedback TeachMeSenpai provides in the [Features](#features) section.
+
+<h3 style="color:gold">**Result Box**</h3>
+* This is where the results for commands like [`show`](#showing-a-students-remark-show) and [`edit`](#editing-a-student-edit) will show up!
+* This section is scrollable when necessary.
+
+<h3 style="color:red">**Student List**</h3>
+* This is where you can view all your student entries and their details!
+* This section is scrollable as well.
+
+### Need to adjust the size of TeachMeSenpai?
+
+<p align=center>
+  <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
+</p>
+
+<div markdown="span" class="alert alert-success">**:bulb: Note:** If the app is too small for your liking, you may resize it by dragging the sides of the window with your cursor! The red lines in the image above are moveable
+so feel free to adjust the app however you like!
+</div>
 
 [↑ Back to top](#table-of-contents)
 
