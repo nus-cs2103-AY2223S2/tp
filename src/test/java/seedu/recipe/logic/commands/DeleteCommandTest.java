@@ -1,7 +1,6 @@
 package seedu.recipe.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,8 +25,7 @@ import seedu.recipe.model.recipe.Recipe;
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-
-    private Model model = new ModelManager(getTypicalRecipeBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalRecipeBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
