@@ -290,6 +290,28 @@ Given below is an sequence diagram that illustrates the **Adding a Patient** mec
 
 <img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
 
+#### Detailing Patients
+
+The **Detailing Patients** mechanism is facilitated by `VMS`. It will update the UI with the Patient requested.
+
+##### Execution Sequence
+
+Given below is an example usage scenario when a user enter `patient detail 1` as a command.
+
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `DetailCommandParser` receives the information from `PatientParser`, it will invoke the `ParseUtil#parseIndex` to parse PATIENT_ID. It will throw a `ParseException` if there are no args present.
+4. After successfully parsing the args, `FindCommandParser` will create an `DetailCommand` with the parsed index
+5. When `DetailCommand#execute` is called, `model#setDetailedPatient` will be called to update the ui to display the Patient requested.
+
+The activity diagram below summarises the action when the patient `DetailCommand` is executed.
+
+<img src="images/patient/DetailPatientsActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Detailing Patients** mechanism behaves at every step.
+
+<img src="images/patient/DetailPatientsSequenceDiagram.png" width="550" />
+
 #### Listing Patients
 
 The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
