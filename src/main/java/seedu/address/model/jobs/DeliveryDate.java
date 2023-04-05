@@ -13,7 +13,8 @@ import java.time.format.DateTimeParseException;
  */
 public class DeliveryDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates must be valid date - only contain numeric characters and spaces, "
+    public static final String MESSAGE_CONSTRAINTS = "Dates must be valid date "
+            + "- only contain numeric characters and spaces, "
             + "and it should not be blank.\n"
             + "Date should have format like this: YYYY-mm-DD";
 
