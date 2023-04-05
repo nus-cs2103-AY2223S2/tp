@@ -13,7 +13,7 @@ Given below are my contributions to the project.
     * What it does: allow users to keep track of all modules and skills associated to a person in a non-volatile way.
     * Justification: we design CoDoc with collaboration in mind and the ability to store these two attributes will help users find the right people to collaborate with.
     * Highlights: had to study how the codebase handles storing and revival of data and then emulate it for the two new fields while also making a stub as the modules and skills component were implemented in parallel.
-    * Credits:
+    * Credits: existing implementation of storage component from AB3.
 * **New Feature**: find command for modules and skills.
     * What it does: allow users to filter out persons in their contact list that does not meet the specified requirement.
     * Justification: compared to scrolling, the find command is faster—one of CoDoc selling point—when it comes to searching for people.
@@ -32,13 +32,13 @@ Given below are my contributions to the project.
     * Justification: the hierarchy is different from our development environment thereby causing the application to work abnormally when launched from a jar file.
     * Highlights: Was able to convert CoDoc to use relative file path in an existing code base that highly depends on absolute file path with minimal changes to the code base.
 =
-* **Code contributed**: insert link?
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shawnyip-au&breakdown=true)
 
 * **Project management**:
     * Merged PRs by teammates
     * Provided feedback on PRS
     * Assigned issues to teammates and myself
-    * Reminded teammates about the deliverables every week
+    * Point out bugs
 
 * **Enhancements to existing features**:
     * update parser to check for stuff
@@ -48,11 +48,11 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Created tutorial section
-        * Created addtional resources section
-        * Help to doument find command
-        * Tidy up and synchronose the UG to make it more readable
-        * Fix bug reportede
+        * Created "How to Open CoDoc for Mac" in additional resources section
+        * Find command documentation
+        * Incorporate improvement suggestion from PE(Dry Run)
     * Developer Guide:
-        * Created sequence diagram for how data is save and retreive
-        * Re-organise the UG to make it neater
-
+        * Re-organise entire DG 
+        * Created class diagram to reflect changes done for storage component
+        * Update storage component text
+        * Created sequence diagram for how data is stored and retrieved
