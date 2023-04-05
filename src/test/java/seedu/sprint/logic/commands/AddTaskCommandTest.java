@@ -6,11 +6,12 @@ import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DEADL
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION_INTERVIEW;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandFailure;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
 import static seedu.sprint.testutil.Assert.assertThrows;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_SECOND_APPLICATION;
+import static seedu.sprint.testutil.TypicalApplicationIndexes.INDEX_THIRD_APPLICATION;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import org.junit.jupiter.api.Test;
@@ -19,9 +20,9 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
+import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
-//import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.testutil.ApplicationBuilder;
@@ -65,7 +66,7 @@ public class AddTaskCommandTest {
         assertCommandFailure(addTaskCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
-    /*
+
     @Test
     public void execute_taskAlreadyExists_throwsCommandException() {
         Index indexApplicationToAddTask = Index.fromOneBased(model.getFilteredApplicationList().size());
@@ -80,7 +81,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_taskAccepted_success() {
-        Index indexApplicationToAddTask = INDEX_SECOND_APPLICATION;
+        Index indexApplicationToAddTask = INDEX_THIRD_APPLICATION;
         Application applicationToAddTask = model.getFilteredApplicationList()
                 .get(indexApplicationToAddTask.getZeroBased());
 
@@ -99,7 +100,6 @@ public class AddTaskCommandTest {
         expectedModel.commitInternshipBookChange();
         assertCommandSuccess(addTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-*/
 
     @Test
     public void equals() {
