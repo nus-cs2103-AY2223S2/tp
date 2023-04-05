@@ -35,6 +35,7 @@ class LanguageTest {
         assertFalse(Language.isValidLanguageName("-")); // starts with valid special characters
         assertFalse(Language.isValidLanguageName("+")); // starts with valid special characters
         assertFalse(Language.isValidLanguageName("#")); // starts with valid special characters
+        assertFalse(Language.isValidLanguageName("C12345678901234567891")); // 21 characters
 
         // valid language name
         assertTrue(Language.isValidLanguageName("C")); // single alphabet only
@@ -44,6 +45,7 @@ class LanguageTest {
         assertTrue(Language.isValidLanguageName("C#")); // alphabets and valid special characters
         assertTrue(Language.isValidLanguageName("X10")); // alphanumeric characters
         assertTrue(Language.isValidLanguageName("abc-10")); // alphanumeric characters and valid special characters
+        assertTrue(Language.isValidLanguageName("C1234567890123456789")); // 20 characters
     }
 
     @Test
