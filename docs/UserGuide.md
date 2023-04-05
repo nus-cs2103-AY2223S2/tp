@@ -304,13 +304,15 @@ Note that there can be an unlimited amount of notes to be created for each event
 
 Each addition increases node index by one.
 
-Format: `addNote note -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
+Format: `addNote note content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]`
 
 Examples:
 
-* `addNote note -content Bring pen -type Tutorial -name Tut1`
-* `addNote note -content Bring goggles -type Lab -name Lab1`
-* `addNote note -content Prepare questions -type Consultation -name Consult1`
+* `addNote note content/Bring pen type/Tutorial name/Tut1`
+* `addNote note content/Bring goggles type/lab name/Lab1`
+* `addNote note content/ Prepare questions type/consultation name/consult1`
+
+You need to double-click the event to expand notes!
 
 <div id='delete-note-from-event'></div>
 
@@ -320,13 +322,13 @@ Examples:
 
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
-Format: `deleteNote -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index [NOTE_INDEX]`
+Format: `deleteNote type/[EVENT_TYPE] name/[EVENT_NAME] index/[NOTE_INDEX]`
 
 Examples:
 
-* `deleteNote -type Tutorial -name Tut1 -index 3`
-* `deleteNote -type Lab -name Lab1 -index 1`
-* `deleteNote -type Consultation -name Consult1 -index 0`
+* `deleteNote type/Tutorial name/Tut1 index/3`
+* `deleteNote type/Lab name/Lab1 index/1`
+* `deleteNote type/consultation name/ consult1 index/0`
 
 <div id='edit-note-in-event'></div>
 
@@ -334,18 +336,16 @@ Examples:
 
 Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
-Note that when a particular note index does not exist, it does nothing.
-
 Format:
 
-* `editNote -content [NEW_CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index [NOTE_INDEX]`
+* `editNote -content [NEW_CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME] -index [NOTE_INDEX]`
 
 Examples:
 
 
-* `editNote -content Bring apple pencil -type Tutorial -name Tut1 -index 3`
-* `editNote -content Bring goggles and lab coat -type Lab -name Lab1 -index 1`
-* `editNote -content Prepare practice questions -type Consultation -name Consult1 -index 0`
+* `editNote content/Bring apple pencil type/Tutorial name/Tut1 index/3`
+* `editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1`
+* `editNote content/Prepare practice questions type/consultation name/consult1 index/0`
 
 --------------------------------------------------------------------
 
