@@ -52,7 +52,7 @@ If double-clicking the application does not work:
 
 3b. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
    
-A GUI similar to the below should appear in a few seconds.<br>
+A GUI similar to the below should appear in a few seconds.
    ![Ui](images/UG/Ui_current.png)
 The main application consists of 3 components, namely:
 * Food List
@@ -67,7 +67,8 @@ provided WIFE when you first start up.
 * Type the following command in the user input box at the bottom of WIFE and press 'Enter' on your keyboard
 to execute it.
   
-  `add n/Coca Cola u/Cans q/5 e/01-01-2099` </br>
+  `add n/Coca Cola u/Cans q/5 e/01-01-2099`
+
 You should see your food list be updated as such!
 
   ![Ui_updated](images/UG/Ui_updated.png)
