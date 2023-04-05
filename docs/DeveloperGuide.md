@@ -66,7 +66,7 @@ Developer Guide and help you navigate it with ease.
 [Scroll back to top](#table-of-contents)
 
 ### Target Audience
-CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
+CoDoc is **designed for NUS students** by providing a centralised platform for them to keep track
 of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
 while still having the benefits of a **Graphical User Interface** (GUI).
 
