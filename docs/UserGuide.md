@@ -490,6 +490,11 @@ Examples:
 
 Sorts internship applications in the order you desire.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+While you can't undo a sort command, if you wish to go back to the default view, you can just use list.
+</div>
+
+
 Format: `sort SEQUENCE ORDER`
 
 The following table details the parameters to be used with the `sort` command:
@@ -529,12 +534,11 @@ Format: `help`
 
 Undoes the previous command that you have typed in.
 
-This command works for all the commands made in the period that you opened sprINT for.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command if you have accidentally deleted an application entry or cleared the entire internship book, 
-and wish to retrieve them back.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+Only `add-app`, `edit-app`, `delete-app`, `add-task`, `edit-task`, `delete-task`, `undo` and `clear` can be undone.  
 </div>
+
+This command works for all the commands made in the period that you opened sprINT for.
 
 Format: `undo`
 
