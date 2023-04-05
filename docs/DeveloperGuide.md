@@ -126,12 +126,12 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/UpdateModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Team` objects (which are contained in a `UniqueTeamList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -177,6 +177,13 @@ Below shows the activity diagram when the user inputs the add command in the com
 The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. The subsidiary diagram is as shown below:
 
 ![Activity Diagram for parsing command](images/ActivityDiagram_AddCommandParser.png){:.center}
+
+### Create team feature
+
+The activity diagram when user inputs create command in the command box is similar to the Add person feature shown [above](#add-person-feature), with the difference being that Person objects are swapped with Team objects and error messages.
+
+The same applies for CreateCommandParser, where the activity diagram is similar to AddCommandParser, with the difference being that the valid prefixes are now `tn/` and `td/` etc. The error messages are also catered towards Team creation, as opposed to Person creation.
+
 
 ### Optional Fields feature
 
@@ -304,11 +311,18 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Difficult to extend. Performance issues in terms of memeory usage. Undo/Redo timeline tied to TeamBuilder. No user feedback on what command was undone/redone.
 
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Sort feature
+
+Both fields for sorting persons are compulsory, namely the order of sorting and the sort by criteria. The order and
+sort by criteria that are available are listed in the User Guide.
+
+Below shows the activity diagram when the user inputs the sort command in the command box:
+
+![Activity Diagram for sort command](images/sortcommand-activity.png){:.center}
+
+The subsidiary diagram, for SortCommandParser, is as shown below:
+
+![Activity Diagram for sort command parser](images/sortcommandparser.png){:.center}
 
 #### Implementation
 
@@ -318,8 +332,15 @@ in `filteredPersons` into a `SortedList` object.
 
 This ensures that modifications (deletes/edits) to the persons after a `list` or `sort` command will be consistent.
 
-The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added 
-to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator. 
+#### Design considerations:
+
+The `parse` function in SortCommandParser.java is used to trim and process the arguments before instantiating 
+SortCommand object. The `execute` function in SortCommand is used to identify the order and sort by to be used by the 
+comparator and to run the sort with the comparator. This ensures that subsequent additions to sort by, such as sort by 
+name etc, would only require to edit the `execute` function.
+
+The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added
+to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator.
 
 ### Show Team feature
 
