@@ -212,6 +212,16 @@ public class ParserUtil {
             titleCase.append(c);
         }
 
-        return titleCase.toString();
+        return reduceSpace(titleCase.toString());
+    }
+
+    /**
+     * formats the spacing of every word in a string
+     * @param s
+     * @return
+     */
+    public static String reduceSpace(String s) {
+        // Replace all sequences of whitespace characters with a single space
+        return s.replaceAll("\\s+", " ");
     }
 }

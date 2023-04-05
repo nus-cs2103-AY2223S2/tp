@@ -25,12 +25,12 @@ public class RemoveTagCommand extends Command {
 
     public static final String COMMAND_WORD = "remove-tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove a person of index i to a tag specified. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes tag specified from an athlete of index i. "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "varsity";
-    public static final String REMOVE_TAG_PERSON_SUCCESS = "Removed Person: %1$s from tags: %2$s";
+    public static final String REMOVE_TAG_PERSON_SUCCESS = "Removed tag: %1$s from %2$s";
     public static final String TAG_NOT_FOUND_FAILURE = "Tags not found: %1$s";
 
     private final Set<Tag> tagsToRemove;
@@ -59,7 +59,8 @@ public class RemoveTagCommand extends Command {
         PayRate updatedPayRate = person.getPayRate();
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(tags);
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, updatedTags);
+        return new Person(updatedName, updatedPhone,
+                updatedAddress, updatedPayRate, updatedTags);
     }
 
     /**
@@ -98,7 +99,8 @@ public class RemoveTagCommand extends Command {
         Person modifiedPerson = createModifiedPerson(personToRemoveTag, tagsRemoved);
         model.setPerson(personToRemoveTag, modifiedPerson);
         model.commitAddressBook();
-        return new CommandResult(String.format(REMOVE_TAG_PERSON_SUCCESS, personToRemoveTag.getName(), tagsToRemove));
+        return new CommandResult(String.format(REMOVE_TAG_PERSON_SUCCESS,
+                tagsToRemove, personToRemoveTag.getName()));
     }
 
     @Override

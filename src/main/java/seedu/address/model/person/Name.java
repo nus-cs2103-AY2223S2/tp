@@ -30,6 +30,7 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         formattedName = toTitleCase(name);
+
     }
 
     /**

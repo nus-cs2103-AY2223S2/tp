@@ -252,10 +252,7 @@ public class Session implements Comparable<Session> {
         }
 
         return otherSession != null
-                && otherSession.getStartDateTime().equals(getStartDateTime())
-                && otherSession.getEndDateTime().equals(getEndDateTime())
-                && otherSession.getName().equals(getName())
-                && otherSession.getLocation().equals(getLocation());
+                && otherSession.getName().equals(getName());
     }
 
     /**

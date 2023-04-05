@@ -11,8 +11,10 @@ import java.util.Locale;
  */
 public class Tag {
 
-    public static final String MESSAGE_ALPHANUMERIC_CONSTRAINTS = "Tags names should be alphanumeric.";
-    public static final String MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS = "Tag name exceeded 20 character limit.";
+    public static final String MESSAGE_ALPHANUMERIC_CONSTRAINTS = "Tag name should be "
+            + "alphanumeric and not contain spaces.";
+    public static final String MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS = "Tag name exceeded "
+            + "20 character limit.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -67,19 +69,5 @@ public class Tag {
 
     public String getTag() {
         return tagName;
-    }
-
-    /**
-     * compares and checks if two tags are same or different
-     * @param otherTag
-     * @return
-     */
-    public boolean isSameTag(Tag otherTag) {
-        if (otherTag == this) {
-            return true;
-        }
-
-        return otherTag != null
-                && otherTag.getTag().equals(getTag());
     }
 }
