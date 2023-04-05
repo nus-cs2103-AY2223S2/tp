@@ -111,9 +111,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
-<div markdown="span" class="alert alert-warning">:exclamation:
+<div markdown="span" class="alert alert-warning">:exclamation:</div>
 **Caution**: In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
-</div>
+
 
 ### 3. Viewing student contacts as a list: `list`
 
