@@ -194,14 +194,17 @@ public class FindCommandTest {
     public void execute_partiallyMatchingNameAndMatchingDate_multipleEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 2);
         FindEventDescriptor findEventDescriptor = new FindEventDescriptor();
-        findEventDescriptor.setName(new Name("a"));
-        findEventDescriptor.setDate(new Date("2023-05-03"));
+        findEventDescriptor.setName(new Name("Art"));
+        findEventDescriptor.setDate(new Date("2023-05-01"));
         FindCommand command = new FindCommand(findEventDescriptor);
         EventMatchesKeywordsAndDatePredicate predicate =
-                prepareNameAndDatePredicate("a", "2023-05-03");
+                prepareNameAndDatePredicate("Art", "2023-05-01");
+        Event event = new EventBuilder().withName("Art lesson").withDate("2023-05-01").build();
+        model.addEvent(event);
+        expectedModel.addEvent(event);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARNIVAL, DRAG), model.getFilteredEventList());
+        assertEquals(Arrays.asList(event, ART), model.getFilteredEventList());
     }
 
     @Test
