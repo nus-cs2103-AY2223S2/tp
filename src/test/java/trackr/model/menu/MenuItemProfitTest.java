@@ -6,8 +6,6 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.item.Item;
-
 public class MenuItemProfitTest {
 
     @Test
