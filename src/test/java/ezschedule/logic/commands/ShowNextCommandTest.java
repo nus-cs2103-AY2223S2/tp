@@ -3,6 +3,8 @@ package ezschedule.logic.commands;
 import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,7 @@ import ezschedule.model.event.UpcomingEventPredicate;
  */
 public class ShowNextCommandTest {
 
-    private Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
 
     @Test
     public void execute_typicalSchedulerShowOne_listOneEvent() {
@@ -58,4 +60,26 @@ public class ShowNextCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void equals() {
+        int predicateCount = 1;
+        final ShowNextCommand standardCommand = new ShowNextCommand(new UpcomingEventPredicate(predicateCount));
+
+        // same values -> returns true
+        ShowNextCommand commandWithSameValues = new ShowNextCommand(new UpcomingEventPredicate(predicateCount));
+        assertEquals(standardCommand, commandWithSameValues);
+
+        // same object -> returns true
+        assertEquals(standardCommand, standardCommand);
+
+        // null -> returns false
+        assertNotEquals(null, standardCommand);
+
+        // different types -> returns false
+        assertNotEquals(standardCommand, new ClearCommand());
+
+        // different predicate count -> returns false
+        int differentPredicateCount = 2;
+        assertNotEquals(standardCommand, new ShowNextCommand(new UpcomingEventPredicate(differentPredicateCount)));
+    }
 }
