@@ -116,12 +116,13 @@ Example:
 
 ### Editing a task: `edittask`
 
-Edits the properties of an existing task in the task list. The desired task type must be specified, and the date 
+Edits the details of the task identified by the index number used in the displayed task list. 
+Existing values will be overwritten by the input values. The desired task type must be specified, and the date 
 modifiers must match the format of the task type input.<br>
 Todo tasks should not include a {DATE} field.<br>
 The task list can be viewed using the `view` command.
 
-Format: `edittask INDEX type/{TASK_TYPE} [task/{TASK_DESCRIPTION}] [{DATE}]`
+Format: `edittask INDEX type/{TASK_TYPE} [task/{TASK_DESCRIPTION}] [c/{COMMENT}] [{DATE}]`
 
 Note: 
 * To denote todo, deadline and event tasks, parameters for `TASK_TYPE` are `T`, `D` and `E` respectively.
