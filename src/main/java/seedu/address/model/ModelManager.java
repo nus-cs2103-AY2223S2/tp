@@ -4,20 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Mark;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -148,19 +144,19 @@ public class ModelManager implements Model {
 //                || Objects.equals(type, "trans")
 //                || Objects.equals(type, "name");
         switch (type) {
-            case "size":
-                addressBook.sortPersonsBusinessSize(ascending);
-            case "name":
-                addressBook.sortPersonsName(ascending);
-                break;
-            case "priority":
-                addressBook.sortPersonsPriority(ascending);
-                break;
-            case "trans":
-                addressBook.sortPersonsTransactionCount(ascending);
-                break;
-            default:
-                addressBook.sortPersonsName(ascending);
+        case "size":
+            addressBook.sortPersonsBusinessSize(ascending);
+        case "name":
+            addressBook.sortPersonsName(ascending);
+            break;
+        case "priority":
+            addressBook.sortPersonsPriority(ascending);
+            break;
+        case "trans":
+            addressBook.sortPersonsTransactionCount(ascending);
+            break;
+        default:
+            addressBook.sortPersonsName(ascending);
         }
 
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);

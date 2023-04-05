@@ -154,7 +154,7 @@ public class ParserUtil {
     public static Mark parseMark(String mark) throws ParseException {
         requireNonNull(mark);
         String trimmedMark = mark.trim();
-        if (!Mark.isValidMark(trimmedMark)){
+        if (!Mark.isValidMark(trimmedMark)) {
             throw new ParseException(Mark.MESSAGE_CONSTRAINTS);
         }
         return new Mark(trimmedMark);

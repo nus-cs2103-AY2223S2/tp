@@ -285,7 +285,7 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Filter by tag feature
 
 #### Proposed Implementation
-The proposed feature will allow users to filter persons by the tags they possess. 
+The proposed feature will allow users to filter persons by the tags they possess.
 It is implemented similar to the `FindCommand`, extending `CommandParser` with a new command to parse.
 
 Given below is an example usage scenario and how the `Filter` mechanism behaves at each step.
@@ -293,7 +293,7 @@ Given below is an example usage scenario and how the `Filter` mechanism behaves 
 Step 1. User inputs command `filter`, followed by a list of arguments representing the tag names
 example `carInsurance`
 
-Step 2. The command "filter" will be parsed, creating a Filter command which is executable 
+Step 2. The command "filter" will be parsed, creating a Filter command which is executable.
 
 Step 3. On execution of the filter command, the filter checks and returns a list of all persons which match exactly the tags specified
 
@@ -319,7 +319,7 @@ The following sequence diagram shows how the filter operation works:
     * Pros: Broad search of all tags.
     * Cons: Too much information, might be harder to narrow down search.
 
-#### Why this implementation 
+#### Why this implementation
 We would like users to be able to narrow down search by filtering more and more categories,
 hence we allow multiple arguments input and require that all arguments are satisfied
 

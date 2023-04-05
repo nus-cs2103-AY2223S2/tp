@@ -1,11 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.person.PersonContainsKeywordsPredicate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import seedu.address.model.Model;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,23 +17,23 @@ public class SortCommand extends Command {
             + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [size, name, priority, trans] [asc, desc]...\n"
             + "Example: " + COMMAND_WORD + " trans \n"
-            + "Note that only 2 arguments may be specified at one time. One specifying the field, the other, direction.";
+            + "Note that only 2 arguments may be specified at one time. "
+            + "One specifying the field, the other, direction.";
 
+    public static final String MESSAGE_SUCCESS = "Sorted by: ";
     private final String subCommand;
     private final String direction;
     private final boolean ascending;
 
-
+    /**
+     * Creates an SortCommand to sort the list {@code Person}
+     */
     public SortCommand(String subCommand, String direction) {
         //TODO assert subcommand and direction is correct
         this.subCommand = subCommand.toLowerCase();
         this.direction = direction;
         this.ascending = direction.equalsIgnoreCase("asc");
     }
-
-    public static final String MESSAGE_SUCCESS = "Sorted by: ";
-
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

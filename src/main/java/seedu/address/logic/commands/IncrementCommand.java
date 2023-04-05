@@ -6,15 +6,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import com.sun.jdi.IncompatibleThreadStateException;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TransactionCount;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 
 /**
  * Increments the transaction count of a client without needing to perform manual calculation.
@@ -28,7 +26,7 @@ public class IncrementCommand extends Command {
             + "Parameters: INDEX (must be a postive integer) "
             + PREFIX_TRANSACTION_COUNT + "How many transactions have taken place\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TRANSACTION_COUNT+ "1";
+            + PREFIX_TRANSACTION_COUNT + "1";
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count incremented";
 
@@ -58,9 +56,9 @@ public class IncrementCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        int currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getIntValue();
-        int incrementCount = editPersonDescriptor.getTransactionCount().get().getIntValue();
-        int finalAmount = currentCount + incrementCount;
+        long currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getLongValue();
+        long incrementCount = editPersonDescriptor.getTransactionCount().get().getLongValue();
+        long finalAmount = currentCount + incrementCount;
 
         editPersonDescriptor.setTransactionCount(new TransactionCount(String.valueOf(finalAmount)));
 
