@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,7 @@ import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskHasNoPriorityException;
 
 /**
  * Edits the details of an existing task in the task list.
@@ -82,7 +82,6 @@ public class TaskEditCommand extends TaskCommand {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -104,8 +103,18 @@ public class TaskEditCommand extends TaskCommand {
                 updatedTank = taskToEdit.getTank();
             }
         }
-        Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
-
+        Priority updatedPriority;
+        try {
+            updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
+        } catch (TaskHasNoPriorityException e) { //orElse is always executed so we need this catch block
+            //if editTask has p
+            if (editTaskDescriptor.getPriority().isPresent()) {
+                updatedPriority = editTaskDescriptor.getPriority().get();
+            } else { //since we are in this catch block, the original task has not priority. This else block is
+                //if the edited task is taking the original priority
+                updatedPriority = null;
+            }
+        }
         return new Task(updatedDescription, updatedTank, updatedPriority);
     }
 

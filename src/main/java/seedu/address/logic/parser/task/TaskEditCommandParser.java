@@ -53,7 +53,6 @@ public class TaskEditCommandParser {
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(TaskEditCommand.MESSAGE_NOT_EDITED);
         }
-
         return new TaskEditCommand(index, editTaskDescriptor);
 
     }
