@@ -13,9 +13,10 @@ import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+
+    private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
