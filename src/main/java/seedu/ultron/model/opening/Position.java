@@ -1,7 +1,5 @@
 package seedu.ultron.model.opening;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.ultron.commons.util.AppUtil.checkArgument;
 
