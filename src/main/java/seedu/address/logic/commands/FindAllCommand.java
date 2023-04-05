@@ -18,7 +18,7 @@ public class FindAllCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Returns all contacts that matches any attribute from the "
             + "the specified keywords (case-insensitive)\n and displays as a list of contacts.\n"
-            + "Parameters: Any attribute like [n/NAME],[e/EMAIL],[c/COMPANY] except [s/STATUS] & [t/TAG] \n"
+            + "Parameters: [NAME],[EMAIL],[COMPANY]...etc EXCEPT [STATUS] & [TAG] \n"
             + "Example: " + COMMAND_WORD + " Blk 90, Company A, Bernice";
 
     private final FindContainsAnythingPredicate predicate;
