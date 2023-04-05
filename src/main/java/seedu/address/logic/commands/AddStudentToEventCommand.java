@@ -26,6 +26,12 @@ public class AddStudentToEventCommand extends Command {
             + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be"
             + "bigger than the size of the specified event list";
+    public static final String MESSAGE_USAGE = "Add Student to Event Syntax: "
+            + COMMAND_WORD + " " + "STUDENT_INDEX EVENT_TYPE/EVENT_INDEX\n"
+            + "Parameters: STUDENT_INDEX within the student list (must be a valid positive integer), "
+            + "EVENT_TYPE (Only Tutorial or Consultation or Lab case-sensitive is allowed)\n"
+            + " EVENT_INDEX within the event list of the specified event (must be a valid positive integer)\n"
+            + "Example: " + COMMAND_WORD + " addStudent 1 Tutorial/1";
     public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
     public static final String LAB_STRING = PREFIX_LAB.getPrefix();
     public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();

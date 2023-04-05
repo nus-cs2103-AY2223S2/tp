@@ -18,6 +18,14 @@ public class DeleteStudentFromEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Student at specified index deleted from event";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + "cannot be recognized!";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you"
+            + " have entered cannot be 0 or less";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger"
+            + "than the size of the student list within the event";
+    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be"
+            + "0 or less";
+    public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be"
+            + "bigger than the size of the specified event list";
 
     public static final String MESSAGE_USAGE = "Delete Student from Event Syntax: "
             + COMMAND_WORD + " "
@@ -30,7 +38,7 @@ public class DeleteStudentFromEventCommand extends Command {
     public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
     public static final String LAB_STRING = PREFIX_LAB.getPrefix();
     public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
-    private final Index index;
+    private final Index studentIndex;
     private final Index eventIndex;
     private final String eventType;
 
@@ -42,7 +50,7 @@ public class DeleteStudentFromEventCommand extends Command {
      * @param type the type of the event the student will be deleted from.
      */
     public DeleteStudentFromEventCommand(Index studentIndex, Index eventIndex, String type) {
-        this.index = studentIndex;
+        this.studentIndex = studentIndex;
         this.eventIndex = eventIndex;
         this.eventType = type;
     }
@@ -50,14 +58,46 @@ public class DeleteStudentFromEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
+        if (studentIndex.getZeroBased() < 0) {
+            throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
+        }
+        if (eventIndex.getZeroBased() < 0) {
+            throw new CommandException(MESSAGE_EVENT_INDEX_TOO_SMALL);
+        }
 
-        if (!this.eventType.equals(TUTORIAL_STRING)
-                && !this.eventType.equals(LAB_STRING)
-                && !this.eventType.equals(CONSULTATION_STRING)) {
+        switch (eventType) {
+        case "Tutorial/":
+            if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
+            if (studentIndex.getZeroBased() >= model.getFilteredTutorialList()
+                    .get(eventIndex.getZeroBased()).getStudents().size()) {
+                throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
+            }
+            break;
+        case "Lab/":
+            if (eventIndex.getZeroBased() >= model.getFilteredLabList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
+            if (studentIndex.getZeroBased() >= model.getFilteredLabList()
+                    .get(eventIndex.getZeroBased()).getStudents().size()) {
+                throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
+            }
+            break;
+        case "Consultation/":
+            if (eventIndex.getZeroBased() >= model.getFilteredConsultationList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
+            if (studentIndex.getZeroBased() >= model.getFilteredConsultationList()
+                    .get(eventIndex.getZeroBased()).getStudents().size()) {
+                throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
+            }
+            break;
+        default:
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
 
-        model.deleteStudentFromEvent(this.index, this.eventIndex, this.eventType);
+        model.deleteStudentFromEvent(this.studentIndex, this.eventIndex, this.eventType);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

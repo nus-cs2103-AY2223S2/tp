@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddStudentToEventCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,6 +36,11 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
+
+        if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddStudentToEventCommand.MESSAGE_USAGE));
+        }
 
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
