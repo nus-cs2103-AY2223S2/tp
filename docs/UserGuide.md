@@ -246,13 +246,14 @@ Format: `clear`
 
 ### Setting the Limit of Cards per Review: `setLimit`
 
-Suppose you have a really long deck of cards but you only want to test yourself on 20 cards this session, use this function to set an upper limit on the number of cards per review.
+Suppose you have a really long deck of cards, but you only want to test yourself on 20 cards this session. 
+Use this function to set an upper limit on the number of cards per review.
 While a limit is set, the review deck will be truncated to the card limit. 
 
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
 Format: `setLimit LIMIT_NUM` or `setLimit none`
-- LIMIT_NUM is a non-zero positive integer
+- LIMIT_NUM must be an integer between 1 and 2147483647 inclusive. 
 
 Examples:
 * `setLimit 30`

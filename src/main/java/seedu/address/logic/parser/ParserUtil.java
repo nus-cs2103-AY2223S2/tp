@@ -16,9 +16,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
-            + " inclusive or the String 'all'";
     public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
+    public static final String MESSAGE_INVALID_LIMIT_INPUT = MESSAGE_INVALID_INTEGER + " or the String 'none'";
     public static final String MESSAGE_MUST_BE_EMPTY = "No inputs allowed";
 
     /**
@@ -102,16 +101,16 @@ public class ParserUtil {
      */
     public static int parseReviewLimit(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
+
         if (trimmedUserInput.equalsIgnoreCase("none")) {
             return -1;
-        } else if (trimmedUserInput.matches("\\d+")) {
-            if (!StringUtil.isNonZeroUnsignedInteger(trimmedUserInput)) {
-                throw new ParseException(MESSAGE_INVALID_INTEGER);
-            }
-            return Integer.parseInt(trimmedUserInput);
-        } else {
-            throw new ParseException(MESSAGE_INVALID_N_INPUT);
         }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedUserInput)) {
+            throw new ParseException(MESSAGE_INVALID_LIMIT_INPUT);
+        }
+
+        return Integer.parseInt(trimmedUserInput);
     }
 
     /**
