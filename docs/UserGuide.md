@@ -100,6 +100,7 @@ Below is the full table of contents, in case you are looking for something very 
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
+- [**Coming soon!:** Future Features](#future-features)
 
 </div>
 
@@ -565,5 +566,7 @@ If your changes to the data file makes its format invalid, TeamBuilder will disc
 **A**: You might have input an invalid command. Either the command word doesn't exist or the parameters entered are invalid.
 
 --------------------------------------------------------------------------------------------------------------------
+# Future features
+These are features that will improve your experience using TeamBuilder, to be added in the future. Look forward to them!
 
 
