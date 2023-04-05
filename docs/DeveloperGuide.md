@@ -638,7 +638,7 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 #### Design Considerations
 
-**Aspect**: Whether to use an AND relationship or an OR relationship betweeen different fields. For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name as Google AND role as Software Engineer, or delete internships that have company name as Google OR role as Software Engineer
+**Aspect**: Whether to use an AND relationship or an OR relationship betweeen different fields. For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name as Google AND role as Software Engineer, or delete internships that have company name as Google OR role as Software Engineer?
 
 1. **Alternative 1 (current choice):**  Use an AND relationship
     * Pros: More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company AND role.
@@ -925,6 +925,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. InternBuddy detects that one or more fields given are invalid.
     * 1b1. InternBuddy prompts the user for a `delete-index` command of the correct format.
+
+      Use case resumes from Step 1.
+
+* 1c. InternBuddy detects that one or more of the given indexes are out of range.
+    * 1c1. InternBuddy informs the user that the index is out of range.
 
       Use case resumes from Step 1.
 
@@ -1372,17 +1377,17 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
    optional field must be specified.
 
-5. `delete s/Applied s/Interviewing`
+5. `delete-field s/Applied s/Interviewing`
 
    **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
    is not a valid value for the `STATUS` field.
 
-6. `delete n/Google n/Meta s/Assessment s/Applied`
+6. `delete-field n/Google n/Meta s/Assessment s/Applied`
 
    **Expected**: Only the internship with company name `Google` and status `Applied` is deleted,
    because all the other internships do not have a matching field for both `CompanyName` and `Status`.
 
-7. `find s/Assessment s/Interview t/Android`
+7. `delete-field s/Assessment s/Interview t/Android`
 
    **Expected**: Only the internship with status `Assessment` and tag `Android` is deleted, because
    all the other internships do not have a matching field for both `Status` and `Tag`.
@@ -1469,7 +1474,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 <div style="page-break-after: always;"></div>
 
-## **Appendix C: Proposed Design Tweaks for Feature Flaws**
+## **Appendix C: Planned Enhancements**
 While we strive to make InternBuddy a perfect product for you, there are nevertheless areas of improvement.
 Hence, we are constantly striving to make InternBuddy better. This appendix documents some of the areas
 that our team is currently working on, and we would release them in the future once their functionalities
@@ -1477,9 +1482,22 @@ have been finalised.
 
 ### Title of Design Tweak
 **Problem:**
-Explain the problem here
+Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/Golang T/c++` will add an internship entry with company name
+   `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
+   and tag `Golang T/c++`.
+  Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
 
-**Proposed Design Tweak**: Explain the design tweak here
+Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
+
+We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
+
+ For example, using the `find` command, `find t/numbers t/cheese` tries to find entries with either the tag `numbers` or `cheese`. Tag matching is case-insensitive, so it also tries to find `Numbers` or `CheEse`. Similarly, `delete-field t/numbers t/cheese` tries to delete entries with either the tag `numbers` or `cheese` or `Numbers` or `CheEse`
+
+There could be another conflicting meaning of the command. In this case, `find t/numbers t/cheese` tries to find "numbers" or "cheese". but the user could have intended to find the tag `numbers T/cheese`. This could lead to some confusion.
+
+**Proposed Design Tweak**: Make prefixes case-insensitive. For example, `find t/numbers t/cheese` should have the same result as `find T/numbers T/cheese`. This would remove the confusion as substrings such as `T/` or `c/` cannot be entered in any of the fields. 
+
+Alternatively, we propose to implement a warning if strings such as ` T/` is detected in the user input. It is unlikely user intended to add `numbers T/cheese` as a tag and if the user added such a tag by mistake, the remedy is for the user to edit it.
 
 <div style="page-break-after: always;"></div>
 
