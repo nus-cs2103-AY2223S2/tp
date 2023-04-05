@@ -61,9 +61,9 @@ than current GUI apps in the industry.
 
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 
-6. Learn how to use the application quickly through our tutorial [here](#docedex-tutorial).
+6. For **new users**, learn to use Docedex [here](#docedex-tutorial).
 
-7. Learn more about the details of each command at our Features section [here](#features).
+7. For **advanced users**, view all feature details [here](#features).
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -151,15 +151,51 @@ look through all the doctors and patients in Docedex, please use the
 | `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
 
 [Scroll back to Table of Contents](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
+## Docedex Tutorial
 
+This is a tutorial for **first-time** Docedex users.
+1. Launch Docedex. You may refer to the instructions [here](#quick-start)
+- Note: On launch, Docedex will not contain any doctor or patient records.
+  ![LaunchUi](images/LaunchUi.png)
+2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
+- Note: On adding a new doctor, the patients' list is filtered to show only patients associated with the doctor. To view all patient records, simply type `list-ptn` in the command box.
+  ![AddDoc](images/AddDoc.png)
+3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/pendingReview` in the command box.
+- Note: On adding a new patient, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
+  ![AddPtnBef](images/AddPtn.png)
+4. Add a few more doctors and patients to Docedex!
+5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
+- Note: On assigning a patient to a doctor, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
+  ![AssignPtnBef](images/AssignPtnBef.png)
+  ![AssignPtnAft](images/AssignPtnAft.png)
+6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
+- Note: On selecting the doctor, the patients' list is filtered to display only patients associated with the doctor. To view all patients use `list-ptn`.
+  ![SelectDoctor](images/SelectDoctor.png)
+7. Let us try **selecting the patient**. Enter the command `sp 1` in the command box. This time, the doctors' list is filtered instead.
+- Note: On selecting the patient, the doctors' list is filtered to display only patients associated with the patient. To view all doctors use `list-doc`.
+8. Let us try **unassigning the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
+   ![UnassignPtn](images/UnassignPtn.png)
+9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
+   ![FindDocTut](images/FindDocTut.png)
+10. Let us try **finding a patient** with the name Patrick. Enter `find-ptn n/Patrick` in the command box.
+    ![FindPtnTut](images/FindPtnTut.png)
+11. Let us try **deleting a doctor** from Docedex. Enter the command `del-doc 1` in the command box. This removes the first displayed doctor in the doctors' list.
+12. Let us try **deleting a patient** from Docedex. Enter the command `del-ptn 1` in the command box. This removes the first displayed patient in the patients' list.
+13. Let us try **listing all doctors**. Enter the command `list-doc` in the command box. This lists all the doctors within Docedex.
+14. Let us try **listing all patients**. Enter the command `list-ptn` in the command box. This lists all the patients within Docedex.
+15. Congratulations! You are now ready to use Docedex.
+
+To view all our features, you may visit our [features section](#features).
+
+[Scroll back to Table of Contents](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 ### Doctor Commands
 #### Adding a doctor
 
 - Command format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
 - What it does: Adds a doctor to the address book.
-
-![AddDoc](images/AddDoc.png)
 
 - Examples:
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
@@ -176,8 +212,6 @@ look through all the doctors and patients in Docedex, please use the
     - Existing values will be updated to the input values.
     - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
 
-![EditDoc](images/EditDoc.png)
-
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
     - `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
@@ -190,8 +224,6 @@ look through all the doctors and patients in Docedex, please use the
 - Note to user:
     - The index refers to the index number shown in the displayed doctor list.
     - The index **must be a positive integer** 1, 2, 3, …​
-
-![DelDoc](images/DelDoc.png)
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
@@ -209,8 +241,6 @@ Examples:
     - More than one tag can be provided.
     - Blank fields will be ignored.
 
-![FindDoc](images/FindDoc.png)
-
 - Examples:
     - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
     - `find-doc n/Gabriel t/friend t/expert` matches any doctor with the name containing the string `Gabriel` and has tags `friend` and `expert`.
@@ -225,15 +255,11 @@ Examples:
   - The index refers to the index number shown in the displayed doctor list.
   - The index **must be a positive integer** 1, 2, 3, …​
 
-![SelDoc](images/SelDoc.png)
-
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Listing all doctors
 - Command format: `list-doc`
 - What it does: This command will list all doctors saved in Docedex together with their information.
-
-![ListDoc](images/ListDoc.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -242,8 +268,6 @@ Examples:
 #### Adding a patient
 - Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
 - What it does: Adds a patient to the address book.
-
-![AddPtn](images/AddPtn.png)
 
 - Examples:
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
@@ -257,8 +281,6 @@ Examples:
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
-![AssignPtn](images/AssignPtn.png)
-
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Unassigning a patient from a doctor
@@ -266,8 +288,6 @@ Examples:
 - What it does: Unassigns the patient at the specified `PATIENT_INDEX` from the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
 - Examples:
   - `unassign-ptn ptn/1 doc/1` unassigns the first patient from the first doctor.
-
-![UnassignPtn](images/Unassign.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -281,8 +301,6 @@ Examples:
     - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
       specifying any tags after it.
 
-![EditPtn](images/EditPtn.png)
-
 - Examples:
     - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
     - `edit-ptn 2 n/Daenerys Targaryen st/Inpatient t/` Edits the name and status of the 2nd patient to be `Daenerys Targaryen` and `Inpatient` respectively. Adding t/ also clears all existing tags.
@@ -295,8 +313,6 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed patient list. 
   - The index **must be a positive integer** 1, 2, 3, …​
-
-![DelPtn](images/DelPtn.png)
 
 Examples:
 * `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
@@ -314,8 +330,6 @@ Examples:
     - More than one tag can be provided.
     - Blank fields will be ignored.
 
-![FindPtn](images/FindPtn.png)
-
 - Examples:
   - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
   - `find-ptn h/1` match any patient with the height containing the string `1`, i.e. `1.70` and `0.91` will be matched but `0.99` and `2.00` will not be matched.
@@ -329,15 +343,11 @@ Examples:
   - The index refers to the index number shown in the displayed patient list.
   - The index **must be a positive integer** 1, 2, 3, …​
 
-![SelPtn](images/SelPtn.png)
-
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Listing all patients
 - Command format: `list-ptn`
 - What it does: This command will list all patients saved in Docedex together with their information.
-
-![ListPtn](images/ListPtn.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -378,44 +388,6 @@ Docedex data is saved as a JSON file at this specified path: `[JAR file location
 DO NOT modify data directly, as it might result in the malfunction of the application. In the worst case scenario, all your data may be reset. Only modify data directly if you know what you are doing and accept the risks of such actions.
 
 [Scroll back to Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-## Docedex Tutorial
-
-This is a tutorial for **first-time** Docedex users.
-1. Launch Docedex. You may refer to the instructions [here](#quick-start)
-![NewUi](images/NewUi.png)
-2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
-![AddDoc](images/AddDoc.png)
-3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother` in the command box.
-![AddPtn](images/AddPtn.png)
-4. Add a few more doctors and patients to Docedex!
-5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
-![AssignPtn](images/AssignPtn.png)
-6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
-![SelDoc](images/SelDoc.png)
-7. Let us try **selecting the patient**. Enter the command `sp 1` in the command box.
-![SelPtn](images/SelPtn.png)
-8. Let us try **unassigning the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
-![UnassignPtn](images/Unassign.png)
-9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
-![FindDocTut](images/FindDocTut.png)
-10. Let us try **finding a patient** with the name Patrick. Enter `find-ptn n/Patrick` in the command box.
-![FindPtnTut](images/FindPtnTut.png)
-11. Let us try **deleting a doctor** from Docedex. Enter the command `del-doc 1` in the command box.
-![DelDoc](images/DelDoc.png)
-12. Let us try **deleting a patient** from Docedex. Enter the command `del-ptn 1` in the command box.
-![DelPtn](images/DelPtn.png)
-13. Let us try **listing all doctors**. Enter the command `list-doc` in the command box.
-![ListDoc](images/ListDoc.png)
-14. Let us try **listing all patients**. Enter the command `list-ptn` in the command box.
-![ListPtn](images/ListPtn.png)
-15. Congratulations! You are now ready to use Docedex.
-
-[Scroll back to features](#features)
-
-[Scroll back to Table of Contents](#table-of-contents)
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
