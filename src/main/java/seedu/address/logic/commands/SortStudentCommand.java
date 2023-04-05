@@ -19,7 +19,7 @@ public class SortStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all address book students.\n "
             + "Parameters: The group of students you wish to sort (either all, lab, tutorial or consultation), "
-            + "the metric to be sorted (either address, email, name, perfomance or remark), "
+            + "the metric to be sorted (either address, email, name, performance or remark), "
             + "and the desired order (either reverse or nonreverse)\n"
             + "For example: 'sort-student all name reverse' command will order all students in reverse-alphabetical "
             + "ordering of their names";

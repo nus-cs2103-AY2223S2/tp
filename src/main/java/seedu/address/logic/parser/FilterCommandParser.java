@@ -16,7 +16,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     public static final int METRIC_INDEX = 1;
     public static final int THRESHOLD_INDEX = 2;
-    public static final Set<String> validMetrics = Set.of("Performance", "Urgency");
+    public static final Set<String> validMetrics = Set.of("performance", "urgency");
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
