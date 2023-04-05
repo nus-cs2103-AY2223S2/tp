@@ -772,6 +772,9 @@ For duplicate persons, instead of checking whether they had the same `Name`, we 
 :information_source: **Note:** CoDoc is design in such a way where no two person can have the same email.
 </div>
 
+##### Profile Picture Attribute
+`ProfilePicture` of a `Person` is randomly picked from a pool of 50 avatar icons whenever the `Person` is added. Not only does this improve the aesthetics of CoDoc, but it can also help users identify contacts by their `ProfilePicture`. Allowing users to add their own preferred profile picture has been considered but as of right now, this just serves as a default placeholder picture for each `Person`. `ProfilePicture` is part of the `Person` model and is saved like the other attributes.
+
 ##### Skills Attribute
 We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
 
