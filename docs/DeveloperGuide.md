@@ -8,7 +8,7 @@ toc: true
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -75,7 +75,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
 ### Logic component
-The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -131,10 +131,11 @@ The `Model` component,
   `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
-* However, it is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only
-  pass valid `IngredientBuilder` instances to `Recipe` objects.
-  The `Recipe` class will then populate its own `Ingredient` and `IngredientQuantifier` fields, via `IngredientBuilder`
-  and its use of `IngredientParser`.
+
+It is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only 
+pass valid `IngredientBuilder` instances to `Recipe` objects.
+The `Recipe` class will then populate its own `Ingredient` and `IngredientQuantifier` fields, via the given `IngredientBuilder`
+and its use of `IngredientParser`.
 
 <div markdown="span" class="alert alert-info">
 
@@ -235,6 +236,8 @@ The form's window title will be "Edit Recipe" when editing an existing recipe, a
 
 The `find` command allows the user to filter recipes by their properties: 
 e.g. their name, tags, or ingredients.
+The following sequence diagram illustrates how the different components interact with each other
+in the execution of a `find tag italian indian` command.
 
 <img src="images/FindSequenceDiagram.png" width="1000" />
 
