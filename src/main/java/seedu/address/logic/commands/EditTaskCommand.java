@@ -47,6 +47,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_CONSTRAINTS = "Task type of `T`, `D` or `E` is expected.";
     public static final String MESSAGE_TASK_TYPE_MISMATCH = "The type of task to be edited doesn't "
             + "match the given parameters.";
+    public static final String MESSAGE_TODO_INCORRECT_FORMAT = "For task of todo type, no date should be added.";
     public static final String MESSAGE_DEADLINE_INCORRECT_FORMAT =
             "For task of deadline type, [" + PREFIX_DATE + "DATE] is required.";
     public static final String MESSAGE_EVENT_INCORRECT_FORMAT = "For task of event type, ["
@@ -169,7 +170,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskType, comment, deadline, startDate, endDate);
+            return CollectionUtil.isAnyNonNull(comment, deadline, startDate, endDate);
         }
 
         public void setTaskDescription(TaskDescription taskDescription) {
