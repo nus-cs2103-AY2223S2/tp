@@ -5,42 +5,14 @@ title: User Guide
 
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
-* Table of Contents
-   *	Features
-     * Address book - Customers contacts management system:
-       * List and view contacts
-       * Add contacts individually
-       * Find contacts
-       * Delete contacts
-       * Edit contacts
-       * Clear all contacts
-     * Delivery tasking management system:
-       * View jobs
-       * Add jobs individually
-       * Mass import jobs and associated customers
-       * Find jobs
-       * Mark job as done
-       * Delete jobs
-       * Edit jobs
-     * Reminder and notifications:
-       * Set reminder for upcoming deadlines
-       * Get notified as soon as you open the app
-       * Schedule notification:
-         * Get notified of current and upcoming jobs in the timetable
-     * Display timetable of all scheduled/upcoming jobs in the week
-       * Display list of invalid and completed jobs
-     * Statistics dashboard:
-       * Show statistics on:
-         * Total number of jobs
-         * Pending jobs
-         * Completed jobs
-         * Total earnings
-         * Statistics from previous week
+## Table of Content
+1. [Quick Start] (#quick-start)
+2. 
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
