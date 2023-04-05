@@ -79,10 +79,18 @@ public class JsonAdaptedProject extends JsonAdaptedEntity {
         nullCheck(status, "status");
         nullCheck(clientEmail, "clientEmail");
         nullCheck(acceptedOn, "acceptedOn");
+
+        // NOTE: validity checks for status, acceptedOn, and deadline are done in the constructor
+        validityCheck(NonEmptyString.isValid(name), "name");
+        validityCheck(Email.isValidEmail(clientEmail), "clientEmail");
+        if (source != null) {
+            validityCheck(NonEmptyString.isValid(source), "source");
+        }
+
         // NOTE: it is okay for the deadline and description to be null
         return new Project(NonEmptyString.of(name),
             status,
-            new Email(clientEmail), // constructor will validate for us
+            new Email(clientEmail),
             NonEmptyString.ofOptional(source),
             Optional.ofNullable(description),
             acceptedOn,
