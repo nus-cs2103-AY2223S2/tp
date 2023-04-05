@@ -1,7 +1,18 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
+import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -9,26 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Phone;
 import seedu.address.testutil.InternshipBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_BANK_OF_AMERICA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_META;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_META;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_SOFTWARE_ENGINEER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_SOFTWARE_TESTER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_META;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
-import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
-import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -45,18 +37,20 @@ public class UnarchiveCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(2));
+        UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(1));
 
         InternshipApplication unarchivedApplication = new InternshipBuilder()
-                .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                .withCompanyName("Microsoft")
+                .withJobTitle("Operating System Developer")
                 .withIsArchived(false).build();
 
-        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_APPLICATION_SUCCESS, unarchivedApplication);
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_APPLICATION_SUCCESS,
+                unarchivedApplication);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTodoList(),
                 getTypicalNoteList());
-        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(1), unarchivedApplication);
+        model.updateFilteredInternshipList(Model.PREDICATE_SHOW_ARCHIVED_APPLICATIONS);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), unarchivedApplication);
 
         try {
             CommandResult unarchivedMessage = unarchiveCommand.execute(model);
@@ -81,15 +75,16 @@ public class UnarchiveCommandTest {
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(Index.fromOneBased(1));
 
         InternshipApplication unarchivedApplication = new InternshipBuilder()
-                .withCompanyName(VALID_COMPANY_NAME_META)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER)
-                .withContact(new Contact(new Phone(VALID_PHONE_META), new Email(VALID_EMAIL_META)))
+                .withCompanyName("Microsoft")
+                .withJobTitle("Operating System Developer")
                 .withIsArchived(false).build();
 
-        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_APPLICATION_SUCCESS, unarchivedApplication);
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_APPLICATION_SUCCESS,
+                unarchivedApplication);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTodoList(),
                 getTypicalNoteList());
+        model.updateFilteredInternshipList(Model.PREDICATE_SHOW_ARCHIVED_APPLICATIONS);
         expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), unarchivedApplication);
 
         try {

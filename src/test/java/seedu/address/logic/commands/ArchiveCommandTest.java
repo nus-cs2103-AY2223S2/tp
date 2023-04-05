@@ -1,19 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Phone;
-import seedu.address.testutil.InternshipBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -29,6 +15,21 @@ import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
 import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
+import seedu.address.testutil.InternshipBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

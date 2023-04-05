@@ -352,6 +352,13 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
+        for (int i = 0; i < addressBook.getInternshipList().size(); i++) {
+            System.out.println(addressBook.getInternshipList().get(i));
+        }
+        for (int i = 0; i < other.addressBook.getInternshipList().size(); i++) {
+            System.out.println(other.addressBook.getInternshipList().get(i));
+        }
+
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
