@@ -12,9 +12,9 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static mycelium.mycelium.logic.parser.ParserUtil.parseOptionalWith;
 
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
@@ -47,9 +47,9 @@ public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> 
         var source = parseOptionalWith(argMultimap.getValue(PREFIX_SOURCE), ParserUtil::parseSource);
         var description = argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION);
         var acceptedOn = parseOptionalWith(argMultimap.getValue(PREFIX_ACCEPTED_DATE),
-            s -> ParserUtil.parseLocalDate(s, Project.DATE_FMT));
+            s -> ParserUtil.parseLocalDate(s, DateUtil.DATE_FMT));
         var deadline = parseOptionalWith(argMultimap.getValue(PREFIX_DEADLINE_DATE),
-            s -> ParserUtil.parseLocalDate(s, Project.DATE_FMT));
+            s -> ParserUtil.parseLocalDate(s, DateUtil.DATE_FMT));
 
         UpdateProjectCommand.UpdateProjectDescriptor desc = new UpdateProjectCommand.UpdateProjectDescriptor();
         desc.setName(newName);

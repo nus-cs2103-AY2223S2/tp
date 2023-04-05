@@ -12,6 +12,7 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.Email;
@@ -52,7 +53,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             : ProjectStatus.NOT_STARTED;
         Optional<String> maybeAcceptedOn = argMultimap.getValue(PREFIX_ACCEPTED_DATE);
         LocalDate acceptedOn = maybeAcceptedOn.isPresent()
-            ? ParserUtil.parseLocalDate(maybeAcceptedOn.get(), Project.DATE_FMT)
+            ? ParserUtil.parseLocalDate(maybeAcceptedOn.get(), DateUtil.DATE_FMT)
             : LocalDate.now();
 
         Optional<NonEmptyString> source = ParserUtil.parseOptionalWith(
@@ -62,7 +63,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Optional<String> description = argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION);
         Optional<LocalDate> deadline = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_DEADLINE_DATE),
-            d -> ParserUtil.parseLocalDate(d, Project.DATE_FMT));
+            d -> ParserUtil.parseLocalDate(d, DateUtil.DATE_FMT));
 
         Project
             project =
