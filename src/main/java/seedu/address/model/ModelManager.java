@@ -223,7 +223,7 @@ public class ModelManager implements Model {
      */
     public void updatePersonList(List<Person> participantsList, Person target,
                                  Person editedPerson, MeetUp meetUp) {
-        if (participantsList.removeIf(person -> person.isSamePerson(target))) {
+        if (participantsList.remove(target)) {
             participantsList.add(editedPerson);
             meetUp.setParticipants(new Participants(participantsList));
         }
