@@ -166,44 +166,51 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Command Autocompletion, Real-Time Input Validation and Recommendation
+### Command Recommendation and Autocompletion
 
-Autocompletion and Recommendation are features that can greatly enhance the user experience when using the application.
-To support this feature, we have implemented a `CommandRecommendationEngine` that aims to accurately predict the set of
-words that the user intends to type based off a preset of words. These words are the in-built commands and argument
-prefixes.
+Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting 
+with an application. By predicting the set of words that the user intends to type based on a preset of words such as 
+in-built commands and argument prefixes, the `CommandRecommendationEngine` helps to save users time and effort while 
+ensuring accuracy.
 
-In `CommandRecommendationEngine`, you can find three methods:
+#### Implementation
 
-1. `recommendCommand` -- recommends an appropriate command with respect to the user input.
-2. `autocompleteCommand` -- autocompletes the user input by replacing user input with the recommended command.
-3. `registerCommandInfo` -- registers the command, turning on command recommendation.
+To provide autocompletion, the `CommandRecommendationEngine` uses an event handler attached to the `commandTextField` 
+which listens for the `TAB` event. When triggered, it autocompletes the user's input by replacing it with the recommended values.
 
-#### Autocompletion
+On the other hand, to provide command recommendations, the engine uses the longest prefix matching algorithm. This 
+algorithm first **identifies** the related command based on the user's input and then **verifies** the fields 
+associated with it. For instance, when the user types "add_e" in the command prompt, the engine will first recommend
+"add_elderly", follow by the related fields. If there are ambiguity in the recommendations, the decision is to return 
+the commands based on using lexicographical ordering. 
 
-An event handler is attached to `commandTextField` which listens for the `KEY_PRESSED` event and autocompletes the user
-input with the recommended values.
+The CommandRecommendationEngine also uses the concept of **Full Attribute** commands and **Complete** commands. 
+A _Full Attribute_ command means that all fields of the command, including optional and compulsory, have been specified. 
+On the other hand, a _Complete_ command indicates that a command has been fully typed, but arguments may or may not have been typed. 
+This distinction helps the engine to provide more accurate recommendations based on the user's input.
 
-#### Recommendation
-
-To predict the words, we made use of the longest prefix matching algorithm to first **identify** the related command,
-and then **verify** the arguments associated with it. The following activity diagram describes the activity flow:
+The following activity diagram describes the activity flow:
 
 <img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
 
-**Terminology**:
+To ensure the correctness of the attributes specified, the CommandRecommendationEngine also uses an event listener 
+to provide immediate feedback to the user. This feedback mechanism helps to minimize errors and ensure that users input 
+the correct command attributes.
 
-- Full attribute command -- indicates that all arguments of a command (including optional and compulsory) have been
-  specified.
-- Complete command -- indicates that command (for example, `add_elderly`) has been fully typed. Arguments may or may not
-  have been typed.
+Finally, the CommandRecommendationEngine provides a registerCommandInfo method that allows developers to register new commands
+and turn on command recommendation for them. This flexibility ensures that the engine can adapt to changes in the application 
+and provide accurate recommendations even as the application evolves.
 
-#### Input validation
+#### Design considerations
 
-Our implementation strategy involves utilizing an event listener to provide immediate feedback to the user regarding the
-correctness of the attributes specified, instead of depending on the parser for this purpose. For example, if the
-`AddElderlyCommand` does not accept any arguments without a prefix but the user specifies anyhow, a **warning** will
-be given.
+Aspect: How recommendation executes:
+
+- Alternative 1 (current choice): Using a `LinkedHashMap` for word search
+  - Pros: Quick and Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+- Alternative 2: Using a `Trie` for word search
+  - Pros: Will use less memory (Only required to store unique prefixes).
+  - Cons: Relatively harder to implement, and might introduce bugs.
 
 ### Add and Delete Elderly and Volunteer
 

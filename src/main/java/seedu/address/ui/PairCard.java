@@ -117,7 +117,6 @@ public class PairCard extends UiPart<Region> {
 
         // state check
         PairCard card = (PairCard) other;
-        return id.getText().equals(card.id.getText())
-                && pair.equals(card.pair);
+        return pair.equals(card.pair);
     }
 }
