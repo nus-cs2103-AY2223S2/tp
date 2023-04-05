@@ -32,6 +32,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEducation("P1")
             .withRemark("She hates bob.")
+            .withTelegram("")
             .withModules("CS2101")
             .withTags("friends")
             .build();
@@ -53,6 +54,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withEducation("P3")
             .withRemark("Needs help with algebra.")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
@@ -63,6 +65,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withEducation("P4")
             .withRemark("Needs help with compo.")
+            .withTelegram("")
             .withModules()
             .withTags("friends")
             .build();
@@ -73,6 +76,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withEducation("P5")
             .withRemark("Needs more time on limits")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
@@ -83,6 +87,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withEducation("P6")
             .withRemark("Is good at algebra")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
@@ -93,6 +98,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withEducation("Sec 2")
             .withRemark("Is bad at argumentative essays")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
@@ -105,6 +111,7 @@ public class TypicalPersons {
             .withAddress("little india")
             .withEducation("Sec 3")
             .withRemark("Needs help with trigo")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
@@ -115,6 +122,7 @@ public class TypicalPersons {
             .withAddress("chicago ave")
             .withEducation("Sec 4")
             .withRemark("Needs help with angles")
+            .withTelegram("")
             .withModules()
             .withTags()
             .build();
