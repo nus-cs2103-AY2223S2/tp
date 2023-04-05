@@ -265,9 +265,9 @@ public class TypicalRecipes {
         return list;
     }
 
-    public static int CacioHashCode() {
-        ObservableList<Recipe> CacioList = FXCollections.observableArrayList();
-        CacioList.add(CACIO_E_PEPE);
-        return CacioList.hashCode();
+    public static int getCacioHashCode() {
+        ObservableList<Recipe> list = FXCollections.observableArrayList();
+        list.add(CACIO_E_PEPE);
+        return list.hashCode();
     }
 }

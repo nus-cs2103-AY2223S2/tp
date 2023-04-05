@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.testutil.TypicalRecipes.BLUEBERRY_PANCAKES;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
-import static seedu.recipe.testutil.TypicalRecipes.CacioHashCode;
 import static seedu.recipe.testutil.TypicalRecipes.FISH_AND_CHIPS;
 import static seedu.recipe.testutil.TypicalRecipes.GRILLED_CHEESE;
 import static seedu.recipe.testutil.TypicalRecipes.MASALA_DOSA;
+import static seedu.recipe.testutil.TypicalRecipes.getCacioHashCode;
 import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipesObservableList;
 
@@ -96,7 +96,7 @@ public class RecipeBookTest {
     }
 
     @Test
-    public void addRecipe(){
+    public void addRecipe() {
         recipeBook.addRecipes(getTypicalRecipesObservableList());
 
         // trying to add a duplicate recipe will throw an exception
@@ -174,7 +174,7 @@ public class RecipeBookTest {
 
     @Test
     public void test_hashcode() {
-        int expected = CacioHashCode();
+        int expected = getCacioHashCode();
         recipeBook.addRecipe(CACIO_E_PEPE);
         assertEquals(expected, recipeBook.hashCode());
     }
