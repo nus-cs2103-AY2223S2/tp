@@ -90,9 +90,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid type followed by valid timeSlot
-//        Commented out because resource can be anything
-//        assertParseFailure(parser, "1" + INVALID_TYPE_DESC
-//                + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
+        //Commented out because resource can be anything
+        // assertParseFailure(parser, "1" + INVALID_TYPE_DESC
+                // + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
