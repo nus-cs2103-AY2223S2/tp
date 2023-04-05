@@ -128,6 +128,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasOwner(Transaction transaction) {
+        requireNonNull(transaction);
+        return addressBook.hasOwner(transaction);
+    }
+    @Override
     public void addTransaction(Transaction transaction) {
         addressBook.addTransaction(transaction);
         updateFilteredTransactionList(PREDICATE_SHOW_ALL_TRANSACTIONS);

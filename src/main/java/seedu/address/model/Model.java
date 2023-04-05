@@ -80,6 +80,8 @@ public interface Model {
 
     boolean hasTransaction(Transaction transaction);
 
+    boolean hasOwner(Transaction transaction);
+
     void addTransaction(Transaction transaction);
 
     void deleteTransaction(Transaction transaction);
@@ -109,5 +111,4 @@ public interface Model {
     * Updates the filter of the filtered transaction list to filter by the given {@code predicate}
     */
     void updateFilteredTransactionList(Predicate<Transaction> predicateShowAllTransactions);
-
 }
