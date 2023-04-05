@@ -227,6 +227,11 @@ Adds a delivery job to the delivery job system.
 **Format**: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
 
 **Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+
+*Extra constraints with this alternative way of adding jobs:*
+* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5)
+* Only delivery date and slot are optional for alternative way of adding job. 
+* Earning must not be left empty. User should identify earning as $0 instead, if necessary.
 ![Create Job](images/Addjob.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -234,7 +239,7 @@ Description field is only available in GUI mode.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Delivery date, slot and earning are optional.
+Delivery date, slot and earning are optional (for original way of adding job using `add_job` command - typing-preferred).
 </div>
 
 
@@ -407,6 +412,7 @@ Shows timetable of specific week containing a specific date
 Format: `timetable_date date/YYYY-mm-DD`
 
 * Shows timetable of the week containing the given date.
+* Date must be valid.
 * This is the one and only command that Timetable Window can access (identical format).
 
 Examples:
