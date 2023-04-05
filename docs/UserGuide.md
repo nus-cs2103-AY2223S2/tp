@@ -513,6 +513,11 @@ Format: `event add na/EVENT_NAME [st/START_DATETIME] en/END_DATETIME de/EVENT_DE
 
 * `START_DATETIME` and `END_DATETIME` fields need to be in the format : DD/MM/YYYY HHMM
 
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** `event add` enables you to add events even if the events occurred in the past.
+</div>
+
 Examples:
 1. If you would like to add an Internship Application Submission Deadline:
   `event add na/Application Submission Deadline en/14/04/2023 2359 de/Via Talent Connect`
