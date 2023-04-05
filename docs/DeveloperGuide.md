@@ -1063,3 +1063,22 @@ testers are expected to do more *exploratory* testing.
 
    3. Other incorrect sort commands to try:  Same as above <br>
       Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+
+## **10. Appendix: Planned Enhancements**
+
+Currently, there a few feature flaws with the application. Here are them and some proposed fixes to address them
+and improve functionality for the user:
+
+#### 1. Command to sort by deadline does not inform user when there are no applications with deadlines to display and sort
+
+![SortDeadlineWithNoDeadlines](images/SortDeadlineWithNoDeadlines.png)
+
+Currently, if the user has no applications with tasks (and therefore deadlines), and requests to sort by deadline (e.g., `sort a deadline`), 
+an empty list shows up.
+Note that this is the expected behaviour as `SortCommand` first filters out applications with no tasks before sorting.
+
+**Potential Enhancement and Suggested Implementation:** <br> 
+It would be good to inform the user through the Command Result Box that the list is empty because they currently do not have applications with deadlines.
+
+In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
+as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
