@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.bookmark.Bookmark;
 
 
