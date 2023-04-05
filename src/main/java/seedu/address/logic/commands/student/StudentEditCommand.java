@@ -3,7 +3,6 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
@@ -88,7 +87,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_NEWPHONEPARENT + "98989898 "
             + PREFIX_RELATIONSHIP + "FATHER";
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s Class: %2$s Index Number: %3$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s; Class: %2$s; Index Number: %3$s;";
 
     private IndexNumber indexNumber;
     private IndexNumber newIndexNumber;
@@ -224,14 +223,6 @@ public class StudentEditCommand extends StudentCommand {
      */
     public Student setParent(Student student, Model model, Student oldStudent)
             throws ParseException {
-/*
-        Parent parentToSet = model.getParent(oldStudent.getParentName(), oldStudent.getParentNumber());
-        Parent newParent = new Parent(student.getParentName(), parentToSet.getAge(), parentToSet.getImage(),
-                parentToSet.getEmail(), student.getParentNumber(), parentToSet.getAddress(), parentToSet.getTags());
-        newParent = editParent(parentToSet, newParent, model);
-        model.setParent(parentToSet, newParent);
-        student.setParent(newParent);
-        return student;*/
 
         ObservableList<Parent> parents = model.getFilteredParentList();
         if (student.getParentNumber() == oldStudent.getParentNumber()) { // Parent phone number did not change

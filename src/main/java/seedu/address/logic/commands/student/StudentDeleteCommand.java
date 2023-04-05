@@ -28,7 +28,8 @@ public class StudentDeleteCommand extends StudentCommand {
             + PREFIX_INDEXNUMBER + "INDEX NUMBER\n"
             + "Example: student 1A delete " + PREFIX_INDEXNUMBER + "25";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s Class: %2$s Index Number: %3$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS =
+            "Deleted Student: %1$s; Class: %2$s; Index Number: %3$s;";
 
     private final IndexNumber targetIndex;
     private final Class studentClass;

@@ -27,7 +27,7 @@ public class ParentDeleteCommand extends ParentCommand {
             + PREFIX_NAME + "Tan Ah Niu "
             + PREFIX_PHONEPARENT + "91234567";
 
-    public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s Phone Number: %2$s";
+    public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s; Phone Number: %2$s;";
 
     private final Phone phoneNumber;
     private final Name parentName;

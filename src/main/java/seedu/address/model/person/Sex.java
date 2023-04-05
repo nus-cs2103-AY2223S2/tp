@@ -50,7 +50,7 @@ public class Sex {
      * @return Boolean value true if the string given is the default string by the system.
      */
     public static boolean isDefaultSex(String test) {
-        return test.equals("INSERT STUDENT SEX HERE!");
+        return test.equals("Insert student sex here!");
     }
 
     @Override

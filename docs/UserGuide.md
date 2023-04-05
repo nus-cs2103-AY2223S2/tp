@@ -448,22 +448,21 @@ Examples:
 Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the teacher.
 
 Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
-imgS/[IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS]
-npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
+imgS/[IMAGE] cca/[CCA] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
 
 ***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 Examples:
-* `student 1A edit in/03 cca/basketball`
+* `student 1A edit in/3 cca/basketball`
 * `student 1A edit in/03 cca/badminton ageS/23`
 
-* Edited student: TanAhCow; Student Class: 1A; Index Number: 03;
+* Edited student: Tan Ah Cow; Student Class: 1A; Index Number: 13;
 * Edited student: TanAhCow; Student Class: 1B; Index Number: 03;
 
 `Student list before edit:`
-![original_edit](images/originaledit.png)
+![original_edit](images/studentBeforeEdit.png)
 `Student list after edit:`
-![after_edit](images/afteredit.png)
+![after_edit](images/studentAfterEdit.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
@@ -513,15 +512,15 @@ Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the dat
 Format: `student <class> delete in/<INDEX_NUMBER>`
 
 Examples:
-* `student 1A delete in/14`
+* `student 1A delete in/13`
 * `student 1B delete in/23`
 
 **Expected Outcome:**
 
-* Deleted Student: Tan Ah Cow Class: 1A Index Number: 14
+* Deleted Student: Tan Ah Cow Class: 1A Index Number: 13
 * Deleted Student: Tan Ah Niu Class: 1B Index Number: 23
 
-![student_delete.png](images/studentdelete.png)
+![student_delete.png](images/studentDeleteSuccess.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -632,13 +631,13 @@ Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the data
 Format: `delete n/NAME pnP/PHONE `
 
 Examples:
-* `parent delete n/TanAhCow pnP/91234567` <br>
-* `parent delete n/TanAhNiu pnP/91234566` <br>
+* `parent delete n/TanAhCow pnP/91234566` <br>
+* `parent delete n/TanAhNiu pnP/91234567` <br>
 
-Deleted Parent: TanAhCow Phone Number: 91234567
-Deleted Parent: TanAhNiu Phone Number: 91234566
+Deleted Parent: TanAhCow Phone Number: 91234566
+Deleted Parent: TanAhNiu Phone Number: 91234567
 
-![parent_delete_success](images/parentdeletesuccess.png)
+![parent_delete_success](images/parentDeleteSuccess.png)
 
 **Note:**
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
