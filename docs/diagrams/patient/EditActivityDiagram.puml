@@ -1,0 +1,15 @@
+@startuml EditPatientActivityDiagram
+start
+if() then ([valid input])
+    if() then ([valid id])
+        :Create new patient using user input and previous patient;
+        :Set new patient in PatientManager at given id;
+    else ([else])
+        :Throw CommandExeception;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml

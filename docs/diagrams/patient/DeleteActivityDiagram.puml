@@ -1,0 +1,14 @@
+@startuml DeletePatientActivityDiagram
+start
+if() then ([valid input])
+    if() then ([valid id])
+        :Remove patient from PatientManager;
+    else ([else])
+        :Throw CommandExeception;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml

@@ -284,11 +284,11 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 The activity diagram below summarises the action when the patient `AddCommand` is executed.
 
-<img src="images/patient/AddPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/AddPatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
 
-<img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/AddPatientSequenceDiagram.png" width="550" />
 
 #### Detailing Patients
 
@@ -306,11 +306,11 @@ Given below is an example usage scenario when a user enter `patient detail 1` as
 
 The activity diagram below summarises the action when the patient `DetailCommand` is executed.
 
-<img src="images/patient/DetailPatientsActivityDiagram.png" width="550" />
+<img src="images/patient/dg/DetailPatientsActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Detailing Patients** mechanism behaves at every step.
 
-<img src="images/patient/DetailPatientsSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/DetailPatientsSequenceDiagram.png" width="550" />
 
 #### Listing Patients
 
@@ -327,11 +327,11 @@ Given below is an example usage scenario when a user enter `patient list` as a c
 
 The activity diagram below summarises the action when the patient `ListCommand` is executed.
 
-<img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+<img src="images/patient/dg/ListPatientsActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
 
-<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/ListPatientsSequenceDiagram.png" width="550" />
 
 #### Finding a Patient
 
@@ -364,11 +364,11 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
 
 The activity diagram below summarises the action when the patient `FindCommand` is executed.
 
-<img src="images/patient/FindPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/FindPatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
 
-<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/FindPatientSequenceDiagram.png" width="550" />
 
 `FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
 
@@ -399,11 +399,11 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
 
 The activity diagram below summarises the action when the patient `EditCommand` is executed.
 
-<img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/EditPatientActivityDiagram.png" width="550" />
 
 Given below is an example usage scenario and how **Editing a Patient** mechanism behaves at each step.
 
-<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/EditPatientSequenceDiagram.png" width="550" />
 
 #### Deleting a Patient
 
@@ -421,11 +421,11 @@ Given below is an example usage scenario when a user enter `patient delete 5` as
 
 The activity diagram below summarises the action when the patient `DeleteCommand` is executed.
 
-<img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/DeletePatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Deleting a Patient** mechanism behaves at every step.
 
-<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/DeletePatientSequenceDiagram.png" width="550" />
 
 #### Clearing Patients
 
@@ -442,11 +442,11 @@ Given below is an example usage scenario when a user enter `patient clear` as a 
 
 The activity diagram below summarises the action when the patient `ClearCommand` is executed.
 
-<img src="images/patient/ClearPatientActivityDiagram.png" width="550" />
+<img src="images/patient/dg/ClearPatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Clearing Patients** mechanism behaves at every step.
 
-<img src="images/patient/ClearPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/dg/ClearPatientSequenceDiagram.png" width="550" />
 
 ### Appointment
 

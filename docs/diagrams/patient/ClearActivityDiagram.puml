@@ -1,0 +1,7 @@
+@startuml ClearPatientActivityDiagram
+start
+:Set PatientManager to empty;
+:Update patient pane to show no patients;
+:Display message to user;
+stop
+@enduml
