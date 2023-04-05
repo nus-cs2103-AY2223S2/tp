@@ -11,8 +11,7 @@ import static ezschedule.logic.commands.CommandTestUtil.showEventAtIndex;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -157,26 +156,26 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_EVENT, DESC_A);
-
-        // same values -> returns true
+        EditCommand standardCommand = new EditCommand(INDEX_FIRST_EVENT, DESC_A);
         EditEventDescriptor copyDescriptor = new EditEventDescriptor(DESC_A);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EVENT, copyDescriptor);
-        assertEquals(standardCommand, commandWithSameValues);
+
+        // same values -> returns true
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
-        assertEquals(standardCommand, standardCommand);
+        assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
-        assertNotEquals(null, standardCommand);
+        assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_EVENT, DESC_A));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EVENT, DESC_A)));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_EVENT, DESC_B));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EVENT, DESC_B)));
     }
 }
