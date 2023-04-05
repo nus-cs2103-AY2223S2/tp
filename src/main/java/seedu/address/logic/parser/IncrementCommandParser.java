@@ -5,11 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TransactionCount;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 
 /**
  * Parses input arguments and creates a new IncrementCommand object

@@ -12,8 +12,8 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Priority;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.person.TransactionCount;
 import seedu.address.model.tag.Tag;
 
@@ -36,7 +36,7 @@ public class SampleDataUtil {
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new BusinessSize("10000"),
                     new Company("CCBNews"),
-                    new Priority("LOW"), new TransactionCount("9"),getTagSet("insurance")),
+                    new Priority("LOW"), new TransactionCount("9"), getTagSet("insurance")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new BusinessSize("500"),
                 new Company("LonelyFans"), new Priority("LOW"), new TransactionCount("9"),
@@ -48,7 +48,7 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new BusinessSize("420"),
                 new Company("Broogle"),
-                    new Priority("LOW"), new TransactionCount("9"),getTagSet("colleagues"))
+                    new Priority("LOW"), new TransactionCount("9"), getTagSet("colleagues"))
         };
     }
 

@@ -1,21 +1,19 @@
 package seedu.address.model.person;
 
-import java.lang.Comparable;
-
 /**
  * Represents the Priority level that the client is currently at.
- * Guarantees: is valid as declared in {@link #isValidPriority(String)} (String)} (String)}
+ * Guarantees: is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority implements Comparable<Priority> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Priority must be marked as either HIGH, LOW, OR MEDIUM";
-    public static final String[] VALIDATION_ARRAY = {"HIGH", "LOW" ,"MEDIUM"};
+    public static final String[] VALIDATION_ARRAY = {"HIGH", "LOW", "MEDIUM"};
     public final String value;
 
     /**
-     * Constructs an {@code BusinessSize}.
+     * Constructs an {@code Priority}.
      *
      * @param priority Priority level of the client.
      */
@@ -23,6 +21,10 @@ public class Priority implements Comparable<Priority> {
         this.value = String.valueOf(priority);
     }
 
+    /**
+     * Checks whether a given string is a priority.
+     * @param test The priority to be checked.
+     */
     public static boolean isValidPriority(String test) {
         for (String str : VALIDATION_ARRAY) {
             if (test.equals(str)) {
@@ -42,7 +44,7 @@ public class Priority implements Comparable<Priority> {
             return 3;
         } else if (value.equals("MEDIUM")) {
             return 2;
-        } else if (value.equals("LOW")){
+        } else if (value.equals("LOW")) {
             return 1;
         } else {
             return 0;

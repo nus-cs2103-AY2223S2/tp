@@ -22,7 +22,7 @@ public class SummaryWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(SummaryWindow.class);
     private static final String FXML = "SummaryWindow.fxml";
     private static int SIZE;
-    private static long POTENTIAL_EARNINGS;
+    private static String POTENTIAL_EARNINGS;
     private static String COMPANIES;
     private static String TAGS;
     @FXML
@@ -66,7 +66,7 @@ public class SummaryWindow extends UiPart<Stage> {
     /**
      * Sets the value of the potential earnings.
      */
-    public static void setPotentialEarnings(long potentialEarnings) {
+    public static void setPotentialEarnings(String potentialEarnings) {
         SummaryWindow.POTENTIAL_EARNINGS = potentialEarnings;
     }
     /**
