@@ -113,9 +113,10 @@ public class Recipe {
         for (Ingredient i : ingredients) {
             cost += i.quantity * i.pricePerUnit;
         }
-        return BigDecimal.valueOf(cost)
-                .setScale(2, RoundingMode.HALF_UP)
-                .doubleValue();
+
+        BigDecimal bd = new BigDecimal(cost);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
     /**
      * Returns true if both recipes have the same title.
