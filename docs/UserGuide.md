@@ -53,11 +53,11 @@ Here is what TechTrack can store per role:
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.                                                                                                                                                                 |
 | `Yes`    | coy    | COMPANY              | The string must contain at least one non-space character.                                                                                                                                                                         |
 | `No`     | t      | TAG                  | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space.<br/>Note: Editing a role's tag to a space character removes the tag from that role |
-| `Yes`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                                                                                                                                                                               |
+| `Yes`    | w      | WEBSITE              | Must be in www.(Any Characters).com                                                                                                                                                                                               |
 | `Yes`    | jd     | JOB DESCRIPTION      | The string must contain at least one non-space character.                                                                                                                                                                         |
 | `Yes`    | $      | SALARY               | Must be a positive whole number that is larger than 0.                                                                                                                                                                            |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.                                                                                                                                                                      |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | The string must contain at least one non-space character.                                                                                                                                                                         
+| `Yes`    | x      | EXPERIENCE REQUIRED  | The string must contain at least one non-space character.                                                                                                                                                                         |
 
 **Email Format**
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -124,7 +124,7 @@ Edit any parameters of a preexisting role.
 
 💡 **Note:** The user must provide at least one parameter to edit!
 
-Format: `edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] [t/{TAG}]... [w/{WEBSITE}]
+Format: `edit {index} [n/{NAME}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] [t/{TAG}]... [w/{WEBSITE}]
 [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]`
 
 * Edits the role at the specified `{INDEX}`. The index refers to the index number shown in the displayed role list. The index **must be a positive integer** 1, 2, 3, …​
@@ -149,7 +149,7 @@ Deletes the role from the current list of roles.
 
 Format: `delete {index}`
 
-* Deletes the role at the specified `{INDEX}`. 
+* Deletes the role at the specified `{index}`. 
 The index refers to the index number shown in the displayed role list. 
 The index **must be a positive integer** 1, 2, 3, …​
 
@@ -214,9 +214,9 @@ Example: `tag frontend`
 
 ## Sorting roles
 The commands in this role sorts the **entire role list** based on an attribute, which differs per command.
-For example, using the command `name SWE` followed by `deadline asc` would sort the filtered list of roles
-in ascending order by deadline. Afterwards, using the `list` command would display the original role list in its 
-newly sorted order.
+For example, using the command `name SWE` followed by `deadline asc` would sort the filtered list of roles with 
+`SWE` in its name, in ascending order by deadline. Afterwards, using the `list` command would display the 
+original role list in its newly sorted order.
 
 ### Sorting by Deadline: `deadline`
 Sort roles based on deadline in ascending or descending order.
@@ -247,6 +247,10 @@ required experience, the view command generates a graphic on the right side of t
 details of the selected role.
 
 Format: `view {index}`
+
+* Views the role at the specified `{index}`.
+  The index refers to the index number shown in the displayed role list.
+  The index **must be a positive integer** 1, 2, 3, …​
 
 ![View](images/UICommandImages/ViewCommand0.png)
 
@@ -285,21 +289,21 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Command  | Format                                                             | Example                                                                                                                                                                                                   |
-|----------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add      | add {Prefix}/{Parameter}…​ (all parameters are required)           | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
-| edit     | edit {index} {Prefix}/{Parameter}…​ (only 1 parameter is required) | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
-| delete   | delete {index}                                                     | `delete 1`                                                                                                                                                                                                |
-| name     | name {keywords}...                                                 | `name analyst engineer data`                                                                                                                                                                              |
-| company  | company {keywords}...                                              | `company Google`                                                                                                                                                                                          |
-| tag      | tag  {keywords}...                                                 | `tag frontend`                                                                                                                                                                                            |
-| deadline | deadline {asc/desc}                                                | `deadline asc`                                                                                                                                                                                            |
-| salary   | salary {asc/desc}                                                  | `salary desc`                                                                                                                                                                                             |
-| view     | view {index}                                                       | `view 1`                                                                                                                                                                                                  |
-| list     | list                                                               | `list`                                                                                                                                                                                                    |
-| clear    | clear                                                              | `clear`                                                                                                                                                                                                   |
-| help     | help                                                               | `help`                                                                                                                                                                                                    |
-| exit     | exit                                                               | `exit`                                                                                                                                                                                                    |
+| Command      | Format                                                                                                                                                             | Example                                                                                                                                                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**      | `add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}`                            | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
+| **edit**     | `edit {index} [n/{NAME}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] [t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]` | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
+| **delete**   | `delete {index}`                                                                                                                                                   | `delete 1`                                                                                                                                                                                                |
+| **name**     | `name {keywords}...`                                                                                                                                               | `name analyst engineer data`                                                                                                                                                                              |
+| **company**  | `company {keywords}...`                                                                                                                                            | `company Google`                                                                                                                                                                                          |
+| **tag**      | `tag  {keywords}...`                                                                                                                                               | `tag frontend`                                                                                                                                                                                            |
+| **deadline** | `deadline {asc/desc}`                                                                                                                                              | `deadline asc`                                                                                                                                                                                            |
+| **salary**   | `salary {asc/desc}`                                                                                                                                                | `salary desc`                                                                                                                                                                                             |
+| **view**     | `view {index}`                                                                                                                                                     | `view 1`                                                                                                                                                                                                  |
+| **list**     | `list`                                                                                                                                                             | `list`                                                                                                                                                                                                    |
+| **clear**    | `clear`                                                                                                                                                            | `clear`                                                                                                                                                                                                   |
+| **help**     | `help`                                                                                                                                                             | `help`                                                                                                                                                                                                    |
+| **exit**     | `exit`                                                                                                                                                             | `exit`                                                                                                                                                                                                    |
 
 💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
