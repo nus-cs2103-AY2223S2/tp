@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.ui.enums.LightDarkMode;
+import seedu.address.logic.enums.LightDarkMode;
 
 /**
  * Represents the result of a command execution.
