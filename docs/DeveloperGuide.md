@@ -42,13 +42,10 @@ Please refer to the [About Us](AboutUs.md) page for information about the develo
 ## **About MyLib**
 This Developer Guide provides in-depth documentation on how MyLib is designed and implemented. It covers the architecture of MyLib, detailed specifications on smaller pieces of the design, and an outline of all parts of the software and how they will work.
 
-You can use this guide to maintain and evolve FoodRem.
+You can use this guide to maintain and evolve MyLib.
 
 This Developer Guide is accurate as of 30 March 2023.
 
-### Setting up, getting started
-
-Head over to [Setting up and getting started](#SettingUp.md) to get started!
 <div style="page-break-after: always;"></div>
 
 ## **Design**
