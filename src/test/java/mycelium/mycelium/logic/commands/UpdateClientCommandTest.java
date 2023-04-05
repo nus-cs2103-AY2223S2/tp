@@ -112,6 +112,21 @@ public class UpdateClientCommandTest {
     }
 
     @Test
+    public void execute_sameEmailButOtherChanges_success() {
+        var cmd = new UpdateClientCommand(WEST.getEmail(),
+            new UpdateClientDescriptorBuilder(NEW_DESC).withEmail(WEST.getEmail()).build());
+        model.addClient(WEST);
+
+        var updatedClient = new ClientBuilder(RANTARO).withEmail(WEST.getEmail()).build();
+        var expMsg = String.format(UpdateClientCommand.MESSAGE_SUCCESS, updatedClient);
+        var expRes = buildCommandResult.apply(expMsg);
+        var expModel = new ModelManager();
+        expModel.addClient(updatedClient);
+
+        assertCommandSuccess(cmd, model, expRes, expModel);
+    }
+
+    @Test
     public void equals() {
         UpdateClientCommand.UpdateClientDescriptor desc1 = new UpdateClientCommand.UpdateClientDescriptor();
         UpdateClientCommand.UpdateClientDescriptor desc2 = new UpdateClientCommand.UpdateClientDescriptor();
