@@ -12,7 +12,7 @@ import javafx.util.Pair;
  * A deck associated with a list of cards. Deck is guaranteed to be immutable.
  */
 public final class Deck {
-    public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Deck name cannot be blank.";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     private final String deckName;
     private final boolean isSelected;
