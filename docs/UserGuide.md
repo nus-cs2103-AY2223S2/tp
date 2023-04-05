@@ -103,16 +103,7 @@ format.
 These are all the commands available in MedInfo. It is mainly classified into **Patient** and 
 **Ward** commands.
 
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-<!-- INSERT SCREENSHOT PREVIEW HERE -->
-![help message](images/helpMessage.png)
-
-Format: `help`
-
+## Patient Features
 ### Adding a patient to the system: `add`
 
 Adds the patient (NRIC, name and status).
@@ -211,7 +202,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-
+## Ward Features
 ### Adding a ward to the system: `addward`
 
 Adds the ward (name and capacity).
@@ -265,12 +256,23 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-
+## Utility Features
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+<!-- INSERT SCREENSHOT PREVIEW HERE -->
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 
 [Back to Table of Contents](#table-of-contents)
 
