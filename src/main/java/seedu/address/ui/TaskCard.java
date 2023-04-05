@@ -63,7 +63,7 @@ public class TaskCard extends UiPart<Region> {
         title.setText(task.getTitle().getValue());
         content.setText(task.getContent().getValue());
         setStatusSymbol(task.getStatus().isValue());
-        createDate.setText("Create Date: " + task.getCreateDateTime().getTimestamp().map(timestamp -> {
+        createDate.setText("Created Date: " + task.getCreateDateTime().getTimestamp().map(timestamp -> {
             LocalDateTime datetime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
             return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }).orElse(""));

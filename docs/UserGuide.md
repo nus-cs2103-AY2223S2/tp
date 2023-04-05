@@ -106,7 +106,9 @@ learn more about new features.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Datetime format for DEADLINE for tasks should be of the format `YYYY-MM-DD HH:MM:SS`. e.g. `dl/2023-01-01 23:11:01`. Time(HH:MM:SS) is optional! There must be trailing zeros for digits less than 10. 
+* Datetime format for DEADLINE for tasks should be of the format `YYYY-MM-DD HH:MM:SS`. e.g. `dl/2023-01-28 23:11:01`. Time(HH:MM:SS) is optional! There must be trailing zeros for digits less than 10. 
+
+* Setting the Created Time to a future date will display a loading timeline progress bar, indicating that the task has not yet started. 
 
 * To differentiate between commands intended for a specific person or task, a tag (-t or -p) is added to the end of the keyword.
 </div>
