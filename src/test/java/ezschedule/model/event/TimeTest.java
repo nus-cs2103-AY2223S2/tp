@@ -11,9 +11,6 @@ import org.junit.jupiter.api.Test;
 
 public class TimeTest {
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-    private final Time time = new Time(LocalTime.now().format(formatter));
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Time(null));
@@ -35,14 +32,24 @@ public class TimeTest {
         assertFalse(Time.isValidTime(" ")); // spaces only
         assertFalse(Time.isValidTime("18.00")); // not using : as separator
         assertFalse(Time.isValidTime("20:000")); // more than 2 digits
+        assertFalse(Time.isValidTime("-00:00")); // negative
+        assertFalse(Time.isValidTime("24:00")); // time is only allowed for 00:00 to 23:59
 
         // valid addresses
-        assertTrue(Time.isValidTime("18:00"));
+        assertTrue(Time.isValidTime("18:00")); // valid time
+        assertTrue(Time.isValidTime("00:00")); // earliest possible valid time
+        assertTrue(Time.isValidTime("23:58")); // latest possible valid time
     }
 
     @Test
     public void isPastTime() {
-        // time has passed
+        // current time has passed
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        Time time = new Time(LocalTime.now().format(formatter));
         assertTrue(time.isPastTime());
+
+        // latest possible valid time will not be passed
+        time = new Time("23:59");
+        assertFalse(time.isPastTime());
     }
 }
