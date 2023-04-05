@@ -499,6 +499,10 @@ Examples:
 * `addo 4 n/Strawberry ice cream`
   * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Currently, you are unable to add the same order name and quantity for the same customer twice in the same day!
+</div>
+
 #### Listing all customers : `listo`
 
 Shows a list of all orders, with an optional filter and sort option.

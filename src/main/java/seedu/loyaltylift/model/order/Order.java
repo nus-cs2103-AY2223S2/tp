@@ -146,11 +146,18 @@ public class Order {
 
 
     /**
-     * Returns true if both orders have the same name.
+     * Returns true if both orders belongs to the same customer and have the same name and quantity.
      * This defines a weaker notion of equality between two orders.
      */
     public boolean isSameOrder(Order otherOrder) {
-        return equals(otherOrder);
+        if (otherOrder == this) {
+            return true;
+        }
+
+        return otherOrder != null
+                && otherOrder.getCustomer().equals(getCustomer())
+                && otherOrder.getName().equals(getName())
+                && otherOrder.getQuantity().equals(getQuantity());
     }
 
     /**
