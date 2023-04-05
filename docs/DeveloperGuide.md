@@ -178,6 +178,13 @@ The _rake_ symbol in the `AddCommandParser parses input` actions is used to indi
 
 ![Activity Diagram for parsing command](images/ActivityDiagram_AddCommandParser.png){:.center}
 
+### Create team feature
+
+The activity diagram when user inputs create command in the command box is similar to the Add person feature shown [above](#add-person-feature), with the difference being that Person objects are swapped with Team objects and error messages.
+
+The same applies for CreateCommandParser, where the activity diagram is similar to AddCommandParser, with the difference being that the valid prefixes are now `tn/` and `td/` etc. The error messages are also catered towards Team creation, as opposed to Person creation.
+
+
 ### Optional Fields feature
 
 The AB3 implementation made it such that you could not add a contact without having all of their fields present. We felt this to be not user-friendly as for our purposes it is unreasonable for users to have the phone, email, address, and major of the contact they which to add.
