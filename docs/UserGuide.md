@@ -16,9 +16,10 @@ This User Guide provides brief documentation on how you can install the applicat
 
 ## Quick start
 
-1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook.
-   - To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
-   - If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook. 
+   * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
+   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
 
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
@@ -26,12 +27,14 @@ This User Guide provides brief documentation on how you can install the applicat
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-   - If you are unsure how to open the command terminal, you may refer to the guide below.
+   * If you are unsure how to open the command terminal, you may refer to the guide below.
    
      • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
    
-     • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal.)
+     • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
+   
+     
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -53,7 +56,7 @@ This User Guide provides brief documentation on how you can install the applicat
    * `exit` : Exits the app.
 
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,46 +69,47 @@ This section provides a brief overview of the graphical user interface (GUI) com
 
 The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily move between different sections or pages. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
 
-#### FitBook
+#### Schedule
+* 'Schedule' menu item allows you to switch to Schedule panel.
 
-##### Schedule
-* 'Schedule' menu item allows users to switch to Schedule panel.
-
-##### Exit
+#### Exit
 * Directly exits out of the application
 
 #### Exercise
-* 'Exercise' menu item allows users to switch to Exercise panel.
+* 'Exercise' menu item allows you to switch to Exercise panel.
 
 #### Summary
-* 'Summary' menu item allows users to switch to Summary panel.
+* 'Summary' menu item allows you to switch to Summary panel.
 
 #### Help
 * Provides a new tab outside FitBook with the link to the User Guide.
 
 ### Result Display
 
-* Panels are _empty_ when the data for that specific panel is _empty_.
+Panels are _empty_ when the data for that specific panel is _empty_.
 
 #### Schedule
 * Left panel (`Schedule` Panel) displays the list of clients basic information.
 * Right panel (`Schedule` Panel) displays the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
+  
+
   ![Schedule Panel](images/schedule.png)
 #### Exercise
 * Left panel (`Exercise` Panel) displays the list of clients basic information including weight, average calories, goal, any unique routines and exercises.
 * Right panel (`Exercise` Panel) displays the list of routines added.
+
+
   ![Exercise Panel](images/exercise.png)
 #### Summary
 * Left panel (`Sumamary` Panel) displays the list of clients basic information including name and schedule appointments.
 * Right panel (`Summary` Panel) displays all information about the selected client. (Using the view command)
+
+
   ![Summary Panel](images/summary.png)
 
 ### Feedback Box
-
 When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or any other relevant details.
-
 ### Command Box
-
 The Command Box is where you can type in your commands. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
 
 
@@ -335,7 +339,7 @@ Format: `export`
     * Gender of Client
 * Example generated CSV file when opened using Microsoft Excel:
 
-  ![CSV Sample File](images/CSVSample.PNG)
+  ![CSV Sample File](images/CSVSample.png)
 
 ### Client's Weight Commands
 
@@ -381,7 +385,7 @@ Examples:
 * `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
 Example:
-![Graph](images/GraphUG.PNG)
+![Graph](images/GraphUG.png)
 
 ---
 
@@ -407,7 +411,7 @@ Examples:
 * `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
 Example: (Adding Routine without any exercises)
-![AddRoutine](images/AddRoutineUG.PNG)
+![AddRoutine](images/AddRoutineUG.png)
 
 #### Editing a routine : `editRoutine`
 
@@ -460,7 +464,7 @@ Examples:
 * `findRoutine OPM`
 
 Example:
-![FindRoutine](images/FindRoutineUG.PNG)
+![FindRoutine](images/FindRoutineUG.png)
 
 #### Clearing all Routine entries : `clearRoutines`
 
