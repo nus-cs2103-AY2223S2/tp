@@ -26,7 +26,7 @@ UniqueItemList -r>"*" Item
 Menu *--r> "1 " UniqueMenuItemList
 UniqueMenuItemList -r>"*" MenuItem
 MenuItem *--> "1" ItemName
-MenuItem *--> "1 " ItemPrice
+MenuItem *--> "1 " ItemSellingPrice
 MenuItem *--> "1 " ItemCost
 MenuItem *--> "1 " ItemProfit
 ItemProfit --> "1 " ItemPrice
