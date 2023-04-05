@@ -5,8 +5,13 @@ title: Noah's Project Portfolio Page
 
 ### Project: sprINT
 
-sprINT is a desktop application that helps tech-savvy polytechnic and university students manage details of their
-internship applications. It is optimised for Command Line Interface (CLI) users, while still providing the benefits
+**sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt.
+
+Students often face a great administrative burden in keeping track of the high volume of job or internship
+applications. With sprINT, students can easily manage details of their internship applications, and enjoy functionalities
+like sorting their application entries by deadlines, or finding a specific application with a keyword.
+
+sprINT is a desktop application that is optimised for Command Line Interface (CLI) users, while still providing the benefits
 of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
@@ -17,16 +22,20 @@ Given below are my contributions to the project.
   * to be added soon
 
 * **Enhancements to existing features**:
-  * to be added soon
+  * Implement the `sort` feature, with the options to sort **alphabetically**, or with respect
+  to the **deadline** of an outstanding task. Users also have the option to sort in either ascending
+  or descending order.
 
 * **Documentation**:
   * User Guide:
-    * to be added soon
+    * Add sections on the usage of the `sort` feature
   * Developer Guide:
-    * to be added soon
+    * Add sections on the implementation of the `sort` feature
+    * Add use cases
+    * Do editorial work for the overall document
 
 * **Team-based tasks**:
-  * to be added soon
+  * Refactor test code
 
 * **Community**:
   * to be added soon
