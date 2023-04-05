@@ -89,10 +89,6 @@ public class IdDataMap<T> {
      * @throws NoSuchElementException if the ID is not present.
      */
     public ValueChange<IdData<T>> set(int id, T value) {
-        if (!internalMap.containsKey(id)) {
-            // TODO: this exception is unhandled by utilising methods.
-            throw new NoSuchElementException(String.format("ID [%d] not found", id));
-        }
         IdData<T> newValue = new IdData<>(id, value);
         IdData<T> oldValue = internalMap.put(id, newValue);
         return new ValueChange<>(oldValue, newValue);
