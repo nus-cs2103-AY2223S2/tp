@@ -80,7 +80,7 @@ This section guides you on how to utilise features available in TechTrack.
 * [Viewing Role Info](#viewing-role-info)
 * [General Commands](#general-commands)
 
-**Notes about the command format:**
+**Notes about the command formatting:**
 
 * Words in `UPPER_CASE` and surrounded by `{}` are the parameters to be supplied by the user.
   e.g. in `add n/{NAME}`, `{NAME}` is a parameter which can be used as `add n/Software Engineer`.
@@ -301,17 +301,17 @@ Display commands that are available in TechTrack and the proper format for usage
 ### Exit: `exit`
 Exits and closes TechTrack.
 
-## Editing raw data
+# Editing raw data
 You can directly edit TechTrack's data file after running and exiting the app. 
 
 ❗ **Caution:** If your changes to the data file makes its format invalid, TechTrack will discard that data file and start with an empty list of roles.
 
-## FAQ
+# FAQ
 Q: How do I transfer my data to another Computer?
 
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
 
-## Command Summary
+# Command Summary
 
 | Command      | Format                                                                                                                                                             | Example                                                                                                                                                                                                   |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
