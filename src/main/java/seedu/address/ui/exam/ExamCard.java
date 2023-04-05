@@ -19,8 +19,6 @@ public class ExamCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label title;
     @FXML
     private Label startTime;
@@ -35,7 +33,6 @@ public class ExamCard extends UiPart<Region> {
      */
     public ExamCard(Exam exam, int id) {
         super(FXML);
-        this.id.setText(id + ". ");
         title.setText(exam.getDescription());
         startTime.setText(exam.getStartTime().format(PRINT_FORMATTER));
         endTime.setText(exam.getEndTime().format(PRINT_FORMATTER));
@@ -53,8 +50,7 @@ public class ExamCard extends UiPart<Region> {
         }
         // state check
         ExamCard card = (ExamCard) other;
-        return id.getText().equals(card.id.getText())
-                && title.getText().equals(card.title.getText())
+        return title.getText().equals(card.title.getText())
                 && startTime.getText().equals(card.startTime.getText())
                 && endTime.getText().equals(card.endTime.getText());
     }
