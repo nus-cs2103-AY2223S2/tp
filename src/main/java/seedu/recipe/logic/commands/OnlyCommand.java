@@ -1,7 +1,6 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
@@ -15,10 +14,11 @@ public class OnlyCommand extends Command {
 
     public static final String COMMAND_WORD = "only";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Only selects the recipes that "
-            + "can be made with just those ingredients listed "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_TITLE + "INGREDIENT [MORE_INGREDIENTS]...\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches for recipes that can be made with"
+            + " only the specified ingredients.\n"
+            + "Format: only INGREDIENT...\n"
+            + "One or more ingredients can be provided.\n"
+            + "Example: only eggs flour";
 
 
     private final RecipeIngredientsSubsetPredicate predicate;
