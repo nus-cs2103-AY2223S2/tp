@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 ## Welcome to Docedex
-{:.no_toc}
+{: .no_toc}
 
 ***Taking control of hospital administrative management is just a few keystrokes away!***
 
@@ -27,7 +27,7 @@ than current GUI apps in the industry.
 ![NewUi](images/NewUi.png)
 
 ## Table of Contents
-{:.no_toc}
+{: .no_toc}
 
 * Table of Contents
 {:toc}
