@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -28,6 +27,10 @@ import seedu.address.model.jobs.Earning;
  * Parses input arguments and creates a new AddDeliveryJobCommand object
  */
 public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand> {
+    private static final String MESSAGE_SLOT_MISSING = "Delivery slot missing, "
+            + "both date and slot are required for scheduling";
+    private static final String MESSAGE_DATE_MISSING = "Delivery date missing, "
+            + "both date and slot are required for scheduling";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
@@ -57,28 +60,42 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
 
         String sid = argMultimap.getValue(PREFIX_SENDER_ID).get();
         String rid = argMultimap.getValue(PREFIX_RECIPIENT_ID).get();
-        String date;
-        String slot;
-        String earn;
-        try {
-            date = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
-        } catch (NoSuchElementException e) {
-            date = "";
-            logger.fine("Missing date argument for delivery job");
+        Optional<DeliveryDate> date = Optional.empty();
+        Optional<DeliverySlot> slot = Optional.empty();
+        Optional<Earning> earn;
+
+        if (argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()
+                && !argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_SLOT_MISSING));
+        } else if (!argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_DATE_MISSING));
+        } else if (argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
+            try {
+                date = argMultimap.getValue(PREFIX_DELIVERY_DATE).map(x -> new DeliveryDate(x));
+            } catch (Exception e) {
+                throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
+            }
+
+            try {
+                slot = argMultimap.getValue(PREFIX_DELIVERY_SLOT).map(x -> new DeliverySlot(x));
+            } catch (Exception e) {
+                throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
+            }
         }
 
-        try {
-            slot = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
-        } catch (NoSuchElementException e) {
-            slot = "";
-            logger.fine("Missing slot argument for delivery job");
-        }
-
-        try {
-            earn = argMultimap.getValue(PREFIX_EARNING).get();
-        } catch (NoSuchElementException e) {
-            earn = "";
-            logger.fine("Missing earn argument for delivery job");
+        if (argMultimap.getValue(PREFIX_EARNING).isPresent()) {
+            try {
+                earn = argMultimap.getValue(PREFIX_EARNING).map(x -> new Earning(x));
+            } catch (Exception e) {
+                throw new ParseException(Earning.MESSAGE_CONSTRAINTS);
+            }
+        } else {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeliveryJobCommand.MESSAGE_USAGE));
         }
 
         if (sid.equals("")) {
@@ -89,38 +106,6 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
             throw new ParseException(AddDeliveryJobCommand.MESSAGE_RECIPIENT_CONSTRAINT);
         }
 
-        if ((!slot.equals("")) && (Integer.parseInt(slot) < 1)) {
-            throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
-        }
-
-        DeliveryJob job = createDeliveryJob(rid, sid, date, slot, earn);
-        return new AddDeliveryJobCommand(job);
+        return new AddDeliveryJobCommand(new DeliveryJob(rid, sid, date, slot, earn, ""));
     }
-
-    private DeliveryJob createDeliveryJob(String rid, String sid, String date, String slot, String earn) {
-        Optional<DeliveryDate> jobDate;
-        Optional<DeliverySlot> jobSlot;
-        Optional<Earning> jobEarning;
-
-        if (date.isEmpty()) {
-            jobDate = Optional.empty();
-        } else {
-            jobDate = Optional.of(new DeliveryDate(date));
-        }
-
-        if (slot.isEmpty()) {
-            jobSlot = Optional.empty();
-        } else {
-            jobSlot = Optional.of(new DeliverySlot(slot));
-        }
-
-        if (earn.isEmpty()) {
-            jobEarning = Optional.empty();
-        } else {
-            jobEarning = Optional.of(new Earning(earn));
-        }
-
-        return new DeliveryJob(rid, sid, jobDate, jobSlot, jobEarning, "");
-    }
-
 }

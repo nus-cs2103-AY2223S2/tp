@@ -8,15 +8,15 @@ import seedu.address.model.jobs.DeliveryJob;
  * Predicate for delivery status.
  */
 public class DeliveryJobContainsStatusPredicate implements Predicate<DeliveryJob> {
-    private final boolean toFind;
+    private final boolean isDelivered;
 
-    public DeliveryJobContainsStatusPredicate(boolean toFind) {
-        this.toFind = toFind;
+    public DeliveryJobContainsStatusPredicate(boolean isDelivered) {
+        this.isDelivered = isDelivered;
     }
 
     @Override
     public boolean test(DeliveryJob job) {
-        if (job.getDeliveredStatus() == toFind) {
+        if (job.getDeliveredStatus() == isDelivered) {
             return true;
         }
         return false;
@@ -24,6 +24,6 @@ public class DeliveryJobContainsStatusPredicate implements Predicate<DeliveryJob
 
     @Override
     public String toString() {
-        return Boolean.toString(toFind);
+        return Boolean.toString(isDelivered);
     }
 }
