@@ -46,7 +46,16 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 
 ### Legends
 
+✏️ **Format**: Shows you what you should type in order to use a command.
+
 ℹ️ **Notes**: You can find additional information about the command or feature here.
+
+
+📚 **Examples**: You can find some sample usages of the command here.
+
+🎯 **Expected Output**: Shows you what you can expect to see upon successful execution of a command.
+
+❌ **Possible Errors**: Shows you some problems you might encounter if you're not careful while typing in your command.
 
 ❗ **Caution**: Be careful not to make this deadly mistake.
 
@@ -126,7 +135,7 @@ Shows a message explaining how to access the help page.
 
 ![Help Message](./images/helpMessage.png)
 
-**Format:** `help`
+✏️ **Format:** `help`
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
@@ -134,9 +143,13 @@ Shows a message explaining how to access the help page.
 
 Lists out all the jobs that are currently in the listing book.
 
-**Format:** `view`
+✏️ **Format:** `view`
 
-**Expected Output:**
+ℹ️ **Notes:**
+
+- Anything that comes after the word `view` will be ignored, and the `view` command will be executed as per normal. For instance, `view 1` will function the same way as `view`.
+
+🎯 **Expected Output:**
 
 - You should see all the listings that are currently in your listing book, as well as the confirmation message:
 
@@ -152,18 +165,18 @@ Listed all listings
 
 Adds a listing to the listing book.
 
-**Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT]...`
+✏️ **Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT] [p/PLATFORM]...`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - A listing can have any number of applicants (including 0)
 
-**Examples:**
+📚 **Examples:**
 
 - `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele`
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
-**Expected Output:**
+🎯 **Expected Output:**
 You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
 
 ```ignorelang
@@ -173,7 +186,7 @@ Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
 
 If the above format is not followed, an error message will be displayed.
 
@@ -192,9 +205,9 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 
 Edits the details of a job listing.
 
-**Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
+✏️ **Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - Ensure that `INDEX` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. E.g. if the command entered is:
@@ -203,12 +216,12 @@ Edits the details of a job listing.
 
   then only the title and the description of listing 1 will be edited (the applicants will remain unchanged)
 
-**Examples:**
+📚 **Examples:**
 
 - `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
 - `edit 2 t/Videographer d/Films videos`
 
-**Expected Output:**
+🎯 **Expected Output:**
 
 You will see a confirmation message showing the edited job title, description and applicants (if any).
 An example is shown below:
@@ -220,7 +233,7 @@ Job Description: Cooks tasty noodles
 Applicants: Johnson
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
 
 A valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
 messages shown below will be displayed.
@@ -245,17 +258,17 @@ The listing index provided exceeded the number of listings shown!
 
 Deletes a job listing from the listing book.
 
-**Format:** `delete INDEX`
+✏️ **Format:** `delete INDEX`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - Ensure that `INDEX` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 
-**Examples:**
+📚 **Examples:**
 
 - `delete 1`
 
-**Expected Output:**
+🎯 **Expected Output:**
 
 A confirmation message will show, along with the details of the listing. An example message is shown below:
 
@@ -266,7 +279,8 @@ Job Description: farms chickens
 Applicants: Tommy, Connor
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
+
 If an index is invalid or absent, an error message such as the one below will be displayed.
 
 ```ignorelang
@@ -287,18 +301,18 @@ The listing index provided exceeded the number of listings shown!
 
 Adds an applicant to a specified listing.
 
-**Format:** `add_app INDEX a/APPLICANT`
+✏️ **Format:** `add_app INDEX a/APPLICANT`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - A listing can have any number of applicants
 - Command will only take the latest applicant given
 
-**Examples:**
+📚 **Examples:**
 
 - `add_app 1 a/Tom`
 
-**Expected Output:**
+🎯 **Expected Output:**
 You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
 
 ```ignorelang
@@ -306,7 +320,7 @@ Applicant Tom added to the listing Computer Science Intern
 ```
 
 
-**Possible Error:**
+❌ **Possible Error:**
 
 If an index is invalid or absent, an error message such as the one below will be displayed.
 
@@ -325,20 +339,20 @@ Example: add_app 1 a/John Doe
 
 Edits the name of an applicant in a specified listing.
 
-**Format:** `edit INDEX id/APPLICANT a/APPLICANT`
+✏️ **Format:** `edit INDEX id/APPLICANT a/APPLICANT`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - Ensure that `INDEX` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Applicant given with the id/ flag will be edited to the applicant given with the a/ flag.
 - If the listing has applicants of the same name, the unique id has to be specified with the id/ flag
 
-**Examples:**
+📚 **Examples:**
 
 - `edit_app 1 id/Tom a/Johnson`
 - `edit_app 2 id/Tom#1334 a/Johnson`
 
-**Expected Output:**
+🎯 **Expected Output:**
 
 You will see a confirmation message showing the edited job title, description and applicants (if any).
 An example is shown below:
@@ -347,7 +361,7 @@ An example is shown below:
 Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
 
 A valid index must be provided, and same name applicants must be specified with their unique id. Otherwise, one of the error
 messages shown below will be displayed.
@@ -378,20 +392,20 @@ Example: edit_app 1 id/John Doe#2103 a/Sam
 
 Deletes an applicant from a specified listing.
 
-**Format:** `del_app INDEX id/APPLICANT`
+✏️ **Format:** `del_app INDEX id/APPLICANT`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - Ensure that `INDEX` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 - If the listing has applicants of the same name, the unique id has to be specified with the id/ flag.
 - Ensure that the applicant to delete exists.
 
-**Examples:**
+📚 **Examples:**
 
 - `del_app 1 id/Tom`
 - `del_app 2 id/Tom#1334`
 
-**Expected Output:**
+🎯 **Expected Output:**
 
 A confirmation message will show, along with the details of the listing. An example message is shown below:
 
@@ -399,7 +413,7 @@ A confirmation message will show, along with the details of the listing. An exam
 Applicant: Tom has been deleted from Computer Science Intern!
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
 
 If an index is invalid or the command does not follow the format, an error message such as the ones below will be displayed.
 
@@ -437,27 +451,27 @@ Example: del_app 1 id/John Doe#2103
 
 Adds a new platform to the specified job listing.
 
-**Format:** `add_plat INDEX p/PLATFORM`
+✏️ **Format:** `add_plat INDEX p/PLATFORM`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - Ensure that INDEX is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Ensure that the platform added does not already exist in the job listing.
 - The platform name must contain only alphanumeric characters and cannot be blank.
 - The command only adds one platform at a time. Should there be more than one platform per command then only the latest platform will be taken into consideration. If the lastest platform provided is invalid, an error will occur even if the rest of the provided platforms are valid.
 
-**Examples:**
+📚 **Examples:**
 - `add_plat 1 p/linkedin`
 - `add_plat 3 p/indeed`
 - `add_plat 2 p/glints p/jobstreet` (only "jobstreet" will be added)
 
-**Expected Output:**
+🎯 **Expected Output:**
 A confirmation message showing the platform as well as the title of the listing that it is added to will be shown. An example of the message is shown below:
 ```ignorelang
 Platform linkedin added to listing Computer Science Intern
 ```
 
-**Possible Errors:**
+❌ **Possible Errors:**
 
 If the index provided exceeds the number of listings shown, an error message will show:
 ```ignorelang
@@ -490,26 +504,26 @@ Example: add_plat 1 p/LinkedIn
 
 Deletes a platform from a specified job listing.
 
-**Format:** `del_plat INDEX p/PLATFORM`
+✏️ **Format:** `del_plat INDEX p/PLATFORM`
 
-**Notes:** 
+ℹ️ **Notes:** 
 
 - Ensure that INDEX is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Ensure that the platform provided exists in the specified listing.
 - If more than one platform is provided per command, only the latest platform will be taken into consideration. (An error will occur if the last provided platform is invalid, even if the rest are valid).
 
-**Examples:**
+📚 **Examples:**
 
 - `del_plat 1 p/linkedin`
 - `del_plat 2 p/linkedin p/glints` - Only "glints" will be deleted
 
-**Expected Output:**
+🎯 **Expected Output:**
 A confirmation message showing the deleted platform and the listing it was deleted from will be displayed, such as the one shown below:
 ```ignorelang
 Platform: glints has been deleted from Computer Science Intern!
 ```
 
-**Possible Errors:**
+❌ **Possible Errors:**
 
 If the index provided exceeds the number of listings shown, an error message will show:
 ```ignorelang
@@ -538,9 +552,9 @@ Example: del_plat 1 p/LinkedIn
 
 Finds job listings whose titles contain any of the given keywords.
 
-**Format:** `find KEYWORD [MORE_KEYWORDS]`
+✏️ **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - The search is case-insensitive. eg. `software` will match `Software`
 - The order of the keywords does not matter. e.g. `Software Developer` will match `Developer Software`
@@ -548,12 +562,12 @@ Finds job listings whose titles contain any of the given keywords.
 - Only full words will be matched e.g. `Engineer` will not match `Engineering`
 - Job listings matching at least one keyword will be returned (i.e. `OR` search). e.g. `Software Developer` will return `Software Engineer`, `Microservices Developer`
 
-**Examples:**
+📚 **Examples:**
 
 - `find Software` returns `software` and `Software Developer`
 - `find Software Engineer` returns `Software Developer` and `Chemical Engineer`
 
-**Expected Output**:
+🎯 **Expected Output**:
 A confirmation message will display. The message indicates the number of listings which match the given keyword(s).
 An example is shown below.
 
@@ -567,7 +581,7 @@ If no listings match the keyword(s), the following message will show:
 0 listing(s) shown!
 ```
 
-**Possible Error**
+❌ **Possible Error**
 If no keyword is provided, an error message will display:
 
 ```ignorelang
@@ -586,11 +600,11 @@ Example: find chicken rice
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
-**Format:** `sort f/[FIELD]`
+✏️ **Format:** `sort f/[FIELD]`
 
 - The possible fields are: `title` , `description` , `applicants`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - The sorting logic will always be applied until it is overridden by a `sort f/none` command.
 - The `title` field sorts the listings in alphabetical order of their title fields.
@@ -599,19 +613,19 @@ Sort job listings by the field specified by the user and display the sorted list
 - The `none` field resets the sorter and stop sorting the listings.
 - Note that if more than one field is provided, the last field will be taken into consideration.
 
-**Examples:**
+📚 **Examples:**
 
 - `sort f/title`
 - `sort f/description`
 
-**Expected Output:**
+🎯 **Expected Output:**
 A confirmation message will show:
 
 ```ignorelang
 Listings have been sorted.
 ```
 
-**Possible Error:**
+❌ **Possible Error:**
 If the `field` is not present, an error message will show:
 
 ```ignorelang
@@ -652,15 +666,15 @@ If your changes to the data file makes its format invalid, GoodMatch will discar
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
-**Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
+✏️ **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
 
-**Notes:**
+ℹ️ **Notes:**
 
 - The possible fields are: `expiry date` , `num_of_applicants` , `...`
 - Fields have to be numerical
 - Metrics can be more than or less than or equal
 
-**Examples:**
+📚 **Examples:**
 
 - `filter attribute/num_of_applicants by/>= 5`
 
