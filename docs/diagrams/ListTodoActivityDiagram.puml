@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters ListTodoCommand;
+:Generate new ListTodoCommand;
+:Update filtered TodoList to show all entries;
+    if () then ([TodoList is empty])
+        :Generate null message;
+    else ([else])
+        :Generate success message;
+    endif
+stop
+
+@enduml

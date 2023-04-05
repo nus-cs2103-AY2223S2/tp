@@ -1,0 +1,12 @@
+@startuml
+start
+:User enters DeleteTodoCommand;
+:Generate new DeleteTodoCommand;
+    if () then ([INDEX is valid])
+        :Delete the Todo-task at the specified position;
+        :Generate success message;
+    else ([else])
+        :Generate invalid Index alert message;
+    endif
+stop
+@enduml

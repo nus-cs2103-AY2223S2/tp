@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand("clear")
+activate InternEaseParser
+
+create ClearCommand
+InternEaseParser -> ClearCommand
+activate ClearCommand
+
+ClearCommand --> InternEaseParser : c
+deactivate ClearCommand
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> ClearCommand : execute(model)
+activate ClearCommand
+
+ClearCommand -> Model : getSortedFilteredInternshipList()
+activate Model
+
+Model --> ClearCommand : lastShownList
+deactivate Model
+
+ClearCommand -> Model : addAllInternshipToCache(lastShownList)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+ClearCommand -> Model : setInternEase(new)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearCommand : r
+deactivate CommandResult
+
+ClearCommand --> LogicManager : r
+deactivate ClearCommand
+
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml
