@@ -31,7 +31,7 @@ public class SortCommandParserTest {
         assertParseFailure(parser, "alphabetical", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 SortCommand.MESSAGE_USAGE));
     }
-
+    
     @Test
     public void parse_validArgsAscendingAlphabetical_returnsSortCommand() {
         // no leading and trailing whitespaces
