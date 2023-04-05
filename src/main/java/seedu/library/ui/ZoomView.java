@@ -104,10 +104,9 @@ public class ZoomView extends UiPart<Region> {
                 if (os.contains("nix") || os.contains("nux")) {
                     Runtime runtime = Runtime.getRuntime();
                     runtime.exec(String.format("xdg-open %s", url));
-                } 
+                }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new AssertionError(e);
         }
     }
