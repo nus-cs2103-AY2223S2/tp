@@ -23,7 +23,7 @@ public class HomePage extends Page {
     private static final String FXML = "HomePage.fxml";
     private static final String PAGE_TITLE = "Home";
     private static final String MESSAGE_WELCOME = "Welcome onboard.";
-    
+
     private final Logger logger = LogsCenter.getLogger(HomePage.class);
 
     private static final String COMMAND_HELP = AddCommand.MESSAGE_USAGE + "\n\n"

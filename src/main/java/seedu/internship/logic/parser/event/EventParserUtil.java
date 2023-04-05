@@ -3,6 +3,7 @@ package seedu.internship.logic.parser.event;
 import static java.util.Objects.requireNonNull;
 
 import seedu.internship.commons.core.index.Index;
+import seedu.internship.commons.util.DateTimeUtil;
 import seedu.internship.commons.util.StringUtil;
 import seedu.internship.logic.parser.ParserUtil;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -10,6 +11,8 @@ import seedu.internship.model.event.End;
 import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
+
+import java.time.LocalDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various EventParser classes.
@@ -38,14 +41,14 @@ public class EventParserUtil extends ParserUtil {
      */
     public static Name parseEventName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedStart = name.trim();
-        Name n = new Name(trimmedStart);
-        if (!n.isValidName(name)) {
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return n;
 
+        return new Name(trimmedName);
     }
+
     /**
      * Parses a {@code String start} into a {@code Start}.
      * Leading and trailing whitespaces will be trimmed.
@@ -54,13 +57,12 @@ public class EventParserUtil extends ParserUtil {
      */
     public static Start parseEventStart(String start) throws ParseException {
         requireNonNull(start);
-        String trimmedStart = start.trim();
-        Start s = new Start(trimmedStart);
-        if (!s.isValidStart()) {
+        String trimmedDateTime = start.trim();
+        if (!DateTimeUtil.isValidLocalDateTimeString(trimmedDateTime, Start.NUMERIC_DATE_TIME_FORMATTER)) {
             throw new ParseException(Start.MESSAGE_CONSTRAINTS);
         }
-        return s;
 
+        return new Start(LocalDateTime.parse(trimmedDateTime, Start.NUMERIC_DATE_TIME_FORMATTER));
     }
 
     /**
@@ -71,12 +73,12 @@ public class EventParserUtil extends ParserUtil {
      */
     public static End parseEventEnd(String end) throws ParseException {
         requireNonNull(end);
-        String trimmedEnd = end.trim();
-        End e = new End(trimmedEnd);
-        if (!e.isValidEnd()) {
+        String trimmedDateTime = end.trim();
+        if (!DateTimeUtil.isValidLocalDateTimeString(trimmedDateTime, End.NUMERIC_DATE_TIME_FORMATTER)) {
             throw new ParseException(End.MESSAGE_CONSTRAINTS);
         }
-        return e;
+
+        return new End(LocalDateTime.parse(trimmedDateTime, End.NUMERIC_DATE_TIME_FORMATTER));
     }
 
     /**

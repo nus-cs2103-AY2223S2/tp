@@ -26,8 +26,10 @@ public class StorageManagerTest {
     public void setUp() {
         JsonInternshipCatalogueStorage internshipCatalogueStorage = new JsonInternshipCatalogueStorage(
                 getTempFilePath("ab"));
+        JsonEventCatalogueStorage eventCatalogueStorage = new JsonEventCatalogueStorage(
+                getTempFilePath("bc"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
+        storageManager = new StorageManager(internshipCatalogueStorage, userPrefsStorage, eventCatalogueStorage);
     }
 
     private Path getTempFilePath(String fileName) {
