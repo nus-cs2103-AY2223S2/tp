@@ -81,7 +81,7 @@ If you need to switch to a new device, you can also export and import your previ
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* <span style="background-color: #FFFF00">Extraneous parameters for commands that do not take in parameters (including `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.</span><br>
+* __Extraneous parameters for commands that do not take in parameters (including `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>__
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Command words are case-insensitive.<br>
@@ -111,8 +111,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
-<div markdown="span" class="alert alert-warning">:exclamation:
-<div markdown="span" style="font-weight: bold; color: red"> Caution:</div> In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
+<div markdown="span" class="alert alert-warning">:exclamation: 
+Caution: In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
 </div>
 
 ### 3. Viewing student contacts as a list: `list`
