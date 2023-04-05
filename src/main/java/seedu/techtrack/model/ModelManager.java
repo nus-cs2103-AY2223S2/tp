@@ -133,8 +133,8 @@ public class ModelManager implements Model {
 
     @Override
     public void displaySortedSalaryList(OrderParser orderParser) {
-        FilteredList<Role> filteredRoleCopy = new FilteredList<>(this.roleBook.getRoleList());
-        List<Role> roles = filteredRoleCopy.sorted((r1, r2) -> {
+        ObservableList<Role> obsList = this.roleBook.getRoleList();
+        List<Role> roles = obsList.sorted((r1, r2) -> {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
             if (orderParser.toString().equals("asc")) {
@@ -150,8 +150,8 @@ public class ModelManager implements Model {
 
     @Override
     public void displaySortedDeadlineList(OrderParser orderParser) {
-        FilteredList<Role> filteredRoleCopy = new FilteredList<>(this.roleBook.getRoleList());
-        List<Role> roles = filteredRoleCopy.sorted((r1, r2) -> {
+        ObservableList<Role> obsList = this.roleBook.getRoleList();
+        List<Role> roles = obsList.sorted((r1, r2) -> {
             LocalDate s1 = LocalDate.parse(r1.getDeadline().toString());
             LocalDate s2 = LocalDate.parse(r2.getDeadline().toString());
             if (orderParser.toString().equals("asc")) {
@@ -160,6 +160,9 @@ public class ModelManager implements Model {
                 return s2.compareTo(s1);
             }
         });
+
+        logger.info("AddressBook is sorted: " + this.roleBook);
+
         this.roleBook.setRoles(roles);
     }
 
