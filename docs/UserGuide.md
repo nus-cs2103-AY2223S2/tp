@@ -270,7 +270,7 @@ After executing the command, we see that Bob has been added below the list.
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
 <div markdown="span" class="alert alert-info">
-:information_source: As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <coden/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+:information_source: As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <code>n/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 </div>
 
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
