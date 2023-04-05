@@ -278,7 +278,7 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
 Examples:
 - `findt complete`
 
-### 3.4 Assignment and Completion Commands
+### 3.4 Assignment and Marking Commands
 
 #### 3.4.1 Assigning a Task to a Person: `assign`
 
