@@ -23,18 +23,36 @@ import ezschedule.model.UserPrefs;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.RecurFactor;
+import ezschedule.testutil.EventBuilder;
 
 public class RecurCommandTest {
 
     private final Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
 
+    private final Index targetIndexDay = INDEX_FIRST_EVENT;
+    private final Date endDateDay = new Date("2023-05-15"); // recur from 2023-05-01 till 2023-05-15
+    private final RecurFactor rfDay = new RecurFactor(VALID_RECUR_FACTOR_DAY);
+    private final RecurCommand validDailyRecurCommandStub = new RecurCommand(targetIndexDay, endDateDay, rfDay);
+
+    private final Index targetIndexWeek = INDEX_FIRST_EVENT;
+    private final Date endDateWeek = new Date("2023-12-01"); // recur from 2023-05-01 till 2023-12-01
+    private final RecurFactor rfWeek = new RecurFactor(VALID_RECUR_FACTOR_WEEK);
+    private final RecurCommand validWeeklyRecurCommandStub = new RecurCommand(targetIndexWeek, endDateWeek, rfWeek);
+
+    private final Index targetIndexMonth = INDEX_FIRST_EVENT;
+    private final Date endDateMonth = new Date("2023-10-01"); // recur from 2023-05-01 till 2023-06-01
+    private final RecurFactor rfMonth = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
+    private final RecurCommand validMonthlyRecurCommandStub = new RecurCommand(targetIndexMonth, endDateMonth, rfMonth);
+
+    @Test
+    public void getCommandWord_success() {
+        String commandWord = "recur";
+
+        assertEquals(commandWord, validDailyRecurCommandStub.commandWord());
+    }
+
     @Test
     public void execute_withRecurFactorDay_success() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        Date endDate = new Date("2023-05-15"); // recur from 2023-05-01 till 2023-05-15
-        RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_DAY);
-        RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
-
         Event eventToRecur = model.getFilteredEventList().get(0);
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
@@ -49,16 +67,11 @@ public class RecurCommandTest {
             expectedModel.addEvent(eventToRecur);
         }
 
-        assertCommandSuccess(recurCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(validDailyRecurCommandStub, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_withRecurFactorWeek_success() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        Date endDate = new Date("2023-12-01"); // recur from 2023-05-01 till 2023-12-01
-        RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_WEEK);
-        RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
-
         Event eventToRecur = model.getFilteredEventList().get(0);
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
@@ -73,22 +86,17 @@ public class RecurCommandTest {
             expectedModel.addEvent(eventToRecur);
         }
 
-        assertCommandSuccess(recurCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(validWeeklyRecurCommandStub, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_withRecurFactorMonth_success() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        Date endDate = new Date("2023-06-01"); // recur from 2023-05-01 till 2023-06-01
-        RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
-        RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
-
         Event eventToRecur = model.getFilteredEventList().get(0);
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
         // 1 month to recur
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             Date newDate = new Date(eventToRecur.getDate().date.plusMonths(1).toString());
             eventToRecur =
                     new Event(eventToRecur.getName(), newDate,
@@ -97,7 +105,7 @@ public class RecurCommandTest {
             expectedModel.addEvent(eventToRecur);
         }
 
-        assertCommandSuccess(recurCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(validMonthlyRecurCommandStub, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -109,20 +117,6 @@ public class RecurCommandTest {
         Date endDate = new Date("2023-06-01"); // recur from 2023-05-01 till 2023-06-01
         RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_DAY);
         RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
-
-        Event eventToRecur = model.getFilteredEventList().get(0);
-
-        Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
-
-        // 31 days to recur
-        for (int i = 0; i < 31; i++) {
-            Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
-            eventToRecur =
-                    new Event(eventToRecur.getName(), newDate,
-                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
-
-            expectedModel.addEvent(eventToRecur);
-        }
 
         assertCommandFailure(recurCommand, model, String.format(
                 RecurCommand.MESSAGE_RECUR_FACTOR_CAP, rf, maxDaysInMonth, rf));
@@ -138,20 +132,6 @@ public class RecurCommandTest {
         RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_WEEK);
         RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
 
-        Event eventToRecur = model.getFilteredEventList().get(0);
-
-        Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
-
-        // 56 weeks to recur
-        for (int i = 0; i < 56; i++) {
-            Date newDate = new Date(eventToRecur.getDate().date.plusWeeks(1).toString());
-            eventToRecur =
-                    new Event(eventToRecur.getName(), newDate,
-                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
-
-            expectedModel.addEvent(eventToRecur);
-        }
-
         assertCommandFailure(recurCommand, model, String.format(
                 RecurCommand.MESSAGE_RECUR_FACTOR_CAP, rf, maxWeeksInYear, rf));
     }
@@ -166,62 +146,105 @@ public class RecurCommandTest {
         RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
         RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
 
-        Event eventToRecur = model.getFilteredEventList().get(0);
-
-        Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
-
-        // 13 month to recur
-        for (int i = 0; i < 13; i++) {
-            Date newDate = new Date(eventToRecur.getDate().date.plusMonths(1).toString());
-            eventToRecur =
-                    new Event(eventToRecur.getName(), newDate,
-                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
-
-            expectedModel.addEvent(eventToRecur);
-        }
-
         assertCommandFailure(recurCommand, model, String.format(
                 RecurCommand.MESSAGE_RECUR_FACTOR_CAP, rf, maxMonthInYear, rf));
     }
 
     @Test
-    public void execute_validIntToStringMonths_success() {
+    public void execute_recurWithPastEndDate_failure() {
         Index targetIndex = INDEX_FIRST_EVENT;
-        Date endDate = new Date("2023-06-01"); // recur from 2023-05-01 till 2023-06-01
+        Date endDate = new Date("2020-05-01"); // recur from 2023-05-01 till 2020-05-01
         RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
         RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
 
+        assertCommandFailure(recurCommand, model, RecurCommand.MESSAGE_FAILURE_PAST_DATE);
+    }
+
+    @Test
+    public void execute_recurDailyWithClash_failure() {
+        Event eventToRecur = model.getFilteredEventList().get(0);
+        Date clashDate = new Date(eventToRecur.getDate().date.plusDays(4).toString());
+        String month = validDailyRecurCommandStub.intToStringMonth(clashDate.getMonth());
+
+        // EAT has clashing time with ART
+        Event eat = new EventBuilder().withName("Eating contest")
+                .withDate("2023-05-05").withStartTime("12:00").withEndTime("13:00").build();
+        model.addEvent(eat);
+
+        assertCommandFailure(validDailyRecurCommandStub, model,
+                String.format(RecurCommand.MESSAGE_FAILURE_EVENT_CLASH, clashDate.getDay(), month));
+    }
+
+    @Test
+    public void execute_recurWeeklyWithClash_failure() {
+        Event eventToRecur = model.getFilteredEventList().get(0);
+        Date clashDate = new Date(eventToRecur.getDate().date.plusWeeks(5).toString());
+        String month = validWeeklyRecurCommandStub.intToStringMonth(clashDate.getMonth());
+
+        // eat has clashing time with ART
+        Event eat = new EventBuilder().withName("Eating contest")
+                .withDate("2023-06-05").withStartTime("12:00").withEndTime("13:00").build();
+        model.addEvent(eat);
+
+        assertCommandFailure(validWeeklyRecurCommandStub, model,
+                String.format(RecurCommand.MESSAGE_FAILURE_EVENT_CLASH, clashDate.getDay(), month));
+    }
+
+    @Test
+    public void execute_recurMonthlyWithClash_failure() {
+        Event eventToRecur = model.getFilteredEventList().get(0);
+        Date clashDate = new Date(eventToRecur.getDate().date.plusMonths(5).toString());
+        String month = validMonthlyRecurCommandStub.intToStringMonth(clashDate.getMonth());
+
+        // EAT has clashing time with ART
+        Event eat = new EventBuilder().withName("Eating contest")
+                .withDate("2023-10-01").withStartTime("12:00").withEndTime("13:00").build();
+        model.addEvent(eat);
+
+        assertCommandFailure(validMonthlyRecurCommandStub, model,
+                String.format(RecurCommand.MESSAGE_FAILURE_EVENT_CLASH, clashDate.getDay(), month));
+    }
+
+    @Test
+    public void execute_validIntToStringMonths_success() {
         // valid months [1, 12]
         String expectedMonthJan = "January";
-        String actualMonthJan = recurCommand.intToStringMonth(1);
+        String actualMonthJan = validDailyRecurCommandStub.intToStringMonth(1);
+
+        String expectedMonthFeb = "February";
+        String actualMonthFeb = validDailyRecurCommandStub.intToStringMonth(2);
+
+        String expectedMonthMar = "March";
+        String actualMonthMar = validDailyRecurCommandStub.intToStringMonth(3);
+
+        String expectedMonthApr = "April";
+        String actualMonthApr = validDailyRecurCommandStub.intToStringMonth(4);
 
         String expectedMonthJun = "June";
-        String actualMonthJun = recurCommand.intToStringMonth(6);
+        String actualMonthJun = validDailyRecurCommandStub.intToStringMonth(6);
 
         String expectedMonthDec = "December";
-        String actualMonthDec = recurCommand.intToStringMonth(12);
+        String actualMonthDec = validDailyRecurCommandStub.intToStringMonth(12);
 
         assertEquals(expectedMonthJan, actualMonthJan);
+        assertEquals(expectedMonthFeb, actualMonthFeb);
+        assertEquals(expectedMonthMar, actualMonthMar);
+        assertEquals(expectedMonthApr, actualMonthApr);
         assertEquals(expectedMonthJun, actualMonthJun);
         assertEquals(expectedMonthDec, actualMonthDec);
     }
 
     @Test
     public void execute_invalidIntToStringMonths_success() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        Date endDate = new Date("2023-06-01"); // recur from 2023-05-01 till 2023-06-01
-        RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
-        RecurCommand recurCommand = new RecurCommand(targetIndex, endDate, rf);
-
         String invalidMessage = "No such month";
 
         // invalid months [..., 0]
-        String actualMonthZero = recurCommand.intToStringMonth(0);
-        String actualMonthNegative = recurCommand.intToStringMonth(-10);
+        String actualMonthZero = validDailyRecurCommandStub.intToStringMonth(0);
+        String actualMonthNegative = validDailyRecurCommandStub.intToStringMonth(-10);
 
         // invalid months [13, ...]
-        String actualMonthThirteen = recurCommand.intToStringMonth(13);
-        String actualMonthHundred = recurCommand.intToStringMonth(100);
+        String actualMonthThirteen = validDailyRecurCommandStub.intToStringMonth(13);
+        String actualMonthHundred = validDailyRecurCommandStub.intToStringMonth(100);
 
 
         assertEquals(invalidMessage, actualMonthZero);
