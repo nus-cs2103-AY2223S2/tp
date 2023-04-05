@@ -16,8 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.JobTitle;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 
