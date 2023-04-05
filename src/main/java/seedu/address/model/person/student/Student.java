@@ -227,28 +227,65 @@ public class Student extends Person {
         return comment;
     }
 
+    /**
+     * A method that returns the Student's class.
+     *
+     * @return Student's class.
+     */
     public Class getSc() {
         return sc;
     }
 
+    /**
+     * A method that returns the Student's phone number.
+     *
+     * @return Student's phone number.
+     */
     public Phone getStudentNumber() {
         return studentNumber;
     }
 
+    /**
+     * A method that returns the Student's tags.
+     *
+     * @return Student's tags.
+     */
     public Set<Tag> getTagList() {
         return tags;
     }
 
+    /**
+     * A method that returns the Student's homework set.
+     *
+     * @return Student's homework set.
+     */
     public Set<Homework> getHomeworkSet() {
         return homework;
+    }
+
+    /**
+     * A method that checks if the student is the same.
+     * Adapted from: isSamePerson in Person class.
+     *
+     * @param otherStudent Student to be compared with.
+     * @return boolean value to indicate if the student is the same.
+     */
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getStudentClass().equals(getStudentClass())
+                && otherStudent.getIndexNumber().equals(getIndexNumber());
     }
 
     /**
      * A method that returns a boolean value to indicate if other is equal to this Student.
      * Note that this method only checks for attributes that are unique and unchanging to Student.
      *
-     * @param other
-     * @return
+     * @param other Other object to be compared with.
+     * @return boolean value to indicate if other is equal to this Student.
      */
     @Override
     public boolean equals(Object other) {

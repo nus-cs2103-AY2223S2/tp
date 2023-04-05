@@ -2,9 +2,12 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_ANY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INDEX_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -32,10 +35,11 @@ public class TypicalStudents {
             .withComment("Good Student!")
             .withIndexNumber("1")
             .withTags("friends").build();
+
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAge("20")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withImage("Insert parent image here!")
+            .withImage("Insert student image here!")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withClass("1A")
@@ -65,10 +69,10 @@ public class TypicalStudents {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_ANY)
+            .withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_AMY).withIndexNumber(VALID_INDEX_AMY)
             .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIENDLY).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withClass(VALID_CLASS_ANY)
+            .withEmail(VALID_EMAIL_BOB).withClass(VALID_CLASS_BOB).withIndexNumber(VALID_INDEX_BOB)
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY)
             .build();
 
