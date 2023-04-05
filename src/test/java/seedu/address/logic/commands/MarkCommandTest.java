@@ -41,7 +41,7 @@ public class MarkCommandTest {
         CommandResult commandResult = new MarkCommand(INDEX_FIRST_TASK, score).execute(model, taskBookModel);
         Task markedTask = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
-        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()),
+        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask, score.toString()),
                 commandResult.getFeedbackToUser());
         assertTrue(markedTask.isDone());
     }
