@@ -50,9 +50,9 @@ public class OrderTest {
         editedC = new OrderBuilder(ORDER_C).withAddress(VALID_ADDRESS_B).build();
         assertTrue(ORDER_C.isSameOrder(editedC));
 
-        // different created date -> returns true
+        // different created date -> returns false
         editedC = new OrderBuilder(ORDER_C).withCreatedDate(VALID_CREATED_DATE_A).build();
-        assertTrue(ORDER_C.isSameOrder(editedC));
+        assertFalse(ORDER_C.isSameOrder(editedC));
 
         // different note -> returns true
         editedC = new OrderBuilder(ORDER_C).withNote(VALID_NOTE_A).build();
