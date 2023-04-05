@@ -57,7 +57,7 @@ class JsonAdaptedMenuItem {
                     ItemName.class.getSimpleName()));
         }
         if (!ItemName.isValidName(itemName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ItemName.MESSAGE_CONSTRAINTS);
         }
         final ItemName modelItemName = new ItemName(itemName);
 

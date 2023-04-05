@@ -9,7 +9,8 @@ import trackr.model.commons.Name;
 public class PersonName extends Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Person (Customer / Supplier) names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Person (Customer / Supplier) names should only contain "
+                    + "alphanumeric characters and spaces, and it should not be blank";
 
     /**
      * Constructs a {@code Name}.

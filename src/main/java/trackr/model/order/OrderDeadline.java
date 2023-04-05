@@ -9,7 +9,8 @@ import trackr.model.commons.Deadline;
 public class OrderDeadline extends Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Order deadline should only contain numeric values in the format \"DD/MM/YYYY\" and it should not be blank.";
+            "Order deadline should only contain numeric values "
+                    + "in the format \"DD/MM/YYYY\" and it should not be blank.";
 
 
     /**

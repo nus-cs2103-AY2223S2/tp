@@ -27,7 +27,8 @@ public abstract class Status {
             this.statuses.put(entry.getKey().toUpperCase(), entry.getValue());
         }
 
-        checkArgument(isValidStatus(status, statuses), String.format(MESSAGE_CONSTRAINTS_FORMAT, type, getStatusMessage()));
+        checkArgument(isValidStatus(status, statuses),
+                String.format(MESSAGE_CONSTRAINTS_FORMAT, type, getStatusMessage()));
         this.status = status.toUpperCase();
     }
 
