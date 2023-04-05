@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Rating;
 
 
 /**
@@ -127,7 +128,7 @@ public class ZoomView extends UiPart<Region> {
         InputStream rating4 = this.getClass().getResourceAsStream("/images/Rating4.png");
         InputStream rating5 = this.getClass().getResourceAsStream("/images/Rating5.png");
 
-        if (bookmark.getRating() == null) {
+        if (bookmark.getRating().equals(Rating.DEFAULT_RATING)) {
             ratingStar.setImage(new Image(rating0));
             ratingStar.setVisible(true);
             return;

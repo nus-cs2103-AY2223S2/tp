@@ -72,8 +72,7 @@ public class GoToCommand extends Command {
             if (os.contains("nix") || os.contains("nux")) {
                 Runtime runtime = Runtime.getRuntime();
                 runtime.exec(String.format("xdg-open %s", url));
-            }
-            else {
+            } else {
                 throw new CommandException(NOT_SUPPORTED);
             }
         }
