@@ -64,7 +64,7 @@ public class CodocParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    //    @Test // Broken
+    //    @Test // Yet to fix
     //    public void parseCommand_find() throws Exception {
     //        Person person = new PersonBuilder().build();
     //        List<String> keywords = Arrays.asList("foo", "bar", "baz");

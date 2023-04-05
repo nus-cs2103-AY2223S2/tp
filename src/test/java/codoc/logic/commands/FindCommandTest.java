@@ -48,7 +48,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    //    @Test // Broken
+    //    @Test // Yet to fix
     //    public void execute_zeroKeywords_noPersonFound() {
     //        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
     //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
@@ -58,7 +58,7 @@ public class FindCommandTest {
     //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     //    }
 
-    //    @Test // Broken
+    //    @Test // Yet to fix
     //    public void execute_multipleKeywords_multiplePersonsFound() {
     //        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
     //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
