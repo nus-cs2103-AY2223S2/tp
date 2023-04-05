@@ -30,8 +30,7 @@ public class EditOrderCommand extends EditItemCommand<Order> {
     public static final String COMMAND_WORD = "edit_order";
     public static final String COMMAND_WORD_SHORTCUT = "edit_o";
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited %s: %s";
-    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu. "
-        + "If you'd like to have this order in the list, please add it to the menu first before trying again.";
+    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %s already exists in the %s list.";
 
