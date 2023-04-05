@@ -15,7 +15,7 @@ public class DeleteNoteCommand extends Command {
     public static final String MESSAGE_USAGE = "Delete syntax: deleteNote index/INDEX (must be a positive integer) "
             + "name/name-of-event type/type-of-event";
     public static final String MESSAGE_EXAMPLE = "deleteNote index/1 name/t1 type/Tutorial";
-    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
+    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered "
             + "cannot be recognized! Please enter type such as Tutorial, Lab, or Consultation";
     public static final String MESSAGE_NOTE_NOT_FOUND = "The event %2$s itself or its note indexed %1$s is not found!";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note indexed %1$s from event %2$s";
