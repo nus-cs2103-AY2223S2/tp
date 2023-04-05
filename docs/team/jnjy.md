@@ -4,11 +4,10 @@ title: Ng Jin Yuan's Project Portfolio Page
 ---
 
 ### Project: Well Informed Fridge Environment (WIFE)
-WIFE is always right. Our product Well Informed Fridge Environment (WIFE) helps users to manage their fridge inventory.
-With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing 
-wastage and improving the efficiency of grocery shopping.
 
-P.S. Never question WIFE.
+Enhance life with WIFE! Our product Well Informed Fridge Environment <WIFE/> helps users to manage their food items 
+in the fridge. With this, one never have to worry about optimizing storage and organization of food items in their 
+refrigerator!
 
 Given below are my contributions to the project.
 
