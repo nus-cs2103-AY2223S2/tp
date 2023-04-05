@@ -88,7 +88,7 @@ The sections below give more details of each component.
 
 ### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -105,7 +105,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java).
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -134,7 +134,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java).
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -148,7 +148,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java).
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -1041,7 +1041,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No application is deleted. Error details shown in the status message. 
 
    4. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      Expected: Similar to the above test case for `delete-app 0`.
 
 ### Sorting the application list
 
@@ -1073,11 +1073,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
    
-   2. Valid test cases: Same as above <br>
-      Expected: Same as above. Check that no application entries that are not in the currently displayed list of applications
+   2. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
+      Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
       shows up after sorting.
 
-   3. Other incorrect sort commands to try:  Same as above <br>
+   3. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
       Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
 
 --------------------------------------------------------------------------------------------------------------------
