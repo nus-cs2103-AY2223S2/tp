@@ -14,32 +14,6 @@ import ezschedule.testutil.EventBuilder;
 public class EventContainsKeywordsPredicateTest {
 
     @Test
-    public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
-
-        EventContainsKeywordsPredicate firstPredicate = new EventContainsKeywordsPredicate(firstPredicateKeywordList);
-        EventContainsKeywordsPredicate secondPredicate = new EventContainsKeywordsPredicate(secondPredicateKeywordList);
-
-        // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
-
-        // same values -> returns true
-        EventContainsKeywordsPredicate firstPredicateCopy =
-                new EventContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
-
-        // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
-
-        // null -> returns false
-        assertFalse(firstPredicate.equals(null));
-
-        // different event -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
-    }
-
-    @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         EventContainsKeywordsPredicate predicate =
@@ -73,5 +47,31 @@ public class EventContainsKeywordsPredicateTest {
         predicate = new EventContainsKeywordsPredicate(Arrays.asList("2023-06-01", "18:00", "20:00"));
         assertFalse(predicate.test(new EventBuilder().withName("Alice").withDate("2023-06-01")
                 .withStartTime("18:00").withEndTime("20:00").build()));
+    }
+
+    @Test
+    public void equals() {
+        List<String> firstPredicateKeywordList = Collections.singletonList("first");
+        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+
+        EventContainsKeywordsPredicate firstPredicate = new EventContainsKeywordsPredicate(firstPredicateKeywordList);
+        EventContainsKeywordsPredicate secondPredicate = new EventContainsKeywordsPredicate(secondPredicateKeywordList);
+
+        // same object -> returns true
+        assertTrue(firstPredicate.equals(firstPredicate));
+
+        // same values -> returns true
+        EventContainsKeywordsPredicate firstPredicateCopy =
+                new EventContainsKeywordsPredicate(firstPredicateKeywordList);
+        assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        // different types -> returns false
+        assertFalse(firstPredicate.equals(1));
+
+        // null -> returns false
+        assertFalse(firstPredicate.equals(null));
+
+        // different event -> returns false
+        assertFalse(firstPredicate.equals(secondPredicate));
     }
 }
