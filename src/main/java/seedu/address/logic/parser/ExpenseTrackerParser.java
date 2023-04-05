@@ -25,13 +25,13 @@ import seedu.address.logic.commands.general.HelpCommand;
 import seedu.address.logic.commands.list.ListCategoryCommand;
 import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.logic.commands.list.ListRecurringExpensesCommand;
-import seedu.address.logic.parser.add.AddCategoryParser;
+import seedu.address.logic.parser.add.AddCategoryCommandParser;
 import seedu.address.logic.parser.add.AddExpenseCommandParser;
 import seedu.address.logic.parser.add.AddRecurringExpenseParser;
-import seedu.address.logic.parser.delete.DeleteCategoryParser;
+import seedu.address.logic.parser.delete.DeleteCategoryCommandParser;
 import seedu.address.logic.parser.delete.DeleteExpenseCommandParser;
 import seedu.address.logic.parser.delete.DeleteRecurringExpenseParser;
-import seedu.address.logic.parser.edit.EditCategoryParser;
+import seedu.address.logic.parser.edit.EditCategoryCommandParser;
 import seedu.address.logic.parser.edit.EditExpenseCommandParser;
 import seedu.address.logic.parser.edit.EditRecurringExpenseManagerCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -86,13 +86,13 @@ public class ExpenseTrackerParser {
             return new HelpCommand();
 
         case AddCategoryCommand.COMMAND_WORD:
-            return new AddCategoryParser().parse(arguments);
+            return new AddCategoryCommandParser().parse(arguments);
 
         case DeleteCategoryCommand.COMMAND_WORD:
-            return new DeleteCategoryParser().parse(arguments);
+            return new DeleteCategoryCommandParser().parse(arguments);
 
         case EditCategoryCommand.COMMAND_WORD:
-            return new EditCategoryParser().parse(arguments);
+            return new EditCategoryCommandParser().parse(arguments);
 
         case EditExpenseCommand.COMMAND_WORD:
             return new EditExpenseCommandParser().parse(arguments);
