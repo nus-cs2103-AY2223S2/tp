@@ -27,7 +27,6 @@ Given below are my contributions to the project.
     * An independent structure of logic, model, storage and ui is used to implement this side features package to avoid ambiguity. This substructure integrates with the main structure of InternEase. 
     * Executions of the commands (include main features) in different interface panel is allowed to provide a more efficient use of InternEase. It will automatically switch to the desired panel according to the command type.
   * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
-  * 
 
 **New Feature**: Clear the internship applications with specified attributes and keywords
 * What it does:
