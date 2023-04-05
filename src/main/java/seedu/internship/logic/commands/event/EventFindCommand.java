@@ -59,7 +59,7 @@ public class EventFindCommand extends EventCommand {
         Predicate<Event> finalFilterEnd = filterEnd;
         Predicate<Event> filter = x -> finalFilterName.test(x) && finalFilterStart.test(x) && finalFilterEnd.test(x);
         model.updateFilteredEventList(filter);
-
+        model.updateSelectedInternship(null);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredEventList().size()),
                 ResultType.FIND_EVENT, model.getFilteredEventList());
     }
