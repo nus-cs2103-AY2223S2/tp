@@ -221,7 +221,7 @@ Congratulations on completing the tutorial! For the complete list of commands, y
 **[Command Summary](#7-command-summary)** section. For more details about each command, you can read on for the next
 section on **[Features](#4-features)**.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -382,7 +382,7 @@ Example:
 * `edit-app 2 t/creditBearing t/mentoringProvided`: removes all tags except `creditBearing` and `mentoringProvided`
   from the 2nd application on the Application List Panel, assuming the application had more than 2 tags initially.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -454,7 +454,7 @@ Examples:
 * `list` followed by `delete-task 2`: deletes the task for the 2nd application on the Application List Panel.
 * `find Google` followed by `delete-task 1`: deletes the task of the 1st application shown in the results of the `find` command.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -511,7 +511,7 @@ Examples:
 * `sort a deadline` will show applications with task deadlines. Those with earlier deadlines will be higher up in the list.
 * `sort d alphabetical` will show applications in descending alphabetical order. (Z to A)
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -574,14 +574,14 @@ There is no need to save manually.
 
 #### 4.4.7 Editing the data file **(for Advanced users)**
 
-Data in the internship book are actually saved as a JSON file `[JAR file location]/data/internshipbook.json`. 
+Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. 
 Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -669,7 +669,7 @@ sprINT can process your data more quickly!
 | **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                  |
 | **Exit**                    | :x:                | `exit`                                                                                                                                                                   |
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 <div style="page-break-after: always;"></div>
 
