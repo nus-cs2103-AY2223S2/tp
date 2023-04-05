@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_STUDENT;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import java.util.Set;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
