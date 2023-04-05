@@ -61,7 +61,7 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 **familiar** with CoDoc and to gain the most out of your experience.
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
-how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
+how to make sense of the [interface](#navigating-codoc), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
 
 <div class="span" class="alert alert-info">
 :information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. **All first time users** are recommended to read through the **entire user guide**.
@@ -276,7 +276,7 @@ After executing the command, we see that Bob has been added below the list.
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
 To save time typing out the full course and also standardize formatting, we have coded the command so that you just
-have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigation) to identify. 
+have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigating-codoc) to identify. 
 
 If you want to, you can add additional details of the person such as _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
@@ -290,9 +290,9 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 #### 2. Viewing a person
 
 Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
-This will load Bob's details into the [**Info Panel**](#navigation).
+This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
-To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigation), we can tell that Bob is
+To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
 numbered `8` in this example. This is his _index_.
 
 Now enter `view 8` into the command box.
