@@ -1,9 +1,13 @@
 {
-  "persons": [ {
+  "pets": [ {
     "ownerName": "Alice Pauline",
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "name" : "Whiskers",
+    "phone" : "94351253",
+    "email" : "invalid@email!3e",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "timestamp" : "2023-04-05T22:37:07.428987500",
+    "deadline" : "Cut hair by 2023-04-07 22:37:08",
+    "status" : "Unmarked",
+    "tagged" : [ "MaineCoon" ]
   } ]
 }
