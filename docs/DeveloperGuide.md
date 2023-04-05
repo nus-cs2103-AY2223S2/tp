@@ -985,10 +985,10 @@ Similar to **UC03 Delete a contact**, except,
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on 64-bit environments.
-3.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
-4.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
-5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on 64-bit environments.
+1.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -997,6 +997,33 @@ Similar to **UC03 Delete a contact**, except,
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GitHub profile**: GitHub username e.g. `chia-yh`
 * **GitHub repository**: repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. The current `VALIDATION_REGEX` for validating the `Name` field is flawed, and does not consider names with `/`, `-` or `.` valid.
+   1. Valid `Name` fields:
+      1. `Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr`
+      1. `Alex Yeoh2`
+   1. Invalid `Name` fields:
+      1. `Balakrishnan s/o Nagamuthu`
+      1. `Chien-Ming Wang`
+      1. `S. R. Nathan`
+
+   We plan to update the `VALIDATION_REGEX` to also allow other possible names including, but not limited to, those under "Invalid `Name` fields" above. The `VALIDATION_REGEX` currently does not restrict `Name` length to allow for contacts with long names. These cases are handled in the UI by allowing the contact list to be scrollable, and wrapping long names in the detail panel.
+1. The current `VALIDATION_REGEX` for validating the `Phone` field is flawed, and does not consider phone numbers with `+`, `-`, ` `, `(`, or `)` valid.
+   1. Valid `Phone` fields:
+      1. `995`
+      1. `12345678`
+   1. Invalid `Phone` fields:
+      1. `+65 12345678`
+      2. `01234-012345`
+      3. `(01234) 012345` 
+
+   We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
+1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
+1. _{possible UI Enhancements to handle interaction of overflowing text with Tags}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1150,9 +1177,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
        Expected: No project is edited. An error message is shown as an invalid command was given.
-
-
-
 
 ### Deleting a project
 
