@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.student.ParentName;
-
 /**
  * Represents the Age of a Student object.
  */
@@ -64,8 +62,8 @@ public class Age {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ParentName// instanceof handles nulls
-                && value.equals(((ParentName) other).value)); // state check
+                || (other instanceof Age// instanceof handles nulls
+                && value.equals(((Age) other).value)); // state check
     }
 
     @Override
