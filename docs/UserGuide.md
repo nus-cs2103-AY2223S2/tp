@@ -83,7 +83,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 
-  Example:
+Example:
 * `delete 2` deletes the second person in the list of contacts.
 
 [Back to top](#top)
@@ -98,7 +98,8 @@ Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 
-Example: `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+Example: 
+* `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
 mt/cs2103` Edits the specified information for the second person in the contact list.
 
 [Back to top](#top)
@@ -128,7 +129,7 @@ Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]`
 
 Example:
 
-`find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
+* `find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
 has a tag labeled `cs2103`, and whose emails contain `gmail`.
 
 [Back to top](#top)
