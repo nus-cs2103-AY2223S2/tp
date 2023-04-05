@@ -9,7 +9,6 @@ import java.time.LocalDate;
  */
 public class LeaveDate implements Comparable<LeaveDate> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should only be of the form YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final LocalDate value;
