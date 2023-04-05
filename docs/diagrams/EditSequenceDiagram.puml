@@ -5,18 +5,18 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackerParser" as TrackerParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-participant "cmd:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
-participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "c:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit CS2040S /name DSAG")
+[-> LogicManager : execute(\n"edit CS2040S \n/name DSAG")
 activate LogicManager
 
-LogicManager -> TrackerParser : parseCommand("edit CS2040S /name DSAG")
+LogicManager -> TrackerParser : parseCommand(\n"edit CS2040S \n/name DSAG")
 activate TrackerParser
 
 create EditCommandParser
@@ -26,23 +26,23 @@ activate EditCommandParser
 EditCommandParser --> TrackerParser
 deactivate EditCommandParser
 
-TrackerParser -> EditCommandParser : parse("CS2040S /name DSAG")
+TrackerParser -> EditCommandParser : parse(\n"CS2040S \n/name DSAG")
 activate EditCommandParser
 
 create EditModuleCommand
-EditCommandParser -> EditModuleCommand : EditModuleCommand(code, descriptor)
+EditCommandParser -> EditModuleCommand : EditModuleCommand(\ncode, descriptor)
 activate EditModuleCommand
 
-EditModuleCommand --> EditCommandParser : cmd
+EditModuleCommand --> EditCommandParser : c
 deactivate EditModuleCommand
 
-EditCommandParser --> TrackerParser : cmd
+EditCommandParser --> TrackerParser : c
 deactivate EditCommandParser
 
 EditCommandParser -[hidden]-> TrackerParser
 destroy EditCommandParser
 
-TrackerParser --> LogicManager : cmd
+TrackerParser --> LogicManager : c
 deactivate TrackerParser
 
 LogicManager -> EditModuleCommand : execute(model)
@@ -73,7 +73,7 @@ activate CommandResult
 CommandResult --> EditModuleCommand
 deactivate CommandResult
 
-EditModuleCommand --> LogicManager : result
+EditModuleCommand --> LogicManager : r
 deactivate EditModuleCommand
 
 [<--LogicManager

@@ -177,7 +177,7 @@ It's behaviour is dependent on the user's input.
 
 The following sequence diagram depicts an `add` command execution for adding a `Module` object to the `Tracker` object.
 
-<img src="images/AddSequenceDiagram.png" width="1261"/>
+<img src="images/AddSequenceDiagram.png" width="1046"/>
 
 **Notes for `AddCommandParser#parse(String)`**
 
@@ -221,7 +221,7 @@ It's behaviour is dependent on the user's input.
 
 The following sequence diagram depicts an `edit` command execution for editing the name of a `Module` object in the `Tracker` object.
 
-<img src="images/EditSequenceDiagram.png" width="1527"/>
+<img src="images/EditSequenceDiagram.png" width="1038"/>
 
 **Notes for `EditCommandParser#parse(String)`**
 
