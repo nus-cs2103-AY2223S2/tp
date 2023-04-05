@@ -88,7 +88,8 @@ Let's clear a little confusion that might arise:
 
 ### Adding tutorial: `touch`
 
-Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) and no modification of duration is allowed
+Adds a tutorial to the TA’s schedule.
+<b> Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
@@ -117,7 +118,8 @@ Examples:
 
 ### Adding lab: `vim`
 
-Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to CS2040 Lab timing) and no modification of duration is allowed
+Adds a lab to the TA’s schedule. 
+<b> Lab is assumed to be 2 hour long (adhering to CS2040 Lab timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
@@ -145,7 +147,8 @@ Examples:
 
 ### Adding consultation: `mkdir`
 
-Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
+Adds a consultation to the TA’s schedule.
+<b> Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events

@@ -15,7 +15,7 @@ public class Name {
 
     public static final String STUDENT_MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank."
-            + " A maximum of 70 repeating consecutive same characters is allowed for student's name.";
+            + " A maximum of 70 characters is allowed for student's name.";
 
     /*
      * The first character of the address must not be a whitespace,
