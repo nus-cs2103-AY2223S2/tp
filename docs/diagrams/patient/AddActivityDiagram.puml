@@ -1,27 +1,15 @@
-@startuml
+@startuml AddPatientActivityDiagram
 start
-:User executes add patient command;
-:VMS parses user inputs;
-if() then ([Invalid Input])
-    :Throws ParseException;
-    :Displays unsuccessful adding patient message on UI;
-else ([Valid Input])
-    fork
-    :Creates new **Name**;
-    fork again
-    :Creates new **Phone**;
-    fork again
-    :Creates new **Dob**;
-    fork again
-    :Creates new **BloodType**;
-    fork again
-    :Creates new **Set<GroupName> allergies**;
-    fork again
-    :Creates new **Set<GroupName> vaccines**;
-    end fork
-    :Creates new patient;
-    :Stores patient into VMS;
-    :Displays successful adding patient message on UI;
+if() then ([valid input])
+    :Create new patient;
+    if() then ([within patient limit])
+        :Store patient into PatientManager;
+    else ([else])
+        :Throw CommandExeception;
+    endif;
+else ([else])
+    :Throw ParseException;
 endif;
+:Display message to user;
 stop
 @enduml
