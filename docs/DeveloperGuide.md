@@ -4,8 +4,6 @@ title: Developer Guide
 ---
 <img src="./images/sprINT.png" />
 
-## Table of Contents
-
 * Table of Contents
 {:toc}
 
@@ -161,9 +159,10 @@ The `Storage` component,
 
 ### 4.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.sprint.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **5. Implementation**
 
@@ -234,6 +233,9 @@ sequence diagram:
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Edit Application feature
 
 #### About
@@ -274,6 +276,8 @@ sequence diagram:
 
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.3 Find Application feature
 
@@ -323,6 +327,8 @@ sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.4 Sort Applications feature
 
@@ -390,6 +396,9 @@ See the following activity diagram that illustrates this workflow with some exam
 and `list` commands:
 
 ![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.5 Undo/redo feature
 
@@ -473,7 +482,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -485,6 +494,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the company being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.6 Add Task feature 
 
@@ -520,7 +532,7 @@ The following sequence diagram provides a graphical illustration of how the add 
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: How `add task` executes**
   
@@ -541,6 +553,9 @@ The following sequence diagram provides a graphical illustration of how the add 
       * Increases code redundancy.
       * Violates Single Responsibility Principle.
 
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.7 Exit sprINT feature
 
@@ -986,6 +1001,7 @@ UC05, UC06, UC10).</u>
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **9. Appendix: Instructions for manual testing**
 
@@ -1063,6 +1079,9 @@ testers are expected to do more *exploratory* testing.
 
    3. Other incorrect sort commands to try:  Same as above <br>
       Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **10. Appendix: Planned Enhancements**
 
