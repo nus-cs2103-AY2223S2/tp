@@ -41,6 +41,7 @@ public class UnarchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Unarchived Application: %1$s";
+    public static final String MESSAGE_APPLICATION_NOT_ARCHIVED = "Application is not currently archived!";
 
     private final Index targetIndex;
 
@@ -65,6 +66,11 @@ public class UnarchiveCommand extends Command {
         }
 
         InternshipApplication internshipToUnarchive = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!internshipToUnarchive.isArchived()) {
+            throw new CommandException(MESSAGE_APPLICATION_NOT_ARCHIVED);
+        }
+
         InternshipApplication archivedApplication = createdUnarchivedApplication(internshipToUnarchive);
 
         model.setApplication(internshipToUnarchive, archivedApplication);

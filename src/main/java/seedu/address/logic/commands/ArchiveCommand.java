@@ -41,6 +41,7 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Archived Application: %1$s";
+    public static final String MESSAGE_APPLICATION_ALREADY_ARCHIVED = "Application is already archived!";
 
     private final Index targetIndex;
 
@@ -65,6 +66,11 @@ public class ArchiveCommand extends Command {
         }
 
         InternshipApplication internshipToArchive = lastShownList.get(targetIndex.getZeroBased());
+
+        if (internshipToArchive.isArchived()) {
+            throw new CommandException(MESSAGE_APPLICATION_ALREADY_ARCHIVED);
+        }
+
         InternshipApplication archivedApplication = createdArchivedApplication(internshipToArchive);
 
         model.setApplication(internshipToArchive, archivedApplication);
