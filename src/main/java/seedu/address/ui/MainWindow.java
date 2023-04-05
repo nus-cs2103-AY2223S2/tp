@@ -186,7 +186,7 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
 
         } else {
-            if(helpWindow.isMinimized()){
+            if (helpWindow.isMinimized()) {
                 helpWindow.unMinimize();
             }
             helpWindow.focus();
