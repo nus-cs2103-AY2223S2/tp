@@ -972,3 +972,10 @@ The terms in this glossary are sorted in alphabetical order.
 
 {TODO maybe add}
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+1. [ ] Utilising checksum on JSON file to prevent manual tampering of data.
+1. [ ] Displaying explicit exceptions when the JSON file is corrupted or tampered with.
+
+
