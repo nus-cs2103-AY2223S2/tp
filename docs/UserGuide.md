@@ -37,7 +37,7 @@ all in one place.
 
 ### Objective of User Guide
 The Objective of this User Guide is to provide you with useful instructions on how to navigate the TinS application.
-To ensure a smooth on-boarding process for you to the TinS application, this User Guide will include detailed
+To ensure a smooth on-boarding process to The Intern's Ship, this User Guide will include detailed
 step-by-step instructions on how to install the TinS application into your device, as well as how to use the various 
 features of TinS. If you are a frequent user of TinS, this User Guide will also include useful tips on how you can use
 TinS in a more efficient way.
@@ -364,7 +364,7 @@ Displays a calendar view of all your events in the Display Panel.
 <div markdown="span" class="alert alert-success">
 
     :bulb: **Tip:**  If there are too many events on one day, you can use the `event find` function to find events by
-    their starting and ending timings.
+    their start and end timings.
 </div>
 
 Example: `calendar`
