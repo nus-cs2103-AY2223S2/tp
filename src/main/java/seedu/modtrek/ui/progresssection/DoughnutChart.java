@@ -33,7 +33,7 @@ public class DoughnutChart extends PieChart {
     private Circle innerCircle;
 
     /**
-     * The individual tag labels representing each category of the curriculum.
+     * The individual tag labels for each degree requirement.
      */
     private VBox[] dataLabels;
 
@@ -53,6 +53,11 @@ public class DoughnutChart extends PieChart {
         addLabels();
     }
 
+    /**
+     * Feeds degree progression data into the doughnut chart.
+     * @param degreeProgressionData The degree progression data.
+     * @return The data for each arc area of the doughnut chart.
+     */
     private static ObservableList<PieChart.Data> createDoughnutData(DegreeProgressionData degreeProgressionData) {
         ObservableList<PieChart.Data> doughnutData = FXCollections.observableArrayList();
 
@@ -331,6 +336,11 @@ public class DoughnutChart extends PieChart {
     }
 
 
+    /**
+     * Gets the labels for each degree requirement, to be displayed alongside the corresponding
+     * arc area.
+     * @return The labels for each degree requirement.
+     */
     private Map<String, String> getDataLabelTexts() {
         Map<String, String> tagLongDisplay = new HashMap<>();
         tagLongDisplay.put("ULR", "University Level\nRequirements");

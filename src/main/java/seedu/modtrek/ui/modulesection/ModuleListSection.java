@@ -11,14 +11,14 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * A subsection within the ResultsSection (left panel) that displays all the modules in the user's
+ * A subsection within the ResultsSection (left panel) that displays all the modules in the
  * module list.
  */
 public class ModuleListSection extends ModuleSection {
     private ModuleSectionSortNav sortNav;
 
     /**
-     * Instantiates a new Module list section.
+     * Instantiates a new ModuleListSection.
      *
      * @param sortedModules the sorted lists
      * @param sort the sort criteria
@@ -36,7 +36,7 @@ public class ModuleListSection extends ModuleSection {
     }
 
     /**
-     * Updates the sorted modules.
+     * Updates the sorted modules in the ModuleListSection.
      * @param sortedModules The sorted modules.
      * @param sort The sort criteria.
      */
@@ -58,7 +58,7 @@ public class ModuleListSection extends ModuleSection {
         private ComboBox sortDropdown;
 
         /**
-         * Instantiates a new Module section sort nav.
+         * Instantiates a new ModuleSectionSortNav component.
          */
         public ModuleSectionSortNav(String sort, List<Runnable> sorters) {
             super(FXML);
@@ -67,6 +67,10 @@ public class ModuleListSection extends ModuleSection {
             setListeners(sorters);
         }
 
+        /**
+         * Sets handlers to the dropdown buttons.
+         * @param sorters The handlers that will sort the modules according to a certain sorting criteria.
+         */
         private void setListeners(List<Runnable> sorters) {
             sortDropdown.setOnAction((event) -> {
                 int selectedIndex = sortDropdown.getSelectionModel().getSelectedIndex();
@@ -74,6 +78,10 @@ public class ModuleListSection extends ModuleSection {
             });
         }
 
+        /**
+         * Updates the current active dropdown label.
+         * @param sort The sorting criteria reflected by the current active label.
+         */
         public void updateSortLabel(String sort) {
             sort = sort.substring(0, 1) + sort.toLowerCase().substring(1);
             sortDropdown.setValue(sort);
