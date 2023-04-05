@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
 
 import java.util.stream.Stream;
 

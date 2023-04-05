@@ -1,11 +1,12 @@
 package seedu.address.model.event;
 
-import seedu.address.model.event.exceptions.NoteLengthException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.model.event.exceptions.NoteLengthException;
+
 
 /**
  * Allows the TA to create notes in an event
