@@ -21,10 +21,14 @@ However in reality, this may not be convenient as users will have to calculate t
 In addition, most of the time they only wish to change the quantity by 1. This command eases convenience for users by simply
 stating the quantity they wish to increase/decrease by.
 
+<br/>
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jnjy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
     * Managed documentation formatting and content structure for WIFE, including the User Guide and Developer Guide. 
+
+<br/>
 
 * **Enhancements to existing features**: Finding a food item by its name.
     - What it does: Originally, the find feature implemented by AB3 needed the name of a person to match the keyword exactly.
@@ -34,14 +38,26 @@ stating the quantity they wish to increase/decrease by.
       The user may not remember the exact name or spelling of the food item that they are looking for, thus editing the feature for
       the name to simply contain the keyword is more flexible and user-friendly, enhancing the user experience.
 
+<br/>
+
 * **Documentation**: *to be edited*
     * User Guide:
-        * Added documentation for the features `help` [link](https://docs.google.com/document/d/1MQun8t0bxWSTK7mvMVGaFhbeXMVMyw60-daNUtj52Lw/edit?usp=sharing)
-        * *more coming soon*
-    * Developer Guide:
+        * Added documentation for the features `inc` and `dec` (Pull Request [[PR#175]])
+
+      * Developer Guide:
         * Added documentation for non-functional requirements (NFR)
         * Added use case when user wants to view help
         * Added documentation for user stories
+
+<br/>
+
+-   **Testing**:
+
+    -   Added test for `IncreaseCommand` (Pull Request [[PR#160]]) 
+    -   Added test for `DecreaseCommand` (Pull Request [[PR#177]]) 
+    -   Edited test for `Find` (Pull Request [[PR#278]])
+
+<br/>
 
 * **Community**:
     * PRs reviewed: [[#PR38]] [[#PR43]] [[#PR56]] [[#PR61]] [[#PR62]] [[#PR63]] [[#PR64]] [[#PR160]] [[#PR161]] [[#PR163]]
