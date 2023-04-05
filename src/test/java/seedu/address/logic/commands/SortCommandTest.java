@@ -43,7 +43,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_invalidSortAttribute() {
-        String expectedMessage = "Attribute does not exists!";
+        String expectedMessage = "Attribute does not exist!";
         SortCommand command = new SortCommand("surname");
         assertEquals(command.execute(model), new CommandResult(expectedMessage));
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
