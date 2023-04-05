@@ -14,6 +14,11 @@ Given below are my contributions to the project
   * Justification: 
   * Highlights: Our product needs to be used by a vaccine center, this are the attributes that would be more important for one to keep track of.
   
+* **Enhancement to existing features**: Modified `findCommand` to allow specific searches based on attributes.
+  * What it does: Allows users to search using the flags that are similar to the ones used for `addCommand`
+  * Justification: This will allow the user to easily identify the patients that have specific allergy or vaccine to easily identify if they would have any problems with the vaccination.
+  * Highlights: This enchancement still retain the older find command feature of searching using name if the flags are not present. Does not impact users that were once used to the previous command.
+
 * **New Feature**: To be added soon
   * What it does: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
   * Justification: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
