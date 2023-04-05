@@ -775,9 +775,7 @@ Parameters:
   * `[p/<PRIORITY_LEVEL>]` - [Priority prefix.](#priority-ppriority) Specifies the priority of this task
     * `<PRIORITY>` is one of the following: low, medium, high
     * Optional. Include this to edit the priority of a task
-
-> :information_source: Additional information: After editing a task, **all** tasks will be listed, akin to `list tasks`
-
+    
 > :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit at least 1 parameter!
 
 Example:
