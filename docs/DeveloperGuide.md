@@ -88,7 +88,7 @@ The sections below give more details of each component.
 
 ### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java).
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -105,7 +105,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java).
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/logic/Logic.java).
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -134,7 +134,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
-The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java).
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/model/Model.java).
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -148,7 +148,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java).
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/storage/Storage.java).
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
