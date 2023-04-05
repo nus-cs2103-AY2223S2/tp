@@ -479,7 +479,7 @@ Once the person has been created, the result display will show a confirmation me
 **Examples:**
 - `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
   ![Add Example](images/UiAddBetsy.png)
-- `add` n/John Doe e/johnd@example.com y/2 c/3
+- `add n/John Doe e/johnd@example.com y/2 c/3`
    ![Add Example](images/UiAddContact.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
