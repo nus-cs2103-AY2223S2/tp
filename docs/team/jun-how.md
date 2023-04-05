@@ -10,8 +10,6 @@ The app is provides a convenient platform for students to easily access and upda
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jun-how&breakdown=true)
 
 * **Enhancements implemented**:
