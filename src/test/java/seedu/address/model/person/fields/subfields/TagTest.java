@@ -1,10 +1,8 @@
-package seedu.address.model.tag;
+package seedu.address.model.person.fields.subfields;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.person.fields.subfields.Tag;
 
 public class TagTest {
 
