@@ -58,8 +58,7 @@ public class SortCommandTest {
         // both sequence and order different -> returns false
         assertFalse(sortAscAlphabeticalCommand.equals(sortDscDeadlineCommand));
     }
-
-
+    
     @Test
     public void execute_sortAlphabetical_success() {
         String expectedSuccessMessage = "Sorted all applications by alphabetical order!";
@@ -68,7 +67,6 @@ public class SortCommandTest {
         SortCommand sortAscAlphabeticalCommand = new SortCommand(SortingOrder.ALPHABETICAL, SortingSequence.ASCENDING);
         AlphabeticalComparator ascAlphabeticalComparator = new AlphabeticalComparator(SortingSequence.ASCENDING);
         expectedModel.updateSortedApplicationList(ascAlphabeticalComparator);
-        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(sortAscAlphabeticalCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
         assertEquals(Arrays.asList(AMAZON, GOVTECH, APPLE, GOOGLE, MICROSOFT, META),
                 model.getSortedApplicationList());
@@ -77,7 +75,6 @@ public class SortCommandTest {
         SortCommand sortDscAlphabeticalCommand = new SortCommand(SortingOrder.ALPHABETICAL, SortingSequence.DESCENDING);
         AlphabeticalComparator dscAlphabeticalComparator = new AlphabeticalComparator(SortingSequence.DESCENDING);
         expectedModel.updateSortedApplicationList(dscAlphabeticalComparator);
-        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(sortDscAlphabeticalCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
         assertEquals(Arrays.asList(META, MICROSOFT, GOOGLE, APPLE, GOVTECH, AMAZON),
                 model.getSortedApplicationList());

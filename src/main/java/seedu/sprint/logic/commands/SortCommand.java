@@ -75,8 +75,6 @@ public class SortCommand extends Command {
             }
         }
         model.updateSortedApplicationList(comparator);
-        model.commitInternshipBookChange();
-        commandHistory.setLastCommandAsModify();
         if (this.sortingOrder == SortingOrder.DEADLINE) {
             return new CommandResult(MESSAGE_SORT_DEADLINE_SUCCESS);
         }
