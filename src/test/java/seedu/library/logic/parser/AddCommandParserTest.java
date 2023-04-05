@@ -76,10 +76,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // only title and genre present
         Bookmark expectedBookmark = new BookmarkBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, TITLE_DESC_AMY + PROGRESS_DESC_AMY + GENRE_DESC_AMY + AUTHOR_DESC_AMY,
-                new AddCommand(expectedBookmark));
+        assertParseSuccess(parser, TITLE_DESC_AMY + GENRE_DESC_AMY, new AddCommand(expectedBookmark));
     }
 
     @Test

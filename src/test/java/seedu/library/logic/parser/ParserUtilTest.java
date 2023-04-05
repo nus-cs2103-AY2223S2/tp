@@ -22,6 +22,11 @@ import seedu.library.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = " ";
+
+    public static final String TOO_LONG_TITLE = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     private static final String INVALID_PROGRESS = "+651234";
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";
@@ -65,6 +70,11 @@ public class ParserUtilTest {
     @Test
     public void parseTitle_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_invalidLength_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(TOO_LONG_TITLE));
     }
 
     @Test

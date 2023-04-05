@@ -73,4 +73,70 @@ public class BookmarkContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
 
     }
+
+    @Test
+    public void test_genreContainsKeywords_returnsTrue() {
+        // One keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, Collections.singletonList("Fantasy"), null, null
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withGenre("Fantasy").build()));
+    }
+
+    @Test
+    public void test_genreContainsKeywords_returnsFalse() {
+        // Non-matching keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, Collections.singletonList("Fantasy"), null, null
+        );
+        assertFalse(predicate.test(new BookmarkBuilder().withGenre("Action").build()));
+    }
+
+    @Test
+    public void test_tagContainsKeywords_returnsTrue() {
+        // One keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, Collections.singletonList("Hunters"), null
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withTags("Hunters").build()));
+    }
+
+    @Test
+    public void test_tagContainsKeywords_returnsFalse() {
+        // Non-matching keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, Collections.singletonList("Hunters"), null
+        );
+        assertFalse(predicate.test(new BookmarkBuilder().withTags("Gore").build()));
+    }
+
+    @Test
+    public void test_authorContainsKeywords_returnsTrue() {
+        // One keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, null, Collections.singletonList("Carol")
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withAuthor("Carol Lee").build()));
+
+        // Multiple keyword
+        predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, null, Arrays.asList("Mark", "Tan")
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withAuthor("Mark Tan").build()));
+
+        // Mix case keyword
+        predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, null, Collections.singletonList("MaRK")
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withAuthor("Mark").build()));
+    }
+
+    @Test
+    public void test_authorContainsKeywords_returnsFalse() {
+        // Non-matching keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, null, Collections.singletonList("Carol"), null
+        );
+        assertFalse(predicate.test(new BookmarkBuilder().withTags("Mark").build()));
+    }
 }

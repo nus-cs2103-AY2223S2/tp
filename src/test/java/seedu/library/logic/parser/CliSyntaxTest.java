@@ -6,6 +6,9 @@ import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +36,15 @@ public class CliSyntaxTest {
     @Test
     public void prefixTitle_success() {
         assertEquals(new Prefix("n/"), PREFIX_TITLE);
+    }
+
+    @Test
+    public void prefixRating_success() {
+        assertEquals(new Prefix("r/"), PREFIX_RATING);
+    }
+
+    @Test
+    public void prefixURL_success() {
+        assertEquals(new Prefix("u/"), PREFIX_URL);
     }
 }
