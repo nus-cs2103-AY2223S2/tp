@@ -8,6 +8,12 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
+<div markdown="span" class="alert alert-danger">
+:exclamation: **Danger!**  
+:x: Do not attempt to modify the local storage files on your own. :x:  
+If you do, program is not run as expected.
+</div>
+
 <h1 id="index">Index</h1>
 -------------------------
 * [Quick Start](#quick-start)
