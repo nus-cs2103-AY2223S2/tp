@@ -2,7 +2,10 @@
 layout: page
 title: User Guide
 ---
-## Greetings from Cookhub!
+<p align="center" width="100%">
+    <img src="images/Logo.svg" width="100%">
+</p>
+## Greetings from CookHub!
 **CookHub** is a powerful, but lightweight application for your recipe management needs. 
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
@@ -94,16 +97,15 @@ Here is a short overview of the features and capabilities of CookHub:
 This command adds a recipe to your recipe book.
 
 Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
-
 :bulb: Reminder: A recipe can have one or more ingredients, and one or more steps. A recipe can also have zero or more tags.
+
+Below shows how you can add an *Orange juice* recipe.
+<p align="center" width="100%">
+    <img src="images/annotated/addCommand.svg" width="100%">
+</p>
 
 
 Examples:
-
-Our initial recipe book:
-
-<img src="images/UiInWindows.png" width=500 height=400>
-
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe similar to the image
 shown below will be added to the recipe book:
   
@@ -131,12 +133,12 @@ Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [t
 - The *RECIPE_NUMBER* should refer to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
+Below shows how you can edit the ingredients of the first recipe with CookHub.
+<p align="center" width="100%">
+    <img src="images/annotated/editCommand.svg" width="100%">
+</p>
 
 Example:
-
-Our initial recipe book:
-
-<img src="images/UiInWindows.png" width=500 height=400>
 
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the image shown below:
 
@@ -159,6 +161,12 @@ Format: `delete RECIPE_NUMBER`
 
 - The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
+
+- Below shows how you can delete the first recipe in CookHub.
+<p align="center" width="100%">
+    <img src="images/annotated/deleteCommand.svg" width="100%">
+</p>
+
 
 Examples:
 
@@ -217,6 +225,11 @@ Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 - the flag `tag/` searches only through the recipe's tags
 
 :exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity, unit of measurement, or price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
+
+Below shows how you can find for eggs in your recipe book with CookHub.
+<p align="center" width="100%">
+    <img src="images/annotated/addCommand.svg" width="100%">
+</p>
 
 Examples:
 
@@ -334,6 +347,11 @@ Format: `star RECIPE_NUMBER`
 
 - The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
+
+Below shows how you can add the first recipe to your favourites.
+<p align="center" width="100%">
+    <img src="images/annotated/starCommand.svg" width="100%">
+</p>
 
 Examples:
 
