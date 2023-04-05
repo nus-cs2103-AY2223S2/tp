@@ -66,14 +66,15 @@ public class GoToCommand extends Command {
     public static void openUrl(String url) throws IOException, CommandException {
         URI targetUrl = URI.create(url);
         String os = System.getProperty("os.name").toLowerCase();
-        if (Desktop.isDesktopSupported()) {
+        if (os.contains("win") || os.contains("mac")) {
             Desktop.getDesktop().browse(targetUrl);
         } else { //Desktop package not supported in this system
-            if (os.contains("nix")) {
+            if (os.contains("nix") || os.contains("nux")) {
                 Runtime runtime = Runtime.getRuntime();
                 runtime.exec(String.format("xdg-open %s", url));
             }
             else {
+                System.out.println(String.format("%s", os));
                 throw new CommandException(NOT_SUPPORTED);
             }
         }
