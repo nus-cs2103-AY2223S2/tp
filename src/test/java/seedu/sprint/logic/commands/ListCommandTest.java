@@ -26,8 +26,8 @@ public class ListCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
+        commandHistory = new CommandHistory();
     }
-
 
     /*
     @Test

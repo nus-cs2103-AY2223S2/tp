@@ -22,8 +22,8 @@ import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.AlphabeticalComparator;
-//import seedu.sprint.model.application.ApplicationHasTaskPredicate;
-//import seedu.sprint.model.application.DeadlineComparator;
+import seedu.sprint.model.application.ApplicationHasTaskPredicate;
+import seedu.sprint.model.application.DeadlineComparator;
 
 public class SortCommandTest {
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
@@ -79,6 +79,27 @@ public class SortCommandTest {
         assertEquals(Arrays.asList(META, MICROSOFT, GOOGLE, APPLE, GOVTECH, AMAZON),
                 model.getSortedApplicationList());
 
+    }
+
+    @Test
+    public void execute_sortDeadline_success() {
+        String expectedSuccessMessage = "Listed all applications with task deadlines and sorted them in order!";
+
+        // Test for sorting by deadline in ascending order
+        SortCommand sortAscDeadlineCommand = new SortCommand(SortingOrder.DEADLINE, SortingSequence.ASCENDING);
+        DeadlineComparator ascDeadlineComparator = new DeadlineComparator(SortingSequence.ASCENDING);
+        expectedModel.updateFilteredApplicationList(new ApplicationHasTaskPredicate());
+        expectedModel.updateSortedApplicationList(ascDeadlineComparator);
+        assertCommandSuccess(sortAscDeadlineCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
+        assertEquals(Arrays.asList(GOVTECH, META, GOOGLE), model.getSortedApplicationList());
+
+        // Test for sorting by deadline in descending order
+        SortCommand sortDscDeadlineCommand = new SortCommand(SortingOrder.DEADLINE, SortingSequence.DESCENDING);
+        DeadlineComparator dscDeadlineComparator = new DeadlineComparator(SortingSequence.DESCENDING);
+        expectedModel.updateFilteredApplicationList(new ApplicationHasTaskPredicate());
+        expectedModel.updateSortedApplicationList(dscDeadlineComparator);
+        assertCommandSuccess(sortDscDeadlineCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
+        assertEquals(Arrays.asList(GOOGLE, META, GOVTECH), model.getSortedApplicationList());
     }
 
 }
