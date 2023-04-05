@@ -700,12 +700,25 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned enhancement**
+The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws.
 
 ### Implementing support for more websites
-1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. However, the team is unable to add this feature due to the v1.4 feature freeze. Therefore, this issue is labelled as a feature flaw and is not in scope, therefore the team will not be addressing this flaw.
+1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. 
+
+### Changing command parameter for salary
+1. Unnecessarily complicated (or hard-to-type) command formats can be considered a type.FeatureFlaw as it is expected that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special characters such as $/ in the format when it is possible to avoid them.
+
+### Seeing very long description and numbers
+1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. A word wrap will be implemented in the future.
+
+### Display error messages when storage data is incorrectly modified
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage data is incorrectly modified.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Won't fix**
 
 ### Issue #205 Sort Command not recognised
+1. Unable to replicate issue. Original tester is uncontactable.
+
+### Issue #179 salary asc command does nothing
 1. Unable to replicate issue. Original tester is uncontactable.
