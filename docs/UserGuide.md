@@ -408,7 +408,7 @@ Use this command to expand and view more information about the selected contact.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
-    * `INDEX` must be a positive integer (must be greater than 0). 
+    * `INDEX` must be a **positive integer** (must be greater than 0). 
 
 _Examples:_
 * `select 1` expands the details of the first contact in your list.
