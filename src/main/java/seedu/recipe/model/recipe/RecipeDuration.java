@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidArgumentLengthException;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidDurationException;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
@@ -45,7 +46,7 @@ public class RecipeDuration {
         Matcher matcher = VALIDATION_REGEX.matcher(candidate);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            throw new RecipeDurationInvalidArgumentLengthException();
         }
 
         // 5 capture groups in the regex, so if the candidate string matches,
