@@ -377,7 +377,7 @@ Sequence Diagram:
 
 1. The user enters the command `aetl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
 2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
-3. The `Id` and `LeaveDate` is passed down to the command.
+3. The `Id` and `LeaveDate` are passed down to the command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee already exists in `Leave`, an error message will be displayed.
 6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
@@ -399,11 +399,11 @@ Sequence Diagram:
 ##### Flow
 
 1. The user types and enters the command `defl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
-2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
-3. The `Id` and `LeaveDate` is passed down to the newly created command.
+2. The parser would initialise a new `Id` and `LeaveDate` constructed from the input of argument `eid/` and `d/` respectively
+3. The `Id` and `LeaveDate` are passed down to the newly created command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
-6. Assuming if Step 4 completes without exception, the employee would be added to the `Leave`.
+6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
 #### Adding an employee's leave in a range
@@ -421,10 +421,11 @@ Sequence Diagram:
 1. The user types and enters the command `aelr eid/1 s/2022-03-04 e/2022-03-06` where 1 is the employee id, 2022-03-04 is the start date and 2022-03-06 is the end date.
 2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown.
 3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
-4. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
-5. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown. 
-5. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
-6. SudoHr will show all the days on which the employee has successfully taken leave.
+4. The `Id` and list of `LeaveDate` are passed down to the newly created command.
+5. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
+6. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown. 
+7. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
+8. SudoHr will show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
 We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation. 
@@ -435,10 +436,7 @@ We also decided to not add leaves on all of the days in the range if the employe
 
 The `leol` command lists employees taking leave on a specific date.
 
-![ListEmployeeOnLeave](./images/commands/department/ListDepartmentSequenceDiagram.png)
-
 1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
-2. The parser would initialise a `LeaveDate` object constructed from the input argument.
 3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
