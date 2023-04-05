@@ -51,14 +51,18 @@ public class ParserUtil {
     /**
      * Parses {@code String quantity} into an {@code Quantity} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified quantity is invalid (not positive integer).
+     * @throws ParseException if the specified quantity is invalid (not positive integer or larger than 1 million).
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
         String trimmedQuantity = quantity.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(Integer.parseInt(trimmedQuantity));
+        int parsedInt = Integer.parseInt(trimmedQuantity);
+        if (parsedInt > 1000000) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(parsedInt);
     }
 
     /**

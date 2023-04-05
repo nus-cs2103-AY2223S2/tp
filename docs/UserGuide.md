@@ -491,7 +491,8 @@ Format: `addo INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 * The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * ADDRESS is optional and will be set to the customer's address by default
-* QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer (e.g. 1, 2, 3...999)
+* QUANTITY is optional and will be set to 1 by default. 
+* QUANTITY must be a positive integer (e.g. 1, 2, 3...999) and be less than or equal to 1 million (1000000)
 
 Examples:
 * `addo 1 n/Banana Cake 1 q/2 a/Changi Airport`
