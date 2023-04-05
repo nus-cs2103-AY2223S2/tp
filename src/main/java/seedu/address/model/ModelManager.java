@@ -244,40 +244,40 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+    public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
         requireNonNull(index);
-        addressBook.removeNoteFromTutorial(index, nameOfEvent);
+        return addressBook.removeNoteFromTutorial(index, nameOfEvent);
     }
 
     @Override
-    public void removeNoteFromLab(Index index, String nameOfEvent) {
+    public boolean removeNoteFromLab(Index index, String nameOfEvent) {
         requireNonNull(index);
-        addressBook.removeNoteFromLab(index, nameOfEvent);
+        return addressBook.removeNoteFromLab(index, nameOfEvent);
     }
 
     @Override
-    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+    public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
         requireNonNull(index);
-        addressBook.removeNoteFromConsultation(index, nameOfEvent);
+        return addressBook.removeNoteFromConsultation(index, nameOfEvent);
     }
 
     @Override
-    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
         requireNonNull(index);
         requireNonNull(note);
-        addressBook.editNoteFromTutorial(index, note, nameOfEvent);
+        return addressBook.editNoteFromTutorial(index, note, nameOfEvent);
     }
     @Override
-    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromLab(Index index, Note note, String nameOfEvent) {
         requireNonNull(index);
         requireNonNull(note);
-        addressBook.editNoteFromLab(index, note, nameOfEvent);
+        return addressBook.editNoteFromLab(index, note, nameOfEvent);
     }
     @Override
-    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
         requireNonNull(index);
         requireNonNull(note);
-        addressBook.editNoteFromConsultation(index, note, nameOfEvent);
+        return addressBook.editNoteFromConsultation(index, note, nameOfEvent);
     }
 
     //=========== Filtered Person List Accessors =============================================================

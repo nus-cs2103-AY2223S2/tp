@@ -400,12 +400,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to remove
      * @param nameOfEvent Event name
      */
-    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+    public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
         for (Tutorial tut : tutorials) {
             if (tut.hasMatchByName(nameOfEvent)) {
-                tut.removeNote(tut.getNoteList().get(index.getZeroBased()));
+                return tut.removeNote(tut.getNoteList().get(index.getZeroBased()));
             }
         }
+        return false;
     }
 
     /**
@@ -413,12 +414,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to remove
      * @param nameOfEvent Event name
      */
-    public void removeNoteFromLab(Index index, String nameOfEvent) {
+    public boolean removeNoteFromLab(Index index, String nameOfEvent) {
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
-                lab.removeNote(lab.getNoteList().get(index.getZeroBased()));
+                return lab.removeNote(lab.getNoteList().get(index.getZeroBased()));
             }
         }
+        return false;
     }
 
     /**
@@ -426,12 +428,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to remove
      * @param nameOfEvent Event name
      */
-    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+    public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
-                consultation.removeNote(consultation.getNoteList().get(index.getZeroBased()));
+                return consultation.removeNote(consultation.getNoteList().get(index.getZeroBased()));
             }
         }
+        return false;
     }
 
     /**
@@ -439,12 +442,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to edit
      * @param nameOfEvent Event name
      */
-    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
-                consultation.setNote(note, index);
+                return consultation.setNote(note, index);
             }
         }
+        return false;
     }
 
     /**
@@ -452,12 +456,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to edit
      * @param nameOfEvent Event name
      */
-    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromLab(Index index, Note note, String nameOfEvent) {
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
-                lab.setNote(note, index);
+                return lab.setNote(note, index);
             }
         }
+        return false;
     }
 
     /**
@@ -465,12 +470,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param index Index of note to edit
      * @param nameOfEvent Event name
      */
-    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+    public boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
         for (Tutorial tutorial : tutorials) {
             if (tutorial.hasMatchByName(nameOfEvent)) {
-                tutorial.setNote(note, index);
+                return tutorial.setNote(note, index);
             }
         }
+        return false;
     }
 
     //// util methods

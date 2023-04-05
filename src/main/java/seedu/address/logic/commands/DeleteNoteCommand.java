@@ -17,7 +17,9 @@ public class DeleteNoteCommand extends Command {
     public static final String MESSAGE_EXAMPLE = "deleteNote -index 1 -name t1 -type Tutorial";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + "cannot be recognized!";
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note: %1$s";
+    public static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "The note index %1$s is not found in your specified event %2$s!";
+
+    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note indexed %1$s from event %2$s";
 
     public static final String TUTORIAL_STRING = "Tutorial";
     public static final String LAB_STRING = "Lab";
@@ -39,22 +41,22 @@ public class DeleteNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        switch (eventType) {
-        case TUTORIAL_STRING:
-            model.removeNoteFromTutorial(targetIndex, eventName);
-            break;
-        case LAB_STRING:
-            model.removeNoteFromLab(targetIndex, this.eventName);
-            break;
-        case CONSULTATION_STRING:
-            model.removeNoteFromConsultation(targetIndex, this.eventName);
-            break;
-        default:
+        boolean rmResult;
+        if (eventType.toLowerCase().contains(TUTORIAL_STRING.toLowerCase())) {
+            rmResult = model.removeNoteFromTutorial(targetIndex, eventName);
+        } else if (eventType.toLowerCase().contains(LAB_STRING.toLowerCase())) {
+            rmResult = model.removeNoteFromLab(targetIndex, this.eventName);
+        } else if (eventType.toLowerCase().contains(CONSULTATION_STRING.toLowerCase())) {
+            rmResult = model.removeNoteFromConsultation(targetIndex, this.eventName);
+        } else {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, targetIndex), false, false,
-                false, true);
+        if (!(rmResult)) {
+            throw new CommandException(String.format(MESSAGE_NOTE_INDEX_NOT_FOUND, targetIndex.getOneBased(), eventName));
+        } else {
+            return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, targetIndex.getOneBased(), eventName), false, false,
+                    false, true);
+        }
     }
 
     @Override

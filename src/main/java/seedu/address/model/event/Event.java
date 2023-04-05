@@ -257,8 +257,13 @@ public abstract class Event {
         return notes.contains(note);
     }
 
-    public void setNote(Note note, Index index) {
-        notes.replace(note, index.getZeroBased());
+    public boolean setNote(Note note, Index index) {
+        try {
+            notes.replace(note, index.getZeroBased());
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     public List<Note> getNotes() {
@@ -277,8 +282,8 @@ public abstract class Event {
         notes.add(note);
     }
 
-    public void removeNote(Note note) {
-        notes.remove(note);
+    public boolean removeNote(Note note) {
+        return notes.remove(note);
     }
 
     /**

@@ -12,7 +12,7 @@ import seedu.address.model.event.Note;
 public class AddNoteToEventCommand extends Command {
     public static final String COMMAND_WORD = "addNote";
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
-    public static final String MESSAGE_USAGE = "addNote-content add-your-note-here -name name-of-event "
+    public static final String MESSAGE_USAGE = "addNote note -content add-your-note-here -name name-of-event "
             + "-type type-of-event";
     public static final String MESSAGE_EXAMPLE = "addNote note -content this is a new note -name dijkstraReview "
             + "-type Tutorial";
