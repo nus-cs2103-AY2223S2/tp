@@ -21,8 +21,7 @@ import seedu.modtrek.model.tag.ValidTag;
 
 /**
  * A doughnut chart that displays summary statistics of the degree progress.
- * @author jewelsea from stackoverflow.com, modified from
- *     https://stackoverflow.com/questions/24121580/can-piechart-from-javafx-be-displayed-as-a-doughnut
+ * Solution below adapted from https://stackoverflow.com/questions/24121580/
  */
 public class DoughnutChart extends PieChart {
     private DegreeProgressionData degreeProgressionData;
@@ -255,11 +254,12 @@ public class DoughnutChart extends PieChart {
 
     /**
      * Calculates and obtains some of the doughnut chart's geometric properties.
-     * @author jewelsea from stackoverflow.com
      * @return The x and y coordinates of the center, and radius of the doughnut chart, in the
      *     form of a hashmap.
      */
     private Map<String, Double> getChartProperties() {
+        //@@author jmestxr-reused
+        //Reused from https://stackoverflow.com/questions/24121580/ with minor modifications
         double minX = Double.MAX_VALUE;
         double minY = Double.MAX_VALUE;
         double maxX = Double.MIN_VALUE;
