@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static seedu.address.logic.commands.UnassignCommand.MESSAGE_NON_EXIST_ASSIGNMENT;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -42,13 +43,9 @@ public class OfficeConnectModel {
     }
 
     private void init() {
-
         updateTaskToPersonsMapping();
         updatePersonToTasksMapping();
-
-
     }
-
 
 
     public RepositoryModelManager<Task> getTaskModelManager() {
@@ -66,6 +63,10 @@ public class OfficeConnectModel {
     }
 
     private void setTaskToPersons(Task task) {
+        if (!taskModelManager.hasItem(task)) {
+            return;
+        }
+
         List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
         List<Person> persons = personModelManger.getAddressBook().getPersonList()
             .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
@@ -73,11 +74,15 @@ public class OfficeConnectModel {
     }
 
     private void setPersonToTasks(Person person) {
+        if (!personModelManger.hasPerson(person)) {
+            return;
+        }
         List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
 
         List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
             .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
         personModelManger.setPerson(person, Person.ofUpdateTasks(person, tasks));
+
     }
 
     private void updatePersonToTasksMapping() {
@@ -116,11 +121,11 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Adds assignment to assigntask model manager.
+     * Adds a new item to the AssignTaskModelManager and updates the mappings between Persons and Tasks.
      *
-     * @param assignTask assignment to be added
-     * @param person
-     * @param task
+     * @param assignTask the AssignTask to be added to the AssignTaskModelManager
+     * @param person the Person associated with the AssignTask
+     * @param task the Task associated with the AssignTask
      */
     public void addAssignTaskModelManagerItem(AssignTask assignTask, Person person, Task task) {
         assignTaskModelManager.addItem(assignTask);
@@ -184,7 +189,7 @@ public class OfficeConnectModel {
      *
      * @param task task to be deleted
      */
-    public void deleteTaskModelManagerItem(Task task) {
+    public void deleteTask(Task task) {
         taskModelManager.deleteItem(task);
     }
 
@@ -197,8 +202,8 @@ public class OfficeConnectModel {
      */
     public void focusTask(Task taskToFocus) {
         updateTaskModelManagerFilteredItemList(task -> task.getId().equals(taskToFocus.getId()));
-        List<AssignTask> assignTasks = getAssignTaskModelManager()
-            .filter(assign -> assign.getTaskId().equals(taskToFocus.getId()));
+        List<AssignTask> assignTasks = new ArrayList<>(getAssignTaskModelManager()
+            .filter(assign -> assign.getTaskId().equals(taskToFocus.getId())));
         personModelManger.updateFilteredPersonList(person -> assignTasks.stream()
             .anyMatch(assign -> assign.getPersonId().equals(person.getId())));
     }
@@ -208,6 +213,7 @@ public class OfficeConnectModel {
      *
      * @param assignTask assignment to be deleted
      */
+    @Deprecated
     public void deleteAssignTaskModelManagerItem(AssignTask assignTask) {
         assignTaskModelManager.deleteItem(assignTask);
     }
@@ -226,12 +232,11 @@ public class OfficeConnectModel {
     /**
      * Delete the task assignment from a person
      *
-     * @param person       assigned to the task
-     * @param taskFilterId base on the current task filter list
+     * @param person person to unassign
+     * @param task   task to unassign
      * @return task that has been deleted
      */
-    public Task deleteAssignment(Person person, int taskFilterId) throws CommandException {
-        Task task = taskModelManager.getFilterItem(taskFilterId);
+    public Task deleteAssignment(Person person, Task task) throws CommandException {
         AssignTask toDelete = new AssignTask(person, task);
 
         if (!assignTaskModelManager.hasItem(toDelete)) {
@@ -263,6 +268,15 @@ public class OfficeConnectModel {
 
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         personModelManger.updateFilteredPersonList(predicate);
+    }
+
+    /**
+     * Delete the person from personModelManger
+     *
+     * @param personToDelete person to remove
+     */
+    public void deletePerson(Person personToDelete) {
+        personModelManger.deletePerson(personToDelete);
     }
 
 }

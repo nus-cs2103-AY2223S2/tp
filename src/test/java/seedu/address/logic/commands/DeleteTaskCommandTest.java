@@ -43,7 +43,7 @@ public class DeleteTaskCommandTest {
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteTask(taskToDelete);
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
@@ -64,7 +64,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteTask(taskToDelete);
         showNoTask(expectedModel);
 
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteTask(taskToDelete);
         expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete1);
         expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete2);
 

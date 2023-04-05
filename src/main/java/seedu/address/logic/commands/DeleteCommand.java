@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -14,6 +14,7 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
+import seedu.address.model.task.Task;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -46,19 +47,21 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         Id pId = personToDelete.getId();
-        List<Id> taskIdList = getTaskIdList(officeConnectModel, pId);
+        List<Task> taskList = getTaskList(officeConnectModel, pId);
 
-        taskIdList.forEach(tId -> officeConnectModel.deleteAssignTaskModelManagerItem(new AssignTask(pId, tId)));
+        officeConnectModel.deletePerson(personToDelete);
 
-        model.deletePerson(personToDelete);
+        for (Task task : taskList) {
+            officeConnectModel.deleteAssignment(personToDelete, task);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    private static List<Id> getTaskIdList(OfficeConnectModel officeConnectModel, Id pId) {
+    private static List<Task> getTaskList(OfficeConnectModel officeConnectModel, Id pId) {
         RepositoryModelManager<AssignTask> assignTaskModelManager = officeConnectModel.getAssignTaskModelManager();
-        List<Id> idList = assignTaskModelManager.filter(assignment -> assignment.getPersonId().equals(pId))
-                .stream().map(assignTask -> assignTask.getTaskId()).collect(Collectors.toList());
-        return idList;
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(pId));
+        return new ArrayList<>(officeConnectModel.getTaskModelManager()
+            .filterItemList(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId()))));
     }
 
     @Override
