@@ -580,7 +580,7 @@ For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each represe
 
 The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips for reading the sample data:**<br>
 
@@ -625,7 +625,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 :information_source: **Command Formats:** <br>
 
-* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]... [m/MODULE]...`
 
 </div>
 
@@ -1274,36 +1274,36 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **User Stories**
 
-| As a …​   | I want to …​                                                          | So that I can…​                                                                  |
-|-----------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| student   | add my friends' contact information to EduMate                        | easily keep track of their availability for study sessions.                      |
-| student   | add my tutors' contact information to EduMate                         | easily ask them for consultation sessions when they are available.               |
-| student   | edit my profile in EduMate                                            | keep my information up to date.                                                  |
-| student   | edit the profile of a contact in EduMate                              | keep their information up to date.                                               |
-| student   | tag my contacts in EduMate based on the modules we share              | quickly find study partners.                                                     |
-| student   | tag my contacts in EduMate by group                                   | quickly find contacts within the same friend group.                              |
-| student   | assign lessons to my contacts in EduMate                              | see when they are available for study sessions.                                  |
-| student   | see the availability of my contacts                                   | plan my study sessions accordingly.                                              |
-| student   | view the profiles of my contacts in EduMate                           | see their availability and contact information.                                  |
-| student   | remove a contact from EduMate                                         | free up space for adding other contacts.                                         |
-| student   | find contacts who share the most number of modules with me            | easily form study groups.                                                        |
-| student   | search for contacts based on specific criteria                        | find contacts with shared modules or tags.                                       |
-| student   | search for contacts who live near me                                  | meet up with them at a place closer to home.                                     |
-| student   | find the contacts who share the most modules with me this semester    | know who are likely to be my close friends this semester.                        |
-| student   | sort my contacts by name                                              | quickly find a specific person in my contact list.                               |
-| student   | get suggestions for where to meet my friends                          | narrow down the search window for meet up locations.                             |
-| student   | get suggestions for when to meet my friends                           | narrow down the search window for meet up timings.                               |
-| student   | get suggestions for where to eat with my friends                      | easily find a place to grab a meal.                                              |
-| student   | get suggestions for when to eat with my friends                       | easily find a time to grab a meal.                                               |
-| student   | get suggestions for where to study with my friends                    | work on assignments with my friends.                                             |
-| student   | get suggestions for when to study with my friends                     | work on assignments with my friends.                                             |
-| student   | see a list view of suggested meet up locations and timings in EduMate | compare them easily.                                                             | 
-| student   | use EduMate to easily schedule meetings with my contacts              | meet up with my contacts without having to manually coordinate with each person. |
-| student   | use the backup and restore features in EduMate                        | save my contact information.                                                     |
-| student   | keep track of my meet ups                                             | remember who I am supposed to meet.                                              |
-| student   | view the contact details of my tutors and lecturers                   | get in touch with them when needed.                                              |
-| student   | run EduMate on my own operating system                                | safely transfer my data over when using a new device.                            |
-| student   | use a simple interface                                                | use the application without much hassle.                                         |
+| As a ...  | I want to ...                                                      | So that I can...                                                                 |
+|-----------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| student   | store my friends' contact information                              | easily keep track of their availability for study sessions.                      |
+| student   | store my tutors' contact information                               | easily ask them for consultation sessions when they are available.               |
+| student   | update my profile                                                  | keep my information up to date.                                                  |
+| student   | update the profile of a contact                                    | keep their information up to date.                                               |
+| student   | keep track of what modules I share with my contacts                | quickly find study partners.                                                     |
+| student   | keep track of what groups I share with my contacts                 | quickly find contacts within the same friend group.                              |
+| student   | assign lessons to my contacts                                      | see when they are available for study sessions.                                  |
+| student   | see the availability of my contacts                                | plan my study sessions accordingly.                                              |
+| student   | view the profiles of my contacts                                   | see their availability and contact information.                                  |
+| student   | remove a contact                                                   | free up space for adding other contacts.                                         |
+| student   | find contacts who share the most number of modules with me         | easily form study groups.                                                        |
+| student   | search for contacts based on specific criteria                     | find contacts with shared modules or tags.                                       |
+| student   | search for contacts who live near me                               | meet up with them at a place closer to home.                                     |
+| student   | find the contacts who share the most modules with me this semester | know who are likely to be my close friends this semester.                        |
+| student   | sort my contacts by name                                           | quickly find a specific person in my contact list.                               |
+| student   | get suggestions for where to meet my friends                       | narrow down the search window for meet up locations.                             |
+| student   | get suggestions for when to meet my friends                        | narrow down the search window for meet up timings.                               |
+| student   | get suggestions for where to eat with my friends                   | easily find a place to grab a meal.                                              |
+| student   | get suggestions for when to eat with my friends                    | easily find a time to grab a meal.                                               |
+| student   | get suggestions for where to study with my friends                 | work on assignments with my friends.                                             |
+| student   | get suggestions for when to study with my friends                  | work on assignments with my friends.                                             |
+| student   | see a list view of suggested meet up locations and timings         | compare them easily.                                                             | 
+| student   | schedule meetings with my contacts                                 | meet up with my contacts without having to manually coordinate with each person. |
+| student   | backup and restore my data                                         | save my contact information and avoid losing them.                               |
+| student   | keep track of my meet ups                                          | remember who I am supposed to meet.                                              |
+| student   | view the contact details of my tutors and lecturers                | get in touch with them when needed.                                              |
+| student   | run the application on my own operating system                     | safely transfer my data over when using a new device.                            |
+| student   | use a simple interface                                             | use the application without much hassle.                                         |
 
 
 ### **Use Cases**
@@ -1456,14 +1456,14 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 **MSS**
 
-1. User requests to view a profile using the contact's name.
+1. User requests to view a profile using the contact's full name.
 2. EduMate shows the contact's profile in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given name is not found.
+* 1a. The given full name is not found.
     * 1a1. EduMate shows an error message.
 
 **Use case: UC10 - View a contact's information by index**
@@ -1767,7 +1767,7 @@ Help NUS students maintain both their social and academic life by lowering the b
     * 2a1. EduMate shows an error message.
 
 * 2b. Some indices are invalid.
-*    * 2b1. EduMate shows an error message.
+    * 2b1. EduMate shows an error message.
 
 * 3a. There are no available timings to eat.
     * 3a1. EduMate shows an empty list.
@@ -1979,13 +1979,6 @@ testers are expected to do more *exploratory* testing.
     * 1a. Download the jar file and copy into an empty folder
 
     * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-2. Saving window preferences
-
-    * 2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    * 2b. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
 
 ### **Add a new person**
 
