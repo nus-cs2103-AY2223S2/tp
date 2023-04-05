@@ -12,13 +12,16 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kennycjy&breakdown=true)
 
 * **Enhancements to existing features**:
-    * To be added.
+    * Implemented the `Tag` and `Untag` commands.
+    * Drafted the first modifications to `ModuleTag` and `Tag` commands to implement `Lessons`
+    * Modify `Tag` and `Untag` to work with `GroupTag` and not just `ModuleTag`
 
 * **Documentation**:
     * User Guide:
         * Pushed the first version of the User Guide that is drafted by the whole team.
+        * Updated the user guide for areas pertaining to `Tag` and `Untag`
     * Developer Guide:
-        * To be added.
+        * Updated the developer guide for areas pertaining to `Tag` and `Untag`
 
 * **Community**:
     * To be added

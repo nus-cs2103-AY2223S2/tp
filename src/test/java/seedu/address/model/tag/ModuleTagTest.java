@@ -2,8 +2,15 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.timetable.util.TypicalLesson.CS1010J_WED_2PM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2103T_THU_1PM_1HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2103T_WED_2PM_1HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2105_THU_4PM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,11 +57,41 @@ public class ModuleTagTest {
     }
 
     @Test
-    public void equals() {
-        ModuleTag otherModuleTag = new ModuleTag("CS2103T");
-
+    public void equals_sameObjectBasic_true() {
         assertEquals(MODULE_TAG, MODULE_TAG);
+    }
+
+    @Test
+    public void equals_sameObjectNonBasic_true() {
+        ModuleTag nonBasicModuleTag =
+                new ModuleTag("CS2103T", CS2103T_WED_2PM_1HR, CS2103T_THU_1PM_1HR);
+
+        assertEquals(nonBasicModuleTag, nonBasicModuleTag);
+    }
+
+    @Test
+    public void equals_sameValuesBasic_true() {
+        ModuleTag otherModuleTag = new ModuleTag("CS2103T");
         assertEquals(MODULE_TAG, otherModuleTag);
+    }
+
+    @Test
+    public void equals_sameValuesNonBasic_true() {
+        ModuleTag nonBasicModuleTag =
+                new ModuleTag("CS2103T", CS2103T_WED_2PM_1HR, CS2103T_THU_1PM_1HR);
+
+        ModuleTag otherNonBasicModuleTag =
+                new ModuleTag("CS2103T", CS2103T_WED_2PM_1HR, CS2103T_THU_1PM_1HR);
+
+        assertEquals(nonBasicModuleTag, otherNonBasicModuleTag);
+    }
+
+    @Test
+    public void equals_oneBasicOneNonBasic_false() {
+        ModuleTag nonBasicModuleTag =
+                new ModuleTag("CS2103T", CS2103T_WED_2PM_1HR, CS2103T_THU_1PM_1HR);
+
+        assertNotEquals(nonBasicModuleTag, MODULE_TAG);
     }
 
     @Test
@@ -65,5 +102,55 @@ public class ModuleTagTest {
     @Test
     public void toString_validTag_success() {
         assertTrue(MODULE_TAG.toString().contains(String.format("%s", MODULE_TAG_STRING)));
+    }
+
+    @Test
+    public void addLesson_null_throwsNullPointerException() {
+        ModuleTag moduleTag = new ModuleTag(MODULE_TAG_STRING);
+        assertThrows(NullPointerException.class, ()
+                -> moduleTag.addLesson(null));
+    }
+
+    @Test
+    public void addLessons_null_throwsNullPointerException() {
+        ModuleTag moduleTag = new ModuleTag(MODULE_TAG_STRING);
+        assertThrows(NullPointerException.class, ()
+                -> moduleTag.addLessons(null));
+    }
+
+    @Test
+    public void addLesson_validLesson_success() {
+        ModuleTag moduleTag = new ModuleTag(MODULE_TAG_STRING);
+        moduleTag.addLesson(CS1010J_WED_2PM_2HR);
+
+        assertTrue(moduleTag.getImmutableLessons().contains(CS1010J_WED_2PM_2HR));
+    }
+
+    @Test
+    public void addLessons_validLessons_success() {
+        ModuleTag moduleTag = new ModuleTag(MODULE_TAG_STRING);
+        moduleTag.addLessons(List.of(CS2105_THU_4PM_2HR, CS1010J_WED_2PM_2HR));
+
+        assertTrue(moduleTag.containsLessons(List.of(CS2105_THU_4PM_2HR)));
+        assertTrue(moduleTag.containsLessons(List.of(CS1010J_WED_2PM_2HR)));
+    }
+
+    @Test
+    public void copy_validValues_success() {
+        ModuleTag moduleTag = new ModuleTag(MODULE_TAG_STRING);
+        moduleTag.addLesson(CS2105_THU_4PM_2HR);
+
+        assertTrue(moduleTag.containsLessons(List.of(CS2105_THU_4PM_2HR)));
+        assertFalse(moduleTag.containsLessons(List.of(CS1010J_WED_2PM_2HR)));
+
+        ModuleTag copiedModuleTag = moduleTag.copy();
+        copiedModuleTag.addLesson(CS1010J_WED_2PM_2HR);
+
+        assertTrue(copiedModuleTag.containsLessons(
+                List.of(CS2105_THU_4PM_2HR, CS1010J_WED_2PM_2HR)));
+        assertFalse(moduleTag.containsLessons(
+                List.of(CS2105_THU_4PM_2HR, CS1010J_WED_2PM_2HR)));
+        assertTrue(moduleTag.containsLessons(List.of(CS2105_THU_4PM_2HR)));
+        assertFalse(moduleTag.containsLessons(List.of(CS1010J_WED_2PM_2HR)));
     }
 }

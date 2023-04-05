@@ -10,13 +10,14 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Json object for converting Lessons.
  */
 public class JsonAdaptedLesson {
-    private final Integer startHour;
-    private final Integer endHour;
+    private final int startHour;
+    private final int endHour;
     private final String day;
 
     /**
@@ -25,8 +26,8 @@ public class JsonAdaptedLesson {
      */
     @JsonCreator
     public JsonAdaptedLesson(
-            @JsonProperty("startHour") Integer startHour,
-            @JsonProperty("endHour") Integer endHour,
+            @JsonProperty("startHour") int startHour,
+            @JsonProperty("endHour") int endHour,
             @JsonProperty("day") String day) {
         this.startHour = startHour;
         this.endHour = endHour;
@@ -48,10 +49,22 @@ public class JsonAdaptedLesson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
     public Lesson toModelType() throws IllegalValueException {
-        LocalTime parsedStartHour = ParserUtil.parseLocalTime(startHour.toString(), true);
-        LocalTime parsedEndHour = ParserUtil.parseLocalTime(endHour.toString(), false);
+        if (!TimeUtil.isValidStartHour(startHour)) {
+            throw new IllegalValueException(
+                    String.format(ParserUtil.MESSAGE_INVALID_START_HOUR, LocalTime.class.getSimpleName()));
+        }
+
+        final LocalTime modelStartTime = new LocalTime(startHour, 0);
+
+        if (!TimeUtil.isValidEndHour(endHour)) {
+            throw new IllegalValueException(
+                    String.format(ParserUtil.MESSAGE_INVALID_END_HOUR, LocalTime.class.getSimpleName()));
+        }
+
+        final LocalTime modelEndTime = new LocalTime(endHour, 0);
+
         Day parsedDay = ParserUtil.parseDay(day);
-        TimeBlock timeBlock = new TimeBlock(parsedStartHour, parsedEndHour, parsedDay);
+        TimeBlock timeBlock = new TimeBlock(modelStartTime, modelEndTime, parsedDay);
         return new Lesson(timeBlock);
     }
 }

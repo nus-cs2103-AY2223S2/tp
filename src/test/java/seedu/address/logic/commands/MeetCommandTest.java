@@ -1,15 +1,29 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.model.location.util.TypicalLocation.SERANGOON;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.EduMate;
 import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.location.Location;
+import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.location.util.LocationDataUtil;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
+import seedu.address.testutil.PersonBuilder;
 
 class MeetCommandTest {
 
@@ -26,16 +40,40 @@ class MeetCommandTest {
         + "\n\n" + "FRIDAY"
         + "\n" + FULL_DAY_PERIOD;
 
-    // 6 is EDWARD and 8 is GEORGE, both in Kent Ridge
-    private static final Set<ContactIndex> INDICES =
-            Set.of(new ContactIndex(6), new ContactIndex(8));
-    private static final MeetCommand MEET_COMMAND =
-            new MeetCommand(INDICES, LocationDataUtil.MEET_LOCATIONS, 3);
-    private static final MeetCommand STUDY_COMMAND =
-            new MeetCommand(INDICES, LocationDataUtil.STUDY_LOCATIONS, 2);
-    private static final MeetCommand EAT_COMMAND =
-            new MeetCommand(INDICES, LocationDataUtil.EAT_LOCATIONS, 3);
+    @Test
+    public void execute_serangoonParticipants_serangoonSuggested() throws CommandException {
+        Model model = new ModelManager(new EduMate(), new UserPrefs(), new EduMateHistory());
 
-    private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
-    private final Model expectedModel = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+        User serangoonUser = new PersonBuilder(model.getUser())
+                .withStation(SERANGOON).buildAsUser();
+        model.setUser(serangoonUser);
+
+        Person serangoonPerson = new PersonBuilder(serangoonUser).build();
+        model.addPerson(serangoonPerson);
+
+        MeetCommand meetCommand = new MeetCommand(
+                Set.of(new ContactIndex(0), new ContactIndex(1)),
+                LocationDataUtil.MEET_LOCATIONS, 10);
+
+        meetCommand.execute(model);
+
+        List<Recommendation> recommendations = model.getObservableRecommendationList();
+        List<Location> locationsNearSerangoon = recommendations.stream()
+                .map(Recommendation::getLocation)
+                .filter(location -> DistanceUtil.getDistance(location, SERANGOON) < 1)
+                .collect(Collectors.toList());
+
+        assertFalse(locationsNearSerangoon.isEmpty());
+    }
+
+    @Test
+    public void execute_invalidContactIndices_throwsCommandException() {
+        Model model = new ModelManager(new EduMate(), new UserPrefs(), new EduMateHistory());
+
+        MeetCommand meetCommand = new MeetCommand(
+                Set.of(new ContactIndex(0), new ContactIndex(1)),
+                LocationDataUtil.MEET_LOCATIONS, 10);
+
+        assertThrows(CommandException.class, () -> meetCommand.execute(model));
+    }
 }

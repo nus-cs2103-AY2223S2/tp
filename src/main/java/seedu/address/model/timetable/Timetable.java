@@ -24,7 +24,7 @@ import seedu.address.model.time.util.TimeUtil;
 public class Timetable {
 
     public static final Integer[] START_TIMINGS = new Integer[] {
-        8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+            8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
     };
     private static final Logger logger = LogsCenter.getLogger(Timetable.class);
     private final HashMap<Day, ArrayList<HourBlock>> schedule;
@@ -117,7 +117,7 @@ public class Timetable {
                 if (!dayEvents.get(i).isFree()) {
                     Commitment lesson = dayEvents.get(i).getCommitment().orElseGet(() -> null);
                     logger.info(String.format("=============================[ Lesson Added: %s]===="
-                        + "=======================", lesson));
+                            + "=======================", lesson));
                     this.schedule.get(day).get(i).setCommitment(lesson);
                 }
             }

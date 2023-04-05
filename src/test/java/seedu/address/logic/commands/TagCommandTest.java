@@ -9,6 +9,8 @@ import static seedu.address.model.tag.util.TypicalModuleTag.CFG1002_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_KE;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.ES2660_RU_ALT_2;
+import static seedu.address.model.tag.util.TypicalModuleTag.GEN2050_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.LAJ1201_F;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2101_MON_8AM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2101_THU_8AM_2HR;
@@ -35,6 +37,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
@@ -49,6 +52,7 @@ public class TagCommandTest {
         Set<ModuleTag> modulesToAdd = new HashSet<>();
         modulesToAdd.add(CS2040S_F);
         modulesToAdd.add(CS3245_F);
+        modulesToAdd.add(GEN2050_F);
 
         Person isaacToUpdate = getPersonFromIndexHandler(indexHandler, ISAAC);
         ContactIndex indexIsaac = getContactIndexOfPerson(ISAAC);
@@ -57,9 +61,11 @@ public class TagCommandTest {
 
         assertFalse(isaacModuleTags.contains(CS2040S_F));
         assertFalse(isaacModuleTags.contains(CS3245_F));
+        assertFalse(isaacModuleTags.contains(GEN2050_F));
 
         isaacModuleTags.add(CS2040S_F);
         isaacModuleTags.add(CS3245_F);
+        isaacModuleTags.add(GEN2050_F);
 
         TagCommand tagIsaac = new TagCommand(indexIsaac, modulesToAdd, TagType.MODULE);
         assertDoesNotThrow(() -> tagIsaac.execute(model));
@@ -67,6 +73,27 @@ public class TagCommandTest {
         Person updatedIsaac = getPersonFromIndexHandler(indexHandler, ISAAC);
 
         assertEquals(updatedIsaac.getImmutableModuleTags(), isaacModuleTags);
+    }
+
+    @Test
+    public void execute_addNewNonClashingModuleTagsToUser_success() {
+        Set<ModuleTag> modulesToAdd = new HashSet<>();
+        modulesToAdd.add(ES2660_RU_ALT_2);
+
+        User userToUpdate = model.getUser();
+
+        Set<ModuleTag> userModuleTags = new HashSet<>(userToUpdate.getImmutableModuleTags());
+
+        assertFalse(userModuleTags.contains(ES2660_RU_ALT_2));
+
+        userModuleTags.add(ES2660_RU_ALT_2);
+
+        TagCommand tagUser = new TagCommand(null, modulesToAdd, TagType.MODULE);
+        assertDoesNotThrow(() -> tagUser.execute(model));
+
+        User updatedUser = model.getUser();
+
+        assertEquals(updatedUser.getImmutableModuleTags(), userModuleTags);
     }
 
     @Test
@@ -299,6 +326,20 @@ public class TagCommandTest {
     }
 
     @Test
+    void tagGroups_invalidContactIndex_throwsCommandException() {
+        TagCommand tagCommand = new TagCommand(new ContactIndex(1000),
+                Set.of(), TagType.GROUP);
+        assertThrows(CommandException.class, () -> tagCommand.execute(model));
+    }
+
+    @Test
+    void tagPersonModules_invalidContactIndex_throwsCommandException() {
+        TagCommand tagCommand = new TagCommand(new ContactIndex(1000),
+                Set.of(), TagType.MODULE);
+        assertThrows(CommandException.class, () -> tagCommand.execute(model));
+    }
+
+    @Test
     void equals_sameObject_true() {
         assertEquals(tagCommand, tagCommand);
     }
@@ -308,6 +349,11 @@ public class TagCommandTest {
         TagCommand other = new TagCommand(new ContactIndex(1),
                 Set.of(CS2040S_F), TagType.MODULE);
         assertEquals(tagCommand, other);
+    }
+
+    @Test
+    void equals_differentTypes_false() {
+        assertNotEquals(tagCommand, 2);
     }
 
     @Test

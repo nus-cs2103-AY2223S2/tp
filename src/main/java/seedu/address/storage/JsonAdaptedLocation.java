@@ -47,6 +47,14 @@ public class JsonAdaptedLocation {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
 
+        if (!Location.isValidLatitude(latitude)) {
+            throw new IllegalValueException("Invalid latitude!");
+        }
+
+        if (!Location.isValidLongitude(longitude)) {
+            throw new IllegalValueException("Invalid longitude!");
+        }
+
         return new Location(name, latitude, longitude);
     }
 }

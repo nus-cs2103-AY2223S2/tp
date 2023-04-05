@@ -101,6 +101,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Adds a lesson to the module tag.
      */
     public void addLesson(Lesson lesson) {
+        requireNonNull(lesson);
         lessons.add(lesson);
     }
 
@@ -108,6 +109,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Adds multiple lessons to the module tag.
      */
     public void addLessons(Collection<Lesson> lessons) {
+        requireNonNull(lessons);
         for (Lesson lesson : lessons) {
             addLesson(lesson);
         }
@@ -117,6 +119,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Removes a lessons from the module tag.
      */
     public void removeLesson(Lesson lesson) {
+        requireNonNull(lesson);
         lessons.remove(lesson);
     }
 
@@ -124,6 +127,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Removes multiple lessons from the module tag.
      */
     public void removeLessons(Collection<Lesson> lessons) {
+        requireNonNull(lessons);
         for (Lesson lesson : lessons) {
             removeLesson(lesson);
         }
@@ -138,6 +142,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
 
     @Override
     boolean isValidTagName(String test, String regex) {
+        requireAllNonNull(test, regex);
         return Pattern.matches(VALIDATION_REGEX, test);
     }
 
@@ -145,6 +150,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
 

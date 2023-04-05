@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.util.SampleDataUtil;
@@ -172,6 +173,14 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, station, telegramHandle, contactIndex,
+                groupTags, moduleTags);
+    }
+
+    /**
+     * Returns a {@code User} with input features called so far.
+     */
+    public User buildAsUser() {
+        return new User(name, phone, email, station, telegramHandle, contactIndex,
                 groupTags, moduleTags);
     }
 
