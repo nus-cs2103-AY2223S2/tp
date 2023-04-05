@@ -5,22 +5,25 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.model.event.exceptions.NoteLengthException;
+
+
 /**
  * Allows the TA to create notes in an event
  */
 public class Note {
 
     public static final String EMPTY_CONTENT = "This note is empty";
-    protected static final int LENGTH_LIMIT = 200;
+    public static final int LENGTH_LIMIT = 200;
     private static final String PATTERN = "@[a-z]+";
     private String content;
-    private List<String> names = new ArrayList<>(20); // referenced up to 20 people in the notes
+    private final List<String> names = new ArrayList<>(20); // referenced up to 20 people in the notes
 
     /**
-     * Initates the note object with actual content and parsed referees
+     * Initiates the note object with actual content and parsed referees
      * @param content {@code String} object that represents the note contents
      */
-    public Note(String content) {
+    public Note(String content) throws NoteLengthException {
         this.content = validateContent(content);
         decomposePersonNames(content);
     }
@@ -37,8 +40,8 @@ public class Note {
             Pattern pattern = Pattern.compile(PATTERN, Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(note);
             while (matcher.find()) {
-                String name = matcher.group().toString();
-                name = name.substring(1, name.length()); // get rid of @ char
+                String name = matcher.group();
+                name = name.substring(1); // get rid of @ char
                 this.names.add(name);
             }
         } catch (Exception e) { // TODO: better exception handling
@@ -46,12 +49,12 @@ public class Note {
         }
     }
 
-    private String validateContent(String note) {
+    private String validateContent(String note) throws NoteLengthException {
         // utf-8 check left to ui input handler
         if (note.isEmpty()) {
             note = EMPTY_CONTENT;
         } else if (note.length() >= LENGTH_LIMIT) {
-            note = note.substring(0, LENGTH_LIMIT);
+            throw new NoteLengthException(LENGTH_LIMIT, note.length());
         }
         return note;
     }

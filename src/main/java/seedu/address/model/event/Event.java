@@ -129,7 +129,7 @@ public abstract class Event {
     }
 
     public boolean hasMatchByName(String name) {
-        return this.name.equals(name);
+        return this.name.equalsIgnoreCase(name);
     }
 
     /* *************************************************************************
@@ -257,8 +257,13 @@ public abstract class Event {
         return notes.contains(note);
     }
 
-    public void setNote(Note note, Index index) {
-        notes.replace(note, index.getZeroBased());
+    public boolean setNote(Note note, Index index) {
+        try {
+            notes.replace(note, index.getZeroBased());
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     public List<Note> getNotes() {
@@ -277,8 +282,30 @@ public abstract class Event {
         notes.add(note);
     }
 
-    public void removeNote(Note note) {
-        notes.remove(note);
+    /**
+     * Removes from note list
+     * @param note A note object
+     * @return Remove outcome
+     */
+    public boolean removeNote(Note note) {
+        try {
+            return notes.remove(note);
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Removes a note from note list by index
+     * @param index The index of note to remove
+     * @return Removal outcome
+     */
+    public boolean removeNote(int index) {
+        try {
+            return notes.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     /**

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
 
 import java.util.stream.Stream;
 
@@ -27,7 +26,7 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
         requireNonNull(args);
         String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT,
                         PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
         if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -39,10 +38,13 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteToEventCommand.MESSAGE_USAGE));
         }
-        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
+        String content = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
         String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
         String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();
-        Note note = new Note(name);
+        if (content.length() > Note.LENGTH_LIMIT) {
+            throw new ParseException(String.format("Note is too long! Shrink it to under %1$s", Note.LENGTH_LIMIT));
+        }
+        Note note = new Note(content);
         return new AddNoteToEventCommand(note, eventName, eventType);
     }
 

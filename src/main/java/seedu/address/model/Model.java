@@ -231,31 +231,31 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
-    void editNoteFromTutorial(Index index, Note note, String nameOfEvent);
-    void editNoteFromLab(Index index, Note note, String nameOfEvent);
-    void editNoteFromConsultation(Index index, Note note, String nameOfEvent);
+    boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent);
+    boolean editNoteFromLab(Index index, Note note, String nameOfEvent);
+    boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent);
 
-    void removeNoteFromTutorial(Index index, String nameOfEvent);
-    void removeNoteFromLab(Index index, String nameOfEvent);
-    void removeNoteFromConsultation(Index index, String nameOfEvent);
+    boolean removeNoteFromTutorial(Index index, String nameOfEvent);
+    boolean removeNoteFromLab(Index index, String nameOfEvent);
+    boolean removeNoteFromConsultation(Index index, String nameOfEvent);
 
     /**
      * Append notes to an existing tutorial note list
      * @param note The note to add
      */
-    void addNoteToTutorial(Note note, String nameOfEvent);
+    boolean addNoteToTutorial(Note note, String nameOfEvent);
 
     /**
      * Append notes to an existing lab note list
      * @param note The note to add
      */
-    void addNoteToLab(Note note, String nameOfEvent);
+    boolean addNoteToLab(Note note, String nameOfEvent);
 
     /**
      * Append notes to an existing consultation note list
      * @param note The note to add
      */
-    void addNoteToConsultation(Note note, String nameOfEvent);
+    boolean addNoteToConsultation(Note note, String nameOfEvent);
 
     void updateSortTutorialPersonList(String metric, boolean isIncreasing);
 

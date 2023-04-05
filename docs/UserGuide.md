@@ -600,39 +600,39 @@ By double-clicking on events, the notes section will appear
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>addNote note -content [NOTE] -type [EVENT_TYPE] -name [EVENT_NAME]</code>
+      <td><code>addNote note content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]</code>
       </td>
       <td>
          <ul>
-            <li><code>addNote note -content Bring pen -type Tutorial -name Tut1</code>
-            <li><code>addNote note -content Bring goggles -type Lab -name Lab1</code></li>
-            <li><code>addNote note -content Prepare questions -type Consultation -name Consult1</code></li>
+            <li><code>addNote note content/Bring pen type/Tutorial name/Tut1</code>
+            <li><code>addNote note content/Bring goggles type/Lab name/Lab1</code></li>
+            <li><code>addNote note content/Prepare questions type/Consultation name/Consult1</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
-      <td><code>deleteNote -type [EVENT_TYPE] -name [EVENT_NAME/INDEX] -index [NOTE_INDEX]</code>
+      <td><code>deleteNote type/[EVENT_TYPE] name/[EVENT_NAME/INDEX] index/[NOTE_INDEX]</code>
       </td>
       <td>
          <ul>
-            <li><code>deleteNote -type Tutorial -name Tut1 -index 3</code>
-            <li><code>deleteNote -type Lab -name Lab1 -index 1</code></li>
-            <li><code>deleteNote -type Consultation -name Consult1 -index 0</code></li>
+            <li><code>deleteNote type/Tutorial name/Tut1 index/3</code>
+            <li><code>deleteNote type/Lab name/Lab1 index/1</code></li>
+            <li><code>deleteNote type/Recur name/Consult1 index/0</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>editNote -content [NEW_NOTE] -type [EVENT_TYPE] -name [EVENT_NAME/INDEX] -index [NOTE_INDEX]</code>
+      <td><code>editNote content/[NEW_NOTE] type/[EVENT_TYPE] name/[EVENT_NAME/INDEX] index/[NOTE_INDEX]</code>
       </td>
       <td>
          <ul>
-            <li><code>editNote -content Bring apple pencil -type Tutorial -name Tut1 -index 3</code>
-            <li><code>editNote -content Bring goggles and lab coat -type Lab -name Lab1 -index 1</code></li>
-            <li><code>editNote -content Prepare practice questions -type Consultation -name Consult1 -index 0</code></li>
+            <li><code>editNote content/Bring apple pencil type/Tutorial name/Tut1 index/3</code>
+            <li><code>editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1</code></li>
+            <li><code>editNote content/Prepare practice questions type/Consultation name/Consult1 index/0</code></li>
          </ul>
       </td>
    </tr>

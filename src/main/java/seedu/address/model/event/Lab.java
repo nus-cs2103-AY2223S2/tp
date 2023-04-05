@@ -150,9 +150,10 @@ public class Lab extends Event {
         return super.countNotes();
     }
 
-    public void removeNote(Note note) {
-        super.removeNote(note);
+    public boolean removeNote(Note note) {
+        return super.removeNote(note);
     }
+
 
     /**
      * Checks for the same lab by comparing name and date

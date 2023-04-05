@@ -280,45 +280,45 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addNoteToTutorial(Note note, String nameOfEvent) {
+        public boolean addNoteToTutorial(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addNoteToLab(Note note, String nameOfEvent) {
+        public boolean addNoteToLab(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addNoteToConsultation(Note note, String nameOfEvent) {
+        public boolean addNoteToConsultation(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+        public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeNoteFromLab(Index index, String nameOfEvent) {
+        public boolean removeNoteFromLab(Index index, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+        public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        public boolean editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        public boolean editNoteFromLab(Index index, Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        public boolean editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
     }
