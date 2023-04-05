@@ -72,4 +72,12 @@ public class FilterCommand extends Command {
             return true;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FilterCommand // instanceof handles nulls
+                && this.metric == (((FilterCommand) other).getMetric()) // state check
+                && this.threshold == ((FilterCommand) other).getThreshold());
+    }
 }
