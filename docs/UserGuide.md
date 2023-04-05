@@ -4,7 +4,7 @@ title: User Guide
 ---
 # CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in NUS to connect with each other for the benefit of their course of study.
-CoDoc is **optimized for** use via a **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
+CoDoc is **optimized for** use via your **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
 If you can type fast, CoDoc can get your **contact management** tasks **done faster** than traditional GUI apps.
 
 CoDoc is more than just a traditional contact management app. Save useful information such as **modules taken** or
@@ -54,9 +54,7 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Guide
 Before you start using CoDoc, you are recommended to read the
-[Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format)
-
-sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
+[Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format) sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 User Guide and help you navigate it with ease.
 
 If you are first time users of CoDoc, we highly recommend that you read through the **entire user guide** in order to become 
@@ -64,6 +62,10 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
 how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
+
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. **All first time users** are recommended to read through the **entire user guide**.
+</div>
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
 
@@ -132,16 +134,22 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
+    <td><strong>:information_source: Note</strong></td>
+    <td>
+      To inform you of relevant information that might be useful to take note of as a user.
+    </td>
+  </tr>
+  <tr>
     <td><strong>:bulb: Tip</strong></td>
     <td>
-      To provide you with suggestions on how to use the commands as well as address potential confusions when using
+      To provide you with relevant suggestions on how to use the commands as well as address potential confusions when using
       these commands, so you will be able to better understand how the commands work.
     </td>
   </tr>
   <tr>
     <td><strong>:exclamation: Caution</strong></td>
     <td>
-      To inform you of some unintended consequences that may occur when you use the commands, so you will be
+      To inform you of some unintended or unexpected consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
     </td>
   </tr>
@@ -294,7 +302,10 @@ His _contact_ details will then be shown in the **Info Panel**.
 
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
-CoDoc also supports GUI, so you can just click the person in the list to view his details.
+<div class="span" class="alert alert-success">
+💡 **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
+</div>
+
 <br>
 
 Remember that we said CoDoc offers more than just a traditional contact management app? So far, you have only viewed
@@ -311,7 +322,9 @@ Note that you do not see anything of value, and that is because we have not adde
 You can enter `view s` as well to view Bob's _skills_ to see a similar empty list, or enter `view c` to go back to Bob's
 contact information.
 
->💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
+<div class="span" class="alert alert-success">
+💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
+</div>
 
 **Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
 
@@ -338,9 +351,11 @@ After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s
 You can now see that Bob's list of **modules taken** has been updated to contain modules _CS2101_ and _CS2103T_
 (enter `view m` if you're not on the _modules_ tab).
 
->💡 **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
-> can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
-> for you to edit **modules taken**!
+<div class="span" class="alert alert-success">
+💡 **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
+ can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
+ for you to edit **modules taken**!
+</div>
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
 [Add command](#2-adding-a-person--add) to do so.
@@ -383,7 +398,9 @@ multiple attributes. To learn more about it, you can take a look at [Finding a p
 The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
 Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
->💡 **Tip**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+<div class="span" class="alert alert-danger"> 
+:exclamation: **Caution**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+</div>
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
 
@@ -424,7 +441,7 @@ Forgotten the commands? Open the help menu! <br>
 
 Equivalent to clicking Help > Help F1 via the GUI <br>
 `help`<br>
-> <img src="images/UiHelpMenu.png"/>
+<img src="images/UiHelpMenu.png"/>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -438,29 +455,29 @@ Once the person has been created, the result display will show a confirmation me
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 
 **Compulsory parameters:**
-- n/NAME (eg. n/John Doe)
-  - names are case sensitive and allows duplicates
-- e/EMAIL (eg. e/johndoe123@email.com)
-  - emails are case insensitive and does not allow duplicates
-- y/YEAR (eg. y/3)
-- c/COURSE_INDEX (eg. c/1)
+- n/NAME (eg. `n/John Doe`)
+  - names are case-sensitive and allows duplicates
+- e/EMAIL (eg. `e/johndoe123@email.com`)
+  - emails are case-insensitive and does not allow duplicates
+- y/YEAR (eg. `y/3`)
+- c/COURSE_INDEX (eg. `c/1`)
 
 **Optional parameters:**
-- g/GITHUB (eg.g/johnny)
-  - github profiles are case sensitive and allows duplicates
-- l/LINKEDIN (eg. l/linkedin.com/in/john-doe)
-  - linkedin profiles are case sensitive and allows duplicates
-- m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
-  - modules are case insensitive and allows duplicate module codes but does not allow duplicate module year
-- s/SKILL (eg. s/C++, s/Rust)
-  - skills are case sensitive and does not allow duplicates
+- g/GITHUB (eg.`g/johnny`)
+  - github profiles are case-sensitive and allows duplicates
+- l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
+  - linkedin profiles are case-sensitive and allows duplicates
+- m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
+  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+- s/SKILL (eg. `s/C++`, `s/Rust`)
+  - skills are case-sensitive and does not allow duplicates
 
 <div markdown="span" class="alert alert-success">
 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 </div>
 
 **Examples:**
-- `add` n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123
+- `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
   ![Add Example](images/UiAddBetsy.png)
 - `add` n/John Doe e/johnd@example.com y/2 c/3
    ![Add Example](images/UiAddContact.jpg)
@@ -481,28 +498,28 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 `view <PARAMETERS>`<br>
 
-> 
-> **Acceptable parameters:**
-> - Any index number within the length of the person list (e.g. view 2)
-> - c (e.g. view c)
-> - m (e.g. view m)
-> - s (e.g. view s)
->
-> 💡 **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
->
-> **Examples:**
-> - `view` 2
-     ![View Example](images/UiViewIndex.jpg)
-> - `view` m
-     ![View Example](images/UiViewModule.jpg)
+ 
+**Acceptable parameters:**
+- Any index number within the length of the person list (e.g. `view 2`)
+- c (e.g. `view c`)
+- m (e.g. `view m`)
+- s (e.g. `view s`)
+
+<div class="span" class="alert alert-success">
+💡 **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
+</div>
+
+**Examples:**
+- `view` 2
+   ![View Example](images/UiViewIndex.jpg)
+- `view` m
+   ![View Example](images/UiViewModule.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 4. Editing a person : `edit`
 
-Does one of your contact have outdated information? Overwrite them in the view panel with the edit command! 
->:warning: **Caution:** Existing values will be <b><u>overwritten</u></b> by the input values.<br/>
-> Use m+/ or s+/ to <b><u>append</u></b> information instead
+Does one of your contact have outdated information? Overwrite them in the view panel with the edit command!
 
 At least one of the optional fields must be provided.
 
@@ -511,33 +528,43 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s modules by typing `m/` without specifying any modules after it
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
+<div class="span" class="alert alert-danger">
+:warning: **Caution:** Existing values will be <b><u>overwritten</u></b> by the input values during the use of `m/` or `s/`.<br/>
+Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><u>delete</u></b> information instead.
+</div>
 
 `edit [OPTIONAL/PARAMETER]...`<br>
 
-> **Acceptable Parameters**
-> - n/NAME (eg. n/John Doe)
-> - e/EMAIL (eg. e/johndoe123@email.com)
-> - y/YEAR (eg. y/3)
-> - c/COURSE_INDEX (eg. c/1)
-> - g/GITHUB (eg.g/johnny)
-> - l/LINKED (eg. l/linkedin.com/in/john-doe)
-> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
->> - m+/MODULE YEAR (eg. m+/AY2223S1 CS2103T, m+/AY2122S2 CS2101)
->> - m-/MODULE YEAR (eg. m-/AY2223S1 CS2103T, m-/AY2122S2 CS2101)
-> - s/SKILL (eg. s/C++, s/Rust)
->> - s+/SKILL (eg. s+/C++, s+/python)
->> - s-/SKILL (eg. s-/C++, s-/python)
->
-> 💡 **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
-> 
-> 
-> **Examples:**
-> - `edit` g/johndoeee e/johndoeee@example.com will edit the GitHub username and email address of the person to be johndoeee and johndoeeee@example.com respectively.
-> ![View Example](images/UiEditFields.png)
-> - `edit` s/java s+/python resets the skill list to contain only java and ignores the python skill addition.
->![View Example](images/UiEditSkills.png)
-> - `edit` m-/ay2223s2 cs3230 displays an error message as the module does not exist.
-> ![View Example](images/UiEditError.png)
+**Acceptable Parameters**
+- n/NAME (eg. `edit n/John Doe`)
+  - names are case-sensitive and allows duplicates
+- e/EMAIL (eg. `edit e/johndoe123@email.com`)
+  - emails are case-insensitive and does not allow duplicates
+- y/YEAR (eg. `edit y/3`)
+- c/COURSE_INDEX (eg. `edit c/1`)
+- g/GITHUB (eg. `edit g/johnny`)
+  - github profiles are case-sensitive and allows duplicates
+- l/LINKED (eg. `edit l/linkedin.com/in/john-doe`)
+- m/MODULE YEAR (eg. `edit m/AY2223S1 CS2103T`)
+  - m+/MODULE YEAR (eg. `edit m+/AY2223S1 CS2103T m+/AY2021S2 CS1010E`)
+  - m-/MODULE YEAR (eg. `edit m-/AY2223S1 CS2103T m-/AY2021S2 CS1010E`)
+  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+- s/SKILL (eg. `edit s/C++`)
+  - s+/SKILL (eg. `edit s+/C++ s+/python`)
+  - s-/SKILL (eg. `edit s-/C++ s-/python`)
+  - skills are case-sensitive and does not allow duplicates
+
+<div class="span" class="alert alert-success">
+💡 **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
+</div>
+
+**Examples:**
+- `edit g/johndoeee e/johndoeee@example.com` will edit the GitHub username and email address of the person to be johndoeee and johndoeeee@example.com respectively.
+![View Example](images/UiEditFields.png)
+- `edit s/java s+/python` resets the skill list to contain only java and ignores the python skill addition.
+![View Example](images/UiEditSkills.png)
+- `edit m-/ay2223s2 cs3230` displays an error message as the module does not exist.
+![View Example](images/UiEditError.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -550,25 +577,26 @@ Want to find people with certain qualities? Use find command to find people that
 - All constraints are case-insensitive.
 
 `find [OPTIONAL/PARAMETER]...`<br>
-> **Acceptable Parameters used as Constraints**
-> * n/NAME (e.g. n/Jo will load all people whose names contain Jo such as Jo, John, Joleen.
-> * y/YEAR (e.g. y/2 will load all persons who are in year 2)
-> * c/COURSE (e.g. c/Computer will load all people enrolled in Computer Engineering and Computer Science)
->   * Notes that this is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)
-> * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
->   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
->   * 💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want. <br> For example,  m/`cs1101 cs1231` `AY2223S1 cs2040` `AY2223S2 cs2090 cs3230` will load all person that have taken
->     * cs1101, cs1231 regardless of academic year
->     * cs2040 in AY2223S1
->     * cs2090, cs3230 in AY2223S2
-> * s/SKILLS (e.g. s/java will load all person that contains java in their skill list such as java and javascript)
->   * 💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want to separate by a space.
-> 
->
-> **Examples:**
-> - execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
-> - execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
-> - Finally, execute `list` to get back every contact in Codoc
+**Acceptable Parameters used as Constraints**
+* n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
+* y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
+* c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
+    * <div class="span" class="alert alert-info">:information_source: **Note:** This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
+* m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
+  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
+  * <div class="span" class="alert alert-success">💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
+  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all person that have taken
+    * `CS1101`, `CS1231` regardless of academic year
+    * `CS2040` in `AY2223S1`
+    * `CS2090`, `CS3230` in `AY2223S2`
+* s/SKILLS (e.g. `find s/java` will load all person that contains `java` in their skill list such as `java` and `javascript`)
+    * <div class="span" class="alert alert-success">💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
+ 
+
+**Examples:**
+- execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
+- execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
+- Finally, execute `list` to get back every contact in Codoc
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -578,9 +606,12 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 
 `list`<br>
 
+<div class="span" class="alert alert-success">
 💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
-> * `list`
-> ![result for list](images/UiList.png)
+</div>
+
+* `list`
+![result for list](images/UiList.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -594,15 +625,20 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 
 `delete <INDEX>`<br>
 
-> * `delete 6` deletes Betsy Crowe who was at index 6
-> ![Delete Betsy](images/UiDelete.png)
+* `delete 6` deletes Betsy Crowe who was at index 6
+![Delete Betsy](images/UiDelete.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 8. Clearing all entries : `clear`
-`clear`<br>
-> * :warning: Clears **all** entries from CoDoc.<br>
-> ![Clear](images/UiClear.png)
+
+`clear`
+
+<div class="span" class="alert alert-danger">
+:warning: Clears **all** entries from CoDoc.
+</div>
+
+![Clear](images/UiClear.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -611,7 +647,7 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 Want to quit? Use exit command to exit the program! <br>
 Equivalent to clicking the close button via the GUI. <br>
 
->`exit`<br>
+`exit`<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -716,17 +752,18 @@ _Details coming soon ..._
 
 ## Command Summary 
 
-| Actions                          | Description                                                                                                                                 |
+| Actions                          | Example                                                                                                                                     |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | Add a person                     | add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob l/linkedin.com/in/bom-sim-086g93847 m/ay2223s2 CS2103T m/AY2223S2 cs2101 s/python s/java |
-| Clear all persons                | clear                                                                                                                                       |
-| Delete person at index 3         | delete 3                                                                                                                                    |
+| View contact                     | view 3                                                                                                                                      |
+| View tab                         | view c, view m, view s                                                                                                                      |
 | Edit contact in the right panel  | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
 | Find by attributes               | find n/David c/Computer Science m/CS2109S s/java                                                                                            |
 | List the full list of contacts   | list                                                                                                                                        |
-| View contact                     | view 3                                                                                                                                      |
-| View tab                         | view c, view m, view s                                                                                                                      |
+| Delete person at index 3         | delete 3                                                                                                                                    |
+| Clear all persons                | clear                                                                                                                                       |
 | View user guide and command list | help                                                                                                                                        |
+| Exits the application            | exit                                                                                                                                        |
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -774,7 +811,7 @@ _Details coming soon ..._
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
 8. You can now double-click on your `.command` file to open CoDoc.
 
-   <div class="span" class="alert alert-warning">
+   <div class="span" class="alert alert-success">
    :bulb: <b>Tip:</b> You can now place the <code>.command</code> file anywhere.
    </div>
    <div class="span" class="alert alert-danger">  
