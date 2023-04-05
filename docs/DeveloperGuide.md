@@ -18,7 +18,7 @@ title: Developer Guide
   [JUnit5](https://github.com/junit-team/junit5)
 * With inspiration from: [fzf](https://github.com/junegunn/fzf) (for fuzzy
   finding), [Vim](https://www.vim.org/) (for hotkeys)
-* With GUI testing structure based on: [Address book-level4](https://github.com/se-edu/addressbook-level4) 
+* With GUI testing structure based on: [Address book-level4](https://github.com/se-edu/addressbook-level4)
 * Originally forked from: [AddressBook
   3](https://github.com/nus-cs2103-AY2223S2/tp)
 
@@ -216,15 +216,15 @@ main statistics: projects that are due soon, projects that are overdue
 and a pie chart showing progress overview. The goal of this feature is to provide users
 with useful information related to productivity to make adjustments accordingly.
 
-For projects that are due soon, all projects that have deadlines within the current week 
-and next week will be displayed (Week starts from Sunday). For example, if the current 
-date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be 
+For projects that are due soon, all projects that have deadlines within the current week
+and next week will be displayed (Week starts from Sunday). For example, if the current
+date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be
 shown on the **Due soon project list**.
 
 For overdue list, all overdue projects will be displayed to make sure that users can
-keep track of all the deadlines they have missed. Any deadlines before the current date will be 
+keep track of all the deadlines they have missed. Any deadlines before the current date will be
 counted as overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
-will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue 
+will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue
 project list**.
 
 Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
@@ -927,3 +927,9 @@ with (ENTER).
 * [Testing guide](/tp/Testing.html)
 * [Configuration guide](/tp/Configuration.html)
 * [DevOps guide](/tp/DevOps.html)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+1. [ ] Utilising checksum on JSON file to prevent manual tampering of data.
+1. [ ] Displaying explicit exceptions when the JSON file is corrupted or tampered with.

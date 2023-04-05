@@ -21,10 +21,8 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * {@code Client} object for deserialization. It also contains methods for null and validity checks of the adapted
  * client object's fields.
  */
-class JsonAdaptedClient {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
-
+class JsonAdaptedClient extends JsonAdaptedEntity {
+    private static final String ENTITY_NAME = "Client";
     private final String name;
     private final String email;
     private final String yearOfBirth;
@@ -39,6 +37,7 @@ class JsonAdaptedClient {
                              @JsonProperty("year_of_birth") String yearOfBirth,
                              @JsonProperty("source") String source,
                              @JsonProperty("mobile_number") String mobileNumber) {
+        super(ENTITY_NAME);
         this.name = name;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
@@ -50,37 +49,12 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client client) {
+        super(ENTITY_NAME);
         name = client.getName().fullName;
         email = client.getEmail().value;
         yearOfBirth = client.getYearOfBirth().map(x -> x.value).orElse(null);
         source = client.getSource().map(NonEmptyString::toString).orElse(null);
         mobileNumber = client.getMobileNumber().map(x -> x.value).orElse(null);
-    }
-
-    /**
-     * Throws an {@code IllegalValueException} with the given message if the given boolean is true.
-     *
-     * @param check         The boolean to be checked.
-     * @param attributeName The name of the attribute being checked.
-     * @throws IllegalValueException if the given boolean is true.
-     */
-    public void nullCheck(boolean check, String attributeName) throws IllegalValueException {
-        if (check) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, attributeName));
-        }
-    }
-
-    /**
-     * Throws an {@code IllegalValueException} with the given message if the boolean is true.
-     *
-     * @param check   The boolean to be checked.
-     * @param message The error message to be displayed if the check fails.
-     * @throws IllegalValueException if the given boolean is true.
-     */
-    public void validityCheck(boolean check, String message) throws IllegalValueException {
-        if (check) {
-            throw new IllegalValueException(message);
-        }
     }
 
     /**
@@ -90,19 +64,19 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        nullCheck(name == null, Name.class.getSimpleName());
-        validityCheck(!Name.isValidName(name), Name.MESSAGE_CONSTRAINTS);
+        nullCheck(name, Name.class.getSimpleName());
+        validityCheck(Name.isValidName(name), Name.MESSAGE_CONSTRAINTS);
         final Name modelName = new Name(name);
 
-        nullCheck(email == null, Email.class.getSimpleName());
-        validityCheck(!Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
+        nullCheck(email, Email.class.getSimpleName());
+        validityCheck(Email.isValidEmail(email), Email.MESSAGE_CONSTRAINTS);
         final Email modelEmail = new Email(email);
 
         if (yearOfBirth != null) {
-            validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
+            validityCheck(YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
         }
         if (mobileNumber != null) {
-            validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
+            validityCheck(Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         }
 
         return new Client(modelName,

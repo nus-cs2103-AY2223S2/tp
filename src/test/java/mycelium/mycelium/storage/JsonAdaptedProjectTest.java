@@ -49,7 +49,7 @@ public class JsonAdaptedProjectTest {
     public void toModelType_invalidNullFields_throwsIllegalValueException() {
         // Convenience lambda to build the expected error message
         UnaryOperator<String> withErr = (fieldName)
-            -> String.format(JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT, fieldName);
+            -> String.format(JsonAdaptedEntity.MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName(), fieldName);
 
         // A bunch of test cases with varying null fields. It is rather verbose, but there is no working
         // around it, since we would like to simulate Jackson's behavior of instantiating this class.

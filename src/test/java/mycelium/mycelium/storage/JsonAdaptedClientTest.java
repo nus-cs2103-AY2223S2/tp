@@ -60,7 +60,10 @@ public class JsonAdaptedClientTest {
             VALID_SOURCE, VALID_MOBILE_NUMBER);
         String
             expectedMessage =
-            String.format(JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+            String.format(
+                JsonAdaptedEntity.MISSING_FIELD_MESSAGE_FORMAT,
+                Client.class.getSimpleName(),
+                Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -79,7 +82,10 @@ public class JsonAdaptedClientTest {
             VALID_SOURCE, VALID_MOBILE_NUMBER);
         String
             expectedMessage =
-            String.format(JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+            String.format(
+                JsonAdaptedEntity.MISSING_FIELD_MESSAGE_FORMAT,
+                Client.class.getSimpleName(),
+                Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
