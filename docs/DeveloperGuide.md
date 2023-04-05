@@ -634,7 +634,7 @@ Windows, Linux, Unix, OS-X
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manages internship applications faster than a typical mouse/GUI driven app
+**Value proposition**: manages internship applications faster than a typical mouse while offering an intuitive and user-centred GUI design
 
 
 ### 8.2 User Stories
@@ -648,13 +648,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                  | add a new application entry                      |                                                                                              |
 | `* * *`  | user                  | edit an new application entry                    | update progress of an internship application or amend mistakes I might have made in an entry |
 | `* * *`  | neat user             | delete an application entry                      | remove entries that I no longer need                                                         |
-| `* * *` | user                  | add an upcoming task to an application           | remind myself of the work I need to do for this application                                  |
-| `* * *` | user                  | edit an upcoming task for an application         | update the application with the next task I need to complete                                 |
+| `* * *`  | user                  | add an upcoming task to an application           | remind myself of the work I need to do for this application                                  |
+| `* * *`  | user                  | edit an upcoming task for an application         | update the application with the next task I need to complete                                 |
+| `* * *`  | neat user             | delete a task from an application                | remove tasks that I have done or are past the deadline                                       |
 | `* *`    | user                  | find application entry to a specified company    | keep track of all the positions I have applied to at this company more easily                |
 | `* *`    | user                  | find application entry with a specified role     | keep track of all the applications with this role                                            |
 | `* *`    | user                  | find application entry with a specified deadline | keep track of all the applications and their upcoming tasks I need to complete by then       |
-| `* *`    | user                  | sort application entries by specified order      | view them in order to get a better idea which ones to prioritise                             |
+| `* *`    | user                  | sort application entries by specified order      | view them in order to get a better idea of which ones I should prioritise                    |
 | `* *`    | clumsy user           | undo a command                                   | if I ever typed one by mistake                                                               |
+| `* *`    | clumsy user           | redo a command                                   | lest I undone one by mistake                                                                 |
+| `* `     | neat user             | clear my internship book                         | restart the whole process of tracking my internship applications                             |
 | `* `     | user                  | tag an application                               | label them as I wish                                                                         |
 | `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
 
@@ -958,6 +961,17 @@ UC05, UC06, UC10).</u>
 4. sprINT undoes the command executed.
 5. User requests to redo the command that has been undone in step 4.
 6. sprINT redoes the command executed in step 2.
+
+   Use case ends.
+
+---
+
+**Use case: UC13 - Exit sprINT**
+
+**MSS**
+
+1. User requests to exit the program.
+2. sprINT closes the program window.
 
    Use case ends.
 
