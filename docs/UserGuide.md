@@ -531,91 +531,6 @@ which currently has a deadline. Then it is not possible to use the `up` command
 to unset the deadline.
 </div>
 
-## Fuzzy Search
-
-Fuzzy search allows us to find projects or clients which match *closely* to
-some query, rather than *exactly*. This is useful if you are, for instance,
-trying to find a project whose name you only remember partial bits of, or how
-it sounds in your head.
-
-Mycelium supports fuzzy finding for both projects and clients. For projects,
-the query is matched against the project's name, while for clients, the query
-is matched against the client's email. Furthermore, the search is
-*interactive*. This means that the UI automatically updates as you type your
-query into the command box.
-
-Please take note of these details for fuzzy search:
-
-* Closer matches will be placed at the top;
-* Only projects or clients which *do not match at all* will not be shown;
-* Fuzzy search is *not* case-sensitive.
-
-The following two sections will walk through performing fuzzy search on
-projects and clients.
-
-<div markdown="span" class="alert alert-success">
-:bulb: Note that by "do not match at all", we refer to the case where literally
-not a single character matches. As long as at least one character matches, the
-project or client will be listed (although possibly ranked very low).
-</div>
-
-### Fuzzy searching projects
-
-We will now demonstrate fuzzy searching through an example. Let us assume we
-have the following projects in Mycelium:
-
-<img src="images/Ui.png" />
-
-<div markdown="span" class="alert alert-info">
-:information_source: Recall that Mycelium supports fuzzy search for projects by
-their *names* only.
-</div>
-
-1. First, press (CTRL+F) to toggle to **search mode** (if you are not already in
-search mode). You should see the command box turn teal; now we can begin
-searching. Suppose we wanted to search for *Clash of Clans* listed at the
-bottom in the screenshot above. With the power of fuzzy matching, just typing
-*coc* is enough, as shown below.
-
-<img src="images/FuzzyDemoSearching.png" />
-
-- If we queried a term which matches nothing at all, then no results will be
-listed.
-
-<img src="images/FuzzyDemoSearchingNoResults.png" />
-
-2. To exit search mode, press (CTRL+F) again. The command box should return to its original dark color.
-
-<div markdown="span" class="alert alert-info">
-:information_source: The example we have here is quite trivial. But you can
-imagine having tens or hundreds of projects and clients; fuzzy search would be
-quite a quality-of-life feature!
-</div>
-
-<div markdown="span" class="alert alert-success">
-:bulb: Still confused about search mode? You may check out the [section
-below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
-</div>
-
-### Fuzzy searching clients
-
-This works exactly the same as fuzzy searching projects, described above.
-The only difference to note is that the query is matched against the clients'
-emails, and not their names.
-
-### Fuzzy search Gotchas
-
-In general, fuzzy search in Mycelium should feel familiar to most developers,
-since it is similar to, for example, finding files in IDEs, or the well known
-[fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
-might wish to note:
-
-* Each fuzzy query will be applied to both clients and project. That is, when
-  you query for something, say, "coc", this query is applied to both the Clients
-  tab and the Projects tab, regardless of which tab is currently being displayed.
-* You might experience some input lag while in search mode. This is expected to
-  improve as we refine the implementation.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## HotKeys
@@ -673,35 +588,146 @@ If there was no item originally selected, then the last item in the list will be
 
 ### (CTRL+F) Search
 
-This shortcut allows you toggle the command box between **search mode** and **command mode** (default).
+This shortcut allows you toggle the command box between **search mode** and
+**command mode** (default). More information about the functionality of
+**search mode** can be found [below](#fuzzy-search).
 
 In **command mode**, the input in the command box is used to execute the command.
 
 In **search mode**, the command box is highlighted teal and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
-If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
-
-To demonstrate this, let's assume you want to delete a project. You can type in `dp -pn ` as shown below
-
-![step1](images/SearchAndSelectStep1.png)
-
-Instead of typing the full project name, you can press (CTRL+F) to enter **search mode** and search for the project you want to delete
-and select the project as shown below.
-
-![step2](images/SearchAndSelectStep2.png)
-
-You can then press (ENTER) to switch back to **command mode** and append the project name to the command box.
-
-![step3](images/SearchAndSelectStep3.png)
-
-This way you can quickly reference a project or client in your command, without having to type out the full name or email.
+Your existing input while in **command mode** will be cached when you switch to
+**search mode**. It is then restored when you switch back to **command mode**.
+Similarly, your existing input while in **search mode** will be cached when
+switching to **command mode**, and restored when switching back to **search
+mode**.
 
 <div markdown="span" class="alert alert-danger">
 :warning: You cannot execute any commands while in **search mode**. Similarly,
 no searching can be done while in **command mode**.
 </div>
 
-# Command summary
+## Fuzzy Search
+
+Fuzzy search allows us to find projects or clients which match *closely* to
+some query, rather than *exactly*. This is useful if you are, for instance,
+trying to find a project whose name you only remember partial bits of, or how
+it sounds in your head.
+
+Mycelium supports fuzzy finding for both projects and clients. For projects,
+the query is matched against the project's name, while for clients, the query
+is matched against the client's email. Furthermore, the search is
+*interactive*, so UI automatically updates as you type your query into the
+command box.
+
+Please take note of these details for fuzzy search:
+
+* Closer matches will be placed at the top;
+* Only projects or clients which *do not match at all* will not be shown;
+* Fuzzy search is *not* case-sensitive.
+
+The following two sections will walk through performing fuzzy search on
+projects and clients.
+
+<div markdown="span" class="alert alert-success">
+:bulb: Note that by "do not match at all", we refer to the case where literally
+not a single character matches. As long as at least one character matches, the
+project or client will be listed (although possibly ranked very low).
+</div>
+
+### Fuzzy searching projects
+
+We will now demonstrate fuzzy searching through an example. Let us assume we
+have the following projects in Mycelium:
+
+<img src="images/Ui.png" />
+
+<div markdown="span" class="alert alert-info">
+:information_source: Recall that Mycelium supports fuzzy search for projects by
+their *names* only.
+</div>
+
+First, press (CTRL+F) to toggle to **search mode** (if you are not already in
+**search mode**). You should see the command box turn teal; now we can begin
+searching. Suppose we wanted to search for *Clash of Clans* listed at the
+bottom in the screenshot above. With the power of fuzzy matching, just typing
+*coc* is enough, as shown below.
+
+<img src="images/FuzzyDemoSearching.png" />
+
+If we queried a term which matches nothing at all, then no results will be
+listed.
+
+<img src="images/FuzzyDemoSearchingNoResults.png" />
+
+To exit **search mode**, press (CTRL+F) again. The command box should return to its
+original dark color.
+
+<div markdown="span" class="alert alert-info">
+:information_source: The example we have here is quite trivial. But you can
+imagine having tens or hundreds of projects and clients; fuzzy search would be
+quite a quality-of-life feature!
+</div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: Still confused about **search mode**? You may check out the [section
+below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
+</div>
+
+### Fuzzy searching clients
+
+This works exactly the same as fuzzy searching projects, described above.
+The only difference to note is that the query is matched against the clients'
+emails, and not their names.
+
+### Extracing client and project info
+
+While in **search mode**, you can use the (ENTER) key to extract a client's email
+or a project's name. This will automatically switch you back to **command mode**
+while appending the name or email to the command box. This is useful if you
+want to quickly reference a project or client in your command.
+
+To demonstrate this, let's assume you want to delete a project. You can first
+type in `dp -pn ` as shown below
+
+![step1](images/SearchAndSelectStep1.png)
+
+Instead of typing the full project name, you can press (CTRL+F) to enter
+**search mode** and search for the project you want to delete. Once you see the
+desired project, use (CTRL+J) or (CTRL+K) to navigate to it. You will know it
+is selected when the project's box is coloured blue, as shown below.
+
+![step2](images/SearchAndSelectStep2.png)
+
+You can then press (ENTER) to switch back to **command mode** and append the project name to the command box. The project's name will be highlighted (this is not shown in the screenshot below due to to limitations of the screenshot program).
+
+![step3](images/SearchAndSelectStep3.png)
+
+We can now proceed to execute the command as per usual. Note that for clients,
+the (ENTER) key would extract the client's email. This way you can quickly
+reference a project or client in your command, without having to type out the
+full name or email.
+
+<div markdown="span" class="alert alert-danger">
+:warning: Avoid using your mouse to select a project or client. Instead, use
+the (CTRL+J) and (CTRL+K) hotkeys. Using a mouse to select a project or client
+is not officially supported by Mycelium.
+</div>
+
+### Fuzzy search Gotchas
+
+In general, fuzzy search in Mycelium should feel familiar to most developers,
+since it is similar to, for example, finding files in IDEs, or the well known
+[fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
+might wish to note:
+
+* Each fuzzy query will be applied to both clients and project. That is, when
+  you query for something, say, "coc", this query is applied to both the Clients
+  tab and the Projects tab, regardless of which tab is currently being displayed.
+* You might experience some input lag while in **search mode**. This is expected to
+  improve as we refine the implementation.
+
+## Command summary
 
 The table below summarizes the layout of all the commands in Mycelium. You may
 read the statement `q -a foo [-b bar]` like so:
