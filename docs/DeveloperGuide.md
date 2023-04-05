@@ -177,11 +177,11 @@ It's behaviour is dependent on the user's input.
 
 The following sequence diagram depicts an `add` command execution for adding a `Module` object to the `Tracker` object.
 
-<img src="images/AddSequenceDiagram.png" width="1252"/>
+<img src="images/AddSequenceDiagram.png" width="1261"/>
 
 **Notes for `AddCommandParser#parse(String)`**
 
-- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` being thrown and the command will not be executed.
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` object being thrown and the command will not be executed.
 
   | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent        | `AddCommand` subclass |
   | :----------: | :-----------------: | :-----------------: | :------------------: | :-------------------: |
@@ -225,7 +225,7 @@ The following sequence diagram depicts an `edit` command execution for editing t
 
 **Notes for `EditCommandParser#parse(String)`**
 
-- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `EditCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` being thrown and the command will not be executed.
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `EditCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` object being thrown and the command will not be executed.
 
   | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent         | `EditCommand` subclass |
   | :----------: | :-----------------: | :-----------------: | :-------------------: | :--------------------: |
