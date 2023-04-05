@@ -57,7 +57,7 @@ If this is not your first time using VMS, do **<u>NOT</u>** attempt to execute a
 Before diving into VMS, first initialize the data of the vaccinations that your clinic supports.
 
 * VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clears-all-vaccination-data) command.
-* See [`add`](#add---add-a-vaccination-type) on how you can add a vaccination.
+* See [`add`](#add---add-a-vaccination) on how you can add a vaccination.
 
 ##### Normal usage
 
@@ -154,6 +154,14 @@ The general command line syntax is as follows:<br>
 #### `<component>`
 
 The list of available components are given in the [components section](#components).
+
+#### `<main-keyword>`
+
+Only these values (case sensitive) are allowed:
+
+* `patient`
+* `vaccination`
+* `appointment`
 
 #### `<boolean>`
 
@@ -316,7 +324,7 @@ Adds a new keyword as defined in the command into the system.
 keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 </pre>
 
-* <code><var>MAIN_KEYWORD</var></code> : `<keyword>`
+* <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
 * <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
@@ -493,6 +501,9 @@ However, the following exceptions apply:
 
 ```text
 patient find john
+```
+
+```text
 patient find --n john --b B+
 ```
 
@@ -674,9 +685,9 @@ When checking if a patient satisfies the history requirements of a vaccination, 
 In other words, a patient can satisfy a requirement by taking vaccinations with certain group types for `ALL` and `ANY` requirement types or not taking any vaccinations with certain group types for `NONE` requirement types.
 </div>
 
-#### `add` - Add a vaccination type
+#### `add` - Add a vaccination
 
-Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
+Adds a new vaccination as defined in the command into the system. If any of the optional arguments are omitted,
 they will be set to their default values.
 
 ##### Syntax
@@ -704,7 +715,7 @@ The flags `--lal` and `--ual` for minimum and maximum age stand for **<u>L</u>ow
 <div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
 :bulb: **Breaking up vaccination `add` syntax**
 
-Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination-type) command.
+Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination) command.
 
 This can be done by:
 
@@ -813,6 +824,8 @@ vaccination find <var>VAX_NAME</var>
 
 ##### Example
 
+Example assumes that none of the start-up vaccination data are deleted yet.
+
 ```text
 vaccination find dose 1
 ```
@@ -829,7 +842,7 @@ Output:
 
 * <code><var>VAX_NAME</var></code> cannot be blank.
 
-#### `edit` - Edit a vaccination type
+#### `edit` - Edit a vaccination
 
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
 are omitted, they will be set to what they were before.
@@ -908,7 +921,7 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 
 ##### Example
 
-Examples follow after vaccination clear and then add command examples.
+Examples follow after vaccination [`clear`](#clear---clears-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
 
 ```text
 vaccination delete 1
@@ -993,11 +1006,11 @@ appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Modern
 
 ##### Restrictions
 
-* The patient id must be an existing PATIENT_ID in the patient manager.
-* The patient id must for a patient that does not already have an upcoming appointment.
-* The starting time must be after the current locale time.
-* The ending time must be after the given starting time.
-* The vaccination must be an existing vaccination type in the vaxtype manager.
+* <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The patient referred to by <code><var>PATIENT_ID</var></code> must not have any upcoming appointments that are not yet completed.
+* <code><var>START_TIME</var></code> must be after the current locale time.
+* <code><var>END_TIME</var></code> must be after the given starting time.
+* <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
 #### `list` - List all appointments
 
@@ -1040,6 +1053,9 @@ appointment find {...<var>KEYWORDS</var>... | [--<var>ATTRIBUTE_FLAG</var> <var>
 
 ```text
 appointment find --p 1
+```
+
+```text
 appointment find Dose 1
 ```
 
@@ -1069,12 +1085,13 @@ appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfi
 
 ##### Restrictions
 
-* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
-* The <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
-* The <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
-* The <code><var>START_TIME</var></code> must be after the current locale time.
-* The <code><var>END_TIME</var></code> must be after the given starting time.
-* The <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
+* <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
+* <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
+* <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The patient referred to by <code><var>PATIENT_ID</var></code> must not have any upcoming appointments that are not yet completed.
+* <code><var>START_TIME</var></code> must be after the current locale time.
+* <code><var>END_TIME</var></code> must be after the given starting time.
+* <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
 #### `mark` - Marks an appointment as completed
 
@@ -1146,30 +1163,136 @@ appointment delete 5
 
 ## Data files
 
-VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
+VMS automatically saves your data after every successful command execution to `[JAR file location]/data`. They are saved as JSON files and users are welcomed to update the data directly by editing these files.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Errors while editing JSON file**
+
+In most cases, if there are errors present in the data file, VMS will ignore these files and start with the default start up data for that component with some exceptions to appointment. However, a warning message will always show and and users should review them to ensure that they are expected before executing any commands.
+
+**If any commands were to successfully be executed, <u>ALL</u> previous data in the data folder, if present, will be overwritten and lost forever.**
 </div>
 
 <div markdown="block" class="alert alert-info">
-
-**:information_source: JSON syntax presentation**<br>
+**:information_source: JSON syntax presentation**
 
 * The following will have the same meaning as <a href="#CLI-presentation-format">CLI presentation</a>.
   * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
   * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
   * **Triangle brackets** (`<` and `>`)
-* **Square brackets** (`[` and `]`) will no longer mean an optional argument, instead it will be a required character
-  for JSON syntax.
+* **Square brackets** (`[` and `]`) and **braces** (`{` and `}`) will have no unique meaning other than being a required character for JSON syntax.
 
 </div>
 
-### Vaccination type JSON
+### Keyword data files
 
-Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.json`. It has the following syntax
+Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
-##### Overall file
+##### Overall file format
+
+<pre>
+{
+  "keywords": [...<var>KEYWORD</var>...]
+}
+</pre>
+
+##### `<keyword>` format
+
+<pre>
+{
+  "keyword": <var>KEYWORD</var>,
+  "mainKeyword": <var>MAIN_KEYWORD</var>
+}
+</pre>
+
+* <code><var>KEYWORD</var></code> : `<string>`
+* <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword invalid. In all cases, VMS will ignore the entire keyword data file if an invalid keyword is present.
+
+* <code><var>KEYWORD</var></code> cannot be any of these values (case sensitive):
+  * `basic`
+  * `help`
+  * `exit`
+  * `keyword`
+  * `patient`
+  * `vaccination`
+  * `appointment`
+
+### Patient data files
+
+Patient data are stored in `[JAR file location]/data/patientmanager.json`.
+
+##### Overall file format
+
+<pre>
+{
+  "datas": [...<var>PATIENT</var>...]
+}
+</pre>
+
+* <code><var>PATIENT</var></code> : [`<patient>`](#patient-format)
+
+##### `<patient>` format
+
+<pre>
+{
+  "isActive": <var>IS_ACTIVE</var>,
+  "id": <var>PATIENT_ID</var>,
+  "patient": {
+    "name": <var>PATIENT_NAME</var>,
+    "phone": <var>PHONE</var>,
+    "dob": <var>DATE_OF_BIRTH</var>,
+    "bloodType": <var>BLOODTYPE</var>,
+    "allergies": [...<var>ALLERGY</var>...],
+    "vaccines": [...<var>VACCINE</var>...]
+  }
+}
+</pre>
+
+* <code><var>IS_ACTIVE</var></code> : `<boolean>`
+  * This value does not do anything but there to aid in future developments.
+* <code><var>PATIENT_ID</var></code> : `<integer>`
+  * **0 based** indexing.
+* <code><var>NAME</var></code> : `<name>`
+* <code><var>PHONE</var></code> : `<phone-number>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* <code><var>ALLERGY</var></code> : `<group-name>`
+* <code><var>VACCINE</var></code> : `<group-name>`
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the patient invalid. In all cases, VMS will ignore the entire patient data file if an invalid patient is present.
+
+* <code><var>DATE_OF_BIRTH</var></code> must be a date before the time the application is launched.
+
+##### Example
+
+```json
+{
+  "datas" : [ {
+    "isActive" : true,
+    "id" : 0,
+    "patient" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "dob" : "1983-12-23T00:00:00",
+      "bloodType" : "A+",
+      "allergies" : [ ],
+      "vaccines" : [ "Dose 1 (Moderna)" ]
+    }
+  } ]
+}
+```
+
+### Vaccination data files
+
+Vaccination data are stored in `[JAR file location]/data/vaxtype.json`.
+
+##### Overall file format
 
 <pre>
 {
@@ -1177,7 +1300,9 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 }
 </pre>
 
-##### Vaccination
+* <code><var>VACCINATION</var></code> : [`<vaccination>`](#vaccination-format)
+
+##### `<vaccination>` format
 
 <pre>
 {
@@ -1195,13 +1320,19 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 * <code><var>MIN_AGE</var></code> : `<age>`
 * <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>REQUIREMENT</var></code> : `<req>`
+* <code><var>REQUIREMENT</var></code> : [`<req>`](#req-format)
 
-###### Notes
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: All nodes are optional except for "name". If the optional nodes are omitted, they will be assumed to be their default values as described [here](#vaccination---vaccination-functionalities).
+</div>
 
-* All nodes are optional except for `"name"`.
+###### Restrictions
 
-##### Requirement
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the vaccination invalid. In all cases, VMS will ignore the entire vaccination data file if an invalid vaccination is present.
+
+* <code><var>MIN_AGE</var></code> must not be greater than <code><var>MAX_AGE</var></code>.
+
+##### `<req>` format
 
 <pre>
 {
@@ -1217,28 +1348,107 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 
 ```json
 {
-  "types": [
-    {
-      "name": "Dose 1 (Pfizer)",
-      "groups": ["DOSE 1", "Pfizer", "Vaccination"],
-      "minAge": 5,
-      "historyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": ["DOSE 1"]
-        }
-      ],
-      "ingredients": [
-        "ALC-0315",
-        "ALC-0159",
-        "DSPC",
-        "Cholesterol",
-        "Sucrose",
-        "Phosphate",
-        "Tromethamine",
-        "Tromethamine hydrochloride"
-      ]
-    }
-  ]
+  "types" : [ {
+    "name" : "Dose 3 (Pfizer)",
+    "groups" : [ "Pfizer", "Vaccination", "DOSE 3" ],
+    "minAge" : 5,
+    "maxAge" : 200,
+    "ingredients" : [
+      "ALC-0159",
+      "DSPC",
+      "Sucrose",
+      "Phosphate",
+      "ALC-0315",
+      "Tromethamine hydrochloride",
+      "Cholesterol",
+      "Tromethamine" ],
+    "historyReqs" : [ {
+      "reqType" : "NONE",
+      "reqSet" : [ "DOSE 3" ]
+    }, {
+      "reqType" : "ANY",
+      "reqSet" : [ "DOSE 2" ]
+    } ]
+  } ]
 }
 ```
+
+### Appointment data files
+
+Appointment data are stored in `[JAR file location]/data/appointment.json`.
+
+##### Overall file format
+
+<pre>
+{
+  "datas": [...<var>APPOINTMENT</var>...]
+}
+</pre>
+
+* <code><var>APPOINTMENT</var></code> : [`<appointment>`](#appointment-format)
+
+##### `<appointment>` format
+
+<pre>
+{
+  "isActive": <var>IS_ACTIVE</var>,
+  "id": <var>APPOINTMENT_ID</var>,
+  "appointment": {
+    "patientId": <var>PATIENT_ID</var>,
+    "startTime": <var>START_TIME</var>,
+    "endTime": <var>END_TIME</var>,
+    "vaccine": <var>VAX_NAME</var>,
+    "isComplete": <var>IS_COMPLETE</var>
+  }
+}
+</pre>
+
+* <code><var>IS_ACTIVE</var></code> : `<boolean>`
+  * This value does not do anything but there to aid in future developments.
+* <code><var>APPOINTMENT_ID</var></code> : `<integer>`
+  * **0 based** indexing.
+* <code><var>PATIENT_ID</var></code> : `<integer>`
+  * **1 based** indexing.
+* <code><var>START_TIME</var></code> : `<date>`
+* <code><var>END_TIME</var></code> : `<date>`
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>IS_COMPLETE</var></code> : `<boolean>`
+
+###### Restrictions
+
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the appointment invalid. In all cases unless specified, VMS will ignore the entire appointment data file if an invalid appointment is present.
+
+* <code><var>APPOINTMENT_ID</var></code> must not be negative.
+* Within the entire data file, there should not be a case where there are duplicated <code><var>APPOINTMENT_ID</var></code>.
+* Within the entire data file, there should not be a case where a patient has 2 active appointments.
+* <code><var>PATIENT_ID</var></code> must map to an existing patient.
+  * This error will only cause that appointment to not be loaded.
+* <code><var>VAX_NAME</var></code> must map to an existing vaccination.
+  * This error will only cause that appointment to not be loaded.
+* <code><var>START_TIME</var></code> must be before <code><var>END_TIME</var></code>.
+
+##### Example
+
+```json
+{
+  "datas" : [ {
+    "isActive" : true,
+    "id" : 1,
+    "appointment" : {
+      "patientId" : 1,
+      "startTime" : "2024-03-05T16:00:00",
+      "endTime" : "2024-03-05T16:30:00",
+      "vaccine" : "Dose 2 (Moderna)",
+      "isCompleted" : false
+    }
+  } ]
+}
+```
+
+## FAQ
+
+### How do I delete/edit a specific element in list like attributes?
+
+At the moment, VMS does not offer a quick CLI way to delete/edit specific elements in such lists. However, this is a <u>planned feature</u> in future updates!
+
+A work around this is to **edit the data files directly**.
