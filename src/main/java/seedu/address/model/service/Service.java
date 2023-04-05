@@ -3,8 +3,10 @@ package seedu.address.model.service;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,7 +22,7 @@ public class Service implements Findable {
     private final int id;
     private final int vehicleId;
     private final LocalDate entryDate;
-    private final PartMap requiredParts = new PartMap();
+    private final Map<String, Integer> requiredParts = new HashMap<>();
     private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();
@@ -31,7 +33,7 @@ public class Service implements Findable {
      * This method is the constructor for a Service.
      */
     public Service(int id, int vehicleId, LocalDate entryDate,
-                   PartMap requiredParts, String description,
+                   Map<String, Integer> requiredParts, String description,
                    LocalDate estimatedFinishDate, ServiceStatus status,
                    Set<Integer> assignedToIds) {
         this.id = id;
@@ -40,7 +42,7 @@ public class Service implements Findable {
         this.description = description;
         this.estimatedFinishDate = estimatedFinishDate;
         this.status = status;
-        this.requiredParts.addAll(requiredParts);
+        this.requiredParts.putAll(requiredParts);
         this.assignedToIds.addAll(assignedToIds);
     }
 
@@ -48,7 +50,7 @@ public class Service implements Findable {
      * This method is the constructor for a Service.
      */
     public Service(int id, int vehicleId, LocalDate entryDate,
-                   PartMap requiredParts, String description,
+                   Map<String, Integer> requiredParts, String description,
                    LocalDate estimatedFinishDate, ServiceStatus status) {
         this.id = id;
         this.vehicleId = vehicleId;
@@ -56,7 +58,7 @@ public class Service implements Findable {
         this.description = description;
         this.estimatedFinishDate = estimatedFinishDate;
         this.status = status;
-        this.requiredParts.addAll(requiredParts);
+        this.requiredParts.putAll(requiredParts);
     }
 
     /**
@@ -132,7 +134,7 @@ public class Service implements Findable {
      *
      * @return PartMap of requiredParts needed to fulfill this service.
      */
-    public PartMap getRequiredParts() {
+    public Map<String, Integer> getRequiredParts() {
         return requiredParts;
     }
 
@@ -143,7 +145,11 @@ public class Service implements Findable {
      * @param quantity Quantity of part to add
      */
     public void addPart(String partName, int quantity) {
-        requiredParts.addPart(partName, quantity);
+        if (this.requiredParts.containsKey(partName)) {
+            requiredParts.put(partName, requiredParts.get(partName) + quantity);
+            return;
+        }
+        requiredParts.put(partName, quantity);
     }
 
     /**
@@ -152,7 +158,7 @@ public class Service implements Findable {
      * @param partName Name of the part to be removed.
      */
     public void removePart(String partName) {
-        requiredParts.removePart(partName);
+        requiredParts.remove(partName);
     }
 
 
@@ -161,17 +167,8 @@ public class Service implements Findable {
      *
      * @param parts Another PartMap needed to be added to this service.
      */
-    public void addParts(PartMap parts) {
-        requiredParts.addAll(parts);
-    }
-
-    /**
-     * This method removes some parts that was added to this service.
-     *
-     * @param parts The part to be removed.
-     */
-    public void removeParts(PartMap parts) {
-        requiredParts.removeAll();
+    public void addParts(Map<String, Integer> parts) {
+        requiredParts.putAll(parts);
     }
 
     /**

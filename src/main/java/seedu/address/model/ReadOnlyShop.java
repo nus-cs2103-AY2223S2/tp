@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.PartMap;
@@ -15,7 +16,7 @@ public interface ReadOnlyShop {
 
     ObservableList<Appointment> getAppointmentList();
 
-    PartMap getPartMap();
+    ObservableMap<String, Integer> getPartMap();
 
     /**
      * Returns an unmodifiable view of the customers list.
