@@ -86,6 +86,7 @@ title: Developer Guide
 6. [Documentation](#6-documentation)
    * [Using PlantUML](#using-plantuml)
 7. [Appendix](#7-appendix)
+   * [Planned Enhancements](#planned-enhancements)
    * [Project Requirements](#project-requirements)
    * [Product Scope](#product-scope)
      * [Target User Profile](#target-user-profile)
@@ -1253,6 +1254,13 @@ The `.puml` files used to create diagrams in this document can be found in the [
 # **7. Appendix**
 
 ---
+
+## **Planned Enhancements**
+
+1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime.
+2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose the `busy` command, which will take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented due to time constraints. 
+3. To better create automated fields, we propose the use of `Optional` in our person fields. This would make it clearer that the fields have not been populated yet. They would show "Unknown" if the field is not there. This is currently not implemented as it would require major changes to the commands, as well as storage.
+4. Users may find it difficult to remember the indices of their contacts. As such, we propose the "pipe" operator, which can chain commands together. For example, the `find` command returns a list of people, so we can "pipe" that as arguments to the `meet` function. Likewise, the `view` command can be "piped" as arguments to the `tag` command.
 
 ## **Project Requirements**
 
