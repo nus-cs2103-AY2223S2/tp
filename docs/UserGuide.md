@@ -74,7 +74,8 @@ Lists the full detail of a specific person, including their name, patient ID and
 **`view 1`** will display all the information associated with the 1st person shown on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
-___
+
+---
 ## Adding a patient: addpat
 Adds a new patient to the system, and places them in the `WARD_NAME` assigned.
 Tags attached to a user are meant to be short notes that do not fit into any other category of patient details that can be added.
