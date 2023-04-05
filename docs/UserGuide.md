@@ -36,7 +36,7 @@ title: User Guide
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
-      * [Editing a task `task edit](#editing-a-task-task-edit)
+      * [Editing a task `task edit`](#editing-a-task-task-edit)
       * [Listing tasks `list task`](#listing-tasks-list-task)
       * [Feeding reminders](#feeding-reminders)
     * [Storage](#storage)
