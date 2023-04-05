@@ -475,50 +475,68 @@ Note: Calling mark or unmark would only prompt an error for already marked or un
 
 ### Tag a module
 
-> Tag a specified module from the current list of modules in Le Tracker with descriptions
+> `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-Format: `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+Tag a specified module.
 
-- `module_code` must belong to an existing module
-- `tag_1, tag_2, ...` must be of correct format
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to be tagged
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
+  - Must be valid tags (refer to [Argument Formats](#argument-formats) for more information  on the "Tag" format)
+  - Repeated tags in user's input (if any) will be ignored
+  - Tags in user's input that were already applied to the module (if any) will be ignored
 
 Example:
 
-- `tag EG2310 /tags fun, hard` tags the module `EG2310` with the tags `fun` and `hard`
+- `tag EG2310 /tags fun, hard`
+
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the 
+user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer 
+to [Navigation](#navigation) for more information)
 
 ### Tag a lecture
 
-> Tag a specified lecture with descriptions
+> `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-Format: `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+Tag a specified lecture.
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `lecture_name` must belong to an existing lecture in the specified module
-- `tag_1, tag_2, ...` must be of correct format
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to be tagged
+  - Must belong to an existing module in Le Tracker (:exclamation: Module code matching is case sensitive)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be tagged
+  - Must belong to an existing lecture in Le Tracker (:exclamation: Lecture name matching is case sensitive)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
+  - Must be valid tags (refer to [Argument Formats](#argument-formats) for more information  on the "Tag" format)
+  - Repeated tags in user's input (if any) will be ignored
+  - Tags in user's input that were already applied to the lecture (if any) will be ignored
 
 Examples:
 
-- `tag Lecture_1 /mod CS2040 /tags Yay` tags the lecture `Lecture_1` in the module `CS2040` with the tag
-  `Yay`
+- `tag Lecture_1 /mod CS2040 /tags Yay` 
+
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the
+user's command into the command specified in [Tag a Lecture](#tag-a-lecture) or [Tag a Video](#tag-a-video) (refer
+to [Navigation](#navigation) for more information)
 
 ### Tag a video
 
-> Tag a specified video with descriptions
+> `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-Format: `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+Tag a specified video.
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `lecture_name` must belong to an existing lecture in the specified module
-- `lecture_name` if not specified, defaults to the lecture name of the module in the current context (if any)
-- `video_name` must belong to an existing video in the specified lecture
-- `tag_1, tag_2, ...` must be of correct format
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to be tagged
+  - Must belong to an existing module in Le Tracker (:exclamation: Module code matching is case sensitive)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be tagged
+  - Must belong to an existing lecture in Le Tracker (:exclamation: Lecture name matching is case sensitive)
+- <span style="color:#e46c0a">`video_name`</span> : The name of the video to be tagged
+  - Must belong to an existing video in Le Tracker (:exclamation: Video name matching is case sensitive)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
+  - Must be valid tags (refer to [Argument Formats](#argument-formats) for more information  on the "Tag" format)
+  - Repeated tags in user's input (if any) will be ignored
+  - Tags in user's input that were already applied to the video (if any) will be ignored
 
 Examples:
 
-- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` tags the video `Video_1` in the lecture `Lecture_1` of
-  the module `CS2040` with the tag `Yay`
+- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
 
 ### Untag a module
 
