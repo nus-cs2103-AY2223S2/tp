@@ -116,11 +116,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson, OfficeConnectModel officeConnectModel) {
+    public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
-        focusPerson(target, officeConnectModel);
     }
 
     @Override
@@ -156,15 +154,15 @@ public class ModelManager implements Model {
         return addressBook.getPersonList().filtered(predicate);
     }
 
-    @Override
-    public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
-        for (Person person : addressBook.getPersonList()) {
-            List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
-                .filter(a -> a.getPersonId().equals(person.getId()));
-            person.setTasks(officeConnectModel.getTaskModelManager()
-                .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
-        }
-    }
+    // @Override
+    // public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
+    //     for (Person person : addressBook.getPersonList()) {
+    //         List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
+    //             .filter(a -> a.getPersonId().equals(person.getId()));
+    //         person.setTasks(officeConnectModel.getTaskModelManager()
+    //             .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
+    //     }
+    // }
 
     @Override
     public boolean equals(Object obj) {

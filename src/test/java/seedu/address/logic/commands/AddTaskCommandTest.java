@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -37,7 +38,7 @@ class AddTaskCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         RepositoryModelManagerStub repoModelManagerStub = new RepositoryModelManagerStub();
         OfficeConnectModel testModel = new OfficeConnectModel(repoModelManagerStub,
-                new RepositoryModelManager<AssignTask>(new Repository<>()));
+            new RepositoryModelManager<AssignTask>(new Repository<>()), new ModelManager());
         Task validTask = new TaskBuilder().build();
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), testModel);
@@ -53,7 +54,7 @@ class AddTaskCommandTest {
         RepositoryModelManagerStubWithTask repositoryModelManagerStubWithTask =
             new RepositoryModelManagerStubWithTask(validTask);
         OfficeConnectModel testModel = new OfficeConnectModel(repositoryModelManagerStubWithTask,
-                new RepositoryModelManager<AssignTask>(new Repository<>()));
+            new RepositoryModelManager<AssignTask>(new Repository<>()), new ModelManager());
 
         assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK, () ->
                 addTaskCommand.execute(new ModelStub(), testModel));
@@ -178,7 +179,7 @@ class AddTaskCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson, OfficeConnectModel officeConnectModel) {
+        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -203,9 +204,5 @@ class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 }

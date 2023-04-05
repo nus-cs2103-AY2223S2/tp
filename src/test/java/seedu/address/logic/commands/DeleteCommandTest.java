@@ -40,11 +40,11 @@ public class DeleteCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(getPersonTaskRepository()));
+            new RepositoryModelManager<>(getPersonTaskRepository()), new ModelManager());
 
     private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(getPersonTaskRepository()));
+            new RepositoryModelManager<>(getPersonTaskRepository()), new ModelManager());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

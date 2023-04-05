@@ -99,7 +99,7 @@ public class TaskCard extends UiPart<Region> {
         }
 
 
-        task.getPeoples()
+        task.getPersons()
             .forEach(person -> {
                 Label label = new Label(String.valueOf(person.getName()));
                 label.getStyleClass().add("cell_small_label");

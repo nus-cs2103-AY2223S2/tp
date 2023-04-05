@@ -75,9 +75,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        officeConnectModel = initOfficeConnectModel(storage);
-        officeConnectModel.setTaskPeoples(model.getAddressBook().getPersonList());
-        model.setPeopleTasks(officeConnectModel);
+        officeConnectModel = initOfficeConnectModel(storage, model);
 
         logic = new LogicManager(model, storage, officeConnectModel);
 
@@ -89,7 +87,7 @@ public class MainApp extends Application {
      * The data from the sample repository will be used instead if {@code storage}'s repository is not found,
      * or an empty repository will be used instead if errors occur when reading {@code storage}'s repository.
      */
-    private OfficeConnectModel initOfficeConnectModel(Storage storage) {
+    private OfficeConnectModel initOfficeConnectModel(Storage storage, Model model) {
 
 
         Optional<ReadOnlyRepository<Task>> taskReadOnlyRepository;
@@ -121,7 +119,7 @@ public class MainApp extends Application {
         RepositoryModelManager<AssignTask> personTaskRepositoryModelManager =
             new RepositoryModelManager<>(initialPersonTaskData);
 
-        return new OfficeConnectModel(taskRepositoryModelManager, personTaskRepositoryModelManager);
+        return new OfficeConnectModel(taskRepositoryModelManager, personTaskRepositoryModelManager, model);
     }
 
     /**

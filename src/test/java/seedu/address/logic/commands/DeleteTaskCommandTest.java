@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
@@ -32,10 +33,10 @@ public class DeleteTaskCommandTest {
 
     private final OfficeConnectModel model = new OfficeConnectModel(
         new RepositoryModelManager<>(getTypicalTaskRepository()),
-        new RepositoryModelManager<>(getPersonTaskRepository()));
+        new RepositoryModelManager<>(getPersonTaskRepository()), new ModelManager());
     private final OfficeConnectModel expectedModel = new OfficeConnectModel(new
         RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
-        new RepositoryModelManager<>(model.getAssignTaskModelManager().getReadOnlyRepository()));
+        new RepositoryModelManager<>(model.getAssignTaskModelManager().getReadOnlyRepository()), new ModelManager());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

@@ -38,7 +38,7 @@ public class AssignCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(getPersonTaskRepository()));
+            new RepositoryModelManager<>(getPersonTaskRepository()), new ModelManager());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {

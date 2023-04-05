@@ -24,12 +24,11 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private int index;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
 
 
     /**
@@ -59,6 +58,33 @@ public class Person {
         this.id = id;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    private Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Id id, List<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.id = id;
+        this.getTasks().addAll(tasks);
+    }
+
+    /**
+     * Returns a new Person object with the specified set of tasks added to the original set of tasks.
+     *
+     * @param person the Person object to be updated
+     * @param tasks  the Set of Task objects to be added to the Person object
+     * @return a new Person object with the updated set of tasks
+     */
+    public static Person ofUpdateTasks(Person person, List<Task> tasks) {
+        return new Person(person.getName(), person.getPhone(), person.getEmail(),
+            person.getAddress(), person.getTags(), person.getId(), tasks);
+    }
+
+
     public Name getName() {
         return name;
     }
@@ -83,21 +109,18 @@ public class Person {
         return id;
     }
 
-    public int getIndex() {
-        return index;
-    }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
+    // public void setIndex(int index) {
+    //     this.index = index;
+    // }
 
     public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
+    // public void setTasks(List<Task> tasks) {
+    //     this.tasks = tasks;
+    // }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -140,7 +163,8 @@ public class Person {
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getTags().equals(getTags())
-            && otherPerson.getId().equals(getId());
+            && otherPerson.getId().equals(getId())
+            && otherPerson.getTasks().equals(getTasks());
     }
 
     @Override

@@ -62,7 +62,7 @@ public class IndexCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
             Task taskToFocus = lastShownList.get(index.getZeroBased());
-            officeConnectModel.focusTask(taskToFocus, model);
+            officeConnectModel.focusTask(taskToFocus);
 
             return new CommandResult("Focus on task : " + taskToFocus.getTitle());
 

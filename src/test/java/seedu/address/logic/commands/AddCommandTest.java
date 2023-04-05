@@ -145,7 +145,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson, OfficeConnectModel officeConnectModel) {
+        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,10 +170,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
-            throw new AssertionError("This method should not be called.");
-        }
+
     }
 
     /**

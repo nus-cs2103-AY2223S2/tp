@@ -19,6 +19,7 @@ public class OfficeConnectModel {
     public static final Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     private final RepositoryModelManager<Task> taskModelManager;
     private final RepositoryModelManager<AssignTask> assignTaskModelManager;
+    private final Model personModelManger;
 
     /**
      * Initializes a OfficeConnectModel empty data.
@@ -26,15 +27,29 @@ public class OfficeConnectModel {
     public OfficeConnectModel() {
         taskModelManager = new RepositoryModelManager<>(new Repository<Task>());
         assignTaskModelManager = new RepositoryModelManager<>(new Repository<AssignTask>());
+        personModelManger = new ModelManager();
     }
+
     /**
      * Initializes a OfficeConnectModel given data.
      */
     public OfficeConnectModel(RepositoryModelManager<Task> taskModelManager,
-                              RepositoryModelManager<AssignTask> assignTaskModelManager) {
+                              RepositoryModelManager<AssignTask> assignTaskModelManager, Model personModelManger) {
         this.taskModelManager = taskModelManager;
         this.assignTaskModelManager = assignTaskModelManager;
+        this.personModelManger = personModelManger;
+        init();
     }
+
+    private void init() {
+
+        updateTaskToPersonsMapping();
+        updatePersonToTasksMapping();
+
+
+    }
+
+
 
     public RepositoryModelManager<Task> getTaskModelManager() {
         return taskModelManager;
@@ -44,10 +59,21 @@ public class OfficeConnectModel {
         return assignTaskModelManager;
     }
 
-    public void setTaskPeoples(ObservableList<Person> peoples) {
-        for (Task t : taskModelManager.getReadOnlyRepository().getData()) {
-            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(t.getId()));
-            t.setPeoples(peoples.filtered(p -> assignTasks.stream().anyMatch(a ->a.getPersonId().equals(p.getId()))));
+    private void updateTaskToPersonsMapping() {
+        for (Task task : taskModelManager.getReadOnlyRepository().getData()) {
+            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+            List<Person> persons = personModelManger.getAddressBook().getPersonList()
+                .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
+            taskModelManager.setItem(task, Task.ofUpdatePeoples(task, persons));
+        }
+    }
+    private void updatePersonToTasksMapping() {
+        for (Person person : personModelManger.getAddressBook().getPersonList()) {
+            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+
+            List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
+                .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
+            personModelManger.setPerson(person, Person.ofUpdateTasks(person, tasks));
         }
     }
 
@@ -107,11 +133,9 @@ public class OfficeConnectModel {
      *
      * @param target     target task to be edited
      * @param editedTask edited task
-     * @param model      person list
      */
-    public void setTaskModelManagerItem(Task target, Task editedTask, Model model) {
+    public void setTaskModelManagerItem(Task target, Task editedTask) {
         taskModelManager.setItem(target, editedTask);
-        focusTask(target, model);
     }
 
     /**
@@ -130,11 +154,11 @@ public class OfficeConnectModel {
     /**
      * Focus onto a specific task.
      */
-    public void focusTask(Task taskToFocus, Model model) {
+    public void focusTask(Task taskToFocus) {
         updateTaskModelManagerFilteredItemList(task -> task.getId().equals(taskToFocus.getId()));
         List<AssignTask> assignTasks = getAssignTaskModelManager()
             .filter(assign -> assign.getTaskId().equals(taskToFocus.getId()));
-        model.updateFilteredPersonList(person -> assignTasks.stream()
+        personModelManger.updateFilteredPersonList(person -> assignTasks.stream()
             .anyMatch(assign -> assign.getPersonId().equals(person.getId())));
     }
 
@@ -180,4 +204,26 @@ public class OfficeConnectModel {
             .anyMatch(a -> a.getTaskId().equals(t.getId())));
         return task;
     }
+
+    public boolean hasPerson(Person toAdd) {
+        return personModelManger.hasPerson(toAdd);
+    }
+
+
+    public void addPerson(Person toAdd) {
+        personModelManger.addPerson(toAdd);
+    }
+
+    public List<Person> getFilteredPersonList() {
+        return personModelManger.getFilteredPersonList();
+    }
+
+    public ReadOnlyAddressBook getAddressBook() {
+        return personModelManger.getAddressBook();
+    }
+
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        personModelManger.updateFilteredPersonList(predicate);
+    }
+
 }

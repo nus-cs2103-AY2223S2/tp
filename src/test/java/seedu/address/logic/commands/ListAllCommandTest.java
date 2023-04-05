@@ -34,9 +34,9 @@ public class ListAllCommandTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         officeConnectModel = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
         expectedofficeConnectModel = new OfficeConnectModel(officeConnectModel.getTaskModelManager(),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
     }
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
