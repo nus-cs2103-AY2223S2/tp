@@ -123,7 +123,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="611" />
 
-** This class diagram omits some classes and dependencies in the `Model` component for the purpose of simplicity (classes excluded include `ModuleCode`, `ModuleName`, `LectureName`, `VideoName`, `Tag` and other classes)
+\*\* This class diagram omits some classes and dependencies in the `Model` component for the purpose of simplicity (classes excluded include `ModuleCode`, `ModuleName`, `LectureName`, `VideoName`, `Tag` and other classes)
 
 The `Model` component,
 
@@ -703,22 +703,29 @@ The following is a description of the code execution flow:
 
 **Target user profile**:
 
-- NUS Students
-- has a need to manage a significant number of lectures
-- falling behind on lectures
-- feeling unmotivated to watch lectures
+- NUS students
+- has a need to keep track of a significant number of modules, lectures, and lecture videos
+- has a need to categorize and organize modules, lectures, and videos with tags
+- falling behind on lecture materials
 - feeling lost regarding lecture content
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
+- is afraid of losing current data
+- wants to track productivity level
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: fun, fast and stress-free way to organise and track lecture material
+**Value proposition**: fast and stress-free way to organise and track module progress and lecture material
 
-- gamified tracking application
-- easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
-- tailored to needs of students: provides additional information specific to lecture media such as watch progress and topics
-- faster than a typical mouse/GUI driven app
+- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a
+  stress-free learning environment
+- Tailored to needs of students: provides additional information specific to lecture media such as watch progress,
+  topics, and tags
+- Allow students to track progress of all modules
+- Offer the users great control over their current modules progress
+- Allow the users to back up their current progress, as well as import progress from backed up files
+- Faster than a typical mouse/GUI driven app
+- Intuitive, easy to navigate GUI
 
 ### User stories
 
@@ -775,18 +782,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wants to see all modules.
-2. User types in command `list`.
+2. User executes list modules command.
 3. A list of module is populated.
 
    Use case ends.
+
+**Extensions**
+
+- 2a. The list command is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: List module's lectures**
 
 **MSS**
 
 1. User wants to see all lectures of a module.
-2. User types in command `list /mod CS2040S`.
-3. A list of lectures of module `CS2040S` is populated.
+2. User supplies a module and executes list lectures command.
+3. A list of lectures of specified module is populated.
 
    Use case ends.
 
@@ -798,13 +813,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+- 2b. The list command is invalid.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
 **Use case: List lecture's videos**
 
 **MSS**
 
 1. User wants to see all videos of a lecture in a module.
-2. User types in command `list /mod CS2040S /lec Week 1`.
-3. A list of videos of lecture `Week 1` in module `CS2040S` is populated.
+2. User supplies a module and a lecture and executes list videos command.
+3. A list of videos of the specified lecture in the specified module is populated.
 
    Use case ends.
 
@@ -818,7 +839,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2b. The lecture does not exists.
 
-  - 2a1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The list command is invalid.
+
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -826,31 +853,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User wants to find modules that starts with `Data`.
-2. User types in command `find Data`.
-3. A list of modules whose name starts with `Data` is populated.
+1. User wants to find modules that starts with a keyword.
+2. User supplies the keyword and executes find modules command.
+3. A list of modules relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The find command is invalid.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Find lecture**
 
 **MSS**
 
-1. User wants to find lectures belonging to module `CS2040S` that starts with `Week`.
-2. User types in command `find Week /mod CS2040S`.
-3. A list of lectures whose name starts with `Week` is populated.
+1. User wants to find lectures in a module that starts with a keyword.
+2. User supplies the keyword and a module and executes find lecture command.
+3. A list of lectures in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The module does not exists.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The find command is invalid.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Find video**
 
 **MSS**
 
-1. User wants to find videos belonging to lecture `Week 1` of module `CS2040S` that starts with `Vid`.
-2. User types in command `find Vid /mod CS2040S /lec Week 1`.
-3. A list of lectures whose name starts with `Vid` is populated.
+1. User wants to find videos in a lecture belonging in a module that starts with a keyword.
+2. User supplies the keyword and a lecture and a module and executes find video command.
+3. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The module does not exists.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The lecture does not exists.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The find command is invalid.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Add a module**
 
@@ -864,16 +945,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The user does not enter sufficient details for the module.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. One or more of the details specified is invalid.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. The module to be added is a duplicate of an existing module in Le Tracker.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
@@ -890,21 +974,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The module to add the lecture to does not exist.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. The user does not enter sufficient details for the lecture.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. One or more of the details specified is invalid.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1d. The lecture to be added is a duplicate of an existing lecture in the module.
+
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
@@ -921,26 +1009,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The module that is suppose to contain the lecture does not exist.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. The lecture to add the video to does not exist.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. The user does not enter sufficient details for the video.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1d. One or more of the details specified is invalid.
+
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1e. The video to be added is a duplicate of an existing video in the lecture.
+
   - 1e1. Le Tracker shows an error message.
 
     Use case ends.
@@ -957,21 +1050,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The module the user is requesting to edit does not exist.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. The user does not enter any updated details.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. One or more of the updated details specified is invalid.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1d. The resulting edited module is a duplicate of another module in Le Tracker.
+
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
@@ -988,26 +1085,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The module that is suppose to contain the lecture to edit does not exist.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. The lecture the user is requesting to edit does not exist.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. The user does not enter any updated details.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1d. One or more of the updated details specified is invalid.
+
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1e. The resulting edited lecture is a duplicate of another lecture in the module.
+
   - 1e1. Le Tracker shows an error message.
 
     Use case ends.
@@ -1024,31 +1126,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The module that is suppose to contain the lecture does not exist.
+
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1b. The lecture that is suppose to contain the video to edit does not exist.
+
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1c. The video the user is requesting to edit does not exist.
+
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1d. The user does not enter any updated details.
+
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1e. One or more of the updated details specified is invalid.
+
   - 1e1. Le Tracker shows an error message.
 
     Use case ends.
 
 - 1f. The resulting edited video is a duplicate of another video in the lecture.
+
   - 1f1. Le Tracker shows an error message.
 
     Use case ends.
@@ -1216,21 +1324,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a lecture**
 
@@ -1248,33 +1356,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a video**
 
@@ -1293,45 +1401,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-    - 2g1. LeTracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Untag a module**
 
@@ -1349,27 +1457,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Module tags do not exist.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Untag a lecture**
 
@@ -1387,39 +1495,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Lecture tags do not exist.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a video**
 
@@ -1428,7 +1536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to remove some tags from a video of a lecture.
-2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
+2. User specifies the tags, as well as the video, the lecture the video belongs to, and the module
    the lecture belongs to.
 3. The video's tags are removed.
 
@@ -1438,52 +1546,219 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-    - 2g1. LeTracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2h. Video tags do not exist.
 
-    - 2h1. LeTracker shows an error message.
+  - 2h1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
+**Use case: Export all modules to a new file**
+
+**MSS**
+
+1. User requests to save all data in the current tracker to a new file.
+2. User specifies the name of the file to save to.
+3. All modules data in the current tracker is saved to the file.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File already exists.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Export all modules to an existing file**
+
+**MSS**
+
+1. User requests to save all data in the current tracker to an existing file.
+2. User specifies the name of the file to save to, as well as indicating that user wants to overwrite the existing file.
+3. All modules data in the current tracker is saved to the file.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File cannot be written to.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. No indication of overwriting file.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Import some modules from a file**
+
+**MSS**
+
+1. User requests to import some modules data from an existing file.
+2. User specifies the name of the file to import from, as well as references to the modules to be imported.
+3. Modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Specified modules do not exist in the saved file.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
