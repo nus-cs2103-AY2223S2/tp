@@ -288,8 +288,18 @@ Our initial recipe book:
 
 <img src="images/SortResult.png" width=500 height=400>
 
+---
+### Get a list of groceries: `groceries {recipe 1 index}, {recipe 2 index}, ...`
 
+Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes. If two or more recipes share ingredients, their quantities will be automatically added together. The `indices` have to be seperated by a comma (`,`);
 
+Format: `groceries {recipe 1 index}, {recipe 2 index}, ...`
+
+Example: `groceries 1,3,4`
+
+Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the output box along with their quantities.
+
+<img src="images/GroceriesResult.png" width=500 height=400>
 ---
 
 #### Filter recipe by price: `fp COMPARATOR PRICE`
