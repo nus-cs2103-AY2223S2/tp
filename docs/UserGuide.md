@@ -88,8 +88,9 @@ Now it's time to **CONQUER** the semester!
    For example, typing "help" and pressing `Enter` will open the help window.
 
 ### A Brief Guide to Navigation
-![ContextLabel](images/ContextLabelScreenshot.png)
 **Context Indicator** - Displays which context you are currently working at.
+
+![ContextLabel](images/ContextLabelScreenshot.png)
 
 Navigating to different contexts:
 
@@ -97,10 +98,9 @@ Navigating to different contexts:
 
 For more information on **navigation**, please view the [navigation section](#navigation).
 
-=======
 ### Tutorials and Examples
 
-Scenario 1:
+Scenario 1 - Tracking a new module CS2103:
 
 1. To add a module, run `add CS2103 /name Software Engineering`.
 1. To give it a tag of `BestModule`, run `tag CS2103 /tags BestModule`.
@@ -110,7 +110,7 @@ Scenario 1:
 1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
 1. To delete this module, run `delete CS2103`.
 
-Scenario 2:
+Scenario 2 - Navigating, finding & archiving data:
 
 1. To navigate into module `CS2040S`, run `nav CS2040S`.
 1. To find a lecture named `Week 1`, run `find Week 1`.
@@ -120,7 +120,7 @@ Scenario 2:
 1. To clear all data, run `clear`.
 1. To import data, run `import data.json`.
 
-Scenario 3:
+Scenario 3 - Tracking videos:
 
 1. To view lectures in module `ST2334`, run `list /mod ST2334`.
 1. To delete a video `Vid 3` in lecture `Topic 1` in module `ST2334`, run `delete Vid 3 /mod ST2334 /lec Topic 1`
@@ -185,7 +185,9 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ---
 
 ## Navigation
-Le Tracker uses a hierarchical structure (Modules -> Lectures -> Videos). When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
+Le Tracker organises content using a hierarchical structure (Modules -> Lectures -> Videos).
+
+When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
 
 To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
 
