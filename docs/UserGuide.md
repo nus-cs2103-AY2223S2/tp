@@ -4,12 +4,12 @@ title: User Guide
 ---
 
 Contact nUS is a **desktop app that NUS computing students can use to track their modules and schedules.**
-It is optimized for use via typing with a Command Line Interface (CLI) rather than clicking which is 
+It is optimized for use via typing with a Command Line Interface (CLI) rather than clicking which is
 usually associated with a Graphical User Interface (GUI). However, it provides benefits of both interfaces.
-NUS computing students can be considered tech-savvy individuals who are also generally fast typists. As such, 
-they stand to gain from the productivity boost that Contact nUS has to offer. 
+NUS computing students can be considered tech-savvy individuals who are also generally fast typists. As such,
+they stand to gain from the productivity boost that Contact nUS has to offer.
 
-This guide serves to help NUS computing students familiarise themselves with the use of Contact nUS. 
+This guide serves to help NUS computing students familiarise themselves with the use of Contact nUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,24 +41,25 @@ This guide serves to help NUS computing students familiarise themselves with the
 * [**Glossary**](#glossary)
 * [**FAQ**](#faq)
 * [**Command summary**](#command-summary)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Before you read
 
-This user guide aims to provide a brief overview of what `Contact nUS` is and the features it has. 
-This user guide is mainly targeted for first-time users who are new to `Contact nUS` for their daily usage, but 
+This user guide aims to provide a brief overview of what `Contact nUS` is and the features it has.
+This user guide is mainly targeted for first-time users who are new to `Contact nUS` for their daily usage, but
 experienced users are welcome to use this for reference.
 <br>
 
-In the user guide, you can find instructions for [setting up your very own Contact nUS](#quick-start), 
-[a guide to use a particular feature](#features). You may also refer to some sample valid and invalid data to see 
-what type of data you can key into the software. 
+In the user guide, you can find instructions for [setting up your very own Contact nUS](#quick-start),
+[a guide to use a particular feature](#features). You may also refer to some sample valid and invalid data to see
+what type of data you can key into the software.
 <br>
 
-Alternatively, you may use this user guide as a [quick reference](#command-summary) for all the commands 
-the software has. 
+Alternatively, you may use this user guide as a [quick reference](#command-summary) for all the commands
+the software has.
 <br>
 
-Are you new to `Contact nUS`, or is this your first time reading the user guide? You are encouraged to read further 
+Are you new to `Contact nUS`, or is this your first time reading the user guide? You are encouraged to read further
 to find out how to use this user guide!
 
 --------------------------------------------------------------------------------------------------------------------
@@ -70,39 +71,39 @@ Some text here
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer. To check if you have Java `11`,
-open up the `terminal` application (for both Windows and macOS users) and type in the command `java -version` and 
-press enter. You should see `java version 11` with additional numbers at the back. 
+open up the `terminal` application (for both Windows and macOS users) and type in the command `java -version` and
+press enter. You should see `java version 11` with additional numbers at the back.
 
-2. Download the latest `Contact nUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). 
+2. Download the latest `Contact nUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your module tracker. 
+3. Copy the file to the folder you want to use as the _home folder_ for your module tracker.
 This can be `Desktop` for example.
 
 4. Again, open up the `terminal` application. You should be in a directory. If you are not in the folder
 that you have `Contact nUS.jar` downloaded to, you can use the command `cd` to move into that folder.
 An example would be `cd Desktop`.
 
-5. Now that you are in the same folder as `Contact nUS.jar`, type in the command `java -jar Contact nUS.jar` to run 
+5. Now that you are in the same folder as `Contact nUS.jar`, type in the command `java -jar Contact nUS.jar` to run
 the application.
 
-<br> A screen similar to the one below should appear in a few seconds. Note how there are 
+<br> A screen similar to the one below should appear in a few seconds. Note how there are
 already some sample data included.<br>
 
 ![Ui](images/Ui.png)
 
-6. You should see a command box. You can now type commands into it and start using Contact nUS! 
+6. You should see a command box. You can now type commands into it and start using Contact nUS!
 
    A brief introduction of the commands List of commands available:
-   
-   * `list` : Shows all the modules. 
-   
-   * `add` : Adds a new module. 
+
+   * `list` : Shows all the modules.
+
+   * `add` : Adds a new module.
 
    * `delete` : Deletes a module.
 
-   * `edit` : Edits a module. 
+   * `edit` : Edits a module.
 
-   * `find` : Finds a module based on its description. 
+   * `find` : Finds a module based on its description.
 
    * `sort` : Sorts the modules based on the timeslot or deadline of the module.
 
@@ -132,7 +133,7 @@ When starting the module tracker for the first time, you will be greeted with a 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
     * e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
 
-* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in 
+* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in
 DateTime format, **ddMMyyyy HH:mm**.
 
 * Items in square brackets are optional.<br>
@@ -144,7 +145,7 @@ DateTime format, **ddMMyyyy HH:mm**.
 * Parameters can be in any order.<br>
 * e.g. if the command specifies `n/MODULE_NAME t/TAG`, `t/TAG n/MODULE_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
 of the parameter will be taken.<br>
   * e.g. if you specify `e/280323 10:00 e/290323 12:00`, only `e/290323 12:00` will be taken.
 
@@ -257,7 +258,7 @@ Examples:
 <br>
 
 ## Schedules
-The following features deal with the time slot and/or deadline of a module in the module tracker. You can use them to: 
+The following features deal with the time slot and/or deadline of a module in the module tracker. You can use them to:
 * [View reminders for items you have today](#reminder-for-items)
 * [Sort the modules by time slot or deadline](#sorting-the-modules--sort)
 
@@ -277,9 +278,9 @@ Sorts the existing modules by either time slot or deadline.
 Format: `sort timeslot` or `sort deadline`
 <br>
 
-## Miscellaneous 
+## Miscellaneous
 
-The following commands are additional quality-of-life features that you may be interested to use in `Contact nUS`. 
+The following commands are additional quality-of-life features that you may be interested to use in `Contact nUS`.
 They are able to:
 * [View help on using the software](#viewing-help--help)
 * [Clear all existing modules from the software](#clearing-all-modules--clear)
@@ -321,23 +322,23 @@ Some sample data here.
 
 ## Data Storage
 
-This section describes [how the data in the module tracker is saved](#saving-the-data), as well as 
+This section describes [how the data in the module tracker is saved](#saving-the-data), as well as
 [how to edit the data from the data file itself](#editing-the-data-file).
 
 ### Saving the data
 
-Contact nUS data are saved in the hard disk automatically after any command that changes the data. There is no need to 
+Contact nUS data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ### Editing the data file
 
-ModuleTracker data are saved as a JSON file `[JAR file location]/data/moduletracker.json`. Advanced users are welcome to 
+ModuleTracker data are saved as a JSON file `[JAR file location]/data/moduletracker.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Contact nUS will discard all data and start with an empty 
+If your changes to the data file makes its format invalid, Contact nUS will discard all data and start with an empty
 data file at the next run.
-</div> 
+</div>
 
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
@@ -349,11 +350,11 @@ Some text here
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? <br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous Contact nUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
- 
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                             |
