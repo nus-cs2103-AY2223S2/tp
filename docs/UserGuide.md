@@ -1,5 +1,10 @@
 # User Guide
 
+BookFace is a desktop GUI application for the students in the National University
+of Singapore (NUS) to manage the contact information of the people they meet in the various lessons or clubs that they participate in. 
+Since NUS Students often take many classes and meet different people. This application helps them to organise their
+contacts list for an easier way to set up proper communication channels.
+
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Add user contacts](#add-user-contacts-add)
@@ -36,7 +41,7 @@ Experienced users can delete the sample data and proceed with regular usage.
 This section highlights the core features that this application provides, as
 well as the necessary guidelines to follow when using the features. The features
 generally follow commands of the form `COMMAND_WORD ARGUMENTs`, with each
-feature having its own specific `COMMAND_WORD` and required set of `ARGUMENTS`.
+feature having its own specific `COMMAND_WORD` and set of `ARGUMENTS`.
 
 > **Note:** Unless otherwise stated in the guidelines for the specific 
 > feature, arguments placed within brackets ("[" and "]") denotes that the
@@ -78,7 +83,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 
-  Example:
+Example:
 * `delete 2` deletes the second person in the list of contacts.
 
 [Back to top](#top)
@@ -93,7 +98,8 @@ Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 
-Example: `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+Example: 
+* `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
 mt/cs2103` Edits the specified information for the second person in the contact list.
 
 [Back to top](#top)
@@ -110,7 +116,8 @@ Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]`
   names of the contacts, `p/` searches through the phone number of the contacts, `t/`
   searches through the tags of the contact, etc...
 * Each prefix must be followed by one and only one keyword. See below for example usage.
-* The search is done via the logical ***AND*** operator, i.e., `find n/john t/cs` will return
+* Only the contacts that fulfill **all** the requirements in the given
+  arguments will be displayed, i.e., `find n/john t/cs` will return
   the list of contacts where his name is `john` **and** has a tag that contains `cs`.
 * The following shows a list of allowed prefixes:
   1. `n/` which represents the name
@@ -122,7 +129,7 @@ Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]`
 
 Example:
 
-`find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
+* `find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
 has a tag labeled `cs2103`, and whose emails contain `gmail`.
 
 [Back to top](#top)
