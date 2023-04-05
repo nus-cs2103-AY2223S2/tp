@@ -44,7 +44,7 @@ public class ModelManager implements Model {
     private final SortedList<DeliveryJob> sortedDeliveryJobsList;
     private final ObservableList<Reminder> reminderList;
     private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
-    private final SortedList<DeliveryJob> sortedDeliveryJobs;
+    private SortedList<DeliveryJob> sortedDeliveryJobs;
     private LocalDate focusDate;
     private Map<LocalDate, DeliveryList> jobListGroupedByDate;
 
@@ -247,6 +247,7 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
         requireNonNull(sorter);
+        sortedDeliveryJobs = new SortedList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         sortedDeliveryJobs.setComparator(sorter);
     }
 
@@ -268,6 +269,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobListByDate() {
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
         jobListGroupedByDate.clear();
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
             if (sortedDeliveryJobs.get(i).isScheduled()

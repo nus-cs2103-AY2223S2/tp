@@ -175,7 +175,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     }
 
     /**
-     * Triggers update event for child elemets.
+     * Triggers update event for child elements.
      */
     public void refresh() {
         selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -15,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
@@ -78,7 +80,7 @@ public class TimetableWindow extends UiPart<Stage> {
      * Shows the timetable window.
      */
     public void show() {
-        logger.fine("Showing timetable of week of " + focusDate.toString());
+        logger.info("Showing timetable of week of " + focusDate.toString());
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -119,6 +121,13 @@ public class TimetableWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        logic.getFilteredDeliveryJobList().addListener(new ListChangeListener<DeliveryJob>() {
+            @Override
+            public void onChanged(Change<? extends DeliveryJob> c) {
+                refreshTimetable();
+            }
+        });
     }
 
     /**
@@ -126,7 +135,23 @@ public class TimetableWindow extends UiPart<Stage> {
      */
     void updateTimetable() {
         //Get year and month of week
+        logger.fine("Update timetable with updated job list");
         focusDate = logic.getFocusDate();
+
+        timetablePlaceholder.getChildren().clear();
+        TimetableDetailPanel timetableDetail = new TimetableDetailPanel(focusDate, logic, primaryStage);
+        timetablePlaceholder.getChildren().add(timetableDetail.getRoot());
+    }
+
+    /**
+     * Refreshes timetable with the updated job list
+     */
+    void refreshTimetable() {
+        //Get year and month of week
+        logger.info("[Timetable] Refresh timetable with updated job list");
+        focusDate = logic.getFocusDate();
+        logic.updateSortedDeliveryJobListByDate();
+        logic.setWeekDeliveryJobList(focusDate);
 
         timetablePlaceholder.getChildren().clear();
         TimetableDetailPanel timetableDetail = new TimetableDetailPanel(focusDate, logic, primaryStage);

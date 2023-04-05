@@ -202,4 +202,5 @@ public interface Logic {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

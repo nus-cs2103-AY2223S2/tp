@@ -5,42 +5,27 @@ title: User Guide
 
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
-* Table of Contents
-   *	Features
-     * Address book - Customers contacts management system:
-       * List and view contacts
-       * Add contacts individually
-       * Find contacts
-       * Delete contacts
-       * Edit contacts
-       * Clear all contacts
-     * Delivery tasking management system:
-       * View jobs
-       * Add jobs individually
-       * Mass import jobs and associated customers
-       * Find jobs
-       * Mark job as done
-       * Delete jobs
-       * Edit jobs
-     * Reminder and notifications:
-       * Set reminder for upcoming deadlines
-       * Get notified as soon as you open the app
-       * Schedule notification:
-         * Get notified of current and upcoming jobs in the timetable
-     * Display timetable of all scheduled/upcoming jobs in the week
-       * Display list of invalid and completed jobs
-     * Statistics dashboard:
-       * Show statistics on:
-         * Total number of jobs
-         * Pending jobs
-         * Completed jobs
-         * Total earnings
-         * Statistics from previous week
+## Table of Content 
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
+## How to use this guide?
 
-## Quick start
+This user guide is an in-depth documentation on all the features that Duke Driver has.
+
+
+The [command summary](#command-summary) section allows you to quickly scan all the commands if you are an experienced user attempting to discover a specific command.
+
+Look up the feature in the [Table of Contents](#table-of-contents) and navigate to the appropriate section to obtain a detailed description of Duke Driver's features.
+Each section includes a thorough explanation of the function, its command syntax, some examples of potential applications, and information on expected results.
+
+If you are a first-time user, you can begin by reading the [Quick Start](#quick-start) section!
+
+
+<div style="page-break-after: always;"></div>
+
+## Quick start 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -65,7 +50,19 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Windows and Features Overview](#windows-and-features-overview) and [Features](#features) below for details of each command.
+
+## Windows and Features Overview
+Duke Driver has 5 main windows: Delivery Job Window (Main Window), Customer Window (Window for customers' address book), Timetable Window, Reminder Window, Statistics Window.
+
+All windows could be accessed from Main Window, simply by using these commands:
+1. `list`: Lists all customers in Address Book, opens Customer Window, refer to [1. Features related to Customers](#1-features-related-to-customers) for more details.
+
+2. `timetable` or `timetable_date date/YYYY-mm-DD`: Opens timetable window of appropriate week, refer to [4. Features available for Timetable](#4-features-available-for-timetable) for more details.
+3. `stats`: Open Statistics Window, refer to [5. Features available for Statistics](#5-features-available-for-statistics) for more details.
+4. `list_reminder`: Lists all reminders and opens Reminder Window, refer to [3. Features available for Reminders](#3-features-available-for-reminders) for more details.
+
+Alternatively, you can simply click on the corresponding button to open the window you want.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -100,7 +97,9 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 ## 1. Features related to Customers
 ### *Can only access from Customer Window*
-To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
+To access the address book containing all customers from Main Window, please use command `list` to list all customers and open Customer Window. 
+
+Alternatively, you can click on `Customers` in menu bar > `Address Book`.
 ![address book](images/Dukedeliveryaddressbook.png)
 
 ### 1.1. Adding a person: `add`
@@ -108,6 +107,8 @@ To access the address book containing all customers, please click on `Customers`
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+* Customers' name should only include Latin alphabet and/or numeric characters.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -125,7 +126,7 @@ Format: `list`
 
 ### 1.3. Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in Customer Window.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -181,22 +182,33 @@ Commands are input in this text field and app response is printed below the text
 
 Adds a delivery job to the delivery job system.
 
-Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+**Format**: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
 
-Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+
+*Extra constraints with this alternative way of adding jobs:*
+* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5)
+* Only delivery date and slot are optional for alternative way of adding job. 
+* Earning must not be left empty. User should identify earning as $0 instead, if necessary.
 ![Create Job](images/Addjob.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Description field is only available in GUI mode.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Delivery date, slot and earning are optional (for original way of adding job using `add_job` command - typing-preferred).
+</div>
+
+
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
-* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5.
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5 (example: `slot/1`).
 * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
-* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
-* Earning **must be a double**.
+* Delivery slots must start from `slot/1` (i.e. only starts from 10AM), however, could also be larger than 5 (i.e. `slot/6`).
+* Delivery slots larger than 5 (outside valid range) will be classified as "Extra hours (4PM++)". However, these delivery slots are still considered invalid slots.
+* Earning **must be a double**. 
 
 Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
@@ -211,7 +223,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
-* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
+* These columns `Recipient`	`Sender` `Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
   * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
 
@@ -224,6 +236,7 @@ Format: `list_job`
 ![list job](images/listJob.png)
 
 ### 2.3.1. Sort and filter jobs
+Simply click on the corresponding button to sort and filter jobs.
 
 ![sort filter job](images/listJobSortFilter.png)
 
@@ -232,14 +245,14 @@ Format: `list_job`
 
 Edit a selected job by Index or Job id.
 
-Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t | f]`
+Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
 Alternative: Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
 
 
 * Existing values will be overwritten by the input values.
 * Edits the delivery job at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed job list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Refer to `list_job` for argument constrains.
 
@@ -257,6 +270,7 @@ Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DAT
 
 * There can be multiple keywords.
 * Keywords are case-sensitive.
+* Keywords are optional, but there must be at least one keyword.
 * Refer to `list_job` for argument constrains.
 
 Examples:
@@ -268,20 +282,22 @@ Examples:
 
 Deletes the job identified by the job ID. Support `del` key in job list.
 
-Format: `delete_job ji/JOB_ID`
+Format: `delete_job JOB_ID`
 
 Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
 
-* The job id must be **valid**.
+* The job ID must be **valid**.
 
 Example:
 * `delete_job ALBE29E66F`
 
-### 2.7 Complete job : `com_job` / `uncom_job`
+### 2.7 Mark job as completed/uncompleted : `com_job` / `uncom_job`
 
-Completes or uncompletes the job identified by the job ID.
+Marks the job identified by the job ID as completed or uncompleted.
 
-Format: `com_job ji/JOB_ID` / `uncom_job ji/JOB_ID`
+Format: `com_job JOB_ID` / `uncom_job JOB_ID`
+
+* The job ID **must be valid**.
 
 Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.
 ![checked](images/Checked.png)
@@ -294,22 +310,26 @@ Example:
 
 
 ## 3. Features available for Reminders
-### *Can only access from Main Window*
+### *Can only access from Main Window and Reminder Window*
 ### 3.1. Listing all reminders : `list_reminder`
 
-Shows a list of all reminders in Duke Driver.
+Shows a list of all reminders in Reminder Window.
+
+Opens Reminder Window.
 
 Format: `list_reminder`
 
 ### 3.2. Adding a reminder : `add_reminder`
 
-Adds a reminder into the address book.
+Adds a reminder into Duke Driver.
 
-Format: `add_reminder d/DESCRIPTION time/YYYY-MM-DD HH:mm`
+Format: `add_reminder [d/DESCRIPTION] time/YYYY-MM-DD HH:mm`
 
 * Adds a reminder with the specified `DESCRIPTION`.
 * The reminder will be reminded from the date time specified in `time/YYYY-MM-DD HH:mm`.
-* `DESCRIPTION` can be left empty.
+* Date must be valid.
+* `DESCRIPTION` can be left empty (optional).
+* `DESCRIPTION` is limited to 50 characters including space.
 
 Examples:
 * `add_reminder` followed by `d/Submit homework time/2023-12-12 12:00` adds a reminder that will remind the user to submit their homework. The reminder will occur at 12pm, 12 December 2023.
@@ -341,12 +361,16 @@ Alternative: Click on `Timetable` in menu bar > `Scheduled Jobs`
 ![timetable](images/Timetable.png)
 
 ### 4.2. Showing timetable of week containing specific date: `timetable_date`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This is the only command that Timetable Window can access
+</div>
 
 Shows timetable of specific week containing a specific date
 
 Format: `timetable_date date/YYYY-mm-DD`
 
 * Shows timetable of the week containing the given date.
+* Date must be valid.
 * This is the one and only command that Timetable Window can access (identical format).
 
 Examples:
@@ -435,33 +459,34 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 **:information_source: Notes about the command format:**<br>
 * Commands that start with *(C)* could only be accessed from Customer Window
 * Commands that start with *(M)* could only be accessed from Main Window
+* Commands that start with *(T)* could only be accessed from Timetable Window
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 
-| Action                                    | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ***(C)* Add Customer**                    | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                                                                                                                 |
-| ***(B)* Clear all entries**               | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ***(C)* Delete Customer**                 | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                        |
-| ***(C)* Edit Customer details**           | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                           |
-| ***(C)* Find Customer**                   | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                 |
-| ***(B)* List Customer**                   | `list` <br/>Or<br/>Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(M)* Add Job**                         | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                                                                                                                                                                                                                                |
-| ***(M)* Import Jobs**                     | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                                                                                                                                                                                                                                                    |
-| ***(M)* List Job**                        | `list_job`                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ***(M)* Edit Job**                        | `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br>OR<br/>Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button <br><br/> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                        |
-| ***(M)* Find Job**                        | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]...` <br><br/> e.g., `find_job si/ALE874`                                                                                                                                                                                                                                                                                                                 |
-| ***(M)* Delete Job**                      | `delete_job ji/JOB_ID` <br>OR<br/>Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner<br/><br/> e.g., `delete_job ALBE29E66F`                                                                                                                                                                                                                                                            |
-| ***(M)* Complete Job**                    | `com_job ji/JOB_ID` / `uncom_job ji/JOB_ID`<br>OR<br>Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.<br>OR<br>Alternative 2: Click on the delivery job > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.<br><br>e.g.,`com_job ALBE29E66F` / `uncom_job ALBE29E66F` |                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(M)* List reminder**                   | `list_reminder`                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ***(M)* Add reminder**                    | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                                                                                                                                                                                                                                                      |
-| ***(M)* Delete reminder**                 | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(M)* Show Timetable**                  | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                              |
-| ***(M)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                                                                                                                                                                                                                                                     |
-| ***(M)* Show List of Completed Jobs**     | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                                                                                                                                                                                                                                                    |
-| ***(M)* Show List of Unscheduled Jobs**   | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                |
-| ***(M)* Show Statistics**                 | `stats`<br/>OR<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                                                                                                                                                                                                                                                             |
-| ***(B)* Help**                            | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(B)* Exit**                            | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Action                                        | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ***(C)* Add Customer**                        | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                                                                                                                 |
+| ***(B)* Clear all entries**                   | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ***(C)* Delete Customer**                     | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                        |
+| ***(C)* Edit Customer details**               | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                           |
+| ***(C)* Find Customer**                       | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                 |
+| ***(B)* List Customer**                       | `list` <br/>Or<br/>Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(M)* Add Job**                             | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                                                                                                                                                                                                                                |
+| ***(M)* Import Jobs**                         | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                                                                                                                                                                                                                                                    |
+| ***(M)* List Job**                            | `list_job`                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ***(M)* Edit Job**                            | `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br>OR<br/>Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button <br><br/> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                        |
+| ***(M)* Find Job**                            | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]...` <br><br/> e.g., `find_job si/ALE874`                                                                                                                                                                                                                                                                                                                 |
+| ***(M)* Delete Job**                          | `delete_job ji/JOB_ID` <br>OR<br/>Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner<br/><br/> e.g., `delete_job ALBE29E66F`                                                                                                                                                                                                                                                            |
+| ***(M)* Complete Job**                        | `com_job ji/JOB_ID` / `uncom_job ji/JOB_ID`<br>OR<br>Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.<br>OR<br>Alternative 2: Click on the delivery job > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.<br><br>e.g.,`com_job ALBE29E66F` / `uncom_job ALBE29E66F` |                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(M)* List reminder**                       | `list_reminder`                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ***(M)* Add reminder**                        | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                                                                                                                                                                                                                                                      |
+| ***(M)* Delete reminder**                     | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(M)* Show Timetable**                      | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                              |
+| ***(M) (T)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                                                                                                                                                                                                                                                     |
+| ***(M)* Show List of Completed Jobs**         | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                                                                                                                                                                                                                                                    |
+| ***(M)* Show List of Unscheduled Jobs**       | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                |
+| ***(M)* Show Statistics**                     | `stats`<br/>OR<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                                                                                                                                                                                                                                                             |
+| ***(B)* Help**                                | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(B)* Exit**                                | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 

@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -57,7 +58,7 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
         try {
             dateTime = DateTimeUtil.toDateTime(dateTimeString);
         } catch (DateTimeParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
         }
 
         Reminder reminder = new Reminder(description, dateTime);

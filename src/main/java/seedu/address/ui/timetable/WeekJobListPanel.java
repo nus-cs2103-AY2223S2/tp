@@ -106,7 +106,6 @@ public class WeekJobListPanel extends UiPart<Region> {
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder5, logic.getDayofWeekJob(5));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder6, logic.getDayofWeekJob(6));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));
-
     }
 
     /**
