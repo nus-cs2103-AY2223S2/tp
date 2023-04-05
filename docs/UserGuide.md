@@ -270,7 +270,7 @@ After executing the command, we see that Bob has been added below the list.
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
 <div markdown="span" class="alert alert-info">
-:information_source: As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_ pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+:information_source: As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <coden/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 </div>
 
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
@@ -352,7 +352,7 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 (enter `view m` if you're not on the _modules_ tab).
 
 <div class="span" class="alert alert-success">
-  :bulb: <b>Tip:</b> You do not have to be on <em>modules</em> tab to edit it as long as you are viewing the correct person (i.e. you can be viewing Bob's contacts as you add modules). However, switching to <em>modules</em> tab will definitely make it easy for you to edit <b>modules taken</b>!
+:bulb: <b>Tip:</b> You do not have to be on <em>modules</em> tab to edit it as long as you are viewing the correct person (i.e. you can be viewing Bob's contacts as you add modules). However, switching to <em>modules</em> tab will definitely make it easy for you to edit <b>modules taken</b>!
 </div>
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
@@ -397,7 +397,7 @@ The pre-existing contacts that come when you first launch are just some examples
 Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
-  :exclamation: <b>Caution:</b> Be careful not to accidentally enter the <code>clear</code> command, it will not ask twice before wiping your database!
+:exclamation: <b>Caution:</b> Be careful not to accidentally enter the <code>clear</code> command, it will not ask twice before wiping your database!
 </div>
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
@@ -504,7 +504,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 - s (e.g. `view s`)
 
 <div class="span" class="alert alert-success">
-:bulb: <b>Tip:</b> If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
+:bulb: <b>Tip:</b> If the right panel is showing a person's module, changing the person by typing <code>view 3</code> for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
 </div>
 
 **Examples:**
@@ -527,8 +527,8 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:warning: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values during the use of `m/` or `s/`.<br/>
-Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><u>delete</u></b> information instead.
+:warning: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values during the use of <code>m/</code> or <code>s/</code> .<br/>
+  Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
 </div>
 
 `edit [OPTIONAL/PARAMETER]...`<br>
@@ -553,7 +553,7 @@ Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><
   - skills are case-sensitive and does not allow duplicates
 
 <div class="span" class="alert alert-success">
-:bulb: <b>Tip:</b> If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
+:bulb: <b>Tip:</b> If <code>m/</code> or <code>s/</code> is present in the edit command, this will take precedence over <code>s+/ s-/ m+/ m-/</code>.
 </div>
 
 **Examples:**
@@ -579,7 +579,7 @@ Want to find people with certain qualities? Use find command to find people that
 * n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
 * y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
 * c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
-    * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
+    * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
 * m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
   * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
   * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
@@ -605,7 +605,7 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 `list`<br>
 
 <div class="span" class="alert alert-success">
-:bulb: <b>Tip:</b> Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
+:bulb: <b>Tip:</b> Use this command to revert back to the original list after performing the <code>find</code> command to shorten the list displayed.
 </div>
 
 * `list`
