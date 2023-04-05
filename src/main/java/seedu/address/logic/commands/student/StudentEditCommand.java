@@ -65,7 +65,6 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_CCA + "CCA "
-            + PREFIX_COMMENT + "COMMENT "
             + PREFIX_PHONESTUDENT + "STUDENT NUMBER "
             + PREFIX_EMAILSTUDENT + "STUDENT EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -82,7 +81,6 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "10 "
             + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_CCA + "AIKIDO "
-            + PREFIX_COMMENT + "GOOD BOY "
             + PREFIX_PHONESTUDENT + "90909090 "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245) "
@@ -119,8 +117,7 @@ public class StudentEditCommand extends StudentCommand {
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
                               Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
-                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
-                              Address newAddress, Set<Tag> newTagList) {
+                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail, Address newAddress) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
 
@@ -138,7 +135,6 @@ public class StudentEditCommand extends StudentCommand {
         this.newEmail = newEmail;
         this.newAddress = newAddress;
         this.newSex = newSex;
-        this.newTagList = newTagList;
         this.newIndexNumber = newIndexNumber;
         this.newStudentClass = newStudentClass;
     }
@@ -228,6 +224,7 @@ public class StudentEditCommand extends StudentCommand {
      */
     public Student setParent(Student student, Model model, Student oldStudent)
             throws ParseException {
+/*
         Parent parentToSet = model.getParent(oldStudent.getParentName(), oldStudent.getParentNumber());
         Parent newParent = new Parent(student.getParentName(), parentToSet.getAge(), parentToSet.getImage(),
                 parentToSet.getEmail(), student.getParentNumber(), parentToSet.getAddress(), parentToSet.getTags());
@@ -235,8 +232,8 @@ public class StudentEditCommand extends StudentCommand {
         model.setParent(parentToSet, newParent);
         student.setParent(newParent);
         return student;
-
-        /*
+*/
+        ObservableList<Parent> parents = model.getFilteredParentList();
         if (student.getParentNumber() == oldStudent.getParentNumber()) { // Parent phone number did not change
             if (student.getParentName() != oldStudent.getParentName()) { // Parent changed his/her name
                 for (Parent p : parents) {
@@ -297,8 +294,6 @@ public class StudentEditCommand extends StudentCommand {
         }
         assert false : "The program should not ever reach this line!";
         return student;
-        */
-
     }
 
     /**
