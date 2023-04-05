@@ -109,7 +109,7 @@ Preamble is a special piece of information specified for certain commands that a
 
 #### Icons
 
-The following icons are used in FriendlyLink. For more information about what they represent, refere to the [Fields](#fields) section.
+The following icons are used in FriendlyLink. For more information about what they represent, refer to the [Fields](#fields) section.
 
 <img src="images/userGuide/icons/calendar.png" width="20"/> : available dates<br />
 
@@ -256,7 +256,7 @@ slightly easier.
 Format: `auto_pair`
 
 * The volunteer and elderly in each pair generated will 
-always have **compatible [regions](#region) and availabile [dates](#date)**.
+always have **compatible [regions](#region) and available [dates](#date)**.
    * We consider a volunteer/elderly with no specified region to be compatible with _any_ region. Similarly, a volunteer/elderly with no availabilities specified will be considered to be available at _any_ time. 
 * In the event that no pairs can be formed satisfying the above constraints 
 (either because there are no unpaired volunteers or elderly, or all the unpaired volunteers 
@@ -383,7 +383,7 @@ Deletes the specified volunteer from FriendlyLink.
 
 Format: `delete_volunteer <NRIC>`
 
-* Deletes the volunteer with the specified [NRIC](#nric)..
+* Deletes the volunteer with the specified [NRIC](#nric).
 * If no existing volunteer matches the specified `NRIC`, FriendlyLink will inform the user that no such volunteer exists.
 * If the deleted volunteer has existing pairings, the corresponding elderly will be unpaired.
 
