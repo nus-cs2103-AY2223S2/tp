@@ -36,20 +36,20 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Merged PRs by teammates
-    * Provided feedback on PRS
-    * Assigned issues to teammates and myself
-    * Point out bugs
+    * Provided feedback on PRs
+    * Assigned issues
+    * Point out bugs in conversations
+    * Manual testing of CoDoc
 
 * **Enhancements to existing features**:
-    * update parser to check for stuff
-    * minor UI alignements
-    * bug fixes
+    * Change test cases of storage component to reflect CoDoc's implementation
+    * Minor Ui alignments
 
 * **Documentation**:
     * User Guide:
         * Created tutorial section
         * Created "How to Open CoDoc for Mac" in additional resources section
-        * Find command documentation
+        * `find` command documentation
         * Incorporate improvement suggestion from PE(Dry Run)
     * Developer Guide:
         * Re-organise entire DG 
