@@ -7,7 +7,7 @@ title: User Guide
 1. [ModCheck](#1-modcheck)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
-    * [Notes about the command format](#31--informationsource--notes-about-the-command-format----br)
+    * [Notes about the command format](#31--#31-information_source-notes-about-the-command-format)
     * [Logging in](#32-logging-in)
         * [Creating Password](#321-creating-password)
     * [Viewing help](#33-viewing-help--help)
