@@ -12,7 +12,7 @@ import seedu.address.model.tank.Tank;
 public class AmmoniaLevel extends Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Ammonia Level should be a double, and it should not be blank. Date format is DD/MM/YYYY HH:mm";
+            "Ammonia Level should be a number, and it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
