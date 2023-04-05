@@ -268,7 +268,7 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -356,7 +356,7 @@ E.g `find n/Peter James`
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
