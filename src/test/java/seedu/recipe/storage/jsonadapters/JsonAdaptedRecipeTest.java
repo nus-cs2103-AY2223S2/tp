@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,15 +29,6 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedIngredient;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedName;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedPortionUnit;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipeDuration;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipePortion;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedStep;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedTag;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedTimeUnit;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "Bobby`s 39th Birthday Cake";
@@ -85,20 +76,6 @@ public class JsonAdaptedRecipeTest {
             CACIO_STEPS.stream().map(JsonAdaptedStep::new).collect(Collectors.toList())
         );
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(
-            null,
-            Optional.of(CACIO_PORTION).map(JsonAdaptedRecipePortion::new),
-            Optional.of(CACIO_DURATION).map(JsonAdaptedRecipeDuration::new),
-            CACIO_TAGS.stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
-            getIngredientList(),
-            CACIO_STEPS.stream().map(JsonAdaptedStep::new).collect(Collectors.toList())
-        );
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
@@ -203,4 +180,10 @@ public class JsonAdaptedRecipeTest {
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
+    @Test
+    public void constructor_nullRecipe_error() {
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipe(null,
+            Optional.empty(), Optional.empty(), List.of(), List.of(), List.of()));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipe(null));
+    }
 }
