@@ -14,6 +14,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_ALPHA;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_MEETING_ALPHA;
@@ -40,6 +41,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.AddProjectCommand;
+import seedu.socket.logic.commands.AssignCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.DeleteCommand;
@@ -54,11 +57,14 @@ import seedu.socket.logic.commands.ListCommand;
 import seedu.socket.logic.commands.RedoCommand;
 import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
+import seedu.socket.logic.commands.RemoveProjectCommand;
 import seedu.socket.logic.commands.SortCommand;
 import seedu.socket.logic.commands.SortProjectCommand;
+import seedu.socket.logic.commands.UnassignCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
+import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 import seedu.socket.model.project.Project;
@@ -67,7 +73,9 @@ import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
 import seedu.socket.testutil.ProjectBuilder;
+import seedu.socket.testutil.ProjectUtil;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
+import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 
 public class SocketParserTest {
 
@@ -78,6 +86,13 @@ public class SocketParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addpj() throws Exception {
+        Project project = new ProjectBuilder().withProjectMeeting("01/01/23-1000").build();
+        AddProjectCommand command = (AddProjectCommand) parser.parseCommand(ProjectUtil.getAddProjectCommand(project));
+        assertEquals(new AddProjectCommand(project), command);
     }
 
     @Test
@@ -275,6 +290,36 @@ public class SocketParserTest {
         RemoveCommand command = (RemoveCommand) parser.parseCommand(RemoveCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getRemovePersonDescriptorDetails(descriptor));
         assertEquals(new RemoveCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+    @Test
+    public void parseCommand_removepj() throws Exception {
+        Project project = new ProjectBuilder().withName(VALID_PROJECT_NAME_ALPHA)
+                .withRepoHost(VALID_PROJECT_REPO_HOST_ALPHA)
+                .withRepoName(VALID_PROJECT_REPO_NAME_ALPHA)
+                .withProjectDeadline(VALID_PROJECT_DEADLINE_ALPHA)
+                .withProjectMeeting(VALID_PROJECT_MEETING_ALPHA)
+                .build();
+        RemoveProjectCommand.RemoveProjectDescriptor descriptor = new RemoveProjectDescriptorBuilder(project).build();
+        RemoveProjectCommand command = (RemoveProjectCommand) parser.parseCommand(RemoveProjectCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + REPO_NAME_DESC_ALPHA
+                + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
+        assertEquals(new RemoveProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        AssignCommand command = (AssignCommand) parser.parseCommand(AssignCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new AssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PROJECT), command);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        Name name = new Name(VALID_NAME_AMY);
+        UnassignCommand command = (UnassignCommand) parser.parseCommand(UnassignCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + PREFIX_NAME + VALID_NAME_AMY);
+        assertEquals(new UnassignCommand(INDEX_FIRST_PROJECT, name), command);
     }
 
     @Test

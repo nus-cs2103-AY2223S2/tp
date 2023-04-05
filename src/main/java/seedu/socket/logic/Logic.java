@@ -9,6 +9,7 @@ import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.person.Person;
+import seedu.socket.model.project.Project;
 
 /**
  * API of the Logic component
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of projects */
+    ObservableList<Project> getFilteredProjectList();
 
     /** Returns a person to be viewed */
     ObservableList<Person> getViewedPerson();

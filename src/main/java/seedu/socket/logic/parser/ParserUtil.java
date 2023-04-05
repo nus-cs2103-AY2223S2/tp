@@ -221,7 +221,7 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code ProjectDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static ProjectDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
@@ -246,4 +246,5 @@ public class ParserUtil {
         }
         return new ProjectMeeting(trimmedName);
     }
+
 }

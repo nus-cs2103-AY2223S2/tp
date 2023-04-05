@@ -17,10 +17,10 @@ import seedu.socket.model.util.SampleDataUtil;
  */
 public class ProjectBuilder {
 
-    public static final String DEFAULT_NAME = "ALPHA";
-    public static final String DEFAULT_REPO_HOST = "";
-    public static final String DEFAULT_REPO_NAME = "";
-    public static final String DEFAULT_DEADLINE = "";
+    public static final String DEFAULT_NAME = "Alpha Project";
+    public static final String DEFAULT_REPO_HOST = "alice-pauline";
+    public static final String DEFAULT_REPO_NAME = "AlphaRepo";
+    public static final String DEFAULT_DEADLINE = "01/01/23-2359";
     public static final String DEFAULT_MEETING = "";
 
     private ProjectName name;
@@ -106,7 +106,7 @@ public class ProjectBuilder {
     /**
      * Sets the {@code members} to the {@code Project} that we are building.
      */
-    public ProjectBuilder putMembers(Set<Person> members) {
+    public ProjectBuilder withMembers(Set<Person> members) {
         this.members = members;
         return this;
     }

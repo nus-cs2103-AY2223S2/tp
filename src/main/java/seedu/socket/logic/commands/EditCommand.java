@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_LANGUAGE + "LANGUAGE]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... (restrict to 10 tags)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -55,6 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SOCket.";
+    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags which exceeds the limit of 10 tags";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -85,6 +86,12 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        int tagSize = editedPerson.getTags().size();
+
+        if (tagSize > 10) {
+            throw new CommandException(String.format(MESSAGE_EXCEED_TAG, tagSize));
         }
 
         model.setPerson(personToEdit, editedPerson);

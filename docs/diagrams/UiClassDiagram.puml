@@ -13,15 +13,20 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class ProjectListPanel
+Class ProjectCard
+Class PersonDetailPanel
+Class PersonDetailCard
+
 Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
+package Model <<Rectangle>>{
 Class HiddenModel #FFFFFF
 }
 
-package Logic <<Rectangle>> {
+package Logic <<Rectangle>>{
 Class HiddenLogic #FFFFFF
 }
 
@@ -29,23 +34,31 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+UiManager --down-> "1" MainWindow
+MainWindow *--down->  "1" CommandBox
+MainWindow *--down-> "1" ResultDisplay
+MainWindow *--down-> "1" PersonListPanel
+MainWindow *--down-> "1" PersonDetailPanel
+MainWindow *--down-> "1" ProjectListPanel
+MainWindow *--down-> "1" StatusBarFooter
+MainWindow ---> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+PersonDetailPanel --down-> "0..1" PersonDetailCard
+ProjectListPanel --down-> "*" ProjectCard
+PersonListPanel --down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+ResultDisplay ---|> UiPart
+CommandBox ---|> UiPart
+PersonListPanel ---|> UiPart
+PersonCard ---|> UiPart
+PersonDetailPanel ---|> UiPart
+PersonDetailCard ---|> UiPart
+ProjectListPanel ---|> UiPart
+ProjectCard ---|> UiPart
+StatusBarFooter ---|> UiPart
+HelpWindow ---|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic

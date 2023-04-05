@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -35,18 +37,26 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PersonDetailPanel personDetailPanel;
+    private ProjectListPanel projectListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
+    @FXML
+    private MenuItem undoMenuItem;
+    @FXML
+    private MenuItem redoMenuItem;
     @FXML
     private MenuItem helpMenuItem;
-
+    @FXML
+    private MenuItem exitMenuItem;
     @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane personDetailPanelPlaceholder;
+
+    @FXML
+    private StackPane projectListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,7 +76,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -78,6 +87,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(exitMenuItem, KeyCombination.valueOf("SHORTCUT+Q"));
+        setAccelerator(undoMenuItem, KeyCombination.valueOf("SHORTCUT+Z"));
+        setAccelerator(redoMenuItem, new KeyCodeCombination(KeyCode.Z,
+                KeyCombination.SHIFT_DOWN, KeyCombination.SHORTCUT_DOWN));
     }
 
     /**
@@ -116,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic);
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         personDetailPanel = new PersonDetailPanel(logic.getViewedPerson());
         personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
@@ -168,6 +184,25 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void handleUndo() {
+        try {
+            resultDisplay.setFeedbackToUser(
+                    logic.execute("undo").getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRedo() {
+        try {
+            resultDisplay.setFeedbackToUser(logic.execute("redo").getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     public PersonListPanel getPersonListPanel() {

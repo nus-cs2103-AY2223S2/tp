@@ -15,6 +15,7 @@ import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.Model;
 import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.person.Person;
+import seedu.socket.model.project.Project;
 import seedu.socket.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return model.getFilteredProjectList();
     }
 
     @Override

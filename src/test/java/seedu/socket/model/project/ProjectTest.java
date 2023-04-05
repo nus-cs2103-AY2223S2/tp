@@ -45,14 +45,9 @@ public class ProjectTest {
         editedAlpha = new ProjectBuilder(ALPHA).withName(VALID_PROJECT_NAME_BRAVO).build();
         assertFalse(ALPHA.isSameProject(editedAlpha));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Project editedBravo = new ProjectBuilder(BRAVO).withName(VALID_PROJECT_NAME_BRAVO.toLowerCase()).build();
-        assertFalse(BRAVO.isSameProject(editedBravo));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_PROJECT_NAME_BRAVO + " ";
-        editedBravo = new ProjectBuilder(BRAVO).withName(nameWithTrailingSpaces).build();
-        assertFalse(BRAVO.isSameProject(editedBravo));
+        assertTrue(BRAVO.isSameProject(editedBravo));
     }
 
     @Test
@@ -96,5 +91,17 @@ public class ProjectTest {
         // different members -> returns false
         editedAlpha = new ProjectBuilder(ALPHA).withMembers(CARL, DANIEL).build();
         assertFalse(ALPHA.equals(editedAlpha));
+    }
+
+    @Test
+    void hasMember() {
+        // null person
+        assertThrows(NullPointerException.class, () -> ALPHA.hasMember(null));
+
+        // person in project
+        assertTrue(ALPHA.hasMember(ALICE.getName()));
+
+        // person not in project
+        assertFalse(ALPHA.hasMember(BOB.getName()));
     }
 }

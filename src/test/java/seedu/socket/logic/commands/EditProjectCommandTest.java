@@ -46,7 +46,7 @@ public class EditProjectCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Set<Person> members = model.getFilteredProjectList().get(0).getMembers();
-        Project editedProject = new ProjectBuilder().putMembers(members).build();
+        Project editedProject = new ProjectBuilder().withMembers(members).build();
         EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT, descriptor);
 
@@ -126,7 +126,7 @@ public class EditProjectCommandTest {
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST_PROJECT,
                 new EditProjectDescriptorBuilder(projectInList).build());
 
-        assertCommandFailure(editProjectCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editProjectCommand, model, EditProjectCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
     @Test

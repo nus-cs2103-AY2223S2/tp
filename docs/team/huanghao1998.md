@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&breakdown=true)
 
 * **Project management**:
     * `to be added soon`

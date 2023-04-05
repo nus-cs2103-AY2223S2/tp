@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to SOCket. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to SOCket.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_PROFILE + "GITHUBPROFILE] "
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_LANGUAGE + "LANGUAGE]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... (restrict to 10 tags)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PROFILE + "john-doe "
@@ -42,6 +42,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SOCket";
+    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags which exceeds the limit of 10 tags";
 
     private final Person toAdd;
 
@@ -61,6 +62,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        int tagSize = toAdd.getTags().size();
+
+        if (tagSize > 10) {
+            throw new CommandException(String.format(MESSAGE_EXCEED_TAG, tagSize));
+        }
         model.addPerson(toAdd);
         model.commitSocket();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

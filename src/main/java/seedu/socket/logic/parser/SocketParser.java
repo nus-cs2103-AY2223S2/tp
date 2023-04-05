@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.AddProjectCommand;
+import seedu.socket.logic.commands.AssignCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.Command;
@@ -20,8 +22,10 @@ import seedu.socket.logic.commands.HelpCommand;
 import seedu.socket.logic.commands.ListCommand;
 import seedu.socket.logic.commands.RedoCommand;
 import seedu.socket.logic.commands.RemoveCommand;
+import seedu.socket.logic.commands.RemoveProjectCommand;
 import seedu.socket.logic.commands.SortCommand;
 import seedu.socket.logic.commands.SortProjectCommand;
+import seedu.socket.logic.commands.UnassignCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
@@ -82,6 +86,8 @@ public class SocketParser {
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
+        case AddProjectCommand.COMMAND_WORD:
+            return new AddProjectCommandParser().parse(arguments);
         case EditProjectCommand.COMMAND_WORD:
             return new EditProjectCommandParser().parse(arguments);
         case DeleteProjectCommand.COMMAND_WORD:
@@ -89,7 +95,8 @@ public class SocketParser {
 
         case SortProjectCommand.COMMAND_WORD:
             return new SortProjectCommandParser().parse(arguments);
-
+        case RemoveProjectCommand.COMMAND_WORD:
+            return new RemoveProjectCommandParser().parse(arguments);
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
@@ -101,6 +108,12 @@ public class SocketParser {
 
         case ClearProjectCommand.COMMAND_WORD:
             return new ClearProjectCommand();
+
+        case AssignCommand.COMMAND_WORD:
+            return new AssignCommandParser().parse(arguments);
+
+        case UnassignCommand.COMMAND_WORD:
+            return new UnassignCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

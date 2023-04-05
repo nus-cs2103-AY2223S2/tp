@@ -5,39 +5,39 @@ skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage{
-
-package "UserPrefs Storage" #F4F6F6{
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
-}
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as Interface_Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+Class "<<interface>>\nSocketStorage" as SocketStorage
+Class JsonSocketStorage
+Class JsonSerializableSocket
 Class JsonAdaptedPerson
+Class JsonAdaptedLanguage
 Class JsonAdaptedTag
-}
+Class JsonAdaptedProject
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Interface_Storage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> Interface_Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" SocketStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Interface_Storage -left-|> UserPrefsStorage
+Interface_Storage -right-|> SocketStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSocketStorage .up.|> SocketStorage
+JsonSocketStorage ..> JsonSerializableSocket
+JsonSerializableSocket --> "*" JsonAdaptedPerson
+JsonAdaptedPerson --> "*" JsonAdaptedLanguage
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
+JsonSerializableSocket --> "*" JsonAdaptedProject
+JsonAdaptedProject -left-> "*" JsonAdaptedPerson
 @enduml
