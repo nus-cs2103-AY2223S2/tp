@@ -679,6 +679,8 @@ In **command mode**, the input in the command box is used to execute the command
 
 In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
+#### Using (ENTER) in search mode
+
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
 To demonstrate this, let's assume you want to delete a project. You can type in `dp -pn ` as shown below
