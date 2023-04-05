@@ -91,7 +91,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 ### 1. Viewing help: `help`
 
-Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING. For more detailed information such as how to use the syntax, please refer to the help page.
+Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING. 
+For more detailed information such as how to use the syntax, please refer to the help page.
 
 <img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
@@ -111,8 +112,10 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
-<div markdown="span" class="alert alert-warning">:exclamation: 
-Caution: In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
+<div markdown="span" class="alert alert-warning">:exclamation:
+Caution: 
+    1. In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
+    2. We allow `PHONE_NUMBER` and `CONTACT_PARENT` to be the same as not all student have their own phone.
 </div>
 
 ### 3. Viewing student contacts as a list: `list`
@@ -130,9 +133,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, all the existing tags of the student will be removed. i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
