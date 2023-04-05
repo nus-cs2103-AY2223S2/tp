@@ -32,7 +32,7 @@ You can reach us at the email `coNtactUS@comp.nus.edu.sg`
 ### Jamie Leow Hui Lin
 <img src="images/jamieeeleow.png" width="200px">
 
-[[github](http://github.com/jamieeeleow)] 
+[[github](http://github.com/jamieeeleow)]   
 [[portfolio](team/jamieeeleow.md)]
 
 * Role: TBA
