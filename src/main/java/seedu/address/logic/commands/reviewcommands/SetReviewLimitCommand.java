@@ -29,7 +29,6 @@ public class SetReviewLimitCommand extends Command {
         this.numCardsPerReview = numCardsPerReview;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
