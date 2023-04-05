@@ -25,7 +25,7 @@ CoDoc.**
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
-  - [Navigation](#navigation)
+  - [Navigating CoDoc](#navigating-codoc)
   - [Tutorial](#codoc-tutorial-your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
@@ -222,7 +222,7 @@ launched in its factory state as shown below.
 
 ---
 
-### Navigation
+### Navigating CoDoc
 
 If it's your first time using this program, the starting screen could seem a little overwhelming.
 
