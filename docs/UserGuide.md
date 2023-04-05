@@ -287,14 +287,14 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder  | Corresponding Flag | Description                                                                                  |
-|--------------|--------------------|----------------------------------------------------------------------------------------------|
-| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box. |
-| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                        |
-| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                 |
-| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                        |
-| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
-| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
+| Placeholder  | Corresponding Flag | Description                                                                                                      |
+|--------------|--------------------|------------------------------------------------------------------------------------------------------------------|
+| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                     |
+| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                                            |
+| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                     |
+| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                            |
+| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant. Notes cannot be longer than 45 characters long. |
+| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.                                 |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -606,7 +606,7 @@ After:
     <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
 fully matches the specified search.</li> 
     <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
-<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>. 
 </li> 
     <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
 </code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
@@ -623,6 +623,10 @@ hour.</li>
         </ul> 
     </li> 
 </ul> </div>
+
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<code>INTERVIEW DATETIME</code> cannot be earlier than current time when you advance an applicant! </div>
+
 
 
 **Example:**
@@ -725,7 +729,9 @@ For example, "15" would represent 15th hour of the day. </li>
             <li> "MM": Minute of the day, ranging from 0-59. For example, 
 "50" would represent the 50th minute of the hour. </li> 
         </ul>
-    </li> 
+    </li>
+    <li> You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time using edit command. 
+</li>
 </ul> </div>
 
 
@@ -833,11 +839,11 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 | Action                                 | Format                                                                                                                                                               | Example                                                                     |
 |----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Thomas p/98764321`                                                  |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Tom p/98763213`                                                     |
 | List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Thomas p/98765432`                                                |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Tom p/98763213`                                                   |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Tom p/98763213`                                                   |
 | View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
