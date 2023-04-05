@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Student;
 
 /**
@@ -216,5 +217,25 @@ public class ModelManager implements Model {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        for (Student s : filteredPersons) {
+            if (s.hasConflictingLessonTime(lesson)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        for (Student s : filteredPersons) {
+            if (s.hasConflictingExamTime(lesson)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

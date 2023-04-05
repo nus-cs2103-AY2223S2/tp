@@ -238,4 +238,13 @@ public class UniqueExamList implements Iterable<Exam> {
         }
         return FXCollections.observableArrayList(upcomingExams);
     }
+
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        for (Exam exam : internalList) {
+            if (exam.isSameTimeLesson(lesson)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

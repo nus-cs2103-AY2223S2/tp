@@ -522,4 +522,12 @@ public class Student {
     public ObservableList<Exam> getUpcomingExamsList() {
         return examList.getUpcomingExams();
     }
+
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        return this.lessonsList.hasConflictingLessonTime(lesson);
+    }
+
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        return this.examList.hasConflictingExamTime(lesson);
+    }
 }

@@ -204,4 +204,13 @@ public class UniqueLessonsList implements Iterable<Lesson> {
     public boolean hasLesson() {
         return this.internalList.size() != 0;
     }
+
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        for (Lesson l : internalList) {
+            if (l.isSameTimeLesson(lesson)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

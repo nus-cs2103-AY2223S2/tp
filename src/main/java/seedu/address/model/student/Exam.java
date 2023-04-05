@@ -222,4 +222,9 @@ public class Exam {
                 .append(getStringGrade());
         return builder.toString();
     }
+
+    public boolean isSameTimeLesson(Lesson lesson) {
+        return lesson != null
+            && lesson.getStartTime().isBefore(getEndTime()) && lesson.getEndTime().isAfter(getStartTime());
+    }
 }
