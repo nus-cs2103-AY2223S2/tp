@@ -13,13 +13,14 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueFoodList
+class UniqueTagList
 Class Food
 class Name
 Class Unit
 Class Quantity
 Class ExpiryDate
 Class Tag
-
+class TagName
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,16 +36,20 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Wife *--> "1" UniqueFoodList
+Wife *--> "1" UniqueTagList
 UniqueFoodList --> "~* all" Food
+UniqueTagList --> "~* all" Tag
 Food *--> Name
 Food *--> Unit
 Food *--> Quantity
 Food *--> ExpiryDate
 Food *--> "*" Tag
+Tag *--> TagName
 
 Name -[hidden]right-> Unit
 Unit -[hidden]right-> Quantity
 Quantity -[hidden]right-> ExpiryDate
 
 ModelManager -->"~* filtered" Food
+ModelManager -->"~* filtered" Tag
 @enduml
