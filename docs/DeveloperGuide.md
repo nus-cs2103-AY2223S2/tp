@@ -168,12 +168,14 @@ It's behaviour is dependent on the user's input.
 **Notable Classes**
 
 - `AddCommandParser` – Creates the appropriate `AddCommand` subclass object base on the user's input
-- `AddCommand` – Base class of any `Command` subclass that adds some entity to the `Tracker` object
+- `AddCommand` – Base class of any `Command` subclass that handles adding some entity to the `Tracker` object
 - `AddModuleCommand` – Subclass of `AddCommand` which handles adding a `Module` object to the `Tracker` object
 - `AddLectureCommand` – Subclass of `AddCommand` which handles adding a `Lecture` object to a `Module` object
 - `AddVideoCommand` – Subclass of `AddCommand` which handles adding a `Video` object to a `Lecture` object
 
-The following sequence diagram depicts an `add` command execution for adding a module to the tracker.
+**Execution**
+
+The following sequence diagram depicts an `add` command execution for adding a `Module` object to the `Tracker` object.
 
 <img src="images/AddSequenceDiagram.png" width="1252"/>
 
@@ -181,21 +183,66 @@ The following sequence diagram depicts an `add` command execution for adding a m
 
 - The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` being thrown and the command will not be executed.
 
-  | Has preamble | Has `/mod` argument | Has `/lec` argument |   Intent    | `AddCommand` subclass |
-  | :----------: | :-----------------: | :-----------------: | :---------: | :-------------------: |
-  |     Yes      |         No          |         No          | Add module  |  `AddModuleCommand`   |
-  |     Yes      |         Yes         |         No          | Add lecture |  `AddLectureCommand`  |
-  |     Yes      |         Yes         |         Yes         |  Add video  |   `AddVideoCommand`   |
+  | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent        | `AddCommand` subclass |
+  | :----------: | :-----------------: | :-----------------: | :------------------: | :-------------------: |
+  |     Yes      |         No          |         No          | Add `Module` object  |  `AddModuleCommand`   |
+  |     Yes      |         Yes         |         No          | Add `Lecture` object |  `AddLectureCommand`  |
+  |     Yes      |         Yes         |         Yes         |  Add `Video` object  |   `AddVideoCommand`   |
 
 - The argument values are checked for their validity by using the appropriate methods in the `ParserUtil` class. If any of the values are invalid, a `ParserException` object will be thrown and the command will not be executed.
 
 **Notes for `AddCommand#execute()`**
 
 - A `CommandException` object can be thrown for the following scenarios:
-  - The `Module` object, `Lecture` object, or `Video` object being added already exist
-  - The `Module` object which a `Lecture` object is being added to does not exist
-  - The `Module` object which a `Lecture` object is specified to be in does not exist
-  - The `Lecture` object which a `Video` object is being added to does not exist
+  - The `Module`/`Lecture`/`Video` object is the same as another existing `Module`/`Lecture`/`Video` object according to `Module#isSameModule(Module)`/`Lecture#isSameLecture(Lecture)`/`Video#isSameVideo(Video)`.
+  - The `Module` object which a `Lecture` object is being added to does not exist.
+  - The `Module` object which a `Lecture` object is specified to be in does not exist.
+  - The `Lecture` object which a `Video` object is being added to does not exist.
+
+### Edit module, lecture, and video feature
+
+The `edit` command supports:
+
+- Editing the details of a `Module` object in the `Tracker` object contained in the `ModelManager` object
+- Editing the details of a `Lecture` object belonging to a `Module` object contained in the `Tracker` object
+- Editing the details of a `Video` object belonging to a `Lecture` object contained in a `Module` object that is contained in the `Tracker` object
+
+It's behaviour is dependent on the user's input.
+
+**Notable Classes**
+
+- `EditCommandParser` – Creates the appropriate `EditCommand` subclass object base on the user's input
+- `EditCommand` – Base class of any `Command` subclass that handles editing some entity of the `Tracker` object
+- `EditModuleCommand` – Subclass of `EditCommand` which handles editing the details of a `Module` object belonging to the `Tracker` object
+- `EditLectureCommand` – Subclass of `EditCommand` which handles editing the details of a `Lecture` object belonging to a `Module` object
+- `EditVideoCommand` – Subclass of `EditCommand` which handles editing the details of a `Video` object belonging to a `Lecture` object
+
+**Execution**
+
+The following sequence diagram depicts an `edit` command execution for editing the name of a `Module` object in the `Tracker` object.
+
+<img src="images/EditSequenceDiagram.png" width="1527"/>
+
+**Notes for `EditCommandParser#parse(String)`**
+
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `EditCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` being thrown and the command will not be executed.
+
+  | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent         | `EditCommand` subclass |
+  | :----------: | :-----------------: | :-----------------: | :-------------------: | :--------------------: |
+  |     Yes      |         No          |         No          | Edit `Module` object  |  `EditModuleCommand`   |
+  |     Yes      |         Yes         |         No          | Edit `Lecture` object |  `EditLectureCommand`  |
+  |     Yes      |         Yes         |         Yes         |  Edit `Video` object  |   `EditVideoCommand`   |
+
+- The argument values are checked for their validity by using the appropriate methods in the `ParserUtil` class. If any of the values are invalid, a `ParserException` object will be thrown and the command will not be executed.
+
+- If no arguments related to updated fields are provided, a `ParseException` object will be thrown and the command will not be executed.
+
+**Notes for `EditCommand#execute()`**
+
+- A `CommandException` object can be thrown for the following scenarios:
+  - The edited `Module`/`Lecture`/`Video` object is the same as another `Module`/`Lecture`/`Video` object according to `Module#isSameModule(Module)`/`Lecture#isSameLecture(Lecture)`/`Video#isSameVideo(Video)`.
+  - The `Module` object which a `Lecture` object is specified to be in does not exist.
+  - The `Lecture` object which a `Video` object is specified to be in does not exist.
 
 ### Delete module, lecture, and video feature
 

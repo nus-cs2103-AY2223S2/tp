@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "cmd:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit CS2040S /name DSAG")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand("edit CS2040S /name DSAG")
+activate TrackerParser
+
+create EditCommandParser
+TrackerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> TrackerParser
+deactivate EditCommandParser
+
+TrackerParser -> EditCommandParser : parse("CS2040S /name DSAG")
+activate EditCommandParser
+
+create EditModuleCommand
+EditCommandParser -> EditModuleCommand : EditModuleCommand(code, descriptor)
+activate EditModuleCommand
+
+EditModuleCommand --> EditCommandParser : cmd
+deactivate EditModuleCommand
+
+EditCommandParser --> TrackerParser : cmd
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> TrackerParser
+destroy EditCommandParser
+
+TrackerParser --> LogicManager : cmd
+deactivate TrackerParser
+
+LogicManager -> EditModuleCommand : execute(model)
+activate EditModuleCommand
+
+EditModuleCommand -> Model : hasModule(code)
+activate Model
+
+Model --> EditModuleCommand : true
+deactivate Model
+
+EditModuleCommand -> Model : getModule(code)
+activate Model
+
+Model --> EditModuleCommand : originalMod
+deactivate Model
+
+EditModuleCommand -> Model : setModule(originalMod, editedMod)
+activate Model
+
+Model --> EditModuleCommand
+deactivate Model
+
+create CommandResult
+EditModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditModuleCommand
+deactivate CommandResult
+
+EditModuleCommand --> LogicManager : result
+deactivate EditModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
