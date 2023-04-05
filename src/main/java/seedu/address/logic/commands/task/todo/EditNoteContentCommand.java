@@ -29,7 +29,7 @@ public class EditNoteContentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the note content of the specified todo from current available todo list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
-            + "[" + PREFIX_NOTE_CONTENT + "NOTE_CONTENT]\n"
+            + PREFIX_NOTE_CONTENT + "NOTE_CONTENT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_CONTENT + "Change venue\n";
 
