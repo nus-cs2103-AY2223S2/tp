@@ -15,15 +15,18 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
-  - [Adding a job listing: `add`](#adding-a-job-listing-add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+  - [Viewing help: `help`](#viewing-help--help)
+  - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
+  - [Adding a job listing: `add`](#adding-a-job-listing--add)
+  - [Editing a job listing: `edit`](#editing-a-job-listing--edit)
+  - [Deleting a job listing: `delete`](#deleting-a-job-listing--delete)
+  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing--addapp)
+  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing--editapp)
+  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing--delapp)
   - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
   - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
-  - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+  - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
+  - [Sorting job listings: `sort`](#sorting-job-listings--sort)
   - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
   - [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
 - [FAQ](#faq)
@@ -78,15 +81,18 @@ Some example commands you can try:
 ## **Features**
 Here is a list of GM features, click on them to jump to the section!
 
-1.  [`help`](#viewing-help--help)
-2.  [`list`](#listing-all-job-listings--list)
-3.  [`add`](#adding-a-job-listing--add)
-4.  [`edit`](#editing-a-job-listing--edit)
-5.  [`delete`](#deleting-a-job-listing--delete)
-6.  [`find`](#locating-job-listings-by-title--find)
-7.  [`sort`](#sorting-job-listings--sort)
-8.  [Saving data](#saving-the-data)
-9.  [Editing data file](#editing-the-data-file)
+1. [`help`](#viewing-help--help)
+2. [`list`](#listing-all-job-listings--list)
+3. [`add`](#adding-a-job-listing--add)
+4. [`edit`](#editing-a-job-listing--edit)
+5. [`delete`](#deleting-a-job-listing--delete)
+6. [`add_app`](#adding-an-applicant-to-listing--addapp)
+7. [`edit_app`](#editing-an-applicant-of-a-listing--editapp)
+8. [`del_app`](#deleting-an-applicant-from-a-listing--delapp)
+9. [`find`](#locating-job-listings-by-title--find)
+10. [`sort`](#sorting-job-listings--sort)
+11. [Saving data](#saving-the-data)
+12. [Editing data file](#editing-the-data-file)
 
 
 <div markdown="block" class="alert alert-info">
@@ -142,7 +148,7 @@ Listed all listings
 
 ---
 
-## Adding a job listing: `add`
+### Adding a job listing: `add`
 
 Adds a listing to the listing book.
 
@@ -186,11 +192,11 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 
 Edits the details of a job listing.
 
-**Format:** `edit NUMBER [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
+**Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
 
 **Notes:**
 
-- Ensure that `NUMBER` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that `INDEX` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. E.g. if the command entered is:
 
   `edit 1 t/TITLE d/DESCRIPTION`
@@ -210,7 +216,7 @@ An example is shown below:
 ```ignorelang
 Edited listing:
 Job Title: Noodle seller
-JobDescription: Cooks tasty noodles
+Job Description: Cooks tasty noodles
 Applicants: Johnson
 ```
 
@@ -239,11 +245,11 @@ The listing index provided exceeded the number of listings shown!
 
 Deletes a job listing from the listing book.
 
-**Format:** `delete NUMBER`
+**Format:** `delete INDEX`
 
 **Notes:**
 
-- Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that `INDEX` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 
 **Examples:**
 
@@ -257,7 +263,7 @@ A confirmation message will show, along with the details of the listing. An exam
 Deleted listing:
 Job Title: Chicken farmer
 Job Description: farms chickens
-Applicants: topsy mcddaddy, column verctoa
+Applicants: Tommy, Connor
 ```
 
 **Possible Error:**
@@ -272,6 +278,155 @@ Example: delete 1
 
 ```ignorelang
 The listing index provided exceeded the number of listings shown!
+```
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
+### Adding an applicant to listing: `add_app`
+
+Adds an applicant to a specified listing.
+
+**Format:** `add_app INDEX a/APPLICANT`
+
+**Notes:**
+
+- A listing can have any number of applicants
+- Command will only take the latest applicant given
+
+**Examples:**
+
+- `add_app 1 a/Tom`
+
+**Expected Output:**
+You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+
+```ignorelang
+Applicant Tom added to the listing Computer Science Intern
+```
+
+
+**Possible Error:**
+
+If an index is invalid or absent, an error message such as the one below will be displayed.
+
+```ignorelang
+Invalid command format! 
+add_app: Adds an applicant to a listing in the listing book.
+Parameters: INDEX (must be a positive integer) a/APPLICANT
+Example: add_app 1 a/John Doe
+```
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
+
+### Editing an applicant of a listing: `edit_app`
+
+Edits the name of an applicant in a specified listing.
+
+**Format:** `edit INDEX id/APPLICANT a/APPLICANT`
+
+**Notes:**
+
+- Ensure that `INDEX` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Applicant given with the id/ flag will be edited to the applicant given with the a/ flag.
+- If the listing has applicants of the same name, the unique id has to be specified with the id/ flag
+
+**Examples:**
+
+- `edit_app 1 id/Tom a/Johnson`
+- `edit_app 2 id/Tom#1334 a/Johnson`
+
+**Expected Output:**
+
+You will see a confirmation message showing the edited job title, description and applicants (if any).
+An example is shown below:
+
+```ignorelang
+Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
+```
+
+**Possible Error:**
+
+A valid index must be provided, and same name applicants must be specified with their unique id. Otherwise, one of the error
+messages shown below will be displayed.
+
+```ignorelang
+Invalid command format! 
+edit_app: Edits an applicant's details for a listing. Ordered by the index number of the listing used in the displayed listing book.
+      Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) id/OLD_APPLICANT a/NEW_APPLICANT
+Example: edit_app 1 id/John a/Sam
+```
+
+```ignorelang
+The listing index provided exceeded the number of listings shown!
+```
+
+```ignorelang
+There are multiple applicants with the name Tom in Computer Science Intern, 
+specify the 4-digit unique identifier after the name.
+Example: edit_app 1 id/John Doe#2103 a/Sam
+```
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
+
+### Deleting an applicant from a listing: `del_app`
+
+Deletes an applicant from a specified listing.
+
+**Format:** `del_app INDEX id/APPLICANT`
+
+**Notes:**
+
+- Ensure that `INDEX` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
+- If the listing has applicants of the same name, the unique id has to be specified with the id/ flag.
+- Ensure that the applicant to delete exists.
+
+**Examples:**
+
+- `del_app 1 id/Tom`
+- `del_app 2 id/Tom#1334`
+
+**Expected Output:**
+
+A confirmation message will show, along with the details of the listing. An example message is shown below:
+
+```ignorelang
+Applicant: Tom has been deleted from Computer Science Intern!
+```
+
+**Possible Error:**
+
+If an index is invalid or the command does not follow the format, an error message such as the ones below will be displayed.
+
+```ignorelang
+Invalid command format! 
+del_app: Deletes an applicant from a listing identified by the index number used in the displayed listing book.
+Parameters: INDEX (must be a positive integer) id/APPLICANT
+Example: del_app 1 id/John Doe
+*If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.
+Example: del_app 1 id/John Doe#2103
+
+```
+
+```ignorelang
+The listing index provided exceeded the number of listings shown!
+```
+
+If the applicant does not exist in the listing, an error message such as the one below will be displayed.
+```ignorelang
+Applicant Tom cannot be found in Computer Science Intern.
+```
+
+If the unique id is not specified when needed, an error message such as the one below will be displayed.
+```ignorelang
+There are multiple applicants with the name Tom in Computer Science Intern, 
+specify the 4-digit unique identifier after the name.
+Example: del_app 1 id/John Doe#2103
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
