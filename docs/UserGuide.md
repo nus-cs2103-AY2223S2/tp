@@ -52,12 +52,15 @@ improving the efficiency of grocery shopping.
 
 3. Double-click on the application to run WIFE!
 
-If double-clicking the application does not work:
+<div markdown="block" class="alert alert-info">
 
-3a. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
+* If double-clicking the application does not work:
+  * Copy the file to the folder you want to use as the _home folder_ for your WIFE.
+  * Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
 
-3b. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
-   
+</div>
+
+
 A GUI similar to the below should appear in a few seconds.
    ![Ui](images/UG/Ui_current.png)
 The main application consists of 3 components, namely:
