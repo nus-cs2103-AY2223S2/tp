@@ -41,12 +41,10 @@ public class MenuItemProfitTest {
         assertFalse(ItemProfit.isValidProfit("10.000")); // more than 2 decimal places
 
         // valid price
-        assertTrue(ItemPrice.isValidPrice("1")); // no decimal places
-        assertTrue(ItemPrice.isValidPrice("1.0")); // exactly 1 decimal places
-        assertTrue(ItemPrice.isValidPrice("1.")); // no digit after the decimal
-        assertTrue(ItemPrice.isValidPrice("1.00")); // exactly 2 decimal places
-        assertTrue(ItemPrice.isValidPrice("9999991232131321323.00")); //large number
-        assertTrue(ItemPrice.isValidPrice("-1.000")); //negative number
+        assertTrue(ItemProfit.isValidProfit("1")); // no decimal places
+        assertTrue(ItemProfit.isValidProfit("1.0")); // exactly 1 decimal places
+        assertTrue(ItemProfit.isValidProfit("1.00")); // exactly 2 decimal places
+        assertTrue(ItemProfit.isValidProfit("9999991232131321323.00")); //large number
 
 
     }

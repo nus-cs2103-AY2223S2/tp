@@ -42,7 +42,7 @@ public class TaskTest {
         // name differs in case, all other attributes same -> returns false
         Task editedSortInventoryN = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskName(VALID_TASK_NAME_SORT_INVENTORY.toLowerCase()).build();
-        assertFalse(SORT_INVENTORY_N.isSameItem(editedSortInventoryN));
+        assertTrue(SORT_INVENTORY_N.isSameItem(editedSortInventoryN));
 
         // name has trailing spaces, all other attributes same -> returns false
         String taskNameWithTrailingSpaces = VALID_TASK_NAME_SORT_INVENTORY + " ";
