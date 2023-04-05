@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.commons.Name;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemSellingPrice;

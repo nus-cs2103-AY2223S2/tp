@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.commons.Deadline;
-import trackr.model.commons.Name;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
