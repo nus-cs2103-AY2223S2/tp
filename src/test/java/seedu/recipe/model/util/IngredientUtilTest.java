@@ -11,7 +11,7 @@ import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 public class IngredientUtilTest {
 
     @Test
-    public void test_ingredientKeyValuePairToString() {
+    public void ingredientKeyValuePairToString() {
         Ingredient salt = Ingredient.of("salt");
         IngredientInformation saltInfo = new IngredientInformation(
                 IngredientQuantity.of("1 gram"), "half a pinch",

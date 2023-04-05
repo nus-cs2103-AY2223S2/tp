@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class IngredientTest {
 
     @Test
-    public void test_toString() {
+    public void toString_validIngredientWithCommonName() {
         Ingredient polishedRice = Ingredient.of("polished rice");
         polishedRice.setCommonName("rice");
         String expectedString = "polished rice (aka rice)";

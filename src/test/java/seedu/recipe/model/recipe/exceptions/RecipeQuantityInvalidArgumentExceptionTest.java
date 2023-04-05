@@ -10,7 +10,7 @@ import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 public class RecipeQuantityInvalidArgumentExceptionTest {
 
     @Test
-    public void whenExceptionThrown() {
+    public void validRecipeQuantityInvalidArgumentException() {
         Exception exception = assertThrows(RecipeQuantityInvalidArgumentException.class, () ->
                IngredientQuantity.of("0"));
         String expectedMessage = "An invalid quantity expression \"0\" was passed for this ingredient.\n"

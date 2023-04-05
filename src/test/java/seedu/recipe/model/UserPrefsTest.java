@@ -36,7 +36,7 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void test_hashCode() {
+    public void hashcode() {
         UserPrefs userPref = new UserPrefs();
         GuiSettings guiSettings = new GuiSettings();
         Path filePath = Paths.get("data", "recipebook.json");

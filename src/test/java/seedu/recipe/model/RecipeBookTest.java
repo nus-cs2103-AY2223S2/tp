@@ -172,14 +172,14 @@ public class RecipeBookTest {
     }
 
     @Test
-    public void test_hashcode() {
+    public void hashcode() {
         int expected = getCacioHashCode();
         recipeBook.addRecipe(CACIO_E_PEPE);
         assertEquals(expected, recipeBook.hashCode());
     }
 
     @Test
-    public void test_equals() {
+    public void equals() {
         assertFalse(recipeBook.equals(null));
 
         // same object -> returns true

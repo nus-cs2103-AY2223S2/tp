@@ -9,8 +9,7 @@ import seedu.recipe.logic.parser.Prefix;
 public class IngredientParserTest {
 
     @Test
-    public void test_prefixPosition_toString() {
-        IngredientParser ip = new IngredientParser();
+    public void prefixPosition_toString() {
         IngredientParser.PrefixPosition prefixPosition = new IngredientParser.PrefixPosition(new Prefix("/n"), 2);
         String expectedString = "<2>[/n]";
         assertEquals(expectedString, prefixPosition.toString());

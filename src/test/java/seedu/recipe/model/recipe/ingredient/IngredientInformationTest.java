@@ -10,7 +10,7 @@ public class IngredientInformationTest {
             + "R: [store in a cool, dark place]}";
 
     @Test
-    public void test_toString() {
+    public void toString_validIngredientInformation() {
         IngredientInformation information = new IngredientInformation(
                 IngredientQuantity.of("1 gram"), "",
                 new String[]{"store in a cool, dark place"}, new Ingredient[]{Ingredient.of("soy sauce")});

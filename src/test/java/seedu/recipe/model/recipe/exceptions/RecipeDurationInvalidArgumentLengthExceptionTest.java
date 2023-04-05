@@ -10,7 +10,7 @@ import seedu.recipe.model.recipe.RecipeDuration;
 public class RecipeDurationInvalidArgumentLengthExceptionTest {
 
     @Test
-    public void whenExceptionThrown() {
+    public void validRecipeDurationInvalidArgumentLengthException() {
         Exception exception = assertThrows(RecipeDurationInvalidArgumentLengthException.class, () ->
                 RecipeDuration.of("15"));
         String expectedMessage = "An argument list of invalid length was passed for a Recipe Duration."

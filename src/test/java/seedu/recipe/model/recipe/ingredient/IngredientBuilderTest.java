@@ -34,7 +34,7 @@ public class IngredientBuilderTest {
     }
 
     @Test
-    public void test_overloadedConstructor() {
+    public void overloadedConstructor() {
         Ingredient polishedRice = Ingredient.of("polished rice");
         polishedRice.setCommonName("rice");
         assertEquals(COMMAND_STRING_SAMPLE, new IngredientBuilder(polishedRice,
@@ -43,7 +43,7 @@ public class IngredientBuilderTest {
     }
 
     @Test
-    public void test_toString() {
+    public void toString_validIngredientBuilder() {
         assertEquals(VALID_INTEGER_CONCAT_UNIT, new IngredientBuilder(VALID_INTEGER_CONCAT_UNIT).toString());
     }
 

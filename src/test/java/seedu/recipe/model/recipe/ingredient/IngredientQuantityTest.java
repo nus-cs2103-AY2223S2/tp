@@ -11,7 +11,7 @@ public class IngredientQuantityTest {
     private static final String INVALID_RANGE = "2-1 portions";
 
     @Test
-    public void test_isValidRecipeQuantity() {
+    public void isValidRecipeQuantity() {
         assertThrows(RecipeQuantityInvalidArgumentException.class, () -> IngredientQuantity.of(INVALID_RANGE));
     }
 }
