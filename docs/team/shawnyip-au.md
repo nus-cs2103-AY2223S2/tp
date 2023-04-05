@@ -13,19 +13,25 @@ Given below are my contributions to the project.
     * What it does: allow users to keep track of all modules and skills associated to a person in a non-volatile way.
     * Justification: we design CoDoc with collaboration in mind and the ability to store these two attributes will help users find the right people to collaborate with.
     * Highlights: had to study how the codebase handles storing and revival of data and then emulate it for the two new fields while also making a stub as the modules and skills component were implemented in parallel.
-* **New Feature**: Find skills and modules
-    * What it does: Find all skills and modules of all person in the contact list
-    * Justification: Mansually scrolling is too slow, need a faster way to find
-    * Highlights: The decison between logicial and and or along with deadling with all possible inputs escpially for moduls where we give users the option to inclde the acadmeuc year along with how many modules that preceeds it and how many sets of this are allowed. as such multiple test case had to be implemeented to make sure that it works as expected.
-* **New Feature**: Stackable predicates for find command
-    * What is does: allows users to continue to search from the current list instead of a new list everytime
-    * Justification: allows user to do searching 1 field at a time without the need to type in everything they want to find. Also, let them decide how to continue to search based on the results
-    * Highlights: as this affects all find prefixs, had to search for a place to implement this functuoanlity that is independent from each of the find command as it would mean we will have to change it. In the end, I found that a class where all predicates are stored and simiply reduce them to a singular predicate
-* **New Feature**: Image support for jar file
-    * What is does: supports image when compress to jar file
-    * Justification: image ups the visuals and the way jar file heirechy is different from our ddeveloplement.
-    * Highlights: Had to learn how to use relative links instead of absolute
+    * Credits:
+* **New Feature**: find command for modules and skills.
+    * What it does: allow users to filter out persons in their contact list that does not meet the specified requirement.
+    * Justification: compared to scrolling, the find command is faster—one of CoDoc selling point—when it comes to searching for people.
+    * Highlights: to facilitate the finding process, finding for modules and skills takes in any number of inputs after it with modules being a larger hurdle as it supports multi-semester inputs such as `find m/CS1101 AY2122S1 CS210T CS2101 AY2122S2 CS3230` where only those that have taken
+      * `CS1101` regardless of semester, 
+      * `CS210T` and `CS2101` in `AY2122S1`
+      * `CS3230` in `AY2122S2` <br> 
 
+      will be shown. Therefore, many test case were included to make sure that future implementation does not alter the expected behaviour.
+* **New Feature**: stackable predicates for find command.
+    * What it does: allow users to continuously search from the current filtered list.
+    * Justification: allow users to append new predicate to all of their previously specified predicates thereby giving them the flexibility to decide how they wish to continue to filter their filtered list without the need to retype in everything.
+    * Highlights: as all prefixes supported by find command had to be changed, the most naive option would have been to implement it individually for each prefix which would have made future expansion more cumbersome. After much examination of the code, a more ideal location was found—one that is independent of future expansion, should more attributes be included.
+* **New Feature**: image support for jar file.
+    * What is does: supports showing image when starting CoDoc from a jar file.
+    * Justification: the hierarchy is different from our development environment thereby causing the application to work abnormally when launched from a jar file.
+    * Highlights: Was able to convert CoDoc to use relative file path in an existing code base that highly depends on absolute file path with minimal changes to the code base.
+=
 * **Code contributed**: insert link?
 
 * **Project management**:
