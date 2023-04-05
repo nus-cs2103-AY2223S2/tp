@@ -1,44 +1,54 @@
-@startuml
+@startuml AddPatientSequenceDiagram
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":VmsParser" as VmsParser LOGIC_COLOR
-participant "u:AddCommand" as AddCommand LOGIC_COLOR
+participant ":PatientParser" as PatientParser LOGIC_COLOR
+participant "a:AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedVms" as VersionedVms MODEL_COLOR
 end box
-[-> LogicManager : execute(add)
+[-> LogicManager : execute("patient add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
 activate LogicManager
 
-LogicManager -> VmsParser : parseCommand(add)
+LogicManager -> VmsParser : parseCommand("patient add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
 activate VmsParser
 
+VmsParser -> PatientParser : parse("add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate PatientParser
+
+create AddCommandParser
+PatientParser -> AddCommandParser : parse("˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+activate AddCommandParser
+
 create AddCommand
-VmsParser -> AddCommand
+AddCommandParser -> AddCommand
 activate AddCommand
 
-AddCommand --> VmsParser
+AddCommand --> AddCommandParser
 deactivate AddCommand
 
-VmsParser --> LogicManager : u
+AddCommandParser --> PatientParser : a
+deactivate AddCommandParser
+AddCommandParser -[hidden]-> PatientParser : a
+destroy AddCommandParser
+
+PatientParser --> VmsParser : a
+deactivate PatientParser
+
+VmsParser --> LogicManager : a
 deactivate VmsParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : addVms()
+AddCommand -> Model : addPatient()
 activate Model
 
-Model -> VersionedVms : add()
-activate VersionedVms
-
-VersionedVms -> VersionedVms :resetData(ReadOnlyVms)
-VersionedVms --> Model :
-deactivate VersionedVms
 
 Model --> AddCommand
 deactivate Model
