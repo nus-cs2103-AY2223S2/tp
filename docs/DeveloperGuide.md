@@ -170,7 +170,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting 
 with an application. By predicting the set of words that the user intends to type based on a preset of words such as 
-in-built commands and argument prefixes, the `CommandRecommendationEngine` helps to save users time and effort while 
+in-built commands and field prefixes, the `CommandRecommendationEngine` helps to save users time and effort while 
 ensuring accuracy.
 
 #### Implementation
