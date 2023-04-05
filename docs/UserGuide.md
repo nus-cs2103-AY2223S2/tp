@@ -486,8 +486,14 @@ More examples:
   a company name of `Google` **or** `Apple`.
 * `find n/Google n/Apple s/Applied s/New` returns internship entries that have company names
   of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
+* Figure 5 below shows InternBuddy starting off with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`, the internship entries in green boxes in the after image were returned. The internship entries in red boxes in the before images, however, were not displayed as they did not match the search.
+  * In the after image, internship entry index 1 was filtered out because it contains at least one company name 'Google' and both tags 'python' and 'java'.
+  * In the after image, internship entry index 2 was filtered out because it contains at least one company name 'Google' and at least one tag 'python'.
+  * In the after image, internship entry index 3 was filtered out because it contains at least one company name 'Apple' and at least one tag 'java'
+  * In the before image, internship entry index 4 was not filtered out because even though it contains at least one searched company name 'Google', it does not contain at least one of the searched tags.
+  * In the before image, internship entry index 5 was not filtered out because even though it contains at least one of the searched tags 'java' and 'python', it does not contain at least one of the searched company names.
 
-  
+
 ![Find Command](images/ug-find-example.png)
    <p style="text-align: center;">Figure 5: Example of the find command in action</p>
 
