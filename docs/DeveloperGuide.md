@@ -419,11 +419,11 @@ similar to use case seven.
 
 similar to use case seven.
 
-**Use case: UC09 - Adding a technician to a service**
+**Use case: UC13 - Adding a technician to a service**
 
 **MSS**
 
-1. User requests to add a service into a list.
+1. User requests to add a technician to a service.
 2. User inputs the information of the service.
 3. AutoM8 adds the service into the book.
 
@@ -431,30 +431,19 @@ similar to use case seven.
 
 **Extensions**
 
-- 3a. The given vehicle plate number already has a service assigned in AutoM8.
+- 3a. The given technician already has a service assigned in AutoM8.
     - 3a1. AutoM8 shows an error message.
       Use case resumes at step 2.
       <br/><br/>
-
-**Use case: UC10 - Adding a spare part**
-
-**MSS**
-
-1. User requests to add a spare parts into a list.
-2. User inputs the information of the spare part.
-3. AutoM8 adds the spare part into the list.
-
-   Use case ends.
-
-**Extensions**
-
-- 3a. The specified spare part name already exist in the list.
-    - 3a1. AutoM8 shows an error message.
-      Use case resumes at step 2.
+- 3b. The provided index for technician and/or service is invalid.
+    - 3a1. AutoM8 displays an error message.
       <br/><br/>
 
+**Use case: UC13 - Adding a spare part to a service**
 
-**Use case: UC11 - Editing a customer's details**
+similar to use case thirteen.
+
+**Use case: UC14 - Editing a customer's details**
 
 **MSS**
 
@@ -475,91 +464,27 @@ similar to use case seven.
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC12 - Editing a vehicle's details**
+**Use case: UC15 - Editing a vehicle's details**
 
-**MSS**
+similar to use case fourteen.
 
-1. User requests to <u>list vehicle contacts (UC02)</u>.
-2. AutoM8 shows a list of vehicles.
-3. User requests to edit a vehicle on the list.
-4. User inputs the updated information.
-5. AutoM8 updates the vehicle's details.
+**Use case: UC13 - Editing appointment details**
 
-   Use case ends.
+similar to use case fourteen.>
 
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
+**Use case: UC14 - Editing an appointment details**
 
-      Use case resumes at step 2.
-      <br/><br/>
+similar to use case fourteen.
 
-**Use case: UC13 - Editing spare part's details**
+**Use case: UC15 - Editing a service details**
 
-**MSS**
+similar to use case fourteen.
 
-1. User requests to <u>list spare parts as contacts (UC04)</u>.
-2. AutoM8 shows a list of spare parts.
-3. User requests to edit a spare part on the list.
-4. User inputs the updated information.
-5. AutoM8 updates the spare part details.
+**Use case: UC16 - Editing a technician details**
 
-   Use case ends.
+similar to use case fourteen.
 
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC14 - Editing an appointment detail**
-
-**MSS**
-
-1. User requests to <u>list appointment as contacts (UC03)</u>.
-2. AutoM8 shows a list of appointments.
-3. User requests to edit an appointment on the list.
-4. User inputs the updated information.
-5. AutoM8 updates the appointment details.
-
-   Use case end.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC15 - Editing a service detail**
-
-**MSS**
-
-1. User requests to <u>list of service as contacts (UC05)</u>.
-2. AutoM8 shows a list of service.
-3. User requests to edit a service on the list.
-4. User inputs the updated information.
-5. AutoM8 updates the the appointment details.
-
-   Use case end.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC16 - Deleting a customer**
+**Use case: UC17 - Deleting a customer**
 
 **MSS**
 1. User requests to <u>list customers (UC01)</u>.
@@ -578,70 +503,32 @@ similar to use case seven.
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC17 - Deleting a vehicle**
+**Use case: UC18 - Deleting a vehicle**
+
+similar to use case seventeen.
+
+**Use case: UC19 - Deleting an appointment**
+
+similar to use case seventeen.
+
+**Use case: UC20 - Deleting a spare part**
+
+similar to use case seventeen.
+
+**Use case: UC21 - Deleting a service**
+
+similar to use case seventeen.
+
+**Use case: UC22 - Deleting a technician**
+
+similar to use case seventeen.
+
+**Use case: UC23 - Sorting customers**
 
 **MSS**
-1. User requests to <u>list of vehicles (UC02)</u>.
-2. AutoM8 shows a list of vehicle.
-3. User requests to delete a vehicle at a given index.
-4. AutoM8 deletes the contact at the index.
-
-   Use case ends.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC18 - Deleting a customer appointment**
-
-**MSS**
-1. User requests to <u>list of appointments (UC03)</u>.
-2. AutoM8 shows a list of appointments.
-3. User requests to delete an appointment at a given index.
-4. AutoM8 deletes the appointment at the index.
-
-   Use case ends.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC19 - Deleting a spare part**
-
-**MSS**
-1. User requests to <u>list of spare parts (UC04)</u>.
-2. AutoM8 shows a list of spare parts.
-3. User requests to delete a spare part at a given index.
-4. AutoM8 deletes the contact at the index.
-
-   Use case ends.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-
-**Use case: UC20 - Sorting vehicles**
-
-**MSS**
-1. User requests to <u>list vehicles (UC01)</u>.
-2. AutoM8 shows a list of vehicles.
-3. User requests to sort vehicles in list.
+1. User requests to <u>list customers (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to sort customers in list.
 4. AutoM8 sorts vehicles according to user's requirements.
 
    Use case ends.
@@ -655,13 +542,29 @@ similar to use case seven.
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC21 - Find a customer**
+**Use case: UC24 - Sorting appointment**
+
+similar to use case twenty-three.
+
+**Use case: UC25 - Sorting appointment**
+
+similar to use case twenty-three.
+
+**Use case: UC26 - Sorting services**
+
+similar to use case twenty-three.
+
+**Use case: UC27 - Sorting technician**
+
+similar to use case twenty-three.
+
+**Use case: UC28 - Find a vehicle**
 
 **MSS**
 
-1. User requests to <u>list of customer as contacts (UC01)</u>.
-2. AutoM8 shows a list of customer.
-3. User requests to find customer on the list.
+1. User requests to <u>list of customer as contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicles.
+3. User requests to find vehicle on the list.
 4. AutoM8 find customer according to user's requirements.
 
    Use case end.
@@ -676,16 +579,19 @@ similar to use case seven.
       <br/><br/>
 
 
-**Use case: UC22 - Find a vehicle**
+**Use case: UC29 - Find a service**
+
+similar to use case twenty-eight.
+
+**Use case: UC30 - View a customer**
 
 **MSS**
+1. User requests to <u>list customers (UC01)</u>.
+2. AutoM8 shows a list of customers.
+3. User requests to view a customer at a given index.
+4. AutoM8 views the customer at the index.
 
-1. User requests to <u>list of vehicle as contacts (UC02)</u>.
-2. AutoM8 shows a list of vehicle.
-3. User requests to find vehicle on the list.
-4. AutoM8 find vehicle according to user's requirements.
-
-   Use case end.
+   Use case ends.
 
 **Extensions**
 - 2a. The list is empty.
@@ -696,8 +602,50 @@ similar to use case seven.
       Use case resumes at step 2.
       <br/><br/>
 
+**Use case: UC31 - View an appointment**
 
-**Use case: UC23 - Exiting the application**
+similar to use case thirty.
+
+**Use case: UC32 - View a service**
+
+similar to use case thirty.
+
+**Use case: UC33 - View a technician**
+
+similar to use case thirty.
+
+**Use case: UC33 - View a vehicle**
+
+similar to use case thirty.
+
+**Use case: UC34 - Undo previous command**
+
+**MSS**
+
+1.  User keys undo.
+2.  System undoes the previous command executed.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Previous command was `add`, `edit` or `delete` and user tries to undo.
+
+    * 1a1. System will not the previous command and displays an error message.  
+      Use case ends.
+
+**Use case: UC35 - Redo previous command**
+1. User requests to redo.
+2. System redoes the last action.
+
+Use case ends.
+
+**Extensions**
+- 1a. There is no command to redo.
+    - 3a1. System displays an error message.  
+      Use case ends.
+
+**Use case: UC36 - Exiting the application**
 
 **MSS**
 
