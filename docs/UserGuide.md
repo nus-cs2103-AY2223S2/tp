@@ -659,26 +659,44 @@ Format: `exit`
 ### Navigating through Past Commands
 
 Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
-After the [Command Box](#exploring-the-graphical-user-interface) has been clicked, pressing <button>&uarr;</button>
-and <button>&darr;</button> will fill the [Command Box](#exploring-the-graphical-user-interface) with commands you entered recently.
-Hence, you will be able to just enter or edit before entering any of those inputs again.
-This will allow you to easily access and navigate through inputs you entered recently.
+After you have clicked on the [Input Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Input Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
+This allows you to effortlessly access and use past commands without having to go through the tedious process of typing them all over again.
 
-* InternBuddy keeps a history of your past inputs.
-* Pressing the up key will cause your next most recent input to appear in the text box. However, once you reach the least recent input, pressing the up arrow key further will not result in any change and the least recent input will remain in the text box.
-* Pressing the down key will cause your next least recent input to appear in the text box. Once you reach the most recent input, pressing the down key once more will clear the text box. Pressing the down arrow key further, however, will not result in any change and the text box will remain empty.
-* However, InternBuddy only starts keeping track of your inputs from its most recent launch. Suppose you have already inputted some commands into InternBuddy and it has recorded these commands into its input history. Exiting InternBuddy and launching it again will result in InternBuddy forgetting those past inputs and start afresh.
-* InternBuddy will keep track of all past inputs, regardless of whether or not they were valid commands. This is so that in the case where a past input was an invalid command, it can be navigated to and edited to be used again instead of having to type out the entire command again.
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** InternBuddy only tracks your past commands from the current run of
+InternBuddy. This means that if you restart InternBuddy, you can no longer navigate to the commands that
+you entered during the previous run.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Once you have navigated to the first command that you have ever entered into
+InternBuddy, pressing <button>&uarr;</button> would not lead to any further change. Similarly, once you have
+navigated to the current state of waiting for new input, pressing <button>&darr;</button> would not
+change anything.
+</div>
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  InternBuddy keeps track of all past commands entered, regardless of whether they were
+valid or not. Hence, if you accidentally entered an invalid command, you can easily navigate to it and
+make amendments accordingly without having to type out the entire command again.
+</div>
 
 Example:
-- Suppose InternBuddy has just been launched and the inputs `find n/google`, `help` and `oops` are entered into InternBuddy in this order.
-    - Pressing the up arrow key once will cause the text box to be filled with the most recent input which was `oops`. Pressing the up arrow key again will cause `oops` to disappear and the next most recent input, which is `help`, to fill the text box. Pressing the up arrow key yet again will cause `help` to disappear and the next most recent input, which is `find n/google`, to fill the text box. However, as `find n/google` is the least recent input, pressing the up arrow key again will not result in any change and the text box will continue to be filled with the input `find n/google`.
-    - Now that you have navigated to the least recent input, `find n/google`, pressing the down arrow key once will cause `find n/google` to disappear and the next least recent input, which is `help`, to fill the text box. Pressing the down arrow key again will cause `help` to disappear and the next least recent input, which is `oops`, to fill the text box. However, as `oops` is the most recent input, pressing the down arrow key again will cause `oops` to disappear and clear the text box. Pressing the down arrow key further will not result in any change and the text box will remain empty.
+- Figure XX illustrates an example of how you can navigate through past commands where the inputs
+  `list`, `clear` and `upcoming` are entered in this particular order.
 
-- Suppose InternBuddy has just been launched again and the inputs `delete 1`, `clear` and `blah` are entered into InternBuddy in this order.
-    - Pressing the up arrow key once will cause the text box to be filled with the most recent input, which is `blah`. Pressing the up arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to fill the text box.
-    - Pressing the down arrow key next will cause `clear` to disappear and the next least recent input, which is `blah`, to fill the text box again.
-        - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
+
+<p align="center">
+  <img src="images/ug-navigate-commands.png" width="650" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+
+<br/>
+
 
 ### Saving your Internship Data
 
