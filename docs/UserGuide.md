@@ -303,7 +303,7 @@ His _contact_ details will then be shown in the **Info Panel**.
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
 <div class="span" class="alert alert-success">
-💡 **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
+:bulb: **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
 </div>
 
 <br>
@@ -323,7 +323,7 @@ You can enter `view s` as well to view Bob's _skills_ to see a similar empty lis
 contact information.
 
 <div class="span" class="alert alert-success">
-💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
+:bulb: **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 </div>
 
 **Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
@@ -352,7 +352,7 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 (enter `view m` if you're not on the _modules_ tab).
 
 <div class="span" class="alert alert-success">
-💡 **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
+:bulb: **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
  can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
  for you to edit **modules taken**!
 </div>
@@ -473,7 +473,7 @@ Once the person has been created, the result display will show a confirmation me
   - skills are case-sensitive and does not allow duplicates
 
 <div markdown="span" class="alert alert-success">
-💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+:bulb: **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 </div>
 
 **Examples:**
@@ -506,13 +506,13 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 - s (e.g. `view s`)
 
 <div class="span" class="alert alert-success">
-💡 **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
+:bulb: **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
 </div>
 
 **Examples:**
-- `view` 2
+- `view 2`
    ![View Example](images/UiViewIndex.jpg)
-- `view` m
+- `view m`
    ![View Example](images/UiViewModule.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
@@ -555,7 +555,7 @@ Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><
   - skills are case-sensitive and does not allow duplicates
 
 <div class="span" class="alert alert-success">
-💡 **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
+:bulb: **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
 </div>
 
 **Examples:**
@@ -584,13 +584,13 @@ Want to find people with certain qualities? Use find command to find people that
     * <div class="span" class="alert alert-info">:information_source: **Note:** This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
 * m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
   * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
-  * <div class="span" class="alert alert-success">💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
+  * <div class="span" class="alert alert-success">:bulb: **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
   * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all person that have taken
     * `CS1101`, `CS1231` regardless of academic year
     * `CS2040` in `AY2223S1`
     * `CS2090`, `CS3230` in `AY2223S2`
 * s/SKILLS (e.g. `find s/java` will load all person that contains `java` in their skill list such as `java` and `javascript`)
-    * <div class="span" class="alert alert-success">💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
+    * <div class="span" class="alert alert-success">:bulb: **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
  
 
 **Examples:**
@@ -607,7 +607,7 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 `list`<br>
 
 <div class="span" class="alert alert-success">
-💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
+:bulb: **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
 </div>
 
 * `list`
