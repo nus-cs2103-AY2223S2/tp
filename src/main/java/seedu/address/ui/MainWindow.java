@@ -184,7 +184,11 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+
         } else {
+            if(helpWindow.isMinimized()){
+                helpWindow.unMinimize();
+            }
             helpWindow.focus();
         }
     }
