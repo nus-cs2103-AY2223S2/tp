@@ -20,7 +20,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 import seedu.address.storage.Storage;
 
 /**
@@ -90,6 +94,27 @@ public class LogicManager implements Logic {
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         model.updateFilteredPatientList(predicate);
+    }
+
+    @Override
+    public void updateFilteredPatientListBasedOnDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        PatientFilter patientContainsDoctor =
+                new PatientFilter(doctor);
+        Predicate<Patient> patientsOfDoctorPredicate =
+                new PatientContainsKeywordsPredicate(patientContainsDoctor);
+        this.updateFilteredPatientList(patientsOfDoctorPredicate);
+    }
+
+    @Override
+    public void updateFilteredDoctorListBasedOnPatient(Patient patient) {
+        requireNonNull(patient);
+        DoctorFilter doctorContainsPatient =
+                new DoctorFilter(patient);
+        Predicate<Doctor> doctorsOfPatientPredicate =
+                new DoctorContainsKeywordsPredicate(doctorContainsPatient);
+        this.updateFilteredDoctorList(doctorsOfPatientPredicate);
+
     }
 
     @Override

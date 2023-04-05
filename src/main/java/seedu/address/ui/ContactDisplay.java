@@ -96,11 +96,7 @@ public class ContactDisplay extends UiPart<Region> {
             Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
             doctorListPanel.selectDoctor(selectedDoctor);
 
-            PatientFilter patientContainsDoctor =
-                    new PatientFilter(selectedDoctor);
-            Predicate<Patient> patientsOfDoctorPredicate =
-                    new PatientContainsKeywordsPredicate(patientContainsDoctor);
-            logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+            logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor.get());
 
             enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
             infoCardDisplayController.displayDoctor();
@@ -110,11 +106,7 @@ public class ContactDisplay extends UiPart<Region> {
             Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
             patientListPanel.selectPatient(selectedPatient);
 
-            DoctorFilter doctorContainsPatient =
-                    new DoctorFilter(selectedPatient);
-            Predicate<Doctor> doctorsOfPatientPredicate =
-                    new DoctorContainsKeywordsPredicate(doctorContainsPatient);
-            logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+            logic.updateFilteredDoctorListBasedOnPatient(selectedPatient.get());
 
             enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
             infoCardDisplayController.displayPatient();

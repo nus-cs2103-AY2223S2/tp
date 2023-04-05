@@ -57,6 +57,18 @@ public interface Logic {
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
+    /**
+     * Updates filtered doctor list in {@code Model}
+     * to contain doctors associated with the {@code Patient} supplied.
+     */
+    void updateFilteredDoctorListBasedOnPatient(Patient patient);
+
+    /**
+     * Updates filtered patient list in {@code Model}
+     * to contain patients associated with the {@code Doctor} supplied.
+     */
+    void updateFilteredPatientListBasedOnDoctor(Doctor doctor);
+
     /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
     Optional<Doctor> getDoctorIfPresent();
 
