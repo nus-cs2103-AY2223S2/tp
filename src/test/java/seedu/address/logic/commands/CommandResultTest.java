@@ -11,12 +11,12 @@ public class CommandResultTest {
     @Test
     public void isExit() {
         CommandResult commandResult = new CommandResult("feedback", false, true);
-        assertTrue(commandResult.isExit());
+        assertTrue(commandResult.shouldExit());
     }
     @Test
     public void isShowHelp() {
         CommandResult commandResult = new CommandResult("feedback", true, false);
-        assertTrue(commandResult.isShowHelp());
+        assertTrue(commandResult.shouldShowHelp());
     }
 
     @Test
