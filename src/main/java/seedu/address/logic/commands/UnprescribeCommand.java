@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -54,51 +53,29 @@ public class UnprescribeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (!model.hasPatientByNric(nric)) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-        // todo maybe enscapsulate this function
-        Patient patientToEdit = null;
-        for (Person person : lastShownList) {
-            if (person.isDoctor()) {
-                continue;
-            }
-            if (person.getNric().equals(nric)) {
-                patientToEdit = (Patient) person;
-            }
-        }
-
-        if (patientToEdit == null) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-
+        Patient patientToEdit = getPatientFromModel(model);
         Set<Prescription> patientPrescriptions = patientToEdit.getPrescriptions();
+        Prescription[] filteredPrescriptions = (Prescription[]) patientPrescriptions.stream()
+                .filter(p -> p.getMedication().equals(medication))
+                .toArray();
 
-        // todo use streams
-        for (Prescription p : patientPrescriptions) {
-            if (p.getMedication().equals(medication)) {
-                patientPrescriptions.remove(p);
-
-                Patient editedPerson = new Patient(
-                        patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                        patientToEdit.getNric(),
-                        patientToEdit.getAddress(), patientPrescriptions,
-                        patientToEdit.getTags(),
-                        patientToEdit.getPatientAppointments(),
-                        patientToEdit.getRole());
-
-                model.setPerson(patientToEdit, editedPerson);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-                return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, editedPerson));
-            }
+        assert filteredPrescriptions.length < 2 : "For each person, there should not be multiple prescriptions with"
+                + "the same medication!";
+        if (filteredPrescriptions.length == 0) {
+            throw new CommandException(MESSAGE_INVALID_PRESCRIPTION);
         }
+        patientPrescriptions.remove(filteredPrescriptions[0]);
 
-        return new CommandResult(MESSAGE_INVALID_PRESCRIPTION);
+        Patient editedPerson = new Patient(
+                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),
+                patientToEdit.getAddress(), patientPrescriptions, patientToEdit.getTags(),
+                patientToEdit.getPatientAppointments(), patientToEdit.getRole());
+
+        model.setPerson(patientToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_DELETE_SUCCESS, editedPerson));
     }
 
     @Override
@@ -119,4 +96,14 @@ public class UnprescribeCommand extends Command {
                 && medication.equals(e.medication);
     }
 
+    private Patient getPatientFromModel(Model model) throws CommandException {
+        if (!model.hasPatientByNric(nric)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        Person personToEdit = model.getPersonByNric(nric);
+        if (!personToEdit.isPatient()) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        return (Patient) personToEdit;
+    }
 }
