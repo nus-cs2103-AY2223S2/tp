@@ -48,7 +48,8 @@ public class RecipeCard extends UiPart<Region> {
             title.setText(recipe.getTitle().title + " ★ " + System.lineSeparator()
                     + "[Price: $" + String.format("%.2f", recipe.getCost()) + "]");
         } else {
-            title.setText(recipe.getTitle().title + System.lineSeparator() + "[Price: $" + String.format("%.2f", recipe.getCost()) + "]");
+            title.setText(recipe.getTitle().title + System.lineSeparator()
+                          + "[Price: $" + String.format("%.2f", recipe.getCost()) + "]");
         }
         title.setWrapText(true);
         desc.setText(recipe.getDesc().description);

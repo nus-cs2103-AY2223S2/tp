@@ -46,9 +46,11 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
             if (recipe.isStarred()) {
-                recipeTitle.setText(recipe.getTitle().toString() + " ★" + " [Price: $" + String.format("%.2f", recipe.getCost()) + "]");
+                recipeTitle.setText(recipe.getTitle().toString() + " ★"
+                        + " [Price: $" + String.format("%.2f", recipe.getCost()) + "]");
             } else {
-                recipeTitle.setText(recipe.getTitle().toString() + " [Price: $" + String.format("%.2f", recipe.getCost()) + "]");
+                recipeTitle.setText(recipe.getTitle().toString()
+                                    + " [Price: $" + String.format("%.2f", recipe.getCost()) + "]");
             }
             recipeDesc.setText(recipe.getDesc().toString());
             ingredients.getChildren().clear();
