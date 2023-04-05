@@ -8,7 +8,7 @@ TeachMeSenpai is a **desktop app targeted at NUS teaching assistants who have ma
 
 As a teaching assistant, you can add all your students' particulars, make notes about them, quickly navigate through your long list of students and so much more!
 If using our app seems daunting to you at first, don't worry, we even have an [autocomplete feature](#autocompletion) to guide you through every step of the way!
-Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature and a **Graphical User Interface** (GUI)
+Tailored to fast-typists, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature and a **Graphical User Interface** (GUI)
 to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
@@ -92,12 +92,15 @@ You will see more examples of the feedback TeachMeSenpai provides in the [Featur
 
 ### Adjusting the size of TeachMeSenpai
 
+If the app is too small for your liking, you may resize it by dragging the sides of the window with your cursor! The red lines in the image below are moveable
+so feel free to adjust the app however you like!
+
 <p align=center>
   <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
 </p>
 
-<div markdown="span" class="alert alert-success">**:bulb: Note:** If the app is too small for your liking, you may resize it by dragging the sides of the window with your cursor! The red lines in the image above are moveable
-so feel free to adjust the app however you like!
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Hover your mouse over the red lines indicated by the image on your app under you see an arrow cursor, this will allow
+you to adjust the size of the window
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -126,7 +129,7 @@ so feel free to adjust the app however you like!
   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
 
 - Extraneous words for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
-  _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
+  _(eg. if the command entered is `help 123`, it will be interpreted as `help`)_
 
 </div>
 
@@ -168,6 +171,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
 included an autocompletion feature!
+
 Start typing the first letters of a command to get shadow-like autocomplete suggestions. 
 The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
@@ -185,7 +189,7 @@ For the `module`, `tag`, `education` fields, it will also suggest all the existi
 <div markdown="block" class="alert alert-info">
 
 :bulb: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
-modules/education/tags in the current list.
+modules/education/tags you have in the current student list.
 </div>
 
 
@@ -230,8 +234,8 @@ Adds a student to the list, along with their education level and any student-spe
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as blue tags.
-* Only the name ie. `n/` is compulsory. You can add details for other fields using commands that we will explore later!
+:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
+* Only the name ie. `n/` is compulsory. You can add/edit details for other fields using the [`edit`](#edit-a-student-edit) command.
 
 </div>
 
@@ -259,7 +263,7 @@ Examples:
 
 ### Editing a student: `edit`
 
-Edits a student's info _(all info except remark)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
+Edits a student's information _(all information except remarks)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 
@@ -281,6 +285,10 @@ Examples:
     <img alt="edit after" src="images/user-guide/edit_after.jpg" />
     <br><i><b>Above:</b> After entering <code>edit</code> command</i>
 </p>
+
+<div markdown="block" class="alert alert-info"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
+edited student's details.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -323,7 +331,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** Notice that remarks on the student list panel (right panel) are truncated to make your student list more succinct :)
+:bulb: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
 To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
 </div>
 
@@ -351,6 +359,9 @@ Examples:
     <img alt="show after" src="images/user-guide/show_after.jpg" />
     <br><i><b>Above:</b> After entering <code>show</code> command</i>
 </p>
+
+<div markdown="span" class="alert alert-info">:information_source: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -426,18 +437,22 @@ are shown too.
 
 ### Delete a student: `delete`
 
-Deletes the specified student from the address book.
+Deletes the specified student(s) from the student list.
 
 > Format: `delete INDEX [INDEX]...`
 
 - Deletes the student at the specified `INDEX`.
-- More than 1 `INDEX` can be specified, then all of them will be deleted.
+- More than 1 `INDEX` can be specified, and all of them will be deleted.
 - The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, ...
 
+<div markdown="span" class="alert alert-info">:bulb: **Note:** If any one of the `INDEX` specified are invalid (do not correspond to a student in the list),
+none of the students will be deleted.
+</div>
+
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd student in the address book.
+- `list` followed by `delete 2` deletes the 2nd student in the student list.
 
 <p align=center>
     <img alt="delete before" src="images/user-guide/delete_before.jpg" />
@@ -449,6 +464,8 @@ Examples:
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
 
+- `delete 1 4` deletes the 1st and 4th student in the student list.
+
 <div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
 <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
@@ -459,12 +476,19 @@ Examples:
 
 Did you make a mistake with a command? Don't worry, simply `undo` it!
 
-You can `undo` as many times as required, as long as the previous commmand is **undoable**.
+You can `undo` as many times as required, as long as any of your previous commmands were **undoable**. All **undoable** commands are given below!
 
-<div markdown="span" class="alert alert-info":bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
-</>
+<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message
+</div>
 
 > Format: `undo`
+
+Examples:
+
+- `delete 2` followed by 'undo' will delete the 2nd student in the list, but `undo` will reverse this deletion and add the student back.
+- `add n/Wen Li p/88889999` followed by `undo` will add a student Wen Li, but `undo` will remove this entry from the list.
+- `list` followed by `undo` will cause TeachMeSenpai to give you an error message since `list` is not **undoable**
+- `delete 2` followed by `list` then `undo` will reverse the deletion done before `list`!
 
 Example: `delete 1 4` followed by `undo`.
 
@@ -477,7 +501,11 @@ Did you `undo` a command on accident? Fret not, you may use `redo` to reverse th
 
 >Format: `redo`
 
-Example: `delete 1 4`, followed by `undo`, then `redo`.
+Examples: 
+
+- `delete 2`, followed by `undo`, then `redo` has the same effect as `delete 2`
+- `list` followed by `redo` will result in an error message from TeachMeSenpai.
+- `delete` 2 followed by `redo` will result in an error message from TeachMeSenpai.
 
 [↑ Back to top](#table-of-contents)
 
@@ -495,6 +523,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
+The file containing your data can be found in the same folder `teachmesenpai.jar` is found in on your computer.
 
 [↑ Back to top](#table-of-contents)
 
@@ -502,7 +531,9 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
+<div markdown="block" class="alert alert-danger"> **:exclamation: Warning:** Do not attempt to edit the data file unless you are an advanced user and understand some basic computing terminlogies.
+If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
+If you'd still like to edit the data file directly, please proceed to [Appendix: Editing the data file](#appendix-editing-the-data-file).
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -561,3 +592,100 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 
 [↑ Back to top](#table-of-contents)
+
+---
+
+## Appendix: Editing the data file
+
+The default data file contains the sample data from TeachMeSenpai. To edit the data, simply follow the format for each field you'd like to edit.
+
+The code below is a direct quote from the default data file.
+
+```
+{
+  "persons" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "remark" : "Hasn't submitted tutorial worksheet for Week 10",
+    "education" : "P6",
+    "telegram" : "@alexyeoh30",
+    "modules" : [ "CS2103T" ],
+    "tagged" : [ "CS2101" ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "remark" : "Submitted an MC for tutorial on Week 8",
+    "education" : "P1",
+    "telegram" : "@berniceee30",
+    "modules" : [ "CS2030" ],
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "remark" : "Remarks can take in multiple lines of input \nsee!",
+    "education" : "Sec 1",
+    "telegram" : "@charlotte_07",
+    "modules" : [ "CS2040S", "CS2109" ],
+    "tagged" : [ "neighbours" ]
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "remark" : "",
+    "education" : "Sec 4",
+    "telegram" : "@david_liiii",
+    "modules" : [ "CS2107" ],
+    "tagged" : [ "family" ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "remark" : "",
+    "education" : "P5",
+    "telegram" : "@irfanlove",
+    "modules" : [ "CS2040S", "CS2105" ],
+    "tagged" : [ "classmates" ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "remark" : "",
+    "education" : "P3",
+    "telegram" : "@royyy123",
+    "modules" : [ "CS4243" ],
+    "tagged" : [ "colleagues" ]
+  } ]
+}
+```
+
+`persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
+
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the [parameter requirements](#paramter-descriptions).
+</div>
+
+The parameters in the braces indicate which parameter requirements in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
+
+- `name`: Represents the student's name. If empty, input`""`. (STUDENT_NAME)
+- `phone`: Represents the student's phone number. If empty, input`""`. (PHONE_NUMBER)
+- `email`: Represents the student's email. If empty, input`""`. (EMAIL)
+- `address`: Represents the student's address. If empty, input`""`. (ADDRESS)
+- `remark`: Represents the remark or notes for a student and can contain the newline character `\n`. If empty, input`""`. (REMARK)
+- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION_LEVEL)
+- `telegram`: Represents the telegram handle of a student. If empty, input`""`. (TELEGRAM)
+- `modules`: Represents an array of modules the student takes. If empty, input`[ ]`. (MODULE)
+- `tagged`: Represents an array of tags the student is labelled with. If empty, input`[ ]`. (TAG)
+
+After making the desired changes, simply save the data file, and re-launch TeachMeSenpai again.
+
+[↑ Back to top](#table-of-contents)
+
+
