@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -10,11 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
-import seedu.address.model.shared.Id;
-import seedu.address.model.task.Task;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -46,23 +41,13 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        Id pId = personToDelete.getId();
-        List<Task> taskList = getTaskList(officeConnectModel, pId);
 
         officeConnectModel.deletePerson(personToDelete);
 
-        for (Task task : taskList) {
-            officeConnectModel.deleteAssignment(personToDelete, task);
-        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    private static List<Task> getTaskList(OfficeConnectModel officeConnectModel, Id pId) {
-        RepositoryModelManager<AssignTask> assignTaskModelManager = officeConnectModel.getAssignTaskModelManager();
-        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(pId));
-        return new ArrayList<>(officeConnectModel.getTaskModelManager()
-            .filterItemList(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId()))));
-    }
 
     @Override
     public boolean equals(Object other) {

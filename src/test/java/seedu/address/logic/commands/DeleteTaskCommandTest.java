@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
@@ -39,7 +40,7 @@ public class DeleteTaskCommandTest {
         new RepositoryModelManager<>(model.getAssignTaskModelManager().getReadOnlyRepository()), new ModelManager());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws CommandException {
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
@@ -56,7 +57,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws CommandException {
         showTaskAtIndex(model, INDEX_FIRST);
 
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
@@ -86,17 +87,14 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_checkDeletionOfAssignments_success() {
+    public void execute_checkDeletionOfAssignments_success() throws CommandException {
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
-        AssignTask assignmentToDelete1 = new AssignTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
-        AssignTask assignmentToDelete2 = new AssignTask(DANIEL.getId(), SEND_EMAIL_TO_CLIENT.getId());
+
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         expectedModel.deleteTask(taskToDelete);
-        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete1);
-        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete2);
 
         assertAssignTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
