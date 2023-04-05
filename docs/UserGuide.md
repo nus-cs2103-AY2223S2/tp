@@ -324,7 +324,7 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 | c      | Preferred Communication Channel | Yes       |
 
 
-Examples:
+More examples:
 *  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
 *  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
 
