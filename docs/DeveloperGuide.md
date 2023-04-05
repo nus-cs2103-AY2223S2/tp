@@ -826,6 +826,44 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Finding an application
+
+1. Finding an application while all applications are being shown.
+
+    1. Prerequisites: List of applications is displayed through means like `list` or `sort`.
+
+    1. Test case: `find r/SWE`<br>
+       Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the status message.
+
+    1. Test case: `find c/Google`<br>
+      Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the status message.
+
+    1. Test case: `find s/Offered`<br>
+      Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the status message.
+
+    1. Test case: `find r/SWE c/Google s/Offered`<br>
+       Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the status message.
+
+    1. Test case: `find`<br>
+      Expected: No application is found. Invalid command error is shown in the status message. Status bar remains the same, with the input command highlighted in red.
+
+### Help
+
+1. Opening the help window for a summary of commands and their formats.
+
+    1. Prerequisites: sprINT's main window is working.
+
+    1. Test case: Enter `help` command<br>
+       Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the status message.
+
+    1. Test case: Manually clicking on the help button on the Toolbar<br>
+       Expected: Pop-up window for a summary of help commands and their formats is shown.
+
+    1. Test case: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
+       Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the status message.
+
+   1. Test case: Enter `help123` command<br>
+      Expected: No Pop-up window is shown, `Unknown command` is displayed in the status message as the word is recognised to be an invalid command.
 
 ### Deleting an application
 
