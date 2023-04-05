@@ -125,9 +125,10 @@ public class ImageUtil {
     }
 
     /**
-     * Ensures directory for Image exists.
+     * Ensures directory for image exists.
+     * @throws SecurityException when there is no permission to access the directory.
      */
-    private static void checkDirectory() throws SecurityException {
+    public static void checkDirectory() throws SecurityException {
         String directoryPath = IMAGE_PATH;
         File profilePictureDirectory = new File(directoryPath);
         if (!profilePictureDirectory.exists()) {
