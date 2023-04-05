@@ -27,6 +27,7 @@ public class DeleteAllCommand extends Command {
         requireNonNull(model);
         model.setInternshipCatalogue(new InternshipCatalogue());
         model.setEventCatalogue(new EventCatalogue());
+        model.updateSelectedInternship(null);
         return new CommandResult(MESSAGE_SUCCESS, ResultType.HOME);
     }
 }
