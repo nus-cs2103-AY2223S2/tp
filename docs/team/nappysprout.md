@@ -9,38 +9,41 @@ CoDoc is a desktop address book application. The user interacts with it using a 
 
 Given below are my contributions to the project.
 
-* **New Feature**: (To be added)
-    * What it does: (To be added)
-    * Justification: (To be added)
-    * Highlights: (To be added)
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Module
+    * What it does: Provide Module field for Person in Codoc
+    * Justification: Codoc is an address book for Students and Module is an important aspect of student
+    * Highlights: The regex for Module was a little complicated and different errors need to show up depending which part of module is wrong during input
 
-* **New Feature**: (To be added)
+* **New Feature**: Course
+  * What it does: Provide Course field for Person in Codoc
+  * Justification: Codoc is an address book for Students and Course is an important aspect of student
 
-* **Code contributed**: (To be added)
+* **New Feature**: Year
+  * What it does: Provide Year field for Person in Codoc
+  * Justification: Codoc is an address book for Students and Year is an important aspect of student
 
-* **Project management**:
-    * (To be added)
+* **Code contributed**: I implemented the basic structure of Module, Course and Year into Person class. 
+I had to change files from many directories just to implement it such as making sure storage class expects that field, 
+parser knowing the particular prefix for the field and also initialising and error catching when initialising the attributes. 
+After implementing these attributes, my teammates were then able to put it into the UI and implement more complex logic like the find command on the fields I added.
+
+* **Project management**: I was able to merge PRs of my teammates and even spot errors which might be bad for the project before they are merged into master branch.
+I was able to set up the organisation, create the repository and gave my teammates access as well. 
 
 * **Enhancements to existing features**:
-    * (To be added)
-    * (To be added)
+    * Extended Person class to include more attributes
+    * Modified Storage class to account for new attributes
+    * Modify add command to include the new attributes
+    * Modify find command to include the new attributes
 
 * **Documentation**:
     * User Guide:
-        * (To be added)
-        * (To be added)
+        * Fix github issues pertaining to confusing layout in UserGuide
     * Developer Guide:
-        * A(To be added)
-
-* **Community**:
-    * (To be added)
-    * (To be added)
-    * (To be added)
-    * (To be added)
+        * Explanation of Module Class
+        * Tidied up table of content links and navigation and ensure their proper function
 
 * **Tools**:
-    * (To be added)
-    * (To be added)
-
-* _{you can add/remove categories in the list above}_
+    * JavaFX
+    * Jackson
+    * JUnit5
