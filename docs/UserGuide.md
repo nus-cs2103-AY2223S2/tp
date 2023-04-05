@@ -100,6 +100,7 @@ To achieve the best performance, we have set a few restrictions regarding the us
 
 </div>
 
+
 ### 1. Viewing help: `help`
 
 Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING. 
@@ -108,6 +109,7 @@ For more detailed information such as how to use the syntax, please refer to the
 <img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
 Format: `help`
+
 
 ### 2. Adding a student's contact: `add`
 
@@ -137,6 +139,7 @@ Lists all the students in the student list.
 
 Format: `list`
 
+
 ### 4. Editing a student: `edit`
 
 Edits an existing student in the student list.
@@ -150,6 +153,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 * We allow you to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
 * You are not allowed to change the name to be the same as any existing student in the list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -185,8 +189,9 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the student list.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student (if the student exist) in the student list.
+* `find Betsy` followed by `delete 1` deletes the 1st student (if the student exist) in the results of the `find` command.
+* `filter female` followed by `delete 3` deletes the 3rd student (if the student exist) in the results of the `filter` command.
 
 
 ### 7. Checking a student: `check`
@@ -200,7 +205,8 @@ Format: `check INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `check 2` checks the 2nd student in the student list.
+* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.
+
 
 ### 8. Adding a task for a student: `addtask`
 
@@ -238,6 +244,7 @@ Examples:
 * `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
 * `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
+
 ### 10. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
 Marks the specified task from the task list of a student as complete, in progress, or late.
@@ -251,6 +258,7 @@ Format:
 * The first index refers to the index number shown in the displayed student list and
   the second index refers to the index of the task in the displayed task list of the student.
 * Both indexes **must be positive integers** 1, 2, 3, …​
+* The default status for a newly added task is in progress.
 
 Examples:
 
@@ -303,17 +311,20 @@ Examples:
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
+
 ### 13. Clearing all entries: `clear`
 
 Clears all entries from the MATHUTORING.
 
 Format: `clear`
 
+
 ### 14. Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
+
 
 ### 15. Filtering students by tag: `filter`
 
@@ -340,6 +351,7 @@ Switches between the score list and score chart tabs.
 Format: There we support using CLI or mouse.
 CLI - `switch`
 Mouse - click the tab.
+
 
 ### 17. Export the student data out: `export`
 
@@ -370,6 +382,7 @@ Examples:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
+
 ### 18. Import the student data in: `import`
 
 Imports student data into the application. Users can import the file by dragging the file in or choosing the file path.
@@ -396,6 +409,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
+
 
 ### 19. Export student progress out as a PDF file: `exportp`
 
