@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Parent extends Person {
     public static final String MESSAGE_NUMBER_CONSTRAINTS = "Parent's phone should be a numeric value";
-    public static final String VALIDATION_NUMBER_REGEX = "\\d+";
+    public static final String VALIDATION_NUMBER_REGEX = "\\d{3,}";
     private final Age age;
     private final Image image;
     private final List<Student> children = new ArrayList<>();
