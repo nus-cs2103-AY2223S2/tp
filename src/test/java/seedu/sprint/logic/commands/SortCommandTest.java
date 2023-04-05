@@ -1,17 +1,17 @@
 package seedu.sprint.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-//import static seedu.sprint.testutil.TypicalApplications.APPLE;
-//import static seedu.sprint.testutil.TypicalApplications.AMAZON;
-//import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
-//import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
-//import static seedu.sprint.testutil.TypicalApplications.META;
-//import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.sprint.testutil.TypicalApplications.APPLE;
+import static seedu.sprint.testutil.TypicalApplications.AMAZON;
+import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
+import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
+import static seedu.sprint.testutil.TypicalApplications.META;
+import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
-//import java.util.Arrays;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
-//import seedu.sprint.model.application.AlphabeticalComparator;
+import seedu.sprint.model.application.AlphabeticalComparator;
 //import seedu.sprint.model.application.ApplicationHasTaskPredicate;
 //import seedu.sprint.model.application.DeadlineComparator;
 
@@ -59,7 +59,7 @@ public class SortCommandTest {
         assertFalse(sortAscAlphabeticalCommand.equals(sortDscDeadlineCommand));
     }
 
-    /*
+
     @Test
     public void execute_sortAlphabetical_success() {
         String expectedSuccessMessage = "Sorted all applications by alphabetical order!";
@@ -68,6 +68,7 @@ public class SortCommandTest {
         SortCommand sortAscAlphabeticalCommand = new SortCommand(SortingOrder.ALPHABETICAL, SortingSequence.ASCENDING);
         AlphabeticalComparator ascAlphabeticalComparator = new AlphabeticalComparator(SortingSequence.ASCENDING);
         expectedModel.updateSortedApplicationList(ascAlphabeticalComparator);
+        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(sortAscAlphabeticalCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
         assertEquals(Arrays.asList(AMAZON, GOVTECH, APPLE, GOOGLE, MICROSOFT, META),
                 model.getSortedApplicationList());
@@ -76,9 +77,11 @@ public class SortCommandTest {
         SortCommand sortDscAlphabeticalCommand = new SortCommand(SortingOrder.ALPHABETICAL, SortingSequence.DESCENDING);
         AlphabeticalComparator dscAlphabeticalComparator = new AlphabeticalComparator(SortingSequence.DESCENDING);
         expectedModel.updateSortedApplicationList(dscAlphabeticalComparator);
+        expectedModel.commitInternshipBookChange();
         assertCommandSuccess(sortDscAlphabeticalCommand, model, commandHistory, expectedSuccessMessage, expectedModel);
         assertEquals(Arrays.asList(META, MICROSOFT, GOOGLE, APPLE, GOVTECH, AMAZON),
                 model.getSortedApplicationList());
+
     }
-    */
+
 }

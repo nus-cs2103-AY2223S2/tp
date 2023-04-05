@@ -102,7 +102,7 @@ public class ApplicationCommandTestUtil {
         if (command instanceof AddApplicationCommand || command instanceof ClearCommand
                 || command instanceof DeleteApplicationCommand || command instanceof EditApplicationCommand
                 || command instanceof DeleteTaskCommand
-                || command instanceof AddTaskCommand || command instanceof EditTaskCommand) {
+                || command instanceof AddTaskCommand || command instanceof EditTaskCommand || command instanceof SortCommand) {
             expectedCommandHistory.setLastCommandAsModify();
         }
 
