@@ -67,7 +67,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png"/>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -76,7 +76,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png"/>
 
 The sections below give more details of each component.
 
@@ -103,7 +103,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
@@ -120,7 +120,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `FitBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FitBookParser` returns back as a `Command` object.
@@ -130,7 +130,7 @@ How the parsing works:
 
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png"/>
 
 
 The `FitBookModel` component,
@@ -157,7 +157,7 @@ The `FitBookModel` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/storage/FitBookStorage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png"/>
 
 The `Storage` component,
 * can save all FitBook, FitBookExerciseRoutine data and user preference data in json format, and read them back into corresponding objects.
@@ -181,15 +181,15 @@ The edit appointments feature allows users to view appointments in the upcoming 
 This feature is implemented using a panel on the main window with a list of clients names
 that is updated with every command that may affect appointment set.
 
-One situation that trigger the edit appointments feature is when a suer edits an appointment.
+One situation that trigger the edit appointments feature is when a user edits an appointment.
+
 The following details explain how it works:
 
    *  What it does:
       * When an appointment is edited in the clients list, it is automatically added to the
       list of appointments.
       * The list is automatically sorted in increasing order of the appointment data time.
-
-
+      
    * Details:
       * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
       class.
@@ -436,8 +436,7 @@ Step 1. The user launches the application for the first time. The `FitBookExerci
 ![AddEditRoutineState0](images/AddEditRoutineState0.png)
 
 Step 2. The user executes `addRoutine r/Cardio …​` command to add the Routine in the FitBookExerciseRoutine. The `addRoutine` command calls `AddRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddCommand:execute()` to execute the command to add the New Routine in the Exercise Routine.
-
-![AddEditRoutineState1](images/AddEditRoutineState1.png)
+* The addRoutine command has a similar UML diagram as `Step 1`. The only changes are the AddRoutineCommand to EditRoutineCommand, edits the routine and add it into storage and edits the routine in the model instead.
 
 Step 3. The user executes `editRoutine 1 r/HIIT …​` to edit the 1st Routine (target Routine) in the Exercise Routine of FitBook. The `editRoutine` command also calls `EditRoutineCommandParser`, causing it to check if the command is appropriate and calling `EditCommand:execute()` to execute the command to be edited in the Exercise Routine.
 
@@ -603,31 +602,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 =======
 
-| Priority | As a …​        | I can …​                                                          | So that …​                                                          |
-| -------- | ----------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user          | look at the list of clients                                          | I know who are my clients and their details                            |
-| `* * *`  | new user          | edit my client's routine                                             | the client's routine data is accurate                                  |
-| `* * *`  | new user          | edit my client's current routine                                     | so that the client's calorie intake is accurate                        |
-| `* * *`  | new user          | find a person by name                                                | locate details of persons without having to go through the entire list |
-| `* * *`  | new user          | hide private contact details                                         | minimize the chance of someone else seeing them by accident            |
-| `* * *`  | new user          | edit my client's weight data                                         | the client's weight data is accurate                                   |
-| `* * *`  | new user          | put my client's current weight                                       | I can see if they get closer to their targeted weight                  |
-| `* * *`  | new user          | set goal for each of my clients                                      | I can help my clients to make the most suitable plan                   |
-| `* * *`  | new user          | set a list of tasks for my client                                    | I can keep track of what i have asked my client to do                  |
-| `* * *`  | new user          | sort persons by name                                                 | I can locate a person easily                                           |
-| `* * *`  | new user          | search for clients through their names                               | I can find my client's data                                            |
-| `* * *`  | new user          | save exercise routines in a list                                     | I can match them with each client                                      |
-| `* * * ` | intermediate user | mark the exercise as incomplete                                      | I can manage my time properly next time                                |
-| `* * *`  | intermediate user | mark the exercise as complete                                        | I can teach my clients new exercises                                   |
-| `* * *`  | intermediate user | edit previous data                                                   | I can change my client's data                                          |
-| `* * *`  | intermediate user | add time to a client's appointment                                   | I can easily view my appointments for the week                         |
-| `*`      | intermediate user | search client's using their contact number                           | I can contact them when necessary                                      |
-| `*`      | intermediate user | filter clients by gender or exercise level                           | I can find my client easily                                            |
-| `*`      | Expert user       | link my clients under the same price package or classes              | I know who is under which class or price package                       |
-| `* *`    | Expert user       | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
-| `* *`    | Expert user       | download data collected in FitBook                                   | I can show results of my services to new potential clients             |
-| `* *`    | Expert user       | view reminder messages                                               | I remember the session I have with my clients for the day              |
-| `* *`    | Expert user       | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
+| Priority     | As a/an …​        | I can …​                                   | So that …​                                                                                     |
+|--------------|-------------------|--------------------------------------------|------------------------------------------------------------------------------------------------|
+| `* * *`      | new user          | look at the list of clients                | I know who are my clients and their details                                                    |
+| `* * *`      | new user          | look at the list of exercises              | I know what exercise routines are there saved in my application                                |
+| `* * *`      | new user          | edit my client's routine                   | the client's routine data is accurate                                                          |
+| `* * *`      | new user          | edit my client's current routine           | the client's calorie intake is accurate                                                        |
+| `* * *`      | new user          | edit my client's information               | I can update my clients with the updated details                                               |
+| `* * *`      | new user          | add new clients details                    | I can have my clients saved and view the next time easily                                      |
+| `* * *`      | new user          | add new routines and its exercises         | I can view my exercise routines whenever I want                                                |
+| `* * *`      | new user          | put my client's current weight             | I can see if they get closer to their targeted weight                                          |
+| `* * *`      | new user          | set goal for each of my clients            | I can help my clients to make the most suitable plan                                           |
+| `* * *`      | new user          | set recommended calorie intakes            | I can keep track of how much calorie I have recommended to my client                           |
+| `* * *`      | new user          | filter persons by name                     | I can locate a person easily                                                                   |
+| `* * *`      | new user          | search for clients through their names     | I can find my client's data                                                                    |
+| `* * *`      | intermediate user | edit previous data                         | I can change my client's data                                                                  |
+| `* * *`      | intermediate user | add time to a client's appointment         | I can easily view my appointments for the week                                                 |
+| `*`          | intermediate user | search client's using their information    | I can find my contacts easily                                                                  |
+| `*`          | intermediate user | search clients by gender or exercise level | I can find my client easily                                                                    |
+| `* *`        | intermediate user | show a graph of my client's weight history | I can see the trend of my client's weight to determine what to improve                         |
+| `* *`        | intermediate user | edit after using a find feature            | I can easily edit the client in the filtered list without changing back to the unfiltered list |
+| `* *`        | intermediate user | export my clients' details                 | I can view my clients data on a file like excel                                                |
+| `* *`        | intermediate user | export my exercise routines' details       | I can view my exercise routines data on a file like excel                                      |
+| `* *`        | expert user       | add clients into specific groups (tagging) | it will be easier to track if they are in the same groups                                      |
+| `* *`        | expert user       | download data collected in FitBook         | I can show results of my services to new potential clients                                     |
+| `* *`        | expert user       | view appointments that are coming          | I know which appointment session is coming first                                               |
+| `* * *`      | expert user       | search clients by tags                     | I can view clients by the searched tags                                                        |
+| `* * *`      | expert user       | shift the data to another computer         | I can use the same data for the same app on another computer                                   |
 
 =======
 
@@ -681,6 +682,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
+
+       Use case ends.
+
+* 1c. The client added has a routine that is not in FitBook.
+    
+    * 1c1. FitBook shows an error message to use a valid routine.
 
        Use case ends.
 
@@ -978,8 +985,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Should not consume too much battery or data usage on the user's device.
 8. Source code should be _open source_.
 9. JAR file should be less than 2GB.
-
-*{More to be added}*
 
 ---
 
