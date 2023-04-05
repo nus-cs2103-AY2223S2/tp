@@ -4,7 +4,6 @@ import static ezschedule.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -280,7 +279,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearRecent() {}
+        public void clearRecent() {
+        }
 
         @Override
         public ReadOnlyScheduler getScheduler() {
