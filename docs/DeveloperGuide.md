@@ -1117,11 +1117,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to tag a video of a lecture.
-<<<<<<< HEAD
-2. User specifies the tags, as well as the video, the lecture the video belongs to, and the module 
-=======
 2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
->>>>>>> ae10573b0953740dc67e39ed4986ca8b3d64cfac
    the lecture belongs to.
 3. The video is tagged.
 
