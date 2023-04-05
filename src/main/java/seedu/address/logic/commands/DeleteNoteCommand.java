@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "deleteNote";
 
-    public static final String MESSAGE_USAGE = "Delete syntax: deleteNote index/ INDEX (must be a positive integer) "
-            + "name/ name-of-event type/ type-of-event";
-    public static final String MESSAGE_EXAMPLE = "deleteNote index/ 1 name/ t1 type/ Tutorial";
+    public static final String MESSAGE_USAGE = "Delete syntax: deleteNote index/INDEX (must be a positive integer) "
+            + "name/name-of-event type/type-of-event";
+    public static final String MESSAGE_EXAMPLE = "deleteNote index/1 name/t1 type/Tutorial";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + "cannot be recognized!";
     public static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "The note index %1$s is not found in your specified event %2$s!";
