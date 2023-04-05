@@ -5,10 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.ReadOnlyParents;
