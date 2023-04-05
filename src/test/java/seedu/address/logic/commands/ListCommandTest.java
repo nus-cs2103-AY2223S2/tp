@@ -16,10 +16,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
-import seedu.address.model.module.LecturePredicate;
+import seedu.address.model.lecture.LecturePredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.VideoPredicate;
+import seedu.address.model.video.VideoPredicate;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 

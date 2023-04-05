@@ -5,46 +5,57 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nReadOnlyTracker" as ReadOnlyTracker
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyNavigation" as ReadOnlyNavigation
 Class ModelManager
+Class Tracker
 Class UserPrefs
+Class Navigation
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueModuleList
+Class "<<interface>>\nReadOnlyModule" as ReadOnlyModule
+Class Module
 
+Class UniqueLectureList
+Class "<<interface>>\nReadOnlyLecture" as ReadOnlyLecture
+Class Lecture
+
+Class UniqueVideoList
+Class Video
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Model .left.> ReadOnlyTracker
+Model .right.> ReadOnlyUserPrefs
+Model .right.> ReadOnlyNavigation
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Tracker .up.|> ReadOnlyTracker
 UserPrefs .up.|> ReadOnlyUserPrefs
+Navigation .up.|> ReadOnlyNavigation
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager -left-> "1" Tracker
+ModelManager -right-> "1" UserPrefs
+ModelManager -right-> "1" Navigation
+ModelManager -->"~* filtered" ReadOnlyModule
+ModelManager -->"~* filtered" ReadOnlyLecture
+ModelManager -->"        ~* filtered" Video
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ReadOnlyModule .right.> ReadOnlyLecture
+ReadOnlyLecture .right.> Video
 
-ModelManager -->"~* filtered" Person
+Tracker *--> "1" UniqueModuleList
+UniqueModuleList -down->"~* all" Module
+Module .up.|> ReadOnlyModule
+Module *-right-> "1" UniqueLectureList
+
+UniqueLectureList -right-> "~*"Lecture
+Lecture .up.|> ReadOnlyLecture
+Lecture *-right-> "1" UniqueVideoList
+
+UniqueVideoList -right-> "~*"Video
 @enduml

@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -54,9 +54,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="733" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -65,19 +65,19 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png" width="288" />
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -88,7 +88,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -119,34 +119,31 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="611" />
+
+** This class diagram omits some classes and dependencies in the `Model` component for the purpose of simplicity (classes excluded include `ModuleCode`, `ModuleName`, `LectureName`, `VideoName`, `Tag` and other classes)
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the tracker data i.e., all `Module` objects which are contained in a `UniqueModuleList` object, along with the `Lecture` objects contained in the `UniqueLectureList` objects of said `Module` objects, as well as the `Video` objects contained in the `UniqueVideoList` objects of said `Lecture` objects.
+- <!-- TODO: Update this @leeshaowee -->stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="617" />
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- can save both tracker data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `TrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -368,6 +365,82 @@ The following is a description of the code execution flow
 **Possible further implementation**
 
 - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
+
+### List module, lecture and video feature
+
+The `list` command supports:
+
+- Listing modules in the tracker
+- Listing lectures in a module in the tracker
+- Listing videos in a lecture which belongs to a module in the tracker
+
+It's behaviour is dependent on the arguments provided by the user.
+
+The feature utilises the following classes/variable:
+
+- `ListCommandParser` – Creates the appropriate `ListCommand` subclass object base on the user's input
+- `ListCommand` – Base class of any `Command` subclass that list some entity in the tracker
+- `PREDICATE_SHOW_ALL_MODULES` – Constant `Predicate` with type `ReadOnlyModule` that list all modules
+- `LecturePredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `VideoPredicate` – Class that implements `Predicate` interface with type `Video`
+
+The following sequence diagram depicts a `list` command execution for listing lectures in a module in the tracker.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+![ListSequenceDiagramRefListLectures](images/ListSequenceDiagramRefListLectures.png)
+
+The following is a description of the code execution flow:
+
+1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+   In Root Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested           |
+   | ------------------- | ------------------- | ------------- | ---------------------------- |
+   | No                  | No                  | List modules  | `PREDICATE_SHOW_ALL_MODULES` |
+   | Yes                 | No                  | List lectures | `LecturePredicate`           |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`             |
+
+   In Module Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | No                  | No                  | List lectures | `LecturePredicate` |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes                 | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In Lecture Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes/No              | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In All Context:
+
+   | Has `/r` argument | Intent      | `Predicate` tested           |
+   | ----------------- | ----------- | ---------------------------- |
+   | Yes               | List module | `PREDICATE_SHOW_ALL_MODULES` |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `ListCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `ListCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
+   - The `Module` which `Lectures` are to be listed does not exist
+   - The `Lecture` which `Videos` are to be listed does not exist
+
+5. Note that extra arguments are ignored.\
+   Examples:
+
+   - `list /r foo` or `list bar /r` :arrow_right: `list /r`
+   - `list bar /mod CS2040S` :arrow_right: `list /mod CS2040S`
+
+6. If no errors occur (no exceptions are thrown), the command succeeds in listing the modules/lectures/videos.
 
 ### Find module, lecture and video feature
 
@@ -616,41 +689,121 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                              |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a starter guide on how to use the app                                       |                                                                                              |
-| `* * *`  | forgetful user   | access a help manual easily                                                        | recall on how to use the app                                                                 |
-| `* * *`  | user             | add a module, lecture or video                                                     |                                                                                              |
-| `* * *`  | user             | delete a module, lecture or video                                                  | remove entries that I no longer need                                                         |
-| `* * *`  | user             | search for lectures by relevant keywords (tags)                                    | find a specific lecture easily                                                               |
-| `* * *`  | user             | mark the lecture that I have watched                                               | track the ones that I have missed out                                                        |
-| `* * *`  | user             | unmark lecture that I have previously marked as watched                            | correct my mistakes when I mark a lecture wrongly                                            |
-| `* * *`  | user             | tag lectures                                                                       | find a specific lecture easily                                                               |
-| `* * *`  | user             | tag timestamps on lectures                                                         | find a specific lecture timestamp easily                                                     |
-| `* * *`  | user             | remove tags from lectures                                                          | correct my mistakes when I tag a lecture wrongly                                             |
-| `* * *`  | user             | set my current watch timestamp of a video on a per lecture basis                   | track my current progress for a specific lecture                                             |
-| `* * *`  | user             | see my current watch timestamp of a video on a per lecture basis                   | have an idea of my current progress for a specific lecture and also resume my watch progress |
-| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / over total lectures) | have an idea of my current progress for the module                                           |
-| `* *`    | user             | bookmark the lectures                                                              | find them easily                                                                             |
-| `* *`    | user             | easily access my lecture slides                                                    | refer to them when watching a lecture                                                        |
-| `* *`    | user             | find lecture videos that cover a specific topic                                    | avoid wasting time on non-relevant videos                                                    |
-| `* *`    | seasoned user    | export and archive my progress from previous semesters                             | have a clean tracker but still reference lecture information from past modules if needed     |
-| `* *`    | user             | backup data that I have entered into the app and import previous backups           | restore my tracker should I change my device or wipe my device                               |
-| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                             | be motivated to keep up or catch up                                                          |
-| `* *`    | user             | group my lectures                                                                  | they appear more organise                                                                    |
-| `* *`    | forgetful user   | constantly be reminded of the "help" command                                       | continue using the app even when I forgot all the other commands                             |
-| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners                 | I am not held back and annoyed by those features                                             |
-| `* *`    | user             | write summaries/notes for lectures I have watched                                  | reference those notes when I'm revising the contents of the lecture                          |
-| `* *`    | user             | collate questions about a specific lecture                                         | pull it up when I have a chance to ask the professor                                         |
-| `* *`    | seasoned user    | look up notes from previous semester lecture content                               | supplement my current semester content                                                       |
-| `* *`    | seasoned user    | delete notes from previous semesters                                               | save my storage space                                                                        |
-| `* *`    | user             | see a quick overview of my current progress for all modules                        |                                                                                              |
-| `*`      | user             | view videos on any device (e.g. laptop, mobile)                                    | access them wherever I am                                                                    |
-| `*`      | user             | allow app notification to notify me when a new lecture is out                      | stay up to date with my lectures                                                             |
+| Priority | As a/an …​       | I can …​                                                                      | So that I can…​                                                                          |
+| -------- | ---------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `* * *`  | new user         | access a starter guide on how to use the app                                  |                                                                                          |
+| `* * *`  | forgetful user   | access a help manual easily                                                   | recall on how to use the app                                                             |
+| `* * *`  | user             | add a module, lecture or video                                                |                                                                                          |
+| `* * *`  | user             | delete a module, lecture or video                                             | remove entries that I no longer need                                                     |
+| `* * *`  | user             | find modules or lectures or videos by relevant keywords                       | can avoid wasting unnecessary time at looking through the list to find it one-by-one     |
+| `* * *`  | user             | mark the video that I have watched                                            | know the ones that I have not watched                                                    |
+| `* * *`  | user             | unmark the video that I have previously marked as watched                     | correct my mistakes when I mark a video wrongly                                          |
+| `* * *`  | user             | tag modules, lectures and videos                                              | find a specific modules/lectures/videos by relevant keywords                             |
+| `* * *`  | user             | set timestamps on videos                                                      | know where I pause on the video I was watching                                           |
+| `* * *`  | user             | remove tags from modules, lectures or videos                                  | revert when I tag a module, lecture or video wrongly                                     |
+| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / total lectures) | have an idea of my current progress for the module                                       |
+| `* *`    | seasoned user    | export and archive my progress from previous semesters                        | have a clean tracker but still reference lecture information from past modules if needed |
+| `* *`    | user             | backup data that I have entered into the app and import previous backups      | restore my tracker should I change my device or wipe my device                           |
+| `* *`    | seasoned user    | look up notes from previous semester module content                           | supplement my current semester content                                                   |
+| `* *`    | user             | easily access my lecture slides                                               | refer to them when watching a lecture                                                    |
+| `* *`    | user             | find lecture videos that cover a specific topic                               | avoid wasting time on non-relevant videos                                                |
+| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                        | be motivated to keep up or catch up                                                      |
+| `* *`    | user             | bookmark the lectures                                                         | find them easily                                                                         |
+| `* *`    | user             | group my lectures                                                             | they appear more organise                                                                |
+| `* *`    | forgetful user   | constantly be reminded of the "help" command                                  | continue using the app even when I forgot all the other commands                         |
+| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners            | I am not held back and annoyed by those features                                         |
+| `* *`    | user             | write summaries/notes for lectures I have watched                             | reference those notes when I'm revising the contents of the lecture                      |
+| `* *`    | user             | collate questions about a specific lecture                                    | pull it up when I have a chance to ask the professor                                     |
+| `* *`    | seasoned user    | delete notes from previous semesters                                          | save my storage space                                                                    |
+| `* *`    | user             | see a quick overview of my current progress for all modules                   |                                                                                          |
+| `*`      | user             | view videos on any device (e.g. laptop, mobile)                               | access them wherever I am                                                                |
+| `*`      | user             | allow app notification to notify me when a new lecture is out                 | stay up to date with my lectures                                                         |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: List modules**
+
+**MSS**
+
+1. User wants to see all modules.
+2. User types in command `list`.
+3. A list of module is populated.
+
+   Use case ends.
+
+**Use case: List module's lectures**
+
+**MSS**
+
+1. User wants to see all lectures of a module.
+2. User types in command `list /mod CS2040S`.
+3. A list of lectures of module `CS2040S` is populated.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The module does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: List lecture's videos**
+
+**MSS**
+
+1. User wants to see all videos of a lecture in a module.
+2. User types in command `list /mod CS2040S /lec Week 1`.
+3. A list of videos of lecture `Week 1` in module `CS2040S` is populated.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The module does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The lecture does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Find module**
+
+**MSS**
+
+1. User wants to find modules that starts with `Data`.
+2. User types in command `find Data`.
+3. A list of modules whose name starts with `Data` is populated.
+
+   Use case ends.
+
+**Use case: Find lecture**
+
+**MSS**
+
+1. User wants to find lectures belonging to module `CS2040S` that starts with `Week`.
+2. User types in command `find Week /mod CS2040S`.
+3. A list of lectures whose name starts with `Week` is populated.
+
+   Use case ends.
+
+**Use case: Find video**
+
+**MSS**
+
+1. User wants to find videos belonging to lecture `Week 1` of module `CS2040S` that starts with `Vid`.
+2. User types in command `find Vid /mod CS2040S /lec Week 1`.
+3. A list of lectures whose name starts with `Vid` is populated.
+
+   Use case ends.
 
 **Use case: Add a module**
 
@@ -932,7 +1085,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2b. Reference to module is empty.
 
     - 2b1. LeTracker shows an error message.
@@ -964,7 +1117,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to tag a video of a lecture.
+<<<<<<< HEAD
 2. User specifies the tags, as well as the video, the lecture the video belongs to, and the module 
+=======
+2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
+>>>>>>> ae10573b0953740dc67e39ed4986ca8b3d64cfac
    the lecture belongs to.
 3. The video is tagged.
 
@@ -1045,7 +1202,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2c1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2d. Module tags do not exist.
 
     - 2d1. LeTracker shows an error message.
@@ -1095,7 +1252,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2e1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2f. Lecture tags do not exist.
 
     - 2f1. LeTracker shows an error message.

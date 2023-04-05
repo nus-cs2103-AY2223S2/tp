@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.archive.Archive;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandResult.LectureEditInfo;
@@ -28,7 +29,6 @@ import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
-import seedu.address.storage.Archive;
 import seedu.address.storage.Storage;
 
 /**

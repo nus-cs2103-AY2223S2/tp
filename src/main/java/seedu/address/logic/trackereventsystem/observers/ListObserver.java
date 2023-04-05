@@ -8,12 +8,12 @@ import seedu.address.logic.trackereventsystem.OnVideoEditedEventObserver;
 import seedu.address.model.DisplayListLevel;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.LecturePredicate;
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.module.LecturePredicate;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.module.VideoPredicate;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoPredicate;
 
 /**
  * Represents a list observer that responds to on module edited and on
@@ -78,6 +78,7 @@ public class ListObserver implements
             ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
                 && editedInModuleCode.equals(curModule.getCode())
+                && originalLecture != null
                 && originalLecture.equals(curLecture);
     }
 
@@ -115,12 +116,14 @@ public class ListObserver implements
     private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
             ReadOnlyModule curModule, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.LECTURE
+                && originalModule != null
                 && curModule.getCode().equals(originalModule.getCode());
     }
 
     private boolean isVideosAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
             ReadOnlyModule curModule, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
+                && originalModule != null
                 && curModule.getCode().equals(originalModule.getCode());
     }
 }

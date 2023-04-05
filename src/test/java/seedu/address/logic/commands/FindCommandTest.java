@@ -21,17 +21,17 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureNameContainsKeywordsPredicate;
+import seedu.address.model.lecture.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
-import seedu.address.model.module.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleTagContainsKeywordsPredicate;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
-import seedu.address.model.module.VideoTagContainsKeywordsPredicate;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoNameContainsKeywordsPredicate;
+import seedu.address.model.video.VideoTagContainsKeywordsPredicate;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TypicalLectures;
@@ -119,7 +119,7 @@ public class FindCommandTest {
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
                 (LectureNameContainsKeywordsPredicate) preparePredicate(" ", DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
 
@@ -133,7 +133,7 @@ public class FindCommandTest {
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
                 (LectureTagContainsKeywordsPredicate) preparePredicate(" ", DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
 
@@ -217,7 +217,7 @@ public class FindCommandTest {
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
                 (LectureNameContainsKeywordsPredicate) preparePredicate(input, DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
@@ -250,7 +250,7 @@ public class FindCommandTest {
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
                 (LectureTagContainsKeywordsPredicate) preparePredicate(input, DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
