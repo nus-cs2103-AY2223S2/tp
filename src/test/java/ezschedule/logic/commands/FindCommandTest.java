@@ -8,7 +8,8 @@ import static ezschedule.testutil.TypicalEvents.CARNIVAL;
 import static ezschedule.testutil.TypicalEvents.DRAG;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -225,27 +226,29 @@ public class FindCommandTest {
     public void equals() {
         FindEventDescriptor firstFindEventDescriptor = new FindEventDescriptor();
         firstFindEventDescriptor.setName(new Name("first"));
+        firstFindEventDescriptor.setDate(new Date("2023-06-01"));
         FindCommand findFirstCommand = new FindCommand(firstFindEventDescriptor);
 
         FindEventDescriptor secondFindEventDescriptor = new FindEventDescriptor();
         secondFindEventDescriptor.setName(new Name("second"));
+        secondFindEventDescriptor.setDate(new Date("2023-06-01"));
         FindCommand findSecondCommand = new FindCommand(secondFindEventDescriptor);
 
         // same object -> returns true
-        assertEquals(findFirstCommand, findFirstCommand);
+        assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstFindEventDescriptor);
-        assertEquals(findFirstCommand, findFirstCommandCopy);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, findFirstCommand);
+        assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, findFirstCommand);
+        assertFalse(findFirstCommand.equals(null));
 
         // different event -> returns false
-        assertNotEquals(findFirstCommand, findSecondCommand);
+        assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     /**

@@ -6,8 +6,7 @@ import static ezschedule.logic.commands.CommandTestUtil.showEventAtIndex;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -131,20 +130,20 @@ public class DeleteCommandTest {
         DeleteCommand deleteSecondCommand = new DeleteCommand(indexSecondEvent);
 
         // same object -> returns true
-        assertEquals(deleteFirstCommand, deleteFirstCommand);
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(indexFirstEvent);
-        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, deleteFirstCommand);
+        assertFalse(deleteFirstCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, deleteFirstCommand);
+        assertFalse(deleteFirstCommand.equals(null));
 
         // different event -> returns false
-        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
+        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**

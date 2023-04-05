@@ -14,7 +14,7 @@ import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static ezschedule.testutil.TypicalEvents.EVENT_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -90,37 +90,37 @@ public class EventTest {
 
     @Test
     public void equals() {
-        // same object -> returns equal
-        assertEquals(EVENT_A, EVENT_A);
+        // same object -> returns true
+        assertTrue(EVENT_A.equals(EVENT_A));
 
         // same values -> returns equal
         Event aCopy = new EventBuilder(EVENT_A).build();
-        assertEquals(EVENT_A, aCopy);
+        assertTrue(EVENT_A.equals(aCopy));
 
-        // null -> returns not equal
-        assertNotEquals(null, EVENT_A);
+        // null -> returns false
+        assertFalse(EVENT_A.equals(null));
 
-        // different type -> returns not equal
-        assertNotEquals(5, EVENT_A);
+        // different type -> returns false
+        assertFalse(EVENT_A.equals(5));
 
-        // different event -> returns not equal
-        assertNotEquals(EVENT_A, EVENT_B);
+        // different event -> returns false
+        assertFalse(EVENT_A.equals(EVENT_B));
 
         // different name, all other attributes same -> returns not equal
         Event editedA = new EventBuilder(EVENT_A).withName(VALID_NAME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
         // different date, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withDate(VALID_DATE_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
         // different start time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withStartTime(VALID_START_TIME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
         // different end time, all other attributes same -> returns not equal
         editedA = new EventBuilder(EVENT_A).withEndTime(VALID_END_TIME_B).build();
-        assertNotEquals(EVENT_A, editedA);
+        assertFalse(EVENT_A.equals(editedA));
 
         // invalid name -> throw IllegalArgumentException
         assertThrows(IllegalArgumentException.class, () -> new EventBuilder(EVENT_A).withName(INVALID_NAME).build());
