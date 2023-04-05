@@ -163,7 +163,7 @@ Format: `add-image INDEX ai/PATH-TO-IMAGE`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3,...
 * Ensure that `ai/` prefix is used before the image path (note that `ai/` is not part of your path)
-* A default image is used by default
+* Initially, a default image is used for a contact
 * After an image is added, if the application is unable to retrieve the image (e.g. erroneous manual edit of addressbook.json or the saved images) then it will revert to the default image
 
 Examples:
@@ -193,7 +193,7 @@ Common User Errors
   * The path used may be incorrect due to differences in Absolute and Relative path<br>
   * The 2 types of file paths are different in that: 
     * Absolute path is a complete path from root to the file itself (Windows usually starts with `C:` and Linux/Mac with `/`)
-    * Relative path starts from the `[JAR file location]`
+    * Relative path starts from the [*home directory*](#quick-start)
     * Here is an external link to [learn more](https://www.computerhope.com/issues/ch001708.htm)
 
 
