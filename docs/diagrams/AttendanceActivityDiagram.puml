@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+@startuml
+start
+:User marks student as present;
+:PowerConnect searches for student;
+if () then ([Student exists])
+    :PowerConnect retrieves student attendance dates;
+    :PowerConnect checks if today's date is in attendance dates;
+    if () then ([marked present])
+        :Output message = \nAttendance already marked!;
+    else ([else])
+        :Creates a new attendance date with today's date;
+        :PowerConnect adds new attendance date to student attendance dates;
+        :PowerConnect saves student attendance dates into storage file;
+        :Output message = \nAttendance marked for student;
+        :UI updated to mark student as present;
+endif
+else ([else])
+    :Output message = \nThe student index provided is invalid/ not found;
+endif
+:PowerConnect displays output message to User;
+stop
+@enduml

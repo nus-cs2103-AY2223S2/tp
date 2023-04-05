@@ -25,7 +25,7 @@ Without further ado, let's get started!
 3. [Features](#features)
     1. [Legend](#legend)
     2. [Student Features: `student`](#student)
-         1. [Add student: `add`](#addstudent)
+         1. [Add student: `add`](#adding-a-student-student-class-add)
          2. [Add attendance to students: `attendance`](#attendance)
          3. [Add students' grade: `grade`](#gradestudent)
          4. [Deletes students' grade: `gradedelete`](#gradedelete)
@@ -38,7 +38,8 @@ Without further ado, let's get started!
         1. [Add Parent/Next-of-Kin: `add`](#addparent)
         2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
         3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
-        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
+        4. [Searching Parents/Next-of-Kins: `find`](#findparent)
+        5. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
     4. [General Features](#general)
        1. [List all students / parents](#listing)
        2. [Viewing help: `help`](#help)
@@ -615,6 +616,34 @@ Examples of Full Command:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 You **SHOULD** choose **VALID** values for `Age` (positive numbers) although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br><br>
 </div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "findparent" />
+
+### Locating parent by name:  `parent find`
+
+Finds and generates all parents with matching parent name.
+
+Format: `parent find <NAME>  `
+
+Examples:
+* `parent find Russel`
+* `parent find Joseph`
+*
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+To list back all parent, use the [general list](#listing)command! <br><br>
+</div>
+
+**Expected Outcome:**
+* 1 parent listed!
+* 2 parents listed! <br><br>
+
+  ![parent_find.png](images/parentfind.png)
 
 [Back to Table of Contents](#table-of-contents)
 

@@ -20,7 +20,7 @@ public class Messages {
             + "student attached! You can't delete the parent!";
     public static final String MESSAGE_PARENT_NOT_FOUND = "The parent name and parent number provided does not match "
             + "any of the parents in our parent list!";
-    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance already exists!";
+    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "Attendance already marked!";
     public static final String MESSAGE_BLANK_FIND = "Please enter letters to find a name!";
 
     public static final String MESSAGE_INVALID_WEIGHTAGE =

@@ -10,9 +10,7 @@ public abstract class ParentCommand extends Command {
     public static final String COMMAND_WORD = "parent";
 
     public static final String MESSAGE_USAGE = "1. parent add\n"
-            + "2. parent delete\n"
-            + "3. parent edit\n"
-            + "4. parent find";
+            + "2. parent delete\n" + "3. parent edit\n" + "4. parent find\n";
 
     public static final String MESSAGE_SUCCESS = "New parent added: <PARENT_NAME>";
 }
