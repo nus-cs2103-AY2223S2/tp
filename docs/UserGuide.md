@@ -469,10 +469,10 @@ There is no support for mobile devices yet.
 |----------------|-----------------------------------------------|----------------------------------------|------------------------------------|
 | Create Tag     | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
 | Tag            | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
-| Untag          | Remove a tag from a food item                 | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
-| List tags      | List all the tags created                     | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
-| Delete by tags | Delete food items by their tags               | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
-| Delete tags    | Delete specified tags.                        | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
+| Untag          | Removes a tag from a food item                | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
+| List tags      | Lists all the tags created                    | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
+| Delete by tags | Deletes food items by their tags              | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
+| Delete tags    | Deletes specified tags.                       | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
 
 
 ### General Commands
