@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.date.DateUtil.parseFeedingIntervalDays;
+import static seedu.address.model.date.DateUtil.parseFeedingIntervalHours;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -86,6 +88,16 @@ public class ParserUtil {
         String trimmedFeedingInterval = feedingInterval.trim();
         if (!FeedingInterval.isValidFeedingInterval(trimmedFeedingInterval)) {
             throw new ParseException(FeedingInterval.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            parseFeedingIntervalDays(trimmedFeedingInterval);
+        } catch (NumberFormatException e) {
+            throw new ParseException("The days integer provided is not a valid integer.");
+        }
+        try {
+            parseFeedingIntervalHours(trimmedFeedingInterval);
+        } catch (NumberFormatException e) {
+            throw new ParseException("The hours integer provided is not a valid integer.");
         }
         return new FeedingInterval(trimmedFeedingInterval);
     }
@@ -182,14 +194,33 @@ public class ParserUtil {
      *
      * @throws ParseException If the given {@code tank} is invalid.
      */
-    public static Tank parseTank(String tank) throws ParseException {
+    public static Tank parseTankForEditCommand(String tank) throws ParseException {
         requireNonNull(tank);
         String trimmedTank = tank.trim();
         if (!TankName.isValidTankName(trimmedTank)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS
+            );
         }
         Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
         return retTank;
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Index}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Index parseTank(String strTankIndex) {
+        requireNonNull(strTankIndex);
+        String trimmedStrTankIndex = strTankIndex.trim();
+        int index = Integer.valueOf(trimmedStrTankIndex);
+        Index newTankIndex = Index.fromOneBased(index);
+        return newTankIndex;
+        //        if (!TankName.isValidTankName(trimmedTank)) {
+        //            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        //        }
+        //        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(),
+        //        new UniqueIndividualReadingLevels());
+        //        return retTank;
     }
 
     /**

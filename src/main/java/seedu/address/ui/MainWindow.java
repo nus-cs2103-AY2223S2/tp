@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FishListPanel fishListPanel;
-    private FishListPanel sortedFishListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TaskListPanel taskListPanel;
@@ -117,7 +116,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         fishListPanel = new FishListPanel(logic.getFilteredFishList());
-        sortedFishListPanel = new FishListPanel(logic.getSortedFishList());
         tankListPanel = new TankListPanel(logic.getFilteredTankList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         mainContent = new MainContent(tankListPanel, fishListPanel, taskListPanel);
@@ -182,9 +180,6 @@ public class MainWindow extends UiPart<Stage> {
         case DISPLAY_FISHES:
             mainContent.setMiddlePanel(fishListPanel);
             break;
-        case DISPLAY_SORTED_FISHES:
-            mainContent.setMiddlePanel(sortedFishListPanel);
-            break;
         default:
             break; // just keep the current mode
         }
@@ -197,7 +192,6 @@ public class MainWindow extends UiPart<Stage> {
         tankListPanel.refresh();
         taskListPanel.refresh();
         fishListPanel.refresh();
-        sortedFishListPanel.refresh();
     }
 
     public FishListPanel getFishListPanel() {

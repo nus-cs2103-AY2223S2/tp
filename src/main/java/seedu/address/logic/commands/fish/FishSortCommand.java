@@ -8,7 +8,6 @@ import static seedu.address.model.Model.SHOW_FISHES_IN_TANK;
 import java.util.Comparator;
 import java.util.List;
 
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -65,8 +64,6 @@ public class FishSortCommand extends FishCommand {
             // display filtered fish only
             model.updateFilteredFishList(SHOW_FISHES_IN_TANK.apply(tankToView));
         }
-
-        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES);
         return new CommandResult(MESSAGE_VIEW_FISH_SUCCESS, false, false, true);
     }
 

@@ -13,6 +13,7 @@ import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.readings.AmmoniaLevel;
 import seedu.address.model.tank.readings.PH;
 import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Reading;
 import seedu.address.model.tank.readings.Temperature;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
@@ -196,6 +197,8 @@ public interface Model {
     boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
 
     void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target);
+
+    Reading[] deleteLastEntryFromIndividualReadings(UniqueIndividualReadingLevels target);
 
     void addIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
 

@@ -33,9 +33,18 @@ public class FishSortCommandParser implements Parser<FishSortCommand> {
             -> f.getSpecies().toString());
     /* Compares feeding intervals and sorts them lexicographically from small to large */
     public static final Comparator<Fish> FEEDING_COMPARATOR = (f1, f2) -> {
-        String c1 = f1.getFeedingInterval().days + f1.getFeedingInterval().hours;
-        String c2 = f2.getFeedingInterval().days + f2.getFeedingInterval().hours;
-        return c1.compareTo(c2);
+        int d1 = Integer.parseInt(f1.getFeedingInterval().days);
+        int h1 = Integer.parseInt(f1.getFeedingInterval().hours);
+        int d2 = Integer.parseInt(f2.getFeedingInterval().days);
+        int h2 = Integer.parseInt(f2.getFeedingInterval().hours);
+        if (d1 == d2) {
+            if (h1 == h2) {
+                return 0;
+            }
+            return h1 > h2 ? 1 : -1;
+        } else {
+            return d1 > d2 ? 1 : -1;
+        }
     };
     /* Compares tank names and sorts them lexicographically from small to large */
     public static final Comparator<Fish> TANK_COMPARATOR = Comparator.comparing(f

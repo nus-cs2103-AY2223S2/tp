@@ -66,4 +66,5 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      */
     CommandResult executeFeedingReminderInitLogic(TaskFeedingReminder taskFeedingReminder) throws CommandException;
+
 }

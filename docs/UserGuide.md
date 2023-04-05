@@ -6,19 +6,26 @@ title: User Guide
 <img src="images/logo_UG.png" width="300">
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 # Table of Contents
   * [Introduction](#introduction)
+  * [Using this guide](#using-this-guide)
+  * [Glossary](#glossary)
   * [Quickstart](#quick-start)
+  * [About the interface](#about-the-interface)
+  * [*Fish Ahoy!* commands](#fish-ahoy-commands)
   * [Features](#features)
     * [Tanks](#tanks)
+    * [Tank readings](#tank-readings)
       * [Adding a tank `tank add`](#adding-a-tank-tank-add)
       * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
+      * [Editing a tank `tank edit`](#editing-a-tank-tank-edit)
       * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
       * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
-      * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
-      * [Tank readings](#tank-readings)
-        * [Adding a set of readings `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
-        * [Deleting a most recent set of readings `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
+      * [Adding a set of readings `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
+      * [Deleting a most recent set of readings `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
     * [Fishes](#fishes)
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
@@ -29,10 +36,12 @@ title: User Guide
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
       * [Listing tasks `list task`](#listing-tasks-list-task)
+      * [Feeding reminders](#feeding-reminders)
     * [Storage](#storage)
     * [Help](#help)
-  * [FAQ](#faq)
-  * [Summary](#command-summary)
+    * [FAQ](#faq)
+    * [Summary of commands](#command-summary)
+    * [Summary of prefixes in commands](#command-prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,49 +52,240 @@ Welcome to the *Fish Ahoy! User Guide*! <br>
 *Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
 Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
 
-*Fish Ahoy!* **simplifies** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
+*Fish Ahoy!* **streamlines** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
 **weekly tasks**, such as feeding and cleaning. 
 
-*Fish Ahoy!* **abstracts** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
+*Fish Ahoy!* **simplifies** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
 perform an action on **tanks**, the commands all begin with `tank`.
 
-Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
-*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
+--------------------------------------------------------------------------------------------------------------------
 
-This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to 
-cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior 
-knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping 
+# Using this guide
+
+This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to
+cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior
+knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping
 equipment.
+
+For **new users**, follow our [Quick Start Guide](#quick-start) below to get started with your fish-keeping journey with *Fish Ahoy!*.
+
+For **amateur users**, choose a feature from our [table of contents](#table-of-contents) above to find answers and get step-by-step instructions on how to make
+*Fish Ahoy!* work for you!
+
+For **experienced users**, refer to our [command summary](#command-summary) or [prefix summary](#command-prefix-summary) to obtain information you might need at a glance.
+
+These are the symbols employed in this user guide:
+
+| Symbol               | Meaning                                                                           |
+|----------------------|-----------------------------------------------------------------------------------|
+| :information_source: | Additional information. More relevant to **amateur** and **experienced** users.   |
+| :bulb:               | Helpful tip from the developers.                                                  |
+| :exclamation:        | Warning. Attempting to perform an action with a warning will lead to an **error** |
+
+> :information_source: Additional information: These symbols will be housed in blockquotes like this
+
+These are the special text formatting employed in this user guide: 
+
+| Font                 | Meaning                                                                                                                                                                                                                                                   |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**             | You should pay closer attention to bolded words as they are more important                                                                                                                                                                                |
+| `Code`               | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands and file names in the [Quick start](#quick-start) are also in this format                                                                         |
+| [Links]()            | A link to a section in this user guide that will provide more in-depth information                                                                                                                                                                        |
+| *Italics*            | The application name, *Fish Ahoy!* is in this format.                                                                                                                                                                                                     |
+| `<COMMAND CONTENTS>` | Generalises a part of a [command](#glossary). You can choose the exact value of the content in these brackets <br> example: `<PARAMETERS>` mean that you need to specify the exact values of the parameters in *Fish Ahoy!*, subject to their constraints |
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+These are the definitions to some technical terms: 
+
+| Word           | Meaning                                                                                                                                                                                                 |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command        | A series of words you type in the [Command Line](#about-the-interface) to perform an action                                                                                                             |
+| Command type   | Identifies the type of information the command modifies. <br> Command types: `tank`, `fish`, `task`                                                                                                     |
+| Command action | Specifies exactly what action the command performs. <br> Some command actions: `add`, `delete`, `edit`                                                                                                  |
+| Parameter      | Part of a command. Provides the command the information it requires. Parameters are preceded with a prefix.                                                                                             |
+| Prefix         | Part of a parameter. Specifies what type of information the parameter is providing. <br> [Prefixes:](#command-prefix-summary) `n/`, `lfd/`, `s/`, `fi/`, `tg/`, `by/`, `d/`, `al/`, `ph/`, `tp/`, `tk/` |
+| GUI/ Interface | The visual and graphical components of *Fish Ahoy!* It is what you see when you open *Fish Ahoy!*                                                                                                       |
+| Object         | An object is either a tank, fish or task. This term is used when all 3 types, tank, task and fish, are applicable.                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Quick start
 
-1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
-3. Copy the file to the folder you want to use as the home folder for Fish Ahoy!.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
+
+> :bulb: Tip: You can check by typing `java --version` in your Command Prompt for Windows or Terminal App for macOS
+
+2. Download the latest `FishAhoy.jar` from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
+3. Copy the file `FishAhoy.jar` to the folder you want to use as the home folder for *Fish Ahoy!*.
+
+> :information_source: Additional information: Data files of *Fish Ahoy!* will be also stored in the folder you keep it in.
+
+4. Double-click the file to open *Fish Ahoy!* 
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
 
+> :bulb: Tip: There is sample data present when you first open *Fish Ahoy!*. Use `edit` or `delete` commands to show your own tanks! 
+
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-  * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/Bobby lfd/01/01/2023 15:00 s/Guppy fi/0d5h tk/1`: Add a fish named Bobby to your fish book. Its last fed date, species, feeding interval and tank are specified with the `lfd/`, `s/`, `fi/` and `tk/` prefixes respectively.
+  * `fish delete 1`: Deletes the first fish shown in the [centre panel of the interface](#about-the-interface).
+  * `tank view 1`: View all fishes and tasks regarding the first tank in the [left panel of the interface](#about-the-interface).
 
 
-6. Refer to the [Features](#Features) below for details of each command.
+6. Refer to [About the Interface](#about-the-interface) below for details on the interface.
+7. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# About the Interface
+
+The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**, 
+and two buttons, **File** and **Help**.
+
+![Ui](images/UiIntro.png)
+
+The **Command Line** is where you can enter various commands to enter information into *Fish Ahoy!*. 
+Refer to the [Features](#features) below for details of each command!
+
+The **Alerts** will display the results of each command, and display additional help specific to the command.
+
+> :bulb: Tip: If you are unsure of the command format, simply enter the command type you want to use, e.g. `fish`, followed by the command action
+you would like to use, e.g. `add`. Information on prefixes will be displayed in the Alerts!<br>
+
+The **Panels** will display all the information on your Tanks, Fishes and Tasks. The leftmost panel displays tanks, centre panel display fishes and the right panel displays tasks These panels will automatically update 
+whenever you enter a command. Try it out!
+
+The **File** button will present a menu where you can exit the application. Exiting from the application using 
+Windows/Mac OS native close buttons are also fine.
+
+The **Help** button will present a menu where you can display the *Fish Ahoy! User Guide*. If you require extra information,
+do use this to redirect you to our user guide!
+
+--------------------------------------------------------------------------------------------------------------------
+
+# *Fish Ahoy!* Commands
+
+In general, the command format is as follows:<br>
+`<COMMAND TYPE> <COMMAND ACTION> <PARAMETERS>`
+> :information_source: Additional information: `list` commands do not follow this format, but are of format `list <COMMAND TYPE>`
+
+## Command types and actions
+* Command types
+  * There are 3 command types. They are the `tank`, `fish` and `task` command types
+  * They specify what they modify. `tank` commands modify tanks, `fish` commands modify fish and `task` commands modify tasks
+* Command actions
+  * These specify what the command does. For example, `tank add` adds a tank to *Fish Ahoy!*.
+
+## Parameters <br>
+
+* Parameters are additional pieces of information a command needs to perform its action. 
+  * For example, in the `tank add` command, a description parameter `d/<DESCRIPTION>` is needed 
+
+### Index parameters
+* Used as parameters for commands with `delete`, `edit` and `view` actions
+* Index parameters are **positive integers** (1, 2, 3...)
+* Index parameters do not require a prefix. For example, the command is as follows: `tank delete 1`
+* In the features section, index parameters will be as such: `<XXX_INDEX>`, and `XXX` can be `TANK`, `FISH` or `TASK`
+> :exclamation: Warning: Ensure that the index you input corresponds to an existing item. 
+> <br> Look at the [respective panels](#about-the-interface) for the index of the type of object you want to refer to.
+
+![Ui](images/UiIndex.png)
+
+### Prefix parameters
+* Used as parameters for commands with `add`, `edit` and `addReadings` actions
+* Prefix parameters require a prefix. For example, the command is as follows: `tank add d/<TANK_NAME>`
+* In the features section, prefix parameters will be as such: `X/<CONTENT>` where `X` is a valid prefix and `<CONTENT>` is the content of this parameter, subject to its constraints
+* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value. 
+> :information_source: Additional information: You can have multiple prefix parameters for the same prefix, but only the last one will be used.
+> <br>For example: `tank add d/Tank 1 d/Tank 2` will create a tank called 'Tank 2'.
+
+> :information_source: Additional information: For alphanumeric parameters, they are case-sensitive!
+> <br>For Example: `d/Freshwater tank` is different from `d/freshwater tank`
+
+> :bulb: Tip: Redundant spaces will be removed automatically for prefix parameters
+> <br> For example: `d/ Tank 1` does not make the description ' Tank 1', but is the same as `d/Tank 1`.
+#### Description `d/<DESCRIPTION>`
+  * Type: `Tank`
+  * `<DESCRIPTION>` should only contain alphanumeric characters and spaces
+  * Prefix: `d/`
+  * Example: `d/Tank 1`
+
+#### Name `n/<NAME>`
+* Type: `Fish`
+* `<NAME>` should only contain alphanumeric characters and spaces
+* Prefix: `n/`
+* Example: `n/Nemo`
+
+#### Last Fed Date `lfd/<LAST_FED_DATE>`
+* Type: `Fish`
+* `<LAST_FED_DATE>` should be in the format `DD/MM/YYYY HH:MM` where `DD` is the day of the month, `MM` is the month of the year and `YYYY` is the year. `HH` is the hour of the day and `MM` is the minute of the hour.
+* Prefix: `lfd/`
+* Example: `lfd/01/04/2023 12:00`
+> :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`. 
+> <br> For example, `DD` and `MM` for the 9th of April should be `09` and `04` respectively.
+
+#### Species `s/<SPECIES>`
+* Type: `Fish`
+* `<SPECIES>` should only contain alphanumeric characters and spaces
+* Prefix: `s/`
+* Example: `s/guppy`
+> :bulb: Tip: Look out for the unique fish icons for different species of fishes!
+
+#### Feeding interval `fi/<FEEDING_INTERVAL>`
+* Type: `Fish`
+* `<FEEDING_INTERVAL>` should be in the format `<DAYS>d<HOURS>h` where `<DAYS>` and `<HOURS>` specifies the days and hours of the feeding interval respectively
+* Prefix: `fi/`
+* Example: `fi/1d12h`
+
+#### Tags `[tg/<TAG>]`
+* Multiple tags allowed for one fish. A fish can also have no tags.
+* Type: `Fish`
+* `<TAG>` should only contain alphanumeric characters, with **no** spaces
+* Prefix: `tg/`
+* Example: `tg/sick tg/fat`
+
+> :information_source: Additional information: the syntax we use for tags are enclosed in square brackets `[tg/<TAG>]`, to show that it can contain
+> 0 or more tags.
+
+#### Sorting `by/<PREFIX_PARAMETER>`
+* Type: `Fish`
+* `<PREFIX_PARAMETER>` `n`, `lfd`, `s`, `fi`, or `tk`. These correspond to the parameters in this section with the same prefix.
+* Prefix: `by/`
+* Example: `by/lfd`
+
+#### Tank ammonia level reading `al/<AMMONIA_LEVEL>`
+* Type: `Tank`
+* `<AMMONIA_LEVEL>` A number, with or without decimal points.
+* Prefix: `al/`
+* Example: `al/2`
+
+#### Tank pH reading `ph/<PH>`
+* Type: `Tank`
+* `<PH>` A number, with or without decimal points.
+* Prefix: `ph/`
+* Example: `al/7.1`
+
+#### Tank temperature reading `tp/<TEMPERATURE>`
+* Type: `Tank`
+* `<TEMPERATURE>` A number, with or without decimal points.
+* Prefix: `tp/`
+* Example: `tp/28`
+
+#### Tank `tk/<TANK_INDEX>`
+* Type: `Task`, `Fish`
+* `<TANK_INDEX>` Positive integer (1, 2, 3...) and is one of the tank indexes of the listed tanks in the [left tank panel](#about-the-interface)
+* Prefix: `tk/`
+* Example: `tk/1`
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about the command format:**<br>
-
-
-</div>
 
 ## Tanks
 
@@ -95,96 +295,183 @@ a tank first, before allowing you to add in any fishes. These tanks directly rep
 customize them with their own names and add in their respective fishes!
 In the list, each tank has an [index](#faq). Use these indexes to perform certain operations on them.
 <br>
+## Tank readings
 
-Currently, there are five operations around tanks:
+If the species of fish you are keeping require close monitoring of environmental conditions, this feature is for you. Each
+tank keep tracks of 3 types of reading levels- ammonia level, pH and temperature. Use the following commands
+to log down the respective readings.
+
+Currently, there are seven command actions of type tank:
 * [Adding a tank `tank add`](#adding-a-tank-tank-add)
 * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
+* [Editing a tank `tank edit`](#editing-a-tank-tank-edit)
 * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
 * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
-* [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+* [Adding a set of readings to a tank `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
+* [Deleting a most recent set of readings of a tank `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
 
 ### Adding a tank: `tank add`
 
-Adds a tank to *Fish Ahoy!* <br>
+You can add a tank to *Fish Ahoy!* with the `tank add` command.
 
 Use this command to add your own tank with a customized name to *Fish Ahoy!* This will start your journey into managing 
 your aquarium.
 
 Format: `tank add d/<TANK_NAME>`
 
-Prefixes:
-* `d/` - Specifies the name of the tank
+Parameters:
+* Prefix parameters:
+  * `d/<TANK_NAME>` - [Description prefix.](#description-ddescription) Specifies the name of the tank
+    * `<TANK_NAME>` is alphanumeric and can contain spaces. It is case-sensitive
+
+> :exclamation: Warning: You cannot add tanks with the same description to *Fish Ahoy!*
+
+Example:
+* `tank add d/Freshwater tank` adds a new tank with the following details:
+  * Description: Freshwater tank
 
 ### Deleting a tank: `tank delete`
 
-Delete a tank entry from *Fish Ahoy!*
+You can delete a tank entry from *Fish Ahoy!* with the `tank delete` command.
 
-Use this command to remove tanks from the system, if you happen to change your existing tanks.
+Use this command to remove tanks from the system, when you are retiring a tank.
 
 Format: `tank delete <TANK_INDEX>`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
-</div>
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+  
+> :exclamation: Warning: You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
 
+Example:
+* `tank delete 2` deletes the second tank in the [tanks panel](#about-the-interface)
+
+### Editing a tank: `tank edit`
+
+You can edit the details of an existing tank with the `tank edit` command.
+
+Use this command if you want to update the original sample tank names to match your tank names, or if you decide that you want to rename
+an existing tank.
+
+Format: `tank edit <TANK_INDEX> d/<DESCRIPTION>`
+
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+* Prefix parameters:
+  * `d/<TANK_NAME>` - [Description prefix.](#description-ddescription) Specifies the name of the tank
+    * `<TANK_NAME>` is alphanumeric and can contain spaces. It is case-sensitive
+
+> :exclamation: Warning: For `edit` command actions, you must change **at least one** field! In this case, you must include
+> a new tank description when you want to use `tank edit`.
+
+Example:
+* `tank edit 2 d/My new tank` changes the name of the second tank in the [tanks panel](#about-the-interface) to 'My new tank'.
+    
 ### Feeding a tank: `tank feed`
 
-Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
+You can feed all the fish in a tank, updating all the fishes' last fed date to the current date and time with the `tank feed` command.
 
-Use this command when you feed your fishes, so you can easily update their last fed date!
+Use this command when you feed your fishes in real life, so you can keep track of when you last fed your fishes in *Fish Ahoy!*
 
 Format: `tank feed <TANK_INDEX>`
 
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+
+> :bulb: Tip: If you do not want to set the fishes' last fed date to the current date and time, you can manually update it with the
+> `fish edit <FISH_INDEX> lfd/<LAST_FED_DATE>` command!
+
+Example:
+* It is currently the 2nd of April, 12 pm. If you have a tank which index is 1, with 2 fishes, named 'Fish A' and 'Fish B', `tank feed 1` sets the following details of 'Fish A' and 
+'Fish B':
+  * Last fed date: 02/04/2023 12:00
+
 ### Viewing a tank: `tank view`
 
-View a tank, which displays relevant attributes of the selected tank.
+You can view the specific tasks and fishes belonging to the specified tank with the `tank view` command.
 
-Use this command to view a specific tank, and the fish contained inside! 
+Use this command when you want to inspect a particular tank, to check on its fishes and tasks!
 
 Format: `tank view <TANK_INDEX>`
 
-### Listing tanks: `list tanks`
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
 
-Lists all tanks created.
+> :information_source: Additional information: After viewing a specific tank, use `list fishes` and `list tasks` to see
+> the rest of the fishes and tasks belonging to other tanks again!
 
-This command will list all the existing tanks.
-
-Format: `list tanks`
-
-## Tank readings
-:exclamation: Experienced fish-keepers
-
-If the species of fish you are keeping require close monitoring of environmental conditions, this feature is for you. Each 
-tank keep tracks of 3 types of reading levels- `AmmoniaLevel`, `PH` and `Temperature`. Use the following commands
-to log down the respective readings.
-
-:bulb: You are required to log all 3 types of readings when addings a set of readings! If you do not
-own equipment to track that type of reading, enter `0` for that type of reading!
-
-Currently, there are two operations around tanks readings:
-* [Adding a set of readings `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
-* [Deleting a most recent set of readings `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
-
+Example:
+* You have 2 tanks, 'Freshwater tank' with index 1 and 'Saltwater tank' with index 2. 'Freshwater tank' has a fish named 'Guppy' with a task named 'clean tank'.
+'Saltwater tank' has a fish named 'Clown fish' and a task named 'change thermometer'. `tank view 1` lists the following information in the respective panels:
+  * Tanks panel: tanks - 'Freshwater tank' and 'Saltwater tank'
+  * Fish panel: fishes - 'Guppy'
+  * Task panel: tasks - 'clean tank'
+  
 ### Adding a set of readings: `tank addReadings`
 
-Adds a set of `AmmoniaLevel`, `PH` and `Temperature` readings to the specified tank.
+You can add a set of ammonia level, pH and temperature readings to the specified tank with the `tank addReadings` command.
 
-:exclamation: Experienced fish-keepers
+Use this command if you have the relevant equipment, and you want to log down the current readings!
 
-If your tanks have ammonia level, pH and temperature tracking equipment, use this command to log down the current readings.
-The date and time of the readings logged will be the current date and time.
+Format: `tank addReadings <TANK_INDEX> al/<AMMONIA_LEVEL> ph/<PH> tp/<TEMPERATURE>`
 
-Format: `tank addReadings <TANK_INDEX>`
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+* Prefix parameters:
+  * `al/<AMMONIA_LEVEL>` - [Ammonia level prefix.](#tank-ammonia-level-reading-alammonia_level) Specifies the current ammonia level of the tank
+    * `<AMMONIA_LEVEL>` is a number, with or without decimal points. The unit is in ppm (parts per million)
+  * `ph/<PH>` - [pH prefix.](#tank-ph-reading-phph) Specifies the current pH of the tank
+    * `<PH>` is a number, with or without decimal points. pH is between 0-14, with 7 being neutral
+  * `tp/<TEMPERATURE>` - [Temperature prefix.](#tank-temperature-reading-tptemperature) Specifies the current temperature of the tank
+    * `<TEMPERATURE>` is a number, with or without decimal points. The unit is in degrees celcius
+
+> :information_source: Additional information: While adding readings, take note that you **cannot add more than 1 reading per minute**. Trying to do so
+will replace the previous reading made in the same minute!
+
+> :information_source: Additional information: The time associated with the readings you add is the time when you input your `tank addReadings` command!
+
+> :bulb: Tip: If you do not have the relevant equipment to track certain readings, you can input 0 for the value of that type of reading!
+
+> :bulb: Tip: Normal and realistic readings for ammonia levels, pH and temperature are as follows: 0-2 ppm, pH of 5-8 and 23-27 degrees celsius!
+
+> :exclamation: Warning: **All 3 types of readings** must be logged at once. You must fill in all 3 prefix parameters!
+
+Example:
+* It is currently the 3rd of April, 12 pm. `tank addReadings 1 al/0.2 ph/7 tp/27.2` adds the readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
+  * Ammonia level: 0.2 ppm
+  * pH: 7
+  * Temperature: 27.2 degrees celcius
+  * Date and time associated with each reading: 03/04/2023 1200
 
 ### Deleting the most recent set of readings: `tank delLastReadings`
 
-Deletes the most recent set of readings from a specified tank
+You can delete the most recent set of readings from the specified tank with the `tank delLastReadings` command.
 
-:exclamation: Experienced fish-keepers
-
-If you accidentally inputed a wrong set of readings, use this command to undo the mistake.
+Use this command if you accidentally keyed in the wrong set of readings. You can then add a new set of readings to correct the mistake!
 
 Format: `tank delLastReadings <TANK_INDEX>`
+
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+
+> :exclamation: Warning: You must have at least one reading for the specified tank to use `tank delLastReadings` for that tank!
+
+Example:
+* You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
+deletes the most recent readings, the set made at 3pm.
+
 ## Fishes
 
 Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
@@ -207,7 +494,7 @@ Adds a fish to *Fish Ahoy!* .
 Use this command to add fishes to tanks. By adding fish in tanks that you own, you can easily categorise them and store
 important information about them.
 
-Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
+Format: `fish add n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A fish must belong to a tank.
@@ -227,7 +514,7 @@ Optional Prefixes:
 
 Deletes a fish entry from *Fish Ahoy!* .
 
-Use this command when you want to move a fish from one tank to another, or remove it entirely. 
+Use this command when you want to remove a fish from a tank. 
 
 Format: `fish delete <FISH_INDEX>`
 
@@ -240,6 +527,13 @@ has not been fed in a long time, or see which fish you need to attend to first. 
 results to your liking.  
 
 Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+After sorting, a new set of indexes will appear for each fish. The fish operations will take place on the
+**new fish list**!
+Also, note that fish sort only sorts the fishes that are present! `fish view` would result in only 1 fish being present, 
+and `fish sort` after will not show more fish. Use `list fishes` instead.
+</div>
 
 Prefixes:
 * `by/` - Specifies attribute by which to sort fish. Possible attributes:
@@ -262,6 +556,9 @@ This command will only display a single fish, making it easier for you to see it
 
 Format: `fish view <FISH_INDEX>`
 
+> :bulb: Tip: Calling this command will change the indexes of your fish. 
+> Call `list fishes` to reset the panel!
+
 ### Listing fishes: `list fishes`
 
 Lists all fishes owned.
@@ -274,7 +571,7 @@ Format: `list fishes`
 These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
 to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you 
 based off your fishes' last fed date. These will have a **high** priority to remind you to feed them!
-In the list, each fish has an [index](#faq). Use these indexes to perform certain operations on them.
+In the list, each task has an [index](#faq). Use these indexes to perform certain operations on them.
 
 
 Currently, there are three operations around tasks:
@@ -311,8 +608,19 @@ Lists all tasks created.
 
 Use this command to list all tasks.
 
-Format: `list task`
+Format: `list tasks`
 
+### Feeding reminders
+
+Feeding reminders are a special type of tasks that **can only be automatically** created. Everytime you open the app,
+a feeding reminder is created for each tank which have fish that need to be fed, based on the `Last Fed Date Time` and
+`Feeding Interval`.
+
+If you see these reminders, it might be time to feed your fish!
+
+Format: _cannot be created manually_
+
+:bulb: Get rid of this reminder and feed your fish at the same time with the [`tank feed` command!](#feeding-a-tank-tank-feed) 
 
 ## Storage
 ### Saving the data
@@ -321,7 +629,12 @@ App data is saved in the hard disk automatically after any command that changes 
 
 ### Editing the data file
 
+:exclamation: Advanced users
+
 App data are saved as a JSON file `[JAR file location]/data/fishahoy.json`. Advanced users are welcome to update data directly by editing that data file.
+
+:bulb: If you have a set of ammonia, pH and temperature readings you want to input in bulk,
+you might want to insert it directly in the `readings.json` file!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Fish Ahoy! will discard all data and start with an empty data file at the next run.
@@ -334,7 +647,9 @@ _Details coming soon ..._
 ## Help
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Opens up a web-viewer showing this user guide!
+
+:bulb: If you do not have internet connection, an offline version will still be loaded!
 
 ![help message](images/helpMessage.png)
 
@@ -367,15 +682,29 @@ Format: `help`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `fish add` `tank add` `task add` <br>`tank addReadings`
-**Clear** | `clear` **Coming soon**
-**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3`
-**Edit** | **Coming soon**
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**
-**Sort** | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`
-**List** | `list tanks` `list fishes`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                        |
+|------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `fish add` `tank add` `task add` <br>`tank addReadings`                                                                 |
+| **Clear**  | `clear` **Coming soon**                                                                                                 |
+| **Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3` |
+| **Edit**   | **Coming soon**                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**                                                                      |
+| **Sort**   | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`                                                              |
+| **List**   | `list tanks` `list fishes`                                                                                              |
+| **Help**   | `help`                                                                                                                  |
 
-[]: #listing-tanks-list-tank
+## Command prefix summary
+
+| Type              | Attribute                 | Prefix   |
+|-------------------|---------------------------|----------|
+| **Fish**          | **Name**                  | **n/**   |
+| **Fish**          | **Last fed date**         | **lfd/** |
+| **Fish**          | **Species**               | **s/**   |
+| **Fish**          | **Feeding Interval**      | **fi/**  |
+| **Fish**          | **Tag**                   | **tg/**  |
+| **Fish**          | **Sorting**               | **by/**  |
+| **Tank**/**Task** | **Description**           | **d/**   |
+| **Tank**          | **Ammonia level reading** | **al/**  |
+| **Tank**          | **PH reading**            | **ph/**  |
+| **Tank**          | **Temperature reading**   | **tp/**  |
+| **All**           | **Tank**                  | **tk/**  |

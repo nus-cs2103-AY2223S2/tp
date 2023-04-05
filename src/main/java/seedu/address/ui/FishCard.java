@@ -61,16 +61,16 @@ public class FishCard extends UiPart<Region> {
         super(FXML);
         this.fish = fish;
         id.setText(displayedIndex + ". ");
-        String nameLabelToBeSet = NAME_HEADER + fish.getName().fullName;
+        String nameLabelToBeSet = fish.getName().fullName;
         name.setText(nameLabelToBeSet);
         String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDateTime().value;
         lastFedDate.setText(lastFedDateLabelToBeSet);
-        String speciesLabelToBeSet = SPECIES_HEADER + fish.getSpecies().species;
-        species.setText(speciesLabelToBeSet);
+        String speciesLabelToBeSet = fish.getSpecies().species;
+        tags.getChildren().add(new Label(speciesLabelToBeSet));
         String feedingIntervalLabelToBeSet = FEEDING_INTERVAL_HEADER + fish.getFeedingInterval().toString();
         feedingInterval.setText(feedingIntervalLabelToBeSet);
-        String tankLabelToBeSet = TANK_HEADER + fish.getTank().getTankName().fullTankName;
-        tank.setText(tankLabelToBeSet);
+        String tankLabelToBeSet = fish.getTank().getTankName().fullTankName;
+        tags.getChildren().add(new Label(tankLabelToBeSet));
         fish.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

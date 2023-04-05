@@ -46,7 +46,7 @@ public class FeedingInterval {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid feeding interval.
      */
     public static boolean isValidFeedingInterval(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -54,7 +54,24 @@ public class FeedingInterval {
 
     @Override
     public String toString() {
-        return days + " days, " + hours + " hours";
+        StringBuilder str = new StringBuilder();
+        if (daysInteger > 0) {
+            str.append(days).append(" day");
+            if (daysInteger > 1) {
+                str.append("s");
+            }
+            if (hoursInteger > 0) {
+                str.append(", ");
+            }
+        }
+        if (hoursInteger > 0) {
+            str.append(hours).append(" hour");
+            if (hoursInteger > 1) {
+                str.append("s");
+            }
+        }
+
+        return str.toString();
     }
 
     @Override

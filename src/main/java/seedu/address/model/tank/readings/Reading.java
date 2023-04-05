@@ -12,7 +12,7 @@ import seedu.address.model.tank.Tank;
 /**
  * abstract class for Readings
  */
-abstract class Reading {
+public abstract class Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Reading dates should be in the format of dd/mm/yyyy HH:mm";
@@ -42,6 +42,7 @@ abstract class Reading {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public abstract double getValue();
 
     public abstract boolean equals(Object other);
 

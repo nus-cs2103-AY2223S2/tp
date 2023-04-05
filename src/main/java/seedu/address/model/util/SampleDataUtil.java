@@ -24,22 +24,22 @@ public class SampleDataUtil {
     public static Fish[] getSampleFishes() {
         Tank[] tanks = getSampleTanks();
         return new Fish[] {
-            new Fish(new Name("Fish 1"), new LastFedDateTime("01/11/2023 12:00"), new Species("Guppy"),
+            new Fish(new Name("Nemo"), new LastFedDateTime("28/03/2023 12:00"), new Species("Guppy"),
                 new FeedingInterval("1d0h"), tanks[0],
                     getTagSet("tempSpeciesA")),
-            new Fish(new Name("Fish 2"), new LastFedDateTime("01/11/2023 13:00"), new Species("Tetra"),
+            new Fish(new Name("Dory"), new LastFedDateTime("28/03/2023 13:00"), new Species("Tetra"),
                 new FeedingInterval("0d5h"), tanks[0],
                     getTagSet("tempSpeciesA", "anotherTag")),
-            new Fish(new Name("Fish 3"), new LastFedDateTime("01/11/2023 23:00"), new Species("Parrot Fish"),
+            new Fish(new Name("Marlin"), new LastFedDateTime("28/03/2023 23:00"), new Species("Parrot Fish"),
                 new FeedingInterval("1d5h"), tanks[0],
                     getTagSet("tempSpeciesB")),
-            new Fish(new Name("Fish 4"), new LastFedDateTime("01/11/2023 21:00"), new Species("Arowana"),
+            new Fish(new Name("Bruce"), new LastFedDateTime("25/03/2023 21:00"), new Species("Arowana"),
                 new FeedingInterval("2d0h"), tanks[1],
                     getTagSet("tempSpeciesA")),
-            new Fish(new Name("Fish 5"), new LastFedDateTime("01/11/2023 07:30"), new Species("Flowerhorn"),
+            new Fish(new Name("Chum"), new LastFedDateTime("25/03/2023 07:30"), new Species("Flowerhorn"),
                 new FeedingInterval("1d12h"), tanks[1],
                     getTagSet("tempSpeciesB")),
-            new Fish(new Name("Fish 6"), new LastFedDateTime("01/11/2023 12:30"), new Species("Beta Fish"),
+            new Fish(new Name("Anchor"), new LastFedDateTime("25/03/2023 12:30"), new Species("Beta Fish"),
                 new FeedingInterval("3d0h"), tanks[1],
                     getTagSet("tempSpeciesC"))
         };
