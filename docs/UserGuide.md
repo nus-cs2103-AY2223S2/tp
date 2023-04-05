@@ -498,7 +498,7 @@ More examples:
   <img src="images/ug-find-example.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+   <p style="text-align: center;">Figure XX: Example of the find command in action</p>
 
 <br/>
 
