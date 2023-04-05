@@ -205,6 +205,11 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         return this.internalList.size() != 0;
     }
 
+    /**
+     * Returns true if the list contains a lesson that has time conflict as the given argument.
+     * @param lesson the lesson to be checked
+     * @return true if the list contains a lesson with conflicting timeslot
+     */
     public boolean hasConflictingLessonTime(Lesson lesson) {
         for (Lesson l : internalList) {
             if (l.isSameTimeLesson(lesson)) {
