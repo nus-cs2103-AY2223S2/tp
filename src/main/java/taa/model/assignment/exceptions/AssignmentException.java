@@ -6,7 +6,7 @@ import taa.model.assignment.Assignment;
 /**
  * Represents an error which occurs during execution involving an {@link Assignment}.
  */
-public class AssignmentException extends CommandException {
+public class AssignmentException extends Exception {
     public AssignmentException(String message) {
         super(message);
     }

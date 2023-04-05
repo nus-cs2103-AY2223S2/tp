@@ -108,7 +108,7 @@ public class Submission {
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
-        return String.format("[%c] %s: %d/%d marks. %s", gradeChar, student,
+        return String.format("[%c] %s: %d/%d marks. %s", gradeChar, student.getName(),
                 marks, assignment.getTotalMarks(), late);
     }
 
