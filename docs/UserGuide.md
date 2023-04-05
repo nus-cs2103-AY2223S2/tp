@@ -302,6 +302,8 @@ Functionality:
 * Currently, we only support same-day events.
   Events which stretches across multiple days are not supported.
 * `undo` can only undo the most recent valid command.
+* Data files are not allowed to be modified directly. 
+  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
 [[Back to top](#index)]
 
