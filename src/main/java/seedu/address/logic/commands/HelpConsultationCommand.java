@@ -20,9 +20,6 @@ public class HelpConsultationCommand extends HelpCommand {
     public static final String ADD_CONSULTATION = "Add:                         "
             + "mkdir Consultation/CONSULTATION_NAME";
 
-    public static final String ADD_RECUR = "Add Multiple:            "
-            + "schedule Recur/Consultation/CONSULTATION_NAME -n REPETITIONS";
-
     public static final String DELETE_CONSULTATION = "Delete:                     "
             + "delete Consultation/INDEX";
 
@@ -51,7 +48,6 @@ public class HelpConsultationCommand extends HelpCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
                 + ADD_CONSULTATION + "\n"
-                + ADD_RECUR + "\n"
                 + DELETE_CONSULTATION + "\n"
                 + EDIT_CONSULTATION + "\n"
                 + HEADER_2
