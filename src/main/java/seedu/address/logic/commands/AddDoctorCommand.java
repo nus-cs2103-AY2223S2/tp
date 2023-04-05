@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Doctor;
 
 /**
- * Adds a person to the address book.
+ * Adds a doctor to MediConnect.
  */
 public class AddDoctorCommand extends Command {
 
@@ -33,12 +33,12 @@ public class AddDoctorCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the doctors' list";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the persons' list.";
 
     private final Doctor toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddDoctorCommand to add the specified {@code Doctor}
      */
     public AddDoctorCommand(Doctor doctor) {
         requireNonNull(doctor);

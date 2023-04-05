@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_NAME);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -193,7 +193,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, address, tags);
         }
 
         public void setName(Name name) {

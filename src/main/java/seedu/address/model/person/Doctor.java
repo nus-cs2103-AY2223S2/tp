@@ -7,7 +7,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Doctor in the address book.
+ * Represents a Doctor in Mediconnect.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Doctor extends Person {
