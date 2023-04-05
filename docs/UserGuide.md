@@ -338,7 +338,7 @@ Update notes with the new note for events that are both normal and recurring, or
 
 Format:
 
-* `editNote -content [NEW_CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index [NOTE_INDEX]`
+* `editNote -content [NEW_CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME] -index [NOTE_INDEX]`
 
 Examples:
 
