@@ -11,7 +11,6 @@ public class OrderName extends Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Order names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-
     /**
      * Constructs a {@code OrderName}.
      *
