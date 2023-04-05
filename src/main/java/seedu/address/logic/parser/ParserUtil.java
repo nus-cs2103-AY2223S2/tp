@@ -301,8 +301,7 @@ public class ParserUtil {
             possibleOperators[1] = true;
         } else if (comparisonSign.compareTo("=") == 0) {
             possibleOperators[2] = true;
-        }
-        else {
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE)
             );
