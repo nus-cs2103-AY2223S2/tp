@@ -45,8 +45,6 @@ public class Ultron implements ReadOnlyUltron {
      * {@code openings} must not contain duplicate openings.
      */
     public void setOpenings(List<Opening> openings) {
-        System.out.println("3");
-        System.out.println(openings.size());
         this.openings.setOpenings(openings);
     }
 
