@@ -128,7 +128,6 @@ public class IdDataMap<T> {
      * @param datas - the collection of data to set to.
      */
     public void setDatas(Collection<IdData<T>> datas) {
-        // TODO: Check for duplicate ID
         internalMap.clear();
         nextId = STARTING_INDEX;
         for (IdData<T> data : datas) {
