@@ -67,7 +67,7 @@ TeachMeSenpai has several important components as part of its display. Here is a
   <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
 </p>
 
-<h3 style="color:black">**Menu bar**</h3>
+<h3 style="color:black"><b>Menu bar</b></h3>
 * Clicking `FILE` will give you the option to exit the app
 * Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
 
