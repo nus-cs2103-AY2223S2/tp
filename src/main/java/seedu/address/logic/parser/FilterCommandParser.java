@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.Set;
+
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */
@@ -14,6 +16,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     public static final int METRIC_INDEX = 1;
     public static final int THRESHOLD_INDEX = 2;
+    public static final Set<String> validMetrics = Set.of("Performance", "Urgency");
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
@@ -37,6 +40,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                 double checkDouble = Double.valueOf(terms[THRESHOLD_INDEX]);
                 if (threshold < 0 || threshold > 100 || (int)checkDouble != threshold) {
                     throw new IllegalArgumentException("Invalid integer format!");
+                }
+                if (!validMetrics.contains(metric)) {
+                    throw new IllegalArgumentException("Invalid metric!");
                 }
             }
         } catch (IllegalArgumentException iae) {
