@@ -23,6 +23,8 @@ import seedu.address.storage.Storage;
  */
 
 public class Archive {
+    private static final String MESSAGE_CANNOT_SAVE_TO_LE_TRACKER = "Cannot export to the current working directory "
+            + "of Le Tracker.";
     private final Storage storage;
 
     public Archive(Storage storage) {
@@ -36,10 +38,21 @@ public class Archive {
      * @param isOverwriting whether the command will be overwriting existing archive file
      * @throws CommandException
      */
-    public void exportToArchive(Path archivedPath, ReadOnlyTracker tracker, boolean isOverwriting)
+    public void exportToArchive(Path archivedPath, ReadOnlyTracker tracker, boolean isOverwriting,
+                                Path currentWorkingDirectory)
             throws CommandException {
         if (Files.exists(archivedPath) && Files.isRegularFile(archivedPath) && !isOverwriting) {
             throw new CommandException(String.format(Messages.MESSAGE_ARCHIVE_FILE_ALREADY_EXIST));
+        } else if (Files.exists(archivedPath) && isOverwriting) {
+            try {
+                boolean isSavingToLeTracker = Files.isSameFile(
+                        archivedPath, currentWorkingDirectory);
+                if (isSavingToLeTracker) {
+                    throw new CommandException(MESSAGE_CANNOT_SAVE_TO_LE_TRACKER);
+                }
+            } catch (IOException ioe) {
+                throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            }
         }
 
         try {
@@ -62,6 +75,7 @@ public class Archive {
         if (!Files.exists(archivedPath) || !Files.isRegularFile(archivedPath)) {
             throw new CommandException(String.format(Messages.MESSAGE_FILE_DOES_NOT_EXIST));
         }
+
         ReadOnlyTracker archiveTracker;
 
         try {

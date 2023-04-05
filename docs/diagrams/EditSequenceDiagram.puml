@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "c:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"edit CS2040S \n/name DSAG")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand(\n"edit CS2040S \n/name DSAG")
+activate TrackerParser
+
+create EditCommandParser
+TrackerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> TrackerParser
+deactivate EditCommandParser
+
+TrackerParser -> EditCommandParser : parse(\n"CS2040S \n/name DSAG")
+activate EditCommandParser
+
+create EditModuleCommand
+EditCommandParser -> EditModuleCommand : code, descriptor
+activate EditModuleCommand
+
+EditModuleCommand --> EditCommandParser : c
+deactivate EditModuleCommand
+
+EditCommandParser --> TrackerParser : c
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> TrackerParser
+destroy EditCommandParser
+
+TrackerParser --> LogicManager : c
+deactivate TrackerParser
+
+LogicManager -> EditModuleCommand : execute(model)
+activate EditModuleCommand
+
+EditModuleCommand -> Model : hasModule(code)
+activate Model
+
+Model --> EditModuleCommand : true
+deactivate Model
+
+EditModuleCommand -> Model : getModule(code)
+activate Model
+
+Model --> EditModuleCommand : originalMod
+deactivate Model
+
+EditModuleCommand -> Model : setModule(originalMod, editedMod)
+activate Model
+
+Model --> EditModuleCommand
+deactivate Model
+
+create CommandResult
+EditModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditModuleCommand
+deactivate CommandResult
+
+EditModuleCommand --> LogicManager : r
+deactivate EditModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

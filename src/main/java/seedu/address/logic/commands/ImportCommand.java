@@ -72,8 +72,13 @@ public class ImportCommand extends Command {
         List<String> moduleCodeList = moduleCodeSet.stream()
                 .map(moduleCode -> moduleCode.code).collect(Collectors.toList());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(", ", moduleCodeList)), archivePath,
-                isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
+        if (!moduleCodeList.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(", ", moduleCodeList)), archivePath,
+                    isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
+        } else {
+            return new CommandResult("Modules imported to Le Tracker", archivePath,
+                    isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
+        }
     }
 
     @Override

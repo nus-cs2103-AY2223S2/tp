@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("list /mod CS2040S")
+[-> LogicManager : execute(\n"list \n/mod CS2040S")
 activate LogicManager
 
-LogicManager -> TrackerParser : parseCommand("list /mod CS2040S")
+LogicManager -> TrackerParser : parseCommand(\n"list \n/mod CS2040S")
 activate TrackerParser
 
 create ListCommandParser
@@ -26,7 +26,7 @@ activate ListCommandParser
 ListCommandParser --> TrackerParser
 deactivate ListCommandParser
 
-TrackerParser -> ListCommandParser : parse("/mod CS2040S")
+TrackerParser -> ListCommandParser : parse("CS2040S")
 activate ListCommandParser
 
 ref over ListCommandParser
@@ -54,7 +54,7 @@ activate ListCommand
 
 ListCommand -> ListCommand : filterByLectureList(model)
 
-ListCommand -> Model : updateFilteredLectureList(predicate)
+ListCommand -> Model : updateFilteredLectureList(\npredicate)
 activate Model
 
 Model --> ListCommand

@@ -159,48 +159,90 @@ This section describes some noteworthy details on how certain features are imple
 
 The `add` command supports:
 
-- Adding a module to the tracker
-- Adding a lecture to a module in the tracker
-- Adding a video to a lecture which belongs to a module in the tracker
+- Adding a `Module` object to the `Tracker` object contained in the `ModelManager` object
+- Adding a `Lecture` object to a `Module` object contained in the `Tracker` object
+- Adding a `Video` object to a `Lecture` object contained in a `Module` object that is contained in the `Tracker` object
 
-It's behaviour is dependent on the arguments provided by the user.
+It's behaviour is dependent on the user's input.
 
-The feature utilises the following classes:
+**Notable Classes**
 
 - `AddCommandParser` – Creates the appropriate `AddCommand` subclass object base on the user's input
-- `AddCommand` – Base class of any `Command` subclass that adds some entity to the tracker
-- `AddModuleCommand` – Subclass of `AddCommand` which handles adding a module to the tracker
-- `AddLectureCommand` – Subclass of `AddCommand` which handles adding a lecture to a module
-- `AddVideoCommand` – Subclass of `AddCommand` which handles adding a video to a lecture
+- `AddCommand` – Base class of any `Command` subclass that handles adding some entity to the `Tracker` object
+- `AddModuleCommand` – Subclass of `AddCommand` which handles adding a `Module` object to the `Tracker` object
+- `AddLectureCommand` – Subclass of `AddCommand` which handles adding a `Lecture` object to a `Module` object
+- `AddVideoCommand` – Subclass of `AddCommand` which handles adding a `Video` object to a `Lecture` object
 
-The following sequence diagram depicts an `add` command execution for adding a module to the tracker.
+**Execution**
 
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+The following sequence diagram depicts an `add` command execution for adding a `Module` object to the `Tracker` object.
 
-![AddSequenceDiagramRefCreateModel](images/AddSequenceDiagramRefCreateModule.png)
+<img src="images/AddSequenceDiagram.png" width="979"/>
 
-The following is a description of the code execution flow:
+**Notes for `AddCommandParser#parse(String)`**
 
-1. `AddCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` object being thrown and the command will not be executed.
 
-   | Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
-   | ------------ | ------------------- | ------------------- | ----------- | --------------------- |
-   | Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
-   | Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
-   | Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
+  | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent        | `AddCommand` subclass |
+  | :----------: | :-----------------: | :-----------------: | :------------------: | :-------------------: |
+  |     Yes      |         No          |         No          | Add `Module` object  |  `AddModuleCommand`   |
+  |     Yes      |         Yes         |         No          | Add `Lecture` object |  `AddLectureCommand`  |
+  |     Yes      |         Yes         |         Yes         |  Add `Video` object  |   `AddVideoCommand`   |
 
-2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+- The argument values are checked for their validity by using the appropriate methods in the `ParserUtil` class. If any of the values are invalid, a `ParserException` object will be thrown and the command will not be executed.
 
-3. The appropriate `AddCommand` subclass object is created and then returned to the caller.
+**Notes for `AddCommand#execute()`**
 
-4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `AddCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+- A `CommandException` object can be thrown for the following scenarios:
+  - The `Module`/`Lecture`/`Video` object is the same as another existing `Module`/`Lecture`/`Video` object according to `Module#isSameModule(Module)`/`Lecture#isSameLecture(Lecture)`/`Video#isSameVideo(Video)`.
+  - The `Module` object which a `Lecture` object is being added to does not exist.
+  - The `Module` object which a `Lecture` object is specified to be in does not exist.
+  - The `Lecture` object which a `Video` object is being added to does not exist.
 
-   - The `Module`, `Lecture`, or `Video` being added already exist
-   - The `Module` which a `Lecture` is being added to does not exist
-   - The `Module` which a `Lecture` is specified to be in does not exist
-   - The `Lecture` which a `Video` is being added to does not exist
+### Edit module, lecture, and video feature
 
-5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
+The `edit` command supports:
+
+- Editing the details of a `Module` object in the `Tracker` object contained in the `ModelManager` object
+- Editing the details of a `Lecture` object belonging to a `Module` object contained in the `Tracker` object
+- Editing the details of a `Video` object belonging to a `Lecture` object contained in a `Module` object that is contained in the `Tracker` object
+
+It's behaviour is dependent on the user's input.
+
+**Notable Classes**
+
+- `EditCommandParser` – Creates the appropriate `EditCommand` subclass object base on the user's input
+- `EditCommand` – Base class of any `Command` subclass that handles editing some entity of the `Tracker` object
+- `EditModuleCommand` – Subclass of `EditCommand` which handles editing the details of a `Module` object belonging to the `Tracker` object
+- `EditLectureCommand` – Subclass of `EditCommand` which handles editing the details of a `Lecture` object belonging to a `Module` object
+- `EditVideoCommand` – Subclass of `EditCommand` which handles editing the details of a `Video` object belonging to a `Lecture` object
+
+**Execution**
+
+The following sequence diagram depicts an `edit` command execution for editing the name of a `Module` object in the `Tracker` object.
+
+<img src="images/EditSequenceDiagram.png" width="998"/>
+
+**Notes for `EditCommandParser#parse(String)`**
+
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `EditCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` object being thrown and the command will not be executed.
+
+  | Has preamble | Has `/mod` argument | Has `/lec` argument |        Intent         | `EditCommand` subclass |
+  | :----------: | :-----------------: | :-----------------: | :-------------------: | :--------------------: |
+  |     Yes      |         No          |         No          | Edit `Module` object  |  `EditModuleCommand`   |
+  |     Yes      |         Yes         |         No          | Edit `Lecture` object |  `EditLectureCommand`  |
+  |     Yes      |         Yes         |         Yes         |  Edit `Video` object  |   `EditVideoCommand`   |
+
+- The argument values are checked for their validity by using the appropriate methods in the `ParserUtil` class. If any of the values are invalid, a `ParserException` object will be thrown and the command will not be executed.
+
+- If no arguments related to updated fields are provided, a `ParseException` object will be thrown and the command will not be executed.
+
+**Notes for `EditCommand#execute()`**
+
+- A `CommandException` object can be thrown for the following scenarios:
+  - The edited `Module`/`Lecture`/`Video` object is the same as another `Module`/`Lecture`/`Video` object according to `Module#isSameModule(Module)`/`Lecture#isSameLecture(Lecture)`/`Video#isSameVideo(Video)`.
+  - The `Module` object which a `Lecture` object is specified to be in does not exist.
+  - The `Lecture` object which a `Video` object is specified to be in does not exist.
 
 ### Delete module, lecture, and video feature
 
@@ -661,22 +703,29 @@ The following is a description of the code execution flow:
 
 **Target user profile**:
 
-- NUS Students
-- has a need to manage a significant number of lectures
-- falling behind on lectures
-- feeling unmotivated to watch lectures
+- NUS students
+- has a need to keep track of a significant number of modules, lectures, and lecture videos
+- has a need to categorize and organize modules, lectures, and videos with tags
+- falling behind on lecture materials
 - feeling lost regarding lecture content
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
+- is afraid of losing current data
+- wants to track productivity level
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: fun, fast and stress-free way to organise and track lecture material
+**Value proposition**: fast and stress-free way to organise and track module progress and lecture material
 
-- gamified tracking application
-- easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
-- tailored to needs of students: provides additional information specific to lecture media such as watch progress and topics
-- faster than a typical mouse/GUI driven app
+- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a 
+  stress-free learning environment
+- Tailored to needs of students: provides additional information specific to lecture media such as watch progress, 
+  topics, and tags
+- Allow students to track progress of all modules
+- Offer the users great control over their current modules progress
+- Allow the users to back up their current progress, as well as import progress from backed up files
+- Faster than a typical mouse/GUI driven app
+- Intuitive, easy to navigate GUI
 
 ### User stories
 
@@ -1255,7 +1304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to remove some tags from a video of a lecture.
-2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
+2. User specifies the tags, as well as the video, the lecture the video belongs to, and the module
    the lecture belongs to.
 3. The video's tags are removed.
 
@@ -1308,6 +1357,174 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2h. Video tags do not exist.
 
     - 2h1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Export all modules to a new file**
+
+**MSS**
+
+1. User requests to save all data in the current tracker to a new file.
+2. User specifies the name of the file to save to.
+3. All modules data in the current tracker is saved to the file.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File already exists.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Export all modules to an existing file**
+
+**MSS**
+
+1. User requests to save all data in the current tracker to an existing file.
+2. User specifies the name of the file to save to, as well as indicating that user wants to overwrite the existing file.
+3. All modules data in the current tracker is saved to the file.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File cannot be written to.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. No indication of overwriting file.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Import some modules from a file**
+
+**MSS**
+
+1. User requests to import some modules data from an existing file.
+2. User specifies the name of the file to import from, as well as references to the modules to be imported.
+3. Modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2e. Specified modules do not exist in the saved file.
+
+    - 2e1. LeTracker shows an error message.
 
       Use case resumes at step 1.
 
