@@ -28,6 +28,9 @@ public class AddTxnCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TRANSACTION =
             "This transaction record already exists in the sales book";
 
+    public static final String MESSAGE_INVALID_OWNER_TRANSACTION =
+            "This transaction record has to be assigned to a existing person in the sales book";
+
     private final Transaction toAdd;
 
     /**
@@ -46,6 +49,9 @@ public class AddTxnCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TRANSACTION);
         }
 
+        if (!model.hasOwner(toAdd)) {
+            throw new CommandException(MESSAGE_INVALID_OWNER_TRANSACTION);
+        }
         model.addTransaction(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

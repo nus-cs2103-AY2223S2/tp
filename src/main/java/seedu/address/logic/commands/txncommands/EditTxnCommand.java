@@ -41,6 +41,9 @@ public class EditTxnCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TRANSACTION = "This transaction already exists in the sales book.";
 
+    public static final String MESSAGE_INVALID_OWNER_TRANSACTION =
+            "This transaction record has to be assigned to a existing person in the sales book";
+
     private final Index index;
     private final EditTxnCommand.EditTxnDescriptor editTxnDescriptor;
 
@@ -70,6 +73,10 @@ public class EditTxnCommand extends Command {
 
         if (!transactionToEdit.isSameTransaction(editedTransaction) && model.hasTransaction(editedTransaction)) {
             throw new CommandException(MESSAGE_DUPLICATE_TRANSACTION);
+        }
+
+        if (!model.hasOwner(editedTransaction)) {
+            throw new CommandException(MESSAGE_INVALID_OWNER_TRANSACTION);
         }
 
         model.setTransaction(transactionToEdit, editedTransaction);

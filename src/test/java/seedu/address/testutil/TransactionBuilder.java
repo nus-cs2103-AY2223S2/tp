@@ -16,7 +16,7 @@ import seedu.address.model.transaction.status.TxnStatus;
 public class TransactionBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Coffee cost.";
-    public static final String DEFAULT_OWNER = "Coffeeeeeeee Inc";
+    public static final String DEFAULT_OWNER = "Alice";
     public static final String DEFAULT_VALUE = "10203040";
     public static final String DEFAULT_STATUS = OPEN.getLabel();
 

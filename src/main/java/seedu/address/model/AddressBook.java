@@ -6,7 +6,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.transaction.PersonTransactionMap;
 import seedu.address.model.transaction.Transaction;
@@ -118,6 +128,31 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasTransaction(Transaction transaction) {
         requireNonNull(transaction);
         return transactions.contains(transaction);
+    }
+
+    /**
+     * Check if a transaction has valid owner
+     * @param transaction transaction to be added / modified
+     * @return true if the transaction has valid owner
+     */
+    public boolean hasOwner(Transaction transaction) {
+        requireNonNull(transaction);
+
+        Name name = new Name(transaction.getOwner().toString());
+        Gender gender = new Gender("female");
+        Address address = new Address("123, Jurong West Ave 6, #08-111");
+        Email email = new Email("aaa@example.com");
+        Company company = new Company("company");
+        Location location = new Location("Singapore");
+        Occupation occupation = new Occupation("occupation");
+        JobTitle jobTitle = new JobTitle("job");
+        Phone phone = new Phone("12345678");
+        Remark remark = new Remark("");
+
+        Person owner = new Person(name, gender, phone, email, company, location, occupation,
+                jobTitle, address, remark);
+
+        return this.hasPerson(owner);
     }
 
     /**
