@@ -20,10 +20,12 @@ import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.UserPrefs;
 import ezschedule.model.event.Date;
+import ezschedule.model.event.Event;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
 import ezschedule.model.event.EventMatchesDatePredicate;
 import ezschedule.model.event.EventMatchesKeywordsAndDatePredicate;
 import ezschedule.model.event.Name;
+import ezschedule.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the {@code Model}) for {@code FindCommand}.
@@ -121,12 +123,15 @@ public class FindCommandTest {
     public void execute_matchingDate_multipleEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 2);
         FindEventDescriptor findEventDescriptor = new FindEventDescriptor();
-        findEventDescriptor.setDate(new Date("2023-05-03"));
+        findEventDescriptor.setDate(new Date("2023-05-01"));
         FindCommand command = new FindCommand(findEventDescriptor);
-        EventMatchesDatePredicate predicate = prepareDatePredicate("2023-05-03");
+        EventMatchesDatePredicate predicate = prepareDatePredicate("2023-05-01");
+        Event sameDateEvent = new EventBuilder().withDate("2023-05-01").build();
+        model.addEvent(sameDateEvent);
+        expectedModel.addEvent(sameDateEvent);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARNIVAL, DRAG), model.getFilteredEventList());
+        assertEquals(Arrays.asList(sameDateEvent, ART), model.getFilteredEventList());
     }
 
     @Test

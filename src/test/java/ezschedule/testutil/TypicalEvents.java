@@ -20,7 +20,7 @@ public class TypicalEvents {
     public static final Event CARNIVAL = new EventBuilder().withName("Carnival")
             .withDate("2023-05-03").withStartTime("16:00").withEndTime("18:00").build();
     public static final Event DRAG = new EventBuilder().withName("Drag race")
-            .withDate("2023-05-03").withStartTime("18:00").withEndTime("20:00").build();
+            .withDate("2023-05-04").withStartTime("18:00").withEndTime("20:00").build();
 
     // Manually added
     public static final Event EAT = new EventBuilder().withName("Eating contest")
