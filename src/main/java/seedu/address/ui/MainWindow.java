@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -78,27 +79,28 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // Populate client list
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        if (!logic.getFilteredClientList().isEmpty()) {
+            // Populate client list
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        // Populate client label with first client in client list
-        Client selectedClient = logic.getSelectedClient();
-        int selectedClientIndex = logic.getSelectedClientIndex();
-        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
+            // Populate client label with first client in client list
+            Client selectedClient = logic.getSelectedClient();
+            int selectedClientIndex = logic.getSelectedClientIndex();
+            ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+            AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
 
-        if (clientLabel.getChildren().size() > 0) {
-            clientLabel.getChildren().remove(0);
-            appointmentLabel.getChildren().remove(0);
+            if (clientLabel.getChildren().size() > 0) {
+                clientLabel.getChildren().remove(0);
+                appointmentLabel.getChildren().remove(0);
+            }
+            clientLabel.getChildren().add(selectedClientCard.getRoot());
+            appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
+
+            // Populate policy list of selected client
+            policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
+            policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
         }
-        clientLabel.getChildren().add(selectedClientCard.getRoot());
-        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
-
-        // Populate policy list of selected client
-        policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
-        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -122,27 +124,50 @@ public class MainWindow extends UiPart<Stage> {
      * Selects a client based on user input.
      */
     public void handleSelect() {
-        ClientLabel selectedClientCard;
-        AppointmentLabel selectedAppointmentCard;
+//        ClientLabel selectedClientCard;
+//        AppointmentLabel selectedAppointmentCard;
+//
+//        if (logic.getFilteredClientList().isEmpty()) {
+//            selectedClientCard = null;
+//            selectedAppointmentCard = null;
+//        } else {
+//            Client selectedClient = logic.getSelectedClient();
+//            int selectedClientIndex = logic.getSelectedClientIndex();
+//            selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+//            selectedAppointmentCard = new AppointmentLabel(selectedClient);
+//        }
+//
+//        if (clientLabel.getChildren().size() > 0) {
+//            clientLabel.getChildren().remove(0);
+//            appointmentLabel.getChildren().remove(0);
+//        }
+//        clientLabel.getChildren().add(selectedClientCard.getRoot());
+//        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
+//
+//        policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
 
-        if (logic.getFilteredClientList().isEmpty()) {
-            selectedClientCard = null;
-            selectedAppointmentCard = null;
-        } else {
+        if (!logic.getFilteredClientList().isEmpty()) {
+            // Populate client list
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+
+            // Populate client label with first client in client list
             Client selectedClient = logic.getSelectedClient();
             int selectedClientIndex = logic.getSelectedClientIndex();
-            selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-            selectedAppointmentCard = new AppointmentLabel(selectedClient);
-        }
+            ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+            AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
 
-        if (clientLabel.getChildren().size() > 0) {
-            clientLabel.getChildren().remove(0);
-            appointmentLabel.getChildren().remove(0);
-        }
-        clientLabel.getChildren().add(selectedClientCard.getRoot());
-        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
+            if (clientLabel.getChildren().size() > 0) {
+                clientLabel.getChildren().remove(0);
+                appointmentLabel.getChildren().remove(0);
+            }
+            clientLabel.getChildren().add(selectedClientCard.getRoot());
+            appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
 
-        policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
+            // Populate policy list of selected client
+            policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
+            policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+        }
     }
 
     /**

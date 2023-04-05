@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="580.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="510.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@Styles.css">
             <VBox>
@@ -81,7 +81,7 @@
                                           <VBox.margin>
                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                           </VBox.margin></StackPane>
-                                       <StackPane fx:id="appointmentLabel">
+                                       <StackPane fx:id="appointmentLabel" minHeight="54.0">
                                           <styleClass>
                                              <String fx:value="light-color" />
                                              <String fx:value="rounded" />
