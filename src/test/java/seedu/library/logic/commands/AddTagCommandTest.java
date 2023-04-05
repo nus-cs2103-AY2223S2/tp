@@ -8,7 +8,6 @@ import static seedu.library.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -24,58 +23,60 @@ import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.ReadOnlyUserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.tag.Tag;
-import seedu.library.testutil.BookmarkBuilder;
+import seedu.library.testutil.TagsBuilder;
 
-public class AddCommandTest {
+public class AddTagCommandTest {
 
     @Test
-    public void constructor_nullBookmark_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTagCommand(null));
     }
 
     @Test
-    public void execute_bookmarkAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingBookmarkAdded modelStub = new ModelStubAcceptingBookmarkAdded();
-        Bookmark validBookmark = new BookmarkBuilder().build();
+    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+        Set<Tag> validTags = new TagsBuilder().build();
+        ArrayList<Tag> checkValidTags = new ArrayList<>(validTags);
 
-        CommandResult commandResult = new AddCommand(validBookmark).execute(modelStub);
+        CommandResult commandResult = new AddTagCommand(validTags).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validBookmark), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validBookmark), modelStub.bookmarksAdded);
+        assertEquals(String.format(AddTagCommand.MESSAGE_SUCCESS, validTags), commandResult.getFeedbackToUser());
+        System.out.println(modelStub.tagsAdded);
+        assertEquals(checkValidTags, modelStub.tagsAdded);
     }
 
     @Test
-    public void execute_duplicateBookmark_throwsCommandException() {
-        Bookmark validBookmark = new BookmarkBuilder().build();
-        AddCommand addCommand = new AddCommand(validBookmark);
-        ModelStub modelStub = new ModelStubWithBookmark(validBookmark);
+    public void execute_duplicateTag_throwsCommandException() {
+        Set<Tag> validTags = new TagsBuilder().build();
+        AddTagCommand addTagCommand = new AddTagCommand(validTags);
+        ModelStub modelStub = new ModelStubWithTag(validTags);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_BOOKMARK, () -> addCommand.execute(modelStub));
+                AddTagCommand.MESSAGE_DUPLICATE_TAGS, () -> addTagCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Bookmark alice = new BookmarkBuilder().withTitle("Alice").build();
-        Bookmark bob = new BookmarkBuilder().withTitle("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Set<Tag> novelPlant = new TagsBuilder().build();
+        Set<Tag> novelPlantOcean = new TagsBuilder().addTag("ocean").build();
+        AddTagCommand addNovelPlantCommand = new AddTagCommand(novelPlant);
+        AddTagCommand addNovelPlantOceanCommand = new AddTagCommand(novelPlantOcean);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addNovelPlantCommand.equals(addNovelPlantCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTagCommand addNovelPlantCommandCopy = new AddTagCommand(novelPlant);
+        assertTrue(addNovelPlantCommandCopy.equals(addNovelPlantCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addNovelPlantCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addNovelPlantCommand.equals(null));
 
         // different bookmark -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addNovelPlantCommand.equals(addNovelPlantOceanCommand));
     }
 
     /**
@@ -208,39 +209,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single bookmark.
+     * A Model stub that contains a single tag.
      */
-    private class ModelStubWithBookmark extends ModelStub {
-        private final Bookmark bookmark;
+    private class ModelStubWithTag extends ModelStub {
+        private final Set<Tag> tagsAdded;
 
-        ModelStubWithBookmark(Bookmark bookmark) {
-            requireNonNull(bookmark);
-            this.bookmark = bookmark;
+        ModelStubWithTag(Set<Tag> tags) {
+            requireNonNull(tags);
+            this.tagsAdded = tags;
         }
 
         @Override
-        public boolean hasBookmark(Bookmark bookmark) {
-            requireNonNull(bookmark);
-            return this.bookmark.isSameBookmark(bookmark);
+        public boolean hasTag(Set<Tag> tags) {
+            requireNonNull(tags);
+            return tagsAdded.containsAll(tags);
         }
     }
 
     /**
-     * A Model stub that always accept the bookmark being added.
+     * A Model stub that always accept the tag being added.
      */
-    private class ModelStubAcceptingBookmarkAdded extends ModelStub {
-        final ArrayList<Bookmark> bookmarksAdded = new ArrayList<>();
+    private class ModelStubAcceptingTagAdded extends ModelStub {
+        final ArrayList<Tag> tagsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasBookmark(Bookmark bookmark) {
-            requireNonNull(bookmark);
-            return bookmarksAdded.stream().anyMatch(bookmark::isSameBookmark);
+        public boolean hasTag(Set<Tag> tags) {
+            requireNonNull(tags);
+            return tagsAdded.containsAll(tags);
         }
 
         @Override
-        public void addBookmark(Bookmark bookmark) {
-            requireNonNull(bookmark);
-            bookmarksAdded.add(bookmark);
+        public void addTags(Set<Tag> tags) {
+            requireNonNull(tags);
+            tagsAdded.addAll(tags);
         }
 
         @Override
