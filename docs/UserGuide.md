@@ -456,7 +456,7 @@ Once the person has been created, the result display will show a confirmation me
 
 **Compulsory parameters:**
 - n/NAME (eg. `n/John Doe`)
-  - names are case-sensitive and allows duplicates
+  - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `e/johndoe123@email.com`)
   - emails are case-insensitive and does not allow duplicates
 - y/YEAR (eg. `y/3`)
@@ -464,11 +464,11 @@ Once the person has been created, the result display will show a confirmation me
 
 **Optional parameters:**
 - g/GITHUB (eg.`g/johnny`)
-  - github profiles are case-sensitive and allows duplicates
+  - GitHub usernames are case-sensitive and allow duplicates
 - l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
-  - linkedin profiles are case-sensitive and allows duplicates
+  - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
-  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
 - s/SKILL (eg. `s/C++`, `s/Rust`)
   - skills are case-sensitive and does not allow duplicates
 
@@ -479,7 +479,7 @@ Once the person has been created, the result display will show a confirmation me
 **Examples:**
 - `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
   ![Add Example](images/UiAddBetsy.png)
-- `add` n/John Doe e/johnd@example.com y/2 c/3
+- `add n/John Doe e/johnd@example.com y/2 c/3`
    ![Add Example](images/UiAddContact.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
@@ -519,7 +519,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 ### 4. Editing a person : `edit`
 
-Does one of your contact have outdated information? Overwrite them in the view panel with the edit command!
+Does one of your contacts have outdated information? Overwrite them in the view panel with the edit command!
 
 At least one of the optional fields must be provided.
 
@@ -537,18 +537,19 @@ Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><
 
 **Acceptable Parameters**
 - n/NAME (eg. `edit n/John Doe`)
-  - names are case-sensitive and allows duplicates
+  - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `edit e/johndoe123@email.com`)
   - emails are case-insensitive and does not allow duplicates
 - y/YEAR (eg. `edit y/3`)
 - c/COURSE_INDEX (eg. `edit c/1`)
 - g/GITHUB (eg. `edit g/johnny`)
-  - github profiles are case-sensitive and allows duplicates
-- l/LINKED (eg. `edit l/linkedin.com/in/john-doe`)
+  - GitHub usernames are case-sensitive and allow duplicates
+- l/LINKEDIN (eg. `edit l/linkedin.com/in/john-doe`)
+  - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `edit m/AY2223S1 CS2103T`)
   - m+/MODULE YEAR (eg. `edit m+/AY2223S1 CS2103T m+/AY2021S2 CS1010E`)
   - m-/MODULE YEAR (eg. `edit m-/AY2223S1 CS2103T m-/AY2021S2 CS1010E`)
-  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
 - s/SKILL (eg. `edit s/C++`)
   - s+/SKILL (eg. `edit s+/C++ s+/python`)
   - s-/SKILL (eg. `edit s-/C++ s-/python`)
@@ -582,14 +583,14 @@ Want to find people with certain qualities? Use find command to find people that
 * y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
 * c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
     * <div class="span" class="alert alert-info">:information_source: **Note:** This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
-* m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
-  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
+* m/MODULES (e.g. `find m/CS2103` will load all persons with `CS2103` including `CS2103T` and `CS2103R`)
+  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all persons with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
   * <div class="span" class="alert alert-success">💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
-  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all person that have taken
+  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all persons that have taken
     * `CS1101`, `CS1231` regardless of academic year
     * `CS2040` in `AY2223S1`
     * `CS2090`, `CS3230` in `AY2223S2`
-* s/SKILLS (e.g. `find s/java` will load all person that contains `java` in their skill list such as `java` and `javascript`)
+* s/SKILLS (e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`)
     * <div class="span" class="alert alert-success">💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
  
 
@@ -693,7 +694,7 @@ details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101
 
 **Q: My edit command is not working/changes are not shown.**
 
-**A:** Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
+**A:** Check that you have entered the command in correct format and the command result shown in the **Result Display** is not
 showing any errors.
 
 <br>
@@ -712,9 +713,9 @@ Also, this avoids clashing acronyms such as CS which could be interpreted as Chi
 
 <br>
 
-**Q: My find command is not showing correct list of people**
+**Q: My find command is not showing the correct list of people**
 
-**A:** This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+**A:** This could be because there is an existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
 
 <br>
