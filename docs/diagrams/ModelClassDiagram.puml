@@ -22,6 +22,7 @@ Class Skill
 Class Module
 Class Course
 Class Year
+Class ProfilePicture
 }
 
 Class HiddenOutside #FFFFFF
@@ -38,6 +39,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Codoc *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
+Person *--> ProfilePicture
 Person *--> Name
 Person *--> Course
 Person *--> Year
@@ -47,6 +49,7 @@ Person *--> Linkedin
 Person *--> "*" Skill
 Person *--> "*" Module
 
+ProfilePicture -[hidden]right-> Name
 Name -[hidden]right-> Email
 Email -[hidden]right-> Course
 Course -[hidden]right-> Year

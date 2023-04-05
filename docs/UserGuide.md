@@ -25,7 +25,7 @@ CoDoc.**
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
-  - [Navigation](#navigation)
+  - [Navigating CoDoc](#navigating-codoc)
   - [Tutorial](#codoc-tutorial-your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
@@ -61,7 +61,7 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 **familiar** with CoDoc and to gain the most out of your experience.
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
-how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
+how to make sense of the [interface](#navigating-codoc), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
 
 <div class="span" class="alert alert-info">
 :information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. <b>All first time users</b> are recommended to read through the <b>entire user guide</b>.
@@ -222,7 +222,7 @@ launched in its factory state as shown below.
 
 ---
 
-### Navigation
+### Navigating CoDoc
 
 If it's your first time using this program, the starting screen could seem a little overwhelming.
 
@@ -276,7 +276,7 @@ After executing the command, we see that Bob has been added below the list.
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
 To save time typing out the full course and also standardize formatting, we have coded the command so that you just
-have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigation) to identify. 
+have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigating-codoc) to identify. 
 
 If you want to, you can add additional details of the person such as _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
@@ -291,9 +291,9 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 #### 2. Viewing a person
 
 Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
-This will load Bob's details into the [**Info Panel**](#navigation).
+This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
-To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigation), we can tell that Bob is
+To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
 numbered `8` in this example. This is his _index_.
 
 Now enter `view 8` into the command box.
@@ -453,7 +453,7 @@ Once the person has been created, the result display will show a confirmation me
 
 **Compulsory parameters:**
 - n/NAME (eg. `n/John Doe`)
-  - names are case-sensitive and allows duplicates
+  - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `e/johndoe123@email.com`)
   - emails are case-insensitive and does not allow duplicates
 - y/YEAR (eg. `y/3`)
@@ -461,11 +461,11 @@ Once the person has been created, the result display will show a confirmation me
 
 **Optional parameters:**
 - g/GITHUB (eg.`g/johnny`)
-  - github profiles are case-sensitive and allows duplicates
+  - GitHub usernames are case-sensitive and allow duplicates
 - l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
-  - linkedin profiles are case-sensitive and allows duplicates
+  - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
-  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
 - s/SKILL (eg. `s/C++`, `s/Rust`)
   - skills are case-sensitive and does not allow duplicates
 
@@ -516,7 +516,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 ### 4. Editing a person : `edit`
 
-Does one of your contact have outdated information? Overwrite them in the view panel with the edit command!
+Does one of your contacts have outdated information? Overwrite them in the view panel with the edit command!
 
 At least one of the optional fields must be provided.
 
@@ -534,18 +534,19 @@ At least one of the optional fields must be provided.
 
 **Acceptable Parameters**
 - n/NAME (eg. `edit n/John Doe`)
-  - names are case-sensitive and allows duplicates
+  - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `edit e/johndoe123@email.com`)
   - emails are case-insensitive and does not allow duplicates
 - y/YEAR (eg. `edit y/3`)
 - c/COURSE_INDEX (eg. `edit c/1`)
 - g/GITHUB (eg. `edit g/johnny`)
-  - github profiles are case-sensitive and allows duplicates
-- l/LINKED (eg. `edit l/linkedin.com/in/john-doe`)
+  - GitHub usernames are case-sensitive and allow duplicates
+- l/LINKEDIN (eg. `edit l/linkedin.com/in/john-doe`)
+  - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `edit m/AY2223S1 CS2103T`)
   - m+/MODULE YEAR (eg. `edit m+/AY2223S1 CS2103T m+/AY2021S2 CS1010E`)
   - m-/MODULE YEAR (eg. `edit m-/AY2223S1 CS2103T m-/AY2021S2 CS1010E`)
-  - modules are case-insensitive and allows duplicate module codes but does not allow duplicate module year
+  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
 - s/SKILL (eg. `edit s/C++`)
   - s+/SKILL (eg. `edit s+/C++ s+/python`)
   - s-/SKILL (eg. `edit s-/C++ s-/python`)
@@ -579,14 +580,14 @@ Want to find people with certain qualities? Use find command to find people that
 * y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
 * c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
     * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a></div>
-* m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
-  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
+* m/MODULES (e.g. `find m/CS2103` will load all persons with `CS2103` including `CS2103T` and `CS2103R`)
+  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all persons with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
   * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
-  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all person that have taken
+  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all persons that have taken
     * `CS1101`, `CS1231` regardless of academic year
     * `CS2040` in `AY2223S1`
     * `CS2090`, `CS3230` in `AY2223S2`
-* s/SKILLS (e.g. `find s/java` will load all person that contains `java` in their skill list such as `java` and `javascript`)
+* s/SKILLS (e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`)
     * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
  
 
@@ -690,7 +691,7 @@ details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101
 
 **Q: My edit command is not working/changes are not shown.**
 
-**A:** Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
+**A:** Check that you have entered the command in correct format and the command result shown in the **Result Display** is not
 showing any errors.
 
 <br>
@@ -709,9 +710,9 @@ Also, this avoids clashing acronyms such as CS which could be interpreted as Chi
 
 <br>
 
-**Q: My find command is not showing correct list of people**
+**Q: My find command is not showing the correct list of people**
 
-**A:** This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+**A:** This could be because there is an existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
 
 <br>

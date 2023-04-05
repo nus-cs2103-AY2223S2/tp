@@ -18,6 +18,7 @@ UniquePersonList -right-> Person
 Person -up-> "*" Skill
 Person -up-> "*" Module
 
+Person *--> ProfilePicture
 Person *--> Name
 Person *--> Course
 Person *--> Year
