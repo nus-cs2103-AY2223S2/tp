@@ -18,7 +18,8 @@ public class IngredientBuilderTest {
     private static final String WHITESPACE = "  ";
     private static final String LEADING_WHITESPACE = " juice of 1 carrot ";
     private static final String SLASH_UNIT = "-a 1/3 cup -n milk";
-    private static final String COMMAND_STRING_SAMPLE = "-a 300 g -n rice -r washed -s noodle ";
+    private static final String COMMAND_STRING_SAMPLE = "-a 300 g -e 1 scoop -n polished rice "
+            + "-cn rice -r washed -s noodle ";
 
     @Test
     public void null_name() {
@@ -34,8 +35,10 @@ public class IngredientBuilderTest {
 
     @Test
     public void test_overloadedConstructor() {
-        assertEquals(COMMAND_STRING_SAMPLE, new IngredientBuilder(Ingredient.of("rice"),
-                new IngredientInformation(IngredientQuantity.of("300 g"), "", new String[]{"washed"},
+        Ingredient polishedRice = Ingredient.of("polished rice");
+        polishedRice.setCommonName("rice");
+        assertEquals(COMMAND_STRING_SAMPLE, new IngredientBuilder(polishedRice,
+                new IngredientInformation(IngredientQuantity.of("300 g"), "1 scoop", new String[]{"washed"},
                         new Ingredient[]{Ingredient.of("noodle")})).toString());
     }
 
