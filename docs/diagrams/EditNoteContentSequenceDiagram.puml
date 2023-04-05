@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":TaskParser" as TaskParser LOGIC_COLOR
+participant ":EditNoteContentCommandParser" as EditNoteContentCommandParser LOGIC_COLOR
+participant "c:EditNoteContentCommand" as EditNoteContentCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit_content 1 c/nc")
+activate LogicManager
+
+note right: nc = new content
+LogicManager -> InternEaseParser : parseCommand("edit_content 1 c/nc")
+activate InternEaseParser
+
+InternEaseParser -> TaskParser : parseTaskCommand("edit_content", "1 c/nc")
+activate TaskParser
+
+create EditNoteContentCommandParser
+TaskParser -> EditNoteContentCommandParser
+activate EditNoteContentCommandParser
+
+EditNoteContentCommandParser --> TaskParser
+deactivate EditNoteContentCommandParser
+
+TaskParser -> EditNoteContentCommandParser : parse(1, nc)
+activate EditNoteContentCommandParser
+
+create EditNoteContentCommand
+EditNoteContentCommandParser -> EditNoteContentCommand
+activate EditNoteContentCommand
+
+EditNoteContentCommand --> EditNoteContentCommandParser : c
+deactivate EditNoteContentCommand
+
+EditNoteContentCommandParser --> TaskParser : c
+deactivate EditNoteContentCommandParser
+EditNoteContentCommandParser -[hidden]-> InternEaseParser : result
+destroy EditNoteContentCommandParser
+
+TaskParser --> InternEaseParser : c
+deactivate TaskParser
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> EditNoteContentCommand : execute(model)
+activate EditNoteContentCommand
+
+EditNoteContentCommand -> Model : getFilteredTodoList()
+activate Model
+
+Model --> EditNoteContentCommand
+deactivate Model
+
+EditNoteContentCommand -> EditNoteContentCommand : createUpdatedTodo(todo, update) : updatedTodo
+
+EditNoteContentCommand -> Model : setTodo(originalTodo, updatedTodo)
+activate Model
+
+Model --> EditNoteContentCommand
+deactivate Model
+
+EditNoteContentCommand -> Model : updateFilteredTodoList()
+activate Model
+
+Model --> EditNoteContentCommand
+deactivate Model
+
+create CommandResult
+EditNoteContentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditNoteContentCommand : r
+deactivate CommandResult
+
+EditNoteContentCommand --> LogicManager : r
+deactivate EditNoteContentCommand
+
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

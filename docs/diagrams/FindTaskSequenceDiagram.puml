@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":TaskParser" as TaskParser LOGIC_COLOR
+participant ":FindTaskCommandParser" as FindTaskCommandParser LOGIC_COLOR
+participant "c:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find_task kw")
+activate LogicManager
+
+note right: kw = keyword
+LogicManager -> InternEaseParser : parseCommand("find_task kw")
+activate InternEaseParser
+
+InternEaseParser -> TaskParser : parseTaskCommand("find_task", "kw")
+activate TaskParser
+
+create FindTaskCommandParser
+TaskParser -> FindTaskCommandParser
+activate FindTaskCommandParser
+
+FindTaskCommandParser --> TaskParser
+deactivate FindTaskCommandParser
+
+TaskParser -> FindTaskCommandParser : parse("kw")
+activate FindTaskCommandParser
+
+create FindTaskCommand
+FindTaskCommandParser -> FindTaskCommand
+activate FindTaskCommand
+
+FindTaskCommand --> FindTaskCommandParser : c
+deactivate FindTaskCommand
+
+FindTaskCommandParser --> TaskParser : c
+deactivate FindTaskCommandParser
+FindTaskCommandParser -[hidden]-> InternEaseParser : result
+destroy FindTaskCommandParser
+
+TaskParser --> InternEaseParser : c
+deactivate TaskParser
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> FindTaskCommand : execute(model)
+activate FindTaskCommand
+
+FindTaskCommand -> Model : updateFilteredTodoList()
+activate Model
+
+Model --> FindTaskCommand
+deactivate Model
+
+FindTaskCommand -> Model : updateFilteredNoteList()
+activate Model
+
+Model --> FindTaskCommand
+deactivate Model
+
+create CommandResult
+FindTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTaskCommand : r
+deactivate CommandResult
+
+FindTaskCommand --> LogicManager : r
+deactivate FindTaskCommand
+
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

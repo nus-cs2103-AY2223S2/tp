@@ -5,29 +5,21 @@ if () then ([PREFIX is provided])
     :Parse command arguments;
     if () then ([PREFIX is n])
         :Generate new ClearByCommand of CompanyName;
-        if () then ([Internship application list is empty])
-        :Generate null list message;
-        else ([else])
-        :Clear all internship applications with keyword for COMPANY_NAME;
-        :Generate success message;
-        endif
+        :
+         Refer to activity in Group Company Name
+        ;
         else ([else])
             if () then ([PREFIX is j])
             :Generate new ClearByCommand of JobTitle;
-            if () then ([Internship application list is empty])
-            :Generate null list message;
-            else ([else])
-            :Clear all internship applications with keyword for JOB_TITLE;
-            :Generate success message;
-            endif
+            :
+            Refer to activity in Group Job Title
+            ;
             else ([else])
                 if () then ([PREFIX is s])
-                if () then ([Internship application list is empty])
-                :Generate null list message;
-                else ([else])
-                :Clear all internship applications with keyword for STATUS;
-                :Generate success message;
-                endif
+                :Generate new ClearByCommand of Status;
+                :
+                Refer to activity in Group Status
+                ;
                 else ([else])
                 :Generate error message;
                 endif

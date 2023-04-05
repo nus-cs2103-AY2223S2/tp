@@ -1,0 +1,10 @@
+@startuml
+start
+if () then ([Internship application list is empty])
+:Generate null list message;
+else ([else])
+:Clear all internship applications with keyword for JOB_TITLE;
+:Generate success message;
+endif
+stop
+@enduml

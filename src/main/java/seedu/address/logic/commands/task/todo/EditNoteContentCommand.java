@@ -62,12 +62,12 @@ public class EditNoteContentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        InternshipTodo todoToUpdateDeadline = lastShownList.get(
+        InternshipTodo todoToUpdateNote = lastShownList.get(
                 targetIndex.getZeroBased());
         InternshipTodo updatedTodo = createdUpdatedTodo(
-                todoToUpdateDeadline, toUpdate);
+                todoToUpdateNote, toUpdate);
 
-        model.setTodo(todoToUpdateDeadline, updatedTodo);
+        model.setTodo(todoToUpdateNote, updatedTodo);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo), type);
     }
