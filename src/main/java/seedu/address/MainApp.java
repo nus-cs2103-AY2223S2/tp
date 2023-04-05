@@ -74,10 +74,10 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
-        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
-                .getFullAmmoniaLevelsPath());
+        FullReadingLevelsStorage fullReadingLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
+                .getFullReadingsLevelsPath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
-                ammoniaLevelsStorage);
+                fullReadingLevelsStorage);
 
         initLogging(config);
 
@@ -94,71 +94,79 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
-        Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialTaskList;
-        try {
-            taskListOptional = storage.readTaskList();
-            if (taskListOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample TaskList");
-            }
-            initialTaskList = taskListOptional.orElseGet(SampleTaskUtil::getSampleTaskList);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
-            initialTaskList = new TaskList();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
-            initialTaskList = new TaskList();
-        }
-
-        Optional<ReadOnlyTankList> tankListOptional;
         ReadOnlyTankList initialTankList;
-        try {
-            tankListOptional = storage.readTankList();
-            if (tankListOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample TankList");
-            }
-            initialTankList = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TankList");
-            initialTankList = new TankList();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TankList");
-            initialTankList = new TankList();
-        }
-
-        Optional<ReadOnlyReadingLevels> fullReadingsOptional;
         ReadOnlyReadingLevels initialFullReadings;
+
         try {
-            fullReadingsOptional = storage.readFullReadingLevels();
-            if (fullReadingsOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample Readings");
-            }
-            initialFullReadings = fullReadingsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+            initialData = readAddressBookFromStorage(storage);
+            initialTaskList = readTaskListFromStorage(storage);
+            initialTankList = readTankListFromStorage(storage);
+            initialFullReadings = readReadingLevelsFromStorage(storage);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Readings set");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Files");
+            initialData = new AddressBook();
+            initialTaskList = new TaskList();
+            initialTankList = new TankList();
             initialFullReadings = new FullReadingLevels();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Readings set");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Files");
+            initialData = new AddressBook();
+            initialTaskList = new TaskList();
+            initialTankList = new TankList();
             initialFullReadings = new FullReadingLevels();
         }
 
         return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
+    }
+
+    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) throws  DataConversionException,
+            IOException {
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
+        addressBookOptional = storage.readAddressBook();
+        if (!addressBookOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample AddressBook");
+        }
+        initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        return initialData;
+    }
+
+    private ReadOnlyTaskList readTaskListFromStorage(Storage storage) throws  DataConversionException,
+            IOException {
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialData;
+        taskListOptional = storage.readTaskList();
+        if (!taskListOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Task List");
+        }
+        initialData = taskListOptional.orElseGet(SampleTaskUtil::getSampleTaskList);
+        return initialData;
+    }
+
+    private ReadOnlyTankList readTankListFromStorage(Storage storage) throws  DataConversionException,
+            IOException {
+        Optional<ReadOnlyTankList> tankListOptional;
+        ReadOnlyTankList initialData;
+        tankListOptional = storage.readTankList();
+        if (!tankListOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Tank List");
+        }
+        initialData = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
+        return initialData;
+    }
+
+    private ReadOnlyReadingLevels readReadingLevelsFromStorage(Storage storage) throws  DataConversionException,
+            IOException {
+        Optional<ReadOnlyReadingLevels> readingLevelsOptional;
+        ReadOnlyReadingLevels initialData;
+        readingLevelsOptional = storage.readFullReadingLevels();
+        if (!readingLevelsOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Reading levels");
+        }
+        initialData = readingLevelsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+        return initialData;
     }
 
     private void initLogging(Config config) {
