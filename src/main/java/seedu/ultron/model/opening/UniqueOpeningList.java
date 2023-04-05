@@ -95,7 +95,6 @@ public class UniqueOpeningList implements Iterable<Opening> {
         if (!openingsAreUnique(openings)) {
             throw new DuplicateOpeningException();
         }
-
         internalList.setAll(openings);
     }
 

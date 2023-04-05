@@ -171,6 +171,11 @@ public class AddCommandTest {
         public void setSelectedIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasSelectedIndex()  {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
