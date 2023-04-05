@@ -14,7 +14,8 @@ import seedu.calidr.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+
+    private Path calendarFilePath = Paths.get("data" , "calendar.ics");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +36,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -45,15 +45,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
-    }
-
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
-    }
-
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
     }
 
     @Override
@@ -67,18 +58,25 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs o = (UserPrefs) other;
 
-        return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.toAbsolutePath().equals(o.addressBookFilePath.toAbsolutePath());
+        return guiSettings.equals(o.guiSettings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings);
     }
 
     @Override
     public String toString() {
-        return "Gui Settings : " + guiSettings + "\nLocal data file location : " + addressBookFilePath;
+        return "Gui Settings : " + guiSettings;
     }
 
+    public Path getCalendarFilePath() {
+        return calendarFilePath;
+    }
+
+    public void setCalendarFilePath(Path calendarFilePath) {
+        requireNonNull(calendarFilePath);
+        this.calendarFilePath = calendarFilePath;
+    }
 }

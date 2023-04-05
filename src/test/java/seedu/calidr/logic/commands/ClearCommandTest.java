@@ -1,6 +1,5 @@
 package seedu.calidr.logic.commands;
 
-import static seedu.calidr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.calidr.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;

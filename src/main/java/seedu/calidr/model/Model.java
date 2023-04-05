@@ -5,17 +5,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
-import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
@@ -43,14 +38,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' calendar file path.
      */
-    Path getAddressBookFilePath();
+    Path getCalendarFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' calendar file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setCalendarFilePath(Path calendarFilePath);
 
     //=========== TaskList ================================================================================
 

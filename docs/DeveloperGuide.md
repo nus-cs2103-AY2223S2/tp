@@ -164,6 +164,11 @@ To provide an example of how this feature works, consider the following usage sc
     * Pros: Will use less resources and time, thus improving system performance.
     * Cons: Requires more complex implementation logic to track and update the modified fields.
 
+### Planned Enhancements
+1. The base Calendar GUI leaves much to be desired. We plan to implement a more user-friendly GUI, where the calendar entries are color-coded according to priority and status, instead of being expressed textually, to workaround text-wrapping.
+2. We plan to implement a more robust search function, where the user can search for tasks by details other than the title, such as the description, priority, and tags.
+3. We're looking to give users the option of whether they want tasks to overlap or clash. The current implementation assumes that tasks can overlap.
+
 ## Appendix
 
 ### Requirements

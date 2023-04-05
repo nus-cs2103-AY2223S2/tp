@@ -19,7 +19,12 @@ import seedu.calidr.model.Model;
 import seedu.calidr.model.ModelManager;
 import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.UserPrefs;
-import seedu.calidr.storage.*;
+import seedu.calidr.storage.IcsCalendarStorage;
+import seedu.calidr.storage.JsonAddressBookStorage;
+import seedu.calidr.storage.JsonUserPrefsStorage;
+import seedu.calidr.storage.Storage;
+import seedu.calidr.storage.StorageManager;
+import seedu.calidr.storage.TaskListStorage;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

@@ -1,7 +1,5 @@
 package seedu.calidr.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.calidr.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.calidr.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.calidr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;

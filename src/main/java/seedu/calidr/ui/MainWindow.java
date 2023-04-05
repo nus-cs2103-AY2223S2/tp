@@ -36,8 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     private final HelpWindow helpWindow;
     private CalendarPanel calendarPanel;
 
-    // private PersonListPanel personListPanel;
-
     private TaskListPanel taskListPanel;
 
     private ResultDisplay resultDisplay;
@@ -48,10 +46,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-    /*
-    @FXML
-    private StackPane personListPanelPlaceholder;
-    */
 
     @FXML
     private StackPane calendarPanelPlaceholder;
@@ -61,9 +55,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,13 +117,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        /*
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        */
-
         calendarPanel = new CalendarPanel();
-        calendarPanel.updateCalendar(logic.getTaskList());
+        calendarPanel.initCalendar(logic.getTaskList());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
@@ -141,11 +127,20 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBox.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().isArrowKey()) {
+                switch (event.getCode()) {
+                case UP:
+                case DOWN:
+                    calendarPanel.handleAsScrollEvent(event);
+                    break;
+                default:
+                    break;
+                }
+            }
+        });
     }
 
     /**
@@ -224,8 +219,6 @@ public class MainWindow extends UiPart<Stage> {
                 calendarPanel.setPage(commandResult.getPageType().get());
             } else if (commandResult.getPopupTask().isPresent()) {
                 this.launchTaskPopup(commandResult.getPopupTask().get());
-            } else {
-                calendarPanel.updateCalendar(logic.getTaskList()); // Entry point for calendar update
             }
 
             return commandResult;
