@@ -494,8 +494,13 @@ More examples:
   * In the before image, internship entry index 5 was not filtered out because even though it contains at least one of the searched tags 'java' and 'python', it does not contain at least one of the searched company names.
 
 
-![Find Command](images/ug-find-example.png)
-   <p style="text-align: center;">Figure 5: Example of the find command in action</p>
+<p align="center">
+  <img src="images/ug-find-example.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+
+<br/>
 
 
 <div markdown="span" class="alert alert-primary">
