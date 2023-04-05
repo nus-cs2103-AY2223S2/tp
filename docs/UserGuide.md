@@ -674,7 +674,7 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the [parameter requirements](#paramter-descriptions).
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the [parameter requirements](#parameter-descriptions).
 </div>
 
 The parameters in the braces indicate which parameter requirements in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
