@@ -575,16 +575,38 @@ Example:
 
 ### Clearing all Internship Applications in TinS : `deleteall`
 
-Deletes all existing Internship Applications in TinS.
+Deletes all existing Internship Applications and Events in TinS.
 
-> Caution: This command is irreversible. Only use it when you would like to clear <b>all</b> internship applications in
-> your Internship Catalogue.
+* When you enter the command `deleteall`, TinS will prompt you to double confirm that you would like to delete **all**
+  Internship Applications and Events currently stored in TinS.
+* To proceed with executing the command, enter `deleteall confirm`.
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  The `deleteall` command can come in handy if you need to delete all the dummy data initially stored in
+TinS or to reset the data in TinS in preparation for your next Internship Application season.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:** This command is irreversible. Only use it when you would like to clear **all** internship
+applications and events in TinS.
+
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:** If you enter `deleteall confirm` directly, without first entering `deleteall`, TinS will delete
+all internship application and events in TinS immediately. Hence, you are advised to avoid entering the command
+`deleteall confirm` directly.
+
+</div>
 
 Format: `deleteall`
 
 ### Getting Help : `help`
 
-Provides you with the link to The Intern's Ship - User Guide.
+Provides you with a link to helpful instructions on how to use TinS.
 
 Format: `help`
 
@@ -613,13 +635,13 @@ There is no need to save manually.
 </tr>
 
 <tr>
-<td><b><a href="#add_function">Add</a></b></td>
+<td><b>Add</b></td>
 <td><code>add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...</code><br>
 E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/Important t/Priority</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#list_function">List</a></b></td>
+<td><b>List</b></td>
 <td><code>list</code></td>
 </tr>
 
