@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_STUDENT;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -15,6 +17,10 @@ public class SortStudentCommandParser implements Parser<SortStudentCommand> {
     public static final int GROUP_INDEX = 1;
     public static final int METRIC_INDEX = 2;
     public static final int ORDER_INDEX = 3;
+    public static final Set<String> VALIDMETRICS =
+            Set.of("address", "email", "name", "performance", "remark");
+    public static final Set<String> VALIDGROUPS =
+            Set.of("all", "lab", "tutorial", "consultation");
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -36,6 +42,9 @@ public class SortStudentCommandParser implements Parser<SortStudentCommand> {
                 group = terms[GROUP_INDEX];
                 metric = terms[METRIC_INDEX];
                 increasingOrder = (terms[ORDER_INDEX].equals("reverse")) ? false : true;
+                if (!VALIDGROUPS.contains(group) || !VALIDMETRICS.contains(metric)) {
+                    throw new IllegalArgumentException("Invalid input!");
+                }
             }
         } catch (IllegalArgumentException iae) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
