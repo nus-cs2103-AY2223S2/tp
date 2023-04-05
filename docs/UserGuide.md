@@ -6,8 +6,45 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 ## Table of Content
-1. [Quick Start] (#quick-start)
-2. 
+* [Quick start <a name="quick-start"></a>](#quick-start--a-name--quick-start----a-)
+- [Features](#features)
+    * [1. Features related to Customers](#1-features-related-to-customers)
+        + [1.1. Adding a person: `add`](#11-adding-a-person---add-)
+        + [1.2. Listing all persons : `list`](#12-listing-all-persons----list-)
+        + [1.3. Editing a person : `edit`](#13-editing-a-person----edit-)
+        + [1.4. Locating persons by name: `find`](#14-locating-persons-by-name---find-)
+        + [1.5. Deleting a person : `delete`](#15-deleting-a-person----delete-)
+    * [2. Features related to Delivery Jobs](#2-features-related-to-delivery-jobs)
+        + [2.1. Adding a job: `add_job`](#21-adding-a-job---add-job-)
+        + [2.2. Mass importing jobs](#22-mass-importing-jobs)
+        + [2.3. Listing all jobs : `list_job`](#23-listing-all-jobs----list-job-)
+        + [2.3.1. Sort and filter jobs](#231-sort-and-filter-jobs)
+        + [2.4 Edit job : `edit_job`](#24-edit-job----edit-job-)
+        + [2.5 Find job : `find_job`](#25-find-job----find-job-)
+        + [2.6 Delete job : `delete_job`](#26-delete-job----delete-job-)
+        + [2.7 Complete job : `com_job` / `uncom_job`](#27-complete-job----com-job-----uncom-job-)
+    * [3. Features available for Reminders](#3-features-available-for-reminders)
+        + [3.1. Listing all reminders : `list_reminder`](#31-listing-all-reminders----list-reminder-)
+        + [3.2. Adding a reminder : `add_reminder`](#32-adding-a-reminder----add-reminder-)
+        + [3.3. Deleting a reminder : `delete_reminder`](#33-deleting-a-reminder----delete-reminder-)
+    * [4. Features available for Timetable](#4-features-available-for-timetable)
+        + [4.1. Showing timetable : `timetable`](#41-showing-timetable----timetable-)
+        + [4.2. Showing timetable of week containing specific date: `timetable_date`](#42-showing-timetable-of-week-containing-specific-date---timetable-date-)
+        + [4.3. Showing list of completed jobs](#43-showing-list-of-completed-jobs)
+        + [4.4. Showing list of unscheduled jobs](#44-showing-list-of-unscheduled-jobs)
+    * [5. Features available for Statistics](#5-features-available-for-statistics)
+        + [5.1. Showing Statistics : `stats`](#51-showing-statistics----stats-)
+    * [Other features](#other-features)
+        + [Clearing all entries : `clear`](#clearing-all-entries----clear-)
+        + [Viewing help : `help`](#viewing-help----help-)
+        + [Exiting the program : `exit`](#exiting-the-program----exit-)
+        + [Saving the data](#saving-the-data)
+        + [Editing the data file](#editing-the-data-file)
+    * [FAQ](#faq)
+    * [Command summary](#command-summary)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 --------------------------------------------------------------------------------------------------------------------
