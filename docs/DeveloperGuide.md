@@ -54,6 +54,7 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
    2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
       1. [Launch and Shutdown](#launch-and-shutdown)
       2. [Saving data](#saving-data)
+   3. [Appendix-Effort](#effort)
 
 <div style="page-break-after: always;"></div>
 
@@ -1230,3 +1231,24 @@ Testers **SHOULD NOT** change directory name for `/data/images/`, **ANY CHANGE**
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
+<a name = "effort" />
+
+### Appendix: Effort
+The hardest part of the project was modifying the whole storage class to fit our model correctly. As we created both
+students and parents that inherited from persons, the AB3 model storage could not fit our model correctly. As such, we had
+to overhaul the whole storage package and we also supported class functionality for students which made things even harder.<br>
+
+We also made linkages between parents and students to better model the relationship between students and parents. This was
+quite time consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
+
+The UI package also took us quite a while as we were not really familiar with JavaFX and we had to make sure the information 
+displays correctly especially with expanding number of information (tests/homework)
+
+The novelty of giving users both the option to specify an image path or use the images folder method to store images for students
+or parents also took us some time as we were unsure to hard code the location or not. 
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
