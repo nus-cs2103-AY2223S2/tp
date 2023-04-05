@@ -403,7 +403,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 3.7.8. Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -428,7 +428,7 @@ _Details coming soon ..._
 
 # 5. Command Summary
 
-## Main Mode - before selecting a Deck
+## 5.1. Main Mode - before selecting a Deck
 
 | Action         | Format, Examples                                             |
 |----------------|--------------------------------------------------------------|
@@ -444,7 +444,7 @@ _Details coming soon ..._
 | Help           | `help`                                                       |
 | Exit           | `exit`                                                       |
 
-## Main Mode - after selecting a Deck
+## 5.2. Main Mode - after selecting a Deck
 
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -460,7 +460,7 @@ _Details coming soon ..._
 | Help           | `help`                                                                                                                                           |
 | Exit           | `exit`                                                                                                                                           |
 
-## Review mode
+## 5.3. Review mode
 
 | Action        | Format, Examples |
 |---------------|------------------|
