@@ -13,7 +13,7 @@ title: User Guide
 
 SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
 
-SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCket can get your contact management tasks done faster than traditional GUI apps.
+SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are proficient at typing, SOCket can get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,8 +35,7 @@ You can use the links in the Table of Contents to quickly navigate through this 
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SOCket.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar socket.jar` command to run the application.<br>
-   A GUI containing __6 main components__ should appear as below in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar socket.jar` command to run the application. A GUI containing __6 main components__ should appear as below in a few seconds. Note how the app contains some sample data.<br>
    <p align="center"><img src="images/UiDescription.png" /></p>
    <p align="center">
    <i>GUI of SOCket</i>
@@ -83,7 +82,7 @@ You can use the links in the Table of Contents to quickly navigate through this 
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Fields can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a field is expected only once in the command but you specified it multiple times, only the last occurrence of the field will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -96,64 +95,6 @@ You can use the links in the Table of Contents to quickly navigate through this 
 
 <div style="page-break-after: always;"></div>
 
-### General Commands
-
-General commands to improve your experience with SOCket.
-
-#### Viewing help : `help`
-
-Displays window showing the list of commands and a clickable URL to access help page.
-
-<p align="center"><img src="images/helpMessage.png" /></p>
-<p align="center">
-<i>Help Window displayed by the <code>help</code> command</i>
-<br>
-</p>
-
-Format: `help`
-
-Keyboard Shortcut: `F1`
-
-<div style="page-break-after: always;"></div>
-
-#### Undoing a change : `undo`
-
-Undoes the last change made to SOCket.
-
-Format: `undo`
-Keyboard Shortcut:
-1. `Ctrl+Z` __(Windows)__.
-2. `Command+Z` __(Mac)__.
-
-* A message is shown if no changes were made to SOCket.
-
-#### Redoing an undone change : `redo`
-
-Restores a previously undone change made to SOCket.
-
-Format: `redo`
-Keyboard Shortcut: 
-1. `Ctrl+Shift+Z` __(Windows)__.
-2. `Command+Shift+Z` __(Mac)__.
-
-* A message is shown if no undone changes exist.
-
-<div markdown="span" class="alert alert-primary"> :bulb: Tip
-Changes made to SOCket are **not** saved upon exit.
-</div>
-
-#### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-Shortcut key: 
-1. `Ctrl+Q` __(Windows)__.
-2. `Command+Q` __(Mac)__.
-
-<div style="page-break-after: always;"></div>
-
 ### Contact Commands
 
 Commands that help you make changes to the contact list.
@@ -162,7 +103,7 @@ Commands that help you make changes to the contact list.
 
 Adds a contact to SOCket.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 A contact can have any number of languages/tags (including 0).
@@ -186,7 +127,7 @@ Examples:
 
 Edits an existing contact in SOCket.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
 
 * Edits the information of the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -194,7 +135,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPRO
 * Existing values will be updated to the input keywords.
 * When editing languages, the existing languages of the contact will **not** be removed.
 * When editing tags, the existing tags of the contact will be removed.
-* You can remove all the tags of a contact by typing `t/` without specifying any keywords after it.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+You can remove all the tags of a contact by typing `t/` without specifying any keywords after it.
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
@@ -571,6 +515,64 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
+
+### General Commands
+
+General commands to improve your experience with SOCket.
+
+#### Undoing a change : `undo`
+
+Undoes the last change made to SOCket.
+
+Format: `undo`
+Keyboard Shortcut:
+1. `Ctrl+Z` __(Windows)__.
+2. `Command+Z` __(Mac)__.
+
+* A message is shown if no changes were made to SOCket.
+
+#### Redoing an undone change : `redo`
+
+Restores a previously undone change made to SOCket.
+
+Format: `redo`
+Keyboard Shortcut:
+1. `Ctrl+Shift+Z` __(Windows)__.
+2. `Command+Shift+Z` __(Mac)__.
+
+* A message is shown if no undone changes exist.
+
+<div markdown="span" class="alert alert-primary"> :bulb: Tip
+Changes made to SOCket are **not** saved upon exit.
+</div>
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+Shortcut key:
+1. `Ctrl+Q` __(Windows)__.
+2. `Command+Q` __(Mac)__.
+
+<div style="page-break-after: always;"></div>
+
+#### Viewing help : `help`
+
+Displays window showing the list of commands and a clickable URL to access help page.
+
+<p align="center"><img src="images/helpMessage.png" /></p>
+<p align="center">
+<i>Help Window displayed by the <code>help</code> command</i>
+<br>
+</p>
+
+Format: `help`
+
+Keyboard Shortcut: `F1`
 
 <div style="page-break-after: always;"></div>
 
