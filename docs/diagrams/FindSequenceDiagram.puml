@@ -29,15 +29,7 @@ deactivate FindCommandParser
 FriendlyLinkParser -> FindCommandParser : parse("n/John")
 activate FindCommandParser
 
-FindCommandParser -> FindCommandParser : parseSharedPredicates(argMultimap)
-activate FindCommandParser
-return
-
-FindCommandParser -> FindCommandParser : parseElderlyOnlyPredicates(argMultimap)
-activate FindCommandParser
-return
-
-FindCommandParser -> FindCommandParser : parseVolunteerOnlyPredicates(argMultimap)
+FindCommandParser -> FindCommandParser : parsePredicates(argMultimap)
 activate FindCommandParser
 return
 
@@ -60,16 +52,14 @@ deactivate FriendlyLinkParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredElderlyList(combinedElderlyPredicate)
+FindCommand -> Model : Update volunteer and elderly lists
 activate Model
 
-FindCommand -> Model : updateFilteredVolunteerList(combinedVolunteerPredicate)
+Model --> FindCommand
+deactivate Model
 
-FindCommand -> FindCommand : getPairPredicate(model)
-activate FindCommand
-return p
-
-FindCommand -> Model : updateFilteredPairList(p)
+FindCommand -> Model : Update pair list
+activate Model
 
 Model --> FindCommand
 deactivate Model

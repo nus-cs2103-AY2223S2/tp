@@ -284,7 +284,7 @@ The ```find``` command allows users to easily filter and locate the relevant eld
 The results of the ```find``` command are displayed as the filtered version of the elderly, volunteers and pairs lists, 
 together with the number of entities listed being shown in the command result box.
 
-Volunteers and elderly who match all the provided attributes are filtered out and displayed in their respective list.
+Volunteers and elderly who match all the provided attributes that they have are filtered out and displayed in their respective list.
 For each filtered person, Any pairing that they are involve in would be filtered and displayed in the pair list.
 
 Arguments for the ```find``` command involves at least one of the attributes belonging to an elderly or a volunteer.
@@ -305,12 +305,14 @@ The command execution flow is as given below
 7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
 
 Design decisions:
-- Name, address, email and phone attributes allows substring searching.
+- Name, address, email, phone, tags and medical qualification attributes allow substring searching.
   - Easier to search with only partial information available.
 - When multiple attributes and stated, the result must match all instead of any.
   - The search should narrow the field with each additional new attribute for a more targeted result.
 - Related pairings are also shown during the search.
   - Provides a comprehensive search results where all information related to the people found are shown.
+- People with Available dates that contain the specified dates or have no available dates will be found when searching with the specified dates.
+  - They are found because they are available on the specified dates.
 
 ### Pairing and unpairing of elderly and volunteers
 
