@@ -130,6 +130,12 @@ Note:
   * `event`: `from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
 * Editing a task removes the assigned member from the task.
 
+Examples:
+* Changing an existing task at index 1 to a `deadline` task, with a different name
+  * `edittask 1 type/D n/Assignment 1 by/20/04/2023`
+* Changing an existing task at index 2 to an `event` task, with the date changed
+  * `edittask 2 type/E from/05/04/2023 to/10/04/2023`
+
 
 ### Assigning task to member: `assign`
 
