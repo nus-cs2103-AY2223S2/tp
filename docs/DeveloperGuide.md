@@ -5,9 +5,9 @@ title: Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-  <details>
+  <!-- <details>
   <summary>Design</summary>
-
+   -->
    - [Architecture](#architecture)
    - [UI component](#ui-component)
    - [Logic component](#logic-component)
@@ -15,30 +15,30 @@ title: Developer Guide
    - [Event component](#event-component)
    - [Contact component](#contact-component)
    - [Storage component](#storage-component)
-
-  </details>
+<!-- 
+  </details> -->
 - [Implementation](#implementation)
-  <details>
-  <summary>Features</summary>
-
+  <!-- <details>
+  <summary>Features</summary> 
+  -->
    - [New Contact feature](#new-contact-feature)
    - [Mark feature](#mark-feature)
    - [Unmark feature](#unmark-feature)
    - [Reminder feature](#reminder-feature)
    - [Linkcontact feature](#linkcontact-feature)
-
-  </details>
+<!-- 
+  </details> -->
 - [Appendix: Requirements](#appendix-requirements)
-  <details>
-  <summary>more</summary>
-
+  <!-- <details>
+  <summary>more</summary> 
+  -->
    * [Product scope](#product-scope)
    * [User stories](#user-stories)
    * [Use cases](#use-cases)
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Glossary](#glossary)
-
-  </details>
+<!-- 
+  </details> -->
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
