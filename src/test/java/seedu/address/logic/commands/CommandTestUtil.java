@@ -169,8 +169,6 @@ public class CommandTestUtil {
 
     public static void assertCommandSuccess(CommandResult result, Model actualModel,
         CommandResult expectedCommandResult, Model expectedModel) {
-        System.out.println(expectedCommandResult.getFeedbackToUser());
-        System.out.println(result.getFeedbackToUser());
         assertEquals(expectedCommandResult, result);
         assertEquals(expectedModel, actualModel);
     }
