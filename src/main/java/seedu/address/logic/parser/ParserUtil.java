@@ -391,7 +391,7 @@ public class ParserUtil {
             if (newDateEnd.isAfter(currentRange[0]) && newDateEnd.isBefore(currentRange[1])) {
                 throw new ParseException("You are already busy during that period!");
             }
-            if (newDateEnd.isEqual(currentRange[0]) && newDateEnd.isEqual(currentRange[1])) {
+            if (newDateEnd.isEqual(currentRange[0]) || newDateEnd.isEqual(currentRange[1])) {
                 throw new ParseException("You are already busy during that period!");
             }
         }
@@ -446,7 +446,7 @@ public class ParserUtil {
                 MASTER_TIME.add(oldDateRange);
                 throw new ParseException("You are already busy during that period!");
             }
-            if (newDateEnd.isEqual(currentRange[0]) && newDateEnd.isEqual(currentRange[1])) {
+            if (newDateEnd.isEqual(currentRange[0]) || newDateEnd.isEqual(currentRange[1])) {
                 MASTER_TIME.add(oldDateRange);
                 throw new ParseException("You are already busy during that period!");
             }
@@ -499,7 +499,7 @@ public class ParserUtil {
             if (end.isAfter(currentRange[0]) && end.isBefore(currentRange[1])) {
                 return true;
             }
-            if (end.isEqual(currentRange[0]) && end.isEqual(currentRange[1])) {
+            if (end.isEqual(currentRange[0]) || end.isEqual(currentRange[1])) {
                 return true;
             }
         }

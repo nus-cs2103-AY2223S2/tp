@@ -22,7 +22,7 @@ public class DeleteStudentFromEventCommand extends Command {
     public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you"
             + " have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger"
-            + "than the size of the student list within the event";
+            + " than the size of the student list within the event";
     public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be"
             + "0 or less";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be"

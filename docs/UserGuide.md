@@ -10,9 +10,8 @@ title: User Guide
     - [Adding Tutorial](#add-tutorial)
     - [Adding Lab](#add-lab)
     - [Adding Consultation](#add-consultation)
-    - [Adding Recurring Event](#add-recur)
     - [Edit An Event](#edit-event)
-    - [Delete Events](#delete-events--delete-events)
+    - [Delete Event](#delete-events--delete-events)
 - [Student Features](#student-features)
     - [Adding Student](#adding-student--add-student)
     - [Deleting Student](#deleting-student--delete-student)
@@ -89,7 +88,8 @@ Let's clear a little confusion that might arise:
 
 ### Adding tutorial: `touch`
 
-Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) and no modification of duration is allowed
+Adds a tutorial to the TA’s schedule.
+<b> Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
@@ -104,7 +104,7 @@ Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm]`
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-:information_source: Maximum date is 2099
+:information_source: Maximum start year is 2099
 
 :information_source: TrAcker does not allow you to create events with historical dates
 
@@ -118,7 +118,8 @@ Examples:
 
 ### Adding lab: `vim`
 
-Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to CS2040 Lab timing) and no modification of duration is allowed
+Adds a lab to the TA’s schedule. 
+<b> Lab is assumed to be 2 hour long (adhering to CS2040 Lab timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
@@ -133,7 +134,7 @@ Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm]`
 ```
 date format: dd/MM/yyyy HH:mm
 ```
-:information_source: Maximum date is 2099
+:information_source: Maximum start year is 2099
 
 :information_source: TrAcker does not allow you to create events with historical dates
 
@@ -146,7 +147,8 @@ Examples:
 
 ### Adding consultation: `mkdir`
 
-Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
+Adds a consultation to the TA’s schedule.
+<b> Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
@@ -157,14 +159,18 @@ Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour
 
 Format: `mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]`
 
-TrAcker only accepts the following date format
+:information_source: TrAcker only accepts the following date format
+```
+date format: dd/MM/yyyy HH:mm
+```
+:information_source: Maximum start year is 2099
+
+:information_source: TrAcker does not allow you to create events with historical dates
 
 Examples:
 
 * `mkdir Consultation/reviewConnectedComponents`
 * `mkdir Consultation/reviewDijsktra -date 01/01/2030 16:00`
-
-<div id='add-recur'></div>
 
 ### Edit an event: `editEvent`
 
@@ -183,7 +189,7 @@ Examples:
 * `editEvent 2 Lab/VisuAlgo`
 * `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00`
 
-### Delete events: `delete events`
+### Delete event: `delete`
 
 :exclamation: You will not be able to undo the deletion
 
@@ -218,7 +224,7 @@ Examples:
 
 * `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
 
-### Deleting student: `delete`
+### Deleting student: `rm`
 
 :exclamation: You will not be able to undo the deletion
 
@@ -520,7 +526,7 @@ By double-clicking on events, the notes section will appear
       </td>
    </tr>
    <tr>
-      <td><strong>Delete Events</strong>
+      <td><strong>Delete Event</strong>
       </td>
       <td><code>delete [EVENT_TYPE]/[INDEX]</code>
       </td>
@@ -545,7 +551,7 @@ By double-clicking on events, the notes section will appear
       </td>
    </tr>
    <tr>
-      <td><strong>Remove Student</strong>
+      <td><strong>Delete Student</strong>
       </td>
       <td>
          <code>rm [INDEX]</code>
