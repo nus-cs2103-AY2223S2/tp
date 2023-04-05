@@ -303,6 +303,7 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 * For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
+* :warning: Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
@@ -493,21 +494,22 @@ _Details coming soon ..._
 
 ## 6. Command summary
 
-| Action       | Format, Examples                                                                                                      |
-|--------------|-----------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**    | `clear`                                                                                                               |
-| **Delete**   | `delete INDEX [INDEX]…​ `<br> e.g., `delete 3`                                                                        |
-| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                    |
-| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                    |
-| **List**     | `list`                                                                                                                |
-| **Help**     | `help`                                                                                                                |
-| **Stats**    | `stats`                                                                                                               |
-| **sort**     | `sort`                                                                                                                |
-| **alert**    | `alert [ALERT_WINDOW]`                                                                                                |
-| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                     |
-
---------------------------------------------------------------------------------------------------------------------
+| Action                | Format, Examples                                                                                                      |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**             | `clear`                                                                                                               |
+| **Delete**            | `delete INDEX [INDEX]…​ `<br> e.g., `delete 3`                                                                        |
+| **Edit**              | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                    |
+| **Find**              | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                    |
+| **List**              | `list`                                                                                                                |
+| **Help**              | `help`                                                                                                                |
+| **Stats**             | `stats`                                                                                                               |
+| **sort**              | `sort`                                                                                                                |
+| **alert**             | `alert [ALERT_WINDOW]`                                                                                                |
+| **schedule**          | `schedule D/SHORTDATE [E/EFFORT]`                                                                                     |
+| **subsection**        | `subsection INDEX n/SUBSECTION_NAME [d/DESCRIPTION]`<br> e.g., `subsection 1 n/homework d/cs2109s lab`                |
+| **remove-subsection** | `remove-subsection INDEX I/SUBSECTION_INDEX`<br> e.g., `remove-subsection 1 I/1`                                      |
+--------------------------------------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
 2. Free day: Allocating a task to this day will not result in overloading.
 3. Long date: Date in the format YYYY-MM-DD HHMM
