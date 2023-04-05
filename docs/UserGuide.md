@@ -5,6 +5,7 @@ title: User Guide
 <p align="center" width="100%">
     <img src="images/Logo.svg" width="100%">
 </p>
+
 ## Greetings from CookHub!
 **CookHub** is a powerful, but lightweight application for your recipe management needs. 
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
@@ -101,7 +102,7 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
 Below shows how you can add an *Orange juice* recipe.
 <p align="center" width="100%">
-    <img src="images/annotated/addCommand.svg" width="100%">
+    <img src="images/annotated/addCommand.svg" width="80%">
 </p>
 
 
@@ -135,7 +136,7 @@ Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [t
 
 Below shows how you can edit the ingredients of the first recipe with CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/editCommand.svg" width="100%">
+    <img src="images/annotated/editCommand.svg" width="80%">
 </p>
 
 Example:
@@ -164,7 +165,7 @@ Format: `delete RECIPE_NUMBER`
 
 - Below shows how you can delete the first recipe in CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/deleteCommand.svg" width="100%">
+    <img src="images/annotated/deleteCommand.svg" width="80%">
 </p>
 
 
@@ -228,7 +229,7 @@ Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
 Below shows how you can find for eggs in your recipe book with CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/addCommand.svg" width="100%">
+    <img src="images/annotated/findCommand.svg" width="80%">
 </p>
 
 Examples:
@@ -291,6 +292,10 @@ Format: `sort ORDER`
 - `asc` is used for ascending order, and `desc` is used for descending order
 - The price of a recipe is determined by cost of all ingredients required.
 
+Below shows how you can sort your recipe book in ascending order.
+<p align="center" width="100%">
+    <img src="images/annotated/sortCommand.svg" width="80%">
+</p>
 Example: 
 
 Our initial recipe book:
@@ -302,11 +307,20 @@ Our initial recipe book:
 <img src="images/SortResult.png" width=500 height=400>
 
 ---
-### Get a list of groceries: `groceries {recipe 1 index}, {recipe 2 index}, ...`
+### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
 
-Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes. If two or more recipes share ingredients, their quantities will be automatically added together. The `indices` have to be seperated by a comma (`,`);
+Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes. 
 
-Format: `groceries {recipe 1 index}, {recipe 2 index}, ...`
+If two or more recipes share ingredients, their quantities will be automatically added together. 
+
+The `indices` have to be seperated by a comma (`,`).
+
+Format: `groceries RECIPE_NUMBER, ...`
+
+Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
+<p align="center" width="100%">
+    <img src="images/annotated/groceriesCommand.svg" width="80%">
+</p>
 
 Example: `groceries 1,3,4`
 
@@ -326,6 +340,11 @@ Format: `fp COMPARATOR PRICE`
 - `>` is used to represent "more than"
 - *PRICE* can take on any positive real number
 - The price of a recipe is determined by cost of all ingredients required.
+
+Below shows how you can filter for all recipes with prices *less than 4.50*.
+<p align="center" width="100%">
+    <img src="images/annotated/fpCommand.svg" width="80%">
+</p>
 
 Example: 
 
@@ -350,7 +369,7 @@ Format: `star RECIPE_NUMBER`
 
 Below shows how you can add the first recipe to your favourites.
 <p align="center" width="100%">
-    <img src="images/annotated/starCommand.svg" width="100%">
+    <img src="images/annotated/starCommand.svg" width="80%">
 </p>
 
 Examples:
@@ -377,6 +396,11 @@ Format: `unstar RECIPE_NUMBER`
 
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+Below shows you can remove the first recipe from your favourites.
+<p align="center" width="100%">
+    <img src="images/annotated/unstarCommand.svg" width="80%">
+</p>
 
 Examples:
 
