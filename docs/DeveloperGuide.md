@@ -840,6 +840,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: Add a module**
+
+**MSS**
+
+1. User requests to list out all modules.
+2. Le Tracker shows a list of all modules.
+3. User requests to add a module and specifies the details of the module.
+4. Le Tracker adds the module.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The user does not enter sufficient details for the module.
+  - 3a1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. One or more of the details specified is invalid.
+  - 3b1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3c. The module the user is attempting to add is already in Le Tracker.
+  - 3c1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: Add a lecture**
+
+**MSS**
+
+1. User requests to list out all lectures of the module he/she wants to add a lecture to.
+2. Le Tracker shows a list of all lectures of the module.
+3. User requests to add a lecture to the module and specifies the details of the lecture.
+4. Le Tracker adds the lecture.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module does not exist.
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 3a. The user does not enter sufficient details for the lecture.
+  - 3a1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. One or more of the details specified is invalid.
+  - 3b1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3c. The lecture the user is attempting to add is already in the module.
+  - 3c1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: Add a video**
+
+**MSS**
+
+1. User requests to list out all videos of the lecture he/she wants to add a video to.
+2. Le Tracker shows a list of all videos of said lecture.
+3. User requests to add a video to the lecture and specifies the details of the video.
+4. Le Tracker adds the video.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The lecture does not exist.
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 3a. The user does not enter sufficient details for the video.
+  - 3a1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. One or more of the details specified is invalid.
+  - 3b1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
+- 3c. The video the user is attempting to add is already in the lecture.
+  - 3c1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
+
 **Use case: Mark/Unmark a video**
 
 **Preconditions**: User has added a module and a lecture and a video
