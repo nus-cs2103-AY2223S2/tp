@@ -1,32 +1,71 @@
 package taa.model.student;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import taa.commons.util.AppUtil;
+import taa.logic.parser.ParserUtil;
 
 /**
  * Attendance class, manages attendance and class participation points
  */
 public class Attendance {
-    public static final String WEEK_ERROR_MSG = "Week number invalid, should be integer between 1-12";
-    public static final String POINTS_ERROR_MSG = "Participation points invalid, should be integer between 0-700";
+    public static final int NUM_WEEKS = 12;
+    public static final int MAX_PP = 700;
+    public static final String WEEK_ERROR_MSG = "Week number invalid. Must be integer between 1-" + NUM_WEEKS + " (incl"
+            + "usive).";
+    public static final String ATD_ERROR_MSG = "Attendance marks invalid. Must be exactly " + NUM_WEEKS + " integers ei"
+            + "ther 0 or 1.";
+    public static final String POINTS_ERROR_MSG = "Participation points invalid. Must be exactly " + NUM_WEEKS + " inte"
+            + "gers between 0-" + MAX_PP + " (inclusive)";
+    public static final String PP_UNACCEPTABLE_MSG = "Participation points invalid. Must be exactly " + NUM_WEEKS + " i"
+            + "ntegers between -1 and " + MAX_PP + " (inclusive)";
     public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
     public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
-    public static final int NUM_WEEKS = 12;
-    private final boolean[] attendanceList = new boolean[NUM_WEEKS];
 
+    /**
+     * Checks if points is a valid value or -1
+     *
+     * @param points String version of points to be checked
+     * @return boolean if points is valid or not
+     */
+    public static final Predicate<String> IS_ACCEPTABLE_PARTICIPATION_POINT =
+            points -> "-1".equals(points) || isValidParticipationPoints(points);
+    private final boolean[] attendanceList = new boolean[NUM_WEEKS];
     private final int[] participationPoint = new int[NUM_WEEKS];
 
     /**
      * constructor for attendance class
      */
     public Attendance(String atd, String pp) {
+        requireNonNull(atd);
+        AppUtil.checkArgument(isValidAtdStr(atd), ATD_ERROR_MSG);
+        requireNonNull(pp);
+        AppUtil.checkArgument(isAcceptablePpStr(pp), POINTS_ERROR_MSG);
         String[] atdArr = atd.split(";");
         String[] ppArr = pp.split(";");
         for (int i = 0; i < atdArr.length; i++) {
-            if (Objects.equals(atdArr[i], "1")) {
-                this.attendanceList[i] = true;
-            }
-            this.participationPoint[i] = Integer.parseInt(ppArr[i]);
+            this.attendanceList[i] = "1".equals(atdArr[i].trim());
+            this.participationPoint[i] = Integer.parseInt(ppArr[i].trim());
         }
+    }
+
+    /**
+     * Checks if points is a valid value
+     *
+     * @param points String version of points to be checked
+     * @return boolean if points is valid or not
+     */
+    public static boolean isValidParticipationPoints(String points) {
+        final int pp;
+        try {
+            pp = Integer.parseInt(points);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return pp >= 0 && pp <= MAX_PP;
     }
 
     /**
@@ -36,10 +75,12 @@ public class Attendance {
      * @return true if week is valid and otherwise
      */
     public static boolean isValidWeek(String week) {
-        if (!week.matches("[0-9]+")) {
+        final int intWeek;
+        try {
+            intWeek = Integer.parseInt(week);
+        } catch (NumberFormatException e) {
             return false;
         }
-        int intWeek = Integer.parseInt(week);
         if (intWeek <= 0 || intWeek > NUM_WEEKS) {
             System.out.println(week);
             return false;
@@ -57,18 +98,17 @@ public class Attendance {
         return Integer.parseInt(week);
     }
 
-    /**
-     * Checks if points is a valid value
-     *
-     * @param points String version of points to be checked
-     * @return boolean if points is valid or not
-     */
-    public static boolean isValidParticipationPoints(String points) {
-        if (!points.matches("[0-9]+")) {
-            return false;
-        }
-        int pp = Integer.parseInt(points);
-        return pp >= 0 && pp <= 700;
+    private static boolean isValidArgStr(String argStr, Predicate<String> p) {
+        final String[] args = argStr.split(";");
+        return args.length == NUM_WEEKS && Arrays.stream(args).map(String::trim).allMatch(p);
+    }
+
+    public static boolean isAcceptablePpStr(String ppStr) {
+        return isValidArgStr(ppStr, IS_ACCEPTABLE_PARTICIPATION_POINT);
+    }
+
+    public static boolean isValidAtdStr(String atdStr) {
+        return isValidArgStr(atdStr, ParserUtil.IS_BIN_INT);
     }
 
     /**
