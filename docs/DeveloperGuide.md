@@ -164,18 +164,18 @@ The following sequence diagram illustrates how the delete patient operation work
 
 ![](images/DeletePatientSequenceDiagram.png)
 
-### GUI Features
-
 ---
 
-### Enlarged Info Card feature
+### GUI Features
+
+#### Enlarged Info Card feature
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
 the personal information of the doctor or patient. Therefore, the right-most column within
 Docedex has been reserved to show the personal information of the selected doctor or patient.
 
 ![](images/enlarged-contact-card-display.png)
 
-#### Brief introduction to the components involved
+##### Brief introduction to the components involved
 Let's call the card which displays this information **info cards**. However, the information
 displayed for a doctor compared to a patient has a few differences. Thus, two different info cards
 are required - one to display patient information and one to display doctor information.
@@ -186,7 +186,7 @@ So, we need a way to toggle between displaying either card, depending on whether
 has selected a doctor or patient to view.
 
 
-#### Exploring the user journey
+##### Exploring the user journey
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
 representing a doctor, though the ideas below can be extended to the user clicking on a
 `PatientListViewCell`, as well as other ways of querying for a doctor or patient
@@ -197,7 +197,7 @@ causes the display of information related to the doctor card through the `Enlarg
 
 ![](images/UserClickDoctorCardSequenceDiagram.png)
 
-#### More details on implementation
+##### More details on implementation
 When the user clicks on a `DoctorListViewCell`, the `displayDoctor()` call sets the state of the
 `EnlargedInfoCardDisplayController` to show the doctor. After which, the `ContactDisplay`
 is prompted to feedback this change to the user, by displaying the `EnlargedDoctorInfoCard`
@@ -205,7 +205,7 @@ containing the information of the doctor represented by the clicked `DoctorListV
 
 A similar process happens when the user clicks on a `PatientListViewCell`.
 
-#### How is the state of the application stored
+##### How is the state of the application stored
 Within `EnlargedInfoCardDisplayController`, two booleans corresponding to displaying doctor
 and patient information respectively store the state of the application.
 
