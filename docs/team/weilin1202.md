@@ -10,13 +10,13 @@ It provides a centralised platform for them to manage their work, contacts, and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added an event tagging feature to the `add` and `edit` command 
+* **New Feature**: Added an event tagging feature to the `add` and `edit` command ([\#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48))
   * What it does: Allows user to tag an existing event to a person 
   * Justification: This improves the product because a user can associate events to persons in the event planner. 
   * Highlights: While this is similar to the previous `tag` feature, user can add an event tagged to a person through the event index, user need not enter the entire event name.
 
 
-* **New Feature**: Added a `listevcontact` command to list all contacts associated to an event
+* **New Feature**: Added a `listevcontact` command to list all contacts associated to an event ([\#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56))
   * What it does: Allows user to list all persons with a specified event tagged to them 
   * Justification: This improves the product because a user easily can get a filtered list of persons who are associated to a specific event. 
   * Highlights: User can list all contacts associated to the specified event simply through the event index, user need not type out the entire event name.
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 
 
 * **Contributions to the User Guide**
-  * Added documentation for the features `listevcontact` ([\#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68))
+  * Added documentation for the features `listevcontact` ([\#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56))
   * Updated the documentation for event tagging for the `add` and `edit` feature ([\#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48))
 
 
