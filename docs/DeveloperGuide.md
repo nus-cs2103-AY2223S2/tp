@@ -662,7 +662,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** refers to `sprINT` and the **Actor** refers to the `user`, unless specified otherwise)
 
-**Use case 1: Add an application entry**
+**Use case: UC01 - Add an application entry**
 
 **MSS**
 
@@ -693,43 +693,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case 2: Edit an application entry**
+**Use case: UC02 - Edit an application entry**
 
 **MSS**
 
-1. User requests to list all application entries.
-2. sprINT displays a list of all application entries.
-3. User requests to edit a specific application entry in the list.
-4. sprINT updates the application entry and shows updated list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to edit a specific application entry in the list.
+3. sprINT updates the application entry and shows updated list of entries.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid (e.g. not an integer or out of bound).
-  * 3a1. sprINT shows an error message.
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+  * 2a1. sprINT shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes at step 1.
   
-* 3b. No index is given.
-  * 3b1. sprINT displays an error message.
+* 2b. User did not provide any index.
+  * 2b1. sprINT shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
 ---
 
-**Use case 3: Delete an application entry**
+**Use case: UC03 - Delete an application entry**
 
 **MSS**
 
-1. User requests to list all application entries.
-2. sprINT displays a list of all application entries.
-3. User requests to delete a specific application entry in the list.
-4. sprINT updates the application entry and displays updated list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to delete a specific application entry in the list.
+3. sprINT updates the application entry and displays updated list of entries.
 
    Use case ends.
 
@@ -739,23 +737,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid (e.g. not an integer or out of bound).
-    * 3a1. sprINT shows an error message.
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-* 3b. No index is given.
-    * 3b1. sprINT displays an error message.
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 ___
 
-**Use case 4: Find applications for a specified company**
+**Use case: UC04 - Add a task to an application entry**
 
 **MSS**
 
-1. User requests to find applications using the role, company name, or the application
+1. User provides task details (description, deadlines) and specifies the application to add this task to.
+2. sprINT adds the task to the specified application and shows the updated list of application entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User did not provide details for mandatory fields.
+    * 1a1. sprINT displays an error message that shows fields that are missing.
+    * 1a2. sprINT prompts User to try again.
+
+      Use case resumes at step 1.
+  
+* 1b. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 1b1. sprINT shows an error message.
+  
+      Use case resumes at step 1.
+
+* 1c. User did not provide any index.
+    * 1c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 1d. Error occurred when parsing arguments for certain fields.
+    * 1d1. sprINT displays an error message that shows the first incorrect field value entered.
+    * 1d2. sprINT prompts User to try again.
+
+      Use case resumes at step 1.
+    
+---
+
+**Use case: UC05 - Edit an application's task**
+
+**MSS**
+
+1. sprINT displays a list of current application entries.
+2. User requests to edit the task for a specific application entry in the list.
+3. sprINT updates the application entry and shows updated list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The index provided by User is not valid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The application entry specified by User does not have an existing task.
+    * 2c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC06 - Delete an application's task**
+
+**MSS**
+
+1. sprINT displays a list of current application entries.
+2. User requests to delete the task of a specific application entry in the list.
+3. sprINT updates the application entry and displays updated list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The application entry specified by User does not have an existing task.
+    * 2c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+    
+___
+
+**Use case: UC07 - Find applications by keywords**
+
+**MSS**
+
+1. User requests to find applications using the role, company name, and/or the application
 status as the keyword.
 2. sprINT displays the filtered list of entries.
 
@@ -764,7 +863,7 @@ status as the keyword.
 **Extensions**
 
 * 1a. No keyword is given.
-  * sprINT displays an error message.
+  * 1a1. sprINT displays an error message.
 
     Use case resumes at step 1.
 
@@ -774,42 +873,93 @@ status as the keyword.
 
 ---
 
-**Use case 5: Sort applications by specified order**
+**Use case: UC08 - Sort applications by specified order**
 
 **MSS**
 
-1. User requests to sort applications by alphabetical order.
-2. sprINT displays the sorted list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to sort applications by alphabetical order.
+3. sprINT displays the sorted list of entries.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
+* 2a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
 upcoming tasks of closer deadlines being showed first.
-  * sprINT shows list of entries that have tasks (and therefore deadlines). 
+  * 2a1. sprINT shows list of entries that have tasks (and therefore deadlines). 
   This list is sorted with earlier deadlines being showed first.
 
       Use case ends.
 
 ---
 
-**Use case 6: Undo a command**
+**Use case: UC09 - List all applications**
 
 **MSS**
 
-1. User requests to sort applications by alphabetical order.
-2. sprINT displays the sorted list of entries.
+1. User requests to list all applications in the internship book.
+2. sprINT displays the full list of entries, in the order of when they are added. 
+(i.e., More recently added entries are shown first.)
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
-  upcoming tasks of closer deadlines being showed first.
-* sprINT displays the sorted list of entries.
-
+* 1a. There are currently no entries in the internship book.
+    
   Use case ends.
+
+---
+
+**Use case: UC10 - Clear internship book**
+
+**MSS**
+
+1. User requests to clear all applications in the internship book.
+2. sprINT displays a new empty list of entries.
+
+   Use case ends.
+
+---
+
+**Use case: UC11 - Undo a command**
+
+**MSS**
+
+1. User requests to <u>clear the internship book (UC10)</u>.
+2. sprINT executes the command requested by User.
+3. User requests to undo the command executed in step 1.
+4. sprINT undoes the command executed in step 1.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to <u>add an application entry (UC01)</u>. User can also choose to:
+    1. <u>Edit an application entry (UC02)</u>
+    2. <u>Delete an application entry (UC03)</u>
+    3. <u>Add a task to an existing application entry (UC04)</u>
+    4. <u>Edit an application's task (UC05)</u>
+    5. <u>Delete an application's task (UC06)</u>
+
+    Use case resumes at step 2.
+
+---
+
+**Use case: UC12 - Redo a command**
+
+**MSS**
+
+1. User requests for <u>a command that can be undone (UC01, UC02, UC03, UC04,
+UC05, UC06, UC10).</u>
+2. sprINT executes the command.
+3. User requests to <u>undo the previous command in step 1 (UC11)</u>.
+4. sprINT undoes the command executed.
+5. User requests to redo the command that has been undone in step 4.
+6. sprINT redoes the command executed in step 2.
+
+   Use case ends.
 
 ---
 
@@ -817,7 +967,7 @@ upcoming tasks of closer deadlines being showed first.
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should take less than 500MB of memory while in operation.
-3. Should be able to view all (up to 1500) application entries on the homepage interface without noticeable lags.
+3. Should be able to view all (up to 500) application entries on the homepage interface without noticeable lags.
 4. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
