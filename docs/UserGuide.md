@@ -160,9 +160,16 @@ Format: `delete {index}`
 The index refers to the index number shown in the displayed role list. 
 The index **must be a positive integer** 1, 2, 3, …​
 
-Example: `delete 1`
+Examples: 
 
-![Delete](images/UICommandImages/deleteCommand.png)
+* `list` followed by `delete 3` deletes the 3rd role from TechTrack
+
+![DeleteCommand0](images/UICommandImages/DeleteCommand0.png)
+
+* `company google` then `delete 2` deletes the 2nd role in the results of the `company` command
+
+![DeleteCommand1](images/UICommandImages/DeleteCommand1.png)
+[link to `company` command](#find-roles-by-company-company)
 
 # Viewing Role Info
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
@@ -194,30 +201,36 @@ Searches for roles whose name contains any of the given keywords.
 
 Format: `name {keyword} [{more keywords}]...`
 
-Example: `name analyst engineer data`
+Examples: 
 
-![Name](images/UICommandImages/nameCommand.png)
-
-![image](https://user-images.githubusercontent.com/87350229/229332092-b37ec670-b27a-48b3-9019-885eea612cbc.png)
-
+* `name analyst software` returns roles with names that include keywords "analyst" and "software"
+![NameCommand0](images/UICommandImages/NameCommand0.png)
+* `name developer` returns roles with names that include the "developer" keyword
+![NameCommand1](images/UICommandImages/NameCommand1.png)
 
 ### Find roles by Company: `company`
 Searches for roles whose company contains any of the given keywords.
 
 Format: `company {keyword} [{more keywords}]...`
 
-Example: `company Google`
+Examples:
 
-![Company](images/UICommandImages/CompanyCommand1.png)
+* `company google meta` returns roles with company that include keywords "google" and "meta"
+* `company google` returns roles with company that include the "google" keyword
+
+[Image examples omitted as they're similar to the name command](#find-roles-by-name-name)
 
 ### Find roles by Tag: `tag`
 Searches for roles whose tags contain any of the given keywords.
 
 Format: `tag {keyword} [{more keywords}]...`
 
-Example: `tag frontend`
+Examples:
 
-![Tag](images/UICommandImages/TagCommand0.png)
+* `tag golang java` returns roles with tags that include keywords "google" and "meta"
+* `tag golang` returns roles with tags that include the "google" keyword
+
+[Image examples omitted as they're similar to the name command](#find-roles-by-name-name)
 
 ## Sorting roles
 The commands in this role sorts the **entire role list** based on an attribute, which differs per command.
@@ -259,7 +272,11 @@ Format: `view {index}`
   The index refers to the index number shown in the displayed role list.
   The index **must be a positive integer** 1, 2, 3, …​
 
+Examples:
+* `list` followed by `view 1`
 ![View](images/UICommandImages/ViewCommand0.png)
+* `company meta` followed by `view 1`
+![View](images/UICommandImages/ViewCommand1.png)
 
 ## General Commands
 
@@ -301,9 +318,9 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | **add**      | `add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}`                            | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
 | **edit**     | `edit {index} [n/{NAME}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] [t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]` | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
 | **delete**   | `delete {index}`                                                                                                                                                   | `delete 1`                                                                                                                                                                                                |
-| **name**     | `name {keywords}...`                                                                                                                                               | `name analyst engineer data`                                                                                                                                                                              |
-| **company**  | `company {keywords}...`                                                                                                                                            | `company Google`                                                                                                                                                                                          |
-| **tag**      | `tag  {keywords}...`                                                                                                                                               | `tag frontend`                                                                                                                                                                                            |
+| **name**     | `name {keyword} [{more keywords}]...`                                                                                                                              | `name analyst engineer data`                                                                                                                                                                              |
+| **company**  | `company {keyword} [{more keywords}]...`                                                                                                                           | `company Google`                                                                                                                                                                                          |
+| **tag**      | `tag {keyword} [{more keywords}]...`                                                                                                                               | `tag frontend`                                                                                                                                                                                            |
 | **deadline** | `deadline {asc/desc}`                                                                                                                                              | `deadline asc`                                                                                                                                                                                            |
 | **salary**   | `salary {asc/desc}`                                                                                                                                                | `salary desc`                                                                                                                                                                                             |
 | **view**     | `view {index}`                                                                                                                                                     | `view 1`                                                                                                                                                                                                  |
