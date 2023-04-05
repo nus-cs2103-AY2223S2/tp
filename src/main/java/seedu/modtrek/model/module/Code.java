@@ -8,8 +8,9 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
  */
 public class Code {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Module code is invalid. It should be alphanumeric.";
+    public static final String MESSAGE_CONSTRAINTS = "Module code is invalid.\n"
+            + "It should be in the form of <Module Prefix><4 number code><optional alphabet>.\n"
+                    + "Module Prefix should be 2 to 4 alphabets.\n" + "Examples: CS2109S, gess1025";
 
     public static final String MESSAGE_MISSING_DETAIL = "Missing module code after /m.";
 
