@@ -4,12 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-import seedu.recipe.commons.core.GuiSettings;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.recipe.commons.core.GuiSettings;
 
 public class UserPrefsTest {
 
