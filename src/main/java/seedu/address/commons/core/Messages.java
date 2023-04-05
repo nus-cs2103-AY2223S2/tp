@@ -82,5 +82,5 @@ public class Messages {
     public static final String MESSAGE_EXTENDED_STUDENT_NAME = "There is at least one existing student "
             + "whose name is contained in \"%s\".";
     public static final String MESSAGE_CONFLICTING_LESSON_TIME = "You already have a lesson during this time!";
-    public static final String MESSAGE_CONFLICTING_EXAM_TIME = "One of your students has an exam during this time!";
+    public static final String MESSAGE_CONFLICTING_EXAM_TIME = "This student has an exam during this time!";
 }

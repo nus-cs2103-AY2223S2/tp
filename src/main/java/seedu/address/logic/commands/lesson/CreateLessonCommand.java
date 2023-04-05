@@ -97,9 +97,9 @@ public class CreateLessonCommand extends Command {
             throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
         }
 
-        if (model.hasConflictingExamTime(lesson)) {
-            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
-        }
+        //        if (model.hasConflictingExamTime(lesson)) {
+        //            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        //        }
 
         model.updateFilteredStudentList(predicate);
 
