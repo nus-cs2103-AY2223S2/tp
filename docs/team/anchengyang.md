@@ -33,9 +33,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=anchengyang&zR=AY2223S2-CS2103T-F12-2%2Ftp%5Bmaster%5D&zACS=247.67299412915852&zS=2023-02-17&zFS=&zU=2023-04-05&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
-    * Merged PRs by teammates
-    * Provided feedback on PRS
-    * Assigned issues to teammates and myself
+    * Provided feedback on PRS and merged PRs by teammates [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    * Assigned issues to teammates and myself [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+assignee%3Aanchengyang)
     * Reminded teammates about the deliverables every week
 
 * **Enhancements to existing features**:
