@@ -571,8 +571,13 @@ These are features that will improve your experience using TeamBuilder, to be ad
 
 ## Support for long tags
 Currently, whether it is a skill tag or a team tag, TeamBuilder will try to display the whole tag regardless of how long it is, causing it to overflow out of the window and be un-readable.
-In the future,
+Future changes:
 - Tags that exceed a character count of 20 characters will be truncated and have a "..." after it.
 - Users will be able to view the full tag by hovering their cursor over the tag.
-  - This will not change the behaviour of the `add`, `edit`, or `find` commands.
+- This will not change the behaviour of the `add`, `edit`, or `find` commands.
+
+## Phone number limit 
+Currently, there is no limit to the length of a contacts phone number.
+Future changes:
+- Phone number will have a maximum length of 15 digits, as that is the longest viable phone number.
 
