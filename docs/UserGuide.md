@@ -14,7 +14,7 @@ to help you manage your students quicker than a traditional point-and-click app 
 ## About this User Guide
 This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
 Head over to the [Quick Start](#quick-start) section to get started with setting up, or the [Features](#features) section
-to learn more about what TeachMeSenpai can do for you! If at any point there are any unfamiliar terms, you may head over to the [Glossary](#glossary) where
+to learn more about what TeachMeSenpai can do for you! If at any point there are any unfamiliar terms, you may head over to the [Glossary](#glossary)
 for an explanation.
 
 ### Navigating the User Guide
