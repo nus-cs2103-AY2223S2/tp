@@ -51,6 +51,10 @@ public class Contact {
         return false;
     }
 
+    public boolean isSameContactNumber(String otherNum) {
+        return this.phone.value.equals(otherNum);
+    }
+
     public boolean isNull() {
         return this.name == null;
     }

@@ -10,7 +10,6 @@ import seedu.event.commons.core.index.Index;
 import seedu.event.logic.commands.exceptions.CommandException;
 import seedu.event.model.Model;
 import seedu.event.model.contact.Contact;
-import seedu.event.model.contact.UniqueContactList;
 import seedu.event.model.event.Address;
 import seedu.event.model.event.Event;
 import seedu.event.model.event.Mark;
@@ -61,7 +60,7 @@ public class LinkContactCommand extends Command {
         Event toAdd = lastShownList.get(eventIndex.getZeroBased());
 
         try {
-            Contact contactToAdd = contactList.get(UniqueContactList.getNumberMap().get(addContact));
+            Contact contactToAdd = getMatchingContact(addContact, contactList);
             Event eventToLink = createLinkedEvent(toAdd, contactToAdd);
             model.linkContact(toAdd, eventToLink);
             model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
@@ -70,6 +69,13 @@ public class LinkContactCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_LINK_CONTACT_SUCCESS, toAdd));
+    }
+
+    private Contact getMatchingContact(String addContact, List<Contact> contactList) {
+        return contactList.stream()
+                .filter(contact -> contact.isSameContactNumber(addContact))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
