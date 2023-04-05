@@ -13,8 +13,8 @@ import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
 
 /**
  * A utility class containing a list of {@code InternshipApplication} objects to be used in tests.

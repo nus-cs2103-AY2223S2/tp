@@ -22,11 +22,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.ProgrammingLanguage;
-import seedu.address.model.person.Qualification;
-import seedu.address.model.person.Reflection;
-import seedu.address.model.person.Review;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
 
 /**
  * Parses input arguments and creates a new EditCommand object

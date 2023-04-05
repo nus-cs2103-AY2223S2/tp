@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Deletes an internship application identified by its displayed index from the internship applications list.

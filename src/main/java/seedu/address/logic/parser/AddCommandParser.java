@@ -17,17 +17,17 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.ProgrammingLanguage;
-import seedu.address.model.person.Qualification;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Reflection;
-import seedu.address.model.person.Review;
-import seedu.address.model.person.Salary;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 
 /**
  * Parses input arguments and creates a new AddCommand object

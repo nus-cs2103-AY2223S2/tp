@@ -5,11 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Review;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Review;
 
 /**
  * A utility class to help with building InternshipApplication objects.

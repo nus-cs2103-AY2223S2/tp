@@ -17,18 +17,18 @@ import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.ProgrammingLanguage;
-import seedu.address.model.person.Qualification;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Reflection;
-import seedu.address.model.person.Review;
-import seedu.address.model.person.Salary;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
@@ -139,9 +139,9 @@ public class SampleDataUtil {
     /**
      * Returns a note set containing the list of strings given.
      */
-    public static Set<seedu.address.model.person.Note> getNoteSet(String... strings) {
+    public static Set<seedu.address.model.application.Note> getNoteSet(String... strings) {
         return Arrays.stream(strings)
-                .map(seedu.address.model.person.Note::new)
+                .map(seedu.address.model.application.Note::new)
                 .collect(Collectors.toSet());
     }
 

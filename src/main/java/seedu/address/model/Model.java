@@ -7,8 +7,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.Person;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 

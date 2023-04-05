@@ -20,19 +20,19 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.ProgrammingLanguage;
-import seedu.address.model.person.Qualification;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Reflection;
-import seedu.address.model.person.Review;
-import seedu.address.model.person.Salary;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 
 /**
  * Edits the contact details of an existing application in the list of internship applications.

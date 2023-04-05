@@ -3,7 +3,7 @@ package seedu.address.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.InternshipApplicationAttribute;
+import seedu.address.model.application.InternshipApplicationAttribute;
 
 /**
  * Represents a company's email in the internship application.

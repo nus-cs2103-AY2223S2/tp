@@ -29,7 +29,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.InternshipBuilder;
 

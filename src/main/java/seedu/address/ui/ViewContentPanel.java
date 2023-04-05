@@ -24,8 +24,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipApplicationAttribute;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipApplicationAttribute;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 

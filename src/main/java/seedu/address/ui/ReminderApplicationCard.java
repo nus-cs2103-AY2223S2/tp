@@ -6,8 +6,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InterviewDate;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
 
 /**

@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.JobTitle;
 import seedu.address.model.tag.TaskType;
 
 /**

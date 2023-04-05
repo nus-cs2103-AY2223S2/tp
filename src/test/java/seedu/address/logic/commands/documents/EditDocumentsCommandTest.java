@@ -36,7 +36,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 import seedu.address.testutil.DocumentsBuilder;
 import seedu.address.testutil.EditDocumentsDescriptorBuilder;
 import seedu.address.testutil.InternshipBuilder;

@@ -22,10 +22,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.JobTitle;
 
 public class ClearByCommandTest {
 
