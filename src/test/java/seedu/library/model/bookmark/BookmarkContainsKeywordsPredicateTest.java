@@ -42,7 +42,7 @@ public class BookmarkContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
         BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
                 Collections.singletonList("Alice"), null, null, null
@@ -61,7 +61,7 @@ public class BookmarkContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         BookmarkContainsKeywordsPredicate predicate =
                 new BookmarkContainsKeywordsPredicate(Arrays.asList("Carol"), null, null, null);
@@ -138,5 +138,23 @@ public class BookmarkContainsKeywordsPredicateTest {
                 null, null, Collections.singletonList("Carol"), null
         );
         assertFalse(predicate.test(new BookmarkBuilder().withTags("Mark").build()));
+    }
+
+    @Test
+    public void test_multipleFieldsContainKeywords_returnsTrue() {
+        // Non-matching keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, Collections.singletonList("Fantasy"), Collections.singletonList("Carol"), null
+        );
+        assertTrue(predicate.test(new BookmarkBuilder().withGenre("Fantasy").withTags("Carol").build()));
+    }
+
+    @Test
+    public void test_multipleFieldsContainKeywords_returnsFalse() {
+        // Non-matching keyword
+        BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
+                null, Collections.singletonList("Fantasy"), Collections.singletonList("Carol"), null
+        );
+        assertFalse(predicate.test(new BookmarkBuilder().withGenre("Fantasy").build()));
     }
 }

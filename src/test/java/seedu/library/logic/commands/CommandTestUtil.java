@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.library.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -39,6 +41,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "MaleProtagonist";
     public static final String VALID_TAG_FRIEND = "FemaleProtagonist";
     public static final ReadOnlyTags VALID_TAGS = SampleDataUtil.getSampleTagList();
+    public static final String VALID_RATING_AMY = "3";
+    public static final String VALID_RATING_BOB = "4";
+    public static final String VALID_URL_AMY = "http://www.google.com";
+    public static final String VALID_URL_BOB = "http://www.youtube.com";
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
@@ -50,12 +56,16 @@ public class CommandTestUtil {
     public static final String AUTHOR_DESC_BOB = " " + PREFIX_AUTHOR + VALID_AUTHOR_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String RATING_DESC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
+    public static final String URL_DESC_AMY = " " + PREFIX_URL + VALID_URL_AMY;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE; // '&' not allowed in names
     public static final String INVALID_PROGRESS_DESC = " " + PREFIX_PROGRESS + "911*"; // '*' not allowed in progress
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE;
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for author
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "-1";
+    public static final String INVALID_URL_DESC = " " + PREFIX_URL + "invalidurl";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -66,10 +76,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withProgress(VALID_PROGRESS_AMY).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withRating(VALID_RATING_AMY)
+                .withUrl(VALID_URL_AMY).build();
         DESC_BOB = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRating(VALID_RATING_BOB)
+                .withUrl(VALID_URL_BOB).build();
     }
 
     /**

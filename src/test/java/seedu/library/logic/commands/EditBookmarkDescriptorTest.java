@@ -7,8 +7,10 @@ import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_RATING_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_URL_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,16 +46,24 @@ public class EditBookmarkDescriptorTest {
         editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withProgress(VALID_PROGRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
+        // different genre -> returns false
         editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withGenre(VALID_GENRE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
+        // different author -> returns false
         editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withAuthor(VALID_AUTHOR_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
         editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different rating -> returns false
+        editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withRating(VALID_RATING_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different url -> returns false
+        editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY).withUrl(VALID_URL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
