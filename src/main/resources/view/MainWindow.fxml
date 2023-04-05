@@ -43,15 +43,15 @@
         </StackPane>
 
         <SplitPane VBox.vgrow="ALWAYS" orientation="VERTICAL">
-          <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                     minHeight="100" prefHeight="150" maxHeight="400">
+          <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                     minHeight="100" prefHeight="150" maxHeight="200">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
           </StackPane>
 
             <SplitPane VBox.vgrow="ALWAYS">
-              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="400" VBox.vgrow="ALWAYS">
+              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
                 <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </VBox>
               <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">

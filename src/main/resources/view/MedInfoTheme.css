@@ -414,12 +414,13 @@
 }
 
 /**
- * Results Display
- * ResultDisplay.fxml
+ * Stats
  */
-#MedInfoStats .content {
-    -fx-background-color: #A8C5C9;
-    -fx-background-radius: 0;
+#stats {
+    -fx-background-color: gray;
+    -fx-background-radius: 50;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
 }
 
 /**
