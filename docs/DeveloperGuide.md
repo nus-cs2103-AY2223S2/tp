@@ -354,6 +354,37 @@ The following sequence diagram shows how the `tag` command works:
 
 _{more aspects and alternatives to be added}_
 
+### \[Implemented\] Name Command Feature
+
+The proposed NameCommand feature allows the user to filter names based on a given keyword. The idea is that the
+user can filter the job list by name which shows all roles pertaining to a certain name.
+
+The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
+
+Given below is an example usage of how NameCommand is being used in the following steps.
+
+1. The user launches the application for the first time. The `AddressBook` will be initialized with the
+   current address book. <img src="images/startUp.png" width="800" />
+
+2. The user can choose to use the `Name Command` to filter names.
+    - The user executes `name <keyword>` command to filter roles by their name.
+      <img src="images/UICommandImages/NameCommand.png" width="800" />
+
+The following sequence diagram shows how the `name` command works:
+
+<img src="images/NameCommandSequenceDiagram.png" width="800" />
+
+
+#### Design considerations:
+
+**Aspect: How Name Command executes:**
+
+* **Alternative 1 (current choice):** Filter roles that contain the keyword in the name field.
+    * Pros: Easy to implement.
+    * Cons: More CLI needs to be added if more attributes are needed to sort.
+
+_{more aspects and alternatives to be added}_
+
 
 ### \[Implemented\] View Command Feature
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
