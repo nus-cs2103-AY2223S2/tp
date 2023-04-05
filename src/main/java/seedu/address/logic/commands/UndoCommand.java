@@ -20,7 +20,7 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPreviousState()) {
+        if (!model.hasPreviousState()) {
             throw new CommandException(Messages.MESSAGE_INVALID_UNDO);
         }
 
