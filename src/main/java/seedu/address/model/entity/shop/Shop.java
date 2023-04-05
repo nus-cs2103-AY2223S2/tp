@@ -215,7 +215,7 @@ public class Shop implements ReadOnlyShop {
         LocalDate entryDate = maybeEntryDate.orElseGet(LocalDate::now);
         LocalDate estimatedFinishDate = maybeEstimatedFinishDate.orElseGet(() -> entryDate.plusDays(7));
         ServiceStatus serviceStatus = maybeServiceStatus.orElse(ServiceStatus.TO_REPAIR);
-        Service toAdd = new Service(IdGenerator.generateServiceId(), vehicleId,entryDate, new PartMap() ,
+        Service toAdd = new Service(IdGenerator.generateServiceId(), vehicleId,entryDate, new HashMap<>() ,
             description, estimatedFinishDate, serviceStatus);
         this.getVehicle(vehicleId).addService(toAdd);
         this.services.add(toAdd);
