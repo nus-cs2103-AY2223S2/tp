@@ -17,9 +17,6 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for SortStudentCommand.
  */
 public class SortStudentCommandTest {
-
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     public static final String COMMAND_WORD = "sort-student";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all address book students.\n "
             + "Parameters: The group of students you wish to sort (either all, lab, tutorial or consultation), "
@@ -27,7 +24,7 @@ public class SortStudentCommandTest {
             + "and the desired order (either reverse or nonreverse)\n"
             + "For example: 'sort-student all name reverse' command will order all students in reverse-alphabetical "
             + "ordering of their names";
-
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void execute() throws CommandException {
         Person validPerson = new PersonBuilder().build();
