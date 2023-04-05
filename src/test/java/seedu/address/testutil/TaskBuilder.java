@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.student.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 

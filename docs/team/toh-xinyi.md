@@ -9,7 +9,7 @@ future lessons and have an overall view of their schedule for ease of planning.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * to be added soon.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * to be added soon.
-  
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `delete`, `add` and `listStudents` [\#48]()

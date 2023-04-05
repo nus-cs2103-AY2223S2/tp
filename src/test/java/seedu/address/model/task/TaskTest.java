@@ -83,7 +83,7 @@ public class TaskTest {
         // different type -> returns false
         assertFalse(VALID_TASK_1.equals(5));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(VALID_TASK_1.equals(VALID_TASK_2));
 
         // different name -> returns false
