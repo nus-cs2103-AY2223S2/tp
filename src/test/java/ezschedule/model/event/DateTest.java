@@ -124,20 +124,20 @@ public class DateTest {
     public void equal() {
         // same object -> returns equal
         Date date = new Date(VALID_DATE_A);
-        assertEquals(date, date);
+        assertTrue(date.equals(date));
 
         // same values -> returns equal
         Date dateCopy = new Date(VALID_DATE_A);
-        assertEquals(date, dateCopy);
+        assertTrue(date.equals(dateCopy));
 
         // null -> returns not equal
-        assertNotEquals(null, date);
+        assertFalse(date.equals(null));
 
         // different type -> returns not equal
-        assertNotEquals(5, date);
+        assertFalse(date.equals(5));
 
         // different date -> returns not equal
         Date differentDate = new Date(VALID_DATE_B);
-        assertNotEquals(differentDate, date);
+        assertFalse(date.equals(differentDate));
     }
 }
