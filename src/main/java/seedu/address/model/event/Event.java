@@ -129,7 +129,7 @@ public abstract class Event {
     }
 
     public boolean hasMatchByName(String name) {
-        return this.name.equals(name);
+        return this.name.equalsIgnoreCase(name);
     }
 
     /* *************************************************************************

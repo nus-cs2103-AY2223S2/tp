@@ -226,21 +226,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addNoteToTutorial(Note note, String nameOfEvent) {
+    public boolean addNoteToTutorial(Note note, String nameOfEvent) {
         requireNonNull(note);
-        addressBook.addNoteToTutorial(note, nameOfEvent);
+        return addressBook.addNoteToTutorial(note, nameOfEvent);
     }
 
     @Override
-    public void addNoteToLab(Note note, String nameOfEvent) {
+    public boolean addNoteToLab(Note note, String nameOfEvent) {
         requireNonNull(note);
-        addressBook.addNoteToLab(note, nameOfEvent);
+        return addressBook.addNoteToLab(note, nameOfEvent);
     }
 
     @Override
-    public void addNoteToConsultation(Note note, String nameOfEvent) {
+    public boolean addNoteToConsultation(Note note, String nameOfEvent) {
         requireNonNull(note);
-        addressBook.addNoteToConsultation(note, nameOfEvent);
+        return addressBook.addNoteToConsultation(note, nameOfEvent);
     }
 
     @Override

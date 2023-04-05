@@ -354,45 +354,51 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds note to address book tutorial note list
      * @param note The note to add.
      */
-    public void addNoteToTutorial(Note note, String nameOfEvent) {
+    public boolean addNoteToTutorial(Note note, String nameOfEvent) {
         if (!(tutorials.containsEventName(nameOfEvent))) {
-            return;
+            return false;
         }
         for (Tutorial tutorial : tutorials) {
             if (tutorial.hasMatchByName(nameOfEvent)) {
                 tutorial.addNote(note);
+                return true;
             }
         }
+        return false;
     }
 
     /**
      * Adds note to address book lab note list
      * @param note The note to add.
      */
-    public void addNoteToLab(Note note, String nameOfEvent) {
+    public boolean addNoteToLab(Note note, String nameOfEvent) {
         if (!(labs.containsEventName(nameOfEvent))) {
-            return;
+            return false;
         }
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
                 lab.addNote(note);
+                return true;
             }
         }
+        return false;
     }
 
     /**
      * Adds note to address book consultation note list
      * @param note The note to add.
      */
-    public void addNoteToConsultation(Note note, String nameOfEvent) {
+    public boolean addNoteToConsultation(Note note, String nameOfEvent) {
         if (!(consultations.containsEventName(nameOfEvent))) {
-            return;
+            return false;
         }
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
                 consultation.addNote(note);
+                return true;
             }
         }
+        return false;
     }
 
     /**

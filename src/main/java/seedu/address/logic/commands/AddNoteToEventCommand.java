@@ -12,13 +12,15 @@ import seedu.address.model.event.Note;
 public class AddNoteToEventCommand extends Command {
     public static final String COMMAND_WORD = "addNote";
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
-    public static final String MESSAGE_USAGE = "addNote note -content add-your-note-here -name name-of-event "
-            + "-type type-of-event";
-    public static final String MESSAGE_EXAMPLE = "addNote note -content this is a new note -name dijkstraReview "
-            + "-type Tutorial";
+    public static final String MESSAGE_USAGE = "addNote note content/ add-your-note-here name/ name-of-event "
+            + "type/ type-of-event";
+    public static final String MESSAGE_EXAMPLE = "addNote note content/ this is a new note name/ dijkstraReview "
+            + "type/ Tutorial";
 
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized!";
+    public static final String MESSAGE_EVENT_NAME_NOT_FOUND = "The event name %1$s is not found in the list!";
+
     public static final String TUTORIAL_STRING = "Tutorial";
     public static final String LAB_STRING = "Lab";
     public static final String CONSULTATION_STRING = "Consultation";
@@ -44,20 +46,22 @@ public class AddNoteToEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        boolean addResult;
 
-        switch (eventType) {
-        case TUTORIAL_STRING:
-            model.addNoteToTutorial(toAdd, eventName);
-            break;
-        case LAB_STRING:
-            model.addNoteToLab(toAdd, this.eventName);
-            break;
-        case CONSULTATION_STRING:
-            model.addNoteToConsultation(toAdd, this.eventName);
-            break;
-        default:
+        if (eventType.toLowerCase().contains(TUTORIAL_STRING.toLowerCase())) {
+            addResult = model.addNoteToTutorial(toAdd, eventName);
+        } else if (eventType.toLowerCase().contains(LAB_STRING.toLowerCase())) {
+            addResult = model.addNoteToLab(toAdd, this.eventName);
+        } else if (eventType.toLowerCase().contains(CONSULTATION_STRING.toLowerCase())) {
+            addResult = model.addNoteToConsultation(toAdd, this.eventName);
+        } else {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
+
+        if (!(addResult)) {
+            throw new CommandException(String.format(MESSAGE_EVENT_NAME_NOT_FOUND, eventName));
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
     }
 

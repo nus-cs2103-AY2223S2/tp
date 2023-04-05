@@ -79,6 +79,9 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
         }
         if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
             note = ParserUtil.parseEventNote(argMultimap.getValue(PREFIX_NOTE).get());
+            if (note.length() > Note.LENGTH_LIMIT) {
+                throw new ParseException(String.format("Note is too long! Shrink it to under %1$s", Note.LENGTH_LIMIT));
+            }
             consultation.addNote(new Note(note));
         }
         return new AddConsultationCommand(consultation);

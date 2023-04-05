@@ -37,6 +37,9 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
                     + EditNoteCommand.MESSAGE_EXAMPLE);
         }
         String content = argMultimap.getValue(PREFIX_NOTE_CONTENT).get();
+        if (content.length() > Note.LENGTH_LIMIT) {
+            throw new ParseException(String.format("Note is too long! Shrink it to under %1$s", Note.LENGTH_LIMIT));
+        }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_NOTE_INDEX).get());
         String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
         String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();

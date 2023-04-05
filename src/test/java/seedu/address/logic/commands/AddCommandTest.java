@@ -280,17 +280,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addNoteToTutorial(Note note, String nameOfEvent) {
+        public boolean addNoteToTutorial(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addNoteToLab(Note note, String nameOfEvent) {
+        public boolean addNoteToLab(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addNoteToConsultation(Note note, String nameOfEvent) {
+        public boolean addNoteToConsultation(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
