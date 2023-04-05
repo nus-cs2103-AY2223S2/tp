@@ -158,7 +158,9 @@ public class ModelManager implements Model {
      * @param target The deleted person.
      */
     public void updateMeetUpForDeletePerson(Person target) {
-        for (MeetUp meetUp : observableMeetUps) {
+        Iterator<MeetUp> iterator = observableMeetUps.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
             Participants participants = meetUp.getParticipants();
             List<Person> personList = participants.getParticipants();
 
@@ -188,8 +190,9 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         eduMate.setPerson(target, editedPerson);
-        editParticipants(target, editedPerson);
         updateMeetUpForEditPerson(target, editedPerson);
+        editParticipants(target, editedPerson);
+
     }
 
     public void editParticipants(Person target, Person editedPerson) {
@@ -220,14 +223,9 @@ public class ModelManager implements Model {
      */
     public void updatePersonList(List<Person> participantsList, Person target,
                                  Person editedPerson, MeetUp meetUp) {
-        Iterator<Person> iterator = participantsList.iterator();
-        while (iterator.hasNext()) {
-            Person person = iterator.next();
-            if (person.isSamePerson(target)) {
-                participantsList.remove(person);
-                participantsList.add(editedPerson);
-                meetUp.setParticipants(new Participants(participantsList));
-            }
+        if (participantsList.removeIf(person -> person.isSamePerson(target))) {
+            participantsList.add(editedPerson);
+            meetUp.setParticipants(new Participants(participantsList));
         }
     }
 
