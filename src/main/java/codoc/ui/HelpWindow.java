@@ -58,7 +58,8 @@ public class HelpWindow extends UiPart<Stage> {
         new CommandExample("List the full list of contacts", "list"),
         new CommandExample("Delete contact", "delete 3"),
         new CommandExample("Clear all contacts", "clear"),
-        new CommandExample("View user guide and command list", "help")
+        new CommandExample("View user guide and command list", "help"),
+        new CommandExample("Exits the application", "exit")
     };
 
     private final ObservableList<CommandExample> commandExamples = FXCollections.observableArrayList(examples);

@@ -751,6 +751,7 @@ _Details coming soon ..._
 | Delete person at index 3         | delete 3                                                                                                                                    |
 | Clear all persons                | clear                                                                                                                                       |
 | View user guide and command list | help                                                                                                                                        |
+| Exits the application            | exit                                                                                                                                        |
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
