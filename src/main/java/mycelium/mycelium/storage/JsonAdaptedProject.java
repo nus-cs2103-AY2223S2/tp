@@ -17,8 +17,8 @@ import mycelium.mycelium.model.util.NonEmptyString;
 /**
  * Jackson friendly version of {@link Project}.
  */
-public class JsonAdaptedProject {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing";
+public class JsonAdaptedProject extends JsonAdaptedEntity{
+    private static final String ENTITY_NAME = "Project";
     private final String name;
     private final ProjectStatus status;
     private final String clientEmail;
@@ -40,6 +40,7 @@ public class JsonAdaptedProject {
                               @JsonProperty("description") String description,
                               @JsonProperty("acceptedOn") LocalDate acceptedOn,
                               @JsonProperty("deadline") LocalDate deadline) {
+        super(ENTITY_NAME);
         this.name = name;
         this.status = status;
         this.clientEmail = clientEmail;
@@ -53,6 +54,7 @@ public class JsonAdaptedProject {
      * Constructs this class from a vanilla {@link Project}.
      */
     public JsonAdaptedProject(Project project) {
+        super(ENTITY_NAME);
         name = project.getName().toString();
         status = project.getStatus();
         clientEmail = project.getClientEmail().value;
@@ -62,12 +64,6 @@ public class JsonAdaptedProject {
         deadline = project.getDeadline().orElse(null);
     }
 
-    private static void assertField(boolean cond, String fieldName) throws IllegalValueException {
-        if (!cond) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, fieldName));
-        }
-    }
-
     /**
      * Constructs a {@link Project} from this class.
      *
@@ -75,10 +71,10 @@ public class JsonAdaptedProject {
      * @throws IllegalValueException if some null fields exist
      */
     public Project toModelType() throws IllegalValueException {
-        assertField(name != null, "name");
-        assertField(status != null, "status");
-        assertField(clientEmail != null, "clientEmail");
-        assertField(acceptedOn != null, "acceptedOn");
+        nullCheck(name != null, "name");
+        nullCheck(status != null, "status");
+        nullCheck(clientEmail != null, "clientEmail");
+        nullCheck(acceptedOn != null, "acceptedOn");
         // NOTE: it is okay for the deadline and description to be null
         return new Project(NonEmptyString.of(name),
             status,
