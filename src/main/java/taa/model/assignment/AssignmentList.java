@@ -183,6 +183,10 @@ public class AssignmentList {
         try {
             checkValidStorage(sl);
         } catch (ParseException e) {
+            // Wipe everything >:) They naughty
+            for (Student stu : sl) {
+                stu.getSubmissionStorageStrings().clear();
+            }
             System.out.println("Parsing of submission storage string error: " + e.getMessage());
             // Calling logger here seems sus, what is a better design? also is this the best design to do the checking?
             return;
