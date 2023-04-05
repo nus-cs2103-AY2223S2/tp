@@ -20,6 +20,8 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Adding a job listing: `add`](#adding-a-job-listing-add)
   - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
   - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
   - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
   - [Sorting job listings: `sort`](#sorting-job-listings-sort)
   - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
@@ -275,6 +277,107 @@ The listing index provided exceeded the number of listings shown!
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ---
+
+### Adding a platform: `add_plat`
+
+Adds a new platform to the specified job listing.
+
+**Format:** `add_plat INDEX p/PLATFORM`
+
+**Notes:**
+
+- Ensure that INDEX is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that the platform added does not already exist in the job listing.
+- The platform name must contain only alphanumeric characters and cannot be blank.
+- The command only adds one platform at a time. Should there be more than one platform per command then only the latest platform will be taken into consideration. If the lastest platform provided is invalid, an error will occur even if the rest of the provided platforms are valid.
+
+**Examples:**
+- `add_plat 1 p/linkedin`
+- `add_plat 3 p/indeed`
+- `add_plat 2 p/glints p/jobstreet` (only "jobstreet" will be added)
+
+**Expected Output:**
+A confirmation message showing the platform as well as the title of the listing that it is added to will be shown. An example of the message is shown below:
+```ignorelang
+Platform linkedin added to listing Computer Science Intern
+```
+
+**Possible Errors:**
+
+If the index provided exceeds the number of listings shown, an error message will show:
+```ignorelang
+The listing index provided exceeded the number of listings shown!
+```
+
+If the platform provided is a duplicate and already exists in the listing, the following error message will show:
+```ignorelang
+This listing already contains the provided platform.
+```
+
+If the platform name provided is invalid, the following error message will show:
+```ignorelang
+Names should only contain alphanumeric characters and spaces, and it should not be blank.
+```
+
+If there are any other deviations from the expected format of the command, there will be an error message shown along with the correct usage of the command:
+```ignorelang
+Invalid command format! 
+add_plat: Adds a platform to a listing in the listing book.
+Parameters: INDEX (must be a positive integer) p/PLATFORM
+Example: add_plat 1 p/LinkedIn
+```
+
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+--- 
+### Delete a platform from a listing: `del_plat`
+
+Deletes a platform from a specified job listing.
+
+**Format:** `del_plat INDEX p/PLATFORM`
+
+**Notes:** 
+
+- Ensure that INDEX is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that the platform provided exists in the specified listing.
+- If more than one platform is provided per command, only the latest platform will be taken into consideration. (An error will occur if the last provided platform is invalid, even if the rest are valid).
+
+**Examples:**
+
+- `del_plat 1 p/linkedin`
+- `del_plat 2 p/linkedin p/glints` - Only "glints" will be deleted
+
+**Expected Output:**
+A confirmation message showing the deleted platform and the listing it was deleted from will be displayed, such as the one shown below:
+```ignorelang
+Platform: glints has been deleted from Computer Science Intern!
+```
+
+**Possible Errors:**
+
+If the index provided exceeds the number of listings shown, an error message will show:
+```ignorelang
+The listing index provided exceeded the number of listings shown!
+```
+
+If the platform provided does not exist in the specified listing, an error message such as the one below will show:
+```ignorelang
+Platform linkedin cannot be found in Computer Science Intern.
+```
+
+If there are other deviations from the expected command format, an error message will be displayed along with the expected usage of the command:
+```ignorelang
+Invalid command format! 
+del_plat: Deletes a platform from a listing identified by the index number used in the displayed listing book.
+Parameters: INDEX (must be a positive integer) p/PLATFORM
+Example: del_plat 1 p/LinkedIn
+```
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
+
 
 ### Locating job listings by title: `find`
 
