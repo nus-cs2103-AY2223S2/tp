@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Linkedin</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model.person</a>
+</div>
+
+<h1>Coverage Summary for Class: Linkedin (codoc.model.person)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Linkedin</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model.person;
+&nbsp;
+&nbsp;import codoc.commons.util.AppUtil;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents a Person&#39;s linkedin in CoDoc. Guarantees: immutable; is valid as declared in
+&nbsp; * {@link #isValidLinkedin(String)}
+&nbsp; */
+&nbsp;public class Linkedin {
+&nbsp;
+&nbsp;    public static final String MESSAGE_CONSTRAINTS = &quot;LinkedIn profile URL must start with &#39;linkedin.com/in/&#39;, &quot;
+&nbsp;            + &quot;followed by 3-100 characters consisting of letters, numbers, and hyphens.&quot;;
+&nbsp;
+&nbsp;    /*
+&nbsp;     * The first character of the LinkedIn must not be a whitespace,
+&nbsp;     * otherwise &quot; &quot; (a blank string) becomes a valid input.
+&nbsp;     */
+&nbsp;    public static final String VALIDATION_REGEX = &quot;linkedin\\.com/in/[a-zA-Z0-9\\\\-]{3,100}&quot;;
+&nbsp;
+&nbsp;    public final String value;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs an {@code Linkedin}.
+&nbsp;     *
+&nbsp;     * @param linkedin A valid linkedin.
+&nbsp;     */
+<b class="fc">&nbsp;    public Linkedin(String linkedin) {</b>
+<b class="fc">&nbsp;        if (linkedin != null) {</b>
+<b class="fc">&nbsp;            AppUtil.checkArgument(isValidLinkedin(linkedin), MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        value = linkedin;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if a given string is a valid email.
+&nbsp;     */
+&nbsp;    public static boolean isValidLinkedin(String test) {
+<b class="fc">&nbsp;        return test.matches(VALIDATION_REGEX);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return value;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        return other == this // short circuit if same object</b>
+&nbsp;                || (other instanceof Linkedin // instanceof handles nulls
+&nbsp;                &amp;&amp; value != null
+<b class="fc">&nbsp;                &amp;&amp; value.equals(((Linkedin) other).value)); // state check</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        return value.hashCode();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

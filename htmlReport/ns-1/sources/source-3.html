@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainApp</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc</a>
+</div>
+
+<h1>Coverage Summary for Class: MainApp (codoc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainApp</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/77)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.nio.file.Path;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;import codoc.commons.core.Config;
+&nbsp;import codoc.commons.core.LogsCenter;
+&nbsp;import codoc.commons.core.Version;
+&nbsp;import codoc.commons.exceptions.DataConversionException;
+&nbsp;import codoc.commons.util.ConfigUtil;
+&nbsp;import codoc.commons.util.StringUtil;
+&nbsp;import codoc.logic.Logic;
+&nbsp;import codoc.logic.LogicManager;
+&nbsp;import codoc.model.Codoc;
+&nbsp;import codoc.model.Model;
+&nbsp;import codoc.model.ModelManager;
+&nbsp;import codoc.model.ReadOnlyCodoc;
+&nbsp;import codoc.model.ReadOnlyUserPrefs;
+&nbsp;import codoc.model.UserPrefs;
+&nbsp;import codoc.model.util.SampleDataUtil;
+&nbsp;import codoc.storage.CodocStorage;
+&nbsp;import codoc.storage.JsonCodocStorage;
+&nbsp;import codoc.storage.JsonUserPrefsStorage;
+&nbsp;import codoc.storage.Storage;
+&nbsp;import codoc.storage.StorageManager;
+&nbsp;import codoc.storage.UserPrefsStorage;
+&nbsp;import codoc.ui.Ui;
+&nbsp;import codoc.ui.UiManager;
+&nbsp;import javafx.application.Application;
+&nbsp;import javafx.scene.text.Font;
+&nbsp;import javafx.stage.Stage;
+&nbsp;
+&nbsp;/**
+&nbsp; * Runs the application.
+&nbsp; */
+<b class="nc">&nbsp;public class MainApp extends Application {</b>
+&nbsp;
+<b class="nc">&nbsp;    public static final Version VERSION = new Version(1, 3, 1, true);</b>
+&nbsp;
+<b class="nc">&nbsp;    private static final Logger logger = LogsCenter.getLogger(MainApp.class);</b>
+&nbsp;
+&nbsp;    protected Ui ui;
+&nbsp;    protected Logic logic;
+&nbsp;    protected Storage storage;
+&nbsp;    protected Model model;
+&nbsp;    protected Config config;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void init() throws Exception {
+<b class="nc">&nbsp;        logger.info(&quot;=============================[ Initializing CoDoc ]===========================&quot;);</b>
+<b class="nc">&nbsp;        super.init();</b>
+&nbsp;
+<b class="nc">&nbsp;        Font rbtBold = Font.loadFont(getClass().getResourceAsStream(&quot;/font/Roboto_Bold.ttf&quot;), 10);</b>
+<b class="nc">&nbsp;        Font rbtReg = Font.loadFont(getClass().getResourceAsStream(&quot;/font/Roboto_Medium.ttf&quot;), 10);</b>
+<b class="nc">&nbsp;        Font rbtLight = Font.loadFont(getClass().getResourceAsStream(&quot;/font/Roboto_Light.ttf&quot;), 10);</b>
+<b class="nc">&nbsp;        Font rbtmBold = Font.loadFont(getClass().getResourceAsStream(&quot;/font/RobotoMono_Bold.ttf&quot;), 10);</b>
+<b class="nc">&nbsp;        Font rbtmReg = Font.loadFont(getClass().getResourceAsStream(&quot;/font/RobotoMono_Regular.ttf&quot;), 10);</b>
+<b class="nc">&nbsp;        Font rbtmLight = Font.loadFont(getClass().getResourceAsStream(&quot;/font/RobotoMono_Light.ttf&quot;), 10);</b>
+&nbsp;
+<b class="nc">&nbsp;        AppParameters appParameters = AppParameters.parse(getParameters());</b>
+<b class="nc">&nbsp;        config = initConfig(appParameters.getConfigPath());</b>
+&nbsp;
+<b class="nc">&nbsp;        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());</b>
+<b class="nc">&nbsp;        UserPrefs userPrefs = initPrefs(userPrefsStorage);</b>
+<b class="nc">&nbsp;        CodocStorage codocStorage = new JsonCodocStorage(userPrefs.getCodocFilePath());</b>
+<b class="nc">&nbsp;        storage = new StorageManager(codocStorage, userPrefsStorage);</b>
+&nbsp;
+<b class="nc">&nbsp;        initLogging(config);</b>
+&nbsp;
+<b class="nc">&nbsp;        model = initModelManager(storage, userPrefs);</b>
+&nbsp;
+<b class="nc">&nbsp;        logic = new LogicManager(model, storage);</b>
+&nbsp;
+<b class="nc">&nbsp;        ui = new UiManager(logic);</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a {@code ModelManager} with the data from {@code storage}&#39;s CoDoc and {@code userPrefs}. &lt;br&gt;
+&nbsp;     * The data from the sample CoDoc will be used instead if {@code storage}&#39;s CoDoc is not found,
+&nbsp;     * or an empty CoDoc will be used instead if errors occur when reading {@code storage}&#39;s CoDoc.
+&nbsp;     */
+&nbsp;    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+&nbsp;        Optional&lt;ReadOnlyCodoc&gt; codocOptional;
+&nbsp;        ReadOnlyCodoc initialData;
+&nbsp;        try {
+<b class="nc">&nbsp;            codocOptional = storage.readCodoc();</b>
+<b class="nc">&nbsp;            if (!codocOptional.isPresent()) {</b>
+<b class="nc">&nbsp;                logger.info(&quot;Data file not found. Will be starting with a sample Codoc&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            initialData = codocOptional.orElseGet(SampleDataUtil::getSampleCodoc);</b>
+<b class="nc">&nbsp;        } catch (DataConversionException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Data file not in the correct format. Will be starting with an empty Codoc&quot;);</b>
+<b class="nc">&nbsp;            initialData = new Codoc();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Problem while reading from the file. Will be starting with an empty Codoc&quot;);</b>
+<b class="nc">&nbsp;            initialData = new Codoc();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return new ModelManager(initialData, userPrefs);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void initLogging(Config config) {
+<b class="nc">&nbsp;        LogsCenter.init(config);</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a {@code Config} using the file at {@code configFilePath}. &lt;br&gt;
+&nbsp;     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
+&nbsp;     * if {@code configFilePath} is null.
+&nbsp;     */
+&nbsp;    protected Config initConfig(Path configFilePath) {
+&nbsp;        Config initializedConfig;
+&nbsp;        Path configFilePathUsed;
+&nbsp;
+<b class="nc">&nbsp;        configFilePathUsed = Config.DEFAULT_CONFIG_FILE;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (configFilePath != null) {</b>
+<b class="nc">&nbsp;            logger.info(&quot;Custom Config file specified &quot; + configFilePath);</b>
+<b class="nc">&nbsp;            configFilePathUsed = configFilePath;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        logger.info(&quot;Using config file : &quot; + configFilePathUsed);</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            Optional&lt;Config&gt; configOptional = ConfigUtil.readConfig(configFilePathUsed);</b>
+<b class="nc">&nbsp;            initializedConfig = configOptional.orElse(new Config());</b>
+<b class="nc">&nbsp;        } catch (DataConversionException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Config file at &quot; + configFilePathUsed + &quot; is not in the correct format. &quot;</b>
+&nbsp;                    + &quot;Using default config properties&quot;);
+<b class="nc">&nbsp;            initializedConfig = new Config();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        //Update config file in case it was missing to begin with or there are new/unused fields
+&nbsp;        try {
+<b class="nc">&nbsp;            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Failed to save config file : &quot; + StringUtil.getDetails(e));</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return initializedConfig;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns a {@code UserPrefs} using the file at {@code storage}&#39;s user prefs file path,
+&nbsp;     * or a new {@code UserPrefs} with default configuration if errors occur when
+&nbsp;     * reading from the file.
+&nbsp;     */
+&nbsp;    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+<b class="nc">&nbsp;        Path prefsFilePath = storage.getUserPrefsFilePath();</b>
+<b class="nc">&nbsp;        logger.info(&quot;Using prefs file : &quot; + prefsFilePath);</b>
+&nbsp;
+&nbsp;        UserPrefs initializedPrefs;
+&nbsp;        try {
+<b class="nc">&nbsp;            Optional&lt;UserPrefs&gt; prefsOptional = storage.readUserPrefs();</b>
+<b class="nc">&nbsp;            initializedPrefs = prefsOptional.orElse(new UserPrefs());</b>
+<b class="nc">&nbsp;        } catch (DataConversionException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;UserPrefs file at &quot; + prefsFilePath + &quot; is not in the correct format. &quot;</b>
+&nbsp;                    + &quot;Using default user prefs&quot;);
+<b class="nc">&nbsp;            initializedPrefs = new UserPrefs();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Problem while reading from the file. Will be starting with an empty Codoc&quot;);</b>
+<b class="nc">&nbsp;            initializedPrefs = new UserPrefs();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        //Update prefs file in case it was missing to begin with or there are new/unused fields
+&nbsp;        try {
+<b class="nc">&nbsp;            storage.saveUserPrefs(initializedPrefs);</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Failed to save config file : &quot; + StringUtil.getDetails(e));</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return initializedPrefs;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void start(Stage primaryStage) {
+<b class="nc">&nbsp;        logger.info(&quot;Starting Codoc &quot; + MainApp.VERSION);</b>
+<b class="nc">&nbsp;        ui.start(primaryStage);</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void stop() {
+<b class="nc">&nbsp;        logger.info(&quot;============================ [ Stopping CoDoc ] =============================&quot;);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            storage.saveUserPrefs(model.getUserPrefs());</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.severe(&quot;Failed to save preferences &quot; + StringUtil.getDetails(e));</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

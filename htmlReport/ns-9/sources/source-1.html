@@ -1,0 +1,208 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddCommandParser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.logic.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: AddCommandParser (codoc.logic.parser)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddCommandParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.logic.parser;
+&nbsp;
+&nbsp;import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
+&nbsp;
+&nbsp;import java.util.Random;
+&nbsp;import java.util.Set;
+&nbsp;import java.util.stream.Stream;
+&nbsp;
+&nbsp;import codoc.logic.commands.AddCommand;
+&nbsp;import codoc.logic.parser.exceptions.ParseException;
+&nbsp;import codoc.model.course.Course;
+&nbsp;import codoc.model.module.Module;
+&nbsp;import codoc.model.person.Email;
+&nbsp;import codoc.model.person.Github;
+&nbsp;import codoc.model.person.Linkedin;
+&nbsp;import codoc.model.person.Name;
+&nbsp;import codoc.model.person.Person;
+&nbsp;import codoc.model.person.ProfilePicture;
+&nbsp;import codoc.model.person.Year;
+&nbsp;import codoc.model.skill.Skill;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * Parses input arguments and creates a new AddCommand object
+&nbsp; */
+<b class="fc">&nbsp;public class AddCommandParser implements Parser&lt;AddCommand&gt; {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+&nbsp;     * {@code ArgumentMultimap}.
+&nbsp;     */
+&nbsp;    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+<b class="fc">&nbsp;        return Stream.of(prefixes).allMatch(prefix -&gt; argumentMultimap.getValue(prefix).isPresent());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
+&nbsp;     * for execution.
+&nbsp;     *
+&nbsp;     * @throws ParseException if the user input does not conform the expected format
+&nbsp;     */
+&nbsp;    public AddCommand parse(String args) throws ParseException {
+<b class="fc">&nbsp;        ArgumentMultimap argMultimap =</b>
+<b class="fc">&nbsp;                ArgumentTokenizer.tokenize(</b>
+&nbsp;                        args,
+&nbsp;                        PREFIX_NAME,
+&nbsp;                        PREFIX_GITHUB, PREFIX_EMAIL,
+&nbsp;                        PREFIX_LINKEDIN,
+&nbsp;                        PREFIX_SKILL,
+&nbsp;                        PREFIX_MOD,
+&nbsp;                        PREFIX_COURSE,
+&nbsp;                        PREFIX_YEAR
+&nbsp;                );
+&nbsp;
+<b class="fc">&nbsp;        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_YEAR, PREFIX_COURSE)</b>
+<b class="fc">&nbsp;                || !argMultimap.getPreamble().isEmpty()) {</b>
+<b class="fc">&nbsp;            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        /*
+&nbsp;        // randomly select a profile pic from the folder
+&nbsp;        File[] files =
+&nbsp;                new File(&quot;src/main/resources/images/avataricons&quot;).listFiles();
+&nbsp;        assert files != null;
+&nbsp;        int randomIndex = new Random().nextInt(files.length);
+&nbsp;        String profilePicturePath = files[randomIndex].getAbsolutePath();
+&nbsp;        */
+&nbsp;
+<b class="fc">&nbsp;        String[] picture = {&quot;001-bear.png&quot;, &quot;002-rabbit.png&quot;, &quot;003-panda.png&quot;, &quot;004-sloth.png&quot;, &quot;005-hen.png&quot;, &quot;006&quot;</b>
+&nbsp;                + &quot;-puffer-fish.png&quot;, &quot;007-beaver.png&quot;, &quot;008-hedgehog.png&quot;, &quot;009-penguin.png&quot;, &quot;010-owl.png&quot;, &quot;011&quot;
+&nbsp;                + &quot;-ostrich.png&quot;, &quot;012-llama.png&quot;, &quot;013-chicken.png&quot;, &quot;014-giraffe.png&quot;, &quot;015-bat.png&quot;, &quot;016-koala&quot;
+&nbsp;                + &quot;.png&quot;, &quot;017-parrot.png&quot;, &quot;018-lion.png&quot;, &quot;019-ferret.png&quot;, &quot;020-chameleons.png&quot;, &quot;021-octopus&quot;
+&nbsp;                + &quot;.png&quot;, &quot;022-dog.png&quot;, &quot;023-frog.png&quot;, &quot;024-turtle.png&quot;, &quot;025-cow.png&quot;, &quot;026-wild-boar.png&quot;, &quot;027&quot;
+&nbsp;                + &quot;-wolf.png&quot;, &quot;028-cat.png&quot;, &quot;029-mouse.png&quot;, &quot;030-hippopotamus.png&quot;, &quot;031-snake.png&quot;, &quot;032-rhino&quot;
+&nbsp;                + &quot;.png&quot;, &quot;033-horse.png&quot;, &quot;034-gorilla.png&quot;, &quot;036-monkey.png&quot;, &quot;037-sheep.png&quot;, &quot;038-duck.png&quot;, &quot;042&quot;
+&nbsp;                + &quot;-walrus.png&quot;, &quot;043-pig.png&quot;, &quot;044-zebra.png&quot;, &quot;045-crab.png&quot;, &quot;046-skunk.png&quot;, &quot;047-squirrel&quot;
+&nbsp;                + &quot;.png&quot;, &quot;048-camel.png&quot;, &quot;049-elephant.png&quot;, &quot;050-bee.png&quot;};
+&nbsp;
+<b class="fc">&nbsp;        int randomIndex = new Random().nextInt(picture.length);</b>
+&nbsp;
+&nbsp;        // set the profile pic of the person
+<b class="fc">&nbsp;        ProfilePicture profilePicture = new ProfilePicture(&quot;/images/avataricons/&quot; + picture[randomIndex]);</b>
+<b class="fc">&nbsp;        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());</b>
+<b class="fc">&nbsp;        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElseGet(() -&gt; null));</b>
+<b class="fc">&nbsp;        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());</b>
+<b class="fc">&nbsp;        Course course = ParserUtil.parseCourse(argMultimap.getValue(PREFIX_COURSE).get());</b>
+<b class="fc">&nbsp;        Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());</b>
+<b class="fc">&nbsp;        Linkedin linkedin = ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).orElseGet(() -&gt; null));</b>
+<b class="fc">&nbsp;        Set&lt;Skill&gt; skillList = ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL));</b>
+<b class="fc">&nbsp;        Set&lt;Module&gt; moduleSet = ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD));</b>
+&nbsp;
+<b class="fc">&nbsp;        Person person = new Person(profilePicture, name, course, year, github, email, linkedin, skillList, moduleSet);</b>
+&nbsp;
+<b class="fc">&nbsp;        return new AddCommand(person);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

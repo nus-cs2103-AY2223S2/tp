@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CourseList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model.course</a>
+</div>
+
+<h1>Coverage Summary for Class: CourseList (codoc.model.course)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CourseList</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.6%
+  </span>
+  <span class="absValue">
+    (2/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model.course;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Arrays;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents the list of courses that CoDoc supports
+&nbsp; */
+<b class="nc">&nbsp;public class CourseList {</b>
+<b class="fc">&nbsp;    public static final ArrayList&lt;String&gt; COURSE_LIST = new ArrayList&lt;&gt;(</b>
+<b class="fc">&nbsp;            Arrays.asList(</b>
+&nbsp;                    &quot;Accounting&quot;,
+&nbsp;                    &quot;Architecture&quot;,
+&nbsp;                    &quot;Business Administration&quot;,
+&nbsp;                    &quot;Business Analytics&quot;,
+&nbsp;                    &quot;Computer Engineering&quot;,
+&nbsp;                    &quot;Computer Science&quot;,
+&nbsp;                    &quot;Economics&quot;,
+&nbsp;                    &quot;Geography&quot;,
+&nbsp;                    &quot;Information Systems&quot;,
+&nbsp;                    &quot;Information Security&quot;,
+&nbsp;                    &quot;Life Sciences&quot;,
+&nbsp;                    &quot;Pharmaceutical Science&quot;,
+&nbsp;                    &quot;Physics&quot;
+&nbsp;            )
+&nbsp;    );
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        String result = &quot;&quot;;</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; COURSE_LIST.size(); i++) {</b>
+<b class="nc">&nbsp;            result = result + String.format(&quot;\n%d. %s&quot;, i + 1, COURSE_LIST.get(i));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return result;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

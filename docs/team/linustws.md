@@ -9,22 +9,44 @@ CoDoc is a desktop contact management application. The user interacts with it us
 
 Given below are my contributions to the project.
 
-* **New Feature**: (To be added)
-  * What it does: (To be added)
-  * Justification: (To be added)
-  * Highlights: (To be added)
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Boosted `find` command. [#74](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/74), [#82](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/82), [#94](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/94)
+  * What it does: Allows users to find contacts by their year and course using a single find command. 
+  * Justification: To enhance the search ability of users, so they can find contacts based on their year and course, on top of their name, enabling them to reach out to them for collaboration quicker and more effectively. This would be useful, especially if the user has many contacts.
+  * Highlights: 
+    * Made finding to find by logical AND, both across different prefixes and within the same prefix. This follows the typical convention that websites use for their filters, e.g. Shopee and YouTube.
+    * Made it such that finding uses _contains_ instead of _containsWord_ as it is more commonly used, e.g. `Cmd-F`/`Ctrl-F` also uses _contains_.
+    * Made `find` command case-insensitive to allows users to search faster without having to press the `Caps Lock` key.
+* **New Feature**: Implemented clicking of tabs and PersonCard. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
+  * What it does: Allows users to click on the PersonCard in the PersonListPanel to view the details on the right info panel and allows users to change tabs by clicking.
+  * Justification: To add flexibility and convenience for users on top of the `view` command.
+  * Highlights:
+    * Had trouble implementing things like FireEvent/CatchEvent/EventDispatcherChain to handle events smoothly, but managed to work around it though not the best solution.
+    * Was later improved with Harin's fix. [#129](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/129)
+* **New Feature**: Added default profile pictures. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
+  * What it does: Improves aesthetics of CoDoc, can allow users to identify contacts by specific profile pictures as well.
+  * Justification: As much as we wanted to allow the user to be able to add their own preferred profile pictures, this allows each contact to have a semi-unique (allows duplicates) profile picture the moment it is added, eliminating the need for the user to add it manually every time.
+  * Highlights:
+    * Profile picture path is saved as a person's attribute.
+    * They are randomly generated from a pool of 50 pictures when the person is added.
+  * Credits: The pool of 50 pictures was sourced from here: https://www.flaticon.com/packs/animals-123
 
-* **New Feature**: (To be added)
-
-* **Code contributed**: (To be added)
+* **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linustws&tabRepo=AY2223S2-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * (To be added)
+    * Merged PRs authored by team members.
+    * Reviewed, commented and provided feedback on PRs.
+    * Opened and assigned issues to team members and myself.
+    * Reminded teammates about the deliverables every week.
+    * Updated site-wide settings. [#28](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/28)
+    * Renamed packages to remove anything related to AB3. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
 
 * **Enhancements to existing features**:
-  * (To be added)
-  * (To be added)
+  * Modified `Tag` to `Skill` to fit CoDoc's value proposition better. [#46](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/46)
+  * Modified `Phone` to `GitHub` with appropriate constraints, made optional. [#58](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/58), [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56)
+  * Modified `Address` to `LinkedIn` with appropriate constraints, made optional. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64), [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56)
+  * Modified `PersonListCard` and rearranged the details to improve user visibility. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
+  * Added scroll to last person when added so user can see its index for convenience. [#160](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/160)
+  * Minor improvements and bug fixes: [#107](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/107), [#122](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/122), [#126](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/126), [#127](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/127), [#135](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/135), [#147](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/147), [#170](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/170)
 
 * **Documentation**:
   * User Guide:
@@ -40,7 +62,10 @@ Given below are my contributions to the project.
   * (To be added)
 
 * **Tools**:
-  * (To be added)
-  * (To be added)
+    * Java
+    * JavaFX
+    * SceneBuilder
+    * Jackson
+    * Junit5
 
 * _{you can add/remove categories in the list above}_

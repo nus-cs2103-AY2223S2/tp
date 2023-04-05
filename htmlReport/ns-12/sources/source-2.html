@@ -1,0 +1,266 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JsonAdaptedPerson</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.storage</a>
+</div>
+
+<h1>Coverage Summary for Class: JsonAdaptedPerson (codoc.storage)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JsonAdaptedPerson</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97%
+  </span>
+  <span class="absValue">
+    (65/67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.storage;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Set;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;import com.fasterxml.jackson.annotation.JsonCreator;
+&nbsp;import com.fasterxml.jackson.annotation.JsonProperty;
+&nbsp;
+&nbsp;import codoc.commons.exceptions.IllegalValueException;
+&nbsp;import codoc.model.course.Course;
+&nbsp;import codoc.model.module.Module;
+&nbsp;import codoc.model.person.Email;
+&nbsp;import codoc.model.person.Github;
+&nbsp;import codoc.model.person.Linkedin;
+&nbsp;import codoc.model.person.Name;
+&nbsp;import codoc.model.person.Person;
+&nbsp;import codoc.model.person.ProfilePicture;
+&nbsp;import codoc.model.person.Year;
+&nbsp;import codoc.model.skill.Skill;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * Jackson-friendly version of {@link Person}.
+&nbsp; */
+&nbsp;class JsonAdaptedPerson {
+&nbsp;
+&nbsp;    public static final String MISSING_FIELD_MESSAGE_FORMAT = &quot;Person&#39;s %s field is missing!&quot;;
+&nbsp;
+&nbsp;    private final String profilePicturePath;
+&nbsp;    private final String name;
+&nbsp;    private final String course;
+&nbsp;    private final String year;
+&nbsp;    private final String github;
+&nbsp;    private final String email;
+&nbsp;    private final String linkedin;
+<b class="fc">&nbsp;    private final List&lt;JsonAdaptedSkill&gt; skills = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private final List&lt;JsonAdaptedModule&gt; modules = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+&nbsp;     */
+&nbsp;    @JsonCreator
+&nbsp;    public JsonAdaptedPerson(
+&nbsp;            @JsonProperty(&quot;profilePicturePath&quot;) String profilePicturePath,
+&nbsp;            @JsonProperty(&quot;name&quot;) String name,
+&nbsp;            @JsonProperty(&quot;course&quot;) String course,
+&nbsp;            @JsonProperty(&quot;year&quot;) String year,
+&nbsp;            @JsonProperty(&quot;github&quot;) String github,
+&nbsp;            @JsonProperty(&quot;email&quot;) String email,
+&nbsp;            @JsonProperty(&quot;linkedin&quot;) String linkedin,
+&nbsp;            @JsonProperty(&quot;skills&quot;) List&lt;JsonAdaptedSkill&gt; skills,
+&nbsp;            @JsonProperty(&quot;modules&quot;) List&lt;JsonAdaptedModule&gt; modules
+<b class="fc">&nbsp;    ) {</b>
+<b class="fc">&nbsp;        this.profilePicturePath = profilePicturePath;</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.course = course;</b>
+<b class="fc">&nbsp;        this.year = year;</b>
+<b class="fc">&nbsp;        this.github = github;</b>
+<b class="fc">&nbsp;        this.email = email;</b>
+<b class="fc">&nbsp;        this.linkedin = linkedin;</b>
+<b class="fc">&nbsp;        if (skills != null) {</b>
+<b class="fc">&nbsp;            this.skills.addAll(skills);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (modules != null) {</b>
+<b class="fc">&nbsp;            this.modules.addAll(modules);</b>
+&nbsp;        }
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Converts a given {@code Person} into this class for Jackson use.
+&nbsp;     */
+<b class="fc">&nbsp;    public JsonAdaptedPerson(Person source) {</b>
+<b class="fc">&nbsp;        profilePicturePath = source.getProfilePicture().profilePicturePath;</b>
+<b class="fc">&nbsp;        name = source.getName().fullName;</b>
+<b class="fc">&nbsp;        course = source.getCourse().course;</b>
+<b class="fc">&nbsp;        year = source.getYear().year;</b>
+<b class="fc">&nbsp;        github = source.getGithub().value;</b>
+<b class="fc">&nbsp;        email = source.getEmail().value;</b>
+<b class="fc">&nbsp;        linkedin = source.getLinkedin().value;</b>
+<b class="fc">&nbsp;        skills.addAll(source.getSkills().stream()</b>
+<b class="fc">&nbsp;                .map(JsonAdaptedSkill::new)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toList()));</b>
+<b class="fc">&nbsp;        modules.addAll(source.getModules().stream()</b>
+<b class="fc">&nbsp;                .map(JsonAdaptedModule::new)</b>
+<b class="fc">&nbsp;                .collect(Collectors.toList()));</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Converts this Jackson-friendly adapted person object into the model&#39;s {@code Person} object.
+&nbsp;     *
+&nbsp;     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+&nbsp;     */
+&nbsp;    public Person toModelType() throws IllegalValueException {
+<b class="fc">&nbsp;        final List&lt;Skill&gt; personSkills = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        final List&lt;Module&gt; personModules = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        for (JsonAdaptedSkill skill : skills) {</b>
+<b class="fc">&nbsp;            personSkills.add(skill.toModelType());</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for (JsonAdaptedModule module : modules) {</b>
+<b class="fc">&nbsp;            personModules.add(module.toModelType());</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        if (profilePicturePath == null) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,</b>
+<b class="fc">&nbsp;                    ProfilePicture.class.getSimpleName()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicturePath);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (name == null) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!Name.isValidName(name)) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Name modelName = new Name(name);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (github != null &amp;&amp; !Github.isValidGithub(github)) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Github modelGithub = new Github(github);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (email == null) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!Email.isValidEmail(email)) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Email modelEmail = new Email(email);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (course != null &amp;&amp; !Course.isValidCourse(Course.getIndex(course))) {</b>
+<b class="nc">&nbsp;            throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Course modelCourse = new Course(Course.getIndex(course));</b>
+&nbsp;
+<b class="fc">&nbsp;        if (year != null &amp;&amp; !Year.isValidYear(year)) {</b>
+<b class="nc">&nbsp;            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Year modelYear = new Year(year);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (linkedin != null &amp;&amp; !Linkedin.isValidLinkedin(linkedin)) {</b>
+<b class="fc">&nbsp;            throw new IllegalValueException(Linkedin.MESSAGE_CONSTRAINTS);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        final Linkedin modelLinkedin = new Linkedin(linkedin);</b>
+&nbsp;
+<b class="fc">&nbsp;        final Set&lt;Skill&gt; modelSkills = new HashSet&lt;&gt;(personSkills);</b>
+<b class="fc">&nbsp;        final Set&lt;Module&gt; modelModules = new HashSet&lt;&gt;(personModules);</b>
+<b class="fc">&nbsp;        return new Person(</b>
+&nbsp;                modelProfilePicture,
+&nbsp;                modelName,
+&nbsp;                modelCourse,
+&nbsp;                modelYear,
+&nbsp;                modelGithub,
+&nbsp;                modelEmail,
+&nbsp;                modelLinkedin,
+&nbsp;                modelSkills,
+&nbsp;                modelModules
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ModelManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ModelManager (codoc.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ModelManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90.9%
+  </span>
+  <span class="absValue">
+    (20/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.5%
+  </span>
+  <span class="absValue">
+    (64/67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model;
+&nbsp;
+&nbsp;import static codoc.commons.util.CollectionUtil.requireAllNonNull;
+&nbsp;import static java.util.Objects.requireNonNull;
+&nbsp;
+&nbsp;import java.nio.file.Path;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.function.Predicate;
+&nbsp;import java.util.logging.Level;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;import codoc.commons.core.GuiSettings;
+&nbsp;import codoc.commons.core.LogsCenter;
+&nbsp;import codoc.model.person.Person;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.collections.transformation.FilteredList;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents the in-memory model of CoDoc data.
+&nbsp; */
+&nbsp;public class ModelManager implements Model {
+<b class="fc">&nbsp;    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);</b>
+&nbsp;
+&nbsp;    private final Codoc codoc;
+&nbsp;    private final UserPrefs userPrefs;
+&nbsp;    private final FilteredList&lt;Person&gt; filteredPersons;
+&nbsp;    private Person protagonist;
+&nbsp;    private String currentTab;
+<b class="fc">&nbsp;    private final ArrayList&lt;Predicate&lt;Person&gt;&gt; predicateArrayList = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private String appliedPredicates = &quot;&quot;;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Initializes a ModelManager with the given codoc and userPrefs.
+&nbsp;     */
+<b class="fc">&nbsp;    public ModelManager(ReadOnlyCodoc codoc, ReadOnlyUserPrefs userPrefs) {</b>
+<b class="fc">&nbsp;        requireAllNonNull(codoc, userPrefs);</b>
+&nbsp;
+<b class="fc">&nbsp;        logger.fine(&quot;Initializing with CoDoc: &quot; + codoc + &quot; and user prefs &quot; + userPrefs);</b>
+&nbsp;
+<b class="fc">&nbsp;        this.codoc = new Codoc(codoc);</b>
+<b class="fc">&nbsp;        this.userPrefs = new UserPrefs(userPrefs);</b>
+<b class="fc">&nbsp;        filteredPersons = new FilteredList&lt;&gt;(this.codoc.getPersonList());</b>
+<b class="fc">&nbsp;        if (filteredPersons.size() == 0) { // fresh database</b>
+<b class="fc">&nbsp;            protagonist = Person.getDummyPerson();</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            protagonist = filteredPersons.get(0);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        currentTab = &quot;c&quot;;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public ModelManager() {
+<b class="fc">&nbsp;        this(new Codoc(), new UserPrefs());</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    //=========== UserPrefs ==================================================================================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+<b class="fc">&nbsp;        requireNonNull(userPrefs);</b>
+<b class="fc">&nbsp;        this.userPrefs.resetData(userPrefs);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ReadOnlyUserPrefs getUserPrefs() {
+<b class="fc">&nbsp;        return userPrefs;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public GuiSettings getGuiSettings() {
+<b class="fc">&nbsp;        return userPrefs.getGuiSettings();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setGuiSettings(GuiSettings guiSettings) {
+<b class="fc">&nbsp;        requireNonNull(guiSettings);</b>
+<b class="fc">&nbsp;        userPrefs.setGuiSettings(guiSettings);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Path getCodocFilePath() {
+<b class="fc">&nbsp;        return userPrefs.getCodocFilePath();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setCodocFilePath(Path codocFilePath) {
+<b class="fc">&nbsp;        requireNonNull(codocFilePath);</b>
+<b class="fc">&nbsp;        userPrefs.setCodocFilePath(codocFilePath);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    //=========== Codoc ================================================================================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setCodoc(ReadOnlyCodoc codoc) {
+<b class="fc">&nbsp;        this.codoc.resetData(codoc);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ReadOnlyCodoc getCodoc() {
+<b class="fc">&nbsp;        return codoc;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean hasPerson(Person person) {
+<b class="fc">&nbsp;        requireNonNull(person);</b>
+<b class="fc">&nbsp;        return codoc.hasPerson(person);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deletePerson(Person target) {
+<b class="fc">&nbsp;        codoc.removePerson(target);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void addPerson(Person person) {
+<b class="fc">&nbsp;        codoc.addPerson(person);</b>
+<b class="fc">&nbsp;        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, &quot;&quot;);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setPerson(Person target, Person editedPerson) {
+<b class="fc">&nbsp;        requireAllNonNull(target, editedPerson);</b>
+&nbsp;
+<b class="fc">&nbsp;        codoc.setPerson(target, editedPerson);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    //=========== Filtered Person List Accessors =============================================================
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+&nbsp;     * {@code versionedCodoc}
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public ObservableList&lt;Person&gt; getFilteredPersonList() {
+<b class="fc">&nbsp;        return filteredPersons;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String updateFilteredPersonList(Predicate&lt;Person&gt; predicate, String userInput) {
+<b class="fc">&nbsp;        requireNonNull(predicate);</b>
+<b class="fc">&nbsp;        if (predicate == PREDICATE_SHOW_ALL_PERSONS) {</b>
+<b class="fc">&nbsp;            predicateArrayList.clear();</b>
+<b class="fc">&nbsp;            appliedPredicates = &quot;&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!userInput.equals(&quot;&quot;)) {</b>
+<b class="fc">&nbsp;            predicateArrayList.add(predicate);</b>
+<b class="fc">&nbsp;            appliedPredicates = userInput + &quot;\n&quot; + appliedPredicates;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        Predicate&lt;Person&gt; combinePredicate = predicateArrayList.stream().reduce(person -&gt; true, Predicate::and);</b>
+<b class="fc">&nbsp;        filteredPersons.setPredicate(combinePredicate);</b>
+<b class="fc">&nbsp;        logger.log(Level.INFO, &quot;Number of predicates = &quot; + predicateArrayList.size());</b>
+<b class="fc">&nbsp;        return &quot;&gt; &quot; + appliedPredicates.trim();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //=========== Protagonist ================================================================================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Person getProtagonist() {
+<b class="fc">&nbsp;        return protagonist;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setProtagonist(Person protagonist) {
+<b class="fc">&nbsp;        this.protagonist = protagonist;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    //=========== InfoTab ====================================================================================
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String getCurrentTab() {
+<b class="nc">&nbsp;        return currentTab;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void setCurrentTab(String tab) {
+<b class="nc">&nbsp;        currentTab = tab;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object obj) {
+&nbsp;        // short circuit if same object
+<b class="fc">&nbsp;        if (obj == this) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // instanceof handles nulls
+<b class="fc">&nbsp;        if (!(obj instanceof ModelManager)) {</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // state check
+<b class="fc">&nbsp;        ModelManager other = (ModelManager) obj;</b>
+<b class="fc">&nbsp;        return codoc.equals(other.codoc)</b>
+<b class="fc">&nbsp;                &amp;&amp; userPrefs.equals(other.userPrefs)</b>
+<b class="fc">&nbsp;                &amp;&amp; filteredPersons.equals(other.filteredPersons);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

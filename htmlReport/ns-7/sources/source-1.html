@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.logic.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: AddCommand (codoc.logic.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.logic.commands;
+&nbsp;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
+&nbsp;import static java.util.Objects.requireNonNull;
+&nbsp;
+&nbsp;import codoc.logic.commands.exceptions.CommandException;
+&nbsp;import codoc.model.Model;
+&nbsp;import codoc.model.person.Person;
+&nbsp;
+&nbsp;/**
+&nbsp; * Adds a person to CoDoc.
+&nbsp; */
+&nbsp;public class AddCommand extends Command {
+&nbsp;
+&nbsp;    public static final String COMMAND_WORD = &quot;add&quot;;
+&nbsp;
+<b class="fc">&nbsp;    public static final String MESSAGE_USAGE = COMMAND_WORD + &quot;: Adds a person to CoDoc. \n&quot;</b>
+&nbsp;            + &quot;Parameters: &quot;
+&nbsp;            + PREFIX_NAME + &quot;NAME &quot;
+&nbsp;            + PREFIX_EMAIL + &quot;EMAIL &quot;
+&nbsp;            + PREFIX_COURSE + &quot;COURSE &quot;
+&nbsp;            + PREFIX_YEAR + &quot;YEAR &quot;
+&nbsp;            + &quot;[&quot; + PREFIX_GITHUB + &quot;GITHUB] &quot;
+&nbsp;            + &quot;[&quot; + PREFIX_LINKEDIN + &quot;LINKEDIN]\n&quot;
+&nbsp;            + &quot;[&quot; + PREFIX_SKILL + &quot;SKILL]\n&quot;
+&nbsp;            + &quot;[&quot; + PREFIX_MOD + &quot;MOD]...\n&quot;
+&nbsp;            + &quot;Example: &quot; + COMMAND_WORD + &quot; &quot;
+&nbsp;            + PREFIX_NAME + &quot;John Doe &quot;
+&nbsp;            + PREFIX_EMAIL + &quot;johnd@example.com &quot;
+&nbsp;            + PREFIX_COURSE + &quot;1 &quot;
+&nbsp;            + PREFIX_YEAR + &quot;2 &quot;
+&nbsp;            + PREFIX_GITHUB + &quot;j0hn-Do3 &quot;
+&nbsp;            + PREFIX_LINKEDIN + &quot;linkedin.com/in/j0hn-Do3 &quot;
+&nbsp;            + PREFIX_SKILL + &quot;python &quot;
+&nbsp;            + PREFIX_SKILL + &quot;java&quot;
+&nbsp;            + PREFIX_MOD + &quot;AY2223S2 CS2100&quot;
+&nbsp;            + PREFIX_MOD + &quot;AY2122S1 CS1101S&quot;;
+&nbsp;
+&nbsp;    public static final String MESSAGE_SUCCESS = &quot;New person added: %1$s&quot;;
+&nbsp;    public static final String MESSAGE_DUPLICATE_PERSON = &quot;This person already exists in CoDoc&quot;;
+&nbsp;
+&nbsp;    private final Person toAdd;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates an AddCommand to add the specified {@code Person}
+&nbsp;     */
+<b class="fc">&nbsp;    public AddCommand(Person person) {</b>
+<b class="fc">&nbsp;        requireNonNull(person);</b>
+<b class="fc">&nbsp;        toAdd = person;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public CommandResult execute(Model model) throws CommandException {
+<b class="fc">&nbsp;        requireNonNull(model);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (model.hasPerson(toAdd)) {</b>
+<b class="fc">&nbsp;            throw new CommandException(MESSAGE_DUPLICATE_PERSON);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (model.getFilteredPersonList().size() == 0) {</b>
+<b class="fc">&nbsp;            model.setProtagonist(toAdd);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        model.addPerson(toAdd);</b>
+&nbsp;
+<b class="fc">&nbsp;        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        return other == this // short circuit if same object</b>
+&nbsp;                || (other instanceof AddCommand // instanceof handles nulls
+<b class="fc">&nbsp;                &amp;&amp; toAdd.equals(((AddCommand) other).toAdd));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

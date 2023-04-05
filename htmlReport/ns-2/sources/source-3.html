@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LogsCenter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.commons.core</a>
+</div>
+
+<h1>Coverage Summary for Class: LogsCenter (codoc.commons.core)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LogsCenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (8/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.1%
+  </span>
+  <span class="absValue">
+    (30/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.commons.core;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.logging.ConsoleHandler;
+&nbsp;import java.util.logging.FileHandler;
+&nbsp;import java.util.logging.Level;
+&nbsp;import java.util.logging.Logger;
+&nbsp;import java.util.logging.SimpleFormatter;
+&nbsp;
+&nbsp;/**
+&nbsp; * Configures and manages loggers and handlers, including their logging level
+&nbsp; * Named {@link Logger}s can be obtained from this class&lt;br&gt;
+&nbsp; * These loggers have been configured to output messages to the console and a {@code .log} file by default,
+&nbsp; *   at the {@code INFO} level. A new {@code .log} file with a new numbering will be created after the log
+&nbsp; *   file reaches 5MB big, up to a maximum of 5 files.&lt;br&gt;
+&nbsp; */
+<b class="nc">&nbsp;public class LogsCenter {</b>
+&nbsp;    private static final int MAX_FILE_COUNT = 5;
+<b class="fc">&nbsp;    private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB</b>
+&nbsp;    private static final String LOG_FILE = &quot;codoc.log&quot;;
+<b class="fc">&nbsp;    private static Level currentLogLevel = Level.INFO;</b>
+<b class="fc">&nbsp;    private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);</b>
+&nbsp;    private static FileHandler fileHandler;
+&nbsp;    private static ConsoleHandler consoleHandler;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Initializes with a custom log level (specified in the {@code config} object)
+&nbsp;     * Loggers obtained *AFTER* this initialization will have their logging level changed&lt;br&gt;
+&nbsp;     * Logging levels for existing loggers will only be updated if the logger with the same name
+&nbsp;     * is requested again from the LogsCenter.
+&nbsp;     */
+&nbsp;    public static void init(Config config) {
+<b class="nc">&nbsp;        currentLogLevel = config.getLogLevel();</b>
+<b class="nc">&nbsp;        logger.info(&quot;currentLogLevel: &quot; + currentLogLevel);</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a logger with the given name.
+&nbsp;     */
+&nbsp;    public static Logger getLogger(String name) {
+<b class="fc">&nbsp;        Logger logger = Logger.getLogger(name);</b>
+<b class="fc">&nbsp;        logger.setUseParentHandlers(false);</b>
+&nbsp;
+<b class="fc">&nbsp;        removeHandlers(logger);</b>
+<b class="fc">&nbsp;        addConsoleHandler(logger);</b>
+<b class="fc">&nbsp;        addFileHandler(logger);</b>
+&nbsp;
+<b class="fc">&nbsp;        return Logger.getLogger(name);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a Logger for the given class name.
+&nbsp;     */
+&nbsp;    public static &lt;T&gt; Logger getLogger(Class&lt;T&gt; clazz) {
+<b class="fc">&nbsp;        if (clazz == null) {</b>
+<b class="nc">&nbsp;            return Logger.getLogger(&quot;&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return getLogger(clazz.getSimpleName());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the {@code consoleHandler} to the {@code logger}. &lt;br&gt;
+&nbsp;     * Creates the {@code consoleHandler} if it is null.
+&nbsp;     */
+&nbsp;    private static void addConsoleHandler(Logger logger) {
+<b class="fc">&nbsp;        if (consoleHandler == null) {</b>
+<b class="fc">&nbsp;            consoleHandler = createConsoleHandler();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        logger.addHandler(consoleHandler);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Remove all the handlers from {@code logger}.
+&nbsp;     */
+&nbsp;    private static void removeHandlers(Logger logger) {
+<b class="fc">&nbsp;        Arrays.stream(logger.getHandlers())</b>
+<b class="fc">&nbsp;                .forEach(logger::removeHandler);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the {@code fileHandler} to the {@code logger}. &lt;br&gt;
+&nbsp;     * Creates {@code fileHandler} if it is null.
+&nbsp;     */
+&nbsp;    private static void addFileHandler(Logger logger) {
+&nbsp;        try {
+<b class="fc">&nbsp;            if (fileHandler == null) {</b>
+<b class="fc">&nbsp;                fileHandler = createFileHandler();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            logger.addHandler(fileHandler);</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            logger.warning(&quot;Error adding file handler for logger.&quot;);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@code FileHandler} for the log file.
+&nbsp;     * @throws IOException if there are problems opening the file.
+&nbsp;     */
+&nbsp;    private static FileHandler createFileHandler() throws IOException {
+<b class="fc">&nbsp;        FileHandler fileHandler = new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);</b>
+<b class="fc">&nbsp;        fileHandler.setFormatter(new SimpleFormatter());</b>
+<b class="fc">&nbsp;        fileHandler.setLevel(currentLogLevel);</b>
+<b class="fc">&nbsp;        return fileHandler;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static ConsoleHandler createConsoleHandler() {
+<b class="fc">&nbsp;        ConsoleHandler consoleHandler = new ConsoleHandler();</b>
+<b class="fc">&nbsp;        consoleHandler.setLevel(currentLogLevel);</b>
+<b class="fc">&nbsp;        return consoleHandler;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

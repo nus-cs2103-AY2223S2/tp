@@ -1,0 +1,405 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainWindow</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: MainWindow (codoc.ui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainWindow</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/65)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MainWindow$ClickListener</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/75)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.ui;
+&nbsp;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;import codoc.commons.core.GuiSettings;
+&nbsp;import codoc.commons.core.LogsCenter;
+&nbsp;import codoc.logic.Logic;
+&nbsp;import codoc.logic.commands.CommandResult;
+&nbsp;import codoc.logic.commands.exceptions.CommandException;
+&nbsp;import codoc.logic.parser.exceptions.ParseException;
+&nbsp;import codoc.ui.infopanel.InfoTab;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.scene.control.MenuItem;
+&nbsp;import javafx.scene.control.TextInputControl;
+&nbsp;import javafx.scene.input.KeyCombination;
+&nbsp;import javafx.scene.input.KeyEvent;
+&nbsp;import javafx.scene.layout.StackPane;
+&nbsp;import javafx.scene.layout.VBox;
+&nbsp;import javafx.stage.Stage;
+&nbsp;
+&nbsp;/**
+&nbsp; * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
+&nbsp; * can be placed.
+&nbsp; */
+&nbsp;public class MainWindow extends UiPart&lt;Stage&gt; {
+&nbsp;
+&nbsp;    private static final String FXML = &quot;MainWindow.fxml&quot;;
+&nbsp;
+<b class="nc">&nbsp;    private final Logger logger = LogsCenter.getLogger(getClass());</b>
+&nbsp;
+&nbsp;    private Stage primaryStage;
+&nbsp;    private Logic logic;
+&nbsp;
+&nbsp;    // Independent Ui parts residing in this Ui container
+&nbsp;    private PersonListPanel personListPanel;
+&nbsp;    private ResultDisplay resultDisplay;
+&nbsp;    private HelpWindow helpWindow;
+&nbsp;    private InfoTab infoTab;
+&nbsp;    private CourseListPanel courseListPanel;
+&nbsp;    private ClickListener clickListener;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private StackPane commandBoxPlaceholder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private MenuItem helpMenuItem;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private StackPane personListPanelPlaceholder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private StackPane resultDisplayPlaceholder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private StackPane statusbarPlaceholder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private StackPane infoTabPlaceholder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private VBox courseListPlaceholder;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+&nbsp;     */
+&nbsp;    public MainWindow(Stage primaryStage, Logic logic) {
+<b class="nc">&nbsp;        super(FXML, primaryStage);</b>
+&nbsp;
+&nbsp;        // Set dependencies
+<b class="nc">&nbsp;        this.primaryStage = primaryStage;</b>
+<b class="nc">&nbsp;        this.logic = logic;</b>
+<b class="nc">&nbsp;        this.clickListener = new ClickListener();</b>
+<b class="nc">&nbsp;        clickListener.setListener(this);</b>
+&nbsp;
+&nbsp;        // Configure the UI
+<b class="nc">&nbsp;        setWindowDefaultSize(logic.getGuiSettings());</b>
+&nbsp;
+<b class="nc">&nbsp;        setAccelerators();</b>
+&nbsp;
+<b class="nc">&nbsp;        helpWindow = new HelpWindow();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Stage getPrimaryStage() {
+<b class="nc">&nbsp;        return primaryStage;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void setAccelerators() {
+<b class="nc">&nbsp;        setAccelerator(helpMenuItem, KeyCombination.valueOf(&quot;F1&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the accelerator of a MenuItem.
+&nbsp;     *
+&nbsp;     * @param keyCombination the KeyCombination value of the accelerator
+&nbsp;     */
+&nbsp;    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
+<b class="nc">&nbsp;        menuItem.setAccelerator(keyCombination);</b>
+&nbsp;
+&nbsp;        /*
+&nbsp;         * TODO: the code below can be removed once the bug reported here
+&nbsp;         * https://bugs.openjdk.java.net/browse/JDK-8131666
+&nbsp;         * is fixed in later version of SDK.
+&nbsp;         *
+&nbsp;         * According to the bug report, TextInputControl (TextField, TextArea) will
+&nbsp;         * consume function-key events. Because CommandBox contains a TextField, and
+&nbsp;         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
+&nbsp;         * not work when the focus is in them because the key event is consumed by
+&nbsp;         * the TextInputControl(s).
+&nbsp;         *
+&nbsp;         * For now, we add following event filter to capture such key events and open
+&nbsp;         * help window purposely so to support accelerators even when focus is
+&nbsp;         * in CommandBox or ResultDisplay.
+&nbsp;         */
+<b class="nc">&nbsp;        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -&gt; {</b>
+<b class="nc">&nbsp;            if (event.getTarget() instanceof TextInputControl &amp;&amp; keyCombination.match(event)) {</b>
+<b class="nc">&nbsp;                menuItem.getOnAction().handle(new ActionEvent());</b>
+<b class="nc">&nbsp;                event.consume();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fills up all the placeholders of this window.
+&nbsp;     */
+&nbsp;    void fillInnerParts() {
+<b class="nc">&nbsp;        personListPanel = new PersonListPanel(this);</b>
+<b class="nc">&nbsp;        personListPanel.setClickListener(clickListener);</b>
+<b class="nc">&nbsp;        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;        resultDisplay = new ResultDisplay();</b>
+<b class="nc">&nbsp;        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCodocFilePath());</b>
+<b class="nc">&nbsp;        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;        CommandBox commandBox = new CommandBox(this::executeCommand);</b>
+<b class="nc">&nbsp;        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;        infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());</b>
+<b class="nc">&nbsp;        infoTab.setClickListener(clickListener);</b>
+<b class="nc">&nbsp;        infoTabPlaceholder.getChildren().add(infoTab.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;        courseListPanel = new CourseListPanel();</b>
+<b class="nc">&nbsp;        courseListPlaceholder.getChildren().add(courseListPanel.getRoot());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the default size based on {@code guiSettings}.
+&nbsp;     */
+&nbsp;    private void setWindowDefaultSize(GuiSettings guiSettings) {
+<b class="nc">&nbsp;        primaryStage.setHeight(guiSettings.getWindowHeight());</b>
+<b class="nc">&nbsp;        primaryStage.setWidth(guiSettings.getWindowWidth());</b>
+<b class="nc">&nbsp;        if (guiSettings.getWindowCoordinates() != null) {</b>
+<b class="nc">&nbsp;            primaryStage.setX(guiSettings.getWindowCoordinates().getX());</b>
+<b class="nc">&nbsp;            primaryStage.setY(guiSettings.getWindowCoordinates().getY());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Opens the help window or focuses on it if it&#39;s already opened.
+&nbsp;     */
+&nbsp;    @FXML
+&nbsp;    public void handleHelp() {
+<b class="nc">&nbsp;        if (!helpWindow.isShowing()) {</b>
+<b class="nc">&nbsp;            helpWindow.show();</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            helpWindow.focus();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    void show() {
+<b class="nc">&nbsp;        primaryStage.show();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Closes the application.
+&nbsp;     */
+&nbsp;    @FXML
+&nbsp;    private void handleExit() {
+<b class="nc">&nbsp;        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),</b>
+<b class="nc">&nbsp;                (int) primaryStage.getX(), (int) primaryStage.getY());</b>
+<b class="nc">&nbsp;        logic.setGuiSettings(guiSettings);</b>
+<b class="nc">&nbsp;        helpWindow.hide();</b>
+<b class="nc">&nbsp;        primaryStage.hide();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PersonListPanel getPersonListPanel() {
+<b class="nc">&nbsp;        return personListPanel;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Logic getLogic() {
+<b class="nc">&nbsp;        return logic;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Executes the command and returns the result.
+&nbsp;     *
+&nbsp;     * @see Logic#execute(String)
+&nbsp;     */
+&nbsp;    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+&nbsp;        try {
+<b class="nc">&nbsp;            CommandResult commandResult = logic.execute(commandText);</b>
+<b class="nc">&nbsp;            logger.info(&quot;Result: &quot; + commandResult.getFeedbackToUser());</b>
+<b class="nc">&nbsp;            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());</b>
+<b class="nc">&nbsp;            infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());</b>
+<b class="nc">&nbsp;            infoTab.setClickListener(this.clickListener);</b>
+<b class="nc">&nbsp;            infoTabPlaceholder.getChildren().set(0, infoTab.getRoot());</b>
+&nbsp;
+<b class="nc">&nbsp;            if (commandResult.isShowHelp()) {</b>
+<b class="nc">&nbsp;                handleHelp();</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (commandResult.isExit()) {</b>
+<b class="nc">&nbsp;                handleExit();</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (commandResult.isJustAdded()) {</b>
+<b class="nc">&nbsp;                personListPanel.showLastItem();</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (commandResult.getCode().isPresent()) {</b>
+<b class="nc">&nbsp;                personListPanel.showIndex(Integer.parseInt(commandResult.getCode().get()));</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            return commandResult;</b>
+<b class="nc">&nbsp;        } catch (CommandException | ParseException e) {</b>
+<b class="nc">&nbsp;            logger.info(&quot;Invalid command: &quot; + commandText);</b>
+<b class="nc">&nbsp;            resultDisplay.setFeedbackToUser(e.getMessage());</b>
+<b class="nc">&nbsp;            throw e;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * MainWindow&#39;s own listener class that listens to click events from Ui components.
+&nbsp;     */
+<b class="nc">&nbsp;    public class ClickListener implements UiEventListener&lt;MainWindow&gt; {</b>
+&nbsp;
+&nbsp;        private MainWindow listener;
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public void setListener(MainWindow mainWindow) {
+<b class="nc">&nbsp;            this.listener = mainWindow;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public MainWindow getListener() {
+<b class="nc">&nbsp;            if (this.listener == null) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(&quot;Error: Listener not assigned!&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return listener;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public void viewContact() throws CommandException, ParseException {
+<b class="nc">&nbsp;            executeCommand(&quot;view c&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public void viewModule() throws CommandException, ParseException {
+<b class="nc">&nbsp;            executeCommand(&quot;view m&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public void viewSkill() throws CommandException, ParseException {
+<b class="nc">&nbsp;            executeCommand(&quot;view s&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public void viewIndex(String index) throws CommandException, ParseException {
+<b class="nc">&nbsp;            executeCommand(&quot;view &quot; + index);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public void copyText(String attribute) {
+<b class="nc">&nbsp;            resultDisplay.setFeedbackToUser(&quot;Copied &quot; + attribute + &quot; to clipboard!&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

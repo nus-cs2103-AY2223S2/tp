@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FindCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.logic.commands</a>
+</div>
+
+<h1>Coverage Summary for Class: FindCommand (codoc.logic.commands)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FindCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    54.5%
+  </span>
+  <span class="absValue">
+    (6/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.logic.commands;
+&nbsp;
+&nbsp;import static java.util.Objects.requireNonNull;
+&nbsp;
+&nbsp;import java.util.function.Predicate;
+&nbsp;
+&nbsp;import codoc.commons.core.Messages;
+&nbsp;import codoc.model.Model;
+&nbsp;import codoc.model.person.Person;
+&nbsp;
+&nbsp;/**
+&nbsp; * Finds and lists all persons in CoDoc whose name contains any of the argument keywords.
+&nbsp; * Keyword matching is case- * insensitive.
+&nbsp; */
+&nbsp;public class FindCommand extends Command {
+&nbsp;
+&nbsp;    public static final String COMMAND_WORD = &quot;find&quot;;
+&nbsp;
+&nbsp;    public static final String MESSAGE_USAGE = COMMAND_WORD + &quot;: Finds all persons whose names contain any of &quot;
+&nbsp;            + &quot;the given constraints(case-insensitive).\n&quot;
+&nbsp;            + &quot;Available Parameters: n/NAME y/YEAR c/COURSE m/MODULES... s/SKILLS...\n&quot;
+&nbsp;            + &quot;Example: &quot; + COMMAND_WORD + &quot; n/alice c/computer m/cs1101 cs1231&quot;;
+&nbsp;
+&nbsp;    private final Predicate&lt;Person&gt; predicate;
+&nbsp;    private final String userInputs;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param predicate to filter out contacts
+&nbsp;     * @param userInputs inputs that were used to create the predicate
+&nbsp;     */
+<b class="fc">&nbsp;    public FindCommand(Predicate&lt;Person&gt; predicate, String userInputs) {</b>
+<b class="fc">&nbsp;        this.predicate = predicate;</b>
+<b class="fc">&nbsp;        this.userInputs = userInputs;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public CommandResult execute(Model model) {
+<b class="nc">&nbsp;        requireNonNull(model);</b>
+<b class="nc">&nbsp;        String appliedPredicates = model.updateFilteredPersonList(predicate, userInputs);</b>
+<b class="nc">&nbsp;        return new CommandResult(</b>
+<b class="nc">&nbsp;                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW.concat(&quot;\n&quot;).concat(appliedPredicates),</b>
+<b class="nc">&nbsp;                        model.getFilteredPersonList().size()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        return other == this // short circuit if same object</b>
+&nbsp;                || (other instanceof FindCommand // instanceof handles nulls
+<b class="fc">&nbsp;                &amp;&amp; predicate.equals(((FindCommand) other).predicate)); // state check</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

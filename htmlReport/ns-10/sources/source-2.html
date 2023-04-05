@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SkillContainsKeywordsPredicate</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model.skill</a>
+</div>
+
+<h1>Coverage Summary for Class: SkillContainsKeywordsPredicate (codoc.model.skill)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SkillContainsKeywordsPredicate</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (10/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model.skill;
+&nbsp;
+&nbsp;import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.function.Predicate;
+&nbsp;
+&nbsp;import codoc.model.person.Person;
+&nbsp;
+&nbsp;/**
+&nbsp; * Tests that a {@code Person}&#39;s {@code Skill} matches any of the keywords given.
+&nbsp; */
+&nbsp;public class SkillContainsKeywordsPredicate implements Predicate&lt;Person&gt; {
+&nbsp;    private final List&lt;String&gt; keywords;
+&nbsp;
+<b class="fc">&nbsp;    public SkillContainsKeywordsPredicate(List&lt;String&gt; keywords) {</b>
+<b class="fc">&nbsp;        this.keywords = keywords;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    private boolean doesNotContain(String skillUserIsSearchingFor, Person person) {
+<b class="fc">&nbsp;        return person.getSkills().stream().noneMatch(</b>
+<b class="fc">&nbsp;                skill -&gt; skill.skillName.toUpperCase().contains(skillUserIsSearchingFor.toUpperCase()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean test(Person person) {
+&nbsp;
+<b class="fc">&nbsp;        for (String word : keywords) {</b>
+<b class="fc">&nbsp;            if (doesNotContain(word, person)) {</b>
+<b class="fc">&nbsp;                return false;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="nc">&nbsp;        return other == this // short circuit if same object</b>
+&nbsp;                || (other instanceof SkillContainsKeywordsPredicate // instanceof handles nulls
+<b class="nc">&nbsp;                &amp;&amp; keywords.equals(((SkillContainsKeywordsPredicate) other).keywords)); // state check</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return PREFIX_SKILL + keywords.stream().reduce(&quot;&quot;, (combine, s) -&gt;</b>
+<b class="nc">&nbsp;                combine.concat(&quot; &quot;).concat(s)).trim();</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

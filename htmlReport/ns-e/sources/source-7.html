@@ -1,0 +1,310 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Person</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model.person</a>
+</div>
+
+<h1>Coverage Summary for Class: Person (codoc.model.person)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Person</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.3%
+  </span>
+  <span class="absValue">
+    (79/82)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model.person;
+&nbsp;
+&nbsp;import static codoc.commons.util.CollectionUtil.requireAllNonNull;
+&nbsp;
+&nbsp;import java.util.Collections;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.Objects;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;import codoc.model.course.Course;
+&nbsp;import codoc.model.module.Module;
+&nbsp;import codoc.model.skill.Skill;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents a Person in CoDoc. Guarantees: details are present and not null, field values are validated, immutable.
+&nbsp; */
+&nbsp;public class Person {
+<b class="fc">&nbsp;    private static final Person dummyPerson = createDummy();</b>
+&nbsp;
+&nbsp;    // Identity fields
+&nbsp;    private final ProfilePicture profilePicture;
+&nbsp;    private final Name name;
+&nbsp;    private final Github github;
+&nbsp;    private final Email email;
+&nbsp;
+&nbsp;    // Data fields
+&nbsp;    private final Linkedin linkedin;
+&nbsp;    private final Course course;
+&nbsp;    private final Year year;
+&nbsp;
+<b class="fc">&nbsp;    private final Set&lt;Skill&gt; skills = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;    private final Set&lt;Module&gt; modules = new HashSet&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Every field must be present and not null.
+&nbsp;     */
+&nbsp;    public Person(
+&nbsp;            ProfilePicture profilePicture,
+&nbsp;            Name name,
+&nbsp;            Course course,
+&nbsp;            Year year,
+&nbsp;            Github github,
+&nbsp;            Email email,
+&nbsp;            Linkedin linkedin,
+&nbsp;            Set&lt;Skill&gt; skills,
+&nbsp;            Set&lt;Module&gt; modules
+<b class="fc">&nbsp;    ) {</b>
+<b class="fc">&nbsp;        requireAllNonNull(profilePicture, name, github, email, linkedin, skills, modules, course, year);</b>
+<b class="fc">&nbsp;        this.profilePicture = profilePicture;</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.github = github;</b>
+<b class="fc">&nbsp;        this.email = email;</b>
+<b class="fc">&nbsp;        this.linkedin = linkedin;</b>
+<b class="fc">&nbsp;        this.course = course;</b>
+<b class="fc">&nbsp;        this.year = year;</b>
+<b class="fc">&nbsp;        this.skills.addAll(skills);</b>
+<b class="fc">&nbsp;        this.modules.addAll(modules);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;    public static Person getDummyPerson() {
+<b class="fc">&nbsp;        return dummyPerson;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static Person createDummy() {
+<b class="fc">&nbsp;        ProfilePicture profilePicture = new ProfilePicture(&quot;src/main/resources/images/avataricons/001-bear.png&quot;);</b>
+<b class="fc">&nbsp;        Name name = new Name(&quot;DEFAULT NAME&quot;);</b>
+<b class="fc">&nbsp;        Course course = new Course(&quot;1&quot;);</b>
+<b class="fc">&nbsp;        Year year = new Year(&quot;1&quot;);</b>
+<b class="fc">&nbsp;        Github github = new Github(&quot;default-github&quot;);</b>
+<b class="fc">&nbsp;        Email email = new Email(&quot;default_email@gmail.com&quot;);</b>
+<b class="fc">&nbsp;        Linkedin linkedin = new Linkedin(&quot;linkedin.com/in/default-linkedin&quot;);</b>
+<b class="fc">&nbsp;        Set&lt;Skill&gt; skills = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;        Set&lt;Module&gt; mods = new HashSet&lt;&gt;();</b>
+<b class="fc">&nbsp;        return new Person(profilePicture, name, course, year, github, email, linkedin, skills, mods);</b>
+&nbsp;    }
+&nbsp;    public ProfilePicture getProfilePicture() {
+<b class="fc">&nbsp;        return profilePicture;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Name getName() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Github getGithub() {
+<b class="fc">&nbsp;        return github;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Email getEmail() {
+<b class="fc">&nbsp;        return email;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Course getCourse() {
+<b class="fc">&nbsp;        return course;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Year getYear() {
+<b class="fc">&nbsp;        return year;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Linkedin getLinkedin() {
+<b class="fc">&nbsp;        return linkedin;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns an immutable skill set, which throws {@code UnsupportedOperationException} if modification is attempted.
+&nbsp;     */
+&nbsp;    public Set&lt;Skill&gt; getSkills() {
+<b class="fc">&nbsp;        return Collections.unmodifiableSet(skills);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns an immutable Module List, which throws {@code UnsupportedOperationException} if modification is
+&nbsp;     * attempted.
+&nbsp;     */
+&nbsp;    public Set&lt;Module&gt; getModules() {
+<b class="fc">&nbsp;        return Collections.unmodifiableSet(modules);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if both persons have the same email. This defines a weaker notion of equality between two persons.
+&nbsp;     */
+&nbsp;    public boolean isSamePerson(Person otherPerson) {
+<b class="fc">&nbsp;        if (otherPerson == this) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return otherPerson != null</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getEmail().equals(getEmail());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
+&nbsp;     * between two persons.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        if (other == this) {</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        if (!(other instanceof Person)) {</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        Person otherPerson = (Person) other;</b>
+<b class="fc">&nbsp;        return otherPerson.getName().equals(getName())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getGithub().equals(getGithub())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getEmail().equals(getEmail())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getLinkedin().equals(getLinkedin())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getCourse().equals(getCourse())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getYear().equals(getYear())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getSkills().equals(getSkills())</b>
+<b class="fc">&nbsp;                &amp;&amp; otherPerson.getModules().equals(getModules());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+&nbsp;        // use this method for custom fields hashing instead of implementing your own
+<b class="nc">&nbsp;        return Objects.hash(name, github, email, linkedin, skills, modules);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        final StringBuilder builder = new StringBuilder();</b>
+<b class="fc">&nbsp;        builder.append(getName())</b>
+<b class="fc">&nbsp;                .append(&quot;; Year: &quot;)</b>
+<b class="fc">&nbsp;                .append(getYear())</b>
+<b class="fc">&nbsp;                .append(&quot;; Course: &quot;)</b>
+<b class="fc">&nbsp;                .append(getCourse())</b>
+<b class="fc">&nbsp;                .append(&quot;; Email: &quot;)</b>
+<b class="fc">&nbsp;                .append(getEmail());</b>
+&nbsp;
+<b class="fc">&nbsp;        builder.append(&quot;; GitHub: &quot;);</b>
+<b class="fc">&nbsp;        Github github = getGithub();</b>
+<b class="fc">&nbsp;        if (github.value == null) {</b>
+<b class="nc">&nbsp;            builder.append(&quot;Not Added&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            builder.append(github);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        builder.append(&quot;; LinkedIn: &quot;);</b>
+<b class="fc">&nbsp;        Linkedin linkedin = getLinkedin();</b>
+<b class="fc">&nbsp;        if (linkedin.value == null) {</b>
+<b class="nc">&nbsp;            builder.append(&quot;Not Added&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            builder.append(linkedin);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        builder.append(&quot;; Modules: &quot;);</b>
+<b class="fc">&nbsp;        Set&lt;Module&gt; modules = getModules();</b>
+<b class="fc">&nbsp;        if (modules.isEmpty()) {</b>
+<b class="fc">&nbsp;            builder.append(&quot;Not Added&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            modules.forEach(builder::append);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        builder.append(&quot;; Skills: &quot;);</b>
+<b class="fc">&nbsp;        Set&lt;Skill&gt; skills = getSkills();</b>
+<b class="fc">&nbsp;        if (skills.isEmpty()) {</b>
+<b class="fc">&nbsp;            builder.append(&quot;Not Added&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            skills.forEach(builder::append);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return builder.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

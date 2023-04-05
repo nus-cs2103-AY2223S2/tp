@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserPrefs</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.model</a>
+</div>
+
+<h1>Coverage Summary for Class: UserPrefs (codoc.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserPrefs</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (27/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.model;
+&nbsp;
+&nbsp;import static java.util.Objects.requireNonNull;
+&nbsp;
+&nbsp;import java.nio.file.Path;
+&nbsp;import java.nio.file.Paths;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;import codoc.commons.core.GuiSettings;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents User&#39;s preferences.
+&nbsp; */
+&nbsp;public class UserPrefs implements ReadOnlyUserPrefs {
+&nbsp;
+<b class="fc">&nbsp;    private GuiSettings guiSettings = new GuiSettings();</b>
+<b class="fc">&nbsp;    private Path codocFilePath = Paths.get(&quot;data&quot; , &quot;codoc.json&quot;);</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@code UserPrefs} with default values.
+&nbsp;     */
+<b class="fc">&nbsp;    public UserPrefs() {}</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
+&nbsp;     */
+&nbsp;    public UserPrefs(ReadOnlyUserPrefs userPrefs) {
+<b class="fc">&nbsp;        this();</b>
+<b class="fc">&nbsp;        resetData(userPrefs);</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
+&nbsp;     */
+&nbsp;    public void resetData(ReadOnlyUserPrefs newUserPrefs) {
+<b class="fc">&nbsp;        requireNonNull(newUserPrefs);</b>
+<b class="fc">&nbsp;        setGuiSettings(newUserPrefs.getGuiSettings());</b>
+<b class="fc">&nbsp;        setCodocFilePath(newUserPrefs.getCodocFilePath());</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public GuiSettings getGuiSettings() {
+<b class="fc">&nbsp;        return guiSettings;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setGuiSettings(GuiSettings guiSettings) {
+<b class="fc">&nbsp;        requireNonNull(guiSettings);</b>
+<b class="fc">&nbsp;        this.guiSettings = guiSettings;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public Path getCodocFilePath() {
+<b class="fc">&nbsp;        return codocFilePath;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setCodocFilePath(Path codocFilePath) {
+<b class="fc">&nbsp;        requireNonNull(codocFilePath);</b>
+<b class="fc">&nbsp;        this.codocFilePath = codocFilePath;</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object other) {
+<b class="fc">&nbsp;        if (other == this) {</b>
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!(other instanceof UserPrefs)) { //this handles null as well.</b>
+<b class="nc">&nbsp;            return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        UserPrefs o = (UserPrefs) other;</b>
+&nbsp;
+<b class="fc">&nbsp;        return guiSettings.equals(o.guiSettings)</b>
+<b class="fc">&nbsp;                &amp;&amp; codocFilePath.equals(o.codocFilePath);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        return Objects.hash(guiSettings, codocFilePath);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="fc">&nbsp;        sb.append(&quot;Gui Settings : &quot; + guiSettings);</b>
+<b class="fc">&nbsp;        sb.append(&quot;\nLocal data file location : &quot; + codocFilePath);</b>
+<b class="fc">&nbsp;        return sb.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

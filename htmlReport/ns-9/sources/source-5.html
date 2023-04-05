@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CodocParser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.logic.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: CodocParser (codoc.logic.parser)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CodocParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88.9%
+  </span>
+  <span class="absValue">
+    (16/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.logic.parser;
+&nbsp;
+&nbsp;import static codoc.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+&nbsp;
+&nbsp;import java.util.regex.Matcher;
+&nbsp;import java.util.regex.Pattern;
+&nbsp;
+&nbsp;import codoc.commons.core.Messages;
+&nbsp;import codoc.logic.commands.AddCommand;
+&nbsp;import codoc.logic.commands.ClearCommand;
+&nbsp;import codoc.logic.commands.Command;
+&nbsp;import codoc.logic.commands.DeleteCommand;
+&nbsp;import codoc.logic.commands.EditCommand;
+&nbsp;import codoc.logic.commands.ExitCommand;
+&nbsp;import codoc.logic.commands.FindCommand;
+&nbsp;import codoc.logic.commands.HelpCommand;
+&nbsp;import codoc.logic.commands.ListCommand;
+&nbsp;import codoc.logic.commands.ViewCommand;
+&nbsp;import codoc.logic.parser.exceptions.ParseException;
+&nbsp;
+&nbsp;
+&nbsp;/**
+&nbsp; * Parses user input.
+&nbsp; */
+<b class="fc">&nbsp;public class CodocParser {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Used for initial separation of command word and args.
+&nbsp;     */
+<b class="fc">&nbsp;    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(&quot;(?&lt;commandWord&gt;\\S+)(?&lt;arguments&gt;.*)&quot;);</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Parses user input into command for execution.
+&nbsp;     *
+&nbsp;     * @param userInput full user input string
+&nbsp;     * @return the command based on the user input
+&nbsp;     * @throws ParseException if the user input does not conform the expected format
+&nbsp;     */
+&nbsp;    public Command parseCommand(String userInput) throws ParseException {
+<b class="fc">&nbsp;        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());</b>
+<b class="fc">&nbsp;        if (!matcher.matches()) {</b>
+<b class="fc">&nbsp;            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        final String commandWord = matcher.group(&quot;commandWord&quot;);</b>
+<b class="fc">&nbsp;        final String arguments = matcher.group(&quot;arguments&quot;);</b>
+<b class="fc">&nbsp;        switch (commandWord) {</b>
+&nbsp;
+&nbsp;        case AddCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new AddCommandParser().parse(arguments);</b>
+&nbsp;
+&nbsp;        case EditCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new EditCommandParser().parse(arguments);</b>
+&nbsp;
+&nbsp;        case DeleteCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new DeleteCommandParser().parse(arguments);</b>
+&nbsp;
+&nbsp;        case ClearCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new ClearCommand();</b>
+&nbsp;
+&nbsp;        case FindCommand.COMMAND_WORD:
+<b class="nc">&nbsp;            return new FindCommandParser().parse(arguments);</b>
+&nbsp;
+&nbsp;        case ListCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new ListCommand();</b>
+&nbsp;
+&nbsp;        case ExitCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new ExitCommand();</b>
+&nbsp;
+&nbsp;        case HelpCommand.COMMAND_WORD:
+<b class="fc">&nbsp;            return new HelpCommand();</b>
+&nbsp;
+&nbsp;        case ViewCommand.COMMAND_WORD:
+<b class="nc">&nbsp;            return new ViewCommandParser().parse(arguments);</b>
+&nbsp;
+&nbsp;        default:
+<b class="fc">&nbsp;            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>

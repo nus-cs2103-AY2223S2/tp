@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PersonListPanel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">codoc.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: PersonListPanel (codoc.ui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PersonListPanel</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PersonListPanel$PersonListViewCell</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package codoc.ui;
+&nbsp;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;import codoc.commons.core.LogsCenter;
+&nbsp;import codoc.model.person.Person;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.scene.control.ListCell;
+&nbsp;import javafx.scene.control.ListView;
+&nbsp;import javafx.scene.layout.Region;
+&nbsp;
+&nbsp;/**
+&nbsp; * Panel containing the list of persons.
+&nbsp; */
+&nbsp;public class PersonListPanel extends UiPart&lt;Region&gt; {
+&nbsp;    private static final String FXML = &quot;PersonListPanel.fxml&quot;;
+<b class="nc">&nbsp;    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);</b>
+&nbsp;    private MainWindow.ClickListener clickListener;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ListView&lt;Person&gt; personListView;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+&nbsp;     */
+&nbsp;    public PersonListPanel(MainWindow mainWindow) {
+<b class="nc">&nbsp;        super(FXML);</b>
+<b class="nc">&nbsp;        ObservableList&lt;Person&gt; personList = mainWindow.getLogic().getFilteredPersonList();</b>
+<b class="nc">&nbsp;        personListView.setItems(personList);</b>
+<b class="nc">&nbsp;        personListView.setCellFactory(listView -&gt; new PersonListViewCell());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Scrolls itself to last person.
+&nbsp;     */
+&nbsp;    public void showLastItem() {
+<b class="nc">&nbsp;        personListView.scrollTo(personListView.getItems().size() - 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Scrolls itself to the given {@code index}. Selects and highlights the {@code index} too.
+&nbsp;     * @param index
+&nbsp;     */
+&nbsp;    public void showIndex(int index) {
+<b class="nc">&nbsp;        personListView.scrollTo(index);</b>
+<b class="nc">&nbsp;        personListView.getSelectionModel().select(index);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set UiEventListener for InfoTab.
+&nbsp;     * @param listener
+&nbsp;     */
+&nbsp;    public void setClickListener(MainWindow.ClickListener listener) {
+<b class="nc">&nbsp;        this.clickListener = listener;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+&nbsp;     */
+<b class="nc">&nbsp;    class PersonListViewCell extends ListCell&lt;Person&gt; {</b>
+&nbsp;
+&nbsp;        @Override
+&nbsp;        protected void updateItem(Person person, boolean empty) {
+<b class="nc">&nbsp;            super.updateItem(person, empty);</b>
+&nbsp;
+<b class="nc">&nbsp;            if (empty || person == null) {</b>
+<b class="nc">&nbsp;                setGraphic(null);</b>
+<b class="nc">&nbsp;                setText(null);</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                PersonCard item = new PersonCard(person, getIndex() + 1);</b>
+<b class="nc">&nbsp;                item.setClickListener(clickListener);</b>
+<b class="nc">&nbsp;                setGraphic(item.getRoot());</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-02 21:20</div>
+</div>
+</body>
+</html>
