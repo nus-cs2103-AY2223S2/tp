@@ -45,6 +45,6 @@ class AddTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid task name
-        assertParseFailure(parser, "1" + INVALID_TASK_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TASK_NAME_DESC, Task.MESSAGE_CONSTRAINTS);
     }
 }
