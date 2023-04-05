@@ -25,8 +25,9 @@ through our Graphical User Interface (GUI).
 With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
 all in one place.
 
-### Notable Features (v1.3)
+**Notable Features**
   * Finding a particular internship application in TinS using keywords: `find`
+  * Calendar View: `calendar`
   * Finding all clashing events: `clash`
   
   
@@ -68,20 +69,13 @@ TinS in a more efficient way.
 
 Commands, fields, prefixes and file paths are highlighted in the User Guide.
 Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
-    
-#### Buttons
-
-Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
-Then, press the <button>Enter</button> to confirm your command and instruct TinS to execute them.
 
 ### How to use the User Guide
 * If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the
   process of installing TinS and provide you with a brief introduction to TinS. 
 * If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what 
   features TinS has to offer. Embedded in this section is also tips on how you can maximize your efficiency while using
-  TinS. 
-* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section
-  might be helpful for you.
+  TinS.
 
 <div style="page-break-after: always;"></div>
 
@@ -641,8 +635,23 @@ There is no need to save manually.
 </tr>
 
 <tr>
+<td><b>Home Page</b></td>
+<td><code>home</code>></td>
+</tr>
+
+<tr>
+<td><b>Statistics Page</b></td>
+<td><code>stats</code>></td>
+</tr>
+
+<tr>
+<td><b>Calendar View</b></td>
+<td><code>calendar</code>></td>
+</tr>
+
+<tr>
 <td><b>Add</b></td>
-<td><code>add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...</code><br>
+<td><code>add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...</code><br>
 E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/Important t/Priority</code></td>
 </tr>
 
@@ -652,54 +661,80 @@ E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/I
 </tr>
 
 <tr>
-<td><b><a href="#edit_function">Edit</a></b></td>
-<td><code>edit ID [p/POSITION] [c/COMPANY_NAME] [s/APPLICATION_STATUS] [d/DESCRIPTION] [t/TAG] ...</code><br>
-E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the Internship List panel
-to Data Analyst</td>
+<td><b>Find</b></td>
+<td><code>find [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG]...</code><br>
+E.g. <code>find c/tech t/important</code> would return the list of internships with <code>COMPANY</code> containing the
+word “gov” and <code>TAG</code> as <code>IMPORTANT</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#delete_function">Delete</a></b></td>
-<td><code>delete ID</code><br>
-E.g. <code>delete 1</code> deletes the first internship in the Internship List panel</td>
-</tr>
-
-<tr>
-<td><b><a href="select_function">Select</a></b></td>
+<td><b>Select</b></td>
 <td><code>select ID</code><br>
-E.g. <code>select 1</code> selects the first internship in the Internship List panel</td>
+E.g. <code>select 1</code> selects the first internship in the List Panel</td>
 </tr>
 
 <tr>
-<td><b><a href="#eventadd_function">Add Event</a></b></td>
-<td><code>event add na/EVENT_NAME st/[START_DATETIME] en/END_DATETIME de/DESCRIPTION</code><br>
-E.g. <code>event add na/Technical Interview st/10/09/2023 1500 en/10/09/2023 1700 de/On Zoom</code></td>
+<td><b>Edit</b></td>
+<td><code>edit ID [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG]...</code><br>
+E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the List Panel
+to <code>Data Analyst</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#eventdelete_function">Delete Event</a></b></td>
-<td><code>event delete ID</code><br>
-E.g. <code>event delete 1</code></td>
+<td><b>Delete</b></td>
+<td><code>delete ID</code><br>
+E.g. <code>delete 1</code> deletes the first internship in the List Panel</td>
 </tr>
 
 <tr>
-<td><b><a href="#clash_function">Clash</a></b></td>
+<td><b>Add Event</b></td>
+<td><code>select ID</code>, then <code>event add na/EVENT_NAME [st/START_DATETIME en/END_DATETIME
+de/EVENT_DESCRIPTION</code><br>
+E.g. <code>select 1</code>, then <code>event add na/Technical Interview st/10/09/2023 1500 en/10/09/2023 1700
+de/On Zoom</code> adds the event to the first internship in List Panel</td>
+</tr>
+
+<tr>
+<td><b>Delete Event</b></td>
+<td><code>select ID</code>, then <code>event delete ID</code><br>
+E.g. <code>select 1</code>, then <code>event delete 1</code> deletes the first event from the first internship</td>
+listed in the List Panel
+</tr>
+
+<tr>
+<td><b>Find Event</b></td>
+<td><<code>event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]</code><br>
+E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
+</tr>
+
+<tr>
+<td><b>Clash</b></td>
 <td><code>clash</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#clear_function">Clear</a></b></td>
-<td><code>clear</code></td>
+<td><b>Delete All</b></td>
+<td><code>delete</code>, followed by <code>deleteall confirm</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#help_function">Help</a></b></td>
+<td><b>Help</b></td>
 <td><code>help</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#exit_function">Exit</a></b></td>
+<td><b>Exit</b></td>
 <td><code>exit</code></td>
 </tr>
 
 </table>
+
+##Acknowledgements
+* The Intern's Ship is written in Java 11.
+* The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5)
+* The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+* The Intern's Ship - User Guide references the following projects: 
+  [addressbook-level4](https://github.com/se-edu/addressbook-level4),
+  [InternBuddy](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/docs/UserGuide.md) (for Markdown Formatting
+  and Information, Tip and Warning Box)
