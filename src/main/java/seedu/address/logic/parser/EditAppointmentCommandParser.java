@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditAppointment object
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
@@ -31,8 +31,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             + "edit either";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditAppointment
+     * and returns an EditAppointment object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditAppointmentCommand parse(String args) throws ParseException {
@@ -53,7 +53,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
             editAppointmentDescriptor.setCustomerId(
                     ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
-        }
+        } // Invalid customer Id handled by EditAppointmentCommand
+
         // If either is present, enforce that both must be present.
         if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME).isPresent()) {
             if (arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME)) {
