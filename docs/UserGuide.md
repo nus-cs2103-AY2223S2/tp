@@ -11,7 +11,7 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 <div markdown="span" class="alert alert-danger">
 :exclamation: **Danger!**  
 :x: Do not attempt to modify the local storage files on your own. :x:  
-If you do, program may not run as expected.
+Otherwise, _Ez-Schedule_ may not run as expected.
 </div>
 
 <h1 id="index">Index</h1>
