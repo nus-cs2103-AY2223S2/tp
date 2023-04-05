@@ -74,7 +74,6 @@ public class GoToCommand extends Command {
                 runtime.exec(String.format("xdg-open %s", url));
             }
             else {
-                System.out.println(String.format("%s", os));
                 throw new CommandException(NOT_SUPPORTED);
             }
         }
