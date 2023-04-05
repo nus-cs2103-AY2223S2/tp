@@ -1490,11 +1490,21 @@ Hence, we are constantly striving to make InternBuddy better. This appendix docu
 that our team is currently working on, and we would release them in the future once their functionalities
 have been finalised.
 
-### Title of Design Tweak
+### Integer overflow causes wrong error message
 **Problem:**
-Explain the problem here
+There are currently 4 types of commands that require internship indexes: `edit`, `view` `copy` and `delete-index`.
+However, the current implementation of the parsing of these indexes does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
 
-**Proposed Design Tweak**: Explain the design tweak here
+When trying to parse these integers, it recognises that they are either too large or too small and treats them as not an integer.
+As a result, InternBuddy is unable to differentiate between internship index inputs that aren't integers and are integer overflows. 
+
+Thus, an invalid command format error message is displayed when these integer overflows are inputted, instead of an index out of range error message when the integer is too large or an invalid index error message when the integer is too small.
+
+**Proposed Design Tweak**: Include checks of the input when InternBuddy recognises it as not an integer.
+
+* When InternBuddy recognises an input as not an integer, we can check if the input contains only digits or begins with the negative sign and is followed by only digits.
+  * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message.
+  * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message.
 
 <div style="page-break-after: always;"></div>
 
