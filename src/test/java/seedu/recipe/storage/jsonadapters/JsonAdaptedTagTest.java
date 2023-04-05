@@ -11,7 +11,7 @@ import seedu.recipe.model.tag.Tag;
 //@@author alson001
 public class JsonAdaptedTagTest {
     private static final String VALID_TAG_NAME = "healthy";
-    private static final String INVALID_TAG_NAME = "#fatty";
+    private static final String INVALID_TAG_NAME = "#f@tty";
 
     @Test
     public void constructor_validTagName_returnsJsonAdaptedTag() throws Exception {
