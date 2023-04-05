@@ -139,7 +139,7 @@ public class SortStudentCommandParserTest {
         assertParseSuccess(sortStudentParser, "sort-student tutorial performance reverse",
                 sortStudentCommand);
 
-        sortStudentCommand = new SortStudentCommand("consultation",s "address", true);
+        sortStudentCommand = new SortStudentCommand("consultation", "address", true);
         assertParseSuccess(sortStudentParser, "sort-student consultation address nonreverse", sortStudentCommand);
 
         sortStudentCommand = new SortStudentCommand("consultation", "remark", true);
