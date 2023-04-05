@@ -27,7 +27,7 @@ import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing customer in the address book.
  */
 public class EditCustomerCommand extends RedoableCommand {
 
@@ -82,7 +82,7 @@ public class EditCustomerCommand extends RedoableCommand {
         model.selectCustomer(editedPerson);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), Tab.CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getId()), Tab.CUSTOMERS);
     }
 
     /**
