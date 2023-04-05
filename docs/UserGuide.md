@@ -143,6 +143,9 @@ Examples:
 Assign a task to a person. The indexes used follows the index on the task and person list respectively.<br>
 The task list can be viewed using the `view` command, and the persons list can be viewed using the `list` command.
 
+Note:
+* For every task, only one person can be assigned to it.
+
 Format: `assign  t/{TASK_INDEX} i/{MEMBER_INDEX}`
 
 Examples:
