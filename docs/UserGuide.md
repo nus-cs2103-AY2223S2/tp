@@ -67,27 +67,27 @@ TeachMeSenpai has several important components as part of its display. Here is a
   <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
 </p>
 
-<h3 style="color:black"><b>Menu bar</b></h3>
+<h3 style="color:LightGray"><b>Menu bar</b></h3>
 * Clicking `FILE` will give you the option to exit the app
 * Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
 
-<h3 style="color:MediumSeaGreen">**Command line**</h3>
+<h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
 * This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
 to [Features](#features).
 
-<h3 style="color:DodgerBlue">**Feedback Box**</h3>
+<h3 style="color:DodgerBlue"><b>Feedback Box</b></h3>
 * This is where TeachMeSenpai will provide you with feedback for your commands! Whether they were successfully done or not.
 You will see more examples of the feedback TeachMeSenpai provides in the [Features](#features) section.
 
-<h3 style="color:gold">**Result Box**</h3>
+<h3 style="color:gold"><b>Result Box</b></h3>
 * This is where the results for commands like [`show`](#showing-a-students-remark-show) and [`edit`](#editing-a-student-edit) will show up!
 * This section is scrollable when necessary.
 
-<h3 style="color:red">**Student List**</h3>
+<h3 style="color:red"><b>Student List</b></h3>
 * This is where you can view all your student entries and their details!
 * This section is scrollable as well.
 
-### Need to adjust the size of TeachMeSenpai?
+### Adjusting the size of TeachMeSenpai
 
 <p align=center>
   <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
