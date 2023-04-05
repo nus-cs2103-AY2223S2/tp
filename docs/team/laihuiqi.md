@@ -27,6 +27,7 @@ Given below are my contributions to the project.
     * An independent structure of logic, model, storage and ui is used to implement this side features package to avoid ambiguity. This substructure integrates with the main structure of InternEase. 
     * Executions of the commands (include main features) in different interface panel is allowed to provide a more efficient use of InternEase. It will automatically switch to the desired panel according to the command type.
   * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
+  * 
 
 **New Feature**: Clear the internship applications with specified attributes and keywords
 * What it does:
@@ -50,7 +51,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Added labels and modified label descriptions for issues.
-  * Update `Ui.png` according to the latest GUI image of InternEase.
+  * Update `Ui.png` according to the latest GUI image of InternEase [\#223](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/223).
 
 * **Enhancements to existing features and codes**:
   * Enhanced `clear` feature according to the InternEase model, add CacheList method to it.
@@ -58,32 +59,33 @@ Given below are my contributions to the project.
   * Enhanced `exit` feature according to the InternEase model.
   * Added model packages for `task package`.
   * Added storage interfaces for `task package`.
-  * Enhanced GUI interface for `MainWindow`, `QuickAccessToolbar`, `Result Dialog` and `task package` related GUI parts.
-  * Implemented or enhance test cases for `Command class` and `Parser class` related to all assigned features stated above, `ui` related class and add `testutil` for `task package`.
-  * Fixed bugs in `result dialog` display duration and displayed error messages.
+  * Enhanced GUI interface for `MainWindow`, `QuickAccessToolbar`, `Result Dialog` and `task package` related GUI parts [\#128](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/128), [\#162](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/162).
+  * Implemented or enhance test cases for `Command class` and `Parser class` related to all assigned features stated above, `ui` related class and add `testutil` for `task package`[\#272](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/272).
+  * Fixed bugs in `result dialog` display duration and displayed error messages [\#262](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/262).
   * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
 
 * **Documentation**:
   * User Guide:
-    * Modified documentation for Quick Start.
-    * Added table of contents.
+    * Modified documentation for Quick Start [\#47](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/47).
+    * Added table of contents [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161).
     * Added documentation for the main features `clear`, `delete` and `exit` [\#47](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/47).
-    * Added documentation for the main features `clear_by`, `revert` and `revert_all`.
-    * Added documentation for all side features in `task package`.
-    * Updated command summary table for all the features above.
+    * Added documentation for the main features `clear_by`, `revert` and `revert_all` [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161). 
+    * Added documentation for all side features in `task package` [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161).
+    * Updated command summary table for all the features above [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161).
     
   * Developer Guide:
     * Added use cases for the `clear`, `delete` and `exit` feature [\#52](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/52).
-    * Added use cases for the `clear_by`, `revert` and `revert_all` features.
-    * Added use cases all side features in `task package`.
-    * Added implementation details of all the features above.
-    * Modified architecture documentation for the Ui component.
+    * Added use cases for the `clear_by`, `revert` and `revert_all` features [\#274](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/274).
+    * Added use cases all side features in `task package` [\#274](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/274).
+    * Added implementation details of all the features above [\#274](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/274).
+    * Modified architecture documentation for the Ui component [\#274](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/274).
+    
+  * Updated README.md and index.md [\#59](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/59).
 
 * **Community**:
-  * PRs reviewed :
-  * Reported bugs and suggestions for other teams in PE-D : 
+  * PRs reviewed : [\#145](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/145), [\#157](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/157), [\#173](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/173).
+  * Reported bugs and suggestions for other teams in PE-D : [PE-D Issues for Group W16-1](https://github.com/laihuiqi/ped/issues).
 
 * **Tools**:
   * Java 11 and JavaFX
-  
