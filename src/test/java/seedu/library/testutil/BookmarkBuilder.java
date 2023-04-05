@@ -42,7 +42,7 @@ public class BookmarkBuilder {
         author = new Author(DEFAULT_AUTHOR);
         url = new Url(DEFAULT_URL);
         tags = new HashSet<>();
-        rating = null;
+        rating = Rating.DEFAULT_RATING;
     }
 
     /**
@@ -54,6 +54,7 @@ public class BookmarkBuilder {
         genre = bookmarkToCopy.getGenre();
         author = bookmarkToCopy.getAuthor();
         url = bookmarkToCopy.getUrl();
+        rating = bookmarkToCopy.getRating();
         tags = new HashSet<>(bookmarkToCopy.getTags());
     }
 

@@ -42,7 +42,7 @@ public class EditBookmarkDescriptorBuilder {
     /**
      * Sets the {@code Title} of the {@code EditBookmarkDescriptor} that we are building.
      */
-    public EditBookmarkDescriptorBuilder withName(String title) {
+    public EditBookmarkDescriptorBuilder withTitle(String title) {
         descriptor.setTitle(new Title(title));
         return this;
     }

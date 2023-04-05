@@ -59,7 +59,7 @@ public class EditCommandTest {
         Bookmark editedBookmark = bookmarkInList.withTitle(VALID_TITLE_BOB).withProgress(VALID_PROGRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB)
+        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withProgress(VALID_PROGRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastBookmark, descriptor);
 
@@ -90,7 +90,7 @@ public class EditCommandTest {
         Bookmark bookmarkInFilteredList = model.getFilteredBookmarkList().get(INDEX_FIRST_BOOKMARK.getZeroBased());
         Bookmark editedBookmark = new BookmarkBuilder(bookmarkInFilteredList).withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_BOOKMARK,
-                new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+                new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
@@ -124,7 +124,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidBookmarkIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookmarkList().size() + 1);
-        EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB).build();
+        EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_BOOKMARK_DISPLAYED_INDEX);
@@ -142,7 +142,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getLibrary().getBookmarkList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB).build());
+                new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_BOOKMARK_DISPLAYED_INDEX);
     }
