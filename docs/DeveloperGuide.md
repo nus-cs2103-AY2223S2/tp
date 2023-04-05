@@ -430,13 +430,14 @@ Sequence Diagram:
 ##### Feature considerations
 We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation. 
 
-We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this as it is very likely an incorrect range has been given and it would be difficult for the user to undo this. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
+We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this to keep the behavior consistant with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
 
 #### Listing all employees taking leave on a specific day
 
 The `leol` command lists employees taking leave on a specific date.
 
 1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
+2. The parser would initialise a `LeaveDate` object constructed from the input argument.
 3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
