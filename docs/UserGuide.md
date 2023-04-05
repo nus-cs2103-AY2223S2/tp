@@ -11,7 +11,7 @@ title: User Guide
     * [Logging in](#32-logging-in)
         * [Creating Password](#321-creating-password)
     * [Viewing help](#33-viewing-help--help)
-    * [Adding a person](#34-adding-a-person--add)
+    * [Adding a person](#34-adding-a-person-add)
     * [Listing all persons](#341-listing-all-persons--list)
     * [Viewing a person](#342-viewing-a-persons-contact-details--view)
     * [Editing a person](#343-editing-a-person--edit)
