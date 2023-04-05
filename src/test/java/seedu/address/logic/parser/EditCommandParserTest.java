@@ -38,7 +38,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Name;
-import seedu.address.model.module.Resource;
+// import seedu.address.model.module.Resource; //why is this not used?
 import seedu.address.model.module.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -82,7 +82,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-//        assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
+        // assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
         assertParseFailure(parser, "1"
                 + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
         assertParseFailure(parser, "1"
@@ -96,7 +96,7 @@ public class EditCommandParserTest {
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-//        assertParseFailure(parser, "1" + TYPE_DESC_CS3219 + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
+        //assertParseFailure(parser, "1" + TYPE_DESC_CS3219 + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Module} being edited,
         // parsing it together with a valid tag results in error

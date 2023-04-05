@@ -572,7 +572,7 @@ Timestamp in the status bar is updated.
     3. Test case: `add n/CS1101S`<br>
        Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
    status message.
- 
+
 ### Editing a module
 1 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
@@ -596,7 +596,7 @@ is shown in the status message.
     2. Test case: `find tutorial`
        Expected: A tutorial type is found on the list. Details of the found tutorials are shown in the list. <br>
 
-    3. Test case: `find tutorial lab`  
+    3. Test case: `find tutorial lab`
        Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in
    the list. <br>
 
