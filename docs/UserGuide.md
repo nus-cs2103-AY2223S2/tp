@@ -522,6 +522,15 @@ Example:
 * Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17`
   will not suggest anything by default as all possible fields have at least one value.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes on Command Recommendation**<br>
+
+* The order of fields specified here may not be what is reflected in the application.
+* When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
+
+</div>
+
 ---------------------------------------
 
 ### Show Summary Statistics: `stats`
