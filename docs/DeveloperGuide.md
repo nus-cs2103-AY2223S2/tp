@@ -329,8 +329,15 @@ in `filteredPersons` into a `SortedList` object.
 
 This ensures that modifications (deletes/edits) to the persons after a `list` or `sort` command will be consistent.
 
-The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added 
-to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator. 
+#### Design considerations:
+
+The `parse` function in SortCommandParser.java is used to trim and process the arguments before instantiating 
+SortCommand object. The `execute` function in SortCommand is used to identify the order and sort by to be used by the 
+comparator and to run the sort with the comparator. This ensures that subsequent additions to sort by, such as sort by 
+name etc, would only require to edit the `execute` function.
+
+The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added
+to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator.
 
 ### Show Team feature
 
