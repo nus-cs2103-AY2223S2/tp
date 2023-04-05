@@ -59,7 +59,7 @@ public class EditNoteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOTE_INDEX_NOT_FOUND, targetIndex.getOneBased(),
                     eventName));
         } else {
-            return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, note), false, false,
+            return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, note.getContent()), false, false,
                     false, true);
         }
     }
