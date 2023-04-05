@@ -3,8 +3,6 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -18,18 +16,20 @@ import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a student identified using it's displayed index from the PowerConnect.
  */
 public class StudentDeleteCommand extends StudentCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
-            + ": Deletes the student identified by their index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the student identified by their class and index number used.\n"
+            + "Parameters: "
+            + PREFIX_INDEXNUMBER + "INDEX NUMBER\n"
             + "Example: student 1A delete " + PREFIX_INDEXNUMBER + "25";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS =
+            "Deleted Student: %1$s; Class: %2$s; Index Number: %3$s;";
 
     private final IndexNumber targetIndex;
     private final Class studentClass;
@@ -45,25 +45,18 @@ public class StudentDeleteCommand extends StudentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> students = model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
-                students = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
+
+        if (!model.hasStudent(targetIndex, studentClass)) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        for (Student student : students) {
-            if (student.getIndexNumber().equals(targetIndex)
-                    && student.getStudentClass().equals(studentClass)) {
-                model.deleteStudent(student);
-                ObservableList<Parent> parents = model.getFilteredParentList();
-                setParent(parents, student, model);
-                return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, student));
-            }
-        }
+        Student studentToDelete = model.getStudent(targetIndex, studentClass);
 
-        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        model.deleteStudent(studentToDelete);
+        ObservableList<Parent> parents = model.getFilteredParentList();
+        setParent(parents, studentToDelete, model);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete.getName(),
+                studentToDelete.getStudentClass(), studentToDelete.getIndexNumber()));
     }
 
     /**
@@ -76,11 +69,11 @@ public class StudentDeleteCommand extends StudentCommand {
     public void setParent(ObservableList<Parent> parents, Student student, Model model) {
         Phone parentNumber = student.getParentNumber();
         Name parentName = student.getParentName();
-        for (Parent p : parents) {
-            if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
-                Parent newParent = p;
+        for (Parent parent : parents) {
+            if ((parent.getPhone().equals(parentNumber)) && (parent.getName().equals(parentName))) {
+                Parent newParent = parent;
                 newParent.removeStudent(student); //bind student to parent
-                model.setParent(p, newParent); //update parent in parents
+                model.setParent(parent, newParent); //update parent in parents
                 return;
             }
         }
