@@ -10,8 +10,8 @@ import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ public class RecurCommandTest {
     public void getCommandWord_success() {
         String commandWord = "recur";
 
-        assertEquals(commandWord, validDailyRecurCommandStub.commandWord());
+        assertTrue(commandWord.equals(validDailyRecurCommandStub.commandWord()));
     }
 
     @Test
@@ -226,12 +226,12 @@ public class RecurCommandTest {
         String expectedMonthDec = "December";
         String actualMonthDec = validDailyRecurCommandStub.intToStringMonth(12);
 
-        assertEquals(expectedMonthJan, actualMonthJan);
-        assertEquals(expectedMonthFeb, actualMonthFeb);
-        assertEquals(expectedMonthMar, actualMonthMar);
-        assertEquals(expectedMonthApr, actualMonthApr);
-        assertEquals(expectedMonthJun, actualMonthJun);
-        assertEquals(expectedMonthDec, actualMonthDec);
+        assertTrue(expectedMonthJan.equals(actualMonthJan));
+        assertTrue(expectedMonthFeb.equals(actualMonthFeb));
+        assertTrue(expectedMonthMar.equals(actualMonthMar));
+        assertTrue(expectedMonthApr.equals(actualMonthApr));
+        assertTrue(expectedMonthJun.equals(actualMonthJun));
+        assertTrue(expectedMonthDec.equals(actualMonthDec));
     }
 
     @Test
@@ -247,10 +247,10 @@ public class RecurCommandTest {
         String actualMonthHundred = validDailyRecurCommandStub.intToStringMonth(100);
 
 
-        assertEquals(invalidMessage, actualMonthZero);
-        assertEquals(invalidMessage, actualMonthNegative);
-        assertEquals(invalidMessage, actualMonthThirteen);
-        assertEquals(invalidMessage, actualMonthHundred);
+        assertTrue(invalidMessage.equals(actualMonthZero));
+        assertTrue(invalidMessage.equals(actualMonthNegative));
+        assertTrue(invalidMessage.equals(actualMonthThirteen));
+        assertTrue(invalidMessage.equals(actualMonthHundred));
     }
 
     @Test
@@ -263,30 +263,27 @@ public class RecurCommandTest {
         RecurCommand commandWithSameValues =
                 new RecurCommand(INDEX_FIRST_EVENT, standardCommand.getEndDate(),
                         standardCommand.getFactor());
-        assertEquals(standardCommand, commandWithSameValues);
+        assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
-        assertEquals(standardCommand, standardCommand);
+        assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
-        assertNotEquals(null, standardCommand);
+        assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertNotEquals(standardCommand, new ClearCommand());
+        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertNotEquals(standardCommand,
-                new RecurCommand(INDEX_SECOND_EVENT, new Date(VALID_DATE_A),
-                        new RecurFactor(VALID_RECUR_FACTOR_DAY)));
+        assertFalse(standardCommand.equals(new RecurCommand(INDEX_SECOND_EVENT, new Date(VALID_DATE_A),
+                new RecurFactor(VALID_RECUR_FACTOR_DAY))));
 
         // different date -> returns false
-        assertNotEquals(standardCommand,
-                new RecurCommand(INDEX_FIRST_EVENT, new Date(VALID_DATE_B),
-                        new RecurFactor(VALID_RECUR_FACTOR_DAY)));
+        assertFalse(standardCommand.equals(new RecurCommand(INDEX_FIRST_EVENT, new Date(VALID_DATE_B),
+                new RecurFactor(VALID_RECUR_FACTOR_DAY))));
 
         // different factor -> returns false
-        assertNotEquals(standardCommand,
-                new RecurCommand(INDEX_FIRST_EVENT, new Date(VALID_DATE_A),
-                        new RecurFactor(VALID_RECUR_FACTOR_MONTH)));
+        assertFalse(standardCommand.equals(new RecurCommand(INDEX_FIRST_EVENT, new Date(VALID_DATE_A),
+                new RecurFactor(VALID_RECUR_FACTOR_MONTH))));
     }
 }
