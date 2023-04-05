@@ -352,9 +352,7 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 (enter `view m` if you're not on the _modules_ tab).
 
 <div class="span" class="alert alert-success">
-:bulb: <b>Tip:</b> You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
- can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
- for you to edit <b>modules taken</b>!
+:bulb: <b>Tip:</b> You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy for you to edit <b>modules taken</b>!
 </div>
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
