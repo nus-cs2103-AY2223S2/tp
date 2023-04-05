@@ -26,6 +26,8 @@ public class IndexNumber {
     public IndexNumber(String indexNumber) {
         requireNonNull(indexNumber);
         checkArgument(isValidIndexNumber(indexNumber), MESSAGE_CONSTRAINTS);
+        String strPattern = "^0+(?!$)";
+        indexNumber = indexNumber.replaceAll(strPattern, "");
         value = indexNumber;
     }
 

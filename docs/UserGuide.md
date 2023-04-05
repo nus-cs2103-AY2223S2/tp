@@ -142,9 +142,13 @@ This section aims to provide a brief overview of the features available in Power
 * All items in the square brackets are OPTIONAL.
   e.g. in `…add…[..c/[CCA].. ]...` , `CCA` is an optional parameter that need not be given by the teachers and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`. <br><br>
 
-* `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect!<br><br>
+* `Names` **may** contain **numbers**! PowerConnect supports this flexibility as we understand some parents name their child after numbers.<br><br>
 
-* You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br>
+* You **SHOULD** choose **VALID** values (positive numbers) for `Age` although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br>
+
+* PowerConnect does not verify if the input phone number is valid for the country (e.g. Singapore), please ensure that you input the phone number correctly.
+
+* Phone numbers should only contain numbers and must be at least 3 digits long. 
 
 
 * Student Particulars:
@@ -156,18 +160,18 @@ This section aims to provide a brief overview of the features available in Power
     - Index Number in/<**INDEX_NUMBER**>
       - Number value of student's index number
     - Parents/ Next-of-kin pn/<**PARENT/NOK**>
-      - Parent's name
+      - Parent's/ Next-of-kin's name
     - Parents/ Next-of-kin pnP/<**PARENT/NOK_PHONE_NUMBER**>
-      - Parent's phone number
+      - Parent's/ Next-of-kin's phone number
       - Should not include country code
     - Parents/ Next-of-kin rls/<**RELATIONSHIP**>
-      - Relationship between student and parent
+      - Relationship between student and parent/ Next-of-kin
   * Optional:
     - Age ageS/[**AGE**]
         - Numerical value of student's age
     - Sex s/[**SEX**]
       - Student's gender
-      - Should be either M or F
+      - Should be either M or F (case-insensitive)
     - CCA c/[**CCA**]
       - Student's CCA
     - Comments com/[**COMMENTS**]
@@ -256,6 +260,7 @@ Examples:
 
 **Expected Outcome:**
 * `New student added:`
+  ![add image](images/add.png)
 
 **For student image:**
 * `Advanced` CLI users could specify the absolute file path.
@@ -267,16 +272,17 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 1. You cannot create two students of the same index number and same class. <br>
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent. <br>
-3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. <br>
-Please delete the student and add without the image source path. <br>
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images) after specifying the exact image location when using the student <CLASS> add command, it will not update. <br>
+Please delete the student and add without the image source path specified in the student <CLASS> add command</CLASS>. <br>
 4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly. <br>
 It is recommended to store the images using the folder [method](#images) instead. <br>
-5. `Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br>
-6. You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**. <br>
-7. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
-8. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
-9. Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! <br>
-10. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis.
+5. Student names and Parent/NOK names **may** contain **numbers**! PowerConnect supports this flexibility as we understand some parents name their child after numbers.<br>
+6.You **SHOULD** choose **VALID** values (positive numbers) for `Age` although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br>
+7.PowerConnect does not verify if the input phone number is valid for the country (e.g. Singapore), please ensure that you input the phone number correctly.<br>
+8.Phone numbers should only contain numbers and must be at least 3 digits long. <br>
+9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
+10. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
+11. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (midnight at 0000 hours).
 
 </div>
 
@@ -312,8 +318,8 @@ This date can be set to: <br>
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis. Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will futher improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
-Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
+Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (0000 hours). Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will futher improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
+Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -454,15 +460,16 @@ Examples:
 
 **Expected Outcome:**
 * Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton <br>
+`Student list before edit:`
+![original_edit](images/originaledit.png)
+`Student list after edit:`
+![after_edit](images/afteredit.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
 If you want to update all students under this student's parent, please kindly use the [PARENT EDIT COMMAND](#editparent) instead!!! <br><br>
-`Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br><br>
-You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br><br>
 As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly.<br><br>
-Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -482,10 +489,15 @@ Format: `student <class> find <NAME>  `
 Examples:
 * `student 3B find Russel`
 * `student 3B find Joseph`
+* 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+To list back all students, use the [general list](#listing)command! <br><br>
+</div>
 
 **Expected Outcome:**
 * Student found: Russel Ong class:3B cca: swimming grade: [sci:A, maths:B] id:26 age:14 email:ro@outlook.com ph:85349633 attendance: 2023-01-01 [y] hw: ip [x] notes:extroverted nok: David Ong
 * Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan <br><br>
+![student_find.png](images/studentfind.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -509,6 +521,8 @@ Examples:
 
 * Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
 * Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
+![student_delete.png](images/studentdelete.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -545,14 +559,15 @@ Examples of Full Command:
 **Expected outcome:**
 * `New parent added:`
 
+![parent_add.png](images/parentadd.png)
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 1. You cannot create two parents with the same `phone number`. <br>
 2. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. <br>
-Please delete the student and add without the image source path. <br>
+Please delete the parent and add without the image source path. <br>
 3. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly. <br>
 It is recommended to store the images using the folder [method](#images) instead. <br>
-4. `Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br>
-5. You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.
+4. You **SHOULD** choose **VALID** values for `Age` (positive numbers) although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.
 
 </div>
 
@@ -598,9 +613,9 @@ Examples of Full Command:
 * `Edited Parent: Tan Ah Niu; Phone: 65656565…`
 * `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567…` <br><br>
 
+![parent_edit](images/parentedit.png)
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-`Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br><br>
-You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br><br>
+You **SHOULD** choose **VALID** values for `Age` (positive numbers) although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -621,6 +636,7 @@ Examples:
 * `parent delete n/TanAhCow pnP/91234567` <br>
 * `parent delete n/TanAhNiu pnP/91234566` <br>
 
+
 Expected Outcome: <br>
 ```
 Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: Insert parent email here!; Parent Phone: 91234567;
@@ -628,9 +644,10 @@ Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert A
 ```
 Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
 ```
+![parent_delete_success](images/parentdeletesuccess.png)
 **Note:**
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
-
+   ![parent_delete_attach_fail](images/parentdeleteattach.png)
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -648,6 +665,10 @@ Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert A
 Lists all students / parents as specified in command. <br>
 
 Format: `list student` `list parent` <br><br>
+
+**Expected Outcome:**
+
+![list_student_success](images/list1.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -681,7 +702,7 @@ Format: `exit` <br><br>
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "saving-the-data"/>
+<a name = "savingdata"/>
 
 ## Saving the data
 
@@ -691,7 +712,7 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "edit-the-data-file"/>
+<a name = "editdatafile"/>
 
 ## Editing the data file
 
@@ -731,7 +752,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 <a name = "images"/>
 
-## Images
+## Images (Recommended method to store student and parent/NOK images)
 
 1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
@@ -760,7 +781,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 ## FAQ
 
-Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform).
+Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform) and we will get back to you as soon as possible.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -826,6 +847,8 @@ Need to add parent before each command!!
 | **List**   | `list`                                                                                                                                                                        |
 | **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
 | **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`                                                                                               |
+
+[Back to Table of Contents](#table-of-contents)
 
 ### General Command Summary
 
