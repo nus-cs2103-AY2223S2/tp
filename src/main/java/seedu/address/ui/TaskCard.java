@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.shared.Datetime;
 import seedu.address.model.task.Task;
 
 /**
@@ -68,10 +69,11 @@ public class TaskCard extends UiPart<Region> {
         }).orElse(""));
 
         if (task.getDeadline().getTimestamp().isPresent()) {
-            LocalDateTime endTime = LocalDateTime.ofInstant(Instant
-                .ofEpochMilli(task.getDeadline().getTimestamp().get()), ZoneId.systemDefault());
-            LocalDateTime startTime = LocalDateTime.ofInstant(Instant
-                .ofEpochMilli(task.getCreateDateTime().getTimestamp().get()), ZoneId.systemDefault());
+
+
+            LocalDateTime endTime = Datetime.convertToLocalTime(task.getDeadline());
+
+            LocalDateTime startTime = Datetime.convertToLocalTime(task.getCreateDateTime());
 
             deadline.setText("Deadline: " + endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 

@@ -15,6 +15,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.InvalidDeadlineException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.RepositoryModelManager;
@@ -86,7 +87,8 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor)
+            throws InvalidDeadlineException {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
@@ -95,7 +97,12 @@ public class EditTaskCommand extends Command {
         Id updateId = editTaskDescriptor.getId().orElse(taskToEdit.getId());
         Datetime updateCreateDate = editTaskDescriptor.getCreateDate().orElse(taskToEdit.getCreateDateTime());
         Datetime updateDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-
+        if (updateDeadline.getTimestamp().isPresent()) {
+            if (Datetime.isPastDateTime(updateDeadline,
+                updateCreateDate)) {
+                throw new InvalidDeadlineException();
+            }
+        }
         return new Task(updatedTitle, updatedContent, updatedStatus, updateCreateDate, updateDeadline, updateId);
     }
 

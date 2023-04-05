@@ -1,5 +1,6 @@
 package seedu.address.model.shared;
 
+import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -121,4 +122,38 @@ public class Datetime {
         LocalDateTime currentDate = LocalDateTime.now(zoneId);
         return dateTime.isBefore(currentDate);
     }
+
+    /**
+     * Determines whether the given deadline is in the past relative to the given current datetime.
+     *
+     * @param deadline the Datetime object representing the deadline to be checked
+     * @param now the Datetime object representing the current datetime
+     * @return true if the deadline is in the past relative to the current datetime, false otherwise
+     * @throws DateTimeException if the timestamp of any of the Datetime objects is out of range of a
+     *      LocalDateTime or if the system default time zone is invalid
+     */
+    public static boolean isPastDateTime(Datetime deadline, Datetime now) {
+        LocalDateTime currentDate = convertToLocalTime(now);
+        LocalDateTime targetDeadline = convertToLocalTime(deadline);
+
+        return targetDeadline.isBefore(currentDate);
+    }
+
+    /**
+     * Converts the given Datetime object to a LocalDateTime object.
+     *
+     * @param datetime the Datetime object to be converted
+     * @return a LocalDateTime object representing the same date and time as the Datetime object,
+     *      or null if the Datetime object is null or if the timestamp is null
+     * @throws DateTimeException if the timestamp of the Datetime object is out of range of
+     *                           a LocalDateTime or if the system default time zone is invalid
+     */
+    public static LocalDateTime convertToLocalTime(Datetime datetime) {
+        Optional<Long> timestampOptional = datetime.getTimestamp();
+        return timestampOptional
+            .map(ts -> LocalDateTime.ofInstant(Instant.ofEpochMilli(ts), ZoneId.systemDefault()))
+            .orElse(null);
+    }
+
+
 }
