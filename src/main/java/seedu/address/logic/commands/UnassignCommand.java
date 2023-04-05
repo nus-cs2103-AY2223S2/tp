@@ -55,7 +55,6 @@ public class UnassignCommand extends Command {
 
         Person person = model.getFilterPerson(personIndex.getZeroBased());
         Task task = officeConnectModel.deleteAssignment(person, taskIndex.getZeroBased());
-        model.updateFilteredPersonList(p -> p.getId().equals(person.getId()));
         return new CommandResult(String.format(MESSAGE_SUCCESS,
             person.getName(), task.getTitle()));
     }

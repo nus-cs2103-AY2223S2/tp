@@ -119,9 +119,14 @@ public class OfficeConnectModel {
      * Adds assignment to assigntask model manager.
      *
      * @param assignTask assignment to be added
+     * @param person
+     * @param task
      */
-    public void addAssignTaskModelManagerItem(AssignTask assignTask) {
+    public void addAssignTaskModelManagerItem(AssignTask assignTask, Person person, Task task) {
         assignTaskModelManager.addItem(assignTask);
+        setPersonToTasks(person);
+        setTaskToPersons(task);
+
     }
 
     /**
@@ -234,10 +239,8 @@ public class OfficeConnectModel {
         }
         assignTaskModelManager.deleteItem(toDelete);
 
-        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
-
-        taskModelManager.updateFilteredItemList(t -> assignTasks.stream()
-            .anyMatch(a -> a.getTaskId().equals(t.getId())));
+        setTaskToPersons(task);
+        setPersonToTasks(person);
         return task;
     }
 

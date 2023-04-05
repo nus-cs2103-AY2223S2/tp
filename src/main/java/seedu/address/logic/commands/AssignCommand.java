@@ -66,7 +66,7 @@ public class AssignCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        officeConnectModel.addAssignTaskModelManagerItem(toAdd);
+        officeConnectModel.addAssignTaskModelManagerItem(toAdd, person, task);
         return new CommandResult(String.format(MESSAGE_SUCCESS, person, task));
     }
 
