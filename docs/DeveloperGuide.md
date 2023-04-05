@@ -625,4 +625,9 @@ as the app ensures this
    3. Readings: Ammonia levels, temperatures and pH can accept amy numerical value that may be far out of the boundaries
    of our GUI graph axes. In future iterations, we will check that they are realistic values, which are
    values bounded by the axes of our respective graphs.
+
+3. Alphanumeric fields may be truncated if they are too long as we do not limit their length. They
+may also become truncated if the user's app window size is too small. A side effect of this can be for example,
+fish with long names, which are supposed to be distinct, will appear as the same after truncation.
+We will limit the length of such parameters in future enhancements to avoid this. 
     
