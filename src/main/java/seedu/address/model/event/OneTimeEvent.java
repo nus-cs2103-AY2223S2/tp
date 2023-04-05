@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.event.enums.Interval;
@@ -20,6 +21,11 @@ public class OneTimeEvent extends Event {
 
     @Override
     public Event copy() {
-        return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
+        return new OneTimeEvent(
+                new Description(description.toString()),
+                new DateTime(startDateTime.toString()),
+                new DateTime(endDateTime.toString()),
+                new HashSet<>(taggedPeople)
+        );
     }
 }
