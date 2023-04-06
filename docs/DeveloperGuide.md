@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,15 +94,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCustomerCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletec 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletec 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCustomerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,8 +110,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -410,41 +410,42 @@ Help small business owners manage customers and their orders to boost customer s
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my customers | - |
-| `* * *`  | small business owner |	view a centralized tab containing all customers |	view all the customers’ information. |
-| `* * *`  | small business owner |	save the addresses of my customers | provide an easier checkout experience to frequent customers |
-| `* * *`  | forgetful small business owner |	bookmark customers for required updates | remind myself to communicate with some customers |
-| `* * *`  | attentive business owner | track reward points given associated to my customers | determine who I should reward as part of the reward system |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my orders | - |
-| `* * *`  | small business owner | view a centralized tab containing all orders | view all the orders' information |
-| `* * *`  | small business owner |	set an order as paid for | - |
-| `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
-| `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
-| `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
-| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out |
-| `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
-| `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
-| `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
-| `* *`  | small business owner | categorize my customers by a few metrics | - |
-| `* *`  | analytical small business owner | view some basic summary of my customer base | understand the demographics of my customers better |
-| `* *`  | attentive small business owner | add customised notes to each customer | track more specific details of each customer |
-| `* *`  | small business owner | include tags in my customer notes | view notes from multiple customers with a similar theme |
-| `* *`  | small business owner | sort customers by their reward points | determine who are my loyal customers |
-| `* *`  | small business owner | spend points for my customers | redeem rewards for them |
-| `* *`  | devoted small business owner | keep a list of rewards and its availability and points | know what rewards I have prepared to give away to loyal customers |
-| `* *`  | small business owner | add enterprise customers | include other companies in my list |
-| `* *`  | small business owner | filter between individual and enterprise customers | - |
-| `* *`  | small business owner | assign individuals to an enterprise | group individuals working in the enterprise |
-| `* *`  | small business owner | view an order timeline for each order | refer to it for future reference |
-| `* *`  | attentive small business owner | view what were my customers’ previous preferences for my product | can easily communicate with the customer about their previous preferences to provide a good service |
-| `* *`  | analytical small business owner | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell |
-| `* *`  | small business owner | tag an order to a specific customer | resolve conflicts regarding a particular order swiftly |
-| `* *`  | small business owner who wants to reduce costs | group orders with delivery addresses close to each other | order delivery can be done more efficiently |
-| `*`  | small business owner | search for customers using a keyword | easily find specific customers |
-| `*`  | small business owner | search for orders using a keyword | easily find specific orders |
-| `*`  | small business owner | save the customers and orders list | - |
+| Priority | As a …​                                        | I can …​                                                                                                    | So that I can…​                                                                                     |
+|----------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | small business owner                           | create, view, update and delete basic profile information of my customers                                   | track and view who are my current customers                                                         |
+| `* * *`  | small business owner                           | save the customers and orders list after every action                                                       | avoid remembering information of my customers and orders                                            |
+| `* * *`  | forgetful small business owner                 | bookmark customers                                                                                          | remind myself to communicate with some customers                                                    |
+| `* * *`  | customer-focused small business owner          | track current and cumulated reward points associated to my customers                                        | determine who I should reward as part of the reward system                                          |
+| `* * *`  | small business owner                           | create, view, update and delete basic information of my customers' orders                                   | track and view what are my customers' orders                                                        |
+| `* * *`  | small business owner                           | advance & revert status of an order (eg. Pending, Paid, Shipped, Completed, Cancelled)                      | track the progress of my customer's order                                                           |
+| `* * *`  | customer-focused small business owner          | sort the order list by status                                                                               | be on track with customers' orders                                                                  |
+| `* * *`  | small business owner                           | view or search my customers’ previous orders                                                                | easily navigate to their previous orders to view relevant information                               |
+| `* * *`  | small business owner                           | assign an order to a specific customer                                                                      | I can track all the orders under a specific customer                                                |
+| `* *`    | analytical small business owner                | view basic statistics of my customer base                                                                   | understand the demographics of my customers better                                                  |
+| `* *`    | attentive small business owner                 | add customised notes to each customer                                                                       | track more specific details of each customer                                                        |
+| `* *`    | customer-focused small business owner          | sort customers by their reward points                                                                       | determine who are my loyal customers                                                                |
+| `* *`    | small business owner                           | add or deduct points for my customers                                                                       | redeem rewards for my customers                                                                     |
+| `* *`    | small business owner                           | assign a customer as an enterprise or an individual                                                         | include companies in my list of customers                                                           |
+| `* *`    | small business owner                           | filter between individual and enterprise customers                                                          | view customers of a specific type when necessary                                                    |
+| `* *`    | small business owner                           | filter order based on status                                                                                | view orders that require specific attention                                                         |
+| `* *`    | small business owner                           | filter customers that are bookmarked                                                                        | identify customers that requires attention                                                          |                      
+| `* *`    | attentive business owner                       | set or append note for a customer                                                                           | take note of details such as preferences of my customers                                            |
+| `* *`    | attentive business owner                       | set or append note for an order                                                                             | take note of details such as special requests of my orders                                          |
+| `* *`    | small business owner                           | view an order progress or history for each order                                                            | refer to it for future reference                                                                    |
+| `* *`    | analytical small business owner                | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell                                 |
+| `* *`    | customer-focused small business owner          | see how long an order has been unprocessed                                                                  | prevent customers from waiting for too long                                                         |
+| `* *`    | small business owner                           | search for customers using a keyword                                                                        | easily find specific customers                                                                      |
+| `* *`    | small business owner                           | search for orders using a keyword                                                                           | easily find specific orders                                                                         |
+| `* *`    | small business owner                           | clear my saved data                                                                                         | reset the application's state                                                                       |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for a customer                                                       | customise notes for each customer                                                                   |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for an order                                                         | customise notes for each order                                                                      |
+| `*`      | small business owner                           | include tags in my customer notes                                                                           | view notes from multiple customers with a similar theme                                             |
+| `*`      | attentive small business owner                 | view what were my customers’ previous preferences for my product                                            | can easily communicate with the customer about their previous preferences to provide a good service |
+| `*`      | small business owner who wants to reduce costs | group orders with delivery addresses close to each other                                                    | allocate resources efficiently for order deliveries                                                 |
+| `*`      | small business owner                           | assign individuals to an enterprise                                                                         | group individuals working in the enterprise                                                         |
+| `*`      | customer-focused business owner                | set the reward points threshold for each tier                                                               | customise tiers to decide who are my loyal customers                                                |
+| `*`      | customer-focused small business owner          | create, view, update and delete reward prizes with its availability and points                              | know what rewards I have prepared to give away to loyal customers                                   |
+
 
 ### Use cases
 
