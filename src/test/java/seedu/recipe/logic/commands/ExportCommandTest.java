@@ -38,7 +38,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void constructor_validParams_noError() {
+    public void constructor_validParams_doesNotThrow() {
         assertDoesNotThrow(() -> new ExportCommand(null, logic));
     }
 }

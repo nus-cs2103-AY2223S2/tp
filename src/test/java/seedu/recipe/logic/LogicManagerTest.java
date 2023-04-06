@@ -53,19 +53,19 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() {
+    public void executeStringCommand_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
+    public void executeStringCommand_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void executeStringCommand_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         //pre-populate
         model.addRecipe(new Recipe(new Name("Fish and Chips")));
@@ -73,7 +73,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
+    public void executeStringCommand_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonRecipeBookIoExceptionThrowingStub
         JsonRecipeBookStorage recipeBookStorage =
              new JsonRecipeBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionRecipeBook.json"));

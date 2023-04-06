@@ -2,6 +2,7 @@ package seedu.recipe.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_FISH;
@@ -119,15 +120,15 @@ public class EditCommandTest {
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_RECIPE, DESC_CHICKEN);
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RECIPE, DESC_CHICKEN)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_RECIPE, DESC_CHICKEN));
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_RECIPE, DESC_FISH)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_RECIPE, DESC_FISH));
     }
 
     @Test

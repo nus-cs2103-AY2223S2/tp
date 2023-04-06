@@ -39,7 +39,7 @@ public class RecipeBookParserTest {
     private final RecipeBookParser parser = new RecipeBookParser();
 
     @Test
-    public void parseCommand_add() {
+    public void parseCommand_add_success() {
         //Set up data
         Recipe recipe = new Recipe(new Name("Lasagna"));
         RecipeDescriptor descriptor = new RecipeDescriptor();
@@ -54,7 +54,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_addForm() {
+    public void parseCommand_addForm_success() {
         assertDoesNotThrow(() -> parser.parseCommand(AddFormCommand.COMMAND_WORD));
         try {
             assertTrue(parser.parseCommand(AddFormCommand.COMMAND_WORD) instanceof AddFormCommand);
@@ -64,7 +64,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_clear() {
+    public void parseCommand_clear_success() {
         try {
             assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
             assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -74,7 +74,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() {
+    public void parseCommand_delete_success() {
         try {
             DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
@@ -85,7 +85,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() {
+    public void parseCommand_edit_success() {
         Recipe recipe = new Recipe(new Name("Lasagna"));
         recipe.setPortion(RecipePortion.of("1 - 2 servings"));
         recipe.setDuration(RecipeDuration.of("15 min"));
@@ -103,7 +103,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_exit() {
+    public void parseCommand_exit_success() {
         try {
             assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
             assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -113,7 +113,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() {
+    public void parseCommand_find_success() {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand expected = new FindCommand(
             new PropertyNameContainsKeywordsPredicate<>(
@@ -134,7 +134,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_help() {
+    public void parseCommand_help_success() {
         try {
             assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
             assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -144,7 +144,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() {
+    public void parseCommand_list_success() {
         try {
             assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
             assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
@@ -154,7 +154,7 @@ public class RecipeBookParserTest {
     }
 
     @Test
-    public void parseCommand_sub() {
+    public void parseCommand_sub_success() {
         try {
             assertThrows(ParseException.class, () -> parser.parseCommand(SubCommand.COMMAND_WORD));
             assertTrue(parser.parseCommand(SubCommand.COMMAND_WORD + " chicken") instanceof SubCommand);

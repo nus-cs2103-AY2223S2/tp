@@ -72,7 +72,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_namePropertyZeroKeywords_noRecipeFound() {
+    public void execute_namePropertyZeroKeywords_noRecipesFound() {
         String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 0);
         PropertyNameContainsKeywordsPredicate<Name> predicate = prepareNamePredicate(" ");
 

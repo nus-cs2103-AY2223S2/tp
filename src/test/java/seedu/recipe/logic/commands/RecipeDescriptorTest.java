@@ -63,18 +63,18 @@ public class RecipeDescriptorTest {
     }
 
     @Test
-    public void defaultConstructor_anyFieldEdited_false() {
+    public void defaultConstructor_anyFieldEdited_isFalse() {
         assertFalse(testDescriptor.isAnyFieldEdited());
     }
 
     @Test
-    public void defaultConstructor_toRecipe_nameBlank() {
+    public void defaultConstructor_toRecipe_nameIsBlank() {
         Recipe expected = new Recipe(new Name("BLANK RECIPE"));
         assertEquals(testDescriptor.toRecipe(), expected);
     }
 
     @Test
-    public void defaultConstructor_get_fieldsEmpty() {
+    public void defaultConstructor_getFields_allFieldsEmpty() {
         assertEquals(Optional.empty(), testDescriptor.getName());
         assertEquals(Optional.empty(), testDescriptor.getDuration());
         assertEquals(Optional.empty(), testDescriptor.getPortion());
@@ -92,7 +92,7 @@ public class RecipeDescriptorTest {
     }
 
     @Test
-    public void recipeDescriptorConstructor_null_throwsException() {
+    public void constructor_nullDescriptor_nullPointerExceptionThrown() {
         assertThrows(NullPointerException.class, () -> new RecipeDescriptor(null));
     }
 
@@ -176,7 +176,7 @@ public class RecipeDescriptorTest {
     }
 
     @Test
-    public void fieldsChanged_toRecipe_allFieldsPresent() {
+    public void fieldsChanged_toRecipe_allFieldsCopied() {
         Recipe newRecipe = new Recipe(TEST_NAME);
         newRecipe.setDuration(TEST_DURATION);
         newRecipe.setPortion(TEST_PORTION);
