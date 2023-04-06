@@ -36,6 +36,10 @@ public class CommandStack {
         return commands.pollLast();
     }
 
+    public int size() {
+        return commands.size();
+    }
+
     public boolean isEmpty() {
         return commands.isEmpty();
     }
