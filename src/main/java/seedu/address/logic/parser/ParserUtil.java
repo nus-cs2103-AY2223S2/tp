@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.IndexException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Deadline;
@@ -23,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -32,10 +34,15 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            //Index is valid
+            return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        } else if (trimmedIndex.matches("\\d+")) {
+            //Index is not valid because it cannot be stored as an int (overflow)
+            throw new IndexException(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        //Index is not valid (possibly because there are incorrect prefixes)
+        throw new ParseException((MESSAGE_INVALID_INDEX));
     }
 
     /**
@@ -94,6 +101,8 @@ public class ParserUtil {
         String trimmedTimeSlot = timeSlot.trim();
         if (!TimeSlot.isValidTimeSlot(trimmedTimeSlot)) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+        } else if (!TimeSlot.isStartTimeBeforeEndTime(trimmedTimeSlot)) {
+            throw new ParseException((TimeSlot.MESSAGE_STARTTIME_BEFORE_ENDTIME));
         }
         return new TimeSlot(trimmedTimeSlot);
     }
@@ -109,8 +118,7 @@ public class ParserUtil {
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidFormat(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
-        }
-        if (!Deadline.isValidDate(trimmedDeadline)) {
+        } else if (!Deadline.isValidDate(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);
         }
         return new Deadline(trimmedDeadline);
