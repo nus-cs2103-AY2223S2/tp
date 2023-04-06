@@ -29,7 +29,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Tutee Managing System.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TMS.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -38,7 +38,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
    * `list` : Lists all students.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the Managing system.
 
    * `delete 3` : Deletes the 3rd student shown in the current list.
 

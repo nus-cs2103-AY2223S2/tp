@@ -14,20 +14,20 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
     private final String phoneKeyword;
     private final String emailKeyword;
     private final List<String> addressKeywords;
-    private final String subjectkeyword;
+    private final String subjectKeyword;
     private final String scheduleKeyword;
     private final String startTimeKeyword;
     private final String endTimeKeyword;
     private final List<String> tagKeywords;
 
     public FieldContainsKeywordsPredicate(List<String> nameKeywords, String phoneKeyword, String emailKeyword,
-                                          List<String> addressKeywords, String subjectkeyword,String scheduleKeyword,
+                                          List<String> addressKeywords, String subjectKeyword,String scheduleKeyword,
                                           String startTimeKeyword, String endTimeKeyword, List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
         this.phoneKeyword = phoneKeyword;
         this.emailKeyword = emailKeyword;
         this.addressKeywords = addressKeywords;
-        this.subjectkeyword = subjectkeyword;
+        this.subjectKeyword = subjectKeyword;
         this.scheduleKeyword = scheduleKeyword;
         this.startTimeKeyword = startTimeKeyword;
         this.endTimeKeyword = endTimeKeyword;
@@ -46,8 +46,8 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
         boolean containsAddress = addressKeywords.isEmpty() ||
                 addressKeywords.stream()
                         .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutee.getAddress().toString(), keyword));
-        boolean containsSubject = subjectkeyword.isEmpty() ||
-                StringUtil.containsWordIgnoreCase(tutee.getSubject().subject, subjectkeyword);
+        boolean containsSubject = subjectKeyword.isEmpty() ||
+                StringUtil.containsWordIgnoreCase(tutee.getSubject().subject, subjectKeyword);
         boolean containsSchedule = scheduleKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getSchedule().schedule, scheduleKeyword);
         boolean containsStartTime = startTimeKeyword.isEmpty() ||
@@ -70,7 +70,7 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
                 && phoneKeyword.equals(((FieldContainsKeywordsPredicate) other).phoneKeyword)
                 && emailKeyword.equals(((FieldContainsKeywordsPredicate) other).emailKeyword)
                 && addressKeywords.equals(((FieldContainsKeywordsPredicate) other).addressKeywords)
-                && subjectkeyword.equals(((FieldContainsKeywordsPredicate) other).subjectkeyword)
+                && subjectKeyword.equals(((FieldContainsKeywordsPredicate) other).subjectKeyword)
                 && scheduleKeyword.equals(((FieldContainsKeywordsPredicate) other).scheduleKeyword)
                 && startTimeKeyword.equals(((FieldContainsKeywordsPredicate) other).startTimeKeyword)
                 && endTimeKeyword.equals(((FieldContainsKeywordsPredicate) other).endTimeKeyword)

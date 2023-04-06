@@ -9,29 +9,29 @@ Tuition center admin managing system (TCAMS) is a desktop application designed f
 
 Given below are my contributions to the project.
 
-<!-- * **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}* -->
+* **New Feature**: Added the ability to filter fields,
+  * What it does: allows the user to filter and display tutees by specifying fields and their prefix. (name, phone, email, address, subject, schedule, start time, end time, tags)
+  * Justification: This feature improves the product significantly because a user is able to quickly locate and display tutees and their relevant information when a certain field is given.
+  * Highlights: The implementation of `filterCommand` was inspired from `editCommand` as it required users to specify a prefix of the field together with an input. The `fieldContainsKeywordPredicate` was also inspired from the `nameContainsKeywordPredicate` that findCommand uses except that it accepts every field instead of just the name of the tutee.
 
-* **New Feature**: filter feature
-
-* **Code contributed**: [link](https://github.com/AY2223S2-CS2103T-W10-4/tp)
+* **Code contributed**: [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jugsliao&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added
+  * To be added
 
 * **Enhancements to existing features**:
-  * to be added
-
+  * Added subject, schedule, start time, end time and remark field to a tutee.
+  * Modified add, edit and filter command to accept these new fields.
+ 
 * **Documentation**:
   * Readme.md
   * UserGuide.md
+    * Added documentation for the `filter` feature
   * DeveloperGuide.md
+    * Added implementation detail of the `filter` feature
 
 * **Community**:
-  * to be added
+  * Reported bugs for other teams during PE-Dry run
 
 * **Tools**:
   * to be added

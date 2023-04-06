@@ -281,20 +281,12 @@ that are equal to what the user has provided.
 - Alternative 1 (current choice): Use prefix to filter what to search for.
   - Pros: More precise when filtering time (e.g. `filter st/10:30` will only return tutees whose lesson starting time is at
   10:30)
-  - Pros: Using prefix can filter tutees more precisely (e.g. `filter s/math sch/monday` will only return tutees whose 
-  lessons fall on `monday` **and** taking the `math` subject.) This is more useful as it is harder to find intersections between
-  multiple fields than the union of all the fields.
   - Cons: Harder to implement.
 
 - Alternative 2: Extend find feature and filter any field without specifying prefix.
   - Pros: Easier to implement.
   - Cons: Could cause confusion when filtering time (e.g. `filter 10:30` will return all tutees whose lesson start time and
   end time are at 10:30)
-  - Cons: The extended find feature will not be as precise in filtering tutees (e.g. `filter math monday`) will return 
-  all tutees whose lessons fall on `monday` **or** taking the `math` subject.) This is considered less useful as it is simple
-  to find the union of multiple fields compared to finding the intersections. (i.e. users can perform filter for individual fields
-  separately if they want to find the union of all of them)
-   
 
 ### Copy feature
 
