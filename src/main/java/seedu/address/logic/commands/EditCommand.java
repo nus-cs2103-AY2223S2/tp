@@ -106,8 +106,7 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateShowPerson(new FullNamePredicate(editedPerson.getName().fullName));
-        model.commitAddressBook();
-        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
+        model.commitAddressBook(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

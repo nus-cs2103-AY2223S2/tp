@@ -146,8 +146,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void commitAddressBook() {
+    public void commitAddressBook(String lastExecutedCommand) {
         versionedAddressBook.commit();
+        commandHistory.updateAsModifyingHistory(lastExecutedCommand);
     }
 
 

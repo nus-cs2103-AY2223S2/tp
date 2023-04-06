@@ -63,9 +63,8 @@ public class DeleteCommand extends Command {
         String deletedPersons = String.join(", ", personsToDelete.stream()
                 .map(Person::toString)
                 .toArray(String[]::new));
-        model.commitAddressBook();
+        model.commitAddressBook(COMMAND_WORD);
         model.setDefaultShowPerson();
-        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons));
     }
 

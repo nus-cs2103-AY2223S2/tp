@@ -135,9 +135,11 @@ public interface Model {
     void redoAddressBook();
 
     /**
-     * Saves the current version of AddressBook to versionStateHistory.
+     * Saves the current version of AddressBook and the last executed command.
+     *
+     * @param lastExecutedCommand The name of the command to be updated to the command history.
      */
-    void commitAddressBook();
+    void commitAddressBook(String lastExecutedCommand);
 
     /**
      * Returns a list of all existing tag values (without duplicates) contained
