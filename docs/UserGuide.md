@@ -531,8 +531,10 @@ _Here are some important requirements for you to take note:_
 * `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
     * `START DATE & START TIME` must be before `END DATE & END TIME`
+    *  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+    *  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
 * `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
-    *  Event will be automatically added as a `One Time Event`.
+    *  Event will be automatically added as a `One Time Event`. 
 
 _Examples:_
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
@@ -584,7 +586,9 @@ _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
     * `INDEX` must be a **positive integer** (must be greater than 0).
-* At least one field must be provided.
+*  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+*  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+*  At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
 |--------|-------------------------------|-----------|
