@@ -8,10 +8,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 /**
  * Uploads a file to CLIpboard. If file already exists in CLIpboard, old file will be overwritten.
@@ -71,6 +75,21 @@ public class UploadCommand extends Command {
             if (!toCopy.isFile()) {
                 throw new CommandException("Please upload a valid file.");
             }
+
+            ImageInputStream iis = ImageIO.createImageInputStream(toCopy);
+            Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
+
+            if (!readers.hasNext()) {
+                throw new CommandException("Please upload a PNG file.");
+            }
+
+            String formatName = readers.next().getFormatName();
+
+            if (!"png".equalsIgnoreCase(formatName)) {
+                throw new CommandException("Please upload a PNG file.");
+            }
+
+
             Files.copy(sourcePath, destPath.resolve(sourcePath.getFileName()), REPLACE_EXISTING);
             return new CommandResult(this, generateSuccessMessage(sourcePath), willModifyState);
         } catch (IOException e) {
