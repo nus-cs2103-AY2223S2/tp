@@ -324,7 +324,7 @@ are committed to constantly improving our software to meet your needs.
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
-### View help : `g help`
+### View help: `g help`
 * Feeling stuck or lost? This command shows all valid command formats and their functionalities.
 <br><br/>
   <p align="left">
@@ -342,7 +342,7 @@ drug of CareFlow.
 
 <br>
 
-### Exit the program : `g exit`
+### Exit the program: `g exit`
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
   \
   &nbsp;
