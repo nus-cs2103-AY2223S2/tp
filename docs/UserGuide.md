@@ -713,10 +713,11 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** 
-* The values you input should adhere to the [parameter requirements](#parameter-descriptions) in the [Parameter descriptions](#parameter-descriptions).
-* The parameters in the braces indicate which parameter in the Parameter descriptions the input should adhere to.
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the parameter requirements.
 </div>
+
+The parameters in the braces indicate which parameter in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
+
 
 - `name`: Represents the student's name. If empty, input`""`. (STUDENT_NAME)
 - `phone`: Represents the student's phone number. If empty, input`""`. (PHONE)
