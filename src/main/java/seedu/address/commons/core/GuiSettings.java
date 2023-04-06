@@ -75,8 +75,8 @@ public class GuiSettings implements Serializable {
 
     @Override
     public String toString() {
-        return "Width : " + windowWidth + "\n" +
-                "Height : " + windowHeight + "\n" +
-                "Position : " + windowCoordinates;
+        return "Width : " + windowWidth + "\n"
+                + "Height : " + windowHeight + "\n"
+                + "Position : " + windowCoordinates;
     }
 }

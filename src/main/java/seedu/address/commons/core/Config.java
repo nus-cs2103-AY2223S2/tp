@@ -54,8 +54,8 @@ public class Config {
 
     @Override
     public String toString() {
-        return "Current log level : " + logLevel +
-                "\nPreference file Location : " + userPrefsFilePath;
+        return "Current log level : "
+                + logLevel + "\nPreference file Location : " + userPrefsFilePath;
     }
 
 }
