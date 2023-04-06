@@ -160,7 +160,22 @@ Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1.
 
 ### 3.3.4. Finding a Deck : `findDecks`
 
+If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
+
+Format: `findDecks KEYWORD...`
+- You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
+- At least one KEYWORD must be given.
+- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite "program" being a partial word of "programming".
+- Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+
+Example:
+- `findDecks CS2103T software` filters decks whose names match keywords "CS2103T" and "software".
+
 ### 3.3.5. Showing all Decks : `showDecks`
+
+After you filtered the decks using `findDecks`, you can see all the existing decks again using this command.
+
+Format: `showDecks`
 
 ### 3.3.6. Selecting a Deck : `selectDeck`
 
@@ -265,18 +280,18 @@ Examples:
 
 This command allows you to find specific flashcards you want to interact with based on the keyword(s) you enter.
 
-It shows all the cards in the selected deck whose **questions** contain any of the given keyword(s).
+It shows all the cards in the selected deck whose **questions** contain **any** of the given keyword(s).
 
 You can interact with the filtered cards using their new indices, through commands such as `editCard` and `deleteCard`.
 
 Format: `findCards KEYWORD...`
 - You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findCards partia` will filter the cards whose questions contain the incomplete word "partia". Cards whose questions contain the complete word "partial" will not appear.
+- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 
 Example:
-- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" and "recursion".
+- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" **or** "recursion".
 
 ### 3.4.5. Showing all Cards : `showCards`
 
