@@ -402,6 +402,7 @@ If you need more info on the usage of each command, refer to the relevant sectio
 [Scroll back to top](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Commands
 
@@ -416,6 +417,8 @@ Equivalent to clicking Help > Help F1 via the GUI <br>
 <img src="images/UiHelpMenu.png"/>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Adding a person : `add`
 
