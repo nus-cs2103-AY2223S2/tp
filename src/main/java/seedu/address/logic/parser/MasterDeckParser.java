@@ -208,6 +208,28 @@ public class MasterDeckParser {
         case FindCardsCommand.COMMAND_WORD:
             return new FindCardsCommandParser().parse(arguments);
 
+        //Review-related commands
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
+
+        case PreviousCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, PreviousCardCommand.COMMAND_WORD));
+
+        case NextCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
+
+        case EndReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
+
+        case SetReviewLimitCommand.COMMAND_WORD:
+            return new SetReviewLimitCommandParser().parse(arguments);
+
+        case TagMediumCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
+
+        case TagHardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
+
         // Other Commands
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -225,33 +247,13 @@ public class MasterDeckParser {
 
         switch(commandWord.toLowerCase()) {
 
-        // Review-related Commands
-        case ReviewCommand.COMMAND_WORD:
-            return new ReviewCommandParser().parse(arguments);
-
-        case SetReviewLimitCommand.COMMAND_WORD:
-            return new SetReviewLimitCommandParser().parse(arguments);
+        //Case-insensitive review commands
 
         case FlipCardCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
 
-        case PreviousCardCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, PreviousCardCommand.COMMAND_WORD));
-
-        case NextCardCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
-
         case TagEasyCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagEasyCommand.COMMAND_WORD));
-
-        case TagMediumCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
-
-        case TagHardCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
-
-        case EndReviewCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -309,6 +311,28 @@ public class MasterDeckParser {
         case FindCardsCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindCardsCommand.COMMAND_WORD));
 
+        //Review-related commands
+        case ReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ReviewCommand.COMMAND_WORD));
+
+        case SetReviewLimitCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SetReviewLimitCommand.COMMAND_WORD));
+
+        case PreviousCardCommand.COMMAND_WORD:
+            return new PreviousCardCommand();
+
+        case NextCardCommand.COMMAND_WORD:
+            return new NextCardCommand();
+
+        case TagMediumCommand.COMMAND_WORD:
+            return new TagMediumCommand();
+
+        case TagHardCommand.COMMAND_WORD:
+            return new TagHardCommand();
+
+        case EndReviewCommand.COMMAND_WORD:
+            return new EndReviewCommand();
+
         // Other commands
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -324,33 +348,13 @@ public class MasterDeckParser {
         }
 
         switch(commandWord.toLowerCase()) {
-        // Review-related Commands
-        case ReviewCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ReviewCommand.COMMAND_WORD));
-
-        case SetReviewLimitCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SetReviewLimitCommand.COMMAND_WORD));
+        ///Case-insensitive Review-related Commands
 
         case FlipCardCommand.COMMAND_WORD:
             return new FlipCardCommand();
 
-        case PreviousCardCommand.COMMAND_WORD:
-            return new PreviousCardCommand();
-
-        case NextCardCommand.COMMAND_WORD:
-            return new NextCardCommand();
-
         case TagEasyCommand.COMMAND_WORD:
             return new TagEasyCommand();
-
-        case TagMediumCommand.COMMAND_WORD:
-            return new TagMediumCommand();
-
-        case TagHardCommand.COMMAND_WORD:
-            return new TagHardCommand();
-
-        case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
