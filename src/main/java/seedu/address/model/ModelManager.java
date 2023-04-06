@@ -151,6 +151,15 @@ public class ModelManager implements Model {
         commandHistory.updateAsModifyingHistory(lastExecutedCommand);
     }
 
+    @Override
+    public String getLastExecutedCommand() {
+        return commandHistory.getLastExecutedCommand();
+    }
+
+    @Override
+    public String getLatestModifyingCommand() {
+        return commandHistory.getLatestModifyingCommand();
+    }
 
 
 

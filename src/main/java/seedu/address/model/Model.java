@@ -142,6 +142,18 @@ public interface Model {
     void commitAddressBook(String lastExecutedCommand);
 
     /**
+     * Returns the command name of the last executed command that modified AddressBook.
+     * @return Command name as a string.
+     */
+    String getLastExecutedCommand();
+
+    /**
+     * Returns the command name of the last command undone.
+     * @return Command name as a String.
+     */
+    String getLatestModifyingCommand();
+
+    /**
      * Returns a list of all existing tag values (without duplicates) contained
      * in the person list.
      */

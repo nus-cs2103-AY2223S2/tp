@@ -34,7 +34,7 @@ public class UndoCommand extends Command {
         } else {
             model.undoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            commandToUndo = commandHistory.getLastExecutedCommand();
+            commandToUndo = model.getLastExecutedCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToUndo);
             return new CommandResult(message);
         }

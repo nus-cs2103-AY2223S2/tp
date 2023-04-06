@@ -33,7 +33,7 @@ public class RedoCommand extends Command {
         } else {
             model.redoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            commandToRedo = commandHistory.getLatestModifyingCommand();
+            commandToRedo = model.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
             return new CommandResult(message);
         }
