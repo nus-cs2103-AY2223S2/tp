@@ -520,8 +520,16 @@ Let's use the `undo` command to revert our Team Builder back to before we typed 
 
 These are all acceptable as anything after `undo` is discarded.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-You can only `undo` up to 10 times in a row! After the 10th `undo`, no more `undo` is possible.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Caution:**
+
+* You can only `undo` up to 10 times in a row! After the 10th `undo`, no more `undo` is possible.
+
+* You can only `undo` [modifying commands](#full-table-of-commands).
+
+* You may also undo into a state where `find` was called and so your contact list is not shown fully.
+Simply use `list` to view the full contact list again.
+
 </div>
 
 ### Redoing an undo command : `redo`
