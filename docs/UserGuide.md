@@ -321,6 +321,7 @@ Format: `addWeight INDEX w/WEIGHT d/DATE`
 * The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
 * `DATE` field must be a date that has passed.
+* `WEIGHT` field is specified in kilograms (Kg).
 
 Examples:
 * `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 March 2023, 6pm.
@@ -388,7 +389,10 @@ Edits an existing routine in the FitBook.
 
 Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
 
-* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the two types should be used. No mixture of the two types is not allowed.
 * This command only allows the editing existing Routine's name or existing Exercise's name.
 
@@ -455,6 +459,8 @@ Format: `deleteRoutine ROUTINE_INDEX`
 * Deletes the routine at the specified `ROUTINE_INDEX`.
 * The index refers to the index number shown in the displayed Routine list in the `Exercise panel`.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
@@ -474,6 +480,8 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 * Adds an exercise `EXERCISE_NAME` to the Routine in FitBook at the specified `ROUTINE_INDEX`.
 * The `ROUTINE_INDEX` refers to the index number shown in the displayed Routine list in the exercise panel.
 * The `ROUTINE_INDEX` **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
@@ -493,6 +501,8 @@ Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
 * The `ROUTINE_INDEX` refers to the index number shown in the displayed Routine list in the exercise panel.
 * The `EXERCISE_INDEX` refers to the index number shown in the displayed Routine exercise list in the exercise panel.
 * Both `ROUTINE_INDEX` and `EXERCISE_INDEX` **must be a positive integer and a valid integer according to the list displayed** 1, 2, 3, …​
+* Both `ROUTINE_INDEX` and `EXERCISE_INDEX` must not contain signs +1, +2, +3, …​
+* Both `ROUTINE_INDEX` and `EXERCISE_INDEX` must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
