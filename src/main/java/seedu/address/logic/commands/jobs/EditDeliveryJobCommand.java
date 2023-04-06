@@ -34,16 +34,27 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the job identified "
             + "by the index number/job id used in the displayed job list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_JOB_ID + "JOB_ID] "
+            + "Parameters: INDEX (must be a positive integer) ["
+            + PREFIX_JOB_ID + "JOB_ID] "
             + "[" + PREFIX_SENDER_ID + "SENDER_ID] "
             + "[" + PREFIX_RECIPIENT_ID + "RECIPIENT_ID] "
             + "[" + PREFIX_DELIVERY_DATE + "DELIVERY_DATE] "
             + "[" + PREFIX_DELIVERY_SLOT + "DELIVERY_SLOT] "
             + "[" + PREFIX_EARNING + "EARN] "
-            + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]...\n"
+            + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]\n"
+            + "OR\n"
+            + "Parameters: "
+            + PREFIX_JOB_ID + "JOB_ID "
+            + "[" + PREFIX_SENDER_ID + "SENDER_ID] "
+            + "[" + PREFIX_RECIPIENT_ID + "RECIPIENT_ID] "
+            + "[" + PREFIX_DELIVERY_DATE + "DELIVERY_DATE] "
+            + "[" + PREFIX_DELIVERY_SLOT + "DELIVERY_SLOT] "
+            + "[" + PREFIX_EARNING + "EARN] "
+            + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SENDER_ID + "ALE874 ";
+            + PREFIX_SENDER_ID + "ALE874 \n"
+            + COMMAND_WORD +" " + PREFIX_JOB_ID + "ALBE29E66F "
+            + PREFIX_IS_DELIVERED + "t";
 
     public static final String MESSAGE_EDIT_JOB_SUCCESS = "Edited Job: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
