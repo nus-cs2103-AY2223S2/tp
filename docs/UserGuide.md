@@ -748,6 +748,7 @@ NeoBook data are saved as JSON files. Two of which will be of interest to you:
 - `[JAR file location]/data/userdata.json`.
 
 You are welcome to update the data directly by editing that data file.
+However, be careful when directly editing the tagged contacts in `userdata.json`. It may cause the person to become unlinked from the event completely.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If you edit the taggedPerson in User data, beware that you may end up unlinking the person from any changes to the original contact in NeoBook
