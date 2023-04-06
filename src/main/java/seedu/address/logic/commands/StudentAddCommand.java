@@ -19,7 +19,8 @@ import seedu.address.model.session.SessionName;
 public class StudentAddCommand extends Command {
     public static final String COMMAND_WORD = "student-add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an athlete (by index) to a specified session (by name).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds an athlete (by index) to a specified session (by name).\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 "

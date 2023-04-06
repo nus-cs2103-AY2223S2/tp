@@ -25,7 +25,8 @@ public class RemoveTagCommand extends Command {
 
     public static final String COMMAND_WORD = "remove-tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the specified tag(s) from an athlete, by their index.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes the specified tag(s) from an athlete, by their index.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "TAG "
             + "[MORE_TAGS]...\n"

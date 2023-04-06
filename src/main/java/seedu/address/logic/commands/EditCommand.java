@@ -33,7 +33,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing athlete in the contact list, by their index.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of an existing athlete in the contact list, by their index.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "

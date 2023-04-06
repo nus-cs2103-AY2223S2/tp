@@ -18,7 +18,8 @@ import seedu.address.model.session.Session;
 public class CreateSessionCommand extends Command {
     public static final String COMMAND_WORD = "create-session";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new session and adds it to the session list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Creates a new session and adds it to the session list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "

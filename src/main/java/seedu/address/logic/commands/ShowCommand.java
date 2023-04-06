@@ -14,7 +14,8 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds athletes in the contact list who have any of the specified tags.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds athletes in the contact list who have any of the specified tags.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " Varsity Hall";
 

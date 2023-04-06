@@ -21,7 +21,8 @@ import seedu.address.model.session.SessionName;
 public class StudentRemoveCommand extends Command {
     public static final String COMMAND_WORD = "student-remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an athlete (by index) from a specified session (by name).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes an athlete (by index) from a specified session (by name).\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 "

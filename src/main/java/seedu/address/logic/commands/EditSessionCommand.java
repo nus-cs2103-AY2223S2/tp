@@ -26,7 +26,8 @@ public class EditSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "session-edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing session in the session list, by its index.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of an existing session in the session list, by its index.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
