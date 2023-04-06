@@ -7,7 +7,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## **Introduction**
 
 {{ site.data.techtrack.about.summary }}
 
@@ -490,7 +490,7 @@ output as per normal. However, if the object `T` is a `Role`, we can render a cu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Requirements
+## **Requirements**
 
 ### Product Scope
 
@@ -802,7 +802,7 @@ class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Effort
+## **Effort**
 
 ### Morphing of AB3 to TechTrack
 Ideas:
@@ -817,7 +817,7 @@ Ideas:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
