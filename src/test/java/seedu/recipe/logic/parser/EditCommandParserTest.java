@@ -1,6 +1,5 @@
 package seedu.recipe.logic.parser;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_FISH;
@@ -36,7 +35,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
-//import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
@@ -45,11 +43,6 @@ import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
-
-//import java.util.Collection;
-//import java.util.Collections;
-//import java.util.Optional;
-//import java.util.Set;
 
 public class EditCommandParserTest {
 
@@ -207,11 +200,4 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    //    @Test
-    //    public void parseTagsForEdit_emptyTagsOptional() throws ParseException {
-    //        Collection<String> tags = Collections.emptyList();
-    //        Optional<Set<Tag>> expectedTagsOptional = Optional.empty();
-    //
-    //        assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
-    //    }
 }
