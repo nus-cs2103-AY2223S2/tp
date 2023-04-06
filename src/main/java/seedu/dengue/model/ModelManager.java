@@ -247,7 +247,7 @@ public class ModelManager implements Model {
     public void checkout(Path filePath) throws IOException {
         ObservableList<DataBin> tempList = FXCollections.observableArrayList();
         tempList.setAll(overview.getOverviewContent());
-        String[] headers = new String[]{"id", "binName", "binSize"};
+        String[] headers = Overview.getHeaders();
         List<String[]> data = Overview.enumList(tempList
                         .stream()
                         .map(DataBin::toCsvString)

@@ -129,6 +129,13 @@ public abstract class Overview {
 
         Overview other = (Overview) obj;
         return getAnalyst().equals(other.getAnalyst());
+    }
 
+    /**
+     * Returns an array of the string headers for CSV storage
+     * @return A String[] representing the Headers for Overview class formatted for CSV storage.
+     */
+    public static String[] getHeaders() {
+        return new String[]{"id", "binName", "binSize"};
     }
 }
