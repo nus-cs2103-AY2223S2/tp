@@ -183,12 +183,10 @@ public class PdfConverter {
             float wrapCur;
             if (i != 0 && i != headers.size() - 1) {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 4 * this.margin
-                        - textLength(maxContentWidthString.get(i + 1), fontBold,
-                        fontTableHeaderSize);
+                        - textLength(maxContentWidthString.get(i + 1), fontBold, fontTableHeaderSize);
             } else {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 2 * this.margin;
             }
-            logger.info(String.valueOf(wrapCur));
             this.x += this.margin;
             this.y -= this.margin;
             wrapText(headers.get(i), wrapCur, font, fontSize, maxContentWidthString);
