@@ -125,7 +125,7 @@ public class LabTest {
 
     @Test
     public void lab_validLab_getDate() {
-        assertNotEquals(LocalDateTime.now(), new Lab("now").getDate());
+        assertNotNull(lab5.getDate());
     }
 
     @Test
