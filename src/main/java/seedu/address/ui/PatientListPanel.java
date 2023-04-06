@@ -135,24 +135,19 @@ public class PatientListPanel extends UiPart<Region> {
      */
     class PatientListViewCell extends ListCell<Patient> {
 
-        private Optional<Patient> patient;
+        private Patient patient;
 
         public PatientListViewCell(Logic logic) {
             super();
-            this.patient = Optional.empty();
             this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                DoctorFilter doctorContainsPatient =
-                        new DoctorFilter(this.patient);
-                Predicate<Doctor> doctorsOfPatientPredicate =
-                        new DoctorContainsKeywordsPredicate(doctorContainsPatient);
-                logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+                logic.updateFilteredDoctorListBasedOnPatient(patient);
             });
         }
 
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);
-            this.patient = Optional.ofNullable(patient);
+            this.patient = patient;
 
             if (empty || patient == null) {
                 setGraphic(null);

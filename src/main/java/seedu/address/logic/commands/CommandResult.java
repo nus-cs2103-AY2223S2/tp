@@ -13,13 +13,14 @@ import seedu.address.model.person.patient.Patient;
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    /** Feedback to be shown to the user through CLI. */
+    private final String cliFeedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean shouldShowHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean shouldExit;
 
     /** This command interacts directly with the GUI */
     private final boolean hasGuiInteraction;
@@ -33,11 +34,11 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with all fields specified.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+    public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp, boolean shouldExit,
                          boolean hasGuiInteraction, Doctor selectedDoctor, Patient selectedPatient) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldExit = shouldExit;
         this.hasGuiInteraction = hasGuiInteraction;
         this.selectedDoctor = Optional.ofNullable(selectedDoctor);
         this.selectedPatient = Optional.ofNullable(selectedPatient);
@@ -46,51 +47,57 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean hasGuiInteraction) {
-        this(feedbackToUser, showHelp, exit, hasGuiInteraction, null, null);
+    public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp,
+                         boolean shouldExit, boolean hasGuiInteraction) {
+        this(cliFeedbackToUser, shouldShowHelp, shouldExit,
+                hasGuiInteraction, null, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified arguments,
      * and {@code hasGuiInteraction} set to its default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false);
+    public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp, boolean shouldExit) {
+        this(cliFeedbackToUser, shouldShowHelp, shouldExit, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+    public CommandResult(String cliFeedbackToUser) {
+        this(cliFeedbackToUser, false, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with selected doctor.
      */
-    public CommandResult(String feedbackToUser, boolean hasGuiInteraction, Doctor selectedDoctor) {
-        this(feedbackToUser, false, false, hasGuiInteraction, selectedDoctor, null);
+    public CommandResult(String cliFeedbackToUser, boolean hasGuiInteraction,
+                         Doctor selectedDoctor) {
+        this(cliFeedbackToUser, false, false,
+                hasGuiInteraction, selectedDoctor, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with selected patient.
      */
-    public CommandResult(String feedbackToUser, boolean hasGuiInteraction, Patient selectedPatient) {
-        this(feedbackToUser, false, false, hasGuiInteraction, null, selectedPatient);
+    public CommandResult(String cliFeedbackToUser, boolean hasGuiInteraction,
+                         Patient selectedPatient) {
+        this(cliFeedbackToUser, false, false,
+                hasGuiInteraction, null, selectedPatient);
     }
 
 
-    public String getFeedbackToUser() {
-        return feedbackToUser;
+    public String getCliFeedbackToUser() {
+        return cliFeedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean shouldShowHelp() {
+        return shouldShowHelp;
     }
 
-    public boolean isExit() {
-        return exit;
+    public boolean shouldExit() {
+        return shouldExit;
     }
 
     public boolean hasGuiInteraction() {
@@ -125,15 +132,16 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
+        return cliFeedbackToUser.equals(otherCommandResult.cliFeedbackToUser)
+                && shouldShowHelp == otherCommandResult.shouldShowHelp
+                && shouldExit == otherCommandResult.shouldExit
                 && hasGuiInteraction == otherCommandResult.hasGuiInteraction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, hasGuiInteraction);
+        return Objects.hash(cliFeedbackToUser, shouldShowHelp, shouldExit,
+                hasGuiInteraction);
     }
 
 }

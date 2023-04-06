@@ -23,7 +23,7 @@ public class PatientFilter {
     private final String statusFilter;
     private final String remarkFilter;
     private final Set<String> tagsFilter;
-    private final Optional<Doctor> doctorFilter;
+    private final Doctor doctorFilter;
 
     /**
      * Constructs a {@code PatientFilter}.
@@ -37,11 +37,11 @@ public class PatientFilter {
      * @param status status in string (can be empty string).
      * @param remark remark in string (can be empty string).
      * @param tags set of tags in string (can be empty list).
-     * @param doctor optional containing doctor object (OfNullable).
+     * @param doctor a doctor object (can be null).
      */
     public PatientFilter(String name, String phone, String email, String height,
                          String weight, String diagnosis, String status,
-                         String remark, Set<String> tags, Optional<Doctor> doctor) {
+                         String remark, Set<String> tags, Doctor doctor) {
         this.nameFilter = name;
         this.phoneFilter = phone;
         this.emailFilter = email;
@@ -76,15 +76,15 @@ public class PatientFilter {
                          String status,
                          String remark, Set<String> tags) {
         this(name, phone, email, height, weight,
-                diagnosis, status, remark, tags, Optional.empty());
+                diagnosis, status, remark, tags, null);
     }
 
     /**
      * Constructs a {@code PatientFilter}.
      *
-     * @param doctor optional containing doctor object (OfNullable).
+     * @param doctor a doctor object (can be null).
      */
-    public PatientFilter(Optional<Doctor> doctor) {
+    public PatientFilter(Doctor doctor) {
         this("", "", "", "", "",
                 "", "", "", new HashSet<>(), doctor);
     }
@@ -116,8 +116,8 @@ public class PatientFilter {
                     .collect(Collectors.toSet()));
         }
 
-        if (doctorFilter.isPresent()) {
-            result = result && patient.hasDoctor(doctorFilter.get());
+        if (doctorFilter != null) {
+            result = result && patient.hasDoctor(doctorFilter);
         }
 
         return result;
