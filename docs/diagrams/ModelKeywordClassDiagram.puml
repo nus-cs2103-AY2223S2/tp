@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Keyword\n <<Rectangle>>{
+Class Keyword
+
+Class String
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside -> Keyword
+
+Keyword *--> "keyword 1" String
+Keyword *--> "1 mainKeyword" String
+
+@enduml
