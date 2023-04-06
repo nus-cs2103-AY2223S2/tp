@@ -959,13 +959,13 @@ prefix `I/` corresponds to the index of the subsection in the parent task.
 
 - The application currently does not support scheduling subsections so that they can be completed on different days.
 #### Possible Solution
-- One possible solution is to allocate the main task's effort level to the subtask and the scheduling algorithm will allocate big tasks by putting the same task on different days with different subsections on each day.
+- One possible solution is to allocate the main task's effort level to the subsection and allow the subsection to be one of a simple task, deadline or event. The scheduling algorithm will allocate big tasks by putting them across different days with different subsections on each day.
 - The new `subsection` command will look something like `subsection n/homework d/cs2109s [E/20]`. If the effort level is not specified, then the effort level of the main task will be even distributed among the subsections.
-- The command will still look like `schedule E/EFFORT D/DATE` but the result will only be the parent tasks along with part of the subsections that is set to be completed on that day.
+- The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will only be the parent tasks along with part of the subsections that is set to be completed on that day.
 - For example, if the task list only contains a parent task has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/50 D/2023-05-04` and today is 2023-05-04, the displayed result 
 will only be the parent task and the subsection "homework A". If the user enters `schedule E/50 D/2023-05-05` then, the same parent task but with subsection "homework B" will be displayed.
-- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadlines, even if the total effort on a certain
-date must be above daily effort level. 
+- This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in 
+the total effort on a certain date exceeding daily effort level. 
 
 
 ### 7.4 Enabling `sort` by subsection
