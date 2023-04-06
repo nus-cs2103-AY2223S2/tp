@@ -44,6 +44,8 @@ public class CommandTestUtil {
     public static final Person VALID_BORROWER_ALICE = TypicalPersons.ALICE;
     public static final LocalDate VALID_DUE_DATE = LocalDate.parse("06/04/2023");
     public static final String VALID_ISBN_HARRY = "9780747532743";
+    public static final String VALID_TITLE_ANIMAL = "Animal Farm";
+    public static final String VALID_AUTHOR_ALEX = "Alexandra Harris";
     public static final String VALID_TITLE_HARRY = "Harry Potter";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

@@ -4,8 +4,8 @@ import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static expresslibrary.logic.commands.CommandTestUtil.showBookAtIndex;
 import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,8 +28,8 @@ public class DeleteBookCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
+        Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST.getZeroBased());
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST, false);
 
         String expectedMessage = String.format(DeleteBookCommand.MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete);
 
@@ -49,10 +49,10 @@ public class DeleteBookCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showBookAtIndex(model, INDEX_FIRST_BOOK);
+        showBookAtIndex(model, INDEX_FIRST);
 
-        Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
+        Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST.getZeroBased());
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST, false);
 
         String expectedMessage = String.format(DeleteBookCommand.MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete);
 
@@ -65,9 +65,9 @@ public class DeleteBookCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showBookAtIndex(model, INDEX_FIRST_BOOK);
+        showBookAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_BOOK;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of express library list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExpressLibrary().getBookList().size());
 
@@ -78,14 +78,14 @@ public class DeleteBookCommandTest {
 
     @Test
     public void equals() {
-        DeleteBookCommand deleteFirstCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
-        DeleteBookCommand deleteSecondCommand = new DeleteBookCommand(INDEX_SECOND_BOOK, false);
+        DeleteBookCommand deleteFirstCommand = new DeleteBookCommand(INDEX_FIRST, false);
+        DeleteBookCommand deleteSecondCommand = new DeleteBookCommand(INDEX_SECOND, false);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteBookCommand deleteFirstCommandCopy = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
+        DeleteBookCommand deleteFirstCommandCopy = new DeleteBookCommand(INDEX_FIRST, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

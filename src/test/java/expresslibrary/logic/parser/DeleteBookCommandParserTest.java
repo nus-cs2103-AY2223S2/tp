@@ -3,7 +3,7 @@ package expresslibrary.logic.parser;
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteBookCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteBookCommand() {
-        assertParseSuccess(parser, "1", new DeleteBookCommand(INDEX_FIRST_BOOK, false));
+        assertParseSuccess(parser, "1", new DeleteBookCommand(INDEX_FIRST, false));
     }
 
     @Test

@@ -4,9 +4,9 @@ import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static expresslibrary.logic.commands.CommandTestUtil.*;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_BOOK;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_BOOK;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_THIRD_BOOK;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -76,7 +76,7 @@ public class EditBookCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_BOOK;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING + ISBN_DESC_HARRY
                 + BORROW_DATE_DESC + DUE_DATE_DESC;
 
@@ -90,7 +90,7 @@ public class EditBookCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_BOOK;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING;
 
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY)
@@ -103,7 +103,7 @@ public class EditBookCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // title
-        Index targetIndex = INDEX_THIRD_BOOK;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_HARRY;
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY).build();
         EditBookCommand expectedCommand = new EditBookCommand(targetIndex, descriptor);
@@ -136,7 +136,7 @@ public class EditBookCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_BOOK;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING + ISBN_DESC_HARRY
                 + BORROW_DATE_DESC + DUE_DATE_DESC + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING + ISBN_DESC_HARRY
                 + BORROW_DATE_DESC + DUE_DATE_DESC;
@@ -152,7 +152,7 @@ public class EditBookCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_BOOK;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + AUTHOR_DESC_ROWLING;
         EditBookDescriptor descriptor = new EditBookDescriptorBuilder().withAuthor(VALID_AUTHOR_ROWLING).build();
         EditBookCommand expectedCommand = new EditBookCommand(targetIndex, descriptor);
