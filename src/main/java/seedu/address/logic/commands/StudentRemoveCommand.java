@@ -21,14 +21,15 @@ import seedu.address.model.session.SessionName;
 public class StudentRemoveCommand extends Command {
     public static final String COMMAND_WORD = "student-remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove a student of index i from a session specified."
-            + "\nParameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an athlete (by index) from a specified session (by name).\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_NAME + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "hall";
 
-    public static final String SESSION_REMOVE_PERSON_SUCCESS = "Removed Person: %1$s to Session: %2$s";
-    public static final String SESSION_NOT_FOUND_FAILURE = "Session: %1$s cannot be found. ";
-    public static final String STUDENT_NOT_FOUND_FAILURE = "Student not found";
+    public static final String SESSION_REMOVE_PERSON_SUCCESS = "Removed athlete %1$s from session %2$s.";
+    public static final String SESSION_NOT_FOUND_FAILURE = "Session %1$s cannot be found.";
+    public static final String STUDENT_NOT_FOUND_FAILURE = "Athlete cannot be found.";
 
     private SessionName sessionName;
     private Index index;

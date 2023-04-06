@@ -26,22 +26,21 @@ public class EditSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "session-edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the session identified "
-            + "by the index number used in the displayed session list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing session in the session list, by its index.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_SESSION + "SESSION] "
-            + "[" + PREFIX_LOCATION + "LOCATION] "
+            + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Hall "
             + PREFIX_SESSION + "10-03-2022 10:00 to 10-03-2022 11:00 "
             + PREFIX_LOCATION + "MPSH";
 
-    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: %1$s";
+    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited session: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SESSION_TIME = "This session overlaps with an existing session.";
-    public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list.";
 
 
     private final Index index;

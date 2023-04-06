@@ -19,15 +19,16 @@ import seedu.address.model.session.SessionName;
 public class StudentAddCommand extends Command {
     public static final String COMMAND_WORD = "student-add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a student of index i to a session specified. "
-            + "\nParameters: INDEX (must be a positive integer) "
-            + "\nExample: " + COMMAND_WORD + " 1 "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an athlete (by index) to a specified session (by name).\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_NAME + "SESSION_NAME\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "hall";
 
-    public static final String SESSION_ADD_PERSON_SUCCESS = "Added Person: %1$s to Session: %2$s";
-    public static final String SESSION_NOT_FOUND_FAILURE = "Session: %1$s cannot be found. "
-            + "Here are the list of existing sessions: %2$s";
-    public static final String STUDENT_ALREADY_ADDED_FAILURE = "Student already belongs to %1$s";
+    public static final String SESSION_ADD_PERSON_SUCCESS = "Added athlete %1$s to session %2$s.";
+    public static final String SESSION_NOT_FOUND_FAILURE = "Session %1$s cannot be found. "
+            + "Here is the list of existing sessions:\n %2$s";
+    public static final String STUDENT_ALREADY_ADDED_FAILURE = "Student already belongs to %1$s.";
 
     private SessionName sessionName;
     private Index index;

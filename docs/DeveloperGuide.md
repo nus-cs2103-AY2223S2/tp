@@ -106,7 +106,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the 'destroy' marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a coach command:
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a Coach command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
@@ -173,9 +173,9 @@ Step 4. The Coach then decides to execute the command `sort 1`.
 
 Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allow coaches to specify how to sort their list.
-    * Pros: More flexible and customisable to the needs of the coach.
-    * Cons: More troublesome as coach needs to check the User Guide to learn what integers to use.
+* **Alternative 1 (current choice):** Allow Coaches to specify how to sort their list.
+    * Pros: More flexible and customisable to the needs of the Coach.
+    * Cons: More troublesome as Coach needs to check the User Guide to learn what integers to use.
 
 ### Undo/redo feature
 
@@ -267,6 +267,25 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+1. **The names of the individual tag and session-related commands are inconsistent.**<br>
+   For example, creating a new athlete uses `add`, while a new session uses `create-session`, and adding an athlete to a session uses `student-add`.<br>
+   We plan on standardising the names to `add`, `add-session`, and `add-athlete` to avoid user confusion.
+
+
+2. **Displayed messages cannot be seen entirely in the output box without scrolling.**<br>
+   This is especially the case when the message is long (i.e. an error message).<br>
+   We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will<br> display its entire contents without the user needing to scroll through it.
+
+
+3. **The app cannot be navigated solely through keyboard input alone.**<br>
+   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.<br>
+   This may make it inconvenient for users who may prefer CLI apps.<br>
+   We plan on making the app completely navigable through keyboard input while also allowing users to click parts of the GUI.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -278,7 +297,7 @@ The following activity diagram summarizes what happens when a Coach executes a n
 * can type fast.
 * prefers typing rather than mouse interaction.
 * is reasonably comfortable using CLI (Command Line Interface) apps.
-* requires to organise their coaching schedule on a frequent basis.
+* requires to organise their Coaching schedule on a frequent basis.
 
 **Value proposition**:
 * manage contacts faster than a typical mouse/GUI-driven app.
@@ -292,15 +311,15 @@ Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Lo
 
 | Priority | As a …​                           | I want to …​                              | So that I can…​                                                           |
 |----------|-----------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | new coach                         | see usage instructions                    | refer to instructions when I forget how to use the app                    |
-| `* * *`  | coach                             | add a new athlete                         | record their profile                                                      |
-| `* * *`  | coach                             | delete an athlete                         | remove athletes that I no longer train                                    |
-| `* * *`  | coach                             | edit an athlete's details                 | refer to accurate information regarding that athlete                      |
-| `* *`    | coach                             | find an athlete by name                   | locate details of an athlete without having to go through the entire list |
-| `* *`    | coach                             | hide an athlete's private contact details | minimize chance of someone else seeing them by accident                   |
-| `* *`    | coach                             | organise athletes by groups               | facilitate better contact management                                      |
-| `*`      | coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
-| `*`      | coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
+| `* * *`  | new Coach                         | see usage instructions                    | refer to instructions when I forget how to use the app                    |
+| `* * *`  | Coach                             | add a new athlete                         | record their profile                                                      |
+| `* * *`  | Coach                             | delete an athlete                         | remove athletes that I no longer train                                    |
+| `* * *`  | Coach                             | edit an athlete's details                 | refer to accurate information regarding that athlete                      |
+| `* *`    | Coach                             | find an athlete by name                   | locate details of an athlete without having to go through the entire list |
+| `* *`    | Coach                             | hide an athlete's private contact details | minimize chance of someone else seeing them by accident                   |
+| `* *`    | Coach                             | organise athletes by groups               | facilitate better contact management                                      |
+| `*`      | Coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
+| `*`      | Coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
 
 ### Use cases
 

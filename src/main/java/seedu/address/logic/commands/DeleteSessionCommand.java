@@ -16,12 +16,12 @@ import seedu.address.model.session.Session;
 public class DeleteSessionCommand extends Command {
     public static final String COMMAND_WORD = "delete-session";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an existing session to the address book. "
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing session from the session list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Session removed: %1$s";
-    public static final String MESSAGE_SESSION_NOT_FOUND = "This session does not exist in the address book";
+    public static final String MESSAGE_SESSION_NOT_FOUND = "This session does not exist in the session list.";
 
     public final Index index;
 

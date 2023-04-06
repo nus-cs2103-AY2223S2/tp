@@ -163,7 +163,7 @@ Format: `list`
 
 Edits the details of an existing athlete in the contact list, by their index.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
 
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​ not more than the number of athletes in the contact list.
@@ -249,7 +249,7 @@ Sorts the contact list by pay rate, from lowest to highest.
 
 Adds the specified tag(s) to an athlete, by their index.
 
-Format: `add-tag INDEX t/TAGNAME [MORE_TAGS]…​`
+Format: `add-tag INDEX t/TAG [MORE_TAGS]…​`
 
 * Multiple tags can be added to an athlete at once.
 * The index refers to the index number shown in the displayed contact list.
@@ -268,7 +268,7 @@ Adds tags `Basketball` and `Varsity` to the athlete at index 4.
 
 Removes the specified tag(s) from an athlete, by their index.
 
-Format: `remove-tag INDEX t/TAGNAME [MORE_TAGS]…​`
+Format: `remove-tag INDEX t/TAG [MORE_TAGS]…​`
 
 * Multiple tags can be removed from an athlete at once.
 * The index refers to the index number shown in the displayed contact list.
@@ -308,6 +308,7 @@ Creates a new session and adds it to the session list.
 Format: `create-session n/NAME s/SESSION l/LOCATION`
 
 * The session list must not already have a session with the same name.
+* Datetime format must be `DD-MM-YYYY HH:mm`.
 
 Examples:<br>
 * `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`<br>
@@ -349,7 +350,7 @@ Changes the location of the 2nd session in the session list to `Hall`.
 
 Marks an athlete (by name) as present for a specified session (by index).
 
-Format: `mark INDEX n/ATHLETE_NAME`
+Format: `mark SESSION_INDEX n/ATHLETE_NAME`
 
 * The index refers to the index number shown in the displayed session list.
 * The index **must be a positive integer** 1, 2, 3, …​ not more than the number of sessions in the session list.
@@ -364,7 +365,7 @@ Marks John Doe as present in the 1st session in the session list.
 
 Marks an athlete (by name) as absent for a specified session (by index).
 
-Format: `unmark INDEX n/ATHLETE_NAME`
+Format: `unmark SESSION_INDEX n/ATHLETE_NAME`
 
 * The index refers to the index number shown in the displayed session list.
 * The index **must be a positive integer** 1, 2, 3, …​ not more than the number of sessions in the session list.
@@ -383,7 +384,7 @@ Format: `student-add INDEX n/SESSION_NAME`
 
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​ not more than the number of athletes in the contact list.
-* Session must already exist to add a student to it.
+* Session must already exist to add an athlete to it.
 
 Examples:<br>
 * `student-add 1 n/hall`<br>
@@ -398,7 +399,7 @@ Format: `student-remove INDEX n/SESSION_NAME`
 
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​ not more than the number of athletes in the contact list.
-* Session must already exist to remove a student from it.
+* Session must already exist to remove an athlete from it.
 
 Examples:<br>
 * `student-remove 1 n/hall`<br>
@@ -458,19 +459,19 @@ If your changes to the data file makes its format invalid, SportSync will discar
 | **Exit SportSync**              | `exit`                                                                                                                                      |
 | **Add New Athlete**             | `add n/NAME p/PHONE_NUMBER a/ADDRESS r/PAY_RATE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend a/Sheares Hall p/1234567 t/basketball r/5` |
 | **List Athletes**               | `list`                                                                                                                                      |
-| **Edit Athlete**                | `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee r/3`                                        |
+| **Edit Athlete**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee r/3`                                 |
 | **Find Athlete**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                   |
 | **Delete Athlete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                          |
 | **Clear Athletes and Sessions** | `clear`                                                                                                                                     |
 | **Sort Athletes**               | `sort ATTRIBUTE`<br> e.g. `sort 1`                                                                                                          |
-| **Add Tags to Athlete**         | `add-tag INDEX t/TAGNAME [MORE_TAGS]…​` <br> e.g. `add-tag 2 t/Private t/New`                                                               |
-| **Remove Tags from Athlete**    | `remove-tag INDEX t/TAGNAME [MORE_TAGS]…​` <br> e.g. `remove-tag 2 t/Private`                                                               |
+| **Add Tags to Athlete**         | `add-tag INDEX t/TAG [MORE_TAGS]…​` <br> e.g. `add-tag 2 t/Private t/New`                                                                   |
+| **Remove Tags from Athlete**    | `remove-tag INDEX t/TAG [MORE_TAGS]…​` <br> e.g. `remove-tag 2 t/Private`                                                                   |
 | **Show Athletes with Tags**     | `show TAGNAME [MORE_TAGS]…​`<br> e.g. `show Hall Varsity`                                                                                   |
 | **Create Session**              | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g. `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`                |
 | **Delete Session**              | `delete-session INDEX`<br> e.g. `delete-session 3`                                                                                          |
 | **Edit Session**                | `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`<br> e.g. `session-edit 2 n/Hall`                                                     |
-| **Mark Athlete Attendance**     | `mark INDEX n/ATHLETE_NAME` <br> e.g. `mark 1 n/John Doe`                                                                                   |
-| **Unmark Athlete Attendance**   | `unmark INDEX n/ATHLETE_NAME` <br> e.g. `unmark 1 n/John Doe`                                                                               |
+| **Mark Athlete Attendance**     | `mark SESSION_INDEX n/ATHLETE_NAME` <br> e.g. `mark 1 n/John Doe`                                                                           |
+| **Unmark Athlete Attendance**   | `unmark SESSION_INDEX n/ATHLETE_NAME` <br> e.g. `unmark 1 n/John Doe`                                                                       |
 | **Add Athlete to Session**      | `student-add INDEX n/SESSION_NAME` <br> e.g. `student-add 1 n/Hall`                                                                         |
 | **Remove Athlete from Session** | `student-remove INDEX n/SESSION_NAME` <br> e.g. `student-remove 1 n/Hall`                                                                   |
 
