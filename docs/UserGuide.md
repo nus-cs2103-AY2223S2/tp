@@ -200,8 +200,10 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
-* `add_elderly n/Betsy Crowe p/98765432 e/johnd@example.com a/John street ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17`
-* `add_elderly n/John Wick ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH`
+* `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` adds an elderly named `Betsy Crowe` with [NRIC](#nric)
+  `S5034567C` to FriendlyLink, with [birth date](#birthdate) `1950-02-03`, [address](#address) `John street`, [risk level](#risk-level) `HIGH` and [phone number](#phone-number) `98765432`.
+* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` adds an elderly named `Sally White` with [NRIC](#nric)
+  `S3334567C` to FriendlyLink, with [birth date](#birthdate) `1933-02-03`.
 ![](images/userGuide/addElderly.png)
 
 #### Adding a volunteer: `add_volunteer`
@@ -219,8 +221,10 @@ A volunteer can have any number of tags, medical qualifications and available da
 
 Examples:
 
-* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15 mt/CPR, BASIC`
-* `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/99887432 ic/S9054567D` adds a volunteer named `John Wick` with [NRIC](#nric)
+  `S9054567D` to FriendlyLink, with [birth date](#birthdate) `1990-11-05`, [address](#address) `New yourk`, [email address](#email) `johnwick@example.com` and [phone number](#phone-number) `99887432`.
+* `add_volunteer n/Sally White bd/1989-03-11 ic/S8957677H` adds a volunteer named `Sally White` with [NRIC](#nric)
+  `S8957677H` to FriendlyLink, with [birth date](#birthdate) `1989-03-11`.
 ![](images/userGuide/addVolunteer.png)
 
 #### Pair volunteer and elderly: `pair`
@@ -305,8 +309,8 @@ You can remove all the elderly’s tags by typing `t/` without specifying any ta
 </div>
 
 Examples:
-* `edit_elderly 1 p/91234567 e/johndoe@example.com` Edits the [phone number](#phone-number) and [email address](#email) of the 1st elderly to be `91234567` and `johndoe@example.com` respectively.
-* `edit_elderly 2 n/Betsy Crower t/` Edits the name of the 2nd elderly to be `Betsy Crower` and clears all existing [tags](#tags).
+* `edit_elderly 1 p/91234567 e/johndoe@example.com` edits the [phone number](#phone-number) and [email address](#email) of the 1st elderly to be `91234567` and `johndoe@example.com` respectively.
+* `edit_elderly 2 n/Betsy Crower t/` edits the name of the 2nd elderly to be `Betsy Crower` and clears all existing [tags](#tags).
 
 #### Editing a volunteer by index: `edit_volunteer`
 
@@ -328,9 +332,9 @@ You can remove all the volunteer’s tags by typing `t/` without specifying any 
 
 Examples:
 
-* `edit_volunteer 1 p/91234567 e/johndoe@example.com` Edits the [phone number](#phone-number) and [email address](#phone-number) of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
-* `edit_volunteer 2 n/Betsy Crower mt/` Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing [medical qualifications](#medical-qualification).
-* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` Replaces all existing [medical qualifications](#medical-qualification) of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`.
+* `edit_volunteer 1 p/91234567 e/johndoe@example.com` edits the [phone number](#phone-number) and [email address](#phone-number) of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
+* `edit_volunteer 2 n/Betsy Crower mt/` edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing [medical qualifications](#medical-qualification).
+* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` replaces all existing [medical qualifications](#medical-qualification) of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`.
 
 #### Editing a person by NRIC: `edit`
 
@@ -354,9 +358,9 @@ You can remove all the person's tags by typing `t/` without specifying any tags 
 </div>
 Examples:
 
-* `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
-* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and risk level of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
-* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad`
+* `edit S2233556T p/91642345 re/NORTH` edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
+* `edit S8833657U re/CENTRAL r/HIGH` edits the [region](#region) and risk level of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
+* `edit S2568212B t/Overseas t/Undergrad` replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad`
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
 
 <div>
