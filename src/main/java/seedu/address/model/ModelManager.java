@@ -5,11 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
@@ -47,7 +47,7 @@ public class ModelManager implements Model {
     private final SortedList<Vehicle> sortedFilteredVehicles;
     private final FilteredList<Appointment> filteredAppointments;
     private final SortedList<Appointment> sortedFilteredAppointments;
-    private final ObservableMap<String, Integer> filteredParts;
+    private final FilteredList<Map.Entry<String, Integer>> filteredParts;
     private final Shop shop;
 
     private Customer selectedCustomer;
@@ -95,7 +95,7 @@ public class ModelManager implements Model {
         // default sort for appointments
         this.sortedFilteredAppointments.setComparator(SharedComparatorsUtil.getDefaultAppointmentSort());
 
-        this.filteredParts = this.shop.getPartMap();
+        this.filteredParts = new FilteredList<>(this.shop.getPartMap());
 
         customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList(),
             this.shop.getAppointmentList());
@@ -139,7 +139,6 @@ public class ModelManager implements Model {
             this.shop.getVehicleList());
         this.appointmentDataMap.reset(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
             this.shop.getCustomerList());
-        ;
         this.technicianDataMap.reset(this.shop.getTechnicianList(), this.shop.getServiceList(),
             this.shop.getAppointmentList());
     }
@@ -217,6 +216,12 @@ public class ModelManager implements Model {
         return this.filteredPersons;
     }
 
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        this.filteredPersons.setPredicate(predicate);
+    }
+
+
     // Shop ===================================================================================================
 
     @Override
@@ -263,13 +268,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return sortedFilteredTechnicians;
     }
 
     @Override
-    public ObservableList<Technician> getFilteredTechnicianList() {
-        return sortedFilteredTechnicians;
+    public ObservableList<Map.Entry<String, Integer>> getFilteredPartMap() {
+        return filteredParts;
     }
 
     // selecting ===========================================================================================
@@ -354,6 +359,12 @@ public class ModelManager implements Model {
     public void updateFilteredTechnicianList(Predicate<? super Technician> predicate) {
         requireNonNull(predicate);
         filteredTechnicians.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPartMap(Predicate<? super Map.Entry<String, Integer>> predicate) {
+        requireNonNull(predicate);
+        filteredParts.setPredicate(predicate);
     }
 
     // Sorters

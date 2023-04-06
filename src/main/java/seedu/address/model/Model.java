@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -176,6 +177,8 @@ public interface Model {
 
     TechnicianDataMap getTechnicianDataMap();
 
+    ObservableList<Map.Entry<String, Integer>> getFilteredPartMap();
+
     /**
      * Sets currently selected customer
      */
@@ -228,6 +231,8 @@ public interface Model {
 
 
     // Sort helper functions
+
+    void updateFilteredPartMap(Predicate<? super Map.Entry<String, Integer>> predicate);
 
     /**
      * Updates the comparator used to sort customers

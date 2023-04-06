@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -111,10 +112,10 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
-     * @return an unmodifiable view of the parts list.
+     * @return an unmodifiable view of the parts map.
      */
-    public ObservableMap<String, Integer> getPartMap() {
-        return FXCollections.unmodifiableObservableMap(this.parts);
+    public ObservableList<Map.Entry<String, Integer>> getPartMap() {
+        return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList(this.parts.entrySet()));
     }
 
     // Individual item
@@ -926,7 +927,7 @@ public class Shop implements ReadOnlyShop {
         this.vehicles.addAll(newData.getVehicleList());
 
         this.parts.clear();
-        this.parts.putAll(newData.getPartMap());
+        newData.getPartMap().forEach(entry -> this.parts.put(entry.getKey(), entry.getValue()));
 
         this.services.clear();
         this.services.addAll(newData.getServiceList());
