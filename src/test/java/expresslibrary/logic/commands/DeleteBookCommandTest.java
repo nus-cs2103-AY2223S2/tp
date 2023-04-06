@@ -29,7 +29,7 @@ public class DeleteBookCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK);
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
 
         String expectedMessage = String.format(DeleteBookCommand.MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete);
 
@@ -42,7 +42,7 @@ public class DeleteBookCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex, false);
 
         assertCommandFailure(deleteBookCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }
@@ -52,7 +52,7 @@ public class DeleteBookCommandTest {
         showBookAtIndex(model, INDEX_FIRST_BOOK);
 
         Book bookToDelete = model.getFilteredBookList().get(INDEX_FIRST_BOOK.getZeroBased());
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK);
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
 
         String expectedMessage = String.format(DeleteBookCommand.MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete);
 
@@ -71,21 +71,21 @@ public class DeleteBookCommandTest {
         // ensures that outOfBoundIndex is still in bounds of express library list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExpressLibrary().getBookList().size());
 
-        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
+        DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex, false);
 
         assertCommandFailure(deleteBookCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteBookCommand deleteFirstCommand = new DeleteBookCommand(INDEX_FIRST_BOOK);
-        DeleteBookCommand deleteSecondCommand = new DeleteBookCommand(INDEX_SECOND_BOOK);
+        DeleteBookCommand deleteFirstCommand = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
+        DeleteBookCommand deleteSecondCommand = new DeleteBookCommand(INDEX_SECOND_BOOK, false);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteBookCommand deleteFirstCommandCopy = new DeleteBookCommand(INDEX_FIRST_BOOK);
+        DeleteBookCommand deleteFirstCommandCopy = new DeleteBookCommand(INDEX_FIRST_BOOK, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

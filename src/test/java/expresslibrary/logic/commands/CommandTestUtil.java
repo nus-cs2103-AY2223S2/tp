@@ -1,14 +1,11 @@
 package expresslibrary.logic.commands;
 
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_TAG;
+import static expresslibrary.logic.parser.CliSyntax.*;
 import static expresslibrary.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,10 +15,13 @@ import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.Model;
 import expresslibrary.model.book.Book;
-import expresslibrary.model.book.TitleContainsKeywordsPredicate;
+import expresslibrary.model.person.Name;
 import expresslibrary.model.person.NameContainsKeywordsPredicate;
+import expresslibrary.model.book.TitleContainsKeywordsPredicate;
 import expresslibrary.model.person.Person;
+import expresslibrary.testutil.EditBookDescriptorBuilder;
 import expresslibrary.testutil.EditPersonDescriptorBuilder;
+import expresslibrary.testutil.TypicalPersons;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,13 +39,20 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_TITLE_ANIMAL = "Animal Farm";
-    public static final String VALID_TITLE_HARRY = "Harry Potter";
-    public static final String VALID_AUTHOR_ALEX = "Alexandra Harris";
     public static final String VALID_AUTHOR_ROWLING = "JK Rowling";
+    public static final LocalDate VALID_BORROW_DATE = LocalDate.parse("30/03/2023");
+    public static final Person VALID_BORROWER_ALICE = TypicalPersons.ALICE;
+    public static final LocalDate VALID_DUE_DATE = LocalDate.parse("06/04/2023");
+    public static final String VALID_ISBN_HARRY = "9780747532743";
+    public static final String VALID_TITLE_HARRY = "Harry Potter";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String TITLE_DESC_HARRY = " " + PREFIX_TITLE + VALID_TITLE_HARRY;
+    public static final String AUTHOR_DESC_ROWLING = " " + PREFIX_AUTHOR + VALID_AUTHOR_ROWLING;
+    public static final String ISBN_DESC_HARRY = " " + PREFIX_ISBN + VALID_ISBN_HARRY;
+    public static final String BORROW_DATE_DESC = " " + PREFIX_BORROW_DATE + VALID_BORROW_DATE;
+    public static final String DUE_DATE_DESC = " " + PREFIX_DUE_DATE + VALID_DUE_DATE;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -59,12 +66,21 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME; // empty string not allowed for titles
+    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_NAME + "Rowling&"; // '&' not allowed in authors
+    public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "123a"; // 'a' not allowed in isbns
+    public static final String INVALID_BORROW_DATE = " " + PREFIX_BORROW_DATE
+            + "30/03/2023a"; // 'a' not allowed in borrow date
+    public static final String INVALID_DUE_DATE = " " + PREFIX_DUE_DATE
+            + "06/04/2023a"; // 'a' not allowed in due date
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditBookCommand.EditBookDescriptor DESC_HARRY;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -73,6 +89,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_HARRY = new EditBookDescriptorBuilder().withTitle(VALID_TITLE_HARRY)
+                .withAuthor(VALID_AUTHOR_ROWLING).withIsbn(VALID_ISBN_HARRY).withBorrower(VALID_BORROWER_ALICE)
+                .withBorrowDate(VALID_BORROW_DATE).withDueDate(VALID_DUE_DATE).build();
     }
 
     /**
@@ -82,7 +101,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -98,7 +117,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -145,10 +164,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
-        final String[] splitName = book.getTitle().title.split("\\s+");
-        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTitle = book.getTitle().title.split("\\s+");
+        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredBookList().size());
     }
-
 }

@@ -22,7 +22,7 @@ public class DeleteBookCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteBookCommand() {
-        assertParseSuccess(parser, "1", new DeleteBookCommand(INDEX_FIRST_BOOK));
+        assertParseSuccess(parser, "1", new DeleteBookCommand(INDEX_FIRST_BOOK, false));
     }
 
     @Test
