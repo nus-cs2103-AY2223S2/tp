@@ -18,9 +18,9 @@ Class "<u>:ChangeListener</u>" as ChangeListener #000000
 Class "<u>detailPatientProperty:ObjectProperty</u>" as ObjectProperty #000000
 Class "<u>:ModelManager</u>" as ModelManager LOGIC_COLOR
 
-ModelManager -> ObjectProperty
-ObjectProperty -> ChangeListener : updates >
-ChangeListener -> DetailedView : updates >
+ModelManager -down-> ObjectProperty
+ObjectProperty -down-> ChangeListener : updates >
+ChangeListener -down-> DetailedView : updates >
 DetailedView -> Function
 
 @enduml
