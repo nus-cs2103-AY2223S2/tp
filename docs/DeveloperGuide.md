@@ -90,7 +90,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="450" alt="LogicClassDiagram"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
@@ -107,7 +107,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600" alt="ParserClasses"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddDoctorCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDoctorCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -116,18 +116,18 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450"/>
+<img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
+
+<img src="images/PersonPackageClassDiagram.png" width="450" alt="PersonPackageClassDiagram" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Doctor` and `Patient` objects (which are contained in a `UniqueDoctorList` and `UniquePatientList` object).
+* stores the currently 'selected' `Doctor` and `Patient` objects (e.g., results of a search query) as a separate _filteredDoctors_ and _filteredPatients_ list which is exposed to outsiders as an unmodifiable `ObservableList<Doctor>` and `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/PersonPackageClassDiagram.png" width="450"/>
 
 </div>
 

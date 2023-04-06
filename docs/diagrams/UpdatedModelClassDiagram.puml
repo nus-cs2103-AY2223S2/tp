@@ -16,18 +16,25 @@ Package Model {
     Class "UniqueDoctorList" as UniqueDoctorList
     Class "UniquePatientList" as UniquePatientList
 
-    Class "Doctor" as Doctor
-    Class "Patient" as Patient
+Package Person {
+    Package Doctor {
+        Class "Doctor" as Doctor
+    }
+    Package Patient {
+        Class "Patient" as Patient
+    }
     Class "Person" as Person
 
-    Doctor -down-|>Person
-    Patient -down-|> Person
+    Doctor.Doctor -down-|>Person
+    Patient.Patient -down-|> Person
+}
 
-    UniqueDoctorList ---> "~* all" Doctor
-    UniquePatientList ---> "~* all" Patient
 
-    AddressBook *--> UniqueDoctorList
-    AddressBook *-> UniquePatientList
+    UniqueDoctorList ----> "~* all" Person.Doctor.Doctor
+    UniquePatientList -----> "~* all" Person.Patient.Patient
+
+    AddressBook *---> UniqueDoctorList
+    AddressBook *---> UniquePatientList
 
     AddressBook .up.|> ReadOnlyAddressBook
     ModelManager .up.|> Model
@@ -36,8 +43,8 @@ Package Model {
     ModelManager -> "1" AddressBook
     UserPrefs "1" <- ModelManager
 
-    ModelManager ------> "~* filteredDoctors" Doctor
-    ModelManager ------> "~* filteredPatients" Patient
+    ModelManager ---> "~* filteredDoctors" Person.Doctor.Doctor
+    ModelManager ---> "~* filteredPatients" Person.Patient.Patient
 
 }
 @enduml
