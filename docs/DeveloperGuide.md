@@ -42,7 +42,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -111,7 +111,7 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 are in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -122,8 +122,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -168,7 +167,7 @@ API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/s
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the role book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
@@ -191,7 +190,7 @@ The `Model` component,
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both role book data and user preference data in json format, and read them back into corresponding
   objects.
 * inherits from both `RoleBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
@@ -218,7 +217,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedSala
 
 Given below is an example usage of how Salary Command is being used in the following steps.
 
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the current address
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the current role
    book from the storage and loads it.
 
    <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
@@ -268,7 +267,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedDead
 Given below is an example usage of how Salary Command is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current address book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
+   current role book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
@@ -342,7 +341,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how TagCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+   current role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Tag Command` to filter tags.
     - The user executes `tag <keyword>` command to filter roles by their tag.
@@ -373,7 +372,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how NameCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+   current role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
@@ -405,32 +404,34 @@ any roles in the role book.
 
 An example usage of the `View` command is given below:
 
-1. The user launches the application for the first time. The RoleBook will be initialized with the current address book.
-   <img src="images/UICommandImages/ViewCommand0.png" width="800" />
+1. The user launches the application for the first time. The RoleBook will be initialized with the current role book.
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
-     <img src="images/UICommandImages/ViewCommand1.png" width="800" />
+   
+     <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 
 The following sequence diagram shows how the `view` command works:
+
 <img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
 
 #### Design considerations:
 
-**Aspect: How view Command executes:**
+**Aspect: How the `view` command executes:**
 
 * **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
 appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children
-node of `ResultDisplay` based on command given (in this case, `view`).
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay` 
+based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom display). 
+To do so, we can change [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java) 
+to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` 
+method in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the output as per
+normal. However, if the object `T` is a `Role`, we can render a custom display instead.
     * Pros: Provides an easy and extendable way to create custom views
-    * Cons: Need to refactor some UI code.
-
-Todo: 
-(1) write about changing CommandResult<T> to be generic, 
-(2) Create sequence diagram for `view` command
+    * Cons: Need to refactor some UI code and `CommandResult.java` class
 
 
 --------------------------------------------------------------------------------------------------------------------
