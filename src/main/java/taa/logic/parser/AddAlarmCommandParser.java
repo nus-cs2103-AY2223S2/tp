@@ -32,7 +32,7 @@ public class AddAlarmCommandParser {
         }
         int minutes;
         Object obj = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        if (obj instanceof Integer && (int)obj > 0) {
+        if (obj instanceof Integer && (int) obj > 0) {
             minutes = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         } else {
             throw new ParseException(String.format(
