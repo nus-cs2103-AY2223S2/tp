@@ -91,28 +91,45 @@ public class ContactDisplay extends UiPart<Region> {
             logger.info("Command did not result in GUI Interaction");
             return;
         }
-
-        if (commandResult.hasSelectedDoctor()) {
-            Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
-            doctorListPanel.selectDoctor(selectedDoctor);
-
-            logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor.get());
-
-            enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
-            infoCardDisplayController.displayDoctor();
-        }
-
-        if (commandResult.hasSelectedPatient()) {
-            Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
-            patientListPanel.selectPatient(selectedPatient);
-
-            logic.updateFilteredDoctorListBasedOnPatient(selectedPatient.get());
-
-            enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
-            infoCardDisplayController.displayPatient();
-        }
-
+        setFeedbackIfDoctorSelected(commandResult);
+        setFeedbackIfPatientSelected(commandResult);
         updateEnlargedInfoCard();
+    }
+
+    /**
+     * Updates the contact display if user selected a doctor.
+     *
+     * @param commandResult a command result.
+     */
+    private void setFeedbackIfDoctorSelected(CommandResult commandResult) {
+        if (!commandResult.hasSelectedDoctor()) {
+            logger.info("No doctor selected");
+            return;
+        }
+
+        Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
+        doctorListPanel.selectDoctor(selectedDoctor);
+        logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor.get());
+        enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
+        infoCardDisplayController.displayDoctor();
+    }
+
+    /**
+     * Updates the contact display if user selected a patient.
+     *
+     * @param commandResult a command result.
+     */
+    private void setFeedbackIfPatientSelected(CommandResult commandResult) {
+        if (!commandResult.hasSelectedPatient()) {
+            logger.info("No patient selected");
+            return;
+        }
+
+        Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
+        patientListPanel.selectPatient(selectedPatient);
+        logic.updateFilteredDoctorListBasedOnPatient(selectedPatient.get());
+        enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
+        infoCardDisplayController.displayPatient();
     }
 
     /**
