@@ -197,13 +197,13 @@ public class LabTest {
 
         Lab newLabA = new Lab("lab6");
         newLabA.addStudent(person);
-        newLabA.changeDate(LocalDateTime.of(2020,10,10,10,10));
+        newLabA.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
         newLabA.addAttachment(new File("new file"));
         newLabA.addNote(new Note("new note"));
 
         Lab newLabB = new Lab("lab6");
         newLabB.addStudent(person);
-        newLabB.changeDate(LocalDateTime.of(2020,10,10,10,10));
+        newLabB.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
         newLabB.addAttachment(new File("new file"));
         newLabB.addNote(new Note("not new note"));
 
