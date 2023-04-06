@@ -122,14 +122,11 @@ List of commands:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` and angle brackets `<>` are the parameters to be supplied by the user.<br>
   e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
 
 * Items in square brackets are optional.<br>
   e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
-
-* Items in angle brackets are necessary.<br>
-  e.g in `add course <COURSE>`, entering only `add course` will cause error.
 
 * Items with `…`​ after them can be used multiple times.<br>
   e.g. `mark <INDEX>…​` can be used as `mark 1`, `mark 1,2,3` etc.
@@ -584,14 +581,13 @@ Examples:
 
 ### Adding or deleting a remark: `remark`
 
-Add or delete a remark to/from a student in the student roster.
-
-Format for adding a remark:
+Format for adding / editing a remark:
 ```
-remark <INDEX> [r/<REMARK]
+remark <INDEX> [<REMARK>]
 ```
 
 - Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
+- If there is already an existing remark, this command will replace current remark with `<REMARK>`
 
 Format for deleting a remark:
 ```
@@ -601,8 +597,13 @@ remark <INDEX>
 - Deletes a remark from a student in the student list whose index is specified in the `<INDEX>` field.
 
 Examples:
-- `remark 1 r/Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student listed in the student list.
+- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student 
+listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
+</div>
 
 [Back to list of commands](#commands)
 
@@ -610,21 +611,26 @@ Examples:
 
 ### Uploading a student's photo: `upload`
 
-Uploads a student's photo to be displayed on the student roster.
+Uploads a student's photo to be displayed in the student roster.
 
 Format:
 ```
 upload <LOCAL_FILE_PATH>
 ```
-- File path must be an absolute file path to the photo.
-- For student photo to be reflected to a specific student in CLIpboard, photo must be named after the said student's student ID (i.e. `<STUDENT_ID>.png`)
+- File path to the photo can be either absolute file path or relative file path.
+- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said 
+student's student ID (i.e. `<STUDENT_ID>.png`)
 - If a new photo with the same name as an existing photo in CLIpboard is uploaded, existing photo will be replaced.
+- Only images of file type `.png` can be uploaded
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Only images of file type .png is accepted
+Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly 
+(e.g. <code>A0123456X.png</code>) will be displayed in the profile of corresponding student.
 </div>
 
 Examples:
-- `upload /Users/AlexYeoh/Desktop/A0123456X.png`
+- `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the 
+photo will be displayed in the profile of student with student ID `A0123456X`
 
 [Back to list of commands](#commands)
 
