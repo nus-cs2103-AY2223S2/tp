@@ -198,8 +198,10 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 
 * Command names are case-sensitive. For example, `help` will work, but `HELP` or `Help` will not work.
 
+<div style="page-break-after: always;"></div>
+
 [//]: # (@@author eugenetangkj)
-### Prefixes and Rules for Fields
+### Prefixes and Constraints for Fields
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
@@ -211,16 +213,16 @@ There are 2 important things that you should note:
     * For example, in `add n/Apple`, the value `Apple` is associated with the
    field `COMPANY_NAME` since the `n/` prefix is used.
     * Prefixes are **case-sensitive**. `n/` will work but `N/` will not work.
-2. There are **rules** that you must adhere to when replacing fields with values. 
-   * Rules differ based on the fields.
-   * If you do not adhere to these rules and enter invalid values, an error message will be
+2. There are **constraints** that you must adhere to when replacing fields with values. 
+   * Constraints differ based on the fields.
+   * If you do not adhere to these constraints and enter invalid values, an error message will be
      displayed in the [Result Display](#exploring-the-graphical-user-interface) when you
      press <button>Enter</button>. The message will alert you to the invalid input and provide information
      on how to correct the command.
 
-Table 2 provides a summary of the fields with their descriptions, prefixes and rules.
+Table 2 provides a summary of the fields with their descriptions, prefixes and constraints.
 
-| Field          | Description                                                                                                        | Prefix | Rules                                                                                                                                                                                   |
+| Field          | Description                                                                                                        | Prefix | Constraints                                                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `COMPANY_NAME` | The name of the company                                                                                            | `n/`   | Cannot be blank and must be at most 50 characters.                                                                                                                                      |
 | `ROLE`         | The role that you applied for                                                                                      | `r/`   | Cannot be blank and must be at most 50 characters.                                                                                                                                      |
@@ -230,7 +232,7 @@ Table 2 provides a summary of the fields with their descriptions, prefixes and r
 | `TAG`          | A label that you can give to an internship application                                                             | `t/`   | Cannot be blank (except when used in the `edit` command) and must be at most 30 characters.                                                                                             |
 | `INDEX`        | The index number of the internship entry as displayed in the [List Panel](#exploring-the-graphical-user-interface) | -      | A positive integer that is smaller than or equal to the largest index number shown in the [List Panel](#exploring-the-graphical-user-interface). Note that 0 is not a positive integer. |
 
-<p style="text-align: center;">Table 2: Fields with their descriptions, prefixes and rules</p>
+<p style="text-align: center;">Table 2: Fields with their descriptions, prefixes and constraints</p>
 
 ### Details on `STATUS` and `DATE`
 The field `STATUS` represents the current status of an internship application. It can only take on one
@@ -250,6 +252,7 @@ Note that this is **not case-sensitive**. Table 3 explains the meaning of each s
 
 <p style="text-align: center;">Table 3: Description of statuses</p>
 
+<div style="page-break-after: always;"></div>
 
 Depending on the status of the internship application, the `DATE` field will be interpreted differently. Table 4
 documents the meaning of `DATE` with respect to each `STATUS` value.
@@ -289,7 +292,6 @@ and `ROLE` do not affect the comparison.
 
 <p style="text-align: center;">Table 5: Duplicate internships</p>
 
-<div style="page-break-after: always;"></div>
 
 Meanwhile, as shown in Table 6, internships C and Internship D are not considered as duplicate
 internships, because they have different values for `COMPANY_NAME`.
@@ -306,12 +308,12 @@ internships, because they have different values for `COMPANY_NAME`.
 
 <p style="text-align: center;">Table 6: Non-duplicate internships</p>
 
-<div style="page-break-after: always;"></div>
-
 
 [//]: # (@@author potty10)
 ### Duplicate Tags
 If you attempt to store duplicate tags within the same internship entry, InternBuddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalisation (tags are **case-sensitive**). In other words, a duplicate tag is a tag that is an exact copy of another tag.
+
+<div style="page-break-after: always;"></div>
 
 ## **Features**
 
@@ -481,27 +483,44 @@ e.g., `find n/Google n/Apple s/New`, `find n/Google n/Apple s/Applied s/New`, `f
 * The `find` command returns all internship entries that matches with **at least one** value for
   **every** field type that is specified.
 
-More examples:
-* `find n/Google n/Apple s/new` returns internship entries that have a status `New` **and** have
-  a company name of `Google` **or** `Apple`.
-* `find n/Google n/Apple s/Applied s/New` returns internship entries that have company names
-  of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
-* Figure 5 below shows InternBuddy starting off with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`, the internship entries in green boxes in the after image were returned. The internship entries in red boxes in the before images, however, were not displayed as they did not match the search.
-  * In the after image, internship entry index 1 was filtered out because it contains at least one company name 'Google' and both tags 'python' and 'java'.
-  * In the after image, internship entry index 2 was filtered out because it contains at least one company name 'Google' and at least one tag 'python'.
-  * In the after image, internship entry index 3 was filtered out because it contains at least one company name 'Apple' and at least one tag 'java'
-  * In the before image, internship entry index 4 was not filtered out because even though it contains at least one searched company name 'Google', it does not contain at least one of the searched tags.
-  * In the before image, internship entry index 5 was not filtered out because even though it contains at least one of the searched tags 'java' and 'python', it does not contain at least one of the searched company names.
+Detailed example:
+* Figure 5 below shows InternBuddy starting with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`,
+  the internships in green boxes were returned while those in red boxes were not.
+
 
 
 <p align="center">
-  <img src="images/ug-find-example.png" width="1000" />
+  <img src="images/ug-find-example.png" width="500" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Example of the find command in action</p>
+   <p style="text-align: center;">Figure 5: Example of the find command in action</p>
 
 <br/>
 
+* Table 7 explains the rationale behind Figure 5.
+  
+
+| Index of Internship | Returned? | Explanation                                                                    |
+|---------------------|-----------|--------------------------------------------------------------------------------|
+| 1                   | Yes       | Contains at least one company name `Google` and both tags `python` and `java`. |
+| 2                   | Yes       | Contains at least one company name `Google` and at least one tag `python`.     |
+| 3                   | Yes       | Contains at least one company name `Apple` and at least one tag `java`.        |
+| 4                   | No        | Lacks both of the searched tags, `python` and `java`.                          |
+| 5                   | No        | Lacks both of the searched company names, `Google` and `Apple`.                |
+
+<p style="text-align: center;">Table 7: Explanation of Figure 5 </p>
+
+
+
+
+
+More examples:
+* `find n/Google n/Apple s/Interview` returns internship entries that have a status `Interview` **and** have
+  a company name of `Google` **or** `Apple`.
+* `find n/Google n/Apple s/Applied s/Interview` returns internship entries that have company names
+  of `Google` **or** `Apple` **and** roles of `Applied` **or** `Interview`.
+
+  
 
 <div markdown="span" class="alert alert-primary">
 
@@ -658,13 +677,12 @@ Done with tracking your internships for the day? Exit InternBuddy using the `exi
 
 Format: `exit`
 
-<div style="page-break-after: always;"></div>
 
 [//]: # (@@author kohkaixun)
 ### Navigating through Past Commands
 
 Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
-After you have clicked on the [Input Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Input Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
+After you have clicked on the [Command Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Command Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
 This allows you to effortlessly access and use past commands without having to go through the tedious process of typing them all over again.
 
 <div markdown="span" class="alert alert-primary">
@@ -677,8 +695,8 @@ you entered during the previous run.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Once you have navigated to the first command that you have ever entered into
-InternBuddy, pressing <button>&uarr;</button> would not lead to any further change. Similarly, once you have
-navigated to the current state of waiting for new input, pressing <button>&darr;</button> would not
+InternBuddy, pressing <button>&uarr;</button> will not lead to any further change. Similarly, once you have
+navigated to the current state of waiting for new input, pressing <button>&darr;</button> will not
 change anything.
 </div>
 
@@ -690,7 +708,7 @@ make amendments accordingly without having to type out the entire command again.
 </div>
 
 Example:
-- Figure XX illustrates an example of how you can navigate through past commands where the inputs
+- Figure 7 illustrates how you can navigate through past commands where the inputs
   `list`, `clear` and `upcoming` are entered in this particular order.
 
 
@@ -698,28 +716,28 @@ Example:
   <img src="images/ug-navigate-commands.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+   <p style="text-align: center;">Figure 7: Navigating between commands</p>
 
 <br/>
 
 
 ### Saving your Internship Data
 
-          Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
-          in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
-          where you placed `internbuddy.json`. There is no need to save manually.
+Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
+in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
+where you placed `internbuddy.json`. There is no need to save manually.
 
 <div markdown="span" class="alert alert-primary">
 
-          :information_source: **Info:** The file location of `internbuddy.json` is stated in the
-          <a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
+:information_source: **Info:** The file location of `internbuddy.json` is stated in the
+<a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
 </div>
 
 
 ### Loading the Data
 
-          InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
-          manually.
+InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
+manually.
 * If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
           entries.
 * If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
@@ -727,9 +745,9 @@ Example:
 
 <div markdown="span" class="alert alert-danger">
 
-          :warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
-          InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
-          with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
+:warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
+InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
+with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
       [Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
 
 </div>
@@ -751,7 +769,7 @@ that we are exploring and hope to implement in the future!
 
 [//]: # (@@author potty10)
 ## **Command Summary**
-Table 7 provides an overview of the commands supported in InternBuddy.
+Table 8 provides an overview of the commands supported in InternBuddy.
 
 | Action                        | Format, Examples                                                                                                                              |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -769,7 +787,7 @@ Table 7 provides an overview of the commands supported in InternBuddy.
 | Exit                          | `exit`                                                                                                                                        |
 
 
-<p style="text-align: center;">Table 7: Commands in InternBuddy</p>
+<p style="text-align: center;">Table 8: Commands in InternBuddy</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -808,31 +826,30 @@ previously.
 The following steps outline how you can properly edit the `internbuddy.json` file:
 1. Open the `internbuddy.json` file by double-clicking on it. If you are prompted to select an application to open
    the file, you can choose any text editor such as `Notepad`.
-2. Once opened, you will see the JSON data file in a format as shown in Figure 7. Referring to Figure 7,
+2. Once opened, you will see the JSON data file in a format as shown in Figure 8. Referring to Figure 8,
    each box contains the data for one specific internship entry.
 3. Within each box, you can see that there are pairings where each pair is made up of a `FIELD` and `VALUE`.
    <p align="center">
     <img src="images/ug-appendix-b-json-example.png" width="550" />
    </p>
-   <p style="text-align: center;">Figure 7: Sample JSON data file</p>
+   <p style="text-align: center;">Figure 8: Sample JSON data file</p>
 
    <br/>
-    <div style="page-break-after: always;"></div>
 
-4. To manually change the value of a field, simply replace the text for `VALUE`. Figure 8 illustrates an example
+4. To manually change the value of a field, simply replace the text for `VALUE`. Figure 9 illustrates an example
    where we change the value of `STATUS` from `assessment` to `interview` for the internship entry with company name
    `Google`. Once your changes have been made, you can save the file by pressing <button>CTRL</button> + <button>S</button>.
    <br/><br/>
    <div markdown="span" class="alert alert-danger">
-    :warning: **Warning:**  Make sure that you follow the <a href="#prefixes-and-rules-for-fields">rules</a>
-    when substituting in your own values. If the rules are not satisfied, InternBuddy will not be able to
+    :warning: **Warning:**  Make sure that you follow the <a href="#prefixes-and-constraints-for-fields">constraints</a>
+    when substituting in your own values. If the constraints are not satisfied, InternBuddy will not be able to
     read your data in the `internbuddy.json` file and will restart with all your internship data cleared.
 
     </div>
     <br/>
 
    ![Editing the JSON File](images/ug-appendix-b-json-change.png)
-    <p style="text-align: center;">Figure 10: Editing the JSON file</p>
+    <p style="text-align: center;">Figure 9: Editing the JSON file</p>
 
     <br/>
 5. Launch InternBuddy and you will see that your data have been updated accordingly.
@@ -843,19 +860,20 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
 ## **Appendix C: Populating InternBuddy with Sample Data**
 Follow the following steps to populate InternBuddy with sample data.
 1. Visit this [link](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/internbuddy.json).
-2. In the top right corner, click the button labelled `Raw`. Figure 11 shows where the `Raw` button is.
+2. In the top right corner, click the button labelled `Raw`. Figure 10 shows where the `Raw` button is.
+   
    ![InternBuddy Sample Data](images/github-raw.png)
-   <p style="text-align: center;">Figure 11: Raw button on GitHub interface</p>
+   <p style="text-align: center;">Figure 10: Raw button on GitHub interface</p>
     <br/>
 
    <div style="page-break-after: always;"></div>
 
-3. Your screen will look like Figure 12. Right click, then click on `Save As`.
+3. Your screen will look like Figure 11. Right click, then click on `Save As`.
    <p align="center">
     <img src="images/internbuddy-json-sample.png" width="300" />
    </p>
 
-   <p style="text-align: center;">Figure 12: InternBuddy Sample Data</p>
+   <p style="text-align: center;">Figure 11: InternBuddy Sample Data</p>
     <br/>
 4. You will be prompted to choose a folder to save the file in. Choose the `data` subfolder that is found in the [home folder](#quick-start) that
    you have chosen for InternBuddy.
@@ -874,7 +892,7 @@ Follow the following steps to populate InternBuddy with sample data.
 
 
 ## **Glossary**
-Table 8 provides a glossary for the technical terms used in this user guide.
+Table 9 provides a glossary for the technical terms used in this user guide.
 
 | Term                           | Definition                                                                                                                                                                                                  |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -885,7 +903,7 @@ Table 8 provides a glossary for the technical terms used in this user guide.
 | Field                          | A part of the command where you have to supply a value for the command to be valid.                                                                                                                         |
 | Prefix                         | A short form for the name of a field. It indicates which field does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the field `COMPANY_NAME` since the `n/` prefix is used. |
 
-<p style="text-align: center;">Table 8: Glossary for InternBuddy's User Guide</p>
+<p style="text-align: center;">Table 9: Glossary for InternBuddy's User Guide</p>
 
 ## **Acknowledgements**
 
