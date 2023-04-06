@@ -28,13 +28,15 @@ contacts list for an easier way to set up proper communication channels.
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `bookface.jar` from [here](https://github.com/AY2223S2-CS2103-F11-4/tp/releases).
 3. Place `bookface.jar` file in the folder you would like to use as the *home directory*.
-4. Run the application. This can be done by either executing the `jar` file, 
+4. Ensure that the *home directory* is empty and does not contain folder such as 'data'.
+5. Run the application. This can be done by either executing the `jar` file, 
 or opening a command terminal, `cd` into the *home directory*, and running the 
 `java -jar bookface.jar` command. The following GUI will appear upon first 
 use of the application.
-![GUI upon first use](images/GUIOnInitialUsage.png)
+
+![GUI upon first use](images/Ui.png)
    
-5. The application is initially loaded with sample data for new users to try out the [features](#features) listed below.
+6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below.
 Experienced users can delete the sample data and proceed with regular usage.
    
 ---
@@ -64,6 +66,14 @@ Example:
 * `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348` will displays the
   necessary basic information that are the user's name, year/course, phone number, email, address. Optional fields are tags,
   for which there are commitment/cca tags, module tags and lastly the general tags for users to enter non-specific typed tags.
+
+#### Function for each tag:
+
+`Tag`: This tag can be anything in general, such as relationship or staying on campus.
+
+`Commitment tag`: This tag contains all the NUS CCAs that a person has joined. 
+
+`Module tag`: This tag contains all modules that a person is taking in this semester.
 
 Example (with the addition of tags):
 * `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer

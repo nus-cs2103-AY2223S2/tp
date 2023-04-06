@@ -68,12 +68,7 @@ public class PersonalPane extends UiPart<Region> {
         status.setText(person.getStatus().fullStatusDetail);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        if (address.getText().length() > 35) {
-            address.setWrapText(true);
-        }
-        if (address.isWrapText()) {
-            address.setTranslateY(10);
-        }
+        address.setWrapText(true);
         email.setText(person.getEmail().value);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
