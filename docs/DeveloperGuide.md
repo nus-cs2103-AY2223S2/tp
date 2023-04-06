@@ -4,8 +4,6 @@ title: Developer Guide
 ---
 <img src="./images/sprINT.png" />
 
-## Table of Contents
-
 * Table of Contents
 {:toc}
 
@@ -90,7 +88,7 @@ The sections below give more details of each component.
 
 ### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -107,7 +105,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/logic/Logic.java).
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -136,7 +134,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/model/Model.java).
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -150,7 +148,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/storage/Storage.java).
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -161,9 +159,10 @@ The `Storage` component,
 
 ### 4.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.sprint.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **5. Implementation**
 
@@ -234,6 +233,9 @@ sequence diagram:
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Edit Application feature
 
 #### About
@@ -274,6 +276,8 @@ sequence diagram:
 
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.3 Find Application feature
 
@@ -323,19 +327,29 @@ sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.4 Sort Applications feature
 
 #### About
-The sort command is a feature that enables users to rearrange the list of applications they see on the GUI in 2 ways:
-- `sort deadline` will sort applications by the deadline of upcoming tasks in ascending order (i.e. from earliest 
+The sort command is a feature that enables users to rearrange the list of applications they see on the GUI.
+The following table details the parameters to be used with the `sort` command:
+
+| Parameter | Compulsory | Constraints                                 | 
+|-----------|------------|---------------------------------------------|
+| Sequence  | Yes        | Must be either `a` or `d`                   |
+| Order     | Yes        | Must be either `alphabetical` or `deadline` |
+
+Examples:
+- `sort a deadline` will sort applications by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
 to latest). 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
 associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
 
-- `sort alphabetical` will sort applications by the company name in ascending order. If there are two or more 
-applications under the same company, the role will be used as a tiebreaker. 
+- `sort d alphabetical` will sort applications by the role in descending order (from Z to A). If there are two or more 
+applications with the same role, their company name will be used as a tiebreaker. 
 
 
 #### Implementation
@@ -345,37 +359,40 @@ Given below are the steps that illustrate the interaction between the components
 command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `SortApplicationCommandParser` that is responsible for the specific purpose of
+2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `SortCommandParser` that is responsible for the specific purpose of
    parsing user commands for sorting the application list.
-5. The `InternshipBookParser` then passes the string input to the `SortApplicationCommandParser` via the `parse()` method.
-6. The `SortApplicationCommandParser` then identifies the part of the string that describes the sorting order the user wants.
-7. The `parse()` method will return a `SortApplicationCommand(String sortingOrder)`.
-8. The `isValidSortingOrder` method in `SortApplicationCommand` will then check that the user-inputted sorting order is one
-of the accepted sorting order as dictated by the enum values in enum `SortingOrder`.
-9. If the sorting order is valid, the `SortApplicationCommand`'s comparator will be set to the corresponding comparator.
-10. This `SortApplicationCommand` is returned back to `ApplicationLogicManager`.
-11. The `ApplicationLogicManager` then calls the `execute()` method of the `SortApplicationCommand`. This initializes the execution
-    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `ApplicationLogicManager`.
-12. `updateSortedApplicationList` will make use of the comparator from the `SortApplicationCommand` to sort the model's sorted list.
-13. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
-14. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
+5. The `InternshipBookParser` then passes the string input to the `SortCommandParser` via the `parse()` method.
+6. The `SortCommandParser` then identifies the part of the string that describes the sorting order the user wants.
+7. The `isValidSortingOrder` method in `SortCommandParser` will then check that the user-inputted sorting order is one
+      of the accepted sorting order as dictated by the enum values in enum `SortingOrder`.
+8. The `SortCommandParser` also identifies the part of the string that describes the sorting sequence the user wants.
+9. The `isValidSortingSequence` method in `SortCommandParser` will then check that the user-inputted sorting sequence is one
+      of the accepted sorting sequence as dictated by the enum values in enum `SortingSequence`.
+10. The `parse()` method in `SortCommandParser` will then return a `SortCommand(SortingOrder sortingOrder, SortingSequence sortingSequence)`.
+11. The `SortCommand`'s comparator will be set to the corresponding comparator in its constructor.
+12. This `SortCommand` is then returned to `LogicManager`.
+13. The `LogicManager` then calls the `execute()` method of the `SortCommand`. This initializes the execution
+    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `LogicManager`.
+14. `updateSortedApplicationList` will make use of the comparator from the `SortCommand` to sort the model's sorted list.
+15. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
+16. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
     the execution of the command.
-15. The Ui component displays the contents of the `CommandResult` to the User.
+17. The Ui component displays the contents of the `CommandResult` to the User.
 
-For a more graphical illustration of how a sort application command is processed, please refer to the following
+For a more graphical illustration of how a sort command is processed, please refer to the following
 sequence diagram:
 
-![SortApplicationSequenceDiagram](images/SortApplicationSequenceDiagram.png)
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 #### Future extensions
 Should the need to implement other ways of sorting the application list arise in the future, you can do so by following these 3 main steps:
 1. Create a new `Comparator` class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
 implements the `Comparator<Application>` interface.
-2. Modify `SortApplicationCommandParser` to accept a new sorting order.
-3. Modify `SortApplicationCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
-Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortApplicationCommand`.
+2. Modify `SortCommandParser` to accept a new sorting order.
+3. Modify `SortCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
+Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortCommand`.
 
 #### Relation with `list` command
 The implementation of the `sort` command shares some similarities with the `list` command.
@@ -390,6 +407,9 @@ See the following activity diagram that illustrates this workflow with some exam
 and `list` commands:
 
 ![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.5 Undo/redo feature
 
@@ -473,7 +493,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -485,6 +505,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the company being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.6 Add Task feature 
 
@@ -520,7 +543,7 @@ The following sequence diagram provides a graphical illustration of how the add 
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-#### Design Considerations
+#### Design considerations
 
 **Aspect: How `add task` executes**
   
@@ -541,6 +564,9 @@ The following sequence diagram provides a graphical illustration of how the add 
       * Increases code redundancy.
       * Violates Single Responsibility Principle.
 
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 5.7 Exit sprINT feature
 
@@ -634,7 +660,7 @@ Windows, Linux, Unix, OS-X
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manages internship applications faster than a typical mouse/GUI driven app
+**Value proposition**: manages internship applications faster than a typical mouse while offering an intuitive and user-centred GUI design
 
 
 ### 8.2 User Stories
@@ -648,13 +674,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                  | add a new application entry                      |                                                                                              |
 | `* * *`  | user                  | edit an new application entry                    | update progress of an internship application or amend mistakes I might have made in an entry |
 | `* * *`  | neat user             | delete an application entry                      | remove entries that I no longer need                                                         |
-| `* * *` | user                  | add an upcoming task to an application           | remind myself of the work I need to do for this application                                  |
-| `* * *` | user                  | edit an upcoming task for an application         | update the application with the next task I need to complete                                 |
+| `* * *`  | user                  | add an upcoming task to an application           | remind myself of the work I need to do for this application                                  |
+| `* * *`  | user                  | edit an upcoming task for an application         | update the application with the next task I need to complete                                 |
+| `* * *`  | neat user             | delete a task from an application                | remove tasks that I have done or are past the deadline                                       |
 | `* *`    | user                  | find application entry to a specified company    | keep track of all the positions I have applied to at this company more easily                |
 | `* *`    | user                  | find application entry with a specified role     | keep track of all the applications with this role                                            |
 | `* *`    | user                  | find application entry with a specified deadline | keep track of all the applications and their upcoming tasks I need to complete by then       |
-| `* *`    | user                  | sort application entries by specified order      | view them in order to get a better idea which ones to prioritise                             |
+| `* *`    | user                  | sort application entries by specified order      | view them in order to get a better idea of which ones I should prioritise                    |
 | `* *`    | clumsy user           | undo a command                                   | if I ever typed one by mistake                                                               |
+| `* *`    | clumsy user           | redo a command                                   | lest I undone one by mistake                                                                 |
+| `* `     | neat user             | clear my internship book                         | restart the whole process of tracking my internship applications                             |
 | `* `     | user                  | tag an application                               | label them as I wish                                                                         |
 | `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
 
@@ -662,7 +691,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** refers to `sprINT` and the **Actor** refers to the `user`, unless specified otherwise)
 
-**Use case 1: Add an application entry**
+**Use case: UC01 - Add an application entry**
 
 **MSS**
 
@@ -693,43 +722,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
-**Use case 2: Edit an application entry**
+**Use case: UC02 - Edit an application entry**
 
 **MSS**
 
-1. User requests to list all application entries.
-2. sprINT displays a list of all application entries.
-3. User requests to edit a specific application entry in the list.
-4. sprINT updates the application entry and shows updated list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to edit a specific application entry in the list.
+3. sprINT updates the application entry and shows updated list of entries.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid (e.g. not an integer or out of bound).
-  * 3a1. sprINT shows an error message.
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+  * 2a1. sprINT shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes at step 1.
   
-* 3b. No index is given.
-  * 3b1. sprINT displays an error message.
+* 2b. User did not provide any index.
+  * 2b1. sprINT shows an error message.
   
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
 ---
 
-**Use case 3: Delete an application entry**
+**Use case: UC03 - Delete an application entry**
 
 **MSS**
 
-1. User requests to list all application entries.
-2. sprINT displays a list of all application entries.
-3. User requests to delete a specific application entry in the list.
-4. sprINT updates the application entry and displays updated list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to delete a specific application entry in the list.
+3. sprINT updates the application entry and displays updated list of entries.
 
    Use case ends.
 
@@ -739,23 +766,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid (e.g. not an integer or out of bound).
-    * 3a1. sprINT shows an error message.
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
-* 3b. No index is given.
-    * 3b1. sprINT displays an error message.
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 ___
 
-**Use case 4: Find applications for a specified company**
+**Use case: UC04 - Add a task to an application entry**
 
 **MSS**
 
-1. User requests to find applications using the company name as the keyword.
+1. User provides task details (description, deadlines) and specifies the application to add this task to.
+2. sprINT adds the task to the specified application and shows the updated list of application entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User did not provide details for mandatory fields.
+    * 1a1. sprINT displays an error message that shows fields that are missing.
+    * 1a2. sprINT prompts User to try again.
+
+      Use case resumes at step 1.
+  
+* 1b. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 1b1. sprINT shows an error message.
+  
+      Use case resumes at step 1.
+
+* 1c. User did not provide any index.
+    * 1c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 1d. Error occurred when parsing arguments for certain fields.
+    * 1d1. sprINT displays an error message that shows the first incorrect field value entered.
+    * 1d2. sprINT prompts User to try again.
+
+      Use case resumes at step 1.
+    
+---
+
+**Use case: UC05 - Edit an application's task**
+
+**MSS**
+
+1. sprINT displays a list of current application entries.
+2. User requests to edit the task for a specific application entry in the list.
+3. sprINT updates the application entry and shows updated list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The index provided by User is not valid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The application entry specified by User does not have an existing task.
+    * 2c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC06 - Delete an application's task**
+
+**MSS**
+
+1. sprINT displays a list of current application entries.
+2. User requests to delete the task of a specific application entry in the list.
+3. sprINT updates the application entry and displays updated list of entries.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The index provided by User is invalid (e.g. not an integer or out of bound).
+    * 2a1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. User did not provide any index.
+    * 2b1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+
+* 2c. The application entry specified by User does not have an existing task.
+    * 2c1. sprINT shows an error message.
+
+      Use case resumes at step 1.
+    
+___
+
+**Use case: UC07 - Find applications by keywords**
+
+**MSS**
+
+1. User requests to find applications using the role, company name, and/or the application
+status as the keyword.
 2. sprINT displays the filtered list of entries.
 
    Use case ends.
@@ -763,7 +892,7 @@ ___
 **Extensions**
 
 * 1a. No keyword is given.
-  * sprINT displays an error message.
+  * 1a1. sprINT displays an error message.
 
     Use case resumes at step 1.
 
@@ -773,22 +902,104 @@ ___
 
 ---
 
-**Use case 5: Sort applications by specified order**
+**Use case: UC08 - Sort applications by specified order**
 
 **MSS**
 
-1. User requests to sort applications by alphabetical order.
-2. sprINT displays the sorted list of entries.
+1. sprINT displays a list of current application entries.
+2. User requests to sort applications by alphabetical order.
+3. sprINT displays the sorted list of entries.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
+* 2a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
 upcoming tasks of closer deadlines being showed first.
-* sprINT displays the sorted list of entries.
+  * 2a1. sprINT shows list of entries that have tasks (and therefore deadlines). 
+  This list is sorted with earlier deadlines being showed first.
 
-    Use case ends.
+      Use case ends.
+
+---
+
+**Use case: UC09 - List all applications**
+
+**MSS**
+
+1. User requests to list all applications in the internship book.
+2. sprINT displays the full list of entries, in the order of when they are added. 
+(i.e., More recently added entries are shown first.)
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are currently no entries in the internship book.
+    
+  Use case ends.
+
+---
+
+**Use case: UC10 - Clear internship book**
+
+**MSS**
+
+1. User requests to clear all applications in the internship book.
+2. sprINT displays a new empty list of entries.
+
+   Use case ends.
+
+---
+
+**Use case: UC11 - Undo a command**
+
+**MSS**
+
+1. User requests to <u>clear the internship book (UC10)</u>.
+2. sprINT executes the command requested by User.
+3. User requests to undo the command executed in step 1.
+4. sprINT undoes the command executed in step 1.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to <u>add an application entry (UC01)</u>. User can also choose to:
+    1. <u>Edit an application entry (UC02)</u>
+    2. <u>Delete an application entry (UC03)</u>
+    3. <u>Add a task to an existing application entry (UC04)</u>
+    4. <u>Edit an application's task (UC05)</u>
+    5. <u>Delete an application's task (UC06)</u>
+
+    Use case resumes at step 2.
+
+---
+
+**Use case: UC12 - Redo a command**
+
+**MSS**
+
+1. User requests for <u>a command that can be undone (UC01, UC02, UC03, UC04,
+UC05, UC06, UC10).</u>
+2. sprINT executes the command.
+3. User requests to <u>undo the previous command in step 1 (UC11)</u>.
+4. sprINT undoes the command executed.
+5. User requests to redo the command that has been undone in step 4.
+6. sprINT redoes the command executed in step 2.
+
+   Use case ends.
+
+---
+
+**Use case: UC13 - Exit sprINT**
+
+**MSS**
+
+1. User requests to exit the program.
+2. sprINT closes the program window.
+
+   Use case ends.
 
 ---
 
@@ -796,11 +1007,12 @@ upcoming tasks of closer deadlines being showed first.
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should take less than 500MB of memory while in operation.
-3. Should be able to view all (up to 1500) application entries on the homepage interface without noticeable lags.
+3. Should be able to view all (up to 500) application entries on the homepage interface without noticeable lags.
 4. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **9. Appendix: Instructions for manual testing**
 
@@ -817,13 +1029,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br> Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -833,13 +1045,101 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Test case: `delete-app 1`<br>
+   2. Test case: `delete-app 1`<br>
       Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete-app 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete-app 0`<br>
+      Expected: No application is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   4. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to the above test case for `delete-app 0`.
 
+### Sorting the application list
+
+1. Sorting the application list while all applications are being shown
+
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
+   
+   2. Test case: `sort a alphabetical` <br>
+      Expected: Applications are listed in alphabetical order of their role from A to Z. 
+      Applications with the same role will have their company name as a tiebreaker.
+
+   3. Test case: `sort d alphabetical` <br>
+      Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
+      in reverse from Z to A.
+
+   4. Test case: `sort a deadline` <br>
+      Expected: Applications without tasks are **not** shown. Applications with tasks are listed by order of the deadline of their task. 
+      Applications with closer deadlines will be shown first.
+
+   5. Test case: `sort d deadline` <br>
+      Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
+      applications with further deadlines will be shown first.
+   
+   6. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+      `sort` (nothing specified), `...` <br>
+      Expected: No sorting is done and application list remains the same. Error details shown in the status message.
       
+2. Sorting the application list when it is a filtered state, due to a previously executed `find` command
+
+   1. Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
+   
+   2. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
+      Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
+      shows up after sorting.
+
+   3. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
+      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+
+### Listing all applications
+
+Before each test scenario, execute `list` beforehand and take note of the **original full list of applications**. They should be ranked
+in the **default order**, meaning the order in which they were added. (i.e., more recently added application entries show up first)
+
+1. Listing all applications after list has been filtered with a `find` command
+
+   1. Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
+
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
+2. Listing all applications after list has been sorted with a `sort` command
+
+   1. Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
+      * `sort a deadline`
+      * `sort d deadline`
+      * `sort a alphabetical`
+      * `sort d alphabetical`
+   
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
+3. Listing all applications after list has been filtered and sorted with a series of `find` and `sort` commands
+
+   1. Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
+      Example: `find r/SWE` followed by `sort a deadline`
+   
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **10. Appendix: Planned Enhancements**
+
+Currently, there a few feature flaws with the application. Here are them and some proposed fixes to address them
+and improve functionality for the user:
+
+#### 1. Command to sort by deadline does not inform user when there are no applications with deadlines to display and sort
+
+![SortDeadlineWithNoDeadlines](images/SortDeadlineWithNoDeadlines.png)
+
+Currently, if the user has no applications with tasks (and therefore deadlines), and requests to sort by deadline (e.g., `sort a deadline`), 
+an empty list shows up.
+Note that this is the expected behaviour as `SortCommand` first filters out applications with no tasks before sorting.
+
+**Potential Enhancement and Suggested Implementation:** <br> 
+It would be good to inform the user through the Command Result Box that the list is empty because they currently do not have applications with deadlines.
+
+In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
+as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
