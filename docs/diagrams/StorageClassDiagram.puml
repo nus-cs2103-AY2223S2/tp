@@ -28,6 +28,7 @@ Class JsonAdaptedLocation
 Class JsonAdaptedTimePeriod
 Class JsonAdaptedModuleTag
 Class JsonAdaptedGroupTag
+Class JsonAdaptedLesson
 }
 
 Class HiddenOutside #FFFFFF
@@ -48,18 +49,23 @@ JsonSerializableEduMate -up-> "1" JsonAdaptedUser
 JsonAdaptedPerson -up-> "*" JsonAdaptedGroupTag
 JsonAdaptedPerson -up-> "*" JsonAdaptedModuleTag
 JsonAdaptedUser --|> JsonAdaptedPerson
-JsonSerializableEduMate --> "1" JsonAdaptedParticipants
+JsonSerializableEduMate -right-> "1" JsonAdaptedParticipants
 JsonSerializableEduMate --> "*" JsonAdaptedRecommendation
 JsonSerializableEduMate --> "*" JsonAdaptedMeetUp
 
 JsonAdaptedGroupTag ..|> JsonAdaptedTag
 JsonAdaptedModuleTag ..|> JsonAdaptedTag
 
+JsonAdaptedModuleTag --> "*" JsonAdaptedLesson
+
 JsonAdaptedMeetUp -[hidden]right-> JsonAdaptedRecommendation
 JsonAdaptedMeetUp -[hidden]left-> JsonAdaptedParticipants
 
 JsonAdaptedRecommendation --> "1" JsonAdaptedLocation
 JsonAdaptedRecommendation --> "1" JsonAdaptedTimePeriod
+
+JsonAdaptedLesson --> "1" JsonAdaptedLocation
+JsonAdaptedLesson --> "1" JsonAdaptedTimePeriod
 
 JsonAdaptedMeetUp --> "1" JsonAdaptedLocation
 JsonAdaptedMeetUp --> "1" JsonAdaptedTimePeriod
