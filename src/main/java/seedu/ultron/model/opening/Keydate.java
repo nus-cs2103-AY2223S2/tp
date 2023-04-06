@@ -22,6 +22,7 @@ public class Keydate implements Comparable<Keydate> {
             + "eg. CodingAssignment@2023-01-01\n";
     private static final String DATE_ERROR = "Date should be valid.";
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     private static final String VALIDATION_REGEX_KEY = "^[A-Za-z\\s]*$";
 
     public final String fullDate;
@@ -51,8 +52,6 @@ public class Keydate implements Comparable<Keydate> {
             return false;
         }
         try {
-            LocalDate.parse(test[1], dateFormat);
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             df.setLenient(false);
             df.parse(test[1]);
             return true && test[0].matches(VALIDATION_REGEX_KEY);
