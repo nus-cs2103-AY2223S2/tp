@@ -1,5 +1,7 @@
 package seedu.recipe.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_CHICKEN;
@@ -30,11 +32,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.logic.commands.AddCommand;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidArgumentLengthException;
 import seedu.recipe.model.tag.Tag;
 
 //@@author alson001
@@ -110,8 +114,8 @@ public class AddCommandParserTest {
 
         // invalid duration
         assertParseFailure(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + INVALID_DURATION_DESC
-            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-            RecipeDuration.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+                RecipeDurationInvalidArgumentLengthException.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN

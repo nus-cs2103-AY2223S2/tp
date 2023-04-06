@@ -54,6 +54,7 @@ import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidArgumentLengthException;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
@@ -106,7 +107,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PORTION_DESC, RecipePortion.MESSAGE_CONSTRAINTS);
 
         // invalid duration
-        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, RecipeDuration.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, RecipeDurationInvalidArgumentLengthException
+            .MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
