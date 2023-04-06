@@ -395,6 +395,8 @@ attention on them accordingly
 ### Product scope
 
 Evolve AB3 into a lightweight CRM / Contact manager for a company's sales department.
+#### The AB3 Evolution: NextBigFish (NBF) 
+is a desktop app tailored for the needs of sales-people, supporting the management of contacts, leads or clients ** and optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NBF can get your client and lead management tasks done faster than traditional GUI apps. NBF allows client contacts to hold data on their potential business size and counts of past transactions and aids users in categorising them using tags On top of that, NBF also provides a summary page to allow users to quickly get an overview of their performance each season, detailing relevant statistics.
 
 **Target user profile**:
 
