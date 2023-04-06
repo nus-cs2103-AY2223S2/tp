@@ -116,3 +116,4 @@ public class JsonEventCatalogueStorageTest {
                 new EventCatalogue(), null));
     }
 }
+
