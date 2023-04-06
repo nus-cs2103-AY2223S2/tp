@@ -14,8 +14,11 @@ public abstract class FishCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<fish command word>\n"
             + "Fish commands: add, "
             + "delete, "
+            + "edit, "
+            + "feed, "
             + "view, "
-            + "sort";
+            + "sort, "
+            + "list (list fishes)";
 
 
     /**

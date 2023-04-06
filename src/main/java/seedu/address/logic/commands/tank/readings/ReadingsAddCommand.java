@@ -24,12 +24,12 @@ public class ReadingsAddCommand extends TankCommand {
     public static final String TANK_COMMAND_WORD = "addReadings";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TANK_COMMAND_WORD
-            + ": Adds a set of readings to a tank. \n"
+            + ": Adds a set of readings to a tank. "
             + "Parameters: "
-            + PREFIX_TANK + "INDEX \n"
-            + PREFIX_AMMONIA_LEVEL + "AMMONIA LEVEL \n"
-            + PREFIX_PH + "PH \n"
-            + PREFIX_TEMPERATURE + "TEMPERATURE \n"
+            + PREFIX_TANK + "INDEX "
+            + PREFIX_AMMONIA_LEVEL + "AMMONIA LEVEL "
+            + PREFIX_PH + "PH "
+            + PREFIX_TEMPERATURE + "TEMPERATURE, "
             + "Example: " + COMMAND_WORD + " " + TANK_COMMAND_WORD + " "
             + PREFIX_TANK + "1 "
             + PREFIX_AMMONIA_LEVEL + "1.2 "
