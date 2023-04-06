@@ -191,7 +191,7 @@ Throughout this user guide, you may come across different formatting styles and 
 4. Open a `command terminal`
    <details>
    <summary>Click here for more information on how to open a command terminal</summary>
-      <details> 
+      <details>
       <summary> I. For macOS: </summary>
    <ul>
    <li>
@@ -293,7 +293,7 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a 
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a
 href="#42-patient-commands">4.2 Patient Commands</a> for more information on how to manage patient data in CareFlow.
 </div>
 
@@ -303,7 +303,7 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3 
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3
 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
 </div>
 
@@ -311,9 +311,9 @@ Drug Commands</a> for more information on how to manage drug inventory in CareFl
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or 
-change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please 
-feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We 
+<div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or
+change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please
+feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We
 are committed to constantly improving our software to meet your needs.
 </div>
 
@@ -468,7 +468,7 @@ and records.
       <br>
 
 [↑ Go to Patient Commands](#42-patient-commands)
-<br>    
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -530,7 +530,7 @@ and records.
 ### View a patient's full information
 
 
-* Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command. 
+* Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command.
 The full detail of the retrieved patient will be shown on the right side of the application.
 * The index refers to the index number shown in the displayed patient list.
   \
@@ -543,7 +543,7 @@ The full detail of the retrieved patient will be shown on the right side of the 
       <p align="center">
             <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:100%">
       </p>
-      
+
 <br>
 
 [↑ Go to Patient Commands](#42-patient-commands)
@@ -555,8 +555,8 @@ The full detail of the retrieved patient will be shown on the right side of the 
 
 ### Clear all patient records
 
-* Wish to terminate your subscription with CareFlow and move to another system? :pensive: 
-You can also clear all patient records. 
+* Wish to terminate your subscription with CareFlow and move to another system? :pensive:
+You can also clear all patient records.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Use this with command with caution!
 </div>
@@ -572,7 +572,7 @@ Use this with command with caution!
       </p>
 
 <br>
-    
+
 [↑ Go to Patient Commands](#42-patient-commands)
 <br>
 [↑ Back to top](#top)
@@ -582,12 +582,12 @@ Use this with command with caution!
 
 ### List all patient records
 
-* Want to have an overview of patient records? You can use the `list` command to see the list of 
+* Want to have an overview of patient records? You can use the `list` command to see the list of
 all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
   \
   &nbsp;
 * **Format:** `p list`
-<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not
 raise errors in the system
 </div>
   \
@@ -663,14 +663,14 @@ ___
       <br>
 
 [↑ Go to Drug Commands](#43-drug-commands)
-<br>    
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Delete a drug entry by INDEX
-* Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list 
+* Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list
 by specifying its index in the given drug list.
   \
   &nbsp;
@@ -695,14 +695,14 @@ by specifying its index in the given drug list.
       <br>
 
 [↑ Go to Drug Commands](#43-drug-commands)
-<br>    
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Update storage count of a drug entry
-* Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
+* Dispensed or restocked a certain drug? You can update the storage count of specified drug entry
 by specifying the trade name.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
 </div>
@@ -741,7 +741,7 @@ by specifying the trade name.
 
 
 ### Retrieve a drug entry by TRADE_NAME
-* Need to access a drug information swiftly? You can quickly retrieve the information of 
+* Need to access a drug information swiftly? You can quickly retrieve the information of
 a specific drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
   &nbsp;
@@ -750,7 +750,7 @@ a specific drug by using the `d find` command and specify the trade name of the 
       \
       &nbsp;
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Need to know the inventory count for a specific drug quick? Hover your cursor over the piechart! 
+:bulb: **Tip:** Need to know the inventory count for a specific drug quick? Hover your cursor over the piechart!
 </div>
 * **Examples:**
     * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
@@ -764,7 +764,7 @@ a specific drug by using the `d find` command and specify the trade name of the 
       </p>
 
       <br>
-    
+
 [↑ Go to Drug Commands](#43-drug-commands)
 <br>
 [↑ Back to top](#top)
@@ -790,7 +790,7 @@ Use this with command with caution!
       <br>
 
 [↑ Go to Drug Commands](#43-drug-commands)
-<br>    
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -802,7 +802,7 @@ using the `d list` command, drug records will be presented in alphabetical order
   \
   &nbsp;
 * **Format:** `d list`
-<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not
 raise any errors in the system.
 </div>
   \
@@ -813,7 +813,7 @@ raise any errors in the system.
             <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br>
-    
+
 [↑ Go to Drug Commands](#43-drug-commands)
 <br>
 [↑ Back to top](#top)
@@ -822,7 +822,7 @@ raise any errors in the system.
 
 
 ### View a drug by index
-* Need to view additional information of a drug record? You can view detailed information of 
+* Need to view additional information of a drug record? You can view detailed information of
 a drug in the CareFlow. The full details of the selected drug will be shown on the right side of the application.
 * Index refers to the index number shown in the displayed drug list.
   \
@@ -837,7 +837,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
             <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
       </p>
       <br>
-    
+
 [↑ Go to Drug Commands](#43-drug-commands)
 <br>
 [↑ Back to top](#top)
