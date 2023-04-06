@@ -6,7 +6,6 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.careflow.commons.core.index.Index;
-import seedu.careflow.logic.commands.drugcommands.DeleteCommand;
 import seedu.careflow.logic.commands.drugcommands.ViewCommand;
 import seedu.careflow.logic.parser.ArgumentMultimap;
 import seedu.careflow.logic.parser.ArgumentTokenizer;
@@ -33,10 +32,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 return new ViewCommand(index);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        seedu.careflow.logic.commands.drugcommands.DeleteCommand.MESSAGE_USAGE));
+                        seedu.careflow.logic.commands.drugcommands.ViewCommand.MESSAGE_USAGE));
             }
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
     }
 

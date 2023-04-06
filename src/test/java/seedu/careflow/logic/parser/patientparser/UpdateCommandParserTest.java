@@ -117,8 +117,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidDob_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -dob 999999",
-                "Date of birth should only contain numeric characters and spaces,"
-                        + " the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy"
+                "Date of birth should only contain numeric characters."
+                        + " The format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy"
                         + " and the date should fall between 01/01/1900 and current date");
     }
 

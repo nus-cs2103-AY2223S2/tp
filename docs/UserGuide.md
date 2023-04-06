@@ -7,7 +7,7 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 
 CareFlow is a **desktop application for [patient management](#31-patient-information-management) and [drug inventory
 management](#32-drug-inventory-management), optimised for use
-via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI) <sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#2-quick-start) to get started. Enjoy!
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI) <sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [2. Quick Start](#2-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -65,7 +65,8 @@ sections as needed.
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
 | **Symbol/ Format**   | **Meaning**                                                                                                                                                                                                                                                                                               |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'p'/ 'd'/ 'g'        | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                              |
 | :information_source: | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
 | :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
 | UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
@@ -324,7 +325,8 @@ This section introduces the two general commands, `help` and `exit`. These comma
 drug of CareFlow.
 
 ### View help : `g help`
-* Shows all valid command formats and their functionalities.
+* Feeling stuck or lost? This command shows all valid command formats and their functionalities.
+<br><br/>
   <p align="left">
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
@@ -341,7 +343,7 @@ drug of CareFlow.
 <br>
 
 ### Exit the program : `g exit`
-* You can exit the program with this command, your data will be automatically saved to the hard disk.
+* Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
   \
   &nbsp;
 * **Format:** `g exit`
@@ -357,26 +359,26 @@ ___
 ## 4.2 Patient Commands
 
 ### Add a Patient record:  `p add`
-* You can use this command to add a new patient to the patient record, if it is the first time that this patient visit your clinic.
+* Have a new patient visiting your clinic for the first time? You can use this command to add a new patient to the patient records.
   \
   &nbsp;
 * **Format:** `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]`
   \
   &nbsp;
 * Parameter constraint:
-  <br>
 
-  | Parameter | Constraint                                                                                                                                                                                                                                                                                                               | Example |
-  |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------| ------- |
-  | PATIENT_NAME | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                              | John Smith |
-  | PHONE_NUMBER | Phone numbers should contain numbers, special character like: space, +, -, (), and it should be at least 3 or at most 20 digit and special character long                                                                                                                                                                | 12345678 |
-  | EMAIL | The email address should follow the format of "username@domain.extension". The "username" can include letters, numbers, dots, hyphens, and underscores, it cannot start or end with any special character. The domain name must <br> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | johnson@gmail.com |
-  | ADDRESS | Addresses can take any values, it should not be blank and equal or less than 200 characters long                                                                                                                                                                                                                         | Robert Robertson, 1234 NW Bobcat Lane |
-  | DATE_OF_BIRTH | Date of birth should only contain numeric characters and spaces, the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy and the date should fall between 01/01/1900 and current date                                                                                                                        | 01-01-2000, 01.01.2000, 01/01/2000 |
-  | GENDER | The gender field only accommodates two options, which are female or male.                                                                                                                                                                                                                                                | male or m or female or f |
-  | NRIC | The IC number begins with a letter followed by 7 digits and concludes with another letter.                                                                                                                                                                                                                               | A1234567B |
-  | DRUG_ALLERGY | Drug allergy should be alphanumeric and equal or less than 500 characters long.                                                                                                                                                                                                                                          | penicillin |
-  | EMERGENCY_CONTACT_NUMBER | same constraint as PHONE_NUMBER.                                                                                                                                                                                                                                                                                         | +(65)-1234 5678 |
+  <br>
+| Parameter                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Example                               |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
+| PATIENT_NAME             | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                                                                                                                                                                          | John Smith                            |
+| PHONE_NUMBER             | Phone numbers should contain numbers, special character like: space, +, -, (), and it should be at least 3 or at most 20 digit and special character long                                                                                                                                                                                                                                                                                                            | 12345678                              |
+| EMAIL                    | The email address should follow the format of "username@domain.extension". The "username" can include letters, numbers, dots, hyphens, and underscores, it cannot start or end with any special character. The domain name must <br> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | johnson@gmail.com                     |
+| ADDRESS                  | Addresses can take any values, it should not be blank and equal or less than 200 characters long                                                                                                                                                                                                                                                                                                                                                                     | Robert Robertson, 1234 NW Bobcat Lane |
+| DATE_OF_BIRTH            | Date of birth should only contain numeric characters and spaces, the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy and the date should fall between 01/01/1900 and current date                                                                                                                                                                                                                                                                    | 01-01-2000, 01.01.2000, 01/01/2000    |
+| GENDER                   | The gender field only accommodates two options, which are female or male.                                                                                                                                                                                                                                                                                                                                                                                            | male or m or female or f              |
+| NRIC                     | The IC number begins with a letter followed by 7 digits and concludes with another letter.                                                                                                                                                                                                                                                                                                                                                                           | A1234567B                             |
+| DRUG_ALLERGY             | Drug allergy should be alphanumeric and equal or less than 500 characters long.                                                                                                                                                                                                                                                                                                                                                                                      | penicillin                            |
+| EMERGENCY_CONTACT_NUMBER | same constraint as PHONE_NUMBER.                                                                                                                                                                                                                                                                                                                                                                                                                                     | +(65)-1234 5678                       |
 
 * **Example:** `p add -n John Doe -ph 91234567 -em johndoe@example.com -ad John Street, Block 123, #01-01 -dob 09-09-2000 -g male -ic S9284729C -da Xanax -ec 81234567`
     * Type the command into the command box and hit `Enter`
@@ -397,13 +399,15 @@ ___
       </p>
       <br>
 
-
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 ### Delete a patient record by NRIC: `p delete`
-* Deletes the specified patient from the patient list.
+* Trying to remove an irrelevant or dated patient record? This command deletes the specified patient from the patient list
+and records.
   \
   &nbsp;
 * **Format:** `p delete -ic PATIENT_NRIC`
@@ -430,14 +434,14 @@ ___
 
     * You can scroll through the list of patient, and John Doe should not be present.
 
+[↑ Go to Patient Commands](#42-patient-commands)
 <br>
-
 [↑ Back to top](#top)
 
 <br>
 
 ### Delete a patient record by index: `p delete`
-* You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
+* Trying to remove an irrelevant or dated patient record without using their NRIC? You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
     * The index refers to the index number shown in the displayed person list.
     * The index must be a positive integer 1, 2, 3, …​
       \
@@ -461,13 +465,15 @@ ___
 
       <br>
 
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>    
 [↑ Back to top](#top)
 
 <br>
 
 ### Update a patient by name: `p update`
 
-* If a patient reports a change of address, phone number, or any other information, you can update the information of that patient with the `p update` command.
+* A patient reports a change of address, phone number, or any other information? You can easily update the information of that patient with the `p update` command.
   \
   &nbsp;
 * **Format:** `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`
@@ -489,12 +495,14 @@ ___
 
     <br>
 
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 ### Retrieve a patient record by name: `p find`
-* You can quickly retrieve the information of a patient by searching with his or her name.
+* Need to promptly search for a specific patient record? You can quickly retrieve the information of a patient by searching with his or her name.
   \
   &nbsp;
 * **Format:** `p find PATIENT_NAME`
@@ -511,14 +519,18 @@ ___
 
 <br>
 
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 ### View a patient's full information: `p view`
 
+
+* Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command. 
+The full detail of the retrieved patient will be shown on the right side of the application.
 * The index refers to the index number shown in the displayed patient list.
-* You can view detailed information of a patient with the `view` command. The full detail of the retrieved patient will be shown on the right side of the application.
   \
   &nbsp;
 * **Format:** `p view -i PATIENT_INDEX`
@@ -531,7 +543,8 @@ ___
       </p>
 
       <br>
-
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -539,7 +552,9 @@ ___
 
 ### Clear all patient records : `p clear`
 
-* You can also clear all patient records  in case you wish to terminate your subscription with CareFlow and move on to another system. Run this command with caution!
+* Wish to terminate your subscription with CareFlow and move to another system? :pensive: 
+You can also clear all patient records. 
+* :exclamation: Run this command with caution!
   \
   &nbsp;
 * **Format:** `p clear`
@@ -552,7 +567,9 @@ ___
       </p>
 
       <br>
-
+    
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -560,10 +577,13 @@ ___
 
 ### List all patient records : `p list`
 
-* You can use the `list` command to see the list of all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
+* Want to have an overview of patient records? You can use the `list` command to see the list of 
+all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
   \
   &nbsp;
 * **Format:** `p list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:**
@@ -573,6 +593,8 @@ ___
 
     <br>
 
+[↑ Go to Patient Commands](#42-patient-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -583,7 +605,7 @@ ___
 ## 4.3 Drug Commands
 
 ### Add a drug entry: `d add`
-* You can add a new drug to the list of drugs in case your clinic decides to start prescribing a new drug.
+* Decided to prescribe a new drug? You can add a new drug to the list of drug records with the `d add` command.
   \
   &nbsp;
 * **Format:** `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
@@ -602,13 +624,16 @@ ___
 
       <br>
 
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Delete a drug entry by TRADE_NAME: `d delete`
-* If your clinic decides to stop prescribing a certain drug, you can also deletes the specified drug with the `d delete` command by specifying the trade name of the drug.
+* Decided to stop prescribing a certain drug? You can also delete the specified drug with the
+`d delete` command by specifying the trade name of the drug.
   \
   &nbsp;
 * **Format:** `d delete -tn TRADE_NAME`
@@ -631,13 +656,16 @@ ___
       </p>
       <br>
 
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>    
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Delete a drug entry by INDEX : `d delete`
-* You can also delete a specified drug from the drug list by specifying its index in the drug list.
+* Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list 
+by specifying its index in the given drug list.
   \
   &nbsp;
 * **Format:** `d delete -i DRUG_INDEX`
@@ -660,14 +688,18 @@ ___
       </p>
       <br>
 
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>    
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Update storage count of a drug entry: `d update`
-* You can update the storage count of specified drug entry by specifying the trade name.
+* Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
+by specifying the trade name.
 * NOTE: you need to prefix the value with + or - for addition and subtraction respectively
+* NOTE: if decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count)
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -692,19 +724,25 @@ ___
         </p>
     <br>
 
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Retrieve a drug entry by TRADE_NAME: `d find`
-* You can quickly retrieve the information of a drug by using the `d find` command and specify the trade name of the drug you want to search.
+* Need to access a drug information swiftly? You can quickly retrieve the information of 
+a specific drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
   &nbsp;
 * **Format:** `d find TRADE_NAME`
     * The search is case-insensitive. e.g panadol will match Panadol.
       \
       &nbsp;
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Need to know the inventory count for a specific drug quick? Hover your cursor over the piechart! 
+</div>
 * **Examples:**
     * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
       <p align="center">
@@ -717,14 +755,17 @@ ___
       </p>
 
       <br>
-
+    
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### Clear all drug entries : `d clear`
-* You can clear all records of drugs. Use this with caution!
+* Need to empty your dispensary and drug records? You can clear all records of drugs.
+* :exclamation: Use this with caution!
   \
   &nbsp;
 * **Format:** `d clear`
@@ -737,16 +778,21 @@ ___
       </p>
       <br>
 
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>    
 [↑ Back to top](#top)
 
 <br>
 
 
 ### List all drug entries: `d list`
-* You can view all drug records currently stored in the CareFlow system by using the `d list` command, drug records will be presented in alphabetical order.
+* Want to have an overview of all drug records? You can view all drug records currently stored in the CareFlow system by
+using the `d list` command, drug records will be presented in alphabetical order.
   \
   &nbsp;
 * **Format:** `d list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:** `d list`
@@ -755,14 +801,17 @@ ___
             <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br>
-
+    
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
 
 
 ### View a drug by index: `d view`
-* You can view detailed information of a drug in the careflow. The full details of the selected drug will be shown on the right side of the application.
+* Need to view additional information of a drug record? You can view detailed information of 
+a drug in the CareFlow. The full details of the selected drug will be shown on the right side of the application.
 * Index refers to the index number shown in the displayed drug list.
   \
   &nbsp;
@@ -776,7 +825,9 @@ ___
             <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
       </p>
       <br>
-
+    
+[↑ Go to Drug Commands](#43-drug-commands)
+<br>
 [↑ Back to top](#top)
 
 <br>
@@ -884,7 +935,7 @@ The following commands are drug-related commands that are available in Careflow 
 
 [🠉 Back to top](#top)
 
-# 7. Glossary
+# 7. **Glossary**
 <span id="1">
 1. Command Line Interface (CLI) <br>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think

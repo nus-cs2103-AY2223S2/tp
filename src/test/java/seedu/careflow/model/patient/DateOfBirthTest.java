@@ -43,12 +43,18 @@ public class DateOfBirthTest {
         // invalid date format
         assertFalse(DateOfBirth.isValidBirthDate("no date")); // invalid day
         assertFalse(DateOfBirth.isValidBirthDate("32-01-2022")); // invalid day
+        assertFalse(DateOfBirth.isValidBirthDate("29-02-2022")); // invalid day
+        assertFalse(DateOfBirth.isValidBirthDate("30-02-2022")); // invalid day
+        assertFalse(DateOfBirth.isValidBirthDate("31-06-2022")); // invalid day
         assertFalse(DateOfBirth.isValidBirthDate("13-13-2022")); // invalid month
+
 
         // valid date of birth
         assertTrue(DateOfBirth.isValidBirthDate("13/11/2022"));
         assertTrue(DateOfBirth.isValidBirthDate("13.11.2022"));
         assertTrue(DateOfBirth.isValidBirthDate("13-11-2022"));
+        assertTrue(DateOfBirth.isValidBirthDate("28-02-2022")); // check for non leap year
+        assertTrue(DateOfBirth.isValidBirthDate("29-02-2020")); // check for leap year
         assertTrue(DateOfBirth.isValidBirthDate("13/11/22"));
         assertTrue(DateOfBirth.isValidBirthDate("13.11.22"));
         assertTrue(DateOfBirth.isValidBirthDate("13-11-22"));
