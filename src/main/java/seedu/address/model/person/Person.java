@@ -229,7 +229,8 @@ public class Person {
                 && otherPerson.getRace().equals(this.getRace())
                 && otherPerson.getModules().equals(this.getModules())
                 && otherPerson.getComms().equals(this.getComms())
-                && otherPerson.getFavorite().equals(this.getFavorite());
+                && otherPerson.getFavorite().equals(this.getFavorite())
+                && otherPerson.getFaculty().equals(this.getFaculty());
     }
 
     @Override
