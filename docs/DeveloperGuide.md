@@ -605,11 +605,11 @@ testers are expected to do more *exploratory* testing.
 1. Adding a person while all persons/no persons are being shown
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
    2. Test Cases
-      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` <br>
+      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
          - Testing for: Command successful execution
          - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
       
-      2. **Test case 2**: `add p/91238917 a/Serangoon Central` <br>
+      2. **Test case 2**: `add p/91238917 a/Serangoon Central` 
          - Testing for: No name specified
          - Expected: No contact is added. Error details show in the status message.
       3. **Test case 3**: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
@@ -623,15 +623,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
    2. Test Cases
-      1. **Test case 1**: `delete 1`<br>
+      1. **Test case 1**: `delete 1`
          - Testing for: Command successful execution
          - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-      2. **Test case 2**: `delete 0`<br>
+      2. **Test case 2**: `delete 0`
          - Testing for: Erroneous index results in command failure
          - Expected: No person is deleted. Error details shown in the status message.
 
-      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` <br>
+      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
          - Testing for: Erroneous index results in command failure
          - Expected: Similar to test case 2.
 
@@ -663,19 +663,19 @@ testers are expected to do more *exploratory* testing.
          - Testing for: Command successful execution 
          - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
       2. Test case 2: `find n/Stan n/Pierce`
-        <br>
+        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
       3. Test case 3: `find n/Pie m/Comp`
-        <br>
+        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
       4. Test case 4: `find`
-        <br>
+        
          - Testing for: No fields specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
       5. Test case 5: `find 1 n/Pi`
-         <br>
+         
          - Testing for: Index specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
 2. Find a contact when there are no contacts
