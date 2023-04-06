@@ -58,6 +58,24 @@ public class Technician extends Staff {
         this.serviceIds.removeIf(pred);
     }
 
+    /**
+     * This method adds a service id to the list of service ids this technician is assigned to.
+     *
+     * @param serviceId service id to be added.
+     */
+    public void addServiceId(int serviceId) {
+        this.serviceIds.add(serviceId);
+    }
+
+    /**
+     * This method adds an appointment id to the list of appointment ids this technician is assigned to.
+     *
+     * @param appointmentId appointment id to be added.
+     */
+    public void addAppointmentId(int appointmentId) {
+        this.appointmentIds.add(appointmentId);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

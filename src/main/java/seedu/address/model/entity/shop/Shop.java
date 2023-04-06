@@ -407,10 +407,9 @@ public class Shop implements ReadOnlyShop {
      */
     public void addTechnicianToService(int techId, int serviceId)
             throws TechnicianNotFoundException, ServiceNotFoundException {
-        if (!this.hasTechnician(techId)) {
-            throw new TechnicianNotFoundException(techId);
-        }
+        Technician technician = this.getTechnician(techId);
         Service service = this.getService(serviceId);
+        technician.addServiceId(serviceId);
         service.assignTechnician(techId);
     }
 
@@ -423,10 +422,9 @@ public class Shop implements ReadOnlyShop {
      */
     public void addTechnicianToAppointment(int techId, int appointmentId)
             throws TechnicianNotFoundException, AppointmentNotFoundException {
-        if (!this.hasTechnician(techId)) {
-            throw new TechnicianNotFoundException(techId);
-        }
+        Technician technician = this.getTechnician(techId);
         Appointment appointment = this.getAppointment(appointmentId);
+        technician.addAppointmentId(appointmentId);
         appointment.addTechnician(techId);
     }
 
@@ -437,11 +435,9 @@ public class Shop implements ReadOnlyShop {
      * @throws CustomerNotFoundException if the customer is not found
      */
     public void addAppointment(int customerId, LocalDateTime timeDate) throws CustomerNotFoundException {
-        if (!this.hasCustomer(customerId)) {
-            throw new CustomerNotFoundException(customerId);
-        }
+        Customer customer = this.getCustomer(customerId);
         Appointment toAdd = new Appointment(IdGenerator.generateAppointmentId(), customerId, timeDate);
-        this.getCustomer(customerId).addAppointment(toAdd);
+        customer.addAppointment(toAdd);
         this.appointments.add(toAdd);
         logger.info(toAdd + " added");
     }
@@ -454,7 +450,7 @@ public class Shop implements ReadOnlyShop {
      * @throws InvalidQuantityException if the quantity is invalid
      */
     public void addPart(String part, int qty)
-            throws PartNotFoundException, InvalidQuantityException, EmptyInputException {
+            throws InvalidQuantityException, EmptyInputException {
         if (part.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
@@ -462,7 +458,7 @@ public class Shop implements ReadOnlyShop {
             throw new InvalidQuantityException(qty);
         }
         if (!this.hasPart(part)) {
-            throw new PartNotFoundException(part);
+            this.parts.put(part, qty);
         }
         this.parts.put(part, this.parts.get(part) + qty);
         logger.info(String.format("%s, %d added", part, qty));
@@ -722,13 +718,20 @@ public class Shop implements ReadOnlyShop {
                              Optional<Phone> phone,
                              Optional<Email> email,
                              Optional<Address> address,
-                             Optional<Set<Tag>> tags) throws CustomerNotFoundException {
+                             Optional<Set<Tag>> tags)
+                throws CustomerNotFoundException, DuplicateEmailException, DuplicatePhoneNumberException {
         Customer customer = this.getCustomer(customerId);
         Name newName = name.orElse(customer.getName());
         Phone newPhone = phone.orElse(customer.getPhone());
         Email newEmail = email.orElse(customer.getEmail());
         Address newAddress = address.orElse(customer.getAddress());
         Set<Tag> newTags = tags.orElse(customer.getTags());
+        if (this.emailExists(newEmail)) {
+            throw new DuplicateEmailException(newEmail);
+        }
+        if (this.phoneExists(newPhone)) {
+            throw new DuplicatePhoneNumberException(newPhone);
+        }
         Customer editedCustomer = new Customer(customerId, newName, newPhone, newEmail, newAddress, newTags,
             new HashSet<>(customer.getVehicleIds()), new HashSet<>(customer.getAppointmentIds()));
         int index = this.customers.indexOf(customer);
@@ -755,13 +758,19 @@ public class Shop implements ReadOnlyShop {
                             Optional<String> color,
                             Optional<String> brand,
                             Optional<VehicleType> type)
-            throws VehicleNotFoundException, CustomerNotFoundException, EmptyInputException {
+            throws VehicleNotFoundException,
+                    CustomerNotFoundException,
+                    EmptyInputException,
+                    DuplicatePlateNumberException {
         Vehicle vehicle = this.getVehicle(vehicleId);
         int newOwnerId = ownerId.orElse(vehicle.getOwnerId());
         String newPlateNumber = plateNumber.orElse(vehicle.getPlateNumber());
         String newColor = color.orElse(vehicle.getColor());
         String newBrand = brand.orElse(vehicle.getBrand());
         VehicleType newType = type.orElse(vehicle.getType());
+        if (this.plateNumberExists(newPlateNumber)) {
+            throw new DuplicatePlateNumberException(newPlateNumber);
+        }
         if (newPlateNumber.isBlank()) {
             throw new EmptyInputException("PlateNumber cannot be blank");
         }
@@ -880,13 +889,19 @@ public class Shop implements ReadOnlyShop {
                                Optional<Email> email,
                                Optional<Address> address,
                                Optional<Set<Tag>> tags)
-            throws TechnicianNotFoundException {
+            throws TechnicianNotFoundException, DuplicateEmailException, DuplicatePhoneNumberException {
         Technician technician = this.getTechnician(technicianId);
         Name newName = name.orElse(technician.getName());
         Phone newPhone = phone.orElse(technician.getPhone());
         Email newEmail = email.orElse(technician.getEmail());
         Address newAddress = address.orElse(technician.getAddress());
         Set<Tag> newTags = tags.orElse(technician.getTags());
+        if (this.emailExists(newEmail)) {
+            throw new DuplicateEmailException(newEmail);
+        }
+        if (this.phoneExists(newPhone)) {
+            throw new DuplicatePhoneNumberException(newPhone);
+        }
         Technician editedTechnician = new Technician(technicianId, newName, newPhone, newEmail, newAddress, newTags,
             new HashSet<>(technician.getServiceIds()), new HashSet<>(technician.getAppointmentIds()));
         int index = this.technicians.indexOf(technician);
