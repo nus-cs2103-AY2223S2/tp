@@ -1,5 +1,7 @@
 package seedu.recipe.logic.util;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +49,7 @@ public class RecipeDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public RecipeDescriptor(RecipeDescriptor toCopy) {
+        requireNonNull(toCopy);
         setName(toCopy.name);
         setDuration(toCopy.duration);
         setPortion(toCopy.portion);
@@ -63,7 +66,7 @@ public class RecipeDescriptor {
      * edited with {@code editRecipeDescriptor}.
      */
     public Recipe toRecipe(Recipe recipeToEdit) {
-        assert recipeToEdit != null;
+        requireNonNull(recipeToEdit);
 
         Name updatedName = getName().orElse(recipeToEdit.getName());
         Recipe newRecipe = new Recipe(updatedName);
@@ -98,9 +101,12 @@ public class RecipeDescriptor {
     }
 
     /**
-     * Generates a Recipe from this RecipeDescriptor.
+     * Generates a new Recipe from this RecipeDescriptor.
      */
     public Recipe toRecipe() {
+        if (this.name == null) {
+            this.name = new Name("BLANK RECIPE");
+        }
         Recipe blank = new Recipe(this.name);
         return this.toRecipe(blank);
     }
@@ -109,8 +115,9 @@ public class RecipeDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return durationChanged || portionChanged || CollectionUtil.isAnyNonNull(name, duration, portion, tags,
-            ingredients, steps);
+        return durationChanged
+            || portionChanged
+            || CollectionUtil.isAnyNonNull(name, duration, portion, tags, ingredients, steps);
     }
 
     public Optional<Name> getName() {
@@ -126,9 +133,7 @@ public class RecipeDescriptor {
     }
 
     public void setDuration(RecipeDuration duration) {
-        if (duration != null) {
-            this.duration = duration;
-        }
+        this.duration = duration;
     }
 
     public Optional<RecipePortion> getPortion() {

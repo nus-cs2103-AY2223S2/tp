@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.stage.Stage;
 import seedu.recipe.commons.core.Config;
 import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.LogicManager;

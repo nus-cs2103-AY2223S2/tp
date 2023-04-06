@@ -1,12 +1,7 @@
 package seedu.recipe.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
@@ -26,7 +21,6 @@ public class ImportCommand extends Command {
             "Selected JSON file '%s' contains some duplicate recipes which have been ignored and imported successfully";
     public static final String SUCCESS_MESSAGE = "Selected JSON file imported successfully";
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
     private final ImportManager importManager;
     private boolean hasDuplicate;
 
