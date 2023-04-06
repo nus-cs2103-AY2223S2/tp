@@ -108,7 +108,7 @@ Welcome to the Main Mode of the PowerCards application! This is the default mode
 
 In the Main Mode, you can quickly and easily create new decks, add new cards to your decks, delete and modify existing cards or decks as needed, and more!
 
-![UiComponent](images/MainModeComponent.png)
+![MainModeComponent](images/MainModeComponent.png)
 
 | Component         | Description                                                                                                                                |
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -127,7 +127,7 @@ Before you can add any cards, you must first create a deck. Creating a deck is d
 
 Format: `addDeck DECK_NAME`
 - `DECK_NAME` is the name of the deck you want to create. 
-  - Deck name cannot be duplicated, e.g., if you already have a deck named Science, you cannot create another Science deck.
+  - Deck name is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
   - You do not need any prefix before deck name.
 
 Example:
@@ -158,18 +158,28 @@ Format: `deleteDeck INDEX`
 
 Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
-### 3.3.4. Finding a Deck : `findDecks`
+### 3.3.4. Finding Decks by Keywords: `findDecks`
 
 If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
 
 Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite "program" being a partial word of "programming".
+- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite `program` being a partial word of `programming`.
 - Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+- Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
-- `findDecks CS2103T software` filters decks whose names match keywords "CS2103T" and "software".
+- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`.
+  ![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** 
+- Notice how there is a small text box `Finding Decks with keyword: science programming` below the filtered list of questions. This text box is to help you remember what you have previously searched for!
+- Notice that the result display will show how many decks have been listed.
+
+</div>
 
 ### 3.3.5. Showing all Decks : `showDecks`
 
@@ -231,6 +241,7 @@ This commands allow you to add a card to the **selected** deck.
 A card must contain a question, an answer, and an optional difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
+-   `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -289,9 +300,22 @@ Format: `findCards KEYWORD...`
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
+- Question field of cards matching at least one keyword will be returned (i.e. `OR` search).
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Since the command does not support partial words, take extra caution when searching for words ending with punctuation! For example `findCards loop` will **not** return a Card with question `What is a loop?`. For this example, you should search `findCards loop?` instead.  
+</div>
 
 Example:
-- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" **or** "recursion".
+- `findCards when how` shows all the cards whose questions match the keywords `when` **or** `how`.
+  ![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** 
+- Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
+- Notice that the result display will show how many cards have been listed.
+</div>
 
 ### 3.4.5. Showing all Cards : `showCards`
 
@@ -332,8 +356,10 @@ Examples:
 
 Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test - e.g. you just want test medium and hard cards only.
 
+![ReviewModeComponent](images/ReviewModeComponent.png)
+
 In the review mode, you will see:
-- On the left panel - updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
+- On the left panel - a review panel with the updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
 - On the right panel - the card that is currently under review, which you can flip to reveal the answer and then tag with a given difficulty.
 
 To review a card, you can attempt the question on the card (in your mind or on a paper if you prefer!) before flipping it. 
@@ -379,6 +405,7 @@ Flips the card to reveal the answer.
 
 Format: `p`
 - `p` is case-insensitive (`P` is also excepted).
+  ![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
 
 ### 3.6.5. Next Card: `]`
 
@@ -463,6 +490,17 @@ _Details coming soon ..._
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
 
+**Q**: How can I verify if my answer is correct?<br>
+**A**: PowerCards operates on a self-testing basis. You can check your answer by writing it down before flipping the card to verify if you got it right or wrong.
+
+**Q**: Can I have two cards with the same question?<br>
+**A**: **No**. `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
+
+**Q**: Can I have two decks with the same name? <br>
+**A**: **No**. The name of the deck is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
+
+**Q**: What if I like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
+**A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we used backslash `&#92;` rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Command Summary
