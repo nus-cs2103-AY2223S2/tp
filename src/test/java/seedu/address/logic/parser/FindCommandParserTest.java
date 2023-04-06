@@ -48,10 +48,10 @@ public class FindCommandParserTest {
                 String.format("%s, %s, %s", modA, modB, VALID_BY_TAG_PREFIX),
                 new FindCommand(Arrays.asList(modA, modB), true));
 
-        // Find by invalid tag: Treated as a keyword
+        // Find by invalid tag
         assertParseSuccess(parser,
                 String.format("%s, %s, %s", modA, modB, INVALID_BY_TAG_PREFIX),
-                new FindCommand(Arrays.asList(modA, modB, INVALID_BY_TAG_PREFIX), false));
+                new FindCommand(Arrays.asList(modA, modB), false));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class FindCommandParserTest {
         // Find by invalid tag
         assertParseSuccess(parser,
                 String.format("%s, %s, %s", lecA, lecB, INVALID_BY_TAG_PREFIX) + MODULE_CODE_DESC_2103,
-                new FindCommand(Arrays.asList(lecA, lecB, INVALID_BY_TAG_PREFIX), false));
+                new FindCommand(Arrays.asList(lecA, lecB), false));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser,
                 String.format("%s, %s, %s", vidA, vidB, INVALID_BY_TAG_PREFIX)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
-                    new FindCommand(Arrays.asList(vidA, vidB, INVALID_BY_TAG_PREFIX), false));
+                    new FindCommand(Arrays.asList(vidA, vidB), false));
     }
 
     @Test
