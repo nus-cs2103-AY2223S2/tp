@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 *  Responsibilities: Deliverables and deadlines, and Integration
 
 
-### Lim Diat Bhin
+### Lim Diat Bbin
 
 <img src="./images/diatbbin.png" width="200px">
 
@@ -39,7 +39,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/diatbbin.md)]
 
 * Role: Developer
-* Responsibilities: Code quality and Model component
+* Responsibilities: Finding bugs and Documentation
 
 ### Yeo Wen Jue
 

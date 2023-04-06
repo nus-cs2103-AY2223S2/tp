@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PowerConnectParser" as PowerConnectParser LOGIC_COLOR
+participant ":ParentCommandParser" as ParentCommandParser LOGIC_COLOR
+participant ":ParentDeleteCommand" as ParentDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("parent delete n/Bob pnP/91234567")
+activate LogicManager
+
+LogicManager -> PowerConnectParser : parseCommand("parent delete n/Bob pnP/91234567")
+activate PowerConnectParser
+
+create ParentCommandParser
+PowerConnectParser -> ParentCommandParser
+activate ParentCommandParser
+ParentCommandParser -> PowerConnectParser
+deactivate ParentCommandParser
+PowerConnectParser -> ParentCommandParser : parse("delete n/Bob pnP/91234567")
+activate ParentCommandParser
+
+create ParentDeleteCommand
+ParentCommandParser -> ParentDeleteCommand
+activate ParentDeleteCommand
+
+ParentDeleteCommand --> ParentCommandParser
+deactivate ParentDeleteCommand
+
+ParentCommandParser --> PowerConnectParser
+deactivate ParentCommandParser
+destroy ParentCommandParser
+
+PowerConnectParser --> LogicManager
+deactivate PowerConnectParser
+
+LogicManager -> ParentDeleteCommand: execute(model)
+activate ParentDeleteCommand
+
+ParentDeleteCommand -> Model: getParent(parentName, parentNumber)
+activate Model
+
+Model --> ParentDeleteCommand
+deactivate Model
+
+ParentDeleteCommand -> Model: deleteParent(parentToDelete)
+activate Model
+
+Model --> ParentDeleteCommand
+deactivate Model
+
+create CommandResult
+
+create CommandResult
+ParentDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ParentDeleteCommand
+deactivate CommandResult
+
+
+ParentDeleteCommand --> LogicManager:
+deactivate ParentDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

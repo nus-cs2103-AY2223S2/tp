@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PowerConnectParser" as PowerConnectParser LOGIC_COLOR
+participant ":StudentCommandParser" as StudentCommandParser LOGIC_COLOR
+participant ":StudentDeleteCommand" as StudentDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("student 1A delete in/25")
+activate LogicManager
+
+LogicManager -> PowerConnectParser : parseCommand("student 1A delete in/25")
+activate PowerConnectParser
+
+create StudentCommandParser
+PowerConnectParser -> StudentCommandParser
+activate StudentCommandParser
+StudentCommandParser -> PowerConnectParser
+deactivate StudentCommandParser
+PowerConnectParser -> StudentCommandParser : parse("1A delete in/25")
+activate StudentCommandParser
+
+create StudentDeleteCommand
+StudentCommandParser -> StudentDeleteCommand
+activate StudentDeleteCommand
+
+StudentDeleteCommand --> StudentCommandParser
+deactivate StudentDeleteCommand
+
+StudentCommandParser --> PowerConnectParser
+deactivate StudentCommandParser
+destroy StudentCommandParser
+
+PowerConnectParser --> LogicManager
+deactivate PowerConnectParser
+
+LogicManager -> StudentDeleteCommand: execute(model)
+activate StudentDeleteCommand
+
+StudentDeleteCommand -> Model: getStudent(targetIndex, studentClass)
+activate Model
+
+Model --> StudentDeleteCommand
+deactivate Model
+
+StudentDeleteCommand -> Model: deleteStudent(student)
+activate Model
+
+Model --> StudentDeleteCommand
+deactivate Model
+
+StudentDeleteCommand -> Model: getParent(parentName, parentNumber)
+activate Model
+
+Model --> StudentDeleteCommand
+deactivate Model
+
+StudentDeleteCommand -> Model: setParent(parentToUnbind, updatedParent)
+activate Model
+
+Model --> StudentDeleteCommand
+deactivate Model
+
+create CommandResult
+
+create CommandResult
+StudentDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StudentDeleteCommand
+deactivate CommandResult
+
+
+StudentDeleteCommand --> LogicManager:
+deactivate StudentDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

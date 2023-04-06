@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.parent;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 
@@ -13,7 +14,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
 /**
- * Deletes a parent identified using its name and phone number displayed on PowerConnect's parent list.
+ * Deletes a parent identified using his or her name and phone number displayed on PowerConnect's parent list.
  */
 public class ParentDeleteCommand extends ParentCommand {
 
@@ -36,8 +37,7 @@ public class ParentDeleteCommand extends ParentCommand {
      * Creates a ParentDeleteCommand to delete the specified {@code Parent}
      */
     public ParentDeleteCommand(Name parentName, Phone phoneNumber) {
-        requireNonNull(parentName);
-        requireNonNull(phoneNumber);
+        requireAllNonNull(parentName, phoneNumber);
         this.phoneNumber = phoneNumber;
         this.parentName = parentName;
     }
@@ -46,25 +46,32 @@ public class ParentDeleteCommand extends ParentCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasParent(parentName, phoneNumber)) {
+        //@@author diatbbin-reused
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main/java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //with modifications
+        Parent parentToDelete = model.getParent(parentName, phoneNumber);
+        if (parentToDelete == null) {
             throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
         }
-
-        Parent parentToDelete = model.getParent(parentName, phoneNumber);
 
         if (parentToDelete.hasStudents()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DELETE);
         }
+        //@@author
 
         model.deleteParent(parentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, parentToDelete.getName(),
-                parentToDelete.getPhone()));
+        Name deletedParentName = parentToDelete.getName();
+        Phone deletedParentPhoneNumber = parentToDelete.getPhone();
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, deletedParentName,
+                deletedParentPhoneNumber));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ParentDeleteCommand // instanceof handles nulls
+                && parentName.equals(((ParentDeleteCommand) other).parentName)
                 && phoneNumber.equals(((ParentDeleteCommand) other).phoneNumber)); // state check
     }
 }
