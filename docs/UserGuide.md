@@ -170,6 +170,19 @@ Only these values (case sensitive) are allowed:
 * `vaccination`
 * `appointment`
 
+#### `<keyword>`
+
+A non-empty string that takes on any character sequence that do not contain spaces.
+
+The following values (case sensitive) are not allowed:
+* `patient`
+* `vaccination`
+* `appointment`
+* `keyword`
+* `basic`
+* `help`
+* `exit`
+
 #### `<boolean>`
 
 Represents logical `true` or `false`. Only an input "true" (case insensitive) will result in logical `true`. All other values will result in `false`.
