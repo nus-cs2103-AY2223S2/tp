@@ -471,7 +471,8 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 **Q**: When I run the `archive` command, nothing happens
 
-**A**: If you have previously run `undo` on an `archive` command on that specific Pet, delete that pet entry from the PetPal
+**A**: If you have previously run `undo` on an `archive` command on that specific Pet, delete that pet entry from the PetPal.
+If you do not want the entry in the archive, you will need to manually delete the entry from `archive.json` and restart PetPal.
 
 <br><br>
 
@@ -516,5 +517,12 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Archive**     | `archive INDEX`<br>e.g. `archive 1`                                                                                                                                                                                                                                     |                       |
 | **Clear**       | `clear`                                                                                                                                                                                                                                                                 |                       |
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                  |                       |
+
+[Return to Table of Contents](#table-of-contents)
+
+## Acknowledgements
+
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
+* The logo used makes use of the [Dog icons created by Flat Icons - Flaticon] (https://www.flaticon.com/free-icons/dog)
 
 [Return to Table of Contents](#table-of-contents)
