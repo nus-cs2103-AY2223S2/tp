@@ -11,33 +11,32 @@ end box
 
 box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
-participant "internEase:InternEase" as InternEase MODEL_COLOR
-participant ":UniqueApplicationList" as UniqueApplicationList MODEL_COLOR
 end box
-[-> LogicManager : execute(clear_by)
+[-> LogicManager : execute("clear_by pf/ipt")
 activate LogicManager
 
-LogicManager -> InternEaseParser : parseCommand(clear_by)
+note right: pf = prefix; ipt = input
+LogicManager -> InternEaseParser : parseCommand("clear_by pf/ipt")
 activate InternEaseParser
 
 create ClearByCommandParser
-InternEaseParser -> ClearByCommandParser : parse(clear_by)
+InternEaseParser -> ClearByCommandParser
 activate ClearByCommandParser
 
 ClearByCommandParser --> InternEaseParser
 deactivate ClearByCommandParser
 
-InternEaseParser -> ClearByCommandParser : parse(argument)
+InternEaseParser -> ClearByCommandParser : parse("pf/ipt")
 activate ClearByCommandParser
 
 create ClearByCommand
 ClearByCommandParser -> ClearByCommand
 activate ClearByCommand
 
-ClearByCommand --> ClearByCommandParser
+ClearByCommand --> ClearByCommandParser : c
 deactivate ClearByCommand
 
-ClearByCommandParser --> InternEaseParser
+ClearByCommandParser --> InternEaseParser : c
 deactivate ClearByCommandParser
 ClearByCommandParser -[hidden]-> InternEaseParser : result
 destroy ClearByCommandParser
@@ -45,23 +44,11 @@ destroy ClearByCommandParser
 InternEaseParser --> LogicManager : c
 deactivate InternEaseParser
 
-LogicManager -> ClearByCommand : execute()
+LogicManager -> ClearByCommand : execute(model)
 activate ClearByCommand
 
-ClearByCommand -> Model : getFilteredInternshipList()
+ClearByCommand -> Model : getSortedFilteredInternshipList()
 activate Model
-
-Model -> InternEase : getInternshipList()
-activate InternEase
-
-InternEase -> UniqueApplicationList :asUnmodifiableObservableList()
-activate UniqueApplicationList
-
-UniqueApplicationList --> InternEase
-deactivate UniqueApplicationList
-
-InternEase --> Model
-deactivate InternEase
 
 Model --> ClearByCommand : internshipList
 deactivate Model
@@ -88,13 +75,13 @@ create CommandResult
 ClearByCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ClearByCommand
+CommandResult --> ClearByCommand : r
 deactivate CommandResult
 
 ClearByCommand --> LogicManager : r
 deactivate ClearByCommand
 
 
-[<--LogicManager
+[<--LogicManager : r
 deactivate LogicManager
 @enduml

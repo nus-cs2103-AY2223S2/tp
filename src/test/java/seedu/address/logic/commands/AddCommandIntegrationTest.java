@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
-import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
+import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

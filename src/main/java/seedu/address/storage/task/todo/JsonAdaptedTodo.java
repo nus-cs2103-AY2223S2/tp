@@ -133,7 +133,7 @@ public class JsonAdaptedTodo {
                     ApplicationDeadline.class.getSimpleName()));
         }
         if (!ApplicationDeadline.isValidDate(LocalDate.parse(deadline))) {
-            throw new IllegalValueException(String.format(ApplicationDeadline.MESSAGE_CONSTRAINTS, deadline));
+            throw new IllegalValueException(ApplicationDeadline.MESSAGE_CONSTRAINTS);
         }
         return new ApplicationDeadline(LocalDate.parse(deadline));
     }

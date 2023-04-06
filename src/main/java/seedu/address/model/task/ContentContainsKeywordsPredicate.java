@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that an {@code Note}'s {@code NoteContent} matches any of the keywords given.
+ * Tests that a {@code Note}'s {@code NoteContent} matches any of the keywords given.
  */
 public class ContentContainsKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;

@@ -29,7 +29,7 @@ public class EditNoteContentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the note content of the specified todo from current available todo list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
-            + "[" + PREFIX_NOTE_CONTENT + "NOTE_CONTENT]\n"
+            + PREFIX_NOTE_CONTENT + "NOTE_CONTENT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_CONTENT + "Change venue\n";
 
@@ -62,12 +62,12 @@ public class EditNoteContentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        InternshipTodo todoToUpdateDeadline = lastShownList.get(
+        InternshipTodo todoToUpdateNote = lastShownList.get(
                 targetIndex.getZeroBased());
         InternshipTodo updatedTodo = createdUpdatedTodo(
-                todoToUpdateDeadline, toUpdate);
+                todoToUpdateNote, toUpdate);
 
-        model.setTodo(todoToUpdateDeadline, updatedTodo);
+        model.setTodo(todoToUpdateNote, updatedTodo);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo), type);
     }

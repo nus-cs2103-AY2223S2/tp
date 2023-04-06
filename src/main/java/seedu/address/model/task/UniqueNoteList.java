@@ -15,10 +15,8 @@ import seedu.address.model.task.exceptions.NoteNotFoundException;
  * A list of Note that enforces uniqueness between its elements and does not allow nulls.
  * A Note is considered unique by comparing using {@code Note#isSameNote(Note)}. As such, adding and updating of
  * notes uses Note#isSameNote(Note) for equality to ensure that the note being added or updated is unique in terms of
- * identity in the UniqueNoteList.
- * However, the removal of a note uses Note#equals(Object) to ensure that the Note with exactly the same fields will
- * be removed.
- *
+ * identity in the UniqueNoteList. However, the removal of a note uses Note#equals(Object) to ensure that the Note with
+ * exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
  * @see Note#isSameNote(Note)
@@ -29,7 +27,7 @@ public class UniqueNoteList implements Iterable<Note> {
             FXCollections.unmodifiableObservableList(internalNoteList);
 
     /**
-     * Returns true if the list contains an equivalent note as the given argument.
+     * Returns true if the list contains an equivalent note as the given {@code toCheck}.
      */
     public boolean containsNote(Note toCheck) {
         requireNonNull(toCheck);
@@ -37,7 +35,7 @@ public class UniqueNoteList implements Iterable<Note> {
     }
 
     /**
-     * Adds a note to the list.
+     * Adds a note {@code toAdd} to the list.
      * The note must not already exist in the list.
      */
     public void addNote(Note toAdd) {

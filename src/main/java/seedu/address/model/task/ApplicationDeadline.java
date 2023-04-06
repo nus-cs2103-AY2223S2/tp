@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents an ApplicationDeadline in the planner.
+ * Represents an ApplicationDeadline in {@code InternshipTodo}.
  * Guarantees: immutable.
  */
 public class ApplicationDeadline {
@@ -18,9 +18,7 @@ public class ApplicationDeadline {
     public final String fullName;
 
     /**
-     * Constructs a {@code ApplicationDeadline}.
-     *
-     * @param date A valid date.
+     * Constructs a {@code ApplicationDeadline} with {@code date}.
      */
     public ApplicationDeadline(LocalDate date) {
         requireNonNull(date);

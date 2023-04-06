@@ -16,9 +16,9 @@ public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "find_task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all todos and notes whose names "
-            + "contain any of the specified keywords (case-insensitive) "
-            + "and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all todos and notes whose company names or "
+            + "contents contain any of the specified keywords (case-insensitive) "
+            + "and displays them as lists with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " google software engineer intern";
 
@@ -29,7 +29,7 @@ public class FindTaskCommand extends Command {
 
     /**
      * Creates a FindTaskCommand instance.
-     * Find todo and content that match {@code titlePredicate} or {@code contentPredicate}.
+     * Finds todo and content that match {@code titlePredicate} or {@code contentPredicate}.
      */
     public FindTaskCommand(TitleContainsKeywordsPredicate titlePredicate,
                            ContentContainsKeywordsPredicate contentPredicate) {

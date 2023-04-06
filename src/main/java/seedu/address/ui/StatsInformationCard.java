@@ -9,7 +9,7 @@ import javafx.scene.text.TextAlignment;
 import seedu.address.model.statstics.StatsInformation;
 
 /**
- * An UI component that displays information of a {@code StatsInformation}.
+ * A UI component that displays information of a {@code StatsInformation}.
  */
 public class StatsInformationCard extends UiPart<Region> {
 

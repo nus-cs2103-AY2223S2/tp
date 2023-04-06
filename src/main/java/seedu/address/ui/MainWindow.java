@@ -39,7 +39,6 @@ public class MainWindow extends UiPart<Stage> {
     private StatsInformationListPanel statsInformationListPanel;
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
-
     private ReminderWindow reminderWindow;
 
     @FXML
@@ -178,6 +177,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Shows the primary stage.
+     */
     void show() {
         primaryStage.show();
     }
@@ -240,13 +242,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
             reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication(), this);
-
-            // Update StatsInformationListPanel UI
             statsInformationListPanel.updateDisplay();
 
             if (commandResult.isShowHelp()) {

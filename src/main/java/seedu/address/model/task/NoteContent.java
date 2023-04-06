@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Note content in the planner.
+ * Represents a NoteContent in {@code InternshipTodo} or {@code Note}.
  * Guarantees: immutable; is valid as declared in {@link #isValidContent(String)}
  */
 public class NoteContent {
@@ -21,9 +21,7 @@ public class NoteContent {
     public final String content;
 
     /**
-     * Constructs a {@code NoteContent}.
-     *
-     * @param note A valid note.
+     * Constructs a {@code NoteContent} with {@code note}
      */
     public NoteContent(String note) {
         requireNonNull(note);
@@ -32,7 +30,7 @@ public class NoteContent {
     }
 
     /**
-     * Returns true if a given string is a valid name and is within 1 to 55 characters long.
+     * Returns true if {@code test} is a valid name and is within 1 to 55 characters long.
      */
     public static boolean isValidContent(String test) {
         return test.length() <= 55 && test.matches(VALIDATION_REGEX);

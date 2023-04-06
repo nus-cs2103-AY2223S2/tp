@@ -14,6 +14,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 - [Quick start](#quick-start)
 
 - [Features](#features)
+
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
     - [Add an internship application : `add`](#add-an-internship-application--add)
@@ -61,7 +62,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-        -
+      
 - [FAQ](#faq)
 
 - [Command Summary](#command-summary)
