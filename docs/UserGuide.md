@@ -208,17 +208,16 @@ _OR_
 
 Navigating **directly** from any **context**:
 
-1. Navigate directly to the lecture Week 1 of the module CS2040S.
-
-- `nav /mod CS2040S /lec Week 1
+1. Navigate directly to the lecture Week 1 of the module CS2040S.\
+   `nav /mod CS2040S /lec Week 1`
 
 After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-1. Add Video 2 to the lecture Week 1 of module CS2040S.
-   - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-2. List the contents of lecture Week 1 of module CS2040S.
+1. Add Video 2 to the lecture Week 1 of module CS2040S.\
+   `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+2. List the contents of lecture Week 1 of module CS2040S.\
    `list /mod CS2040S /lec Week 1` -> `list`
 
 ---
@@ -259,25 +258,22 @@ Format: `navb`
 
 ### List
 
-#### List Modules or Lectures or Videos
+#### List Modules
 
 > `list`
 
-Root context: modules, Module context: lectures, Lecture context: videos
+![RootContext](images/RootContext.png)
+has to be specified if you are not in the root context.
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Module](#list-lectures-of-module) or [List Videos of Lecture](#list-videos-of-lecture)
 
-#### List Modules
+(refer to [Navigation](#navigation) for more information)
 
-> `list /r`
+#### List Lectures of Module
 
-Lists all modules
-
-#### List Lectures of Modules
-
-> `list [/mod {module_code}]`
+> `list /mod {module_code}`
 
 Lists all lectures belonging to a specified module code
 
@@ -289,12 +285,11 @@ Examples:
 
 - `list /mod CS2040S` lists lectures belonging to CS2040S
 
-#### List Videos of Lectures
+#### List Videos of Lecture
 
-> In module context: `list [/lec {lecture_name}]`\
-> In any context: `list [/mod {module_code} /lec {lecture_name}]`
+> `list /mod {module_code} /lec {lecture_name}`
 
-Lists all videos belonging to a specified lecture code of a navigated/specified module code
+Lists all videos belonging to a specified lecture name of a specified module code
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
