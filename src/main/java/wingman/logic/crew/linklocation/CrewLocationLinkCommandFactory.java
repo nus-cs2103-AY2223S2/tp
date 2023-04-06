@@ -31,20 +31,10 @@ public class CrewLocationLinkCommandFactory<T extends Command>
     private static final String LOCATION_PREFIX = "/lo";
     private static final String CREW_PREFIX = "/cr";
 
-    private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered.\n"
-                    + "Please enter /lo followed by the location ID.";
     private static final String NO_CREW_MESSAGE =
             "No crew has been entered.\n"
                     + "Please enter /cr followed by the crew ID.";
-    private static final String INVALID_INDEX_VALUE_MESSAGE =
-            "%s is an invalid value.\n"
-                    + "Please try using an integer instead.";
-    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
-            "Index %s is out of bounds.\n"
-                    + "Please enter a valid index.";
-
-    private CrewLocationLinkFunction<T> linkFunction;
+    private final CrewLocationLinkFunction<T> linkFunction;
 
     /**
      * Creates a new link command factory with the model registered.
