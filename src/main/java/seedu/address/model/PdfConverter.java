@@ -75,6 +75,10 @@ public class PdfConverter {
         this.curColor = black;
     }
 
+    /**
+     * Create contents of the pdf file
+     * @param key student to be exported
+     */
     public void createContents(Student key) throws IOException {
         String docTitle = key.getName().fullName + "'s Progress Report";
         String dateCreated = "Date created: " + LocalDate.now();
@@ -302,7 +306,8 @@ public class PdfConverter {
      * @param y initial y-coordinate of the text
      * @throws IOException
      */
-    public void setUpContentStream(String curString, PDFont font, int fontSize, float x, float y, Color color) throws IOException {
+    public void setUpContentStream(String curString, PDFont font, int fontSize, float x, float y, Color color)
+            throws IOException {
         this.contentStream.beginText();
         this.contentStream.setFont(font, fontSize);
         this.contentStream.moveTextPositionByAmount(x, y);
@@ -398,12 +403,25 @@ public class PdfConverter {
         return contentStream;
     }
 
+    /**
+     * Write text to the pdf
+     * @param curString current string to be written
+     * @param font font of the text
+     * @param fontSize font size of the text
+     */
     public void drawText(String curString, PDFont font, int fontSize) throws IOException {
         this.contentStream.drawString(curString);
         this.contentStream.endText();
         this.x += textLength(curString, font, fontSize);
     }
 
+    /**
+     * Change position to next line
+     * @param count determines whether the current string is the first line of the string
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param xPosition x coordinate of the text
+     */
     public void handleNextLine(int count, PDFont font, int fontSize, float xPosition) {
         if (count != 0) {
             this.y -= textHeight(font, fontSize, this.margin / 2);
@@ -411,6 +429,15 @@ public class PdfConverter {
         this.x = xPosition;
     }
 
+    /**
+     * Handle next page for currently wrapped text
+     * @param count determines whether the current string is the first line of the string
+     * @param yPrev y coordinate of the previous line
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param xPosition x coordinate of the text
+     */
     public void handleWrapNextPage(int count, float yPrev, List<String> maxContentWidthString, PDFont font,
                                    int fontSize, float xPosition) throws IOException {
         float yTemp = (count != 0) ? this.y - 2 * this.margin : yPrev - this.margin;
