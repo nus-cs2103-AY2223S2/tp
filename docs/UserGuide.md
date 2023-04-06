@@ -172,7 +172,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
 included an autocompletion feature!
 
-Start typing the first letters of a command to get shadow-like autocomplete suggestions. 
+Start typing the first letters of a command to get shadow-like autocomplete suggestions.
 The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
 <div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
@@ -250,7 +250,7 @@ For more details and examples on the parameters, please refer to the [Parameter 
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** 
+:bulb: **Note:**
 * `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other fields using the [`edit`](#edit-a-student-edit) command.
 * The current version of TeachMeSenpai allows you to add students with the same phone number and/or telegram handle! However, we have planned
@@ -324,7 +324,7 @@ Examples:
 Edits a student's information _(all information except remarks)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
-> 
+>
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
 > - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
@@ -338,7 +338,8 @@ Edits a student's information _(all information except remarks)_. To remove a st
 
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** 
+<div markdown="block" class="alert alert-info">
+:bulb: **Note:**
 * `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 * `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
@@ -375,12 +376,11 @@ Edits a student's remarks.
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
 
-With `remark` you can type your desired remarks and notes into the popup text box! The text box can take in 
+With `remark` you can type your desired remarks and notes into the popup text box! The text box can take in
 multiple sentences, paragraphs etc. When you are done, you can simply press `Ctrl` + `S`
 and your remarks will be saved once the text box closes.
 
-<div markdown="block" class="alert alert-info">
-
+<div markdown="span" class="alert alert-info">
 :bulb: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
@@ -404,8 +404,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>remark</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">
-
+<div markdown="span" class="alert alert-info">
 :bulb: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
 To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
 </div>
@@ -544,7 +543,7 @@ Did you `undo` a command on accident? Fret not, you may use `redo` to reverse th
 
 >Format: `redo`
 
-Examples: 
+Examples:
 
 - `delete 2`, followed by `undo`, then `redo` has the same effect as `delete 2`
 - `list` followed by `redo` will result in an error message from TeachMeSenpai.
@@ -596,8 +595,12 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                                |
 | Keyword                        | The word you want to [find/filter](#findfilter-students-findfilter) by.                                         | A keyword for a student named "Shao Hong" could be "Shao Hong"                                                                                                                                                                                      |
 | Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | -                                                                                                                                                                                                                                                   |
+<<<<<<< HEAD
 | Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `STUDENT_NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. | 
 | Partial keyword                | Part of the word you want to [find/filter](#findfilter-students-findfilter) by.                                 | A partial keyword for a student named "Shao Hong" could be "Sh", or "on" etc.                                                                                                                                                                       |
+=======
+| Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `STUDENT_NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. |
+>>>>>>> a585d8f66b7eb15a8ebf4bfb9490460b001ce97c
 | Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `STUDENT_NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                 |
 
