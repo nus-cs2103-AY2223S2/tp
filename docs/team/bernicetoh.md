@@ -42,8 +42,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       * Added documentation for the `add`, `edit` and `delete` commands. (Pull request [#144](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/144))
-      * Created annotated images of command formats for clearer presentation.
-      * Created annotated GUI images for clearer presentation.
+      * Created annotated images of command formats for clearer presentation. (Pull request [#235](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/235))
+      * Created annotated GUI images for clearer presentation. (Pull request [#243](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/243))
 
     * Developer Guide:
       * Updated architecture diagrams to reflect project design. (Pull request [#118](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/118), [#112](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/112/files))
