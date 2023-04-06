@@ -44,7 +44,7 @@ Contributions to my project are given below. [RepoSense link](https://nus-cs2103
 
 * **Contributions to the DG**:
   * Updated details for non-functional requirements
-  * Added details for implementation of `Group Create`, `Group Delete`, `Edit Command` and `Find Group` features, including justifications, sequence and activity diagrams. 
+  * Added details for implementation of `Group Create`, `Group Delete`, `Group Find`, `Edit` and `Export` features, including justifications, sequence and activity diagrams. 
   * Added details in manual testing for `Editing a person`, `Creating a group`, `Deleting a group` and `Finding a group`.
 
 * **Contributions to team-based tasks**:
