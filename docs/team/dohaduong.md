@@ -57,6 +57,7 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): #180, #156 
+    * Identified bugs in commands
     * Contributed to forum discussions (examples: #24)
 
 * **Tools**:
