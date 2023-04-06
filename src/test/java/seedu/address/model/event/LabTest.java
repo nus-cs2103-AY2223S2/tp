@@ -194,13 +194,30 @@ public class LabTest {
     @Test
     public void lab_differentLabEquality_notSameLab() {
         Person person = new PersonBuilder().build();
-        Lab newLab = new Lab("new lab");
-        newLab.addStudent(person);
-        newLab.addAttachment(new File("new file"));
-        newLab.addNote(new Note("new note"));
-        assertFalse(newLab.equals(lab6));
+
+        Lab newLabA = new Lab("lab6");
+        newLabA.addStudent(person);
+        newLabA.changeDate(LocalDateTime.of(2020,10,10,10,10));
+        newLabA.addAttachment(new File("new file"));
+        newLabA.addNote(new Note("new note"));
+
+        Lab newLabB = new Lab("lab6");
+        newLabB.addStudent(person);
+        newLabB.changeDate(LocalDateTime.of(2020,10,10,10,10));
+        newLabB.addAttachment(new File("new file"));
+        newLabB.addNote(new Note("not new note"));
+
+        assertFalse(newLabA.equals(newLabB));
     }
 
+    @Test
+    public void lab_notLabObject_notSame() {
+        assertFalse(lab6.equals(new Object()));
+    }
 
+    @Test
+    public void lab_stringBuilder_notNull() {
+        assertNotNull(lab6.toString());
+    }
 
 }
