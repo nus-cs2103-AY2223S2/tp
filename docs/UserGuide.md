@@ -231,7 +231,8 @@ Deleted Food: MEIJI MILK (expires on 05-04-2023)
 
 ### Checking expiry of food items : `expiry`
 
-Sorts by expiry date and displays all food items.
+Sorts the food items by expiry date in ascending order (food items with a closer expiry date will appear at the top)
+and displays all food items.
 
 Format: `expiry`
 
