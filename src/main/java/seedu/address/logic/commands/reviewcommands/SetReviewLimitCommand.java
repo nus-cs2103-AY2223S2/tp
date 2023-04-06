@@ -12,8 +12,9 @@ import seedu.address.model.Model;
  */
 public class SetReviewLimitCommand extends Command {
     public static final String COMMAND_WORD = "setLimit";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Limit the number of cards tested per review session.\n"
-            + "Parameter: Integer (must be positive) or 'none'.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Limit the number of cards tested per review session.\n"
+            + "Parameter: A positive integer between 1 and 2147483647 inclusive or the String 'none'.\n"
             + "Example: " + COMMAND_WORD + " 30";
 
     public static final String MESSAGE_SUCCESS_SET_LIMIT = "You have limited the number of cards per review to %1$s!";
@@ -25,10 +26,8 @@ public class SetReviewLimitCommand extends Command {
      * Creates a SetReviewLimitCommand with the given number of cards.
      */
     public SetReviewLimitCommand(int numCardsPerReview) {
-        requireNonNull(numCardsPerReview);
         this.numCardsPerReview = numCardsPerReview;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
