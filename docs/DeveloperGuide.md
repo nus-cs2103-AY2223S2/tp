@@ -447,3 +447,16 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Planned Enhancements
+
+### Person name will not be case-sensitive
+
+Currently, the name of a Person is not case-sensitive.
+Anyone with the same name but in different casing are considered different Persons.
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
+* `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
+
+For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
+The application will not allow both the sample inputs to be executed.
