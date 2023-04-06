@@ -118,7 +118,7 @@ Each of these subsections consists of smaller UI components, which are annotated
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
-There are no separate Java classes created for `CliScreen` and `CliInput` due their simplicity in functionality. It is sufficient to compose them within the `CliSection` class in the form of basic JavaFx components (`CliScreen` as a `VBox` and `CliInput` as a `TextField`). They are referenced in [`CliSection.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/clisection/CliSection.fxml). 
+There are no separate Java classes created for `CliScreen` and `CliInput` due their simplicity in functionality. It is sufficient to compose them within the `CliSection` class in the form of basic JavaFx components (`CliScreen` as a `VBox` and `CliInput` as a `TextField`). They are referenced in [`CliSection.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/clisection/CliSection.fxml).
 Likewise, many smaller, simple components composed within larger components like [`ModuleCard`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/modulesection/ModuleCard.java) do not have separate Java classes created for them.
 </div>
 
@@ -208,10 +208,7 @@ The add module feature allows users to quickly add a module in to the applicatio
 #### How it is implemented
 
 The `add` command is facilitated by the `AddCommand` and the `AddCommandParser`.
-`AddCommandParser` makes use of the `ArgumentTokenizer::tokenize` to extract out the relevant inputs of each field which
-will be used to make new `Code`, `Credit`, `SemYear`, `Grade` and `Set<Tag>` objects. These objects will then be used 
-to make a new `Module` object. The method `addModule` from the `Model` interface will then add the new `Module` object
-into the `UniqueModuleList` of modules.
+`AddCommandParser` makes use of the `ArgumentTokenizer::tokenize` to extract out the relevant inputs of each field which will be used to make new `Code`, `Credit`, `SemYear`, `Grade` and `Set<Tag>` objects. These objects will then be used to make a new `Module` object. The method `addModule` from the `Model` interface will then add the new `Module` object into the `UniqueModuleList` of modules.
 
 #### Parsing user input
 
@@ -341,8 +338,7 @@ or wrongly added.
 
 * **Format 2:** Deletes all modules.
     * Format notation: `delete all`
-    * Reason for implementation: User may want to start adding modules freshly, in case they realise all or most of the
-modules they added are irrelevant to them.
+    * Reason for implementation: User may want to start adding modules freshly, in case they realise all or most of the modules they added are irrelevant to them.
 
 The following sequence diagram shows how the `delete`:
 ![sequence diagram of delete command](images/DeleteSequenceDiagram.png)
@@ -354,7 +350,7 @@ The following activity diagram shows what happens when a user executes a `delete
 
 #### About this feature
 The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
-The flag parameter indicates which category to sort by. 
+The flag parameter indicates which category to sort by.
 
 The available categories are:
 - Semester Year (Default)
@@ -564,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MODTrek shows an error message.
 
       Use case ends.
-  
+
 <br>
 
 #### Use case: Edit a module
@@ -583,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MODTrek shows an error message.
 
       Use case ends.
-  
+
 <br>
 
 #### Use case: Delete a module
