@@ -18,7 +18,8 @@ title: Developer Guide
     * [Delete Image Feature](#delete-image-feature)
     * [Import Contacts Feature](#import-contacts-feature)
     * [Find Feature](#find-feature)
-    
+    * [Edit Feature](#edit-feature)
+
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
     * [User Stories](#user-stories)
@@ -28,9 +29,9 @@ title: Developer Guide
 
 ## Acknowledgements
 
-* This project was based on the AddressBook3 application which can be found 
+* This project was based on the AddressBook3 application which can be found
   [here](https://github.com/nus-cs2103-AY2223S2/tp)
-  
+
 ---
 
 ## Design
@@ -186,7 +187,7 @@ at the desired index to a default image, and deletes the existing person through
 Given below is an example usage scenario for how the `add` mechanism behaves.
 
 Step 1: User starts up the application and sees their list of contacts. User must then enter
-[name] [status] [phone] [email] [address] as they are required by the system if not it will cause
+name, status, phone, email, address as they are required by the system if not it will cause
 an invalid exception.
 
 Step 2: The user can add optional fields, that is the tags. Each of the tags is colour-coded based on its type.
@@ -231,7 +232,7 @@ The following activity diagram summarizes what happens when a user executes a
 
 #### Delete Implementation
 
-The `delete` command allows users to delete a contact based on the provided index. 
+The `delete` command allows users to delete a contact based on the provided index.
 This feature is facilitated by the `ParserUtil`, `DeleteCommandParser`, and
 `DeleteCommand` classes. The user input is first passed to an instance of `DeleteCommandParser`,
 which calls on `ParserUtil#parseIndex` in `DeleteCommandParser#parse` to obtain the
@@ -242,13 +243,13 @@ contact from the list of contacts.
 
 An example is provided below to better illustrate the `delete` behaviour.
 
-Step 1: User starts up the application and sees their list of contacts. 
+Step 1: User starts up the application and sees their list of contacts.
 
 Step 2: User decides that they no longer want the contact in position 1 to be on their
 list anymore, and hence enters `delete 1` into the user input.
 
 Step 3: `DeleteCommandParser#parse` is called, which calls `ParserUtil#parseIndex` to
-obtain the index from the user input. 
+obtain the index from the user input.
 
 Step 4: An instance of `DeleteCommand` is created with the provided Index, and `DeleteCommand#execute`
 is called to delete the contact from the list.
@@ -294,7 +295,6 @@ Finally `AddImageCommand#execute` updates the model provided in the arguments.
 
 The following sequence diagram shows how the `add-image` operation works:<br>
 ![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
-
 
 The following activity diagram summarizes what happens when a user executes `add-image` command: <br>
 ![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
@@ -493,6 +493,51 @@ expect the application to return a list of contacts that matches **all** of his
 given input requirements, instead of a list of contacts that contains one or more
 of the keywords that was entered. Hence, the logical `AND` was decided to be more
 appropriate, and `Predicate#and` was used.
+
+[Back to top](#top)
+
+### Edit Feature
+
+#### Edit Implementation
+
+The Edit feature is facilitated by the classes `EditCommand`,
+`EditCommandParser` and `ParserUtil`.
+The `EditCommandParser` first parses through the user command to obtain
+the necessary inputs through using `ParserUtil#parseIndex`. Following which an
+instance of a `EditCommand` containing the details encapsulated in Person class is returned.
+`EditCommand#execute` is then called, which sets the image of the contact
+at the desired index to a default image.
+
+Given below is an example usage scenario for how the `edit` mechanism behaves.
+
+Step 1: User wants to edit a specific person in the contact list. He first enters the edit command, index, follow by the
+prefix and input value he wants. Note that index that is equals or less than zero will result in an exception thrown.
+
+> **Note**: If the user wants to edit a contact that does not exist in the contact list, an error will be thrown.
+
+Step 2: If the instruction was valid, `EditCommand#execute` is called to update the details into an existing person.
+
+The following sequence diagram shows how the `edit` operation works.
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a
+`edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design Considerations:
+
+- **Implemented:** Edit tags based on the tag type instead of replacing all
+    - Pros:
+        - Edit a tag will not replace all the tags of other tags
+    - Cons:
+        - Extra complexity in requiring to map the additional tag operations
+
+
+- **Implemented:** Tag name is able to fix in the GUI frame and should not overflow
+    - Pros:
+        - To reduce chances of missing or hidden texts
 
 [Back to top](#top)
 
@@ -695,12 +740,15 @@ System repeats Step 1-2 until valid details are entered.
 
 ### Planned Enhancement
 
-1. Currently, when attempting to retrieve image and is unsuccessful, the default image is displayed. 
-    We plan to include and display an “error image” instead of default image to better express to user that the retrieval was unsuccessful. 
-    With this error image, the `delete-image` command on this contact will change it to default image. 
-    Currently, it only shows a success message as the image is already the default image.<br>
-   (Ways that retrieval can be unsuccessful erroneous editing of Image field in `addressbook.json` or removing/changing images saved in `/profile_pictures` to invalid images or to a non-matching file name)
-2. Currently, there is no restrictions regarding image size for the `add-image` command. We plan to impose a minimum image size restriction to prevent images that are too small.
+1. Currently, when attempting to retrieve image and is unsuccessful, the default image is displayed.
+   We plan to include and display an “error image” instead of default image to better express to user that the retrieval
+   was unsuccessful.
+   With this error image, the `delete-image` command on this contact will change it to default image.
+   Currently, it only shows a success message as the image is already the default image.<br>
+   (Ways that retrieval can be unsuccessful erroneous editing of Image field in `addressbook.json` or removing/changing
+   images saved in `/profile_pictures` to invalid images or to a non-matching file name)
+2. Currently, there is no restrictions regarding image size for the `add-image` command. We plan to impose a minimum
+   image size restriction to prevent images that are too small.
 3. Currently, the `import` command only allows importing contacts from 2 faculties.
 4. Currently, imported contacts from the `import` command are not filled up with real data.
 

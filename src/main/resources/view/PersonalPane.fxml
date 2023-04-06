@@ -26,7 +26,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
-                <Label fx:id="status" text="\$status" styleClass="cell_status_label"/>
+                <Label fx:id="status" text="\$status" styleClass="cell_status_label" textAlignment="CENTER"/>
                 <HBox id="tagPane" fx:id="tagPane">
                     <FlowPane fx:id="tags" styleClass="tag_alignment"/>
                 </HBox>
@@ -41,7 +41,7 @@
                 </HBox>
 
                 <HBox alignment="CENTER">
-                    <Label text="Email: "/>
+                    <Label text="Email: " minWidth="60" wrapText="true"/>
                     <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
                 </HBox>
             </VBox>
