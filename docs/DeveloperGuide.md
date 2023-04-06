@@ -161,15 +161,15 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the degree progression data i.e., all `Module` objects (which are contained in a `UniqueModuleList` object).
-* stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the degree progression i.e., all `Module` objects (which are contained in a `UniqueModuleList` object) and generates `DegreeProgressionData` if needed.
+* stores the currently 'selected' `Module` objects (e.g., results of the `find` command) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -180,12 +180,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both degree progression's `UniqueModuleList` and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `DegreeProgressionStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -407,28 +407,36 @@ The View feature displays either the degree progress or modules tracked by the a
 
 The `view progress` command displays some summary statistics of the degree progress to the user as follows:
 - Percentage of total MCs completed thus far.
-- Number of MCs completed out of total MCs required to compete the CS degree.
+- Number of meaningful (details of meaningful will be under [Generation of Progression Data](#generation-of-degree-progression-data)) MCs completed out of total MCs required to compete the CS degree.
 - Current CAP.
 - Percentage of MCs completed for each degree requirement, displayed in a doughnut chart.
+
+The `view progress` command also displays more details on the (`CliScreen`) of the GUI to the user as follows:
+- Current CAP.
+- Number of MCs completed for each degree requirement.
+- Number of MCs in total for planned modules.
+- Number of meaningful MCs
 
 The `view modules` command displays all modules that have been added to the app by the user thus far. The modules displayed are categorised by year/semester by default. The criteria of categorisation can be changed via the `sort` command (described **below**). The following details of each module is displayed:
 - Module code
 - Modular credits
 - Year/semester
 - Grade (if applicable)
-- Tags (degree requirements)
+- Tags (degree requirements, if tagged)
 
 #### How it is implemented
 **View degree progress:**
 The following are noteworthy classes involved in the handling of `view progress` command:
-- `ViewCommand` which handles the parsing of the command.
-- `ViewProgressCommand` which handles the command execution.
+- `ViewCommand` which handles the execution of the command.
+- `ViewCommandParser` which handles the parsing of the command.
 - `ProgressSection` which displays the current degree progress on the GUI.
+- `DegreeProgressionData` which calculates the relevant details based on the module list.
+- `DegreeProgressionException` which denotes calculation exception.
 
 **View modules:**
 The following are noteworthy classes involved in the handling of `view modules` command:
-- `ViewCommand` which handles the parsing of the command.
-- `ViewModulesCommand` which handles the command execution.
+- `ViewCommand` which handles the parsing and execution of the command.
+- `ViewCommandParser` which handles the parsing of the command.
 - `ModuleListSection` which displays all the modules on the GUI.
 
 The implementation details are described in further details below.
@@ -437,14 +445,16 @@ The implementation details are described in further details below.
 1. The user inputs the `view` command.
 2. `ModTrekParser` processes the input and creates a new `ViewCommandParser`.
 3. The `ViewCommandParser` validates whether `<VIEW_TARGET>` is present in the input and is either `progress` or `modules`. If `<VIEW_TARGET>` is absent or invalid, a `ParseException` would be thrown.
-4. The `ViewCommandParser` then creates either `ViewProgressCommand` or `ViewModulesCommand`, depending on `<VIEW_TARGET>`.
+4. The `ViewCommandParser` then creates a `ViewCommand`, determined by the `<VIEW_TARGET>`.
 
 #### Command execution
 **View degree progress:**
-- `LogicManager` executes `ViewProgressCommand` and returns a `CommandResult`, encapsulating the information that degree progress is to be displayed.
+- `LogicManager` executes `ViewCommand` and generates the `DegreeProgressionData`.
+- If the `DegreeProgressionData` is invalid, a `CommandException` is thrown to notify the user that the calculation has an error.
+- On success, the execution returns a `CommandResult`, encapsulating the information that degree progress is to be displayed and the information to be displayed on the (`CliScreen`).
 
-**View degree progress:**
-- `LogicManager` executes `ViewModulesCommand` and returns a `CommandResult`, encapsulating the information that all modules tracked by the app so far are to be displayed.
+**View modules:**
+- `LogicManager` executes `ViewCommand` and returns a `CommandResult`, encapsulating the information that all modules tracked by the app so far are to be displayed.
 
 #### Displaying of result
 1. `MainWindow` validates from the returned `CommandResult` that the degree progress is to be displayed on the GUI, and calls `ResultsSection::displayProgress`. `ResultsSection::displayProgress` takes in a `ReadOnlyDegreeProgression` object which encapsulates information on the user's current degree progress, based on the modules added by the user thus far.
@@ -452,13 +462,23 @@ The implementation details are described in further details below.
 3. `DoughnutChart` obtains and displays summary statistics regarding the degree progress through the `DegreeProgressionData` object.
 
 
-The following sequence diagram illustrates how the `view` command works:
+The following sequence diagram illustrates how the `view` command works for the GUI:
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceUiDiagram](images/ViewSequenceUiDiagram.png)
 
-The following activity illustrates the workflow of the `view` command:
+The following sequence diagram illustrates what happens when the user inputs the `view progress` command:
+![ViewSequenceLogicDiagram](images/ViewSequenceLogicDiagram.png)
+
+The following activity diagram illustrates the workflow of the `view` command:
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+#### Generation of Degree Progression Data
+An algorithm is used to generate the necessary data for `view progress`. **Meaningful credits** are credits counted into the requirements that are not duplicated. This is to prevent the scenario where multiple modules tagged into a singular requirement and the overall completion rate is 100%.
+
+The following activity diagram illustrates the workflow of the algorithm when `DegreeProgressionData::generate` is called with the module list:
+
+![DataCalculation](images/DataCalculation.png)
 
 #### Design considerations
 **Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Single Responsibility Principle_ is not violated?**

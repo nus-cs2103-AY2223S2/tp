@@ -343,6 +343,13 @@ Toggles between the display of degree progress or module list.
 :bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** The MCs shown on the screen does NOT equate to the sum of all the MCs in your module lists. After some consideration, we will only show the meaningful credits, which are those that are counted towards the requirements. 
+
+For more detailed information on the calculations, please refer to this [section](DeveloperGuide.md#generation-of-degree-progression-data) in our developer guide.
+</div>
+
 [Back to Table of Contents](#toc)
 
 #### 4.8 Exit MODTrek : `exit` <a name="exit-app"></a>
