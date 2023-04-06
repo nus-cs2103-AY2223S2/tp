@@ -481,9 +481,9 @@ Format: `list <[PAIRED \ UNPAIRED]>`
 </div>
 
 Examples:
-* `list`
-* `list paired`
-* `list unpaired`
+* `list` lists all elderly, volunteers and pairs.
+* `list paired` lists all paired elderly, paired volunteers and all pairs.
+* `list unpaired` lists all unpaired elderly, unpaired volunteers
 
 [Back to top](#table-of-contents)
 
