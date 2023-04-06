@@ -1,3 +1,8 @@
+---
+layout: page
+title: Lee Hong Sheng's Project Portfolio Page
+---
+
 # Project: BookFace
 
 ## Overview
@@ -5,7 +10,7 @@
 BookFace is an NUS-centered contacts management system that allows students
 of NUS to organise their list of friends and acquaintances that they have
 met in their various classes, CCAs, project groups etc. The application aims
-to provide NUS students a means to keep track of the contact details of th
+to provide NUS students a means to keep track of the contact details of the
 numerous people they have met during their time in NUS in hopes of facilitating
 better communication among peers, as well as provide a centralised channel for
 students to obtain relevant administrative contact information of the various
@@ -20,13 +25,44 @@ is a link to view the code that has been contributed to the team project.
 The section below will provide a brief overview on what key features have
 been implemented.
 
-### Enhancements implemented
+### Features implemented
 
-Main contributions revolved around two key features:
-1. Delete-image
-2. Find
+#### New feature: `delete-image`
 
-{Todo: Add summary}
+* What it does: `delete-image` allows users to delete the contact image that they have 
+set on a contact in their list of contacts. Once executed, the contact image of the 
+contact of interest will be replaced with a default image. This feature is to be used
+as a counterpart to the `add-image` feature.
+* Justification: As `add-image` allows users to add an image to their contacts, `delete-image`
+allows them to remove the image that they added if they wish to do so. This feature thus
+enables them to undo any mistakes that they have done when performing the initial
+`add-image` command, or simply just to remove the image for any other reason that they have.
+
+#### Feature enhancement: `find`
+* What it does: The original `find` function inherited from AddressBook3 was only able
+to filter out contacts based on an exact matching with the input argument and contact
+names. The `find` function has since been improved to be able to filter based on any
+of the attributes that a contact has (i.e., name, status, phone, email, address, and tags).
+An exact matching for the keywords in the different attributes will also no longer be 
+required. 
+* Justification: This improvement was made as it delivers one of the most significant
+function promised by the BookFace application, which was to help our users manage their
+contacts based on the several classes and clubs that they belong to. Allowing users to
+filter by the attribute prefixes also grants a great flexibility in searching for their
+desired contacts. This flexibility is further improved by removing the restrictions on
+requiring an exact matching in the keywords. For instance, if a user wanted to find all
+of his contacts that he met in his Computer Science classes, he could enter `find t/cs`
+to get a filtered list of all his contacts that contains "cs" in their tags, despite
+him having added the contacts based on the specific classes that he met them in (e.g.,
+CS2103, CS2106, CS2105, etc). The inherited version of `find` from AddressBook3 will fail
+in this scenario as none of the tags have an exact match to "cs" (not to mention that
+the original `find` could only filter by contact names).
+* Highlights: The main challenge involved in implementing this enhancement was understanding
+the existing codebase to figure out how prefixes and keywords were parsed and extracted
+from the user input. After getting a sound understand of the underlying architecture in
+place to facilitate this, the next challenge involved handling `Predicate` classes. As
+this was an unfamiliar class, additional study on the documentation was required to
+properly implement this feature enhancement.
 
 ### Contributions to the UG
 
@@ -47,6 +83,10 @@ The following are the list of sections that have been contributed to the DG:
 - Table of contents located at the top of the DG
 - Acknowledgements
 - Implementation:
+  - The introduction paragraph under implementation that introduces readers to the section,
+    and more importantly provide a note to the reader on the limitations of PlantUML
+    regarding the class lifelines and destroy marker.
+  - Delete Feature
   - Delete Image Feature
   - Find Feature
 
@@ -65,6 +105,11 @@ The diagrams contributed to the DG are reproduced below.
 <div style="text-align: center">
     <img src="../images/FindSequenceDiagram.png" />
     <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 3: Find sequence diagram</i></p>
+</div>
+
+<div style="text-align: center">
+    <img src="../images/FindActivityDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 4: Find activity diagram</i></p>
 </div>
 
 ### Contributions to team-based tasks
