@@ -372,8 +372,6 @@ multiple attributes. To learn more about it, you can take a look at [Finding a p
 
 **Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#6-listing-all-personsresetting-filters--list)
 
-<br>
-
 ### **Congrats! You have completed the tutorial 🎉** 
 
 The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
@@ -391,7 +389,7 @@ If you need more info on the usage of each command, you can refer to the relevan
 
 ---
 
-### Notes about the command format
+## Notes about the command format
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you**. \
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
