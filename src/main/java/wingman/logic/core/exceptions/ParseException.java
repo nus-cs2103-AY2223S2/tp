@@ -22,7 +22,10 @@ public class ParseException extends IllegalValueException {
      * @param args    the arguments to be formatted.
      * @return the formatted {@code ParseException}.
      */
-    public static ParseException formatted(String message, Object... args) {
-        return new ParseException(String.format(message, args));
+    public static ParseException formatted(String message, Object... objects) {
+        return new ParseException(String.format(
+                message,
+                objects
+        ));
     }
 }
