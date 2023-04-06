@@ -51,7 +51,7 @@ public class TagName {
      * Returns true if the given name has length not more than 15.
      */
     public static Boolean isNameNotLengthy(String tagName) {
-        return tagName.length() < TAG_NAME_MAX_LENGTH;
+        return tagName.length() <= TAG_NAME_MAX_LENGTH;
     }
 
     /**

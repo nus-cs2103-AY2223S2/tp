@@ -108,7 +108,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![Structure of the UI Component](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `WifeParser` class to parse the user command.
@@ -141,8 +141,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores WIFE data i.e., all `Food` objects (which are contained in a `UniqueList` object).
-* stores the currently 'selected' `Food` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores WIFE data i.e., all `Food` and `Tag` objects (which are contained in a `UniqueFoodList` and `UniqueTagList` objects).
+* stores the currently 'selected' `Food` and `Tag` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -176,14 +176,29 @@ Classes used by multiple components are in the `seedu.wife.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### General Implementation Details
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+Wife's `Food` object is composed of classes that represent the various attributes available in each `Food`. To ensure
+efficient storage and organization, all items are stored in a UniqueFoodList, while their corresponding `Tag` are stored
+in a separate UniqueTagList. `UniqueTagList` enforces a maximum limit on the number of tags that can be added to
+Wife. By using these lists, Wife can easily manage and access its inventory, ensuring that it remains optimized
+and easy to use.
+
+The related attributes of a `Food` are:
+- `Name`: Name of the Food
+- `Unit`: Unit of measurement of the Food
+- `Quantity`: Quantity of the Food
+- `ExpiryDate`: Expiry Date of the Food
+
 #### General Consideration Design
+
 The design of `Food` class follows closely to the original `Person` class in AB3, with some modifications made to fit
 the usage of WIFE.
 
-- `Person` class was renamed to `Food` with its attribute modified as mentioned above.
+- `Person` class was renamed to `Food` with its attribute modified to the attributes mentioned above.
 - Addition of individual tags storage for each item to store their associated `Tag`.
-
-All foods are stored in the `UniqueFoodList`.
 
 ### Item-related Features
 
@@ -439,6 +454,7 @@ The following activity diagram shows the usage of the `delbytag` command.
 ### Tag-related Features
 
 #### Overview
+
 The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will
 modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item
 within WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will
@@ -476,6 +492,8 @@ _{more aspects and alternatives to be added}_
 
 #### Creating a new Tag
 
+**Overview**
+
 User can create a new pre-defined `Tag` in WIFE with the `createtag` command. The `createtag` command creates a new tag 
 in WIFE which can be used to create a new tag that can be used to classify food items in food lists. Once the tag is 
 created using this command, the tag can be applied to food items using the `tag` command.
@@ -486,6 +504,10 @@ The first stage of the implementation is parsing the user input to `CreateTagCom
 to parse and check whether the user input is valid. After which a `CreateTagCommand` object is created with the specified
 tag name. 
 The second stage requires CreateTagCommand#execute() to be called.
+
+The following sequence diagram shows how the `createtag` command.
+
+<img src="images/CreateTagSequenceDiagram.png" width="700" />
 
 **Usage Scenario**
 
@@ -501,9 +523,10 @@ The second stage requires CreateTagCommand#execute() to be called.
 6. Completion of step 5 without any exceptions will result in successful creation of a new `Tag` in WIFE and stored in
    `UniqueTagList`
 
-The following sequence diagram shows how the `createtag` command.
+The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
-<img src="images/CreateTagSequenceDiagram.png" width="700" />
+<img src="images/CreateTagActivityDiagram.png" width="700" />
+
 
 #### Deleting a Tag
 
