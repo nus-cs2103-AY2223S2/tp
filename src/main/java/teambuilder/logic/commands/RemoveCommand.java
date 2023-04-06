@@ -25,7 +25,7 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the team identified by its name.\n"
-            + "Parameters: TEAMNAME \n" + "Example: " + COMMAND_WORD + " Team A";
+            + "Parameters: TEAM_NAME\n" + "Example: " + COMMAND_WORD + " TeamA";
 
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Removed Team: %1$s";
 

@@ -17,7 +17,7 @@ public class ShowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show all person who are in the specified team "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: TEAM_NAME\n"
-            + "Example: " + COMMAND_WORD + " Team A";
+            + "Example: " + COMMAND_WORD + " TeamA";
 
     private final TeamContainsKeywordsPredicate predicate;
 
