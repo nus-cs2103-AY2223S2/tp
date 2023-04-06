@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant "c:ExitCommand" as ExitCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("exit")
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand("exit")
+activate InternEaseParser
+
+create ExitCommand
+InternEaseParser -> ExitCommand
+activate ExitCommand
+
+ExitCommand --> InternEaseParser : c
+deactivate ExitCommand
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> ExitCommand : execute(model)
+activate ExitCommand
+
+create CommandResult
+ExitCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExitCommand : r
+deactivate CommandResult
+
+ExitCommand --> LogicManager : r
+deactivate ExitCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

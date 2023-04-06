@@ -10,17 +10,22 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ResultDisplay
 Class MixedPanel
-Class InternshipListPanel
-Class InternshipCard
-Class TodoListPanel
-Class TodoCard
-Class NoteListPanel
-Class NoteCard
-Class StatusBarFooter
+Class StatsInformationListPanel
+Class StatsInformationCard
 Class CommandBox
 Class ResultDialog
+Class ReminderWindow
+Class ViewContentPanel
+Class QuickAccessToolbar
+Class ControlBox
+Class Popup
+Class ApplicationListPanel
+Class ApplicationCard
+Class TodoListPanel
+Class NoteListPanel
+Class TodoCard
+Class NoteCard
 }
 
 package Model <<Rectangle>> {
@@ -37,53 +42,58 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" MixedPanel
-MainWindow *-down-> "1" InternshipListPanel
+MainWindow *-down-> "1" StatsInformationListPanel
+MainWindow *-down-> HelpWindow
+MainWindow --> "0..1" ResultDialog
+MainWindow *-down-> ReminderWindow
+MainWindow *-down-> "1" ViewContentPanel
+MainWindow *-down-> "1" QuickAccessToolbar
+MainWindow *-down-> "1" ApplicationListPanel
 MainWindow *-down-> "1" TodoListPanel
 MainWindow *-down-> "1" NoteListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" ResultDialog
-MixedPanel *-down-> "1" NoteListPanel
-MixedPanel *-down-> "1" TodoListPanel
 
 MainWindow --|> UiPart
-ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-InternshipListPanel --|> UiPart
-TodoListPanel --|> UiPart
-NoteListPanel --|> UiPart
+StatsInformationListPanel --|> UiPart
 MixedPanel --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+StatsInformationCard --|> UiPart
 TodoCard --|> UiPart
 NoteCard --|> UiPart
-InternshipCard --|> UiPart
+ReminderWindow --|> UiPart
+ViewContentPanel --|> UiPart
+QuickAccessToolbar --|> UiPart
+ApplicationListPanel --|> UiPart
+TodoListPanel --|> UiPart
+NoteListPanel --|> UiPart
+ControlBox --|> UiPart
+Popup --|> UiPart
+ApplicationCard --|> UiPart
 
-InternshipListPanel -down-> InternshipCard
+MixedPanel -down-> TodoListPanel
+MixedPanel -down-> NoteListPanel
+StatsInformationListPanel -down-> StatsInformationCard
 TodoListPanel -down-> TodoCard
 NoteListPanel -down-> NoteCard
+ApplicationListPanel -down-> ControlBox
+ApplicationListPanel -down-> ApplicationCard
+ControlBox -down-> Popup
 
-InternshipCard .right.> Model
-TodoCard .left.> Model
-NoteCard ..> Model
+StatsInformationCard .right.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-InternshipListPanel -[hidden]left- CommandBox
-HelpWindow -[hidden]right- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-CommandBox -[hidden]left- ResultDialog
-ResultDisplay -[hidden]left- StatusBarFooter
-InternshipListPanel -[hidden]left- ResultDialog
-InternshipListPanel -[hidden]right- NoteListPanel
-InternshipListPanel -[hidden]right- TodoListPanel
-NoteListPanel -[hidden]right- TodoListPanel
-Ui -[hidden]right- StatusBarFooter
-
-
-
+HelpWindow -[hidden]right- ResultDialog
+ResultDialog -[hidden]right- CommandBox
+CommandBox -[hidden]right- ViewContentPanel
+ViewContentPanel -[hidden]right- ReminderWindow
+ReminderWindow -[hidden]right- QuickAccessToolbar
+QuickAccessToolbar -[hidden]right- ApplicationListPanel
+ApplicationListPanel -[hidden]right- StatsInformationListPanel
+MixedPanel -[hidden]right- StatsInformationListPanel
+MainWindow -[hidden]right- QuickAccessToolbar
+ApplicationCard -[hidden]right- ControlBox
 
 MainWindow -[hidden]-|> UiPart
 @enduml

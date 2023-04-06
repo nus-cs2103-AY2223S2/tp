@@ -1,0 +1,17 @@
+@startuml
+start
+:User enters RevertCommand;
+:Generate new RevertCommand;
+    if () then ([CacheList is not empty])
+        :Remove the most recent deleted application from the cacheList;
+        if () then ([The retrieved application is not in current application list])
+            :Add the retrieved application to the end of the current application list;
+        else ([else])
+            :Generate duplicate internship applications alert;
+        endif
+    else ([else])
+        :Generate null cacheList message;
+    endif
+stop
+
+@enduml

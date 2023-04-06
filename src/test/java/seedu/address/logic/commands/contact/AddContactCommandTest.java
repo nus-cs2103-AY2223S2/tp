@@ -14,8 +14,8 @@ import static seedu.address.testutil.TypicalContacts.META_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
-import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
+import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +26,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
-import seedu.address.model.person.InternshipApplication;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.InternshipBuilder;
 

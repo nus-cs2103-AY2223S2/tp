@@ -39,6 +39,9 @@ import seedu.address.testutil.NoteBuilder;
 import seedu.address.testutil.NoteUtil;
 import seedu.address.testutil.TodoUtil;
 
+/**
+ * A test class designed to examine the sub-parser {@code TaskParser}.
+ */
 public class TaskParserTest {
 
     private final TaskParser parser = new TaskParser();

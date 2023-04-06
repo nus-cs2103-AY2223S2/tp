@@ -12,8 +12,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.JobTitle;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
@@ -29,9 +29,9 @@ public class EditDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the deadline of the specified todo from current available todo list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] (must be in format yyyy-mm-dd)\n"
+            + PREFIX_DEADLINE + "DEADLINE (must be in format yyyy-mm-dd)\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "01-10-2023\n";
+            + PREFIX_DEADLINE + "2023-10-01\n";
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Deadline updated: %1$s";
 

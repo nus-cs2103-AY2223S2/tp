@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant "c:RevertAllCommand" as RevertAllCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand("clear")
+activate InternEaseParser
+
+create RevertAllCommand
+InternEaseParser -> RevertAllCommand
+activate RevertAllCommand
+
+RevertAllCommand --> InternEaseParser : c
+deactivate RevertAllCommand
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> RevertAllCommand : execute(model)
+activate RevertAllCommand
+
+RevertAllCommand -> Model : getCachedInternshipList()
+activate Model
+
+Model --> RevertAllCommand : cacheList
+deactivate Model
+
+RevertAllCommand -> Model : setEmptyInternshipCacheList()
+activate Model
+
+Model --> RevertAllCommand
+deactivate Model
+
+RevertAllCommand -> Model : addApplications(cacheList)
+activate Model
+
+Model --> RevertAllCommand
+deactivate Model
+
+create CommandResult
+RevertAllCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RevertAllCommand : r
+deactivate CommandResult
+
+RevertAllCommand --> LogicManager : r
+deactivate RevertAllCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

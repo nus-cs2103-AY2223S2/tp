@@ -1,0 +1,16 @@
+@startuml
+start
+:User enters AddTodoCommand;
+    if () then ([Input Argument is valid])
+        :Generate new AddTodoCommand;
+        if () then ([Todo to add already exists in the current TodoList])
+            :Generate duplicate Todo alert;
+        else ([else])
+            :Add Todo into TodoList;
+            :Generate success message;
+        endif
+    else ([else])
+        :Generate error message;
+    endif
+stop
+@enduml

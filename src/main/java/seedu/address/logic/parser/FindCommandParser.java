@@ -18,13 +18,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindDateCommand;
 import seedu.address.logic.commands.FindStatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AfterDatePredicate;
-import seedu.address.model.person.BeforeDatePredicate;
-import seedu.address.model.person.BetweenDatePredicate;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.StatusPredicate;
+import seedu.address.model.application.AfterDatePredicate;
+import seedu.address.model.application.BeforeDatePredicate;
+import seedu.address.model.application.BetweenDatePredicate;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
+import seedu.address.model.application.NameContainsKeywordsPredicate;
+import seedu.address.model.application.StatusPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

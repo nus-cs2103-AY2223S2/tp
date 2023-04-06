@@ -1,7 +1,7 @@
 package seedu.address.model.task.exceptions;
 
 /**
- * Signals that the operation will result requesting unavailable note.
+ * Signals that the operation will result requesting unavailable Note.
  */
 public class NoteNotFoundException extends RuntimeException {
 

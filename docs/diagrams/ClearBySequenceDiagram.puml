@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ClearByCommandParser" as ClearByCommandParser LOGIC_COLOR
+participant "c:ClearByCommand" as ClearByCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("clear_by pf/ipt")
+activate LogicManager
+
+note right: pf = prefix; ipt = input
+LogicManager -> InternEaseParser : parseCommand("clear_by pf/ipt")
+activate InternEaseParser
+
+create ClearByCommandParser
+InternEaseParser -> ClearByCommandParser
+activate ClearByCommandParser
+
+ClearByCommandParser --> InternEaseParser
+deactivate ClearByCommandParser
+
+InternEaseParser -> ClearByCommandParser : parse("pf/ipt")
+activate ClearByCommandParser
+
+create ClearByCommand
+ClearByCommandParser -> ClearByCommand
+activate ClearByCommand
+
+ClearByCommand --> ClearByCommandParser : c
+deactivate ClearByCommand
+
+ClearByCommandParser --> InternEaseParser : c
+deactivate ClearByCommandParser
+ClearByCommandParser -[hidden]-> InternEaseParser : result
+destroy ClearByCommandParser
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> ClearByCommand : execute(model)
+activate ClearByCommand
+
+ClearByCommand -> Model : getSortedFilteredInternshipList()
+activate Model
+
+Model --> ClearByCommand : internshipList
+deactivate Model
+
+ClearByCommand -> ClearByCommand : getFilteredList(internshipList) : filteredList
+
+loop size of filteredList
+
+ClearByCommand -> Model : addInternshipToCache(application)
+activate Model
+
+Model --> ClearByCommand
+deactivate Model
+
+ClearByCommand -> Model : deleteInternship(application)
+activate Model
+
+Model --> ClearByCommand
+deactivate Model
+
+end
+
+create CommandResult
+ClearByCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearByCommand : r
+deactivate CommandResult
+
+ClearByCommand --> LogicManager : r
+deactivate ClearByCommand
+
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

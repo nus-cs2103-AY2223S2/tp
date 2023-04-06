@@ -301,7 +301,37 @@ by using its prefix, i.e. in this form `find s/PENDING`.
   * Cons: Longer command which takes longer time to type
 
 
-### Clear_by feature
+### Clear feature
+This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagrams are used to aid this description.
+
+#### How CLEAR Feature is implemented
+
+The `clear` feature enables user to clear all internship applications in the current internship application list.
+
+The execution process of `clear` is demonstrated by the sequence diagram below.
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+Given below is a step-wise explanation on `clear` mechanism's behaviour.
+
+Step 1. Parsing
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear`.
+
+Step 2. Execution
+`ClearCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`.
+If the application list is currently not empty, `Model#setInternEase` empties the application list by replacing it with a new InternEase instance while `Model#addAllInternshipToCache` adds the entire list into the cacheList.
+
+Step 3. Result
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `ClearFeature` is an enhanced extension for the `DeleteFeature`. It provides an execution for a series operations of the `DeleteCommands` at once.
+
+
+### Clear By feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
 #### How CLEAR_BY Feature is implemented
@@ -323,13 +353,13 @@ There are 3 constructors `ClearByCommand::new` provided for 3 different cases st
   * Allows user to remove all internship applications with `ParamType=JOBTITLE` fully match with the provided keyword.
   
 * Case 3 : clear_by `STATUS`
-  * `PREFIX` should be set to `s`, the keywords accepted include `NA, PENDING, RECEIVED, REJECTED, NO`.
+  * `PREFIX` should be set to `s`, the keywords accepted include `ACCEPTED, PENDING, RECEIVED, REJECTED, DECLINED`.
   * Allows user to remove all internship applications with `ParamType=STATUS` fully match with the correct provided keyword.
 
 >**Note:** 
 > The assignation of cases will be done by `ClearByCommandParser#parse`, each unavailable fields will be set to null.
 
-These operations are involved in the `Model` interface as `Model#getFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
+These operations are involved in the `Model` interface as `Model#getSortedFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
 
 The execution process of `Clear_by` is demonstrated by the sequence diagram below.
 ![ClearBySequenceDiagram](images/ClearBySequenceDiagram.png)
@@ -341,11 +371,11 @@ Step 1. Parsing
     The `PREFIX` in the argument will then be investigated. Different constructor of `ClearByCommand` object will be using based on the `PREFIX`.
 
 Step 2. Execution
-    `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
-    The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cache list to support `RevertCommand` in current InternEase session.
+    `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
+    The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cacheList to support `RevertCommand` in current InternEase session.
     
 Step 3. Result
-    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 2.5 seconds.
+    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** 
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -356,7 +386,154 @@ The `ClearByCommand` is an enhanced feature for both `DeleteCommand` and `ClearC
 Based on utility, the 3 fixed fields in an internship application are taken as the key attributes for this `clear_by` feature. The `PREFIX` for specifying the `clear_by` attribute is also the same as InternEase convention.
 For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
-_{more aspects and alternatives to be added}_
+
+
+### Delete feature
+This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagrams are used to aid this description.
+
+#### How DELETE Feature is implemented
+
+The `delete` feature enables user to delete an internship applications with the specified index. 
+In `Logic` interface, `DeleteCommand` extends `Command` with a `DeleteCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `DeleteCommandParser#parse`.
+
+All the delete operations should only have INDEX within the displayed Internship Application List.
+The deleted application(s) in current session (after InternEase initialization, before exit) will be cached in a cacheList to enable the `revert` and `revert_all` features.
+
+These operations are involved in the `Model` interface as `Model#getSortedFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
+
+The execution process of `delete` is demonstrated by the sequence diagram below.
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+Given below is a step-wise explanation on `delete` mechanism's behaviour.
+
+Step 1. Parsing
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `delete`, it will then be passed to `DeleteCommandParser#parse`.
+The `INDEX` in the argument will then be investigated.
+
+Step 2. Execution
+`DeleteCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`. The `INDEX` is checked against the size of the current Internship Application to ensure that it is within the desired range.
+The `internshipToDelete` is retrieved from the filteredList and deleted from the model by `Model#deleteInternship`. The deleted item is stored in the cacheList to support `RevertCommand` and `RevertAllCommand` in the current InternEase session.
+
+Step 3. Result
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `DeleteCommand` is a common, must-have feature which helps to clean-up unwanted internship applications to enhance user experience. The cacheList provides an extra protection to the data to buffer the effect of this destructive operation.
+
+
+### Revert feature
+This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagrams are used to aid this description.
+
+#### How REVERT Feature is implemented
+
+The `revert` feature enables user to revert the most recent deleted internship applications.
+In `Logic` interface, `RevertCommand` extends `Command` with a `RevertCommand#execute` functionality. The parsing process is facilitated by the `InternEaseParser#parse`.
+
+All the revert operations can be operated when the cacheList for the current session is not empty.
+The reverted application(s) in current session (after InternEase initialization, before exit) will be removed from the cacheList and be added to the end of the current internship application list.
+
+These operations are involved in the `Model` interface as `Model#getCachedInternshipList`, `Model#getAndRemoveCachedApplication` and `Model#addApplication`.
+
+The execution process of `revert` is demonstrated by the activity diagram below.
+![RevertActivityDiagram](images/RevertActivityDiagram.png)
+
+Given below is a step-wise explanation on `revert` mechanism's behaviour.
+
+Step 1. Parsing
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `revert`.
+
+Step 2. Execution
+`RevertCommand#execute` is called with `model` instance. It attempts to get full list of `cached Internship Applications` by `Model#getCachedInternshipList`. 
+The `most recent cached Internship Application` is retrieved from the cacheList and deleted from it by `Model#getAndRemoveCachedApplication`. The retrieved item is added back to the end of the internship application list by `Model#addApplication`.
+
+Step 3. Result
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `RevertFeature` adds an extra cacheList provides an extra protection to the data to counter the destructive effect of the `ClearFeatures` and the `DeleteFeature`. The cacheList does not write in the memory space to provide
+a temporary data-storing data structure that acts as a buffer for the current session's operations.
+
+#### Alternatives considered
+
+**Functionality of `revert` command**
+
+* **Alternative 1 (current choice):** Currently, only the revert of a single deleted / cleared internship application is available. 
+    * Pros: Shorter command, easy to implement.
+    * Cons: Less efficient as compared to Alternative 2.
+
+* **Alternative 2:** We can also make it in such format revert <INDEX>, e.g. revert 3, reverts 3 most recent deleted internship applications.
+    * Pros: More powerful feature.
+    * Cons: More complicate to implement.
+  
+
+### Revert All feature
+This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagrams are used to aid this description.
+
+#### How REVERT_ALL Feature is implemented
+
+The `revert_all` feature enables user to revert all deleted and cleared internship applications in the current session (after InternEase initialization, before exit).
+
+The execution process of `revert_all` is demonstrated by the sequence diagram below.
+![RevertAllSequenceDiagram](images/RevertAllSequenceDiagram.png)
+
+Given below is a step-wise explanation on `revert_all` mechanism's behaviour.
+
+Step 1. Parsing
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `revert_all`.
+
+Step 2. Execution
+`RevertAllCommand#execute` is called with `model` instance. It attempts to get full list of `cached Internship Applications` by `Model#getCachedInternshipList`.
+If the cacheList is currently not empty, `Model#setEmptyInternshipCacheList` empties the cacheList while `Model#addApplications` adds the entire list to the end of the current internship application list.
+
+Step 3. Result
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `RevertAllFeature` is an enhanced extension for the `RevertFeature`. It provides an execution for the series operations of the `RevertFeatures` at once.
+
+
+### Exit feature
+This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagrams are used to aid this description.
+
+#### How Exit Feature is implemented
+
+The `exit` feature enables user to close InternEase using CLI command.
+
+The execution process of `exit` is demonstrated by the sequence diagram below.
+![ExitSequenceDiagram](images/ExitSequenceDiagram.png)
+
+Given below is a step-wise explanation on `exit` mechanism's behaviour.
+
+Step 1. Parsing
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `exit`.
+
+Step 2. Execution
+`ExitCommand#execute` is called with `model` instance. It directly returns a command result with `exit` parameter being set to `True`. 
+
+Step 3. Result
+A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ResultDialog` displays the execution message for 5 seconds.
+`MainWindow#handleExit` handle the exit operation by recording current gui settings and hiding all the opened windows. The InternEase software shuts down eventually.
+
+>**NOTE:**
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `ExitFeature` is a general, must-have feature. All the windows are cleaned-up upon exit to prevent illegal running of InternEase processes and the trigger of null-pointer exceptions.
+The `ExitFeature` also acts as the termination point for cacheList usage in the current session.
+
 
 ### Add Interview Date feature 
 
@@ -404,15 +581,158 @@ adding a new internship application. This prevents the `AddCommand` from getting
 * **Alternative 2:** Adding interview date as an attribute in the `InternshipApplication` class.
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
-  
-### \[Proposed\] Data archiving
+    * 
 
-_{Explain here how the data archiving feature will be implemented}_
+### Side Features
+**All the side features share similar execution paths as their respective main features execution logic, only minor changes are applied.**
 
-### \[Proposed\] Upcoming Interview reminder 
+For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items.
+    * `Task` is a combination of `Todo` and `Note`.
+    * `TodoList` or `NoteList` are used instead of `InternshipApplicationList`, and other relevant data structure.
+    * Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).
+    * CacheList is not applicable.
+    * All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.
+    # All commands need to go through the `TaskParser` after being processed in the `InternEaseParser`.
+    * For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.
 
-_{Explain here how the data archiving feature will be implemented}_
 
+### Task related features
+
+### Find Task feature
+#### How is the feature implemented
+
+The `FindTaskFeature` provides searching function on `Todo` and `Note` with keywords.
+The execution of `FindTaskCommand` is similar to `FindCommand` except it takes no prefix(purely keywords) and it searches on `InternshipTodo` company name and `Note` content.
+
+The execution process of `find_task` is demonstrated by the sequence diagram below.
+![FindTaskSequenceDiagram](images/FindTaskSequenceDiagram.png)
+
+#### Why is it implemented this way
+
+The `FindFeature` on `InternshipTodo` and `Note` are put together as `FindTaskFeature` because they have the same characteristic as a `Task`. It will enable the planning of internship
+application to be more effective.
+
+
+### List Task feature
+#### How is the feature implemented
+
+The `ListTaskFeature` lists both `TodoList` and `NoteList` all together in a single panel (mixed panel).
+The execution of `ListTaskCommand` is similar to `ListCommand`.
+
+The execution process of `list_task` is demonstrated by the activity diagram below.
+![ListTaskActivityDiagram](images/ListTaskActivityDiagram.png)
+
+#### Why is it implemented this way
+
+By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Tasks` and long-lasting reminders (Notes).
+
+
+### Todo related features
+
+### Add Todo feature
+#### How is the feature implemented
+
+The `AddTodoFeature` enables the adding of new `InternshipTodo` instance into the current `TodoList`.
+The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicaionDeadline`.
+
+The execution process of `add_todo` is demonstrated by the activity diagram below.
+![AddTodoActivityDiagram](images/AddTodoActivityDiagram.png)
+
+
+### Clear Todo feature
+#### How is the feature implemented
+
+The `ClearTodoFeature` clears the entire `TodoList`.
+The execution of `ClearTodoCommand` is similar to `ClearCommand`. However, cacheList is not available for `InternshipTodo` so this operation is irreversible.
+
+The execution process of `clear_todo` is demonstrated by the activity diagram below.
+![ClearTodoActivityDiagram](images/ClearTodoActivityDiagram.png)
+
+
+### Delete Todo feature
+#### How is the feature implemented
+
+The `DeleteTodoFeature` deletes the specified `InternshipTodo` entry respective to the INDEX stated in the command.
+The execution of `DeleteTodoCommand` is similar to `DeleteCommand`. However, cacheList is not available for `InternshipTodo` so this operation is irreversible.
+
+The execution process of `delete_todo` is demonstrated by the activity diagram below.
+![DeleteTodoActivityDiagram](images/DeleteTodoActivityDiagram.png)
+
+
+### Edit Deadline feature
+#### How is the feature implemented
+
+The `EditDeadlineFeature` enables user to edit the deadline of an `InternshipTodo` with INDEX specified in the command.
+The execution of `EditDeadlineCommand` is similar to `EditStatusCommand`, but it edits the `ApplicationDeadline` for the respective `InternshipTodo`.
+
+The execution process of `edit_deadline` is demonstrated by the sequence diagram below.
+![EditDeadlineSequenceDiagram](images/EditDeadlineSequenceDiagram.png)
+
+
+### Edit Content feature
+#### How is the feature implemented
+
+The `EditContentFeature` enables user to edit the note content of an `InternshipTodo` with INDEX specified in the command.
+The execution of `EditNoteContentCommand` is similar to `EditStatusCommand`, but it edits the `NoteContent` for the respective `InternshipTodo`.
+
+The execution process of `edit_content` is demonstrated by the sequence diagram below.
+![EditNoteContentSequenceDiagram](images/EditNoteContentSequenceDiagram.png)
+
+
+### List Todo feature
+#### How is the feature implemented
+
+The `ListTodoFeature` lists current `TodoList` in the `TodoListPanel`.
+The execution of `ListTodoCommand` is similar to `ListCommand`.
+
+The execution process of `list_todo` is demonstrated by the activity diagram below.
+![ListTodoActivityDiagram](images/ListTodoActivityDiagram.png)
+
+
+### Note related features
+
+An overview of `Note` package is shown below.
+![NoteOverviewDiagram](images/NoteOverviewDiagram.png)
+
+
+### Add Note feature
+#### How is the feature implemented
+
+The `AddNoteFeature` enables the adding of new `Note` instance into the current `NoteList`.
+The execution of `AddNoteCommand` is similar to `AddCommand`, the main difference is `AddNoteCommand` only has a mandatory attribute `NOTE_CONTENT`.
+
+The execution process of `add_note` can be demonstrated by the activity diagram of `add_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
+> [Add Todo Feature](#add-todo-feature)
+
+
+### Clear Note feature
+#### How is the feature implemented
+
+The `ClearNoteFeature` clears the entire `NoteList`.
+The execution of `ClearNoteCommand` is similar to `ClearCommand`. However, cacheList is not available for `Note` so this operation is irreversible.
+
+The execution process of `clear_note` can be demonstrated by the activity diagram of `clear_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
+> [Clear Todo Feature](#clear-todo-feature)
+
+
+### Delete Note feature
+#### How is the feature implemented
+
+The `DeleteNoteFeature` deletes the specified `Note` entry respective to the INDEX stated in the command.
+The execution of `DeleteNoteCommand` is similar to `DeleteCommand`. However, cacheList is not available for `Note` so this operation is irreversible.
+
+The execution process of `delete_note` can be demonstrated by the activity diagram of `delete_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
+> [Delete Todo Feature](#delete-todo-feature)
+
+
+### List Note feature
+#### How is the feature implemented
+
+The `ListNoteFeature` lists current `NoteList` in the `NoteListPanel`.
+The execution of `ListNoteCommand` is similar to `ListCommand`.
+
+The execution process of `list_note` can be demonstrated by the activity diagram of `list_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
+> [List Todo Feature](#list-todo-feature)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -510,6 +830,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters a new command.
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+
+**Use case: UC03 Revert a recent deleted internship application entry**
+
+**MSS**
+
+1. User accidentally deletes an internship application entry.
+2. User requests to revert the recent execution of delete command.
+3. InterEase retrieves the internship application from the CacheList and add it back to the end of the current internship application list.
+4. InternEase displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The CacheList is empty.
+    * 3a1. InternEase shows an alert message that there is no deleted internship application can be restored.
+
+      Use case ends.
+
+
+**Use case: UC04 Revert all deleted internship application entries in current session**
+
+**MSS**
+
+1. User accidentally deletes or clears some internship application entries.
+2. User requests to restore all the deleted or cleared entries.
+3. InterEase adds all the cached internship applications back to the end of the current internship application list.
+4. InternEase displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The CacheList is empty.
+    * 3a1. InternEase shows an alert message that there is no deleted internship application can be restored.
+
+      Use case ends.
+  
 
 **Use case: UC05 Delete an internship application entry**
 
@@ -711,13 +1070,13 @@ Similar to `UC07 Clear all internship application entries` except all the notes 
 
 **MSS**
 
-Similar to `UC10 List`except todo task entries and note entries are listed instead of internship applications.
+Similar to `UC10 List` except todo task entries and note entries are listed instead of internship applications.
 
 **Use case: UC23 Find a task by its field**
 
 **MSS**
 
-Similar to `UC06 Find an application by its field`except todo task entries and note entries which match the specified keyword are filtered out and listed.
+Similar to `UC06 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
 ### Non-Functional Requirements
 
@@ -727,7 +1086,6 @@ Similar to `UC06 Find an application by its field`except todo task entries and n
 4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
 5. InternEase is unable to remind user through platform outside of the application.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -772,4 +1130,3 @@ testers are expected to do more *exploratory* testing.
     2. All prior activities will be saved.
     3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
-*{More to be added}*

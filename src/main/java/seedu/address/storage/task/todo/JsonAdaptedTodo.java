@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.JobTitle;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
@@ -133,7 +133,7 @@ public class JsonAdaptedTodo {
                     ApplicationDeadline.class.getSimpleName()));
         }
         if (!ApplicationDeadline.isValidDate(LocalDate.parse(deadline))) {
-            throw new IllegalValueException(String.format(ApplicationDeadline.MESSAGE_CONSTRAINTS, deadline));
+            throw new IllegalValueException(ApplicationDeadline.MESSAGE_CONSTRAINTS);
         }
         return new ApplicationDeadline(LocalDate.parse(deadline));
     }

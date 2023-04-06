@@ -7,16 +7,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearByCommand;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.JobTitle;
 
 /**
- * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the ClearByCommand code. For example, inputs "1" and "1 abc" take the
- * same path through the ClearByCommand, and therefore we test only one of them.
- * The path variation for those two cases occur inside the ParserUtil, and
- * therefore should be covered by the ParserUtilTest.
+ * Tests {@code ClearByCommandParser} on its behaviours on taking normal and edge case parameters.
  */
 public class ClearByCommandParserTest {
 

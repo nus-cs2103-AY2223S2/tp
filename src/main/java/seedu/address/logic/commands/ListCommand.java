@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ONGOING_APPLICATIONS;
 import java.util.List;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Lists all internship applications in the address book to the user.

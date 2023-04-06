@@ -23,9 +23,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipApplicationAttribute;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipApplicationAttribute;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
@@ -73,6 +73,9 @@ public class ViewContentPanel extends UiPart<Region> {
         emptyLabel.setAlignment(Pos.CENTER);
     }
 
+    /**
+     * Getter for the underlying container.
+     */
     public VBox getContainer() {
         return container;
     }
@@ -204,6 +207,9 @@ public class ViewContentPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Clears the {@code ViewContentPanel}.
+     */
     public void clearPanel() {
         displayEmptyPanel();
     }
@@ -218,6 +224,9 @@ public class ViewContentPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets and displays the particulars of the selected {@code InternshipTodo} in the {@code ViewContentPanel}.
+     */
     public void setInternshipTodo(InternshipTodo internshipTodo) {
         if (internshipTodo != null) {
             showActualPanel();
@@ -232,6 +241,9 @@ public class ViewContentPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets and displays the particulars of the selected {@code Note} in the {@code ViewContentPanel}.
+     */
     public void setNote(Note note) {
         if (note != null) {
             showActualPanel();
