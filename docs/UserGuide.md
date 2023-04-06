@@ -427,7 +427,7 @@ of skills first.
 
 ### Add a person to a team : `edit`
 
-Format: `edit INDEX [T/TEAMTAG]...`
+Format: `edit INDEX [T/TEAM_NAME]...`
 
 **Example context**:
 
@@ -463,6 +463,24 @@ NUSMeets team.
 
 <img class="center" alt="result for 'edit 1'" src="images/ShowNUSMeets.png" width="50%" />
 
+### Removing a teammate from a team : `edit`
+
+Format: `edit INDEX [T/TEAM_NAME]`
+
+**Example context**:
+
+Alex reached out to you later that he is now unable to attend Hack&Roll due to some personal circumstances.
+We have no choice but to remove Alex from our team.
+
+
+**What to type**:
+
+`edit 1 T/`
+
+**Result**:
+
+<img class="center" alt="result for 'edit 1'" src="images/AlexRemoveFromTeam.png"/>
+<p class="caption"> We see that Alex's team tag is removed and the team no longer has Alex as a member </p>
 
 ### Removing a team : `remove`
 
@@ -470,8 +488,8 @@ Format: `remove TEAMNAME`
 
 **Example context**:
 
-Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run. You decide to 
-not participate in it anymore. 
+Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run.
+Taking into account Alex's absence as well, You decide to not participate in it anymore. 
 
 **What to type**:
 
