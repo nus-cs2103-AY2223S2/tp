@@ -520,7 +520,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void initAssignmentsFromStorage() throws AssignmentException {
+    public void initAssignmentsFromStorage() {
         assignmentList.initFromStorage(filteredStudents);
         for (Student stu : filteredStudents) {
             updateStudent(stu);
