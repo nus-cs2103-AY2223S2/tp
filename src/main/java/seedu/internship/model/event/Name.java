@@ -1,7 +1,5 @@
 package seedu.internship.model.event;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
@@ -10,7 +8,7 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
  */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
-            "Name should not be blank";
+            "Name of event should not be blank";
 
     public final String name;
 

@@ -1,5 +1,14 @@
 package seedu.internship.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.CliSyntax;
@@ -9,11 +18,6 @@ import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
-
-import java.util.*;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds internships from the catalogue based on predicates provided by the user.
@@ -34,6 +38,11 @@ public class FindCommand extends Command {
 
     private final FilterInternshipDescriptor filterInternshipDescriptor;
 
+    /**
+     * Creates a Find Command.
+     *
+     * @param filterInternshipDescriptor Descriptors to filter Internship Catalogue by.
+     */
     public FindCommand(FilterInternshipDescriptor filterInternshipDescriptor) {
         requireNonNull(filterInternshipDescriptor);
         this.filterInternshipDescriptor = filterInternshipDescriptor;
@@ -48,8 +57,8 @@ public class FindCommand extends Command {
         Predicate<Internship> filterStat = unused -> true;
         Predicate<Internship> filterTags = unused -> true;
         if (filterInternshipDescriptor.getPosition().isPresent()) {
-            filterPos = x -> x.getPosition().positionName.toLowerCase().contains(filterInternshipDescriptor.getPosition()
-                    .get().positionName.toLowerCase());
+            filterPos = x -> x.getPosition().positionName.toLowerCase().contains(filterInternshipDescriptor
+                    .getPosition().get().positionName.toLowerCase());
         }
         if (filterInternshipDescriptor.getCompany().isPresent()) {
             filterCom = x -> x.getCompany().companyName.toLowerCase().contains(filterInternshipDescriptor.getCompany()
@@ -92,7 +101,9 @@ public class FindCommand extends Command {
         return filterInternshipDescriptor.equals(f.filterInternshipDescriptor);
     }
 
-
+    /**
+     * Creates a Filter based on inputs for Internship Catalogue.
+     */
     public static class FilterInternshipDescriptor {
         private Position position;
         private Company company;
