@@ -753,7 +753,7 @@ The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing 
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
-<img src="images/TagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution 
 </div>
