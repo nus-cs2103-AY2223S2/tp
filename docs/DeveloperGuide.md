@@ -96,39 +96,85 @@ As seen from the class diagram above, `MainWindow` has composition type relation
   * 1 each for patients, vaccinations and appointments
 * `ResultDisplay` - responsible for displaying messages to the user.
 
-The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state of `MainWindow` after `fillInnerParts()` has been called.
+The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called.
 
 ![State of MainWindow](images/UiObjectDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: `LogicManager` is a concrete implementation of `Logic`. `LogicManager` was not shown in the complementing class diagram as it is not involved in the structure of the UI component. see [`Logic` component](#logic-component) to learn more about `LogicManager`.
+</div>
+
+##### Refreshing
+
+In order to maintain the responsiveness of the GUI, the FX Application thread is used solely for GUI related processes such as event handling and display updates. For parsing and the execution of commands, their processes are dispatched on a separate thread. To learn more about this, see [`Logic` component](#logic-component).
+
+To handle display changes due to changes in the state of data that the different GUI parts are displaying, all classes of the `UI` component in the class diagram above with the exception of `HelpWindow` implements `Refreshable`. This is a functional interface whose functional method is `refresh()`. Calling this method will cause the implementing UI classes to check for changes in the data that they are displaying and update their display accordingly. To invoke the `refresh()` method continuously, a `ScheduledThreadPoolExecutor` is created in `MainApp` that is tasked to call `refresh()` of `UiManager` 30 times every second.
+
+Unlike the implementation where the displays are updated as soon as it a change happens, this implementation is able to accumulate and differ the displaying of changes. This improves the responsiveness of the GUI in scenarios where there is a spike in the number of changes in data as the GUI does not update for every change. Such scenarios may happen when the use uses patient's `clear` command when there are a large number of patient.
+
 ##### `DetailedView`
 
-To display its contents, `DetailedView` uses an observer pattern to observe for the data that it needs to display. It observes an `ObjectProperty` through a `ChangeListener`, both of which are defined by JavaFX. To convert the observed object to the `Node` object that JavaFX can display, `DetailedView` will also have a `Function`, that is provided on construction, which will do exactly this. Below shows the class diagram and notice how that there are no external dependencies to other parts of VMS.
+To display its contents, `DetailedView` uses an observer pattern to observe for the data that it needs to display. It observes an `ObjectProperty` through a `ChangeListener`, both of which are defined by JavaFX. To convert the observed object to the `Node` object that JavaFX can display, `DetailedView` will also have a `Function`, that is provided on construction, which will handle this conversion.
+
+To collect and store changes to be displayed, 2 private class fields are defined:
+
+* `isUpdated` of type `boolean`.
+  * Will be `true` if the change has been displayed and `false` otherwise.
+* `value` of type `T` where `T` is the type of the object being detailed.
+  * The object that has to be displayed.
+  * Can be `null` which will signify that nothing should be displayed.
+
+`isUpdated` is required as `value` can be `null`. Thus checks to see if `value` is `null` will not work.
+
+Below shows the class diagram, showing the structure of `DetailedView`. Notice how that there are no external dependencies to other parts of VMS.
 
 ![Class diagram of DetailedView](images/UiDetailedViewClassDiagram.png)
 
+Below shows the object diagram showing the state after `fillInnerParts()` of `MainWindow` is called for the patient detail panel to highlight the listener pattern structure that `DetailView` implements. A similar object diagram can be drawn for the vaccination detail panel by changing the relevant variable names and types.
+
 ![Object diagram of DetailedView](images/UiDetailedViewPatientObjectDiagram.png)
+
+The activity diagram below shows how `DetailedDisplay` checks for changes and update its display when `refresh()` is invoked.
 
 ![Activity diagram of DetailedView](images/UiDetailedViewRefreshActivityDiagram.png)
 
+As seen, no display updates are done if `isUpdate` is `true`, which signifies that the display has already been updated. This improves efficiency as the display is only updated when necessary.
+
 ##### `ListViewPanel`
 
-Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. Below shows the class diagram of `ListViewPanel`.
+Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. This comparator is stored in an `ObjectProperty` in `ListViewPanel`
+
+To collect changes to be displayed for the refresh, the latest `MapChangeListener.Change` (referred to as `Change` in this section) is stored in an `ObjectProperty`. `Change` is an inner class of `MapChangeListener` and defines a method, `getMap()` which allows the retrieval of the state of the map to be displayed. Unlike `DetailedView`, a `null` check to the value of this `ObjectProperty` can be done to verify if a an update to the display is required as its value will only be `null` if there is nothing to update.
+
+Below shows the class diagram of `ListViewPanel` to graphically view this structure.
 
 ![Class diagram of ListViewPanel](images/UiListViewPanelClassDiagram.png)
 
-![Object diagram of Vaccination ListViewPanel](images/UiListViewPanelVaxObjectDiagram.png)
+The complementing object diagram for appointment list view is shown below. Some `AppointmentManager` components are also added to detail the observer pattern structure of `ListViewPanel`. A similar diagram can be done for the patient list view panel.
 
 ![Object diagram of Appointment ListViewPanel](images/UiListViewPanelApptObjectDiagram.png)
+
+To be able to refer to vaccinations by the index that they are displayed in the vaccination list panel, `ModelManager` will need to have a list view that describes the order in which the vaccinations are displayed. To avoid coupling, `ModelManager` observes the `ListViewPanel`, that is responsible for displaying the vaccination list panel, through the observer pattern. The items and order in which `ListViewPanel` is displaying is kept in an `ObservableList` as defined by JavaFX `ListView` which `ListViewPanel` extends. As such, obtain the required list view, `ModelManager` keeps another `ObservableList` that is bounded to the `ObservableList` defined by `ListView` through the observer pattern. Refer to the object diagram below for a graphical visualization of the structure described. The object diagram shows the state after `fillInnerParts()` is called.
+
+![Object diagram of Vaccination ListViewPanel](images/UiListViewPanelVaxObjectDiagram.png)
+
+Below show the activity diagram when the `refresh()` method is invoked. The item list referred to in the diagram is the `ObservableList` that `ListView` defines. Updates to this list will update the display.
 
 ![Activity diagram of ListViewPanel](images/UiListViewPanelActivityDiagram.png)
 
 ##### `ResultDisplay`
 
-To display messages to the user after every command that the user has inputted, a `Consumer`, that accepts a list of `CommandMessage`, is used to update `ResultDisplay` whenever `Logic` has completed the execution of a command regardless if it was successful. The `Consumer` only function is to call the `displayMessage(List<CommandMessage>)` method of `ResultDisplay`. This method will convert all `CommandMessage` to their equivalent `Node` representation, via `ResultMessageBox`, allowing `CommandMessage` to be graphically displayed. To understand more about when this `Consumer` is called within `Logic`, read [here](#executing-a-command). Below shows the class and activity diagram for better visualization of the structure of `ResultDisplay` and the activities taking place when `displayMessage(List<CommandMessage>)` is called respectively.
+To display messages to the user after every command that they have inputted, a `Consumer`, that accepts a list of `CommandMessage`, is used to update `ResultDisplay` whenever `Logic` has completed the execution of a command regardless if it was successful. The `Consumer` only function is to call the `queueMessages(List<CommandMessage>)` method of `ResultDisplay`. This method will queue all `CommandMessage` to be displayed in the order of the given list. When the `refresh()` method is called, elements in the queue will be polled and converted to their `Node` representation until the queue is emptied. To understand more about when this `Consumer` is called within `Logic`, read [Executing a command](#executing-a-command).
+
+Below shows the class diagram of the described structure. `Logic`, `LogicManager` and `Consumer` are not shown as there are no dependencies between these classes/interfaces and `ResultDisplay`.
 
 ![Class diagram of ResultDisplay](images/UiResultDisplayClassDiagram.png)
 
+Below shows the object diagram of `ResultDisplay` after the `fillInnerParts()` method has been called. This diagram reveals the observer pattern structure which the class diagram does not.
+
 ![Object diagram of ResultDisplay](images/UiResultDisplayObjectDiagram.png)
+
+The following diagram shows the activity diagram when the `refresh()` method is called. On top of how messages are displayed, the procedure of how the 30 message history limit is maintained is shown as well.
 
 ![Activity diagram of ResultDisplay](images/UiResultDisplayActivityDiagram.png)
 
