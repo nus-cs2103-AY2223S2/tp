@@ -16,6 +16,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DukeDriverParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -74,7 +75,9 @@ public class LogicManager implements Logic {
         if (condition.test(addressBookParser.parseCommandGroup(commandText))) {
             return execute(addressBookParser.parseCommand(commandText));
         } else {
-            return new CommandResult(String.format(Messages.COMMAND_NOT_ALLOW));
+            return new CommandResult(String.format(Messages.COMMAND_NOT_ALLOW
+                    + "\nPlease refer to User Guide for more details: \n"
+                    + HelpCommand.MESSAGE_USAGE));
         }
     }
 
