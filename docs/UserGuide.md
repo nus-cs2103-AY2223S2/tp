@@ -169,6 +169,28 @@ Windows/Mac OS native close buttons are also fine.
 The **Help** button will present a menu where you can display the *Fish Ahoy! User Guide*. If you require extra information,
 do use this to redirect you to our user guide!
 
+## Tank Interface
+
+A sample Tank item is shown below. For each Tank you add in *Fish Ahoy!*, you have to add a 
+[Description]((#description)). A [Tank Index](#index-parameters) is then automatically assigned to the tank. 
+The **Number of fish** will be automatically updated whenever you add/delete a fish from this tank in *Fish Ahoy!* 
+The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature)and
+[pH](#tank-ph-reading-phph) are generated from [readings](#tank-readings) that you add to *Fish Ahoy!*
+
+![Ui](images/UiTank.png) 
+
+
+## Fish Interface
+
+A sample Fish item is shown below. Each Fish you add in *Fish Ahoy!* has multiple [parameters](#parameters-br), such as 
+[Name](#name-nname), [Species](#species-sspecies), [Last Fed Date](#last-fed-date-lfdlast_fed_date), 
+[Feeding Interval](#feeding-interval-fifeeding_interval), which [Tank](#tank-tktank_index) it is in and what 
+[Tags](#tags-tgtag) it has. There is also a [Fish Index](#index-parameters) which is automatically assigned to the fish. 
+The **Fish Icon** is matched to the [Species](#species-sspecies) of the fish!
+
+![Ui](images/UiFish.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 # *Fish Ahoy!* Commands
@@ -705,7 +727,7 @@ Currently, there are four command actions of type task:
 * [Adding a task `task add`](#adding-a-task-task-add)
 * [Deleting a task `task delete`](#deleting-a-task-task-delete)
 * [Editing a task `task edit`](#editing-a-task-task-edit)
-* [Listing tasks `list tasks`](#listing-tasks-list-task)
+* [Listing tasks `list tasks`](#listing-tasks-list-tasks)
 
 ### Adding a task: `task add`
 

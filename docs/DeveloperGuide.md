@@ -631,3 +631,8 @@ may also become truncated if the user's app window size is too small. A side eff
 fish with long names, which are supposed to be distinct, will appear as the same after truncation.
 We will limit the length of such parameters in future enhancements to avoid this. 
     
+4. Logging messages on the terminal are not optimized for Fish Ahoy! We plan to improve this by simple changes from 
+   "Addressbook" to "Fish Ahoy", as well as fixing the fxml versions in fxml files. Furthermore, we can add more useful 
+   logging messages related to Fish Ahoy commands such as information on newly added commands, so the user may gain more 
+   information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
+   
