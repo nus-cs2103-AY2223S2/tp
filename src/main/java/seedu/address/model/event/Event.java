@@ -44,6 +44,7 @@ public abstract class Event {
     /**
      * Allows the user to set the event name and the students in the event.
      * Assumes time is the current time the event created.
+     *
      * @param name the name of the event.
      * @param students the students that belong to the event.
      */
@@ -264,6 +265,11 @@ public abstract class Event {
         return attachments;
     }
 
+    /**
+     * Counts the number of attachments present in the event.
+     *
+     * @return the number of attachments in the event.
+     */
     public int countAttachments() {
         return attachments.size();
     }

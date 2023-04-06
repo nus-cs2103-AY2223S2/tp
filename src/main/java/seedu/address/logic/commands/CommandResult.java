@@ -17,9 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private final boolean studentTab;
+    private final boolean hasStudentTab;
 
-    private final boolean eventTab;
+    private final boolean hasEventTab;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -28,8 +28,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        studentTab = false;
-        eventTab = false;
+        hasStudentTab = false;
+        hasEventTab = false;
     }
 
     /**
@@ -40,8 +40,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.studentTab = studentTab;
-        this.eventTab = eventTab;
+        this.hasStudentTab = studentTab;
+        this.hasEventTab = eventTab;
     }
 
     /**
@@ -65,11 +65,11 @@ public class CommandResult {
     }
 
     public boolean isStudentTab() {
-        return studentTab;
+        return hasStudentTab;
     }
 
     public boolean isEventTab() {
-        return eventTab;
+        return hasEventTab;
     }
 
     @Override
