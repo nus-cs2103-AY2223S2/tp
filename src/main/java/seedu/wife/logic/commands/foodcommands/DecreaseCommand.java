@@ -100,7 +100,9 @@ public class DecreaseCommand extends Command {
 
         private Quantity quantity;
 
-        public DecreaseFoodDescriptor() {}
+        public DecreaseFoodDescriptor() {
+            this.quantity = new Quantity("1");
+        }
 
         /**
          * Copy constructor.
