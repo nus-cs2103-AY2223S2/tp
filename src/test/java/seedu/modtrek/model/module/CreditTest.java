@@ -21,19 +21,21 @@ public class CreditTest {
 
     @Test
     public void isValidCredit() {
-        // null phone number
+        // null credit
         assertThrows(NullPointerException.class, () -> Credit.isValidCredit(null));
 
-        // invalid phone numbers
+        // invalid credits
         assertFalse(Credit.isValidCredit("")); // empty string
         assertFalse(Credit.isValidCredit(" ")); // spaces only
         assertFalse(Credit.isValidCredit("four")); // non-numeric
         assertFalse(Credit.isValidCredit("4 MC")); // alphabets within digits
         assertFalse(Credit.isValidCredit("600"));
 
-        // valid phone numbers
+        // valid credits
+        assertTrue(Credit.isValidCredit("0"));
         assertTrue(Credit.isValidCredit("4"));
         assertTrue(Credit.isValidCredit("8"));
         assertTrue(Credit.isValidCredit("12"));
+        assertTrue(Credit.isValidCredit("99"));
     }
 }

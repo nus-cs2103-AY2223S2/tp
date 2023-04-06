@@ -21,17 +21,26 @@ public class GradeTest {
 
     @Test
     public void isValidGrade() {
-        // null address
+        // null grade
         assertThrows(NullPointerException.class, () -> Grade.isValidGrade(null));
 
-        // invalid addresses
+        // invalid grades
         assertFalse(Grade.isValidGrade("A++")); // empty string
+        assertFalse(Grade.isValidGrade("B*")); // not supported grade
+        assertFalse(Grade.isValidGrade("E")); // between grade D and F
+        assertFalse(Grade.isValidGrade("G")); // after grade F
+        assertFalse(Grade.isValidGrade("Z")); // largest letter
+        assertFalse(Grade.isValidGrade("R")); // before grade S
+        assertFalse(Grade.isValidGrade("T")); // after grade S, before grade U
+        assertFalse(Grade.isValidGrade("V")); // after grade U
+        assertFalse(Grade.isValidGrade("1")); // not a letter
+        assertFalse(Grade.isValidGrade("+")); // missing letter
         assertFalse(Grade.isValidGrade(" ")); // spaces only
 
-        // valid addresses
+        // valid grades
         assertTrue(Grade.isValidGrade("A+"));
-        assertTrue(Grade.isValidGrade("S")); // one character
-        assertTrue(Grade.isValidGrade("B-")); // long address
+        assertTrue(Grade.isValidGrade("S"));
+        assertTrue(Grade.isValidGrade("B-"));
     }
 
     @Test
