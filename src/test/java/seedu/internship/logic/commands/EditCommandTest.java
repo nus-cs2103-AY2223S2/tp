@@ -102,12 +102,12 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new InternshipCatalogue(model.getInternshipCatalogue()),
                 new EventCatalogue(model.getEventCatalogue()), new UserPrefs());
+                
         // CHanges in Model after Editing the Event
         expectedModel.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         expectedModel.updateSelectedInternship(editedInternship);
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
-        ObservableList<Event> events = expectedModel.getFilteredEventList();
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_INTERNSHIP_UNCHANGED);
     }
@@ -134,6 +134,7 @@ public class EditCommandTest {
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
         ObservableList<Event> events = expectedModel.getFilteredEventList();
+
         CommandResult expectedCommandResult =
                 new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
                         ResultType.SHOW_INFO, editedInternship, events);

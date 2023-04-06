@@ -12,7 +12,7 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Stores the Typical Events for testing
+ * A utility class containing a list of {@code Event} objects to be used in tests.
  */
 public class TypicalEvents {
     // Values declared below should be moved to static seedu.address.logic.commands.CommandTestUtil package

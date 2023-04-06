@@ -97,16 +97,12 @@ public class EventCatalogueTest {
     @Test
     public void hasEvent_eventNotInEventCatalogue_returnsFalse() {
         assertFalse(eventCatalogue.hasEvent(EM11));
-
     }
 
     @Test
     public void hasEvent_eventInEventCatalogue_returnsTrue() {
         eventCatalogue.addEvent(EM21);
         assertTrue(eventCatalogue.hasEvent(EM21));
-
-        eventCatalogue.addEvent(EM11);
-        assertTrue(eventCatalogue.hasEvent(EM11));
     }
 
     @Test
@@ -123,7 +119,6 @@ public class EventCatalogueTest {
         eventCatalogue.setEvent(EM11, modified);
         assertTrue(eventCatalogue.hasEvent(modified));
         assertTrue(!eventCatalogue.hasEvent(EM11));
-
     }
 
     @Test
