@@ -368,17 +368,16 @@ list. On successful execution, you will see something like below.
 If you tried the examples for previous commands, Bob would be shown as well.
 
 Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
-multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#5-finding-a-person--find).
+multiple attributes. To learn more, look at [Finding a person: `find`](#5-finding-a-person--find).
 
 **Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#6-listing-all-personsresetting-filters--list)
 
 ### **Congrats! You have completed the tutorial 🎉** 
 
-The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
-Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
+The pre-existing contacts are just some examples for you to play around with. When you are ready, enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
-:exclamation: <b>Caution:</b> Be careful not to accidentally enter the <code>clear</code> command, it will not ask twice before wiping your database!
+:exclamation: <b>Caution:</b> Be careful when using the <code>clear</code> command, it will not ask twice before wiping your database!
 </div>
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
