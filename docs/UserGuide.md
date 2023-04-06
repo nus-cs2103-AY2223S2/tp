@@ -536,10 +536,9 @@ At least one of the optional fields must be provided.
 
 **Examples:**
 - `edit g/johndoeee e/johndoeee@example.com`: edit the _GitHub username_ and _email address_ of the person to be `johndoeee` and `johndoeeee@example.com` respectively.
+- `edit m-/ay2223s2 cs3230`: displays an error message as the module does not exist.
 - `edit s/java s+/python` resets the skill list to contain only java—ignoring `s+/python`.
 ![View Example](images/UiEditSkills_crop.png)
-- `edit m-/ay2223s2 cs3230` displays an error message as the module does not exist.
-![View Example](images/UiEditError_crop.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
