@@ -496,6 +496,8 @@ Example:
   * Temperature: 27.2 degrees celcius
   * Date and time associated with each reading: 03/04/2023 1200
 
+![AddReadingDemo](images/UiAddReadingsDemo.png)
+
 ### Deleting the most recent set of readings: `tank delLastReadings`
 
 You can delete the most recent set of readings from the specified tank with the `tank delLastReadings` command.
