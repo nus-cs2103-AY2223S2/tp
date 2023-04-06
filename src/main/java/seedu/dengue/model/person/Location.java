@@ -36,7 +36,7 @@ public enum Location {
             "Katong, Joo Chiat, Amber Road"),
     DIST16("[46 47 48]",
             "Bedok, Upper East Coast, Eastwood, Kew Drive"),
-    DIST17("[49 50 81]",
+    DIST17("[49 50 81 91]",
             "Loyang, Changi"),
     DIST18("[51 52]",
             "Tampines, Pasir Ris"),
