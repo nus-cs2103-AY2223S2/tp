@@ -67,7 +67,7 @@ than current GUI apps in the industry.
 
 7. For **advanced users**, view all feature details [here](#features).
 
-[Scroll back to Table of Contents](#table-of-contents)
+  [Scroll back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -88,7 +88,7 @@ regarding the use of the GUI.
 Here is a quick summary of each GUI component within Docedex.
 
 | **Name of component** | **Description**                                                                                                                                                                                                                                                             |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
 | **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
 | **Result Display**    | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands.                                                                                  |
@@ -134,16 +134,16 @@ look through all the doctors and patients in Docedex, please use the
 
 ## Notes about the command format
 
-| Notes                                                                                                       | Explanation                                                               | Examples                                                                                          |
-|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE`                                                                                       | These are fields that are supplied by the user                            | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
-| Items in square brackets                                                                                    | These are optional fields (can be left empty by user)                     | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
-| Items with `…`​ after them                                                                                  | These are fields that can be used multiple times (or omitted completely)  | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
-| Parameters can be in any order.                                                                             | N/A                                                                       | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
-| If a parameter is **expected only once** and entered multiple times, only the latest occurence is accepted. | N/A                                                                       | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
-| Extraneous parameters for commands that do not take in parameters will be ignored.                          | N/A                                                                       | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+| Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
 
-[Scroll back to Table of Contents](#table-of-contents)
+  [Scroll back to Table of Contents](#table-of-contents)
 
 ## Command Summary
 
@@ -199,10 +199,12 @@ This is a tutorial for **first-time** Docedex users.
 14. Let us try **listing all patients**. Enter the command `list-ptn` in the command box. This lists all the patients within Docedex.
 15. Congratulations! You are now ready to use Docedex.
 
-To view all our features, you may visit our [features section](#features).
+  To view all our features, you may visit our [features section](#features).
 
 [Scroll back to Table of Contents](#table-of-contents)
---------------------------------------------------------------------------------------------------------------------
+
+---
+
 ## Features
 ### Parameter Information
 
@@ -215,7 +217,7 @@ The information below specifies parameter description, constraints and usage thr
 | n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち |
 | e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2    |
 | p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1               |
-| t/                | Tags                               | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
+| t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
 | INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649      |
 
 <sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
@@ -233,14 +235,15 @@ The information below specifies parameter description, constraints and usage thr
 |-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
 | h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
 | w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
-| d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                |
+| d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
 ### Doctor Commands
 #### Adding a doctor
 
-- Command format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
-- What it does: Adds a doctor to the address book.
+```add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- Possible use cases: A new doctor has joined your department/you are setting Docedex up for the first time.
 
 - Examples:
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
@@ -249,13 +252,20 @@ The information below specifies parameter description, constraints and usage thr
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Editing a doctor
-- Command format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
-- What it does: Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
+
+```edit-doc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YOE] [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- What it does: Edits the doctor at the specified `INDEX`. 
+- Possible use cases: Updating contact information of a doctor.
+<div markdown="span" class="alert alert-warning"> 
+**WARNING**: This command overwrites existing data within Docedex, proceed with caution.
+</div>
+
 - Note to users:
-    - Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
-    - At least one of the optional fields must be provided.
-    - Existing values will be updated to the input values.
-    - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
+    - The index refers to the index number shown in the displayed doctor list.
+    - Users can edit specific doctors in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
+    - At least one of the optional parameters must be provided.
+    - When editing tags, the existing tags of the person will be removed i.e., adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without any tag string.
 
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
@@ -264,11 +274,15 @@ The information below specifies parameter description, constraints and usage thr
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Deleting a doctor
-- Command format: `del-doc INDEX`
+
+```del-doc INDEX```
+- To view parameter information click [here](#parameter-information)
 - What it does: Deletes the specified doctor from the address book.
+<div markdown="span" class="alert alert-warning"> 
+**WARNING**: This command is destructive. Doctor's removed will need to be added back.
+</div>
 - Note to user:
     - The index refers to the index number shown in the displayed doctor list.
-    - The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
@@ -277,14 +291,17 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Finding a doctor
-- Command format: `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`
-- What it does: Users can search up doctors with specific fields using this command.
+
+```find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- What it does: Find doctors with specified parameter value
+- Possible use cases: Retrieval of doctor records
 - Note to user:
     - Matches are case-insensitive.
-    - Fields are matched if they contain the search string (substring matched).
-    - At least one of the fields must be provided.
+    - Parameters are matched if they contain the search value (if there are two doctors named Gabriel and Gabriella in Docedex, using the command with search value `n/Gabriel` retrieves both records).
+    - At least one of the parameters must be provided.
     - More than one tag can be provided.
-    - Blank fields will be ignored.
+    - Blank parameters will be ignored.
 
 - Examples:
     - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
@@ -294,25 +311,29 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Select doctor
-- Command format: `sd INDEX`
-- What it does: This command displays the information of the doctor at `INDEX`, as well as the patients assigned to said doctor.
+
+```sd INDEX```
+- To view parameter information click [here](#parameter-information)
+- What it does: This command mimics a mouse click on a doctor's contact card. It shows the information of the doctor and filters the patients' list to only show assigned patients.
+- Possible use cases: Find which patients were treated by a doctor
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
-  - The index **must be a positive integer** 1, 2, 3, …​
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Listing all doctors
-- Command format: `list-doc`
-- What it does: This command will list all doctors saved in Docedex together with their information.
+
+```list-doc```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Patient Commands
 
 #### Adding a patient
-- Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
-- What it does: Adds a patient to the address book.
+
+```add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- Possible use cases: Adding a new patient visiting a clinic to the address book.
 
 - Examples:
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
@@ -321,28 +342,39 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Assigning a patient to a doctor
-- Command format: `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`
-- What it does: Assigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …
+
+```assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX```
+- To view parameter information click [here](#parameter-information)
+- What it does: Performs an assignment operation and filters the doctors' list to show only the doctors associated with the patient.
+- Possible use cases: Assigning a newly arrived patient to an available doctor.
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Unassigning a patient from a doctor
-- Command format: `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`
-- What it does: Unassigns the patient at the specified `PATIENT_INDEX` from the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
+#### Undoing assignment of a patient from a doctor
+
+```unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX```
+- To view parameter information click [here](#parameter-information)
+- What it does: Undoes the assignment of a patient from a doctor. Filters the doctors list to highlight only doctors associated with the patient.
+- Possible use cases: Transferring a patient's case from one doctor to another
 - Examples:
-  - `unassign-ptn ptn/1 doc/1` unassigns the first patient from the first doctor.
+  - `unassign-ptn ptn/1 doc/1` undoes the assignment of the first patient from the first doctor.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Editing a patient
-- Command format: `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`
-- What it does: Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+
+```edit-ptn [INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- What it does: Edits the patient at the specified `INDEX`.  
+<div markdown="span" class="alert alert-warning"> 
+**WARNING**: This command overwrites existing data within Docedex, proceed with caution. 
+</div>
 - Note to users:
-    - Users can edit specific patients in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
-    - At least one of the optional fields must be provided.
-    - Existing values will be updated to the input values.
+    - The index refers to the index number shown in the displayed patient list.
+    - Users can edit specific patients in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
+    - At least one of the optional parameters must be provided.
     - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
       specifying any tags after it.
 
@@ -355,9 +387,11 @@ Examples:
 #### Deleting a patient
 - Command format: `del-ptn INDEX`
 - What it does: Deletes the specified patient from the address book.
+<div markdown="span" class="alert alert-warning"> 
+**WARNING**: This command is destructive. Patients removed will need to be added back.
+</div>
 - Note to user:
-  - The index refers to the index number shown in the displayed patient list. 
-  - The index **must be a positive integer** 1, 2, 3, …​
+  - The index refers to the index number shown in the displayed patient list.
 
 Examples:
 * `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
@@ -366,14 +400,17 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Finding a patient
-- Command format: `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`
-- What it does: Users can search up patients with specific fields using this command.
-- Note to users:
+
+```find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…```
+- To view parameter information click [here](#parameter-information)
+- What it does: Find patients with specified parameter value
+- Possible use cases: Retrieval of patient records
+- Note to user:
     - Matches are case-insensitive.
-    - Fields are matched if they contain the search string (substring matched).
-    - At least one of the fields must be provided.
+    - Parameters are matched if they contain the search value (if there are two patients named Gabriel and Gabriella in Docedex, using the command with search value `n/Gabriel` retrieves both records).
+    - At least one of the parameters must be provided.
     - More than one tag can be provided.
-    - Blank fields will be ignored.
+    - Blank parameters will be ignored.
 
 - Examples:
   - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
@@ -382,17 +419,20 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Select patient
-- Command format: `sp INDEX`
-- What it does: This command displays the information of the patient at `INDEX`, as well as the doctors assigned to said patient.
+
+```sp INDEX```
+
+- To view parameter information click [here](#parameter-information)
+- What it does: This command mimics a mouse click on a patient's contact card. It shows the information of the patient and filters the doctors' list to only show assigned doctors.
+- Possible use cases: Find which doctors treated a patient
 - Note to user:
-  - The index refers to the index number shown in the displayed patient list.
-  - The index **must be a positive integer** 1, 2, 3, …​
+    - The index refers to the index number shown in the displayed patient list.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Listing all patients
-- Command format: `list-ptn`
-- What it does: This command will list all patients saved in Docedex together with their information.
+
+```list-ptn```
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -400,7 +440,7 @@ Examples:
 #### Viewing help
 
 - Command format: `help`
-- What it does: Shows a message explaining how to access the help page.
+- What it does: Shows a message explaining how to access this help page.
 
 ![help message](images/HelpWindow.png)
 [Scroll back to Table of Contents](#table-of-contents)
@@ -414,9 +454,11 @@ Examples:
 #### Clearing all data
 - Command format: `clear`
 - What it does: This command will clear all data in Docedex.
-- **Warning** :
+<div markdown="span" class="alert alert-warning"> 
+**WARNING**
   - This command will clear all data in Docedex. This includes all doctors and patients.
   - This command **cannot be undone**.
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
