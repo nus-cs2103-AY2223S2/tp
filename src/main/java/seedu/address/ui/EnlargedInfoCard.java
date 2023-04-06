@@ -30,4 +30,11 @@ abstract class EnlargedInfoCard extends UiPart<Region> {
         tags.getChildren().add(tagLabel);
     }
 
+    /**
+     * Clears all tags in the flow pane.
+     */
+    protected void clearTags() {
+        tags.getChildren().clear();
+    }
+
 }

@@ -45,8 +45,6 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
     private Label status;
     @FXML
     private Label remark;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates an empty {@code EnlargedPatientInfoCard}.
@@ -72,10 +70,11 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
      * If no patient is stored, then the {@code EnlargedPatientInfoCard} is cleared.
      */
     private void updateDisplay() {
+        clearDisplay();
         if (selectedPatientOptional.isEmpty()) {
-            clearDisplay();
             return;
         }
+
         Patient selectedPatient = selectedPatientOptional.get();
         name.setText(selectedPatient.getName().toString());
         phone.setText(selectedPatient.getPhone().toString());
@@ -85,7 +84,6 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
         diagnosis.setText(selectedPatient.getDiagnosis().toString());
         status.setText(selectedPatient.getStatus().toString());
         remark.setText(selectedPatient.getRemark().toString());
-        tags.getChildren().clear();
         selectedPatient.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);
@@ -103,7 +101,7 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
         diagnosis.setText("");
         status.setText("");
         remark.setText("");
-        tags.getChildren().clear();
+        this.clearTags();
     }
 
     @Override

@@ -39,8 +39,6 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
     private Label specialty;
     @FXML
     private Label yearsOfExperience;
-    @FXML
-    private FlowPane tags;
 
 
     /**
@@ -67,17 +65,17 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
      * If no doctor is stored, then the {@code EnlargedDoctorInfoCard} is cleared.
      */
     private void updateDisplay() {
+        clearDisplay();
         if (selectedDoctorOptional.isEmpty()) {
-            clearDisplay();
             return;
         }
+
         Doctor selectedDoctor = selectedDoctorOptional.get();
         name.setText(selectedDoctor.getName().fullName);
         phone.setText(selectedDoctor.getPhone().value);
         email.setText(selectedDoctor.getEmail().value);
         specialty.setText(selectedDoctor.getSpecialty().specialty);
         yearsOfExperience.setText(selectedDoctor.getYoe().value);
-        tags.getChildren().clear();
         selectedDoctor.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);
@@ -92,7 +90,7 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
         email.setText("");
         specialty.setText("");
         yearsOfExperience.setText("");
-        tags.getChildren().clear();
+        this.clearTags();
     }
 
     @Override
