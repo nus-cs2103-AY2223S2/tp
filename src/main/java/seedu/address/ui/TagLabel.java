@@ -9,8 +9,8 @@ import seedu.address.model.tag.Tag;
  */
 public class TagLabel extends Label {
 
-    private double tagMaxWidth = 150.0;
-    private boolean tagWrapText = true;
+    private static double tagMaxWidth = 150.0;
+    private static boolean tagWrapText = true;
 
     /**
      * Creates a {@code TagLabel}.

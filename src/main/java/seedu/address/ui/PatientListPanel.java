@@ -31,40 +31,10 @@ public class PatientListPanel extends UiPart<Region> {
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
     public PatientListPanel(ObservableList<Patient> patientList,
-                            EnlargedPatientInfoCard enlargedPatientInfoCard,
-                            EnlargedInfoCardDisplayController infoCardDisplayController, Logic logic) {
+                            ContactDisplay parent) {
         super(FXML);
         patientListView.setItems(patientList);
-        patientListView.setCellFactory(listView -> {
-            PatientListViewCell generatedCell = new PatientListViewCell(logic);
-            generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                infoCardDisplayController.displayPatient();
-            });
-            return generatedCell;
-        });
-        setSelectedPatient(patientList);
-        showSelectedPatientInfo(enlargedPatientInfoCard);
-    }
-
-    /**
-     * Returns the {@code Patient} selected by the user.
-     *
-     * @return patient selected by user
-     */
-    public Patient getSelectedPatient() {
-        return this.selectedPatient;
-    }
-
-    /**
-     * Sets the {@code Patient} selected by the user.
-     *
-     * @param patientList list of {@code Patient} objects queried by the user
-     */
-    private void setSelectedPatient(ObservableList<Patient> patientList) {
-        selectedPatient = null;
-        if (!patientList.isEmpty()) {
-            selectedPatient = patientList.get(0);
-        }
+        patientListView.setCellFactory(listView -> new PatientListViewCell(parent));
     }
 
     /**
@@ -76,40 +46,6 @@ public class PatientListPanel extends UiPart<Region> {
         patientListView.setItems(patientList);
     }
 
-    /**
-     * Prompts {@code EnlargedPatientInfoCard} to display the information of the {@code Patient} selected by the user.
-     * This is done by configuring a {@code ChangeListener} to listen to user selection.
-     *
-     * @param enlargedPatientInfoCard the UI part displaying the information of {@code Patient} selected
-     */
-    private void showSelectedPatientInfo(
-            EnlargedPatientInfoCard enlargedPatientInfoCard) {
-        ChangeListener<Patient> changeListener = (observable, oldValue, newValue) -> {
-            selectedPatient = observable.getValue();
-            enlargedPatientInfoCard
-                    .updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));
-        };
-        patientListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
-    }
-
-    /**
-     * Scrolls the {@code ListView} to display the {@code Patient}
-     * at the specified {@code Index}.
-     *
-     * @param patientIndex an Index object representing the Patient.
-     * @throws ArrayIndexOutOfBoundsException if index is invalid.
-     */
-    public void scrollTo(Index patientIndex) throws ArrayIndexOutOfBoundsException {
-        int index = patientIndex.getZeroBased();
-        if (index >= patientListView.getItems().size() || index < 0) {
-            String errorMessage = "Supplied patientIndex ("
-                    + index
-                    + ") must be between 0 and size of listview - 1 ("
-                    + (patientListView.getItems().size() - 1) + ")!";
-            throw new ArrayIndexOutOfBoundsException(errorMessage);
-        }
-        patientListView.scrollTo(index);
-    }
 
     /**
      * Selects the {@code PatientListViewCell} of the {@code Patient} supplied.
@@ -133,10 +69,14 @@ public class PatientListPanel extends UiPart<Region> {
 
         private Patient patient;
 
-        public PatientListViewCell(Logic logic) {
+        public PatientListViewCell(ContactDisplay grandparent) {
             super();
             this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                logic.updateFilteredDoctorListBasedOnPatient(patient);
+                if (patient == null) {
+                    logger.warning("PatientListViewCell is not populated");
+                    return;
+                }
+                grandparent.setFeedbackUponSelectingPatient(patient);
             });
         }
 

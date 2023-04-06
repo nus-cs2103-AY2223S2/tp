@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -65,12 +67,10 @@ public class ContactDisplay extends UiPart<Region> {
         enlargedPatientInfoCard = new EnlargedPatientInfoCard();
         enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
 
-        patientListPanel = new PatientListPanel(logic.getFilteredPatientList(),
-                enlargedPatientInfoCard, infoCardDisplayController, logic);
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), this);
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
-        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(),
-                enlargedDoctorInfoCard, infoCardDisplayController, logic);
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), this);
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
     }
 
@@ -87,7 +87,6 @@ public class ContactDisplay extends UiPart<Region> {
         }
         setFeedbackIfDoctorSelected(commandResult);
         setFeedbackIfPatientSelected(commandResult);
-        updateEnlargedInfoCard();
     }
 
     /**
@@ -97,15 +96,26 @@ public class ContactDisplay extends UiPart<Region> {
      */
     private void setFeedbackIfDoctorSelected(CommandResult commandResult) {
         if (!commandResult.hasSelectedDoctor()) {
-            logger.info("No doctor selected");
             return;
         }
 
         Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
-        doctorListPanel.selectDoctor(selectedDoctor);
-        logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor.get());
-        enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
-        infoCardDisplayController.displayDoctor();
+        setFeedbackUponSelectingDoctor(selectedDoctor.get());
+    }
+
+    /**
+     * Updates the contact display to show the doctor selected by user.
+     *
+     * @param selectedDoctor a doctor selected by user.
+     */
+    protected void setFeedbackUponSelectingDoctor(Doctor selectedDoctor) {
+        requireNonNull(selectedDoctor);
+        Optional<Doctor> selectedDoctorOptional = Optional.of(selectedDoctor);
+        logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor);
+        doctorListPanel.selectDoctor(selectedDoctorOptional);
+        enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctorOptional);
+        enlargedPersonInfoCardPlaceholder.getChildren().clear();
+        enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
     }
 
     /**
@@ -115,15 +125,26 @@ public class ContactDisplay extends UiPart<Region> {
      */
     private void setFeedbackIfPatientSelected(CommandResult commandResult) {
         if (!commandResult.hasSelectedPatient()) {
-            logger.info("No patient selected");
             return;
         }
 
         Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
-        patientListPanel.selectPatient(selectedPatient);
-        logic.updateFilteredDoctorListBasedOnPatient(selectedPatient.get());
-        enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
-        infoCardDisplayController.displayPatient();
+        setFeedbackUponSelectingPatient(selectedPatient.get());
+    }
+
+    /**
+     * Updates the contact display to show the patient selected by user.
+     *
+     * @param selectedPatient a patient selected by user.
+     */
+    protected void setFeedbackUponSelectingPatient(Patient selectedPatient) {
+        requireNonNull(selectedPatient);
+        Optional<Patient> selectedPatientOptional = Optional.of(selectedPatient);
+        logic.updateFilteredDoctorListBasedOnPatient(selectedPatient);
+        patientListPanel.selectPatient(selectedPatientOptional);
+        enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatientOptional);
+        enlargedPersonInfoCardPlaceholder.getChildren().clear();
+        enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedPatientInfoCard.getRoot());
     }
 
     /**
