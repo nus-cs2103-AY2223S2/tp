@@ -3,34 +3,35 @@ layout: page
 title: Developer Guide
 ---
 
-{{ site.data.techtrack.about.summary }}
-
 ##### Table of Contents
 
-Todo: Add links
+{:toc}
 
-1. [Acknowledgements](#acknowledgements)
-2. [Setting up, getting started](#setting-up-getting-started)
-3. [Design](#design)
-    1. [UI Component](#ui-component)
-    2. [Logic Component](#logic-component)
-    3. [Model Component](#model-component)
-    4. [Storage Component](#storage-component)
-4. [Implementation](#implementation)
-    1. [Add Command](#add-command)
-    2. [Edit Command](#edit-command)
-    3. [Salary Command](#implemented-salary-command-feature)
-    4. [Deadline Command](#implemented-deadline-command-feature)
-    5. [Company Command](#implemented-company-command-feature)
-    6. [Tag Command](#implemented-tag-command-feature)
-    7. [View Command](#implemented-view-command-feature)
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+{{ site.data.techtrack.about.summary }}
+
+### Technologies
+The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user interface. 
+Gradle serves as the project management and build tool. JUnit is utilized for conducting software testing.
+
+### Features
+
+### Functions
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Third-party software used in this project:
+* [Gradle](https://gradle.org/)
+* [CheckStyle](https://checkstyle.sourceforge.io/)
+* [Codecov](https://codecov.io/)
+* [JavaFx](https://openjfx.io/)
+* [JUnit](https://junit.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -106,7 +107,7 @@ in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `RoleListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
@@ -125,8 +126,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -137,8 +137,8 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `RoleBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a role).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -163,24 +163,25 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the role book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores the role book data i.e., all `Role` objects (which are contained in a `UniqueRoleList` object).
+* stores the currently 'selected' `Role` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Role>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `RoleBook`, which `Person` references. This allows `RoleBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model 
+is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. This allows `RoleBook` to only require one 
+`Tag` object per unique tag, instead of each `Role` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="750" />
 
@@ -188,8 +189,7 @@ The `Model` component,
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -363,7 +363,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current Role book.
+   current role book.
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
@@ -468,18 +468,14 @@ The following sequence diagram shows how the `view` command works:
   appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node
-  of `ResultDisplay`
-  based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom
-  display).
-  To do so, we can
-  change [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
-  to be a generic class that stores an object `T`. Then, we can modify the `executeCommand`
-  method
-  in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-  to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
-  output as per
-  normal. However, if the object `T` is a `Role`, we can render a custom display instead.
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay`
+based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom display).
+To do so, we can change 
+[`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
+to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` method
+in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
+output as per normal. However, if the object `T` is a `Role`, we can render a custom display instead.
     * Pros: Provides an easy and extendable way to create custom views
     * Cons: Need to refactor some UI code and `CommandResult.java` class
 
@@ -495,7 +491,7 @@ The following sequence diagram shows how the `view` command works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Requirements
 
 ### Product Scope
 
@@ -679,26 +675,21 @@ Use case ends.
 * MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag
   command.
 
-### Non-function requirement
+### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 roles without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
-5. The CLI should be reliable and stable, with no crashes or data corruption.
+5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
 6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
 7. The CLI should be accessible to users with different abilities and needs, including support for assistive
    technologies and localization.
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Job**: Refers to internship job/job posting/internship role
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -724,18 +715,18 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a Role
 
-1. Deleting a person while all persons are being shown
+1. Deleting a role while all roles are being shown
 
-1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: List all roles using the `list` command. Multiple roles will be displayed in the list.
 
 1. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   Expected: First role is deleted from the list. Details of the deleted role shown in the status message.
    Timestamp in the status bar is updated.
 
 1. Test case: `delete 0`<br>
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No role is deleted. Error details shown in the status message. Status bar remains the same.
 
 1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.
@@ -752,7 +743,7 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Planned enhancement**
+## **Planned enhancements for Feature Flaws**
 
 The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as
 feature flaws, therefore the team will not be addressing these flaws for now.
@@ -765,46 +756,42 @@ feature flaws, therefore the team will not be addressing these flaws for now.
    We have thought of one approach to this fix:
 
 * Letting the website format be `[any char].[any char]`
-    * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
-    * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
+  * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+  * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
 
 1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected
-   that the input formats will be optimized to get things done fast.
-   Some examples include: using hard-to-type special characters such as `$/` in the format when it is possible to avoid
-   them.
-   Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
+that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special 
+characters such as `$/` in the format when it is possible to avoid them.
+Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
 ### Displaying very long description and numbers
 
 1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the
-   screen size. We believe that the `view` command is a way for users to view truncated texts
-   for now. In the future, we would either implement character limits to the attributes of a `role` or text wrapping in
-   the `RoleCard` of the UI.
+screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we 
+would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
 2. This also affects the `view` command,
-   as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
-   is not written to handle
-   extremely long texts. Although the attributes of each role would be visible, it is not ideal for the user. This can
-   be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
-   and setting proper widths for each property.
+as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
+is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal 
+for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
+and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
 
-1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed.
-   Instead, all existing data is deleted and there is no roles listed.
-   Error messages should be displayed when storage data is incorrectly modified. This could be done through editing
-   the `initModelManager` function in
-   the [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
-   file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to
-   the [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
-   class and subsequently,
-   the [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-   class to render the message on startup.
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. 
+Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage data 
+is incorrectly modified. This could be done through editing the `initModelManager` function in the 
+[`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the 
+[`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+class and subsequently, the 
+[`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Won't fix**
+## **Won't Fix / Out of Scope**
 
 ### Issue #205 Sort Command not recognised
 
@@ -813,3 +800,27 @@ feature flaws, therefore the team will not be addressing these flaws for now.
 ### Issue #179 salary asc command does nothing
 
 1. Unable to replicate issue due to lack of information from the bug report.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Effort
+
+### Morphing of AB3 to TechTrack
+Ideas:
+1. what attributes we added, why we need them
+2. what new functions we added
+3. refactoring we did
+
+### Revamping of UI
+1. aesthetic and arrangement of UI
+2. New UI functionalities
+3. Help window
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Role**: Refers to internships or full-time jobs
+* **Attribute**: Refers to the parameters a role can have
+
