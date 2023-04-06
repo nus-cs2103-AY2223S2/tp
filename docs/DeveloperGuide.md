@@ -8,21 +8,22 @@ title: Developer Guide
 ##### Table of Contents
 
 Todo: Add links
+
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
-   1. [UI Component](#ui-component)
-   2. [Logic Component](#logic-component)
-   3. [Model Component](#model-component)
-   4. [Storage Component](#storage-component)
+    1. [UI Component](#ui-component)
+    2. [Logic Component](#logic-component)
+    3. [Model Component](#model-component)
+    4. [Storage Component](#storage-component)
 4. [Implementation](#implementation)
-   1. [Add Command](#add-command)
-   2. [Edit Command](#edit-command)
-   3. [Salary Command](#implemented-salary-command-feature)
-   4. [Deadline Command](#implemented-deadline-command-feature)
-   5. [Company Command](#implemented-company-command-feature)
-   6. [Tag Command](#implemented-tag-command-feature)
-   7. [View Command](#implemented-view-command-feature)
+    1. [Add Command](#add-command)
+    2. [Edit Command](#edit-command)
+    3. [Salary Command](#implemented-salary-command-feature)
+    4. [Deadline Command](#implemented-deadline-command-feature)
+    5. [Company Command](#implemented-company-command-feature)
+    6. [Tag Command](#implemented-tag-command-feature)
+    7. [View Command](#implemented-view-command-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -124,7 +125,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -186,7 +188,8 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -210,15 +213,20 @@ Classes used by multiple components are in the `seedu.RoleBook.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add Command
+
 The `add` command is used to create a new role in the app and set the necessary fields for that role,
 namely they are the: `Name`, `Contact`, `Email`, `Company`, `Job Description`, `Tag`, `Website`, `Salary`, `Deadline`,
-`Experience` fields. Note that the `Tag` field is not necessary, while the rest of the fields are necessary for the command to work.
+`Experience` fields. Note that the `Tag` field is not necessary, while the rest of the fields are necessary for the
+command to work.
 
-The format for the `add` command can be seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#adding-a-role-add).
+The format for the `add` command can be
+seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#adding-a-role-add).
 
-When `add ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to parse the
+When `add ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to
+parse the
 input. An instance of the `AddCommandParser` to parse the `args` is created through the respective static
-`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last instance is taken,
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last
+instance is taken,
 similar to how [`edit`](#edit-command) are executed.
 
 The `AddCommandParser` will then create the corresponding `Role` object, parsing to a `AddCommand` object it
@@ -232,18 +240,21 @@ The following sequence diagram shows how the argument parsing for the `add` comm
 
 ![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
 
-
-
 ### Edit Command
+
 The `edit` command is used to change the information of an existing patient in the app. The fields supported are:
 `Name`, `Contact`, `Email`, `Company`, `JobDescription`,`Tag`, `Website`, `Salary`,
-`Deadline` and `Experience`. Note that the `Tag` field can be inputted with multiple tags (`t/java t/python`) while the rest does not.
+`Deadline` and `Experience`. Note that the `Tag` field can be inputted with multiple tags (`t/java t/python`) while the
+rest does not.
 
-The format for the `edit` command can be seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#editing-a-role-edit).
+The format for the `edit` command can be
+seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#editing-a-role-edit).
 
-When `edit INDEX ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to parse the
+When `edit INDEX ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls
+the `RoleBookParser` to parse the
 input. An instance of the `EditCommandParser` to parse the `INDEX` and `args` is created through the respective static
-`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last instance is taken,
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last
+instance is taken,
 similar to how [`add`](#add-command) are executed.
 
 The `EditCommandParser` will then create the corresponding `EditRoleDescriptor` object, parsing it to a
@@ -258,45 +269,33 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
 
-
-
-
-
 ### \[Implemented\] Salary Command Feature
 
-The proposed SalaryCommand feature allows the user to sort their roles based on the given salaries. The idea is that the
-user can sort the list with different attributes with commands such as the salary command which allows the roles to be
-sorted in ascending or descending orderParser.
+The Salary Command feature is designed to enable the user to sort the roles based on the salaries in either ascending
+or descending order.
 
-The feature uses operations in the `Model` interface as `Model#displaySortedSalaryList()`.
+When the user launches the application for the first time, the RoleBook is initialized with the current role book from
+the storage and loads it. The user can then choose to use the salary command by executing either the `salary asc`
+command to sort the salaries in ascending order or `salary desc` command to sort the salaries in descending order.
 
-Given below is an example usage of how Salary Command is being used in the following steps.
+The format accepted by the `salary` command is `salary ORDER` where `ORDER` have to be either `asc` or `desc`.
 
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the current role
-   book from the storage and loads it.
+When `salary ORDER` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `SalaryCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
+If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
-   <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
-
-2. The user can choose to use the `SalaryCommand` in asc or desc orderParser.
-    - The user executes `salary asc` command to sort the salary of the roles in the ascending
-      orderParser.
-
-      <img src="images/UICommandImages/SalaryCommand1.png" width="800" />
-    - The user executes `salary desc` command to sort the salary of the roles in the descending
-      orderParser.
-
-      <img src="images/UICommandImages/SalaryCommand2.png" width="800" />
+The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
+as `Model#displaySortedSalaryList()` to sort the roles based on salary of the given `ORDER`.
 
 The following sequence diagram shows how the `salary` command works:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
 
-
 #### Design considerations:
 
 **Aspect: How Salary Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc orderParser.
+* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
@@ -305,40 +304,40 @@ The following sequence diagram shows how the `salary` command works:
     * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
 #### Limitations:
-The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
-the roles. E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc` will
-sort both views.
 
+The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
+the roles. 
+
+E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc`
+will sort both views.
 
 ### \[Implemented\] Deadline Command Feature
 
-The proposed DeadlineCommand feature allows the user to sort their roles based on the given deadline of application. The idea is that the
-user can sort the list with different attributes with commands such as the deadline command which allows the roles to be
-sorted in ascending or descending orderParser.
+The Deadline Command feature is designed to enable the user to sort the roles based on the deadline in either ascending
+or descending order.
 
-The feature uses operations in the `Model` interface as `Model#displaySortedDeadlineList()`.
+When the user launches the application for the first time, the RoleBook is initialized with the current role book from
+the storage and loads it. The user can then choose to use the deadline command by executing either the `deadline asc`
+command to sort the deadlines in ascending order or `deadline desc` command to sort the deadlines in descending order.
 
-Given below is an example usage of how Salary Command is being used in the following steps.
+The format accepted by the `deadline` command is `deadline ORDER` where `ORDER` have to be either `asc` or `desc`.
 
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
+When `deadline ORDER` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+input. This then creates an instance of the `DeadlineCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
+If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
-2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
-    - The user executes `deadline asc` command to sort the salary of the roles in the ascending
-      order. <img src="images/UICommandImages/DeadlineCommand1.png" width="800" />
-    - The user executes `deadline desc` command to sort the salary of the roles in the descending
-      order. <img src="images/UICommandImages/DeadlineCommand2.png" width="800" />
+The `DeadlineCommandParser` then creates a `DeadlineCommand` which will use operations in the `Model` interface
+as `Model#displaySortedDeadlineList()` to sort the roles based on deadline of the given `ORDER`.
 
 The following sequence diagram shows how the `deadline` command works:
 
 <img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
-
 #### Design considerations:
 
-**Aspect: How Salary Command executes:**
+**Aspect: How Deadline Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc orderParser.
+* **Alternative 1 (current choice):** Sort the deadline of the roles in asc/desc.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
@@ -349,9 +348,10 @@ The following sequence diagram shows how the `deadline` command works:
 #### Limitations:
 
 The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
-the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
-will sort both views.
+the roles. 
 
+E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
+will sort both views.
 
 ### \[Implemented\] Company Command Feature
 
@@ -363,16 +363,14 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current Role book. <img src="images/startUp.png" width="800" />
+   current Role book.
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
-    <img src="images/UICommandImages/CompanyCommand1.png" width="800" />
 
 The following sequence diagram shows how the `company` command works:
 
 <img src="images/CompanyCommandSequenceDiagram.png" width="800" />
-
 
 #### Design considerations:
 
@@ -381,6 +379,7 @@ The following sequence diagram shows how the `company` command works:
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
+  
 * **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
@@ -395,16 +394,14 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how TagCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/startUp.png" width="800" />
+   current role book.
 
 2. The user can choose to use the `Tag Command` to filter tags.
     - The user executes `tag <keyword>` command to filter roles by their tag.
-      <img src="images/UICommandImages/TagCommand.png" width="800" />
 
 The following sequence diagram shows how the `tag` command works:
 
 <img src="images/TagCommandSequenceDiagram.png" width="800" />
-
 
 #### Design considerations:
 
@@ -414,7 +411,6 @@ The following sequence diagram shows how the `tag` command works:
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
-_{more aspects and alternatives to be added}_
 
 ### \[Implemented\] Name Command Feature
 
@@ -436,7 +432,6 @@ The following sequence diagram shows how the `name` command works:
 
 <img src="images/NameCommandSequenceDiagram.png" width="800" />
 
-
 #### Design considerations:
 
 **Aspect: How Name Command executes:**
@@ -445,10 +440,8 @@ The following sequence diagram shows how the `name` command works:
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
-_{more aspects and alternatives to be added}_
-
-
 ### \[Implemented\] View Command Feature
+
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
@@ -460,32 +453,35 @@ An example usage of the `View` command is given below:
 
 1. The user launches the application for the first time. The RoleBook will be initialized with the current role book.
 2. The user can use the `view` command to show more details pertaining to a role.
-   - The user executes `view 1` to view details regarding the first role.
-     <img src="images/UICommandImages/ViewCommand0.png" width="800" />
+    - The user executes `view 1` to view details regarding the first role.
 
 The following sequence diagram shows how the `view` command works:
 
 <img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
-
 #### Design considerations:
 
 **Aspect: How the `view` command executes:**
 
-* **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
-appending its information to the `feedbackToUser` string.
+* **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay`
+  through
+  appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay` 
-based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom display). 
-To do so, we can change [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java) 
-to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` 
-method in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the output as per
-normal. However, if the object `T` is a `Role`, we can render a custom display instead.
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node
+  of `ResultDisplay`
+  based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom
+  display).
+  To do so, we can
+  change [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
+  to be a generic class that stores an object `T`. Then, we can modify the `executeCommand`
+  method
+  in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+  to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
+  output as per
+  normal. However, if the object `T` is a `Role`, we can render a custom display instead.
     * Pros: Provides an easy and extendable way to create custom views
     * Cons: Need to refactor some UI code and `CommandResult.java` class
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -547,7 +543,7 @@ Use case ends.
 
 * 3a. Job exists.
     * 3a1. TechTrack resumes.
-  
+
       Use case resumes at step 3b.
 * 3b. Save job.
     * 3b1. Job is auto-saved.
@@ -555,11 +551,11 @@ Use case ends.
       Use case resumes at step 4.
 * 3c. Duplicate job detected.
     * 3c1. TechTrack outputs error for duplicate jobs.
-  
+
       Use case ends.
 * 3d. Invalid data detected.
     * 3d1. TechTrack outputs error for invalid data.
-  
+
       Use case ends.
 
 **Use case: Edit a job**
@@ -602,7 +598,7 @@ Use case ends.
 
 * 3a. Index entered is invalid.
     * 2a1. TechTrack outputs error.
-  
+
       Use case ends.
 
 **Use case: Delete a job**
@@ -630,7 +626,7 @@ Use case ends.
 
 * 4a. The given index is valid.
     * 4a1. joblist is saved to the data file.
-  
+
       Use case resumes at step 5.
 
 **Use case: Sort jobs by salary**
@@ -650,13 +646,15 @@ Use case ends.
   Use case ends.
 * 3b. The given second command is invalid e.g "ascending".
     * 3b1. TechTrack shows an error message.
-  
+
       Use case ends.
 
 **Use case: Sort jobs by deadline**
 
 **MSS**
-* MSS is similar to sorting salaries. Replace `salary` in the previous MSS with `deadline` for the MSS of the deadline command.
+
+* MSS is similar to sorting salaries. Replace `salary` in the previous MSS with `deadline` for the MSS of the deadline
+  command.
 
 **Use case: find jobs by company**
 
@@ -677,7 +675,9 @@ Use case ends.
 **Use case: find jobs by their tags**
 
 **MSS**
-* MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag command.
+
+* MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag
+  command.
 
 ### Non-function requirement
 
@@ -690,8 +690,6 @@ Use case ends.
 6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
 7. The CLI should be accessible to users with different abilities and needs, including support for assistive
    technologies and localization.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -753,39 +751,65 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Planned enhancement**
-The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws for now.
+
+The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as
+feature flaws, therefore the team will not be addressing these flaws for now.
 
 ### Implementing support for more websites
-1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. 
-We have thought of one approach to this fix:
+
+1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites
+   that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more
+   websites.
+   We have thought of one approach to this fix:
+
 * Letting the website format be `[any char].[any char]`
-  * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
-  * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
+    * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+    * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
-1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected that the input formats will be optimized to get things done fast. 
-Some examples include: using hard-to-type special characters such as `$/` in the format when it is possible to avoid them. 
-Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
+
+1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected
+   that the input formats will be optimized to get things done fast.
+   Some examples include: using hard-to-type special characters such as `$/` in the format when it is possible to avoid
+   them.
+   Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
 ### Displaying very long description and numbers
-1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. We believe that the `view` command is a way for users to view truncated texts
-for now. In the future, we would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
-2. This also affects the `view` command, as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java) is not written to handle
-extremely long texts. Although the attributes of each role would be visible, it is not ideal for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
-and setting proper widths for each property.
+
+1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the
+   screen size. We believe that the `view` command is a way for users to view truncated texts
+   for now. In the future, we would either implement character limits to the attributes of a `role` or text wrapping in
+   the `RoleCard` of the UI.
+2. This also affects the `view` command,
+   as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
+   is not written to handle
+   extremely long texts. Although the attributes of each role would be visible, it is not ideal for the user. This can
+   be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
+   and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
-1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. 
-Error messages should be displayed when storage data is incorrectly modified. This could be done through editing the `initModelManager` function in the [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
-file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
-class and subsequently, the [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java) class to render the message on startup.
+
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed.
+   Instead, all existing data is deleted and there is no roles listed.
+   Error messages should be displayed when storage data is incorrectly modified. This could be done through editing
+   the `initModelManager` function in
+   the [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+   file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to
+   the [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+   class and subsequently,
+   the [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+   class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Won't fix**
 
 ### Issue #205 Sort Command not recognised
+
 1. Unable to replicate issue due to lack of information from the bug report.
 
 ### Issue #179 salary asc command does nothing
+
 1. Unable to replicate issue due to lack of information from the bug report.
