@@ -27,13 +27,14 @@ Given below are my contributions to the project.
     * `to be added soon`
 
 * **Enhancements to existing features**:
-    * `to be added soon`
+    * Clear contacts with given tag(s)
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`
     * Developer Guide:
         * Added use cases `UC06`, `UC13`, `UC15`
+        * Update UI class diagram
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): ().
