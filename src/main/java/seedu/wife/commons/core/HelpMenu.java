@@ -28,13 +28,13 @@ public enum HelpMenu {
     DECREMENT("dec") {
         @Override
         public String getCommandUsage() {
-            return "Decrease qty of item - dec INDEX [q/QUANTITY TO DECREASE BY]" + OPTIONAL_MESSAGE;
+            return "Decrease qty of item - dec INDEX [q/QUANTITY]" + OPTIONAL_MESSAGE;
         }
     },
     INCREMENT("inc") {
         @Override
         public String getCommandUsage() {
-            return "Increase qty of item - inc INDEX [q/QUANTITY TO INCREASE BY]" + OPTIONAL_MESSAGE;
+            return "Increase qty of item - inc INDEX [q/QUANTITY]" + OPTIONAL_MESSAGE;
         }
     },
     DELETE("delete") {
@@ -46,19 +46,13 @@ public enum HelpMenu {
     FIND("find") {
         @Override
         public String getCommandUsage() {
-            return "Find a food item - find NAME [ANOTHER NAME]" + OPTIONAL_MESSAGE;
+            return "Find one or more food items - find KEYWORD [KEYWORD]..." + OPTIONAL_MESSAGE;
         }
     },
     LIST("list") {
         @Override
         public String getCommandUsage() {
             return "Lists all food items - list";
-        }
-    },
-    VIEW("view") {
-        @Override
-        public String getCommandUsage() {
-            return "View a food item - view INDEX";
         }
     },
     SORTBYEXPIRY("expiry") {
@@ -82,27 +76,27 @@ public enum HelpMenu {
     DELETEBYTAG("delbytag") {
         @Override
         public String getCommandUsage() {
-            return "Deletes food items containing the specified tag(s) - delbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+            return "Deletes food items containing the specified tag(s) - delbytag n/TAG NAME [n/TAG NAME]..."
                     + OPTIONAL_MESSAGE;
         }
     },
     LISTBYTAG("listbytag") {
         @Override
         public String getCommandUsage() {
-            return "Lists food items containing the specified tag(s) - listbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+            return "Lists food items containing the specified tag(s) - listbytag n/TAG NAME [n/TAG NAME]..."
                     + OPTIONAL_MESSAGE;
         }
     },
     CREATETAG("createtag") {
         @Override
         public String getCommandUsage() {
-            return "Create a new tag - createtag n/TAG NAME [n/ANOTHER TAG NAME]" + OPTIONAL_MESSAGE;
+            return "Create new tag(s) - createtag n/TAG NAME [n/TAG NAME]..." + OPTIONAL_MESSAGE;
         }
     },
     DELETETAG("deltag") {
         @Override
         public String getCommandUsage() {
-            return "Delete a tag - del tag n/TAG NAME [n/ANOTHER TAG NAME]" + OPTIONAL_MESSAGE;
+            return "Delete tag(s) - deltag n/TAG NAME [n/TAG NAME]..." + OPTIONAL_MESSAGE;
         }
     },
     LISTTAG("listtag") {
