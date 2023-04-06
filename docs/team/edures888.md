@@ -10,7 +10,7 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
 
 ### My Contributions to the project
 * **Code contributed**:
-
+  [Reposense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=edures888&breakdown=true)
   * **Additional Feature**: Finding free time slot
       * What it does: Allows users to find weekly unoccupied time slots within specified group
       * Justification: Main use of the application
