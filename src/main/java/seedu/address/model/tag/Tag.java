@@ -12,7 +12,11 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric, do not include"
         + " characters like @,#,*,- or white space between words.";
 
-    public static final String MESSAGE_TAG_LENGTH_ERROR = "It should be between 1-20 characters.";
+    public static final String MESSAGE_TAG_LENGTH_ERROR = "Tag names should be between 1-20 characters.";
+
+    public static final String MESSAGE_TAG_CONTENT_ERROR = "Tag names should not contain XXXXX as "
+        + "an input or a substring of the input.";
+
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
