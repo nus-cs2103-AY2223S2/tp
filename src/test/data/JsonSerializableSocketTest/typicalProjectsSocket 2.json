@@ -1,0 +1,128 @@
+{
+  "_comment": "SOCket save file which contains the same Project values as in TypicalProjects#getTypicalSocket()",
+  "persons": [ {
+    "name" : "Alice Pauline",
+    "profile": "alice-pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "profile": "benson-meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "languages": [ "Java", "JavaScript" ],
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "profile": "carl-kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "languages": [ "C" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "profile": "",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "languages": [ "Python" ],
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "profile": "elle-meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "languages": [ ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "profile": "",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "languages": [ ],
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "profile": "",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "languages": [ "Python" ],
+    "tagged" : [ ]
+  } ],
+  "projects": [ {
+    "projectName": "Alpha Project",
+    "projectRepoHost": "alice-pauline",
+    "projectRepoName": "AlphaRepo",
+    "projectDeadline": "01/01/23-2359",
+    "projectMeeting": "01/01/23-1000",
+    "members": [ {
+      "name" : "Alice Pauline",
+      "profile": "alice-pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "profile": "benson-meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "languages": [ "Java", "JavaScript" ],
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
+  }, {
+    "projectName": "Bravo Project",
+    "projectRepoHost": "carl-kurz",
+    "projectRepoName": "BravoRepo",
+    "projectDeadline": "02/01/23-2359",
+    "projectMeeting": "02/01/23-1000",
+    "members": [ {
+      "name" : "Carl Kurz",
+      "profile": "carl-kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "languages": [ "C" ],
+      "tagged" : [ ]
+    }, {
+      "name" : "Daniel Meier",
+      "profile": "",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "languages": [ "Python" ],
+      "tagged" : [ "friends" ]
+    } ]
+  }, {
+    "projectName": "Charlie Project",
+    "projectRepoHost": "benson-meier",
+    "projectRepoName": "CharlieRepo",
+    "projectDeadline": "03/01/23-2359",
+    "projectMeeting": "03/01/23-1000",
+    "members": [ {
+      "name" : "Elle Meyer",
+      "profile": "elle-meyer",
+      "phone" : "9482224",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "languages": [ ],
+      "tagged" : [ ]
+    }, {
+      "name" : "Fiona Kunz",
+      "profile": "",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "languages": [ ],
+      "tagged" : [ ]
+    } ]
+  } ]
+}

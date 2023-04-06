@@ -9,8 +9,8 @@ SOCket is a desktop address book application used for teaching Software Engineer
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
-    * What it does: `to be added soon`
+* **New Feature**: `remove` command
+    * What it does: Allows users to remove a specific field value
     * Justification: `to be added soon`
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*

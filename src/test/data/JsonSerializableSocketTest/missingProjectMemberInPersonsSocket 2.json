@@ -1,0 +1,33 @@
+{
+  "persons": [ {
+    "name" : "Alice Pauline",
+    "profile": "alice-pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ]
+  } ],
+  "projects": [ {
+    "projectName": "Alpha Project",
+    "projectRepoHost": "alice-pauline",
+    "projectRepoName": "AlphaRepo",
+    "projectDeadline": "01/01/23-2359",
+    "projectMeeting": "01/01/23-1000",
+    "members": [ {
+      "name" : "Alice Pauline",
+      "profile": "alice-pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "profile": "benson-meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "languages": [ "Java", "JavaScript" ],
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
+  } ]
+}
