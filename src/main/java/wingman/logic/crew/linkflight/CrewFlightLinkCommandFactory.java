@@ -157,11 +157,6 @@ public class CrewFlightLinkCommandFactory<T extends Command>
         return linkFunction.create(flight, crews);
     }
 
-    /**
-     * Returns true if the crew has been added to the map.
-     *
-     * @param <T> the type of the crew.
-     */
     @FunctionalInterface
     public interface CrewFlightLinkFunction<T extends Command>
             extends LinkFunction<T, Flight, Crew, FlightCrewType> {

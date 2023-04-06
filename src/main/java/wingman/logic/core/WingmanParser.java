@@ -10,7 +10,7 @@ import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.logic.crew.linkflight.CrewFlightLinkCommandFactory;
 import wingman.logic.crew.linklocation.CrewLocationLinkCommandFactory;
-import wingman.logic.flight.linklocation.LinkFlightToLocationCommandFactory;
+import wingman.logic.flight.linklocation.FlightLocationLinkCommandFactory;
 import wingman.logic.flight.unlinklocation.UnlinkFlightToLocationCommandFactory;
 import wingman.logic.pilot.linkflight.LinkPilotToFlightCommandFactory;
 import wingman.logic.pilot.linklocation.LinkPilotToLocationCommandFactory;
@@ -124,8 +124,8 @@ public class WingmanParser extends FactoryParser {
                                     FlightSyntax::getManager,
                                     FlightSyntax::delete
                             ),
-                            new LinkFlightToLocationCommandFactory(),
-                            new UnlinkFlightToLocationCommandFactory()
+                            FlightLocationLinkCommandFactory.linkFactory(),
+                            FlightLocationLinkCommandFactory.unlinkFactory()
                     )
             )
     );
