@@ -279,8 +279,8 @@ public class Lab extends Event {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both labs have the same identity and data fields.
+     * This defines a stronger notion of equality between two labs.
      */
     @Override
     public boolean equals(Object other) {
@@ -303,7 +303,6 @@ public class Lab extends Event {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getStudents(), getDate(), getAttachments(), getNotes());
     }
 
