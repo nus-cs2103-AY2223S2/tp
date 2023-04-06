@@ -56,12 +56,6 @@ _With MediConnect, managing your healthcare practice has never been easier._
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -71,11 +65,19 @@ _With MediConnect, managing your healthcare practice has never been easier._
 * Parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+    * **All other items must be filled, following the restrictions in the table below.**
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
 </div>
 
 | Field            | Prefix | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Address**      | a/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **Cost**         | c/     | Should either be a positive number or 0. Supports up to 2 decimal places.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Date**         | d/     | 1. Format should be DD-MM-YYYY HH:mm, e.g., 31-03-2023 14:00. <br> 2. 'DD' must be between 01-31 and 'MM' between 01-12. <br> 3. HH:mm should follow the 24-hour notation"                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **Email**        | e/     | 1. Should be of the format local-part@domain <br> 2. The local-part should only contain alphanumeric characters and these special characters (+_.-). The local-part may not start or end with any special characters. <br> 3. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br> The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
 | **Medication**   | m/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -92,7 +94,7 @@ Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`  <b
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`
 
 * Adds the specified person to MediConnect.
-* Each person can be added only once.
+* Each person can be added only once and can be **either** a Patient or a Doctor.
 * Each person's NRIC must be distinct.
 
 Examples:
@@ -125,7 +127,7 @@ Format `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…
 * Tags can be removed by typing t/ without specifying any tags after it.
 
 Examples:
-* `edit 9 n/John Smith` will edit the name of the 9th person listed to "Jon Smith".
+* `edit 9 n/John Smith` will edit the name of the 9th person listed to "John Smith".
 
 ![Edit](images/Edit.png)
 
@@ -185,13 +187,14 @@ Examples:
 
 ### Prescribing patient’s medication : `prescribe`
 
-Prescribes medication to a patient, noting the medication's name and cost.
+* Prescribes medication to a patient, noting the medication's name and cost.
+  * If the patient is already prescribed to that medication, its cost is updated to the new value instead.
 
 Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol ic/S1234567X c/10` Prescribes paracetamol the patient of IC S1234567X at a cost of $10
-*  `prescribe m/Cough Syrup ic/S1234567X c/0.1` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
+*  `prescribe m/paracetamol ic/S1234567X c/0.7` Prescribes paracetamol the patient of IC S1234567X at a cost of $0.7
+*  `prescribe m/Cough Syrup ic/S1234567X c/10.7` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
 
 ![Prescribe](images/Prescribe.png)
 
@@ -283,19 +286,19 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 
 ## Command summary 
 
-| Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                          |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Person**         | 1. `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br> 2. `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd`  |
-| **Bill**               | `bill ic/NRIC` <br> e.g.,                               cost ic/S1234567X                                                                                                                                                                                                                                                                                 |
-| **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g., `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z`                                                                                                                                                                                                                                            |
-| **Clear**              | `clear`                                                                                                                                                                                                                                                                                                                                                   |
-| **Delete Appointment** | `deleteAppointment INDEX ic/NRIC` <br> e.g., `deleteAppointment 2 ic/S1234567A`                                                                                                                                                                                                                                                                           |
-| **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                          |
-| **Display**            | `display ic/NRIC` <br> e.g., `display ic/S1234567A`                                                                                                                                                                                                                                                                                                       |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                   |
-| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                    |
-| **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                              |
-| **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                    |
-| **List**               | `list` <br> `listDoctors` <br> `listPatients`                                                                                                                                                                                                                                                                                                             |
-| **Prescribe**          | `prescribe medication to patient`                                                                                                                                                                                                                                                                                                                         |
-| **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe m/paracetamol ic/S1234567X                                                                                                                                                                                                                                                                      |
+| Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**         | 1. `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br> 2. `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
+| **Bill**               | `bill ic/NRIC` <br> e.g.,                               cost ic/S1234567X                                                                                                                                                                                                                                                                                |
+| **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g., `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z`                                                                                                                                                                                                                                           |
+| **Clear**              | `clear`                                                                                                                                                                                                                                                                                                                                                  |
+| **Delete Appointment** | `deleteAppointment INDEX ic/NRIC` <br> e.g., `deleteAppointment 2 ic/S1234567A`                                                                                                                                                                                                                                                                          |
+| **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                         |
+| **Display**            | `display ic/NRIC` <br> e.g., `display ic/S1234567A`                                                                                                                                                                                                                                                                                                      |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                  |
+| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   |
+| **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
+| **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
+| **List**               | `list` <br> `listDoctors` <br> `listPatients`                                                                                                                                                                                                                                                                                                            |
+| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/Cost` <br> e.g, prescribe ic/S1234567X m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
+| **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe ic/S1234567X  m/paracetamol                                                                                                                                                                                                                                                                    |
