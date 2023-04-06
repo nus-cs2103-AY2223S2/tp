@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class LabTest {
 
@@ -24,11 +25,11 @@ public class LabTest {
     private static final List<Person> testPersons = new ArrayList<>(Arrays.asList(testPerson));
     private static final Lab lab3 = new Lab("lab3", testPersons);
 
-    private static final Lab lab4 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>());
+    private static final Lab lab4 = new Lab("lab4", LocalDateTime.now(), new ArrayList<>());
 
-    private static final Lab lab5 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>());
+    private static final Lab lab5 = new Lab("lab5", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>());
 
-    private static final Lab lab6 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>(),
+    private static final Lab lab6 = new Lab("lab6", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>(),
             new ArrayList<>());
 
     @Test
@@ -172,4 +173,34 @@ public class LabTest {
         assertEquals(0, lab2.countAttachments());
         assertEquals(0, lab3.countAttachments());
     }
+
+    @Test
+    public void lab_differentLab_notEquals() {
+        Lab newLab = new Lab("lab6");
+        newLab.changeDate(LocalDateTime.now());
+        assertFalse(lab6.isSameLab(newLab));
+    }
+
+    @Test
+    public void lab_hashLab_notNull() {
+        assertNotNull(lab4.hashCode());
+    }
+
+    @Test
+    public void lab_copyLab_sameLab() {
+        assertEquals(lab6, lab6.copy());
+    }
+
+    @Test
+    public void lab_differentLabEquality_notSameLab() {
+        Person person = new PersonBuilder().build();
+        Lab newLab = new Lab("new lab");
+        newLab.addStudent(person);
+        newLab.addAttachment(new File("new file"));
+        newLab.addNote(new Note("new note"));
+        assertFalse(newLab.equals(lab6));
+    }
+
+
+
 }
