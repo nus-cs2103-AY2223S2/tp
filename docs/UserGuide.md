@@ -12,7 +12,7 @@ title: User Guide
 Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
 With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
-You can even view grade statistics without the use of a dedicated data analysis application! 
+You can even view grade statistics without the use of a dedicated data analysis application!
 
 ![TAA logo](./images/TAA_logo.jpg)
 
@@ -35,8 +35,8 @@ Alternatively, you may wish to use the built-in search function in your browser 
 Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
 
 ##### Callouts
- 
-Callouts are identified by a coloured box containing some text. 
+
+Callouts are identified by a coloured box containing some text.
 
 **Note**
 <div markdown="span" class="alert alert-warning">
@@ -45,7 +45,7 @@ Callouts are identified by a coloured box containing some text.
 
 **Information**
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!). 
+:information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!).
 </div>
 
 **Tip**
@@ -60,7 +60,7 @@ Callouts are identified by a coloured box containing some text.
 
 ##### Syntax highlighting
 Text contained within a `grey background` are used to denote either of the following:
-- commands that can be entered into the command bar 
+- commands that can be entered into the command bar
 - file names
 - command line commands, to be run in the [terminal](#glossary) of the host machine
 
@@ -106,13 +106,13 @@ They can also be used to denote keys that should be held together, at the same t
 ![Labelled GUI](./images/Ui_labelled.png)
 <figcaption style="text-align:center"><em><strong>
 Figure 2
-</strong>: 
+</strong>:
 Labelled components of the TAA GUI
 </em></figcaption>
 
 <br />
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** Each Class List consists of 0 or more Student Cards. 
+:information_source: **Info:** Each Class List consists of 0 or more Student Cards.
 </div>
 
 The purposes of each component, as labelled in Figure 2 above, are described in Table 1 below.
@@ -120,7 +120,7 @@ The purposes of each component, as labelled in Figure 2 above, are described in 
 
 <div style="text-align:center"><strong>
 Table 1
-</strong>: 
+</strong>:
 Purposes of each GUI component
 </div>
 
@@ -137,7 +137,7 @@ Purposes of each GUI component
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** The commands below will operate on the active class list being displayed in the Class List display. 
+:information_source: **Info:** The commands below will operate on the active class list being displayed in the Class List display.
 If the students being displayed are not the ones you wish to update, do remember to update the active class list before continuing.
 </div>
 
@@ -151,7 +151,7 @@ If the students being displayed are not the ones you wish to update, do remember
 
 <div style="text-align:center"><strong>
 Table 2
-</strong>: 
+</strong>:
 Command syntax
 </div>
 
@@ -220,7 +220,7 @@ Format: `help`
 
 ![Help menu](images/HelpMenu.png)
 <figcaption style="text-align:center"><em><strong>
-Figure 3: 
+Figure 3:
 </strong>
 A preview of the help menu displayed.
 </em></figcaption>
@@ -355,7 +355,7 @@ And -1 for the rest of the weeks (attendance is not marked)
 
 #### Preface
 
-Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and 
+Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and
 student submissions associated with it.
 
 Submission: Linked to an assignment. Each student has a submission for every existing assignment.
@@ -512,7 +512,7 @@ Examples:
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
+:information_source: **Info:** The `FIELD` parameter is case-insensitive!
 i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
 </div>
 
@@ -637,7 +637,7 @@ Format: `export [-force] FILE_PATH`
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.
 
- 
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix A: Planned Enhancements**
@@ -648,7 +648,7 @@ This could be troubling for tutors who have two students with the exact same nam
 
 However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
 This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
-Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly. 
+Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly.
 
 This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
 
@@ -657,7 +657,7 @@ Currently, students with the same name, but with different capitalisations and w
 However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
 
 Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
-Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean <student name>?" will be shown to the user instead.
+Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
@@ -665,13 +665,13 @@ Consequently, such operations will not be allowed to execute, and an error messa
 |           Term           |                                                                               Explanation                                                                                | 
 |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |       Desktop App        |                           A software program that runs on a computer's desktop or laptop operating system, rather than through a web browser.                            |
-|  Command Line Interface  |            A way of interacting with a computer program by typing in text commands instead of using a graphical user interface (GUI) with buttons and menus.             | 
-| Graphical User Interface | A type of user interface that allows users to interact with a computer program using graphical elements such as buttons, menus, and icons instead of typing in commands. | 
-|         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     | 
-|       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    | 
-|        Parameter         |                                  A value that is passed in by the user. This value changes depending on what the user decides to enter.                                  | 
-|         Student          |                                  A person recorded in our app. Has an alphanumeric name and may have class list tags associated to it.                                   | 
-|        Assignment        |                      A school assignment. Has an alphanumeric name, a non-negative integer total marks, and student submissions associated with it.                      | 
-|        Submission        |                                          Linked to an assignment. Each student has a submission for every existing assignment.                                           | 
+|  Command Line Interface  |            A way of interacting with a computer program by typing in text commands instead of using a graphical user interface (GUI) with buttons and menus.             |
+| Graphical User Interface | A type of user interface that allows users to interact with a computer program using graphical elements such as buttons, menus, and icons instead of typing in commands. |
+|         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     |
+|       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    |
+|        Parameter         |                                  A value that is passed in by the user. This value changes depending on what the user decides to enter.                                  |
+|         Student          |                                  A person recorded in our app. Has an alphanumeric name and may have class list tags associated to it.                                   |
+|        Assignment        |                      A school assignment. Has an alphanumeric name, a non-negative integer total marks, and student submissions associated with it.                      |
+|        Submission        |                                          Linked to an assignment. Each student has a submission for every existing assignment.                                           |
 
 

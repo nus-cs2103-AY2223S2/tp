@@ -60,36 +60,54 @@ public class ImportCommand extends CsvCommand {
         return "This entry has no \"" + keyword + "\"column.";
     }
 
+    private static void throwEntryFormatError(CSVRecord record, String errMsg) throws CommandException {
+        throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + Arrays.toString(record.values()) + "\". " + errMsg);
+    }
+
     static Student parseFromCsvRec(CSVRecord record) throws CommandException {
         if (!record.isConsistent()) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + MSG_INCONSISTENT_ENTRY);
+            throwEntryFormatError(record, MSG_INCONSISTENT_ENTRY);
         }
 
         if (!record.isMapped(CsvUtil.KW_NAME)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_NAME));
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_NAME));
         }
-        final String name = record.get(CsvUtil.KW_NAME).trim();
-        if (!Name.isValidName(name)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Name.MESSAGE_CONSTRAINTS);
+        final String nameStr = record.get(CsvUtil.KW_NAME).trim();
+        if (!Name.isValidName(nameStr)) {
+            throwEntryFormatError(record, Name.MESSAGE_CONSTRAINTS);
         }
 
         if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
-                    + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
         }
-        final String atdStr = record.get(CsvUtil.KW_ATTENDANCE);
-        final String atd = atdStr.isBlank() ? Attendance.ORIGINAL_ATD : atdStr.trim();
+        final String atd = record.get(CsvUtil.KW_ATTENDANCE);
+        final String atdStr;
+        if (atd.isBlank()) {
+            atdStr = Attendance.ORIGINAL_ATD;
+        } else {
+            atdStr = atd.trim();
+            if (!Attendance.isValidAtdStr(atdStr)) {
+                throwEntryFormatError(record, Attendance.ATD_ERROR_MSG);
+            }
+        }
 
         if (!record.isMapped(CsvUtil.KW_PP)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_PP));
         }
-        final String ppStr = record.get(CsvUtil.KW_PP);
-        final String pp = ppStr.isBlank() ? Attendance.ORIGINAL_PP : ppStr.trim();
+        final String pp = record.get(CsvUtil.KW_PP);
+        final String ppStr;
+        if (pp.isBlank()) {
+            ppStr = Attendance.ORIGINAL_PP;
+        } else {
+            ppStr = record.get(CsvUtil.KW_PP).trim();
+            if (!Attendance.isAcceptablePpStr(ppStr)) {
+                throwEntryFormatError(record, Attendance.PP_UNACCEPTABLE_MSG);
+            }
+        }
 
         final ArrayList<String> submissions = new ArrayList<>();
         if (!record.isMapped(CsvUtil.KW_SUBMISSIONS)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
-                    + mkMsgNoColumn(CsvUtil.KW_SUBMISSIONS));
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_SUBMISSIONS));
         }
         final String submitStr = record.get(CsvUtil.KW_SUBMISSIONS);
         if (!submitStr.isBlank()) {
@@ -97,20 +115,19 @@ public class ImportCommand extends CsvCommand {
         }
 
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
+            throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_TAGS));
         }
-        final String tags = record.get(CsvUtil.KW_TAGS).trim();
-
-        final Set<Tag> parsedTags;
+        final String tagStr = record.get(CsvUtil.KW_TAGS).trim();
+        Set<Tag> parsedTags = null;
         try {
             //ignore all tokens that are empty strings.
             parsedTags = ParserUtil.parseTags(
-                    Arrays.stream(tags.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
+                    Arrays.stream(tagStr.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
+            throwEntryFormatError(record, Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new Student(new Name(name), atd, pp, submissions, parsedTags);
+        return new Student(new Name(nameStr), atdStr, ppStr, submissions, parsedTags);
     }
 
     @Override

@@ -2,10 +2,12 @@ package taa.model.assignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import javafx.collections.transformation.FilteredList;
+import taa.logic.parser.ParserUtil;
+import taa.logic.parser.exceptions.ParseException;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
-import taa.model.assignment.exceptions.CorruptAssignmentStorageException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.assignment.exceptions.SubmissionNotFoundException;
@@ -126,15 +128,70 @@ public class AssignmentList {
     }
 
     /**
+     * Checks whether all the submission storage strings in the json file are valid.
+     * @param sl
+     * @throws ParseException
+     */
+    public void checkValidStorage(FilteredList<Student> sl) throws ParseException {
+        HashMap<String, Integer> assignmentCount = new HashMap<>();
+        // Step 1. Gets all submission strings, check whether they are length 5 and contains the correct input format.
+        // Step 2. adds it to the assignmentCount.
+        for (Student stu : sl) {
+            HashSet<String> studentAssignment = new HashSet<>(); // checks if a student has the same assignment.
+            for (String sub : stu.getSubmissionStorageStrings()) {
+                String[] words = sub.split(",");
+                if (words.length != 5) {
+                    throw new ParseException("Submission storage string does not have 4 commas");
+                }
+                // Try to parse the input to make sure they are valid.
+                String assignmentName = ParserUtil.parseName(words[0]).toString();
+                int isGraded = ParserUtil.parseInt(words[1]);
+                int isLate = ParserUtil.parseInt(words[2]);
+                int totalMarks = ParserUtil.parseInt(words[4]);
+                if (!(isGraded == 0 || isGraded == 1) || !(isLate == 0 || isLate == 1) || totalMarks < 0) {
+                    throw new ParseException("Invalid range for isGraded, isLate, totalMarks in storage string");
+                }
+                // Increase the count of the assignment by 1.
+                assignmentCount.put(assignmentName, assignmentCount.getOrDefault(assignmentName, 0) + 1);
+
+                // Checks for duplicate assignment for a single student.
+                if (studentAssignment.contains(assignmentName)) {
+                    throw new ParseException("Duplicate assignment for a student found");
+                }
+                studentAssignment.add(assignmentName);
+            }
+        }
+
+        // Step 3. Checks for whether all students have that assignment.
+        for (int v : assignmentCount.values()) {
+            if (v != sl.size()) {
+                throw new ParseException("An assignment is not shared by all students.");
+            }
+        }
+    }
+
+    /**
      * On startup, this will populate the assignment list and submissions from the
      * submission storage string data held by each student.
      * This is also called when we edit a student.
      * @param sl the student list
      */
-    public void initFromStorage(FilteredList<Student> sl) throws CorruptAssignmentStorageException {
+    public void initFromStorage(FilteredList<Student> sl) {
         if (sl.isEmpty()) {
             return;
         }
+        try {
+            checkValidStorage(sl);
+        } catch (ParseException e) {
+            // Wipe everything >:) They naughty
+            for (Student stu : sl) {
+                stu.getSubmissionStorageStrings().clear();
+            }
+            System.out.println("Parsing of submission storage string error: " + e.getMessage());
+            // Calling logger here seems sus, what is a better design? also is this the best design to do the checking?
+            return;
+        }
+
         // Step 0: Make sure everything empty.
         assignments.clear();
         assignmentMap.clear();
@@ -153,11 +210,6 @@ public class AssignmentList {
             for (String submissionString : stu.getSubmissionStorageStrings()) {
                 String assignmentName = submissionString.split(",")[0];
                 Assignment toAdd = assignmentMap.get(assignmentName);
-                if (toAdd == null) { // student has an assignment different from the first student.
-                    assignments.clear();
-                    assignmentMap.clear();
-                    throw new CorruptAssignmentStorageException("Assignments must be the same for all students");
-                }
                 toAdd.addStudentSubmission(stu, submissionString);
             }
         }
