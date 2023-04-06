@@ -382,6 +382,7 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * inc
   * dec
   * delete
+  * expiry
 
 - Tag Commands:
   * createtag
