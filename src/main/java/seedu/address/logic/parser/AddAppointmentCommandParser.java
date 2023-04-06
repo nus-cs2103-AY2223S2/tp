@@ -11,9 +11,7 @@ import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Parses input arguments and creates new AddAppointmentCommand object

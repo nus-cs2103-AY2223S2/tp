@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.ServiceStatus;
 

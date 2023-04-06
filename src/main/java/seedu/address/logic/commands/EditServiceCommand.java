@@ -10,16 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.PartMap;
-import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 
 /**

@@ -11,10 +11,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCustomerCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.person.Address;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;

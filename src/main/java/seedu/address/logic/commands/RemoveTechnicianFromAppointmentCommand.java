@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TECHNICIAN_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Manages the adding of a technician to a specific service
