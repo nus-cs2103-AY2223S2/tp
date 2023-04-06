@@ -37,7 +37,7 @@ Given below are my contributions to the project.
     * Create tags and labels for issues/PRs on GitHub
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features (PR #189)
+    * Wrote tests for existing features, such as: all Timetable commands (TimetableDateCommand, TimetableCompletedCommand, TimetableCommand, TimetableUnscheduledCommand), reminder commands (AddReminderCommand, DeleteReminderCommand, ListReminderCommand), jobs commands (CompleteDeliveryJobCommand, DeleteDeliveryJobCommand),... (PR #189, #260)
     * Added and updated JavaDoc comments for public methods (PR #165)
     * Updated to make feedbacks and command instructions clearer to users (i.e. provide examples on how to use the commands) (PR #194)
     * Added ability to navigate to Help Window from Timetable Window and Customer Window (PR #189)
