@@ -248,9 +248,9 @@ This will add a new person named Bob to our contact list.
 
 After executing the command, we see that Bob has been added below the list.
 
-<div class="span" class="alert alert-danger">  
-:exclamation: <b>Caution:</b> You must specify minimally, the person's <i>name</i>, <i>email</i>, <i>year</i> and <i>course</i> when adding a person.
-</div>
+
+> **Understanding the command:** You must specify minimally, the person's <i>name</i>, <i>email</i>, <i>year</i> and <i>course</i> when adding a person.
+
 
 <div markdown="span" class="alert alert-info">
 :information_source: <b>Note:</b> As you can see, we first specified the <code>add</code> command, followed by the <em>prefix</em> <code>n/</code> and the <em>name</em> that we want to add i.e. <code>Bob</code>. The same goes for the <em>year</em>, <em>course</em> and <em>email</em>. This <code>n/</code> and <code>Bob</code> pair, is the <em>prefix</em> and <em>parameter</em> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
