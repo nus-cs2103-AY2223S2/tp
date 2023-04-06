@@ -1,5 +1,6 @@
 package seedu.connectus.logic.commands;
 
+import static seedu.connectus.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
@@ -20,7 +21,8 @@ public class OpenCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Opens the social media page of the person identified "
-        + "by the index number used in the displayed person list.\n"
+        + "by the index number used in the displayed person list. "
+        + "At least one platform should be present, otherwise an error would be given. \n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_SOCMED_INSTAGRAM + "] "
         + "[" + PREFIX_SOCMED_TELEGRAM + "] "
@@ -47,5 +49,9 @@ public class OpenCommand extends Command {
         Person target = CommandUtil.launchWindow(model, targetIndex, targetPlatforms);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, target));
+    }
+
+    public boolean isBlank() {
+        return !isAnyNonNull((Object[]) targetPlatforms);
     }
 }
