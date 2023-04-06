@@ -331,7 +331,8 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 #### Listing all doctors
 
-```list-doc```
+`list-doc`
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -445,7 +446,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 #### Listing all patients
 
-```list-ptn```
+`list-ptn`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
