@@ -74,6 +74,14 @@ to help you get a feel for the application. Feel free to delete them later.
 
 <img src="images/OnStartupScreenshot.png" />
 
+<div markdown="span" class="alert alert-danger">
+:warning: As you perform commands in Mycelium, you will notice that a
+new data file `mycelium.json` is created in `data/` directory as the default.
+Corruption or tampering with it may lead to the data file becoming unreadable
+or containing invalid values. This will result in the the file being ignored
+and Mycelium will start as an empty application with no projects and clients.
+</div>
+
 You may resize the window to your liking. At this point, we recommend that you
 jump over to the [UI Overview](#ui-overview) or [Command
 Summary](#command-summary) sections to get an overview of the commands which
@@ -253,7 +261,7 @@ New client added: Alice Baker (alice_baker@bakers.com)
 ```
 <div markdown="span" class="alert alert-info">
 :information_source: **A note on names:** There may be times when you only have access to a client's username and not their real name.
-To accommodate this, Mycelium accepts all types of names.
+To accommodate this, Mycelium accepts all types of names (except for the extreme inputs mentioned earlier).
 For instance, names like "Alice Baker s/o Bob Baker" are valid names. In fact, unique names like "X Æ A-12" are also recognized as valid names in Mycelium.
 
 :information_source: An error message will be shown with an attempt to create a

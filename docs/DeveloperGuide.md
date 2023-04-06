@@ -148,8 +148,6 @@ How the parsing works:
 
 ### Model component
 
-### Smaller components used by Model component
-
 ***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/project/Project.java)
 
 ![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
@@ -193,6 +191,13 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<div markdown="span" class="alert alert-danger">
+:warning: If the JSON file storing the data becomes unreadable or invalid due to corruption or tampering,
+Mycelium will ignore the data file and start an empty application with no projects and clients. Commands
+performed that will modify the data file will overwrite the corrupted file. This would lead to a
+complete and unrecoverable loss of data prior to the corruption.
+</div>
 
 ### Common classes
 
@@ -931,7 +936,19 @@ with (ENTER).
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Planned Enhancements
-
+1. **Issue: Lost all data after modifying data file** <br>
+   We plan to utilise checksum on JSON file to prevent manual tampering of data and display explicit exceptions 
+   when the JSON file is corrupted or tampered with.
+   * A checksum could be generated in `checksum.txt` in the same directory as the JSON file.
+   * Any modification to the JSON file would result in a different checksum, which can be
+      detected by comparing with the checksum stored in `checksum.txt`.
+   * If the checksums do not match or is missing, the user will be notified about 
+      a possible corruption in their data and be prompted to restore the JSON file from a backup.
+   * The JSON file will then proceed to be read by Mycelium. If the JSON file is unreadable or 
+      contains invalid values, the JSON file will be ignored and the application will start as an
+      empty application with no projects and clients.
+   * Possible checksum algorithms are MD5, SHA-1, SHA-256, SHA-512.
+   
 2. **Issue: Long strings are cut off** <br>
    We are considering two alternatives: limiting the number of characters for a field 
     or wrapping text to fix the issue
