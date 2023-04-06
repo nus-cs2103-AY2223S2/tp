@@ -1254,7 +1254,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing all projects
 
-1. _{ more test cases …​ }_
+1. Clearing all projects in the list.
+   1. Test case: `clearpj`
+      Expected: All projects will be cleared.
+   
+   2. Test case: `clearpj 123`
+      Expected: All projects will be cleared.
+   
+   3. Test case: `clearpj h/`
+      Expected: All projects will be cleared.
 
 ### Sorting projects
 
