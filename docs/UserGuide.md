@@ -73,7 +73,8 @@ You can use the links in the Table of Contents to quickly navigate through this 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Keywords in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
-  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.
+  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.<br>
+  **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so error message will not be shown even if there is a wrong input of keyword in the subsequent prefix.
 
 * Fields in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -164,7 +165,7 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
 * At least one of the optional fields must be provided.
 * Removes the corresponding field value(s) matching the `KEYWORD`.
   * e.g. `l/Java` will remove `Java` from the languages of the contact.
-* Clears the field value(s) when no keyword is provided for the field.
+* Clears the field value(s) when no keyword is provided for the field even if the field is empty.
   * e.g. `t/` will remove all the tags associated with the contact.
 
 Examples:
@@ -175,6 +176,8 @@ Examples:
   <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
   <br>
   </p>
+
+
 
 
 <div style="page-break-after: always;"></div>
