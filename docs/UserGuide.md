@@ -18,10 +18,6 @@ connections_ and _accomplishing your goals_!
 :bulb: <b>Tip:</b> For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize yourself with CoDoc.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-
 ## Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
@@ -53,7 +49,8 @@ connections_ and _accomplishing your goals_!
   - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
   - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Navigating the User Guide
 Before you start using CoDoc, you are recommended to read the
 [Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format) sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
@@ -88,6 +85,8 @@ or you simply want to maximise your use of this application, do remember to revi
 Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 <table>
@@ -161,7 +160,8 @@ As recommended in the introduction, we would like to direct you to read the [Qui
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
----
+<div style="page-break-after: always;"></div>
+
 
 ## Quick Start
 
@@ -223,6 +223,8 @@ launched in its factory state as shown below.
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
+
 
 ### Navigating CoDoc
 
@@ -246,6 +248,8 @@ Below is the breakdown of the CoDoc screen:
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
+
 
 ### CoDoc Tutorial: Your first steps
 
@@ -289,6 +293,7 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 </div>
 
 <br>
+<div style="page-break-after: always;"></div>
 
 #### 2. Viewing a person
 
@@ -332,6 +337,8 @@ contact information.
 **Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
 
 <br>
+<div style="page-break-after: always;"></div>
+
 
 #### 3. Editing a person's details
 
@@ -408,6 +415,7 @@ If you need more info on the usage of each command, you can refer to the relevan
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 <br>
+<div style="page-break-after: always;"></div>
 
 ---
 
