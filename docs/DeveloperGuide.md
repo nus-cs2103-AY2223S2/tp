@@ -1163,16 +1163,16 @@ testers are expected to do more *exploratory* testing.
 1. Clearing all contacts or contacts associated with the given tag(s) while all contacts are being shown
 
    1. Test case: `clear`<br>
-      Expected: All contacts will be cleared.
+      Expected: All contacts are cleared.
    
    1. Test case: `clear t/`<br>
-      Expected: All contacts will be cleared.
+      Expected: All contacts are cleared.
    
    1. Test case: `clear t/friends`
-      Expected: Contacts with tag `friends` will be cleared.
+      Expected: Contacts with tag `friends` are cleared.
    
    1. Test case: `clear t/enemy`
-      Expected: If there are no contact with the tag `enemy`, no contact will be cleared. An error message is shown as no such tag was found in the SOCket.
+      Expected: If there are no contact with the tag `enemy`, no contact is cleared. An error message is shown as no such tag was found in the SOCket.
 
 ### Sorting contacts
 
