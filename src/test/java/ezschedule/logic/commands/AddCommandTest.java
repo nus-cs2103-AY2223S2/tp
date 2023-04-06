@@ -280,6 +280,8 @@ public class AddCommandTest {
 
         @Override
         public void clearRecent() {
+            recentCommand.clear();
+            recentEvent.clear();
         }
 
         @Override
