@@ -13,7 +13,7 @@ public class TestUtil {
     private TestUtil() {}
 
     public static Task newTask() {
-        return new Task("Touhou Project");
+        return new Task("");
     }
 
     public static LogicTaskList newLogicTaskListStub(Task... tasks) {

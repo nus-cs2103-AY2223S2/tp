@@ -13,6 +13,8 @@ import vimification.common.core.Index;
 import vimification.internal.parser.Pair;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 public class EditCommandTest {
@@ -50,7 +52,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void deleteLabelOnly_shouldWorkCorrectly() {
+    public void editLabelsOnly_shouldWorkCorrectly() {
         EditRequest request = new EditRequest();
         Pair<String, String> labels1 = Pair.of("AoCF", "EoSD");
         Pair<String, String> labels2 = Pair.of("LoLK", "IaMP");
@@ -80,8 +82,63 @@ public class EditCommandTest {
 
         command.undo(taskList);
         Task oldTask = taskList.get(0);
+        assertEquals(task, oldTask);
+    }
 
-        assertEquals(1, taskList.size());
+    @Test
+    public void editPriorityOnly_shouldWorkCorrectly() {
+        EditRequest request = new EditRequest();
+        request.setEditedPriority(Priority.VERY_URGENT);
+
+        LocalDateTime deadline = LocalDateTime.now();
+        String title = "Touhou Project";
+
+        Task task = TestUtil.newTask();
+        task.setDeadline(deadline);
+        task.setTitle(title);
+
+        LogicTaskList taskList = TestUtil.newLogicTaskListStub(task);
+        CommandStack commandStack = TestUtil.newCommandStack();
+
+        EditCommand command = new EditCommand(Index.fromOneBased(1), request);
+        command.execute(taskList, commandStack);
+        Task newTask = taskList.get(0);
+
+        assertEquals(deadline, newTask.getDeadline());
+        assertEquals(title, newTask.getTitle());
+
+        command.undo(taskList);
+        Task oldTask = taskList.get(0);
+        assertEquals(task, oldTask);
+    }
+
+    @Test
+    public void editBothTitleAndStatus_shouldWorkCorrectly() {
+        EditRequest request = new EditRequest();
+        request.setEditedStatus(Status.COMPLETED);
+        request.setEditedTitle("Spring Lane");
+
+        LocalDateTime deadline = LocalDateTime.now();
+        String title = "Rest In Peace, Saith The Lord";
+
+        Task task = TestUtil.newTask();
+        task.setDeadline(deadline);
+        task.setTitle(title);
+        task.setStatus(Status.NOT_DONE);
+
+        LogicTaskList taskList = TestUtil.newLogicTaskListStub(task);
+        CommandStack commandStack = TestUtil.newCommandStack();
+
+        EditCommand command = new EditCommand(Index.fromOneBased(1), request);
+        command.execute(taskList, commandStack);
+        Task newTask = taskList.get(0);
+
+        assertEquals(deadline, newTask.getDeadline());
+        assertEquals(request.getEditedTitle(), newTask.getTitle());
+        assertEquals(request.getEditedStatus(), newTask.getStatus());
+
+        command.undo(taskList);
+        Task oldTask = taskList.get(0);
         assertEquals(task, oldTask);
     }
 }
