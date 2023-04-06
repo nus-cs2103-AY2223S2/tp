@@ -28,7 +28,7 @@ public class ViewCommand extends Command {
             + PREFIX_INDEX + " INDEX (must be a positive integer)\n"
             + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " -i 1";
 
-    public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "Viewed drug: %1$s";
+    public static final String MESSAGE_VIEW_DRUG_SUCCESS = "Viewed drug: %1$s";
 
     private Index targetIndex;
 
@@ -61,7 +61,7 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX);
         } else {
             Drug drugToView = drugList.get(targetIndex.getZeroBased());
-            return new CommandResult(drugToView, String.format(MESSAGE_VIEW_PATIENT_SUCCESS, drugToView));
+            return new CommandResult(drugToView, String.format(MESSAGE_VIEW_DRUG_SUCCESS, drugToView));
         }
     }
 }
