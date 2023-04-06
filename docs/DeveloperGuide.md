@@ -1598,7 +1598,7 @@ Help NUS students maintain both their social and academic life by lowering the b
     * 3c2. EduMate does not display the module and lesson in the feedback message.
 
   Use case resumes at step 6.
-* 3d. The module does not come with have a lesson.
+* 3d. The module does not come with a lesson.
     * 3d1. EduMate removes the entire module from that person's module set.
 
   Use case resumes at step 6.
