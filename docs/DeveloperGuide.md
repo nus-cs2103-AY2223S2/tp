@@ -393,6 +393,7 @@ The above activity diagram does not include the mapping of the UP and DOWN keys 
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 3.1</b> Class Diagram for Model Components
 </div>
+<br>
 
 The `Model` component,
 
@@ -991,7 +992,7 @@ The `organise` command will set a meet up with the time and place for all partic
 :information_source: **Command Formats:** <br>
 
 * `organise RECOMMENDATION_INDEX` : Takes the recommendation at the specified index and saves it.
-* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up for participants with the given contact indices (including the user). 
+* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up for participants with the given contact indices. Note that this list of contact indices should not include that of the user (0).
 
 </div>
 
