@@ -4,10 +4,10 @@
 start
 :User enters an untag command;
 
-if () then ([None untagged])
+if () then ([No tags are removed])
     :Error: No Tags;
 
-elseif () then ([Both untagged])
+elseif () then ([Group and Module Tags are removed])
     :Error: Both Tags;
 
 else ()

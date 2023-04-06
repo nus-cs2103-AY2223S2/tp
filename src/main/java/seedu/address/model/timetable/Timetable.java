@@ -117,7 +117,7 @@ public class Timetable {
                 if (!dayEvents.get(i).isFree()) {
                     Commitment lesson = dayEvents.get(i).getCommitment().orElseGet(() -> null);
                     logger.info(String.format("=============================[ Lesson Added: %s]===="
-                        + "=======================", lesson));
+                            + "=======================", lesson));
                     this.schedule.get(day).get(i).setCommitment(lesson);
                 }
             }
