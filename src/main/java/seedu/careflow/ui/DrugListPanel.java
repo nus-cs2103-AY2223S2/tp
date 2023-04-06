@@ -82,6 +82,8 @@ public class DrugListPanel extends UiPart<Region> {
                 Drug selectedDrug = drugListView.getSelectionModel().getSelectedItem();
                 if (selectedDrug != null) {
                     updateDisplay(selectedDrug);
+                } else {
+                    updateNullDisplay();
                 }
             }
         });
@@ -111,6 +113,23 @@ public class DrugListPanel extends UiPart<Region> {
         setupStyle();
         setDrugFieldsDisplay(fields);
         updateDisplayedDrugDetail(selectedDrug, details);
+    }
+
+    /**
+     * Set drug display to empty
+     */
+    public void updateNullDisplay() {
+        selectedTradeName.setText("Please select a patient");
+        selectedActiveIngredient.setText("");
+        selectedDirection.setText("");
+        selectedStorageCount.setText("");
+        selectedPurposes.setText("");
+        selectedSideEffects.setText("");
+        activeIngredientField.setText("");
+        directionField.setText("");
+        purposesField.setText("");
+        sideEffectsField.setText("");
+        storageCountField.setText("");
     }
 
     /**
@@ -149,6 +168,7 @@ public class DrugListPanel extends UiPart<Region> {
             detail.setMinWidth(0);
         }
     }
+
 
     /**
      * Set up the styling and spacing of {@code drugDetailDisplay} region

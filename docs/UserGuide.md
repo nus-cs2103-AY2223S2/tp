@@ -19,7 +19,7 @@ via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a G
 <a id="top"></a>
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 <br>
 
@@ -265,7 +265,7 @@ Throughout this user guide, you may come across different formatting styles and 
         <li><code>p list </code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
         <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
-        <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
+        <li><code>p delete -i 3</code> : Deletes the 3rd patient record shown in the current list.</li>
         <li><code>p clear</code> : Deletes all patient records.</li>
         <li><code>d clear</code> : Deletes all drug records.</li>
         <li><code>exit</code> : Exits the app.</li>
@@ -323,7 +323,7 @@ are committed to constantly improving our software to meet your needs.
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
-### View help : `g help`
+### View help: `g help`
 * Shows all valid command formats and their functionalities.
   <p align="left">
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
@@ -340,7 +340,7 @@ drug of CareFlow.
 
 <br>
 
-### Exit the program : `g exit`
+### Exit the program: `g exit`
 * You can exit the program with this command, your data will be automatically saved to the hard disk.
   \
   &nbsp;
@@ -367,7 +367,7 @@ ___
   <br>
 
   | Parameter | Constraint                                                                                                                                                                                                                                                                                                               | Example |
-  |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------| ------- |
+    |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------| ------- |
   | PATIENT_NAME | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                              | John Smith |
   | PHONE_NUMBER | Phone numbers should contain numbers, special character like: space, +, -, (), and it should be at least 3 or at most 20 digit and special character long                                                                                                                                                                | 12345678 |
   | EMAIL | The email address should follow the format of "username@domain.extension". The "username" can include letters, numbers, dots, hyphens, and underscores, it cannot start or end with any special character. The domain name must <br> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | johnson@gmail.com |
@@ -537,7 +537,7 @@ ___
 <br>
 
 
-### Clear all patient records : `p clear`
+### Clear all patient records: `p clear`
 
 * You can also clear all patient records  in case you wish to terminate your subscription with CareFlow and move on to another system. Run this command with caution!
   \
@@ -558,7 +558,7 @@ ___
 <br>
 
 
-### List all patient records : `p list`
+### List all patient records: `p list`
 
 * You can use the `list` command to see the list of all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
   \
@@ -636,7 +636,7 @@ ___
 <br>
 
 
-### Delete a drug entry by INDEX : `d delete`
+### Delete a drug entry by INDEX: `d delete`
 * You can also delete a specified drug from the drug list by specifying its index in the drug list.
   \
   &nbsp;
@@ -723,7 +723,7 @@ ___
 <br>
 
 
-### Clear all drug entries : `d clear`
+### Clear all drug entries: `d clear`
 * You can clear all records of drugs. Use this with caution!
   \
   &nbsp;
