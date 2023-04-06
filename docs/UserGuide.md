@@ -40,7 +40,8 @@ and take proactive measures to prevent the spread of the disease.
 command to run
 the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
 open the help window.<br>
@@ -91,10 +92,6 @@ placeholder
 | **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                   |
 | **Help**     | `help`                                                                                                                                                                                                                                                                 |
 | **Exit**     | `exit`                                                                                                                                                                                                                                                                 |
-
-
-
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -198,6 +195,7 @@ Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 Examples:
 * `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
+
 ![AddCommandExample](images/AddCommandExample.png)
 
 <br>
@@ -220,6 +218,7 @@ Examples:
 * `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
   respectively.
 * `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
+
 ![EditCommandExample](images/EditCommandExample.png)
 
 <br>
@@ -247,6 +246,7 @@ command.
 * * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 
 2023 inclusive in the results of the `find` command.
 * `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in DengueHotspotTracker.
+
 ![DeleteCommandExample](images/DeleteCommandExample.png)
 
 <br>
@@ -313,7 +313,7 @@ date `d/` or age `a/` prefixes respectively
 Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
 
-![result for find v/DENV1](images/findExample.png)
+![result for find v/DENV1](images/FindCommandExample.png)
 
 <br>
 
@@ -344,9 +344,12 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 
 Example:
 * `undo` after a `edit 2 n/Betsy Crower v/` command:
-  ![UndoCommandExample](images/UndoCommandExample.png)
+
+![UndoCommandExample](images/UndoCommandExample.png)
+
 * `redo` after the undo:
-  ![RedoCommandExample](images/RedoCommandExample.png)
+
+![RedoCommandExample](images/RedoCommandExample.png)
 <br>
 
 ### Changing the overview type : `overview`
