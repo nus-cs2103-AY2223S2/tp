@@ -96,6 +96,7 @@ Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`  <b
 * Adds the specified person to MediConnect.
 * Each person can be added only once and can be **either** a Patient or a Doctor.
 * Each person's NRIC must be distinct.
+* There is no limit to the number of digits for phone number. It is left completely up to the user's discretion.
 
 Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
