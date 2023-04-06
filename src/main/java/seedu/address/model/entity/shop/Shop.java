@@ -51,6 +51,12 @@ import seedu.address.model.tag.Tag;
 public class Shop implements ReadOnlyShop {
     public static final String MSG_RUNTIME_ERROR =
             "Relationships in shop broken, bug in one of the modification methods";
+    // TODO : Add regex for String inputs
+    //    private static final String PART_NAME_REGEX = "[a-zA-Z0-9 _]+";
+    //    private static final String VEHICLE_BRAND_REGEX = "[a-zA-Z]+";
+    //    private static final String VEHICLE_MODEL_REGEX = "[a-zA-Z0-9 _]+";
+    //    private static final String VEHICLE_PLATE_NUMBER_REGEX = "[a-zA-Z0-9]+";
+    //    private static final String
     private final ObservableList<Customer> customers = FXCollections.observableArrayList();
     private final ObservableList<Vehicle> vehicles = FXCollections.observableArrayList();
     private final ObservableList<Technician> technicians = FXCollections.observableArrayList();
@@ -1047,12 +1053,12 @@ public class Shop implements ReadOnlyShop {
      * Replaces the existing data of this {@code shop} with {@code newData}.
      * This should only be called when loading data from file
      */
-    public void overrideData(ObservableList<Customer> customers,
-                             ObservableList<Vehicle> vehicles,
-                             ObservableMap<String, Integer> parts,
-                             ObservableList<Service> services,
-                             ObservableList<Technician> technicians,
-                             ObservableList<Appointment> appointments) {
+    public void initializeData(ObservableList<Customer> customers,
+                               ObservableList<Vehicle> vehicles,
+                               ObservableMap<String, Integer> parts,
+                               ObservableList<Service> services,
+                               ObservableList<Technician> technicians,
+                               ObservableList<Appointment> appointments) {
         this.customers.clear();
         this.customers.addAll(customers);
 

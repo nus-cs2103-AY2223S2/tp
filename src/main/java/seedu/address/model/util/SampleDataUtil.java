@@ -203,7 +203,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyShop getSampleShop() {
         Shop sampleSh = new Shop();
-        sampleSh.overrideData(FXCollections.observableArrayList(getSampleCustomers()),
+        sampleSh.initializeData(FXCollections.observableArrayList(getSampleCustomers()),
             FXCollections.observableArrayList(getSampleVehicles()),
             FXCollections.observableMap(getSampleParts()),
             FXCollections.observableArrayList(getSampleServices()),

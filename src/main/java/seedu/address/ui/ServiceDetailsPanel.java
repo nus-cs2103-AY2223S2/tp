@@ -82,7 +82,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
         vehicleAssignedTo.getChildren().add(vehicleLabel);
 
         List<Technician> technicians = dataMap.getServiceTechnicians(service);
-        var partsRequired = service.getRequiredParts();
+        Map<String, Integer> partsRequired = service.getRequiredParts();
 
         for (int i = 0; i < technicians.size(); i++) {
             Technician t = technicians.get(i);

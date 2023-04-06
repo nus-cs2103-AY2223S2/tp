@@ -83,34 +83,34 @@ class JsonSerializableShop {
      */
     public Shop toModelType() throws IllegalValueException {
         Shop shop = new Shop();
-        List<Customer> customerLst = new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
             Customer customer = jsonAdaptedCustomer.toModelType();
             if (shop.hasCustomer(customer.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
             IdGenerator.setCustomerIdUsed(customer.getId());
-            customerLst.add(customer);
+            customerList.add(customer);
         }
 
-        List<Vehicle> vehicleLst = new ArrayList<>();
+        List<Vehicle> vehicleList = new ArrayList<>();
         for (JsonAdaptedVehicle jsonAdaptedVehicle : vehicles) {
             Vehicle vehicle = jsonAdaptedVehicle.toModelType();
             if (shop.hasVehicle(vehicle.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VEHICLE);
             }
             IdGenerator.setVehicleIdUsed(vehicle.getId());
-            vehicleLst.add(vehicle);
+            vehicleList.add(vehicle);
         }
 
-        List<Service> serviceLst = new ArrayList<>();
+        List<Service> serviceList = new ArrayList<>();
         for (JsonAdaptedService jsonAdaptedService : services) {
             Service service = jsonAdaptedService.toModelType();
             if (shop.hasService(service.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICE);
             }
             IdGenerator.setServiceIdUsed(service.getId());
-            serviceLst.add(service);
+            serviceList.add(service);
         }
 
         Map<String, Integer> partMap = new CaseInsensitiveHashMap<>();
@@ -122,32 +122,32 @@ class JsonSerializableShop {
             partMap.put(partEntry.getKey(), partEntry.getValue());
         }
 
-        List<Appointment> appointmentLst = new ArrayList<>();
+        List<Appointment> appointmentList = new ArrayList<>();
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
             if (shop.hasAppointment(appointment.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             IdGenerator.setAppointmentIdUsed(appointment.getId());
-            appointmentLst.add(appointment);
+            appointmentList.add(appointment);
         }
 
-        List<Technician> technicianLst = new ArrayList<>();
+        List<Technician> technicianList = new ArrayList<>();
         for (JsonAdaptedTechnician jsonAdaptedTechnician : technicians) {
             Technician technician = jsonAdaptedTechnician.toModelType();
             if (shop.hasTechnician(technician.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TECHNICIAN);
             }
             IdGenerator.setStaffIdUsed(technician.getId());
-            technicianLst.add(technician);
+            technicianList.add(technician);
         }
-        shop.overrideData(
-            FXCollections.observableArrayList(customerLst),
-            FXCollections.observableArrayList(vehicleLst),
+        shop.initializeData(
+            FXCollections.observableArrayList(customerList),
+            FXCollections.observableArrayList(vehicleList),
             FXCollections.observableMap(partMap),
-            FXCollections.observableArrayList(serviceLst),
-            FXCollections.observableArrayList(technicianLst),
-            FXCollections.observableArrayList(appointmentLst)
+            FXCollections.observableArrayList(serviceList),
+            FXCollections.observableArrayList(technicianList),
+            FXCollections.observableArrayList(appointmentList)
         );
         return shop;
     }
