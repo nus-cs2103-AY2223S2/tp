@@ -2,6 +2,8 @@ package seedu.quickcontacts.model.person;
 
 import static seedu.quickcontacts.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.quickcontacts.logic.parser.EditMeetingParser;
+import seedu.quickcontacts.logic.parser.AddCommandParser;
+import seedu.quickcontacts.logic.parser.DeleteCommandParser;
 import seedu.quickcontacts.model.Model;
 
 import seedu.quickcontacts.logic.commands.Command;
@@ -9,6 +11,8 @@ import seedu.quickcontacts.logic.parser.exceptions.ParseException;
 import seedu.quickcontacts.logic.commands.exceptions.CommandException;
 
 import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -125,18 +129,38 @@ public class Person {
                 && otherPerson.getTags().equals(getTags());
     }
 
-    public void tellMeetingNameChanged(Name newName, Model model) {
-
-        String arguments = "1 m/test";
-        try{ 
-            Command command = new EditMeetingParser().parse(arguments);
-            command.execute(model);
-        } catch (ParseException e) {
-            System.out.println("nope");
-        } catch (CommandException e) {
-
+    public void tellMeetingNameChanged(Name newName, HashMap<String, String> map, Model model) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String argumentsEditMeeting = entry.getKey() + " " + entry.getValue();
+            String argumentsAdd = " n/" + newName;
+            String argumentsDel = " " + Integer.toString(model.getFilteredPersonList().size() + 1);
+            try {
+                Command command1 = new AddCommandParser().parse(argumentsAdd);
+                command1.execute(model);
+                Command command2 = new EditMeetingParser().parse(argumentsEditMeeting);
+                command2.execute(model);
+                Command command3 = new DeleteCommandParser().parse(argumentsDel);
+                command3.execute(model);
+            } catch (ParseException e) {
+                //should not happen
+            } catch (CommandException e) {
+                //should not happen
+            }
         }
+    }
 
+    public void confirmNameChange(Name newName, HashMap<String, String> map, Model model) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String argumentsEditMeeting = entry.getKey() + " " + entry.getValue();
+            try {
+                Command command2 = new EditMeetingParser().parse(argumentsEditMeeting);
+                command2.execute(model);
+            } catch (ParseException e) {
+                System.out.println("nope");
+            } catch (CommandException e) {
+                // Handle CommandException
+            }
+        }
     }
 
     @Override

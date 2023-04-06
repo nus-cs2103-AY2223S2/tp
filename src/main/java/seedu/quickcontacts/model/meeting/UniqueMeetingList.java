@@ -2,10 +2,12 @@ package seedu.quickcontacts.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.quickcontacts.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.quickcontacts.model.person.Person;
 
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.HashMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +55,22 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void sort(Comparator comparator) {
         internalList.sort(comparator);
     }
+
+    /**
+     * Sort get hashmap of meeting with person in it and string of current attendees (key)
+     * String of current attendees with the edited name
+     */
+    public HashMap<String, String> indexAttendees(Person personToEdit, Person target) {
+        HashMap<String, String> hm = new HashMap<>();
+        for (int i = 0; i < internalList.size(); i++) {
+            Meeting meeting = internalList.get(i);
+            if(meeting.hasAttendee(personToEdit)) {
+                hm.put(Integer.toString(i+1), meeting.formatAttendeesSubstituted(personToEdit, target));
+            }
+        }
+        return hm;
+    }
+
 
     /**
      * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
