@@ -1,0 +1,26 @@
+@startuml
+object Course
+object Group
+object Student
+object Session
+object Task
+
+Course : courseCode : String
+Group : groupName : String
+Session : sessionName : String
+Task : taskName : String
+
+Student : name : Name
+Student : phone : Phone
+Student : email : Email
+Student : remark : Remark
+Student : studentId : StudentId
+
+
+
+
+Course -> "*" Group
+Group -> "*" Student
+Group -> "*" Session
+Group -> "*" Task
+@enduml
