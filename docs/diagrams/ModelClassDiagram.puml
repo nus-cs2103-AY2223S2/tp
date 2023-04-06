@@ -18,7 +18,7 @@ Class Email
 Class Name
 Class Contact
 Class Tag
-
+Class Company
 Class Salary
 Class Website
 Class Deadline
@@ -42,6 +42,7 @@ RoleBook *--> "1" UniqueRoleList
 
 Role *--> Name
 Role *--> Contact
+Role *--> Company
 Role *--> Email
 Role *--> "*" Tag
 Role *--> Salary

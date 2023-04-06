@@ -16,6 +16,7 @@ Role -up-> "*" Tag
 
 Role *--> Name
 Role *--> Contact
+Role *--> Company
 Role *--> Email
 Role *--> Salary
 Role *--> Website
