@@ -538,3 +538,9 @@ testers are expected to do more *exploratory* testing.
 
    1.  Currently our system don't allow patient to have the same name. In future implementation we might consider 
        to allow patient to have duplicate name and identify them using NRIC or FIN.
+
+4. Detecting unusual user input value for phone number
+
+   1.  Need to work on phone number validation, i.e: when user input only special character for phone data field, 
+       ex: ()+-, then the system wouldn't able to detect this. In future implementation, we consider to restrict 
+       user to input telephone numbers only for this data field.
