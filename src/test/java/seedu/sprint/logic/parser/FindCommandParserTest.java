@@ -1,11 +1,11 @@
 package seedu.sprint.logic.parser;
 
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sprint.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.sprint.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.sprint.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,39 +66,39 @@ public class FindCommandParserTest {
         List<String> status = Arrays.asList("Interested");
         List<String> statuses = Arrays.asList("Interested", "Offered");
 
-        HashMap<Prefix, List<String>> PrefixRoleMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixRoleMap = new HashMap<>() {
             {
                 put(PREFIX_ROLE, role);
             }
         };
 
-        HashMap<Prefix, List<String>> PrefixCompanyNameMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixCompanyNameMap = new HashMap<>() {
             {
                 put(PREFIX_COMPANY_NAME, companyName);
             }
         };
-        HashMap<Prefix, List<String>> PrefixStatusMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixStatusMap = new HashMap<>() {
             {
                 put(PREFIX_STATUS, status);
             }
         };
-        HashMap<Prefix, List<String>> PrefixRolesMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixRolesMap = new HashMap<>() {
             {
                 put(PREFIX_ROLE, roles);
             }
         };
-        HashMap<Prefix, List<String>> PrefixCompanyNamesMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixCompanyNamesMap = new HashMap<>() {
             {
                 put(PREFIX_COMPANY_NAME, companyNames);
             }
         };
 
-        HashMap<Prefix, List<String>> PrefixStatusesMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> prefixStatusesMap = new HashMap<>() {
             {
                 put(PREFIX_STATUS, statuses);
             }
         };
-        HashMap<Prefix, List<String>> MultiplePrefixesMap = new HashMap<>() {
+        HashMap<Prefix, List<String>> multiplePrefixesMap = new HashMap<>() {
             {
                 put(PREFIX_ROLE, roles);
                 put(PREFIX_STATUS, statuses);
@@ -108,38 +108,38 @@ public class FindCommandParserTest {
 
         // Find Role keyword
         FindCommand expectedFindCommandForRolePrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixRoleMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixRoleMap));
 
         assertParseSuccess(parser, " r/Intern", expectedFindCommandForRolePrefix);
 
         // Find Company Name keyword
         FindCommand expectedFindCommandForCompanyNamePrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixCompanyNameMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixCompanyNameMap));
         assertParseSuccess(parser, " c/Amazon", expectedFindCommandForCompanyNamePrefix);
 
         // Find Status keyword
         FindCommand expectedFindCommandForStatusPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixStatusMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixStatusMap));
         assertParseSuccess(parser, " s/Interested", expectedFindCommandForStatusPrefix);
 
         // Find Role keywords
         FindCommand expectedFindCommandForRolesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixRolesMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixRolesMap));
         assertParseSuccess(parser, " r/Testing Intern", expectedFindCommandForRolesPrefix);
 
         // Find Company Name keywords
         FindCommand expectedFindCommandForCompanyNamesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixCompanyNamesMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixCompanyNamesMap));
         assertParseSuccess(parser, " c/Amazon Meta", expectedFindCommandForCompanyNamesPrefix);
 
         // Find Status keywords
         FindCommand expectedFindCommandForStatusesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(PrefixStatusesMap));
+                new FindCommand(new NameContainsKeywordsPredicate(prefixStatusesMap));
         assertParseSuccess(parser, " s/Interested Offered", expectedFindCommandForStatusesPrefix);
 
         // Find Roles, Company Names and Statuses
         FindCommand expectedFindCommandForMultiplePrefixes =
-                new FindCommand(new NameContainsKeywordsPredicate(MultiplePrefixesMap));
+                new FindCommand(new NameContainsKeywordsPredicate(multiplePrefixesMap));
         assertParseSuccess(parser, " r/Testing Intern c/Amazon Meta s/Interested Offered",
                 expectedFindCommandForMultiplePrefixes);
     }
