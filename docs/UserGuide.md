@@ -63,7 +63,7 @@ than current GUI apps in the industry.
 
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 
-6. For **new users**, learn to use Docedex [here](#docedex-tutorial).
+6. For **new users**, learn to use Docedex [here](#docedex-tutorial-for-new-users).
 
 7. For **advanced users**, view all feature details [here](#features).
 
@@ -165,7 +165,7 @@ look through all the doctors and patients in Docedex, please use the
 
 ---
 
-## Docedex Tutorial
+## Docedex Tutorial (for new users)
 
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
