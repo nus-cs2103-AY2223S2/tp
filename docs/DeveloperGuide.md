@@ -131,7 +131,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `RoleBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -151,9 +151,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `RoleBookParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RoleBookParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -177,7 +177,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `RoleBook`, which `Person` references. This allows `RoleBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="750" />
 
@@ -200,7 +200,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.RoleBook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,7 +218,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedSala
 
 Given below is an example usage of how Salary Command is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the current address
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the current address
    book from the storage and loads it.
 
    <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
@@ -267,7 +267,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedDead
 
 Given below is an example usage of how Salary Command is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
    current address book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
@@ -341,7 +341,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 
 Given below is an example usage of how TagCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
    current address book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Tag Command` to filter tags.
@@ -372,7 +372,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 
 Given below is an example usage of how NameCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
    current address book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Name Command` to filter names.
@@ -405,7 +405,7 @@ any roles in the role book.
 
 An example usage of the `View` command is given below:
 
-1. The user launches the application for the first time. The AddressBook will be initialized with the current address book.
+1. The user launches the application for the first time. The RoleBook will be initialized with the current address book.
    <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
