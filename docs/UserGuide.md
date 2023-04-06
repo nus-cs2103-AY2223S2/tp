@@ -280,8 +280,6 @@ Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [
 
 or `edit_job ji/JOB_ID [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
-Alternative: Click on the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
-
 * Existing values will be overwritten by the input values.
 * At least one of the optional fields should be provided.
 * The optional field `done/t | f` indicates whether the job should be marked as completed or uncompleted.
