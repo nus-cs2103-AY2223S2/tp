@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
@@ -45,7 +45,8 @@ class AddScoreCommandTest {
         CommandResult commandResult = new AddScoreCommand(INDEX_FIRST_STUDENT, validScore).execute(model);
 
         assertEquals(String.format(AddScoreCommand.MESSAGE_SUCCESS, studentToAddScoreTo.getName(),
-                "Label: " + validScore.getLabel().toString() + "; " + "Score: " + validScore.getValue().toString() + "; "
+                "Label: " + validScore.getLabel().toString() + "; "
+                        + "Score: " + validScore.getValue().toString() + "; "
                         + "Date: " + validScore.getDate().toString()), commandResult.getFeedbackToUser());
     }
 
