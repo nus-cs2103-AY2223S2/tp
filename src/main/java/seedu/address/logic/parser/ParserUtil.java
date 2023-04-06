@@ -102,6 +102,8 @@ public class ParserUtil {
         String trimmedTimeSlot = timeSlot.trim();
         if (!TimeSlot.isValidTimeSlot(trimmedTimeSlot)) {
             throw new ParseException(TimeSlot.MESSAGE_CONSTRAINTS);
+        } else if (!TimeSlot.isStartTimeBeforeEndTime(trimmedTimeSlot)) {
+            throw new ParseException((TimeSlot.MESSAGE_STARTTIME_BEFORE_ENDTIME));
         }
         return new TimeSlot(trimmedTimeSlot);
     }
@@ -117,8 +119,7 @@ public class ParserUtil {
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidFormat(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
-        }
-        if (!Deadline.isValidDate(trimmedDeadline)) {
+        } else if (!Deadline.isValidDate(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);
         }
         return new Deadline(trimmedDeadline);

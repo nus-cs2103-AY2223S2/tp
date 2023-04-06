@@ -10,6 +10,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a Module's timeSlot in the module tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String)}
@@ -18,6 +20,7 @@ public class TimeSlot implements Comparable<TimeSlot> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Timeslot should be of format 'Day StartTime EndTime' (Example: Tuesday 12:00 14:00)";
+    public static final String MESSAGE_STARTTIME_BEFORE_ENDTIME = "Start time must be before end time!";
     public static final String VALIDATION_REGEX = "^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)"
             + "\\s(([01]?[0-9]|2[0-3]):[0-5][0-9])\\s(([01]?[0-9]|2[0-3]):[0-5][0-9])$";
     private DayOfWeek day;
@@ -25,13 +28,11 @@ public class TimeSlot implements Comparable<TimeSlot> {
     private LocalTime endTime;
     private String storedInputString;
 
-
     /**
      * Constructs an {@code TimeSlot}.
-     *
      * @param timeSlot A valid timeSlot address.
      */
-    public TimeSlot(String timeSlot) {
+    public TimeSlot(String timeSlot)  {
         requireNonNull(timeSlot);
         String trimmedTimeSlot = timeSlot.trim();
         checkArgument(isValidTimeSlot(trimmedTimeSlot), MESSAGE_CONSTRAINTS);
@@ -45,8 +46,22 @@ public class TimeSlot implements Comparable<TimeSlot> {
         if (timeSlot.equals(EMPTY_INPUT)) {
             return true;
         }
-        //We need to change the string to lower case so a String like "Monday" would still match validation string
         return timeSlot.toLowerCase().matches(VALIDATION_REGEX);
+            //Important: We need to change the string to lower case because the validation
+            //regex is in lower case.
+    }
+
+    /**
+     * Checks if the start time is before the end time for a timeslot.
+     * @param timeSlot A timeslot string.
+     * @return a boolean
+     */
+    public static boolean isStartTimeBeforeEndTime(String timeSlot) {
+        String[] values = timeSlot.split(" ");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime startTime = LocalTime.parse(values[1], dateTimeFormatter);
+        LocalTime endTime = LocalTime.parse(values[2], dateTimeFormatter);
+        return startTime.isBefore(endTime);
     }
 
     /**
