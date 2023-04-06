@@ -185,6 +185,10 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ---
 
 ## Navigation
+![RootContext](images/RootContext.png)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+
 Le Tracker organises content using a hierarchical structure (Modules -> Lectures -> Videos).
 
 When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
@@ -193,6 +197,7 @@ To avoid the need to constantly specify the module and lecture parameters for su
 
 The user can specify their current working context by navigating through the hierarchy. For example, the user can specify the lecture Week 1 of the module CS2040S as their current working context by
 
+![RootContext](images/RootContext.png)
 Navigating relatively from the root context:
 1. Navigate to the module context from the root context.
 - `nav CS2040S`
@@ -201,6 +206,9 @@ Navigating relatively from the root context:
 
 OR
 
+![RootContext](images/RootContext.png)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
 Navigating directly from any context:
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
 - `nav /mod CS2040S /lec Week 1
@@ -316,7 +324,9 @@ Examples:
 
 - `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Lecture
 
