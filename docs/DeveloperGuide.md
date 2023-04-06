@@ -96,7 +96,7 @@ As seen from the class diagram above, `MainWindow` has composition type relation
   * 1 each for patients, vaccinations and appointments
 * `ResultDisplay` - responsible for displaying messages to the user.
 
-These classes are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state of `MainWindow` after `fillInnerParts()` has been called.
+The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state of `MainWindow` after `fillInnerParts()` has been called.
 
 ![State of MainWindow](images/UiMainWindowObjectDiagram.png)
 
@@ -112,11 +112,17 @@ Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `
 
 ![Class diagram of ListViewPanel](images/UiListViewPanelClassDiagram.png)
 
+![Object diagram of Vaccination ListViewPanel](images/UiListViewPanelVaxObjectDiagram.png)
+
+![Object diagram of Appointment ListViewPanel](images/UiListViewPanelApptObjectDiagram.png)
+
 ##### `ResultDisplay`
 
 To display messages to the user after every command that the user has inputted, a `Consumer`, that accepts a list of `CommandMessage`, is used to update `ResultDisplay` whenever `Logic` has completed the execution of a command regardless if it was successful. The `Consumer` only function is to call the `displayMessage(List<CommandMessage>)` method of `ResultDisplay`. This method will convert all `CommandMessage` to their equivalent `Node` representation, via `ResultMessageBox`, allowing `CommandMessage` to be graphically displayed. To understand more about when this `Consumer` is called within `Logic`, read [here](#executing-a-command). Below shows the class and activity diagram for better visualization of the structure of `ResultDisplay` and the activities taking place when `displayMessage(List<CommandMessage>)` is called respectively.
 
 ![Class diagram of ResultDisplay](images/UiResultDisplayClassDiagram.png)
+
+![Object diagram of ResultDisplay](images/UiResultDisplayObjectDiagram.png)
 
 ![Activity diagram of ResultDisplay](images/UiResultDisplayActivityDiagram.png)
 
