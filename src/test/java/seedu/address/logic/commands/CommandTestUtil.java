@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -44,9 +47,14 @@ public class CommandTestUtil {
     public static final String VALID_PARENT_PHONE_BOB = "44444444";
     public static final String VALID_TASK_NAME_1 = "Complete E Math Paper 1";
     public static final String VALID_TASK_NAME_2 = "Do Math Exercise 2";
-    public static final String VALID_SCORE_LABEL = "Test 1";
-    public static final String VALID_SCORE_VALUE = "100";
+    public static final String VALID_SCORE_LABEL = "Final Assessment 2022";
+    public static final String VALID_SCORE_VALUE = "80";
     public static final String VALID_SCORE_DATE = "2023-03-09";
+    public static final String INVALID_SCORE_VALUE = "120"; //value exceed 100 is not allowed
+    public static final String INVALID_DATE_FORMAT = "2012/04/03"; //date in wrong format
+    public static final String DATE_IN_FUTURE = "9999-04-03"; //date in the future
+
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -61,6 +69,19 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TASK_NAME_DESC_TASK_1 = " " + PREFIX_TASK_TITLE + VALID_TASK_NAME_1;
+    public static final String SCORE_FULL_1 = " " + PREFIX_SCORE_LABEL + VALID_SCORE_LABEL + " " + PREFIX_SCORE_VALUE
+            + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + VALID_SCORE_DATE;
+    public static final String SCORE_FULL_MISSING_LABEL_PREFIX = " " + VALID_SCORE_LABEL + " " + PREFIX_SCORE_VALUE
+            + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + VALID_SCORE_DATE;
+    public static final String SCORE_FULL_WRONG_VALUE = " " + PREFIX_SCORE_LABEL + VALID_SCORE_LABEL + " "
+            + PREFIX_SCORE_VALUE + INVALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + VALID_SCORE_DATE;
+    public static final String SCORE_FULL_INVALID_DATE_FORMAT = " " + PREFIX_SCORE_LABEL + VALID_SCORE_LABEL + " "
+            + PREFIX_SCORE_VALUE + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + INVALID_DATE_FORMAT;
+    public static final String SCORE_FULL_DATE_IN_FUTURE = " " + PREFIX_SCORE_LABEL + VALID_SCORE_LABEL + " "
+            + PREFIX_SCORE_VALUE + VALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + DATE_IN_FUTURE;
+    public static final String SCORE_MISSING_VARIABLE = " " + PREFIX_SCORE_LABEL + " " + PREFIX_SCORE_VALUE
+            + INVALID_SCORE_VALUE + " " + PREFIX_SCORE_DATE + VALID_SCORE_DATE;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PARENT_PHONE_DESC = " " + PREFIX_PARENT_PHONE
