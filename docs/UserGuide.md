@@ -22,6 +22,10 @@ Now it's time to **CONQUER** the semester!
 ## Table of Contents
 
 - [Quick Start](#quick-start)
+  - [Prerequisite](#prerequisite)
+  - [Installation and Setup](#installation-and-setup)
+  - [Getting Started](#getting-started)
+  - [Tutorials and Examples](#tutorials-and-examples)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
@@ -139,7 +143,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 **:information_source: The following are rules applicable to all commands:**
 
-1. Words encapsulated in `{}` are the argument values to be supplied by the user.\
+1. Words encapsulated in `{}` are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.\
    e.g. For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
 
 2. Items in square brackets are optional.\
@@ -154,11 +158,9 @@ Feel free to play around with the sample data to familiarise yourself with the c
 5. Extraneous arguments will be ignored.\
    e.g. For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
 
-6. Named arguments that take a value must be specified in the format `/{argument_name} {value}` and there must be a whitespace before `/{argument_name}`.\
-   e.g. `list /mod CS2040S`.
-
-7. Named arguments that do not take any value must be specified in the format `/{argument_name}` and there must be a whitespace before `/{argument_name}`. The format `/{argument_name} {value}` can be used as well but the value will be ignored.\
-   e.g. `find Heavy /byTag`.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z or A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace unless it is the end of the command.\
+   e.g. For the command `find Intro /mod CS2040S /byTag`, `/mod` and `/byTag` are both recognised as named arguments.\
+   For the command `find Intro /modCS2040S /byTag`, only `/byTag` is recognised as a named argument while `Intro /modCS2040S` is treated as the value of the unnamed argument.
 
 ---
 

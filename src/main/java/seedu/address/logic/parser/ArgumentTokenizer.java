@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
+    private static final String WHITESPACE_OR_STRING_END_REGEX = "( |$)";
+
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -170,7 +172,8 @@ public class ArgumentTokenizer {
 
     /**
      * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
-     * The end position of the value is determined by {@code nextPrefixPosition}.
+     * The end position of the value is determined by {@code nextPrefixPosition} or the first character of a valid
+     * prefix (detected by a match with {@code Prefix#VALIDATION_REGEX}) whichever comes first.
      */
     private static String extractArgumentValue(String argsString,
                                         PrefixPosition currentPrefixPosition,
@@ -179,6 +182,8 @@ public class ArgumentTokenizer {
 
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
+
+        value = value.split(" " + Prefix.VALIDATION_REGEX + WHITESPACE_OR_STRING_END_REGEX)[0];
 
         return value.trim();
     }
