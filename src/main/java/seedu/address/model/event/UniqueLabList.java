@@ -21,7 +21,7 @@ import seedu.address.model.event.exceptions.LabNotFoundException;
  * exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Lab#isSameLab(Lab).
+ * @see Lab#isSameLab(Lab)
  */
 public class UniqueLabList implements Iterable<Lab> {
 

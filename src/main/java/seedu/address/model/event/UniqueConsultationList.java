@@ -21,7 +21,7 @@ import seedu.address.model.event.exceptions.DuplicateConsultationException;
  * exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Consultation#isSameConsultation(Consultation).
+ * @see Consultation#isSameConsultation(Consultation)
  */
 public class UniqueConsultationList implements Iterable<Consultation> {
 

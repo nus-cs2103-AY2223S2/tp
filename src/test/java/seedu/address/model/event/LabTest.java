@@ -3,7 +3,9 @@ package seedu.address.model.event;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,13 @@ public class LabTest {
     private static final Person testPerson = new Person();
     private static final List<Person> testPersons = new ArrayList<>(Arrays.asList(testPerson));
     private static final Lab lab3 = new Lab("lab3", testPersons);
+
+    private static final Lab lab4 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>());
+
+    private static final Lab lab5 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>());
+
+    private static final Lab lab6 = new Lab("lab2", LocalDateTime.now(), new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>());
 
     @Test
     public void name_editName_getName() {
@@ -62,6 +71,41 @@ public class LabTest {
     }
 
     @Test
+    public void student_validStudent_removeIndexStudent() {
+        Lab newLab = new Lab("lab2", testPersons);
+        newLab.removeIndexStudent(0);
+        assertEquals(newLab.getStudents(), lab2.getStudents());
+    }
+
+    @Test
+    public void student_validStudentProfiles_getStudentProfiles() {
+        assertNotNull(lab1.getStudentProfiles());
+    }
+
+    @Test
+    public void student_validAttachments_getAttachments() {
+        assertNotNull(lab1.getAttachments());
+    }
+
+    @Test
+    public void student_validAttachments_addAttachment() {
+        lab6.addAttachment(new File(""));
+        assertEquals(1, lab6.countAttachments());
+    }
+
+    @Test
+    public void student_validAttachmentToCurrentAttachment_addAttachment() {
+        lab6.addAttachment(new File(""));
+        assertEquals(1, lab6.countAttachments());
+    }
+
+    @Test
+    public void student_validAttachment_removeAttachment() {
+        lab6.removeAttachment(new File(""));
+        assertEquals(0, lab6.countAttachments());
+    }
+
+    @Test
     public void student_validStudent_addStudent() {
         Lab newLab = new Lab("lab3");
         newLab.addStudent(testPerson);
@@ -74,6 +118,7 @@ public class LabTest {
         Lab newLab = new Lab("lab3");
         newLab.addStudent(testPerson);
         newLab.replaceStudent(testPerson, testPerson);
+        lab3.addStudent(testPerson);
         assertNotEquals(newLab, lab3);
         assertEquals(newLab.getStudents(), lab3.getStudents());
     }
@@ -102,6 +147,23 @@ public class LabTest {
         assertEquals(0, lab1.countNotes());
         assertEquals(0, lab2.countNotes());
         assertEquals(0, lab3.countNotes());
+    }
+
+    @Test
+    public void lab_validLab_getNotes() {
+        assertEquals(1, lab6.getNotes().size());
+    }
+
+    @Test
+    public void lab_validLab_addNote() {
+        lab6.addNote(new Note());
+        assertEquals(1, lab6.countNotes());
+    }
+
+    @Test
+    public void lab_validLab_removeNote() {
+        lab6.removeNote(new Note());
+        assertEquals(0, lab6.countNotes());
     }
 
     @Test
