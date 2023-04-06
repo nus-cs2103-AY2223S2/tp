@@ -20,14 +20,14 @@ Careflow can get your patient and drugs management tasks done faster than tradit
       * What it does: This feature allows users to update patient information in the app without having to delete then add a new patient profile.
       * Credits: adapted from existing AddressBook code.
 
-    * Allow system to check for patient with duplicate IC 
+    * Allow system to check for patient with duplicate IC
       * What it does: This feature allows the app to check for patients with duplicate NRIC or FIN numbers to avoid duplication of patient.
       * Highlights: The addition of a feature that checks for duplicate NRIC or FIN numbers is crucial to the accuracy and integrity of the patient database. Without this feature, it is possible for duplicate patient records to be created, which can lead to confusion, errors in treatment.
-      
-* **Minor enhancement**: 
+
+* **Minor enhancement**:
     * make emergency contact and drug allergy be optional for add patient command(Pull request [\#174](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/174))
     * fix error message displayed to the user (Pull request [\#223](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/223), [\224](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/224))
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiayan-lim&breakdown=true)
 
 * **Enhancements to existing features**:
@@ -51,7 +51,7 @@ Careflow can get your patient and drugs management tasks done faster than tradit
         * Update DG with target user profile and value proposition. (Pull request [\#77](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/77))
         * Update DG with Enhancement in Appendix (Pull request [\279](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/279), [\#288](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/288))
         * Fix broken URL link (Pull request [\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
-      
+
 * **Community**:
     * PRs reviewed for teammate (with non-trivial review comments): [\#190](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/190#discussion_r1148819990), [\#183](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/183#discussion_r1149770358)
     * PRs reviewed for PE-D tester (with non-trivial review comments): [\#246](https://github.com/AY2223S2-CS2103T-W09-3/tp/issues/246#issuecomment-1498584781), [\#244](https://github.com/AY2223S2-CS2103T-W09-3/tp/issues/244#issuecomment-1498579241)
