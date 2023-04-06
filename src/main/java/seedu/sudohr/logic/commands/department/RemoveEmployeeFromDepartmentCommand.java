@@ -73,6 +73,8 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
         // show the employees within this department
         model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
 
+        model.refresh(); // defensive coding
+
         return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS, employee, department));
     }
 

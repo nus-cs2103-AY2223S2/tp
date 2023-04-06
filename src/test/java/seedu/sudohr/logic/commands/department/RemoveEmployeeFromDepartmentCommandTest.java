@@ -348,6 +348,12 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void refresh() {
+            throw new AssertionError("This method should not be called.");
+
+        }
     }
 
     /**
@@ -407,6 +413,10 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         @Override
         public void removeEmployeeFromDepartment(Employee p, Department d) {
 
+        }
+
+        @Override
+        public void refresh() {
         }
 
     }

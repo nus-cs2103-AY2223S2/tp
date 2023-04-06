@@ -92,7 +92,7 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
         final List<Leave> leavesToFilter = leavesToAdd;
 
         model.updateFilteredLeaveList(l -> leavesToFilter.contains(l));
-
+        model.refresh(); // defensive coding
         return new CommandResult(builder.toString());
     }
 
