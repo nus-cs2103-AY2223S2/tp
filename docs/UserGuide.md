@@ -75,6 +75,39 @@ than current GUI apps in the industry.
 
 Here are some descriptions of the words we use throughout the User Guide
 
+### Parameter Information
+
+The information below specifies parameter description, constraints and usage through valid and invalid examples.
+
+#### Common Parameters
+
+| Parameter         | Description                        | Constraints                                                                     | Valid Examples                    | Invalid Examples    |
+|-------------------|------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------|
+| n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち |
+| e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2    |
+| p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1               |
+| t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
+| INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649      |
+
+<sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
+
+#### Doctor Parameters
+
+| Parameter | Description             | Constraints                                      | Valid Examples        | Invalid Examples                                 |
+|-----------|-------------------------|--------------------------------------------------|-----------------------|--------------------------------------------------|
+| s/        | Specialty of the doctor | Alphanumeric characters (a to z, A to Z, 1 to 9) | Cardiology, Neurology | N/A (45 specialties are recognized in Singapore) |
+| y/        | Years of experience     | Positive integer between 0 and 99.               | 0, 99                 | -1, 100                                          |
+
+#### Patient Parameters
+
+| Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
+|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
+| h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
+| w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
+| d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
+| st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
+
+
 ## Navigating the Graphical User Interface (GUI)
 
 Docedex comes with a GUI to allow for a nice visual feedback for our users. Here
@@ -87,22 +120,22 @@ regarding the use of the GUI.
 
 Here is a quick summary of each GUI component within Docedex.
 
-| **Name of component** | **Description**                                                                                                                                                                                                                                                             |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
-| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
-| **Result Display**    | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands.                                                                                  |
+| **Name of component** | **Description**                                                                                                                                                                                                                                                                 |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                     |
+| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                         |
+| **Result Display**    | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands.                                                                                      |
 | **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
-| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
+| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                            |
 | **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
-| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
-| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
-| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
+| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                           |
+| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                    |
+| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                      |
 
 
 ### Notes about the GUI
 
-**Selecting doctors or patients through commands**
+#### Selecting doctors or patients through commands**
 
 Certain commands involve the selection of doctors
 and patients immediately after they are entered.
@@ -124,7 +157,7 @@ after entering certain commands. The explainer above details why this happens.
 Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
 </div>
 
-**Unselecting doctors or patients**
+#### Unselecting doctors or patients**
 
 Unselecting doctors and patients is currently not supported in Docedex. If you wish to
 look through all the doctors and patients in Docedex, please use the
@@ -206,48 +239,21 @@ This is a tutorial for **first-time** Docedex users.
 ---
 
 ## Features
-### Parameter Information
 
-The information below specifies parameter description, constraints and usage through valid and invalid examples.
-
-#### Common Parameters
-
-| Parameter         | Description                        | Constraints                                                                     | Valid Examples                    | Invalid Examples    |
-|-------------------|------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------|
-| n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち |
-| e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2    |
-| p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1               |
-| t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
-| INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649      |
-
-<sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
-
-#### Doctor Parameters
-
-| Parameter | Description             | Constraints                                      | Valid Examples        | Invalid Examples                                 |
-|-----------|-------------------------|--------------------------------------------------|-----------------------|--------------------------------------------------|
-| s/        | Specialty of the doctor | Alphanumeric characters (a to z, A to Z, 1 to 9) | Cardiology, Neurology | N/A (45 specialties are recognized in Singapore) |
-| y/        | Years of experience     | Positive integer between 0 and 99.               | 0, 99                 | -1, 100                                          |
-
-#### Patient Parameters
-
-| Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
-|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
-| h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
-| w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
-| d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
-| st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
 ### Doctor Commands
 #### Adding a doctor
 
 ```add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
+- What it does: Adds a new doctor to the doctors list and filters the patients' list to display only associate patients.
 - Possible use cases: A new doctor has joined your department/you are setting Docedex up for the first time.
 
 - Examples:
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
     - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
+
+Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -319,6 +325,8 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
 
+Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Listing all doctors
@@ -334,10 +342,13 @@ Examples:
 ```add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
 - Possible use cases: Adding a new patient visiting a clinic to the address book.
+- What it does: Adds a new patient to the patients' list and filters the doctors' list to show only associated doctors.
 
 - Examples:
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
+
+Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -427,6 +438,8 @@ Examples:
 - Possible use cases: Find which doctors treated a patient
 - Note to user:
     - The index refers to the index number shown in the displayed patient list.
+
+Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
