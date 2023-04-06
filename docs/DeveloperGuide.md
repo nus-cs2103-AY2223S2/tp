@@ -412,37 +412,24 @@ In the table below, **_user_** refers to the triage admin staff.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                      | So that I can…​                                                                  |
-|----------|---------|-------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user    | add doctor contacts into my address book                          | store their contacts in case I need them in the future                           |
-| `* * *`  | user    | look up doctors by their name, specialty, department and position | assign patients to relevant doctors                                              |
-| `* * *`  | user    | sort doctors based on specialty                                   | assign patients to doctors according to nature of condition                      |
-| `* * *`  | user    | sort doctors based on years of experience                         | assign patients to doctors according to severity of condition                    |
-| `* * *`  | user    | sort doctors based on availability                                | assign patients to doctors currently present in the clinic                       |
-| `* * *`  | user    | edit the doctor contacts in Docedex                               | keep the doctor contacts up to date                                              |
-| `* * *`  | user    | delete doctors that have left the hospital or have retired        | ensure all doctor contacts reflect doctors in the hospital                       |
-| `* * *`  | user    | save my doctor contacts in my desktop                             | refer to doctor contacts in the future                                           |
-| `* * *`  | user    | load my contacts from a file when I boot up the application       | refer to doctor contacts created in the past                                     |
-| `* * *`  | user    | add patient contacts into my address book                         | store their contacts in case I need them in the future                           |
-| `* * *`  | user    | look up patients by their name                                    | view medical history of the patient including doctors that have treated them     |
-| `* * *`  | user    | tag patients with a priority (triage)                             | determine assignment priorities to doctors                                       |
-| `* * *`  | user    | sort patients according to their priority                         | tag patients according to severity of condition                                  |
-| `* * *`  | user    | detect duplicate entries                                          | either halt operation or update information.                                     |
-| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
-| `* *`    | user    | tag patients to the doctor                                        | keep track of patients treated by the doctor                                     |
-| `* *`    | user    | tag doctors to the patients                                       | keep track of doctors treating the patient                                       |
-| `* *`    | user    | exit the application through the CLI                              | terminate use of the application                                                 |
-| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
-| `*`      | user    | add remarks for doctors                                           | store additional information on each doctor                                      |
-| `*`      | user    | star certain doctors as important                                 | perform quick retrieval of information pertaining to important doctors           |
-| `*`      | user    | see the history of doctors I viewed recently                      | re-access recently queried doctor contacts quickly                               |
-| `*`      | user    | retrieve the size of my contact book for doctors                  | verify the number of doctors in my clinic                                        |
-| `*`      | user    | archive doctors that are no longer working                        | retain information about such doctors without having them appear in my searches  |
-| `*`      | user    | classify patients by compliance                                   | keep track of non-compliant cases and warn doctors                               |
-| `*`      | user    | archive patients that have died or no longer visit this hospital. | retain information about such patients without having them appear in my searches |
-| `*`      | user    | self-destruct my address book                                     | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
-| `*`      | user    | create a new address book instance for a new clinic               | track doctors and patients across different clinics                              |
-
+| Priority | As a …​ | I want to …​                                                              | So that I can…​                                                                  |
+|----------|---------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user    | add doctor/patient contacts into my address book                          | store their contacts in case I need them in the future                           |
+| `* * *`  | user    | look up doctors by their name, specialty and/or years of experience       | assign patients to relevant doctors                                              |
+| `* * *`  | user    | look up patients by their name,                                           | view which doctors treated found patients or verify their diagnosis              |
+| `* * *`  | user    | edit the doctor/patient contacts in Docedex                               | keep the doctor/patient contacts up to date                                      |
+| `* * *`  | user    | delete doctors/patients that have left the hospital, died or have retired | ensure all doctor/patient contacts are relevant                                  |
+| `* * *`  | user    | save my doctor/patient contacts in my desktop                             | refer to doctor/patient contacts in the future                                   |
+| `* * *`  | user    | load my contacts from a file when I boot up the application               | refer to doctor/patient contacts created in the past                             |
+| `* * *`  | user    | tag patients with a status                                                | determine assignment priorities to doctors                                       |
+| `* * *`  | user    | detect duplicate entries                                                  | either halt operation or update information.                                     |
+| `* *`    | user    | access the help menu                                                      | know how to use the commands within Docedex                                      |
+| `* *`    | user    | tag patients to the doctor                                                | keep track of patients treated by the doctor                                     |
+| `* *`    | user    | tag doctors to the patients                                               | keep track of doctors treating the patient                                       |
+| `* *`    | user    | exit the application through the CLI                                      | terminate use of the application                                                 |
+| `*`      | user    | see the history of doctors I viewed recently                              | re-access recently queried doctor contacts quickly                               |
+| `*`      | user    | self-destruct my address book                                             | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
+ | `*`      | user    | select doctors/patients through the CLI                                   | minimize the use of a mouse/pointing device                                      |
 ### Appendix D: Use cases
 
 For all use cases below, we assume the following unless specified otherwise
@@ -451,8 +438,8 @@ For all use cases below, we assume the following unless specified otherwise
 - The following preconditions
   - The `user` has launched the `Docedex` application.
 
-Furthermore, a lot of use cases are similar when manipulating
-doctors and patients. Therefore, to keep the developer guide concise, the
+Furthermore, a lot of **use cases are similar when manipulating
+doctors and patients**. Therefore, to keep the developer guide concise, the
 use cases elaborated upon below are only detailed for doctors. Nonetheless, they
 can be extrapolated for patients too, without changes to the major details within
 the use case. Such associated pairs of use cases are listed in the table below.
@@ -598,6 +585,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
   * 1d1. Docedex alerts the user that the patient and doctor are already assigned to each other.<br>
     Use case ends.
 
+
 ### Appendix E: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -646,19 +634,19 @@ Testers are encouraged to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-#### Deleting a person
+#### Deleting a doctor
 
-1. Deleting a person while all persons are being shown
+1. Deleting a doctor while all doctors are being shown
 
-  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all doctors using the `list-doc` command. Multiple doctors in the list.
 
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `del-doc 1`<br>
+     Expected: First doctor contact is deleted from the displayed doctors list. Details of the deleted contact shown in the status message.
 
-  1. Test case: `delete 0`<br>
-     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `del-doc 0`<br>
+     Expected: No doctor is deleted. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+  1. Other incorrect delete commands to try: `delete`, `del-doc x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
