@@ -58,6 +58,7 @@ public class EditCommandTest {
         Pair<String, String> labels2 = Pair.of("LoLK", "IaMP");
         LocalDateTime deadline = LocalDateTime.now();
         request.getEditedLabels().add(labels1);
+        request.getEditedLabels().add(labels2);
 
         Task task = TestUtil.newTask();
         task.setDeadline(deadline);
