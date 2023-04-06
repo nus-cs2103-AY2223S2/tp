@@ -5,15 +5,16 @@ title: User Guide
 
 ![Logo](images/LogoWordmark.png)
 
-## Welcome to **Le Tracker**!
+## Welcome to **Le Tracker**
 
 > “The tragedy in life doesn’t lie in not reaching your goal. The tragedy lies in having no goal to reach.” - Benjamin E. Mays
 
-School is hard. With numerous modules to juggle and endless topics to master, being a student can feel overwhelming at times. But does this *truly* need to be the case?
+School is hard. With numerous modules to juggle and endless topics to master, being a student can feel overwhelming at times. But does this _truly_ need to be the case?
 
 We believe that with a little help, content mastery is **more than achievable**.
+
 > “You don't actually do a project; you can only do action steps related to it. When enough of the right action steps have been taken, some situation will have been created that matches your initial picture of the outcome closely enough that you can call it "done.”
-― David Allen, Getting Things Done: The Art of Stress-Free Productivity
+> ― David Allen, Getting Things Done: The Art of Stress-Free Productivity
 
 **Le Tracker** makes it easy to measure your overall study progress by tracking how much lecture content you have covered across various modules. **More** than just a simple to-do list app, **Le Tracker** blends the **efficiency** of a command line interface with the **elegance** of modern graphical user interface.
 
@@ -34,10 +35,7 @@ Now it's time to **CONQUER** the semester!
   - [Navigate Relatively](#navigate-relatively)
   - [Navigate Directly](#navigate-directly)
   - [Navigate Backwards](#navigate-backwards)
-  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
-  - [List Modules](#list-modules)
-  - [List Lectures of Modules](#list-lectures-of-modules)
-  - [List Videos of Lectures](#list-videos-of-lectures)
+  - [List](#list)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -54,12 +52,7 @@ Now it's time to **CONQUER** the semester!
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
-  - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
-  - [Find Lectures in a Module](#find-lectures-in-a-module)
-  - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
-  - [Find Videos in a Lecture](#find-videos-in-a-lecture)
-  - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
+  - [Find](#find)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
@@ -71,6 +64,7 @@ Now it's time to **CONQUER** the semester!
 ---
 
 ## Quick Start Guide
+
 ### Prerequisite
 
 > Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal.\
@@ -92,6 +86,7 @@ Now it's time to **CONQUER** the semester!
    For example, typing "help" and pressing `Enter` will open the help window.
 
 ### A Brief Guide to Navigation
+
 **Context Indicator** - Displays which context you are currently working at.
 
 ![ContextLabel](images/ContextLabelScreenshot.png)
@@ -187,6 +182,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ---
 
 ## Navigation
+
 ![RootContext](images/RootContext.png)
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
@@ -201,9 +197,13 @@ The user can specify their current working context by navigating through the hie
 
 ![RootContext](images/RootContext.png)
 Navigating relatively from the root context:
+
 1. Navigate to the module context from the root context.
+
 - `nav CS2040S`
+
 2. Navigate to the lecture context from the module context.
+
 - `nav Week 1`
 
 OR
@@ -212,17 +212,19 @@ OR
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
 Navigating directly from any context:
+
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
+
 - `nav /mod CS2040S /lec Week 1
 
 After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't need to!
 
 Here are some examples of how the navigation system is able to shorten commands:
-1. Add Video 2 to the lecture Week 1 of module CS2040S.
-`add Video 2 /mod CS2040S /lec Week 1` -> `add Video 2`
-2. List the contents of lecture Week 1 of module CS2040S.
-`list /mod CS2040S /lec Week 1` -> `list`
 
+1. Add Video 2 to the lecture Week 1 of module CS2040S.
+   `add Video 2 /mod CS2040S /lec Week 1` -> `add Video 2`
+2. List the contents of lecture Week 1 of module CS2040S.
+   `list /mod CS2040S /lec Week 1` -> `list`
 
 ---
 
@@ -257,6 +259,8 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 > Navigates to the parent context of the current context
 
 Format: `navb`
+
+## List
 
 ### List Modules or Lectures or Videos
 
@@ -624,6 +628,8 @@ Examples:
 
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the
   lecture `Lecture_1` that belongs to the module `CS2040`
+
+## Find
 
 ### Find Modules or Lectures or Videos
 
