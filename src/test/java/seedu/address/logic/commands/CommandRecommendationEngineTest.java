@@ -190,7 +190,8 @@ public class CommandRecommendationEngineTest {
             String userArgs = "1";
             String command = EditElderlyCommand.COMMAND_WORD;
 
-            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
+            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                    commandRecommendationEngine.getCommandInfoMap()
                     .get(command).getCmdPrompts().keySet()
                     .toArray(new Prefix[]{}));
             assertTrue(EditElderlyCommandParser.validate(argumentMultimap));
