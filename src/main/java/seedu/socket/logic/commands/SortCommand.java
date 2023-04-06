@@ -18,7 +18,7 @@ public class SortCommand extends Command {
         + "Parameters: [KEYWORD]\n"
         + "Example: \"" + COMMAND_WORD + " address\"\n"
         + "The following are the available categories:\n"
-        + "name, phone, email, address, tags";
+        + "name, github, phone, email, address";
 
     private final String category;
 
