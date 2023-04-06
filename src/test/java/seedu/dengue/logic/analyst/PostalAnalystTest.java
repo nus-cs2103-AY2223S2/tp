@@ -174,7 +174,7 @@ public class PostalAnalystTest {
     }
 
     @Test
-    public void equals_singleList_falseWithOtherAge() {
+    public void equals_singleList_falseWithOtherPostal() {
         setAnalystWith(SINGLE_PERSON_LIST);
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
