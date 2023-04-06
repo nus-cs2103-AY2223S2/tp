@@ -1,16 +1,11 @@
 package ezschedule.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.Scheduler;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.Name;
 import ezschedule.model.event.Time;
-import ezschedule.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Scheduler} with sample data.
@@ -31,14 +26,5 @@ public class SampleDataUtil {
             sampleSc.addEvent(sampleEvent);
         }
         return sampleSc;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-            .map(Tag::new)
-            .collect(Collectors.toSet());
     }
 }

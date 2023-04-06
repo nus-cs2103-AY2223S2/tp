@@ -13,12 +13,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import ezschedule.commons.core.index.Index;
+import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
+import ezschedule.logic.commands.FindCommand.FindEventDescriptor;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.Scheduler;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
 import ezschedule.testutil.EditEventDescriptorBuilder;
+import ezschedule.testutil.FindEventDescriptorBuilder;
 
 
 /**
@@ -59,14 +62,18 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditEventDescriptor DESC_A;
-    public static final EditCommand.EditEventDescriptor DESC_B;
+    public static final EditEventDescriptor EDIT_DESC_A;
+    public static final EditEventDescriptor EDIT_DESC_B;
+    public static final FindEventDescriptor FIND_DESC_A;
+    public static final FindEventDescriptor FIND_DESC_B;
 
     static {
-        DESC_A = new EditEventDescriptorBuilder().withName(VALID_NAME_A).withDate(VALID_DATE_A)
+        EDIT_DESC_A = new EditEventDescriptorBuilder().withName(VALID_NAME_A).withDate(VALID_DATE_A)
                 .withStartTime(VALID_START_TIME_A).withEndTime(VALID_END_TIME_A).build();
-        DESC_B = new EditEventDescriptorBuilder().withName(VALID_NAME_B).withDate(VALID_DATE_B)
+        EDIT_DESC_B = new EditEventDescriptorBuilder().withName(VALID_NAME_B).withDate(VALID_DATE_B)
                 .withStartTime(VALID_START_TIME_B).withEndTime(VALID_END_TIME_B).build();
+        FIND_DESC_A = new FindEventDescriptorBuilder().withName(VALID_NAME_A).withDate(VALID_DATE_A).build();
+        FIND_DESC_B = new FindEventDescriptorBuilder().withName(VALID_NAME_B).withDate(VALID_DATE_B).build();
     }
 
     /**

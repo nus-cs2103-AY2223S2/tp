@@ -8,6 +8,12 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
+<div markdown="span" class="alert alert-danger">
+:exclamation: **Danger!**  
+:x: Do not attempt to modify the local storage files on your own. :x:  
+Otherwise, _Ez-Schedule_ may not run as expected.
+</div>
+
 <h1 id="index">Index</h1>
 -------------------------
 * [Quick Start](#quick-start)
@@ -84,10 +90,10 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:**  
 Name/Description is alphanumeric only.  
-Start time should come before end time.  
+:warning: Start time should come before end time.  
 Adding of events that overlaps in time is not allowed.
 </div>
 
@@ -106,7 +112,7 @@ Parameters:
 `d/`: Ending date of recurrence for the event in `YYYY-MM-DD` format  
 `every/`: Recur factor to recur the event, given by `day/week/month`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:**  
 Event must first exist in the scheduler.  
 Recurring of events not existing in scheduler is not allowed.  
@@ -130,8 +136,8 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** At least one field must be provided.
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** At least one field must be provided.
 </div>
 
 Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
@@ -190,8 +196,8 @@ Parameters:
 `n/`: Name or description of event  
 `d/`: Date of the event
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** At least one field must be provided.
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** At least one field must be provided.
 </div>
 
 Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
@@ -296,6 +302,8 @@ Functionality:
 * Currently, we only support same-day events.
   Events which stretches across multiple days are not supported.
 * `undo` can only undo the most recent valid command.
+* Data files are not allowed to be modified directly. 
+  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
 [[Back to top](#index)]
 
