@@ -33,10 +33,21 @@ public class SortbyDate extends OrderedSorter {
     private int compareByDate(DeliveryJob a, DeliveryJob b) {
         if (a.getDeliveryDate().get().getDate().compareTo(
                 b.getDeliveryDate().get().getDate()) == 0) {
-            return a.getSlot() - b.getSlot();
+            return compareBySlot(a, b);
         } else {
             return a.getDeliveryDate().get().getDate().compareTo(
                     b.getDeliveryDate().get().getDate());
+        }
+    }
+
+    private int compareBySlot(DeliveryJob a, DeliveryJob b) {
+        if (a.getDeliverySlot().isPresent() && b.getDeliverySlot().isPresent()) {
+            return isAsc() ? a.getSlot() - b.getSlot()
+                    : b.getSlot() - a.getSlot();
+        } else if (a.getDeliverySlot().isPresent() && b.getDeliverySlot().isEmpty()) {
+            return isAsc() ? 1 : -1;
+        } else {
+            return isAsc() ? -1 : 1;
         }
     }
 }
