@@ -238,9 +238,9 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 
-Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
+Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1 2")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteIndexSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-index 1 2` Command](images/DeleteIndexSequenceDiagram.png)
 
 
 <p style="text-align: center;">Figure 7: Sequence diagram for the delete-index command </p>
@@ -1480,7 +1480,7 @@ Hence, we are constantly striving to make InternBuddy better. This appendix docu
 that our team is currently working on, and we would release them in the future once their functionalities
 have been finalised.
 
-### Title of Design Tweak
+### Make prefixes for commands case-insensitive
 **Problem:**
 Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/Golang T/c++` will add an internship entry with company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
@@ -1491,13 +1491,16 @@ Moreoever, commmands such as `find` and `delete-field` do not consider prefixes 
 
 We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
 
- For example, using the `find` command, `find t/numbers t/cheese` tries to find entries with either the tag `numbers` or `cheese`. Tag matching is case-insensitive, so it also tries to find `Numbers` or `CheEse`. Similarly, `delete-field t/numbers t/cheese` tries to delete entries with either the tag `numbers` or `cheese` or `Numbers` or `CheEse`
+ For example, using the `find` command, `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
 
-There could be another conflicting meaning of the command. In this case, `find t/numbers t/cheese` tries to find "numbers" or "cheese". but the user could have intended to find the tag `numbers T/cheese`. This could lead to some confusion.
+There could be another conflicting meaning of the command. In this case, `find t/javascript t/react` tries to find "numbers" or "cheese". but the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
-**Proposed Design Tweak**: Make prefixes case-insensitive. For example, `find t/numbers t/cheese` should have the same result as `find T/numbers T/cheese`. This would remove the confusion as substrings such as `T/` or `c/` cannot be entered in any of the fields. 
+**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 c/Considering to apply t/Payment` should have the same result as `add N/Visa r/Software Engineer s/New D/2023-03-01 c/Considering to apply t/Payment`, where `n/` and `N/` both refer to the company name field, and `d/` and `D/` both refer to the date field. A new internship entry will be successfully added. The new internship entry will have company name
+   `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, comment `Considering to apply`,
+   and tag `Payment`. The View Panel displays the information for this new internship entry, and a success
+   message is displayed in the Result Display.
 
-Alternatively, we propose to implement a warning if strings such as ` T/` is detected in the user input. It is unlikely user intended to add `numbers T/cheese` as a tag and if the user added such a tag by mistake, the remedy is for the user to edit it.
+This would address the above problem. For example, `find t/javascript t/react` should have the same result as `find T/javascript T/react`. This would remove the confusion as substrings such as `T/` cannot be entered in any of the fields. 
 
 <div style="page-break-after: always;"></div>
 
