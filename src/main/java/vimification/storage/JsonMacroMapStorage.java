@@ -21,13 +21,11 @@ public class JsonMacroMapStorage implements MacroMapStorage {
 
     @Override
     public MacroMap readMacroMap() throws IOException {
-        return JsonUtil
-                .readJsonFile(filePath, JsonAdaptedMacroMap.class)
-                .toModelType();
+        return JsonUtil.readJsonFile(filePath, MacroMap.class);
     }
 
     @Override
     public void saveMacroMap(MacroMap macroMap) throws IOException {
-        JsonUtil.saveJsonFile(new JsonAdaptedMacroMap(macroMap), filePath);
+        JsonUtil.saveJsonFile(macroMap, filePath);
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import vimification.common.exceptions.DataConversionException;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
@@ -47,10 +48,14 @@ public class JsonAdaptedTask {
         labels = List.copyOf(task.getLabels());
     }
 
-    public Task toModelType() {
-        Task task = new Task(title, deadline, status, priority);
-        labels.forEach(task::addLabel);
-        return task;
+    public Task toModelType() throws DataConversionException {
+        try {
+            Task task = new Task(title, deadline, status, priority);
+            labels.forEach(task::addLabel);
+            return task;
+        } catch (RuntimeException ex) {
+            throw new DataConversionException(ex);
+        }
     }
 
 

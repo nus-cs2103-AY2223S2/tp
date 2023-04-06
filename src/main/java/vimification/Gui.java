@@ -113,7 +113,7 @@ public class Gui extends Application {
         try {
             taskList = storage.readTaskList();
         } catch (DataConversionException ex) {
-            LOGGER.warning("Task list's data is in invalid format: " + StringUtil.getDetails(ex));
+            LOGGER.warning("Task list is in invalid format: " + StringUtil.getDetails(ex));
             taskList = new TaskList();
         } catch (IOException ex) {
             LOGGER.warning("Problem while reading task list from the file...");

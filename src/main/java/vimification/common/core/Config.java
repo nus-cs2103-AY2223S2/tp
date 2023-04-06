@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 
 /**
- * Config values used by the app
+ * Config values used by the application.
  */
 public class Config {
 
@@ -39,9 +39,9 @@ public class Config {
         if (!(other instanceof Config)) { // this handles null as well.
             return false;
         }
-        Config o = (Config) other;
-        return Objects.equals(logLevel, o.logLevel)
-                && Objects.equals(userPrefsFilePath, o.userPrefsFilePath);
+        Config otherConfig = (Config) other;
+        return Objects.equals(logLevel, otherConfig.logLevel)
+                && Objects.equals(userPrefsFilePath, otherConfig.userPrefsFilePath);
     }
 
     @Override
@@ -51,10 +51,6 @@ public class Config {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Current log level : " + logLevel);
-        sb.append("\nPreference file Location : " + userPrefsFilePath);
-        return sb.toString();
+        return "Config [logLevel=" + logLevel + ", userPrefsFilePath=" + userPrefsFilePath + "]";
     }
-
 }

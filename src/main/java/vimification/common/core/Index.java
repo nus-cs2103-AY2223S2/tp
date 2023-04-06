@@ -2,7 +2,7 @@ package vimification.common.core;
 
 /**
  * Represents a zero-based or one-based index.
- *
+ * <p>
  * {@code Index} should be used right from the start (when parsing in a new user input), so that if
  * the current component wants to communicate with another component, it can send an {@code Index}
  * to avoid having to know what base the other component is using for its index. However, after
@@ -14,8 +14,8 @@ public class Index {
     private int zeroBasedIndex;
 
     /**
-     * Index can only be created by calling {@link Index#fromZeroBased(int)} or
-     * {@link Index#fromOneBased(int)}.
+     * Index can only be created by calling {@link #fromZeroBased(int)} or
+     * {@link #fromOneBased(int)}.
      */
     private Index(int zeroBasedIndex) {
         this.zeroBasedIndex = zeroBasedIndex;

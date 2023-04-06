@@ -13,7 +13,7 @@ public class Version implements Comparable<Version> {
 
     public static final String VERSION_REGEX = "V(\\d+)\\.(\\d+)\\.(\\d+)(ea)?";
 
-    private static final String EXCEPTION_STRING_NOT_VERSION = "String is not a valid Version. %s";
+    private static final String EXCEPTION_STRING_NOT_VERSION = "String is not a valid version: %s";
 
     private static final Pattern VERSION_PATTERN = Pattern.compile(VERSION_REGEX);
 
@@ -57,12 +57,10 @@ public class Version implements Comparable<Version> {
     @JsonCreator
     public static Version fromString(String versionString) throws IllegalArgumentException {
         Matcher versionMatcher = VERSION_PATTERN.matcher(versionString);
-
         if (!versionMatcher.find()) {
             throw new IllegalArgumentException(
                     String.format(EXCEPTION_STRING_NOT_VERSION, versionString));
         }
-
         return new Version(Integer.parseInt(versionMatcher.group(1)),
                 Integer.parseInt(versionMatcher.group(2)),
                 Integer.parseInt(versionMatcher.group(3)),
@@ -103,7 +101,6 @@ public class Version implements Comparable<Version> {
             return false;
         }
         final Version other = (Version) obj;
-
         return compareTo(other) == 0;
     }
 

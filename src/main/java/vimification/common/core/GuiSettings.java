@@ -54,12 +54,10 @@ public class GuiSettings implements Serializable {
         if (!(other instanceof GuiSettings)) { // this handles null as well.
             return false;
         }
-
-        GuiSettings o = (GuiSettings) other;
-
-        return windowWidth == o.windowWidth
-                && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+        GuiSettings otherSetting = (GuiSettings) other;
+        return windowWidth == otherSetting.windowWidth
+                && windowHeight == otherSetting.windowHeight
+                && Objects.equals(windowCoordinates, otherSetting.windowCoordinates);
     }
 
     @Override
@@ -69,10 +67,7 @@ public class GuiSettings implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Width : " + windowWidth + "\n");
-        sb.append("Height : " + windowHeight + "\n");
-        sb.append("Position : " + windowCoordinates);
-        return sb.toString();
+        return "GuiSettings [windowWidth=" + windowWidth + ", windowHeight=" + windowHeight
+                + ", windowCoordinates=" + windowCoordinates + "]";
     }
 }

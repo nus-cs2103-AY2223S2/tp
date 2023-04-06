@@ -1,11 +1,13 @@
 package vimification.storage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import vimification.common.exceptions.DataConversionException;
 import vimification.model.TaskList;
 import vimification.model.task.Task;
 
@@ -31,10 +33,12 @@ public class JsonAdaptedTaskList {
                 .collect(Collectors.toList());
     }
 
-    public TaskList toModelType() {
-        List<Task> modelTasks = tasks.stream()
-                .map(JsonAdaptedTask::toModelType)
-                .collect(Collectors.toList());
+    public TaskList toModelType() throws DataConversionException {
+        List<Task> modelTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : tasks) {
+            Task modelTask = task.toModelType();
+            modelTasks.add(modelTask);
+        }
         return new TaskList(modelTasks);
     }
 

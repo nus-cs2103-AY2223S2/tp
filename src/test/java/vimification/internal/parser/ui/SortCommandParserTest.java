@@ -48,5 +48,4 @@ public class SortCommandParserTest {
         String input1 = "s --priority --status";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input1));
     }
-
 }
