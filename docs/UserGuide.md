@@ -587,8 +587,9 @@ all patients currently stored in the CareFlow system. Patient records will be pr
   \
   &nbsp;
 * **Format:** `p list`
-* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
-cause error to the system
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+raise errors in the system
+</div>
   \
   &nbsp;
 * **Example:**
@@ -703,8 +704,11 @@ by specifying its index in the given drug list.
 ### Update storage count of a drug entry
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
 by specifying the trade name.
-* NOTE: you need to prefix the value with + or - for addition and subtraction respectively
-* NOTE: if decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count).
+</div>
+
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -798,8 +802,9 @@ using the `d list` command, drug records will be presented in alphabetical order
   \
   &nbsp;
 * **Format:** `d list`
-* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
-cause error to the system
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+raise any errors in the system.
+</div>
   \
   &nbsp;
 * **Example:** `d list`
