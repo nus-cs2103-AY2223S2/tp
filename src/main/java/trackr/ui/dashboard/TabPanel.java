@@ -1,12 +1,14 @@
 package trackr.ui.dashboard;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
+import trackr.model.ObservableTabIndex;
 import trackr.ui.UiPart;
 import trackr.ui.listpanels.MenuListPanel;
 import trackr.ui.listpanels.OrderListPanel;
@@ -18,7 +20,6 @@ import trackr.ui.listpanels.TaskListPanel;
  */
 public class TabPanel extends UiPart<Region> {
     private static final String FXML = "TabPanel.fxml";
-    private static TabPane tabPanel;
 
     private Logic logic;
 
@@ -27,6 +28,9 @@ public class TabPanel extends UiPart<Region> {
     private TaskListPanel taskListPanel;
     private OrderListPanel orderListPanel;
     private MenuListPanel menuListPanel;
+
+    @FXML
+    private TabPane tabPanel;
 
     @FXML
     private Tab homeTab;
@@ -64,8 +68,13 @@ public class TabPanel extends UiPart<Region> {
     public TabPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        tabPanel = new TabPane();
         fillTabs();
+        ObservableTabIndex.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> o, Number oldIdx, Number newIdx) {
+                switchToTab(newIdx.intValue());
+            }
+        });
     }
 
     /**
@@ -74,50 +83,44 @@ public class TabPanel extends UiPart<Region> {
     private void fillTabs() {
         homeView = new HomeView(logic);
         homePanelPlaceholder.getChildren().add(homeView.getRoot());
-        addNewTab(homeTab, homePanelPlaceholder, "Home");
+        fillNewTab(homeTab, homePanelPlaceholder, "Home");
 
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         orderListPanelPlaceholder
                 .getChildren()
                 .add(orderListPanel.getRoot());
-        addNewTab(orderTab, orderListPanelPlaceholder, "Orders");
+        fillNewTab(orderTab, orderListPanelPlaceholder, "Orders");
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder
                 .getChildren()
                 .add(taskListPanel.getRoot());
-        addNewTab(taskTab, taskListPanelPlaceholder, "Tasks");
+        fillNewTab(taskTab, taskListPanelPlaceholder, "Tasks");
 
         contactListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
         contactListPanelPlaceholder
                 .getChildren()
                 .add(contactListPanel.getRoot());
-        addNewTab(contactTab, contactListPanelPlaceholder, "Contacts");
+        fillNewTab(contactTab, contactListPanelPlaceholder, "Contacts");
 
         // Create placeholder with text for menu
         menuListPanel = new MenuListPanel(logic.getFilteredMenu());
         menuListPanelPlaceholder
                 .getChildren()
                 .add(menuListPanel.getRoot());
-        addNewTab(menuTab, menuListPanelPlaceholder, "Menu");
+        fillNewTab(menuTab, menuListPanelPlaceholder, "Menu");
     }
 
     /**
      * Adds a {@code tab} with the given {@code tabContent} and {@code tabName}
      */
-    private void addNewTab(Tab tab, StackPane tabContent, String tabName) {
-        tab.setClosable(false);
+    private void fillNewTab(Tab tab, StackPane tabContent, String tabName) {
         tab.setText(tabName);
         tab.setContent(tabContent);
-        tabPanel.getTabs().add(tab);
     }
 
-    public static void switchToTab(Index index) {
-        tabPanel.getSelectionModel().clearAndSelect(index.getZeroBased());
-    }
-
-    public static void clearSelection() {
-        tabPanel.getSelectionModel().clearSelection();
+    public void switchToTab(int index) {
+        tabPanel.getSelectionModel().select(index);
     }
 
     public SupplierListPanel getContactListPanel() {

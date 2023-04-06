@@ -3,7 +3,6 @@ package trackr.ui;
 import static trackr.commons.core.index.Index.fromZeroBased;
 import static trackr.logic.parser.TrackrParser.getModel;
 import static trackr.model.TabEnum.getTabIndex;
-import static trackr.ui.dashboard.TabPanel.switchToTab;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,6 +24,7 @@ import trackr.logic.Logic;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.ObservableTabIndex;
 import trackr.ui.dashboard.TabPanel;
 
 /**
@@ -209,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            switchToTab(fromZeroBased(getTabIndex(getModel(commandText))));
+            ObservableTabIndex.updateToTab(fromZeroBased(getTabIndex(getModel(commandText))));
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
