@@ -4,10 +4,10 @@
 start
 :User enters a tag command;
 
-if () then ([None tagged])
+if () then ([No tags are added])
     :Error: No Tags;
 
-elseif () then ([Both tagged])
+elseif () then ([Group and Module Tags are added])
     :Error: Both Tags;
 
 else ()
