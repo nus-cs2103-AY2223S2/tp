@@ -121,7 +121,7 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ## 3.3. Main Mode - Before Selecting a Deck
 
-### 3.3.1. Adding a new Deck : `addDeck`
+### 3.3.1. Adding a Deck : `addDeck`
 
 Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
 
@@ -219,7 +219,7 @@ Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 - A tag can only be of value Easy, Medium, or Hard (**case-insensitive**). 
 - Each card can have at most one tag.
 
@@ -274,6 +274,9 @@ Format: `findCards KEYWORD...`
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findCards partia` will filter the cards whose questions contain the incomplete word "partia". Cards whose questions contain the complete word "partial" will not appear.
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
+
+Example:
+- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" and "recursion".
 
 ### 3.4.5. Showing all Cards : `showCards`
 
@@ -422,7 +425,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.7.8. Archiving data files `[coming in v2.0]`
+### 3.7.5. Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
