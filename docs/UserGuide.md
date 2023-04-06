@@ -495,7 +495,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 ### 4. Editing a person : `edit`
 
-Does one of your contacts have outdated information? Overwrite them in the view panel with the edit command!
+One of your contacts is outdated information? Overwrite them with the edit command!
 
 At least one of the optional fields must be provided.
 
@@ -505,7 +505,7 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:warning: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values during the use of <code>m/</code> or <code>s/</code> .<br/>
+:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code> .<br/>
   Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
 </div>
 
