@@ -307,6 +307,22 @@ public class RecurCommand extends Command {
         }
     }
 
+    /**
+     * Gets end date.
+     * @return end date
+     */
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    /**
+     * Gets recur factor.
+     * @return factor
+     */
+    public RecurFactor getFactor() {
+        return factor;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
