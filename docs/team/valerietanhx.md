@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * Justification: This features allows users another avenue to get an overview of the cases by viewing them in a natural sorted order.
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=valerietanhx)
 * **Project management:**
-  * Managed issue tracking for v1.3–v1.4 on GitHub
+  * Managed issue tracking for `v1.3`–`v1.4` on GitHub
 * **Documentation:**
   * User Guide
     * Added documentation for the multi-index `delete`, `delete`-by-date, `delete`-by-date-range, and `sort` features
