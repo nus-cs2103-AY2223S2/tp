@@ -259,19 +259,19 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
     </p>
-7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
+7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`g help`** and hit `Enter` will open the help window.<br>
    <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
         <li><code>p list </code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
-        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
-        <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
+        <li><code>p add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
+        <li><code>p delete -i 3</code> : Deletes the 3rd patient record shown in the current list.</li>
         <li><code>p clear</code> : Deletes all patient records.</li>
         <li><code>d clear</code> : Deletes all drug records.</li>
-        <li><code>exit</code> : Exits the app.</li>
-   </ul>
-      </details>
+        <li><code>g exit</code> : Exits the app.</li>
+    </ul>
+    </details>
     <br>
 
 [↑ Back to top](#top)
@@ -324,7 +324,7 @@ are committed to constantly improving our software to meet your needs.
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
-### View help: `g help`
+### View help
 * Feeling stuck or lost? This command shows all valid command formats and their functionalities.
 <br><br/>
   <p align="left">
@@ -342,7 +342,7 @@ drug of CareFlow.
 
 <br>
 
-### Exit the program: `g exit`
+### Exit the program
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
   \
   &nbsp;
@@ -358,7 +358,7 @@ ___
 
 ## 4.2 Patient Commands
 
-### Add a Patient record:  `p add`
+### Add a Patient record
 * Have a new patient visiting your clinic for the first time? You can use this command to add a new patient to the patient records.
   \
   &nbsp;
@@ -405,7 +405,7 @@ ___
 
 <br>
 
-### Delete a patient record by NRIC: `p delete`
+### Delete a patient record by NRIC
 * Trying to remove an irrelevant or dated patient record? This command deletes the specified patient from the patient list
 and records.
   \
@@ -440,7 +440,7 @@ and records.
 
 <br>
 
-### Delete a patient record by index: `p delete`
+### Delete a patient record by index
 * Trying to remove an irrelevant or dated patient record without using their NRIC? You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
     * The index refers to the index number shown in the displayed person list.
     * The index must be a positive integer 1, 2, 3, …​
@@ -471,7 +471,7 @@ and records.
 
 <br>
 
-### Update a patient by name: `p update`
+### Update a patient by name
 
 * A patient reports a change of address, phone number, or any other information? You can easily update the information of that patient with the `p update` command.
   \
@@ -501,7 +501,7 @@ and records.
 
 <br>
 
-### Retrieve a patient record by name: `p find`
+### Retrieve a patient record by name
 * Need to promptly search for a specific patient record? You can quickly retrieve the information of a patient by searching with his or her name.
   \
   &nbsp;
@@ -525,7 +525,7 @@ and records.
 
 <br>
 
-### View a patient's full information: `p view`
+### View a patient's full information
 
 
 * Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command. 
@@ -550,7 +550,7 @@ The full detail of the retrieved patient will be shown on the right side of the 
 <br>
 
 
-### Clear all patient records : `p clear`
+### Clear all patient records
 
 * Wish to terminate your subscription with CareFlow and move to another system? :pensive: 
 You can also clear all patient records. 
@@ -575,7 +575,7 @@ You can also clear all patient records.
 <br>
 
 
-### List all patient records : `p list`
+### List all patient records
 
 * Want to have an overview of patient records? You can use the `list` command to see the list of 
 all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
@@ -604,7 +604,7 @@ ___
 
 ## 4.3 Drug Commands
 
-### Add a drug entry: `d add`
+### Add a drug entry
 * Decided to prescribe a new drug? You can add a new drug to the list of drug records with the `d add` command.
   \
   &nbsp;
@@ -631,7 +631,7 @@ ___
 <br>
 
 
-### Delete a drug entry by TRADE_NAME: `d delete`
+### Delete a drug entry by TRADE_NAME
 * Decided to stop prescribing a certain drug? You can also delete the specified drug with the
 `d delete` command by specifying the trade name of the drug.
   \
@@ -663,7 +663,7 @@ ___
 <br>
 
 
-### Delete a drug entry by INDEX : `d delete`
+### Delete a drug entry by INDEX
 * Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list 
 by specifying its index in the given drug list.
   \
@@ -695,7 +695,7 @@ by specifying its index in the given drug list.
 <br>
 
 
-### Update storage count of a drug entry: `d update`
+### Update storage count of a drug entry
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
 by specifying the trade name.
 * NOTE: you need to prefix the value with + or - for addition and subtraction respectively
@@ -731,7 +731,7 @@ by specifying the trade name.
 <br>
 
 
-### Retrieve a drug entry by TRADE_NAME: `d find`
+### Retrieve a drug entry by TRADE_NAME
 * Need to access a drug information swiftly? You can quickly retrieve the information of 
 a specific drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
@@ -763,7 +763,7 @@ a specific drug by using the `d find` command and specify the trade name of the 
 <br>
 
 
-### Clear all drug entries : `d clear`
+### Clear all drug entries
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
 * :exclamation: Use this with caution!
   \
@@ -785,7 +785,7 @@ a specific drug by using the `d find` command and specify the trade name of the 
 <br>
 
 
-### List all drug entries: `d list`
+### List all drug entries
 * Want to have an overview of all drug records? You can view all drug records currently stored in the CareFlow system by
 using the `d list` command, drug records will be presented in alphabetical order.
   \
@@ -809,7 +809,7 @@ cause error to the system
 <br>
 
 
-### View a drug by index: `d view`
+### View a drug by index
 * Need to view additional information of a drug record? You can view detailed information of 
 a drug in the CareFlow. The full details of the selected drug will be shown on the right side of the application.
 * Index refers to the index number shown in the displayed drug list.
