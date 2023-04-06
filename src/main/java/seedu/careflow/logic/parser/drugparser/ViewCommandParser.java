@@ -25,17 +25,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     @Override
     public ViewCommand parse(String userInput) throws ParseException {
-        try {
-            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
-            if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
-                Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-                return new ViewCommand(index);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        seedu.careflow.logic.commands.drugcommands.ViewCommand.MESSAGE_USAGE));
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+        if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+            Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+            return new ViewCommand(index);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    seedu.careflow.logic.commands.drugcommands.DeleteCommand.MESSAGE_USAGE));
         }
     }
 
