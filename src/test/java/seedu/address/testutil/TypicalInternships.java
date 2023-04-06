@@ -20,7 +20,7 @@ import seedu.address.model.documents.ResumeLink;
 public class TypicalInternships {
     public static final InternshipApplication META = new InternshipBuilder().withCompanyName("Meta")
             .withJobTitle("Software Tester")
-            .withContact(new Contact(new Phone("33333333"), new Email("example@meta.com"))).build();
+            .withContact(new Contact(new Phone("55555555"), new Email("meta@example.com"))).build();
     public static final InternshipApplication BANK_OF_AMERICA = new InternshipBuilder()
             .withCompanyName("Bank of America").withJobTitle("Software Engineer").build();
     public static final InternshipApplication ALICE = new InternshipBuilder().withCompanyName("Alice Wonder")
@@ -36,6 +36,17 @@ public class TypicalInternships {
             .withJobTitle("Network Engineer")
             .withDocuments(new Documents(new ResumeLink("https://drive.example.com/resume_netflix"),
                     new CoverLetterLink("https://drive.example.com/coverletter_netflix"))).build();
+
+    public static final InternshipApplication MICROSOFT = new InternshipBuilder()
+            .withCompanyName("Microsoft")
+            .withJobTitle("Operating System Developer")
+            .withIsArchived(true).build();
+
+    public static final InternshipApplication MICRON = new InternshipBuilder()
+            .withCompanyName("Micron")
+            .withJobTitle("Embedded Systems Engineer")
+            .withIsArchived(false).build();
+
     public static final InternshipApplication DANIEL = new InternshipBuilder().withCompanyName("Daniel Meier")
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication ELLE = new InternshipBuilder().withCompanyName("Elle Meyer")
@@ -73,8 +84,8 @@ public class TypicalInternships {
     }
 
     public static List<InternshipApplication> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(META, BANK_OF_AMERICA, ALICE, GOOGLE, NETFLIX, BENSON, CARL, DANIEL, ELLE,
-                FIONA, GEORGE, HARRY, IAN, JAMES, ORACLE, AMAZON));
+        return new ArrayList<>(Arrays.asList(META, BANK_OF_AMERICA, ALICE, GOOGLE, NETFLIX, BENSON, CARL, MICROSOFT,
+                MICRON, DANIEL, ELLE, FIONA, GEORGE, HARRY, IAN, JAMES, ORACLE, AMAZON));
     }
 
 }

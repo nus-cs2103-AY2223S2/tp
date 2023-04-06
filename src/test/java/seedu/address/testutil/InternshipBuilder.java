@@ -24,6 +24,7 @@ public class InternshipBuilder {
     private Documents documents;
     private Contact contact;
     private InternshipStatus status;
+    private boolean isArchived;
 
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
@@ -33,6 +34,7 @@ public class InternshipBuilder {
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
         reviews = new HashSet<>();
         status = InternshipStatus.PENDING;
+        isArchived = false;
     }
 
     /**
@@ -45,6 +47,7 @@ public class InternshipBuilder {
         documents = internshipToCopy.getDocuments();
         contact = internshipToCopy.getContact();
         status = internshipToCopy.getStatus();
+        isArchived = internshipToCopy.isArchived();
     }
 
     /**
@@ -87,7 +90,15 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the boolean {@code isArchived} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withIsArchived(boolean isArchived) {
+        this.isArchived = isArchived;
+        return this;
+    }
+
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, isArchived, documents);
     }
 }

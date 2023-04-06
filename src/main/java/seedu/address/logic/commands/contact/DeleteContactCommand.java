@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.contact;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -75,7 +74,6 @@ public class DeleteContactCommand extends Command {
                 createInternshipWithContactDeleted(internshipToDeleteContact);
 
         model.setApplication(internshipToDeleteContact, internshipWithContactDeleted);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, internshipToDeleteContact));
     }
 

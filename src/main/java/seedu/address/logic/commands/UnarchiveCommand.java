@@ -40,7 +40,7 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer 1, 2, 3, ...)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Unarchived Application: %1$s";
+    public static final String MESSAGE_UNARCHIVE_APPLICATION_SUCCESS = "Unarchived Application: %1$s";
     public static final String MESSAGE_APPLICATION_NOT_ARCHIVED = "Application is not currently archived!";
 
     private final Index targetIndex;
@@ -75,7 +75,7 @@ public class UnarchiveCommand extends Command {
 
         model.setApplication(internshipToUnarchive, archivedApplication);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, archivedApplication));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_APPLICATION_SUCCESS, archivedApplication));
     }
 
     /**

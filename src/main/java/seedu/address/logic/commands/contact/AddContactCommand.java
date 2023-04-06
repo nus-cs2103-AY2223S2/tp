@@ -3,7 +3,6 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -40,8 +39,8 @@ public class AddContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contact details to the specified application from the list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com ";
@@ -76,7 +75,6 @@ public class AddContactCommand extends Command {
         InternshipApplication internshipWithContact = createInternshipWithContact(internshipToAddContact, toAdd);
 
         model.setApplication(internshipToAddContact, internshipWithContact);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_CONTACT_SUCCESS, internshipToAddContact + "\n" + toAdd));
     }
 

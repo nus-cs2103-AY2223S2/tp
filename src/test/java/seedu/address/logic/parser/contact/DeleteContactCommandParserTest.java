@@ -21,7 +21,7 @@ public class DeleteContactCommandParserTest {
     private DeleteContactCommandParser parser = new DeleteContactCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteContactCommand() {
         assertParseSuccess(parser, "1", new DeleteContactCommand(INDEX_FIRST_APPLICATION));
     }
 
