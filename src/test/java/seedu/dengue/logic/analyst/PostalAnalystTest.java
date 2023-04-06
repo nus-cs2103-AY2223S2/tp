@@ -17,12 +17,7 @@ public class PostalAnalystTest {
     private static final PersonBuilder PERSON_BUILDER = new PersonBuilder();
     private static final List<Person> EMPTY_PERSON_LIST = new ArrayList<>();
     private static final List<Person> SINGLE_PERSON_LIST = List.of(PERSON_BUILDER.build());
-    private static final String[] VALID_POSTALS = {
-            "S123456",
-            "S321321",
-            "S598765",
-            "S314159",
-            "S918887"};
+    private static final String[] VALID_POSTALS = {"S123456", "S321321", "S598765", "S314159", "S918887"};
 
     private PostalAnalyst analyst;
 
