@@ -96,6 +96,9 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
+        if(address.length() > 38 || address.length() < 1) {
+            throw new ParseException(Address.MESSAGE_LENGTH_ERROR);
+        }
         return new Address(trimmedAddress);
     }
 
