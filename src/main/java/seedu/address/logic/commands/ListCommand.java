@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TANKS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.commons.core.GuiSettings;
