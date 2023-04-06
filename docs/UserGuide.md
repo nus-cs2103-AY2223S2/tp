@@ -10,16 +10,16 @@ contacts list for an easier way to set up proper communication channels.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Add user contacts](#add-user-contacts--add)
-  * [Delete user contacts](#delete-user-contacts--delete)
-  * [Edit user contacts](#edit-user-contacts--edit)
-  * [Locating persons by keywords](#locating-persons-by-keywords--find)
-  * [Listing all contacts](#listing-all-contacts--list)
+  * [Add user contacts](#add-user-contacts-add)
+  * [Delete user contacts](#delete-user-contacts-delete)
+  * [Edit user contacts](#edit-user-contacts-edit)
+  * [Locating persons by keywords](#locating-persons-by-keywords-find)
+  * [Listing all contacts](#listing-all-contacts-list)
   * [Help command](#help-command-help)
-  * [Add an image for contacts](#add-an-image-for-contacts--add-image)
-  * [Delete an image for contacts](#delete-an-image-for-contacts--delete-image)
-  * [Quick import admin contacts](#quick-import-for-admin-contacts--import)
-  * [Exit the program](#exit-the-program--exit)
+  * [Add an image for contacts](#add-an-image-for-contacts-add-image)
+  * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
+  * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
+  * [Exit the program](#exit-the-program-exit)
 * [Command summary](#command-summary)
 
 ---
@@ -37,9 +37,10 @@ use of the application.
 
 ![GUI upon first use](images/Ui.png)
    
-6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below.
-Experienced users can delete the sample data and proceed with regular usage.
-   
+6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below. Experienced users can delete the sample data and proceed with regular usage.
+
+[Back to top](#top)
+
 ---
 
 ## Features
@@ -161,9 +162,9 @@ Format: `list`
 
 Shows a link to the user guide to help new users get familiar with the commands for the application.
 
-[Back to top](#top)
-
 Format: `help`
+
+[Back to top](#top)
 
 ### Add an image for contacts: `add-image`
 
@@ -208,9 +209,6 @@ Common User Errors
     * Relative path starts from the [*home directory*](#quick-start)
     * Here is an external link to [learn more](https://www.computerhope.com/issues/ch001708.htm)
 
-
-
-
 [Back to top](#top)
 
 ### Delete an Image for contacts: `delete-image`
@@ -226,6 +224,8 @@ Format: `delete-image INDEX`
 
 Example:
 * `delete-image 2` deletes the image of the 2nd person in the address book.
+
+[Back to top](#top)
 
 ### Quick Import for admin contacts: `import`
 
