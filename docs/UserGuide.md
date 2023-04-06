@@ -184,9 +184,7 @@ Adds a delivery job to the delivery job system.
 
 **Format**: `add_job si/SENDER_ID ri/RECIPIENT_ID earn/EARNING [date/DELIVERY_DATE] [slot/DELIVERY_SLOT]`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Description field is only available in GUI mode.
-</div>
+
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
@@ -201,7 +199,14 @@ Examples:
 * `add_job si/ALESAM ri/DAVSAM earn/1.1`
 * `add_job si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
 
-**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+**Alternative**:   
+Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**   
+1. Description field is only available in GUI mode.  
+2. Earning field allows for more than 2 decimal inputs.
+</div>
 
 ![Create Job](images/Addjob.png)
 
@@ -227,9 +232,13 @@ Format: `list_job`
 #### Sorting and filtering job list
 Simply click on the corresponding button to sort and filter jobs.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Click again for switching between ascending and descending mode.
+</div>
+
 ![sort filter job](images/listJobSortFilter.png)
 
-### 2.3.2. View details of a specific job
+#### View details of a specific job
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Future improvement:** Application should remember the hidden state of contact details.
