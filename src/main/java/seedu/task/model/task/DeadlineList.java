@@ -50,4 +50,16 @@ public class DeadlineList extends CategoricalTaskList {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof DeadlineList) {
+            DeadlineList list = (DeadlineList) other;
+            return taskList.equals(list.taskList);
+        } else {
+            return false;
+        }
+    }
 }

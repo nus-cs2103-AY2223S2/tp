@@ -28,6 +28,26 @@ public class SimpleTaskTest {
     }
 
     @Test
+    public void isSimpleTask() {
+        assertTrue(ALICE.isSimpleTask());
+    }
+
+    @Test
+    public void isDeadline() {
+        assertFalse(ALICE.isDeadline());
+    }
+
+    @Test
+    public void isEvent() {
+        assertFalse(ALICE.isEvent());
+    }
+
+    @Test
+    public void isComingUp() {
+        assertFalse(ALICE.isEvent());
+    }
+
+    @Test
     public void isSameTask() {
         // same object -> returns true
         assertTrue(ALICE.isSameTask(ALICE));
