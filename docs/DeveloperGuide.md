@@ -12,7 +12,7 @@ title: Developer Guide
 
 
 ### 1.1 Product Overview
-OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
+OfficeConnect is a task management tool designed specifically for managerial role personnels based within Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
 * work overload among subordinates
@@ -503,6 +503,7 @@ similarly named `fxml` and `css` to display the relevant quickstart information.
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
 --------------------------------------------------------------------------------------------------------------------
 ## 5. Appendix: Requirements
 

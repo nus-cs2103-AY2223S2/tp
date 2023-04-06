@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
+OfficeConnect is a task management tool designed specifically for managerial role personnels based in Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
 * work overload among subordinates
@@ -44,7 +44,7 @@ Below are the prefixes we use in commands.
 | Prefix     | Corresponding Input | Input Meaning             | Example Usage              | Input Restrictions                                                                                                    |
 |------------|---------------------|---------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | **n/**     | NAME                | Name of person            | n/Peter                    | Names given to persons must be unique, should only contain alphanumeric characters and spaces and should not be blank |
-| **p/**     | PHONE NUMBER        | Phone number of person    | p/94738484                 | Phone number entered must conform to Singapore numbers (8 digits)                                                     |
+| **p/**     | PHONE NUMBER        | Phone number of person    | p/94738484                 | Phone number entered must conform to Singapore numbers (8 digits) and start wth either 6. 8 or 9. It is also assumed +65 is not necessary.                                                 |
 | **e/**     | EMAIL               | Email of person           | e/nancy@gmail.com          | Emails must have an @                                                                                                 |
 | **a/**     | ADDRESS             | Address of person         | a/Sims Avenue 6            | NA                                                                                                                    |
 | **tag/**   | TAG                 | Tags given to person      | tag/Logistics              | NA                                                                                                                    |
