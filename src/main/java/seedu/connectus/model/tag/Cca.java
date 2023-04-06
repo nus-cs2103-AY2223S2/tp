@@ -13,7 +13,7 @@ public class Cca extends Tag {
             + "alphanumeric and may contain spaces\n"
             + "CCA Positions are optional\n"
             + "Format: " + PREFIX_CCA + "CCA[#CCA_POSITION]";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+#?[\\p{Alnum}\\s]*$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+[\\p{Alnum} ]*#?[\\p{Alnum}\\s]*$";
     public final String ccaName;
     public final String ccaPositionName;
     public final String coupledCcaName;
