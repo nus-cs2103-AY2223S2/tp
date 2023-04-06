@@ -1,6 +1,13 @@
 package seedu.address;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javafx.application.Application;
+
+
 
 /**
  * The main entry point to the application.
@@ -19,7 +26,26 @@ import javafx.application.Application;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
+    private static void createDataFolderIfMissing() {
+        Path dataFolderPath = Paths.get("data");
+        if (!Files.exists(dataFolderPath)) {
+            try {
+                Files.createDirectory(dataFolderPath);
+            } catch (IOException e) {
+                System.err.println("Failed to create data folder");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Launches the application.
+     * @param args
+     */
     public static void main(String[] args) {
+        createDataFolderIfMissing();
         Application.launch(MainApp.class, args);
     }
+
 }
+
