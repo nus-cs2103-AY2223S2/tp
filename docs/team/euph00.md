@@ -12,15 +12,21 @@ yet being fast and lightweight to use due to its optimisation for Command Line I
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Feature**: Adds Patient's todo list
+  * Add a todo field to patient on the UI display when viewing the patient's details
+  * Add relevant commands to logic to support adding and deleting todo for patients
+  * Add relevant components to store todos in Storage
+  * Add relevant fields to model for patient to keep track of their todo list
 
-* **New Feature**:
+* **Enhancements to existing features**:
+  * Extended the existing functionality in AB-3's model for storing contacts such that it can support multiple wards
+  * Extended the types of `Person` in AB-3 such that `Person` is abstract, and the Model manages `Patient` and `Staff` instead
+  * Redefined the API `Model` to conform with new operations involving `Wards`
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=euph00&tabRepo=AY2223S2-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
 
-* **Enhancements to existing features**:
 
 * **Documentation**:
     * User Guide:

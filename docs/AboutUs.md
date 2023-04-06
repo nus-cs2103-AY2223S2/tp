@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/euph00)]
 
 * Role: Team member
-* Responsibilities: ??
+* Responsibilities: In charge of implementation of backend Model components.
 
 ### Zheng Ze
 
