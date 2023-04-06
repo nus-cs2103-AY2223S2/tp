@@ -10,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class LeaveCounter {
     public static final String MESSAGE_CONSTRAINTS =
-            "Leave count has to be a non negative integer, please try again.";
+            "Leave count has to be between 0 and 365 (inclusive), please try again.";
     public static final String FILTER_PARAMETER = "l";
     private static final int DEFAULT_LEAVE_COUNT = 21;
     private int leaveCount;
@@ -39,8 +39,8 @@ public class LeaveCounter {
             return true;
         }
         try {
-            int leaveCount = Integer.parseInt(test.trim());
-            return (leaveCount >= 0);
+            long leaveCount = Long.parseLong(test.trim());
+            return (leaveCount >= 0 && leaveCount <= 365);
         } catch (NumberFormatException nfe) {
             return false;
         }
@@ -61,7 +61,7 @@ public class LeaveCounter {
     }
 
     /**
-     * Checks if there are enough days of leave.
+     * Returns a new leave with the reduced number of days of leave.
      */
     public LeaveCounter takeLeave(int numberOfDays) throws CommandException {
         if (!hasEnoughLeave(numberOfDays)) {

@@ -89,8 +89,8 @@ public class PersonListPanel extends UiPart<Region> {
     }
     public void setClick() {
         personListView.setOnMouseClicked(mouseEvent -> {
-            Employee person = personListView.getSelectionModel().getSelectedItem();
-            setInformation(person);
+            Employee employee = personListView.getSelectionModel().getSelectedItem();
+            setInformation(employee);
         });
     }
     public void setInformation(Employee employee) {
