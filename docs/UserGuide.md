@@ -237,7 +237,7 @@ Other examples:
 * `find Super Wolf` returns `Super Wolf`, `Super Dog`, `Wolf Hunter`<br>
 
 :bulb: **Note:**<br>
-`find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list. 
+`find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list.
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -291,10 +291,20 @@ the edit will override the existing tag
 
 #### Changing the cost : `changecost`
 
-Changes the parameters for cost calculation for each dog
+Do some pets cost more to board in your daycare than others? You can use the `changecost` command to
+change the parameters for cost calculation for each pet.
+
 Cost is incremented in real time and is calculated based on `FLAT_RATE + (TIMESTAMP - CURR_TIME * RATE)`.
-:bulb: **Note:** 
+
+
+<div markdown="block" class="alert alert-block alert-success">
+
+* :bulb: **Note:**
+
 The cost will only update in your PetPal list when you click on the PetPal entry.
+
+The update applies to all PetPal entries.
+</div>
 
 Format: `changecost INDEX RATE FLAT_RATE`
 

@@ -2,10 +2,13 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.*;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
+import static seedu.address.testutil.TypicalPets.WOOFERS;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -102,24 +105,24 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(petPal, archivePetPal, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(petPal, archivePetPal, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotNull(modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different PetPal -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPetPal, archivePetPal, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentPetPal, archivePetPal, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = WHISKERS.getName().fullName.split("\\s+");
         modelManager.updateFilteredPetList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(petPal, archivePetPal, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(petPal, archivePetPal, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
@@ -127,6 +130,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPetPalFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(petPal, archivePetPal, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(petPal, archivePetPal, differentUserPrefs));
     }
 }

@@ -4,9 +4,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.parser.MarkCommandParser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.Email;
@@ -27,8 +24,10 @@ public class PetBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now().minusDays(1);
-    public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine", LocalDateTime.now().plusDays(1));
+    public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine",
+            LocalDateTime.now().plusDays(1));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final boolean DEFAULT_MARK_STATE = false;
 
     private OwnerName ownerName;
     private Name name;
@@ -37,6 +36,7 @@ public class PetBuilder {
     private Address address;
     private LocalDateTime timestamp;
     private Deadline deadline;
+    private boolean isMarked;
     private Set<Tag> tags;
 
     /**
@@ -50,6 +50,7 @@ public class PetBuilder {
         address = new Address(DEFAULT_ADDRESS);
         timestamp = DEFAULT_TIMESTAMP;
         deadline = DEFAULT_DEADLINE;
+        isMarked = DEFAULT_MARK_STATE;
         tags = new HashSet<>();
     }
 
@@ -64,6 +65,7 @@ public class PetBuilder {
         address = petToCopy.getAddress();
         timestamp = petToCopy.getTimeStamp();
         deadline = petToCopy.getDeadline();
+        isMarked = petToCopy.getIsMarked();
         tags = new HashSet<>(petToCopy.getTags());
     }
     /**
@@ -117,7 +119,7 @@ public class PetBuilder {
     /**
      * Sets the {@code Timestamp} of the {@code Pet} that we are building.
      */
-    public PetBuilder withTimestamp (LocalDateTime t) {
+    public PetBuilder withTimestamp(LocalDateTime t) {
         this.timestamp = t;
 
         return this;
@@ -126,8 +128,16 @@ public class PetBuilder {
     /**
      * Sets the {@code Deadline} of the {@code Pet} that we are building.
      */
-    public PetBuilder withDeadline (String d, LocalDateTime t) {
+    public PetBuilder withDeadline(String d, LocalDateTime t) {
         this.deadline = new Deadline(d, t);
+        return this;
+    }
+
+    /**
+     * Sets the {@code isMarked} of the {@code Pet} that we are building
+     */
+    public PetBuilder withMarked(String marked) {
+        this.isMarked = marked.equals("Marked");
         return this;
     }
 

@@ -2,21 +2,27 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.PetPal;
-import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.NameContainsKeywordsPredicate;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.EditPetDescriptorBuilder;
@@ -38,13 +44,26 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_DOG = "pomeranian";
     public static final String VALID_TAG_CAT = "siamese";
-    public static final String VALID_DEADLINE_AMY1 ="Vaccination";
-    public static final LocalDateTime VALID_DEADLINE_AMY2 = LocalDateTime.now().plusDays(1).truncatedTo(ChronoUnit.MINUTES);
+    public static final String INVALID_OWNER_NAME_DESC = " " + PREFIX_OWNER_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PET_NAME_DESC = " " + PREFIX_NAME + "Dog&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final EditCommand.EditPetDescriptor DESC_AMY;
+    public static final EditCommand.EditPetDescriptor DESC_BOB;
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String VALID_DEADLINE_AMY1 = "Vaccination";
+    public static final LocalDateTime VALID_DEADLINE_AMY2 = LocalDateTime.now().plusDays(1)
+            .truncatedTo(ChronoUnit.MINUTES);
     public static final String VALID_DEADLINE_BOB1 = "Feed Bob";
-    public static final LocalDateTime VALID_DEADLINE_BOB2 = LocalDateTime.now().plusDays(2).truncatedTo(ChronoUnit.MINUTES);
-    public static final LocalDateTime VALID_TIMESTAMP_AMY = LocalDateTime.now().minusDays(1).truncatedTo(ChronoUnit.MINUTES);
-    public static final LocalDateTime VALID_TIMESTAMP_BOB = LocalDateTime.now().minusDays(2).truncatedTo(ChronoUnit.MINUTES);
-
+    public static final LocalDateTime VALID_DEADLINE_BOB2 = LocalDateTime.now().plusDays(2)
+            .truncatedTo(ChronoUnit.MINUTES);
+    public static final LocalDateTime VALID_TIMESTAMP_AMY = LocalDateTime.now().minusDays(1)
+            .truncatedTo(ChronoUnit.MINUTES);
+    public static final LocalDateTime VALID_TIMESTAMP_BOB = LocalDateTime.now().minusDays(2)
+            .truncatedTo(ChronoUnit.MINUTES);
     public static final String NAME_DESC_AMY = " " + PREFIX_OWNER_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_OWNER_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_DOG = " " + PREFIX_NAME + VALID_NAME_DOG;
@@ -57,24 +76,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_DOG = " " + PREFIX_TAG + VALID_TAG_DOG;
     public static final String TAG_DESC_CAT = " " + PREFIX_TAG + VALID_TAG_CAT;
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY1 + " - " + VALID_DEADLINE_AMY2.format(formatter);
-    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB1 + " - " + VALID_DEADLINE_BOB2.format(formatter);
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final String DEADLINE_DESC_AMY = " " + PREFIX_DEADLINE + VALID_DEADLINE_AMY1 + " - "
+            + VALID_DEADLINE_AMY2.format(formatter);
+    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOB1 + " - "
+            + VALID_DEADLINE_BOB2.format(formatter);
     public static final String TIMESTAMP_DESC_AMY = " " + PREFIX_TIMESTAMP + VALID_TIMESTAMP_AMY.format(formatter);
     public static final String TIMESTAMP_DESC_BOB = " " + PREFIX_TIMESTAMP + VALID_TIMESTAMP_BOB.format(formatter);
 
-    public static final String INVALID_OWNER_NAME_DESC = " " + PREFIX_OWNER_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PET_NAME_DESC = " " + PREFIX_NAME + "Dogg&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditPetDescriptor DESC_AMY;
-    public static final EditCommand.EditPetDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPetDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -136,7 +145,7 @@ public class CommandTestUtil {
 
         Pet pet = model.getFilteredPetList().get(targetIndex.getZeroBased());
         final String[] splitName = pet.getName().fullName.split("\\s+");
-        model.updateFilteredPetList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPetList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPetList().size());
     }

@@ -3,9 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.HOON;
 import static seedu.address.testutil.TypicalPets.IDA;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
+import static seedu.address.testutil.TypicalPets.getTypicalArchive;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 import java.io.IOException;
@@ -31,7 +32,8 @@ public class JsonPetPalStorageTest {
     }
 
     private java.util.Optional<ReadOnlyPetPal> readPetPal(String filePath) throws Exception {
-        return new JsonPetPalStorage(Paths.get(filePath), Paths.get(filePath))
+        Path fP = Paths.get(filePath);
+        return new JsonPetPalStorage(fP, fP)
                 .readPetPal(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -65,15 +67,22 @@ public class JsonPetPalStorageTest {
     public void readAndSavePetPal_allInOrder_success() throws Exception {
         Path filePath = TEST_DATA_FOLDER.resolve("TempPetPal.json");
         Path archiveFilePath = TEST_DATA_FOLDER.resolve("TempArchive.json");
+
         PetPal original = getTypicalPetPal();
+        PetPal ogArchive = getTypicalArchive();
+
         JsonPetPalStorage jsonPetPalStorage = new JsonPetPalStorage(filePath, archiveFilePath);
 
         // Save in new file and read back
         jsonPetPalStorage.savePetPal(original, filePath);
+        jsonPetPalStorage.savePetPalArchive(ogArchive, archiveFilePath);
+
         Path fP = Paths.get("src/test/data/JsonPetPalStorageTest/TempPetPal.json");
         ReadOnlyPetPal readBack = jsonPetPalStorage.readPetPal(filePath).get();
+        ReadOnlyPetPal readArchive = jsonPetPalStorage.readPetPalArchive(filePath).get();
 
         assertEquals(original, new PetPal(readBack));
+        assertEquals(ogArchive, new PetPal(readArchive));
 
         // Modify data, overwrite exiting file, and read back
         original.addPet(HOON);

@@ -36,7 +36,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Pet editedPet = new PetBuilder().build();
+        Pet editedPet = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
         EditPetDescriptor descriptor = new EditPetDescriptorBuilder(editedPet).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PET, descriptor);
 
@@ -44,6 +44,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new PetPal(model.getPetPal()),
                 model.getPetPalArchive(), new UserPrefs());
+
         expectedModel.setPet(model.getFilteredPetList().get(0), editedPet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
