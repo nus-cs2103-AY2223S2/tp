@@ -248,7 +248,7 @@ This will add a new person named Bob to our contact list.
 
 After executing the command, we see that Bob has been added below the list.
 
-<div class="span" class="alert alert-danger">  
+<div markdown="span" class="alert alert-danger">  
 :exclamation: <b>Caution:</b> You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 </div>
 
@@ -284,7 +284,7 @@ numbered `8` in this example. This is his _index_.
 Now enter `view 8` into the command box.
 His _contact_ details will then be shown in the **Info Panel**.
 
-![viewing-bob](images/UG-tutorial/viewing-bob.png)
+![viewing-bob](images/UG-tutorial/viewing-bob_2400x1500.png)
 
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
