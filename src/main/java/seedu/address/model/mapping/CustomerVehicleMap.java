@@ -78,7 +78,6 @@ public class CustomerVehicleMap {
      *         specified customer.
      */
     public ObservableList<Vehicle> getCustomerVehicles(Customer customer) {
-        LogsCenter.getLogger(CustomerVehicleMap.class).info("debug");
         return this.customerToVehiclesMap.get(customer).asUnmodifiableObservableList();
     }
 
