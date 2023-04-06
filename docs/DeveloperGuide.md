@@ -148,19 +148,21 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Implementation**
+## Implementation
 
 ### Add Doctor Feature
 
-### What it does
+#### What it does
+{: .no_toc}
 
 Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the list. If a record of the same doctor already exists in the list, the command will not be allowed and an error will be thrown to alert user.
 
 Example Use: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
 
-### Implementation
+#### Implementation
+{: .no_toc}
 
 Upon entry of the add doctor command, an `AddDoctorCommand` class is created. The `AddDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
 
@@ -179,13 +181,15 @@ The following sequence diagram illustrates how the add doctor operation works:
 
 ### Add Patient Feature
 
-### What it does
+#### What it does
+{: .no_toc}
 
 Adds a patient to the bottom of the list of currently existing patients. Users are able to add any valid patient to the list. If a record of the same patient already exists in the list, the command will not be allowed and an error will be thrown to alert user.
 
 Example Use: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
-### Implementation
+#### Implementation
+{: .no_toc}
 
 Upon entry of the add patient command, an `AddPatientCommand` class is created. The `AddPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, a `Patient` object is added to the model’s list of patients if all the attributes provided are valid and a duplicate instance does not exist.
 
@@ -202,9 +206,10 @@ The following sequence diagram illustrates how the add doctor operation works:
 ![](images/AddPatientSequenceDiagram.png)
 *args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
 
-### Edit Doctor Feature
+#### Edit Doctor Feature
 
 ### What it does
+{: .no_toc}
 
 Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be 
 updated to the input values and all other values will remain the same. The doctor to be edited can be specified through
@@ -213,6 +218,7 @@ the doctor's index.
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
 ### Implementation
+{: .no_toc}
 
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
 the abstract `Command` class and implements the `execute()` method. The `EditDoctorDescriptor` is created with the arguments given
@@ -236,19 +242,17 @@ The following sequence diagram illustrates how the edit doctor operation works:
 
 ![](images/EditDoctorSequenceDiagram.png)
 
-### Delete Features
-
----
-
 ### Delete Doctor Feature
 
-### What it does
+#### What it does
+{: .no_toc}
 
 Deletes a doctor at the specified **one-based index** of list of currently existing/found doctors. Users are able to delete any doctor in the list. If an index larger than or equal to the size of the doctor’s list is provided, the command will not be allowed and an error will be thrown to alert user.
 
 Example Use: `del-doc 1`
 
-### Implementation
+#### Implementation
+{: .no_toc}
 
 Upon entry of the delete doctor command, a `DeleteDoctorCommand` class is created. The `DeleteDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the doctor at specified **one-based index** is removed if the index provided is valid.
 
@@ -264,16 +268,17 @@ The following sequence diagram illustrates how the delete doctor operation works
 
 ![](images/DeleteDoctorSequenceDiagram.png)
 
-
 ### Delete Patient Feature
 
-### What it does
+#### What it does
+{: .no_toc}
 
 Deletes a patient at the specified **one-based index** of list of currently existing/found patient. Users are able to delete any patient in the list. If an index larger than or equal to the size of the patient’s list is provided, the command will not be allowed and an error will be thrown to alert user.
 
 Example Use: `del-ptn 1`
 
-### Implementation
+#### Implementation
+{: .no_toc}
 
 Upon entry of the delete doctor command, a `DeletePatientCommand` class is created. The `DeletePatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is removed if the index provided is valid.
 
@@ -289,11 +294,11 @@ The following sequence diagram illustrates how the delete patient operation work
 
 ![](images/DeletePatientSequenceDiagram.png)
 
----
-
 ### GUI Features
 
 #### Enlarged Info Card feature
+{: .no_toc}
+
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
 the personal information of the doctor or patient. Therefore, the right-most column within
 Docedex has been reserved to show the personal information of the selected doctor or patient.
@@ -301,6 +306,8 @@ Docedex has been reserved to show the personal information of the selected docto
 ![](images/enlarged-contact-card-display.png)
 
 ##### Brief introduction to the components involved
+{: .no_toc}
+
 Let's call the card which displays this information **info cards**. However, the information
 displayed for a doctor compared to a patient has a few differences. Thus, two different info cards
 are required - one to display patient information and one to display doctor information.
@@ -310,8 +317,9 @@ only have one `StackPane` to display the information of the queried doctor or pa
 So, we need a way to toggle between displaying either card, depending on whether the user
 has selected a doctor or patient to view.
 
-
 ##### Exploring the user journey
+{: .no_toc}
+
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
 representing a doctor, though the ideas below can be extended to the user clicking on a
 `PatientListViewCell`, as well as other ways of querying for a doctor or patient
@@ -323,6 +331,8 @@ causes the display of information related to the doctor card through the `Enlarg
 ![](images/UserClickDoctorCardSequenceDiagram.png)
 
 ##### More details on implementation
+{: .no_toc}
+
 When the user clicks on a `DoctorListViewCell`, the `displayDoctor()` call sets the state of the
 `EnlargedInfoCardDisplayController` to show the doctor. After which, the `ContactDisplay`
 is prompted to feedback this change to the user, by displaying the `EnlargedDoctorInfoCard`
@@ -331,6 +341,8 @@ containing the information of the doctor represented by the clicked `DoctorListV
 A similar process happens when the user clicks on a `PatientListViewCell`.
 
 ##### How is the state of the application stored
+{: .no_toc}
+
 Within `EnlargedInfoCardDisplayController`, two booleans corresponding to displaying doctor
 and patient information respectively store the state of the application.
 
@@ -341,13 +353,14 @@ These booleans should never contain the same value for the following reasons:
 displayed over each other.
 </div>
 
-#### Alternatives considered
+##### Alternatives considered
 *_This section is still in progress_*
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
+Here are some useful links on the following!
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
