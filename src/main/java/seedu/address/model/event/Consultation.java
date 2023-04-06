@@ -25,7 +25,6 @@ public class Consultation extends Event {
         super(name, eventDate, students);
     }
 
-    //Unique constructor for consultation compared to lab and tutorial as file attachments not needed
     public Consultation(String name, List<Person> students, List<Note> notes, LocalDateTime eventDate) {
         super(name, students, notes, eventDate);
     }
@@ -39,7 +38,7 @@ public class Consultation extends Event {
     }
 
     /**
-     * Gets the list of students
+     * Gets the list of students currently in the event.
      *
      * @return students
      */
