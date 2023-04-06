@@ -1490,11 +1490,53 @@ Hence, we are constantly striving to make InternBuddy better. This appendix docu
 that our team is currently working on, and we would release them in the future once their functionalities
 have been finalised.
 
-### Title of Design Tweak
+### Integer overflow causes wrong error message
 **Problem:**
-Explain the problem here
+There are currently 4 types of commands that require internship indexes: `edit`, `view` `copy` and `delete-index`.
+However, the current implementation of the parsing of these indexes does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
 
-**Proposed Design Tweak**: Explain the design tweak here
+When trying to parse these integers, it recognises that they are either too large or too small and treats them as not an integer.
+As a result, InternBuddy is unable to differentiate between internship index inputs that aren't integers and are integer overflows. 
+
+Thus, an invalid command format error message is displayed when these integer overflows are inputted (Fig. XX), instead of an index out of range error message when the integer is too large or an invalid index error message when the integer is too small.
+
+<p align="center">
+  <img src="images/dg-int-overflow-problem.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Invalid command format error message is returned even though internship index is an integer</p>
+
+<br/>
+
+**Proposed Design Tweak**: We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
+
+* When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (Fig. XX).
+   * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (Fig. XX).
+   * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (Fig. XX).
+
+<p align="center">
+  <img src="images/dg-int-overflow-solution.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Checking of input added when InternBuddy recognises that it isn't an integer.</p>
+
+<br/>
+
+<p align="center">
+  <img src="images/dg-negative-int-overflow-solved.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Invalid index error message displayed when there is negative integer overflow.</p>
+
+<br/>
+
+<p align="center">
+  <img src="images/dg-positive-int-overflow-solved.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Out of range index error message displayed when there is positive integer overflow.</p>
+
+<br/>
 
 <div style="page-break-after: always;"></div>
 

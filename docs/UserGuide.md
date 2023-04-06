@@ -486,10 +486,21 @@ More examples:
   a company name of `Google` **or** `Apple`.
 * `find n/Google n/Apple s/Applied s/New` returns internship entries that have company names
   of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
+* Figure 5 below shows InternBuddy starting off with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`, the internship entries in green boxes in the after image were returned. The internship entries in red boxes in the before images, however, were not displayed as they did not match the search.
+  * In the after image, internship entry index 1 was filtered out because it contains at least one company name 'Google' and both tags 'python' and 'java'.
+  * In the after image, internship entry index 2 was filtered out because it contains at least one company name 'Google' and at least one tag 'python'.
+  * In the after image, internship entry index 3 was filtered out because it contains at least one company name 'Apple' and at least one tag 'java'
+  * In the before image, internship entry index 4 was not filtered out because even though it contains at least one searched company name 'Google', it does not contain at least one of the searched tags.
+  * In the before image, internship entry index 5 was not filtered out because even though it contains at least one of the searched tags 'java' and 'python', it does not contain at least one of the searched company names.
 
-  
-![Find Command](images/ug-find-example.png)
-   <p style="text-align: center;">Figure 5: Example of the find command in action</p>
+
+<p align="center">
+  <img src="images/ug-find-example.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Example of the find command in action</p>
+
+<br/>
 
 
 <div markdown="span" class="alert alert-primary">
@@ -649,63 +660,81 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-### Saving your Internship Data
+[//]: # (@@author kohkaixun)
+### Navigating through Past Commands
 
-Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
-in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
-where you placed `internbuddy.json`. There is no need to save manually.
+Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
+After you have clicked on the [Input Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Input Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
+This allows you to effortlessly access and use past commands without having to go through the tedious process of typing them all over again.
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Info:** The file location of `internbuddy.json` is stated in the
-<a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
+:information_source: **Info:** InternBuddy only tracks your past commands from the current run of
+InternBuddy. This means that if you restart InternBuddy, you can no longer navigate to the commands that
+you entered during the previous run.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Once you have navigated to the first command that you have ever entered into
+InternBuddy, pressing <button>&uarr;</button> would not lead to any further change. Similarly, once you have
+navigated to the current state of waiting for new input, pressing <button>&darr;</button> would not
+change anything.
+</div>
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  InternBuddy keeps track of all past commands entered, regardless of whether they were
+valid or not. Hence, if you accidentally entered an invalid command, you can easily navigate to it and
+make amendments accordingly without having to type out the entire command again.
+</div>
+
+Example:
+- Figure XX illustrates an example of how you can navigate through past commands where the inputs
+  `list`, `clear` and `upcoming` are entered in this particular order.
+
+
+<p align="center">
+  <img src="images/ug-navigate-commands.png" width="1000" />
+</p>
+
+   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+
+<br/>
+
+
+### Saving your Internship Data
+
+          Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
+          in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
+          where you placed `internbuddy.json`. There is no need to save manually.
+
+<div markdown="span" class="alert alert-primary">
+
+          :information_source: **Info:** The file location of `internbuddy.json` is stated in the
+          <a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
 </div>
 
 
 ### Loading the Data
 
-InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
-manually.
+          InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
+          manually.
 * If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
-  entries.
+          entries.
 * If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
-  empty data file.
+          empty data file.
 
 <div markdown="span" class="alert alert-danger">
 
-:warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
-InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
-with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
-[Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
+          :warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
+          InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
+          with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
+      [Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
 
 </div>
 
 <div style="page-break-after: always;"></div>
-
-[//]: # (@@author kohkaixun)
-### Navigating through Past Commands
-
-Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
-After the [Command Box](#exploring-the-graphical-user-interface) has been clicked, pressing <button>&uarr;</button>
-and <button>&darr;</button> will fill the [Command Box](#exploring-the-graphical-user-interface) with commands you entered recently.
-Hence, you will be able to just enter or edit before entering any of those inputs again.
-This will allow you to easily access and navigate through inputs you entered recently.
-
-* InternBuddy keeps a history of your past inputs.
-* Pressing the up key will cause your next most recent input to appear in the text box. However, once you reach the least recent input, pressing the up arrow key further will not result in any change and the least recent input will remain in the text box.
-* Pressing the down key will cause your next least recent input to appear in the text box. Once you reach the most recent input, pressing the down key once more will clear the text box. Pressing the down arrow key further, however, will not result in any change and the text box will remain empty.
-* However, InternBuddy only starts keeping track of your inputs from its most recent launch. Suppose you have already inputted some commands into InternBuddy and it has recorded these commands into its input history. Exiting InternBuddy and launching it again will result in InternBuddy forgetting those past inputs and start afresh.
-* InternBuddy will keep track of all past inputs, regardless of whether or not they were valid commands. This is so that in the case where a past input was an invalid command, it can be navigated to and edited to be used again instead of having to type out the entire command again.
-
-Example:
-- Suppose InternBuddy has just been launched and the inputs `find n/google`, `help` and `oops` are entered into InternBuddy in this order.
-    - Pressing the up arrow key once will cause the text box to be filled with the most recent input which was `oops`. Pressing the up arrow key again will cause `oops` to disappear and the next most recent input, which is `help`, to fill the text box. Pressing the up arrow key yet again will cause `help` to disappear and the next most recent input, which is `find n/google`, to fill the text box. However, as `find n/google` is the least recent input, pressing the up arrow key again will not result in any change and the text box will continue to be filled with the input `find n/google`.
-    - Now that you have navigated to the least recent input, `find n/google`, pressing the down arrow key once will cause `find n/google` to disappear and the next least recent input, which is `help`, to fill the text box. Pressing the down arrow key again will cause `help` to disappear and the next least recent input, which is `oops`, to fill the text box. However, as `oops` is the most recent input, pressing the down arrow key again will cause `oops` to disappear and clear the text box. Pressing the down arrow key further will not result in any change and the text box will remain empty.
-
-- Suppose InternBuddy has just been launched again and the inputs `delete 1`, `clear` and `blah` are entered into InternBuddy in this order.
-    - Pressing the up arrow key once will cause the text box to be filled with the most recent input, which is `blah`. Pressing the up arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to fill the text box.
-    - Pressing the down arrow key next will cause `clear` to disappear and the next least recent input, which is `blah`, to fill the text box again.
-    - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
 
 
 ## **FAQ**
