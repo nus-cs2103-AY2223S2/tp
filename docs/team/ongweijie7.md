@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * Justification: This feature allows for identification of the date of birth of patient.
     * Highlights: By inputting in date in the format `DD/MM/YYYY`, the date of birth shown in the record will be `DD MONTH YYYY`
 
-    
+
 ### **Code contributed**:
   [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ongweijie7&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -71,7 +71,7 @@ Given below are my contributions to the project.
 User Guide:
 * Added documentation to include details and example of the basic commands we were implementing. [#15](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/15)
 * Added documentation to include command notes to take note for each command. [#129](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/129)
-    
+
 
 Developer Guide:
 * Added implementation details and design considerations for the `find` command and its respective prefixes. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
@@ -80,7 +80,7 @@ Developer Guide:
 
 
 ### **Review contributions**:
-* Organised and coordinated team meetings.    
+* Organised and coordinated team meetings.
 * Took video demo for `v1.3`.
 * Reviewed and approved PRs for merging.
 * PRs reviewed (with non-trivial comments): [#83](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/83), [#85](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/85), [#86](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/86)
