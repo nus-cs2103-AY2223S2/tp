@@ -860,7 +860,7 @@ testers are expected to do more *exploratory* testing.
 
 2. The current `linkcontact` command does not recognise an inputted phone number if there are extra spaces around it. For example, `linkcontact 1      12345678` is not allowed. We plan to allow the extra spaces by ignoring extra spaces when splitting the input arguments.
 
-3. upon using the current `linkcontact` command on a contact that is already linked to a specified event, the application returns "contact successfully linked" message in the message display box. We plan to change the display message to "Contact already linked" instead for contacts that are already linked.
+3. Upon using the current `linkcontact` command on a contact that is already linked to a specified event, the application returns a 'Successfully linked' message in the message display box. We plan to change the display message to 'Contact already linked' instead for contacts that are already linked.
 
 4. The current UI does not wrap text displayed into a new line, instead a scroll bar is used to scroll and view textual informations that are too long. We plan to add a text wrapping feature to provide better readability to users so that scrolling is not needed.
 
