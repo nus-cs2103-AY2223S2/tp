@@ -7,18 +7,80 @@ title: Darius Ng's Project Portfolio Page
 FitBook - to be added later
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added *Weight* class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit his/her weight.
+  * Justification: This feature improves the product significantly because a user may want to keep track of the
+    weight of his/her clients which makes it easier for the client to keep track.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added *Goal* class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit the goal of the client. (Optional attribute)
+  * Justification: This feature improves the product significantly because a user may want set goals of his client
+    so that he can personalize exercises to be able to meet their goals.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+
+* **New Feature**: Added *Gender* class to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit the Gender of the client.
+  * Justification: This feature improves the product significantly because a user may want to keep track of the
+    gender of his/her clients which makes it easier for the client to keep track.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+
+* **New Feature**: Added *export* functionality.
+  * What it does: allows the user to export the compulsory data fields of a client which are Name, Phone Number,Email, Address, Weight and Gender. 
+  * Justification: This feature improves the product significantly because user gets to save their data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
+  * Highlights: It required an in-depth analysis of design alternatives.
+
+* **New Feature**: Added *exportRoutine* functionality.
+  * What it does: allows the user to export the data fields of a Routine along with the exercises tagged to that routine.
+  * Justification: This feature improves the product significantly because user gets to save their routine data into a csv format locally on his computer. Which he/she is then able to open the csv file using applications like Microsoft Excel to do further analysis.
+  * Highlights: It required an in-depth analysis of design alternatives.
+
+* **New Feature**: Added *deleteRoutine* functionality for Routine Class.
+  * What it does: allows the user to delete Routines in the Routine Storage, and it will be updated in the current model for Routine.
+  * Justification: This feature improves the product significantly because user gets to delete a specific Routine in the Routine Storage.
+  * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
+
+* **New Feature**: Added *deleteExercise* functionality for Routine Class.
+  * What it does: allows the user to delete exercises that is tagged to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
+  * Justification: This feature improves the product significantly because it allows user to delete a specific Exercise that could be outdated in the specific Routine in the Routine Storage.
+  * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
+
+* **New Feature**: Added *addExercise* functionality for Routine Class.
+  * What it does: allows the user to add exercises to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
+  * Justification: This feature improves the product significantly because it allows user to add new Exercises to the specific Routine in the Routine Storage.
+  * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
+
+* **New Feature**: Added *listRoutines* functionality for Routine Class.
+  * What it does: allows the user to view all the Routines in FitBook.
+  * Justification: This feature improves the product significantly because it allows user to look at what Routines have been stored in the Routine's Storage.
+  * Highlights: It required an in-depth analysis of design alternatives.
+
+* **New Feature**: Added *findRoutines* functionality for Routine Class.
+  * What it does: allows the user to find specific Routines in FitBook by keywords.
+  * Justification: This feature improves the product significantly because it allows user to filter and search Routines that have been stored in the Routine's Storage.
+  * Highlights: It required an in-depth analysis of design alternatives.
+
+* **New Feature**: Added *clearRoutines* functionality for Routine Class.
+  * What it does: allows the user to clear all Routines in FitBook.
+  * Justification: This feature improves the product significantly because it allows user to easily delete all Routines that have been stored in the Routine's Storage.
+  * Highlights: It required an in-depth analysis of design alternatives.
+
+* **New Feature**: Added tests for Gender, Goal, Weight, listRoutines, findRoutines, clearRoutines.
+  * What it does: run automated checks for features for this app to mitigate some bugs.
+  * Justification: This feature improves the product significantly by mitigating any potential bugs.
+  * Highlights: Testing has to be done on a case to case basis. Testings for features are not simple and required an in-depth analysis of design alternatives.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Created organisation and set up project repository.
+  * Managed and created labels to organise issues and pull requests.
+  * Authored 38 issues, including User Stories.
+  * Reviewed 11 pull requests to ensure quality and consistency across the code base.
+  * Handled miscellaneous administrative tasks including:
+    * Setting up project website.
+    * Enabling assertions in `build.gradle`.
+    * `v1.3(final)`(1 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
