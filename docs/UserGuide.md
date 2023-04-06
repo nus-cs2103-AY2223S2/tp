@@ -96,24 +96,8 @@ This section serves to introduce the icons used throughout this guide.
 | n/     | Name           | Name is alphanumeric only                                                                             |
 | d/     | Date           | Dates should follow a `YYYY-MM-DD` format                                                             |
 | s/     | Start time     | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
-| e/     | End time       | ^                                                                                                     |
+| e/     | End time       | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
 | every/ | Every          | Recurring factor is given by `day/week/month                                                          | 
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Name is alphanumeric only.
-</div>
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Dates should follow a `YYYY-MM-DD` format.
-</div>
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. 
-</div>
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Recurring factor is given by `day/week/month`.
-</div>
 
 
 [[Back to top](#table-of-contents)]
