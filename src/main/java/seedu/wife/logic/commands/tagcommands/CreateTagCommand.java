@@ -45,7 +45,6 @@ public class CreateTagCommand extends Command {
         this.toCreate = tags;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -53,7 +52,7 @@ public class CreateTagCommand extends Command {
 
         for (Tag tag: this.toCreate) {
             if (model.hasTag(tag)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+                continue;
             }
 
             try {
@@ -62,6 +61,10 @@ public class CreateTagCommand extends Command {
             } catch (TagStorageFullException e) {
                 throw new CommandException(e.getMessage());
             }
+        }
+
+        if (messageString.equals(MESSAGE_TAG_CREATE_SUCCESS)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TAG);
         }
 
         return new CommandResult(messageString);

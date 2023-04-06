@@ -54,6 +54,11 @@ public class JsonWifeStorageTest {
     }
 
     @Test
+    public void readWife_invalidFoodWife_throwNumberFormatExceptionException() {
+        assertThrows(DataConversionException.class, () -> readWife("invalidFoodQuantityWife.json"));
+    }
+
+    @Test
     public void readWife_invalidAndValidFood_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWife("invalidAndValidFoodWife.json"));
     }
