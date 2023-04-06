@@ -306,8 +306,7 @@ The following sequence diagram shows how the `salary` command works:
     * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
 #### Limitations:
-
-The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of 
+The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
 the roles. E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc` will
 sort both views.
 
@@ -351,7 +350,7 @@ The following sequence diagram shows how the `deadline` command works:
 #### Limitations:
 
 The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
-the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc` 
+the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
 will sort both views.
 
 
@@ -464,7 +463,7 @@ An example usage of the `View` command is given below:
    <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
-     <img src="images/UICommandImages/ViewCommand1.png" width="800" />
+   <img src="images/UICommandImages/ViewCommand1.png" width="800" />
 
 The following sequence diagram shows how the `view` command works:
 <img src="images/ViewCommandSequenceDiagram.png" width="800" />
