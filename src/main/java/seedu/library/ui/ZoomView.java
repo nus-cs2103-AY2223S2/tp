@@ -51,7 +51,9 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label labelHeader;
     @FXML
-    private HBox hyperbox;
+    private HBox hyperBox;
+    @FXML
+    private HBox authorBox;
 
 
     /**
@@ -79,11 +81,12 @@ public class ZoomView extends UiPart<Region> {
         viewTitle.setText("Title: " + bookmark.getTitle().value);
         String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
         authorView.setText("Author: " + authorString);
+        authorBox.setMinHeight(authorView.getMaxHeight());
         genreView.setText("Genre: " + bookmark.getGenre().value);
         String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
         progressView.setText("Progress: " + progressString);
         urlLink.setText("Url: " + bookmark.getUrl().value);;
-        hyperbox.setMinHeight(urlLink.getMaxHeight());
+        hyperBox.setMinHeight(urlLink.getMaxHeight());
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
