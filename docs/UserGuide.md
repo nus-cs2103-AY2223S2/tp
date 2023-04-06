@@ -105,6 +105,11 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All commands from this point onwards are to be
+executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considered as invalid. Keywords following commands do
+not need to be in lower case.
+</div>
+
 ### Viewing help : `help`
 
 Lists out all the commands available, along with a brief description.
