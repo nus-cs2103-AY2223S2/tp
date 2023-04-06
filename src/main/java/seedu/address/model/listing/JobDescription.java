@@ -45,11 +45,6 @@ public class JobDescription {
             return false;
         }
 
-        // Check for all caps
-        if (test.matches(VALIDATION_ALL_CAPS)) {
-            return false;
-        }
-
         // Check for all non-alphanumeric characters
         if (test.matches(VALIDATION_ALL_NON_ALPHANUM)) {
             return false;
