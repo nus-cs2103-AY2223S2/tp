@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.model.tag.ValidTag;
 
@@ -111,23 +111,38 @@ public class DoughnutChart extends PieChart {
         innerCircle = new Circle();
         innerCircle.setStyle("-fx-fill: -black");
 
-        Text percent = new Text(degreeProgressionData.getOverallPercentage() + "% completed");
-        percent.setStyle("-fx-fill: -teal;");
-        percent.getStyleClass().add("h2");
+        if (degreeProgressionData.isValid()) {
+            Text percent = new Text(degreeProgressionData.getOverallPercentage() + "% completed");
+            percent.setStyle("-fx-fill: -teal;");
+            percent.getStyleClass().add("h2");
 
-        Text totalMc = new Text(degreeProgressionData.getMeaningfulCredit() + "/"
-                + DegreeProgressionData.TOTALCREDIT + " MCs");
-        totalMc.setStyle("-fx-fill: -white;");
-        totalMc.getStyleClass().add("h3");
+            Text totalMc = new Text(degreeProgressionData.getMeaningfulCredit() + "/"
+                    + DegreeProgressionData.TOTALCREDIT + " MCs");
+            totalMc.setStyle("-fx-fill: -white;");
+            totalMc.getStyleClass().add("h3");
 
-        Text cap = new Text("CAP: " + degreeProgressionData.getGpa());
-        cap.setStyle("-fx-fill: -white;");
-        cap.getStyleClass().add("h3");
+            Text cap = new Text("CAP: " + degreeProgressionData.getGpa());
+            cap.setStyle("-fx-fill: -white;");
+            cap.getStyleClass().add("h3");
 
-        VBox labels = new VBox(percent, totalMc, cap);
-        labels.getStyleClass().add("doughnut-center-label");
+            VBox labels = new VBox(percent, totalMc, cap);
+            labels.getStyleClass().add("doughnut-center-label");
 
-        doughnutCenterLabel = new StackPane(innerCircle, labels);
+            doughnutCenterLabel = new StackPane(innerCircle, labels);
+        } else {
+            Text invalid = new Text("INVALID MODULES");
+            invalid.setStyle("-fx-fill: -white;");
+            invalid.getStyleClass().add("h3");
+
+            Text helpText = new Text("Input `view progress`\nto find out more!");
+            helpText.setStyle("-fx-fill: -white;");
+            helpText.getStyleClass().add("h5");
+
+            VBox labels = new VBox(invalid, helpText);
+            labels.getStyleClass().add("doughnut-center-label");
+
+            doughnutCenterLabel = new StackPane(innerCircle, labels);
+        }
     }
 
     /**

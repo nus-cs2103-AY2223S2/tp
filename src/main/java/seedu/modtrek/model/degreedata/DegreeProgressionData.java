@@ -1,4 +1,4 @@
-package seedu.modtrek.model;
+package seedu.modtrek.model.degreedata;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +16,30 @@ import seedu.modtrek.model.tag.ValidTag;
  */
 public class DegreeProgressionData {
 
-    // Currently for cohort 2122
     public static final int TOTALCREDIT = 160;
+    public static final String ERROR =
+            new StringBuilder("Based on the calculation, this is an impossible scenario.\n\n")
+            .append("This is most likely due to incorrect tagging of modules,")
+            .append("please have a look through again to make sure the modules are tagged accurately! \n\n")
+            .append("If you believe this is an error, please raise an issue at MODTrek github!")
+            .toString();
+
+    private static class InvalidDegreeData extends DegreeProgressionData {
+        public InvalidDegreeData() {
+            super();
+            super.overallPercentage = 0;
+            super.meaningfulCredits = 0;
+            super.initCompletedRequirementCredits();
+        }
+
+        @Override
+        public boolean isValid() {
+            return false;
+        }
+    }
+
+    private static final DegreeProgressionData invalid = new InvalidDegreeData();
+
     private HashMap<String, Integer> totalRequirementCredits = new HashMap<>(Map.of(
         "ULR", 16,
         "CSF", 36,
@@ -26,7 +48,7 @@ public class DegreeProgressionData {
         "MS", 16,
         "UE", 40));
 
-    // User's calculateProgress data
+    // User's progress data
     private int completedCredit = 0; // Credits counted for gpa
     private int plannedCredit = 0;
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
@@ -40,7 +62,7 @@ public class DegreeProgressionData {
 
     /**
      * Factory method to generate the data needed to show progress. Progress
-     * is calculateProgressd from the user's current modlist.
+     * is calculated from the user's current modlist.
      *
      * @param modList
      * @return
@@ -56,18 +78,22 @@ public class DegreeProgressionData {
                 data.computeSingleTagModule(module);
             }
         });
-        data.computeMultiTagModules(multiTagged);
-        data.updateUeTotal();
-        data.computeGpa();
-        data.calculateProgress();
-        return data;
+        try {
+            data.computeMultiTagModules(multiTagged);
+            data.updateUeTotal();
+            data.computeGpa();
+            data.calculateProgress();
+            return data;
+        } catch (DegreeProgressionException e) {
+            return invalid;
+        }
     }
 
     private void updateUeTotal() {
         this.totalRequirementCredits.merge("UE", this.duplicatedCredits, (x, y) -> x + y);
     }
 
-    private void computeMultiTagModules(Stack<Module> stack) {
+    private void computeMultiTagModules(Stack<Module> stack) throws DegreeProgressionException {
         while (!stack.isEmpty()) {
             Module module = stack.pop();
             int credit = Integer.valueOf(module.getCredit().toString());
@@ -82,7 +108,7 @@ public class DegreeProgressionData {
                         .reduce(0, (old, next) -> {
                             return old + next;
                         });
-                duplicatedCredits += Math.max(total - credit, 0);
+                duplicatedCredits += total - credit;
                 module.getTags().forEach((tag) -> {
                     completedRequirementCredits.merge(tag.tagName,
                             credit, (oldValue, newValue) -> {
@@ -98,6 +124,9 @@ public class DegreeProgressionData {
             } else if (!module.isComplete()) {
                 plannedCredit += credit;
             }
+        }
+        if (duplicatedCredits < 0 || duplicatedCredits > 40) {
+            throw new DegreeProgressionException();
         }
     }
 
@@ -196,6 +225,10 @@ public class DegreeProgressionData {
         for (String tag : tags) {
             completedRequirementCredits.put(ValidTag.getShortForm(tag).toString(), 0);
         }
+    }
+
+    public boolean isValid() {
+        return true;
     }
 
     @Override

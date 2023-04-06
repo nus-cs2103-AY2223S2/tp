@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
+
 public class DegreeProgressionDataTest {
 
     // Using Empty Degree Progression as test
