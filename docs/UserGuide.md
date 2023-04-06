@@ -33,8 +33,9 @@ title: HMHero User Guide
      * [Reject an applicant `reject`](#616-reject-an-applicant-reject)
      * [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
      * [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
-     * [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
+     * [Get reminders for upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
    * [Statistic Commands](#62-statistics-commands)
+     * [Display summary statistics `summary`](#641-summary-statistics-summary)
    * [General Commands](#63-general-commands)
      * [Receive help during usage `help`](#631-receive-help-during-usage-help)
      * [Exit HMHero `exit`](#632-exit-hmhero-exit)
@@ -335,7 +336,7 @@ parameters supplied by you without ambiguity
 * [Placeholders](#524-placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
 command
 
-Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE`
+Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE` and `applied/APPLICATION DATE TIME`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
 have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
@@ -705,7 +706,13 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
+<div markdown="span" class="alert alert-info" role="alert">:information_source:<strong>Info:</strong>
+<br>
+<ul> However for `NOTE`: </ul>
+    <li>If two or more values for `NOTE` are provided, both parameters will be taken in.</li>
+    <li>If an empty `NOTE` is provided, all notes will be removed.</li>
+</div>
+
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
@@ -742,7 +749,7 @@ After editing Bernice Yu's phone and notes:
 ---
 
 
-#### 6.1.9. Remind upcoming interviews `remind`
+#### 6.1.9. Get reminders for upcoming interviews `remind`
 
 **Format:** `remind`
 
@@ -835,13 +842,11 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 | Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Tom p/98763213`                                                     |
 | List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
 | Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Tom p/98763213`                                                   |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
 | Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Tom p/98763213`                                                   |
 | View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
-
 
 [Back to Table of Contents](#table-of-contents)
 
