@@ -17,7 +17,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 * If you are interested in using PetPal, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing PetPal, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
-  ![Ui](images/UI/Ui.png)
+  ![Ui](images/Ui.png)
 
 **Acknowledgements**
 
