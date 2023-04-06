@@ -458,8 +458,6 @@ Once the person has been created, the result display will show a confirmation me
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
-
 ### 3. Viewing a person/Changing tabs : `view`
 
 Want to look a contact with greater detail? Use view to see more information on the right panel!  
