@@ -24,7 +24,7 @@ public class AddPlatformCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PLATFORM + "PLATFORM\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PLATFORM + "Linkedin";
+            + PREFIX_PLATFORM + "LinkedIn";
 
 
     public static final String MESSAGE_SUCCESS = "Platform %1$s added to listing %2$s";
@@ -36,7 +36,7 @@ public class AddPlatformCommand extends Command {
     /**
      * Creates an AddPlatformCommand to add the specified {@code Platform} to {@code Listing}
      * @param targetIndex the displayed index of the listing to change
-     * @param platformToAdd the applicant to be added
+     * @param platformToAdd the platform to be added
      */
     public AddPlatformCommand(Index targetIndex, Platform platformToAdd) {
         requireNonNull(targetIndex);
@@ -89,7 +89,7 @@ public class AddPlatformCommand extends Command {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof AddApplicantCommand)) {
+        if (!(o instanceof AddPlatformCommand)) {
             return false;
         }
 

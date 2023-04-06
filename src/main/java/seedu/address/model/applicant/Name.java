@@ -47,9 +47,21 @@ public class Name {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.applicant.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.applicant.Name) other).fullName)); // state check
+        //short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        //handles null
+        if (!(other instanceof Name)) {
+            return false;
+        }
+
+        // casing difference and extra spaces don't differentiate job titles
+        String modifiedOtherTitle = other.toString().replaceAll("\\s{2,}", " ").strip().toUpperCase();
+        String modifiedTitle = this.fullName.replaceAll("\\s{2,}", " ").strip().toUpperCase();
+
+        return modifiedTitle.equals(modifiedOtherTitle);
     }
 
     @Override

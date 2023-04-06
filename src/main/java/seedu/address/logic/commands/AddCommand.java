@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,12 +21,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_APPLICANT + "APPLICANT]...\n"
+            + "[" + PREFIX_APPLICANT + "APPLICANT]... "
+            + "[" + PREFIX_PLATFORM + "PLATFORM]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_DESCRIPTION + "Informative job description "
             + PREFIX_APPLICANT + "John "
-            + PREFIX_APPLICANT + "Sam";
+            + PREFIX_APPLICANT + "Sam "
+            + PREFIX_PLATFORM + "LinkedIn";
 
     public static final String MESSAGE_SUCCESS = "Added new listing:%1$s";
     public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the listing book";

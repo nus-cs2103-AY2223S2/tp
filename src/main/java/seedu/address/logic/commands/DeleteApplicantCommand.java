@@ -34,7 +34,7 @@ public class DeleteApplicantCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Applicant: %1$s has been deleted from %2$s!";
     public static final String MESSAGE_APPLICANT_NOT_FOUND = "Applicant %1$s cannot be found in %2$s.";
     public static final String MESSAGE_AMBIGUOUS_APPLICANT = "There are multiple applicants with the name %1s in %2$s, "
-            + "specify the 4-digit "
+            + "\nspecify the 4-digit "
             + "unique identifier after the name.\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe#2103\n";
 
@@ -42,7 +42,7 @@ public class DeleteApplicantCommand extends Command {
     private final String targetApplicantId;
 
     /**
-     * Creates a DeleteApplicantCommand to remove a applicant from a listing.
+     * Creates a DeleteApplicantCommand to remove an applicant from a listing.
      * @param targetIndex index of the listing to delete the applicant from
      * @param targetApplicantId id of the applicant to be deleted
      */
@@ -78,7 +78,7 @@ public class DeleteApplicantCommand extends Command {
 
         model.setListing(listingToDeleteApplicantFrom, editedListing);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToDelete.get(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetApplicantId,
                 listingToDeleteApplicantFrom.getTitle()));
 
     }
@@ -106,7 +106,7 @@ public class DeleteApplicantCommand extends Command {
     }
 
     /**
-     * Create a identical listing with applicant removed.
+     * Create an identical listing with applicant removed.
      * @param listing previous listing for reference
      * @param applicantToDelete applicant to delete
      * @return

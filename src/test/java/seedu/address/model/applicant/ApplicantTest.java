@@ -21,14 +21,14 @@ public class ApplicantTest {
         // null -> returns false
         assertFalse(BENEDICT.isSameApplicant(null));
 
-        // name differs in case -> false
+        // name differs in case -> true
         Applicant editedChris = new ApplicantBuilder(CHRIS).withName(VALID_APPLICANT_NAME_CHRIS.toLowerCase()).build();
-        assertFalse(CHRIS.isSameApplicant(editedChris));
+        assertTrue(CHRIS.isSameApplicant(editedChris));
 
         // name has trailing spaces -> true
         String nameWithTrailingSpaces = VALID_APPLICANT_NAME_BENEDICT + " ";
-        Applicant editedBenedict = new ApplicantBuilder(BENEDICT).withName(nameWithTrailingSpaces).build();
-        assertTrue(BENEDICT.isSameApplicant(editedBenedict));
+        Applicant editedBenedictTrailing = new ApplicantBuilder(BENEDICT).withName(nameWithTrailingSpaces).build();
+        assertTrue(BENEDICT.isSameApplicant(editedBenedictTrailing));
     }
 
     @Test
