@@ -36,8 +36,9 @@ like adding more types of readings in the future.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bokuant&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**:
-  * Checked, approved and merged the majority of PRs, handling conflicts and helped fix group mates' PRs which could not even pass CI checks - `v1.1 - v1.4`
+* **Project management/ contributions to team based tasks**:
+  * Checked, approved and merged the majority of PRs, handling conflicts and helped fix group mates' PRs which could not even
+pass CI checks: [232](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/232), [73](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/73) - `v1.1 - v1.4`
   * Managed team's weekly dashboard tasks, ensuring they are marked as completed
   * Ensure project progress is on schedule
 
