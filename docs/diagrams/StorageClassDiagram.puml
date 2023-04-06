@@ -20,7 +20,7 @@ Class EduMateStorageManager
 Class JsonSerializableEduMate
 Class JsonAdaptedPerson
 Class JsonAdaptedUser
-Class JsonAdaptedTag
+Class "{abstract}\nJsonAdaptedTag" as JsonAdaptedTag
 Class JsonAdaptedParticipants
 Class JsonAdaptedRecommendation
 Class JsonAdaptedMeetUp
@@ -53,8 +53,8 @@ JsonSerializableEduMate -right-> "1" JsonAdaptedParticipants
 JsonSerializableEduMate --> "~* " JsonAdaptedRecommendation
 JsonSerializableEduMate --> "*" JsonAdaptedMeetUp
 
-JsonAdaptedGroupTag ..|> JsonAdaptedTag
-JsonAdaptedModuleTag ..|> JsonAdaptedTag
+JsonAdaptedGroupTag --|> JsonAdaptedTag
+JsonAdaptedModuleTag --|> JsonAdaptedTag
 
 JsonAdaptedModuleTag --> "~* " JsonAdaptedLesson
 
