@@ -234,12 +234,12 @@ Import administrative contacts for relevant faculties.
 Format: `import [faculty]`
 
 * Faculty acronyms (e.g. soc)
-* Only selected faculties will be available
+* Only selected faculties (soc and chs) are available
 
 Example:
 
-* `import soc` adds all important administrative contact for School of Computing
-* `import chs` adds all important administrative contact for College of Humanities and Sciences
+* `import soc` adds all important administrative contacts for School of Computing
+* `import chs` adds all important administrative contacts for College of Humanities and Sciences
 
 [Back to top](#top)
 
