@@ -155,6 +155,13 @@ Adds a new contact.
   ````
     New contact added: Tan Jun Wei; Phone: 82828234
   ````
+  
+![BeforeAdding](images/NewContactBefore.png) 
+Before adding Deborah Tan into the contact list
+
+![AfterAdding](images/NewContactAfter.png)
+After adding Deborah Tan into the contact list
+
 ### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
 Clears all events in Paidlancers.
@@ -209,6 +216,12 @@ Deletes the specified event.
   Deleted Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
   ````
 
+![BeforeDelete](images/DeleteBefore.png)
+Before deleting 2nd event
+
+![AfterDelete](images/DeleteAfter.png)
+After deleting 2nd event
+
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
 Edits the specified event from the event book.
@@ -248,6 +261,14 @@ Edits the specified event from the event book.
   ````
   Edited Event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
   ````
+  
+![BeforeEdit](images/EditBefore.png)
+Before editing 1st event to Wedding Dinner Photography at Carlton Hotel ballroom
+
+![AfterEdit](images/EditAfter.png)
+After editing 1st event to Wedding Dinner Photography at Carlton Hotel ballroom
+
+
 ### Exit application: `exit` <a id = "exit-application"></a>
 
 Closes Paidlancers.
@@ -296,6 +317,7 @@ Links a client contact to an event.
   ````
   Successfully linked! Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
   ````
+
 ### List all Events: `list` <a id = "list-all-events"></a>
 
 Displays all events.
@@ -322,6 +344,14 @@ Marks a specified event in Paidlancers as done.
   ````
   Marked event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [X]; Contact: Gladious Lee; Phone: 92348274
   ````
+  
+![BeforeMark](images/MarkBefore.png)
+Before marking 1st event
+
+![AfterMark](images/MarkAfter.png)
+After marking 1st event
+
+
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
 Unmarks a specified event in Paidlancers.
