@@ -30,15 +30,14 @@ public class ViewPartCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        PartMap pm = model.getPartMap(); // TODO: the function here should return something to GUI.
-
-        if (pm.contains(userString) == false) {
-            throw new CommandException(String.format(MESSAGE_INVAID_PART_REQUESTED, ViewPartCommand.MESSAGE_USAGE));
-        } else {
-            model.updatePartsMap(); // Require waiting for list
+        try {
+            model.getShop().getPartQty(userString);
+            model.updateFilteredPartMap(e -> e.getKey().equalsIgnoreCase(userString));
+        return new CommandResult(String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW), Tab.PARTS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
 
-        return new CommandResult(String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW));
     }
 
     @Override

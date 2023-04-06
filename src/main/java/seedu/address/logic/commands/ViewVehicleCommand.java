@@ -30,7 +30,7 @@ public class ViewVehicleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasVehicle(this.vehicleId)) {
+        if (!model.getShop().hasVehicle(vehicleId)) {
             throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, this.vehicleId));
         }
         model.updateFilteredVehicleList(v -> v.getId() == this.vehicleId);

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SERVICES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TECHNICIANS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
@@ -27,6 +28,7 @@ public class ListCommand extends Command {
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
+        model.updateFilteredPartMap(PREDICATE_SHOW_ALL_PARTS);
         return new CommandResult(MESSAGE_SUCCESS, Tab.ALL);
     }
 }

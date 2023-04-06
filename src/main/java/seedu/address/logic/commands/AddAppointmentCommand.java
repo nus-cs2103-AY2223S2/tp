@@ -5,9 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
+import seedu.address.model.entity.shop.exception.CustomerNotFoundException;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
@@ -26,18 +29,18 @@ public class AddAppointmentCommand extends RedoableCommand {
             + PREFIX_DATE + "2023-02-03 "
             + PREFIX_TIME + "17:00";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";
-
-    private final Appointment toAdd;
+    public static final String MESSAGE_SUCCESS = "New appointment added";
+    private final int customerId;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs command that adds appointment to the model
-     *
-     * @param appointment Appointment to be added
+     * @param customerId ID of customer
+     * @param dateTime Date and time of appointment
      */
-    public AddAppointmentCommand(Appointment appointment) {
-        this.toAdd = appointment;
+    public AddAppointmentCommand(int customerId, LocalDateTime dateTime) {
+        this.customerId = customerId;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -49,19 +52,11 @@ public class AddAppointmentCommand extends RedoableCommand {
      */
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
-        requireNonNull(model);
-        if (!model.hasCustomer(toAdd.getCustomerId())) {
-            IdGenerator.setAppointmentIdUnused(toAdd.getId());
-            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        try {
+            model.getShop().addAppointment(customerId, dateTime);
+            return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
+        } catch (CustomerNotFoundException e) {
+            throw new CommandException(e.getMessage());
         }
-        model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.APPOINTMENTS);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddAppointmentCommand // instanceof handles nulls
-                && toAdd.equals(((AddAppointmentCommand) other).toAdd));
     }
 }

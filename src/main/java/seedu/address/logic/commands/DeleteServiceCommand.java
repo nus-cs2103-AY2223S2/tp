@@ -2,12 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
-import seedu.address.model.service.Service;
 
 /**
  * Deletes a service  identified using it's displayed index from viewservice and listservices.
@@ -17,15 +13,11 @@ public class DeleteServiceCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "deleteservice";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the service identified by the id number displayed by the list command.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the service identified by the id number displayed by the list command.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_SERVICE_SUCCESS = "Deleted Service: %1$s";
-
-    public static final String MESSAGE_SERVICE_NOT_FOUND = "Service not found";
-
-    public static final Service SERVICE_DOES_NOT_EXIST = null;
+    public static final String MESSAGE_DELETE_SERVICE_SUCCESS = "Deleted Service %d";
 
     private final int id;
 
@@ -36,24 +28,18 @@ public class DeleteServiceCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        List<Service> lastShownList = model.getFilteredServiceList();
-
-        Service serviceToDeletes = lastShownList.stream().filter(service->
-                id == service.getId()).findFirst().orElse(null);
-
-        if (serviceToDeletes == SERVICE_DOES_NOT_EXIST) {
-            throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
+        try {
+            model.getShop().removeService(id);
+            return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, id), Tab.SERVICES);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        model.deleteService(serviceToDeletes);
-        IdGenerator.setServiceIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, id), Tab.SERVICES);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteServiceCommand // instanceof handles nulls
-                && id == (((DeleteServiceCommand) other).id)); // state check
+            || (other instanceof DeleteServiceCommand // instanceof handles nulls
+            && id == (((DeleteServiceCommand) other).id)); // state check
     }
 }

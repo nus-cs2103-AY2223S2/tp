@@ -7,9 +7,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.person.Address;
+import seedu.address.model.entity.person.Email;
+import seedu.address.model.entity.person.Name;
+import seedu.address.model.entity.person.Phone;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.tag.Tag;
 
 /**
  * Manages adding of technicians
@@ -31,16 +38,18 @@ public class AddTechnicianCommand extends AddStaffCommand {
             + PREFIX_TAG + "leader "
             + PREFIX_TAG + "leaving 2nd march";
     public static final String MESSAGE_SUCCESS = "New technician added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TECHNICIAN = "This technician already registered";
-
 
     /**
      * Constructs command that adds technician to the model
      *
-     * @param technician Technician to be added
+     * @param name    Name of staff
+     * @param phone   Phone number of staff
+     * @param email   Email of staff
+     * @param address Address of staff
+     * @param tags    Tags of staff
      */
-    public AddTechnicianCommand(Technician technician) {
-        super(technician);
+    public AddTechnicianCommand(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
     }
 
     /**
@@ -53,19 +62,11 @@ public class AddTechnicianCommand extends AddStaffCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        Technician toAdd = (Technician) this.toAdd;
-        if (model.hasTechnician(toAdd.getId())) {
-            throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
+        try {
+            model.getShop().addTechnician(this.name, this.phone, this.email, this.address, this.tags);
+            return new CommandResult(MESSAGE_SUCCESS, Tab.TECHNICIANS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        model.addTechnician(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.TECHNICIANS);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddTechnicianCommand // instanceof handles nulls
-                && toAdd.equals(((AddTechnicianCommand) other).toAdd));
     }
 }

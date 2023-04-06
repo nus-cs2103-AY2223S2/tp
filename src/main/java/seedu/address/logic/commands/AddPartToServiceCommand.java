@@ -13,9 +13,6 @@ import seedu.address.model.Model;
 public class AddPartToServiceCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addservicepart";
     public static final String MESSAGE_SUCCESS_FORMAT = "%d x (%s) added to service %d";
-    public static final String MESSAGE_SERVICE_NOT_FOUND = "Service %d does not exist";
-    public static final String MESSAGE_PART_NOT_FOUND = "Part %s not in system";
-    public static final String MESSAGE_INSUFFICIENT_PART = "Not enough parts to assign to service";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a part to the service. "
         + "Parameters: "
         + PREFIX_SERVICE_ID + "SERVICE ID "
@@ -50,17 +47,13 @@ public class AddPartToServiceCommand extends RedoableCommand {
      */
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
-        if (!model.hasService(this.serviceId)) {
-            throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, this.serviceId));
+        try {
+            model.getShop().addPartToService(serviceId, partName, quantity);
+            return new CommandResult(
+                String.format(MESSAGE_SUCCESS_FORMAT, this.quantity, this.partName, this.serviceId),
+                Tab.SERVICES);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-        if (!model.getPartMap().contains(this.partName)) {
-            throw new CommandException(String.format(MESSAGE_PART_NOT_FOUND, this.partName));
-        }
-        if (model.getPartMap().getPartQuantity(this.partName) < this.quantity) {
-            throw new CommandException(MESSAGE_INSUFFICIENT_PART);
-        }
-        model.addPartToService(this.serviceId, this.partName, this.quantity);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.quantity, this.partName, this.serviceId),
-            Tab.SERVICES);
     }
 }

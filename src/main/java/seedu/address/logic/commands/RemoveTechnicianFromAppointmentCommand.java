@@ -12,8 +12,6 @@ import seedu.address.model.service.appointment.Appointment;
  */
 public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "removeappointmenttech";
-    public static final String MESSAGE_TECHNICIAN_NOT_FOUND = "Technician not assigned to appointment";
-    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment does not exist";
     public static final String MESSAGE_SUCCESS_FORMAT = "Technician %d unassigned from Appointment %d";
     public static final String COMMAND_USAGE =
         COMMAND_WORD + ": Unassigns an existing technician from an existing appointment. "
@@ -41,19 +39,12 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
      */
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
-        if (!model.hasAppointment(this.appointmentId)) {
-            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
-        }
-        Appointment appointment = model.getFilteredAppointmentList().stream()
-            .filter(a -> a.getId() == this.appointmentId)
-            .findFirst()
-            .orElseThrow();
-        if (!appointment.getStaffIds().contains(this.techId)) {
-            throw new CommandException(MESSAGE_TECHNICIAN_NOT_FOUND);
-        }
-        appointment.removeTechnician(this.techId);
-        model.resetMaps();
+        try {
+            model.getShop().removeTechnicianFromAppointment(techId, appointmentId);
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
                 Tab.APPOINTMENTS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 }

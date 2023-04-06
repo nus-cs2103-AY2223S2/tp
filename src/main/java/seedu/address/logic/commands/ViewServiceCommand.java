@@ -29,7 +29,7 @@ public class ViewServiceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasService(this.serviceId)) {
+        if (!model.getShop().hasService(this.serviceId)) {
             throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, this.serviceId));
         }
         model.updateFilteredServiceList(s -> s.getId() == this.serviceId);

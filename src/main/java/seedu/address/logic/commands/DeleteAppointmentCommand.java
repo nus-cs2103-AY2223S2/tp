@@ -2,12 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
-import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Deletes the appointment identified using it's displayed index from viewappointment or listappointments.
@@ -17,13 +13,11 @@ public class DeleteAppointmentCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "deleteappointment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment identified by the id number displayed by the list command.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the appointment identified by the id number displayed by the list command.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
-    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not found";
-
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment %d";
     private final int id;
 
     public DeleteAppointmentCommand(int id) {
@@ -33,26 +27,20 @@ public class DeleteAppointmentCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        List<Appointment> lastShownList = model.getFilteredAppointmentList();
-
-        Appointment appointmentToDelete = lastShownList.stream().filter(appointment ->
-                id == appointment.getId()).findFirst().orElse(null);
-
-        if (appointmentToDelete == null) {
-            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
+        try {
+            model.getShop().removeAppointment(id);
+            return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, id),
+                Tab.APPOINTMENTS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
 
-        model.deleteAppointment(appointmentToDelete);
-        IdGenerator.setAppointmentIdUnused(id);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, id),
-                Tab.APPOINTMENTS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
-                && id == ((DeleteAppointmentCommand) other).id); // state check
+            || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
+            && id == ((DeleteAppointmentCommand) other).id); // state check
     }
 }

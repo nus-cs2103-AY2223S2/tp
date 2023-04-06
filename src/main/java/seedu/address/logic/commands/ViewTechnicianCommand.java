@@ -29,14 +29,14 @@ public class ViewTechnicianCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasTechnician(this.technicianId)) {
+        if (!model.getShop().hasTechnician(this.technicianId)) {
             throw new CommandException(String.format(MESSAGE_TECHNICIAN_NOT_FOUND, this.technicianId));
         }
         model.updateFilteredTechnicianList(t -> t.getId() == this.technicianId);
         Technician current = model.getFilteredTechnicianList().get(0);
         model.selectTechnician(current);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, this.technicianId, Tab.TECHNICIANS));
+                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, this.technicianId), Tab.TECHNICIANS);
     }
 
     @Override

@@ -7,40 +7,58 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Address;
+import seedu.address.model.entity.person.Email;
+import seedu.address.model.entity.person.Name;
+import seedu.address.model.entity.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Manages adding of customers
  */
-public class AddCustomerCommand extends AddCommand {
+public class AddCustomerCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addcustomer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Registers a customer with the shop. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "No insurance "
-            + PREFIX_TAG + "owesMoney";
-    public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
+        + "Parameters: "
+        + PREFIX_NAME + "NAME "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_ADDRESS + "ADDRESS "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_PHONE + "98765432 "
+        + PREFIX_EMAIL + "johnd@example.com "
+        + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+        + PREFIX_TAG + "No insurance "
+        + PREFIX_TAG + "owesMoney";
+    public static final String MESSAGE_SUCCESS = "New customer added";
 
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+    private final Address address;
+    private final Set<Tag> tags;
 
     /**
      * Constructs command that adds customer to the model
      *
-     * @param customer Customer to be added
+     * @param name    Name of customer
+     * @param phone   Phone number of customer
+     * @param email   Email of customer
+     * @param address Address of customer
+     * @param tags    Tags of customer
      */
-    public AddCustomerCommand(Customer customer) {
-        super(customer);
+    public AddCustomerCommand(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags = tags;
     }
 
     /**
@@ -53,19 +71,11 @@ public class AddCustomerCommand extends AddCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        Customer toAdd = (Customer) this.toAdd;
-        if (model.hasCustomer(toAdd.getId())) {
-            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
+        try {
+            model.getShop().addCustomer(name, phone, email, address, tags);
+            return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        model.addCustomer(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.CUSTOMERS);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCustomerCommand // instanceof handles nulls
-                && toAdd.equals(((AddCustomerCommand) other).toAdd));
     }
 }

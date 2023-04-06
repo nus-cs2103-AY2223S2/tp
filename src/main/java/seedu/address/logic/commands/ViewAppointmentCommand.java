@@ -29,14 +29,14 @@ public class ViewAppointmentCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasAppointment(this.appointmentId)) {
+        if (!model.getShop().hasAppointment(this.appointmentId)) {
             throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND, this.appointmentId));
         }
         model.updateFilteredAppointmentList(a -> a.getId() == this.appointmentId);
         Appointment current = model.getFilteredAppointmentList().get(0);
         model.selectAppointment(current);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW));
+                String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW), Tab.APPOINTMENTS);
     }
 
     @Override

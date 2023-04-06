@@ -31,14 +31,12 @@ public class DeletePartCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        PartMap pm = model.getPartMap();
-
-        if (pm.contains(userString) == false) {
-            throw new CommandException(String.format(MESSAGE_INVAID_PART_REQUESTED, DeletePartCommand.MESSAGE_USAGE));
-        } else {
-            pm.removePart(userString);
-        }
+        try {
+            model.getShop().deletePart(userString);
         return new CommandResult(String.format(MESSAGE_DELETE_PART_SUCCESS, userString), Tab.PARTS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override
