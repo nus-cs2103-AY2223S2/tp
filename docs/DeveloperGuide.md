@@ -1080,6 +1080,37 @@ testers are expected to do more *exploratory* testing.
    3. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
       Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
 
+### Listing all applications
+
+Before each test scenario, execute `list` beforehand and take note of the **original full list of applications**. They should be ranked
+in the **default order**, meaning the order in which they were added. (i.e., more recently added application entries show up first)
+
+1. Listing all applications after list has been filtered with a `find` command
+
+   1. Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
+
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
+2. Listing all applications after list has been sorted with a `sort` command
+
+   1. Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
+      * `sort a deadline`
+      * `sort d deadline`
+      * `sort a alphabetical`
+      * `sort d alphabetical`
+   
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
+3. Listing all applications after list has been filtered and sorted with a series of `find` and `sort` commands
+
+   1. Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
+      Example: `find r/SWE` followed by `sort a deadline`
+   
+   2. Test case: `list` <br>
+      Expected: The displayed list should return to the original full list of applications, in the default order.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
