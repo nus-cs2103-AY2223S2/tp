@@ -122,7 +122,7 @@ This guide is intended primarily for developers who want to work on the **EduMat
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
+:information_source: **Getting started:** To get started, you'll want to set up your [Development Environment](#2-development-environment) and make sure you understand the branching strategy described in the [Version Control](#version-control) section and how to make a pull request. Thorough [testing](#5-testing) is expected for all pull requests, such that all testable methods are amply tested.
 
 </div>
 
@@ -236,7 +236,7 @@ We use GitHub Issues as our issue tracker, and here is how to use the issue labe
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Refer to the guide [_Setting up and getting started_](SettingUp.md) to know what you need to do before you can start writing code.
+:information_source: **Info:** Refer to the guide [_Setting up and getting started_](SettingUp.md) to know what you need to do before you can start writing code.
 
 </div>
 
@@ -250,7 +250,7 @@ Sample data for **EduMate** can be found [here](https://github.com/AY2223S2-CS21
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Each row represents a person's information, with the `|` separating the different fields.
+:information_source: **Info:** Each row represents a person's information, with the `|` separating the different fields.
 
 In order, they are: `name|phone|email|address|telegram|groups|modules`. Note that groups and modules are separated by a space.
 
@@ -270,7 +270,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
+:information_source: **Info:** These names were chosen so that we can easily extract more information such as Location (as coordinates) for use in future features.
 
 </div>
 
@@ -475,15 +475,13 @@ objects which is then used elsewhere in the codebase.
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **How to use Time Period**
-Note that `TimePeriod` is an abstract class and hence cannot be instantiated. Instead, we create a new `TimeBlock`, since it achieves the same functionality as the `TimePeriod`.
+:bulb: **Tip:** Notice that `TimePeriod` is an abstract class and hence cannot be instantiated. Instead, we create a new `TimeBlock`, since it achieves the same functionality as the `TimePeriod`.
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **How the user uses Time Period**
-The time period is prefixed using `T/` (rather than `t/` which is used by the telegram handle). It follows the format `T/START_TIME END_TIME`, and along with the day, it creates a new time period.
+:information_source: **Info:** The time period is prefixed using `T/` (rather than `t/` which is used by the telegram handle). It follows the format `T/START_TIME END_TIME`, and along with the day, it creates a new time period.
 
 </div>
 
@@ -526,9 +524,7 @@ The `LocationDataUtil` class deals with reading and parsing location data from f
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tips for using Locations:**
-
-Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
+:bulb: **Tips for using Locations:** Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
 
 </div>
 
@@ -544,7 +540,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **What are commitments used for** <br>
+:information_source: **What are commitments used for:** <br>
 
 * They tell us when the person is unavailable, so that we do not recommend inappropriate timings.
 * They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up. 
@@ -557,7 +553,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <div markdown="span" class="alert alert-dark">
 
-:construction: **Potential extensions**
+:construction: **Potential extensions:**<br>
 Currently, all `Lessons` are in NUS, but this can be improved upon in the future, by adding additional arguments to the `tag` command.
 
 </div>
@@ -631,8 +627,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** 
-The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
+:bulb: **Tip:** The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
 
@@ -647,8 +642,7 @@ The arguments for `AddCommand` are unordered, so the user can type them in any o
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
-The User has the default `ContactIndex` of 0.
+:information_source: **Info:** The User has the default `ContactIndex` of 0.
 </div>
 
 In summary, the activity diagram is as such:
@@ -680,8 +674,7 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
+:bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
 
 </div>
 
@@ -689,8 +682,7 @@ Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are uno
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**:
-When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
+:information_source: **Info:** When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
 
 </div>
 
@@ -723,8 +715,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:**
-The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -771,8 +762,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
-The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
+:information_source: **Info:** The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
 
 </div>
 
@@ -827,7 +817,7 @@ For example, if the user wants to search for a person but does not know the full
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 * This command can be used before the other commands to return a list of contacts the user wants to work with.
 * The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
   e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
@@ -870,8 +860,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
-Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
+:bulb: **Tip:** Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
 
 </div>
 
@@ -879,8 +868,7 @@ Unlike the other commands, the ordering of the arguments **does matter**. For ex
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tips**:
-JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+:bulb: **Tip**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
 
@@ -914,8 +902,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**:
-Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
+:information_source: **Info:** Sets the `isExit` boolean in the `ExitCommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
 
@@ -1086,11 +1073,12 @@ will be free so that a meetup could be scheduled.
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.15</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
 
-:information_source: **Very Important Re-emphasis**
+:information_source: **Very important re-emphasis**
 The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
@@ -1105,8 +1093,7 @@ The midpoint of these `sources` is calculated, and then we compare the `destinat
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **DistanceUtil**
-As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
+:information_source: **Info:** As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
 
 </div>
 
@@ -1116,8 +1103,7 @@ The `LocationTracker`'s role is to give an approximate location of a person give
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **How we approximate a location**
-A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
+:information_source: **How we approximate a location:** A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
 
 </div>
 
@@ -1242,8 +1228,7 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
-The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -1969,8 +1954,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** <br>
-These instructions only provide a starting point for testers to work on;
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
