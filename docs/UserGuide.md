@@ -77,7 +77,8 @@ You can use the links in the Table of Contents to quickly navigate through this 
   **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so an error message will not be shown even if there is a wrong keyword in a subsequent prefix.
 
 * Fields in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.<br>
+  e.g `[p/[PHONE]]` can be used as `p/`.
 
 * Fields with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
