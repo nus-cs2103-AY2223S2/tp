@@ -126,7 +126,7 @@ Scenario 3 - Tracking videos:
 1. To delete this lecture, run `delete Topic 2 /mod ST2334`
 1. To exit the app, run `exit`.
 
-:clap: That covers all the main commands. Refer to the [Features](#features) section for details of each command.\
+:clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command.\
 Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch, challenge yourself without using the `import` command :wink:
 
 ---
