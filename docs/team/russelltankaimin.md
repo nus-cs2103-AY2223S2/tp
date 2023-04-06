@@ -47,14 +47,11 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
     * Justification: Using an automated tool to schedule meetups is more efficient compared to relying on NUS students to manually message each other to find a suitable meeting time.
   * **`meet` Command and `TimingRecommender` integration** [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
     * Participated and assisted in the integration work.
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=russelltankaimin&breakdown=true)
-
 * **Project management**:
   * Initiated use of GitHub Projects to manage progress.
   * Chaired weekly meetings.
   * Managed Gradle for the entire team (imports, packages, enabling assertions) [#161](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/161)
-
 * **Documentation**:
   * User Guide [#210](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/210), [#218](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/218), [#225](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/225), [#238](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/238), [#246](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/246), [#325](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/325)
     * Partial reformatting of User Guide (Content presentation, whitespace usage)
@@ -63,13 +60,11 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
   * Developer Guide [#166](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/166), [#177](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/177), [#199](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/199), [#218](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/218), [#225](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/225),
     * Added UML diagrams and wrote content for View Command, View Command Parser, Recommender, Time-related modules.
     * Contributed to adding placeholders for new upcoming commands during V1.2 in preparation for V1.3.
-
 * **Reviewing/Mentoring contributions**:
     * [#9](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/9), [#33](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/33),
 [#48](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/58), [#119](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/119),
 [#167](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/167), [#176](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/176),
 [#228](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/228)
-
 * **Tools**:
   * Java 11, JavaFX, Joda-Time, JUnit, Gradle
 
