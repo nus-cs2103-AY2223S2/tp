@@ -1,0 +1,15 @@
+@startuml UiListViewPanelActivityDiagram
+!include style.puml
+
+start
+:Get change;
+if () then ([change not null])
+    :Get map from change;
+    :Get values of map;
+    :Reset items list with values from map;
+    :Sort new item list;
+else ([else])
+endif
+stop
+
+@enduml
