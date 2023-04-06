@@ -28,7 +28,7 @@ Refer to the following section for how to **[set up and get started](#setting-up
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
-
+[DeveloperGuide.md](DeveloperGuide.md)
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
