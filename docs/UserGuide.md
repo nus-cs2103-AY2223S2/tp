@@ -119,7 +119,7 @@ Action |          Type          |Format, Examples
 [**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
 [**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]... ​`
 [**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find NAME/MAJOR/TAG [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.gg., `sort desc tcount`
+[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
 [**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
 [**Show**](#listing-all-teammates-in-a-team--show) |        Listing         |`show TEAM_NAME [OTHER_TEAM_NAME]...`
 [**List**](#listing-all-contacts--list) |        Listing         |`list`
