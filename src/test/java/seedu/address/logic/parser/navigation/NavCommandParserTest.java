@@ -4,14 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.navigation.DirectNavCommand;
