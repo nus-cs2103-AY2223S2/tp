@@ -284,7 +284,8 @@ Recipe data are saved in the hard disk automatically after any command that chan
 
 Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`
 
-For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory which recipebook is stored under, 
+For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory where the app is stored, and specifying `userPrefsFilePath` in `preferences.json` with the desired file path.
+
 ### Editing the data file
 
 Advanced users are welcome to update data directly by editing that data file located at the address above. 
