@@ -32,7 +32,7 @@ public class FavoriteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    private static Person createEditedPerson(Person personToEdit, Boolean isFavorite) {
+    private static Person createEditedPerson(Person personToEdit, boolean isFavorite) {
         assert personToEdit != null;
 
         Person newPerson = new Person(personToEdit.getRank(), personToEdit.getName(), personToEdit.getUnit(),

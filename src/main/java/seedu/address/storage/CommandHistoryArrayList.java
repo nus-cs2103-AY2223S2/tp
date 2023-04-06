@@ -18,7 +18,7 @@ public class CommandHistoryArrayList {
     public CommandHistoryArrayList(ArrayList<String> arrayList) {
         this.arrayList = arrayList;
         temporaryUserInput = "";
-        currentPosition = 0;
+        currentPosition = arrayList.size();
     }
 
     public String getPreviousUserInput(String currentUserInput) {

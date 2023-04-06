@@ -37,6 +37,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private boolean isFavorite = false;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +52,8 @@ class JsonAdaptedPerson {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("isFavorite") boolean isFavorite) {
         this.rank = rank;
         this.name = name;
         this.unit = unit == null ? "N/A" : unit;
@@ -63,6 +65,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isFavorite = isFavorite;
     }
 
     /**
@@ -80,6 +83,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isFavorite = source.getIsFavorite();
     }
 
     /**
@@ -161,8 +165,11 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelRank, modelName, modelUnit, modelCompany, modelPlatoon,
+        Person newPerson = new Person(modelRank, modelName, modelUnit, modelCompany, modelPlatoon,
                 modelPhone, modelEmail, modelAddress, modelTags);
+        newPerson.setIsFavorite(isFavorite);
+
+        return newPerson;
     }
 
 }
