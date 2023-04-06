@@ -34,7 +34,7 @@ Welcome to the CareFlow user guide! This guide is designed to help you make the 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
 1. Section [1. About this user guide](#1-about-this-user-guide)
-    - if you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+    - If you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
 2. Section [2. Quick Start](#2-quick-start)
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
@@ -46,14 +46,17 @@ To help you navigate the guide, we've divided it into several sections, each cov
 4. Section [4. Commands](#4-commands)
     - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
 
-5. Section [5. FAQ](#5-faq)
-    - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
+5. Section [5. Data Storage](#5-data-storage)
+    - If you're looking for information on CareFlow's data storage mechanism, check out Section 5, "Data Storage".
 
-6. Section [6. Command Summary](#6-command-summary)
-    - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+6. Section [6. FAQ](#6-faq)
+    - If you have any questions about using CareFlow or running into any issues, take a look at Section 6, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
 
-7. Section [7. Glossary](#7-glossary)
-    - If you come across a term you're not familiar with, the glossary in Section 7 is a useful resource. It
+7. Section [7. Command Summary](#7-command-summary)
+    - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+
+8. Section [8. Glossary](#8-glossary)
+    - If you come across a term you're not familiar with, the glossary in section 8 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
 To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of
@@ -367,7 +370,6 @@ ___
   &nbsp;
 * Parameter constraint:
 
-  <br>
 | Parameter                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Example                               |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
 | PATIENT_NAME             | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                                                                                                                                                                          | John Smith                            |
@@ -541,8 +543,9 @@ The full detail of the retrieved patient will be shown on the right side of the 
       <p align="center">
             <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:100%">
       </p>
+      
+<br>
 
-      <br>
 [↑ Go to Patient Commands](#42-patient-commands)
 <br>
 [↑ Back to top](#top)
@@ -568,7 +571,7 @@ Use this with command with caution!
             <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:100%">
       </p>
 
-      <br>
+<br>
     
 [↑ Go to Patient Commands](#42-patient-commands)
 <br>
@@ -837,7 +840,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 --------------------------------------------------------------------------------------------------------------------
 # **5. Data Storage**
 
-## 5.2 Saving the data
+## 5.1 Saving the data
 
 * CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -848,7 +851,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 <br>
 
 
-## 5.3 Editing the data file
+## 5.2 Editing the data file
 
 * All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
@@ -863,7 +866,7 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 <br>
 
 
-## 5.4 Archiving data files `[coming in v2.0]`
+## 5.3 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
