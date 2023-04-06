@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -71,7 +70,6 @@ public class EditStatusCommand extends Command {
         InternshipApplication updatedApplication = createdUpdatedApplication(internshipToUpdateStatus, toUpdate);
 
         model.setApplication(internshipToUpdateStatus, updatedApplication);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication));
     }
 
