@@ -10,15 +10,16 @@ contacts list for an easier way to set up proper communication channels.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Add user contacts](#add-user-contacts-add)
-  * [Delete user contacts](#delete-user-contacts-delete)
-  * [Edit user contacts](#edit-user-contacts-edit)
-  * [Locating persons by keywords](#locating-persons-by-keywords-find)
-  * [Listing all contacts](#listing-all-contacts-list)
+  * [Add user contacts](#add-user-contacts--add)
+  * [Delete user contacts](#delete-user-contacts--delete)
+  * [Edit user contacts](#edit-user-contacts--edit)
+  * [Locating persons by keywords](#locating-persons-by-keywords--find)
+  * [Listing all contacts](#listing-all-contacts--list)
   * [Help command](#help-command-help)
-  * [Add an image for contacts](#add-an-image-for-contacts-add-image)
-  * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
-  * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
+  * [Add an image for contacts](#add-an-image-for-contacts--add-image)
+  * [Delete an image for contacts](#delete-an-image-for-contacts--delete-image)
+  * [Quick import admin contacts](#quick-import-for-admin-contacts--import)
+  * [Exit the program](#exit-the-program--exit)
 * [Command summary](#command-summary)
 
 ---
@@ -242,7 +243,7 @@ Example:
 
 [Back to top](#top)
 
-### Exiting the program: `exit`
+### Exit the program: `exit`
 
 Closes the window and exits the program.
 
