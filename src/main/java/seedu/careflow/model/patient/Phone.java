@@ -10,9 +10,9 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should contain numbers, special character like: space, +, -, (), "
-                    + "and it should be at least 3 or at most 20 digit and special character long";
-    public static final String VALIDATION_REGEX = "[\\d\\(\\)\\-+ ]{3,20}";
+            "Phone numbers must consist of numerical digits and be between 3 and 20 digits long,"
+                    + " with no special characters allowed.";
+    public static final String VALIDATION_REGEX = "\\d{3,20}";
     public final String value;
 
     /**

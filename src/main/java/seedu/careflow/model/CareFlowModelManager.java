@@ -206,10 +206,10 @@ public class CareFlowModelManager implements CareFlowModel {
      * Set a fixed list of hospital information
      */
     public void setFixedHospitalList() {
-        careFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"), new Phone("+65 62255554")));
-        careFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("+65 67888833")));
-        careFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("+65 65558000")));
-        careFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("+65 62566011")));
+        careFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"), new Phone("62255554")));
+        careFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("67888833")));
+        careFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("65558000")));
+        careFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("62566011")));
     }
 
     /**
