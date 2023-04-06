@@ -263,7 +263,7 @@ Throughout this user guide, you may come across different formatting styles and 
    <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
-        <li><code>p list </code> : Lists all patients. </li>
+        <li><code>p list</code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
         <li><code>p add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
         <li><code>p delete -i 3</code> : Deletes the 3rd patient record shown in the current list.</li>
@@ -554,7 +554,9 @@ The full detail of the retrieved patient will be shown on the right side of the 
 
 * Wish to terminate your subscription with CareFlow and move to another system? :pensive: 
 You can also clear all patient records. 
-* :exclamation: Run this command with caution!
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use this with command with caution!
+</div>
   \
   &nbsp;
 * **Format:** `p clear`
@@ -765,7 +767,9 @@ a specific drug by using the `d find` command and specify the trade name of the 
 
 ### Clear all drug entries
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
-* :exclamation: Use this with caution!
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use this with command with caution!
+</div>
   \
   &nbsp;
 * **Format:** `d clear`
@@ -830,8 +834,8 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 <br>
 [↑ Back to top](#top)
 
-<br>
-
+--------------------------------------------------------------------------------------------------------------------
+# **5. Data Storage**
 
 ### Saving the data
 
@@ -865,7 +869,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **5. FAQ**
+# **6. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -878,11 +882,11 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 
-# 6. **Command Summary**
+# **7. Command Summary**
 
 If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
 
-## 6.1 General Commands
+## 7.1 General Commands
 
 The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
 
@@ -895,7 +899,7 @@ The following are the general commands that are available in Careflow for you to
   <i>Table 2. Summary of general commands.</i>
 </p>
 
-## 6.2 Patient Commands
+## 7.2 Patient Commands
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
@@ -914,7 +918,7 @@ The following commands are patient-related commands that are available in Carefl
   <i>Table 3. Summary of patient commands.</i>
 </p>
 
-## 6.3 Drug Commands
+## 7.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
@@ -935,15 +939,16 @@ The following commands are drug-related commands that are available in Careflow 
 
 [🠉 Back to top](#top)
 
-# 7. **Glossary**
+--------------------------------------------------------------------------------------------------------------------
+# **8. Glossary**
 
-1. Command Line Interface (CLI) <br>
+* Command Line Interface (CLI) <br>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
 
 <br><br>
 
-2. Graphical User Interface (GUI) <br>
+* Graphical User Interface (GUI) <br>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
 
 <br><br>
