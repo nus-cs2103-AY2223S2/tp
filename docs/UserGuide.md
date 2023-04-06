@@ -43,23 +43,23 @@ than current GUI apps in the industry.
    ![DownloadDocedex](images/DownloadDocedex.png)
 
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
-   - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.). 
-   - Move the downloaded jar file to this folder as shown below.
-     - For Mac Users:
-     ![DownloadDocedexMac](images/DownloadDocedexMac.png)
-     - For Windows Users:
+- Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.). 
+- Move the downloaded jar file to this folder as shown below.
+  - For Mac Users:
+  ![DownloadDocedexMac](images/DownloadDocedexMac.png)
+  - For Windows Users:
 
 4. Launch Docedex
-   - For Mac Users:
-     - Right-click `docedex.jar` > Open With > JavaLauncher.app
-     ![LaunchDocedexMac](images/LaunchDocedexMac.png)
-     - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
-   - For Windows Users:
-     - Double-click `docedex.jar` to launch the application.
-   - If this still does not work follow the instructions listed [here.](#launching-docedex)
+- For Mac Users:
+  - Right-click `docedex.jar` > Open With > JavaLauncher.app
+  ![LaunchDocedexMac](images/LaunchDocedexMac.png)
+  - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
+- For Windows Users:
+  - Double-click `docedex.jar` to launch the application.
+- If this still does not work follow the instructions listed [here.](#launching-docedex)
    
-   - You should notice the GUI of the application pop up.<br>
-   ![NewUi](images/NewUi.png)
+- You should notice the GUI of the application pop up.<br>
+![NewUi](images/NewUi.png)
 
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 
@@ -67,7 +67,7 @@ than current GUI apps in the industry.
 
 7. For **advanced users**, view all feature details [here](#features).
 
-  [Scroll back to Table of Contents](#table-of-contents)
+[Scroll back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -177,7 +177,7 @@ look through all the doctors and patients in Docedex, please use the
 | If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
 | Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
 
-  [Scroll back to Table of Contents](#table-of-contents)
+[Scroll back to Table of Contents](#table-of-contents)
 
 ## Command Summary
 

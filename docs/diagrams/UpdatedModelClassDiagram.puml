@@ -47,4 +47,5 @@ Package Person {
     ModelManager ---> "~* filteredPatients" Person.Patient.Patient
 
 }
+
 @enduml
