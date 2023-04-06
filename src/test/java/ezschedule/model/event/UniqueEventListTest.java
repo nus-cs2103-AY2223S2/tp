@@ -165,4 +165,20 @@ public class UniqueEventListTest {
         Assert.assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueEventList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void equals() {
+        // same object -> returns equal
+        assertTrue(uniqueEventList.equals(uniqueEventList));
+
+        // same values -> returns equal
+        UniqueEventList uniqueEventListCopy = new UniqueEventList();
+        assertTrue(uniqueEventList.equals(uniqueEventListCopy));
+
+        // null -> returns not equal
+        assertFalse(uniqueEventList.equals(null));
+
+        // different type -> returns not equal
+        assertFalse(uniqueEventList.equals(5));
+    }
 }
