@@ -354,7 +354,7 @@ Menu Item Card consists of the following components:
 
 * Prefixes of the parameters must be in lower-case and are case-sensitive.<br>
   e.g. `n/` in `add_s n/NAME` is case-sensitive<br>
-* :heavy_check_mark: `n/` is a valid prefix.<br>
+  :heavy_check_mark: `n/` is a valid prefix.<br>
   :x: `N/` is an invalid prefix.<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
@@ -401,19 +401,21 @@ Menu Item Card consists of the following components:
 
 * You can find out the constraints for the parameters with their corresponding prefix [here](#61-prefix-summary).
 
-</div>
+</div><br>
 
 ## 2.1 Add
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil_2: Adding of duplicate data are not allowed. Refer to the section below to see how duplicates are checked for.
+:pencil2: Adding of duplicate data is not allowed. Refer to the section below to see how duplicates are checked for.
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
 
-:pencil_2: Adding of duplicate suppliers are not allowed. Two suppliers are considered duplicated if they have the same phone numbers.
+:information_source: **Information**
+
+* Adding of duplicate suppliers is not allowed. Two suppliers are considered duplicated if they have the same phone numbers.
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -445,7 +447,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Adds an order into the list of orders.
 
-Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
+Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER s/STATUS`
 
 <div markdown="block" class="alert alert-tip">
 
@@ -455,7 +457,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
-* If no status is provided, it is **defaulted** to `Not Delivered`.
+* A status must be provided.
 
 * All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu.<br>
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
@@ -469,7 +471,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 :clipboard: **Example 1: Standard command without status**
 
-* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street`<br>
+* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street s/N`<br>
   Adds an order with the following details:
   * Order Item: `Cupcake`
   * Quantity: `5`
@@ -477,7 +479,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * Name: `John Cat`
   * Phone Number: `91234567`
   * Address: `John Street`
-  * Status: `Not Delivered` (Default)
+  * Status: `Not Delivered`
 
 :clipboard: **Example 2: Shortcut command with status**
 
@@ -551,7 +553,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
 
-* Adding of duplicate menu items are not allowed. Two menu items are considered to be duplicates if they have the same item names (with matching cases).
+* Adding of duplicate menu items is not allowed. Two menu items are considered to be duplicates if they have the same item names (with matching cases).
 
 </div>
 
@@ -573,7 +575,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Price: `20.55`
   * Cost: `25.2`
 
-</div>
+</div><br>
 
 ## 2.2 Edit
 
@@ -587,7 +589,7 @@ Editing of an information in a specific list. Below are the specific edit comman
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * All existing values will be replaced with the new values given.
 * At least one of the fields (e.g. `n/NAME`) must be specified.
-* Duplicate data are not allowed, so editing of a data that makes it match with an existing data is not allowed. Check [Add section](#21-add) to see how duplicates are checked for.
+* Duplicate data are not allowed, so editing of a data such that it matches with an existing data is not allowed. Check [Add section](#21-add) to see how duplicates are checked for.
 
 </div>
 
@@ -599,7 +601,7 @@ Editing of information is one-way (i.e. You cannot revert your command).<br>
 
 We are working to have an undo feature in the future. Sorry for the inconvenience caused.
 
-</div><br>
+</div>
 
 ### 2.2.1 Editing a supplier: `edit_supplier`
 
@@ -747,7 +749,7 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
   * Price: `8.5`
   * Cost: `2.25`
 
-</div>
+</div><br>
 
 ## 2.3 Find
 
@@ -968,7 +970,7 @@ Syntax: `find_item ITEM_NAME`
   :x: Example of order item that do not match:
   * `Vanilla Cupcake`
 
-</div>
+</div><br>
 
 ## 2.4 Delete
 
@@ -1084,7 +1086,7 @@ Deleting a menu item does not invalidate the orders with the same order item nam
   * `find_item cupcake` lists all menu items with item names containing `cupcake`
   * `delete_m 1` deletes the **first** menu item with an item name that contains `cupcake` from the visible menu
 
-</div>
+</div><br>
 
 ## 2.5 Sort
 
@@ -1201,7 +1203,7 @@ Syntax: `sort_order [c/CRITERIA]`
   * `find_order s/N` lists all orders with status as `Not Delievered`
   * `sort_o c/Name` sorts all `Not Delivered` orders found according to their `Name`
 
-</div>
+</div><br>
 
 ## 2.6 List
 
@@ -1285,7 +1287,7 @@ Syntax: `list_menu`
 * `list_m price`<br>
   Shows all menu items.
 
-</div>
+</div><br>
 
 ## 2.7 Clear
 
@@ -1387,7 +1389,7 @@ Clearing all menu items does not invalidate the orders.
 * `clear_m price`<br>
   Clears all menu item data from menu.
 
-</div>
+</div><br>
 
 ## 2.8 Switch
 
@@ -1415,7 +1417,7 @@ Syntax: `tab t/TAB`
 * `tab t/HOME`<br>
   Navigates you to the home tab
 
-</div>
+</div><br>
 
 ## 2.9 Others
 
