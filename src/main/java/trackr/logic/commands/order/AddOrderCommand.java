@@ -1,6 +1,9 @@
 package trackr.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.commons.core.Messages.MESSAGE_DUPLICATE_ITEM;
+import static trackr.commons.core.Messages.MESSAGE_NO_MENU_ITEM;
+import static trackr.commons.core.Messages.MESSAGE_SUCCESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
@@ -26,9 +29,7 @@ import trackr.model.order.Order;
 public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD = "add_order";
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
-    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This %s already exists in the %s list";
-    public static final String MESSAGE_SUCCESS = "New %s added: %s";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
             + "Parameters: "
@@ -41,7 +42,7 @@ public class AddOrderCommand extends Command {
             + PREFIX_ADDRESS + "CUSTOMER'S ADDRESS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ORDERNAME + "CHOCOLATE COOKIES "
-            + PREFIX_ORDERQUANTITY + "5"
+            + PREFIX_ORDERQUANTITY + "5 "
             + PREFIX_DEADLINE + "01/01/2024 "
             + PREFIX_STATUS + "N "
             + PREFIX_NAME + "John Doe "
@@ -66,7 +67,7 @@ public class AddOrderCommand extends Command {
         List<MenuItem> currentMenuItems = model.getFilteredMenu();
         MenuItem existingItem = currentMenuItems.stream()
                                 .filter(item -> item.getItemName().getName()
-                                            .equals(toAdd.getOrderName().getName()))
+                                            .equalsIgnoreCase(toAdd.getOrderName().getName()))
                                 .findAny()
                                 .orElseThrow(() ->
                                             new CommandException(MESSAGE_NO_MENU_ITEM));

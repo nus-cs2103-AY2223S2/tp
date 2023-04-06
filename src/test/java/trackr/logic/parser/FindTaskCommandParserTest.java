@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.task.FindTaskCommand;
 import trackr.logic.parser.task.FindTaskCommandParser;
+import trackr.model.commons.Deadline;
 import trackr.model.task.TaskContainsKeywordsPredicate;
-import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskStatus;
 import trackr.testutil.TaskPredicateBuilder;
 
@@ -52,7 +52,7 @@ public class FindTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid task deadline
-        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC, TaskDeadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC, String.format(Deadline.MESSAGE_CONSTRAINTS, "Task"));
 
         // Invalid task status
         assertParseFailure(parser, INVALID_TASK_STATUS_DESC, TaskStatus.MESSAGE_CONSTRAINTS);
@@ -61,7 +61,7 @@ public class FindTaskCommandParserTest {
         assertParseFailure(
                 parser,
                 INVALID_TASK_DEADLINE_DESC + VALID_TASK_STATUS_DONE,
-                TaskDeadline.MESSAGE_CONSTRAINTS
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Task")
         );
 
         // Invalid task status followed by valid task name
@@ -76,14 +76,14 @@ public class FindTaskCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
 
         assertParseFailure(parser, TASK_DEADLINE_DESC_2100 + INVALID_TASK_DEADLINE_DESC,
-                TaskDeadline.MESSAGE_CONSTRAINTS); //task deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Task")); //task deadline
 
         assertParseFailure(parser, TASK_STATUS_DESC_NOT_DONE + INVALID_TASK_STATUS_DESC,
                 TaskStatus.MESSAGE_CONSTRAINTS); //task status
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, INVALID_TASK_NAME_DESC + INVALID_TASK_DEADLINE_DESC + VALID_TASK_STATUS_DONE,
-                TaskDeadline.MESSAGE_CONSTRAINTS);
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Task"));
     }
 
     @Test
