@@ -65,7 +65,7 @@ create CommandResult
 ViewCommand -> CommandResult
 activate CommandResult
 note left
-Invalid details will throw 
+Invalid details will throw
 a CommandException
 end note
 

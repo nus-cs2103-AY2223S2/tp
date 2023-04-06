@@ -393,9 +393,7 @@ The following activity diagram shows the logic flow as the user inputs the `sort
 #### Design considerations
 *Aspect: Command to sort the modules*
 
-As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories.
-However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, 
-the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
+As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories. However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
 ### **View progress/modules feature** <a name="view-feature"></a>
 
@@ -807,10 +805,10 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a module while all modules are being shown
 
    1. Test case: `delete /m cs1101s`<br>
-      Expected: Module with the code "CS1101S" will be deleted. Details of the deleted module shown in the status message. 
+      Expected: Module with the code "CS1101S" will be deleted. Details of the deleted module shown in the status message.
 
    1. Test case: `delete /m 1101S`<br>
-      Expected: No module is deleted. Error details shown in the response message. 
+      Expected: No module is deleted. Error details shown in the response message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
