@@ -26,7 +26,7 @@ class AddScoreCommandTest {
     private Model model = new ModelManager(getTypicalMathutoring(), new UserPrefs());
 
     @Test
-    public void constructor_nullTaskAndIndex_throwsNullPointerException() {
+    public void constructor_nullScoreAndIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddScoreCommand(null, null));
     }
 

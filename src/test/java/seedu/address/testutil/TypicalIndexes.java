@@ -12,5 +12,5 @@ public class TypicalIndexes {
     public static final Index INDEX_FIRST_TASK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
     public static final Index INDEX_FIRST_SCORE = Index.fromOneBased(1);
-
+    public static final Index INDEX_SECOND_SCORE = Index.fromOneBased(2);
 }
