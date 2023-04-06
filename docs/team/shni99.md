@@ -1,3 +1,9 @@
+---
+layout: page
+title: Shenghan's Project Portfolio
+---
+# Project: BookFace
+
 ## Overview
 BookFace is a NUS-centered contact management application that allows students to keep track of details of people they 
 have met in the campus, for example in situations such as having the same CCAs, same classes. It can even be adding 
@@ -18,32 +24,49 @@ been implemented.
 ### Enhancement Implemented
 
 Main contributions that I have enhanced involve two key features:
-1. Add command
-2. Edit command
 
-{Todo: Add summary}
+**Feature enhancement**: `Add command`
+* What it does: The original `add` function in AB3 takes in 5 fields, namely (name, phone, email, address, tags). The 
+current version has an additional _compulsory_ field, named **status** and a few enhancement to differentiate tags 
+according to their types (general, commitment, module). The tags will remain as optional input, while the rest of the 
+fields are necessary, else there is exception.
+* Justification: The `status` is added as an important field there is a strong emphasis on the year and course that 
+the students are in. Meanwhile, three tag types were included, each has their own attributes (colour-coded labeling, 
+custom strings) to split tags up based on the following tag commands (t\, mt\, ct\) that users enter. It also acts to 
+enhance the overall user experience by having a user interface.
+* Highlights: One of the concerns is that the input fields have been restrained down to their respective word limits as 
+the frame cannot accommodate to _very long_ texts.
+
+**Feature enhancement**: `Edit command`
+* What it does: The original `edit` function in AB3 allows users to effectively change the contents of the fields 
+without deleting the existing contact and creating a new one. The editing of tags is available in current implementation
+of **Bookface**, with the inclusion of commitment and module tags on top of the original tag (now general tag).
+* Justification: The improvement is made to cater to users the flexibility to modify tags based on its type. When users 
+change a tag type, the existing tags in the type will be replaced with the new ones. The other type will remain 
+unaffected. The prefix inputs follow AB3, which will work even if it is entered in any order.
+* Highlights: The challenge is to understand the code first then trace to build on top of the existing structure.
+
 
 ### Contributions to UG
 
 The following are the list of sections that have been contributed to the UG:
 
-- Features:
-    - Add user contacts: `add`
-    - Edit user contacts: `edit`
+- Wrote the following sections of the BookFace [User Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/UserGuide.html):
+  - Add user contacts: `add`
+  - Edit user contacts: `edit`
 
 ### Contributions to DG
 
-The following are the list of sections that have been contributed to the DG:
-
+Wrote the following sections of the BookFace [Developer Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/DeveloperGuide.html):
 - Enhancement:
   - Add Feature
-  - Edit Feature
+  - Edit Feature (to be implemented by today)
 
 ### Contributions to team-based tasks
 
 The following are the list of team-based tasks accomplished:
 - Setting up Codecov in project landing page on Github
-- Create and issue of issues on several milestones
+- Create and issue-ing of issues on several milestones
 
 
 ### Review/mentoring contributions:
