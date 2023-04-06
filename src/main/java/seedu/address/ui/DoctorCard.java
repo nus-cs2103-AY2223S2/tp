@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 /**
  * An UI component that displays the name, phone number, email and tags of a {@code Doctor}.
  */
-public class DoctorCard extends UiPart<Region> {
+public class DoctorCard extends ContactCard {
 
     private static final String FXML = "DoctorListCard.fxml";
 
@@ -52,16 +52,7 @@ public class DoctorCard extends UiPart<Region> {
         email.setText(doctor.getEmail().value);
         doctor.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.getTagName());
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
-    }
-
-    private void addTagToFlowPane(String tagName) {
-
+                .forEach(this::addTagToFlowPane);
     }
 
     @Override

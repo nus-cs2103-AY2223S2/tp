@@ -52,12 +52,14 @@ public class PatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().value);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.getTagName());
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .forEach(this::addTagToFlowPane);
+    }
+
+    private void addTagToFlowPane(Tag tag) {
+        Label tagLabel = new Label(tag.getTagName());
+        tagLabel.setWrapText(true);
+        tagLabel.setMaxWidth(150);
+        tags.getChildren().add(tagLabel);
     }
 
     @Override
