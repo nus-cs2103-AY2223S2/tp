@@ -134,10 +134,10 @@ placeholder
 
 ## Valid data field inputs
 This section describes the requirements of the specified data fields.
+Aside from Variants, data fields must contain at least one non-whitespace character (i.e. blank inputs are not accepted).
 
 ### Name
-* Names must only contain letters and spaces, and cannot be blank.
-* Names must contain at least one letter.
+* Names must only contain letters and spaces.
 * Longer names may be truncated. To see the full text, resize the app window.
 
 ### Postal code
