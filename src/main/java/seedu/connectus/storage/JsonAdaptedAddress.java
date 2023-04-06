@@ -61,5 +61,4 @@ class JsonAdaptedAddress {
             return Optional.empty();
         }
     }
-
 }

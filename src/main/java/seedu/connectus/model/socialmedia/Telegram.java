@@ -25,7 +25,7 @@ public class Telegram implements Openable {
 
     public final String value;
 
-    private Telegram(String telegram) {
+    public Telegram(String telegram) {
         value = telegram;
     }
 
