@@ -348,7 +348,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 </div>
 <br>
 
-<img src="images/UiComponentClassDiagram.svg" style="width:80%;margin:0 10%">
+<img src="images/UiComponentClassDiagram.svg" style="width:90%;margin:0 5%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 2.2</b> Class Diagram for UI Components
 </div>
@@ -822,13 +822,13 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
@@ -956,7 +956,7 @@ We cannot save the json file directly from the command, because the command only
 
 </div>
 
-<img src="images/SaveSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.10</b> Sequence Diagram for a typical <code>save</code> command.
 </div>
@@ -973,7 +973,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
 
 </div>
 
-<img src="images/LoadSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.11</b> Sequence Diagram for a typical <code>load</code> command.
 </div>
@@ -1156,7 +1156,7 @@ The process of getting a recommendation is as follows:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.svg" style="width:80%;margin:0 10%">
+<img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 5.1</b> Class Diagram for Storage Components
 </div>
