@@ -217,7 +217,6 @@ The following sequence diagram shows how the delete operation works:
 
 <img src="images/DeleteCommandUML.png"/>
 
-
 #### Proposed Implementation
 #### Design considerations:
 
