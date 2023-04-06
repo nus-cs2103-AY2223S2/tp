@@ -14,7 +14,7 @@ public class ArgumentMultiMapTest {
     private static final Prefix ALPHA_PREFIX = new Prefix("alpha/");
 
     @Test
-    public void test_contains() {
+    public void contains_insertValues_indicatesContains() {
         ArgumentMultimap map = new ArgumentMultimap();
         assertFalse(map.containsKey(TEST_PREFIX));
         map.put(TEST_PREFIX, "");

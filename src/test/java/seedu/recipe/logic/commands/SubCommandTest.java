@@ -47,7 +47,7 @@ public class SubCommandTest {
     }
 
     @Test
-    public void testEquals() {
+    public void equals() {
         Command subCommandOne = new SubCommand(PRELOADED);
         Command subCommandOneCopy = new SubCommand(PRELOADED);
         Command subCommandTwo = new SubCommand(NON_PRELOADED);

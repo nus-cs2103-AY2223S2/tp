@@ -121,7 +121,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void testNullConstructor_error() {
+    public void constructor_nullPredicate_nullPointerExceptionThrown() {
         assertThrows(NullPointerException.class, () -> new FindCommand(null));
     }
 

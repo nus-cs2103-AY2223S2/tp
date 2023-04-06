@@ -18,17 +18,17 @@ public class SubCommandParserTest {
     private static final String VALID_INGREDIENT = "Fish";
 
     @Test
-    public void test_parseEmpty_error() {
+    public void parse_empty_parseExceptionThrown() {
         assertThrows(ParseException.class, () -> parser.parse(EMPTY));
     }
 
     @Test
-    public void test_parseInvalid_error() {
+    public void parse_invalid_parseExceptionThrown() {
         assertThrows(ParseException.class, () -> parser.parse(INVALID_INGREDIENT));
     }
 
     @Test
-    public void test_trailingWhitespace_error() {
+    public void parse_leadingTrailingWhitespace_parseExceptionThrown() {
         //Test that trim() works
         assertDoesNotThrow(() -> parser.parse(TRAILING_WHITESPACE));
         assertDoesNotThrow(() -> parser.parse(LEADING_WHITESPACE));
@@ -36,7 +36,7 @@ public class SubCommandParserTest {
     }
 
     @Test
-    public void test_valid_success() {
+    public void parse_valid_success() {
         assertDoesNotThrow(() -> parser.parse(VALID_INGREDIENT));
     }
 }

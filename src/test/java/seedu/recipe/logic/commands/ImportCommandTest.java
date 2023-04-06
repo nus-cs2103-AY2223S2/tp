@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ImportCommandTest {
     @Test
-    public void testConstructor_noError() {
+    public void constructor_noError() {
         assertDoesNotThrow(() -> new ImportCommand(null));
     }
 

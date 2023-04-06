@@ -52,13 +52,15 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
+        //Filter list to show only the first recipe
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
+        //Delete the first recipe
         Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
 
+        //Check that command succeeded, and model is empty
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete);
-
         Model expectedModel = new ModelManager(model.getRecipeBook(), new UserPrefs());
         expectedModel.deleteRecipe(recipeToDelete);
         showNoRecipe(expectedModel);
@@ -103,12 +105,12 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void test_executeNullModel() {
+    public void execute_nullModel_nullPointerExceptionThrown() {
         assertThrows(NullPointerException.class, () -> new DeleteCommand(INDEX_FIRST_RECIPE).execute(null));
     }
 
     @Test
-    public void test_nullIndexConstructor() {
+    public void constructor_nullIndex_nullPointerExceptionThrown() {
         assertThrows(NullPointerException.class, () -> new DeleteCommand(null));
     }
 

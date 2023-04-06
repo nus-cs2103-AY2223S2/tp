@@ -33,12 +33,12 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void testConstructor_nullLogic_error() {
+    public void constructor_nullLogic_nullPointerExceptionThrown() {
         assertThrows(NullPointerException.class, () -> new ExportCommand(null, null));
     }
 
     @Test
-    public void testConstructor_validParams_noError() {
+    public void constructor_validParams_noError() {
         assertDoesNotThrow(() -> new ExportCommand(null, logic));
     }
 }

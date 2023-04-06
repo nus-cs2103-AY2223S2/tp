@@ -20,7 +20,7 @@ public class PrefixTest {
     }
 
     @Test
-    public void test_hashCode() {
+    public void hashCode_called_generatesProperHashCode() {
         assertEquals(new Prefix(null).hashCode(), 0);
         String testPrefix = "p/";
         assertEquals(new Prefix(testPrefix).hashCode(), testPrefix.hashCode());
