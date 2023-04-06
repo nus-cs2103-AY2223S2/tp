@@ -207,10 +207,7 @@ Format: `remind`
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
 
-#### Amount indication
 
-Pet Card information indicates the amount of money owed to you for taking good care of their pets!
-![](images/UG/amount.png)
 
 
 
@@ -287,6 +284,12 @@ and address to `21 Beach Rd`
 * `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
 the edit will override the existing tag
 
+#### Amount indication
+
+Pet Card information indicates the amount of money owed to you for taking good care of their pets!
+
+Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
+![](images/UG/amount.png)
 
 
 #### Changing the cost : `changecost`
