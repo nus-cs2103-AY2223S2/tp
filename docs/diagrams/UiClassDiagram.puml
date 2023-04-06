@@ -51,7 +51,7 @@ ModuleSearchSection *-down-> "1" ModuleList
 CliSection *-down-> "1" CliScreen
 CliSection *-down-> "1" CliInput
 
-ModuleList -down-> "1..*" ModuleGroup
+ModuleList -down-> "*" ModuleGroup
 ModuleGroup -down-> "1..*" ModuleCard
 
 
