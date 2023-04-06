@@ -274,7 +274,8 @@ Let's use the `edit` command to update his information.
 `edit 1 e/john@example.com`
 
 **Result**:
-<img class="center" src="images/JohnFullContact.png" alt="John with email added />
+<img class="center" src="images/JohnFullContact.png" alt="John with email added" />
+<p class="caption"> <b>John's email</b> is now reflected on our contact list. </p>
 
 
 <div markdown="block" class="alert alert-info">
