@@ -13,7 +13,7 @@ airline-related resources. The program is highly optimized for fast typers, whil
 interface
 for managers to monitor the status of airline-related resources.
 
-In this flight, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
+In this document, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
 such as flight scheduling and management of crew, pilot, plane and location.
 
 ## Table of Contents
@@ -30,7 +30,6 @@ such as flight scheduling and management of crew, pilot, plane and location.
     - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location)**
     - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight)**
     - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight)**
-    - **[Checking a resource's availability: `check`](#5-checking-a-resources-availability)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -45,19 +44,19 @@ This user guide provides an in-depth documentation on the multiple features that
 to assist you in managing your resources.
 
 If you are an experienced user trying to find a specific command, you can head over to
-the [command summary](#command-summary) section where you can view all the commands at a glance.
+the [Command Summary](#command-summary) section where you can view all the commands at a glance.
 
 If you are a first-time user, you can begin by reading the [Getting Started](#getting-started) section to learn how to
 get started with Wingman in just a few simple steps!
 
 To find an in depth description of Wingman's features, simply search for the feature in the
-[table of contents](#table-of-contents) and head over to the relevant section.
+[Table of Contents](#table-of-contents) and head over to the relevant section.
 Each section contains a detailed description of the feature, and it's command format
 along with some examples of possible uses and expected outputs.
 
-For the description of commands, `{resource}-index` (e.g. `plane-index`) acts a placeholder in the command format where
-a plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please
-refer to the image below for clarity.
+In the description of commands, we use `{resource}-index` as a placeholder in the command format 
+where user could specify the index of the corresponding resource. For example, `plane-index` refers to the index of a 
+plane that users could specify, and the index of any resource can be found in the user interface display. 
 
 <div style="page-break-after: always;"></div>
 
@@ -589,7 +588,7 @@ This command is **ONLY** available in the following modes: `crew`, `pilot` and `
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> Locations are linked to flights through <span style="font-family: Courier;">flight</span> mode, using the 
-<span style="font-family: Courier;">linklocation</span> command described above.
+<span style="font-family: Courier;">linklocation</span> command described earlier.
 </div>
 
 This commands links an entity of the current resource mode to a specified flight in Wingman's database.
@@ -790,40 +789,6 @@ Output:
 Unlinked A380 from SQ230.
 ```
 
-#### **5. Checking a resource's availability**
-
-Use this command when you wish to check a resource's availability (i.e. when deciding to use a resource for flight, you
-can use this command to check whether the resource is already currently linked to another flight).
-
-```
-check /id resource-index
-```
-
-Required input value:
-
-- `resource-number`: the index number of the resource entity you wish to delete.
-
-This command checks whether an entity of the current resource is currently linked to a flight in Wingman's database. For
-example, if you are currently in `plane` mode, then this command will check whether the specified `plane` is linked
-to any flights or not and indicate its availability.
-
-This command has **NO** variation across the modes.
-
-Example in `plane` mode:
-
-```
-Input:
-check /id 1
-
-Output: 
-A380 is available.
-```
-
-[Back to contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-
 ## Prefix Summary
 
 | **Action** | **Meaning**               | **Followed by**                  |
@@ -848,7 +813,6 @@ A380 is available.
 | /tr        | `trainee`                 | Index of trainee                 |
 | /pf        | `pilot flying`            | Index of pilot flying            |
 | /pm        | `pilot monitoring`        | Index of pilot monitoring        |
-| /id        | `index`                   | Index of an entity               |
 
 [Back to contents](#table-of-contents)
 
@@ -860,11 +824,10 @@ A380 is available.
 |-----------------|---------------------------------------------------------------------|--------------------------------|
 | Add             | `add /prefix_A value_A /prefix_B value_B`                           | `add /n Bob /r 2`              |
 | Delete          | `delete resource-index`                                             | `delete 1`                     |
-| Link location   | `linklocation /lo location-index /resource-prefix resource-index`   | `linklocation /lo 0 /cr 1`     |
-| Unlink location | `unlinklocation /lo location-index /resource-prefix resource-index` | `unlinklocation /lo 0 /fl 1`   |
-| Link flight     | `linkflight /fl flight-index /resource-prefix resource-index `      | `linkflight /fl 0 /pf 1 /pm 2` |
-| Unlink flight   | `unlinkflight /fl flight-index /resource-prefix resource-index `    | `unlinkflight /fl 0 /pu 1`     |
-| Check           | `check /id resource-index`                                          | `check /id 0`                  |
+| Link location   | `linklocation /lo location-index /resource-prefix resource-index`   | `linklocation /lo 1 /cr 1`     |
+| Unlink location | `unlinklocation /lo location-index /resource-prefix resource-index` | `unlinklocation /lo 1 /fl 1`   |
+| Link flight     | `linkflight /fl flight-index /resource-prefix resource-index `      | `linkflight /fl 1 /pf 1 /pm 2` |
+| Unlink flight   | `unlinkflight /fl flight-index /resource-prefix resource-index `    | `unlinkflight /fl 1 /pu 1`     |
 
 [Back to contents](#table-of-contents)
 
@@ -897,7 +860,7 @@ OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 
 | **Term**        | **Definition**                                                            |
 |-----------------|---------------------------------------------------------------------------|
-| Resource        | Crews, Pilots, Planes, Flights or Locations                               |
+| Resource        | Crews, Pilots, Planes, Flights, or Locations                              |
 | Resource Entity | An entity of any of the resource types specified above (e.g. Captain Bob) |
 | Prefix          | A placeholder term referring to an attribute name (e.g. /g for gender)    |
 
