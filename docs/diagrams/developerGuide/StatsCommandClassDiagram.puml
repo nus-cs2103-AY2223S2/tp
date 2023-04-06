@@ -6,15 +6,15 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Stats {
 Class StatsCommand
-Class AggregateFunction
+Class "{Abstract} \n AggregateFunction"
 Class XYZAggregateFunction
 Class Summary
 }
 
 StatsCommand .> XYZAggregateFunction : Creates >
-XYZAggregateFunction --|> AggregateFunction
+XYZAggregateFunction --|> "{Abstract} \n AggregateFunction"
 StatsCommand -DOWN-> "1" Summary
-Summary .> AggregateFunction :Describes >
+Summary .> "{Abstract} \n AggregateFunction" :Describes >
 
 note right of XYZAggregateFunction: XYZAggregateFunction = \nCountAggregateFunction, \nMaxCountAggregateFunction, etc
 
