@@ -15,6 +15,7 @@ public class SampleCommandParser implements Parser<SampleCommand> {
             int size = ParserUtil.parseInt(args);
             if (size < 0 || size > 100) {
                 throw new ParseException("Invalid size. Please select a number between 1 and 100 inclusive.");
+                // problem here is that it doesn't make use of the above line.
             }
             return new SampleCommand(size);
         } catch (ParseException pe) {
