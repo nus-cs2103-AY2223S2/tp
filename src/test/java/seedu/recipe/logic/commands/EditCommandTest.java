@@ -1,12 +1,11 @@
 package seedu.recipe.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
-import static seedu.recipe.logic.commands.CommandTestUtil.TAG_DESC_CHINESE;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DURATION_CHICKEN;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENT_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_FISH;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_PORTION_CHICKEN;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEP_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.recipe.logic.commands.CommandTestUtil.showRecipeAtIndex;
@@ -16,6 +15,7 @@ import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
@@ -24,7 +24,6 @@ import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
-import seedu.recipe.testutil.RecipeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -35,29 +34,13 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-         Recipe editedRecipe = DESC_CHICKEN.toRecipe();
-         RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(editedRecipe).build();
-         EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE, descriptor);
-         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
-         Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
-         expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
-         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//         Index indexLastRecipe = Index.fromOneBased(model.getFilteredRecipeList().size());
-//         Recipe lastRecipe = model.getFilteredRecipeList().get(indexLastRecipe.getZeroBased());
-//         EditRecipeDescriptorBuilder editedRecipe = new EditRecipeDescriptorBuilder(lastRecipe);
-//         RecipeDescriptor recipeDescriptor = editedRecipe.withName(VALID_NAME_CHICKEN)
-//                 .withIngredients(VALID_INGREDIENT_CHICKEN)
-//                 .withSteps(VALID_STEP_CHICKEN).build();
-//         EditCommand editCommand = new EditCommand(indexLastRecipe, recipeDescriptor);
-//         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
-//         Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
-//         expectedModel.setRecipe(lastRecipe, editedRecipe.build().toRecipe());
-//
-//         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        Recipe editedRecipe = DESC_CHICKEN.toRecipe();
+        RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(editedRecipe).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE, descriptor);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
+        Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
+        expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -74,15 +57,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        // showRecipeAtIndex(model, INDEX_FIRST_PERSON);
-        // Recipe recipeInFilteredList = model.getFilteredRecipeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withName(VALID_NAME_BOB).build();
-        // EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-        //         new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build());
-        // String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
-        // Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
-        // expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
-        // assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
+        Recipe recipeInFilteredList = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
+        Recipe editedRecipe = new EditRecipeDescriptorBuilder(recipeInFilteredList)
+                .withName(VALID_NAME_CHICKEN).build().toRecipe();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE,
+                new EditRecipeDescriptorBuilder().withName(VALID_NAME_CHICKEN).build());
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
+        Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
+        expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -108,11 +92,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidRecipeIndexUnfilteredList_failure() {
-        // Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
-        // EditCommand.EditRecipeDescriptor descriptor =
-        //         new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        // EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
-        // assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
+        RecipeDescriptor descriptor =
+                new EditRecipeDescriptorBuilder().withName(VALID_NAME_CHICKEN).build();
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     /**
@@ -121,32 +105,34 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidRecipeIndexFilteredList_failure() {
-        // showRecipeAtIndex(model, INDEX_FIRST_PERSON);
-        // Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // // ensures that outOfBoundIndex is still in bounds of address book list
-        // assertTrue(outOfBoundIndex.getZeroBased() < model.getRecipeBook().getRecipeList().size());
-        // EditCommand editCommand = new EditCommand(outOfBoundIndex,
-        //         new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build());
-        // assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
+        Index outOfBoundIndex = INDEX_SECOND_RECIPE;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getRecipeBook().getRecipeList().size());
+        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+                new EditRecipeDescriptorBuilder().withName(VALID_NAME_CHICKEN).build());
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        // final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
-        // // same values -> returns true
-        // EditCommand.EditRecipeDescriptor copyDescriptor = new EditCommand.EditRecipeDescriptor(DESC_AMY);
-        // EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
-        // assertTrue(standardCommand.equals(commandWithSameValues));
-        // // same object -> returns true
-        // assertTrue(standardCommand.equals(standardCommand));
-        // // null -> returns false
-        // assertFalse(standardCommand.equals(null));
-        // // different types -> returns false
-        // assertFalse(standardCommand.equals(new ClearCommand()));
-        // // different index -> returns false
-        // assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
-        // // different descriptor -> returns false
-        // assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_RECIPE, DESC_CHICKEN);
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RECIPE, DESC_CHICKEN)));
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_RECIPE, DESC_FISH)));
+    }
+
+    @Test
+    public void editCommandToString() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE, DESC_CHICKEN);
+        assertEquals(editCommand.toString(), "1|" + DESC_CHICKEN.toRecipe());
     }
 
 }
