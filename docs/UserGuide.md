@@ -28,7 +28,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui_updated.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -101,7 +101,9 @@ Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
 * `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` adds the doctor `Sarah Tan` to the list.
 
-![AddPatient](images/AddPatient.png)
+![AddPatient](images/AddPatient_updated.png)
+
+![AddDoctor](images/AddDoctor.png)
 
 ### Deleting a person by NRIC : `delete`
 
