@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Jonathon Low Eng Kiat's Project Portfolio Page
 ---
 
@@ -76,3 +76,4 @@ Given below are my contributions to the project.
   , [#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131), [#134](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/134), 
   * Created a total of [27](https://github.com/AY2223S2-CS2103T-T11-4/tp/issues?q=is%3Aissue+author%3ACreationsv2+) issues for GitHub issue tracker.
   * Reported a total of [12](https://github.com/Creationsv2/ped/issues) bugs and issues for PE-D.
+
