@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
@@ -87,9 +88,9 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns the Shop
+     * Exposes Shop api caller
      */
-    ReadOnlyShop getShop();
+    Shop getShop();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -120,9 +121,10 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Service> getFilteredServiceList();
+
     ObservableList<Appointment> getFilteredAppointmentList();
 
-    PartMap getPartMap();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -148,24 +150,6 @@ public interface Model {
      */
     void updateFilteredCustomerList(Predicate<? super Customer> predicate);
 
-    /**
-     * Adds customer to the shop
-     *
-     * @param customer Customer to be added
-     */
-    void addCustomer(Customer customer);
-
-    /**
-     * Checks whether Shop already has customer
-     *
-     * @param customerId Customer ID to be checked
-     */
-    boolean hasCustomer(int customerId);
-
-    void deleteCustomer(Customer target);
-
-    void setCustomer(Customer target, Customer editedPerson);
-
     // ==== For Vehicles ==
 
     /**
@@ -173,141 +157,14 @@ public interface Model {
      */
     ObservableList<Vehicle> getFilteredVehicleList();
 
-    /**
-     * Adds vehicle to the shop
-     *
-     * @param vehicle Vehicle to be added
-     */
-    void addVehicle(int customerId, Vehicle vehicle);
-
-    /**
-     * Checks if shop already has vehicle using id
-     *
-     * @param vehicleId Vehicle ID to check against
-     */
-    boolean hasVehicle(int vehicleId);
-
-    /**
-     * Checks if shop already has vehicle using plate numbers
-     *
-     * @param vehicle Vehicle to check against
-     */
-    boolean hasVehicle(Vehicle vehicle);
-
-    void deleteVehicle(Vehicle target);
-
-    void setVehicle(Vehicle target, Vehicle editedVehicle);
-
-    // ==== For Services ==
-
-    /**
-     * Returns an unmodifiable view of the filtered service list
-     */
-    ObservableList<Service> getFilteredServiceList();
-
-    /**
-     * Adds service
-     *
-     * @param service Service to add
-     */
-    void addService(int vehicleId, Service service);
-
-    /**
-     * @param serviceId ID of service
-     * @return Whether service already in the system
-     */
-    boolean hasService(int serviceId);
-
-    void deleteAppointment(Appointment target);
-
-    void deleteService(Service service);
-
-    /**
-     * Adds appointment
-     *
-     * @param appointment Appointment to add
-     */
-    void addAppointment(Appointment appointment);
-
-    /**
-     * Checks if appointment in the system
-     *
-     * @param appointmentId ID of appointment
-     */
-    boolean hasAppointment(int appointmentId);
-
-    /**
-     * Adds part
-     *
-     * @param partName Name of the part to add
-     * @param quantity Quantity of the part to add
-     */
-    void addPart(String partName, int quantity);
-
-    /**
-     * Adds part to service
-     *
-     * @param serviceId ID of service
-     * @param partName  Name of part
-     * @param quantity  Quantity of part
-     * @throws NoSuchElementException If service not in system
-     */
-    void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
-
-    /**
-     * Assigns existing technician to existing service
-     *
-     * @param serviceId ID of service
-     * @param techId    ID of technician
-     * @throws NoSuchElementException If technician or service not in system
-     */
-    void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
-
-    /**
-     * Assigns existing technician to existing appointment
-     *
-     * @param techId ID of technician
-     * @param appointmentId ID of appointment
-     * @throws NoSuchElementException if technician ID or appointment ID does not exist
-     */
-    void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException;
-
-    /**
-     * Checks if part already exists
-     *
-     * @param partName Name of the part to check against
-     */
-    boolean hasPart(String partName);
-
     ObservableList<Technician> getFilteredTechnicianList();
 
-    /**
-     * Adds Technician
-     *
-     * @param technician Technician to be added
-     */
-    void addTechnician(Technician technician);
-
-    /**
-     * Checks if technician already in the model
-     *
-     * @param technicianId ID of technician to check against
-     */
-    boolean hasTechnician(int technicianId);
 
     void updateFilteredTechnicianList(Predicate<? super Technician> predicate);
 
     void updateFilteredVehicleList(Predicate<? super Vehicle> predicate);
 
     void updateFilteredServiceList(Predicate<? super Service> predicate);
-
-    void setAppointment(Appointment target, Appointment editedAppointment);
-
-    void updatePartsMap();
-
-    void deleteTechnician(Technician target);
-
-    void setTechnician(Technician target, Technician editedPerson);
 
     CustomerVehicleMap getCustomerVehicleMap();
 
@@ -369,7 +226,6 @@ public interface Model {
      */
     void selectTechnician(Technician technician);
 
-    void setService(Service target, Service editedService);
 
     // Sort helper functions
 
