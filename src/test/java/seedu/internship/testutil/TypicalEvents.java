@@ -6,10 +6,14 @@ import static seedu.internship.testutil.TypicalInternships.ML2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import seedu.internship.model.EventCatalogue;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
+/**
+ * A utility class containing a list of {@code Event} objects to be used in tests.
+ */
 public class TypicalEvents {
     // Values declared below should be moved to static seedu.address.logic.commands.CommandTestUtil package
     public static final String VALID_NAME_EM11 = "Interview";
@@ -30,21 +34,21 @@ public class TypicalEvents {
     public static final String VALID_EVENT_DESCRIPTION_EMD1 = "This is the first Deadline for ML1.";
     public static final Internship VALID_INTERNSHIP_EMD1 = new InternshipBuilder(ML1).build();
 
-    public static Event EM11 = new EventBuilder()
+    public static final Event EM11 = new EventBuilder()
             .withName(VALID_NAME_EM11)
             .withStart(VALID_START_EM11)
             .withEnd(VALID_END_EM11)
             .withDescription(VALID_EVENT_DESCRIPTION_EM11)
             .withInternship(VALID_INTERNSHIP_EM11).build();
 
-    public static Event EM12 = new EventBuilder()
+    public static final Event EM12 = new EventBuilder()
             .withName(VALID_NAME_EM12)
             .withStart(VALID_START_EM12)
             .withEnd(VALID_END_EM12)
             .withDescription(VALID_EVENT_DESCRIPTION_EM12)
             .withInternship(VALID_INTERNSHIP_EM12).build();
 
-    public static  Event EMD1 = new EventBuilder()
+    public static final Event EMD1 = new EventBuilder()
             .withName(VALID_NAME_EMD1)
             .withStart(VALID_START_EMD1)
             .withEnd(VALID_END_EMD1)
