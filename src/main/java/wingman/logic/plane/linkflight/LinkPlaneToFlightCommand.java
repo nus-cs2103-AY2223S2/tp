@@ -17,10 +17,6 @@ import wingman.model.plane.Plane;
  * The command that links a plane to a flight
  */
 public class LinkPlaneToFlightCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String PLANE_NOT_FOUND_EXCEPTION =
-            "Plane with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Linked %s to %s.";
 
@@ -40,7 +36,10 @@ public class LinkPlaneToFlightCommand implements Command {
      * @param flight the id of the flight.
      * @param planes the id of the planes.
      */
-    public LinkPlaneToFlightCommand(Flight flight, Map<FlightPlaneType, Plane> planes) {
+    public LinkPlaneToFlightCommand(
+            Flight flight,
+            Map<FlightPlaneType, Plane> planes
+    ) {
         this.flight = flight;
         this.planes = planes;
     }
@@ -48,12 +47,13 @@ public class LinkPlaneToFlightCommand implements Command {
     @Override
     public String toString() {
         String result = planes.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
-                        entry.getValue().getModel()))
-                .collect(Collectors.joining(","));
+                              .stream()
+                              .map((entry) -> String.format(
+                                      "%s %s",
+                                      entry.getKey(),
+                                      entry.getValue().getModel()
+                              ))
+                              .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 

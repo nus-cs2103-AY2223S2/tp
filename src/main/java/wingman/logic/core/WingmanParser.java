@@ -13,10 +13,8 @@ import wingman.logic.crew.linklocation.CrewLocationLinkCommandFactory;
 import wingman.logic.flight.linklocation.FlightLocationLinkCommandFactory;
 import wingman.logic.pilot.linkflight.PilotFlightLinkCommandFactory;
 import wingman.logic.pilot.linklocation.PilotLocationLinkCommandFactory;
-import wingman.logic.plane.linkflight.LinkPlaneToFlightCommandFactory;
-import wingman.logic.plane.linklocation.LinkPlaneToLocationCommandFactory;
-import wingman.logic.plane.unlinkflight.UnlinkPlaneToFlightCommandFactory;
-import wingman.logic.plane.unlinklocation.UnlinkPlaneToLocationCommandFactory;
+import wingman.logic.plane.linkflight.PlaneFlightLinkCommandFactory;
+import wingman.logic.plane.linklocation.PlaneLocationLinkCommandFactory;
 import wingman.logic.toplevel.add.AddCommandFactory;
 import wingman.logic.toplevel.changemode.ChangeModeCommandFactory;
 import wingman.logic.toplevel.delete.DeleteCommandFactory;
@@ -87,10 +85,10 @@ public class WingmanParser extends FactoryParser {
                                     PlaneSyntax::getManager,
                                     PlaneSyntax::delete
                             ),
-                            new LinkPlaneToFlightCommandFactory(),
-                            new UnlinkPlaneToFlightCommandFactory(),
-                            new LinkPlaneToLocationCommandFactory(),
-                            new UnlinkPlaneToLocationCommandFactory()
+                            PlaneFlightLinkCommandFactory.linkFactory(),
+                            PlaneFlightLinkCommandFactory.unlinkFactory(),
+                            PlaneLocationLinkCommandFactory.linkFactory(),
+                            PlaneLocationLinkCommandFactory.unlinkFactory()
                     )
             ),
             new CommandGroup(
