@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetPatientIds() {
+        patientManager.resetIdCount();
+    }
+
+    @Override
     public void addPatient(Patient patient) {
         IdData<Patient> newValue = patientManager.add(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -91,6 +90,25 @@ public class IdDataMapTest {
 
 
     @Test
+    public void addAndDeleteTest() {
+        /*
+         * Test ensures that ID increases on an add operation after the recently added
+         * element was deleted immediately
+         */
+
+        // first so 0
+        int idDel = idMap.add(0).getId();
+        idMap.remove(idDel);
+
+        // second so 1
+        int idNext = idMap.add(2).getId();
+
+        assertEquals(0, idDel);
+        assertEquals(1, idNext);
+    }
+
+
+    @Test
     public void setValues_withinLimit_valuesAdded() {
         ArrayList<Integer> values = new ArrayList<>();
         for (int i = 0; i < TESTING_LIMIT; i++) {
@@ -144,8 +162,6 @@ public class IdDataMapTest {
         idMap.add(initial);
         idMap.set(0, change);
         assertEquals(change, idMap.get(0).getValue());
-
-        assertThrows(NoSuchElementException.class, () -> idMap.set(1, change));
     }
 
 

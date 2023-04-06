@@ -58,6 +58,7 @@ public class IdDataMap<T> {
     public IdData<T> add(T value) throws LimitExceededException {
         Objects.requireNonNull(value);
         IdData<T> data = new IdData<>(getNextId(), value);
+        nextId++;
         return add(data);
     }
 
@@ -74,7 +75,7 @@ public class IdDataMap<T> {
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         internalMap.put(data.getId(), data);
-        nextId = Math.max(nextId, data.getId());
+        nextId = Math.max(nextId, data.getId() + 1);
         return data;
     }
 
@@ -89,10 +90,6 @@ public class IdDataMap<T> {
      * @throws NoSuchElementException if the ID is not present.
      */
     public ValueChange<IdData<T>> set(int id, T value) {
-        if (!internalMap.containsKey(id)) {
-            // TODO: this exception is unhandled by utilising methods.
-            throw new NoSuchElementException(String.format("ID [%d] not found", id));
-        }
         IdData<T> newValue = new IdData<>(id, value);
         IdData<T> oldValue = internalMap.put(id, newValue);
         return new ValueChange<>(oldValue, newValue);
@@ -106,10 +103,15 @@ public class IdDataMap<T> {
      */
     public ValueChange<IdData<T>> remove(int id) {
         IdData<T> removedData = internalMap.remove(id);
-        if (internalMap.isEmpty()) {
-            nextId = 0;
-        }
         return new ValueChange<>(removedData, null);
+    }
+
+
+    /**
+     * Resets the ID count.
+     */
+    public void resetIdCount() {
+        nextId = 0;
     }
 
 
@@ -131,7 +133,6 @@ public class IdDataMap<T> {
      * @param datas - the collection of data to set to.
      */
     public void setDatas(Collection<IdData<T>> datas) {
-        // TODO: Check for duplicate ID
         internalMap.clear();
         nextId = STARTING_INDEX;
         for (IdData<T> data : datas) {
@@ -175,9 +176,10 @@ public class IdDataMap<T> {
         if (internalMap.size() >= limit) {
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
-        while (contains(nextId)) {
-            nextId++;
-            if (!isValidId(nextId)) {
+        while (contains(nextId) || !isValidId(nextId)) {
+            if (isValidId(nextId)) {
+                nextId++;
+            } else {
                 nextId = 0;
             }
         }

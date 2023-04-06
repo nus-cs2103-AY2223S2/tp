@@ -60,7 +60,7 @@ public class DeleteCommand extends Command {
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
 
         if (!patientList.containsKey(targetIndex.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_ID);
         }
 
         Patient patientToDelete = patientList.get(targetIndex.getZeroBased()).getValue();
