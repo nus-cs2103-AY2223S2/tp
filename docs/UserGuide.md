@@ -158,7 +158,7 @@ Format: `deleteDeck INDEX`
 
 Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
-### 3.3.4. Finding a Deck : `findDecks`
+### 3.3.4. Finding Decks by Keywords: `findDecks`
 
 If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
 
@@ -170,7 +170,16 @@ Format: `findDecks KEYWORD...`
 - Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
-- `findDecks CS2103T software` filters decks whose names match keywords 'CS2103T' **or** 'software'.
+- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`.
+  ![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** 
+- Notice how there is a small text box `Finding Decks with keyword: science programming` below the filtered list of questions. This text box is to help you remember what you have previously searched for!
+- Notice that the result display will show how many decks have been listed.
+
+</div>
 
 ### 3.3.5. Showing all Decks : `showDecks`
 
@@ -303,8 +312,9 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 
-💡 **Tip:** Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
-
+💡 **Tip:** 
+- Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
+- Notice that the result display will show how many cards have been listed.
 </div>
 
 ### 3.4.5. Showing all Cards : `showCards`
