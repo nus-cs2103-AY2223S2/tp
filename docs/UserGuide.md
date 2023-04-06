@@ -374,13 +374,13 @@ multiple attributes. To learn more, look at [Finding a person: `find`](#5-findin
 
 ### **Congrats! You have completed the tutorial 🎉** 
 
-The pre-existing contacts are just some examples for you to play around with. When you are ready, enter `clear` in the command box to clear all contacts and start off with a fresh database.
+The pre-existing contacts are just examples for you to mess with. When you are ready, enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
 :exclamation: <b>Caution:</b> Be careful when using the <code>clear</code> command, it will not ask twice before wiping your database!
 </div>
 
-If you need more info on the usage of each command, you can refer to the relevant sections below. 
+If you need more info on the usage of each command, refer to the relevant sections below. 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
