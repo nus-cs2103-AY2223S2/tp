@@ -17,7 +17,7 @@ title: Developer Guide
 
 ## **Introduction**
 
-This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of **SOCket**, an application for managing contacts and projects, with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.3`.
+This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of **SOCket**, an application for managing contacts and projects quickly using CLI (Command Line Interface), with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.4`.
 
 The Developer Guide is written to aid present and future developers of SOCket with understanding the architecture, design and non-trivial implementations of SOCket's features. In doing so, this guide imparts the knowledge required for developers to further modify and extend the features and functionality of SOCket beyond its current state.
 
