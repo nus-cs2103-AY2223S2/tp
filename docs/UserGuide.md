@@ -289,8 +289,6 @@ You may try loading another person's details by using different _index_ (e.g. `v
 :bulb: <b>Tip:</b> CoDoc also supports GUI, so you can just click the person in the list to view his details.
 </div>
 
-<div style="page-break-after: always;"></div>
-
 Remember that we said CoDoc offers more than just a traditional contact management app? So far, you have only viewed
 the _detailed contacts_ tab, showing basic contact details.
 
