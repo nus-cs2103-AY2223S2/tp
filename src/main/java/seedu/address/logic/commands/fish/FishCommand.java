@@ -15,7 +15,6 @@ public abstract class FishCommand extends Command {
             + "Fish commands: add, "
             + "delete, "
             + "edit, "
-            + "feed, "
             + "view, "
             + "sort, "
             + "list (list fishes)";

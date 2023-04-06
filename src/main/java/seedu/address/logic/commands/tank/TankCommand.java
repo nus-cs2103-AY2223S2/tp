@@ -15,6 +15,7 @@ public abstract class TankCommand extends Command {
             + "Tank commands: add, "
             + "delete, "
             + "edit, "
+            + "feed, "
             + "view, "
             + "addReadings, "
             + "delLastReadings";
