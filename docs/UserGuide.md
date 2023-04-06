@@ -169,8 +169,10 @@ It is recommended that you switch to this resolution before using FriendlyLink.
 1. Refer to the [Features](#features) below for details of each command.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Opening multiple instances of the application**
+
 Please ensure that you only have **one** running instance of the application. 
 Opening multiple instances may result in unexpected behaviours.
+
 </div>
 
 [Back to top](#table-of-contents)
@@ -244,6 +246,7 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 <div markdown="block" class="alert alert-info">
    
 **:information_source: Info**<br>
+
 If the elderly and volunteer to be paired:
   * has clashes in availability [dates](#date); or
   * lives in different [regions](#region)
@@ -604,6 +607,7 @@ save manually.
 FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+
 If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -615,7 +619,8 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 This section describes the format and specifications of each field.
 
 <div class="alert alert-info">
-:information_source: <em>Note on character limits</em> <br>
+:information_source: **Note on character limits** <br>
+
 There is <em>no</em> max character limit enforced on most fields. The reasoning behind this is that we do not want to unnecessarily restrict you from entering possible long fields (For example, a long name). 
 We recommend using entering fields of length at most 100.
 </div>
