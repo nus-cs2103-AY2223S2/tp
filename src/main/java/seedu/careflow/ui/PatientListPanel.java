@@ -91,6 +91,8 @@ public class PatientListPanel extends UiPart<Region> {
                 Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
                 if (selectedPatient != null) {
                     updateDisplay(selectedPatient);
+                } else {
+                    updateNullDisplay();
                 }
             }
         });
@@ -121,6 +123,29 @@ public class PatientListPanel extends UiPart<Region> {
     }
 
     /**
+     * Set patient display to empty
+     */
+    public void updateNullDisplay() {
+        selectedName.setText("Please select a patient");
+        selectedPhone.setText("");
+        selectedAddress.setText("");
+        selectedEmail.setText("");
+        selectedBirthDate.setText("");
+        selectedGender.setText("");
+        selectedIc.setText("");
+        selectedDrugAllergy.setText("");
+        selectedEmergencyContact.setText("");
+        phoneField.setText("");
+        addressField.setText("");
+        emailField.setText("");
+        birthDateField.setText("");
+        genderField.setText("");
+        icField.setText("");
+        drugAllergyField.setText("");
+        emergencyContactField.setText("");
+    }
+
+    /**
      * Set up the display of relevant Patient fields
      * @param fields fields to be displayed
      */
@@ -135,7 +160,6 @@ public class PatientListPanel extends UiPart<Region> {
         emergencyContactField.setText("Emergency Contact");
         for (Label field: fields) {
             field.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(4),
-
                     new Insets(-3, -10, -3, -10))));
             VBox parent = (VBox) field.getParent();
             parent.setMargin(field, new Insets(0, 0, 10, 0));

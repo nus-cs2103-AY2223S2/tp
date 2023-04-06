@@ -61,7 +61,7 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX);
         } else {
             Drug drugToView = drugList.get(targetIndex.getZeroBased());
-            return new CommandResult(drugToView, String.format(MESSAGE_VIEW_PATIENT_SUCCESS, drugToView));
+            return new CommandResult(drugToView, String.format(MESSAGE_VIEW_DRUG_SUCCESS, drugToView));
         }
     }
 }
