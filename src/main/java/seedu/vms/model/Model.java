@@ -150,7 +150,7 @@ public interface Model {
     /**
      * Returns the detailed patient property.
      */
-    ObjectProperty<IdData<Patient>> detailedPatientProperty();
+    ObjectProperty<IdData<Patient>> detailPatientProperty();
 
 
     void setDetailedPatient(IdData<Patient> patient);
@@ -183,7 +183,7 @@ public interface Model {
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
 
-    ObjectProperty<VaxType> detailedVaxTypeProperty();
+    ObjectProperty<VaxType> detailVaccinationProperty();
 
 
     void setDetailedVaxType(VaxType vaxType);

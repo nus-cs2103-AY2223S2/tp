@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
@@ -40,8 +41,8 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<VaxType> detailedVaxTypeProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<IdData<Patient>> detailPatientProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<VaxType> detailVaccinationProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -55,7 +56,7 @@ public class ModelManager implements Model {
 
     private final VmsParser vmsParser;
 
-    private ObservableList<VaxType> displayList = null;
+    private ObservableList<VaxType> vaxDisplayList = null;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
@@ -193,14 +194,14 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
-        return detailedPatientProperty;
+    public ObjectProperty<IdData<Patient>> detailPatientProperty() {
+        return detailPatientProperty;
     }
 
 
     @Override
     public void setDetailedPatient(IdData<Patient> data) {
-        detailedPatientProperty.set(data);
+        detailPatientProperty.set(data);
     }
 
     // =========== AppointmentManager ==========================================================================
@@ -265,7 +266,7 @@ public class ModelManager implements Model {
         patientManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
 
-        IdData<Patient> oldPatient = detailedPatientProperty.get();
+        IdData<Patient> oldPatient = detailPatientProperty.get();
         if (oldPatient == null) {
             return;
         }
@@ -326,26 +327,26 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        return detailedVaxTypeProperty;
+    public ObjectProperty<VaxType> detailVaccinationProperty() {
+        return detailVaccinationProperty;
     }
 
 
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
-        detailedVaxTypeProperty.set(vaxType);
+        detailVaccinationProperty.set(vaxType);
     }
 
 
     @Override
     public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
-        this.displayList = displayList;
+        this.vaxDisplayList = FXCollections.unmodifiableObservableList(displayList);
     }
 
 
     @Override
     public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
-        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), displayList);
+        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), vaxDisplayList);
     }
 
     // =========== KeywordManager ==============================================================================
@@ -437,20 +438,20 @@ public class ModelManager implements Model {
 
     private void updateVaccinationDetail(ValueChange<VaxType> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailedVaxTypeProperty.get()))
+                .map(oldValue -> oldValue.equals(detailVaccinationProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailedVaxTypeProperty.set(change.getNewValue().orElse(null));
+            detailVaccinationProperty.set(change.getNewValue().orElse(null));
         }
     }
 
 
     private void updatePatientDetail(ValueChange<IdData<Patient>> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailedPatientProperty.get()))
+                .map(oldValue -> oldValue.equals(detailPatientProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailedPatientProperty.set(change.getNewValue().orElse(null));
+            detailPatientProperty.set(change.getNewValue().orElse(null));
         }
     }
 

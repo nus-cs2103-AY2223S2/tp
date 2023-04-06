@@ -355,13 +355,13 @@ public class LogicManager implements Logic {
 
     @Override
     public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
-        return model.detailedPatientProperty();
+        return model.detailPatientProperty();
     }
 
 
     @Override
     public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        return model.detailedVaxTypeProperty();
+        return model.detailVaccinationProperty();
     }
 
 
