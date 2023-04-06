@@ -120,7 +120,7 @@ Action |          Type          |Format, Examples
 [**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]... ​`
 [**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find NAME/MAJOR/TAG [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 [**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
-[**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
+[**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESC [t/TAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
 [**Show**](#listing-all-teammates-in-a-team--show) |        Listing         |`show TEAM_NAME [OTHER_TEAM_NAME]...`
 [**List**](#listing-all-contacts--list) |        Listing         |`list`
 [**Remove**](#removing-a-team--remove) |       Modifying        |`remove TEAM_NAME`
@@ -326,7 +326,7 @@ This includes:
 
 ### Creating a team: `create`
 
-Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
+Format: `create tn/TEAM_NAME td/TEAM_DESC [t/TAG]...`
 
 **Example context**:
 
@@ -485,7 +485,7 @@ We have no choice but to remove Alex from our team.
 
 ### Removing a team : `remove`
 
-Format: `remove TEAMNAME`
+Format: `remove TEAM_NAME`
 
 **Example context**:
 
