@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -182,6 +183,22 @@ public class LabTest {
     }
 
     @Test
+    public void lab_nullLab_notEquals() {
+        assertFalse(lab6.isSameLab(null));
+    }
+
+    @Test
+    public void lab_differentNameSameDateLab_notEquals() {
+        Lab newLab = new Lab("new Lab");
+        newLab.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+
+        Lab newLabB = new Lab("new Lab B");
+        newLabB.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+
+        assertFalse(newLab.isSameLab(newLabB));
+    }
+
+    @Test
     public void lab_hashLab_notNull() {
         assertNotNull(lab4.hashCode());
     }
@@ -208,6 +225,80 @@ public class LabTest {
         newLabB.addNote(new Note("not new note"));
 
         assertFalse(newLabA.equals(newLabB));
+    }
+
+    @Test
+    public void lab_differentLabEqualityStudent_notSameLab() {
+        Person person = new PersonBuilder().build();
+
+        Lab newLabA = new Lab("lab6");
+        newLabA.addStudent(person);
+        newLabA.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabA.addAttachment(new File("new file"));
+        newLabA.addNote(new Note("new note"));
+
+        Lab newLabB = new Lab("lab6");
+        newLabB.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabB.addAttachment(new File("new file"));
+        newLabB.addNote(new Note("new note"));
+
+        assertFalse(newLabA.equals(newLabB));
+    }
+
+    @Test
+    public void lab_differentLabEqualityDate_notSameLab() {
+        Person person = new PersonBuilder().build();
+
+        Lab newLabA = new Lab("lab6");
+        newLabA.addStudent(person);
+        newLabA.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabA.addAttachment(new File("new file"));
+        newLabA.addNote(new Note("new note"));
+
+        Lab newLabB = new Lab("lab6");
+        newLabB.addStudent(person);
+        newLabB.changeDate(LocalDateTime.of(2021, 10, 10, 10, 10));
+        newLabB.addAttachment(new File("new file"));
+        newLabB.addNote(new Note("new note"));
+
+        assertFalse(newLabA.equals(newLabB));
+    }
+
+    @Test
+    public void lab_differentLabEqualityAttachment_notSameLab() {
+        Person person = new PersonBuilder().build();
+
+        Lab newLabA = new Lab("lab6");
+        newLabA.addStudent(person);
+        newLabA.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabA.addAttachment(new File("new file"));
+        newLabA.addNote(new Note("new note"));
+
+        Lab newLabB = new Lab("lab6");
+        newLabB.addStudent(person);
+        newLabB.changeDate(LocalDateTime.of(2021, 10, 10, 10, 10));
+        newLabB.addNote(new Note("new note"));
+
+        assertFalse(newLabA.equals(newLabB));
+    }
+
+    @Test
+    public void lab_sameLabEqualityDetails_sameLab() {
+        Person person = new PersonBuilder().build();
+
+        Lab newLabA = new Lab("lab6");
+        newLabA.addStudent(person);
+        newLabA.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabA.addAttachment(new File("new file"));
+        newLabA.addNote(new Note("new note"));
+
+        Lab newLabB = new Lab("lab6");
+        newLabB.addStudent(person);
+        newLabB.changeDate(LocalDateTime.of(2020, 10, 10, 10, 10));
+        newLabB.addAttachment(new File("new file"));
+        newLabB.addNote(new Note("new note"));
+
+        assertTrue(newLabA.equals(newLabB));
     }
 
     @Test
