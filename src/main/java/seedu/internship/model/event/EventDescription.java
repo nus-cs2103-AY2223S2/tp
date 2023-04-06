@@ -52,8 +52,8 @@ public class EventDescription {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.internship.model.internship.Description // instanceof handles nulls
-                && descriptionMessage.equals(((seedu.internship.model.internship.Description) other)
+                || (other instanceof EventDescription // instanceof handles nulls
+                && descriptionMessage.equals(((EventDescription) other)
                 .descriptionMessage)); // state check
     }
 

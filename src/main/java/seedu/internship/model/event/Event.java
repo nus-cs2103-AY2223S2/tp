@@ -18,7 +18,7 @@ public class Event {
     private final DateTime start;
     private final DateTime end;
     private final EventDescription eventDescription;
-    private Internship internship;
+    private Internship internship = Internship.EMPTY_INTERNSHIP;
 
     /**
      * Every Field must be present and not null.
@@ -47,7 +47,7 @@ public class Event {
      * @param internship
      */
     public void setInternship(Internship internship) {
-        if (this.internship == null) {
+        if (this.internship == Internship.EMPTY_INTERNSHIP) {
             this.internship = internship;
         }
     }
@@ -136,15 +136,18 @@ public class Event {
      */
     @Override
     public boolean equals(Object other) {
+
         if (other == this) {
             return true;
         }
 
-        if (!(other instanceof Internship)) {
+        if (!(other instanceof Event)) {
             return false;
         }
 
         Event otherEvent = (Event) other;
+
+
 
         return otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
