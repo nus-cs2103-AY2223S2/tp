@@ -190,17 +190,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return The sum of the user's potential earnings.
      */
     @Override
-    public long getPotentialEarnings() throws InvocationTargetException {
+    public long getPotentialEarnings() throws RuntimeException {
         Iterator<Person> iterator = persons.iterator();
         long totalValue = 0;
         while (iterator.hasNext()) {
             Person temp = iterator.next();
-            if (totalValue > Long.MAX_VALUE || temp.getBusinessSize().getNumericValue() > Long.MAX_VALUE) {
-                throw new InvocationTargetException(
-                        new Throwable("The sum of potential earning has exceeded the maximum."));
-            }
             totalValue += temp.getBusinessSize().getNumericValue();
-
+            if (totalValue<0) {
+                throw new RuntimeException("Sum of Potential Earnings Exceeded max.");
+            }
         }
         return totalValue;
     }

@@ -21,17 +21,20 @@ public class SummaryCommand extends Command {
             "The sum of all potential earning you have has exceeded the maximum.";
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         int size = model.getAddressBook().size();
         SummaryWindow.setSize(size);
         try {
             long potentialEarnings = model.getAddressBook().getPotentialEarnings();
             SummaryWindow.setPotentialEarnings(String.valueOf(potentialEarnings));
-        } catch (RuntimeException e) {
+            String tags = model.getAddressBook().getTags();
+            SummaryWindow.setTags(tags);
+            String companies = model.getAddressBook().getCompanies();
+            SummaryWindow.setCompanies(companies);
+            return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
+        } catch (Exception e) {
             long potentialEarnings = Long.MAX_VALUE;
             SummaryWindow.setPotentialEarnings(">" + potentialEarnings);
-            throw new CommandException(SUM_OF_POTENTIAL_EARNING_EXCEEDS_MAX);
-        } finally {
             String tags = model.getAddressBook().getTags();
             SummaryWindow.setTags(tags);
             String companies = model.getAddressBook().getCompanies();
