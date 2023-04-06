@@ -7,6 +7,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [Quick start](#quick-start)
   * [Glossary](#glossary)
@@ -17,6 +18,8 @@ TutorPro is a **desktop app designed to help private tutors manage their student
     + [Lessons Page](#lessons-page)
     + [Exams Page](#exams-page)
 - [Commands](#commands)
+  * [How to interpret the Command format](#how-to-interpret-the-command-format)
+  * [Search by Name Mechanism](#search-by-name-mechanism)
   * [Profile Commands](#profile-commands)
     + [Create a new student profile](#create-a-new-student-profile)
     + [Update Student Information](#update-student-information)
