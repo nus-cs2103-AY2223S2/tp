@@ -276,14 +276,18 @@ with the values specified in the `EditDescriptor`
 The `Elderly`/`Volunteer` and then edited in the model using the `setElderly`/`setVolunteer` methods
 of `Model` respectively.
 
+Design decisions:
+- The reason behind the `editDescriptor` class, as opposed to directly using an `Elderly` or `Volunteer` class, is that
+  it better encapsulates the logic behind editing. That is, with the same `editDescriptor` object, we can easily "edit" multiple
+  `Elderly` and `Volunteer` objects simply through the `createEditedElderly`/`createEditedVolunteer` methods.
+- Initially, we had created 2 separate descriptor classes `ElderlyEditDescriptor` and `VolunteerEditDescriptor`. However,
+  we felt that this was simply unnecessary, and combined them into a single `editDescriptor` class instead.
+
 As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
 the NRIC `S1234567I` belongs to an existing **volunteer**:
 <img src="images/developerGuide/EditSequenceDiagram.png" width="1200"/>
 
 :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-Examples:
-* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 
 ### Find by keyword
 
@@ -403,6 +407,9 @@ Proposed behaviour:
 * Edits the pair at the specified `INDEX` in the displayed pair list.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
+
+Examples:
+* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 
 ### Deleting a pair by index: `delete_pair`
 
@@ -619,6 +626,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. FL detects that the volunteer is not inside the records.
     * 1b1. FL informs that the volunteer does not exist.
 
+* 1c. FL detects the provided NRIC does not match any volunteer in the database.
+    * 1c1. FL feedbacks that no volunteer matches the provided NRIC.
+
+      Use case ends.
+
   Use case ends.
 
 **Use case: UC06-  Delete Elderly**
@@ -643,6 +655,135 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 1c. FL detects the provided NRIC does not match any elderly in the database.
+    * 1c1. FL feedbacks that no elderly matches the provided NRIC.
+
+      Use case ends.
+
+**Use case: UC07- Edit Elderly**
+
+**MSS**
+
+1. User enters the index of the elderly to be edited, together with the details of the fields to be edited.
+2. FL edits the corresponding elderly in the database, and feedbacks the successful edit of the elderly.
+3. User see the updated elderly details appear in the elderly list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects the provided index is out of bound for the current elderly list.
+  * 1a1. FL feedbacks that the entered index is invalid.
+  
+    Use case ends.
+
+* 1b. FL detects that no field is specified for edit.
+  * 1b1. FL feedbacks that at least one field must be specified for edit.
+
+    Use case ends.
+
+* 1c. FL detects an error in the new attribute data.
+    * 1c1. FL feedbacks that entered data is in a wrong format.
+
+      Use case ends.
+
+**Use case: UC08- Edit Volunteer**
+
+**MSS**
+
+1. User enters the index of the volunteer to be edited, together with the details of the fields to be edited.
+2. FL edits the corresponding volunteer in the database, and feedbacks the successful edit of the volunteer.
+3. User see the updated volunteer details appear in the elderly list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects the provided index is out of bound for the current volunteer list.
+    * 1a1. FL feedbacks that the entered index is invalid.
+
+      Use case ends.
+
+* 1b. FL detects that no field is specified for edit.
+    * 1b1. FL feedbacks that at least one field must be specified for edit.
+
+      Use case ends.
+
+* 1c. FL detects an error in the new attribute data.
+    * 1c1. FL feedbacks that entered data is in a wrong format.
+
+      Use case ends.
+
+**Use case: UC09- Edit Person identified by NRIC**
+
+**MSS**
+
+1. User enters the NRIC of the person to be edited, together with the details of the fields to be edited.
+2. FL edits the corresponding fields of the person (be an elderly or a volunteer), and feedbacks the successful edit of the person.
+3. User see the updated person details appear in the corresponding elderly or volunteer list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects the provided NRIC does not match any person in the database.
+    * 1a1. FL feedbacks that no person matches the provided NRIC.
+
+      Use case ends.
+
+* 1b. FL detects that no field is specified for edit.
+    * 1b1. FL feedbacks that at least one field must be specified for edit.
+
+      Use case ends.
+
+* 1c. FL detects an error in the new attribute data.
+    * 1c1. FL feedbacks that entered data is in a wrong format.
+
+      Use case ends.
+
+**Use case: UC09- Find person and related pairs**
+
+**MSS**
+
+1. User enters the details of all the fields to be matched.
+2. FL searches for the existing person and pair database, and return lists of matching elderly, volunteer and pairs.
+3. User see the matching persons and pairs appearing in the UI.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects that no field is specified for matching.
+    * 1a1. FL feedbacks that at least one field must be specified for finding records.
+
+      Use case ends.
+
+* 1b. FL detects an error in the data to be searched.
+    * 1b1. FL feedbacks that entered data is in a wrong format.
+
+      Use case ends.
+
+**Use case: UC10- Look up Help Page**
+
+**MSS**
+
+1. User types `help` in the input text box.
+2. FL returns the pop-up whose link directs user to the user guide.
+3. User see the pop-up message.
+
+   Use case ends.
+
+**Use case: UC11- Exit the app**
+
+**MSS**
+
+1. User types `exit` in the input text box.
+2. FL saves the current data and exits.
+3. User see the software interface closes.
+
+   Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. FriendlyLink should work on Microsoft Windows, macOS, and Linux that has `Java 11` is installed.
@@ -657,16 +798,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-| Term            | Definition                                                                                  |
-|-----------------|---------------------------------------------------------------------------------------------|
-| FriendlyLink    | The name of the application                                                                 |
-| Volunteer       | Volunteers who are willing to pair up with and accompany Elderly members                    |
-| Elderly         | Elderly who need help from their buddies                                                    |
-| Pair            | The pair of people that consists of an elderly and the volunteer assigned to the elderly    |
-| Risk level      | The condition of the elderly                                                                |
-| Available dates | Dates where the elderly are free to be visited and dates where volunteers are free to visit |
-| Region          | Urban planning subdivisions demarcated by the Urban Redevelopment Authority of Singapore    |
-| NRIC            | A unique identifier given to all Singaporeans.                                              |
+| Term                  | Definition                                                                                                                                                  |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
+| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
+| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
+| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
+| FriendlyLink          | The name of our application                                                                                                                                 |
+| Field                 | A field is the information following the slash in a command.                                                                                                |
+| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
+| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
+| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
+| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
+| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
+| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -682,19 +834,43 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
-  1. Download the jar file and copy into an empty folder
-
-  1. Double-click the jar file Expected: Shows the GUI. The window size may not be optimum.
+   * Download the jar file and copy it into an empty folder. 
+   * Double-click the jar file 
+   * Expected: The program runs and shows the GUI. Note that the window size may not be optimum.
 
 1. Saving window preferences
+   * Resize the window to an optimum size, preferably full screen. Close the window. 
+   * Re-launch the app by double-clicking the jar file.
+   * Expected: The most recent window size and location is retained.
+   * Note: The window looks best under 1920x1200, 125% scale.
 
-  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-  1. Re-launch the app by double-clicking the jar file.<br>
-     Expected: The most recent window size and location is retained.
+1. Saving data
+   * Launch the app by double-clicking the jar file.
+   * Execute an add command to add an `elderly` or `volunteer` in the database.
+   * Close the app. 
+   * Expected: A `data` folder is created under the current repository where the jar file is located.
 
 1. Exiting the app
-  
-  1. Use the `exit` command or click the 'X' button in the top right corner.<br>
-     Expected: The app closes.
+   * Use the `exit` command or click the 'X' button in the top right corner.<br>
+   * Expected: The app closes.
+
+------------------------------------------------------------
+
+## Appendix: Feature Flaws
+
+When creating software, there are always areas that can be improved upon.
+In the interest of transparency and keeping our users informed, we have identified some aspects
+of our product that we recognise as feature flaws. We appreciate your patience as
+we are actively working to find the best solution to address these feature flaws.
+
+1. Depending on whether or not any record is present in the section,
+on the UI display, the width of the Elderly, Volunteer and Pair section may vary slighly.
+2. When users provide a birth date for an Elderly or Volunteer profile, only the person's current age is 
+displayed in the app. To view the specific birth date, users must refer to the respective JSON file. 
+3. In order to give users maximum flexibility in adding tags, we do not impose any limits on the number of tags or the character limit for each tag.
+   However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience.
+4. When there are too many tags or sections of available dates, the current display arrangement may cause the Elderly's 
+medical risk tag to be squeezed to the far right, resulting in reduced visibility.
+5. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
+be the most optimal in terms of time efficiency or number of pairings.
+

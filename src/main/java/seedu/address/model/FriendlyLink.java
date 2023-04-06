@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -201,7 +202,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         elderly.setPerson(target, editedElderly);
         for (Pair pair : pairs) {
             if (pair.getElderly().equals(target)) {
-                pairs.setPair(pair, new Pair(editedElderly, pair.getVolunteer()));
+                setPair(pair, new Pair(editedElderly, pair.getVolunteer()));
             }
         }
     }
@@ -220,7 +221,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         volunteers.setPerson(target, editedVolunteer);
         for (Pair pair : pairs) {
             if (pair.getVolunteer().equals(target)) {
-                pairs.setPair(pair, new Pair(pair.getElderly(), editedVolunteer));
+                setPair(pair, new Pair(pair.getElderly(), editedVolunteer));
             }
         }
     }
@@ -300,7 +301,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param editedPair Pair with edited information.
      */
     public void setPair(Pair target, Pair editedPair) {
-        requireNonNull(editedPair);
+        requireAllNonNull(target, editedPair);
         pairs.setPair(target, editedPair);
     }
 
