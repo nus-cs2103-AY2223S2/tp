@@ -45,6 +45,7 @@ public class RecipeCard extends UiPart<Region> {
      */
     public final Recipe recipe;
     private final CommandExecutor commandExecutor;
+    private boolean isRecipeSelected = false;
     @FXML
     private HBox cardPane;
     @FXML
@@ -109,21 +110,11 @@ public class RecipeCard extends UiPart<Region> {
         //Tags
         setTags(recipe.getTags());
 
-        //Selector focus
-        cardPane.setOnMouseEntered(event -> {
-            cardPane.requestFocus();
-        });
-
-        // Add a click listener to the cardPane node
-        cardPane.setOnMouseClicked(event -> {
-            cardPane.requestFocus();
-            RecipePopup popup = new RecipePopup(recipe, displayedIndex);
-            popup.display();
-        });
-
         // Handle keypress events
         cardPane.setOnKeyPressed(event -> {
             cardPane.requestFocus();
+            isRecipeSelected = true;
+            System.out.print("on key: " + isRecipeSelected);
             KeyCode input = event.getCode();
             ConfirmationDialog deleteConfirmation = new ConfirmationDialog();
             if (input == KeyCode.DELETE
@@ -150,6 +141,25 @@ public class RecipeCard extends UiPart<Region> {
                 }
             }
         });
+
+        //Selector focus
+        cardPane.setOnMouseEntered(event -> {
+            if (!isRecipeSelected) {
+                cardPane.requestFocus();
+                isRecipeSelected = true;
+                System.out.print("on hover: " + isRecipeSelected);
+            }
+        });
+
+        // Add a click listener to the cardPane node
+        cardPane.setOnMouseClicked(event -> {
+            cardPane.requestFocus();
+            isRecipeSelected = true;
+            System.out.print("on click: " + isRecipeSelected);
+            RecipePopup popup = new RecipePopup(recipe, displayedIndex);
+            popup.display();
+        });
+
     }
 
     private Label createUnorderedListItem(String text) {
