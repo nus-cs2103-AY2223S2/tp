@@ -98,7 +98,7 @@ As seen from the class diagram above, `MainWindow` has composition type relation
 
 The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state of `MainWindow` after `fillInnerParts()` has been called.
 
-![State of MainWindow](images/UiMainWindowObjectDiagram.png)
+![State of MainWindow](images/UiObjectDiagram.png)
 
 ##### `DetailedView`
 
@@ -120,7 +120,7 @@ Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `
 
 ![Object diagram of Appointment ListViewPanel](images/UiListViewPanelApptObjectDiagram.png)
 
-![Activity diagram of ListViewPanel](images/UiListViewPanelRefreshActivityDiagram.png)
+![Activity diagram of ListViewPanel](images/UiListViewPanelActivityDiagram.png)
 
 ##### `ResultDisplay`
 
