@@ -124,14 +124,14 @@ look through all the doctors and patients in Docedex, please use the
 
 ## Notes about the command format
 
-| Notes                                                                                                        | Explanation                                                              | Examples                                                                                          |
-|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE`                                                                                        | These are fields that are supplied by the user                           | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
-| Items in square brackets                                                                                     | These are optional fields (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
-| Items with `…`​ after them                                                                                   | These are fields that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
-| Parameters can be in any order.                                                                              | N/A                                                                      | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
-| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                      | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
-| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                      | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+| Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
 
   [Scroll back to Table of Contents](#table-of-contents)
 
@@ -250,7 +250,7 @@ The information below specifies parameter description, constraints and usage thr
 - Note to users:
     - The index refers to the index number shown in the displayed doctor list.
     - Users can edit specific doctors in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
-    - At least one of the optional fields must be provided.
+    - At least one of the optional parameters must be provided.
     - When editing tags, the existing tags of the person will be removed i.e., adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without any tag string.
 
 - Examples:
@@ -360,7 +360,7 @@ Examples:
 - Note to users:
     - The index refers to the index number shown in the displayed patient list.
     - Users can edit specific patients in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
-    - At least one of the optional fields must be provided.
+    - At least one of the optional parameters must be provided.
     - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
       specifying any tags after it.
 
