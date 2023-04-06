@@ -1,0 +1,25 @@
+@startuml
+actor User
+participant FindCommandParser
+participant ArgumentMultimap
+participant ParserUtil
+participant FindCommand
+participant FindPredicate
+participant CommandResult
+
+User -> FindCommandParser : enters command
+FindCommandParser -> ArgumentMultimap : tokenize arguments
+FindCommandParser -> ParserUtil : parse optional name
+FindCommandParser -> ParserUtil : parse optional sub-postal
+FindCommandParser -> ParserUtil : parse optional age
+FindCommandParser -> ParserUtil : parse optional date
+FindCommandParser -> ParserUtil : parse variants
+FindCommandParser -> FindCommandParser : get date range
+FindCommandParser -> FindCommandParser : get age range
+FindCommandParser -> FindPredicate : create find predicate
+FindPredicate -> FindCommand : execute command
+FindCommand -> FindPredicate : filter data
+FindPredicate -> CommandResult : create command result
+FindCommand -> CommandResult : return command result
+User <- CommandResult : see feedback
+@enduml
