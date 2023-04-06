@@ -5,42 +5,40 @@ title: Wei Zhe's Project Portfolio Page
 
 ### Project: FriendlyLink
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+FriendlyLink is a personnel information management tool designed for Voluntary Welfare Organisations to keep elderly and volunteer records, and pair them up efficiently and effectively.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability search for people by their attributes.
+  * What it does: allows the user to search for people and their related pairings by their attributes. Multiple different attributes can be searched for in one command.
+  * Justification: This feature improves the product significantly because a user can look for information from a specific group of people.
+  * Highlights: This feature allows user to search with a substring for some attributes instead of exactly matching the attribute details.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to list paired and unpaired people.
+  * What it does: allows the user to list people who have been paired or those who have not been paired.
+  * Justification: This feature improves the product significantly because pairing is the one of the main features of the app and a user should be able to see people who do not have a pairing to know who to pair next.
+  * Highlights: This feature is built on top of the list feature with an extra parameter being specified to list paired or unpaired people.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=wz2k&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Kept track of deadlines.
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Refactor most of AB3's person related stuff into FriendlyLink's elderly and volunteer version. (Pull requests [\#81](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/81))
+  * Wrote additional test cases for existing features.
+  * Cleaned up Javadocs. (Pull requests [\#117](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/117))
+  * Cleaned up logging messages.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `list` and `find`.
+        * Changed documentation of `edit` feature to `edit_elderly` and `edit_volunteer` features.
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `find` feature.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/89), [\#126](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/126)
 
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+* **Other tasks**:
+  * Demoed v1.2
