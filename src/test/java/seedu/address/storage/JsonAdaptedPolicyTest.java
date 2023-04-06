@@ -54,7 +54,7 @@ class JsonAdaptedPolicyTest {
         JsonAdaptedPolicy policy =
                 new JsonAdaptedPolicy(VALID_POLICY_NAME, INVALID_DATE, VALID_PREMIUM,
                         VALID_FREQUENCY);
-        assertThrows(NumberFormatException.class, policy::toModelType);
+        assertThrows(IllegalValueException.class, policy::toModelType);
     }
 
     @Test
