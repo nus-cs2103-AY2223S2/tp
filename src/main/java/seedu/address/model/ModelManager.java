@@ -156,4 +156,6 @@ public class ModelManager implements Model {
                 && displayedModules.equals(other.displayedModules);
     }
 
+
+
 }

@@ -93,6 +93,10 @@ public class UiManager implements Ui {
         alert.setTitle("Work Today");
         alert.setHeaderText(null);
         alert.setContentText(tasks);
+
+        alert.setResizable(true);
+        alert.getDialogPane().setMinHeight(javafx.scene.layout.Region.USE_PREF_SIZE);
+
         alert.showAndWait();
 
     }

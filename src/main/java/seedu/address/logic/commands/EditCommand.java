@@ -53,7 +53,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_REMARK + "REMARK] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RESOURCE + "www.google.com "
-            + PREFIX_TIMESLOT + "Mon 12 - 2pm";
+            + PREFIX_TIMESLOT + "Monday 12:00 14:00";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

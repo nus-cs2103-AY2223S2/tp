@@ -128,8 +128,11 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
+        if (!Deadline.isValidFormat(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (!Deadline.isValidDate(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
