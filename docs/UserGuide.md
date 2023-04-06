@@ -564,6 +564,8 @@ ___
   \
   &nbsp;
 * **Format:** `p list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:**
@@ -748,6 +750,8 @@ ___
   \
   &nbsp;
 * **Format:** `d list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:** `d list`
