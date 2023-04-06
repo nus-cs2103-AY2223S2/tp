@@ -966,17 +966,17 @@ recommendations as certain locations are only appropriate for certain activities
 
 Running `meet` will recommend studying, eating locations and other general locations together with their recommended timings.
 
-This feature is utilises the [`Recommender`](#recommenders)
+This feature is utilises the [`Recommender`](#recommenders).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
-* `meet 2 7 8 10`: Recommends a meeting time and location for all the participants with contact index of 2, 7, 8, 10 (including the user).
+* `meet CONTACT_INDEX...`: Recommends a meeting time and location for all the participants with the given contact indices (including the user).
 
-* `eat 2 7 8 10` : Recommends a time and eating place where all participants with contact index of 2, 7, 8, 10 (including the user) can have a meal together.
+* `eat CONTACT_INDEX...` : Recommends a time and eating place where all participants with the given contact indices (including the user) can have a meal together.
 
-* `study 2 7 8 10` : Recommends a time and study spot where all participants with contact index of 2, 7, 8, 10 (including the user) can study together.
+* `study CONTACT_INDEX...` : Recommends a time and study spot where all participants with the given contact indices (including the user) can study together.
 
 </div>
 
@@ -991,7 +991,7 @@ The `organise` command will set a meet up with the time and place for all partic
 :information_source: **Command Formats:** <br>
 
 * `organise RECOMMENDATION_INDEX` : Takes the recommendation at the specified index and saves it.
-* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information. `CONTACT_INDEX...` refers to the indices of the participants.
+* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up for participants with the given contact indices (including the user). 
 
 </div>
 
