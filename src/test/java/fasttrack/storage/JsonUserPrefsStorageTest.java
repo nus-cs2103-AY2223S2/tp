@@ -15,8 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 import fasttrack.commons.core.GuiSettings;
 import fasttrack.commons.exceptions.DataConversionException;
 import fasttrack.model.UserPrefs;
-import fasttrack.storage.JsonUserPrefsStorage;
-
 public class JsonUserPrefsStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");

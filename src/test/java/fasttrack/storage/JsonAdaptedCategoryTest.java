@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import fasttrack.commons.exceptions.IllegalValueException;
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.category.UserDefinedCategory;
-import fasttrack.storage.JsonAdaptedCategory;
 
 public class JsonAdaptedCategoryTest {
     private static final String VALID_CATEGORY = "Category";

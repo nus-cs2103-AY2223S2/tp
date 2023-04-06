@@ -3,7 +3,6 @@ package fasttrack.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import fasttrack.logic.commands.Command;
-import fasttrack.logic.parser.Parser;
 import fasttrack.logic.parser.exceptions.ParseException;
 
 /**

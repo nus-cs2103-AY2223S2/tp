@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.logic.commands.CommandResult;
 import fasttrack.ui.ScreenType;
 
 public class CommandResultTest {

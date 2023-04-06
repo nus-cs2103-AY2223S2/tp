@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import fasttrack.model.category.Category;
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.category.UserDefinedCategory;
-import fasttrack.model.expense.Expense;
-import fasttrack.model.expense.ExpenseInCategoryPredicate;
 
 public class ExpenseInCategoryPredicateTest {
 

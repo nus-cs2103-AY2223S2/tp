@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.category.UserDefinedCategory;
-import fasttrack.model.expense.Expense;
-import fasttrack.model.expense.Price;
 
 public class ExpenseTest {
     private final Price price = new Price("1.0");

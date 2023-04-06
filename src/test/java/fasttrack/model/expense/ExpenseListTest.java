@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.category.UserDefinedCategory;
-import fasttrack.model.expense.Expense;
-import fasttrack.model.expense.ExpenseList;
-
 public class ExpenseListTest {
     private final ExpenseList expenseList = new ExpenseList();
     private final LocalDate date = LocalDate.now();

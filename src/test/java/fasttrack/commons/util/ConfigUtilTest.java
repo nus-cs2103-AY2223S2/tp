@@ -15,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import fasttrack.commons.core.Config;
 import fasttrack.commons.exceptions.DataConversionException;
-import fasttrack.commons.util.ConfigUtil;
 
 public class ConfigUtilTest {
 

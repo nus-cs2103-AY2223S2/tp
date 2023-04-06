@@ -7,9 +7,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.model.Budget;
-import fasttrack.model.ExpenseTracker;
-import fasttrack.model.ReadOnlyExpenseTracker;
 import fasttrack.model.category.Category;
 import fasttrack.model.expense.Expense;
 import fasttrack.model.expense.RecurringExpenseManager;

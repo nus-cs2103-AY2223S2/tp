@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.commons.core.index.Index;
-
 public class IndexTest {
 
     @Test

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.model.category.MiscellaneousCategory;
-
 public class MiscellaneousCategoryTest {
     private final MiscellaneousCategory miscellaneousCategory = new MiscellaneousCategory();
 

@@ -5,7 +5,6 @@ import static fasttrack.logic.commands.general.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.logic.commands.CommandResult;
 import fasttrack.logic.commands.general.HelpCommand;
 import fasttrack.model.Model;
 import fasttrack.model.ModelManager;

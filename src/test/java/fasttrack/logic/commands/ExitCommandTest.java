@@ -5,7 +5,6 @@ import static fasttrack.logic.commands.general.ExitCommand.MESSAGE_EXIT_ACKNOWLE
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.logic.commands.CommandResult;
 import fasttrack.logic.commands.general.ExitCommand;
 import fasttrack.model.Model;
 import fasttrack.model.ModelManager;

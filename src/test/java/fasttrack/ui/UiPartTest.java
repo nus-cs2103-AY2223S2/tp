@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import fasttrack.MainApp;
-import fasttrack.ui.UiPart;
 import javafx.fxml.FXML;
 
 public class UiPartTest {

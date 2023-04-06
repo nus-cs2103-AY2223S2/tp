@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fasttrack.commons.core.index.Index;
-import fasttrack.logic.commands.Command;
-import fasttrack.logic.commands.CommandResult;
 import fasttrack.logic.commands.exceptions.CommandException;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.Model;

@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import fasttrack.commons.core.Messages;
-import fasttrack.logic.Logic;
-import fasttrack.logic.LogicManager;
 import fasttrack.logic.commands.CommandResult;
 import fasttrack.logic.commands.exceptions.CommandException;
 import fasttrack.logic.commands.list.ListExpensesCommand;

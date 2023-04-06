@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.logic.commands.general.FindCommand;
-import fasttrack.logic.parser.FindCommandParser;
 import fasttrack.model.expense.ExpenseContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

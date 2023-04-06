@@ -11,8 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.model.category.MiscellaneousCategory;
-import fasttrack.model.expense.Expense;
-import fasttrack.model.expense.ExpenseContainsKeywordsPredicate;
+
 
 public class ExpenseContainsKeywordsPredicateTest {
 

@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.commons.util.CollectionUtil;
-
 public class CollectionUtilTest {
     @Test
     public void requireAllNonNullVarargs() {

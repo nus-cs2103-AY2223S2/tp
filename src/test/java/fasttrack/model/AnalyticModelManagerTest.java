@@ -9,10 +9,6 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import fasttrack.model.AnalyticModel;
-import fasttrack.model.AnalyticModelManager;
-import fasttrack.model.ExpenseTracker;
-import fasttrack.model.ReadOnlyExpenseTracker;
 import fasttrack.model.util.AnalyticsType;
 import fasttrack.testutil.TypicalExpenses;
 import javafx.beans.property.DoubleProperty;

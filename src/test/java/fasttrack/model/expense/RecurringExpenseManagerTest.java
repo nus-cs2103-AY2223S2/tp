@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.model.category.MiscellaneousCategory;
-import fasttrack.model.expense.Expense;
-import fasttrack.model.expense.RecurringExpenseManager;
-import fasttrack.model.expense.RecurringExpenseType;
 
 public class RecurringExpenseManagerTest {
     private LocalDate startDate = LocalDate.of(2023, 1, 1);

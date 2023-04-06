@@ -13,7 +13,6 @@ import org.junit.jupiter.api.io.TempDir;
 import fasttrack.commons.exceptions.DataConversionException;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.ReadOnlyExpenseTracker;
-import fasttrack.storage.JsonExpenseTrackerStorage;
 
 public class JsonExpenseTrackerStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");

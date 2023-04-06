@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.AppParameters;
 import javafx.application.Application;
 
 public class AppParametersTest {

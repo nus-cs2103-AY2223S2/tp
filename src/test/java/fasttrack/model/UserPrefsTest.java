@@ -4,8 +4,6 @@ import static fasttrack.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.model.UserPrefs;
-
 public class UserPrefsTest {
 
     @Test

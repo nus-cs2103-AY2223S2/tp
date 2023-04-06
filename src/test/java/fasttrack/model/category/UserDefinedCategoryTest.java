@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.model.category.UserDefinedCategory;
-
 public class UserDefinedCategoryTest {
     private final UserDefinedCategory userDefinedCategory = new UserDefinedCategory("test", "description");
 

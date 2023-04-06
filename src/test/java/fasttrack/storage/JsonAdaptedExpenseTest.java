@@ -12,7 +12,6 @@ import fasttrack.commons.exceptions.IllegalValueException;
 import fasttrack.model.category.Category;
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.expense.Expense;
-import fasttrack.storage.JsonAdaptedExpense;
 
 public class JsonAdaptedExpenseTest {
     private static final String VALID_NAME = "Benson";

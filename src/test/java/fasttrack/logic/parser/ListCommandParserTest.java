@@ -12,7 +12,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.logic.commands.list.ListExpensesCommand;
-import fasttrack.logic.parser.ListCommandParser;
 import fasttrack.model.expense.ExpenseInCategoryPredicate;
 import fasttrack.model.expense.ExpenseInTimespanPredicate;
 

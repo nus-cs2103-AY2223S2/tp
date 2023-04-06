@@ -11,9 +11,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import fasttrack.commons.core.GuiSettings;
 import fasttrack.model.UserPrefs;
-import fasttrack.storage.JsonExpenseTrackerStorage;
-import fasttrack.storage.JsonUserPrefsStorage;
-import fasttrack.storage.StorageManager;
 
 public class StorageManagerTest {
 
