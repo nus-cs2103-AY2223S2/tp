@@ -148,8 +148,6 @@ How the parsing works:
 
 ### Model component
 
-### Smaller components used by Model component
-
 ***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/project/Project.java)
 
 ![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)

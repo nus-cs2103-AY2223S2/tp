@@ -23,6 +23,12 @@ I have also written a comprehensive set of test cases for the `Client` entity an
 
 * **Documentation**:
   * **Contributions to UG**: I wrote the User Guide for the `Client` entity, including the `add`, `delete`, `edit`, `find`, under the `Managing Clients` section.
-  * **Contributions to DG**: I documented the 
+  * **Contributions to DG**: I documented the sections under `Architecture`, `Model`, and `Storage`.
 
-* **Community**: `to be added`
+* **Code Reviews**:
+I have provided code reviews to the following PRs (Non-exhaustive):
+    * [#59](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/59)
+    * [#158](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/158)
+    * [#26](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/26)
+    * [#23](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/23)
+    * [#98](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/98)
