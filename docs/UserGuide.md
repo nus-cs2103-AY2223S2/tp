@@ -392,7 +392,7 @@ Format: `import [FILENAME]`
 
 * The dengue case list imported must be valid. Some criteria are as follows:
     * No duplicates
-    * All fields must be [valid](#valid-denguehotspottracker)
+    * All fields must be [valid](#Valid-Persons)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
