@@ -376,8 +376,8 @@ Examples:
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
 
 <div>
-
-![](images/userGuide/editBefore.png)
+   
+<img src="images/userGuide/editBefore.png"/>
 
 <div class="img-caption">
 
@@ -389,7 +389,7 @@ Before the `edit` command
 
 <div>
 
-![](images/userGuide/editAfter.png)
+<img src="images/userGuide/editAfter.png"/>
 
 <div class="img-caption">
 
