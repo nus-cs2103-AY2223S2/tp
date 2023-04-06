@@ -109,30 +109,6 @@ you to adjust the size of the window
 
 ## Guide on using Features
 
-<div markdown="block" class="alert alert-success">
-
-:bulb: **Notes about the command format:**
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. \\
-  _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
-
-- Items in square brackets are optional. \\
-  _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
-
-- Items with `...` after them can be used multiple times including zero times. \\
-  _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
-
-- Parameters can be in any order. \\
-  _(eg. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable)_
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \\
-  _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
-
-- Extraneous words for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
-  _(eg. if the command entered is `help 123`, it will be interpreted as `help`)_
-
-</div>
-
 ## Parameter descriptions
 
 Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the command line when using TeachMeSenpai!
@@ -167,6 +143,30 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ## Features
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Notes about the command format:**
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. \\
+  _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
+
+- Items in square brackets are optional. \\
+  _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
+
+- Items with `...` after them can be used multiple times including zero times. \\
+  _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
+
+- Parameters can be in any order. \\
+  _(eg. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable)_
+
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \\
+  _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
+
+- Extraneous words for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
+  _(eg. if the command entered is `help 123`, it will be interpreted as `help`)_
+
+</div>
+
 ### Autocompletion
 
 TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
@@ -199,6 +199,9 @@ Shows a URL to the `User Guide` page.
 
 ![help popup gui](images/user-guide/help_popup.jpg)
 
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Click `F1` as a keyboard shortcut to view the help pop-up!.
+</div>
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -230,12 +233,27 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
+> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`\\
+>
+> - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
+> - ADDRESS: The student's address.
+> - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
+> - EMAIL: A valid email follows the `local@domain` format.
+> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
+> - REMARK: Can be sentences or even paragraphs.
+> - TAG: A detail about a student (limited to one word long).
+> - MODULE: The module code the student is taking (can be multiple words). \\
+> For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
+
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
+:bulb: **Note:** 
+* `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other fields using the [`edit`](#edit-a-student-edit) command.
+* The current version of TeachMeSenpai allows you to add students with the same phone number and/or telegram handle! However, we have planned
+a future enhancement that will only allow unique phone numbers and telegram handles.
 
 </div>
 
@@ -305,8 +323,13 @@ Examples:
 Edits a student's information _(all information except remarks)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
+> 
+> - The index refers to the index number shown in the displayed student list.
+> - The index **must be a positive integer** 1, 2, 3, ...
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
+<div markdown="span" class="alert alert-info">:bulb: **Note:** 
+* `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
+* `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
 
 Examples:
