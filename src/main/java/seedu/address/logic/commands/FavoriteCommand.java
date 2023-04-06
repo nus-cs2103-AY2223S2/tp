@@ -61,4 +61,10 @@ public class FavoriteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_FAVORITE_PERSON_SUCCESS, favoritedPerson));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || ((other instanceof FavoriteCommand) && index.equals(((FavoriteCommand) other).index));
+    }
 }
