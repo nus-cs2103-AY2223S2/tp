@@ -17,6 +17,7 @@ import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
+//@@author alson001
 public class AddCommandIntegrationTest {
     private Model model;
 

@@ -28,6 +28,7 @@ import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
  */
+//@@author alson001
 public class CommandTestUtil {
     public static final String VALID_NAME_CHICKEN = "Grilled Chicken";
     public static final String VALID_NAME_FISH = "Grilled Fish";

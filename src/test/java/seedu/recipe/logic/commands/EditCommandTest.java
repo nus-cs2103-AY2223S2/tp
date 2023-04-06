@@ -28,6 +28,7 @@ import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
+//@@author alson001
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalRecipeBook(), new UserPrefs());

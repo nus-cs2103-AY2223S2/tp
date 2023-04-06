@@ -59,6 +59,7 @@ import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
+//@@author alson001
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
