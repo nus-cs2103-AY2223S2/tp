@@ -1,5 +1,12 @@
 package seedu.recipe.logic.commands;
 
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.TAG_DESC_CHINESE;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DURATION_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENT_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_PORTION_CHICKEN;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEP_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.recipe.logic.commands.CommandTestUtil.showRecipeAtIndex;
@@ -9,6 +16,7 @@ import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
@@ -16,6 +24,7 @@ import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
+import seedu.recipe.testutil.RecipeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -26,30 +35,29 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        // Recipe editedRecipe = new RecipeBuilder().build();
-        // EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(editedRecipe).build();
-        // EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-        // String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
-        // Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
-        // expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
-        // assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+         Recipe editedRecipe = DESC_CHICKEN.toRecipe();
+         RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(editedRecipe).build();
+         EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE, descriptor);
+         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
+         Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
+         expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
+         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        // Index indexLastRecipe = Index.fromOneBased(model.getFilteredRecipeList().size());
-        // Recipe lastRecipe = model.getFilteredRecipeList().get(indexLastRecipe.getZeroBased());
-        // RecipeBuilder recipeInList = new RecipeBuilder(lastRecipe);
-        // Recipe editedRecipe = recipeInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-        //         .withTags(VALID_TAG_HUSBAND).build();
-        // EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-        //         .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        // EditCommand editCommand = new EditCommand(indexLastRecipe, descriptor);
-        // String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
-        // Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
-        // expectedModel.setRecipe(lastRecipe, editedRecipe);
-
-        // assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+//         Index indexLastRecipe = Index.fromOneBased(model.getFilteredRecipeList().size());
+//         Recipe lastRecipe = model.getFilteredRecipeList().get(indexLastRecipe.getZeroBased());
+//         EditRecipeDescriptorBuilder editedRecipe = new EditRecipeDescriptorBuilder(lastRecipe);
+//         RecipeDescriptor recipeDescriptor = editedRecipe.withName(VALID_NAME_CHICKEN)
+//                 .withIngredients(VALID_INGREDIENT_CHICKEN)
+//                 .withSteps(VALID_STEP_CHICKEN).build();
+//         EditCommand editCommand = new EditCommand(indexLastRecipe, recipeDescriptor);
+//         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
+//         Model expectedModel = new ModelManager(new RecipeBook(model.getRecipeBook()), new UserPrefs());
+//         expectedModel.setRecipe(lastRecipe, editedRecipe.build().toRecipe());
+//
+//         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
