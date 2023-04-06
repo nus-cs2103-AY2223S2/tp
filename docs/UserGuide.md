@@ -15,12 +15,12 @@ connections_ and _accomplishing your goals_!
 <img src="images/Ui.png"/>
 
 <div markdown="span" class="alert alert-success">
-:bulb: <b>Tip:</b> For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize your self with CoDoc.
+:bulb: <b>Tip:</b> For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize yourself with CoDoc.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
