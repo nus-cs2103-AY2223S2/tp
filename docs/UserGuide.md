@@ -111,7 +111,7 @@ To see what the command format means, you can refer to the [Features](#features)
   e.g. if you specify `n/item1 n/item2`, only `n/item2` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
