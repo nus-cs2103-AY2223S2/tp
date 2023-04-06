@@ -13,6 +13,7 @@ title: Kelvin's Project Portfolio Page
 4. Implemented page navigation (back-end)
 5. Add additional parsing methods better suited for the added commands
 6. `UniqueList` as a generalised version of `UniqueStudentList`, as multiple types of lists are needed.
+7. Additional classes for Storage to support storing different object types
 
 ## Contributions to UG&nbsp;
 1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
@@ -25,7 +26,9 @@ title: Kelvin's Project Portfolio Page
 1. Participated in drafting [UI mockup (v1.1)](https://docs.google.com/presentation/d/1zS7pX0cm-4faiwjN71NLIgvmkHgRCETdZZtLpKHsn38/edit?usp=share_link)
 2. Renaming AB3 classes to CLIpboard
 3. Maintaining issue tracker
-4. Bug hunting and diagnosis
+4. Creating and maintaining milestones
+5. Bug hunting
+6. Fixing bugs
 
 ## Review/Monitoring Contributions&nbsp;
 1. Reviewing UG for improvements
