@@ -5,7 +5,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
@@ -102,7 +101,7 @@ public class EventDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonDescriptor)) {
+        if (!(other instanceof EventDescriptor)) {
             return false;
         }
 
@@ -112,6 +111,7 @@ public class EventDescriptor {
         return getDescription().equals(e.getDescription())
                 && getStartDateTime().equals(e.getStartDateTime())
                 && getEndDateTime().equals(e.getEndDateTime())
-                && getRecurrence().equals(e.getRecurrence());
+                && getRecurrence().equals(e.getRecurrence())
+                && getTaggedPeople().equals(e.getTaggedPeople());
     }
 }

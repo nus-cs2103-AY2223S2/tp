@@ -256,10 +256,15 @@ A `FieldGroup` can contain many parameters in that single field.
 When using edit, the command looks for each parameter in the `FieldGroup`:
 * If the parameter already exists in the `FieldGroup` it will be removed.
 * Otherwise, the parameter will be added into the `FieldGroup`.
-  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
-  * e.g. `edit t/10x Coder t/Intern Friend`
-    * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
-    * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
+
+* Examples:
+  * The first contact has `CS2103T`, `MA2001` and `GEA1000` as its modules, 
+    * `edit 1 mt/CS2103T` removes CS2103T from the Modules field since it is already a part of its Modules field.
+    * So the first contact in your Neobook will have `MA2001` and `GEA1000` as its only modules
+  * The second contact has the following tags `Friend`, `Amazing Coder`
+    * `edit 2 t/10x Coder t/Intern Friend` adds both `10x Coder` and `Intern Friend` as tags to the contact as neither existed in its Tags field.
+    * So the second contact in your NeoBook would have `Friend`, `Amazing Coder`, `10x Coder` and `Intern Friend` in its Tags field.
+
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
@@ -375,21 +380,18 @@ in the corresponding field, the person will be returned.
   * i.e. `find n/John n/Peter James`
     * Keywords: `john`, `peter james`
         * Can return:
-          * people with names of 'John', 'Peter James', 'Peter James John'
+          * People with names of 'John', 'Peter James', 'Peter James John'
         * Cannot return:
-          * A person with name of 'Peter'.
+          * A person with name of 'Peter'
 
 * All unique prefixes specified must be contained within the corresponding fields of the person
  for that person to be returned.
   * i.e. `find n/Caleb p/9123`
     * Can return: 
-      * A person with a name of 'Caleb' who
-has a phone number of '91234567', 
+      * A person with a name of 'Caleb' who has a phone number of '91234567'
     * Cannot return:
-      * A person whose name is 'Caleb' but has
-a phone number of '98765432'
-      * A person whose name is 'Joshua' even though
-his phone number is '91234567'
+      * A person whose name is 'Caleb' but has a phone number of '98765432'
+      * A person whose name is 'Joshua' even though his phone number is '91234567'
 * At least one field must be provided.
 
 
@@ -529,8 +531,10 @@ _Here are some important requirements for you to take note:_
 * `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
     * `START DATE & START TIME` must be before `END DATE & END TIME`
+    *  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+    *  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
 * `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
-    *  Event will be automatically added as a `One Time Event`.
+    *  Event will be automatically added as a `One Time Event`. 
 
 _Examples:_
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
@@ -582,7 +586,9 @@ _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
     * `INDEX` must be a **positive integer** (must be greater than 0).
-* At least one field must be provided.
+*  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+*  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+*  At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
 |--------|-------------------------------|-----------|
@@ -742,6 +748,7 @@ NeoBook data are saved as JSON files. Two of which will be of interest to you:
 - `[JAR file location]/data/userdata.json`.
 
 You are welcome to update the data directly by editing that data file.
+However, be careful when directly editing the tagged contacts in `userdata.json`. It may cause the person to become unlinked from the event completely.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If you edit the taggedPerson in User data, beware that you may end up unlinking the person from any changes to the original contact in NeoBook

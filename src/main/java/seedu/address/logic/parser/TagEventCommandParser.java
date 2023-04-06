@@ -24,7 +24,8 @@ public class TagEventCommandParser implements Parser<TagEventCommand> {
     public TagEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TO_TAG, PREFIX_PERSON_TO_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_TO_TAG, PREFIX_PERSON_TO_TAG)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_TO_TAG, PREFIX_PERSON_TO_TAG)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagEventCommand.MESSAGE_USAGE));
         }
 
