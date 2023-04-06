@@ -15,7 +15,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## **Setting up, getting started**
 
-The set-up guide is still **_in progress_**
+Refer to the guide [_Setting up and getting started._](https://ay2223s2-cs2103t-f12-1.github.io/tp/SettingUp)
 
 --------------------------------------------------------------------------------------------------------------------
 
