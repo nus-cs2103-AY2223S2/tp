@@ -2,9 +2,16 @@ package seedu.recipe.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +24,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
+import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
@@ -45,7 +54,7 @@ public class ParserUtilTest {
         "Cook the lasagna noodles according to the package instructions. Drain and set aside.";
     private static final String VALID_STEP_2 =
         "Add the crushed tomatoes, tomato paste, basil, oregano, salt, and black pepper to the skillet. "
-            + "Stir to combine and simmer for 10-15 minutes.";
+        + "Stir to combine and simmer for 10-15 minutes.";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -63,10 +72,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_RECIPE, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_RECIPE, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -268,5 +277,36 @@ public class ParserUtilTest {
                 new Step(VALID_STEP_2)));
 
         assertEquals(expectedStepList, actualStepList);
+    }
+
+    @Test
+    public void parseToDescriptor_allFieldsPresent() {
+        //Set up arguments
+        ArgumentMultimap argumentMultimap = new ArgumentMultimap();
+        argumentMultimap.put(PREFIX_NAME, VALID_NAME);
+        argumentMultimap.put(PREFIX_DURATION, VALID_DURATION);
+        argumentMultimap.put(PREFIX_PORTION, VALID_PORTION);
+        argumentMultimap.put(PREFIX_INGREDIENT, VALID_INGREDIENT_1);
+        argumentMultimap.put(PREFIX_INGREDIENT, VALID_INGREDIENT_2);
+        argumentMultimap.put(PREFIX_STEP, VALID_STEP_1);
+        argumentMultimap.put(PREFIX_STEP, VALID_STEP_2);
+        argumentMultimap.put(PREFIX_TAG, VALID_TAG_1);
+        argumentMultimap.put(PREFIX_TAG, VALID_TAG_2);
+
+        //Set up expected descriptor
+        RecipeDescriptor expected = new RecipeDescriptor();
+        expected.setName(new Name(VALID_NAME));
+        expected.setPortion(RecipePortion.of(VALID_PORTION));
+        expected.setDuration(RecipeDuration.of(VALID_DURATION));
+        expected.setIngredients(
+            List.of(new IngredientBuilder(VALID_INGREDIENT_1), new IngredientBuilder(VALID_INGREDIENT_2)));
+        expected.setTags(Set.of(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        expected.setSteps(List.of(new Step(VALID_STEP_1), new Step(VALID_STEP_2)));
+
+        try {
+            assertEquals(expected, ParserUtil.parseToRecipeDescriptor(argumentMultimap));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 }

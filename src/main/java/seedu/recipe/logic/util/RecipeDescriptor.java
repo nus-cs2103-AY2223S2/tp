@@ -1,5 +1,7 @@
 package seedu.recipe.logic.util;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +49,7 @@ public class RecipeDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public RecipeDescriptor(RecipeDescriptor toCopy) {
+        requireNonNull(toCopy);
         setName(toCopy.name);
         setDuration(toCopy.duration);
         setPortion(toCopy.portion);
@@ -63,7 +66,7 @@ public class RecipeDescriptor {
      * edited with {@code editRecipeDescriptor}.
      */
     public Recipe toRecipe(Recipe recipeToEdit) {
-        assert recipeToEdit != null;
+        requireNonNull(recipeToEdit);
 
         Name updatedName = getName().orElse(recipeToEdit.getName());
         Recipe newRecipe = new Recipe(updatedName);
@@ -72,12 +75,17 @@ public class RecipeDescriptor {
             : recipeToEdit.getDurationNullable());
         newRecipe.setDuration(updatedDuration);
 
-        RecipePortion updatedPortion = getPortion().orElseGet((
-        ) -> portionChanged ? null : recipeToEdit.getPortionNullable()); // checkstyle'd
+        RecipePortion updatedPortion = getPortion()
+            .orElseGet(() -> portionChanged
+                ? null
+                : recipeToEdit.getPortionNullable()
+            );
         newRecipe.setPortion(updatedPortion);
 
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
-        newRecipe.setTags(updatedTags);
+        if (updatedTags.length > 0) {
+            newRecipe.setTags(updatedTags);
+        }
 
         HashMap<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
             .map(HashMap::new)
@@ -85,15 +93,20 @@ public class RecipeDescriptor {
         newRecipe.setIngredients(updatedIngredients);
 
         Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
-        newRecipe.setSteps(updatedSteps);
+        if (updatedSteps.length > 0) {
+            newRecipe.setSteps(updatedSteps);
+        }
 
         return newRecipe;
     }
 
     /**
-     * Generates a Recipe from this RecipeDescriptor.
+     * Generates a new Recipe from this RecipeDescriptor.
      */
     public Recipe toRecipe() {
+        if (this.name == null) {
+            this.name = new Name("BLANK RECIPE");
+        }
         Recipe blank = new Recipe(this.name);
         return this.toRecipe(blank);
     }
@@ -102,8 +115,9 @@ public class RecipeDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return durationChanged || portionChanged || CollectionUtil.isAnyNonNull(name, duration, portion, tags,
-            ingredients, steps);
+        return durationChanged
+            || portionChanged
+            || CollectionUtil.isAnyNonNull(name, duration, portion, tags, ingredients, steps);
     }
 
     public Optional<Name> getName() {
@@ -119,9 +133,7 @@ public class RecipeDescriptor {
     }
 
     public void setDuration(RecipeDuration duration) {
-        if (duration != null) {
-            this.duration = duration;
-        }
+        this.duration = duration;
     }
 
     public Optional<RecipePortion> getPortion() {
@@ -138,7 +150,9 @@ public class RecipeDescriptor {
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null && tags.size() > 0)
+            ? Optional.of(Collections.unmodifiableSet(tags))
+            : Optional.empty();
     }
 
     /**
@@ -150,7 +164,9 @@ public class RecipeDescriptor {
     }
 
     public Optional<Map<Ingredient, IngredientInformation>> getIngredients() {
-        return (ingredients != null) ? Optional.of(Collections.unmodifiableMap(ingredients)) : Optional.empty();
+        return (ingredients != null && ingredients.size() > 0)
+            ? Optional.of(Collections.unmodifiableMap(ingredients))
+            : Optional.empty();
     }
 
     public void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientTable) {
@@ -164,7 +180,9 @@ public class RecipeDescriptor {
     }
 
     public Optional<List<Step>> getSteps() {
-        return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
+        return (steps != null && steps.size() > 0)
+            ? Optional.of(Collections.unmodifiableList(steps))
+            : Optional.empty();
     }
 
     public void setSteps(List<Step> steps) {

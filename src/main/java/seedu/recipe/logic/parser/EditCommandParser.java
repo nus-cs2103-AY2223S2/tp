@@ -63,7 +63,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    protected Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -73,21 +73,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<HashMap<Ingredient, IngredientInformation>> parseIngredientsForEdit(
-        Collection<String> ingredients) throws ParseException {
+    protected Optional<HashMap<Ingredient, IngredientInformation>> parseIngredientsForEdit(
+            Collection<String> ingredients) throws ParseException {
         assert ingredients != null;
 
         if (ingredients.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> ingredientList =
-            ingredients.size() == 1 && ingredients.contains("")
-                ? Collections.emptyList()
-                : ingredients;
+        Collection<String> ingredientList = ingredients.size() == 1 && ingredients.contains("")
+            ? Collections.emptyList()
+            : ingredients;
         return Optional.of(ParserUtil.parseIngredients(ingredientList));
     }
 
-    private Optional<List<Step>> parseStepsForEdit(Collection<String> steps) throws ParseException {
+    protected Optional<List<Step>> parseStepsForEdit(Collection<String> steps) throws ParseException {
         assert steps != null;
 
         if (steps.isEmpty()) {
