@@ -200,8 +200,9 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
-* `add_elderly n/John Wick ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH`
 * `add_elderly n/Betsy Crowe p/98765432 e/johnd@example.com a/John street ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17`
+* `add_elderly n/John Wick ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH`
+![](images/userGuide/addElderly.png)
 
 #### Adding a volunteer: `add_volunteer`
 
@@ -220,6 +221,7 @@ Examples:
 
 * `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15 mt/CPR, BASIC`
 * `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
+![](images/userGuide/addVolunteer.png)
 
 #### Pair volunteer and elderly: `pair`
 
@@ -354,7 +356,34 @@ Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and risk level of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
-* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
+* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad`
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
+
+<div>
+
+![](images/userGuide/editBefore.png)
+
+<div class="img-caption">
+
+Before the `edit` command
+
+</div>
+
+</div>
+
+<div>
+
+![](images/userGuide/editAfter.png)
+
+<div class="img-caption">
+
+After the `edit` command
+
+</div>
+
+</div>
+
+</div>
 
 [Back to top](#table-of-contents)
 
