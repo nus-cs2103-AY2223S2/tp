@@ -1,12 +1,10 @@
 package ezschedule.model.event;
 
-import org.junit.jupiter.api.Test;
-
-import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_A;
-import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class RecurFactorTest {
 
@@ -41,23 +39,23 @@ public class RecurFactorTest {
 
     @Test
     public void equals() {
-        RecurFactor recurFactorA = new RecurFactor(VALID);
-        Name nameB = new Name(VALID_NAME_B);
+        RecurFactor recurFactorA = new RecurFactor("day");
+        RecurFactor recurFactorB = new RecurFactor("month");
 
         // same object -> returns true
-        assertTrue(nameA.equals(nameA));
+        assertTrue(recurFactorA.equals(recurFactorA));
 
         // same object -> returns true
-        Name nameCopy = new Name(VALID_NAME_A);
-        assertTrue(nameA.equals(nameCopy));
+        RecurFactor recurFactorCopy = new RecurFactor("day");
+        assertTrue(recurFactorA.equals(recurFactorCopy));
 
         // null -> returns false
-        assertFalse(nameA.equals(null));
+        assertFalse(recurFactorA.equals(null));
 
         // different type -> returns false
-        assertFalse(nameA.equals(5));
+        assertFalse(recurFactorA.equals(5));
 
         // different name -> returns false
-        assertFalse(nameA.equals(nameB));
+        assertFalse(recurFactorA.equals(recurFactorB));
     }
 }
