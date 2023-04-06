@@ -74,14 +74,12 @@ public class CommandTestUtil {
                 .withUnit(VALID_UNIT_MEIJI)
                 .withQuantity(VALID_QUANTITY_MEIJI)
                 .withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
-                .withTags(VALID_TAG_DAIRY)
                 .build();
         DESC_CHOCOLATE = new EditFoodDescriptorBuilder()
                 .withName(VALID_NAME_CHOCOLATE)
                 .withUnit(VALID_UNIT_CHOCOLATE)
                 .withQuantity(VALID_QUANTITY_CHOCOLATE)
                 .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
-                .withTags(VALID_TAG_CHOCOLATE)
                 .build();
     }
 

@@ -70,7 +70,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Food> lastShownList = model.getFilteredFoodList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size() || index.getOneBased() <= 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
@@ -97,9 +97,8 @@ public class EditCommand extends Command {
         Unit updatedUnit = editFoodDescriptor.getUnit().orElse(foodToEdit.getUnit());
         Quantity updatedQuantity = editFoodDescriptor.getQuantity().orElse(foodToEdit.getQuantity());
         ExpiryDate updatedExpiryDate = editFoodDescriptor.getExpiryDate().orElse(foodToEdit.getExpiryDate());
-        Set<Tag> updatedTags = editFoodDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedUnit, updatedQuantity, updatedExpiryDate, updatedTags);
+        return new Food(updatedName, updatedUnit, updatedQuantity, updatedExpiryDate, foodToEdit.getTags());
     }
 
     @Override
@@ -122,14 +121,13 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the food item with. Each non-empty field value will replace the
-     * corresponding field value of the food.
+     * corresponding field value of the food. Note that tags cannot be changed in EditFoodDescriptor and EditCommand.
      */
     public static class EditFoodDescriptor {
         private Name name;
         private Unit unit;
         private Quantity quantity;
         private ExpiryDate expiryDate;
-        private Set<Tag> tags;
 
         public EditFoodDescriptor() {}
 
@@ -142,14 +140,13 @@ public class EditCommand extends Command {
             setUnit(toCopy.unit);
             setQuantity(toCopy.quantity);
             setExpiryDate(toCopy.expiryDate);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, unit, quantity, expiryDate, tags);
+            return CollectionUtil.isAnyNonNull(name, unit, quantity, expiryDate);
         }
 
         public void setName(Name name) {
@@ -182,23 +179,6 @@ public class EditCommand extends Command {
 
         public Optional<ExpiryDate> getExpiryDate() {
             return Optional.ofNullable(expiryDate);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override

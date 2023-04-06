@@ -36,7 +36,6 @@ public class EditFoodDescriptorBuilder {
         descriptor.setUnit(food.getUnit());
         descriptor.setQuantity(food.getQuantity());
         descriptor.setExpiryDate(food.getExpiryDate());
-        descriptor.setTags(food.getTags());
     }
 
     /**
@@ -68,16 +67,6 @@ public class EditFoodDescriptorBuilder {
      */
     public EditFoodDescriptorBuilder withExpiryDate(String date) {
         descriptor.setExpiryDate(new ExpiryDate(date));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFoodDescriptor}
-     * that we are building.
-     */
-    public EditFoodDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

@@ -19,7 +19,6 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
@@ -38,8 +37,6 @@ import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);

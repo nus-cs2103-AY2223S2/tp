@@ -56,10 +56,10 @@ public class EditCommandTest {
 
         FoodBuilder foodInList = new FoodBuilder(lastFood);
         Food editedFood = foodInList.withName(VALID_NAME_CHOCOLATE).withUnit(VALID_UNIT_CHOCOLATE)
-                .withTags(VALID_TAG_CHOCOLATE).build();
+                .build();
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_CHOCOLATE)
-                .withUnit(VALID_UNIT_CHOCOLATE).withTags(VALID_TAG_CHOCOLATE).build();
+                .withUnit(VALID_UNIT_CHOCOLATE).build();
 
         EditCommand editCommand = new EditCommand(indexLastFood, descriptor);
 
@@ -113,7 +113,7 @@ public class EditCommandTest {
     public void execute_duplicateFoodFilteredList_failure() {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
-        // edit Food in filtered list into a duplicate in address book
+        // edit Food in filtered list into a duplicate in WIFE
         Food foodInList = model.getWife().getFoodList().get(INDEX_SECOND_FOOD.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FOOD,
                 new EditFoodDescriptorBuilder(foodInList).build());
