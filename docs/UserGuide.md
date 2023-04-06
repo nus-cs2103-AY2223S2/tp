@@ -165,8 +165,12 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
 * At least one of the optional fields must be provided.
 * Removes the corresponding field value(s) matching the `KEYWORD`.
   * e.g. `l/Java` will remove `Java` from the languages of the contact.
-* Clears the field value(s) when no keyword is provided for the field even if the field is empty.
+* Clears the field value(s) when no keyword is provided for the field.
   * e.g. `t/` will remove all the tags associated with the contact.
+
+<div markdown="span" class="alert alert-primary"> :bulb: Tip
+`remove` command considers **removing a field successfully** when no keyword is provided even if the field is empty.
+</div>
 
 Examples:
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
