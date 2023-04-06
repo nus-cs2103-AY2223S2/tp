@@ -1,5 +1,7 @@
 package seedu.recipe.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -33,7 +35,7 @@ public class ImportCommand extends Command {
      * @param stage The UI stage that triggered this command.
      */
     public ImportCommand(Stage stage) {
-        assert stage != null;
+        requireNonNull(stage);
         this.importManager = new ImportManager(stage);
         this.hasDuplicate = false;
     }
@@ -59,7 +61,7 @@ public class ImportCommand extends Command {
             // Validate uniqueness, add to model
             ObservableList<Recipe> currentRecipes = model.getFilteredRecipeList();
             for (Recipe recipe : importedRecipeList) {
-                if (!currentRecipes.stream().anyMatch(recipe::isSameRecipe)) {
+                if (currentRecipes.stream().noneMatch(recipe::isSameRecipe)) {
                     model.addRecipe(recipe);
                 } else {
                     hasDuplicate = true;

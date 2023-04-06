@@ -1,5 +1,7 @@
 package seedu.recipe.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 
 import javafx.stage.Stage;
@@ -25,6 +27,8 @@ public class ExportCommand extends Command {
      * @param logic The Logic that helps to derive the current Recipe Book path for Export Manager to use.
      */
     public ExportCommand(Stage stage, Logic logic) {
+        requireNonNull(stage);
+        requireNonNull(logic);
         exportManager = new ExportManager(stage, logic);
     }
 
