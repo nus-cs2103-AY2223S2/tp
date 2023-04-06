@@ -28,7 +28,7 @@ Given below are my contributions to the project.
       * Added tabbed views for different data
   * New feature: `TabCommand` that allows users to switch between tabs
     * Justification: Like most applications, users can use `CTRL + TAB` or `ARROW KEYS` to cycle through area of focus. This added feature allow users to skip tabs while using a verbose command. This also further optimises the product for CLI use.
-    *  Highlight: Used the `Observer / Observable` pattern with JavaFX `SimpleIntegerProperty` to listen to changes in the selected tab index. This decouples `TabCommand` in `Logic` from `Ui`. Some commands such as `list`/`find` also snaps to relevant tab for better user experience.
+    *  Highlight: Used the `Observer / Observable` pattern with JavaFX `SimpleIntegerProperty` to listen to changes in the selected tab index. This decouples `TabCommand` in `Logic` from `Ui` and enforces Law of Demeter. Some commands such as `list`/`find` also snaps to relevant tab for better user experience.
 
 * **Review / Peer Help**
   * Helped teammates with debugging and test cases
