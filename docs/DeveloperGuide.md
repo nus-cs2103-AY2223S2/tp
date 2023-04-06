@@ -24,7 +24,7 @@ title: Developer Guide
   - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a opening](#deleting-a-opening)
+  - [Deleting an opening](#deleting-a-opening)
   - [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `UltronParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a opening).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an opening).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -333,39 +333,195 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample openings. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Exiting via command line
 
-### Deleting a opening
+   1. Test case: `exit`<br>
+      Expected: App exits with no issues and window closes
 
-1. Deleting a opening while all openings are being shown
+### Adding an opening
+
+1. Adding an opening that does not already exist in the list
+
+    1. Prerequisites: Openings that are being added do not already exist in the list. Meaning that the opening does not share both the company name and position name with another opening
+
+    2. Test case: `add p/position c/company e/example@example.com s/applied`<br>
+       Expected: An opening is added to the end of the list. Success message shown in the status message. Opening added contains fields that match those given in the command line.
+
+    3. Test case: `add p/position c/company s/applied`<br>
+       Expected: No opening is added. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect add commands to try: `add`<br>
+       Expected: Similar to previous.
+
+2. Trying to add an opening that already exists in the list
+
+    1. Prerequisites: Openings that are trying to be added already exist in the list. Meaning that the opening shares both the company name and position name with another opening
+
+    2. Test case: `add p/position c/company e/example@example.com s/applied`<br>
+       Expected: No opening is added. Error details shown in the status message. Command line remains the same.
+    
+
+### Editing an opening
+
+1. Editing an opening to change a field
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `edit 1 p/new position`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now has "new position" in its position field.
+
+    3. Test case: `edit 0 p/new position`<br>
+       Expected: No opening is edited. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Editing an opening to add a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `edit 1 d/Online Assessment@2023-04-01`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Online Assessment" due 2023-04-01.
+
+2. Editing an opening to replace a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `edit 1 d/Interview@2023-04-05`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Interview" due 2023-04-05.
+
+### Showing an opening
+
+1. Viewing the details of an opening while all openings are being shown
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: Details of first opening is shown in the right panel. Details of the shown opening shown in the status message.
+
+    3. Test case: click on an opening on the left panel<br>
+       Expected: Details of clicked opening is shown in the right panel.
+
+    4. Test case: `show 0`<br>
+       Expected: No new opening is shown. Error details shown in the status message. Command line remains the same.
+
+    5. Other incorrect show commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Adding, editing or deleting a remark
+
+1. Adding a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. 
+
+    2. Test case: `remark x r/3 rounds of interviews` (where x is the index of an opening without an existing remark) <br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has "3 rounds of interviews" in its remark field, visible after using the show command.
+
+    3. Test case: `remark 0 r/3 rounds of interviews`<br>
+       Expected: No opening is edited. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect edit commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Deleting a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `remark x r/` (where x is the index of an opening with an existing remark)<br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has no remarks in its remark field.
+
+3. Editing a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `remark x r/Has difficult online assessment` (where x is the index of an opening with an existing remark) <br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has "Has difficult online assessment" in its remark field, visible after using the show command.
+
+### Deleting an opening
+
+1. Deleting an opening while all openings are being shown in list
 
    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First opening is deleted from the list. Details of the deleted opening shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete 1`<br>
+      Expected: First opening is deleted from the list. Details of the deleted opening shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No opening is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No opening is deleted. Error details shown in the status message. Command line remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting an opening currently being shown in the right panel
 
-### Saving data
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. Show the opening to be deleted using `show x` command (where x is index of opening to be deleted)
 
-1. Dealing with missing/corrupted data files
+    1. Test case: `delete x`<br>
+       Expected: Opening with index x is deleted from the list. Details of the deleted opening shown in the status message. Right panel is now empty.
+   
+### Clearing all openings
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Clearing all openings
 
-1. _{ more test cases …​ }_
+    1. Test case: `clear`<br>
+       Expected: All openings are deleted from the list. Details of the deleted opening shown in the status message.
+
+### Finding an opening by company or position
+
+1. Finding an opening that exists by keyword
+
+    1. Prerequisites: At least one opening with the word "developer" in its position or company name exists in the list
+
+    2. Test case: `find developer`<br>
+       Expected: List filters out all openings that do not have the word "developer" in its position or company name. Number of found openings is shown in the status message. Command line remains the same
+
+   3.Test case: `find`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
+
+2. Finding an opening that doesn't exist by keyword
+
+    1. Prerequisites: No opening with the word "joogle" in its position or company name exists in the list
+
+    2. Test case: `find joogle`<br>
+       Expected: List filters out all openings that do not have the word "joogle" in its position or company name. Number of found openings is shown in the status message. Command line remains the same
+
+### Finding an opening by status
+
+1. Finding an opening that exists by status
+
+    1. Prerequisites: At least one opening with "interviewing" as its status
+
+    2. Test case: `status interviewing`<br>
+       Expected: List filters out all openings that do not have "interviewing" as its status. Number of found openings is shown in the status message. Command line remains the same.
+
+   3.Test case: `status`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
+
+2. Finding an opening that doesn't exist by status
+
+    1. Prerequisites: No opening with "accepted" in its position name exists in the list
+
+    2. Test case: `status accepted`<br>
+       Expected: List filters out all openings that do not have "accepted" as its status. Number of found openings is shown in the status message. Command line remains the same
+
+### Getting openings with upcoming deadlines
+
+1. Getting openings with upcoming deadlines
+
+    1. Prerequisites: Multiple openings in the list. Openings contain deadlines not passed due within 5 days of today.
+
+    2. Test case: `upcoming 5`<br>
+       Expected: List shows openings that contain deadlines not passed within 5 days of today. Openings are sorted in order, with the openings with the closer deadlines on top. Number of found openings is shown in the status message.
+
+    3. Test case: `upcoming`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
 
 ## **Appendix: Effort**
 
