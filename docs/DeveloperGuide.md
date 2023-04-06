@@ -45,17 +45,19 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img src="images/ArchitectureDiagram.png" width="250px">
+<img src="images/ArchitectureDiagram.png" width="341px">
 
 #### Main components of the architecture
 
 `Main` has 2 classes called `Main` and `MainApp`. Its responsibilities are:
 
-* On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) and connects them with each other.
+* On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) 
+  and connects them with each other.
 
 * On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
 
-`Commons` represents a collection of classes used by multiple other components, and it stores information like GUI settings and user-visible error messages.
+`Commons` represents a collection of classes used by multiple other components, and it stores information 
+like GUI settings and user-visible error messages.
 
 The rest of the App consists of four components.
 
@@ -66,14 +68,15 @@ The rest of the App consists of four components.
 
 #### How the architecture components interact with each other
 
-The following _Sequence Diagram_ shows how the different components interact with each other for the scenario where the user issues the command `delete 1`.
+The following _Sequence Diagram_ shows how the different components interact with each other for the 
+scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="500px">
-
+<img src="images/ArchitectureSequenceDiagram.png" width="539px">
 
 Each of the four main components as shown in the diagram above,
 * defines its API in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component name}Manager` class (which follows the corresponding API `interface` mentioned above)
+* implements its functionality using a concrete `{Component name}Manager` class 
+  (which follows the corresponding API `interface` mentioned above).
 
 For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class (in order to prevent external components being coupled to the implementation of a component) as illustrated in the (partial) class diagram below.
@@ -155,7 +158,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components)
+  should make sense on their own without depending on other components).
 
 It is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only 
 pass valid `IngredientBuilder` instances to `Recipe` objects.
@@ -182,19 +185,18 @@ The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 **Structure:**
+<img src="images/StorageClassDiagram.png" width="794" />
 
-<img src="images/StorageClassDiagram.png" width="500" />
-
-<img src="images/JsonAdaptersDiagram.png" width="500" />
+<img src="images/JsonAdaptersDiagram.png" width="1089" />
 
 **The `Storage` component:**
 
-* saves both recipe data and user preferences data in JSON format
-* reads saved JSON recipe data and user preferences data into their respective objects
+* saves both recipe data and user preferences data in JSON format.
+* reads saved JSON recipe data and user preferences data into their respective objects.
 * inherits from both the `RecipeBookStorage` and `UserPrefStorage` interfaces, which means it can be treated as either
   one (if the functionality of only one is needed).
 * depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
-  belong to the Model)
+  belong to the Model).
 
 **Implementation:**
 
@@ -264,7 +266,7 @@ e.g. their name, tags, or ingredients.
 The following sequence diagram illustrates how the different components interact with each other
 in the execution of a `find tag italian indian` command.
 
-<img src="images/FindSequenceDiagram.png" width="1000" />
+<img src="images/FindSequenceDiagram.png" width="1128" />
 
 #### Implementation
 As with all commands, the find command goes through the standard command execution pipeline.
@@ -274,13 +276,13 @@ Keyword validation and predicate creation is then done depending on the target p
 
 To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
 * `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
-matches any of the keywords
+matches any of the keywords.
   * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
-  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match
+  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match.
 * `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
-in a collection of property T matches any of the keywords
+in a collection of property T matches any of the keywords.
   * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
-  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match
+  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match.
 
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
