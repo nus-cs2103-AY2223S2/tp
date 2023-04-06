@@ -16,7 +16,7 @@ If you are a student cook whose cookbook is stuffed with tons of sticky notes, l
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
 **CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists who aim to manage their recipes quickly, while still 
-enjoying the benefits of a Graphical User Interface(GUI).
+enjoying the benefits of a [Graphical User Interface(GUI)](#glossary).
 
 **CookHub** excels in its simplicity and optimisation for the student cook's recipe management needs. 
 It supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
@@ -51,7 +51,13 @@ Here is a short overview of the features and capabilities of **CookHub**:
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
 
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/UiInWindows.png" width=500 height=400>
+   <p align="center" width="100%">
+    <img src="images/UiInWindows.png" width=500 height=400>
+   </p>
+
+    Learn more about CookHub's GUI [here](#understanding-the-graphical-user-interface-gui).
+   
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
    To get you familiarised, here are some example commands you can try:
@@ -60,8 +66,27 @@ Here is a short overview of the features and capabilities of **CookHub**:
    * `list` : Lists all recipes
    * `exit`: Exits the app
 
+6. Refer to the [Features](#features) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of each command.
+<hr style="border:2px solid gray">
+
+## Understanding the Graphical User Interface (GUI)
+In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
+
+<p align="center" width="100%">
+    <img src="images/annotated/GUI.svg" width="100%">
+</p>
+
+
+| Part of CookHub's GUI | Description                                                                                                                     |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| Help Button           | A button that opens the help menu.                                                                                              |
+| File Button           | A button that allows you to exit the application.                                                                               |
+| Command Box           | A text field that allows you to enter a command that CookHub executes.                                                          |
+| Result Display        | A text display that displays any information regarding command inputs, such as success or errors.                               |
+| Recipe Details Panel  | A panel that displays information on the recipe that is clicked in `Recipe List Panel`.                                         |
+| Recipe List Panel     | A panel that displays a list of all saved recipes. <br/>Click on each recipe to view its details in the `Recipe Details Panel`. |
+
 
 <hr style="border:2px solid gray">
 
