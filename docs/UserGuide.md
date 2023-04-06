@@ -209,7 +209,6 @@ _OR_
 Navigating **directly** from any **context**:
 
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
-
 - `nav /mod CS2040S /lec Week 1`
 
 After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
@@ -218,17 +217,12 @@ Here are some **examples** of how the navigation system injects the necessary co
 
 1. ![LectureContext](images/LectureContext.png)
 Add Video 2 to the lecture Week 1 of module CS2040S.
-
 - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-
 2. ![LectureContext](images/LectureContext.png)
 List the contents of lecture Week 1 of module CS2040S.
-
 - `list /mod CS2040S /lec Week 1` -> `list`
-
 3. ![LectureContext](images/LectureContext.png)
 Add Video 1 to lecture Week 1 of module CS2040S.
-
 - `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ---
