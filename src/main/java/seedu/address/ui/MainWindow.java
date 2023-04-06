@@ -206,9 +206,13 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isRemark()) {
-                // commandText = remark INDEX
-                return executeCommand(commandText + " "
-                        + getRemarksFromRemarkBox(commandResult.getRemark()));
+                String remarkInput = getRemarksFromRemarkBox(commandResult.getRemark());
+
+                commandResult = remarkInput.isBlank()
+                        ? logic.execute(commandText + " \0")
+                        : logic.execute(commandText + " " + remarkInput);
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
 
             return commandResult;

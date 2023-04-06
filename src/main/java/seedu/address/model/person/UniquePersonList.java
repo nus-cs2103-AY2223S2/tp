@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -37,6 +38,19 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list will contain duplicates after replacing
+     * {@code toReplace} with {@code replacement}.
+     */
+    public boolean willHaveDuplicatesAftReplacement(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        assert contains(toBeReplaced) : "list should contain the person to replace";
+
+        return internalList.stream()
+            .filter(Predicate.not(toBeReplaced::isSamePerson))
+            .anyMatch(replacement::isSamePerson);
     }
 
     /**

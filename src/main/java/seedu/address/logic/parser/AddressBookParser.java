@@ -30,8 +30,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)",
-            Pattern.DOTALL);
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
+            "^\\s*(?<commandWord>\\S+)(?<arguments>.*?\\x00?)\\s*$", Pattern.DOTALL);
 
     /**
      * Parses user input into command for execution.
@@ -41,13 +41,15 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        assert !commandWord.startsWith(" ") : "'commandWord' should have had it's leading spaces trimmed";
+        assert !arguments.endsWith(" ") : "'arguments' should have had it's trailing spaces trimmed";
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
