@@ -21,7 +21,132 @@ The set-up guide is still **_in progress_**
 
 ## Design
 
-The documentation for Design is still **_in progress_**
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+</div>
+
+### Architecture
+
+<img src="images/ArchitectureDiagram.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+Each of the four main components (also shown in the diagram above),
+
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+
+<img src="images/ComponentManagers.png" width="300" />
+
+The sections below give more details of each component.
+
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+### Logic component
+
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<img src="images/LogicClassDiagram.png" width="550"/>
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Model component
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<img src="images/ModelClassDiagram.png" width="450" />
+
+
+The `Model` component,
+
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+</div>
+
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
+<img src="images/StorageClassDiagram.png" width="550" />
+
+The `Storage` component,
+* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -219,11 +344,21 @@ displayed over each other.
 #### Alternatives considered
 *_This section is still in progress_*
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Planned Enhancements**
+## Appendix A: Planned Enhancements
 ### User Interface
+
 - **Problem:** Let's say that a user selected a patient, before using the
 [`list-doc` command](./UserGuide.md#listing-all-doctors). Note that the `list-doc` command does not involve
 selection of patient cards. In this case, the user interface does not clear the selection on the previously
@@ -231,6 +366,7 @@ selected card. However, all the doctors are listed on the GUI, as requested by t
 Therefore, there may be confusion as to whether the listed doctors are assigned to the previously selected
 patient or not. (Note: This problem exists if you select a doctor and then enter `list-ptn` too)
   - **Solution:** The list commands will clear any selection of patient or doctor cards.
+<br/>
 - **Problem:** Let's say that a user adds a doctor using the
 [`add-doc` command](./UserGuide.md#adding-a-doctor). Docedex will automatically select the newly
 added doctor as detailed [here](./UserGuide.md#note-about-selecting-doctors-or-patients).
@@ -242,9 +378,7 @@ this behaviour with all patients being deleted. (Note: This problem exists if yo
 name of the newly added doctor. The same fix will be done for the title of the doctors list to support
 a similar behaviour when adding patients.
 
-## **Appendix: Requirements**
-
-### Product scope
+### Appendix B: Product scope
 
 **Target user profile**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
@@ -258,7 +392,7 @@ Here are some characteristics of our target user profile: <br>
 **Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage, faster than a typical mouse/GUI driven app.
 
 
-### User stories
+### Appendix C: User stories
 
 In the table below, **_user_** refers to the triage admin staff.
 
@@ -295,20 +429,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user    | self-destruct my address book                                     | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
 | `*`      | user    | create a new address book instance for a new clinic               | track doctors and patients across different clinics                              |
 
-### Use cases
+### Appendix D: Use cases
 
-(For all use cases below, the **System** is `Docedex` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, we assume the following unless specified otherwise
+- The **System** is `Docedex`
+- The **Actor** is the `user`
+- The following preconditions
+  - The `user` has launched the `Docedex` application.
+
+Furthermore, a lot of use cases are similar when manipulating
+doctors and patients. Therefore, to keep the developer guide concise, the
+use cases elaborated upon below are only detailed for doctors. Nonetheless, they
+can be extrapolated for patients too, without changes to the major details within
+the use case. Such associated pairs of use cases are listed in the table below.
+
+| **Doctor Use Case** | **Respective Patient Use Case** |
+|-----------------|-----------------------------|
+| UC1 - Add Doctor         | user                        |
+| `* * *`         | user                        |
+| `* * *`         | user                        |
+| `* * *`         | user                        |
+| `* * *`         | user                        |
+| `* * *`         | user                        |
+
 
 **Use case: UC1 - Add Doctor**
 
-Actor: User
-Precondition: User is logged in and has access to the add doctor feature.
-
 **MSS**
 
-1. User requests to add a doctor by specifying their contact information, including name, department, specialty, years of experience, and any non-whitespace separated tags.
-2. Docedex confirms the addition of the doctor contact.<br>
-
+1. User requests to add a doctor by specifying information about the doctor.
+2. Docedex confirms the addition of the doctor.<br>
    Use case ends.
 
 **Extensions**
@@ -319,65 +469,192 @@ Precondition: User is logged in and has access to the add doctor feature.
     * 1a2. User enters command and information to add a doctor.<br>
     Steps 1a1-1a2 are repeated until a valid add command is entered.<br>
     Use case resumes from step 2.
-* 1b. Docedex detects duplicate information within the address book.
+* 1b. Docedex detects duplicate doctor entry.
   * 1b1. Docedex prompts user to not enter duplicate information <br>
-  * 1b2. User enters command and information to add a doctor.<br>
+  * 1b2. User re-enters command to add a doctor.<br>
   Steps 1b1-1b2 are repeated until a unique entry is entered.<br>
   Use cases resumes from step 2.
 
 
 **Use case: UC2 - Delete Doctor**
 
-Actor: User
-
 **MSS**
 
-1. User request to delete a specific doctor.
+1. User requests to delete a specific doctor.
 2. Docedex confirms the deletion of the doctor contact.<br>
    Use case ends.
 
 **Extensions**
 
-* 1a. Docedex detects an error in the command.
+* 1a. Docedex detects an error in the command format.
   * 1a1. Docedex requests to correct the format of the command.
   * 1a2. User enters command to delete a doctor.<br>
   Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
   Use case resumes from step 2.
+* 1b. Docedex detects that the requested doctor does not exist.
+  * 1b1. Docedex alerts the user that the requested doctor does not exist.
+  * 1b2. User re-enters the command.<br>
+    Steps 1b1-1b2 are repeated until the user enters a doctor that exists in Docedex.<br>
+    Use case resumes from step 2.
 
-
-**Use case: UC3 - Find Doctor**
-
-Actor: User
+**Use case: UC3 - Edit Doctor**
 
 **MSS**
 
-1. User requests to find doctors that meet a particular criteria, such as years of experience.
+1. User requests to edit a doctor's information by specifying the updated information.
+2. Docedex confirms the update of the doctor's information.<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Docedex detects an error in the command format.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+    Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+    Use case resumes from step 2.
+* 1b. Docedex detects duplicate doctor entry.
+  * 1b1. Docedex prompts user to not enter duplicate information <br>
+  * 1b2. User re-enters command to edit a doctor.<br>
+    Steps 1b1-1b2 are repeated until the edited doctor does not exist in Docedex.<br>
+    Use cases resumes from step 2.
+* 1c. Docedex detects that the requested doctor does not exist.
+  * 1c1. Docedex alerts the user that the requested doctor does not exist.
+  * 1c2. User re-enters the command.<br>
+    Steps 1c1-1c2 are repeated until the user enters a doctor that exists in Docedex.<br>
+    Use case resumes from step 2.
+
+**Use case: UC4 - Find Doctor**
+
+**MSS**
+
+1. User requests to find doctors that meet a particular criteria
 2. Docedex shows a list of doctors that meet the criteria requested by user.
    Use case ends.
 
 **Extensions**
 
-* 1a. Docedex detects an error in the command.
+* 1a. Docedex detects an error in the command format.
   * 1a1. Docedex requests to correct the format of the command.
   * 1a2. User enters command to delete a doctor.<br>
     Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
     Use case resumes from step 2.
 
-### Non-Functional Requirements
+**Use case: UC5 - List Doctor**
+
+**MSS**
+
+1. User requests to list all doctors in Docedex.
+2. Docedex shows a list of all doctors stored.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Docedex detects an error in the command format.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+    Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+    Use case resumes from step 2.
+
+**Use case: UC6 - Assign Doctor To Patient**
+
+**MSS**
+
+1. User requests to assign a doctor to a patient in Docedex.
+2. Docedex confirms the assignment of the doctor to the patient.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Docedex detects an error in the command format.
+  * 1a1. Docedex requests to correct the format of the command.
+  * 1a2. User enters command to delete a doctor.<br>
+    Steps 1a1-1a2 are repeated until a valid delete command is entered.<br>
+    Use case resumes from step 2.
+* 1b. Docedex detects that the requested doctor does not exist.
+  * 1b1. Docedex alerts the user that the requested doctor does not exist.
+  * 1b2. User re-enters the command.<br>
+    Steps 1b1-1b2 are repeated until the user enters a doctor that exists in Docedex.<br>
+    Use case resumes from step 2.
+* 1c. Docedex detects that the requested patient does not exist.
+  * 1c1. Docedex alerts the user that the requested patient does not exist.
+  * 1c2. User re-enters the command.<br>
+    Steps 1c1-1c2 are repeated until the user enters a patient that exists in Docedex.<br>
+    Use case resumes from step 2.
+* 1d. Docedex detects that the patient and doctor are already assigned to each other.
+  * 1d1. Docedex alerts the user that the patient and doctor are already assigned to each other.<br>
+    Use case ends.
+
+### Appendix E: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 doctor contacts and 30,000 patient contacts without noticeable reduction in performance.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 doctor contacts and 1000 patient contacts without noticeable reduction in performance.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should not utilize any network to transmit any information.
-5. The average time required to boot up the application should be under 5 seconds.
+5. The average time required to boot up the application should be under 10 seconds.
 6. Feedback from Docedex should be displayed within 2 seconds of the user's input.
 7. The file size of the application's `jar` should not exceed 100MB.
 8. Should utilize less than 2GB of memory when in use.
 
-### Glossary
+### Appendix F: Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **User**: Triage Admin Staff within the clinic.
 * **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
+
+### Appendix G: Effort
+
+This section is still being updated!
+
+### Appendix H: Instructions for manual testing
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** These instructions only provide a starting point for testers to work on.
+Testers are encouraged to do more *exploratory* testing.
+</div>
+
+#### Launch and shutdown
+
+1. Initial launch
+
+  1. Download the jar file and copy into an empty folder
+
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+#### Deleting a person
+
+1. Deleting a person while all persons are being shown
+
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+#### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
