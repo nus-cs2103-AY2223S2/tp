@@ -232,6 +232,7 @@ Examples:
   respectively.
 
 * `edit 2 n/Betsy Crower v/` edits the name of the second case to be `Betsy Crower` and clears all variants tagged to that case.
+
 ![EditCommandExample](images/EditCommandExample.png)
 
 <br>
@@ -353,6 +354,7 @@ Example:
 * `redo` after the undo:
 
 ![RedoCommandExample](images/RedoCommandExample.png)
+
 <br>
 
 ### Changing the overview type : `overview`
@@ -424,7 +426,7 @@ Exports the currently displayed cases to a CSV file.
 Format: `export [FILENAME]`
 
 Example CSV output of  `export sampledata.csv`
-<pre><code style="white-space: pre-wrap;">""Patient Name","Age","Date","Postal Code","Variants"
+<pre><code style="white-space: pre-wrap;">"Patient Name","Age","Date","Postal Code","Variants"
 "Alex Yeoh","111","2000-11-11","S664388","[DENV1]"
 "Bernice Yu","11","2000-11-11","S112727","[DENV4, DENV2]"
 "Charlotte Oliveiro","0","2000-11-11","S602283","[DENV3]"
@@ -467,9 +469,12 @@ the data. There is no need to save manually.
 DengueHotspotTracker data are saved as a CSV file `[JAR file location]/data/denguehotspottracker.csv`. Advanced users
 are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**
 If your changes to the data file causes its format to be invalid, DengueHotspotTracker will discard all data and start with an
 empty data file at the next run.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
