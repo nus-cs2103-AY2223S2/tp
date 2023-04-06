@@ -71,5 +71,6 @@ ToDoCommand --> LogicManager : CommandResult
 deactivate ToDoCommand
 
 LogicManager --> User : CommandResult
+deactivate LogicManager
 
 @enduml
