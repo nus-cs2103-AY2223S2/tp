@@ -106,6 +106,8 @@ Format:
 >
 > A new row automatically pops up when you reach the last row for ingredients and steps, and once you're done just click to the next field!
 >
+> Note that multiple tags can be added with commas separators. (e.g. `Vegetarian, Halal`)
+> 
 > Click on Save to add your recipe to the recipe book!
 
 ### Listing all recipes: `list`
