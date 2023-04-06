@@ -9,7 +9,9 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -37,6 +39,8 @@ public class EditBookmarkDescriptorBuilder {
         descriptor.setGenre(bookmark.getGenre());
         descriptor.setAuthor(bookmark.getAuthor());
         descriptor.setTags(bookmark.getTags());
+        descriptor.setRating(bookmark.getRating());
+        descriptor.setUrl(bookmark.getUrl());
     }
 
     /**
@@ -79,6 +83,22 @@ public class EditBookmarkDescriptorBuilder {
     public EditBookmarkDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code EditBookmarkDescriptor} that we are building.
+     */
+    public EditBookmarkDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Url} of the {@code EditBookmarkDescriptor} that we are building.
+     */
+    public EditBookmarkDescriptorBuilder withUrl(String url) {
+        descriptor.setUrl(new Url(url));
         return this;
     }
 

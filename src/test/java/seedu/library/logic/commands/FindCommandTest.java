@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.commons.core.Messages.MESSAGE_BOOKMARKS_LISTED_OVERVIEW;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.library.testutil.TypicalBookmarks.CARL;
+import static seedu.library.testutil.TypicalBookmarks.ELLE;
+import static seedu.library.testutil.TypicalBookmarks.FIONA;
 import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 
 import java.util.Arrays;
@@ -74,6 +77,36 @@ public class FindCommandTest {
         expectedModel.updateFilteredBookmarkList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredBookmarkList());
+    }
+
+    @Test
+    public void execute_oneGenreKeywords_oneBookmarksFound() {
+        String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 1);
+        BookmarkContainsKeywordsPredicate predicate = preparePredicate(null, "Comedy", null, null);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredBookmarkList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredBookmarkList());
+    }
+
+    @Test
+    public void execute_oneTitleKeywords_oneBookmarksFound() {
+        String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 1);
+        BookmarkContainsKeywordsPredicate predicate = preparePredicate("Fiona", null, null, null);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredBookmarkList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredBookmarkList());
+    }
+
+    @Test
+    public void execute_oneAuthorKeywords_oneBookmarksFound() {
+        String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 1);
+        BookmarkContainsKeywordsPredicate predicate = preparePredicate(null, null, null, "michegan ave");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredBookmarkList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE), model.getFilteredBookmarkList());
     }
 
     /**

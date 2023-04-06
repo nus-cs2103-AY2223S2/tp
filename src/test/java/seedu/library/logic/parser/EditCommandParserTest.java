@@ -8,22 +8,28 @@ import static seedu.library.logic.commands.CommandTestUtil.GENRE_DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_GENRE_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_PROGRESS_DESC;
+import static seedu.library.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.library.logic.commands.CommandTestUtil.INVALID_URL_DESC;
 import static seedu.library.logic.commands.CommandTestUtil.PROGRESS_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.PROGRESS_DESC_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.RATING_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.URL_DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_GENRE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_RATING_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_URL_AMY;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -38,7 +44,9 @@ import seedu.library.logic.commands.EditCommand;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
@@ -85,8 +93,10 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_GENRE_DESC, Genre.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_AUTHOR_DESC, Author.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS); // invalid rating
+        assertParseFailure(parser, "1" + INVALID_URL_DESC, Url.MESSAGE_CONSTRAINTS); // invalid url
 
-        // invalid progress followed by valid email
+        // invalid progress followed by valid genre
         assertParseFailure(parser, "1" + INVALID_PROGRESS_DESC + GENRE_DESC_AMY, Progress.MESSAGE_CONSTRAINTS);
 
         // valid progress followed by invalid progress. The test case for invalid progress followed by valid progress
@@ -113,11 +123,13 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_BOOKMARK;
         String userInput = targetIndex.getOneBased() + PROGRESS_DESC_BOB + TAG_DESC_HUSBAND
-                + GENRE_DESC_AMY + AUTHOR_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
+                + GENRE_DESC_AMY + AUTHOR_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND
+                + RATING_DESC_AMY + URL_DESC_AMY;
 
         EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRating(VALID_RATING_AMY)
+                .withUrl(VALID_URL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -158,7 +170,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // author
         userInput = targetIndex.getOneBased() + AUTHOR_DESC_AMY;
         descriptor = new EditBookmarkDescriptorBuilder().withAuthor(VALID_AUTHOR_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -167,6 +179,18 @@ public class EditCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditBookmarkDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // rating
+        userInput = targetIndex.getOneBased() + RATING_DESC_AMY;
+        descriptor = new EditBookmarkDescriptorBuilder().withRating(VALID_RATING_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // url
+        userInput = targetIndex.getOneBased() + URL_DESC_AMY;
+        descriptor = new EditBookmarkDescriptorBuilder().withUrl(VALID_URL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
