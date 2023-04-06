@@ -253,8 +253,8 @@ For more details and examples on the parameters, please refer to the [Parameter 
 :bulb: **Note:**
 * `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
 * Only the name ie. `n/` is compulsory. You can add/edit details for other parameters using the [`edit`](#editing-a-student-edit) command.
-* The current version of TeachMeSenpai allows you to add students with the same phone number and/or telegram handle! However, we have planned
-a future enhancement that will only allow unique phone numbers and telegram handles.
+* The current version of TeachMeSenpai allows you to add students with the same name (case-insensitive), phone number, and/or telegram handle! However, we have planned
+a future enhancement that will only allow unique names (case-sensitive), phone numbers, and telegram handles.
 
 </div>
 
