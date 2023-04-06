@@ -13,6 +13,7 @@ public class StartDate implements Start<Date> {
 
     public final Optional<Date> date;
 
+
     /**
      * Constructs an {@code Date}.
      *
@@ -52,5 +53,14 @@ public class StartDate implements Start<Date> {
 
     public Date get() {
         return date.get();
+    }
+
+    @Override
+    public String toString() {
+        if (date.isPresent()) {
+            return date.get().toString();
+        } else {
+            return "the beginning of time";
+        }
     }
 }

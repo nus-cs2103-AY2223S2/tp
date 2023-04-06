@@ -15,6 +15,7 @@ public class EndDate implements End<Date> {
     private static final DateComparator DATE_COMPARATOR = new DateComparator();
     public final Optional<Date> date;
 
+
     /**
      * Constructs an {@code Date}.
      *
@@ -52,5 +53,14 @@ public class EndDate implements End<Date> {
 
     public Date get() {
         return date.get();
+    }
+
+    @Override
+    public String toString() {
+        if (date.isPresent()) {
+            return date.get().toString();
+        } else {
+            return "the end of time";
+        }
     }
 }
