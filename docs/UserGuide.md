@@ -3,14 +3,15 @@ layout: page
 title: User Guide
 ---
 
-ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done faster than traditional GUI apps.
+ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information, 
+optimized for use via a Command Line Interface (CLI)** while still having the benefits of a 
+Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done 
+faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
-  
+* 
 --------------------------------------------------------------------------------------------------------------------
-
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -18,7 +19,8 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
         - If you are using Windows, open up command prompt and type `java -version` and enter.
         - If you are using Mac, open up terminal and type `java -version` and enter.
     2. If you do not have Java `11`:
-        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from [here](https://www.oracle.com/java/technologies/downloads/).
+        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from 
+       [here](https://www.oracle.com/java/technologies/downloads/).
         - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version 
        from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
@@ -66,7 +68,6 @@ Here are some of the symbols to take note of when going through this user guide:
 * Items with `…` after them can either be omitted or used one or more times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-  
 :warning: **Note:**
 To get started with ExecutivePro, the HR manager will need to run the application using 
 their terminal or command prompt. Follow the steps below:

@@ -21,14 +21,14 @@ Given below are my contributions to the project.
 #### Enhancements Implemented
 * **New Features**
     * Implemented `batchadd` feature.
-        * Created a `BatchAddCommand` class to handle the logic 
+        * Created a `BatchAddCommand` class to handle the logic
           and `BatchAddCommandParser` class to handle the parsing of the user input.
         * Use Case: User can add multiple employees at once if they have the data in the form of a `.csv` file.
         * Why: Users will have to manually input each employee using an add command without this command. Hence, with 
-          this command, users get to transfer their current database into our database, 
+          this command, users get to transfer their current database into our database,
           allowing for a seamless transition.
-        * Constraints: This implementation was rather difficult as it was rather different from all other commands 
-          which were implemented before. Moreover, having to read from an external file, 
+        * Constraints: This implementation was rather difficult as it was rather different from all other commands
+          which were implemented before. Moreover, having to read from an external file,
           especially when `.csv` file is involved, making it difficult to test.
       
   * Implemented `batchexport` feature.
@@ -38,7 +38,6 @@ Given below are my contributions to the project.
       * Why: Users get to export the database into a file in order to print out the current records for employees.
       * Constraints: This implementation was difficult because I had to ensure that the formats remain the same
         and is not affected by external files.
-
     * Wrote test cases for `BatchAddCommand` and `BatchExportCommand`.
 
 
@@ -119,7 +118,7 @@ Given below are my contributions to the project.
 
 **Contributions beyond the project team :**
 - Reported numerous bugs for team [_CS2103T-F11-3(Vaccination Management System)_](https://github.com/AY2223S2-CS2103-F11-3/tp)  
-  Some examples are: [#296](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/296), 
-  [#300](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/300),
-  [#307](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/307)
+  Some examples are: [#296](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/296),
+[#300](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/300), 
+[#307](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/307)
 
