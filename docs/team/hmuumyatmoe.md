@@ -38,23 +38,23 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed project documentation (UG & DG)
-        * Checked and updated UG to match with actual product [\#276]()
-        * Checked and standardise format of UG & DG [\#85]() [\#86]()
-    * Update site-wide settings [#52]()
+        * Checked and updated UG to match with actual product [\#276](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/276)
+        * Checked and standardise format of UG & DG [\#85](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/85) [\#86](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/86)
+    * Update site-wide settings [#52](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/52)
 
 
 * **Documentation**:
     * User Guide (UG):
         * Drafted out documentation for the features `tag_supplier`, `edit_supplier`, `edit_task`, `delete` and `find`
-        * Updated actual UG documentation for the features `add_supplier` and `edit_supplier` [\#54]()
-        * Added UG documentation for the features `sort_tasks` and `sort_orders` [\#183](), [\#193]()
-        * Checked that UG matches with the actual product and updated UG accordingly [\#276]()
+        * Updated actual UG documentation for the features `add_task` and `edit_task` [\#54](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/54)
+        * Added UG documentation for the features `sort_tasks` and `sort_orders` [\#183](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/183), [\#193](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/193)
+        * Checked that UG matches with the actual product and updated UG accordingly [\#276](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/276)
     * Developer Guide:
-        * Updated Glossary to include definitions of meaniningful words and phrases [\#70]()
-        * Updated Product Scope (Target User Profile & Value Proposition) and Acknowledgements [\#57]()
-        * Added user stories [\#57]() [\#152]()
-        * Added UML Class Diagram and updated documentation for Storage [\#152]()
-        * Added documentation and activity diagram for Edit feature [\#173]()
+        * Updated Glossary to include definitions of meaniningful words and phrases [\#70](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/70)
+        * Updated Product Scope (Target User Profile & Value Proposition) and Acknowledgements [\#57](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/57)
+        * Added user stories [\#57](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/57), [\#152](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/152)
+        * Added UML Class Diagram and updated documentation for Storage [\#152](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/152)
+        * Added documentation and activity diagram for Edit feature [\#173](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/173)
 
 
 * **Community**:
