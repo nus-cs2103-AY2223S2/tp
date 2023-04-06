@@ -4,7 +4,9 @@ title: Darius Ng's Project Portfolio Page
 ---
 ### Project: FitBook
 
-FitBook - to be added later
+FitBook is a desktop tracking book application used for tracking the progress and information
+for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java. <br>
 Given below are my contributions to the project.
 
 * **New Feature**: Added *Weight* class to client and enhanced **Add** and **Edit** Command.
@@ -77,6 +79,7 @@ Given below are my contributions to the project.
   * Managed and created labels to organise issues and pull requests.
   * Authored 38 issues, including User Stories.
   * Reviewed 11 pull requests to ensure quality and consistency across the code base.
+  * Refactored entire code-base to suit FitBook.
   * Handled miscellaneous administrative tasks including:
     * Setting up project website.
     * Enabling assertions in `build.gradle`.
@@ -93,14 +96,3 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
