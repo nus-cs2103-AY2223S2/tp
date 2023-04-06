@@ -27,9 +27,6 @@ public class ContactDisplay extends UiPart<Region> {
 
     private Logic logic;
 
-    // To toggle between displaying Doctor and Patient Info
-    private EnlargedInfoCardDisplayController infoCardDisplayController;
-
     // Independent Ui parts residing in this Ui container
     private EnlargedDoctorInfoCard enlargedDoctorInfoCard;
     private EnlargedPatientInfoCard enlargedPatientInfoCard;
@@ -55,7 +52,6 @@ public class ContactDisplay extends UiPart<Region> {
     public ContactDisplay(Logic logic) {
         super(FXML);
         this.logic = logic;
-        this.infoCardDisplayController = new EnlargedInfoCardDisplayController(this);
         fillInnerParts();
     }
 
@@ -145,31 +141,5 @@ public class ContactDisplay extends UiPart<Region> {
         enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatientOptional);
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedPatientInfoCard.getRoot());
-    }
-
-    /**
-     * Updates the enlarged info card placeholder to show the
-     * appropriate enlarged information.
-     *
-     * This information is either that of a doctor or a patient.
-     */
-    public void updateEnlargedInfoCard() {
-        if (infoCardDisplayController.shouldDisplayDoctorInfoCard()
-                == infoCardDisplayController.shouldDisplayPatientInfoCard()) {
-            logger.severe("shouldDisplayDoctor and shouldDisplayPatient"
-                    + "in EnlargedInfoCardDisplayController should never be equal!");
-            return;
-        }
-
-        // If app reaches here, then command should contain some selection
-        enlargedPersonInfoCardPlaceholder.getChildren().clear();
-        if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
-            enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
-        } else if (infoCardDisplayController.shouldDisplayPatientInfoCard()) {
-            enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedPatientInfoCard.getRoot());
-        } else {
-            logger.severe("shouldDisplayDoctor and shouldDisplayPatient"
-                    + "in EnlargedInfoCardDisplayController should never be equal!");
-        }
     }
 }

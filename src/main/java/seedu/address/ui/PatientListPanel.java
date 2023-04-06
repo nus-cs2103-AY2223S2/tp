@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -11,8 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Logic;
 import seedu.address.model.person.patient.Patient;
 
 /**
@@ -25,8 +22,6 @@ public class PatientListPanel extends UiPart<Region> {
     @FXML
     private ListView<Patient> patientListView;
 
-    private Patient selectedPatient;
-
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
@@ -36,16 +31,6 @@ public class PatientListPanel extends UiPart<Region> {
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell(parent));
     }
-
-    /**
-     * Sets the list of {@code Patient} objects to be shown.
-     *
-     * @param patientList list of {@code Patient} objects to be shown.
-     */
-    public void setPatients(ObservableList<Patient> patientList) {
-        patientListView.setItems(patientList);
-    }
-
 
     /**
      * Selects the {@code PatientListViewCell} of the {@code Patient} supplied.
