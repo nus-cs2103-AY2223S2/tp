@@ -37,6 +37,7 @@ public class Person {
     private Set<Variant> variants = new HashSet<>();
 
     public Person() {}
+
     /**
      * Every field must be present and not null.
      */
@@ -127,7 +128,7 @@ public class Person {
      * @return A String[] representing the fields of this Person formatted as a CSV string
      */
     public String[] toCsvString() {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         result.add(this.name.toString());
         result.add(this.age.toString());
         result.add(this.date.toString());
