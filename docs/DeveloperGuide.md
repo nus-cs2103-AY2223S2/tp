@@ -519,3 +519,22 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Planned Enhancements
+
+1. 'h view' command for viewing hospital hotline
+
+   1.  Currently the only way for the user to view the hospital detail is by clicking on the hospital tab using a mouse.
+       We recognize that we have overlooked the need for a keyboard-only command to view hospital details, and we will
+       make sure to include a h view command as an essential feature in our upcoming implementation.
+   
+2. Command to switch from patient records to drug inventory or hospital hotlines and vice versa.
+
+   1.  We considered this as a good-to-have feature because we already have a `p view` and `d view` command for user 
+       to look at patient and drug record respectively, so user still able to view patient and drug record without 
+       having a mouse.
+
+3. Allow more than one patient to have same name
+
+   1.  Currently our system don't allow patient to have the same name. In future implementation we might consider 
+       to allow patient to have duplicate name and identify them using NRIC or FIN.
