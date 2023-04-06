@@ -21,7 +21,7 @@ class NusModTest {
     @Test
     public void isValidModule() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> NusMod.isModuleCodeValid(null));
+        assertFalse(NusMod.isModuleCodeValid(null));
 
         // valid module code
         assertTrue(NusMod.isModuleCodeValid("CHC5342"));
