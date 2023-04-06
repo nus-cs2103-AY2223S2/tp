@@ -82,7 +82,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
         pieChartData.clear();
         for (int i = 0; i < drugList.size(); i++) {
             Drug drug = drugList.get(i);
-            if (drug.getStorageCount().getCount()!= 0){
+            if (drug.getStorageCount().getCount() != 0) {
                 PieChart.Data newData = new PieChart.Data(drug.getTradeName().toString(),
                         drug.getStorageCount().getCount());
                 pieChartData.add(newData);
