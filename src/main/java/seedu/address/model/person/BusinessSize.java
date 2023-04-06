@@ -8,7 +8,9 @@ public class BusinessSize implements Comparable<BusinessSize> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Potential Sale Value can take any number greater than or equal to 0, and it should not be blank";
+            "Potential Sale Value can take any number greater than or equal to 0 and "
+                    + "less than or equal to 9223372036854775807, and it should not be blank.\n"
+                    + " It should be a whole number.";
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;
@@ -26,8 +28,17 @@ public class BusinessSize implements Comparable<BusinessSize> {
         return Long.parseLong(this.value);
     }
 
+    /**
+     * Checks whether the Buiness Size given is valid.
+     * @return boolean
+     */
     public static boolean isValidBusinessSize(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            return test.matches(VALIDATION_REGEX) && Long.parseLong(test) >= 0
+                    && Long.parseLong(test) <= Long.MAX_VALUE;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
