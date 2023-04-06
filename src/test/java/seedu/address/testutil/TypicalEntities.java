@@ -9,17 +9,20 @@ import java.util.List;
 
 import seedu.address.model.ReadOnlyReroll;
 import seedu.address.model.Reroll;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 
 /**
  * A utility class containing a list of {@code Entity} objects to be used in tests.
  */
 public class TypicalEntities {
 
-    public static final Entity LEEROY = new EntityBuilder().withName("Leeroy Jenkins").buildChar();
-    public static final Entity SPOON = new EntityBuilder().withName("Large Spoon").buildItem();
+    public static final Character LEEROY = new EntityBuilder().withName("Leeroy Jenkins").buildChar();
+    public static final Item SPOON = new EntityBuilder().withName("Large Spoon").buildItem();
     public static final Entity CARL = new EntityBuilder().withName("Carl Sagan").buildChar();
-    public static final Entity RAT = new EntityBuilder().withName("The Rat").buildMob();
+    public static final Mob RAT = new EntityBuilder().withName("The Rat").buildMob();
     public static final Entity IMPSOSTER = new EntityBuilder().withName("Impsoster").buildMob();
     public static final Entity RIZZ = new EntityBuilder().withName("Rizz").buildItem();
 

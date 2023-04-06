@@ -20,6 +20,11 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Character}
  */
 public class JsonAdaptedCharacter {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Character's %s field is missing!";
+    public static final String INVALID_LEVEL = "Level cannot be negative!";
+    public static final String INVALID_XP = "XP cannot be negative!";
+
     private final String name;
     private final JsonAdaptedStats stats;
     private final JsonAdaptedInventory inventory;
@@ -65,15 +70,33 @@ public class JsonAdaptedCharacter {
      * @throws IllegalValueException if there were any data constraints violated in the adapted character.
      */
     public Character toModelType() throws IllegalValueException {
-        // dont care about error...
         Stats stat = stats.toModalType();
         Inventory inventory = this.inventory.toModelType();
+
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        final Name modelName = new Name(name);
+
+        if (level < 0) {
+            throw new IllegalValueException(INVALID_LEVEL);
+        }
+
+        if (xp < 0) {
+            throw new IllegalValueException(INVALID_XP);
+        }
+
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Character(new Name(name), stat, level, xp, inventory, modelTags);
+        return new Character(modelName, stat, level, xp, inventory, modelTags);
     }
 
 }
