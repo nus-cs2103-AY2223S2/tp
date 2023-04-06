@@ -10,51 +10,55 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to add tasks to a task list and edit existing tasks.
+* Added the ability to add tasks to a task list and list tasks.
     * What it does:
       * Allows users to add tasks with task description, deadline of task and completion status (DONE / NOT DONE) of task.
-      * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
-    * Justification: This feature improves the product significantly because home business owners has a lot of tasks (such as ordering supplies, making deliveries) to deal with
+    * Justification: This feature is made to cater to the needs of home business owners as they usually have a lot of tasks (such as ordering supplies, making deliveries) to deal with
       and the app provides a convenient way to record down and get an overview of their tasks.
-    * Highlights: -
     * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
+
+
+* Added the ability to add tasks to a task list, edit existing tasks and list tasks.
+  * What it does:
+    * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
+    * Justification: This feature improves the product because users may sometimes key in the wrong info 
+    and this feature allows users to modify wrong task details easily.
+    * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
+
 
 * **New Feature**: Added the ability to sort orders and tasks according to a given criteria.
   * What it does:
-    * Allows users to sort tasks according to a given criteria (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline).
-    * Allows users to sort orders according to a given criteria (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline).
-  * Justification: This feature improves the product significantly because home business owners has a lot of orders and tasks and may wish to quickly find out
-    which orders or tasks are more urgent. This feature provides a convenient way for the home business owners to find out which orders or tasks are more urgent.
-  * Highlights: -
-
+    * Allows users to sort tasks or orders according to a given criteria.
+  * Justification: This feature improves the product significantly because home business owners has a lot of orders and tasks
+    and may wish to quickly find out which orders or tasks are more urgent at one glance. 
+    This feature provides a convenient way for the home business owners to do so.
+  * Highlights: Users are able to sort the tasks or orders based on various criterias (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=hmuumyatmoe&breakdown=true)
 
 * **Project management**:
-    * Managed project documentation
+    * Managed project documentation (UG & DG)
+      * Checked and updated UG to match with actual product [\#276]()
+      * Checked and standardise format of UG & DG [\#85]() [\#86]()
     * Update site-wide settings [#52]()
 
-* **Enhancements to existing features**
-  * To be updated
-  * *Updated the GUI color scheme (Pull requests [\#33](), [\#34]())*
-  * *Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())*
 
 * **Documentation**:
     * User Guide (UG):
         * Drafted out documentation for the features `tag_supplier`, `edit_supplier`, `edit_task`, `delete` and `find`
         * Updated actual UG documentation for the features `add_supplier` and `edit_supplier` [\#54]()
+        * Added UG documentation for the features `sort_tasks` and `sort_orders` [\#183](), [\#193]()
+        * Checked that UG matches with the actual product and updated UG accordingly [\#276]()
     * Developer Guide:
-        * Updated Product Scope (Target User Profile & Value Proposition) and Acknowledgemens [\#57]()
-        * Added user stories [\#57]()
+      * Updated Glossary to include definitions of meaniningful words and phrases [\#70]()
+      * Updated Product Scope (Target User Profile & Value Proposition) and Acknowledgements [\#57]()
+      * Added user stories [\#57]() [\#152]()
+      * Added UML Class Diagram and updated documentation for Storage [\#152]()
+      * Added documentation and activity diagram for Edit feature [\#173]()
+
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#47]()
-    * To be updated
-    * *Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())*
-    * *Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())*
-    * *Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())*
+    * PRs reviewed (with non-trivial review comments): [\#47](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/47), [\#91](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/91) [\#154](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/154) [\#157](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/157)
 
 * **Tools**:
     * Java 11, JavaFx, Jekyll
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new GitHub plugin (CircleCI) to the team repo
