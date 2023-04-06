@@ -9,7 +9,7 @@ public class Summary {
     public static final String TITLE = "Statistics:";
     public static final String MESSAGE_NO_DATA = TITLE + "\nNo data available";
     public static final String STATISTICS_DESCRIPTION = "\n %1$s: %2$s";
-    private StringBuilder summary = new StringBuilder(TITLE);
+    private final StringBuilder summary = new StringBuilder(TITLE);
 
     /**
      * Adds a description of a statistic calculated using an aggregate function.
