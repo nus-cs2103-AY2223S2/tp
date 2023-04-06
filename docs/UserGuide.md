@@ -5,7 +5,7 @@ title: User Guide
 
 # 1. Introduction
 
-Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
+Welcome to PowerCards, a **lightweight flashcard application** that helps you streamline your learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
 As a university student, you can capitalise on our **powerful card management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 
 This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
@@ -60,7 +60,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 # 2. Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
+1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install from this [link](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Remember to download the correct version for your Operating System! (e.g. Window or Mac) 
 
 2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
 
@@ -87,10 +87,10 @@ This section explains some common components you may find in a command.
 |---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Parameter**             | `QUESTION`, `ANSWER` | Parameters are placeholders where you have to insert your input.<br/> <br/>Suppose `add q\QUESTION a\ANSWER` is a valid command to add a card. You can simply replace `QUESTION` and `ANSWER` with the question and answer of your choice.                                                                               |  
 | **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
-| **Optional Component**    | `[t\TAG]`            | Optional components can be omitted in the certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
+| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
 | **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
 | **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                            |
-| **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as easy only.                                                                                                                                                |
+| **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as **easy** only.                                                                                                                                            |
 
 <div markdown="block" class="alert alert-info">
 
@@ -121,7 +121,7 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ## 3.3. Main Mode - Before Selecting a Deck
 
-### 3.3.1. Adding a new Deck : `addDeck`
+### 3.3.1. Adding a Deck : `addDeck`
 
 Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
 
@@ -158,10 +158,38 @@ Format: `deleteDeck INDEX`
 
 Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
-### 3.3.4. Selecting a Deck : `selectDeck`
+### 3.3.4. Finding a Deck : `findDecks`
 
-Once you have created your deck, you can access the list of cards inside it with this command. 
+If you want to find a specific deck among the many decks you have created, use this command to filter the decks based on their deck names!
+
+Format: `findDecks KEYWORD...`
+- You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
+- At least one KEYWORD must be given.
+- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite "program" being a partial word of "programming".
+- Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+
+Example:
+- `findDecks CS2103T software` filters decks whose names match keywords "CS2103T" and "software".
+
+### 3.3.5. Showing all Decks : `showDecks`
+
+After you filtered the decks using `findDecks`, you can see all the existing decks again using this command.
+
+Format: `showDecks`
+
+### 3.3.6. Selecting a Deck : `selectDeck`
+
+Once a deck has been created, you can access the list of cards inside it with this command. 
 Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** <br>
+
+- A deck can be selected and accessed anytime as long as you are in the Main Mode.
+- This means you can switch to different deck while already selecting another deck!
+
+</div>
 
 Format: `selectDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
@@ -170,14 +198,14 @@ Examples:
 * `selectDeck 2` will select the deck at index 2. 
   * The cards in this deck (if exist) will be displayed on the right panel. 
 
-### 3.3.5. Clearing the data : `clear`
+### 3.3.7. Clearing the data : `clear`
 
 Perhaps you want to start over and create new sets of decks and cards. 
 This command clears all the existing decks and their associated cards from the application database. 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 This command is irreversible! You cannot retrieve your data after executing this command.
 
 </div>
@@ -206,7 +234,7 @@ Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:**<br>
 - A tag can only be of value Easy, Medium, or Hard (**case-insensitive**). 
 - Each card can have at most one tag.
 
@@ -252,15 +280,18 @@ Examples:
 
 This command allows you to find specific flashcards you want to interact with based on the keyword(s) you enter.
 
-It shows all the cards in the selected deck whose **questions** contain any of the given keyword(s).
+It shows all the cards in the selected deck whose **questions** contain **any** of the given keyword(s).
 
 You can interact with the filtered cards using their new indices, through commands such as `editCard` and `deleteCard`.
 
 Format: `findCards KEYWORD...`
 - You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findCards partia` will filter the cards whose questions contain the incomplete word "partia". Cards whose questions contain the complete word "partial" will not appear.
+- This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
+
+Example:
+- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" **or** "recursion".
 
 ### 3.4.5. Showing all Cards : `showCards`
 
@@ -282,13 +313,14 @@ Format: `unselectDeck`
 
 ### 3.5.1. Setting the Limit of Cards per Review: `setLimit`
 
-Suppose you have a really long deck of cards but you only want to test yourself on 20 cards this session, use this function to set an upper limit on the number of cards per review.
+Suppose you have a really long deck of cards, but you only want to test yourself on 20 cards this session. 
+Use this function to set an upper limit on the number of cards per review.
 While a limit is set, the review deck will be truncated to the card limit. 
 
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
 Format: `setLimit LIMIT_NUM` or `setLimit none`
-- LIMIT_NUM is a non-zero positive integer
+- LIMIT_NUM must be an integer between 1 and 2147483647 inclusive. 
 
 Examples:
 * `setLimit 30`
@@ -322,8 +354,8 @@ Format: `review INDEX [-e] [-m] [-h]`
   - Omit any flags to test all cards in the deck
 
 Examples:
-* `review 5 -e -h`
-* `review 2`
+* `review 5 -e -h` lets you review all the cards tagged as Easy or Hard in the 5th deck.
+* `review 2` lets you review all the cards in the 2nd deck.
 
 ### 3.6.2. Ending the Review: `endReview`
 
@@ -339,6 +371,7 @@ The diagram above shows the keystrokes you will use to interact with the cards i
 Notice that the keys are all close to the enter key so that you can breeze through decks of cards with ease!
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
+- You must press the enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card. 
 
 ### 3.6.4. Flipping the Card: `p`
 
@@ -409,7 +442,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.7.8. Archiving data files `[coming in v2.0]`
+### 3.7.5. Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -438,27 +471,28 @@ _Details coming soon ..._
 
 ## 5.1. Main Mode - before selecting a Deck
 
-| Action         | Format, Examples                                             |
-|----------------|--------------------------------------------------------------|
-| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`               |
-| Add Deck       | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`           |
-| Edit Deck      | `editDeck INDEX DECK_NAME` <br /> e.g., `editDeck 3 Physics` |
-| Delete Deck    | `deleteDeck INDEX`                                           |
-| Find Decks     | `findDecks KEYWORDS...`                                      |
-| Show All Decks | `showDecks`                                                  |
-| Start Review   | `review INDEX`                                               |
-| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`              |
-| Clear          | `clear`                                                      |
-| Help           | `help`                                                       |
-| Exit           | `exit`                                                       |
+| Action         | Format, Examples                                                     |
+|----------------|----------------------------------------------------------------------|
+| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                       |
+| Add Deck       | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`                   |
+| Edit Deck      | `editDeck INDEX DECK_NAME` <br /> e.g., `editDeck 3 Physics`         |
+| Delete Deck    | `deleteDeck INDEX`                                                   |
+| Find Decks     | `findDecks KEYWORDS...` <br /> e.g., `findDecks programming history` |
+| Show All Decks | `showDecks`                                                          |
+| Start Review   | `review INDEX`                                                       |
+| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30` or `setLimit none`   |
+| Clear          | `clear`                                                              |
+| Help           | `help`                                                               |
+| Exit           | `exit`                                                               |
 
 ## 5.2. Main Mode - after selecting a Deck
 
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                                                                                                   |
 | Unselect Deck  | `unselectDeck`                                                                                                                                   |
 | Add Card       | `addCard q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
-| Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Caarbon? a\C t\Hard`                     |
+| Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Carbon? a\C t\Hard`                      |
 | Delete Card    | `deleteCard INDEX`                                                                                                                               |
 | Find Cards     | `findCards KEYWORDS...`                                                                                                                          |
 | Show All Cards | `showCards`                                                                                                                                      |
@@ -473,10 +507,10 @@ _Details coming soon ..._
 | Action        | Format, Examples |
 |---------------|------------------|
 | End Review    | `endReview`      |
-| Flip          | `p`              |
+| Flip          | `p` or `P`       |
 | Previous Card | `[`              |
 | Next Card     | `]`              |
-| Tag Easy      | `l`              |
+| Tag Easy      | `l` or `L`       |
 | Tag Medium    | `;`              |
 | Tag Hard      | `'`              |
 | Help          | `help`           |
