@@ -83,10 +83,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         //set person in meeting must happen first
-        HashMap<String,String> indexParticipants = model.indexAttendees(personToEdit, editedPerson);
-        personToEdit.tellMeetingNameChanged(editedPerson.getName(), indexParticipants,  model);
+        HashMap<String, String> indexParticipants = model.indexAttendees(personToEdit, editedPerson);
+        personToEdit.tellMeetingNameChanged(editedPerson.getName(), indexParticipants, model);
         model.setPerson(personToEdit, editedPerson);
-        personToEdit.confirmNameChange(editedPerson.getName(), indexParticipants,  model);
+        personToEdit.confirmNameChange(editedPerson.getName(), indexParticipants, model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

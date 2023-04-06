@@ -2,17 +2,17 @@ package seedu.quickcontacts.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.quickcontacts.commons.util.CollectionUtil.requireAllNonNull;
-import seedu.quickcontacts.model.person.Person;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.HashMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.quickcontacts.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.quickcontacts.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.quickcontacts.model.person.Person;
 
 /**
  * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
@@ -64,8 +64,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         HashMap<String, String> hm = new HashMap<>();
         for (int i = 0; i < internalList.size(); i++) {
             Meeting meeting = internalList.get(i);
-            if(meeting.hasAttendee(personToEdit)) {
-                hm.put(Integer.toString(i+1), meeting.formatAttendeesSubstituted(personToEdit, target));
+            if (meeting.hasAttendee(personToEdit)) {
+                hm.put(Integer.toString(i + 1), meeting.formatAttendeesSubstituted(personToEdit, target));
             }
         }
         return hm;

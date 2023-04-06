@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
@@ -69,6 +70,11 @@ public class AddMeetingCommandTest {
     private static class ModelStub implements Model {
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public HashMap<String, String> indexAttendees(Person person, Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
