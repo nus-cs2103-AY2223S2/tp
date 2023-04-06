@@ -2,57 +2,54 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <ListView fx:id="patientListView" HBox.hgrow="ALWAYS"/>
-    <ScrollPane fx:id="patientDetailDisplay" prefWidth="300" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
+    <ScrollPane fx:id="patientDetailDisplay" prefWidth="300" minWidth="300" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
                 xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <padding>
             <Insets top="5" right="5" bottom="5" left="15"/>
         </padding>
-        <VBox fx:id="patientDetailContainer" maxWidth="280" prefWidth="265" prefHeight="450" >
+        <VBox fx:id="patientDetailContainer" maxWidth="280" prefWidth="250" prefHeight="450" >
             <VBox>
-                <Label fx:id="selectedName" maxHeight="Infinity" text="Please select a patient"
-                       styleClass="cell_big_label"/>
+                <Label text="Please select a patient" fx:id="selectedName"  minHeight="-Infinity" styleClass="cell_big_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="phoneField" styleClass="field_label"/>
-                <Label fx:id="selectedPhone" maxHeight="Infinity" styleClass="cell_small_label"/>
+                <Label fx:id="selectedPhone" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="addressField" styleClass="field_label"/>
-                <Label fx:id="selectedAddress" maxHeight="Infinity" styleClass="cell_small_label"/>
+                <Label fx:id="selectedAddress" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="emailField" styleClass="field_label"/>
-                <Label fx:id="selectedEmail" maxHeight="Infinity" styleClass="cell_small_label"/>
+                <Label fx:id="selectedEmail" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="birthDateField" styleClass="field_label"/>
-                <Label fx:id="selectedBirthDate" maxHeight="Infinity" styleClass="cell_small_label"/>
+                <Label fx:id="selectedBirthDate" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="genderField" styleClass="field_label"/>
-                <Label fx:id="selectedGender" styleClass="cell_small_label"/>
+                <Label fx:id="selectedGender" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="icField" styleClass="field_label"/>
-                <Label fx:id="selectedIc" styleClass="cell_small_label"/>
+                <Label fx:id="selectedIc" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="drugAllergyField" styleClass="field_label"/>
-                <Label fx:id="selectedDrugAllergy" styleClass="cell_small_label"/>
+                <Label fx:id="selectedDrugAllergy" minHeight="-Infinity" styleClass="cell_small_label"/>
             </VBox>
             <VBox>
                 <Label fx:id="emergencyContactField" styleClass="field_label"/>
-                <Label fx:id="selectedEmergencyContact" styleClass="cell_small_label"/>
+                <Label fx:id="selectedEmergencyContact" minHeight="-Infinity"  styleClass="cell_small_label"/>
             </VBox>
         </VBox>
     </ScrollPane>
