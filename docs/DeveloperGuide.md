@@ -106,6 +106,10 @@ To display its contents, `DetailedView` uses an observer pattern to observe for 
 
 ![Class diagram of DetailedView](images/UiDetailedViewClassDiagram.png)
 
+![Object diagram of DetailedView](images/UiDetailedViewPatientObjectDiagram.png)
+
+![Activity diagram of DetailedView](images/UiDetailedViewRefreshActivityDiagram.png)
+
 ##### `ListViewPanel`
 
 Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. Below shows the class diagram of `ListViewPanel`.
@@ -115,6 +119,8 @@ Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `
 ![Object diagram of Vaccination ListViewPanel](images/UiListViewPanelVaxObjectDiagram.png)
 
 ![Object diagram of Appointment ListViewPanel](images/UiListViewPanelApptObjectDiagram.png)
+
+![Activity diagram of ListViewPanel](images/UiListViewPanelRefreshActivityDiagram.png)
 
 ##### `ResultDisplay`
 
