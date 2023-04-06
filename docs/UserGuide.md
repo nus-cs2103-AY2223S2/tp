@@ -218,38 +218,37 @@ Le Tracker organises content using a **hierarchical structure** (Modules -> Lect
 
 When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
 
-To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
+To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your **current working context** instead. This context will allow the navigation system to **inject** the required module and lecture parameters into commands for you.
 
-The user can specify their current working context by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
+The user can specify their **current working context** by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
 
 ![RootContext](images/RootContext.png)
 Navigating **relatively** from the **root context**:
-
-1. Navigate to the module context from the root context.\
-   `nav CS2040S`
-2. Navigate to the lecture context from the module context.\
-   `nav Week 1`
+1. Navigate to the module context from the root context.
+- `nav CS2040S`
+2. Navigate to the lecture context from the module context.
+- `nav Week 1`
 
 _OR_
 
-![RootContext](images/RootContext.png)
-![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-
 Navigating **directly** from any **context**:
-
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
-
-- `nav /mod CS2040S /lec Week 1
+- `nav /mod CS2040S /lec Week 1`
 
 After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-1. Add Video 2 to the lecture Week 1 of module CS2040S.
-   - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-2. List the contents of lecture Week 1 of module CS2040S.
-   `list /mod CS2040S /lec Week 1` -> `list`
+1. ![LectureContext](images/LectureContext.png)
+Add Video 2 to the lecture Week 1 of module CS2040S.
+- `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+2. ![LectureContext](images/LectureContext.png)
+List the contents of lecture Week 1 of module CS2040S.
+- `list /mod CS2040S /lec Week 1` -> `list`
+3. ![LectureContext](images/LectureContext.png)
+Add Video 1 to lecture Week 1 of module CS2040S.
+- `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ---
 
@@ -257,37 +256,46 @@ Here are some **examples** of how the navigation system injects the necessary co
 
 ### Nav
 
-**Navigate to the Root Context**
+#### Navigate to the Root Context
 
-> Sets the current context to the root context
+> `nav`
 
-Format: `nav`
+Navigate to the root context from any context.
 
-**Navigate Relatively**
+#### Navigate From Root Context to Module Context
 
-> Navigates relative to the current context to a module or lecture context
+> `nav {module_code}`
 
-Format: `nav {module_code / lecture_name}`
+Navigates from the root context to a module context.
 
-- `module_code` has to belong to an existing module that is a child of the current context
-- `lecture_name` has to belong to an existing lecture that is a child of the current context
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
 
-**Navigate Directly**
+#### Navigate From Module Context to Lecture Context
 
-> Navigates directly to the specified module or lecture context
+> `nav {lecture_name}`
 
-Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+Navigates from a module context to a lecture context.
 
-- `module_code` has to belong to an existing module
-- `lecture_name` has to belong to an existing lecture
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+  - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
 
-**Navigate Backwards**
+#### Navigate Directly
 
-> Navigates to the parent context of the current context
+> `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
-Format: `navb`
+Navigates directly to the specified module or lecture context
 
-## List
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+
+#### Navigate Backwards
+
+> `navb`
+
+Navigates backwards to the a parent context unless already at root context
 
 ### List Modules or Lectures or Videos
 
