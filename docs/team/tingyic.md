@@ -3,12 +3,15 @@ layout: page
 title: Chew Ting Yi's Project Portfolio Page
 ---
 
-### Project: contact nUS
+### Project: Contact nUS
 
-contact nUS is a desktop module tracker application used for students to keep track of their NUS modular components.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+Contact nUS is a desktop **module tracker application** used for **students** to keep track of their **NUS modular
+components.** The user interacts with it using a **Command Line Interface (CLI)**, while still having the benefits of a
+**Graphical User Interface (GUI)** created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tingyic&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=tingyic&tabRepo=AY2223S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **New Feature**: Coming soon!
   * What it does: Coming soon!
@@ -18,22 +21,26 @@ Given below are my contributions to the project.
 
 * **New Feature**: Coming soon
 
-* **Code contributed**: [RepoSense link]()
-
 * **Project management**:
   * Coming soon!
 
 * **Enhancements to existing features**:
-  * Coming soon!
+  * Refactored `AddressBook` and its equivalents to either `Contact nUS` or `ModuleTracker` and their respective
+equivalents.
 
 * **Documentation**:
   * User Guide:
-    * Coming soon!
+    * Created a table-of-content.
+    * Added a Valid and Invalid Data section.
+    * Added more FAQs.
+    * Added documentation for all the commands of Contact nUS, with appropriate examples.
+    * Added glossary and command summary.
   * Developer Guide:
-    * Coming soon!
+    * Adapted the UML diagrams of [AddressBook3]() to fit Contact nUS.
+    * Added MSS, Glossary and a few user stories.
 
 * **Community**:
-  * Coming soon!
+  * Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
 
 * **Tools**:
   * Coming soon!
