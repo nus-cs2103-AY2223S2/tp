@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -198,20 +199,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        friendlyLink.addPair(elderlyNric, volunteerNric);
+    public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
+        Pair pair = friendlyLink.addPair(elderlyNric, volunteerNric);
         refreshAllFilteredLists();
+        return pair;
     }
 
     @Override
     public void addPair(Pair pair) {
         friendlyLink.addPair(pair);
-        refreshAllFilteredLists();
-    }
-
-    @Override
-    public void deletePair(Pair target) {
-        friendlyLink.removePair(target);
         refreshAllFilteredLists();
     }
 
@@ -224,7 +220,7 @@ public class ModelManager implements Model {
     @Override
     public void setPair(Pair target, Pair editedPair) {
         requireAllNonNull(target, editedPair);
-        // TODO: implement friendlyLink.setPair(target, editedPair);
+        friendlyLink.setPair(target, editedPair);
     }
 
     //=========== Filtered Elderly List Accessors =============================================================
@@ -281,13 +277,13 @@ public class ModelManager implements Model {
     //=========== Others ==================================================================================
 
     @Override
-    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
-        return friendlyLink.checkIsSameRegion(elderlyNric, volunteerNric);
+    public boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        return friendlyLink.check(elderly, predicate);
     }
 
     @Override
-    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
-        return friendlyLink.checkHasSuitableAvailableDates(elderlyNric, volunteerNric);
+    public boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        return friendlyLink.check(volunteer, predicate);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -198,8 +199,9 @@ public interface Model {
      *
      * @param elderlyNric Nric of the elderly of the pair to add.
      * @param volunteerNric Nric of the volunteer of the pair to add.
+     * @return The added pair.
      */
-    void addPair(Nric elderlyNric, Nric volunteerNric);
+    Pair addPair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
@@ -208,14 +210,6 @@ public interface Model {
      * @return True if {@code pair} exists in FriendlyLink, false otherwise.
      */
     boolean hasPair(Pair pair);
-
-    /**
-     * Deletes the given pair.
-     * The pair must exist in FriendlyLink.
-     *
-     * @param target Pair to delete.
-     */
-    void deletePair(Pair target);
 
     /**
      * Deletes the given pair.
@@ -292,23 +286,24 @@ public interface Model {
     void refreshAllFilteredLists();
 
     /**
-     * Checks whether regions of an elderly and a volunteer are the same.
-     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     * Checks if an elderly satisfies a predicate with their paired volunteers in FriendlyLink.
+     * The elderly must exist in FriendlyLink.
      *
-     * @param elderlyNric Nric of the elderly.
-     * @param volunteerNric Nric of the volunteer.
-     * @return True if both persons belong in the same region, false otherwise.
+     * @param elderly Elderly to check.
+     * @param predicate Function to check against the elderly and their paired volunteers.
+     * @return True if the elderly satisfies the predicate when checked against
+     *      their paired volunteers, false otherwise.
      */
-    boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric);
+    boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean> predicate);
 
     /**
-     * Checks whether there are suitable available dates between an elderly and a volunteer.
-     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     * Checks if a volunteer satisfies a predicate with their paired elderly in FriendlyLink.
+     * The volunteer must exist in FriendlyLink.
      *
-     * @param elderlyNric Nric of the elderly.
-     * @param volunteerNric Nric of the volunteer.
-     * @return True if both persons share common available dates or at least one person
-     *     has no specified available dates, false otherwise.
+     * @param volunteer Volunteer to check.
+     * @param predicate Function to check against the volunteer and their paired elderly.
+     * @return True if the volunteer satisfies the predicate when checked against
+     *      their paired elderly, false otherwise.
      */
-    boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric);
+    boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate);
 }

@@ -49,6 +49,26 @@ public class Pair {
     }
 
     /**
+     * Checks if the elderly and volunteer of this pair belong in suitable regions for each other.
+     *
+     * @return True if the elderly and volunteer of this pair belongs in suitable regions for each other,
+     *      and false otherwise.
+     */
+    public boolean checkRegion() {
+        return elderly.isSuitableRegion(volunteer);
+    }
+
+    /**
+     * Checks if the elderly and volunteer of this pair have suitable available dates with each other.
+     *
+     * @return True if the elderly and volunteer of this pair have suitable available dates with each other,
+     *      and false otherwise.
+     */
+    public boolean checkAvailableDates() {
+        return elderly.hasSuitableAvailableDates(volunteer);
+    }
+
+    /**
      * Returns true if both pairs have the same elderly and volunteer.
      * This defines a stronger notion of equality between two pairs.
      */
