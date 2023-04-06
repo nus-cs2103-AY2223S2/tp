@@ -3,6 +3,7 @@ package seedu.address.logic.parser.navigation;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import java.util.Optional;
 
@@ -24,15 +25,19 @@ public class NavCommandParser implements Parser<NavCommand> {
 
     @Override
     public NavCommand parse(String args) throws ParseException {
+        // Ignore prefix root.
+        args = args.replaceAll(PREFIX_ROOT.toString(), "");
+
         // Navigate to root.
-        if (args.isEmpty()) {
+        if (args.isBlank()) {
             return new RootNavCommand();
         }
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOT, PREFIX_MODULE, PREFIX_LECTURE);
+
         Optional<ModuleCode> moduleCode;
         Optional<LectureName> lectureName;
+
         try {
             moduleCode = argMultimap.getValue(PREFIX_MODULE).map(ModuleCode::new);
             lectureName = argMultimap.getValue(PREFIX_LECTURE).map(LectureName::new);
@@ -42,15 +47,14 @@ public class NavCommandParser implements Parser<NavCommand> {
 
         String target = argMultimap.getPreamble();
 
-        boolean isModCodeOrLecNamePresent = (moduleCode.isPresent() || lectureName.isPresent());
-        boolean bothDirectAndRelativeParamsFound = !target.isEmpty() && isModCodeOrLecNamePresent;
+        boolean isDirect = (moduleCode.isPresent() || lectureName.isPresent());
+        boolean isRelative = !target.isEmpty();
 
-        if (bothDirectAndRelativeParamsFound) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavCommand.MESSAGE_USAGE));
+        if (isDirect && isRelative) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavCommand.MESSAGE_USAGE));
         }
 
-        return target.isEmpty() ? new DirectNavCommand(moduleCode, lectureName)
+        return isDirect ? new DirectNavCommand(moduleCode, lectureName)
                 : new RelativeNavCommand(target);
     }
 }

@@ -11,6 +11,8 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.navigation.DirectNavCommand;
 import seedu.address.logic.commands.navigation.NavCommand;
@@ -33,6 +35,11 @@ public class NavCommandParserTest {
     }
 
     @Test
+    public void parse_navRootWithRootPrefix_success() throws ParseException {
+        assertParseSuccess(parser, PREFIX_ROOT.toString(), new RootNavCommand());
+    }
+
+    @Test
     public void parse_navDirectToModLec_success() throws ParseException {
         Optional<ModuleCode> modOpt = Optional.of(modCode);
         Optional<LectureName> lecOpt = Optional.of(lecName);
@@ -49,8 +56,7 @@ public class NavCommandParserTest {
 
     @Test
     public void parse_bothRelativeAndDirectParamsPresent_throwsParseException() {
-        assertParseFailure(parser,
-                VALID_LECTURE_NAME_L1 + " " + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1,
+        assertParseFailure(parser, VALID_LECTURE_NAME_L1 + " " + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavCommand.MESSAGE_USAGE));
     }
 }
