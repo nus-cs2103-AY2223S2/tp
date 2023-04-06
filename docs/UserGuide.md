@@ -74,7 +74,7 @@ You can use the links in the Table of Contents to quickly navigate through this 
 
 * Keywords in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
   e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.<br>
-  **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so error message will not be shown even if there is a wrong input of keyword in the subsequent prefix.
+  **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so an error message will not be shown even if there is a wrong keyword in a subsequent prefix.
 
 * Fields in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -176,8 +176,6 @@ Examples:
   <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
   <br>
   </p>
-
-
 
 
 <div style="page-break-after: always;"></div>
