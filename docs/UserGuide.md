@@ -410,11 +410,12 @@ Here is a list of available commands and its details.
 
 ### 1. Viewing help : `help`
 
-Forgotten the commands? Open the help menu! <br>
-
-Equivalent to clicking Help > Help F1 via the GUI <br>
-`help`<br>
-<img src="images/UiHelpMenu.png"/>
+Forgotten the commands? Open the help menu!
+<br>
+`help`
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> Equivalent to clicking Help > Help F1 via the GUI.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
