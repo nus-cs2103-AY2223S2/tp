@@ -10,15 +10,16 @@ contacts list for an easier way to set up proper communication channels.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Add user contacts](#add-user-contacts-add)
-  * [Delete user contacts](#delete-user-contacts-delete)
-  * [Edit user contacts](#edit-user-contacts-edit)
-  * [Locating persons by keywords](#locating-persons-by-keywords-find)
-  * [Listing all contacts](#listing-all-contacts-list)
+  * [Add user contacts](#add-user-contacts--add)
+  * [Delete user contacts](#delete-user-contacts--delete)
+  * [Edit user contacts](#edit-user-contacts--edit)
+  * [Locating persons by keywords](#locating-persons-by-keywords--find)
+  * [Listing all contacts](#listing-all-contacts--list)
   * [Help command](#help-command-help)
-  * [Add an image for contacts](#add-an-image-for-contacts-add-image)
-  * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
-  * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
+  * [Add an image for contacts](#add-an-image-for-contacts--add-image)
+  * [Delete an image for contacts](#delete-an-image-for-contacts--delete-image)
+  * [Quick import admin contacts](#quick-import-for-admin-contacts--import)
+  * [Exit the program](#exit-the-program--exit)
 * [Command summary](#command-summary)
 
 ---
@@ -57,7 +58,8 @@ feature having its own specific `COMMAND_WORD` and set of `ARGUMENTS`.
 Format: `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
 
 * User is *required* to enter **name, status, phone number, email, address**
-* Note that when entering course under "status", course should be only one word, and should be in alphanumeric
+* The status field can be alphanumeric and can be used to display a contact's year and course of study
+* Note that when entering course under "status", course can be more than one word
 * Tags can be optional
 * If the account exists, user can add in related field of interests to share with others
 
@@ -232,12 +234,20 @@ Import administrative contacts for relevant faculties.
 Format: `import [faculty]`
 
 * Faculty acronyms (e.g. soc)
-* Only selected faculties will be available
+* Only selected faculties (soc and chs) are available
 
 Example:
 
-* `import soc` adds all important administrative contact for School of Computing
-* `import chs` adds all important administrative contact for College of Humanities and Sciences
+* `import soc` adds all important administrative contacts for School of Computing
+* `import chs` adds all important administrative contacts for College of Humanities and Sciences
+
+[Back to top](#top)
+
+### Exit the program: `exit`
+
+Closes the window and exits the program.
+
+Format: `exit`
 
 [Back to top](#top)
 
@@ -245,16 +255,17 @@ Example:
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                    |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                                                                                        |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**          | `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                         |
-| **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                              |
-| **List**         | `list`                                                                                                                                                                                                                              |
-| **Help**         | `help`                                                                                                                                                                                                                              |
-| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                   |                                                                                                                       |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                             |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                             |
+| **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                                  |
+| **List**         | `list`                                                                                                                                                                                                                                  |
+| **Help**         | `help`                                                                                                                                                                                                                                  |
+| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                    |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                       |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                                 |
+| **Exit**         | `exit`                                                                                                                                                                                                                                  |
 
 [Back to top](#top)
