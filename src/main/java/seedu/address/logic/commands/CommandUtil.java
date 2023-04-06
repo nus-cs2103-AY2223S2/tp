@@ -10,7 +10,6 @@ import seedu.address.model.Model;
  * Contains utility methods used for commands.
  */
 public class CommandUtil {
-public class CommandUtil {
 
     /**
      * Checks if the student name exists in the address book.

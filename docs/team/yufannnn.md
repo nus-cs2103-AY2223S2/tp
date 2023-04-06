@@ -57,7 +57,7 @@ Given below are my contributions to the project.
     * Created and assigned issues to team members on GitHub and kept track of their progress
     * Created labels and categorized issues on GitHub
     * Created and manages milestones on GitHub, changed their due dates, and closed them to wrap-up.
-    * Managed releases `v1.3` on GitHub ([Link to v1.3 release](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases/tag/v1.3.trial))
+    * Managed releases `v1.3.Trail` on GitHub ([Link to v1.3 release](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases/tag/v1.3.trial))
 * **Enhancements to existing features**:
 
     * Refactor the Person model to Student model and added relevant methods in logic model, storage and other class to fit the change: [#1](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/1)
