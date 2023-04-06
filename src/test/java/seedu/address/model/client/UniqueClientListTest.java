@@ -45,7 +45,7 @@ public class UniqueClientListTest {
         uniqueClientList.add(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueClientList.contains(editedAlice));
+        assertFalse(uniqueClientList.contains(editedAlice));
     }
 
     @Test

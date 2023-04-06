@@ -65,7 +65,7 @@ public class CustomDate {
             if (localDate == null) {
                 valid = false;
             }
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NumberFormatException e) {
             valid = false;
         }
         return (date.matches(VALIDATION_REGEX) && valid);

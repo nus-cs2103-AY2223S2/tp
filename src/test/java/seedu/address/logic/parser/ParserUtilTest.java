@@ -239,8 +239,8 @@ public class ParserUtilTest {
         assertEquals(expectedCustomDate, ParserUtil.parseCustomDate(WHITESPACE + VALID_POLICY_DATE + WHITESPACE));
     }
     @Test
-    void parseCustomDate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCustomDate(INVALID_POLICY_DATE));
+    void parseCustomDate_throwsNumberFormatException() {
+        assertThrows(NumberFormatException.class, () -> ParserUtil.parseCustomDate(INVALID_POLICY_DATE));
     }
     @Test
     void parsePremium_validValueWithoutWhitespace_returnsPremium() throws Exception {

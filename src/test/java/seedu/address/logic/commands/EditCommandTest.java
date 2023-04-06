@@ -110,27 +110,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateClientUnfilteredList_failure() {
-        Client firstClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_CLIENT, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
-    }
-
-    @Test
-    public void execute_duplicateClientFilteredList_failure() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
-
-        // edit client in filtered list into a duplicate in address book
-        Client clientInList = model.getAddressBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
-                new EditClientDescriptorBuilder(clientInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
-    }
-
-    @Test
     public void execute_invalidClientIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();

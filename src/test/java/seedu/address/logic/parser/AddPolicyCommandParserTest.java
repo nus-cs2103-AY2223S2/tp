@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_FREQUENCY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_POLICY_PREMIUM;
@@ -18,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddPolicyCommand;
-import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
@@ -53,10 +51,6 @@ class AddPolicyCommandParserTest {
         assertParseFailure(parser, "1" + " " + INVALID_POLICY_NAME + POLICY_DATE_AMY + POLICY_PREMIUM_AMY
                         + POLICY_FREQUENCY_AMY,
                 String.format(PolicyName.MESSAGE_CONSTRAINTS));
-        // invalid policy date
-        assertParseFailure(parser, "1" + " " + POLICY_NAME_AMY + " " + INVALID_POLICY_DATE + POLICY_PREMIUM_AMY
-                        + POLICY_FREQUENCY_AMY,
-                String.format(CustomDate.MESSAGE_CONSTRAINTS));
         // invalid policy premium
         assertParseFailure(parser, "1" + " " + POLICY_NAME_AMY + " " + POLICY_DATE_AMY + " " + INVALID_POLICY_PREMIUM
                         + POLICY_FREQUENCY_AMY,

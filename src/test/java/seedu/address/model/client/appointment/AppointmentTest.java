@@ -26,9 +26,16 @@ public class AppointmentTest {
     @Test
     void isValidDate() {
         String date1 = "01.01.2023";
-        String date2 = "01/01/2023";
-
+        String date2 = "01.13.2023";
+        String date3 = "29.02.2021";
         assertTrue(CustomDate.isValidDate(date1));
         assertFalse(CustomDate.isValidDate(date2));
+        assertFalse(CustomDate.isValidDate(date3));
+
+    }
+
+    @Test
+    public void isValidDate_invalidDateFormat_throwsNumberFormatException() {
+        assertThrows(NumberFormatException.class, () -> CustomDate.isValidDate("2022/01/01"));
     }
 }
