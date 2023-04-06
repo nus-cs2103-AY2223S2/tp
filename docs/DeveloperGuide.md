@@ -231,29 +231,14 @@ These operations are exposed in the  `FitBookModel` interface as `FitBookModel#g
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
-FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly.
 
 ![FindState0](images/FindState0.png)
 
 Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
-FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
-modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
-`currentStatePointer` is shifted to the newly inserted FitBook state.
-
-![FindState1](images/FindState1.png)
-
-Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
-`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
-`fitBookStateList`.
-
-![FindState2](images/FindState2.png)
-
-![FindState3](images/FindState3.png)
-
-Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
-the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
-
-![FindState3](images/FindState4.png)
+FitBook. The `find` command calls `FindCommandParser`, causing the command to be parsed and checked for any errors 
+before executing the command and calling FindCommand:execute()) to execute the command to find the relevant people
+in the FitBook list of clients.
 
 The following sequence diagram shows how the find operation works:
 
@@ -262,10 +247,6 @@ The following sequence diagram shows how the find operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -603,31 +584,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 =======
 
-| Priority | As a …​        | I can …​                                                          | So that …​                                                          |
-| -------- | ----------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user          | look at the list of clients                                          | I know who are my clients and their details                            |
-| `* * *`  | new user          | edit my client's routine                                             | the client's routine data is accurate                                  |
-| `* * *`  | new user          | edit my client's current routine                                     | so that the client's calorie intake is accurate                        |
-| `* * *`  | new user          | find a person by name                                                | locate details of persons without having to go through the entire list |
-| `* * *`  | new user          | hide private contact details                                         | minimize the chance of someone else seeing them by accident            |
-| `* * *`  | new user          | edit my client's weight data                                         | the client's weight data is accurate                                   |
-| `* * *`  | new user          | put my client's current weight                                       | I can see if they get closer to their targeted weight                  |
-| `* * *`  | new user          | set goal for each of my clients                                      | I can help my clients to make the most suitable plan                   |
-| `* * *`  | new user          | set a list of tasks for my client                                    | I can keep track of what i have asked my client to do                  |
-| `* * *`  | new user          | sort persons by name                                                 | I can locate a person easily                                           |
-| `* * *`  | new user          | search for clients through their names                               | I can find my client's data                                            |
-| `* * *`  | new user          | save exercise routines in a list                                     | I can match them with each client                                      |
-| `* * * ` | intermediate user | mark the exercise as incomplete                                      | I can manage my time properly next time                                |
-| `* * *`  | intermediate user | mark the exercise as complete                                        | I can teach my clients new exercises                                   |
-| `* * *`  | intermediate user | edit previous data                                                   | I can change my client's data                                          |
-| `* * *`  | intermediate user | add time to a client's appointment                                   | I can easily view my appointments for the week                         |
-| `*`      | intermediate user | search client's using their contact number                           | I can contact them when necessary                                      |
-| `*`      | intermediate user | filter clients by gender or exercise level                           | I can find my client easily                                            |
-| `*`      | Expert user       | link my clients under the same price package or classes              | I know who is under which class or price package                       |
-| `* *`    | Expert user       | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
-| `* *`    | Expert user       | download data collected in FitBook                                   | I can show results of my services to new potential clients             |
-| `* *`    | Expert user       | view reminder messages                                               | I remember the session I have with my clients for the day              |
-| `* *`    | Expert user       | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
+| Priority | As a …​           | I can …​                                                            | So that …​                                                             |
+|----------|-------------------|---------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user          | look at the list of clients                                         | I know who are my clients and their details                            |
+| `* * *`  | new user          | edit my client's routine                                            | the client's routine data is accurate                                  |
+| `* * *`  | new user          | edit my client's current routine                                    | so that the client's calorie intake is accurate                        |
+| `* * *`  | new user          | find a person by name                                               | locate details of persons without having to go through the entire list |
+| `* * *`  | new user          | hide private contact details                                        | minimize the chance of someone else seeing them by accident            |
+| `* * *`  | new user          | edit my client's weight data                                        | the client's weight data is accurate                                   |
+| `* * *`  | new user          | put my client's current weight                                      | I can see if they get closer to their targeted weight                  |
+| `* * *`  | new user          | set goal for each of my clients                                     | I can help my clients to make the most suitable plan                   |
+| `* * *`  | new user          | set a list of tasks for my client                                   | I can keep track of what i have asked my client to do                  |
+| `* * *`  | new user          | sort persons by name                                                | I can locate a person easily                                           |
+| `* * *`  | new user          | search for clients through their names                              | I can find my client's data                                            |
+| `* * *`  | new user          | save exercise routines in a list                                    | I can match them with each client                                      |
+| `* * * ` | intermediate user | mark the exercise as incomplete                                     | I can manage my time properly next time                                |
+| `* * *`  | intermediate user | mark the exercise as complete                                       | I can teach my clients new exercises                                   |
+| `* * *`  | intermediate user | edit previous data                                                  | I can change my client's data                                          |
+| `* * *`  | intermediate user | add time to a client's appointment                                  | I can easily view my appointments for the week                         |
+| `*`      | intermediate user | search client's using their contact number                          | I can contact them when necessary                                      |
+| `*`      | intermediate user | filter clients by gender or exercise level                          | I can find my client easily                                            |
+| `*`      | Expert user       | link my clients under the same price package or classes             | I know who is under which class or price package                       |
+| `* *`    | Expert user       | add clients into specific groups                                    | it will be easier to track if they are in the same session             |
+| `* *`    | Expert user       | download data collected in FitBook                                  | I can show results of my services to new potential clients             |
+| `* *`    | Expert user       | view reminder messages                                              | I remember the session I have with my clients for the day              |
+| `* *`    | Expert user       | add the time taken for each exercise for each session of the client | I can achieve my target time for each exercise                         |
 
 =======
 
