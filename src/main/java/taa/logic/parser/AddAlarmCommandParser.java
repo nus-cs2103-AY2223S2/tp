@@ -24,15 +24,21 @@ public class AddAlarmCommandParser {
     public AddAlarmCommand parse(String string) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(string, PREFIX_TIME, PREFIX_COMMENT);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ""));
         }
-
-        int minutes = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        int minutes;
+        Object obj = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        if (obj instanceof Integer && (int) obj > 0) {
+            minutes = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        } else {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    ""));
+        }
         String comment = argMultimap.getValue(PREFIX_COMMENT).get();
 
         Alarm alarm = new Alarm(minutes, comment);

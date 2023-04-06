@@ -431,13 +431,10 @@ For class lists, you can call the following commands:
 #### Create a class list: `create_class`
 Creates a class list to store the information about a group of students.
 
-Format: `create_class LIST_NAME [STUDENT_NAMES]`
+Format: `create_class`
 - The argument `LIST_NAME` should be the name of the new class list
-  The argument `[STUDENT_NAMES]` should consist of a sequence of student names, separated by commas.
-
 
 Examples:
-- `create_class cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
 - `create_class cs6244` creates an empty class list.
 
 #### Add a student: `add_student`
