@@ -50,6 +50,11 @@ public class UpdatePatientWardCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         if (!model.hasWard(new Ward(nextWard))) {
             throw new CommandException(String.format(MESSAGE_WARD_NOT_FOUND, nextWard));
         }
@@ -72,7 +77,7 @@ public class UpdatePatientWardCommand extends Command {
         if (ward == null) {
             throw new CommandException("Patient not found in Patientist");
         }
-        Patientist patientist = (Patientist) model.getPatientist();
+
         try {
             patientist.transferPatient(personToBeUpdated, ward, model.getWard(nextWard));
         } catch (Exception e) {

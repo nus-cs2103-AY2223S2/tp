@@ -84,7 +84,7 @@ public class DetailsPopup extends UiPart<Region> {
         email.setText(person.getEmail().value);
         String s = person.getIdNumber().toString();
         idNumber.setText(s);
-        ward.setText(Optional.ofNullable(getWard()).orElse("test"));
+        ward.setText(Optional.ofNullable(getWard()).orElse(""));
         if (personToView instanceof Patient) {
             Patient patientToView = (Patient) personToView;
             priority.setText(patientToView.getPriority().tagName);
