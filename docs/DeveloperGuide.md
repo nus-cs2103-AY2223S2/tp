@@ -816,12 +816,19 @@ class to render the message on startup.
 ## Effort
 
 ### Morphing of AB3 to TechTrack
+Ideas:
+1. what attributes we added, why we need them
+2. what new functions we added
+3. refactoring we did
 
 ### Revamping of UI
-
+1. aesthetic and arrangement of UI
+2. New UI functionalities
+3. Help window
 
 ## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs
+* **Attribute**: Refers to the parameters a role can have
 
