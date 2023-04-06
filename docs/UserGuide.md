@@ -352,13 +352,13 @@ Menu Item Card consists of the following components:
   :heavy_check_mark: `add_supplier` is valid.<br>
   :x: `ADD_SUPPLIER` and `Add_Supplier` are invalid.<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add_supplier n/NAME`, you fill in the `NAME` parameter with the supplier name (i.e. `add_supplier n/John Doe`).
-
 * Prefixes of the parameters must be in lower-case and are case-sensitive.<br>
   e.g. `n/` in `add_s n/NAME` is case-sensitive<br>
 * :heavy_check_mark: `n/` is a valid prefix.<br>
   :x: `N/` is an invalid prefix.<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add_supplier n/NAME`, you fill in the `NAME` parameter with the supplier name (i.e. `add_supplier n/John Doe`).
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -407,9 +407,13 @@ Menu Item Card consists of the following components:
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
+:pencil_2: Adding of duplicate data are not allowed. Refer to the section below to see how duplicates are checked for.
+
 ### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
+
+:pencil_2: Adding of duplicate suppliers are not allowed. Two suppliers are considered duplicated if they have the same phone numbers.
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -453,9 +457,11 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `D` or `d` for `Delivered`
 * If no status is provided, it is **defaulted** to `Not Delivered`.
 
-* All `ORDER_ITEM` **must** match a menu item in the menu.<br>
+* All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu.<br>
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
   You can find out how to add a menu item [here](#214-adding-a-menu-item-add_item)
+
+* Adding of duplicate orders is not allowed. Two orders are considered to be duplicates only if all the parameters (excluding `STATUS`) are the same (with matching cases).
 
 </div>
 
@@ -501,6 +507,7 @@ Syntax: `add_task n/TASK_NAME d/DEADLINE [s/STATUS]`
   * `N` or `n` for `Not Done`
   * `D` or `d` for `Done`
 * If no status is provided, it is **defaulted** to `Not Done`.
+* Adding of duplicate orders are not allowed. Two orders are considered to be duplicates if they have the same task names (with matching cases) and deadlines.
 
 </div>
 
@@ -544,6 +551,8 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
 
+* Adding of duplicate menu items are not allowed. Two menu items are considered to be duplicates if they have the same item names (with matching cases).
+
 </div>
 
 <div markdown="block" class="alert alert-example">
@@ -578,6 +587,7 @@ Editing of an information in a specific list. Below are the specific edit comman
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * All existing values will be replaced with the new values given.
 * At least one of the fields (e.g. `n/NAME`) must be specified.
+* Duplicate data are not allowed, so editing of a data that makes it match with an existing data is not allowed. Check [Add section](#21-add) to see how duplicates are checked for.
 
 </div>
 
@@ -745,7 +755,7 @@ Finding of specific information with the provided parameters. Below are the spec
 
 ### 2.3.1 Finding a supplier: `find_supplier`
 
-Find suppliers whose information matches with any of the given parameters.
+Finds suppliers whose information matches with any of the given parameters.
 
 Syntax: `find_supplier NAME`
 
@@ -769,12 +779,12 @@ Syntax: `find_supplier NAME`
   Finds the supplier with the following details:
   * Supplier Name contains either `Prima` or `Flour`.<br>
 
-  Example of suppliers that match:
+  :heavy_check_mark: Example of suppliers that match:
     * `Prima`
     * `Soon Flour Pte Ltd`
     * `PRIMA CONFECTIONARY`
   
-  Example of suppliers that do not match:
+  :x: Example of suppliers that do not match:
     * `Prim`
     * `PrimaFlour`
 
@@ -784,11 +794,11 @@ Syntax: `find_supplier NAME`
   Finds the supplier with the following details:
   * Supplier Name contains `Pte`.
   
-  Example of suppliers that match:
+  :heavy_check_mark: Example of suppliers that match:
     * `Soon Flour Pte Ltd`
     * `Tech Leong PTE LTD`
 
-  Example of suppliers that do not match:
+  :x: Example of suppliers that do not match:
   * `Private`
   * `Phoon Huat PteLtd`
 
@@ -804,13 +814,27 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 :information_source: **Information**
 
-* At least one of the optional fields must be keyed in.
-* For order item:
+* At least one of the optional fields must be keyed in.<br>
+
+* For `ORDER_ITEM`:
   * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
   * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
   * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
   * Orders matching with at least one keyword will be returned (i.e. `OR` search). <br>
-    (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`)
+    (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`).<br>
+
+* For `STATUS`:
+  * Search is case-insensitive.
+  * Search `D` or `d` for `Delivered`, `I` or `i` for `In Progress` and `N` or `n` for `Not delivered`.
+    (e.g. `find_o s/D` will return orders marked as `Delivered`).<br>
+
+* For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
+  * Search is case-sensitive (e.g. The search for orders with customer name `Amy` will match with `Amy` but not with `AMY`).
+  * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
+  * Only full words will match.
+  * Order's respective parameter must fully match with the given parameter.<br>
+    (e.g. `Amy Lee` will only match with `Amy Lee` and not with `Amy Lee Tan`).
+
 
 </div>
 
@@ -822,12 +846,12 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
   Finds the order with the following details:
   * Order Item contains `Chocolate` or `Cake`<br>
 
-  Example of orders that match:
+  :heavy_check_mark: Example of orders that match:
   * `Chocolate Cookie`
   * `Chocolate Cake`
   * `CAKE WITH VANILLA`
 
-  Example of orders that do not match:
+  :x: Example of orders that do not match:
   * `Choco`
   * `ChocolatePie`
 
@@ -838,11 +862,11 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
   * Supplier Name contains `Cake`
   * Deadline is on `01/01/2023`<br>
 
-  Example of orders that match:
+  :heavy_check_mark: Example of orders that match:
   * `on/Chocolate Cake d/01/01/2023`
   * `on/CAKE WITH VANILLA AND CHOCOLATE d/01/01/2023`
 
-  Example of orders that do not match:
+  :x: Example of orders that do not match:
   * `on/Chocolate Cake d/03/03/2024`
   * `on/VANILLA CAKES d/01/01/2023`
 
@@ -850,7 +874,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 ### 2.3.3 Finding a task: `find_task`
 
-Find tasks with information that matches with any of the given parameters.
+Finds tasks with information that matches with any of the given parameters.
 
 Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
@@ -858,13 +882,19 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 :information_source: **Information**
 
-* At least one of the optional fields must be keyed in.
-* For task name:
+* At least one of the optional fields must be keyed in.<br>
+
+* For `TASK_NAME`:
   * Search is case-insensitive (e.g. `sugar` will match with `Sugar`).
   * Order of the keywords does not matter (e.g. `Flour Sugar` will match with `Sugar Flour`).
   * Only full words will match (e.g. `Sugar` will not match with `Sugars`).
   * Tasks matching with at least one keyword will be returned (i.e. `OR` search). <br>
-    (e.g. `Order Flour` will return `Order Sugar`, `Order 10kg Flour`)
+    (e.g. `Order Flour` will return `Order Sugar`, `Order 10kg Flour`).<br>
+
+* For `STATUS`:
+  * Search is case-insensitive.
+  * Search `D` or `d` for `Done` and `N` or `n` for `Not delivered`.
+    (e.g. `find_o s/D` will return tasks marked as `Done`).<br>
 
 </div>
 
@@ -882,11 +912,11 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
   * Task Name contains `Buy eggs`.
   * Deadline is on `17/02/2023`
 
-  Example of tasks that match:
+  :heavy_check_mark: Example of tasks that match:
   * `n/Buy eggs d/17/02/2023`
   * `n/Buy flour d/17/02/2023`
 
-  Example of tasks that do not match:
+  :x: Example of tasks that do not match:
   * `n/Make eggcream d/17/02/2023`
   * `n/Buy flour d/30/03/2024`
 
@@ -918,11 +948,11 @@ Syntax: `find_item ITEM_NAME`
   Finds the menu item with the following details:
   * Item Name contains either `vanilla` or `cake`.<br>
 
-  Example of order items that match:
+  :heavy_check_mark: Example of order items that match:
   * `Strawberry cupcake`
   * `CAKE WITH VANILLA`
 
-  Example of order item that do not match:
+  :x: Example of order item that do not match:
   * `chocolate cake`
 
 :clipboard: **Example 2: Shortcut command**
@@ -931,11 +961,11 @@ Syntax: `find_item ITEM_NAME`
   Finds the menu item with the following details:
   * Item Name contains `Cake`.
 
-  Example of order items that match:
+  :heavy_check_mark: Example of order items that match:
   * `Strawberry Cake`
   * `CAKE WITH VANILLA`
 
-  Example of order item that do not match:
+  :x: Example of order item that do not match:
   * `Vanilla Cupcake`
 
 </div>
@@ -979,9 +1009,9 @@ Syntax: `delete_supplier INDEX`
 
 :clipboard: **Example 2: Shortcut command after using `find_supplier`**
 
-* `find_supplier n/John` followed by `delete_s 1`<br>
-  * `find_supplier n/John` lists all suppliers with name `John` inside them
-  * `delete_s 1` deletes the **first** supplier with the name `John` from the visible contact list
+* `find_supplier John` followed by `delete_s 1`<br>
+  * `find_supplier John` lists all suppliers with names that contain `John`
+  * `delete_s 1` deletes the **first** supplier with a name that contains `John` from the visible contact list
 
 </div>
 
@@ -1001,8 +1031,8 @@ Syntax: `delete_order INDEX`
 :clipboard: **Example 2: Shortcut command after using `find_order`**
 
 * `find_order on/Cake` followed by `delete_o 1`<br>
-  * `find_order on/Cake` lists all orders with item name `Cake` inside them
-  * `delete_o 1` deletes the **first** order with the item name `Cake` from the visible order list
+  * `find_order on/Cake` lists all orders with item names that contain `Cake`
+  * `delete_o 1` deletes the **first** order with an item name that contains `Cake` from the visible order list
 
 </div>
 
@@ -1022,13 +1052,10 @@ Syntax: `delete_task INDEX`
 :clipboard: **Example 2: Shortcut command after using `find_task`**
 
 * `find_task n/flour` followed by `delete_t 1`<br>
-  * `find_task n/flour` lists all tasks with task name `flour` inside them
-  * `delete_t 1` deletes the **first** task with the task name `flour` from the visible task list
+  * `find_task n/flour` lists all tasks with task names that contain `flour`
+  * `delete_t 1` deletes the **first** task with a task name that contains `flour` from the visible task list
 
 </div>
-
-* `delete_task 2` deletes the first task
-* `find_t flour` followed by `delete_t 3` deletes the 1st task in the result of the `find_t` command
 
 ### 2.4.4 Deleting a menu item: `delete_item`
 
@@ -1054,8 +1081,8 @@ Deleting a menu item does not invalidate the orders with the same order item nam
 :clipboard: **Example 2: Shortcut command after using `find_item`**
 
 * `find_item cupcake` followed by `delete_m 1`<br>
-  * `find_item cupcake` lists all menu items with item name `cupcake` inside them
-  * `delete_m 1` deletes the **first** menu item with the item name `cupcake` from the visible menu
+  * `find_item cupcake` lists all menu items with item names containing `cupcake`
+  * `delete_m 1` deletes the **first** menu item with an item name that contains `cupcake` from the visible menu
 
 </div>
 
@@ -1069,17 +1096,23 @@ Sorting of information in the specific list. Below are the specific sort command
 
 * Sorts all the data in the specific list according to a criteria.
 * Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
-* The default criteria (when no criteria are specified) is `Status_and_deadline`.
+* The default criteria (when no criteria is specified) is `Status_and_deadline`.
 
 * Criteria available are:
-  * `Time_added` - Sorts data in ascending order<br>
-    Data added **first** is at the **top** while data added the **latest** is at the **bottom**
-  * `Deadline` - Sorts data in ascending order<br>
-    Data with the **earliest** deadline is at the **top** while those with the **latest** deadline is at the **bottom**
-  * `Status` - Refer to the specific data
-  * `Name` - Sorts data in lexicographical order (ignoring case) with respect to the name<br>
-    Data with name starting with "**a**" will be placed **above** a data with name starting with "**B**".
-  * `Status_and_deadline` - Sorts all data by their status first, followed by their deadline
+  * `Time_added`
+    * Sorts data in ascending order.
+    * Data added **first** is at the **top** while data added the **latest** is at the **bottom**.
+  * `Deadline`
+    * Sorts data in ascending order.
+    * Data with the **earliest** deadline is at the **top** while those with the **latest** deadline is at the **bottom**.
+  * `Status`
+    * Refer to the specific command explanation below.
+  * `Name`
+    * Sorts data in lexicographical order (ignoring case) with respect to the name.
+    * Data with name starting with "**a**" will be placed **above** a data with name starting with "**B**".
+  * `Status_and_deadline` (Default)
+    * Sorts all data by their status first, followed by their deadline 
+      (while preserving the relative ordering from the first sort, i.e. Stable sort)
 
 </div>
 
@@ -1095,7 +1128,7 @@ Syntax: `sort_task [c/CRITERIA]`
 
 * `Status` - Sorted in this order from top to bottom:
   * `Not Done`
-  * `Done`
+  * `Done`<br><br>
 * `Status_and_deadline` - Sorts all data by their status first, followed by their deadline<br>
   Specifically in this order from top to bottom:
   * `Not Done` & `Earliest Deadline`
@@ -1120,9 +1153,8 @@ Syntax: `sort_task [c/CRITERIA]`
 :clipboard: **Example 3: Shortcut command after using `find_task`**
 
 * `find_task s/N` followed by `sort_t c/Deadline`<br>
-  Sorts all `Not Done` tasks according to their `Deadline`
-  * `find_task s/N` lists all tasks with status as `Not Done`
-  * `sort_t c/deadline` sorts all tasks according to their `Deadline`
+  * `find_task s/N` first lists all tasks with status as `Not Done`
+  * `sort_t c/deadline` sorts all `Not Done` tasks found according to their `Deadline`
 
 </div>
 
@@ -1139,7 +1171,7 @@ Syntax: `sort_order [c/CRITERIA]`
 * `Status` - Sorted in this order from top to bottom:
   * `Not Delivered`
   * `In Progress`
-  * `Delivered`
+  * `Delivered`<br><br>
 * `Status_and_deadline` - Sorts all data by their status first, followed by their deadline<br>
   Specifically in this order from top to bottom:
   * `Not Delivered` & `Earliest Deadline`
@@ -1166,9 +1198,8 @@ Syntax: `sort_order [c/CRITERIA]`
 :clipboard: **Example 3: Shortcut command after using `find_order`**
 
 * `find_order s/N` followed by `sort_o c/Name`<br>
-  Sorts all `Not Delievered` orders according to their `Name`
   * `find_order s/N` lists all orders with status as `Not Delievered`
-  * `sort_o c/Name` sorts all orders according to their `Name`
+  * `sort_o c/Name` sorts all `Not Delivered` orders found according to their `Name`
 
 </div>
 
@@ -1180,7 +1211,7 @@ Shows all data in the specific list. Below are the specific list commands for su
 
 Shows a list of all suppliers in the contact list.
 
-Syntax `list_supplier`
+Syntax: `list_supplier`
 
 <div markdown="block" class="alert alert-example">
 
@@ -1200,7 +1231,7 @@ Syntax `list_supplier`
 
 Shows a list of all orders in the order list.
 
-Syntax `list_order`
+Syntax: `list_order`
 
 <div markdown="block" class="alert alert-example">
 
@@ -1220,7 +1251,7 @@ Syntax `list_order`
 
 Shows a list of all tasks in the task list.
 
-Syntax `list_task`
+Syntax: `list_task`
 
 <div markdown="block" class="alert alert-example">
 
@@ -1240,7 +1271,7 @@ Syntax `list_task`
 
 Shows a list of all menu items in the menu.
 
-Syntax `list_menu`
+Syntax: `list_menu`
 
 <div markdown="block" class="alert alert-example">
 
@@ -1262,7 +1293,7 @@ Clears all data in the specific list. Below are the specific clear commands for 
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br><br>
+:exclamation: **Danger**<br>
 
 Clearing of data is one-way (i.e. You cannot revert your command).<br>
 
@@ -1446,9 +1477,9 @@ Trackr data are saved as a JSON file at `[JAR file location]/data/trackr.json`.
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-warning"><br>
 
-:warning: **Caution:**<br><br>
+:warning: **Caution:**<br>
 
 It is advised to make your changes through our application and not through editing the data file directly.
 
@@ -1458,11 +1489,11 @@ Please proceed with caution.
 
 </div>
 
-<div markdown="span" class="alert alert-danger">
+<div markdown="span" class="alert alert-danger"><br>
 
-:exclamation: **Danger**<br><br>
+:exclamation: **Danger**<br>
 
-If your changes to the data file is invalid, Trackr will discard all data and start with an empty data file at the next run.
+If your changes to the data file are invalid, Trackr will discard all data and start with an empty data file at the next run.
 
 </div>
 
@@ -1529,7 +1560,7 @@ Here are the respective formats for each of the data types:
 # 4 Upcoming features `[coming soon]`
 
 * Highlight overdue orders.
-* Better representation of sales report to track your business’s growth.
+* Better representation of sales report (e.g. Pie charts or graphs) to track your business’s growth.
 * Ability to export your data as csv.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1557,21 +1588,21 @@ Here are the respective formats for each of the data types:
 
 # 6.1 Prefix Summary
 
-| Parameter                                  | Prefix | Rules                                                                                                                                                                                                         |
-|--------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name (Task, Supplier, Customer, Menu Item) | n/     | - Should only contains alphanumeric characters and spaces                                                                                                                                                     |
-| Phone Number (Supplier, Customer)          | p/     | - Should only contain at least 3 digits                                                                                                                                                                       |
-| Email                                      | e/     | - Should only be of the form `local@domain` and only accept alphanumeric characters<br/>- `local` allows for special characters `+`, `_`, `.` and `-` as well.<br/>- `domain` must be at least 2 letters long |
-| Address (Supplier, Customer)               | a/     | - Can contain any letters                                                                                                                                                                                     |
-| Tag                                        | t/     | - Should only contain alphanumeric characters                                                                                                                                                                 |
-| Deadline (Task, Order)                     | d/     | - Should be of the format `dd/MM/yyyy`                                                                                                                                                                        |
-| Status (Task, Order)                       | s/     | - Should only contain alphanumeric characters                                                                                                                                                                 |
-| Order Name                                 | on/    | - Should only contain alphanumeric characters<br/> - Order name should be a valid menu item name                                                                                                              |
-| Order Quantity                             | q/     | - Should only contain positive integer values                                                                                                                                                                 |
-| Price                                      | pr/    | - Should only contain positive numeric values<br/> - Allows for integers or values up to 2 decimal places                                                                                                     |
-| Cost                                       | c/     | - Should only contain positive numeric values<br/> - Allows for integers or values up to 2 decimal places                                                                                                     |
-| Tab                                        | t/     | - Should only contain alphabetical characters<br/> - Should be in all caps                                                                                                                                    |
-| Criteria                                   | c/     | - Should only contain alphabetical characters<br/>                                                                                                                                                            |
+| Parameter                                  | Prefix | Rules                                                                                                                                                                                                                                         |
+|--------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name (Task, Supplier, Customer, Menu Item) | n/     | - Should only contains alphanumeric characters and spaces                                                                                                                                                                                     |
+| Phone Number (Supplier, Customer)          | p/     | - Should only contain digits<br/> - Should have least 3 digits                                                                                                                                                                                |
+| Email                                      | e/     | - Should only be of the form `local@domain` and only accept alphanumeric characters<br/>- `local` allows for special characters `+`, `_`, `.` and `-` as well.<br/>- `domain` must be at least 2 letters long.<br/> - `.com` is not required. |
+| Address (Supplier, Customer)               | a/     | - Can contain any letters                                                                                                                                                                                                                     |
+| Tag                                        | t/     | - Should only contain alphanumeric characters                                                                                                                                                                                                 |
+| Deadline (Task, Order)                     | d/     | - Should be of the format `dd/MM/yyyy` - Dates that have passed are allowed                                                                                                                                                                   |
+| Status (Task, Order)                       | s/     | - Should only contain alphanumeric characters                                                                                                                                                                                                 |
+| Order Name                                 | on/    | - Should only contain alphanumeric characters<br/> - Order name should be a valid menu item name                                                                                                                                              |
+| Order Quantity                             | q/     | - Should only contain positive integer values                                                                                                                                                                                                 |
+| Price                                      | pr/    | - Should only contain positive numeric values<br/> - Allows for integers or values up to 2 decimal places                                                                                                                                     |
+| Cost                                       | c/     | - Should only contain positive numeric values<br/> - Allows for integers or values up to 2 decimal places                                                                                                                                     |
+| Tab                                        | t/     | - Should only contain alphabetical characters<br/> - Should be in all caps                                                                                                                                                                    |
+| Criteria                                   | c/     | - Should only contain alphabetical characters<br/>                                                                                                                                                                                            |
 
 ## 6.2 Command Summary
 
