@@ -43,23 +43,22 @@ than current GUI apps in the industry.
    ![DownloadDocedex](images/DownloadDocedex.png)
 
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
-   - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.). 
-   - Move the downloaded jar file to this folder as shown below.
-     - For Mac Users:
-     ![DownloadDocedexMac](images/DownloadDocedexMac.png)
-     - For Windows Users:
+- Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.).
+- Move the downloaded jar file to this folder as shown below.
+  - For Mac Users:
+  ![DownloadDocedexMac](images/DownloadDocedexMac.png)
+  - For Windows Users:
 
 4. Launch Docedex
-   - For Mac Users:
-     - Right-click `docedex.jar` > Open With > JavaLauncher.app
-     ![LaunchDocedexMac](images/LaunchDocedexMac.png)
-     - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
-   - For Windows Users:
-     - Double-click `docedex.jar` to launch the application.
-   - If this still does not work follow the instructions listed [here.](#launching-docedex)
-   
-   - You should notice the GUI of the application pop up.<br>
-   ![NewUi](images/NewUi.png)
+- For Mac Users:
+  - Right-click `docedex.jar` > Open With > JavaLauncher.app
+  ![LaunchDocedexMac](images/LaunchDocedexMac.png)
+  - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
+- For Windows Users:
+  - Double-click `docedex.jar` to launch the application.
+- If this still does not work follow the instructions listed [here.](#launching-docedex)
+- You should notice the GUI of the application pop up.<br>
+![NewUi](images/NewUi.png)
 
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 
@@ -67,13 +66,14 @@ than current GUI apps in the industry.
 
 7. For **advanced users**, view all feature details [here](#features).
 
-  [Scroll back to Table of Contents](#table-of-contents)
+[Scroll back to Table of Contents](#table-of-contents)
 
 ---
 
 ## Glossary
 
-Here are some descriptions of the words we use throughout the User Guide
+Here are some descriptions of the words we use throughout the User Guide:
+- Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.
 
 ### Parameter Information
 
@@ -141,7 +141,7 @@ Certain commands involve the selection of doctors
 and patients immediately after they are entered.
 
 For example, when you type in the `add-doc` command, Docedex will automatically select
-the newly added doctor and display their details to you. This gives the user (you!) 
+the newly added doctor and display their details to you. This gives the user (you!)
 a nice visual feedback that the command is successful.
 
 Upon selecting a doctor, the Patient List displays the patients assigned
@@ -176,7 +176,7 @@ look through all the doctors and patients in Docedex, please use the
 | If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
 | Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
 
-  [Scroll back to Table of Contents](#table-of-contents)
+[Scroll back to Table of Contents](#table-of-contents)
 
 ## Command Summary
 
@@ -202,25 +202,25 @@ look through all the doctors and patients in Docedex, please use the
 
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
-- Note: On launch, Docedex will not contain any doctor or patient records.
-  ![LaunchUi](images/LaunchUi.png)
+   - Note: On launch, Docedex will not contain any doctor or patient records.
+     ![LaunchUi](images/LaunchUi.png)
 2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
-- Note: On adding a new doctor, the patients' list is filtered to show only patients associated with the doctor. To view all patient records, simply type `list-ptn` in the command box.
-  ![AddDoc](images/AddDoc.png)
+   - Note: On adding a new doctor, the patients' list is filtered to show only patients associated with the doctor. To view all patient records, simply type `list-ptn` in the command box.
+     ![AddDoc](images/AddDoc.png)
 3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/pendingReview` in the command box.
-- Note: On adding a new patient, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-  ![AddPtnBef](images/AddPtn.png)
+   - Note: On adding a new patient, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
+     ![AddPtnBef](images/AddPtn.png)
 4. Add a few more doctors and patients to Docedex!
 5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
-- Note: On assigning a patient to a doctor, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-  ![AssignPtnBef](images/AssignPtnBef.png)
-  ![AssignPtnAft](images/AssignPtnAft.png)
+   - Note: On assigning a patient to a doctor, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
+     ![AssignPtnBef](images/AssignPtnBef.png)
+     ![AssignPtnAft](images/AssignPtnAft.png)
 6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
-- Note: On selecting the doctor, the patients' list is filtered to display only patients associated with the doctor. To view all patients use `list-ptn`.
-  ![SelectDoctor](images/SelectDoctor.png)
+   - Note: On selecting the doctor, the patients' list is filtered to display only patients associated with the doctor. To view all patients use `list-ptn`.
+     ![SelectDoctor](images/SelectDoctor.png)
 7. Let us try **selecting the patient**. Enter the command `sp 1` in the command box. This time, the doctors' list is filtered instead.
-- Note: On selecting the patient, the doctors' list is filtered to display only patients associated with the patient. To view all doctors use `list-doc`.
-8. Let us try **unassigning the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
+   - Note: On selecting the patient, the doctors' list is filtered to display only patients associated with the patient. To view all doctors use `list-doc`.
+8. Let us try **undoing the assignment of the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
    ![UnassignPtn](images/UnassignPtn.png)
 9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
    ![FindDocTut](images/FindDocTut.png)
@@ -261,9 +261,9 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 ```edit-doc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YOE] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the doctor at the specified `INDEX`. 
+- What it does: Edits the doctor at the specified `INDEX`.
 - Possible use cases: Updating contact information of a doctor.
-<div markdown="span" class="alert alert-warning"> 
+<div markdown="span" class="alert alert-warning">
 **WARNING**: This command overwrites existing data within Docedex, proceed with caution.
 </div>
 
@@ -284,7 +284,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 ```del-doc INDEX```
 - To view parameter information click [here](#parameter-information)
 - What it does: Deletes the specified doctor from the address book.
-<div markdown="span" class="alert alert-warning"> 
+<div markdown="span" class="alert alert-warning">
 **WARNING**: This command is destructive. Doctor's removed will need to be added back.
 </div>
 - Note to user:
@@ -331,7 +331,8 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 #### Listing all doctors
 
-```list-doc```
+`list-doc`
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -378,10 +379,11 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 ```edit-ptn [INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the patient at the specified `INDEX`.  
-<div markdown="span" class="alert alert-warning"> 
-**WARNING**: This command overwrites existing data within Docedex, proceed with caution. 
+- What it does: Edits the patient at the specified `INDEX`. 
+<div markdown="span" class="alert alert-warning">
+**WARNING**: This command overwrites existing data within Docedex, proceed with caution.
 </div>
+
 - Note to users:
     - The index refers to the index number shown in the displayed patient list.
     - Users can edit specific patients in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
@@ -398,7 +400,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 #### Deleting a patient
 - Command format: `del-ptn INDEX`
 - What it does: Deletes the specified patient from the address book.
-<div markdown="span" class="alert alert-warning"> 
+<div markdown="span" class="alert alert-warning">
 **WARNING**: This command is destructive. Patients removed will need to be added back.
 </div>
 - Note to user:
@@ -445,7 +447,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 #### Listing all patients
 
-```list-ptn```
+`list-ptn`
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -467,7 +469,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 #### Clearing all data
 - Command format: `clear`
 - What it does: This command will clear all data in Docedex.
-<div markdown="span" class="alert alert-warning"> 
+<div markdown="span" class="alert alert-warning">
 **WARNING**
   - This command will clear all data in Docedex. This includes all doctors and patients.
   - This command **cannot be undone**.
