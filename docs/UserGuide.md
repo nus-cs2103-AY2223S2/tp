@@ -169,7 +169,9 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
   * e.g. `t/` will remove all the tags associated with the contact.
 
 <div markdown="span" class="alert alert-primary"> :bulb: Tip
-`remove` command considers **removing a field successfully** when no keyword is provided even if the field is empty.
+
+  If no keyword is provided, `remove` will still **execute successfully** on an empty field.
+
 </div>
 
 Examples:
