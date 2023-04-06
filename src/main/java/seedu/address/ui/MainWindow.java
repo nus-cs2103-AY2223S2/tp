@@ -230,6 +230,8 @@ public class MainWindow extends UiPart<Stage> {
                 applyLightTheme();
             }
 
+            handleUndoRedo(feedback);
+
             handleViewPane(feedback, commandText);
 
             return commandResult;
@@ -250,28 +252,35 @@ public class MainWindow extends UiPart<Stage> {
      * @param commandText
      */
     public void handleViewPane(String feedback, String commandText) {
-        if (feedback.startsWith("Edited Person:")) {
-            updateViewAfterEdit(commandText);
-        }
-
-        if (feedback.startsWith("Deleted Persons: ")) {
-            updateViewAfterDelete();
-        }
+        viewPanePlaceHolder.getChildren().clear();
 
         if (feedback.equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
-            applyView();
+            personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        } else if (feedback.startsWith("Edited Person:")) {
+            int index = Character.getNumericValue(commandText.charAt(5));
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        } else if (feedback.startsWith("New person")) {
+            int len = logic.getAddressBook().getPersonList().size();
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(len - 1));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        } else if (logic.getAddressBook().getPersonList().size() > 0) {
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
         }
     }
 
     /**
-     * Updates the view pane to the first person after successfully deletion.
+     * Updates the person list panel after the action 'undo' or 'redo'
+     * @param feedback
      */
-    private void updateViewAfterDelete() {
-        if (logic.getAddressBook().getPersonList().size() > 0) {
-            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
-            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        } else {
-            viewPanePlaceHolder.getChildren().clear();
+    public void handleUndoRedo(String feedback) {
+        if (feedback.startsWith("Undo") || feedback.startsWith("Redo")) {
+            personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         }
     }
 
@@ -287,27 +296,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (ThemeException e) {
             logger.info(e.getMessage());
         }
-    }
-
-    /**
-     * Sets the view pane to a specific person.
-     */
-    private void applyView() {
-        personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        viewPanePlaceHolder.getChildren().clear();
-        viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
-        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-    }
-
-    /**
-     * Updates the view pane after successfully edition.
-     * @param commandText
-     */
-    private void updateViewAfterEdit(String commandText) {
-        int index = Character.getNumericValue(commandText.charAt(5));
-        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
-        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
     /**
