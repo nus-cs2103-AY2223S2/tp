@@ -26,7 +26,7 @@ Careflow can get your patient and drugs management tasks done faster than tradit
 
 * **Minor enhancement**:
     * make emergency contact and drug allergy be optional for add patient command(Pull request [\#174](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/174))
-    * fix error message displayed to the user (Pull request [\#223](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/223), [\224](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/224))
+    * fix error message displayed to the user (Pull request [\#223](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/223), [\#224](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/224))
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiayan-lim&breakdown=true)
 
@@ -45,11 +45,11 @@ Careflow can get your patient and drugs management tasks done faster than tradit
         * Added Glossary of UG (Pull request: [\#214](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/214))
         * Added label for table and image (Pull request: [\#214](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/214))
     * Developer Guide:
-        * Added implementation details and UML diagram of the model component. (Pull requests [\#167](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/167), [\180](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/180),[\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
+        * Added implementation details and UML diagram of the model component. (Pull requests [\#167](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/167), [\#180](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/180),[\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
         * Added use cases for each important feature. (Pull requests [\#31](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/31), [\#40](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/40), [\#114](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/114))
         * Added glossary of DG. (Pull request [\#31](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/31))
         * Update DG with target user profile and value proposition. (Pull request [\#77](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/77))
-        * Update DG with Enhancement in Appendix (Pull request [\279](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/279), [\#288](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/288))
+        * Update DG with Enhancement in Appendix (Pull request [\#279](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/279), [\#288](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/288))
         * Fix broken URL link (Pull request [\#184](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/184))
 
 * **Community**:
