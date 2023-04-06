@@ -7,7 +7,6 @@ title: PowerCards
 
 ![Ui](images/Ui.png)
 
-
 Are you an NUS student who wants to learn course materials in an effective and efficient manner? 
 You have heard of active recall and spaced repetition techniques, but have not found a way to implement them into your study routine?
 
