@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# Introduction
+# 1. Introduction
 
 Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
 As a university student, you can capitalise on our **powerful card management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
@@ -15,22 +15,39 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 --------------------------------------------------------------------------------------------------------------------
 
-## How to use the User Guide
+## 1.1. How to use the User Guide
 
 * For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
 * To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#key-terms) section.
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
 * Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
-* Have a **question** for us or require our **assistance**? Feel free to [contact us](#contact-us), and we will do our best to assist you!
 
 **:bulb: Tip:**<br>
 * There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
 
-## Components of PowerCards
+## 1.2. Key Terms
+
+**Deck**<br>
+
+A deck refers to a collection of flashcards that are organized together based on a specific topic or subject.
+For example, you might create a deck of flashcards to study for a math test, with each card containing a different math problem and solution.
+
+**Card**<br>
+
+A card refers to a flashcard within a deck. A card contains a question or prompt, and the corresponding answer or solution.
+During a review session, the card will only show the question, encouraging you to actively recall the answer.
+Once you attempt the question, you can command the card to reveal the answer and test your knowledge.
+
+**Tag**<br>
+
+A tag refers to the level of difficulty (easy/medium/hard) you can assign to each card. It helps you prioritize your study time and focus on the flashcards that are more challenging or require more review.
+A card can only have at most one tag at any time.
+
+## 1.3. User Interface Components 
+
+This section highlights the key components of PowerCards’ user interface. Refer to the description below for more information.
 
 ![UiComponent](images/UiComponent.png)
-
-## Description of the components
 
 | Component          | Description                                                                                                  |
 |--------------------|--------------------------------------------------------------------------------------------------------------|
@@ -39,7 +56,9 @@ This user guide will help you use PowerCards with ease and integrate it into you
 | **Command Box**    | This is where you enter your **commands**.                                                                   |
 | **Result Display** | This is where the **results** of your commands will be shown.                                                |
 
-## Quick Start
+--------------------------------------------------------------------------------------------------------------------
+
+# 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
 
@@ -47,7 +66,8 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PCs.
 
-4. Open a command terminal, enter the folder you put the jar file in using the `cd` command, and use the `java -jar powercards.jar` command to run the application.<br>
+4. Open a command terminal, enter the folder you put the jar file in using the `cd` command, and use the `java -jar powercards.jar` command to run the application.  
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -55,24 +75,13 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 6. Refer to the [Features](#features) below for details of each command.
 
-## Key Terms
-
-### Deck
-A deck refers to a collection of flashcards that are organized together based on a specific topic or subject.
-For example, you might create a deck of flashcards to study for a math test, with each card containing a different math problem and solution.
-
-### Card
-A card refers to a flashcard within a deck. A card contains a question or prompt, and the corresponding answer or solution.
-During a review session, the card will only show the question, encouraging you to actively recall the answer.
-Once you attempt the question, you can command the card to reveal the answer and test your knowledge.
-
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# 3. Features
 
-## Command Components
+## 3.1. Command Components
 
-This section explains some common components in a command.
+This section explains some common components you may find in a command.
 
 | Component                 | Example              | Usage                                                                                                                                                                                                                                                                                                                    |
 |---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -93,7 +102,7 @@ This section explains some common components in a command.
 
 </div>
 
-## Main Mode
+## 3.2. Main Mode
 
 Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
 
@@ -101,18 +110,18 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ![UiComponent](images/MainModeComponent.png)
 
-| Component         | Description                                                                                                                    |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Deck**          | A **deck** contains a list of **cards**. The existing decks are displayed in the left panel.                                   |
-| **Selected Deck** | The **deck** currently selected. The cards in this deck are displayed in the right panel.                                      |
-| **Card**          | A card contains a question, an answer and an optional difficulty tag.                                                          |
-| **Question**      | The question that you assign to the card.                                                                                      |
-| **Answer**        | The corresponding answer to the question.                                                                                      |
-| **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation. Each card can only be tagged with 1 difficulty. |
+| Component         | Description                                                                                                                                |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| **Deck**          | A deck contains a list of cards. The existing decks are displayed in the **left** panel.                                                   |
+| **Selected Deck** | The deck currently selected. The cards in this deck are displayed in the **right** panel.                                                  |
+| **Card**          | A card contains a question, an answer and an optional difficulty tag.                                                                      |
+| **Question**      | The question that you assign to the card.                                                                                                  |
+| **Answer**        | The corresponding answer to the question.                                                                                                  |
+| **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation. Each card can only be tagged with **at most** 1 difficulty. |
 
-## Main Mode - Before Selecting a Deck
+## 3.3. Main Mode - Before Selecting a Deck
 
-### Adding a new Deck : `addDeck`
+### 3.3.1. Adding a new Deck : `addDeck`
 
 Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
 
@@ -124,7 +133,7 @@ Format: `addDeck DECK_NAME`
 Example:
 * `addDeck Science` will create a deck titled Science.
 
-### Editing a Deck : `editDeck`
+### 3.3.2. Editing a Deck : `editDeck`
 
 You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command.  
 
@@ -138,7 +147,7 @@ Format: `editDeck INDEX DECK_NAME`
 Example: 
 - `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to Chemistry.
 
-### Deleting a Deck : `deleteDeck`
+### 3.3.3. Deleting a Deck : `deleteDeck`
 
 Once you have no use for a deck, you can delete the deck and all the cards within it with this command.  
 
@@ -149,7 +158,7 @@ Format: `deleteDeck INDEX`
 
 Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
-### Selecting a Deck : `selectDeck`
+### 3.3.4. Selecting a Deck : `selectDeck`
 
 Once you have created your deck, you can access the list of cards inside it with this command. 
 Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
@@ -161,52 +170,70 @@ Examples:
 * `selectDeck 2` will select the deck at index 2. 
   * The cards in this deck (if exist) will be displayed on the right panel. 
 
-## Main Mode - After Selecting a Deck
+### 3.3.5. Clearing the data : `clear`
+
+Perhaps you want to start over and create new sets of decks and cards. 
+This command clears all the existing decks and their associated cards from the application database. 
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+This command is irreversible! You cannot retrieve your data after executing this command.
+
+</div>
+
+Format: `clear`
+- Upon executing the command, a pop-up alert will appear and request you to confirm your decision.
+
+![clear confirm](./images/ClearConfirm.png)
+
+- Selecting `Yes` will clear all data.  
+
+## 3.4. Main Mode - After Selecting a Deck
 
 With a deck selected, you can see all the cards in the deck on the right panel! 
-Now you can `addCard`, `deleteCard`, `editCard` or `findCards` in the deck.
+Now you can interact with the cards in the selected deck.
 
-You will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
+Note that you will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
 
-### Unselecting a Deck : `unselectDeck`
+### 3.4.1. Adding a Card: `addCard`
 
-Unselects the currently selected deck. 
-Refer to the [Main Mode - Before Selecting a Deck](#Main-Mode---Before-Selecting-a-Deck) section to find out what commands you can run without a deck selected!
+This commands allow you to add a card to the **selected** deck. 
 
-Format: `unselectDeck`
-
-### Adding a Card: `addCard`
-
-Adds a card to the **selected** deck.
+A card must contain a question, an answer, and an optional difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
-<!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Tagging is optional and should be of value Easy, Medium, or Hard.
-</div> -->
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+- A tag can only be of value Easy, Medium, or Hard (**case-insensitive**). 
+- Each card can have at most one tag.
+
+</div> 
 
 Examples:
-* `add q\What is chemical symbol for Oxygen? a\O`
-* `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
+* `addCard q\What is chemical symbol for Oxygen? a\O` adds an untagged card with the given question and answer to the deck.
+* `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` adds a card tagged as Easy with the given question and answer to the deck.
 
-### Deleting a Card : `deleteCard`
+### 3.4.2. Deleting a Card : `deleteCard`
 
-Deletes an existing card from the **selected** Deck. 
+You can easily delete an existing card from the current selected deck with this command. 
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
 Note that this is irreversible!
 </div>
 
 Format: `deleteCard INDEX`
-
 * Deletes the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 
 Example:
-- `deleteCard 2`
+- `deleteCard 2` will delete the 2nd card in the deck.
 
-### Editing a Card : `editCard`
+### 3.4.3. Editing a Card : `editCard`
 
-Edits an existing card in the **selected** Deck.
+If you want to edit any fields (question, answer, tag) of an existing card, you can execute this command.
 
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
@@ -217,34 +244,39 @@ Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 Examples:
 *  `editCard 1 q\What is chemical symbol for Carbon? a\C` Edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
 
-### Finding Cards by Keywords in Question : `findCards`
+### 3.4.4. Finding Cards by Keywords in Question : `findCards`
 
-Show only cards in the **selected** Deck with questions containing any of the given keyword(s).
-Note that the find function does not support partial words.
+This command allows you to find specific flashcards you want to interact with based on the keyword(s) you enter.
+
+It shows all the cards in the selected deck whose **questions** contain any of the given keyword(s).
+
+You can interact with the filtered cards using their new indices, through commands such as `editCard` and `deleteCard`.
 
 Format: `findCards KEYWORD...`
-- You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found
+- You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
 - At least one KEYWORD must be given.
+- This command does not support partial words, e.g., `findCards partia` will filter the cards whose questions contain the incomplete word "partia". Cards whose questions contain the complete word "partial" will not appear.
+- Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 
-### Showing all Cards : `showCards`
+### 3.4.5. Showing all Cards : `showCards`
 
-Show all the cards in the **selected** Deck.
+After you filtered the cards using `findCards`, you can see all the cards in the selected deck again using this command.
 
 Format: `showCards`
 
-### Clearing the data : `clear`
+### 3.4.6. Unselecting a Deck : `unselectDeck`
 
-Clears existing decks and cards.
+If you want to make deck-related changes, you must first unselect the current deck you are in.
+Refer to the [Main Mode - Before Selecting a Deck](#Main-Mode---Before-Selecting-a-Deck) section to find out what commands you can run without a deck selected!
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Note that this is irreversible!
-</div>
+This command allows you to unselect the currently selected deck.
 
-Format: `clear`
+Format: `unselectDeck`
+- Upon unselecting a deck, you can no longer see the cards inside that deck.
 
-## Before entering Review Mode
+## 3.5. Before entering Review Mode
 
-### Setting the Limit of Cards per Review: `setLimit`
+### 3.5.1. Setting the Limit of Cards per Review: `setLimit`
 
 Suppose you have a really long deck of cards but you only want to test yourself on 20 cards this session, use this function to set an upper limit on the number of cards per review.
 While a limit is set, the review deck will be truncated to the card limit. 
@@ -260,7 +292,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Review Mode
+## 3.6. Review Mode
 
 Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test - e.g. you just want test medium and hard cards only.
 
@@ -274,7 +306,7 @@ Flipping a card reveals the answer - based on how close your guess was to the an
 
 Your goal would be to eventually have all cards in a deck be tagged as easy!
 
-### Starting a Review: `review`
+### 3.6.1. Starting a Review: `review`
 From the Main Mode, run this command to enter the Review Mode!
 
 Format: `review INDEX [-e] [-m] [-h]`
@@ -289,13 +321,13 @@ Examples:
 * `review 5 -e -h`
 * `review 2`
 
-### Ending the Review: `endReview`
+### 3.6.2. Ending the Review: `endReview`
 
 Ends the review and returns to the main mode. You can use this when you reach the end of the review deck or at any point during the review.
 
 Format: `endReview`
 
-### Review Keystrokes
+### 3.6.3. Review Keystrokes
 
 ![ReviewKeystrokes](images/ReviewKeystrokes.png)
 
@@ -304,37 +336,37 @@ Notice that the keys are all close to the enter key so that you can breeze throu
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
 
-### Flipping the Card: `p`
+### 3.6.4. Flipping the Card: `p`
 
 Flips the card to reveal the answer. 
 
 Format: `p`
 
-### Next Card: `]`
+### 3.6.5. Next Card: `]`
 
 Displays the next card. After tagging the current card, you use this command to move on to the next card.
 
 Format: `]`
 
-### Previous Card: `[`
+### 3.6.6. Previous Card: `[`
 
 Displays the previous card. Useful if you want to amend the tag of the previous card!
 
 Format: `[`
 
-### Tagging the Card as Easy: `l`
+### 3.6.7. Tagging the Card as Easy: `l`
 
 Tags the current card as easy. This replaces any previous tags.
 
 Format: `l`
 
-### Tagging the Card as Medium: `;`
+### 3.6.8. Tagging the Card as Medium: `;`
 
 Tags the current card as medium. This replaces any previous tags.
 
 Format: `;`
 
-### Tagging the Card as Hard: `'`
+### 3.6.9. Tagging the Card as Hard: `'`
 
 Tags the current card as hard. This replaces any previous tags.
 
@@ -342,7 +374,9 @@ Format: `'`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Viewing help : `help`
+## 3.7. Other Features
+
+### 3.7.1. Viewing Help : `help`
 
 If you are unsure about how to use PowerCard, you can always execute this command.
 This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each command and features of the app.
@@ -351,19 +385,17 @@ This command creates a pop-up with a link to this User Guide, where you can acce
 
 Format: `help`
 
-### Exiting the program : `exit`
+### 3.7.2. Exiting the Program : `exit`
 
-At any point, run this command to exit the programme.
+At any point, run this command to exit the program.
 
 Format: `exit`
 
---------------------------------------------------------------------------------------------------------------------
-
-### Saving the data
+### 3.7.3. Saving the Data
 
 PCs data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 3.7.4. Editing the Data File
 
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -371,14 +403,14 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 3.7.8. Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PCs home folder.
@@ -387,16 +419,16 @@ _Details coming soon ..._
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
-**A**: Go to where you have downloaded your `powercards.jar` file, there a `/data` folder will be created and the data will be saved under `powercards.json`.
+**A**: Go to where you have downloaded your `powercards.jar` file, there a `/data` folder will be created and the data will be saved under `masterdeck.json`.
 
 **Q**: Can I rename my saved data file?<br>
-**A**: **No**, PowerCards currently only supports the use of `powercards.json` as the name of the saved data file.
+**A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+# 5. Command Summary
 
-### Main Mode - before selecting a Deck
+## 5.1. Main Mode - before selecting a Deck
 
 | Action         | Format, Examples                                             |
 |----------------|--------------------------------------------------------------|
@@ -412,7 +444,7 @@ _Details coming soon ..._
 | Help           | `help`                                                       |
 | Exit           | `exit`                                                       |
 
-### Main Mode - after selecting a Deck
+## 5.2. Main Mode - after selecting a Deck
 
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -428,7 +460,7 @@ _Details coming soon ..._
 | Help           | `help`                                                                                                                                           |
 | Exit           | `exit`                                                                                                                                           |
 
-### Review mode
+## 5.3. Review mode
 
 | Action        | Format, Examples |
 |---------------|------------------|
@@ -441,3 +473,5 @@ _Details coming soon ..._
 | Tag Hard      | `'`              |
 | Help          | `help`           |
 | Exit          | `exit`           |
+
+
