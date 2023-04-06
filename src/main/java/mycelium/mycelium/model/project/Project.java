@@ -3,8 +3,6 @@ package mycelium.mycelium.model.project;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,11 +15,6 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * Represents a project.
  */
 public class Project implements IsSame<Project>, FuzzyComparable<String> {
-    /**
-     * Parses dates in the dd/MM/uuuu format. Range of allowed years is [-9999, 9999].
-     */
-    public static final DateTimeFormatter DATE_FMT =
-        DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * The project's name

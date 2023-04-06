@@ -109,7 +109,9 @@ public class UpdateClientCommand extends Command {
             throw new CommandException(MESSAGE_NOT_EDITED, action);
         }
         // Ensures that new email is not a mandatory option
-        if (updateClientDescriptor.email.isPresent() && model.hasClient(updatedClient.get())) {
+        if (updateClientDescriptor.email.isPresent()
+            && model.hasClient(updatedClient.get())
+            && !uniqueClient.get().isSame(updatedClient.get())) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT, action);
         }
         model.setClient(uniqueClient.get(), updatedClient.get());

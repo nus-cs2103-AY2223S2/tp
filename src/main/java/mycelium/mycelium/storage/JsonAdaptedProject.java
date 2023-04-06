@@ -7,8 +7,10 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
@@ -24,9 +26,11 @@ public class JsonAdaptedProject extends JsonAdaptedEntity {
     private final String clientEmail;
     private final String source;
     private final String description;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu")
+    @JsonDeserialize(using = DateUtil.class)
     private final LocalDate acceptedOn;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu")
+    @JsonDeserialize(using = DateUtil.class)
     private final LocalDate deadline; // NOTE: it is okay for the deadline to be null
 
     /**
@@ -75,6 +79,14 @@ public class JsonAdaptedProject extends JsonAdaptedEntity {
         nullCheck(status, "status");
         nullCheck(clientEmail, "clientEmail");
         nullCheck(acceptedOn, "acceptedOn");
+
+        // NOTE: validity checks for status, acceptedOn, and deadline are done in the constructor
+        validityCheck(NonEmptyString.isValid(name), "name");
+        validityCheck(Email.isValidEmail(clientEmail), "clientEmail");
+        if (source != null) {
+            validityCheck(NonEmptyString.isValid(source), "source");
+        }
+
         // NOTE: it is okay for the deadline and description to be null
         return new Project(NonEmptyString.of(name),
             status,

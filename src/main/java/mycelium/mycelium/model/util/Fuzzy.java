@@ -7,8 +7,7 @@ public class Fuzzy {
     /**
      * Returns a value between 0 and 1, where 0 means the two strings are "completely different", and 1 means they are
      * completely the same. Every character in the query must be present in the target, and the characters must be in
-     * the
-     * same order.
+     * the same order.
      */
     public static double delta(String query, String target) {
         // An empty query would match everything, so we disallow it and return 0. Since we expect every character of
