@@ -5,13 +5,13 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's name in the Dengue Hotspot Tracker.
- * A name can only contain alphabets (capital or otherwise), and whitespaces.
+ * A name can only contain letters (capital or otherwise), and whitespaces.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphabets and spaces, and it should not be blank."
+            "Names should only contain letters and spaces, and it should not be blank."
                     + "\nTrimmed names can have a maximum length of 54 characters.";
 
 

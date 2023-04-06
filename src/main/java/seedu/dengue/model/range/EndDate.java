@@ -41,14 +41,15 @@ public class EndDate implements End<Date> {
      *
      * @param start A StartDate.
      */
-    public boolean isAfter(StartDate start) {
-        if (!date.isPresent()) {
+    public boolean isValidEndDate(StartDate start) {
+        if (!(start.date.isPresent() && date.isPresent())) {
             return true;
         }
         LocalDate d1 = LocalDate.parse(date.get().value);
         LocalDate d2 = LocalDate.parse(start.date.get().value);
         return d1.compareTo(d2) >= 0;
     }
+
     public Date get() {
         return date.get();
     }
