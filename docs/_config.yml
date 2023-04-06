@@ -6,9 +6,10 @@ header_pages:
   - DeveloperGuide.md
   - AboutUs.md
 
-markdown: GFM
+markdown: kramdown
+#markdown: GFM
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103T-T09-4\tp"
 github_icon: "images/github-icon.png"
 
 plugins:
