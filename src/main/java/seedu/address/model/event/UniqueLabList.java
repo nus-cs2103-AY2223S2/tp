@@ -11,18 +11,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateLabException;
 import seedu.address.model.event.exceptions.LabNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
- * A list of lab that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}.
- * As such, adding and updating of lab uses Person#isSamePerson(Person) for equality to
- * ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
- * However, the removal of a person uses Person#equals(Object) to ensure that the person with exactly the
- * same fields will be removed.
+ * Lists the lab that enforces uniqueness between its elements and does not allow nulls.
+ * A lab is considered unique by comparing using {@code Lab#isSameLab(Lab)}.
+ * As such, adding and updating of lab uses Lab#isSameLab(Lab) for equality to
+ * ensure that the lab being added or updated is unique in terms of identity in the UniqueLabList.
+ * However, the removal of a lab uses Lab#equals(Object) to ensure that the lab with
+ * exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Lab#isSameLab(Lab)
  */
 public class UniqueLabList implements Iterable<Lab> {
 
@@ -39,9 +38,10 @@ public class UniqueLabList implements Iterable<Lab> {
     }
 
     /**
-     * Checks whether an event is contained in the list universally
-     * @param nameOfEvent Name of event
-     * @return A boolean indicator
+     * Checks whether an event is contained in the list universally.
+     *
+     * @param nameOfEvent Name of event.
+     * @return A boolean indicator.
      */
     public boolean containsEventName(String nameOfEvent) {
         requireNonNull(nameOfEvent);
@@ -49,9 +49,10 @@ public class UniqueLabList implements Iterable<Lab> {
     }
 
     /**
-     * Checks whether a note is contained universally
-     * @param note Note to check upon
-     * @return A boolean indicator
+     * Checks whether a note is contained universally.
+     *
+     * @param note Note to check upon.
+     * @return A boolean indicator.
      */
     public boolean containsNote(Note note) {
         requireNonNull(note);

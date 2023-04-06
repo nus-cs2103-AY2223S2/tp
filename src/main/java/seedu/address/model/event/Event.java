@@ -13,7 +13,7 @@ import seedu.address.model.person.Photo;
 
 /**
  * Represents an abstract event that tutorial, lab and consultation sessions will inherit from.
- * It contains the standard getters and setters that is common among tutorial, lab and consultations
+ * It contains the standard getters and setters that is common among tutorial, lab and consultations.
  */
 public abstract class Event {
 
@@ -29,9 +29,9 @@ public abstract class Event {
     private final NoteList notes;
 
     /**
-     * Constructor with name parameter only. The time of the event will be
-     * assumed to be the current time the constructor is executed
-     * @param name
+     * Assumes time is the current time the event created.
+     *
+     * @param name the name of the event.
      */
     public Event(String name) {
         this.name = name;
@@ -42,10 +42,11 @@ public abstract class Event {
     }
 
     /**
-     * Sets the custom name students to a current List of students.
-     * The date will be set to the current time of execution
-     * @param name
-     * @param students
+     * Allows the user to set the event name and the students in the event.
+     * Assumes time is the current time the event created.
+     *
+     * @param name the name of the event.
+     * @param students the students that belong to the event.
      */
     public Event(String name, List<Person> students) {
         this.name = name;
@@ -56,11 +57,11 @@ public abstract class Event {
     }
 
     /**
-     * Sets the name and date. Also sets the students to a current List of students.
-     * The date will be set to a specific date
-     * @param name
-     * @param students
-     * @param eventDate
+     * Allows the user to set the event name, event date and students in the event.
+     *
+     * @param name the name of the event.
+     * @param eventDate the event date.
+     * @param students the students that belong to the event.
      */
     public Event(String name, LocalDateTime eventDate, List<Person> students) {
         this.name = name;
@@ -71,12 +72,12 @@ public abstract class Event {
     }
 
     /**
-     * Sets the name and date. Also sets the students to a current list of students.
-     * Sets the attachments to a current list of attachments as well.
-     * @param name
-     * @param eventDate
-     * @param students
-     * @param attachments
+     * Allows the user to set the event name, event date, students and attachments in the event.
+     *
+     * @param name the name of the event.
+     * @param eventDate the event date.
+     * @param students the students in the event.
+     * @param attachments the attachments in the event.
      */
     public Event(String name, LocalDateTime eventDate, List<Person> students, List<File> attachments) {
         this.name = name;
@@ -87,12 +88,13 @@ public abstract class Event {
     }
 
     /**
-     * If file attachments are not needed. Different parameter order
-     * to avoid duplicate constructor due to type erasure error
-     * @param name
-     * @param students
-     * @param notes
-     * @param eventDate
+     * Allows the user to set the event name, students in the event, notes in the event and the event date.
+     * Assumes there are no attachments in the event.
+     *
+     * @param name the name of the event.
+     * @param students the students in the event.
+     * @param notes the notes of the event,
+     * @param eventDate the event date.
      */
     public Event(String name, List<Person> students, List<Note> notes, LocalDateTime eventDate) {
         this.name = name;
@@ -104,12 +106,13 @@ public abstract class Event {
     }
 
     /**
-     * Sets all the variables
-     * @param name
-     * @param eventDate
-     * @param students
-     * @param attachments
-     * @param notes
+     * Allows the user to set the event name, event date, students in the event, attachments and notes in the event.
+     *
+     * @param name the name of the event.
+     * @param eventDate the event date.
+     * @param students the students in the event.
+     * @param attachments the attachments in the event.
+     * @param notes the notes in the event.
      */
     public Event(String name, LocalDateTime eventDate, List<Person> students,
                  List<File> attachments, List<Note> notes) {
@@ -120,14 +123,31 @@ public abstract class Event {
         this.notes = new NoteList(notes);
     }
 
+    /**
+     * Gets the event name.
+     *
+     * @return the event name.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Allows the user to change the event name.
+     *
+     * @param name the new event name.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+
+    /**
+     * Checks if the name of one event is the same as the input by ignoring any casing.
+     *
+     * @param name the name to be checked with.
+     * @return if the name are equal, ignoring casing.
+     */
     public boolean hasMatchByName(String name) {
         return this.name.equalsIgnoreCase(name);
     }
@@ -139,32 +159,36 @@ public abstract class Event {
      **************************************************************************/
 
     /**
-     * Gets the list of students
-     * @return students
+     * Gets the list of students in the event.
+     *
+     * @return students in the event.
      */
     public List<Person> getStudents() {
         return students;
     }
 
     /**
-     * Adds a specific student into the list of students
-     * @param student
+     * Adds a specific student into the current list of students in the event.
+     *
+     * @param student the student to be added.
      */
     public void addStudent(Person student) {
         students.add(student);
     }
 
     /**
-     * Removes a specific student from the list of students
-     * @param student
+     * Removes a specific student from the current list of students in the event.
+     *
+     * @param student to be removed.
      */
     public void removeStudent(Person student) {
         students.remove(student);
     }
 
     /**
-     * Replaces a specific student in the list of students
-     * @param student
+     * Replaces a specific student in the current list of students should that student be present.
+     *
+     * @param student the student to be replaced.
      */
     public void replaceStudent(Person student, Person modifiedStudent) {
         for (int i = 0; i < students.size(); i++) {
@@ -175,25 +199,28 @@ public abstract class Event {
     }
 
     /**
-     * Removes student based on his 0 based index in the list of students
-     * @param index
+     * Removes student based on his 0 based index in the current list of students.
+     *
+     * @param index the index of the student to be removed.
      */
     public void removeIndexStudent(int index) {
         students.remove(index);
     }
 
     /**
-     * Get the total number of students enrolled in the event
-     * @return size
+     * Gets the total number of students enrolled in the event.
+     *
+     * @return number of students present in the event.
      */
     public int countStudents() {
         return students.size();
     }
 
     /**
-     * Checks if student is already present in the event
-     * @param student
-     * @return boolean of whether event has student
+     * Checks if student is already present in the event.
+     *
+     * @param student the student whom presence is to be checked.
+     * @return boolean of whether event has student.
      */
     public boolean hasStudent(Person student) {
         return this.students.contains(student);
@@ -206,16 +233,18 @@ public abstract class Event {
      **************************************************************************/
 
     /**
-     * Gets the date of the event
-     * @return LocalDateTime
+     * Gets the date of the event.
+     *
+     * @return LocalDateTime of the event.
      */
     public LocalDateTime getDate() {
         return eventDate;
     }
 
     /**
-     * Changes the date of the event
-     * @param date
+     * Changes the date of the event.
+     *
+     * @param date the new LocalDateTime of the event.
      */
     public void changeDate(LocalDateTime date) {
         eventDate = date;
@@ -227,23 +256,39 @@ public abstract class Event {
      *                                                                         *
      **************************************************************************/
 
+    /**
+     * Gets the attachment files present in the event.
+     *
+     * @return the list of attachment files in the event.
+     */
     public List<File> getAttachments() {
         return attachments;
     }
 
+    /**
+     * Counts the number of attachments present in the event.
+     *
+     * @return the number of attachments in the event.
+     */
     public int countAttachments() {
         return attachments.size();
     }
 
     /**
-     * Ensures only 1 file can be added
-     * @param file
+     * Ensures only 1 file can be present in the event due to reduce bloating.
+     *
+     * @param file the file to be added.
      */
     public void addAttachment(File file) {
         attachments.clear();
         attachments.add(file);
     }
 
+    /**
+     * Removes the file from the event, should that file be present.
+     *
+     * @param file the file to be removed.
+     */
     public void removeAttachment(File file) {
         attachments.remove(file);
     }
@@ -253,10 +298,24 @@ public abstract class Event {
      * Methods to manipulate notes in an event                                 *
      *                                                                         *
      **************************************************************************/
+
+    /**
+     * Checks if the event has a particular note to it.
+     *
+     * @param note the note be checked for its presence.
+     * @return boolean of whether the event has the note.
+     */
     public boolean hasNote(Note note) {
         return notes.contains(note);
     }
 
+    /**
+     * Changes the note of the event based on an index.
+     *
+     * @param note the new note to replace the old note.
+     * @param index the index of the old note to be replaced.
+     * @return boolean of whether the old note has been successfully replaced.
+     */
     public boolean setNote(Note note, Index index) {
         try {
             notes.replace(note, index.getZeroBased());
@@ -266,26 +325,47 @@ public abstract class Event {
         }
     }
 
+    /**
+     * Gets all the notes in the event.
+     *
+     * @return the list of notes for the event.
+     */
     public List<Note> getNotes() {
         return notes.getNotes();
     }
 
+    /**
+     * Gets the note list of the event.
+     *
+     * @return the NoteList of the event.
+     */
     public NoteList getNoteList() {
         return notes.copy();
     }
 
+    /**
+     * Counts the number of notes present in the event.
+     *
+     * @return int of the number of notes present in the event.
+     */
     public int countNotes() {
         return notes.len();
     }
 
+    /**
+     * Allows the user to add a note to the current list of notes in the event.
+     *
+     * @param note the new note to be added.
+     */
     public void addNote(Note note) {
         notes.add(note);
     }
 
     /**
-     * Removes from note list
-     * @param note A note object
-     * @return Remove outcome
+     * Removes from note list.
+     *
+     * @param note the note object to be removed.
+     * @return remove outcome.
      */
     public boolean removeNote(Note note) {
         try {
@@ -296,9 +376,10 @@ public abstract class Event {
     }
 
     /**
-     * Removes a note from note list by index
-     * @param index The index of note to remove
-     * @return Removal outcome
+     * Removes a note from note list by index.
+     *
+     * @param index the index of note to remove.
+     * @return removal outcome.
      */
     public boolean removeNote(int index) {
         try {
@@ -309,9 +390,10 @@ public abstract class Event {
     }
 
     /**
-     * Checks if input {@code String count} is valid
-     * @param count Input string to check upon
-     * @return Whether the count event is a validated integer
+     * Checks if input {@code String count} is valid.
+     *
+     * @param count input string to check upon.
+     * @return Whether the count event is a validated integer.
      */
     public static boolean isValidCount(String count) {
         boolean validInteger = true;
@@ -334,13 +416,28 @@ public abstract class Event {
         return validInteger;
     }
 
+    /**
+     * Gets the list of student photos.
+     *
+     * @return the list of student photos.
+     */
     public List<Photo> getStudentPhotos() {
         return students.stream().map(Person::getPhoto).collect(Collectors.toList());
     }
 
+    /**
+     * Gets the student details, which is also known as student profiles.
+     *
+     * @return the list of student profiles.
+     */
     public List<String> getStudentProfiles() {
         return getStudentPhotos().stream().map(Photo::getUrlPath).collect(Collectors.toList());
     }
 
+    /**
+     * Copies the event.
+     *
+     * @return the copied event.
+     */
     public abstract Event copy();
 }
