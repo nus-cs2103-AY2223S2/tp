@@ -41,8 +41,8 @@ import seedu.vms.model.vaccination.VaxTypeManager;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ObjectProperty<IdData<Patient>> detailPatientProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<VaxType> detailVaccinationProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<VaxType> detailedVaccinationProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -194,14 +194,14 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<IdData<Patient>> detailPatientProperty() {
-        return detailPatientProperty;
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+        return detailedPatientProperty;
     }
 
 
     @Override
     public void setDetailedPatient(IdData<Patient> data) {
-        detailPatientProperty.set(data);
+        detailedPatientProperty.set(data);
     }
 
     // =========== AppointmentManager ==========================================================================
@@ -266,7 +266,7 @@ public class ModelManager implements Model {
         patientManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
 
-        IdData<Patient> oldPatient = detailPatientProperty.get();
+        IdData<Patient> oldPatient = detailedPatientProperty.get();
         if (oldPatient == null) {
             return;
         }
@@ -327,14 +327,14 @@ public class ModelManager implements Model {
 
 
     @Override
-    public ObjectProperty<VaxType> detailVaccinationProperty() {
-        return detailVaccinationProperty;
+    public ObjectProperty<VaxType> detailedVaccinationProperty() {
+        return detailedVaccinationProperty;
     }
 
 
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
-        detailVaccinationProperty.set(vaxType);
+        detailedVaccinationProperty.set(vaxType);
     }
 
 
@@ -438,20 +438,20 @@ public class ModelManager implements Model {
 
     private void updateVaccinationDetail(ValueChange<VaxType> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailVaccinationProperty.get()))
+                .map(oldValue -> oldValue.equals(detailedVaccinationProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailVaccinationProperty.set(change.getNewValue().orElse(null));
+            detailedVaccinationProperty.set(change.getNewValue().orElse(null));
         }
     }
 
 
     private void updatePatientDetail(ValueChange<IdData<Patient>> change) {
         boolean isUpdated = change.getOldValue()
-                .map(oldValue -> oldValue.equals(detailPatientProperty.get()))
+                .map(oldValue -> oldValue.equals(detailedPatientProperty.get()))
                 .orElse(false);
         if (isUpdated || change.getNewValue().isPresent()) {
-            detailPatientProperty.set(change.getNewValue().orElse(null));
+            detailedPatientProperty.set(change.getNewValue().orElse(null));
         }
     }
 

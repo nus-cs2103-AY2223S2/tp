@@ -233,7 +233,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ObjectProperty<VaxType> detailVaccinationProperty() {
+    public ObjectProperty<VaxType> detailedVaccinationProperty() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
     }
@@ -245,7 +245,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ObjectProperty<IdData<Patient>> detailPatientProperty() {
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
     }
