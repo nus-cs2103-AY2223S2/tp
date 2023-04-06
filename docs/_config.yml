@@ -1,5 +1,5 @@
 title: "Docedex"
-theme: minima
+theme: just-the-docs
 
 header_pages:
   - UserGuide.md
