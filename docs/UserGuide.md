@@ -66,15 +66,24 @@ before continuing to type!
 Come up with a new innovative recipe and want to store it for future reference,
 and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
 
-Format:
-`add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
+Add Format:
+
+| Fields         | Format, Examples                                          
+|----------------|------------------------------------------------------|
+| **Name**       | `n/RECIPE_NAME` <br/> e.g., `n/Caesar Salad`     |
+| **Duration**   | `d/RECIPE_DURATION` <br/> e.g., `d/15 minutes`                                                               |
+| **Portion**    | `p/RECIPE_PORTION` <br/> e.g., `p/1-2 servings`  |
+| **Ingredients**| `i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]...` <br/> e.g.,` i/-a 2 tbsp -n Cider Vinegar -cn Vinegar -r Optional` <br/> e.g., ` i/-n Pasta`|
+| **Steps** | `s/RECIPE_STEPS`<br/> e.g., `s/Add cider vinegar to salad`|
+| **Tags**    | `t/RECIPE_TAGS` <br/> e.g. `t/Vegetarian`         |
+
 
 Example(s) of usage:
 * `add n/Honey Chicken Rice`
 ![AddCommandUI](images/AddCommandUI.png)
 * `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
-  butter s/Serve`
+butter s/Serve and enjoy.`
 
 > :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 >
@@ -138,7 +147,7 @@ Made a mistake or just omitted some important details when you first stored your
 Don't fret, for the `edit` command is here for you to supplement these new details to increase the _rizz_ on your recipes!
 
 Format: 
-`edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
+`edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`  
 
 > Edits the recipe at the specified index. The index refers to the index number shown in the displayed recipe list. 
 > 
@@ -151,6 +160,8 @@ Format:
 > You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
 > 
 > :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+> 
+> Note that the tags specified in the fields above still apply for ingredients, like `-n`.
 > 
 > ![EditFormWindow](images/EditForm.png)
 
@@ -271,9 +282,12 @@ Format:
 
 Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`
+
+For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory which recipebook is stored under, 
 ### Editing the data file
 
-Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`. Advanced users are welcome to update data directly by editing that data file.
+Advanced users are welcome to update data directly by editing that data file located at the address above. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
