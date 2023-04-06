@@ -426,9 +426,8 @@ Parameters:
 > `fish edit <FISH_INDEX> lfd/<LAST_FED_DATE>` command!
 
 Example:
-* It is currently the 2nd of April, 12 pm. If you have a tank which index is 1, with 2 fishes, named 'Fish A' and 'Fish B', `tank feed 1` sets the following details of 'Fish A' and 
-'Fish B':
-  * Last fed date: 02/04/2023 12:00
+* It is currently the 6th of April, 2 pm. If you have a tank which index is 1, with 3 fishes, named 'Nemo', 'Dory' and 'Marlin'. `tank feed 1` sets the following details of all three fishes:
+  * Last fed date: 06/04/2023 14:31
 
 ![AddReadingDemo](images/UiTankFeedDemo.png)
 
@@ -494,11 +493,16 @@ will replace the previous reading made in the same minute!
 > :exclamation: Warning: **All 3 types of readings** must be logged at once. You must fill in all 3 prefix parameters!
 
 Example:
-* It is currently the 3rd of April, 12 pm. `tank addReadings tk/1 al/0.2 ph/7 tp/27.2` adds the readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
+* Scenario 1: It is currently the 3rd of April, 12 pm. `tank addReadings tk/1 al/0.2 ph/7 tp/27.2` adds the readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
   * Ammonia level: 0.2 ppm
   * pH: 7
   * Temperature: 27.2 degrees celcius
   * Date and time associated with each reading: 03/04/2023 1200
+* Scenario 2 (Screenshot below): On 6th April 2pm, `tank addReadings tk/1 al/4 ph/14 tp/40` adds the following readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
+  * Ammonia level: 4 ppm
+  * pH: 14
+  * Temperature: 40 degrees celcius
+  * Date and time associated with each reading: 06/04/2023 1433
 
 ![AddReadingDemo](images/UiAddReadingsDemo.png)
 
@@ -518,8 +522,10 @@ Parameters:
 > :exclamation: Warning: You must have at least one reading for the specified tank to use `tank delLastReadings` for that tank!
 
 Example:
-* You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
+* Scenario 1: You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
 deletes the most recent readings, the set made at 3pm.
+* Scenario 2 (Screenshot below) : You mistakenly add a set of readings to 'Freshwater tank' of index 1. 
+  `tank delLastReadings 1` deletes the most recent set of readings.
 
 ![AddReadingDemo](images/UiDelLastReadingsDemo.png)
 
@@ -682,11 +688,11 @@ Parameters:
 > as you thought it would! A fish with feeding interval `0d26h` will appear before one with `1d0h`!
 
 Example:
-* There are 3 fishes, 'B fish', 'C fish' and 'D fish' in the tank with index 1. There is 1 fish 'A fish' in the tank with index 2.
+* There are 3 fishes, 'Nemo', 'Dory' and 'Marlin' in the tank with index 1. There is a fish named 'Crush' in the tank with index 2.
 Using `tank view 1` followed by `tank sort by/n tk/1` will result in the following fishes displayed in the fish panel in the order:
-  * 1 - 'A fish'
-  * 2 - 'B fish'
-  * 3 - 'C fish'
+  * 1 - 'Dory'
+  * 2 - 'Marlin'
+  * 3 - 'Nemo'
 
 ![AddReadingDemo](images/UiSortNameDemo.png)
 
@@ -856,12 +862,15 @@ Parameters: No parameters
 > edit a feeding reminder
 
 Example:
-* It is the 6th of April 2023, 11am. You have a fish named 'Dory' in 'saltwater tank' with a last fed date of 05/04/2023 10:00
-and a feeding interval of 1 day 0 hours. When you open *Fish Ahoy!*, you will see the following task in the task panel:
+* It is the 6th of April 2023, 11am. You have fishes named 'Dory', 'Nemo' and 'Marlin' in 'freshwater tank' with a last fed date of 28/03/2023 12:00. When you open *Fish Ahoy!*, you will see the following task in the task panel:
   * Description: Tank feeding reminder
-<br>               Dory last fed on 05-Apr-2023 10:00
+<br>               Nemo last fed on 28-Mar-2023 12:00
+    <br>               Dory last fed on 28-Mar-2023 13:00
+    <br>               Marlin last fed on 28-Mar-2023 23:00
   * Priority: high
   * Tank: freshwater tank
+
+![UiFeedingReminder](images/UiTankFeed1.png)
 
 ## Storage
 ### Saving the data
