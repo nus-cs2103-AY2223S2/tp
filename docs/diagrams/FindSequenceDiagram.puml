@@ -34,7 +34,7 @@ create InternshipContainsKeywordPredicate
 FindCommandParser -> InternshipContainsKeywordPredicate
 activate InternshipContainsKeywordPredicate
 
-InternshipContainsKeywordPredicate -> FindCommandParser : p
+InternshipContainsKeywordPredicate --> FindCommandParser : p
 deactivate InternshipContainsKeywordPredicate
 
 create FindCommand
@@ -77,6 +77,6 @@ deactivate FindCommand
 FindCommand -[hidden]-> LogicManager
 destroy FindCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
