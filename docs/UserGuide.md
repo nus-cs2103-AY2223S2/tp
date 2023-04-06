@@ -15,13 +15,14 @@ improving the efficiency of grocery shopping.
   * [Trying out your first command](#trying-out-your-first-command)
   * [Features](#features)
     * [Food-related features](#food-related-features)
-      * [Add a food](#adding-a-food-add)
-      * [Listing all food items](#listing-all-food-items--list)
+      * [Add a food](#add-a-food-add)
+      * [List all food](#list-all-food-items-list)
       * [Edit a food](#edit-a-food-edit)
       * [Find a food](#find-a-food-find)
       * [Increase the quantity of a food](#increasing-the-quantity-of-a-food-inc)
       * [Decrease the quantity of a food](#decreasing-the-quantity-of-a-food-dec)
       * [Delete a food](#delete-a-food-delete)
+      * [Sort food by expiry date](#checking-expiry-of-food-items--expiry)
     * [Tag-related features](#tag-related-features)
       * [Create a tag](#create-a-new-tag-createtag)
       * [Tag a food](#tag-a-food-tag)
@@ -34,8 +35,8 @@ improving the efficiency of grocery shopping.
       * [Getting Help](#getting-help-help)
       * [Clearing WIFE](#clearing-wife--clear)
       * [Exit the program](#exit-the-program--exit)
-      * [Saving the data](#saving-the-data)
-      * [Editing the data file](#editing-the-data-file)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
     * [Food Commands](#food-commands)
@@ -54,7 +55,7 @@ improving the efficiency of grocery shopping.
 
 <div markdown="block" class="alert alert-info">
 
-* If double-clicking the application does not work:
+If double-clicking the application does not work:
   * Copy the file to the folder you want to use as the _home folder_ for your WIFE.
   * Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
 
@@ -133,7 +134,7 @@ New food added: Coca Cola (expires on: 01-01-2099)
 
 ![AddFood](images/UG/AddFood.png)
 
-### Listing all food items : `list`
+### List all food items: `list`
 
 Shows a list of all food item in WIFE.
 
@@ -222,6 +223,19 @@ Deleted Food: MEIJI MILK (expires on 05-04-2023)
 ```
 
 ![DeleteFood](images/UG/DeleteFood.png)
+
+### Checking expiry of food items : `expiry`
+
+Sorts by expiry date and displays all food items.
+
+Format: `expiry`
+
+Examples:
+
+`expiry` returns
+```shell
+Food items are being sorted by their expiry dates.
+```
 
 ## Tag-related Features
 
@@ -344,19 +358,6 @@ Tag successfully deleted:
 [Healthy]
 ```
 
-### Checking expiry of food items : `expiry`
-
-Sorts by expiry date and displays all food items.
-
-Format: `expiry`
-
-Examples:
-
-`expiry` returns
-```shell
-Food items are being sorted by their expiry dates.
-```
-
 ## General Features
 
 ### Getting help: `help`
@@ -453,26 +454,29 @@ There is no support for mobile devices yet.
 
 ### Food Commands
 
-| Feature  | Action                                | Command Format                                              | Example                                   |
-|----------|---------------------------------------|-------------------------------------------------------------|-------------------------------------------|
-| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
-| List     | Lists all food items                  | `list`                                                      | `list`                                    |
-| Find     | Finds a food item                     | `find KEYWORD`                                              | `find Broccoli`                           |
-| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
-| Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
-| Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                    | `dec 1 q/100`                             |
-| Delete   | Deletes a food item                   | `delete INDEX`                                              | `del 3`                                   |
+| Feature             | Action                                   | Command Format                                              | Example                                   |
+|---------------------|------------------------------------------|-------------------------------------------------------------|-------------------------------------------|
+| Add                 | Adds a food item to the food list        | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
+| List                | Lists all food items                     | `list`                                                      | `list`                                    |
+| Edit                | Edits a food item                        | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
+| Find                | Finds a food item                        | `find KEYWORD`                                              | `find Broccoli`                           |
+| Increase            | Increases the quantity of a food item    | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
+| Decrease            | Decreases the quantity of a food item    | `dec INDEX [q/QUANTITY]`                                    | `dec 1 q/100`                             |
+| Delete              | Deletes a food item                      | `delete INDEX`                                              | `del 3`                                   |
+| Sort by expiry date | List all food items by their expiry date | `expiry`                                                    | `expiry`                                  |
+
 
 ### Tag Commands
 
-| Feature        | Action                                        | Command Format                         | Example                            |
-|----------------|-----------------------------------------------|----------------------------------------|------------------------------------|
-| Create Tag     | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
-| Tag            | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
-| Untag          | Removes a tag from a food item                | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
-| List tags      | Lists all the tags created                    | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
-| Delete by tags | Deletes food items by their tags              | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
-| Delete tags    | Deletes specified tags.                       | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
+| Feature            | Action                                        | Command Format                         | Example                            |
+|--------------------|-----------------------------------------------|----------------------------------------|------------------------------------|
+| Create Tag         | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
+| Tag                | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
+| Untag              | Removes a tag from a food item                | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
+| List tags          | Lists all the tags created                    | `listtag`                              | `listtag`                          |
+| List foods by tags | Lists all food items by specified tags        | `listbytag`                            | `listbytag n/Vegetables n/Healthy` |
+| Delete by tags     | Deletes food items by their tags              | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
+| Delete tags        | Deletes specified tags.                       | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
 
 
 ### General Commands
