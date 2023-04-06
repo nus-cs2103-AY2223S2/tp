@@ -513,10 +513,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  * * *   | User     | tag a module with  degree requirements (e.g. University Level Requirements, Computer Science Foundation etc). | track which degree requirement each module fulfils                     |
 |  * * *   | New user |                                            see usage instructions                                             | refer to instructions when I forget how to use the App                 |
 |   * *    | User     |                             find a module by code, grade, semester and/or credits                             | locate some specific modules without having to go through the entire list |
-|   * *    | User     |                             sort modules by subject, grade, semester, credits, level, tag                     | view my modules from another consolidated point of view |
-|   * *    | User     |                                      view my GPA                                       | know how well I have done so far in my CS |
-|   * *    | User     |                      check how much of each degree requirement I have completed                  |  know what requirements I still need to complete |
-|   * *    | User     |                  view my current degree completion progress in terms of percentage and number of MCs completed                     | - |
+|   * *    | User     |                         sort modules by subject, grade, semester, credits, level, tag                         | view my modules from another consolidated point of view |
+|   * *    | User     |                                                  view my CAP                                                  | know how well I have done so far in my CS |
+|   * *    | User     |                          check how much of each degree requirement I have completed                           |  know what requirements I still need to complete |
+|   * *    | User     |         view my current degree completion progress in terms of percentage and number of MCs completed         | - |
 
 *{More to be added}*
 
