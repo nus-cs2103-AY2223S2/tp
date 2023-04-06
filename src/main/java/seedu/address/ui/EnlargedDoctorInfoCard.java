@@ -1,12 +1,9 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.tag.Tag;
@@ -25,7 +22,7 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private Optional<Doctor> selectedDoctorOptional;
+    private Doctor selectedDoctor;
 
     @FXML
     private VBox enlargedDoctorInfoCard;
@@ -52,25 +49,24 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
     /**
      * Updates the selected doctor stored in {@code EnlargedDoctorInfoCard}.
      *
-     * @param selectedDoctor the given {@code Optional< Doctor >}
+     * @param selectedDoctor the given {@code Doctor}
      */
-    public void updateSelectedDoctorOptional(Optional<Doctor> selectedDoctor) {
-        this.selectedDoctorOptional = selectedDoctor;
+    public void updateSelectedDoctor(Doctor selectedDoctor) {
+        this.selectedDoctor = selectedDoctor;
         updateDisplay();
     }
 
     /**
      * Updates the information shown on the {@code EnlargedDoctorInfoCard}
-     * with that of the stored {@code Optional< Doctor >}.
+     * with that of the stored {@code Doctor}.
      * If no doctor is stored, then the {@code EnlargedDoctorInfoCard} is cleared.
      */
     private void updateDisplay() {
         clearDisplay();
-        if (selectedDoctorOptional.isEmpty()) {
+        if (selectedDoctor == null) {
             return;
         }
 
-        Doctor selectedDoctor = selectedDoctorOptional.get();
         name.setText(selectedDoctor.getName().fullName);
         phone.setText(selectedDoctor.getPhone().value);
         email.setText(selectedDoctor.getEmail().value);
@@ -107,6 +103,9 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
 
         // state check
         EnlargedDoctorInfoCard card = (EnlargedDoctorInfoCard) other;
-        return selectedDoctorOptional.equals(card.selectedDoctorOptional);
+        if (selectedDoctor == null) {
+            return card.selectedDoctor == null;
+        }
+        return selectedDoctor.equals(card.selectedDoctor);
     }
 }

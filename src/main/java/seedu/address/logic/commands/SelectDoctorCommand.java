@@ -41,6 +41,6 @@ public class SelectDoctorCommand extends Command {
         Doctor doctorToShow = lastShownList.get(targetIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_SELECT_DOCTOR_SUCCESS, doctorToShow),
-                true, doctorToShow);
+                doctorToShow);
     }
 }

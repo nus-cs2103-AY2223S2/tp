@@ -1,12 +1,9 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -25,7 +22,7 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private Optional<Patient> selectedPatientOptional;
+    private Patient selectedPatient;
 
     @FXML
     private VBox enlargedPatientInfoCard;
@@ -57,25 +54,24 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
     /**
      * Updates the selected patient stored in {@code EnlargedPatientInfoCard}.
      *
-     * @param selectedPatient the given {@code Optional< Patient >}
+     * @param selectedPatient the given {@code Patient}
      */
-    public void updateSelectedPatientOptional(Optional<Patient> selectedPatient) {
-        this.selectedPatientOptional = selectedPatient;
+    public void updateSelectedPatient(Patient selectedPatient) {
+        this.selectedPatient = selectedPatient;
         updateDisplay();
     }
 
     /**
      * Updates the information shown on the {@code EnlargedPatientInfoCard}
-     * with that of the stored {@code Optional< Patient >}.
+     * with that of the stored {@code Patient}.
      * If no patient is stored, then the {@code EnlargedPatientInfoCard} is cleared.
      */
     private void updateDisplay() {
         clearDisplay();
-        if (selectedPatientOptional.isEmpty()) {
+        if (selectedPatient == null) {
             return;
         }
 
-        Patient selectedPatient = selectedPatientOptional.get();
         name.setText(selectedPatient.getName().toString());
         phone.setText(selectedPatient.getPhone().toString());
         email.setText(selectedPatient.getEmail().toString());
@@ -118,6 +114,9 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
 
         // state check
         EnlargedPatientInfoCard card = (EnlargedPatientInfoCard) other;
-        return selectedPatientOptional.equals(card.selectedPatientOptional);
+        if (selectedPatient == null) {
+            return card.selectedPatient == null;
+        }
+        return selectedPatient.equals(card.selectedPatient);
     }
 }

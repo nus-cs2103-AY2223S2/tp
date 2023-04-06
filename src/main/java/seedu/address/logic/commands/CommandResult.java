@@ -25,11 +25,11 @@ public class CommandResult {
     /** This command interacts directly with the GUI */
     private final boolean hasGuiInteraction;
 
-    /** Doctor selected by user through command */
-    private final Optional<Doctor> selectedDoctor;
+    /** Doctor selected by user through command. This value can be null */
+    private final Doctor selectedDoctor;
 
-    /** Patient selected by user through command */
-    private final Optional<Patient> selectedPatient;
+    /** Patient selected by user through command. This value can be null */
+    private final Patient selectedPatient;
 
     /**
      * Constructs a {@code CommandResult} with all fields specified.
@@ -40,8 +40,8 @@ public class CommandResult {
         this.shouldShowHelp = shouldShowHelp;
         this.shouldExit = shouldExit;
         this.hasGuiInteraction = hasGuiInteraction;
-        this.selectedDoctor = Optional.ofNullable(selectedDoctor);
-        this.selectedPatient = Optional.ofNullable(selectedPatient);
+        this.selectedDoctor = selectedDoctor;
+        this.selectedPatient = selectedPatient;
     }
 
     /**
@@ -72,19 +72,19 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with selected doctor.
      */
-    public CommandResult(String cliFeedbackToUser, boolean hasGuiInteraction,
+    public CommandResult(String cliFeedbackToUser,
                          Doctor selectedDoctor) {
         this(cliFeedbackToUser, false, false,
-                hasGuiInteraction, selectedDoctor, null);
+                true, selectedDoctor, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with selected patient.
      */
-    public CommandResult(String cliFeedbackToUser, boolean hasGuiInteraction,
+    public CommandResult(String cliFeedbackToUser,
                          Patient selectedPatient) {
         this(cliFeedbackToUser, false, false,
-                hasGuiInteraction, null, selectedPatient);
+                true, null, selectedPatient);
     }
 
 
@@ -104,20 +104,12 @@ public class CommandResult {
         return this.hasGuiInteraction;
     }
 
-    public boolean hasSelectedDoctor() {
-        return this.selectedDoctor.isPresent();
-    }
-
-    public boolean hasSelectedPatient() {
-        return this.selectedPatient.isPresent();
-    }
-
     public Optional<Doctor> getSelectedDoctor() {
-        return this.selectedDoctor;
+        return Optional.ofNullable(selectedDoctor);
     }
 
     public Optional<Patient> getSelectedPatient() {
-        return this.selectedPatient;
+        return Optional.ofNullable(selectedPatient);
     }
 
     @Override

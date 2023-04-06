@@ -69,12 +69,6 @@ public interface Logic {
      */
     void updateFilteredPatientListBasedOnDoctor(Doctor doctor);
 
-    /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
-    Optional<Doctor> getDoctorIfPresent();
-
-    /** Returns an Optional containing a patient if the filtered list of patient is not empty */
-    Optional<Patient> getPatientIfPresent();
-
     /**
      * Returns the user prefs' address book file path.
      */

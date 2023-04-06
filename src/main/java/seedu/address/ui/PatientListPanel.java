@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Optional;
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -36,15 +37,10 @@ public class PatientListPanel extends UiPart<Region> {
      * Selects the {@code PatientListViewCell} of the {@code Patient} supplied.
      *
      * @param patient selected patient.
-     * @throws ArrayIndexOutOfBoundsException if index is invalid.
      */
-    public void selectPatient(Optional<Patient> patient) {
-        if (patient.isEmpty()) {
-            String warnMessage = "Supplied patient is null!";
-            logger.warning(warnMessage);
-            return;
-        }
-        patientListView.getSelectionModel().select(patient.get());
+    public void selectPatient(Patient patient) {
+        requireNonNull(patient);
+        patientListView.getSelectionModel().select(patient);
     }
 
     /**

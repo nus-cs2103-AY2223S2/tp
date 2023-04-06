@@ -118,24 +118,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Optional<Doctor> getDoctorIfPresent() {
-        Optional<Doctor> optionalDoctor = Optional.empty();
-        if (!model.getFilteredDoctorList().isEmpty()) {
-            optionalDoctor = Optional.of(model.getFilteredDoctorList().get(0));
-        }
-        return optionalDoctor;
-    }
-
-    @Override
-    public Optional<Patient> getPatientIfPresent() {
-        Optional<Patient> optionalPatient = Optional.empty();
-        if (!model.getFilteredPatientList().isEmpty()) {
-            optionalPatient = Optional.of(model.getFilteredPatientList().get(0));
-        }
-        return optionalPatient;
-    }
-
-    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

@@ -91,12 +91,8 @@ public class ContactDisplay extends UiPart<Region> {
      * @param commandResult a command result.
      */
     private void setFeedbackIfDoctorSelected(CommandResult commandResult) {
-        if (!commandResult.hasSelectedDoctor()) {
-            return;
-        }
-
         Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
-        setFeedbackUponSelectingDoctor(selectedDoctor.get());
+        selectedDoctor.ifPresent(this::setFeedbackUponSelectingDoctor);
     }
 
     /**
@@ -106,10 +102,9 @@ public class ContactDisplay extends UiPart<Region> {
      */
     protected void setFeedbackUponSelectingDoctor(Doctor selectedDoctor) {
         requireNonNull(selectedDoctor);
-        Optional<Doctor> selectedDoctorOptional = Optional.of(selectedDoctor);
         logic.updateFilteredPatientListBasedOnDoctor(selectedDoctor);
-        doctorListPanel.selectDoctor(selectedDoctorOptional);
-        enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctorOptional);
+        doctorListPanel.selectDoctor(selectedDoctor);
+        enlargedDoctorInfoCard.updateSelectedDoctor(selectedDoctor);
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
     }
@@ -120,12 +115,8 @@ public class ContactDisplay extends UiPart<Region> {
      * @param commandResult a command result.
      */
     private void setFeedbackIfPatientSelected(CommandResult commandResult) {
-        if (!commandResult.hasSelectedPatient()) {
-            return;
-        }
-
         Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
-        setFeedbackUponSelectingPatient(selectedPatient.get());
+        selectedPatient.ifPresent(this::setFeedbackUponSelectingPatient);
     }
 
     /**
@@ -135,10 +126,9 @@ public class ContactDisplay extends UiPart<Region> {
      */
     protected void setFeedbackUponSelectingPatient(Patient selectedPatient) {
         requireNonNull(selectedPatient);
-        Optional<Patient> selectedPatientOptional = Optional.of(selectedPatient);
         logic.updateFilteredDoctorListBasedOnPatient(selectedPatient);
-        patientListPanel.selectPatient(selectedPatientOptional);
-        enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatientOptional);
+        patientListPanel.selectPatient(selectedPatient);
+        enlargedPatientInfoCard.updateSelectedPatient(selectedPatient);
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedPatientInfoCard.getRoot());
     }
