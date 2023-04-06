@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/wong-jia-jun.md)]
 
 * Role: Developer
-* Responsibilities: TBC
+* Responsibilities: UI
 ### Wong Yong Xiang
 
 <img src="images/wongyx.png" width="200px">

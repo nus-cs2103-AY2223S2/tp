@@ -289,9 +289,9 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The `Bookmark` class will have an attribute `url` of type `URL` which represents site which the bookmark is hyperlinked to
-
+The `Bookmark` class will have an attribute `url` of type `URL` which represents site which the bookmark is hyperlinked to.
 The `GoToCommand` will then open the site in the default browser of the user. Before the `GoToCommand` object is created.
+
 * The `GoToCommandParser` will checks if the command is of the correct format and argument index is valid
 * Then the `GoToCommand` will execute these steps in order
   1. Get the current bookmarklist displayed
@@ -309,7 +309,7 @@ The following sequence diagram shows the interaction between the objects when a 
 
 #### Design Considerations:
 
-#### Aspect: What data type to use?:
+**Aspect: What data type to use?:**
 
 Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and
 is then created into a URI object when `GoToCommand` is executed
@@ -324,6 +324,33 @@ The benefits of using `String` is that it is easy to saved and retrieve from Jso
     * Pros: Will use be safer as errors are caught before object is created
     * Cons: Difficulty in implementing as harder to parse for user input due to format of URI
 <div style="page-break-after: always;"></div>
+
+### View Feature
+
+#### Implementation
+
+The `ViewCommand` allows user to view the bookmark's labelled details in the right panel/ Zoomview panel on the bottom right of GUI.
+
+The user can use the `view` command followed by a postive index/integer. The value of this index corresponds to the 
+index beside the bookmark the user wishes to view in the bookmarkList panel of the GUI. Therefore its value has to lie
+between the 1 and the length of current displayed bookmarklist inclusive.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This `view` command can only be executed 
+if a bookmark exists in the bookmarkList Panel
+</div>
+
+#### Design considerations:
+
+**Aspect: How to pick bookmark to view?:**
+
+* **Alternative 1(current choice):** Pick by index given to bookmark when `bookmarkCard` object is created.
+     * Pros: Simple to implement and  intuitive for user to pick desired bookmark based on the order in bookmarklist
+     * Cons: An extra field to be stored which might be unnecessary.
+* **Alternative 2:** Pick based on the title of the bookmark.
+    * Pros: No need extra overhead or space required to store an extra field
+    * Cons: Some titles may have similar titles so user may have to type out entire title which may be quite long or
+      have some sort of combination of Title and author to identify the unique bookmark.
+
 
 ### Progress Field
 
@@ -536,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user with many bookmarks | sort bookmarks by date of creation      | view bookmarks in order of creation                           |
 | `* *` | user with many bookmarks | find bookmarks by last modified date    | view bookmarks in order of most recently updated              |
 | `* *` | user  | add last read chapter to a bookmark     | know where I last left off with a certain book                |
-| `* *` | user | find bookmarks based on their status    | view only bookmarks of a certain status easily                |
+| `* *` | user | find bookmarks based on their progress  | view only bookmarks of a certain progress easily              |
 
 *{More to be added}*
 <div style="page-break-after: always;"></div>
