@@ -434,7 +434,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `remark 0 r/3 rounds of interviews`<br>
        Expected: No opening is edited. Error details shown in the status message. Command line remains the same.
 
-    4. Other incorrect edit commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 2. Deleting a remark
@@ -478,11 +478,11 @@ testers are expected to do more *exploratory* testing.
 1. Clearing all openings
 
     1. Test case: `clear`<br>
-       Expected: All openings are deleted from the list. Details of the deleted opening shown in the status message.
+       Expected: All openings are deleted from the list. Success message shown in status message.
 
 ### Finding an opening by company or position
 
-1. Finding an opening that exists by keyword
+1. Finding an opening by keyword
 
     1. Prerequisites: At least one opening with the word "developer" in its position or company name exists in the list
 
@@ -492,16 +492,9 @@ testers are expected to do more *exploratory* testing.
    3.Test case: `find`<br>
    Expected: List remains the same. Error details shown in the status message. Command line remains the same.
 
-2. Finding an opening that doesn't exist by keyword
-
-    1. Prerequisites: No opening with the word "joogle" in its position or company name exists in the list
-
-    2. Test case: `find joogle`<br>
-       Expected: List filters out all openings that do not have the word "joogle" in its position or company name. Number of found openings is shown in the status message. Command line remains the same
-
 ### Finding an opening by status
 
-1. Finding an opening that exists by status
+1. Finding an opening by status
 
     1. Prerequisites: At least one opening with "interviewing" as its status
 
@@ -510,13 +503,6 @@ testers are expected to do more *exploratory* testing.
 
    3.Test case: `status`<br>
    Expected: List remains the same. Error details shown in the status message. Command line remains the same.
-
-2. Finding an opening that doesn't exist by status
-
-    1. Prerequisites: No opening with "accepted" in its position name exists in the list
-
-    2. Test case: `status accepted`<br>
-       Expected: List filters out all openings that do not have "accepted" as its status. Number of found openings is shown in the status message. Command line remains the same
 
 ### Getting openings with upcoming deadlines
 
