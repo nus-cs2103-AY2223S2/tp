@@ -2,35 +2,42 @@
 layout: page
 title: User Guide
 ---
+## [TABLE OF CONTENTS](#table-of-content)
+* [Introduction](#introduction)
+* [Quick start](#quickstart)
+* [Features](#features)
+    1. [Viewing help](#help)
+    2. [Add student](#add)
+    3. [Delete student](#delete)
+    4. [List student](#list)
+    5. [Filter student](#filter)
+    6. [Add a lesson](#learn)
+    7. [Remove a lesson](#unlearn)
+    8. [Local save](#save)
+    9. [Local load](#load)
+    10. [Exit program](#exit)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
-## INTRODUCTION
+
+## INTRODUCTION <a name="introduction"></a>
 
 Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
-[TABLE OF CONTENTS](#table-of-content)
-1. [Viewing help](#help)
-2. [Add student](#add)
-3. [Delete student](#delete)
-4. [List student](#list)
-5. [Filter student](#filter)
-6. [Add a lesson](#learn)
-7. [Remove a lesson](#unlearn)
-8. [Local save](#save)
-9. [Local load](#load)
-10. [Exit program](#exit)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start <a name="quickstart"></a>
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `TMS.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Tutee Managing System.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TMS.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A UI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -77,7 +84,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 </div>
 
-## Viewing help <a name="help"></a>
+### Viewing help <a name="help"></a>
 
 Shows a message explaning how to access the help page.
 
@@ -85,7 +92,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## Add student <a name="add"></a>
+### Adding student <a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -98,7 +105,7 @@ Examples:
 * ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
 
 
-## Delete student <a name="delete"></a>
+### Deleting student <a name="delete"></a>
 
 Removes a student from the managing system.
 
@@ -109,7 +116,7 @@ Examples:
 * ```delete 1```
 
 
-## List students <a name="list"></a>
+### Listing students <a name="list"></a>
 
 Lists students in the managing system.
 
@@ -120,7 +127,7 @@ Examples:
 * ```list``` 
 
 
-## Editing a person : `edit`
+### Editing a student : `edit`
 
 Edits an existing person in the address book.
 
@@ -137,7 +144,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-## Locating students by name: `find`
+### Locating students by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -155,7 +162,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-## Filter students by any fields <a name='filter'></a>
+### Filtering students by any fields <a name='filter'></a>
 
 Filter and list students whose fields contain any of the given keywords.
 
@@ -176,7 +183,7 @@ Examples:
 - `filter a/clementi s/math` returns tutees whose address are in `clementi` and being tutored `math` subject.
 ![img.png](images/filterExampleResult.png)
 
-## Add a new lesson <a name="learn"></a>
+### Adding a new lesson <a name="learn"></a>
 
 Add a lesson taught to a student.
 
@@ -187,7 +194,7 @@ Examples:
 * ```learn 1 l/Rational number```
 ![learn.png](images/learnExample.PNG)
 
-## Remove a lesson <a name="unlearn"></a>
+### Removing a lesson <a name="unlearn"></a>
 
 Remove a lesson taught to a student.
 
@@ -198,13 +205,13 @@ Examples:
 * ```unlearn 1 l/Rational number```
   ![unlearn.png](images/unlearnExample.PNG)
 
-## Local save <a name="save"></a>
+### Saving locally <a name="save"></a>
 
 Saves the current state of the program on the hard disk upon exit.
 
 Done automatically.
 
-## Local load <a name="load"></a>
+### Loading locally <a name="load"></a>
 
 Loads the saved state of the program (if there is any) on the hard disk.
 
@@ -218,21 +225,53 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-## Exit program <a name="exit"></a>
+### Exiting program <a name="exit"></a>
 
 Exit the program.
 
 Format: ```exit```
 
-## Mark/Unmark attendance
+### Marking/Unmarking attendance
 Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
 they were absent. If a date is not specified, the current date is used.\
 If the tutee was already absent or present, the command will have no effect.
 
 Format: `mark/unmark <index> [date...]`
 
-## Query Command
+### Querying attendance
 Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
 Otherwise, the command will return if the tutee was present on the given date.
 
 Format: `query <index> [date]`
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Follow [quick start](#quickstart) on the new computer and overwrite the empty data file it creates with the file that contains the data of your previous data file.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action | Format and Examples                 |
+|------|-------------------------------------|
+| **Add Student** |                                     |
+| **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
+| **Clear** | `clear`                             |
+| **** |                                     |
+| **Edit** |                                     |
+| **Find** |                                     |
+| **Filter** |                                     |
+| **List Students** | `list`                              |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **** |                                     |
+| **Help** | `help`                              |
