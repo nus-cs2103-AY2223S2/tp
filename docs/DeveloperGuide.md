@@ -82,7 +82,6 @@ title: Developer Guide
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
-   * [Continuous Integration](#continuous-integration)
 6. [Documentation](#6-documentation)
    * [Using PlantUML](#using-plantuml)
 7. [Appendix](#7-appendix)
@@ -994,7 +993,7 @@ The `organise` command will set a meet up with the time and place for all partic
 
 <div markdown="block" class="alert alert-info">
 
-:information_soruce: **Command Formats:** <br>
+:information_source: **Command Formats:** <br>
 
 * `organise INDEX` : Takes the recommendation at the specified `INDEX` and saves it.
 * `organise INDEX_1 INDEX_2 … d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information.
@@ -1194,9 +1193,6 @@ Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codec
 For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
 
 ---
-
-## **Continuous Integration**
-{to be filled}
 
 # **6. Documentation**
 
