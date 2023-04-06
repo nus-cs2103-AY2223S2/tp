@@ -127,7 +127,7 @@ Before you can add any cards, you must first create a deck. Creating a deck is d
 
 Format: `addDeck DECK_NAME`
 - `DECK_NAME` is the name of the deck you want to create. 
-  - Deck name cannot be duplicated, e.g., if you already have a deck named Science, you cannot create another Science deck.
+  - Deck name is case-sensitive and cannot be duplicated, e.g., if you already have a deck named Science, you cannot create another Science deck.
   - You do not need any prefix before deck name.
 
 Example:
@@ -430,6 +430,8 @@ _Details coming soon ..._
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
 
+**Q**: How can I verify if my answer is correct?<br>
+**A**: PowerCards operates on a self-testing basis. You can check your answer by writing it down before flipping the card to verify if you got it right or wrong.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Command Summary
