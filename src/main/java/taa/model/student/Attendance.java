@@ -218,7 +218,7 @@ public class Attendance {
      * @param str Participation points string from storage
      * @return true if string is valid and false otherwise
      */
-    public static boolean isValidPPStorageString(String str) {
+    public static boolean isValidPpStorageString(String str) {
         String[] arr = str.split(";");
         if (arr.length != 12) {
             return false;

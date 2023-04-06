@@ -81,7 +81,7 @@ class JsonAdaptedStudent {
         if (pp == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
-        if (!Attendance.isValidPPStorageString(pp)) {
+        if (!Attendance.isValidPpStorageString(pp)) {
             throw new IllegalValueException("Invalid participatoin string in Json file");
         }
         if (attendance == null) {
