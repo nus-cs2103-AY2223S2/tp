@@ -111,6 +111,15 @@ public class AddOrderCommand extends Command {
 
         public AddOrderDescriptor() {}
 
+        /**
+         * Copy constructor.
+         */
+        public AddOrderDescriptor(AddOrderCommand.AddOrderDescriptor toCopy) {
+            setName(toCopy.name);
+            setQuantity(toCopy.quantity);
+            setAddress(toCopy.address);
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
