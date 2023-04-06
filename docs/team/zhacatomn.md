@@ -5,42 +5,35 @@ title: Shaun Quek's Project Portfolio Page
 
 ### Project: FriendlyLink
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+FriendlyLink is a personnel information management tool designed for Voluntary Welfare Organisations to keep elderly and volunteer records, and pair them up efficiently and effectively.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: The `auto_pair` command
+    * **What it does**: Automatically pairs unpaired elderly and volunteers together
+    * **Justification**: It can be daunting to manually pair up the elderly and volunteers, especially when there are many factors that need to be considered, such as their region and availabilities. 
+This command helps to give the user a starting point for how the unpaired elderly and volunteers can be paired up, allowing them to overcome the initial inertia. 
+    * **Highlights**: It was tricky to figure out what algorithm we should use to pair up the elderly and volunteers. Ultimately, we decided on a simple, one-to-one matching, greedy algorithm to serve as a "starting point" for the user.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zhacatomn&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=zhacatomn&tabRepo=AY2223S2-CS2103T-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Managed release `v1.3.2` (1 release) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+    * Improved implementation of the edit commands (`edit_elderly`, `edit_volunteer`, `edit`) with the new `EditDescriptor` class
+    * Added the `PersonBuilderScaffold` class in tests for better abstraction
+    * Created the `Volunteer` class, as well as the `add_volunteer` command
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the command `add_volunteer`.
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the edit feature.
+        * Modified the "Logic component" section under "Design" to better describe FriendlyLink's architecture. 
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * PRs reviewed (with non-trivial review comments): [\#184](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/184), 
+  [\#180](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/180),
+  [\#148](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/148)
+  
 
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
