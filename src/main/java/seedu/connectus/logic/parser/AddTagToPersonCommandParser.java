@@ -7,17 +7,9 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
-import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.Major;
-import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Remark;
 
 /**
  * Parses input arguments and creates a new AddTagToPersonCommand object
@@ -38,15 +30,11 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
         }
 
         var addTagDescriptor = new AddTagDescriptor(
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_REMARK)).map(l -> l.stream().filter(s -> !s.isBlank())
-                    .map(Remark::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_MODULE)).map(l -> l.stream().filter(s -> !s.isBlank())
-                .map(Module::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_CCA)).map(l -> l.stream().filter(s -> !s.isBlank())
-                .map(Cca::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_MAJOR))
-                .map(l -> l.stream().filter(s -> !s.isBlank())
-                .map(Major::new).collect(Collectors.toSet())).orElse(new HashSet<>()));
+            ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK)),
+            ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE)),
+            ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA)),
+            ParserUtil.parseMajors(argMultimap.getAllValues(PREFIX_MAJOR))
+        );
 
         if (addTagDescriptor.isEmpty()) {
             throw new ParseException(
