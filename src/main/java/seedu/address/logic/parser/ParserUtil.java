@@ -405,14 +405,14 @@ public class ParserUtil {
     /**
      * Removes the current event date that is to be eddited. Thereafter, check if there is still conflicting
      * timings. If there is, add the current event date back. If there is no conflicting schedule, then leave the
-     * current event date as removed, and add the new date range
-     * @param oldDateStart          LocalDateTime
-     * @param newDateStart          LocalDateTime
-     * @param plus                  int
-     * @throws ParseException       Exception handling
+     * current event date as removed, and add the new date range.
+     * @param oldDateStart          LocalDateTime.
+     * @param newDateStart          LocalDateTime.
+     * @param plus                  int.
+     * @throws ParseException       Exception handling.
      */
-    public static void editEventDateException(LocalDateTime oldDateStart,
-                                              LocalDateTime newDateStart, int plus) throws ParseException {
+    public static void editEventDateException(LocalDateTime oldDateStart, LocalDateTime newDateStart,
+                                              int plus, boolean isOldDate) throws ParseException {
 
         LocalDateTime[] oldDateRange = new LocalDateTime[]{oldDateStart, oldDateStart.plusHours(plus)};
         LocalDateTime newDateEnd = newDateStart.plusHours(plus);
@@ -451,10 +451,12 @@ public class ParserUtil {
                 throw new ParseException("You are already busy during that period!");
             }
         }
-        //Ensures user cannot create event in the past
-        if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
-            MASTER_TIME.add(oldDateRange);
-            throw new ParseException("You cannot create a historical event!");
+        //Ensures user cannot create event in the past if a new date is inserted
+        if (!isOldDate) {
+            if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
+                MASTER_TIME.add(oldDateRange);
+                throw new ParseException("You cannot create a historical event!");
+            }
         }
 
         MASTER_TIME.add(newDateRange);

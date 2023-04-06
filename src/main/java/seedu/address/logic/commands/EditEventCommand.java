@@ -45,6 +45,7 @@ public class EditEventCommand extends Command {
     private final boolean isTutorial;
     private final boolean isLab;
     private final boolean isConsultation;
+    private final boolean isOldDate;
 
     /**
      * Edits the event based on the index given and the fields to be edited.
@@ -56,7 +57,7 @@ public class EditEventCommand extends Command {
      * @param isConsultation            if the event to be edited is a consultation.
      */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor, boolean isTutorial,
-                            boolean isLab, boolean isConsultation) {
+                            boolean isLab, boolean isConsultation, boolean isOldDate) {
         requireNonNull(index);
         requireNonNull(editEventDescriptor);
 
@@ -64,6 +65,7 @@ public class EditEventCommand extends Command {
         this.isTutorial = isTutorial;
         this.isLab = isLab;
         this.isConsultation = isConsultation;
+        this.isOldDate = isOldDate;
         this.editEventDescriptor = editEventDescriptor;
     }
 
@@ -107,7 +109,7 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        ParserUtil.editEventDateException(tutorialToEdit.getDate(), editedTutorial.getDate(), 1);
+        ParserUtil.editEventDateException(tutorialToEdit.getDate(), editedTutorial.getDate(), 1, isOldDate);
 
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
@@ -136,7 +138,7 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        ParserUtil.editEventDateException(labToEdit.getDate(), editedLab.getDate(), 2);
+        ParserUtil.editEventDateException(labToEdit.getDate(), editedLab.getDate(), 2, isOldDate);
 
         model.setLab(labToEdit, editedLab);
         model.updateFilteredLabList(PREDICATE_SHOW_ALL_LABS);
@@ -165,7 +167,7 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        ParserUtil.editEventDateException(consultationToEdit.getDate(), editedConsultation.getDate(), 1);
+        ParserUtil.editEventDateException(consultationToEdit.getDate(), editedConsultation.getDate(), 1, isOldDate);
 
         model.setConsultation(consultationToEdit, editedConsultation);
         model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
