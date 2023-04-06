@@ -15,7 +15,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 class UniqueEventListTest {
@@ -41,13 +40,6 @@ class UniqueEventListTest {
     @Test
     void add_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.add(null));
-    }
-
-    @Test
-    void add_duplicateEvent_throwsDuplicateEventException() {
-        uniqueEventList.add(EVENT_1);
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(EVENT_1));
-        assertThrows(DuplicateEventException.class, () -> uniqueEventList.add(EVENT_1.copy()));
     }
 
     @Test

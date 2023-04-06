@@ -49,11 +49,11 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new Tags(new HashSet<>());
+        this.name = new Name(DEFAULT_NAME);
+        this.phone = new Phone(DEFAULT_PHONE);
+        this.email = new Email(DEFAULT_EMAIL);
+        this.address = new Address(DEFAULT_ADDRESS);
+        this.tags = new Tags(new HashSet<>());
         this.gender = new Gender(DEFAULT_GENDER);
         this.major = new Major(DEFAULT_MAJOR);
         this.modules = new Modules(new HashSet<>());
@@ -66,11 +66,11 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = personToCopy.getTags();
+        this.name = personToCopy.getName();
+        this.phone = personToCopy.getPhone();
+        this.email = personToCopy.getEmail();
+        this.address = personToCopy.getAddress();
+        this.tags = personToCopy.getTags();
         this.gender = personToCopy.getGender();
         this.major = personToCopy.getMajor();
         this.modules = personToCopy.getModules();

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -50,6 +51,7 @@ public class PersonUtil {
         sb.append(PREFIX_MAJOR + person.getMajor().value + " ");
         sb.append(PREFIX_RACE + person.getRace().value + " ");
         sb.append(PREFIX_COMMS + person.getComms().value + " ");
+        sb.append(PREFIX_FACULTY + person.getFaculty().value + " ");
         return sb.toString();
     }
 
