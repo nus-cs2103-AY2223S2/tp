@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **New Feature**:`subsection` command that adds a subsection to a task [#135](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/135)
   * What it does: The command will add a subsection to an existing task. Each task will have a list of subsections.
   * Justification: We wish to allow the user to break down complex tasks into smaller sections to better plan the task.
-  * Highlights: 
+  * Highlights:
     * Each of the task will be initialised with an empty list of subsections.
     * User can add to each task's subsections using `subsection INDEX n/Name d/Description`.
     * I also created a storage for the subsection, so that now each json file of task has a list of subsections.
@@ -52,13 +52,13 @@ Given below are my contributions to the project.
   * What it does: Allows the user to edit all of `SimpleTask`, `Event` and `Deadline`. Previously the edit only applied to simple tasks.
   * Highlights:
     * previously the edit command only creates a new simple task to replace the old task, now it will accommodate for `Event` and `Deadline`.
-  
+
   
 * **Documentation**:
   * Contribution to the user guide:
     * Subsection command [#135](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/135)
     * Remove-subsection command [#135](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/135)
-  * Contribution to the developer guide: 
+  * Contribution to the developer guide:
     * Add a section on `edit` command [#146](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/146)
       * Section includes activity diagram and sequence diagram, as well as the write-up.
     * Add a section on `subsection` command [#146](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/146)
@@ -79,7 +79,7 @@ Given below are my contributions to the project.
     * [#74](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/74)
     * [#138](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/138)
     * [#147](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/147)
-    
+
 
 * **Tools**:
   * Java 11
