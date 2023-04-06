@@ -115,19 +115,19 @@ Firstly, parameters are the inputs/information you have to fill in together with
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
-| Parameter         | Meaning                                                                              | Notes                                                                                                                                                                                                                                |
-|-------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ADDRESS`         | Address of the student                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
-| `EDUCATION_LEVEL` | Education level of the student                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
-| `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
-| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
-| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-find) by                    | Can only contain letters and/or numbers                                                                                                                                                                                              |
-| `MODULE`          | The module you're teaching the student                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
-| `PHONE`           | Phone number of the student                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
-| `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
-| `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
-| `TELEGRAM`        | Telegram handle of the student                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
+| Parameter         | Meaning                                                                               | Notes                                                                                                                                                                                                                                |
+|-------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADDRESS`         | Address of the student.                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
+| `EDUCATION_LEVEL` | Education level of the student.                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
+| `EMAIL`           | Email address of the student.                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
+| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list). | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
+| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-findfilter) by.              | Can only contain letters and/or numbers                                                                                                                                                                                              |
+| `MODULE`          | The module you're teaching the student.                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
+| `PHONE`           | Phone number of the student.                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
+| `REMARK`          | Your notes or remarks on the student.                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
+| `STUDENT_NAME`    | Name of the student.                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add).    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
+| `TELEGRAM`        | Telegram handle of the student.                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
 
 <div markdown="block" class="alert alert-info">
 
@@ -182,7 +182,7 @@ The format of the suggested parameters are as described in the [**Guide on using
 
 <br>
 
-For the `module`, `tag`, `education` fields, it will also suggest all the existing values to you.
+For the `module`, `tag`, `education` parameters, it will also suggest all the existing values to you.
 
 ![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
 
@@ -252,7 +252,7 @@ For more details and examples on the parameters, please refer to the [Parameter 
 
 :bulb: **Note:**
 * `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as coloured tags under the student's name.
-* Only the name ie. `n/` is compulsory. You can add/edit details for other fields using the [`edit`](#edit-a-student-edit) command.
+* Only the name ie. `n/` is compulsory. You can add/edit details for other parameters using the [`edit`](#editing-a-student-edit) command.
 * The current version of TeachMeSenpai allows you to add students with the same phone number and/or telegram handle! However, we have planned
 a future enhancement that will only allow unique phone numbers and telegram handles.
 
@@ -321,7 +321,7 @@ Examples:
 
 ### Editing a student: `edit`
 
-Edits a student's information _(all information except remarks)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
+Edits a student's information _(all information except remarks)_. To remove a student's parameter, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 >
@@ -340,7 +340,7 @@ For more details and examples on the parameters, please refer to the [Parameter 
 
 <div markdown="block" class="alert alert-info">
 :bulb: **Note:**
-* `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
+* `edit` command cannot edit the remark parameter of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 * `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
 
@@ -387,7 +387,7 @@ The current version of TeachMeSenpai requires you to close the remark text box b
 
 Examples:
 
-- `remark 2'
+- `remark 2`
 
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />
@@ -443,11 +443,11 @@ Examples:
 
 ### Find/filter students: `find`/`filter`
 
-Finds students based on a keyword in the field that you want.
+Finds students based on a keyword in the parameter that you want.
 
 The `find` and `filter` commands allow you to match keywords or partial keywords with the entries, for example:
 
-`find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all fields EXCEPT tags and modules, where you will have to enter the keywords in full.
+`find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
 
 The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
 
@@ -456,7 +456,7 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 > `filter PREFIX... KEYWORDS...`
 
 * `PREFIX` refers to the type of details such as name, address, email and so on.
-* Input the field like so:
+* Input the parameter like so:
   * Name: `n/`
   * Address: `a/`
   * Email: `e/`
@@ -587,9 +587,8 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Term                           | Details                                                                                                         | Examples                                                                                                                                                                                                                                            |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                                   |
-| Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) like [`add`](#adding-a-student-add), are all commands TeachMeSenpai can execute.                                                                                                                                              |
+| Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) are commands TeachMeSenpai can execute. For example, [`add`](#adding-a-student-add) is a command!                                                                                                                             |
 | Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#guide-to-teachmesenpais-gui) acts as a CLI in this case.                                                                                                                                                                        |
-| Field                          |                                                                                                                 |                                                                                                                                                                                                                                                     |
 | Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                           |
 | Index                          | The number displayed next to the student entry's name after `list` is used.                                     | 1. Alex Yeoh, 1 would be the index for Alex Yeoh.                                                                                                                                                                                                   |
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                                |
@@ -642,7 +641,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 ## Appendix: Editing the data file
 
-The default data file contains the sample data from TeachMeSenpai. To edit the data, simply follow the format for each field you'd like to edit.
+The default data file contains the sample data from TeachMeSenpai. To edit the data, simply follow the format for each parameter you'd like to edit.
 
 The code below is a direct quote from the default data file.
 
@@ -714,10 +713,10 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** The values you input should adhere to the [parameter requirements](#parameter-descriptions).
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** 
+* The values you input should adhere to the [parameter requirements](#parameter-descriptions) in the [Parameter descriptions](#parameter-descriptions).
+* The parameters in the braces indicate which parameter in the Parameter descriptions the input should adhere to.
 </div>
-
-The parameters in the braces indicate which parameter requirements in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
 
 - `name`: Represents the student's name. If empty, input`""`. (STUDENT_NAME)
 - `phone`: Represents the student's phone number. If empty, input`""`. (PHONE)
