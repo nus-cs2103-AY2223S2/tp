@@ -53,8 +53,9 @@ Here are my contributions to team-based tasks
 - Project management: Created, assigned and closed issues for milestones 1.2, 1.2b, 1.3
 
 #### Review/mentoring contributions
-Here are the PRs that I have reviewed
+Here are the PRs that I have reviewed (with non-trivial comments).
 - [#80](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/80)
+- [#253](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/253#pullrequestreview-1375393252)
 
 Here are some ways through which I have aided my team members
 - (to be added)
