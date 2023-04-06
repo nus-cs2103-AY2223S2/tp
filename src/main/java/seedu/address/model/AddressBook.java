@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a person in the address book can be replaced by another
+     * without causing any duplicates of person in the address book.
+     *
+     * @param toBeReplaced The person to be replaced.
+     * @param replacement The replacement person.
+     */
+    public boolean canReplacePerson(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        return persons.willHaveDuplicatesAftReplacement(toBeReplaced, replacement);
     }
 
     /**

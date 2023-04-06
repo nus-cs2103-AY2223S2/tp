@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 // import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import seedu.address.commons.core.index.Index;
@@ -21,28 +22,24 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
      */
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args); //, PREFIX_REMARK);
-        assert argMultimap.getPreamble() != null;
-        String[] tokens = argMultimap.getPreamble().split(" ", 2);
+        assert !args.isBlank() : "'args' should not be blank";
+
+        String[] splitArr = args.stripLeading().split("\\s+", 2);
+        String indexStr = splitArr[0];
+        Remark remark = splitArr.length != 2
+            ? null
+            : new Remark(splitArr[1]);
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(tokens[0]); //argMultimap.getPreamble());
-        } catch (IllegalValueException | IndexOutOfBoundsException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), e);
+            index = ParserUtil.parseIndex(indexStr); //argMultimap.getPreamble());
+        } catch (IllegalValueException ive) {
+            if (ive.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ive);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        Remark remark;
-        try {
-            remark = new Remark(tokens[1]);
-        } catch (IndexOutOfBoundsException e) {
-            remark = null;
-        }
-        ;
-        /*.
-        }getValue(PREFIX_REMARK).isPresent()
-                ? new Remark(argMultimap.getValue(PREFIX_REMARK).get())
-                : null;*/
         return new RemarkCommand(index, remark);
     }
 }
