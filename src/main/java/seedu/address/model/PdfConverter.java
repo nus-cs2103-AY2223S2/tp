@@ -65,11 +65,7 @@ public class PdfConverter {
 
     private PDPageContentStream contentStream;
 
-    /**
-     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code Mathutoring}.
-     */
-    public PDDocument exportProgress(Student key) throws IOException {
-        requireAllNonNull(key);
+    public void setUp() throws IOException {
         this.document = new PDDocument();
         this.page = new PDPage();
         this.document.addPage(page);
@@ -77,7 +73,9 @@ public class PdfConverter {
         this.x = this.xInit;
         this.y = this.yInit;
         this.curColor = black;
+    }
 
+    public void createContents(Student key) throws IOException {
         String docTitle = key.getName().fullName + "'s Progress Report";
         String dateCreated = "Date created: " + LocalDate.now();
         String taskList = "Task List";
@@ -104,7 +102,15 @@ public class PdfConverter {
         this.y -= 2 * textHeight(fontBold, 18, 0);
 
         createScoreTable(key.getScoreList());
+    }
 
+    /**
+     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code Mathutoring}.
+     */
+    public PDDocument exportProgress(Student key) throws IOException {
+        requireAllNonNull(key);
+        setUp();
+        createContents(key);
         this.contentStream.close();
         return this.document;
     }
