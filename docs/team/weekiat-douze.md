@@ -1,20 +1,17 @@
 ---
 layout: page
-title: Wee Kiat's Project Portfolio
+title: Wee Kiat's Project Portfolio Page
 ---
 #### Overview
 BookFace is a National University of Singapore (NUS)-centered address book application.<br>
 It is intended to help members of the university organize their related university contacts. With enhanced contact organization, we hope to encourage and maintain connections amongst students, 
-staff and other members of the university. As university is a place where one can meet many people, 
-we have included functionalities like different tags and profile pictures to help find and identify different contacts.
-BookFace also has a contact import features which adds important contacts based on the specified context. 
-This feature aims to help newer or exchange students to better navigate the university. 
+staff and other members of the university. As university is a place where one can meet many people, we have included functionalities to help find and identify different contacts.
+BookFace also has a contact import feature to help newer or exchange students to better navigate the university. 
 
 #### Summary of Contributions
 
-Code Contributed
+**Code Contributed**
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=weekiat-douze&breakdown=true)
-
 
 **Enhancement Implemented**
 * Add Image to contact
@@ -47,14 +44,16 @@ Code Contributed
     * `checkDirectory` ensures that the `profile_pictures/` directory is available before executing any operations
 
 **Contributions to User Guide**
-Wrote the following sections of the BookFace [User Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/UserGuide.html):
-* Add an image for contacts (`add-image` function)
-* Quick Import for admin contacts (`import` function)
+
+* Wrote the following sections of the BookFace [User Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/UserGuide.html):
+  * Add an image for contacts (`add-image` function)
+  * Quick Import for admin contacts (`import` function)
 
 **Contributions to Developer Guide**
-Wrote the following sections of the BookFace [Developer Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/DeveloperGuide.html):
-* Add Image Feature
-* Planned Enhancement
+
+* Wrote the following sections of the BookFace [Developer Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/DeveloperGuide.html):
+  * Add Image Feature
+  * Planned Enhancement
 
 **Contributions to team-based tasks**
 * Translated tasks into Issues and assigned them on the GitHub repository.
@@ -70,7 +69,7 @@ Wrote the following sections of the BookFace [Developer Guide](https://ay2223s2-
   * Lack of data persistence in import feature
   * Find tags worked incorrectly in certain cases (provided fix)
   
-Contributions beyond project team
+**Contributions beyond project team**
 * Provided insight on a peer's problem in the course forum [#161](https://github.com/nus-cs2103-AY2223S2/forum/issues/161)
 * PE-D Bug Testing for [CookHub](https://github.com/AY2223S2-CS2103T-W09-1/tp) application
 
