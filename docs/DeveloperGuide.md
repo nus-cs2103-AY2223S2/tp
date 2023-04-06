@@ -523,7 +523,7 @@ In order to counter known feature flaws from testing, the following are enhancem
 - Hence, it would be more convenient if there is a `clearTags` command to untag all cards in a deck
 - Example: `clearTags`
 
-**4. Setting minimum width**
+**4. Setting minimum width for components**
 - Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
 - Hence, we intend to fix it by setting a minimum width for each component.
 #### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
