@@ -173,7 +173,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
 
     ![image](images/user-guide/download_codoc.PNG)
 
-    <br> <div style="page-break-after: always;"></div>
+    <br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
@@ -181,6 +181,8 @@ to our GitHub Releases page. Find the latest release and download the latest ver
    2. Place `codoc.jar` into the newly created folder. 
    
    <br>
+
+   <div style="page-break-after: always;"></div>
    
 4. Launch CoDoc.
 
