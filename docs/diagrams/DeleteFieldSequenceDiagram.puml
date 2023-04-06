@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant ":DeleteFieldCommandParser" as DeleteFieldCommandParser LOGIC_COLOR
-participant "p:InternshipContainsKeywordPredicate" as InternshipContainsKeywordPredicate LOGIC_COLOR
+participant "p:InternshipContainsKeywordPredicate\n" as InternshipContainsKeywordPredicate LOGIC_COLOR
 participant "c:DeleteFieldCommand" as DeleteFieldCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -34,14 +34,14 @@ create InternshipContainsKeywordPredicate
 DeleteFieldCommandParser -> InternshipContainsKeywordPredicate : InternshipContainsKeywordPredicate(nameList,\n roleList, statusList, dateList, tagList)
 activate InternshipContainsKeywordPredicate
 
-InternshipContainsKeywordPredicate --> DeleteFieldCommandParser : p
+InternshipContainsKeywordPredicate --> DeleteFieldCommandParser
 deactivate InternshipContainsKeywordPredicate
 
 create DeleteFieldCommand
 DeleteFieldCommandParser -> DeleteFieldCommand : DeleteFieldCommand(p)
 activate DeleteFieldCommand
 
-DeleteFieldCommand --> DeleteFieldCommandParser : c
+DeleteFieldCommand --> DeleteFieldCommandParser
 deactivate DeleteFieldCommand
 
 DeleteFieldCommandParser --> InternBuddyParser : c
@@ -63,9 +63,11 @@ Model --> DeleteFieldCommand
 
 loop internship in internshipsToDelete
     DeleteFieldCommand -> Model: deleteInternship(internship)
+    Model --> DeleteFieldCommand
 
 opt internship is selected
     DeleteFieldCommand -> Model: updateSelectedInternship(null)
+    Model --> DeleteFieldCommand
 end
 end
 
@@ -85,6 +87,6 @@ destroy DeleteFieldCommand
 
 destroy InternshipContainsKeywordPredicate
 
-[<--LogicManager
+[<--LogicManager : cr
 deactivate LogicManager
 @enduml

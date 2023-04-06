@@ -33,7 +33,7 @@ create DeleteIndexCommand
 DeleteIndexCommandParser -> DeleteIndexCommand : DeleteIndexCommand(p)
 activate DeleteIndexCommand
 
-DeleteIndexCommand --> DeleteIndexCommandParser : c
+DeleteIndexCommand --> DeleteIndexCommandParser
 deactivate DeleteIndexCommand
 
 DeleteIndexCommandParser --> InternBuddyParser : c
@@ -55,9 +55,10 @@ Model --> DeleteIndexCommand
 
 loop internship in internshipsToDelete
     DeleteIndexCommand -> Model: deleteInternship(internship)
-
+    Model --> DeleteIndexCommand
 opt internship is selected
     DeleteIndexCommand -> Model: updateSelectedInternship(null)
+    Model --> DeleteIndexCommand
 end
 end
 
@@ -76,6 +77,6 @@ DeleteIndexCommand -[hidden]-> LogicManager
 destroy DeleteIndexCommand
 
 
-[<--LogicManager
+[<--LogicManager : cr
 deactivate LogicManager
 @enduml
