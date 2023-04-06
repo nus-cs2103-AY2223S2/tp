@@ -92,8 +92,32 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
 
     @Override
     public boolean equals(Object other) {
+
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && ((keywords != null && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)))
+                || (keywordsMap != null && ((NameContainsKeywordsPredicate) other).keywordsMap != null
+                && checkKeywordsMapEquality(this.keywordsMap, ((NameContainsKeywordsPredicate) other).keywordsMap)));
+    }
+
+    /**
+     * @param firstHashMap the first HashMap input
+     * @param secondHashMap the second HashMap input
+     * @return return true if they have the same List of keywords as the value for the corresponding prefix key.
+     */
+    public static boolean checkKeywordsMapEquality(HashMap<Prefix, List<String>> firstHashMap,
+                                                   HashMap<Prefix, List<String>> secondHashMap) {
+        HashMap<String, List<String>> transformedFirstMap = new HashMap<>();
+        HashMap<String, List<String>> transformedSecondMap = new HashMap<>();
+
+        for (Prefix key : firstHashMap.keySet()) {
+            transformedFirstMap.put(key.toString(), firstHashMap.get(key));
+        }
+
+        for (Prefix key : secondHashMap.keySet()) {
+            transformedSecondMap.put(key.toString(), secondHashMap.get(key));
+        }
+        return transformedFirstMap.equals(transformedSecondMap);
+
     }
 }
