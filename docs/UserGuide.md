@@ -178,9 +178,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
    1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
-   2. Place `codoc.jar` into the newly created folder. 
-   
-   <br>
+   2. Place `codoc.jar` into the newly created folder.
 
    <div style="page-break-after: always;"></div>
    
@@ -195,10 +193,8 @@ to our GitHub Releases page. Find the latest release and download the latest ver
      1. Create a .bat file in the folder you put the jar file in (_home folder_).
      2. Write `java -jar codoc.jar` into the .bat file.
      3. Click on the .bat file and CoDoc should launch in a few seconds.
-     
-   <br>
    
-   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac) and
+   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
 
 If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
 launched in its factory state as shown below.
@@ -218,6 +214,8 @@ If it's your first time using this program, the starting screen could seem a lit
 Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
 We recommend **maximizing** the program window to have a clearer view.
 This way you can see more content as well.
+
+<div style="page-break-after: always;"></div>
 
 Below is the breakdown of the CoDoc screen:
 
