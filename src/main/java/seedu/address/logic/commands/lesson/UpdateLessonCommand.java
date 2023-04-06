@@ -115,6 +115,16 @@ public class UpdateLessonCommand extends Command {
         }
 
         Lesson newLesson = new Lesson(newLessonName, newStartTime, newEndTime);
+        model.updateFilteredStudentList(s -> s != student);
+
+        if (model.hasConflictingLessonTime(newLesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_LESSON_TIME);
+        }
+
+        if (model.hasConflictingExamTime(newLesson)) {
+            throw new CommandException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        }
+
         try {
             student.setLesson(index.getZeroBased(), newLesson);
         } catch (Exception e) {
