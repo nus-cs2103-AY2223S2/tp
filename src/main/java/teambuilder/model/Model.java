@@ -39,17 +39,17 @@ public interface Model extends Originator {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TeamBuilder file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' TeamBuilder file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TeamBuilder data with the data in {@code addressBook}.
      */
     void setTeamBuilder(ReadOnlyTeamBuilder teamBuilder);
 
@@ -57,43 +57,43 @@ public interface Model extends Originator {
     ReadOnlyTeamBuilder getTeamBuilder();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the TeamBuilder.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the TeamBuilder.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the TeamBuilder.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the TeamBuilder.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the TeamBuilder.
      */
     void setPerson(Person target, Person editedPerson);
     /**
-     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     * Returns true if a team with the same identity as {@code team} exists in the TeamBuilder.
      */
     boolean hasTeam(Team team);
 
     void setTeam(Team team, Team editedTeam);
     /**
      * Deletes the given team.
-     * The team must exist in the address book.
+     * The team must exist in the TeamBuilder.
      */
     void deleteTeam(Team target);
 
     /**
      * Adds the given team.
-     * {@code team} must not already exist in the address book.
+     * {@code team} must not already exist in the TeamBuilder.
      */
     void addTeam(Team team);
 

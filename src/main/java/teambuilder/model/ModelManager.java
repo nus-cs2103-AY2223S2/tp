@@ -18,7 +18,7 @@ import teambuilder.model.person.Person;
 import teambuilder.model.team.Team;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TeamBuilder data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -36,7 +36,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTeamBuilder addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TeamBuilder: " + addressBook + " and user prefs " + userPrefs);
 
         this.teamBuilder = new TeamBuilder(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);

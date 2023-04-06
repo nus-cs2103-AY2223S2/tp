@@ -19,14 +19,14 @@ import teambuilder.model.tag.Tag;
 import teambuilder.model.team.Team;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the TeamBuilder.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
     // @formatter:off
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the TeamBuilder. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -46,8 +46,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Java";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the TeamBuilder";
+    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the TeamBuilder";
 
     private final Person toAdd;
 

@@ -6,7 +6,7 @@ import static teambuilder.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import teambuilder.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the TeamBuilder to the user.
  */
 public class ListCommand extends Command {
 

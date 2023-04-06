@@ -162,7 +162,7 @@ Information on the Java version installed should appear in the command terminal.
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/computer science` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/computer science` : Adds a contact named `John Doe` to the TeamBuilder.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
