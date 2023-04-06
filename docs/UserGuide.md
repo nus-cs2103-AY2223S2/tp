@@ -32,6 +32,9 @@ We highly recommend that you read the [Terminology](#terminology) section if you
     - [Icons Used](#icons-used)
     - [Glossary](#glossary)
 - [Quick start](#quick-start)
+- [Summary](#summary)
+  - [Prefix summary](#prefix-summary)
+  - [Command summary](#command-summary)
 - [Commands](#commands)
     - [Add a New Event](#add) : `add`
     - [Repeat an Existing Event](#recur) : `recur`
@@ -49,9 +52,6 @@ We highly recommend that you read the [Terminology](#terminology) section if you
     - [Events Panel](#events-panel)
     - [Upcoming Events Panel](#upcoming-events-panel)
     - [Calendar](#calendar)
-- [Summary](#summary)
-    - [Prefix summary](#prefix-summary)
-    - [Command summary](#command-summary)
 - [Limitations](#limitations)
 - [FAQ](#faq)
 
@@ -81,7 +81,9 @@ This section serves to introduce the key terminology used throughout this guide.
 
 to be added soon (from DG)
 
+
 [[Back to top](#table-of-contents)]
+
 
 <h2 id="quick-start">Quick Start</h2>
 -------------------------------------
@@ -91,244 +93,9 @@ to be added soon (from DG)
 4. Open a command line terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
 
-[[Back to top](#table-of-contents)]
-
-<h2 id="commands">Commands</h2>
--------------------------------
-<h3 id="add">Add a new event `add`</h3>
-
-Adds an event into the scheduler.
-
-Format: `add n/<event> d/<date> s/<start time> e/<end time>`  
-Example: `add n/tennis d/2023-04-20 s/15:00 e/17:00`
-
-Parameters:
-`n/`: Name of the event  
-`d/`: Date of the event  
-`s/`: Start time of the event  
-`e/`: End time of the event
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Name is alphanumeric only.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:**  
-Start time should come before.  
-Adding of events that overlaps in time is not allowed.
-</div>
 
 [[Back to top](#table-of-contents)]
 
-<h3 id="recur">Repeat an existing event `recur`</h3>
-
-Repeats an event from the scheduler until the specified end date.
-
-Format: `recur <index> d/<end date> every/<recur factor>`   
-Example: `recur 1 d/2024-01-01 every/month`
-
-Parameters:  
-`d/`: Ending date of recurrence for the event  
-`every/`: Recurring factor to recur the event
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**.  
-Date should follow a `YYYY-MM-DD` format.  
-Recurring factor is given by `day/week/month`.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:**  
-Event must first exist in the scheduler.  
-End date should come after current event date.  
-Recurring of events not existing in scheduler is not allowed.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="edit">Edit an event `edit`</h3>
-
-Edits an event in the scheduler.
-
-Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`  
-Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
-
-Parameters:  
-`n/`: Name of the event  
-`d/`: Date of the event  
-`s/`: Start time of the event  
-`e/`: End time of the event
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Name is alphanumeric only.  
-Date should follow a `YYYY-MM-DD` format.  
-Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:** At least one field must be provided.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="delete">Delete events `delete`</h3>
-
-Deletes the event(s) in the scheduler.
-
-Format: `delete <index>` or `delete <index index ... index>`  
-Example: `delete 1` or `delete 1 4 5`
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:** Index must be a positive integer and exist in the scheduler.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="find">Locate events `find`</h3>
-
-Search the scheduler and returns all events that matches the name, date or a combination of both.
-
-Format:`find n/<name> d/<date>`  
-Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
-
-Parameters:  
-`n/`: Name of the event  
-`d/`: Date of the event
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Name is alphanumeric only.
-Partially matching names will also be considered as a match.  
-Date should follow a `YYYY-MM-DD` format.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:** At least one field must be provided.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="next">Retrieve next events `next`</h3>
-
-Shows the next upcoming event(s).
-
-Format:`next <count>`  
-Example: `next` or `next 2`
-
-Parameter:  
-`<count>`: Number of upcoming events to show.
-**Optional** - if not indicated, only the next one event is shown.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** If count is larger than the number of existing events, then all events are shown.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="undo">Undo previous command</h3>
-
-Undo the previously executed valid command.
-
-Format: `undo`  
-Example: `undo`
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:** `undo` is only applicable for `add`, `delete`, `edit` and `recur` commands.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="list">Listing all events</h3>
-
-Displays all events currently saved in the scheduler.
-
-Format: `list`  
-Example: `list`
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="help">View help</h3>
-
-Provide a link to access this website.
-
-Format: `help`  
-Example: `help`
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="exit">Exit application</h3>
-
-Exits the application.
-
-Format: `exit`  
-Example: `exit`
-
-[[Back to top](#table-of-contents)]
-
-<h2 id="gui">Graphical User Interface</h2>
--------------------------------
-<h3 id="command-box">Command Box</h3>
-![command-box.png](images/command-box.png)
-This feature enables you to type the command in the command box and execute it by pressing Enter  
-E.g., typing `help` and pressing Enter will open the help window.
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="response-box">Response Box</h3>
-![response-box.png](images/response-box.png)
-
-This feature displays the feedback of the command you entered into the command box.
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="events-panel">Events Panel</h3>
-![event-list.png](images/event-list.png)
-
-This feature displays all the events that you have.  
-You can use commands like `list` and `find` to view the events in your scheduler.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Events that have past is marked with a completed label and check mark.   
-Events are displayed in chronological order.  
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
-![upcoming-events.png](images/upcoming-events.png)
-
-This feature displays both ongoing (if you have not started on them yet) and upcoming events that you have.
-
-<div markdown="span" class="alert alert-success">
-:bulb: **Tip:**
-While the default is one upcoming event, 
-you can use the `next` command to change the number of upcoming events shown.
-</div>
-
-[[Back to top](#table-of-contents)]
-
-<h3 id="calendar">Calendar</h3>
-![calendar.png](images/calendar.png)
-
-This feature gives you a comprehensive summary of all the events that you have for a particular month.
-
-Functionality:
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**
-Newly added events will appear in their corresponding calendar boxes.  
-The find command will highlight the calendar boxes corresponding to the events that match your search criteria.
-</div>
-
-<div markdown="span" class="alert alert-success">
-:bulb: **Tip:**
-Clicking on the `now` button will take you directly back to the current date.  
-Clicking on any calendar date box that has events will display those events in the event list.
-</div>
-
-[[Back to top](#table-of-contents)]
 
 <h2 id="summary">Summary</h2>
 -------------------------------
@@ -358,7 +125,9 @@ Clicking on any calendar date box that has events will display those events in t
 :information_source: **Note:** Recurring factor is given by `day/week/month`.
 </div>
 
+
 [[Back to top](#table-of-contents)]
+
 
 <h3 id="command-summary">Command summary</h3>
 
@@ -375,7 +144,272 @@ Clicking on any calendar date box that has events will display those events in t
 | Help   | `help`                                                       |
 | Exit   | `exit`                                                       |
 
+
 [[Back to top](#table-of-contents)]
+
+
+<h2 id="commands">Commands</h2>
+-------------------------------
+<h3 id="add">Add a New Event</h3>
+
+Adds an event into the scheduler.
+
+Format: `add n/<event> d/<date> s/<start time> e/<end time>`  
+Example: `add n/tennis d/2023-04-20 s/15:00 e/17:00`
+
+Parameters:
+`n/`: Name of the event  
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Name is alphanumeric only.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:**  
+Start time should come before.  
+Adding of events that overlaps in time is not allowed.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="recur">Repeat an Existing Event</h3>
+
+Repeats an event from the scheduler until the specified end date.
+
+Format: `recur <index> d/<end date> every/<recur factor>`   
+Example: `recur 1 d/2024-01-01 every/month`
+
+Parameters:  
+`d/`: Ending date of recurrence for the event  
+`every/`: Recurring factor to recur the event
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**.  
+Date should follow a `YYYY-MM-DD` format.  
+Recurring factor is given by `day/week/month`.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:**  
+Event must first exist in the scheduler.  
+End date should come after current event date.  
+Recurring of events not existing in scheduler is not allowed.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="edit">Edit an Event</h3>
+
+Edits an event in the scheduler.
+
+Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`  
+Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
+
+Parameters:  
+`n/`: Name of the event  
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Name is alphanumeric only.  
+Date should follow a `YYYY-MM-DD` format.  
+Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** At least one field must be provided.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="delete">Delete Events</h3>
+
+Deletes the event(s) in the scheduler.
+
+Format: `delete <index>` or `delete <index index ... index>`  
+Example: `delete 1` or `delete 1 4 5`
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** Index must be a positive integer and exist in the scheduler.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="find">Locate Events</h3>
+
+Search the scheduler and returns all events that matches the name, date or a combination of both.
+
+Format:`find n/<name> d/<date>`  
+Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
+
+Parameters:  
+`n/`: Name of the event  
+`d/`: Date of the event
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Name is alphanumeric only.
+Partially matching names will also be considered as a match.  
+Date should follow a `YYYY-MM-DD` format.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** At least one field must be provided.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="next">Retrieve Next Events</h3>
+
+Shows the next upcoming event(s).
+
+Format:`next <count>`  
+Example: `next` or `next 2`
+
+Parameter:  
+`<count>`: Number of upcoming events to show.
+           **Optional** - if not indicated, only the next one event is shown.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If count is larger than the number of existing events, then all events are shown.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="undo">Undo Previous Command</h3>
+
+Undo the previously executed valid command.
+
+Format: `undo`  
+Example: `undo`
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** `undo` is only applicable for `add`, `delete`, `edit` and `recur` commands.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="list">List All Events</h3>
+
+Displays all events currently saved in the scheduler.
+
+Format: `list`  
+Example: `list`
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="help">View Help</h3>
+
+Provide a link to access this website.
+
+Format: `help`  
+Example: `help`
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="exit">Exit Application</h3>
+
+Exits the application.
+
+Format: `exit`  
+Example: `exit`
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h2 id="gui">Graphical User Interface</h2>
+-------------------------------
+<h3 id="command-box">Command Box</h3>
+![command-box.png](images/command-box.png)
+This feature enables you to type the command in the command box and execute it by pressing Enter  
+E.g., typing `help` and pressing Enter will open the help window.
+
+[[Back to top](#table-of-contents)]
+
+<h3 id="response-box">Response Box</h3>
+![response-box.png](images/response-box.png)
+
+This feature displays the feedback of the command you entered into the command box.
+
+[[Back to top](#table-of-contents)]
+
+<h3 id="events-panel">Events Panel</h3>
+![event-list.png](images/event-list.png)
+
+This feature displays all the events that you have.  
+You can use commands like `list` and `find` to view the events in your scheduler.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Events that have past is marked with a completed label and check mark.   
+Events are displayed in chronological order.  
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
+![upcoming-events.png](images/upcoming-events.png)
+
+This feature displays both ongoing (if you have not started on them yet) and upcoming events that you have.
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:**
+While the default is one upcoming event, 
+you can use the `next` command to change the number of upcoming events shown.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="calendar">Calendar</h3>
+![calendar.png](images/calendar.png)
+
+This feature gives you a comprehensive summary of all the events that you have for a particular month.
+
+Functionality:
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+Newly added events will appear in their corresponding calendar boxes.  
+The find command will highlight the calendar boxes corresponding to the events that match your search criteria.
+</div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:**
+Clicking on the `now` button will take you directly back to the current date.  
+Clicking on any calendar date box that has events will display those events in the event list.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
 
 <h2 id="limitations">Limitations</h2>
 -------------------------------------
@@ -385,7 +419,9 @@ Clicking on any calendar date box that has events will display those events in t
 - Data files are not allowed to be modified directly.
   Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
+
 [[Back to top](#table-of-contents)]
+
 
 <h2 id="faq">FAQ</h2>
 -------------------------------------
@@ -414,5 +450,6 @@ Clicking on any calendar date box that has events will display those events in t
 **Q:** You say this is optimised for CLI use, but there is no command to transverse the calendar?  
 **A:** The calendar UI is a value-added feature and is not meant to totally replace the `find` feature,
        which allows the user to focus directly to a specific day.
+
 
 [[Back to top](#table-of-contents)]
