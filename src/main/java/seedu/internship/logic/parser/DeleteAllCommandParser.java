@@ -1,12 +1,13 @@
 package seedu.internship.logic.parser;
 
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.internship.logic.commands.DeleteAllCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
- * Parses input argument and creates DeleteAllCommand object.
+ * Parses input arguments and creates a new DeleteAllCommand object
  */
 public class DeleteAllCommandParser implements Parser<DeleteAllCommand> {
 

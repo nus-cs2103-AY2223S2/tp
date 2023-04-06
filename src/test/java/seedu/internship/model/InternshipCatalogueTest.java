@@ -50,7 +50,7 @@ public class InternshipCatalogueTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        //Needs to be changed when we have valid internship feilds
+        //Needs to be changed when we have valid internship fields
         Internship editedML1 = new InternshipBuilder().withPosition(VALID_POSITION_ML1)
                 .withCompany(VALID_COMPANY_ML1).withDescription(VALID_DESCRIPTION_ML1)
                 .withStatus(VALID_STATUS_ML1).withTags(VALID_TAG_IMPORTANT).build();
@@ -68,7 +68,7 @@ public class InternshipCatalogueTest {
 
     @Test
     public void hasInternship_internshipNotInInternshipCatalogue_returnsFalse() {
-        assertFalse(internshipCatalogue.hasInternship(ML2));
+        assertFalse(internshipCatalogue.hasInternship(ML1));
     }
 
     @Test

@@ -18,7 +18,7 @@ public class Event {
     private final DateTime start;
     private final DateTime end;
     private final EventDescription eventDescription;
-    private Internship internship;
+    private Internship internship = Internship.EMPTY_INTERNSHIP;
 
     /**
      * Every Field must be present and not null.
@@ -47,7 +47,7 @@ public class Event {
      * @param internship
      */
     public void setInternship(Internship internship) {
-        if (this.internship == null) {
+        if (this.internship == Internship.EMPTY_INTERNSHIP) {
             this.internship = internship;
         }
     }
@@ -95,15 +95,27 @@ public class Event {
                 && otherEvent.getInternship().equals(getInternship());
     }
 
+    /**
+     * Checks if an Event clashes in timing with another Event
+     *
+     * @param otherEvent Other Event to compare with
+     * @return True if the two Events clashes in timing
+     */
     public boolean isClash(Event otherEvent) {
-        return !this.equals(otherEvent) &&
-                (this.start.equals(otherEvent.start) || this.end.equals(otherEvent.end)
+        return !this.equals(otherEvent)
+                && (this.start.equals(otherEvent.start) || this.end.equals(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
                 || this.end.isBetween(otherEvent.start, otherEvent.end))
                 || otherEvent.start.isBetween(this.start, this.end)
                 || otherEvent.end.isBetween(this.start, this.end);
     }
 
+    /**
+     * Returns the timing of which two events clash
+     *
+     * @param otherEvent Other Event to compare with
+     * @return null if there is no clash in events; List of start and end clash timing if events clash
+     */
     public List<LocalDateTime> clashingTimings(Event otherEvent) {
         if (!this.isClash(otherEvent)) {
             return null;
@@ -136,15 +148,18 @@ public class Event {
      */
     @Override
     public boolean equals(Object other) {
+
         if (other == this) {
             return true;
         }
 
-        if (!(other instanceof Internship)) {
+        if (!(other instanceof Event)) {
             return false;
         }
 
         Event otherEvent = (Event) other;
+
+
 
         return otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
@@ -153,6 +168,12 @@ public class Event {
                 && otherEvent.getName().equals(getName());
     }
 
+    /**
+     * Compares two events to see which events should be ordered first in list
+     *
+     * @param otherEvent Other Event to compare with
+     * @return integer value describing whether this event is ordered before or after other event
+     */
     public int compareTo(Event otherEvent) {
         if (this.start.compareTo(otherEvent.start) == 0) {
             // Start Timings are the same, if one event ends earlier than the other put it first

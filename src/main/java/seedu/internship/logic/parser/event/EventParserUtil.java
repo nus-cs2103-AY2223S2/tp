@@ -84,16 +84,10 @@ public class EventParserUtil extends ParserUtil {
     /**
      * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static EventDescription parseEventDescription(String description) throws ParseException {
+    public static EventDescription parseEventDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        // No need ot check valid descripiton , as anything an be in description
-        // if (!Description.isValidDescription(trimmedDescription)) {
-        //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        // }
         return new EventDescription(trimmedDescription);
     }
 }

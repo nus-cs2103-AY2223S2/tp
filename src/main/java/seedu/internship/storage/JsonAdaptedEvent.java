@@ -86,7 +86,6 @@ public class JsonAdaptedEvent {
         }
         final End modelEnd = new End(LocalDateTime.parse(end, End.NUMERIC_DATE_TIME_FORMATTER));
 
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventDescription.class.getSimpleName()));

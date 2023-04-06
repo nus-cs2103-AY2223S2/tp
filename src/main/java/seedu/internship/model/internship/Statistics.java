@@ -1,13 +1,14 @@
 package seedu.internship.model.internship;
 
+import java.util.Objects;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 
-import java.util.Objects;
 
 /**
- * Statistics class stores statistical information of the model.
+ * Calculates Statistics based on current Internship List and Event List.
  */
 public class Statistics {
 
@@ -81,18 +82,20 @@ public class Statistics {
     private void parseInternshipList(ObservableList<Internship> internships) {
         for (Internship internship : internships) {
             switch (internship.getStatusId()) {
-                case 0:
-                    numInterested.incrementValue(1);
-                    break;
-                case 1:
-                    numApplied.incrementValue(1);
-                    break;
-                case 2:
-                    numOffered.incrementValue(1);
-                    break;
-                case 3:
-                    numRejected.incrementValue(1);
-                    break;
+            case 0:
+                numInterested.incrementValue(1);
+                break;
+            case 1:
+                numApplied.incrementValue(1);
+                break;
+            case 2:
+                numOffered.incrementValue(1);
+                break;
+            case 3:
+                numRejected.incrementValue(1);
+                break;
+            default:
+                break;
             }
             totalInternships.incrementValue(1);
         }
