@@ -59,7 +59,7 @@ It also serves as a quick refresher to current users of the application who migh
 
 7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 
-### Let's try out some of the features available
+### Let's try out some of the features
 1. Let's start by trying to add a bookmark.
 
    * Enter `add n/My Book a/My Book's Author g/Fantasy r/4` into the command box and press the Enter key.
@@ -178,6 +178,8 @@ The bookmark in the BookmarkList panel will only contain the:
 ### Adding a tag: `addtag`
 
 Adds a tag to the list of tags.
+
+:bulb: **Tip:** You need to add a tag to the tag list first before using it. 
 
 Format: `addtag [t/TAG]…`
 
