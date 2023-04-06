@@ -286,6 +286,8 @@ Edits the details of a job listing.
   `edit 1 p/LinkedIn p/Indeed a/`
   
   then the list of platforms will be edited to [LinkedIn, Indeed] while the list of applicants will be empty.
+- To manage individual applicants in a listing, consider using the [`add_app`](#adding-an-applicant-to-listing-add_app), [`del_app`](#deleting-an-applicant-from-a-listing-del_app) or [`edit_app`](#editing-an-applicant-of-a-listing-edit_app) commands.
+- To manage individual platforms in a listing, consider using the [`add_plat`](#adding-a-platform-add_plat) or [`del_plat`](#delete-a-platform-from-a-listing-del_plat) commands.
 
 
 📚 **Examples:**
