@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         // Checks if patient manager contains the given index
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
         if (!patientList.containsKey(editedAppointment.getPatient().getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_ID);
         }
 
         // Checks if vaxType manager contains the vaccine to be used in the appointment
