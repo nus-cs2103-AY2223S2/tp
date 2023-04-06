@@ -116,6 +116,12 @@ public interface Model {
      */
     void deletePatient(int id, boolean isForce) throws UnexpectedChangeException;
 
+
+    /**
+     * Resets patient manager's ID count.
+     */
+    void resetPatientIds();
+
     /**
      * Adds the given patient.
      * {@code patient} must not already exist in the patient manager.
