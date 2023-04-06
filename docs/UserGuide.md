@@ -287,11 +287,11 @@ Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/
 * The search is case-insensitive for all prefixes.
   * e.g. `n/hans` will match `Hans` or `hAns`
 * Cases matching **all** given prefixes will be returned.
-    * e.g. `find n/Alex p/s101` will only match cases whose names contain `alex` and whose postal code begins with `s101`.
+    * e.g. `find n/Alex p/s101` will only match cases whose names contain `alex` and whose postal codes begin with `s101`.
 * For names, partial words will be matched.
-  * e.g. `n/Han` will match `Hans` and `Abrahan`
+  * e.g. `n/Han` will match `Hans` and `Abrahan`.
 * For postal codes, the beginning of the postal code will be matched.
-  * e.g. `p/10` will match `S101234` but not `S123410`
+  * e.g. `p/10` will match `S101234` but not `S123410`.
 * Prefixes for date `sd/` `ed/` and age ranges `sa/` `ea/` cannot be used in conjunction with the specific
   date `d/` or age `a/` prefixes respectively.
   * e.g. `find n/Alex d/2011-11-10 sd/2005-10-10` will throw an error.
@@ -310,7 +310,7 @@ Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/
   * e.g. `find v/denver` will fail since `denver` is not a valid variant.
 
 Examples:
-* `find v/denv1` finds all cases with `DENV1` in their variant tags.
+* `find v/denv1` finds all cases with variant `DENV1`.
 
 ![result for find v/DENV1](images/findExample.png)
 
@@ -461,7 +461,7 @@ DengueHotspotTracker data are saved as a CSV file `[JAR file location]/data/deng
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, DengueHotspotTracker will discard all data and start with an
+If your changes to the data file causes its format to be invalid, DengueHotspotTracker will discard all data and start with an
 empty data file at the next run.
 </div>
 
