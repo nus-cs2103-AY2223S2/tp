@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes command;
+
+if () then ([command is valid])
+    if () then ([invalid index])
+        :Export person to storage;
+    else ([else])
+    endif
+
+else([else])
+endif
+stop
+@enduml
