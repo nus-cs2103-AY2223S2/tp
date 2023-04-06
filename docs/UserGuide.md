@@ -47,7 +47,7 @@ improving the efficiency of grocery shopping.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
+1. Ensure you have [`Java 11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
 2. Download the latest `wife.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-1/tp/releases).
 
