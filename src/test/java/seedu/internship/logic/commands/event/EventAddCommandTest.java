@@ -1,21 +1,21 @@
 package seedu.internship.logic.commands.event;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalInternships.ML1;
-import static java.util.Objects.requireNonNull;
-
-import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
@@ -37,7 +37,8 @@ public class EventAddCommandTest {
 
     @Test
     public void execute_internshipAcceptedByModel_addSuccessful() throws Exception {
-        EventAddCommandTest.ModelStubAcceptingEventAdded modelStub = new EventAddCommandTest.ModelStubAcceptingEventAdded();
+        EventAddCommandTest.ModelStubAcceptingEventAdded modelStub =
+                new EventAddCommandTest.ModelStubAcceptingEventAdded();
         Event validEvent = new EventBuilder().build();
         CommandResult commandResult = new EventAddCommand(validEvent).execute(modelStub);
 
@@ -68,7 +69,7 @@ public class EventAddCommandTest {
     @Test
     public void execute_eventWithEndBeforeStart_throwsCommandException() {
         Event validEvent = new EventBuilder().build();
-        Event invalidEvent= new EventBuilder()
+        Event invalidEvent = new EventBuilder()
                 .withStart(validEvent.getEnd().getNumericDateTimeString())
                 .withEnd(validEvent.getStart().getNumericDateTimeString())
                 .build();
@@ -84,26 +85,26 @@ public class EventAddCommandTest {
     public void equals() {
         Event ml2 = TypicalEvents.EM11;
         Event se3 = TypicalEvents.EMD1;
-        EventAddCommand addEM11Command = new EventAddCommand(ml2);
-        EventAddCommand addEMD1Command = new EventAddCommand(se3);
+        EventAddCommand addEm11Command = new EventAddCommand(ml2);
+        EventAddCommand addEmd1Command = new EventAddCommand(se3);
 
         // same object -> returns true
-        assertTrue(addEM11Command.equals(addEM11Command));
+        assertTrue(addEm11Command.equals(addEm11Command));
 
         // same values -> returns true
         EventAddCommand addEM11CommandCopy = new EventAddCommand(ml2);
-        assertTrue(addEM11Command.equals(addEM11CommandCopy));
+        assertTrue(addEm11Command.equals(addEM11CommandCopy));
 
 
         // different types -> returns false
-        assertFalse(addEM11Command.equals(1));
+        assertFalse(addEm11Command.equals(1));
 
 
         // null -> returns false
-        assertFalse(addEM11Command.equals(null));
+        assertFalse(addEm11Command.equals(null));
 
         // different internship -> returns false
-        assertFalse(addEM11Command.equals(addEMD1Command));
+        assertFalse(addEm11Command.equals(addEmd1Command));
     }
 
     /**
@@ -111,7 +112,7 @@ public class EventAddCommandTest {
      */
     private class ModelStub implements Model {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
-        Internship selectedInternship = ML1;
+        private Internship selectedInternship = ML1;
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -238,7 +239,7 @@ public class EventAddCommandTest {
         }
 
         @Override
-        public void clearSelectedInternship(){
+        public void clearSelectedInternship() {
             this.selectedInternship = null;
         }
 

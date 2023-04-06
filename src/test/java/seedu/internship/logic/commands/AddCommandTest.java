@@ -26,7 +26,6 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.testutil.InternshipBuilder;
 import seedu.internship.testutil.TypicalInternships;
-import seedu.internship.testutil.TypicalInternships;
 
 
 public class AddCommandTest {

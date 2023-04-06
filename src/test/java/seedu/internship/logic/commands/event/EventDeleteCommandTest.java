@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.CommandResult;
-import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
