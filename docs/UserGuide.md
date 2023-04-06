@@ -143,57 +143,40 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 **:information_source: The following are rules applicable to all commands:**
 
-<p>
-
 1. Words encapsulated in `{}` are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
    <details>
    <summary>Example</summary>
    For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
    </details>
-
-</p>
-
-<p>
+   <br/>
 
 2. Items in square brackets are optional.
    <details>
    <summary>Example</summary>
    For a command with format `add {module_code} [/name {module_name}]`, the `/name` argument is optional. The command can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
    </details>
-
-</p>
-
-<p>
+   <br/>
 
 3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
    For a command with format `edit {module_code} /code {updated_code} /name {updated_name}`, `{module_code}` is an unnamed argument, while `/code` and `/name` are named arguments. The command can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
    </details>
-
-</p>
-
-<p>
+   <br/>
 
 4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
    <details>
    <summary>Example</summary>
    For a command with format `add {module_code} [/name {module_name}]`, if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be taken as the value of the `/name` argument.
    </details>
-
-</p>
-
-<p>
+   <br/>
 
 5. Extraneous arguments will be ignored.
    <details>
    <summary>Example</summary>
    For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
    </details>
-
-</p>
-
-<p>
+   <br/>
 
 6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z or A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace unless it is the end of the command.
    <details>
@@ -202,8 +185,6 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
    For the command `find Intro /modCS2040S /byTag`, only `/byTag` is recognised as a named argument while `Intro /modCS2040S` is treated as the value of the unnamed argument.
    </details>
-
-</p>
 
 ---
 
