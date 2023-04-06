@@ -8,7 +8,7 @@ title: Sum Hung Yee's Project Portfolio Page
 Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 9.5 kLoC.
 Given below are my technical contributions to the project:
 Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=sumhungyee)
-ummary of Contributions:
+Summary of Contributions:
 
 - Refactoring:
    - Refactored phone numbers from AB3. Postal Codes are now part of a person's data.
