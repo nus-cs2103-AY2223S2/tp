@@ -2,8 +2,10 @@ package seedu.patientist.ui;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -11,10 +13,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.patientist.commons.core.LogsCenter;
+import seedu.patientist.logic.Logic;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * The UI component that is responsible for a pop-up to show details of Person.
@@ -33,11 +37,14 @@ public class DetailsPopup extends UiPart<Region> {
      */
 
     public final Person person;
+    private final Logic logic;
 
     @FXML
     private HBox detailsPane;
     @FXML
     private Label name;
+    @FXML
+    private Label ward;
     @FXML
     private Label idNumber;
     @FXML
@@ -59,9 +66,10 @@ public class DetailsPopup extends UiPart<Region> {
     /**
      * Creates a {@code DetailsPopup} with the given {@code personListPanel}.
      */
-    public DetailsPopup(Person personToView) {
+    public DetailsPopup(Logic logic, Person personToView) {
         super(FXML);
         this.person = personToView;
+        this.logic = logic;
         if (personToView == null) {
             name.setText("");
             phone.setText("");
@@ -76,6 +84,7 @@ public class DetailsPopup extends UiPart<Region> {
         email.setText(person.getEmail().value);
         String s = person.getIdNumber().toString();
         idNumber.setText(s);
+        ward.setText(Optional.ofNullable(getWard()).orElse("test"));
         if (personToView instanceof Patient) {
             Patient patientToView = (Patient) personToView;
             priority.setText(patientToView.getPriority().tagName);
@@ -125,5 +134,16 @@ public class DetailsPopup extends UiPart<Region> {
         default:
             return;
         }
+    }
+
+    private String getWard() {
+        ObservableList<Ward> wards = this.logic.getPatientist().getWardList();
+        for (Ward ward: wards) {
+            if (ward.containsPerson(person)) {
+                return ward.getWardName();
+            }
+        }
+
+        return null;
     }
 }

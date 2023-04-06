@@ -17,8 +17,8 @@
             <VBox alignment="CENTER_LEFT" pickOnBounds="false" style="-fx-background-color: transparent;" GridPane.columnIndex="0">
                 <HBox alignment="CENTER_LEFT" spacing="5">
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  " />
-                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                    <Label fx:id="priority"/>
+                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+                    <Label fx:id="priority" minHeight="-Infinity" minWidth="-Infinity" />
                     <VBox.margin>
                         <Insets bottom="5.0" />
                     </VBox.margin>
@@ -32,6 +32,15 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
+            <HBox layoutX="25.0" layoutY="53.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ward: " />
+                  <Label fx:id="ward" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="\$ward" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
                 <HBox>
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID No.:  " />
