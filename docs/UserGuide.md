@@ -35,7 +35,7 @@ title: User Guide
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `TrAcker.jar` from [here](https://github.com/AY2223S2-CS2103-F11-1/tp).
 
@@ -61,7 +61,7 @@ Let's clear a little confusion that might arise:
   - It is because this app is targeted towards CS2040 TA, and CS2040 TAs are suppose to be proficient with vim and terminal like commands.
    After all, the TAs have done well for CS2040 PE and that is conducted via terminal only
 - Why are students not allowed to be added together with the creation of an event?
-  - This ie because the app is meant for an attendance taking for a CS2040 TA who plans ahead. So, if a student can be added with an event,
+  - This is because the app is meant for an attendance taking for a CS2040 TA who plans ahead. So, if a student can be added with an event,
    it defeats the purpose of it being an attendance taking application
 - Why are overlapping event date and time not allowed to be added?
   - It is because TrAcker also functions as a schedule application for the CS2040 TA. So, if overlapping events
@@ -148,7 +148,7 @@ Examples:
 ### Adding consultation: `mkdir`
 
 Adds a consultation to the TA’s schedule.
-<b> Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) </b> and no modification of duration is allowed
+<b> Consultation is assumed to be 1 hour long (adhering to CS2040 consultation timing) </b> and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
