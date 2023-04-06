@@ -72,11 +72,11 @@ This section serves to introduce the key terminology used throughout this guide.
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:information_source: **Warning:** Used to alert you of critical instructions associated with a particular action.
+:warning: **Warning:** Used to alert you of critical instructions associated with a particular action.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:information_source: **Danger:** Necessary cautions to heed to ensure that Ez-Schedule operates as intended.
+:exclamation: **Danger:** Necessary cautions to heed to ensure that Ez-Schedule operates as intended.
 </div>
 
 <h2 id="glossary">Glossary</h2>
@@ -122,7 +122,7 @@ Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leadi
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:information_source: **Warning:**  
+:warning: **Warning:**  
 Start time should come before.  
 Adding of events that overlaps in time is not allowed.
 </div>
@@ -147,7 +147,7 @@ Recurring factor is given by `day/week/month`.
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:information_source: **Warning:**  
+:warning: **Warning:**  
 Event must first exist in the scheduler.  
 End date should come after current event date.  
 Recurring of events not existing in scheduler is not allowed.
