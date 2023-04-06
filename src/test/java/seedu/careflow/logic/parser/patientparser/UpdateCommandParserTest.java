@@ -64,8 +64,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidPhone_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -ph abc",
-                "Phone numbers should contain numbers, special character like: space, +, -, (), "
-                        + "and it should be at least 3 or at most 20 digit and special character long");
+                "Phone numbers must consist of numerical digits"
+                        + " and be between 3 and 20 digits long, with no special characters allowed.");
     }
 
     @Test
@@ -178,8 +178,8 @@ class UpdateCommandParserTest {
 
     @Test
     void parse_changeInvalidEmergencyContact_failure() {
-        assertParseFailure(updateCommandParser, "Roy Balakrishnan -ec abc", "Phone numbers"
-                + " should contain numbers, special character like: "
-                + "space, +, -, (), and it should be at least 3 or at most 20 digit and special character long");
+        assertParseFailure(updateCommandParser, "Roy Balakrishnan -ec abc",
+                "Phone numbers must consist of numerical digits"
+                        + " and be between 3 and 20 digits long, with no special characters allowed.");
     }
 }
