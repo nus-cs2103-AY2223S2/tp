@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import taa.commons.exceptions.IllegalValueException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -80,8 +81,14 @@ class JsonAdaptedStudent {
         if (pp == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
+        if (!Attendance.isValidPPStorageString(pp)) {
+            throw new IllegalValueException("Invalid participatoin string in Json file");
+        }
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
+        }
+        if (!Attendance.isValidAttendanceStorageString(attendance)) {
+            throw new IllegalValueException("Invalid attendance string in Json file");
         }
         if (submissionStrArr == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Submissions"));

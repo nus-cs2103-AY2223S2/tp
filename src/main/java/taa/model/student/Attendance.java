@@ -196,4 +196,35 @@ public class Attendance {
         }
         return res.toString();
     }
+
+    public static boolean isValidAttendanceStorageString(String str) {
+        String[] arr = str.split(";");
+        if (arr.length != 12) {
+            return false;
+        }
+        for (String val : arr) {
+            if (!val.equals("0") && !val.equals("1")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValidPPStorageString(String str) {
+        String[] arr = str.split(";");
+        if (arr.length != 12) {
+            return false;
+        }
+        for (String val : arr) {
+            try {
+                int convertedPoint = Integer.parseInt(val);
+                if (convertedPoint < -1 || convertedPoint > 700) {
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
