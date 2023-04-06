@@ -26,7 +26,8 @@ Given below are my contributions to the project.
 * **Documentation**:
   * Readme.md
   * UserGuide.md
-    * Added documentation for the `filter` feature
+    * Added documentation for the `filter` feature.
+    * Added documentation for the new `subject`, `schedule`, `start time`, `end time` and remark field.
   * DeveloperGuide.md
     * Added implementation detail of the `filter` feature
 
