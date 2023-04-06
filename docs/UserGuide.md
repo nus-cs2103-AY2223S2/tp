@@ -487,8 +487,7 @@ Detailed example:
 * Figure 5 below shows InternBuddy starting with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`,
   the internships in green boxes were returned while those in red boxes were not.
 
-
-
+  
 <p align="center">
   <img src="images/ug-find-example.png" width="500" />
 </p>
