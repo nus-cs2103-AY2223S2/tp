@@ -31,6 +31,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
   - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
   - [Sorting job listings: `sort`](#sorting-job-listings--sort)
+  - [Undo latest command: `undo`](#undo-latest-command--undo)
   - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
   - [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
 - [FAQ](#faq)
@@ -96,18 +97,19 @@ Some example commands you can try:
 ## **Features**
 Here is a list of GM features, click on them to jump to the section!
 
-1. [`help`](#viewing-help--help)
-2. [`list`](#listing-all-job-listings--list)
-3. [`add`](#adding-a-job-listing--add)
-4. [`edit`](#editing-a-job-listing--edit)
-5. [`delete`](#deleting-a-job-listing--delete)
-6. [`add_app`](#adding-an-applicant-to-listing--addapp)
-7. [`edit_app`](#editing-an-applicant-of-a-listing--editapp)
-8. [`del_app`](#deleting-an-applicant-from-a-listing--delapp)
-9. [`find`](#locating-job-listings-by-title--find)
-10. [`sort`](#sorting-job-listings--sort)
-11. [Saving data](#saving-the-data)
-12. [Editing data file](#editing-the-data-file)
+1.  [`help`](#viewing-help--help)
+2.  [`view`](#viewing-all-job-listings--view)
+3.  [`add`](#adding-a-job-listing--add)
+4.  [`edit`](#editing-a-job-listing--edit)
+5.  [`delete`](#deleting-a-job-listing--delete)
+6.  [`add_app`](#adding-an-applicant-to-listing--addapp)
+7.  [`edit_app`](#editing-an-applicant-of-a-listing--editapp)
+8.  [`del_app`](#deleting-an-applicant-from-a-listing--delapp)
+9.  [`find`](#locating-job-listings-by-title--find)
+10.  [`sort`](#sorting-job-listings--sort)
+11.  [`undo`](#undo-latest-command--undo)
+12.  [Saving data](#saving-the-data)
+13.  [Editing data file](#editing-the-data-file)
 
 
 <div markdown="block" class="alert alert-info">
@@ -178,10 +180,11 @@ Adds a listing to the listing book.
 ℹ️ **Notes:**
 
 - A listing can have any number of applicants (including 0)
+- A listing can have any number of platforms (including 0)
 
 📚 **Examples:**
 
-- `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele`
+- `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele p/JobStreet`
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
 🎯 **Expected Output:**
@@ -213,7 +216,7 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 
 Edits the details of a job listing.
 
-✏️ **Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
+✏️ **Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`
 
 ℹ️ **Notes:**
 
@@ -223,6 +226,11 @@ Edits the details of a job listing.
   `edit 1 t/TITLE d/DESCRIPTION`
 
   then only the title and the description of listing 1 will be edited (the applicants will remain unchanged)
+- For platforms and applicants, editing using the `p/` and `a/` flags will replace the whole list with the new list. E.g. if the command entered is:
+
+  `edit 1 p/LinkedIn p/Indeed a/`
+  
+  then the list of platforms will be edited to [LinkedIn, Indeed] while the list of applicants will be empty.
 
 
 📚 **Examples:**
@@ -254,8 +262,8 @@ messages shown below will be displayed.
 Invalid command format!
 edit: Edits a listing identified by the index used in the displayed listing book.
       Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
-Example: edit 1 t/Cool job title a/John a/Sam
+Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...
+Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 ```
 
 ```ignorelang
@@ -351,7 +359,7 @@ Example: add_app 1 a/John Doe
 
 Edits the name of an applicant in a specified listing.
 
-✏️ **Format:** `edit INDEX id/APPLICANT a/APPLICANT`
+✏️ **Format:** `edit_app INDEX id/APPLICANT a/APPLICANT`
 
 ℹ️ **Notes:**
 
@@ -651,6 +659,25 @@ Example: sort f/applicants
 
 ---
 
+
+### Undo latest command: `undo`
+
+Undo the latest command.
+
+✏️ **Format:** `undo`
+
+🎯 **Expected Output:**
+
+Previous change should be reversed and a confirmation message will show:
+
+```ignorelang
+Undo success
+```
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
+
 ### Saving the data
 
 GoodMatch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -711,13 +738,22 @@ Add tags to a job listing for easy reference.
 
 ## **Command summary**
 
-| Action     | Format, Examples                                                                                                                                   |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **add**    | `add t/TITLE d/DESCRIPTION [a/APPLICANTS]` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele` |
-| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                  |
-| **edit**   | `edit [t/TITLE] d/DESCRIPTION [a/APPLICANTS]`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles`                                |
-| **find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                       |
-| **view**   | `view`                                                                                                                               |
-| **help**   | `help`                                                                                                                               |
+| Action       | Format, Examples                                                                                                                                        |
+|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **help**     | `help`                                                                                                                                                  |
+| **view**     | `view`                                                                                                                                                  |
+| **add**      | `add t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORM]...` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom a/Adele p/JobStreet` |
+| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/`               |
+| **delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                     |
+| **add_app**  | `add_app INDEX a/APPLICANT`<br> e.g.,`add_app 1 a/Tom`                                                                                                  |
+| **edit_app** | `edit_app INDEX id/APPLICANT a/APPLICANT`<br> e.g.,`edit_app 1 id/Tom a/Johnson`, `edit_app 2 id/Tom#1334 a/Johnson `                                   |
+| **del_app**  | `del_app INDEX id/APPLICANT`<br> e.g.,`del_app 1 id/Tom`, `del_app 2 id/Tom#1334`                                                                       |
+| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/linkedin`                                                                                            |
+| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/glints`                                                                                             |  
+| **find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                                          |
+| **sort**     | `sort f/[FIELD]`<br> e.g., `sort f/title`, `sort f/description`, `sort f/applicants`                                                                    |
+| **undo**     | `undo`                                                                              |
+
+
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
