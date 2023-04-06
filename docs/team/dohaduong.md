@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Highlight: This feature is directly linked with job list, thus changes made in the existing functions could affect the features directly. Moreover, the implementation was also challenging as it required changes to the existing commands. 
   * Credits: N.A.
 
-* **New Feature**: Added the ability to add jobs with empty delivery date and slot
+* **New Feature**: Added the ability to add jobs with empty delivery date and/or slot
     * What it does: Allows users to add jobs without specifying its delivery date and slot (making delivery date and slot optional), making the `add_job` command much shorter.
     * Justification: This features improves the product as the `add_job` command is quite long (with compulsory delivery date and slot), and users may want to add jobs without specifying its delivery date and timeslot. Thus, the app should allow delivery date and timeslot to be optional.
     * Highlight: This feature is directly linked with job list and with the existing command/functions, thus it required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands, including importing the old data and add_job command.
