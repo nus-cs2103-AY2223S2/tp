@@ -307,8 +307,8 @@ Export a person's details from the address book.
 
 Format: `export [INDEX_OF_PERSON]`
 
-* Exports a person's details with the specified `INDEX`
-* All details except groups and tags are exported.
+* Exports a person's details with the specified `INDEX_OF_PERSON`
+* All details *except groups and tags* are exported.
 * Export data is saved in the data/export.json
 * Exporting a person will overwrite any existing export.json file
 
