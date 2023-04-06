@@ -8,6 +8,31 @@ toc: true
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+### Purpose
+
+RIZZipe is a command-based recipe database that was designed with versatile tagging and searching features in mind so 
+you can always find the recipe you need! Make use of RIZZipe’s many features to achieve your culinary rizz.
+
+This developer guide aims to detail the architecture and software design decisions behind RIZZipe, and is intended for
+developers, designers, and software testers of RIZZipe. As RIZZipe is built on Java 8 and JavaFX 11, some 
+technical knowledge of Java and JavaFX is recommended when reading this developer guide. 
+
+### How to Use
+This developer guide is broken down into 4 main sections:
+1. **[Design](#design)**, which aims to detail the overall design and architecture of RIZZipe,
+2. **[Feature Implementation](#feature-implementation)**, which aims to detail the implementation of some
+notable features of RIZZipe,
+3. **[Requirements](#appendix-requirements)**, which aims to detail the software requirements of RIZZipe, and
+4. **[Instructions for manual testing](#appendix-instructions-for-manual-testing)**, which aims to detail steps that
+software testers can take in order to test RIZZipe.
+
+Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) below.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
