@@ -144,6 +144,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Gender` should be either M or F (not case-sensitive). </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Routine` is case sensitive. </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Weight` is specified in kilograms (Kg). </div>
 
 
 Examples:
@@ -178,7 +179,10 @@ Edits an existing client in the FitBook.
 Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
-* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​ 
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e adding of `tags`,`appointments` and `routines` are not cumulative.
@@ -219,7 +223,6 @@ Available Prefixes:
 * `gl` filters by Goal
 * `cal` filters by Calorie
 * `app` filters by Appointment
-* `gl` filters by Goal
 
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.
@@ -240,6 +243,8 @@ Format: `delete INDEX`
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
@@ -258,6 +263,8 @@ Format: `view INDEX`
 * Views the summary of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `view 1` views the summary of the first client in the FitBook.
@@ -310,7 +317,8 @@ Format: `addWeight INDEX w/WEIGHT d/DATE`
 
 * Adds weight to the weight history of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
 * `DATE` field must be a date that has passed.
 
@@ -332,6 +340,8 @@ Format: `graph INDEX`
 * Plots the weight history of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * The weight history graph will be shown only for weights dated within one month of the current date and time.
 
 Examples:
