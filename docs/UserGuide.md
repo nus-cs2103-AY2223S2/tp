@@ -319,7 +319,7 @@ Example:
 
 
 ## 3. Features available for Reminders
-### *Can only access from Main Window and Reminder Window*
+### *Can only access from Main Window*
 ### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Reminder Window.
@@ -385,7 +385,7 @@ Format: `timetable_date date/YYYY-mm-DD`
 Examples:
 * `timetable_date date/2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
 
-### 4.3. Showing list of completed jobs
+### 4.3. Showing list of completed jobs: `timetable_completed`
 Shows list of completed jobs, sorted in increasing date and decreasing earning order.
 
 Format: `timetable_completed`
@@ -393,7 +393,7 @@ Format: `timetable_completed`
 Alternative: Click on `Timetable` in menu bar > `Completed Jobs`
 ![completed jobs](images/Completedjobs.png)
 
-### 4.4. Showing list of unscheduled jobs
+### 4.4. Showing list of unscheduled jobs: `timetable_unscheduled`
 Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
 Jobs are sorted in increasing date and decreasing earning order.
 
@@ -436,7 +436,7 @@ Format: `help`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program or current window.
 
 Format: `exit`
 
@@ -470,12 +470,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 * Commands that start with *(M)* could only be accessed from Main Window
 * Commands that start with *(T)* could only be accessed from Timetable Window
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
+* Commands that start with *(A)* could be accessed from all 3 windows: Main, Customer and Timetable Window.
 
 
 | Action                                        | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ***(C)* Add Customer**                        | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                                                                                                                 |
-| ***(B)* Clear all entries**                   | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ***(C)* Delete Customer**                     | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                        |
 | ***(C)* Edit Customer details**               | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                           |
 | ***(C)* Find Customer**                       | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                 |
@@ -495,7 +495,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | ***(M)* Show List of Completed Jobs**         | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                                                                                                                                                                                                                                                    |
 | ***(M)* Show List of Unscheduled Jobs**       | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                |
 | ***(M)* Show Statistics**                     | `stats`<br/>OR<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                                                                                                                                                                                                                                                             |
-| ***(B)* Help**                                | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(B)* Exit**                                | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(B)* Clear all entries**                   | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ***(A)* Help**                                | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ***(A)* Exit**                                | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
