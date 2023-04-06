@@ -291,6 +291,10 @@ Format: `findCards KEYWORD...`
 - This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Since the command does not support partial words, take extra caution when searching for words ending with punctuation! For example `findCards loop` will **not** return a Card with question `What is a loop?`. For this example, you should search `findCards loop?` instead.  
+</div>
+
 Example:
 - `findCards loop recursion` shows all the cards whose questions match the keywords 'loop' **or** 'recursion'.
 
