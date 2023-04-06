@@ -15,8 +15,9 @@ This feature aims to help newer or exchange students to better navigate the univ
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=weekiat-douze&breakdown=true)
 #### Enhancement Implemented
 * Add Image to contact
-  * Enables user to specify an image file to be used as a contact profile picture to help better identify contacts.
-  * This feature is more complex as it takes in a file rather than just text. <br> 
+  * What it does: Enables user to specify an image file to be used as a contact profile picture
+  * Justification: Having an image with the contact helps user to better identify their contacts.
+  * Highlight: This feature is more complex as it takes in a file rather than just text. <br> 
     There are many ways that a file can be invalid: invalid path, invalid file format, permissions, etc.
     After ensuring that the provided file is valid, we also need to copy the file so that any changes 
     to the original file will not break the application. To copy the file, we also need to ensure that 
@@ -24,15 +25,17 @@ This feature aims to help newer or exchange students to better navigate the univ
    To prevent storage leak, we also have to ensure images that are to be replaced are deleted. 
 
 * Image Retrieval
-  * Retrieved saved image to be displayed as a contact's profile picture. 
-  * As `addressbook.json` and `profile_pictures/` are visible to the user, we have to ensure that during each retrieval,
+  * What it does: Retrieve saved image to be displayed as a contact's profile picture.
+  * Justification: Enable GUI to display the profile picture. 
+  * Highlight: As `addressbook.json` and `profile_pictures/` are visible to the user, we have to ensure that during each retrieval,
     the image and is valid. Faced an issue where retrieval did not work as the way JavaFX references file is different.
     We were only able to access files relative to the `resources` directory. Fortunately, I have discovered a fix that allows
     us to access both `profile_pictures/`, where the user images are stored, and `resources` directory, where the default image is stored. 
 
 * `ImageUtil` class
-  * A collection of Image-related operations used in `add-image`, `delete-image` and image retrieval
-  * I created this utility class to hold all the methods so that it can be used across the different features.
+  * What it does: A collection of Image-related operations used in `add-image`, `delete-image` and image retrieval
+  * Justification: Improve code reuse across different features.
+  * Highlight:
     * `importImage` does the necessary image and directory checks before making a copy of the image
     * `deleteImage` deletes the referenced image, after consideration I decided that this method returns a boolean which
       indicates whether deletion actually occurred rather than throwing an error. This is to avoid the application breaking 
