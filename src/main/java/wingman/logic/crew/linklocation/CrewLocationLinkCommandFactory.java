@@ -7,10 +7,12 @@ import java.util.Set;
 
 import wingman.commons.fp.Lazy;
 import wingman.commons.util.GetUtil;
+import wingman.logic.core.Command;
 import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.logic.toplevel.link.LinkFactoryBase;
+import wingman.logic.toplevel.link.LinkFunction;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
 import wingman.model.crew.Crew;
@@ -23,8 +25,8 @@ import wingman.model.location.Location;
  * To link a crew to a flight, the crew should reside in
  * the same location as the flight's starting location.
  */
-public class LinkCrewToLocationCommandFactory
-        extends LinkFactoryBase<LinkCrewToLocationCommand, Location, Crew, CrewLocationType> {
+public class CrewLocationLinkCommandFactory<T extends Command>
+        extends LinkFactoryBase<T, Location, Crew, CrewLocationType> {
     private static final String COMMAND_WORD = "linklocation";
     private static final String LOCATION_PREFIX = "/lo";
     private static final String CREW_PREFIX = "/cr";
@@ -42,11 +44,13 @@ public class LinkCrewToLocationCommandFactory
             "Index %s is out of bounds.\n"
                     + "Please enter a valid index.";
 
+    private CrewLocationLinkFunction<T> linkFunction;
+
     /**
      * Creates a new link command factory with the model registered.
      */
-    public LinkCrewToLocationCommandFactory() {
-        this(GetUtil.getLazy(Model.class));
+    public CrewLocationLinkCommandFactory(CrewLocationLinkFunction<T> linkFunction) {
+        this(GetUtil.getLazy(Model.class), linkFunction);
     }
 
     /**
@@ -54,10 +58,14 @@ public class LinkCrewToLocationCommandFactory
      *
      * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public LinkCrewToLocationCommandFactory(Lazy<Model> modelLazy) {
+    public CrewLocationLinkCommandFactory(
+            Lazy<Model> modelLazy,
+            CrewLocationLinkFunction<T> linkFunction
+    ) {
         this(
                 modelLazy.map(Model::getCrewManager),
-                modelLazy.map(Model::getLocationManager)
+                modelLazy.map(Model::getLocationManager),
+                linkFunction
         );
     }
 
@@ -68,12 +76,34 @@ public class LinkCrewToLocationCommandFactory
      * @param crewManagerLazy     the lazy instance of the crew manager.
      * @param locationManagerLazy the lazy instance of the location manager.
      */
-    public LinkCrewToLocationCommandFactory(
+    public CrewLocationLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
-            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy
+            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
+            CrewLocationLinkFunction<T> linkFunction
     ) {
         super(locationManagerLazy, crewManagerLazy);
+        this.linkFunction = linkFunction;
     }
+
+    /**
+     * Returns a new link command factory.
+     *
+     * @return a new link command factory.
+     */
+    public static CrewLocationLinkCommandFactory<LinkCrewToLocationCommand> linkFactory() {
+        return new CrewLocationLinkCommandFactory<>(LinkCrewToLocationCommand::new);
+    }
+
+    /**
+     * Returns a new unlink command factory.
+     *
+     * @return a new unlink command factory.
+     */
+    public static CrewLocationLinkCommandFactory<UnlinkCrewFromLocationCommand> unlinkFactory() {
+        return new CrewLocationLinkCommandFactory<>(
+                UnlinkCrewFromLocationCommand::new);
+    }
+
 
     @Override
     public String getCommandWord() {
@@ -89,7 +119,8 @@ public class LinkCrewToLocationCommandFactory
     }
 
     @Override
-    public LinkCrewToLocationCommand createCommand(CommandParam param) throws ParseException, CommandException {
+    public T createCommand(CommandParam param) throws ParseException,
+                                                      CommandException {
         Optional<String> locationIdOptional =
                 param.getNamedValues(LOCATION_PREFIX);
         Optional<String> crewIdOptional =
@@ -107,6 +138,16 @@ public class LinkCrewToLocationCommandFactory
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);
         }
-        return new LinkCrewToLocationCommand(location, crews);
+        return linkFunction.create(location, crews);
+    }
+
+    /**
+     * Returns the source location or throws a parse exception.
+     *
+     * @param <T> the type of the command.
+     */
+    @FunctionalInterface
+    public interface CrewLocationLinkFunction<T extends Command>
+            extends LinkFunction<T, Location, Crew, CrewLocationType> {
     }
 }

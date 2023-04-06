@@ -8,10 +8,8 @@ import java.util.Optional;
 
 import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
-import wingman.logic.crew.linkflight.LinkCrewToFlightCommandFactory;
-import wingman.logic.crew.linklocation.LinkCrewToLocationCommandFactory;
-import wingman.logic.crew.unlinkflight.UnlinkCrewToFlightCommandFactory;
-import wingman.logic.crew.unlinklocation.UnlinkCrewToLocationCommandFactory;
+import wingman.logic.crew.linkflight.CrewFlightLinkCommandFactory;
+import wingman.logic.crew.linklocation.CrewLocationLinkCommandFactory;
 import wingman.logic.flight.linklocation.LinkFlightToLocationCommandFactory;
 import wingman.logic.flight.unlinklocation.UnlinkFlightToLocationCommandFactory;
 import wingman.logic.pilot.linkflight.LinkPilotToFlightCommandFactory;
@@ -41,89 +39,94 @@ public class WingmanParser extends FactoryParser {
      * The command groups that are available in the application.
      */
     private static final List<CommandGroup> COMMAND_GROUPS = List.of(
-            new CommandGroup(OperationMode.PILOT,
+            new CommandGroup(
+                    OperationMode.PILOT,
                     List.of(
-                        new AddCommandFactory<>(
-                                "pilot",
-                                Optional.of(PilotSyntax.PREFIXES),
-                                PilotSyntax::add,
-                                PilotSyntax::factory
-                        ),
-                        new DeleteCommandFactory<>(
-                                PilotSyntax::getManager,
-                                PilotSyntax::delete
-                        ),
-                        new LinkPilotToFlightCommandFactory(),
-                        new UnlinkPilotToFlightCommandFactory(),
-                        new LinkPilotToLocationCommandFactory(),
-                        new UnlinkPilotToLocationCommandFactory()
-                )
+                            new AddCommandFactory<>(
+                                    "pilot",
+                                    Optional.of(PilotSyntax.PREFIXES),
+                                    PilotSyntax::add,
+                                    PilotSyntax::factory
+                            ),
+                            new DeleteCommandFactory<>(
+                                    PilotSyntax::getManager,
+                                    PilotSyntax::delete
+                            ),
+                            new LinkPilotToFlightCommandFactory(),
+                            new UnlinkPilotToFlightCommandFactory(),
+                            new LinkPilotToLocationCommandFactory(),
+                            new UnlinkPilotToLocationCommandFactory()
+                    )
             ),
-            new CommandGroup(OperationMode.CREW,
+            new CommandGroup(
+                    OperationMode.CREW,
                     List.of(
-                        new AddCommandFactory<>(
-                                "crew",
-                                Optional.of(CrewSyntax.PREFIXES),
-                                CrewSyntax::add,
-                                CrewSyntax::factory
-                        ),
-                        new DeleteCommandFactory<>(
-                                CrewSyntax::getManager,
-                                CrewSyntax::delete
-                        ),
-                        new LinkCrewToFlightCommandFactory(),
-                        new UnlinkCrewToFlightCommandFactory(),
-                        new LinkCrewToLocationCommandFactory(),
-                        new UnlinkCrewToLocationCommandFactory()
-                )
+                            new AddCommandFactory<>(
+                                    "crew",
+                                    Optional.of(CrewSyntax.PREFIXES),
+                                    CrewSyntax::add,
+                                    CrewSyntax::factory
+                            ),
+                            new DeleteCommandFactory<>(
+                                    CrewSyntax::getManager,
+                                    CrewSyntax::delete
+                            ),
+                            CrewFlightLinkCommandFactory.linkFactory(),
+                            CrewFlightLinkCommandFactory.unlinkFactory(),
+                            CrewLocationLinkCommandFactory.linkFactory(),
+                            CrewLocationLinkCommandFactory.unlinkFactory()
+                    )
             ),
-            new CommandGroup(OperationMode.PLANE,
+            new CommandGroup(
+                    OperationMode.PLANE,
                     List.of(
-                        new AddCommandFactory<>(
-                                "plane",
-                                Optional.of(PlaneSyntax.PREFIXES),
-                                PlaneSyntax::add,
-                                PlaneSyntax::factory
-                        ),
-                        new DeleteCommandFactory<>(
-                                PlaneSyntax::getManager,
-                                PlaneSyntax::delete
-                        ),
-                        new LinkPlaneToFlightCommandFactory(),
-                        new UnlinkPlaneToFlightCommandFactory(),
-                        new LinkPlaneToLocationCommandFactory(),
-                        new UnlinkPlaneToLocationCommandFactory()
-                )
+                            new AddCommandFactory<>(
+                                    "plane",
+                                    Optional.of(PlaneSyntax.PREFIXES),
+                                    PlaneSyntax::add,
+                                    PlaneSyntax::factory
+                            ),
+                            new DeleteCommandFactory<>(
+                                    PlaneSyntax::getManager,
+                                    PlaneSyntax::delete
+                            ),
+                            new LinkPlaneToFlightCommandFactory(),
+                            new UnlinkPlaneToFlightCommandFactory(),
+                            new LinkPlaneToLocationCommandFactory(),
+                            new UnlinkPlaneToLocationCommandFactory()
+                    )
             ),
-            new CommandGroup(OperationMode.LOCATION,
+            new CommandGroup(
+                    OperationMode.LOCATION,
                     List.of(
-                        new AddCommandFactory<>(
-                                "location",
-                                Optional.of(LocationSyntax.PREFIXES),
-                                LocationSyntax::add,
-                                LocationSyntax::factory
-                        ),
-                        new DeleteCommandFactory<>(
-                                LocationSyntax::getManager,
-                                LocationSyntax::delete
-                        )
-                )
+                            new AddCommandFactory<>(
+                                    "location",
+                                    Optional.of(LocationSyntax.PREFIXES),
+                                    LocationSyntax::add,
+                                    LocationSyntax::factory
+                            ),
+                            new DeleteCommandFactory<>(
+                                    LocationSyntax::getManager,
+                                    LocationSyntax::delete
+                            )
+                    )
             ),
-            new CommandGroup(OperationMode.FLIGHT,
+            new CommandGroup(
+                    OperationMode.FLIGHT,
                     List.of(
-                        new AddCommandFactory<>(
-                                "flight",
-                                Optional.of(FlightSyntax.PREFIXES),
-                                FlightSyntax::add,
-                                FlightSyntax::factory
-                        ),
-                        new DeleteCommandFactory<>(
-                                FlightSyntax::getManager,
-                                FlightSyntax::delete
-                        ),
-                        new LinkFlightToLocationCommandFactory(),
-                        new UnlinkFlightToLocationCommandFactory()
-                )
+                            new AddCommandFactory<>(
+                                    "flight",
+                                    Optional.of(FlightSyntax.PREFIXES),
+                                    FlightSyntax::add,
+                                    FlightSyntax::factory
+                            ),
+                            new DeleteCommandFactory<>(
+                                    FlightSyntax::getManager,
+                                    FlightSyntax::delete
+                            ),
+                            new LinkFlightToLocationCommandFactory(),
+                            new UnlinkFlightToLocationCommandFactory()
+                    )
             )
     );
     /**

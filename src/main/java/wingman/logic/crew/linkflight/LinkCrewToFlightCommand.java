@@ -37,10 +37,13 @@ public class LinkCrewToFlightCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param crews the id of the crews.
+     * @param crews  the id of the crews.
      * @param flight the id of the flight.
      */
-    public LinkCrewToFlightCommand(Flight flight, Map<FlightCrewType, Crew> crews) {
+    public LinkCrewToFlightCommand(
+            Flight flight,
+            Map<FlightCrewType, Crew> crews
+    ) {
         this.flight = flight;
         this.crews = crews;
     }
@@ -48,12 +51,13 @@ public class LinkCrewToFlightCommand implements Command {
     @Override
     public String toString() {
         String result = crews.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
-                .collect(Collectors.joining(","));
+                             .stream()
+                             .map((entry) -> String.format(
+                                     "%s %s",
+                                     entry.getKey(),
+                                     entry.getValue().getName()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 

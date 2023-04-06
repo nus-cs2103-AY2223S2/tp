@@ -8,11 +8,10 @@ import java.util.Set;
 import wingman.commons.fp.Lazy;
 import wingman.commons.util.GetUtil;
 import wingman.logic.core.Command;
-import wingman.logic.core.CommandFactory;
 import wingman.logic.core.CommandParam;
-import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.logic.toplevel.link.LinkFactoryBase;
+import wingman.logic.toplevel.link.LinkFunction;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
 import wingman.model.crew.Crew;
@@ -23,8 +22,8 @@ import wingman.model.flight.Flight;
 /**
  * The factory that creates {@code LinkCrewCommand}.
  */
-public class LinkCrewToFlightCommandFactory
-        extends LinkFactoryBase<LinkCrewToFlightCommand, Flight, Crew, FlightCrewType> {
+public class CrewFlightLinkCommandFactory<T extends Command>
+        extends LinkFactoryBase<T, Flight, Crew, FlightCrewType> {
     private static final String COMMAND_WORD = "linkflight";
     private static final String FLIGHT_PREFIX = "/fl";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
@@ -39,11 +38,15 @@ public class LinkCrewToFlightCommandFactory
                     + "     /fa for the Flight Attendants, "
                     + "/tr for the Trainees.";
 
+    private CrewFlightLinkFunction<T> linkFunction;
+
     /**
      * Creates a new link command factory with the model registered.
      */
-    public LinkCrewToFlightCommandFactory() {
-        this(GetUtil.getLazy(Model.class));
+    public CrewFlightLinkCommandFactory(
+            CrewFlightLinkFunction<T> linkFunction
+    ) {
+        this(GetUtil.getLazy(Model.class), linkFunction);
     }
 
     /**
@@ -51,10 +54,14 @@ public class LinkCrewToFlightCommandFactory
      *
      * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public LinkCrewToFlightCommandFactory(Lazy<Model> modelLazy) {
+    public CrewFlightLinkCommandFactory(
+            Lazy<Model> modelLazy,
+            CrewFlightLinkFunction<T> linkFunction
+    ) {
         this(
                 modelLazy.map(Model::getCrewManager),
-                modelLazy.map(Model::getFlightManager)
+                modelLazy.map(Model::getFlightManager),
+                linkFunction
         );
     }
 
@@ -64,12 +71,34 @@ public class LinkCrewToFlightCommandFactory
      *
      * @param crewManagerLazy   the lazy instance of the crew manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
+     * @param linkFunction      the link function used to create the link
+     *                          command.
      */
-    public LinkCrewToFlightCommandFactory(
+    public CrewFlightLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
-            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
+            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
+            CrewFlightLinkFunction<T> linkFunction
     ) {
         super(flightManagerLazy, crewManagerLazy);
+        this.linkFunction = linkFunction;
+    }
+
+    /**
+     * Returns a new link crew command factory.
+     *
+     * @return a new link crew command factory.
+     */
+    public static CrewFlightLinkCommandFactory<LinkCrewToFlightCommand> linkFactory() {
+        return new CrewFlightLinkCommandFactory<>(LinkCrewToFlightCommand::new);
+    }
+
+    /**
+     * Returns a new unlink crew command factory.
+     *
+     * @return a new unlink crew command factory.
+     */
+    public static CrewFlightLinkCommandFactory<UnlinkCrewToFlightCommand> unlinkFactory() {
+        return new CrewFlightLinkCommandFactory<>(UnlinkCrewToFlightCommand::new);
     }
 
     @Override
@@ -89,7 +118,8 @@ public class LinkCrewToFlightCommandFactory
     }
 
     @Override
-    public LinkCrewToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public T createCommand(CommandParam param) throws ParseException,
+                                                      IndexOutOfBoundException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =
@@ -124,7 +154,16 @@ public class LinkCrewToFlightCommandFactory
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);
         }
+        return linkFunction.create(flight, crews);
+    }
 
-        return new LinkCrewToFlightCommand(flight, crews);
+    /**
+     * Returns true if the crew has been added to the map.
+     *
+     * @param <T> the type of the crew.
+     */
+    @FunctionalInterface
+    public interface CrewFlightLinkFunction<T extends Command>
+            extends LinkFunction<T, Flight, Crew, FlightCrewType> {
     }
 }
