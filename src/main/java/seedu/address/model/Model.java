@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.model.application.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
@@ -16,10 +15,6 @@ import seedu.address.model.task.Note;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
@@ -113,11 +108,6 @@ public interface Model {
     boolean hasNote(Note note);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
      * Deletes the given internship application.
      * The application must exist in the address book.
      */
@@ -170,25 +160,12 @@ public interface Model {
     void addApplications(List<InternshipApplication> applications);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
      * Replaces the given internshipApplication {@code target} with {@code editedApplication}.
      * {@code target} must exist in the address book.
      * The application identity of {@code editedApplication} must not be the
      * same as another existing application in the address book.
      */
     void setApplication(InternshipApplication target, InternshipApplication editedApplication);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
 
     /**
      * Replaces the given todo {@code target} with {@code editedTodo}.
@@ -210,11 +187,6 @@ public interface Model {
      * The identity of {@code editedNote} must not be the same as another existing note in the tracker.
      */
     void setNote(Note target, Note editedNote);
-
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
-    ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns an unmodifiable view of the sorted filtered internship list
@@ -253,12 +225,6 @@ public interface Model {
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
 
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
     /**
      * Returns an unmodifiable view of the cached internship list.
      */

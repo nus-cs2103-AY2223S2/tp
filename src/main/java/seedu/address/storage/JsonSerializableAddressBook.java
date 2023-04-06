@@ -19,7 +19,7 @@ import seedu.address.model.application.InternshipApplication;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Internship Application list "
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "Internship Application list "
                                                         + "contains duplicate InternshipApplication(s).";
 
     private final List<JsonAdaptedInternshipApplication> applications = new ArrayList<>();
@@ -53,7 +53,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedInternshipApplication jsonAdaptedInternshipApplication : applications) {
             InternshipApplication application = jsonAdaptedInternshipApplication.toModelType();
             if (addressBook.hasApplication(application)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICATION);
             }
             addressBook.addApplication(application);
         }
