@@ -575,8 +575,6 @@ Examples:
   internships in the [List Panel](#exploring-the-graphical-user-interface).
 * `delete-index` Displays an error because at least one `INDEX` must be specified.
 
-<div style="page-break-after: always;"></div>
-
 [//]: # (@@author potty10)
 ### Deleting Internships by Fields : `delete-field`
 Wish that you can delete internships using fields instead of indices? You can
