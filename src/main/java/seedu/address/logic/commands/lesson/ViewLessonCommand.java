@@ -41,7 +41,7 @@ public class ViewLessonCommand extends Command {
         + PREFIX_NAME + "John Doe "
         + PREFIX_DATE + "2023-05-21 "
         + PREFIX_SUBJECT + "Math "
-        + PREFIX_DONE + "done";
+        + PREFIX_DONE + "done(or not done)";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
 

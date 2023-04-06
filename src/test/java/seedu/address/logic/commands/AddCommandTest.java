@@ -18,6 +18,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.student.Lesson;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -171,6 +172,15 @@ public class AddCommandTest {
         public boolean hasDuplicateNameAdd(String name) {
             throw new AssertionError("this method should not be called.");
         }
+        @Override
+        public boolean hasConflictingLessonTime(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConflictingExamTime(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -212,6 +222,16 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public boolean hasConflictingLessonTime(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConflictingExamTime(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.student.exceptions.ConflictingExamsException;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
@@ -266,11 +267,23 @@ public class Student {
      * @param lesson the lesson to be added
      */
     public void addLesson(Lesson lesson) throws ConflictingLessonsException {
+        if (hasExamAtSameTime(lesson)) {
+            throw new ConflictingLessonsException(Messages.MESSAGE_CONFLICTING_EXAM_TIME);
+        }
         try {
             this.lessonsList.add(lesson);
         } catch (Exception e) {
             throw new ConflictingLessonsException(e.getMessage());
         }
+    }
+
+    private boolean hasExamAtSameTime(Lesson lesson) {
+        for (Exam exam : examList) {
+            if (lesson.getStartTime().isBefore(exam.getEndTime()) && lesson.getEndTime().isAfter(exam.getStartTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -521,5 +534,13 @@ public class Student {
      */
     public ObservableList<Exam> getUpcomingExamsList() {
         return examList.getUpcomingExams();
+    }
+
+    public boolean hasConflictingLessonTime(Lesson lesson) {
+        return this.lessonsList.hasConflictingLessonTime(lesson);
+    }
+
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        return this.examList.hasConflictingExamTime(lesson);
     }
 }

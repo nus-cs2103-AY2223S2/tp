@@ -238,4 +238,18 @@ public class UniqueExamList implements Iterable<Exam> {
         }
         return FXCollections.observableArrayList(upcomingExams);
     }
+
+    /**
+     * Returns true if the list contains an exam with the same time as the lesson.
+     * @param lesson the lesson to be checked
+     * @return true if the list contains an exam with the same time as the lesson.
+     */
+    public boolean hasConflictingExamTime(Lesson lesson) {
+        for (Exam exam : internalList) {
+            if (exam.isSameTimeLesson(lesson)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

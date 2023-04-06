@@ -9,38 +9,43 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Quick start](#quick-start)
-  * [Glossary](#glossary)
+  - [Glossary](#glossary)
 - [GUI](#gui)
-  * [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
-    + [Profile Page](#profile-page)
-    + [Homework Page](#homework-page)
-    + [Lessons Page](#lessons-page)
-    + [Exams Page](#exams-page)
+  - [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
+    - [Profile Page](#profile-page)
+    - [Homework Page](#homework-page)
+    - [Lessons Page](#lessons-page)
+    - [Exams Page](#exams-page)
 - [Commands](#commands)
-  * [Profile Commands](#profile-commands)
-    + [Create a new student profile](#create-a-new-student-profile)
-    + [Update Student Information](#update-student-information)
-  * [Homework Commands](#homework-commands)
-    + [Assign Homework to a Student](#assign-homework-to-a-student)
-    + [View the Homework of Students](#view-the-homework-of-students)
-    + [Delete Homework from a Student](#delete-homework-from-a-student)
-    + [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
-    + [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
-    + [Update Homework of a Student](#update-homework-of-a-student)
-  * [Lessons Commands](#lessons-commands)
-    + [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
-    + [View Lessons History](#view-lessons-history)
-  * [Exams Commands](#exams-commands)
-    + [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
-    + [Remove an exam](#remove-an-exam)
-    + [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
-    + [Edit exam details](#edit-exam-details)
-    + [Calculate grade](#calculate-grade)
+  - [Profile Commands](#profile-commands)
+    - [Create a new student profile](#create-a-new-student-profile)
+    - [Update Student Information](#update-student-information)
+  - [Homework Commands](#homework-commands)
+    - [Assign Homework to a Student](#assign-homework-to-a-student)
+    - [View the Homework of Students](#view-the-homework-of-students)
+    - [Delete Homework from a Student](#delete-homework-from-a-student)
+    - [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
+    - [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
+    - [Update Homework of a Student](#update-homework-of-a-student)
+  - [Lessons Commands](#lessons-commands)
+    - [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
+    - [View Lessons](#view-lessons)
+  - [Delete a Lesson from a student](#delete-a-lesson-from-a-student)
+  - [Update a Lesson](#update-a-lesson)
+  - [Exams Commands](#exams-commands)
+    - [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
+    - [Remove an exam](#remove-an-exam)
+    - [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
+    - [Edit exam details](#edit-exam-details)
 - [FAQ](#faq)
 - [Summary](#summary)
-  * [List of Commands](#list-of-commands)
-  * [List of Prefixes](#list-of-prefixes)
-  * [Supported date-time formats](#supported-date-time-formats)
+  - [List of Commands](#list-of-commands)
+  - [List of Prefixes](#list-of-prefixes)
+  - [Supported date-time formats](#supported-date-time-formats)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents
+generated with markdown-toc</a></i></small>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -57,30 +62,30 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the Features below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
-You may come across some terms you do not understand in the user guide. The following table provides clarification of the terms commonly used in TutorPro.
+You may come across some terms you don't understand in the user guide.
+The following table provides clarification of the terms commonly used in TutorPro.
 
-|       Term       | Description                                                  |
-| :--------------: | ------------------------------------------------------------ |
-| **Alphanumeric** | Digits and letters only. For example, `AB3`, `TutorPro`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not. |
-|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status. |
-|   **Command**    | A command is a specific instruction you can give to TutorPro to perform an action. You can view the list of commands available [here](#command-summary). |
-|   **Contact**    | A contact is an information entry in TutorPro. There are three types of contacts you can add - `Buyer`, `Supplier`, and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add). |
-|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context. |
-|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the TutorPro application. |
-|    **Index**     | The index of the contact or item in the display list for contacts/items. |
-|   **Integer**    | Whole number                                                 |
-|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. |
-|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes). |
-|  **Whitespace**  | An empty character, or a placeholder character.              |
-|   **Student**    | A `Student` whom the user (who is a tutor) teaches           |
-|   **Homework**   | A `Homework` assignment whom the user (who is a tutor) has assigned to a `Student` |
-|    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`      |
-|     **Exam**     | An `Exam` that a Student is scheduled to sit for             |
+|       Term       | Description                                                                                                                                                                                                         |
+|:----------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Digits and letters only. For example, `AB3`, `TutorPro`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                       |
+|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status.                                                                         |
+|   **Command**    | A command is a specific instruction you can give to TutorPro to perform an action. You can view the list of commands available [here](#list-of-commands).                                                           |
+|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input text box in this context.                                                                           |
+|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the TutorPro application.                                                                                                               |
+|    **Index**     | The index of the contact or item in the display list for contacts/items.                                                                                                                                            |
+|   **Integer**    | Whole number                                                                                                                                                                                                        |
+|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information.                                                                                |
+|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                |
+|  **Whitespace**  | An empty character, or a placeholder character.                                                                                                                                                                     |
+|   **Student**    | A `Student` whom the user (who is a tutor) teaches                                                                                                                                                                  |
+|   **Homework**   | A `Homework` assignment whom the user (who is a tutor) has assigned to a `Student`                                                                                                                                  |
+|    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`                                                                                                                                                             |
+|     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                    |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -90,8 +95,8 @@ When you first run the app, you may see a display window pop up similar to the o
 ![Starting Display Window](images/GUI.jpg)
 
 * The **Command Box** on the left bottom refers to the text field where you can type commands in.
-* The **Display List for Students** on the left top refers to the list of students  you are currently displaying.
-* The **Detailed Information Section** on the right refers to the section where more specific information of the profile, homework, lessons, or exams of a particular sutden is displayed.
+* The **Display List for Students** on the left top refers to the list of students you are currently displaying.
+* The **Detailed Information Section** on the right refers to the section where more specific information of the profile, homework, lessons, or exams of a particular student is displayed.
 
 You may enter the following commands in the Command Box to see how the Display List changes:
 * `list` lists all students.
@@ -112,41 +117,59 @@ Upon clicking the Profile Button, the Detailed Information section will be refre
 
 Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed homework information of the student. 
 
-It includes a homework list, showing all the homework information. The icon on the left of each homework represents its status, with the tick icon being `completed` and the cross icon being `pending`. It also has a pie chart which represents ratio between completed and pending homework.
+It includes a homework list, showing all the homework information.
+The icon on the left of each homework represents its status,
+with the tick icon being `completed` and the cross-icon being `pending`.
+It also has a pie chart which represents a ratio between completed and pending homework.
 
 ![Starting Display Window](images/Homework.jpg)
 
 #### Lessons Page
 
-Upon clicking the Lessons Button, the Detailed Information section will be refreshed and show the detailed Lessons Information for the student.
+Upon clicking the Lesson Button,
+the Detailed Information section will be refreshed and show the detailed Lessons Information for the student.
 
-It includes a past lessons list, showing all the past lesson information and a upcoming lessons list, showing all the upcoming lessons.
+It includes a past lessons list, showing all the past lesson information and an upcoming lessons list,
+showing all the upcoming lessons.
 
 ![Starting Display Window](images/Lessons.jpg)
 
+:bulb: **Tip:** If you want to see the index of the lessons in the list,
+you can use the `view-lessons` command to view the list of lessons.
+
 #### Exams Page
 
-Upon clicking the Exams Button, the Detailed Information section will be refreshed and show the detailed Exams Information for the student.
+Upon clicking the Exam Button,
+the Detailed Information section will be refreshed and show the detailed Exams Information for the student.
 
-It includes a past exams list, showing all the past exams information and all the  upcoming exams list, showing all the upcoming exams.
+It includes a past exams list, showing all the past exams information and all the upcoming exams list,
+showing all the upcoming exams.
 
 ![Starting Display Window](images/Exams.jpg)
+
+:bulb: **Tip:**<br> If you want to see the index of the exams in the list,
+you can use the `view-exams` command to view the list of exams.
 
 ## Commands
 
 
 :information_source: **How to interpret the Command format:**<br>
 
-* The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `add n/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `add n/John Doe`.
+* The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `new-student name/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `new-student n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Ho` etc.
+  e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Doe` etc.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit,` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that don't take in parameters
+  (such as `help`, `exit,` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-* Unless otherwise specified, the order of prefixes does not matter.<br>
-  e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable unless stated otherwise in a particular command.
+* Unless otherwise specified, the order of prefixes doesn't matter.<br>
+  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable unless stated otherwise in a particular command.
+
+* Parameters can be in any order.<br>
+
+
 
 ### Profile Commands
 
@@ -179,24 +202,34 @@ Examples:
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
 ### Homework Commands
-
 #### Assign Homework to a Student
 
-Creates a homework assignment with a deadline for a student
+Create a homework assignment with a deadline for a student
 
 Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor.
-* The `DEADLINE` must be in the format given in the support date and time formats appendix.
+* The `DEADLINE` must be in the format given in the support date and time formats' appendix.
 * The `DEADLINE` must be in the future.
 
 Examples:
-* `new-homework name/John homework/listening comprehension ex1 deadline/2023-04-30 2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
+* `new-homework name/John homework/listening comprehension ex1 deadline/2023-05-30 2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
+* `new-homework name/Donald homework/english essay deadline/2023-05-14 2359` adds the assignment `English Essay` to the student named `Donald`. The deadline is 14 May 2023 at 23:59.
+* `new-homework name/Kai Ze homework/math ex1 deadline/2023-05-23 2359` adds the assignment `math ex1` to the student named `Kai Ze`. The deadline is 23 May 2023 at 23:59.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![New Homework](images/new-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
+:bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
 
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
+:exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
+and DEADLINE should all only appear at most once and should not be empty.
+
+:exclamation: **Caution:** A student can have multiple homework with the same name,
+even if they have different deadlines.
 
 #### View the Homework of Students
 
@@ -204,7 +237,7 @@ Displays a list of homework with the ability to filter by student name and homew
 
 Format: `view-homework [name/STUDENT_NAME]... [status/STATUS]`
 
-* By default, all homework will be displayed, if no name or status parameter is provide.
+* By default, all homework will be displayed if no name or status parameter is provided.
 * To view homework for specific students, specify the name using `name/STUDENT_NAME`s.
 * To view homework with a specific status, specify the status using `status/STATUS`.
 * It is possible to filter by both student name and status simultaneously.
@@ -216,9 +249,12 @@ Examples:
 * `view-homework status/completed` displays all completed homework from all students.
 * `view-homework name/John status/pending` displays pending homework for a student named `John`.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![View Homework](images/view-homework.jpg)
 
-:exclamation: **Caution:** STATUS should only appear at most once and should not be empty. STUDENT_NAME can be zero or multiple but they all cannot be empty.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
+:exclamation: **Caution:** STATUS should only appear at most once and should not be empty.
+STUDENT_NAME can be zero or multiple, but they all can't be empty.
 
 #### Delete Homework from a Student
 
@@ -235,7 +271,11 @@ Examples:
 * `delete-homework name/John index/1` deletes the first homework assignment for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![Delete Homework](images/delete-homework.jpg)
+
+:bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -254,7 +294,9 @@ Examples:
 * `mark-homework name/John index/1` marks the first homework assignment for the student named John.
 * `mark-homework name/Susan index/3` marks the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![Mark Homework](images/mark-homework.jpg)
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -273,21 +315,23 @@ Examples:
 * `unmark-homework name/John index/1`unmarks the first homework assignment for the student named John.
 * `unmark-homework name/Susan index/3` unmarks the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![Unmark Homework](images/unmark-homework.jpg)
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 #### Update Homework of a Student
 
-Updates the information on a homework of a student
+Updates the information on homework of a student
 
 Format: `update-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
 * The `HOMEWORK_INDEX` must be the index of an existing homework assignment for the specified student.
-* The `DEADLINE` must be in the format given in the support date and time formats appendix.
+* The `DEADLINE` must be in the format given in the support date and time formats' appendix.
 * The `DEADLINE` must be in the future.
-* At least one of homework name and deadline must be in the command. They cannot be absent concurrently.
+* At least one of homework names and deadline must be in the command. They can't be absent concurrently.
 * A success message will be displayed if the homework assignment is successfully deleted. Otherwise, an error message will be displayed.
 
 Examples:
@@ -296,9 +340,19 @@ Examples:
 * `updates-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `updates-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+![Update Homework](images/update-homework.jpg)
 
-:exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
+:bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
+
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
+:exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
+and DEADLINE should all only appear at most once and should not be empty.
+
+:exclamation: **Caution:** A student can have multiple homework with the same name,
+even if they have different deadlines.
 
 ### Lessons Commands
 
@@ -308,59 +362,117 @@ Creates a new lesson for a given student, with a lesson title and time.
 
 Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields, except for additional student names, are mandatory.
-
-Examples:
-* `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
-
-
-#### View Lessons History
-
-Displays the lesson history for a given student/all students.
-
-Format: `view-lesson [name/STUDENT_NAME]`
-
-* Displays the lesson history for all the tutor’s students if no student name is specified.
-* Displays the lesson history for a specific student if a student's name is specified with the `name/` prefix.
 * The `STUDENT_NAME` must be an existing student of the tutor.
+* The `START_TIME` and `END_TIME` must be in the format given in the support date and time formats' appendix.
+* `START_TIME` must be before `END_TIME`, and their difference must be at least 30 minutes and at most 3 hours.
+* `START_TIME` and `END_TIME` must be in the future.
+* A success message will be displayed if the lesson is successfully created. Otherwise, an error message will be displayed.
+
+Examples:
+* `new-lesson name/John Doe lesson/The Water Cycle start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+* `new-lesson name/Bernice Yu lesson/Photosynthesis start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `Bernice Yu` with the lesson title `Photosynthesis` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+* `new-lesson name/David Li lesson/Metamorphic Rocks start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `David Li` with the lesson title `Metamorphic Rocks` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+
+![New Lesson](images/new-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME, LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once and should not be empty.
+
+:exclamation: **Caution:** A student can have multiple lessons with the same lesson title, even if they have different start and end times.
+
+#### View Lessons
+
+Displays the lessons for a given student/all students.
+
+Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (optional)[date/DATE] (optional)[done/DONE]`
+
+* By default, the lessons for all the tutor’s students will be displayed if no parameters are specified.
+* To view the lessons for specific students, specify the names using `name/STUDENT_NAME`s.
+* To view the lessons for a specific subject, specify the subject using `subject/SUBJECT`.
+* To view the lessons for a specific date, specify the date using `date/DATE`.
+* To view the lessons that have been completed, include `done/done`.
+* To view the lessons that have not been completed, include `done/not done`.
 
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
-* `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
-
-Examples:
-* `view-lesson` Displays the lesson history for all the tutor’s students.
+* `view-lesson name/John` Displays the lesson history for the student named John.
 * `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
 * `view-lesson done/done` Displays all lessons that have been completed
+* `view-lesson done/not done` Displays all lessons that have not been completed
+* `view-lesson name/John done/done` Displays all lessons that have been completed for student John
+* `view-lesson name/John name/Bernice done/not done` Displays all lessons that have not been completed for students John and Bernice
 
-### Remove a Lesson
+![View Lesson](images/view-lesson.jpg)
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** SUBJECT, DATE, and DONE should all only appear at most once and should not be empty.
+STUDENT_NAME can appear multiple times, but none should empty.
+
+### Delete a Lesson from a student
 Deletes a lesson for a given student.
 
 Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Deletes the lesson at the specified `LESSON_INDEX`.
+* The `LESSON_INDEX` must be a positive integer that is within the range of the student's lesson list.
+* A success message will be displayed if the lesson is successfully deleted. Otherwise, an error message will be displayed.
 
 Example:
 * `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
+* `delete-lesson name/Bernice Yu index/2` deletes the second lesson for the student named Bernice Yu.
+
+![Delete Lesson](images/delete-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME and LESSON_INDEX should all appear exactly once and should not be empty.
+
 
 ### Update a Lesson
-Updates a lesson for a given student. This includes the lesson title, start time, and end time.
+Updates a lesson for a given student. This includes the lesson title, start time, and/or end time.
 
-Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
+Format: `update-lesson [name/STUDENT_NAME] [index/LESSON_INDEX] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
-* At least one of the fields must be specified.
+* The `LESSON_INDEX` must be a positive integer that is within the range of the student's lesson list.
+* At least one of the optional parameters must be provided.
+* The `START_TIME`, and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
+* The provided `START_TIME` must be before the provided `END_TIME`, or, if the `END_TIME` is not provided, it must be before the original end time of the lesson.
+* The provided `END_TIME` must be after the provided `START_TIME`, or, if the `START_TIME` is not provided, it must be after the original start time of the lesson.
+* The updated lesson's duration must be at least 30 minutes and at most 3 hours.
+* A success message will be displayed if the lesson is successfully updated. Otherwise, an error message will be displayed.
 
 Example:
-* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
+* `update-lesson name/John Doe index/1 lesson/The Water Cycle start/2025-03-23 1300 end/2025-03-23 1500` updates the first lesson for the student named John Doe to have the lesson title "The Water Cycle", start time "2025-03-23 1300", and end time "2025-03-23 1500".
+* `update-lesson name/Bernice Yu index/2 lesson/Photosynthesis` updates the second lesson for the student named Bernice Yu to have the lesson title "Photosynthesis".
+* `update-lesson name/John Doe index/1 start/2025-03-23 1300` updates the first lesson for the student named John Doe to have the start time "2025-03-23 1300".
+* `update-lesson name/Bernice Yu index/2 end/2025-03-23 1500` updates the second lesson for the student named Bernice Yu to have the end time "2025-03-23 1500".
+
+![Update Lesson](images/update-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-and-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME, LESSON_INDEX should appear exactly once and should not be empty.
+
+:exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should appear at most once and should not be empty.
 
 ### Exams Commands
 
 #### Add an Exam to be tracked
 
-Creates an Exam within TutorPro to be tracked for a given student.
+Create an Exam within TutorPro to be tracked for a given student.
 
 Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/EXAM_NAME] [start/START_TIME] 
 [end/END_TIME] (optional)[weightage/WEIGHTAGE] (optional)[grade/GRADE]`
@@ -369,9 +481,6 @@ Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/
 * At least one student name must be provided.
 * `START_TIME` and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
 * the format of `GRADE` should be `grade/ACTUAL_SCORE/TOTAL_SCORE`
-
-💡 **Tip:** the subject of the exam should be included in the `EXAM_NAME` field to facilitate grade calculations. 
-See `calculate-grade` below:
 
 Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
@@ -395,7 +504,7 @@ Examples:
 Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
 [done/IS_DONE]`
 
-* Lists out exams TutorPro is currently tracking, while filtering for the specified predicates
+* Lists of exams TutorPro are currently tracking, while filtering for the specified predicates
 * All predicates are optional, leaving all parameters blank will list all currently tracked exams
 * Field `[IS_DONE]` when filled with parameter 'done' `eg. done/done` will list all completed exams. Leave this field 
 blank `eg. done/` when filtering for upcoming exams 
@@ -432,8 +541,9 @@ Examples:
 ## Summary
 
 ### List of Commands
+
 | Action                       | Command Format                                                                                                                                                       | Example                                                                                                                |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
 | Create new student profile   | `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`                                          | `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` |
 | Update student information   | `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                                | `update-info name/John f/address v/Block 123 #12-34`                                                                   |
 | Assign homework to a student | `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`                                                                                      | `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359`                              |
@@ -450,26 +560,27 @@ Examples:
 | View exams                   | `view-exam [name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/EXAM_NAME] (optional)[done/DONE_STATUS]`                                                        | `view-exam name/John Doe date/2023-05-01 exam/MYE done/`                                                               |
 
 ### List of Prefixes
-| Prefix      | Meaning     | Usage                                               | Example                           |
-|-------------|-------------|-----------------------------------------------------|-----------------------------------|
-| `name/`     | Name        | Student name                                        | `name/John Doe`                   |
-| `phone/`    | Phone       | Phone number of a Student                           | `phone/12345678`                  |
-| `email/`    | Email       | Email address of a Student                          | `email/johndoe@gmail.com`         |
-| `address/`  | Address     | Home address of a Student                           | `address/21 Prince George's Park` |
-| `level/`    | Grade Level | Grade level of a Student                            | `level/sec8`                      |
-| `school/`   | School      | School name of a Student                            | `school/ACJC`                     |
-| `tag/`      | Tag         | Tag on a Student                                    | `tag/favorite`                    |
-| `homework/` | Homework    | name of Homework assigned to a Student              | `homework/Math Assignment`        |
-| `deadline/` | Deadline    | Due date                                            | `deadline/02-12-2023 2359`        |
-| `exam/`     | Exam        | Exam name                                           | `exam/Math MYE`                   |
-| `status/`   | Status      | Indicates whether a homework is completed           | `status/pending`                  |
-| `index/`    | Index       | Index of a homework assignment/lesson/exam          | `index/1`                         |
-| `lesson/`   | Lesson      | Lesson title                                        | `lesson/The Water Cycle`          |
-| `start/`    | Start Time  | Start time of a lesson/exam                         | `start/2025-03-23 1300`           |
-| `end/`      | End Time    | End time of a lesson/exam                           | `end/2025-03-23 1500`             |
-| `date/`     | Date        | Date of a lesson/exam                               | `date/2023-03-29`                 |
-| `subject/`  | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
-| `done/`     | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
+
+| Prefix       | Meaning     | Usage                                               | Example                           |
+|:-------------|-------------|-----------------------------------------------------|-----------------------------------|
+| `name/`      | Name        | Student name                                        | `name/John Doe`                   |
+| `phone/`     | Phone       | Phone number of a Student                           | `phone/12345678`                  |
+| `email/`     | Email       | Email address of a Student                          | `email/johndoe@gmail.com`         |
+| `address/`   | Address     | Home address of a Student                           | `address/21 Prince George's Park` |
+| `level/`     | Grade Level | Grade level of a Student                            | `level/sec8`                      |
+| `school/`    | School      | School name of a Student                            | `school/ACJC`                     |
+| `tag/`       | Tag         | Tag on a Student                                    | `tag/favorite`                    |
+| `homework/`  | Homework    | name of Homework assigned to a Student              | `homework/Math Assignment`        |
+| `deadline/`  | Deadline    | Due date                                            | `deadline/02-12-2023 2359`        |
+| `exam/`      | Exam        | Exam name                                           | `exam/Math MYE`                   |
+| `status/`    | Status      | Indicates whether a homework is completed           | `status/pending`                  |
+| `index/`     | Index       | Index of a homework assignment/lesson/exam          | `index/1`                         |
+| `lesson/`    | Lesson      | Lesson title                                        | `lesson/The Water Cycle`          |
+| `start/`     | Start Time  | Start time of a lesson/exam                         | `start/2025-03-23 1300`           |
+| `end/`       | End Time    | End time of a lesson/exam                           | `end/2025-03-23 1500`             |
+| `date/`      | Date        | Date of a lesson/exam                               | `date/2023-03-29`                 |
+| `subject/`   | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
+| `done/`      | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
 
 ### Supported date-time formats
 * `MMM dd yyyy HHmm`
