@@ -59,26 +59,27 @@ It also serves as a quick refresher to current users of the application who migh
 
 7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 
-8. Let's start by trying to add a bookmark.
+### Let's try out some of the features available
+1. Let's start by trying to add a bookmark.
 
    * Enter `add n/My Book a/My Book's Author g/Fantasy r/4` into the command box and press the Enter key.
    * Adds a bookmark for the book with the title `My Book`, the author `My Book's Author` and the genre `Fantasy` to your bookmark library.
    
-9. Now, let's try editing the title in the bookmark you just added
+2. Now, let's try editing the title in the bookmark you just added
 
    * Enter `edit 5 n/Edited Title` into the command box and press the Enter key.
    
    * This edits the title of your bookmark, changing it from `My Book` to `Edited Title`
 
-10. Finally, let's delete that bookmark and exit the application
+3. Finally, let's delete that bookmark and exit the application
 
-    * Enter `delete 5` into the command box and press the Enter key.
+   * Enter `delete 5` into the command box and press the Enter key.
    
-    * This will delete your bookmark
+   * This will delete your bookmark
 
-    * Next, use `exit` to exit the application.
+   * Next, use `exit` to exit the application.
 
-11. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
+4. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Key Definitions
