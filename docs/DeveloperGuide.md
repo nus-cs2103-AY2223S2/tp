@@ -821,7 +821,7 @@ For example, if the user wants to search for a person but does not know the full
 
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
