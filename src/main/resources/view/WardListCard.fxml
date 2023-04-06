@@ -24,10 +24,10 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
             </HBox>
-            <Label fx:id="patientCount" styleClass="cell_small_label" text="\$patientCount" />
-            <Label fx:id="staffCount" styleClass="cell_small_label" text="\$staffCount" />
+            <Label fx:id="patientCount" styleClass="cell_small_label" text="\$patientCount" wrapText="true"/>
+            <Label fx:id="staffCount" styleClass="cell_small_label" text="\$staffCount" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>

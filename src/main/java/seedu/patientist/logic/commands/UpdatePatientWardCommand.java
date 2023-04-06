@@ -30,6 +30,7 @@ public class UpdatePatientWardCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Patient %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found: %1$s";
     public static final String MESSAGE_WARD_INCORRECT = "Ward of patient is incorrect";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Transfer Ward Command does not work on wards.";
 
     private final String nextWard;
     private final Index patient;

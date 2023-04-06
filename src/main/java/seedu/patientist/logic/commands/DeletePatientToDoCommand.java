@@ -32,8 +32,7 @@ public class DeletePatientToDoCommand extends Command {
 
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo %1$s from %2$s.";
     public static final String MESSAGE_NOT_PATIENT = "Person selected is not a Patient.";
-    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST =
-            "Delete Patient ToDo Command Command does not work on wards.";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Delete Patient ToDo Command does not work on wards.";
 
     private final Index targetIndex;
     private final Index targetToDoIndex;
