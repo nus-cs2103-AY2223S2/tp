@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Shenghan's Project Portfolio
+title: Shenghan's Project Portfolio Page
 ---
 # Project: BookFace
 
@@ -68,7 +68,6 @@ The following are the list of team-based tasks accomplished:
 - Setting up Codecov in project landing page on Github
 - Create and issue-ing of issues on several milestones
 
-
 ### Review/mentoring contributions:
 Reviewing and approving of teammate's Pull Requests, also commenting on member's
 pull requests about the code quality to maintain. Lastly, actively participated in 
@@ -79,3 +78,29 @@ to any new pull requests and questions asked by team members.
 - Design user interface and the general appearance of Bookface (interactive widget, additional details pane, style)
 - Participated in the Practical Exam Dry Run and performed bug testing on
 the [wheregottime](https://github.com/AY2223S2-CS2103T-T09-2/tp) application.
+- Provided aid for peer that is facing with the same issue in forum 
+[Issue #302](https://github.com/nus-cs2103-AY2223S2/forum/issues/302).
+- Clarified doubts with Github forum actively to resolve issues along the way 
+[Issue #107](https://github.com/nus-cs2103-AY2223S2/forum/issues/107#issuecomment-1410144214).
+
+### Contributions to the Developer Guide (Extracts)
+Some diagrams that contributed to the Developer Guide
+
+<div style="text-align: center">
+    <img src="../images/AddSequenceDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 1: Add sequence diagram</i></p>
+</div>
+<div style="text-align: center">
+    <img src="../images/AddActivityDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 2: Add activity diagram</i></p>
+</div>
+
+<div style="text-align: center">
+    <img src="../images/EditSequenceDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 3: Edit sequence diagram</i></p>
+</div>
+<div style="text-align: center">
+    <img src="../images/EditActivityDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 4: Edit activity diagram</i></p>
+</div>
+
