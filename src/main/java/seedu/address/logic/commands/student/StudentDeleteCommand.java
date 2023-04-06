@@ -47,7 +47,8 @@ public class StudentDeleteCommand extends StudentCommand {
         requireNonNull(model);
 
         //@@author diatbbin-reused
-        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main/java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main
+        // /java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
         //with modifications
         Student studentToDelete = model.getStudent(targetIndex, studentClass);
         if (studentToDelete == null) {

@@ -146,7 +146,8 @@ public class StudentEditCommand extends StudentCommand {
         requireNonNull(model);
 
         //@@author diatbbin-reused
-        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main/java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main
+        // /java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
         //with modifications
         Student studentToEdit = model.getStudent(indexNumber, studentClass);
         if (studentToEdit == null) {

@@ -47,7 +47,8 @@ public class ParentDeleteCommand extends ParentCommand {
         requireNonNull(model);
 
         //@@author diatbbin-reused
-        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main/java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main
+        // /java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
         //with modifications
         Parent parentToDelete = model.getParent(parentName, phoneNumber);
         if (parentToDelete == null) {
