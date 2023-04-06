@@ -139,8 +139,11 @@ When the created `Thread` in `startNext()` is started, Java Virtual Machine will
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
 
+Here's a (partial) class diagram of the Model component:
+
 <img src="images/ModelClassDiagram.png" width="450" />
 
+`ModelManager` is a concrete implementation of `Model` which handles the model components of VMS.
 The responsibilities of `Model` component,
 
 * stores the runtime state of the other managers:
@@ -155,6 +158,10 @@ The responsibilities of `Model` component,
 ### Patient component
 
 **API** : [`Patient.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/Patient.java)
+
+Here's a (partial) class diagram of the Patient component:
+
+<img src="images/ModelPatientClassDiagram.png" width="450" />
 
 To represent a patient, `Patient` contains the Identity and Medical information using the following attributes:
 
@@ -171,6 +178,8 @@ To represent a patient, `Patient` contains the Identity and Medical information 
 
 #### PatientManager
 
+**API** : [`PatientManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/PatientManager.java)
+
 On top of storing `Patient` objects, `PatientManager` ensures the patient's vaccination records are updated if the name of a vaccination changes. It also ensures that there is a maximum limit of `Patient` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Vaccination component
@@ -178,6 +187,12 @@ On top of storing `Patient` objects, `PatientManager` ensures the patient's vacc
 Vaccinations are represented as `VaxType` objects and stored within `VaxTypeManager`.
 
 #### VaxType
+
+**API** : [`VaxType.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/vaccination/VaxType.java)
+
+Here's a (partial) class diagram of the VaxType component:
+
+<img src="images/ModelVaxTypeClassDiagram.png" width="450" />
 
 To represent a vaccination, `VaxType` contains the following attributes:
 
@@ -190,11 +205,17 @@ To represent a vaccination, `VaxType` contains the following attributes:
 
 #### VaxTypeManager
 
+**API** : [`VaxTypeManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/vaccination/VaxTypeManager.java)
+
 On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there is a maximum limit of `VaxType` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Appointment component
 
 **API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
+
+Here's a (partial) class diagram of the Appointment component:
+
+<img src="images/ModelAppointmentClassDiagram.png" width="450" />
 
 The `Appointment` component,
 
@@ -204,6 +225,28 @@ The `Appointment` component,
   * The type and dose of `vaccine` to be administered
   * The `status` of the appointment
 
+#### AppointmentManager
+
+**API** : [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java)
+
+On top of storing `Appointment` objects, `AppointmentManager` ensures the uniqueness of `Appointment`. It also ensures that there is a maximum limit of `Appointment` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
+
+### Keyword component
+
+**API** : [`Keyword.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/keyword/Keyword.java)
+
+Here's a (partial) class diagram of the Keyword component:
+
+<img src="images/ModelKeywordClassDiagram.png" width="450" />
+
+<!-- TODO -->
+
+#### KeywordManager
+
+**API** : [`KeywordManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/keyword/KeywordManager.java)
+
+<!-- TODO -->
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/storage/Storage.java)
@@ -211,10 +254,6 @@ The `Appointment` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
-
-### Keyword component
-
-<!-- TODO -->
 
 #### Cascading delete
 
