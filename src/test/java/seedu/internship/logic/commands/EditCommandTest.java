@@ -101,8 +101,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(
                 new InternshipCatalogue(model.getInternshipCatalogue()),
-                new EventCatalogue(model.getEventCatalogue()), new UserPrefs());
-                
+                new EventCatalogue(model.getEventCatalogue()),
+                new UserPrefs());
         // CHanges in Model after Editing the Event
         expectedModel.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         expectedModel.updateSelectedInternship(editedInternship);
