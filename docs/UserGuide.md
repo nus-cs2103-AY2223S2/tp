@@ -509,7 +509,7 @@ Syntax: `add_task n/TASK_NAME d/DEADLINE [s/STATUS]`
   * `N` or `n` for `Not Done`
   * `D` or `d` for `Done`
 * If no status is provided, it is **defaulted** to `Not Done`.
-* Adding of duplicate orders are not allowed. Two orders are considered to be duplicates if they have the same task names (with matching cases) and deadlines.
+* Adding of duplicate orders are not allowed. Two orders are considered to be duplicates if they have the same task names (case-insensitive) and deadlines.
 
 </div>
 
@@ -595,7 +595,7 @@ Editing of an information in a specific list. Below are the specific edit comman
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 Editing of information is one-way (i.e. You cannot revert your command).<br>
 
@@ -1296,7 +1296,7 @@ Clears all data in the specific list. Below are the specific clear commands for 
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 Clearing of data is one-way (i.e. You cannot revert your command).<br>
 
@@ -1480,7 +1480,7 @@ Trackr data are saved as a JSON file at `[JAR file location]/data/trackr.json`.
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning"><br>
+<div markdown="span" class="alert alert-warning">
 
 :warning: **Caution:**<br>
 
@@ -1492,9 +1492,9 @@ Please proceed with caution.
 
 </div>
 
-<div markdown="span" class="alert alert-danger"><br>
+<div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 If your changes to the data file are invalid, Trackr will discard all data and start with an empty data file at the next run.
 
