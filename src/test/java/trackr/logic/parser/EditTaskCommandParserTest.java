@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.task.EditTaskCommand;
 import trackr.logic.parser.task.EditTaskCommandParser;
-import trackr.model.task.TaskDeadline;
+import trackr.model.commons.Deadline;
 import trackr.model.task.TaskDescriptor;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
@@ -75,7 +75,7 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TASK_NAME_DESC,
                 TaskName.MESSAGE_CONSTRAINTS); // invalid task name
         assertParseFailure(parser, "1" + INVALID_TASK_DEADLINE_DESC,
-                TaskDeadline.MESSAGE_CONSTRAINTS); // invalid task deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Task")); // invalid task deadline
         assertParseFailure(parser, "1" + INVALID_TASK_STATUS_DESC,
                 TaskStatus.MESSAGE_CONSTRAINTS); // invalid task status
 
@@ -90,7 +90,7 @@ public class EditTaskCommandParserTest {
                 TaskName.MESSAGE_CONSTRAINTS); //task name
 
         assertParseFailure(parser, "1" + TASK_DEADLINE_DESC_2100 + INVALID_TASK_DEADLINE_DESC,
-                TaskDeadline.MESSAGE_CONSTRAINTS); //task deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Task")); //task deadline
 
         assertParseFailure(parser, "1" + TASK_STATUS_DESC_NOT_DONE + INVALID_TASK_STATUS_DESC,
                 TaskStatus.MESSAGE_CONSTRAINTS); //task status

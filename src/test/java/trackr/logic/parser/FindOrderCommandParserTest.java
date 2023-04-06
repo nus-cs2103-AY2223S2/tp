@@ -35,8 +35,8 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.order.FindOrderCommand;
 import trackr.logic.parser.order.FindOrderCommandParser;
+import trackr.model.commons.Deadline;
 import trackr.model.order.OrderContainsKeywordsPredicate;
-import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderStatus;
 import trackr.testutil.OrderPredicateBuilder;
 
@@ -62,7 +62,7 @@ public class FindOrderCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // Invalid order deadline
-        assertParseFailure(parser, INVALID_ORDER_DEADLINE_DESC, OrderDeadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_ORDER_DEADLINE_DESC, String.format(Deadline.MESSAGE_CONSTRAINTS, "Order"));
 
         // Invalid order status
         assertParseFailure(parser, INVALID_ORDER_STATUS_DESC, OrderStatus.MESSAGE_CONSTRAINTS);
@@ -71,7 +71,7 @@ public class FindOrderCommandParserTest {
         assertParseFailure(
                 parser,
                 INVALID_ORDER_DEADLINE_DESC + VALID_ORDER_STATUS_DONE,
-                OrderDeadline.MESSAGE_CONSTRAINTS
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Order")
         );
 
         // Invalid order status followed by valid order id
@@ -86,14 +86,14 @@ public class FindOrderCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
 
         assertParseFailure(parser, ORDER_DEADLINE_DESC_2023 + INVALID_ORDER_DEADLINE_DESC,
-                OrderDeadline.MESSAGE_CONSTRAINTS); //order deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Order")); //order deadline
 
         assertParseFailure(parser, ORDER_STATUS_DESC_NOT_DONE + INVALID_ORDER_STATUS_DESC,
                 OrderStatus.MESSAGE_CONSTRAINTS); //order status
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, INVALID_ORDER_NAME_DESC + INVALID_ORDER_DEADLINE_DESC + VALID_ORDER_STATUS_DONE,
-                OrderDeadline.MESSAGE_CONSTRAINTS);
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Order")); //order deadline
     }
 
     @Test

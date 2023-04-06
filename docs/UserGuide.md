@@ -635,6 +635,7 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
+* When editing the order name, it must be an existing item in the menu.
 
 </div>
 
