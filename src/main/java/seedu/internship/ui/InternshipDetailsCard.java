@@ -46,10 +46,10 @@ public class InternshipDetailsCard extends UiPart<Region> {
     @FXML
     private VBox cardPane;
     @FXML
-    private Label companyName;
+    private Text companyName;
 
     @FXML
-    private Label role;
+    private Text role;
     @FXML
     private Label date;
     @FXML
@@ -105,6 +105,8 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         //@@author eugenetangkj-reused
         //Reused with modifications from https://stackoverflow.com/questions/29315469/javafx-resize-text-with-window
+        companyName.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.3));
+        role.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.3));
         tips.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.4));
 
     }
