@@ -471,7 +471,7 @@ There is no support for mobile devices yet.
 | Find                | Finds a food item                        | `find KEYWORD [KEYWORD]...`                                 | `find Broccoli`                           |
 | Increase            | Increases the quantity of a food item    | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
 | Decrease            | Decreases the quantity of a food item    | `dec INDEX [q/QUANTITY]`                                    | `dec 1 q/100`                             |
-| Delete              | Deletes a food item                      | `delete INDEX`                                              | `del 3`                                   |
+| Delete              | Deletes a food item                      | `delete INDEX`                                              | `delete 3`                                |
 | Sort by expiry date | List all food items by their expiry date | `expiry`                                                    | `expiry`                                  |
 
 
