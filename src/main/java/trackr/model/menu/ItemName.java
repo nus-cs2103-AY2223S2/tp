@@ -8,6 +8,10 @@ import trackr.model.commons.Name;
  */
 public class ItemName extends Name {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Item names should only contain alphanumeric characters and spaces, and it should not be blank";
+
+
     /**
      * Constructs a {@code ItemName}.
      *

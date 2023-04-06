@@ -28,7 +28,8 @@ public abstract class Deadline {
      */
     public Deadline(String deadline, String type) {
         requireAllNonNull(deadline, type);
-        checkArgument(isValidDeadline(deadline), String.format(MESSAGE_CONSTRAINTS, type));
+        String error = String.format(MESSAGE_CONSTRAINTS, type);
+        checkArgument(isValidDeadline(deadline), error);
         this.deadline = LocalDate.parse(deadline, DTF_INPUT_DATE);
     }
 
