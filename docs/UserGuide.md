@@ -28,9 +28,7 @@ We highly recommend that you read the [Terminology](#terminology) section if you
 -------------------------------------
 - [Using This Guide](#using-this-guide)
 - [Table of Contents](#table-of-contents)
-- [Terminology](#terminology)
-    - [Icons Used](#icons-used)
-    - [Glossary](#glossary)
+- [Icons Used](#icons-used)
 - [Quick start](#quick-start)
 - [Summary](#summary)
   - [Prefix summary](#prefix-summary)
@@ -55,11 +53,9 @@ We highly recommend that you read the [Terminology](#terminology) section if you
 - [Limitations](#limitations)
 - [FAQ](#faq)
 
-<h2 id="terminology">Terminology</h2>
--------------------------------------
-This section serves to introduce the key terminology used throughout this guide.
-
 <h2 id="icons-used">Icons Used</h2>
+-------------------------------------
+This section serves to introduce the icons used throughout this guide.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Useful information for you to be aware of.
@@ -76,10 +72,6 @@ This section serves to introduce the key terminology used throughout this guide.
 <div markdown="span" class="alert alert-danger">
 :exclamation: **Danger:** Necessary cautions to heed to ensure that __Ez-Schedule__ operates as intended.
 </div>
-
-<h2 id="glossary">Glossary</h2>
-
-to be added soon (from DG)
 
 
 [[Back to top](#table-of-contents)]
@@ -188,12 +180,6 @@ Parameters:
 `d/`: Ending date of recurrence for the event  
 `every/`: Recurring factor to recur the event
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**.  
-Date should follow a `YYYY-MM-DD` format.  
-Recurring factor is given by `day/week/month`.
-</div>
-
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:**  
 Event must first exist in the scheduler.  
@@ -217,13 +203,6 @@ Parameters:
 `d/`: Date of the event  
 `s/`: Start time of the event  
 `e/`: End time of the event
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Name is alphanumeric only.  
-Date should follow a `YYYY-MM-DD` format.  
-Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required.
-</div>
 
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:** At least one field must be provided.
@@ -260,10 +239,7 @@ Parameters:
 `d/`: Date of the event
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Name is alphanumeric only.
-Partially matching names will also be considered as a match.  
-Date should follow a `YYYY-MM-DD` format.
+:information_source: **Note:** Partially matching names will also be considered as a match.  
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -345,6 +321,7 @@ Example: `exit`
 -------------------------------
 <h3 id="command-box">Command Box</h3>
 ![command-box.png](images/command-box.png)
+
 This feature enables you to type the command in the command box and execute it by pressing Enter  
 E.g., typing `help` and pressing Enter will open the help window.
 
