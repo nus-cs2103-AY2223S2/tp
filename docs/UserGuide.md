@@ -157,9 +157,9 @@ Parameters identified by flags can be in any order.
 
 - e.g. `:a "Do OP2 slides" -l cs2101 -p high`, `:a "Do OP2 slides" -p high -l cs2101` are both acceptable.
 
-For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
+Redundant parameter(s) at the end will raise an error, and the command will not be executed.
 
-- e.g. if the user inputs `:help 123`, it will be interpreted as `help`.
+- e.g. if the user inputs `:help 123`, the command `help` will not be executed, and they will receive an error message.
 
 </div>
 
