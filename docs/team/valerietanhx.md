@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     It caused the delete command to be the only command that could accept indexes and prefixes, _but never together_.
     This meant that much effort had to be put into ensuring that the parser could accurately detect when the two had been mixed,
     regardless of the index(es) came before or after the date, and throw exceptions accordingly.
-    The delete command itself was also updated to use Optionals instead, as it now had to hold both indexes and dates,
+    The `delete` command itself was also updated to use the `Optional` class instead, as it now had to hold both indexes and dates,
     but never at the same time. Much abstraction was required to keep the code clean and readable.
 * **New Feature:** Added the ability to delete all cases from a given date range.
   * Justification: This feature allows users to delete all cases from a given date at once, which may be useful
