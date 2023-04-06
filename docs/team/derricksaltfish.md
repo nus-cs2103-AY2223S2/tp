@@ -33,10 +33,10 @@ My code contributions can be found on:
 ## Documentation
 
 **Documentation**
-* Side-Wide settings:
-  * Update side-wide settings [#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19)
+* Side-Wide settings: 
+  * Update site-wide settings in `[JAR file location]\docs\_config.yml` and `[JAR file location]\docs\index.md` [#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19)
 * User Guide:
-  * Initial update of Save data and Load data contents [#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
+  * Initial update of command `exit`, Save data and Load data contents [#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
   * Update descriptions for Load data, Edit data and Clearing all Internship entries [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
 * Developer Guide:
   * Update content in common classes and AddressBook related content to InternBuddy [#99](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/99)
@@ -46,4 +46,4 @@ My code contributions can be found on:
 ## Others
 
 **Community**
-* PRs reviewed (with non-trivial review comments): [#33](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/33)
+* PRs reviewed (with non-trivial review comments): [#33](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/33) [#204](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/204)
