@@ -1,7 +1,5 @@
 package seedu.recipe.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_CHICKEN;
@@ -32,10 +30,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.logic.commands.AddCommand;
-import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidArgumentLengthException;

@@ -1,7 +1,5 @@
 package seedu.recipe.model.recipe.exceptions;
 
-import seedu.recipe.logic.parser.exceptions.ParseException;
-
 /**
  * Represents the exception that arises when a parameter string of invalid length is passed into the
  * factory method {@code ::of} of the RecipeDuration class.
