@@ -7,7 +7,7 @@ skinparam arrowThickness 1.1
 
 Class "<u>detailedpatientView:DetailedView</u>" as DetailedView UI_COLOR {
     -isUpdated: boolean
-    -value: T
+    -value: IdData<Patient>
 }
 show DetailedView fields
 

@@ -13,6 +13,6 @@ Class "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
 Class "<u>completionHandler:Consumer</u>" as Consumer #000000
 
 LogicManager -down-> Consumer
-Consumer .down.> ResultDisplay : queues messages >
+Consumer -down-> ResultDisplay : queues messages >
 
 @enduml
