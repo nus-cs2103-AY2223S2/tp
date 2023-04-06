@@ -4,10 +4,11 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package \nModel <<Rectangle>>{
 Class "<<interface>>\nReadOnlyVms" as ReadOnlyVms
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+
 Class Vms
 Class ModelManager
 Class UserPrefs
@@ -16,37 +17,22 @@ Class PatientManager
 Class AppointmentManager
 Class VaxTypeManager
 Class KeywordManager
-
-Class Appointment
-Class Patient
-Class VaxType
-Class Keyword
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
-
-Vms .up.|> ReadOnlyVms
+HiddenOutside .down.> Model
+Model .left.> ReadOnlyVms
+Model .right.> ReadOnlyUserPrefs
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyVms
 ModelManager -left-> "1" Vms
 ModelManager -right-> "1" UserPrefs
+Vms .up.|> ReadOnlyVms
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Vms *--> "1" PatientManager
 Vms *--> "1" AppointmentManager
 Vms *--> "1" VaxTypeManager
 Vms *--> "1" KeywordManager
-
-PatientManager --> "~* all" Patient
-AppointmentManager --> "~* all" Appointment
-VaxTypeManager --> "~* all" VaxType
-KeywordManager --> "~* all" Keyword
-
-ModelManager -->"~* filtered" Patient
-ModelManager -->"~* filtered" Appointment
-ModelManager -->"~* filtered" VaxType
 
 @enduml

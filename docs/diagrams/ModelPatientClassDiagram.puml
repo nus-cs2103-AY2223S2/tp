@@ -14,8 +14,9 @@ Class BloodType
 Class GroupName
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside -> Patient
+PatientManager -> "~* all" Patient
+ModelManager -> "~* filtered" Patient
+ModelManager -[hidden]down-> PatientManager
 
 Patient *--> Name
 Patient *--> Phone

@@ -12,8 +12,9 @@ Class Age
 Class Requirement
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside -> VaxType
+VaxTypeManager -> "~* all" VaxType
+ModelManager -> "~* filtered" VaxType
+ModelManager -[hidden]down-> VaxTypeManager
 
 VaxType *---> "name" GroupName
 VaxType *---> "~* groups" GroupName

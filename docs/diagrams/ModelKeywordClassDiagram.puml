@@ -10,8 +10,7 @@ Class Keyword
 Class String
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside -> Keyword
+KeywordManager -> "~* all" Keyword
 
 Keyword *--> "keyword 1" String
 Keyword *--> "1 mainKeyword" String
