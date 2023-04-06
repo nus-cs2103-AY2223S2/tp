@@ -193,42 +193,4 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-
-    /**
-     * Updates {@code ContactDisplay} to show information about selected {@code Doctor}.
-     *
-     * @param doctor a selected doctor.
-     */
-    public void showSelectedDoctor(Doctor doctor) {
-        contactDisplay.showSelectedDoctor(doctor);
-    }
-
-    /**
-     * Updates {@code ContactDisplay} to show information about selected {@code Patient}.
-     *
-     * @param patient a selected patient.
-     */
-    public void showSelectedPatient(Patient patient) {
-        contactDisplay.showSelectedPatient(patient);
-    }
-
-    /**
-     * Scrolls down the doctor list panel
-     * to show information about selected {@code Doctor}.
-     *
-     * @param doctorIndex the Index of the selected doctor.
-     */
-    public void scrollToSelectedDoctor(Index doctorIndex) {
-        contactDisplay.scrollToSelectedDoctor(doctorIndex);
-    }
-
-    /**
-     * Scrolls down the patient list panel
-     * to show information about selected {@code Patient}.
-     *
-     * @param patientIndex the Index of the selected patient.
-     */
-    public void scrollToSelectedPatient(Index patientIndex) {
-        contactDisplay.scrollToSelectedPatient(patientIndex);
-    }
 }

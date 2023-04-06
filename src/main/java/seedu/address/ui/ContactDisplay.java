@@ -157,48 +157,4 @@ public class ContactDisplay extends UiPart<Region> {
                     + "in EnlargedInfoCardDisplayController should never be equal!");
         }
     }
-
-    /**
-     * Updates the enlarged info card placeholder
-     * to show information about selected {@code Doctor}.
-     *
-     * @param doctor a selected doctor.
-     */
-    public void showSelectedDoctor(Doctor doctor) {
-        enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(doctor));
-        infoCardDisplayController.displayDoctor();
-        updateEnlargedInfoCard();
-    }
-
-    /**
-     * Updates the enlarged info card placeholder
-     * to show information about selected {@code Patient}.
-     *
-     * @param patient a selected patient.
-     */
-    public void showSelectedPatient(Patient patient) {
-        enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(patient));
-        infoCardDisplayController.displayPatient();
-        updateEnlargedInfoCard();
-    }
-
-    /**
-     * Scrolls down the doctor list panel
-     * to show information about selected {@code Doctor}.
-     *
-     * @param doctorIndex the Index of the selected doctor.
-     */
-    public void scrollToSelectedDoctor(Index doctorIndex) {
-        doctorListPanel.scrollTo(doctorIndex);
-    }
-
-    /**
-     * Scrolls down the patient list panel
-     * to show information about selected {@code Patient}.
-     *
-     * @param patientIndex the Index of the selected patient.
-     */
-    public void scrollToSelectedPatient(Index patientIndex) {
-        patientListPanel.scrollTo(patientIndex);
-    }
 }
