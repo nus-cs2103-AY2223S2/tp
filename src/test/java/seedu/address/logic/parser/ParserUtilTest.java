@@ -42,7 +42,23 @@ public class ParserUtilTest {
 
     private static final String VALID_TAG_4 = "soccer";
 
+    private static final String VALID_TAG_5 = "MODULEXXXXXCS2040s";
+
+    private static final String VALID_TAG_6 = "COMMITMENTXXXXXbasketball";
+
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void parseTag_commitment_success() throws Exception {
+        CommitmentTag expectedTag = new CommitmentTag(VALID_TAG_6);
+        assertEquals(expectedTag, ParserUtil.parseTag("COMMITMENTXXXXXbasketball"));
+    }
+
+    @Test
+    public void parseTag_module_success() throws Exception {
+        ModuleTag expectedTag = new ModuleTag(VALID_TAG_5);
+        assertEquals(expectedTag, ParserUtil.parseTag("MODULEXXXXXCS2040s"));
+    }
 
     @Test
     public void parseTag_moduleTag_success() throws Exception {
