@@ -201,8 +201,6 @@ Navigating **relatively** from the **root context**:
 
 _OR_
 
-![RootContext](images/RootContext.png)
-![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
 Navigating **directly** from any **context**:
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
