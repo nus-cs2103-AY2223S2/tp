@@ -476,6 +476,37 @@ Examples:
 
 -------------------------------------------
 
+### Command Recommendation
+
+FriendlyLink provides command recommendations for registered [commands](#command) and [prefixes](#prefix).
+
+<img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
+
+For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
+No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues
+to specify more attributes like `t/`, the recommendation will be done on a case-by-case basis.
+
+Example:
+
+* Typing `add_volunteer n/Harry p/12345686 `, FriendlyLink will
+  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]` as
+  these fields have not been filled.
+* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17`
+  will not suggest anything by default as all possible fields have at least one value.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes on Command Recommendation**<br>
+
+* The order of fields specified here may not be what is reflected in the application.
+* When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
+
+</div>
+
+[Back to top](#table-of-contents)
+
+---------------------------------------
+
 ### Show Summary Statistics: `stats`
 
 Shows the statistics of FriendlyLink.
@@ -520,42 +551,12 @@ Format: `exit`
 
 -------------------------------------------
 
-### Command Recommendation
-
-FriendlyLink provides command recommendations for registered [commands](#command) and [prefixes](#prefix).
-
-<img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
-
-For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
-No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues 
-to specify more attributes like `t/`, the recommendation will be done on a case-by-case basis.
-
-Example:
-
-* Typing `add_volunteer n/Harry p/12345686 `, FriendlyLink will
-  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]` as
-  these fields have not been filled. 
-* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17` 
-  will not suggest anything by default as all possible fields have at least one value.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes on Command Recommendation**<br>
-
-* The order of fields specified here may not be what is reflected in the application.
-* When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
-* There is a known UI bug when the text in `command box` overflows. To improve user experience, command recommendation is disabled once overflow is detected.
-
-</div>
-
-[Back to top](#table-of-contents)
-
--------------------------------------------
-
 ### Saving the data
 
 FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
+
+[Back to top](#table-of-contents)
 
 ### Editing the data file
 
