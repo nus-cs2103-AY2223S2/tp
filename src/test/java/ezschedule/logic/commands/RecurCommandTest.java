@@ -10,10 +10,10 @@ import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ezschedule.testutil.TypicalEvents;
 import org.junit.jupiter.api.Test;
 
 import ezschedule.commons.core.index.Index;
@@ -25,23 +25,24 @@ import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.RecurFactor;
 import ezschedule.testutil.EventBuilder;
+import ezschedule.testutil.TypicalEvents;
 
 public class RecurCommandTest {
 
     private final Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
 
     private final Index targetIndexDay = INDEX_FIRST_EVENT;
-    private final Date endDateDay = new Date("2023-05-15"); // recur from 2023-05-01 till 2023-05-15
+    private final Date endDateDay = new Date("2023-05-15"); // recur till 2023-05-15
     private final RecurFactor rfDay = new RecurFactor(VALID_RECUR_FACTOR_DAY);
     private final RecurCommand validDailyRecurCommandStub = new RecurCommand(targetIndexDay, endDateDay, rfDay);
 
     private final Index targetIndexWeek = INDEX_FIRST_EVENT;
-    private final Date endDateWeek = new Date("2023-12-01"); // recur from 2023-05-01 till 2023-12-01
+    private final Date endDateWeek = new Date("2023-12-01"); // recur till 2023-12-01
     private final RecurFactor rfWeek = new RecurFactor(VALID_RECUR_FACTOR_WEEK);
     private final RecurCommand validWeeklyRecurCommandStub = new RecurCommand(targetIndexWeek, endDateWeek, rfWeek);
 
     private final Index targetIndexMonth = INDEX_FIRST_EVENT;
-    private final Date endDateMonth = new Date("2023-10-01"); // recur from 2023-05-01 till 2023-06-01
+    private final Date endDateMonth = new Date("2023-10-01"); // recur till 2023-10-01
     private final RecurFactor rfMonth = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
     private final RecurCommand validMonthlyRecurCommandStub = new RecurCommand(targetIndexMonth, endDateMonth, rfMonth);
 
@@ -54,7 +55,8 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorDay_success() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
+
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -73,7 +75,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorWeek_success() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -92,7 +94,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorMonth_success() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -163,7 +165,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurDailyWithClash_failure() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
         Date clashDate = new Date(eventToRecur.getDate().date.plusDays(4).toString());
         String month = validDailyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
@@ -178,7 +180,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurWeeklyWithClash_failure() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
         Date clashDate = new Date(eventToRecur.getDate().date.plusWeeks(5).toString());
         String month = validWeeklyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
@@ -193,7 +195,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurMonthlyWithClash_failure() {
-        Event eventToRecur = TypicalEvents.ART;
+        Event eventToRecur = TypicalEvents.ART; // event date = 2023-05-01
         Date clashDate = new Date(eventToRecur.getDate().date.plusMonths(5).toString());
         String month = validMonthlyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
@@ -272,10 +274,10 @@ public class RecurCommandTest {
         String actualMonthHundred = validDailyRecurCommandStub.intToStringMonth(100);
 
 
-        assertTrue(invalidMessage.equals(actualMonthZero));
-        assertTrue(invalidMessage.equals(actualMonthNegative));
-        assertTrue(invalidMessage.equals(actualMonthThirteen));
-        assertTrue(invalidMessage.equals(actualMonthHundred));
+        assertEquals(invalidMessage, actualMonthZero);
+        assertEquals(invalidMessage, actualMonthNegative);
+        assertEquals(invalidMessage, actualMonthThirteen);
+        assertEquals(invalidMessage, actualMonthHundred);
     }
 
     @Test
