@@ -62,7 +62,7 @@ public abstract class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && name.equalsIgnoreCase(((Name) other).name)); // state check
+                && name.equals(((Name) other).name)); // state check
     }
 
     @Override

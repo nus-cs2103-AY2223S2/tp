@@ -121,7 +121,7 @@ public class EditOrderCommand extends Command {
         // check if edited order name exists
         MenuItem existingItem = currentMenuItems.stream()
                 .filter(item -> item.getItemName().getName()
-                .equalsIgnoreCase(editedOrder.getOrderName().getName()))
+                .equals(editedOrder.getOrderName().getName()))
                 .findAny()
                 .orElseThrow(() ->
                     new CommandException(MESSAGE_NO_MENU_ITEM));

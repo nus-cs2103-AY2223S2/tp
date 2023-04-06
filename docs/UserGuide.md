@@ -452,7 +452,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `D` or `d` for `Delivered`
 * If no status is provided, it is **defaulted** to `Not Delivered`.
 
-* All `ORDER_ITEM` **must** match a menu item in the menu.
+* All `ORDER_ITEM` **must** match a menu item in the menu. The `ORDER_ITEM` is case-sensitive.
+  * For example, if `ORDER_ITEM` is chocolate but the menu item name is Chocolate, they do not match as they are considered as two different item.
 
 </div>
 
@@ -542,8 +543,9 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Positive profit margin means you are making a **profit**
 * Note that profit calculated is only accurate when price and cost each have at most 16 digits.
   * For example: 9283212222332323 and 92832122223323.55 are both 16 digits.
-* You cannot add an item if there is another item that has the same name in the menu. Note that The capitalization of the letters in the name does not matter.
-  * For example, chocolate and Chocolate are considered the same item.
+* You cannot add an item if there is another item that has the same name in the menu. The item name is case-sensitive.
+  * For example, chocolate and Chocolate are considered as different item.
+
 
 </div>
 
@@ -642,10 +644,8 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
-* When editing the order name, the input for order name is case-insensitive.
-  * For example, if menu item you want edit order name to "chocolate", you can use the command like this
-    1. `edit_o 1 on/chocolate`
-    2. `edit_o 1 on/ChOcolAte`.
+* When editing the order name, the input for order name is case-sensitive.
+  * For example, if menu item you want edit order name to "chocolate", you should input `edit_o 1 on/chocolate` and not `edit_o 1 on/ChOcolAte`
 
 </div>
 
