@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jianminglok&breakdown=true)
 
-* **New Feature**:
+* **New Features**:
     * Manage the company contact of an internship application
       * What it does: Users are able to add, a company contact, which consists of both a phone and an email, to an internship application, and subsequently edit and remove it.
       * Justification: This feature allows the user, an internship applicant in this case to quickly retrieve the contact details of an application, so that he can make an enquiry or ask for an update on his application status, making his/her internship application journey even easier.
@@ -21,7 +21,14 @@ Given below are my contributions to the project.
       * What it does: Users are able to add links to documents consisting of a resume and a cover letter to an internship application, and edit and remove them afterwards.
       * Justification: This features allows users to note the specific version of their resume and cover letter submitted for a particular application, allowing them to quickly refer to it before an interview.
       * Highlights: A URL validation feature had to be implemented to ensure that the links to the documents provided by the user are valid.
-    * 
+    * Edit the status of an internship application
+      * What it does: Users are able to update the status of their application to one of the following: `PENDING`, `RECEIVED`, `ACCEPTED`, `DECLINED`, `REJECTED`.
+      * Justification: This feature allows users to quickly identify the status of an application, so that they will not need to repeatedly check their email for the latest response, if any from the company.
+      * Highlights: Enumerations are used to ensure that the status provided is valid.
+    * Archive an internship application
+      * What is does: Users are able to archive and unarchive an internship application. They can also view a list of archived applications.
+      * Justification: This features allow users to focus on the currently ongoing internship applications, without having their list of applications getting cluttered up over time.
+      * Highlights: New predicates were created to allow ongoing and archived internship applications to be listed separately.
 * **Project management**:
     * Setup and added Codecov label for the team project
 
@@ -39,7 +46,7 @@ Given below are my contributions to the project.
           * `archive`, `unarchive`, `list_archived`
           * `edit_status`
     * Developer Guide:
-        * To be added soon 
+        * Added uses cases for `add_contact` and `edit_status` in [#61](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/61). 
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#141](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/141), [#160](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/160)
