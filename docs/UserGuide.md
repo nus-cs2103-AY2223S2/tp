@@ -1,4 +1,7 @@
-# User Guide
+---
+layout: page
+title: User Guide
+---
 
 BookFace is a desktop GUI application for the students in the National University
 of Singapore (NUS) to manage the contact information of the people they meet in the various lessons or clubs that they participate in. 
@@ -164,21 +167,47 @@ Format: `help`
 
 Add a contact image for each contact.
 
-Format: `add-image INDEX ai/[PATH-TO-IMAGE]`
+Format: `add-image INDEX ai/PATH-TO-IMAGE`
 
 * Adds an image to the contact at the specified `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3,...
-* Ensure that `ai/` prefix is used before the image path.
-* If the image cannot be found or user did not specify a contact image, a default image will be used
-
-> **Note:** The `[PATH-TO-IMAGE]` provided must be an absolute path, and should not be provided in quotation marks.
-> For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas 
-> `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
+* Ensure that `ai/` prefix is used before the image path (note that `ai/` is not part of your path)
+* Initially, a default image is used for a contact
+* After an image is added, if the application is unable to retrieve the image (e.g. erroneous manual edit of addressbook.json or the saved images) then it will revert to the default image
 
 Examples:
+* Windows: `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
+* MacOS: `list` followed by `add-image 2 ai//Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
 
-* `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
+#### Some FAQ Regarding Add Image
+How to get Image Path?
+
+* MacOS:
+  1. Right-click on the image file
+  2. Once the menu appear, hold the OPTION key (⌥) <br> The "copy" option should become "copy [file_name] as Pathname"
+  3. The path should be copied once you select the option 
+
+* Windows:
+  1. Right-click on the image file
+  2. Select "copy as path" option
+  3. The path should be copied once you select the option
+  > **Note:** That for Windows copied path may have quotation marks, please remove them before using in BookFace.<br>
+  > For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas
+  > `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
+
+> **Note**: Steps to get path may differ depending on your operating system and its version
+
+Common User Errors
+* `Referenced file does not exist` even though the image is there
+  * The path used may be incorrect due to differences in Absolute and Relative path<br>
+  * The 2 types of file paths are different in that: 
+    * Absolute path is a complete path from root to the file itself (Windows usually starts with `C:` and Linux/Mac with `/`)
+    * Relative path starts from the [*home directory*](#quick-start)
+    * Here is an external link to [learn more](https://www.computerhope.com/issues/ch001708.htm)
+
+
+
 
 [Back to top](#top)
 
