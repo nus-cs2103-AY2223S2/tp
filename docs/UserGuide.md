@@ -73,7 +73,8 @@ than current GUI apps in the industry.
 
 ## Glossary
 
-Here are some descriptions of the words we use throughout the User Guide
+Here are some descriptions of the words we use throughout the User Guide:
+- Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.
 
 ### Parameter Information
 
