@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 15
+skinparam titleFontSize 15
+
+title Edit Parse Args
+
+box Logic LOGIC_COLOR_T1
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+end box
+box
+
+activate EditCommandParser
+
+EditCommandParser->ParserUtil:parseIndex(oneBasedIndex)
+activate ParserUtil
+return index
+
+
+opt if name is present
+EditCommandParser->ParserUtil:parseName(name)
+activate ParserUtil
+return name
+end opt
+
+opt if contact is present
+EditCommandParser->ParserUtil:parseContact(contact)
+activate ParserUtil
+return contact
+end opt
+
+opt if email is present
+EditCommandParser->ParserUtil:parseEmail(email)
+activate ParserUtil
+return email
+end opt
+
+opt if company is present
+EditCommandParser->ParserUtil:parseCompany(company)
+activate ParserUtil
+return company
+end opt
+
+opt if job description is present
+EditCommandParser->ParserUtil:parseJobDescription(jobDescription)
+activate ParserUtil
+return jobDescription
+end opt
+
+opt if tags is present
+EditCommandParser->ParserUtil:parseTags(tagList)
+activate ParserUtil
+return tagList
+end opt
+
+opt if website is present
+EditCommandParser->ParserUtil:parseWebsite(website)
+activate ParserUtil
+return website
+end opt
+
+opt if salary is present
+EditCommandParser->ParserUtil:parseSalary(salary)
+activate ParserUtil
+return salary
+end opt
+
+opt if deadline is present
+EditCommandParser->ParserUtil:parseDeadline(deadline)
+activate ParserUtil
+return deadline
+end opt
+
+opt if experience is present
+EditCommandParser->ParserUtil:parseExperience(experience)
+activate ParserUtil
+return experience
+end opt
+@enduml
