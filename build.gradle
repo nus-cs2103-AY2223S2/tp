@@ -70,13 +70,4 @@ shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
-javafx {
-    sdk = "/Users/leeyi45/source/cs2103/javafx-sdk-19.0.2.1"
-    modules("javafx.controls", "javafx.fxml")
-}
-compileJava {
-    compileJava.options.fork = true
-    compileJava.options.forkOptions.executable = "/Users/leeyi45/source/cs2103/jdk-11.0.2/bin/javac"
-}
-
 defaultTasks 'clean', 'test'
