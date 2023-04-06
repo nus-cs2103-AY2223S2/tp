@@ -21,7 +21,7 @@ public class SampleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Populate the EduMate with "
             + "sample data of the given size between 1 and 100.\n"
-            + "Parameters: SIZE (non-negative integer less than 100)\n"
+            + "Parameters: SIZE (non-negative integer less than 101)\n"
             + "Example: " + COMMAND_WORD + " 25";
 
     private final int size;
