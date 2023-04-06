@@ -1,86 +1,87 @@
 @startuml
 !include style.puml
 
-box ApplicationLogic LOGIC_COLOR_T1
-participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
-participant ":SortApplicationCommandParser" as SortApplicationCommandParser LOGIC_COLOR
-participant ":SortApplicationCommand" as SortApplicationCommand LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
 end box
 
-box ApplicationModel MODEL_COLOR_T1
-participant ":ApplicationModelManager" as ApplicationModelManager MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":AlphabeticalComparator" as AlphabeticalComparator MODEL_COLOR
 end box
 
-note left of ApplicationLogicManager #aqua
+note left of LogicManager #aqua
 Let user input be: sort <str>
-str = "alphabetical"
+str = "a alphabetical"
 end note
 
-[-> ApplicationLogicManager : execute("sort {str}")
-activate ApplicationLogicManager
+[-> LogicManager : execute("sort {str}")
+activate LogicManager
 
-ApplicationLogicManager -> InternshipBookParser : parseCommand("sort {str}")
+LogicManager -> InternshipBookParser : parseCommand("sort {str}")
 activate InternshipBookParser
 
-create SortApplicationCommandParser
-InternshipBookParser -> SortApplicationCommandParser
-activate SortApplicationCommandParser
+create SortCommandParser
+InternshipBookParser -> SortCommandParser
+activate SortCommandParser
 
-SortApplicationCommandParser --> InternshipBookParser
-deactivate SortApplicationCommandParser
+SortCommandParser --> InternshipBookParser
+deactivate SortCommandParser
 
-InternshipBookParser -> SortApplicationCommandParser : parse("{str}")
-activate SortApplicationCommandParser
+InternshipBookParser -> SortCommandParser : parse("{str}")
+activate SortCommandParser
 
-create SortApplicationCommand
-SortApplicationCommandParser -> SortApplicationCommand : new SortApplicationCommand({str})
-activate SortApplicationCommand
+SortCommandParser -> SortCommandParser : isValidSortingOrder({str})
+SortCommandParser -> SortCommandParser : isValidSortingSequence({str})
 
-SortApplicationCommand -> SortApplicationCommand : isValidSortingOrder({str})
+create SortCommand
+SortCommandParser -> SortCommand : new SortCommand(sortingOrder, sortingSequence)
+activate SortCommand
 
 create AlphabeticalComparator
-SortApplicationCommand -> AlphabeticalComparator: new AlphabeticalComparator()
+SortCommand -> AlphabeticalComparator: new AlphabeticalComparator()
 activate AlphabeticalComparator
 
-AlphabeticalComparator --> SortApplicationCommand : comparator
+AlphabeticalComparator --> SortCommand : comparator
 deactivate AlphabeticalComparator
 
-SortApplicationCommand --> SortApplicationCommandParser : SortApplicationCommand
-deactivate SortApplicationCommand
+SortCommand --> SortCommandParser : SortCommand
+deactivate SortCommand
 
-SortApplicationCommandParser --> InternshipBookParser : SortApplicationCommand
-deactivate SortApplicationCommandParser
+SortCommandParser --> InternshipBookParser : SortCommand
+deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortApplicationCommandParser -[hidden]-> InternshipBookParser
-destroy SortApplicationCommandParser
+SortCommandParser -[hidden]-> InternshipBookParser
+destroy SortCommandParser
 
-InternshipBookParser --> ApplicationLogicManager : SortApplicationCommand
+InternshipBookParser --> LogicManager : SortCommand
 deactivate InternshipBookParser
 
-ApplicationLogicManager -> SortApplicationCommand : execute()
-activate SortApplicationCommand
+LogicManager -> SortCommand : execute()
+activate SortCommand
 
-SortApplicationCommand -> ApplicationModelManager : updateSortedApplicationList(comparator)
-activate ApplicationModelManager
+SortCommand -> ModelManager : updateSortedApplicationList(comparator)
+activate ModelManager
 
-ApplicationModelManager -> ApplicationModelManager : setComparator(comparator)
-ApplicationModelManager --> SortApplicationCommand
-deactivate ApplicationModelManager
+ModelManager -> ModelManager : setComparator(comparator)
+ModelManager --> SortCommand
+deactivate ModelManager
 
 create CommandResult
-SortApplicationCommand -> CommandResult
+SortCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> SortApplicationCommand
+CommandResult --> SortCommand
 deactivate CommandResult
 
-SortApplicationCommand --> ApplicationLogicManager : result
-deactivate SortApplicationCommand
+SortCommand --> LogicManager : result
+deactivate SortCommand
 
-[<--ApplicationLogicManager
-deactivate ApplicationLogicManager
+[<--LogicManager
+deactivate LogicManager
 @enduml

@@ -333,15 +333,23 @@ sequence diagram:
 ### 5.4 Sort Applications feature
 
 #### About
-The sort command is a feature that enables users to rearrange the list of applications they see on the GUI in 2 ways:
-- `sort deadline` will sort applications by the deadline of upcoming tasks in ascending order (i.e. from earliest 
+The sort command is a feature that enables users to rearrange the list of applications they see on the GUI.
+The following table details the parameters to be used with the `sort` command:
+
+| Parameter | Compulsory | Constraints                                 | 
+|-----------|------------|---------------------------------------------|
+| Sequence  | Yes        | Must be either `a` or `d`                   |
+| Order     | Yes        | Must be either `alphabetical` or `deadline` |
+
+Examples:
+- `sort a deadline` will sort applications by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
 to latest). 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
 associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
 
-- `sort alphabetical` will sort applications by the company name in ascending order. If there are two or more 
-applications under the same company, the role will be used as a tiebreaker. 
+- `sort d alphabetical` will sort applications by the role in descending order (from Z to A). If there are two or more 
+applications with the same role, their company name will be used as a tiebreaker. 
 
 
 #### Implementation
@@ -351,37 +359,40 @@ Given below are the steps that illustrate the interaction between the components
 command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `SortApplicationCommandParser` that is responsible for the specific purpose of
+2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `SortCommandParser` that is responsible for the specific purpose of
    parsing user commands for sorting the application list.
-5. The `InternshipBookParser` then passes the string input to the `SortApplicationCommandParser` via the `parse()` method.
-6. The `SortApplicationCommandParser` then identifies the part of the string that describes the sorting order the user wants.
-7. The `parse()` method will return a `SortApplicationCommand(String sortingOrder)`.
-8. The `isValidSortingOrder` method in `SortApplicationCommand` will then check that the user-inputted sorting order is one
-of the accepted sorting order as dictated by the enum values in enum `SortingOrder`.
-9. If the sorting order is valid, the `SortApplicationCommand`'s comparator will be set to the corresponding comparator.
-10. This `SortApplicationCommand` is returned back to `ApplicationLogicManager`.
-11. The `ApplicationLogicManager` then calls the `execute()` method of the `SortApplicationCommand`. This initializes the execution
-    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `ApplicationLogicManager`.
-12. `updateSortedApplicationList` will make use of the comparator from the `SortApplicationCommand` to sort the model's sorted list.
-13. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
-14. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
+5. The `InternshipBookParser` then passes the string input to the `SortCommandParser` via the `parse()` method.
+6. The `SortCommandParser` then identifies the part of the string that describes the sorting order the user wants.
+7. The `isValidSortingOrder` method in `SortCommandParser` will then check that the user-inputted sorting order is one
+      of the accepted sorting order as dictated by the enum values in enum `SortingOrder`.
+8. The `SortCommandParser` also identifies the part of the string that describes the sorting sequence the user wants.
+9. The `isValidSortingSequence` method in `SortCommandParser` will then check that the user-inputted sorting sequence is one
+      of the accepted sorting sequence as dictated by the enum values in enum `SortingSequence`.
+10. The `parse()` method in `SortCommandParser` will then return a `SortCommand(SortingOrder sortingOrder, SortingSequence sortingSequence)`.
+11. The `SortCommand`'s comparator will be set to the corresponding comparator in its constructor.
+12. This `SortCommand` is then returned to `LogicManager`.
+13. The `LogicManager` then calls the `execute()` method of the `SortCommand`. This initializes the execution
+    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `LogicManager`.
+14. `updateSortedApplicationList` will make use of the comparator from the `SortCommand` to sort the model's sorted list.
+15. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
+16. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
     the execution of the command.
-15. The Ui component displays the contents of the `CommandResult` to the User.
+17. The Ui component displays the contents of the `CommandResult` to the User.
 
-For a more graphical illustration of how a sort application command is processed, please refer to the following
+For a more graphical illustration of how a sort command is processed, please refer to the following
 sequence diagram:
 
-![SortApplicationSequenceDiagram](images/SortApplicationSequenceDiagram.png)
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 #### Future extensions
 Should the need to implement other ways of sorting the application list arise in the future, you can do so by following these 3 main steps:
 1. Create a new `Comparator` class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
 implements the `Comparator<Application>` interface.
-2. Modify `SortApplicationCommandParser` to accept a new sorting order.
-3. Modify `SortApplicationCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
-Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortApplicationCommand`.
+2. Modify `SortCommandParser` to accept a new sorting order.
+3. Modify `SortCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
+Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortCommand`.
 
 #### Relation with `list` command
 The implementation of the `sort` command shares some similarities with the `list` command.
