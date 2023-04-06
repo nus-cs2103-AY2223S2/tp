@@ -3,26 +3,36 @@ layout: page
 title: User Guide
 ---
 
-Le Tracker is a desktop application that focuses on tracking lecture watch progress. Designed for NUS students who are fast typists, it seeks to address the problem of students losing track of their watch progress, especially for students falling behind on multiple lectures.
+![Logo](images/LogoWordmark.png)
 
-Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs by providing features such as the ability view the overall lecture progress of a module and the ability to tag each lecture with keywords (such as the topic or difficulty of the lecture) that allow for easy filtering when prioritising. These features help students stay organized and keep track of their progress more effectively.
+## Welcome to **Le Tracker** ~
+
+> “The tragedy in life doesn’t lie in not reaching your goal. The tragedy lies in having no goal to reach.” - Benjamin E. Mays
+
+School is hard. With numerous modules to juggle and endless topics to master, being a student can feel overwhelming at times. But does this _truly_ need to be the case?
+
+We believe that with a little help, content mastery is **more than achievable**.
+
+> “You don't actually do a project; you can only do action steps related to it. When enough of the right action steps have been taken, some situation will have been created that matches your initial picture of the outcome closely enough that you can call it "done.”
+> ― David Allen, Getting Things Done: The Art of Stress-Free Productivity
+
+**Le Tracker** makes it easy to measure your overall study progress by tracking how much lecture content you have covered across various modules. **More** than just a simple to-do list app, **Le Tracker** blends the **efficiency** of a command line interface with the **elegance** of modern graphical user interface.
+
+Now it's time to **CONQUER** the semester!
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Quick Start](#quick-start)
+- [Quick Start Guide](#quick-start-guide)
+  - [Prerequisite](#prerequisite)
+  - [Installation and Setup](#installation-and-setup)
+  - [Getting Started](#getting-started)
+  - [Tutorials and Examples](#tutorials-and-examples)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
-- [Features](#features)
-  - [Navigate to the Root Context](#navigate-to-the-root-context)
-  - [Navigate Relatively](#navigate-relatively)
-  - [Navigate Directly](#navigate-directly)
-  - [Navigate Backwards](#navigate-backwards)
-  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
-  - [List Modules](#list-modules)
-  - [List Lectures of Modules](#list-lectures-of-modules)
-  - [List Videos of Lectures](#list-videos-of-lectures)
+- [Command Manual](#command-manual)
+  - [Nav](#nav)
+  - [List](#list)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -39,12 +49,7 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
-  - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
-  - [Find Lectures in a Module](#find-lectures-in-a-module)
-  - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
-  - [Find Videos in a Lecture](#find-videos-in-a-lecture)
-  - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
+  - [Find](#find)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
@@ -55,7 +60,7 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 
 ---
 
-## Quick Start
+## Quick Start Guide
 
 ### Prerequisite
 
@@ -77,9 +82,21 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 2. Press `Enter` to execute a command.\
    For example, typing "help" and pressing `Enter` will open the help window.
 
+### A Brief Guide to Navigation
+
+**Context Indicator** - Displays which context you are currently working at.
+
+![ContextLabel](images/ContextLabelScreenshot.png)
+
+**Navigating** to different contexts:
+
+![NavDiagram](images/NavDiagram.png)
+
+For more information on **navigation**, please view the [navigation section](#navigation).
+
 ### Tutorials and Examples
 
-Scenario 1:
+Scenario 1 - Tracking a new module CS2103:
 
 1. To add a module, run `add CS2103 /name Software Engineering`.
 1. To give it a tag of `BestModule`, run `tag CS2103 /tags BestModule`.
@@ -89,7 +106,7 @@ Scenario 1:
 1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
 1. To delete this module, run `delete CS2103`.
 
-Scenario 2:
+Scenario 2 - Navigating, finding & archiving data:
 
 1. To navigate into module `CS2040S`, run `nav CS2040S`.
 1. To find a lecture named `Week 1`, run `find Week 1`.
@@ -99,7 +116,7 @@ Scenario 2:
 1. To clear all data, run `clear`.
 1. To import data, run `import data.json`.
 
-Scenario 3:
+Scenario 3 - Tracking videos:
 
 1. To view lectures in module `ST2334`, run `list /mod ST2334`.
 1. To delete a video `Vid 3` in lecture `Topic 1` in module `ST2334`, run `delete Vid 3 /mod ST2334 /lec Topic 1`
@@ -109,7 +126,7 @@ Scenario 3:
 1. To delete this lecture, run `delete Topic 2 /mod ST2334`
 1. To exit the app, run `exit`.
 
-:clap: That covers all the main commands. Refer to the [Features](#features) section for details of each command.\
+:clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command.\
 Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch, challenge yourself without using the `import` command :wink:
 
 ---
@@ -118,7 +135,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 **:information_source: The following are rules applicable to all commands:**
 
-1. Words encapsulated in `{}` are the argument values to be supplied by the user.\
+1. Words encapsulated in `{}` are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.\
    e.g. For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
 
 2. Items in square brackets are optional.\
@@ -133,11 +150,9 @@ Feel free to play around with the sample data to familiarise yourself with the c
 5. Extraneous arguments will be ignored.\
    e.g. For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
 
-6. Named arguments that take a value must be specified in the format `/{argument_name} {value}` and there must be a whitespace before `/{argument_name}`.\
-   e.g. `list /mod CS2040S`.
-
-7. Named arguments that do not take any value must be specified in the format `/{argument_name}` and there must be a whitespace before `/{argument_name}`. The format `/{argument_name} {value}` can be used as well but the value will be ignored.\
-   e.g. `find Heavy /byTag`.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z or A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace unless it is the end of the command.\
+   e.g. For the command `find Intro /mod CS2040S /byTag`, `/mod` and `/byTag` are both recognised as named arguments.\
+   For the command `find Intro /modCS2040S /byTag`, only `/byTag` is recognised as a named argument while `Intro /modCS2040S` is treated as the value of the unnamed argument.
 
 ---
 
@@ -165,19 +180,60 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 ## Navigation
 
-<!-- TODO: Fill this in -->
+Le Tracker organises content using a **hierarchical structure** (Modules -> Lectures -> Videos).
+
+![RootContext](images/RootContext.png)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+
+When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
+
+To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
+
+The user can specify their current working context by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
+
+![RootContext](images/RootContext.png)
+Navigating **relatively** from the **root context**:
+
+1. Navigate to the module context from the root context.\
+   `nav CS2040S`
+2. Navigate to the lecture context from the module context.\
+   `nav Week 1`
+
+_OR_
+
+![RootContext](images/RootContext.png)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+
+Navigating **directly** from any **context**:
+
+1. Navigate directly to the lecture Week 1 of the module CS2040S.
+
+- `nav /mod CS2040S /lec Week 1
+
+After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
+
+Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
+
+1. Add Video 2 to the lecture Week 1 of module CS2040S.
+   - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+2. List the contents of lecture Week 1 of module CS2040S.
+   `list /mod CS2040S /lec Week 1` -> `list`
 
 ---
 
-## Features
+## Command Manual
 
-### Navigate to the Root Context
+### Nav
+
+**Navigate to the Root Context**
 
 > Sets the current context to the root context
 
 Format: `nav`
 
-### Navigate Relatively
+**Navigate Relatively**
 
 > Navigates relative to the current context to a module or lecture context
 
@@ -186,7 +242,7 @@ Format: `nav {module_code / lecture_name}`
 - `module_code` has to belong to an existing module that is a child of the current context
 - `lecture_name` has to belong to an existing lecture that is a child of the current context
 
-### Navigate Directly
+**Navigate Directly**
 
 > Navigates directly to the specified module or lecture context
 
@@ -195,11 +251,13 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 - `module_code` has to belong to an existing module
 - `lecture_name` has to belong to an existing lecture
 
-### Navigate Backwards
+**Navigate Backwards**
 
 > Navigates to the parent context of the current context
 
 Format: `navb`
+
+## List
 
 ### List Modules or Lectures or Videos
 
@@ -207,7 +265,9 @@ Format: `navb`
 
 Root context: modules, Module context: lectures, Lecture context: videos
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
 
 ### List Modules
 
@@ -269,7 +329,9 @@ Examples:
 
 - `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Lecture
 
@@ -605,6 +667,8 @@ Examples:
 
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
 
+## Find
+
 ### Find Modules or Lectures or Videos
 
 > `find {keywords}`
@@ -617,7 +681,9 @@ Examples:
 - In module level within `CS2040S`, `find week 1, week 2` searches for lectures `week 1` or `week 2` from the lecture list of module `CS2040S`.
 - In lecture level within `week2` of `CS2040S`, `find vid1, vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
 ### Find Modules or Lectures or Videos By Tag
 
