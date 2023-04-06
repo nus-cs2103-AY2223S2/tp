@@ -127,7 +127,7 @@ Before you can add any cards, you must first create a deck. Creating a deck is d
 
 Format: `addDeck DECK_NAME`
 - `DECK_NAME` is the name of the deck you want to create. 
-  - Deck name is case-sensitive and cannot be duplicated, e.g., if you already have a deck named Science, you cannot create another Science deck.
+  - Deck name is case-sensitive and cannot be duplicated, e.g., if you already have a deck named 'Science', you cannot create another deck named 'Science'. However, you can create a deck named 'SCIENCE' since 'SCIENCE' may be an acronym.
   - You do not need any prefix before deck name.
 
 Example:
@@ -165,11 +165,11 @@ If you want to find a specific deck among the many decks you have created, use t
 Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
 - At least one KEYWORD must be given.
-- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite "program" being a partial word of "programming".
+- This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite `program` being a partial word of `programming`.
 - Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
 
 Example:
-- `findDecks CS2103T software` filters decks whose names match keywords "CS2103T" and "software".
+- `findDecks CS2103T software` filters decks whose names match keywords 'CS2103T' **or** 'software'.
 
 ### 3.3.5. Showing all Decks : `showDecks`
 
@@ -231,7 +231,7 @@ This commands allow you to add a card to the **selected** deck.
 A card must contain a question, an answer, and an optional difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
--   `QUESTION` field of Card is case-sensitive and cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`.
+-   `QUESTION` field of Card is case-sensitive and Cards with the same `QUESTION` cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`. However, you can create another card with question `What is a LOOP` since `LOOP` may be an acronym.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -292,7 +292,7 @@ Format: `findCards KEYWORD...`
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
 
 Example:
-- `findCards loop recursion` shows all the cards whose questions match the keywords "loop" **or** "recursion".
+- `findCards loop recursion` shows all the cards whose questions match the keywords 'loop' **or** 'recursion'.
 
 ### 3.4.5. Showing all Cards : `showCards`
 
