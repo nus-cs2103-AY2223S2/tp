@@ -63,7 +63,7 @@ open the help window.<br>
 
    * `redo 5` : Redo 5 previous actions.
    
-6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command summary).
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
