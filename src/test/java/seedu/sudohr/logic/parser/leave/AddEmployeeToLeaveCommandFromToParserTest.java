@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveFromToCommand;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.LeaveDate;
@@ -72,9 +73,9 @@ public class AddEmployeeToLeaveCommandFromToParserTest {
         assertParseFailure(parser, INVALID_EID_DESC + DATE_DESC_START_LEAVE_DATE + DATE_DESC_END_LEAVE_DATE,
                 Id.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, EID_DESC_AMY + INVALID_START_DATE_DESC + DATE_DESC_END_LEAVE_DATE,
-                LeaveDate.MESSAGE_CONSTRAINTS);
+                Messages.MESSAGE_INVALID_DATE_FORMAT);
         assertParseFailure(parser, EID_DESC_AMY + DATE_DESC_START_LEAVE_DATE + INVALID_END_DATE_DESC,
-                LeaveDate.MESSAGE_CONSTRAINTS);
+                Messages.MESSAGE_INVALID_DATE_FORMAT);
     }
 
     @Test
