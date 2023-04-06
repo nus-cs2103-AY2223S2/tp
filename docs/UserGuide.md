@@ -227,7 +227,7 @@ List placeholders in the command
 
 Commands are what you will work with in SudoHR, let's learn what a command is made of:
 
-![CommandFormat](images/commandFormat.png)
+![CommandFormat](images/CommandFormat.png)
 
 It consists of:
 1. Command - Decides what your command will do and the arguments that it will accept.
