@@ -60,7 +60,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 
 # 2. Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
+1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install from this [link](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html). Remember to download the correct version for your Operating System! (e.g. Window or Mac) 
 
 2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
 
@@ -353,8 +353,8 @@ Format: `review INDEX [-e] [-m] [-h]`
   - Omit any flags to test all cards in the deck
 
 Examples:
-* `review 5 -e -h`
-* `review 2`
+* `review 5 -e -h` lets you review all the cards tagged as Easy or Hard in the 5th deck.
+* `review 2` lets you review all the cards in the 2nd deck.
 
 ### 3.6.2. Ending the Review: `endReview`
 
@@ -370,6 +370,7 @@ The diagram above shows the keystrokes you will use to interact with the cards i
 Notice that the keys are all close to the enter key so that you can breeze through decks of cards with ease!
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
+- You must press the enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card. 
 
 ### 3.6.4. Flipping the Card: `p`
 
@@ -485,6 +486,7 @@ _Details coming soon ..._
 
 | Action         | Format, Examples                                                                                                                                 |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                                                                                                   |
 | Unselect Deck  | `unselectDeck`                                                                                                                                   |
 | Add Card       | `addCard q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
 | Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Carbon? a\C t\Hard`                      |
