@@ -106,11 +106,12 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * Customers' name should only include Latin alphabet and/or numeric characters.
+* Phone number must be at least 3 digits long.
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**  
-A person can have any number of tags (including 0).  
-System does not check for duplicate emails.  
+1. A person can have any number of tags (including 0).  
+2. System does not check for duplicate emails. 
 </div>
 <div markdown="span" class="alert alert-primary">
 :bulb: **Future improvement:** Support special characters (e.g /, Æ) for name field.
