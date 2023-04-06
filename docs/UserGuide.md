@@ -6,10 +6,12 @@ title: User Guide
 ## Table of Contents
 *  **[Overview](#overview)**
 *  **[Quick start](#quick-start)**
-*  **[User input restrictions](#User-input-restrictions)**
+*  **[User input restrictions](#user-input-restrictions)**
 *  **[Features](#features)**
+*  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
+*  **[Appendix: Planned Enhancements](#appendix:-planned-enhancements)**
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview
@@ -472,6 +474,11 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 
 --------------------------------------------------------------------------------------------------------------------
 
+## GUI display restrictions
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -502,3 +509,9 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 | **Help**           | `help`                                                                                                                                                                                        |
 | **Switch**         | `switch`                                                                                                                                                                                      |
 | **Exit**           | `exit`                                                                                                                                                                                        |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+### Solution purposed for known feature flaws
+1. 
