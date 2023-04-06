@@ -114,7 +114,7 @@ Below is the full table of contents, in case you are looking for something very 
 
 Action |          Type          |Format, Examples
 :--------:|:----------------------:|:--------:
-[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]...`
+[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]... [T/TEAM_NAME]...`
 [**Clear**](#clearing-all-entries--clear) |       Modifying        |`clear`
 [**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
 [**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]... ​`
