@@ -48,6 +48,9 @@ import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.logic.commands.mark.MarkAsUnwatchedCommand;
 import seedu.address.logic.commands.mark.MarkAsWatchedCommand;
 import seedu.address.logic.commands.mark.MarkMultipleAsUnwatchedCommand;
+import seedu.address.logic.commands.navigation.BackNavCommand;
+import seedu.address.logic.commands.navigation.NavCommand;
+import seedu.address.logic.commands.navigation.RootNavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -71,6 +74,18 @@ import seedu.address.testutil.VideoUtil;
 public class TrackerParserTest {
 
     private final TrackerParser parser = new TrackerParser();
+
+    @Test
+    public void parseCommand_navRoot() throws Exception {
+        RootNavCommand command = (RootNavCommand) parser.parseCommand(NavCommand.COMMAND_WORD);
+        assertEquals(new RootNavCommand(), command);
+    }
+
+    @Test
+    public void parseCommand_navBack() throws Exception {
+        BackNavCommand command = (BackNavCommand) parser.parseCommand(BackNavCommand.COMMAND_WORD);
+        assertEquals(new BackNavCommand(), command);
+    }
 
     @Test
     public void parseCommand_addModule() throws Exception {
