@@ -24,8 +24,20 @@ title: Developer Guide
   - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting an opening](#deleting-a-opening)
-  - [Saving data](#saving-data)
+  - [Adding an opening](#adding-an-opening)
+  - [Editing an opening](#editing-an-opening)
+  - [Showing an opening](#showing-an-opening)
+  - [Adding, editing or deleting a remark](#adding-editing-or-deleting-a-remark)
+  - [Deleting an opening](#deleting-an-opening)
+  - [Clearing all openings](#clearing-all-openings)
+  - [Finding an opening by company or position](#finding-an-opening-by-company-or-position)
+  - [Finding an opening by status](#finding-an-opening-by-status)
+  - [Getting openings with upcoming deadlines](#getting-openings-with-upcoming-deadlines)
+- [**Appendix: Effort**](#appendix-effort)
+  - [Evaluation of Implementation](#evaluation-of-implementation)
+  - [Difficulties faced](#difficulties-faced)
+  - [Achievements](#achievements)
+- [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,6 +188,8 @@ This section describes some noteworthy details on how certain features are imple
 <!-- Darren -->
 ### Show opening details feature
 <!-- Yu Fei -->
+![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
+
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
 ### Filter by status feature
@@ -366,7 +380,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `add p/position c/company e/example@example.com s/applied`<br>
        Expected: No opening is added. Error details shown in the status message. Command line remains the same.
-    
 
 ### Editing an opening
 
@@ -472,7 +485,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete x`<br>
        Expected: Opening with index x is deleted from the list. Details of the deleted opening shown in the status message. Right panel is now empty.
-   
+
 ### Clearing all openings
 
 1. Clearing all openings
@@ -517,5 +530,58 @@ testers are expected to do more *exploratory* testing.
    Expected: List remains the same. Error details shown in the status message. Command line remains the same.
 
 ## **Appendix: Effort**
+
+### Evaluation of Implementation
+
+This table summarises the difficulty level and effectiveness of each feature on a scale of 1 to 5.
+
+| **Feature** | **Difficulty** | **Effectiveness** |
+| --- | --- | --- |
+| Keydates | 3 | 5 |
+| Keydate sorting | 3 | 4 |
+| Status command | 2 | 3 |
+| Remark | 1 | 2 |
+| Upcoming command | 4 | 4 |
+| UI enhancements | 4 | 3 |
+
+### Difficulties faced
+
+1. Keydates
+
+   1. Keydates were implemented using the existing 'Tag' class as a baseline. Refactoring was done to both the 'Tag' model and 'TagParser' to allow for the creation of keydates.
+
+   2. There were more issues with the 'Tag' model than expected, since the key and date had to be further extracted from the input arguments. This lead to multiple separator characters being tested out before settling on the current implementation. The tokenisation of the input arguments was also haphazardly inserted, since the alternative would require a complete overhaul of the 'ArgumentTokenizer' class.
+
+   3. Input validation was often overlooked and only discovered during testing. Empty or untrimmed keys were initially accepted and dates were not checked for validity. This was fixed by adding additional checks in the parser.
+
+2. Sorting of keydates
+
+   1. The initial collection of keydates was implemented using a HashSet, which does not allow for ordering. This was changed an ArrayList, which allowed for ordering of keydates. There are further issues with the logic component and its use of a filtered list which we eventually identified and replaced with an observable list.
+
+   2. Comparison of keydates was initially implemented with a custom comparator. This was changed to implementing the 'Comparable' interface and defining a 'compareTo' method, which allowed for the sorting of keydates to be done in the 'Keydate' class itself.
+
+3. Status command
+
+   1. The status command was rather straightforward and made use of existing Predicate classes. The only issue was the lack of a 'Status' class, which was rectified by creating a new class.
+
+4. Remark command
+
+   1. The existing implementation from our team project tutorial was used as a baseline. Minor changes were made hence did not pose any major issues.
+
+5. Upcoming command
+
+   1. This command required the most effort to implement. The initial proposal was to have a sorting command and an upcoming command, but this was changed to a single upcoming command.
+
+   2. A opening predicate and a opening comparator had to be implemented for the two-step process of filtering and sorting
+
+6. UI enhancements
+
+   1. The initial list view limited the amount of information that could be displayed. A details panel was added to display more information about the opening.
+
+   2. This required restructuring of the UI components and the logic components. The logic components had to be modified to allow for the details panel to be updated when a new opening is selected.
+
+### Achievements
+
+A large part of the project was spent on refactoring the codebase and ensuring practical design. Many features were remade after testing and discussion concluded that the current implementation was not ideal. We also invested significant time into improving the UI, which was not a requirement of the project.
 
 ## **Appendix: Planned Enhancements**
