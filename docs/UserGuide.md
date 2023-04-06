@@ -277,6 +277,16 @@ Format: `sort [CATEGORY]`
 * If no category is provided, the contacts are sorted by their names alphanumerically.
 * If a category is provided, the contacts are sorted by that category alphanumerically.
     * e.g. `sort address` will sort the contacts by their addresses alphanumerically. Contacts without addresses will be at the bottom.
+* The available categories are:
+  * name
+  * github
+  * phone
+  * address
+  * email
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+This command will sort the and display the full contact list.
+</div>
 
 Examples: 
 * `sort` Sort contacts by **Name**.
@@ -437,6 +447,12 @@ Format: `sortpj [CATEGORY]`
 * If no category is provided, the projects are sorted by their deadlines alphanumerically.
 * If a category is provided, the projects are sorted by that category alphanumerically.
     * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+* The available categories are:
+  * name
+  * reponame
+  * repohost
+  * deadline
+  * meeting
 
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
