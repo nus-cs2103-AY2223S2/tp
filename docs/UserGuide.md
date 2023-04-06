@@ -232,6 +232,7 @@ Examples:
   respectively.
 
 * `edit 2 n/Betsy Crower v/` edits the name of the second case to be `Betsy Crower` and clears all variants tagged to that case.
+
 ![EditCommandExample](images/EditCommandExample.png)
 
 <br>
@@ -353,6 +354,7 @@ Example:
 * `redo` after the undo:
 
 ![RedoCommandExample](images/RedoCommandExample.png)
+
 <br>
 
 ### Changing the overview type : `overview`
@@ -381,8 +383,11 @@ Example CSV output of  `checkout overview.csv`:
 "4","190 - 199","1"
 </code></pre>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:**
 You can view and open this csv in Excel or any other spreadsheet editor!
+
 </div>
 
 <br>
@@ -399,16 +404,18 @@ Format: `import [FILENAME]`
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
 
+**:exclamation: Caution:**
 As DengueHotspotTracker does not allow cases with duplicate **names, postal codes, and ages**, 
 please ensure that the cases you are importing do not conflict with existing data within DengueHotspotTracker. 
 This applies to **all** cases, not just those currently displayed.
 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
 
+**:bulb: Tip:**
 If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DengueHotspotTracker!
 
 </div>
@@ -424,7 +431,7 @@ Exports the currently displayed cases to a CSV file.
 Format: `export [FILENAME]`
 
 Example CSV output of  `export sampledata.csv`
-<pre><code style="white-space: pre-wrap;">""Patient Name","Age","Date","Postal Code","Variants"
+<pre><code style="white-space: pre-wrap;">"Patient Name","Age","Date","Postal Code","Variants"
 "Alex Yeoh","111","2000-11-11","S664388","[DENV1]"
 "Bernice Yu","11","2000-11-11","S112727","[DENV4, DENV2]"
 "Charlotte Oliveiro","0","2000-11-11","S602283","[DENV3]"
@@ -433,8 +440,11 @@ Example CSV output of  `export sampledata.csv`
 "Roy Balakrishnan","2","2000-11-11","S666247","[DENV4]"
 </code></pre>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:**
 Try copying these to a .csv file. Then import them as sample inputs!
+
 </div>
 
 <br>
@@ -467,9 +477,12 @@ the data. There is no need to save manually.
 DengueHotspotTracker data are saved as a CSV file `[JAR file location]/data/denguehotspottracker.csv`. Advanced users
 are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**
 If your changes to the data file causes its format to be invalid, DengueHotspotTracker will discard all data and start with an
 empty data file at the next run.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
