@@ -131,7 +131,10 @@ The bookmark in the BookmarkList panel will only contain the:
 
 * Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `genre`, `tags` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
+<div style="page-break-after: always;"></div>
 
+<div markdown="block" class="alert alert-info">
 * List of prefixes used in commands :
 
 | Prefix | Parameter |                                 restrictions                                 |
@@ -401,8 +404,7 @@ _Details coming soon ..._
 | **Add a tag**                | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`                                                                                                      |
 | **Delete a tag**             | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`                                                                                                   |
 | **List all genres**          | `genre`                                                                                                                                            | 
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 

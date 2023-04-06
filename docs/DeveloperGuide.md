@@ -7,20 +7,18 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Introduction**
-
---------------------------------------------------------------------------------------------------------------------
 ## **Software OverView**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Intended Audience**
 
 This guide is intended primarily for developers who want to work on the MyLib code base at https://github.com/AY2223S2-CS2103T-T13-4/tp.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Using the Guide**
 
@@ -351,6 +349,7 @@ if a bookmark exists in the bookmarkList Panel
     * Cons: Some titles may have similar titles so user may have to type out entire title which may be quite long or
       have some sort of combination of Title and author to identify the unique bookmark.
 
+<div style="page-break-after: always;"></div>
 
 ### Progress Field
 
@@ -564,8 +563,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user with many bookmarks | find bookmarks by last modified date    | view bookmarks in order of most recently updated              |
 | `* *` | user  | add last read chapter to a bookmark     | know where I last left off with a certain book                |
 | `* *` | user | find bookmarks based on their progress  | view only bookmarks of a certain progress easily              |
-
-*{More to be added}*
 <div style="page-break-after: always;"></div>
 
 ### Use cases
@@ -659,8 +656,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. MyLib shows an error message.
 
       Use case resumes at step 2.
-
-*{More to be added}*
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
@@ -710,6 +705,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
     2. Re-launch the app by double-clicking the jar file.<br>
 
    **Expected**: The most recent window size and location is retained.
+<div style="page-break-after: always;"></div>
 
 ### Listing all Bookmarks
 
@@ -844,7 +840,9 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
 2. `clear hello`
 
-   **Expected**: All bookmark entries are deleted. 
+   **Expected**: All bookmark entries are deleted.
+
+<div style="page-break-after: always;"></div>
 
 ### Get Help
 
