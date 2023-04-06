@@ -92,7 +92,7 @@ Now it's time to **CONQUER** the semester!
 
 ![ContextLabel](images/ContextLabelScreenshot.png)
 
-Navigating to different contexts:
+**Navigating** to different contexts:
 
 ![NavDiagram](images/NavDiagram.png)
 
@@ -185,42 +185,41 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ---
 
 ## Navigation
+Le Tracker organises content using a **hierarchical structure** (Modules -> Lectures -> Videos).
+
 ![RootContext](images/RootContext.png)
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-
-Le Tracker organises content using a hierarchical structure (Modules -> Lectures -> Videos).
 
 When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
 
 To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
 
-The user can specify their current working context by navigating through the hierarchy. For example, the user can specify the lecture Week 1 of the module CS2040S as their current working context by
+The user can specify their current working context by navigating through the hierarchy. For example, the user can navigate to the *lecture Week 1 of the module CS2040S* by:
 
 ![RootContext](images/RootContext.png)
-Navigating relatively from the root context:
+Navigating **relatively** from the **root context**:
 1. Navigate to the module context from the root context.
 - `nav CS2040S`
 2. Navigate to the lecture context from the module context.
 - `nav Week 1`
 
-OR
+*OR*
 
 ![RootContext](images/RootContext.png)
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-Navigating directly from any context:
+Navigating **directly** from any **context**:
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
 - `nav /mod CS2040S /lec Week 1
 
-After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't need to!
+After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
 
-Here are some examples of how the navigation system is able to shorten commands:
+Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 1. Add Video 2 to the lecture Week 1 of module CS2040S.
-`add Video 2 /mod CS2040S /lec Week 1` -> `add Video 2`
+- `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
 2. List the contents of lecture Week 1 of module CS2040S.
-`list /mod CS2040S /lec Week 1` -> `list`
-
+- `list` -> `list /mod CS2040S /lec Week 1`
 
 ---
 
