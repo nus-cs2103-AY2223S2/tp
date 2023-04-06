@@ -233,6 +233,7 @@ Find contacts stored in SOCket based on the given keyword(s) for the respective 
 
 Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
+* The search is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts.
 * The search for keyword(s) is case-insensitive.
     * e.g `find n/hans` will match `find n/Hans`.
     * e.g `find t/cs2103t` will match `find t/CS2103T`.
