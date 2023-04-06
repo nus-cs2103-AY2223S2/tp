@@ -40,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_AUTHOR_BOB = "Muneyuki Kaneshiro";
     public static final String VALID_TAG_HUSBAND = "MaleProtagonist";
     public static final String VALID_TAG_FRIEND = "FemaleProtagonist";
+    public static final String VALID_TAG_PLANT = "plant";
+    public static final String VALID_TAG_NOVEL = "novel";
     public static final ReadOnlyTags VALID_TAGS = SampleDataUtil.getSampleTagList();
     public static final String VALID_RATING_AMY = "3";
     public static final String VALID_RATING_BOB = "4";
@@ -56,6 +58,8 @@ public class CommandTestUtil {
     public static final String AUTHOR_DESC_BOB = " " + PREFIX_AUTHOR + VALID_AUTHOR_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_PLANT = " " + PREFIX_TAG + VALID_TAG_PLANT;
+    public static final String TAG_DESC_NOVEL = " " + PREFIX_TAG + VALID_TAG_NOVEL;
     public static final String RATING_DESC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
     public static final String URL_DESC_AMY = " " + PREFIX_URL + VALID_URL_AMY;
 
