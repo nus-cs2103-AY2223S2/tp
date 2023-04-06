@@ -39,8 +39,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                 throw new ParseException(INVALID_UNKNOWN_SYMBOL_MESSAGE);
             }
             try {
-                Integer value = Integer.parseInt(update.substring(1));
-                return new UpdateCommand(tradeName, value, add);
+                Integer value = Integer.parseInt(update);
+                return new UpdateCommand(tradeName, Math.abs(value), value>0);
             } catch (NumberFormatException e) {
                 throw new ParseException(INVALID_VALUE_MESSAGE);
             }

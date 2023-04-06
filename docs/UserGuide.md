@@ -668,6 +668,7 @@ ___
 ### Update storage count of a drug entry: `d update`
 * You can update the storage count of specified drug entry by specifying the trade name.
 * NOTE: you need to prefix the value with + or - for addition and subtraction respectively
+* NOTE: if decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count)
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
