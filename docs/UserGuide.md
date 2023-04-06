@@ -263,7 +263,7 @@ Format: `navb`
 > `list`
 
 ![RootContext](images/RootContext.png)
-has to be specified if you are not in the root context.
+has to be appended at the end of the command if you are not in the root context.
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
@@ -297,13 +297,11 @@ Lists all videos belonging to a specified lecture name of a specified module cod
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
-- In module context of module `CS2040S`: `list /lec Week 1`
-- In any context: `list /mod CS2040 /lec Week 1`
-
-_\* Both commands lists videos that belongs to lecture `Week 1` in module `CS2040S`_
+- `list /mod CS2040 /lec Week 1`
 
 ### Add a Module
 
@@ -625,42 +623,45 @@ Examples:
 
 ### Find
 
-#### Find Modules or Lectures or Videos
+:exclamation: This is a case insensitive search and matches a target that starts with the search term.
+E.g:
+|Type|Data|Keyword|Matched|
+|-|-|-|-|
+|ModuleCode|[CS2040S, CS2103, ST2334, MA2001]|cs21|[CS2103]|
+|LectureName|[Week 1, Week 2, Week 3]|week|[Week 1, Week 2, Week 3]|
+|VideoName|[Video 1, Video 2, Some video]|video 1, some|[Video 1, Some video]|
+
+#### Find Modules
 
 > `find {keywords}`
 
-Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s) and case is insensitive.
+Find all modules whose code starts with any of the keyword(s).
 
-Examples:
-
-- In root level, `find CS2040S` searches for module `CS2040S` from the module list.
-- In module level within `CS2040S`, `find week 1, week 2` searches for lectures `week 1` or `week 2` from the lecture list of module `CS2040S`.
-- In lecture level within `week2` of `CS2040S`, `find vid1, vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
+![RootContext](images/RootContext.png)
+has to be appended at the end of the command if you are not in the root context.
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
-#### Find Modules or Lectures or Videos By Tag
+(refer to [Navigation](#navigation) for more information)
+
+#### Find Modules By Tag
 
 > `find {keywords} [/byTag]`
 
-Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
+Find all modules whose tag list contains any tag that starts with any of the keyword(s)
 
 **Assumption:**\
-Module `CS2040S` has tags `["heavy", 'math']`\
-Lecture `Week 1` of `CS2040S` has tags `["Arrays", "Sorting"]`\
-Video `Vid 1` of `Week 1` of `CS2040S` has tags `["content"]`
+Module `CS2040S` has tags `["heavy", 'math']`
 
 Examples:
 
-- In root level, `find heavy /byTag` will show module `CS2040S` from the module list.
-- In module level within `CS2040S`, `find array /byTag` will show lecture `Week 1` from the lecture list of module `CS2040S`.
-- In lecture level within `Week 1` of `CS2040S`, `find cont /byTag` will show video `Vid 1` from the video list of lecture `Week 1` of module `CS2040S`.
+- `find heav /byTag` will show module `CS2040S` from the module list.
 
 #### Find Lectures in a Module
 
-> `find {keywords} [/mod {module_code}]`
+> `find {keywords} /mod {module_code}`
 
 Find all lectures in a specified module whose name starts with any of the keyword(s)
 
@@ -670,11 +671,11 @@ Find all lectures in a specified module whose name starts with any of the keywor
 
 Examples:
 
-- `find week 1, week 2 /mod CS2040S` searches for lectures `Week 1` or `Week 2` from the lecture list of module `CS2040S`.
+- `find week 1, week 2 /mod CS2040S`
 
 #### Find Lectures in a Module By Tag
 
-> `find {keywords} [/byTag /mod {module_code}]`
+> `find {keywords} /mod {module_code} [/byTag]`
 
 Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
@@ -682,19 +683,15 @@ Find all lectures in a specifed module whose tag list contains any tag that star
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
-**Assumption:**\
-Module `CS2040S` has lecture `Week 1` which has tags `["array", 'sorting']`
-
 Examples:
 
-- `find intro, array /byTag /mod CS2040S` will show lecture `Week 1` from the lecture list of module `CS2040S`.
+- `find intro, array /mod CS2040S /byTag`
 
 #### Find Videos in a Lecture
 
-> In module context: `find {keywords} [/lec {lecture_name}]`\
-> In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
+> `find {keywords} /mod {module_code} /lec {lecture_name}`
 
-Find all videos in a specified lecture in a navigated/specified module whose name starts with any of the keyword(s)
+Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s)
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
@@ -702,20 +699,17 @@ Find all videos in a specified lecture in a navigated/specified module whose nam
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
-- In module context of module `CS2040S`: `find vid1, vid2 /lec Week 2`
-- In any context: `find vid1, vid2 /mod CS2040S /lec Week 2`
-
-_\* Both commands searches for videos `vid1` or `vid2` from the video list of lecture `Week 2` of module `CS2040S`_
+- `find vid1, vid2 /mod CS2040S /lec Week 2`
 
 #### Find Videos in a Lecture By Tag
 
-> In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
-> In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
+> find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]
 
-Find all videos in a specified lecture in a navigated/specified module whose tag list contains any tag that starts with any of the keyword(s)
+Find all videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
@@ -723,16 +717,11 @@ Find all videos in a specified lecture in a navigated/specified module whose tag
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-
-**Assumption:**\
-Module `CS2040S` has lecture `Week 2` which has video `Vid 1` which has tags `["content"]`
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
-- In module context of module `CS2040S`: `find content /byTag /lec Week 2`
-- In any context: `find content /byTag /mod CS2040S /lec Week 2`
-
-_\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
+- `find content /mod CS2040S /lec Week 2 /byTag`
 
 ### Clear all Modules
 
