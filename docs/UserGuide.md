@@ -200,10 +200,15 @@ Examples:
 ```
 
 ### Decreasing the quantity of a food: `dec`
+
 Decreases the quantity of a Food item in WIFE.
+
 Format: `dec INDEX [q/QUANTITY]`
 
 Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
+
+* The quantity specified to decrease by **cannot be equal to or greater than** the current quantity of the food item.
+If you wish to delete the item, please use the `delete` command!
 
 ### Delete a food: `delete`
 
