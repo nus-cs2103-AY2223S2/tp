@@ -34,7 +34,7 @@ import teambuilder.model.tag.Tag;
 import teambuilder.model.team.Team;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the TeamBuilder.
  */
 public class EditCommand extends Command {
 
@@ -70,8 +70,8 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the TeamBuilder.";
+    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the TeamBuilder";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

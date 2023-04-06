@@ -68,7 +68,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the TeamBuilder.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -76,8 +76,8 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the TeamBuilder.
+     * The person must not already exist in the TeamBuilder.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -85,8 +85,8 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the TeamBuilder.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the TeamBuilder.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -94,7 +94,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
     }
 
     /**
-     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     * Returns true if a team with the same identity as {@code team} exists in the TeamBuilder.
      */
     public boolean hasTeam(Team team) {
         requireNonNull(team);
@@ -108,15 +108,15 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the TeamBuilder.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
     /**
-     * Adds a team to the address book.
-     * The person must not already exist in the address book.
+     * Adds a team to the TeamBuilder.
+     * The person must not already exist in the TeamBuilder.
      */
     public void addTeam(Team team) {
         teams.add(team);
@@ -124,7 +124,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the TeamBuilder.
      */
     public void removeTeam(Team key) {
         teams.remove(key);

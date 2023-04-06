@@ -9,7 +9,7 @@ import teambuilder.model.person.Name;
 import teambuilder.model.tag.Tag;
 
 /**
- * Represents a Team in the address book.
+ * Represents a Team in the TeamBuilder.
  */
 public class Team {
 

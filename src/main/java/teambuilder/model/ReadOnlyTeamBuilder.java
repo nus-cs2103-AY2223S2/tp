@@ -5,7 +5,7 @@ import teambuilder.model.person.Person;
 import teambuilder.model.team.Team;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an TeamBuilder
  */
 public interface ReadOnlyTeamBuilder {
 

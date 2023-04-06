@@ -9,6 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Chen Jiarui
+
+<img src="images/chen-jerry-junior.png" width="200px">
+
+[[github](http://github.com/chen-jerry-junior)] [[portfolio](team/chen-jerry-junior.md)]
+
+* Role: Team Lead
+* Responsibilities: Data & UI
+
 ### Joshua Chiang
 
 <img src="images/chickenchiang.png" width="200px">
@@ -16,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/chickenchiang)]
 [[portfolio](team/chickenchiang.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### See Wei Xun
@@ -27,15 +36,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Developer guide, Documentation
-
-### Chen Jiarui
-
-<img src="images/chen-jerry-junior.png" width="200px">
-
-[[github](http://github.com/chen-jerry-junior)] [[portfolio](team/chen-jerry-junior.md)]
-
-* Role: Team Lead
-* Responsibilities: Data & UI
 
 ### William Chau Wei Xuan
 

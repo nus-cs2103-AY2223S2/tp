@@ -13,7 +13,7 @@ import teambuilder.model.Model;
 import teambuilder.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the TeamBuilder.
  */
 public class DeleteCommand extends Command {
 

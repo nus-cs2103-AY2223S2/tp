@@ -11,7 +11,7 @@ import teambuilder.model.Model;
 import teambuilder.model.person.Person;
 
 /**
- * Sorts all persons in the address book.
+ * Sorts all persons in the TeamBuilder.
  */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";

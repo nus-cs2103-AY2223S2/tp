@@ -19,7 +19,7 @@ import teambuilder.model.team.Team;
 import teambuilder.model.team.TeamName;
 
 /**
- * Removes a team identified using its name from the address book.
+ * Removes a team identified using its name from the TeamBuilder.
  */
 public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
