@@ -265,7 +265,7 @@ Navigates directly to the specified module or lecture context
 
 > `navb`
 
-Format: `navb`
+Navigates backwards to the a parent context unless already at root context
 
 ### List Modules or Lectures or Videos
 
