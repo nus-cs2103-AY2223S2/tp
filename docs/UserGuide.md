@@ -93,11 +93,11 @@ This section serves to introduce the icons used throughout this guide.
 
 | Prefix | Representation | Remark                                                                                                |
 |:-------|:---------------|:------------------------------------------------------------------------------------------------------|
-| n/     | Name           | Name is alphanumeric only                                                                             |
-| d/     | Date           | Dates should follow a `YYYY-MM-DD` format                                                             |
+| n/     | Name           | Name is alphanumeric only.                                                                            |
+| d/     | Date           | Dates should follow a `YYYY-MM-DD` format.                                                            |
 | s/     | Start time     | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
 | e/     | End time       | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
-| every/ | Every          | Recurring factor is given by `day/week/month                                                          | 
+| every/ | Every          | Recurring factor is given by day/week/month.                                                          | 
 
 
 [[Back to top](#table-of-contents)]
@@ -132,7 +132,7 @@ Adds an event into the scheduler.
 
 Example: `add n/tennis d/2023-04-20 s/15:00 e/17:00`
 
-Parameters:
+Parameters:  
 `n/`: Name of the event  
 `d/`: Date of the event  
 `s/`: Start time of the event  
