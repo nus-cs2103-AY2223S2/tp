@@ -90,10 +90,23 @@ The main GUI has 7 sections as highlighted above.
 ---
 ## How to use the User Guide
 
-This Guide contains detailed explanations on the **commmands** available and what they do.
-The [**Table of Contents**](#table-of-contents) at the top provide a quick way to navigate to any section you want,
-and a [Back to Table of Contents](#table-of-contents) tag is provided at the footer of each section to take you back
-to the Table of Contents. To further augment your navigation, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
+### Navigation
+This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to 
+any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
+Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to 
+take you back to the Table of Contents.
+
+If you know what you're looking for, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search anywhere within this Guide 
+for a keyword.
+
+### Symbols used
+
+| Symbol               | Meaning                                                     |
+|----------------------|-------------------------------------------------------------|
+| :information_source: | General information/notes.                                  |
+| :bulb:               | Tips that will optimize your usage of MedInfo.              |
+| :exclamation:        | Information that is crucial to know before using a command. |
+
 <br><br>
 Our commands follow a certain format for ease of use. Below are some notes on how you should interpret each command
 format.
@@ -115,10 +128,12 @@ format.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `name/NAME s/STATUS`, `s/STATUS name/NAME` is also acceptable.
 
-- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of 
+the parameter will be taken.<br>
   e.g. if you specify `nric/S1234567X nric/S1234567A`, only `nric/S1234567A` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be ignored.<br>
+- Commands that do not take in parameters (such as `help`, `list`, and `exit`) will ignore any parameters supplied 
+along with it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
