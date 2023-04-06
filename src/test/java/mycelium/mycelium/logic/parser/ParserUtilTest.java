@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.client.Name;
 import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.Assert;
@@ -192,7 +192,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseLocalDate_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null, Project.DATE_FMT));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null, DateUtil.DATE_FMT));
     }
 
     @Test
@@ -221,7 +221,7 @@ public class ParserUtilTest {
         );
         tests.forEach((key, value) -> {
             Assert.assertThrows(ParseException.class,
-                Messages.MESSAGE_INVALID_DATE, () -> ParserUtil.parseLocalDate(value, Project.DATE_FMT));
+                Messages.MESSAGE_INVALID_DATE, () -> ParserUtil.parseLocalDate(value, DateUtil.DATE_FMT));
         });
     }
 
@@ -236,8 +236,8 @@ public class ParserUtilTest {
             "01/01/-9999"
         };
         for (String tt : tests) {
-            LocalDate want = LocalDate.parse(tt, Project.DATE_FMT);
-            Assertions.assertEquals(want, ParserUtil.parseLocalDate(tt, Project.DATE_FMT));
+            LocalDate want = LocalDate.parse(tt, DateUtil.DATE_FMT);
+            Assertions.assertEquals(want, ParserUtil.parseLocalDate(tt, DateUtil.DATE_FMT));
         }
     }
 

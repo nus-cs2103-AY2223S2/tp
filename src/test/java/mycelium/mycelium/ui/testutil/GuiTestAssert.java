@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import guitests.guihandles.ClientListCardHandle;
 import guitests.guihandles.ProjectListCardHandle;
 import guitests.guihandles.SpecialProjectListCardHandle;
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
@@ -26,7 +27,7 @@ public class GuiTestAssert {
         assertEquals(
             expectedProject
                 .getDeadline()
-                .map(d -> d.format(Project.DATE_FMT))
+                .map(d -> d.format(DateUtil.DATE_FMT))
                 .orElse("No Deadline"),
             actualCard.getDeadline());
     }
@@ -40,11 +41,11 @@ public class GuiTestAssert {
         assertEquals(expectedProject.getClientEmail().value, actualCard.getClientEmail());
         assertEquals(expectedProject.getSource().map(NonEmptyString::getValue).orElse("Unknown"),
                 actualCard.getSource());
-        assertEquals(expectedProject.getAcceptedOn().format(Project.DATE_FMT), actualCard.getAcceptedOn());
+        assertEquals(expectedProject.getAcceptedOn().format(DateUtil.DATE_FMT), actualCard.getAcceptedOn());
         assertEquals(
                 expectedProject
                         .getDeadline()
-                        .map(d -> d.format(Project.DATE_FMT))
+                        .map(d -> d.format(DateUtil.DATE_FMT))
                         .orElse("No Deadline"),
                 actualCard.getDeadline());
         assertEquals(expectedProject.getDescription().orElse("No description given"), actualCard.getDescription());

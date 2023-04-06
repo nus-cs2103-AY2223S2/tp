@@ -3,6 +3,7 @@ package mycelium.mycelium.testutil;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
 import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
@@ -88,7 +89,7 @@ public class UpdateProjectDescriptorBuilder {
      * Sets the project's acceptedOn date of the {@code UpdateProjectDescriptor} that we are building.
      */
     public UpdateProjectDescriptorBuilder withAcceptedOn(String acceptedOn) {
-        descriptor.setAcceptedOn(Optional.ofNullable(acceptedOn).map(s -> LocalDate.parse(s, Project.DATE_FMT)));
+        descriptor.setAcceptedOn(Optional.ofNullable(acceptedOn).map(s -> LocalDate.parse(s, DateUtil.DATE_FMT)));
         return this;
     }
 
@@ -96,7 +97,7 @@ public class UpdateProjectDescriptorBuilder {
      * Sets the project's deadline of the {@code UpdateProjectDescriptor} that we are building.
      */
     public UpdateProjectDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(Optional.ofNullable(deadline).map(s -> LocalDate.parse(s, Project.DATE_FMT)));
+        descriptor.setDeadline(Optional.ofNullable(deadline).map(s -> LocalDate.parse(s, DateUtil.DATE_FMT)));
         return this;
     }
 

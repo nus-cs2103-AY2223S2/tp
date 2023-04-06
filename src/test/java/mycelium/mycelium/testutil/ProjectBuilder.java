@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
+import mycelium.mycelium.commons.util.DateUtil;
 import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
@@ -145,7 +146,7 @@ public class ProjectBuilder {
      * Sets the project's deadline using a string representation of a date.
      */
     public ProjectBuilder withDeadline(String dateStr) {
-        this.deadline = LocalDate.parse(dateStr, Project.DATE_FMT);
+        this.deadline = LocalDate.parse(dateStr, DateUtil.DATE_FMT);
         return this;
     }
 
