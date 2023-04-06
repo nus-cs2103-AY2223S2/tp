@@ -5,11 +5,13 @@ title: Jiahui's Project Portfolio Page
 
 ### Project: FitBook
 
-Fitbook is a desktop tracking book application used for tracking the progress and informations
-for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java.
-
-> Anything below are to be added soon. They are just placeholders.
+FitBook is a desktop application designed for tracking the progress and information.
+It is built using Java and features both a Command-Line Interface (CLI) and a 
+Graphical User Interface (GUI) created with JavaFX. The CLI allows users to interact 
+with the application using text-based commands, while the GUI provides a visual interface 
+for navigating the application's features. With FitBook, fitness professionals can easily 
+track their clients' progress, manage appointments, and customize routines to help their 
+clients reach their fitness goals.
 
 Given below are my contributions to the project.
 
@@ -32,19 +34,17 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-    * Developer Guide:
-        * Added implementation details of the `delete` feature.
+      * Added documentation for `Quick Start` [\#17]()
+      * Added documentation for `User Interface Introduction` [\#60]()
+      * Added documentation for `Prefixes for Client Commands` [\#143]()
+      * Added documentation for `Prefixes for Routine Commands` [\#166]()
+      * Added documentation for the features `listClients` [\#196]()
+      * Added documentation for `FAQ` [\#605]()
+      * Added documentation for `Command Sumamry` [\#634]()
+      
+  * Developer Guide:
+      * Added implementation details of the `delete` feature.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/OliviaJHL/ped))

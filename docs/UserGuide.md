@@ -6,7 +6,7 @@ title: User Guide
 
 <h2><div style="color:#f9963f">About FitBook</div></h2>
 
-FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
+FitBook is a **desktop application for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
 
 This User Guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 * Table of Contents
@@ -16,18 +16,27 @@ This User Guide provides brief documentation on how you can install the applicat
 
 ## Quick start
 
+1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook. 
+   * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
+   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
 
-1. Ensure you have **Java** `11` or above installed in your Computer.
 
-1. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
+2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
-1. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook.
+3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   * If you are unsure how to open the command terminal, you may refer to the guide below.
+   
+     • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
+   
+     • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
+   
+     
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `listClients` : Lists all Clients.
@@ -47,29 +56,62 @@ This User Guide provides brief documentation on how you can install the applicat
    * `exit` : Exits the app.
 
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Menu Items (or Tabs)
+## User Interface Introduction
 
-* All Menu Items (or Tabs) have their left panel (`Clients` Panel) to show the list of clients.
-* Panels are _empty_ when the data for that specific panel is _empty_.
+This section provides a brief overview of the graphical user interface (GUI) components that are present in FitBook. These components are designed to provide an easy-to-use interface that enables users to track and improve their clients fitness goals.
+![User Interface](images/interface.png)
 
-### Schedule
-* Right panel (`Schedule` Panel) shows the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
+### Menu Bar
 
-### Exercise
-* Right panel (`Exercise` Panel) shows the list of routines added.
+The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily move between different sections or pages. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
 
-### Summary
-* Right panel (`Summary` Panel) shows the client viewed. (Using the view command)
+#### Schedule
+* 'Schedule' menu item allows you to switch to Schedule panel.
 
-### Help
+#### Exit
+* Directly exits out of the application
+
+#### Exercise
+* 'Exercise' menu item allows you to switch to Exercise panel.
+
+#### Summary
+* 'Summary' menu item allows you to switch to Summary panel.
+
+#### Help
 * Provides a new tab outside FitBook with the link to the User Guide.
 
-### Exit
-* Directly exits out of the application
+### Result Display
+
+Panels are _empty_ when the data for that specific panel is _empty_.
+
+#### Schedule
+* Left panel (`Schedule` Panel) displays the list of clients basic information.
+* Right panel (`Schedule` Panel) displays the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
+  
+
+  ![Schedule Panel](images/schedule.png)
+#### Exercise
+* Left panel (`Exercise` Panel) displays the list of clients basic information including weight, average calories, goal, any unique routines and exercises.
+* Right panel (`Exercise` Panel) displays the list of routines added.
+
+
+  ![Exercise Panel](images/exercise.png)
+#### Summary
+* Left panel (`Sumamary` Panel) displays the list of clients basic information including name and schedule appointments.
+* Right panel (`Summary` Panel) displays all information about the selected client. (Using the view command)
+
+
+  ![Summary Panel](images/summary.png)
+
+### Feedback Box
+When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or any other relevant details.
+### Command Box
+The Command Box is where you can type in your commands. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
+
 
 ---
 
@@ -103,25 +145,29 @@ This User Guide provides brief documentation on how you can install the applicat
 </div>
 
 ### Prefixes for Client Commands
-| Prefix | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   |
-|--------|------------------------------------|-------------------|--------------------------------------------------|
-| `n/`   | Yes                                | No                | Name of Client                                   |
-| `p/`   | Yes                                | No                | Phone number                                     |
-| `e/`   | Yes                                | No                | Email                                            |
-| `a/`   | Yes                                | No                | Address                                          |
-| `w/`   | Yes                                | No                | Weight                                           |
-| `g/`   | Yes                                | No                | Gender                                           |
-| `c/`   | No                                 | No                | Recommended Calories                             |
-| `gl/`  | No                                 | No                | Goal for Client                                  |
-| `r/`   | No                                 | Yes               | Routines for Client (Must be in Exercise Routine |
-| `t/`   | No                                 | Yes               | Tag                                              |
-| `app/` | No                                 | Yes               | Appointment                                      |
+
+| Prefix   | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   | Characters restrictions                                     |
+|----------|------------------------------------|-------------------|--------------------------------------------------|-------------------------------------------------------------|
+| `n/`     | Yes                                | No                | Name of Client                                   | AlphaNumeric and spaces                                     |
+| `p/`     | Yes                                | No                | Phone number                                     | At least 3 digits                                           |
+| `e/`     | Yes                                | No                | Email                                            | local-part@domain                                           |
+| `a/`     | Yes                                | No                | Address                                          | Any characters except blank                                 |
+| `w/`     | Yes                                | No                | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place |
+| `g/`     | Yes                                | No                | Gender                                           | M or F (not case sensitive)                                 |
+| `c/`     | No                                 | No                | Recommended Calories                             | At least 4 digits long                                      |
+| `gl/`    | No                                 | No                | Goal for Client                                  | Any characters except blank                                 |
+| `r/`     | No                                 | Yes               | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion             |
+| `t/`     | No                                 | Yes               | Tag                                              | AlphaNumeric                                                |
+| `app/`   | No                                 | Yes               | Appointment                                      | dd-mm-yyyy HH:mm format that is after current date time     |
+| `d/`     | NA                                 | No                | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before current date time    |
 
 ### Prefixes for Routine Commands
-| Prefix | Compulsory field for adding routine | Multiple allowed?  | Prefix Meaning   |
-|--------|-------------------------------------|--------------------|------------------|
-| `r/`   | Yes                                 | No                 | Routine Name     |
-| `ex/`  | No                                  | Yes                | Exercise Name    |
+
+| Prefix   | Compulsory field for adding routine | Multiple allowed? | Prefix Meaning | Characters restrictions |
+|----------|-------------------------------------|-------------------|----------------|-------------------------|
+| `r/`     | Yes                                 | No                | Routine Name   | AlphaNumeric and spaces |
+| `ex/`    | No                                  | Yes               | Exercise Name  | AlphaNumeric and spaces |
+| `exno/`  | NA                                  | No                | Exercise index | Numeric                 |
 
 ---
 
@@ -300,7 +346,7 @@ Format: `export`
     * Gender of Client
 * Example generated CSV file when opened using Microsoft Excel:
 
-  ![CSV Sample File](images/CSVSample.PNG)
+  ![CSV Sample File](images/CSVSample.png)
 
 ### Client's Weight Commands
 
@@ -327,7 +373,7 @@ Examples:
 * `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 March 2023, 6pm.
 * `find n/Alex` followed by `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg, dated 10 March 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
 
-### Plotting weight history graph for a client: `graph`
+#### Plotting weight history graph for a client: `graph`
 
 {% include information.html content="
 
@@ -350,7 +396,7 @@ Examples:
 * `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
 Example:
-![Graph](images/GraphUG.PNG)
+![Graph](images/GraphUG.png)
 
 ---
 
@@ -376,7 +422,7 @@ Examples:
 * `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
 Example: (Adding Routine without any exercises)
-![AddRoutine](images/AddRoutineUG.PNG)
+![AddRoutine](images/AddRoutineUG.png)
 
 #### Editing a routine : `editRoutine`
 
@@ -432,7 +478,7 @@ Examples:
 * `findRoutine OPM`
 
 Example:
-![FindRoutine](images/FindRoutineUG.PNG)
+![FindRoutine](images/FindRoutineUG.png)
 
 #### Clearing all Routine entries : `clearRoutines`
 
@@ -579,6 +625,10 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 
 **Q**: Why can I not tag the exercise routine to the client?<br>
 **A**: The exercise routine is probably not inside the list of routines or the routine name is wrong. The routine name is case-sensitive.
+
+**Q**: When I try to edit my weight a few times, and it updates in the client panel, but the data does not show up on the graph?<br>
+**A**: To view historical weight data on the line graph, more values of weight must be added using addWeight command. edit command only changes the latest weight of the client.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
