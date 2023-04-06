@@ -28,30 +28,26 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed project documentation (UG & DG)
     * Checked and updated UG to match with actual product []()
-  * Brought up issues to be resolved on Github
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Maintain code quality
+    * Refactor methods to obey OOP principles
+    
 
 * **Documentation**:
   * User Guide (UG):
-    * Drafted out documentation for the menu item features.
-    * Updated the introduction for the user guide.
+    * Drafted out documentation for the menu item features
+    * Updated the introduction for the user guide
+    * Reorganise the guide for commands with similar functionality
+    * Update accurate limitations for functions
 
   * Developer Guide:
-    * Added user cases
+    * Added use cases
     * Added UML Class Diagram and updated documentation for Order and Menu
     * Added documentation and activity diagram for Add feature
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): 
+  * Reported Issues 
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Java 11, JavaFx, Jekyll
+  
