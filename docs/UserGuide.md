@@ -776,7 +776,7 @@ Use this with command with caution!
   \
   &nbsp;
 * **Example:**
-    * Enter the command `d clear` and all drug information will be permanantly removed.
+    * Enter the command `d clear` and all drug information will be permanently removed.
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:100%">
       </p>
@@ -837,7 +837,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 --------------------------------------------------------------------------------------------------------------------
 # **5. Data Storage**
 
-### Saving the data
+## 5.2 Saving the data
 
 * CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -848,7 +848,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 <br>
 
 
-### Editing the data file
+## 5.3 Editing the data file
 
 * All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
@@ -863,7 +863,7 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 <br>
 
 
-## Archiving data files `[coming in v2.0]`
+## 5.4 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -871,8 +871,14 @@ _Details coming soon ..._
 
 # **6. FAQ**
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.<br>
+
+**Q**: Do I need internet access to use CareFlow?<br>
+**A**: No, CareFlow does not require internet access to be used.<br>
+
+**Q**: Do I have to pay to use CareFlow?<br>
+**A**: No, CareFlow does not require any form of payment.<br>
 
 <br>
 
