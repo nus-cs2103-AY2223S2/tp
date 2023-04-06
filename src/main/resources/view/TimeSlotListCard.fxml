@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10.0" />
+    </columnConstraints>
+    <HBox prefWidth="1416.0">
+        <padding>
+            <Insets left="15.0" right="15.0" />
+        </padding>
+        <children>
+            <VBox alignment="CENTER_LEFT">
+                <children>
+                    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="17.0" prefWidth="269.0" >
+                        <Label fx:id="timeSlotText" styleClass="cell_big_label" />
+                    </HBox>
+                </children>
+            </VBox>
+        </children>
+        <GridPane.margin>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+        </GridPane.margin>
+    </HBox>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>
+</HBox>

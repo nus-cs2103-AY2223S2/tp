@@ -206,6 +206,25 @@ with a `Group`.
       standardise the same for groups as well.
     * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
 
+**Aspect: Creating new group through add command**
+* **Alternative 1:** Create a new `Group` using the existing add command.
+    * Pros:
+      * Lesser commands for users to use
+      * Easier to implement
+    * Cons:
+      * More bug-prone due to having multiple parameters to check including group
+
+* **[Current implementation] Alternative 2:** Create a new `Group` using a new command 'group_create'.
+    * Pros:
+      * Dedicated command for creating a group
+      * Less bug-prone as the only input is one group instead of having multiple information such as name, email etc.
+    * Cons:
+      * Users need to create a group first before adding a person to it.
+
+* **Justification**
+    * As the add command is relatively lengthy, having more input parameters would result in users creating a wrong group.
+    * Having a dedicated command for creating groups is less bug-prone as it only has to check for the validity of one group
+
 ### \[Developed\] Group delete
 
 The group delete feature allows users to delete a group and remove persons from that group.
@@ -607,7 +626,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
 | `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
 | `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better |
-| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting |
+
+| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
+
 | `* *`    | user | be able to categorize my contact lists                         | easily find someone |
 | `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
 | `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |

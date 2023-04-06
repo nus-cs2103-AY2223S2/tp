@@ -53,8 +53,7 @@ class IsolatedEventListTest {
         isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID));
 
-        assertEquals("Isolated Events\n"
-                + "1. Biking from: 09/03/2024 14:00 to: 09/03/2024 15:00\n"
+        assertEquals("Isolated Events\n1. Biking from: 09/03/2024 14:00 to: 09/03/2024 15:00\n"
                 + "2. Canoeing from: 09/03/2024 14:00 to: 09/03/2024 15:00\n"
                 + "3. Skiing from: 09/03/2024 14:00 to: 09/03/2024 15:00\n", isolatedEventList.toString());
     }

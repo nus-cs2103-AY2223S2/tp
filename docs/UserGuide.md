@@ -85,7 +85,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
 
 * A person can only be added to an **existing** group
-* Tags can only contain alphanumeric number and spaces
+* Tags can only contain alphanumeric and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and groups (including 0)
@@ -162,14 +162,11 @@ Create a group in the address book.
 Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
-<<<<<<< HEAD
 * The group name cannot be empty and must be alphanumeric!
 * **NOTE: The group name cannot contain spaces**
-=======
 * The group name cannot be empty
 * Only one group can be created
 * If more than one group is specified, only the last occurrence of a group will be taken
->>>>>>> 1e2863026d4fa1ff85d27dbccc21559a9cdf199b
 
 Examples:
 * `group_create g/CS2103T`
@@ -341,6 +338,7 @@ Format: `import`
 * Stored data must be in a file called `export.json` and the file must be placed in the folder `data` which is in the same location as the JAR file.
 * Stored data can only contain 1 person.
 * The imported person will not have any tags or groups.
+   * This is because groups and tags are dependent on how the user wants to assign them. Therefore, merging or overwriting groups/tags when importing is not appropriate.
 * If the imported person is already an entry in your address book with the same name (case-sensitive), their phone number, address, email as well as their event lists will be updated to the imported data.
 * If the imported person is not yet an entry in your address book, a new entry will be created with the imported person's details (excluding tags and groups).
 
@@ -351,7 +349,7 @@ Export a person's details from the address book.
 Format: `export [INDEX_OF_PERSON]`
 
 * Exports a person's details with the specified `INDEX`
-* All details except groups and tags are exported.
+* All details except groups and tags are exported (Reason mentioned in `Import` section)
 * Export data is saved in the data/export.json
 * Exporting a person will overwrite any existing export.json file
 
