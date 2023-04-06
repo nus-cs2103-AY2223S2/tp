@@ -116,7 +116,7 @@ public class PatientListPanel extends UiPart<Region> {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
             drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedAddress, selectedEmail, selectedBirthDate,
-                selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+            selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);
