@@ -15,8 +15,12 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 [[github](http://github.com/vigonometry)]
 [[portfolio](team/vigonometry.md)]
 
-* Role: Code quality
-* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
+* Role: QA Testing, Product Development, Documentation
+* Responsibilities: 
+  * Implementation of themes and CRUD commands.
+  * Ensure adherence to code quality and test coverage.
+  * Ensure quality of various documents.
+
 
 ### Amos Hung
 
