@@ -280,7 +280,7 @@ command to sort the salaries in ascending order or `salary desc` command to sort
 
 The format accepted by the `salary` command is `salary ORDER` where `ORDER` have to be either `asc` or `desc`.
 
-When `salary ORDER` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+When `salary ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
 input. This then creates an instance of the `SalaryCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
 If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
@@ -322,7 +322,7 @@ command to sort the deadlines in ascending order or `deadline desc` command to s
 
 The format accepted by the `deadline` command is `deadline ORDER` where `ORDER` have to be either `asc` or `desc`.
 
-When `deadline ORDER` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
+When `deadline ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
 input. This then creates an instance of the `DeadlineCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
 If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
