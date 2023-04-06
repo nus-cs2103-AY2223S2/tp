@@ -17,28 +17,17 @@ Given below are my contributions to the project.
   * `Frequency` : Represents the frequency of payment by the client for the policy
   * `UniquePolicyList` : Stores a list of policies for the particular client, similar to `UniqueClientList`
 
-* **Code contributed**: [RepoSense link]()
-
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Enhanced the `isSameClient` method in the `Client` class, such that it now checks if all attributes of both comparing clients are the same, instead of the original method where it only checks if the client names are the same
 
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yzmunchmunch&breakdown=true)
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Edited documentation for the all the features in General Management and Client Management.
+    * Added screenshots to General Management and Client Management sections.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added flow of implementation for model, `Client` and `Policy` classes with UML diagrams
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
