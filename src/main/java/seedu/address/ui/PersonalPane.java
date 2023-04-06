@@ -66,10 +66,12 @@ public class PersonalPane extends UiPart<Region> {
         imageView.setImage(image);
         name.setText(person.getName().fullName);
         status.setText(person.getStatus().fullStatusDetail);
+        status.setWrapText(true);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         address.setWrapText(true);
         email.setText(person.getEmail().value);
+        email.setWrapText(true);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(this::createLabel);
