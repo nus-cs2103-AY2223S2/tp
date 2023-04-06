@@ -28,4 +28,3 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
 
 #### **Contributions beyond the project team**:
 * Left detailed bug reports: [Bug1](https://github.com/clydelhui/ped/issues/2) [Bug2](https://github.com/clydelhui/ped/issues/6)
-
