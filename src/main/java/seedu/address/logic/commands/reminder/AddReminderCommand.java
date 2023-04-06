@@ -29,6 +29,13 @@ public class AddReminderCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New reminder added";
 
+    public static final String MESSAGE_DATE_TIME_CONSTRAINT = "Dates must be valid date "
+            + "- only contain numeric characters and spaces, "
+            + "and it should not be blank.\n"
+            + "Date must have format like this: YYYY-mm-DD"
+            + "\nTime must be a valid timing - only contains numeric characters and colon."
+            + "\nTime must be of format HH:mm";
+
     private final Reminder toAdd;
 
     /**

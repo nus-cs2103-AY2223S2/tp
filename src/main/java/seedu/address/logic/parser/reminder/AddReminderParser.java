@@ -42,7 +42,7 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
