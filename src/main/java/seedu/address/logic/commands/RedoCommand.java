@@ -26,7 +26,7 @@ public class RedoCommand extends Command {
     private String commandToRedo;
 
     @Override
-    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.checkRedoable()) {
             throw new CommandException(MESSAGE_FAILURE);

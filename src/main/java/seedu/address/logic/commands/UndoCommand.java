@@ -26,7 +26,7 @@ public class UndoCommand extends Command {
     private String commandToUndo;
 
     @Override
-    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.checkUndoable()) {

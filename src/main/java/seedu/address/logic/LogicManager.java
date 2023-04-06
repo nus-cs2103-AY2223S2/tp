@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model, commandHistory);
+        commandResult = command.execute(model);
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
