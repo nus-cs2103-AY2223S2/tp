@@ -16,9 +16,9 @@ import seedu.connectus.model.socialmedia.Telegram;
 
 public class OpenCommandTest {
 
-    private Model model = new ModelManager(getTypicalConnectUs(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalConnectUs(), new UserPrefs());
     @Test
-    public void execute_PlatformNotExist_throwsCommandException() {
+    public void execute_platformNotExist_throwsCommandException() {
         Person nameOnlyPerson = new Person(new Name("unique name"));
         Person personToFiddle = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         model.setPerson(personToFiddle, nameOnlyPerson);

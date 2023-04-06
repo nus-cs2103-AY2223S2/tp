@@ -4,6 +4,7 @@ import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.connectus.logic.commands.OpenCommand;
 
 public class OpenCommandParserTest {

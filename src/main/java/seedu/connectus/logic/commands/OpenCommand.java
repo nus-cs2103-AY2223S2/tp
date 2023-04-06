@@ -52,6 +52,9 @@ public class OpenCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, target));
     }
 
+    /**
+     * Checks if the command hold any platforms at all
+     */
     public boolean isBlank() {
         return !isAnyNonNull((Object[]) targetPlatforms);
     }
@@ -60,7 +63,7 @@ public class OpenCommand extends Command {
     public boolean equals(Object other) {
         return other == this
             || (other instanceof OpenCommand
-        && ((OpenCommand) other).targetIndex.equals(this.targetIndex)
-        && Arrays.equals(((OpenCommand) other).targetPlatforms, this.targetPlatforms));
+            && ((OpenCommand) other).targetIndex.equals(this.targetIndex)
+            && Arrays.equals(((OpenCommand) other).targetPlatforms, this.targetPlatforms));
     }
 }
