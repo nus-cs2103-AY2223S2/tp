@@ -699,7 +699,7 @@ is selected when the project's box is coloured blue, as shown below.
 
 ![step2](images/SearchAndSelectStep2.png)
 
-You can then press (ENTER) to switch back to **command mode** and append the project name to the command box. The project's name will be highlighted (this is not shown in the screenshot below due to to limitations of the screenshot program).
+You can then press (ENTER) to switch back to **command mode** and append the project name to the command box. The project's name will be highlighted (this is not shown in the screenshot below due to limitations of the screenshot program).
 
 ![step3](images/SearchAndSelectStep3.png)
 
@@ -707,12 +707,6 @@ We can now proceed to execute the command as per usual. Note that for clients,
 the (ENTER) key would extract the client's email. This way you can quickly
 reference a project or client in your command, without having to type out the
 full name or email.
-
-<div markdown="span" class="alert alert-danger">
-:warning: Avoid using your mouse to select a project or client. Instead, use
-the (CTRL+J) and (CTRL+K) hotkeys. Using a mouse to select a project or client
-is not officially supported by Mycelium.
-</div>
 
 ### Fuzzy search Gotchas
 
