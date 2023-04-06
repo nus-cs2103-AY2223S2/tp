@@ -11,7 +11,6 @@ import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
-import trackr.model.menu.ItemPrice;
 import trackr.model.menu.ItemProfit;
 import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
