@@ -10,7 +10,12 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=derricksaltfish&breakdown=true)
+* **Code contributed**: 
+My code contributions can be found on:
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=derricksaltfish&breakdown=true)
+
+
+## Feature and Enhancements
 
 * **New Feature**: Added `copy` command [#130](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/130)
   * What it does: Allows users to copy the information of an internship entry onto the clipboard of the computer.
@@ -25,6 +30,8 @@ Given below are my contributions to the project.
 * Reviewed and approved pull requests for merging.
 * Testing of InternBuddy releases after each version evolution.
 
+## Documentation
+
 **Documentation**
 * Side-Wide settings:
   * Update side-wide settings [#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19)
@@ -32,9 +39,11 @@ Given below are my contributions to the project.
   * Initial update of Save data and Load data contents [#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
   * Update descriptions for Load data, Edit data and Clearing all Internship entries [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
 * Developer Guide:
-  * Update of `find` command with inclusion of UML sequence diagrams [#88](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/88) [#90](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/90) [#95](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/95) [#123](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/123)
-  * Update set up and get started section [#107](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/107)
+  * Update content in common classes and AddressBook related content to InternBuddy [#99](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/99)
+  * Update of `copy` command with inclusion of UML sequence diagrams [#205](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/205)
+  * Update appendix A content [#104](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/104)
+
+## Others
 
 **Community**
-* PRs reviewed (with non-trivial review comments): [#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79), [#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80)
-* Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/340))
+* PRs reviewed (with non-trivial review comments): [#33](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/33)
