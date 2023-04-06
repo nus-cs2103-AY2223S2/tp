@@ -22,8 +22,6 @@ public class DoctorListPanel extends UiPart<Region> {
     @FXML
     private ListView<Doctor> doctorListView;
 
-    private Doctor selectedDoctor;
-
     /**
      * Creates a {@code DoctorListPanel} with the given {@code ObservableList}.
      */
