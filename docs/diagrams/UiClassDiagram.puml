@@ -4,7 +4,6 @@
 skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
 
 hide <<hidden>> stereotype
 
@@ -40,8 +39,8 @@ package Logic LOGIC_COLOR_T1 {
 HiddenOut .right.> Ui
 
 UiManager .left.|> Ui
-UiManager -right-> MainWindow
-UiManager ..> Logic
+UiManager -> MainWindow
+UiManager .down.> Logic
 
 MainWindow *-up- "0..3" ListViewPanel
 MainWindow *-up- "0..2" DetailedView
@@ -50,7 +49,9 @@ MainWindow *-up- "0..1" HelpWindow
 MainWindow *-up- "0..1" ResultDisplay
 MainWindow -down-> Logic
 
-ResultDisplay -down-> "0..30" ResultMessageBox
-ResultMessageBox .down.> CommandMessage : displayes >
+ResultDisplay .right.> ResultMessageBox : uses >
+ResultDisplay .down.> CommandMessage : displays >
+
+ResultMessageBox .down.> CommandMessage
 
 @enduml
