@@ -496,7 +496,24 @@ Similar to Help Window in section 3.7, this window is maintained by `QuickstartW
 similarly named `fxml` and `css` to display the relevant quickstart information.
 
 --------------------------------------------------------------------------------------------------------------------
-## 4. Documentation, logging, testing, configuration, dev-ops
+## 4. Planned Enhancements
+
+### 4.1 Support for overseas domains
+#### 4.1.1 Description
+As we slowly improve OfficeConnect to provide support for managers and companies outside of Singapore, we plan to include additional support to allow for usage of OfficeConnect in other countries. This includes support for phone numbers with area codes, dashes, and the + sign which indicates which country the number is from.
+
+### 4.2
+### 4.3
+### 4.4
+### 4.5
+### 4.6
+### 4.7
+### 4.8
+### 4.9
+### 4.10
+
+--------------------------------------------------------------------------------------------------------------------
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -505,9 +522,9 @@ similarly named `fxml` and `css` to display the relevant quickstart information.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-## 5. Appendix: Requirements
+## 6. Appendix: Requirements
 
-### 5.1 Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 * Holds a managerial role
@@ -524,7 +541,7 @@ similarly named `fxml` and `css` to display the relevant quickstart information.
 * Able to view all upcoming tasks to be completed at one glance
 * Allows efficient delegation of tasks to subordinates in an organised and centralised manner
 
-### 5.2 User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -547,7 +564,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | manager         | view unassigned tasks and persons           | have an overview of tasks and persons without assigned tasks           |
 
 
-#### 5.3.1 Example Usage
+#### 6.3.1 Example Usage
 
 > addt t/Draft proposal c/Complete proposal by 1st March st/false
 
@@ -575,7 +592,7 @@ feature would work in practice.
 
 *{More to be added}*
 
-### 5.4 Use cases
+### 6.4 Use cases
 
 <div markdown="span" class="alert alert-info">
 
@@ -585,7 +602,7 @@ feature would work in practice.
 </div>
 
 ---
-#### 5.4.1 Use case 1: Add a person
+#### 6.4.1 Use case 1: Add a person
 
 **Main Success Scenario (MSS):**
 
@@ -606,7 +623,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 5.4.2 Use case 2: Delete a person
+#### 6.4.2 Use case 2: Delete a person
 
 **Main Success Scenario (MSS):**
 
@@ -633,7 +650,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 5.4.3 Use case 3: Delete a task
+#### 6.4.3 Use case 3: Delete a task
 
 **Main Success Scenario (MSS):**
 
@@ -660,7 +677,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 5.4.4 Use case 4: Assign a task to a person
+#### 6.4.4 Use case 4: Assign a task to a person
 
 **Main Success Scenario (MSS):**
 
@@ -709,7 +726,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 5.4.5 Use case 5: Remove assignment of task from a person
+#### 6.4.5 Use case 5: Remove assignment of task from a person
 
 **Main Success Scenario (MSS):**
 
@@ -746,7 +763,7 @@ feature would work in practice.
 
 ---
 
-#### 5.4.6 Use case 6: Consulting Help Window
+#### 6.4.6 Use case 6: Consulting Help Window
 
 **Main Success Scenario (MSS):**
 
@@ -773,7 +790,7 @@ feature would work in practice.
       Use case resumes at step 5.
 
 ---
-#### 5.4.7 Use case 7: Add a task
+#### 6.4.7 Use case 7: Add a task
 
 **Main Success Scenario (MSS):**
 
@@ -794,7 +811,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 5.4.8 Use case 8: List all tasks
+#### 6.4.8 Use case 8: List all tasks
 
 **Main Success Scenario (MSS):**
 
@@ -805,7 +822,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.9 Use case 9: Mark a task
+#### 6.4.9 Use case 9: Mark a task
 
 **Main Success Scenario (MSS):**
 
@@ -842,7 +859,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 5.4.10 Use case 10: Unmark a task
+#### 6.4.10 Use case 10: Unmark a task
 
 **Main Success Scenario (MSS):**
 
@@ -875,7 +892,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 5.4.11 Use case 11: Find tasks assigned to an individual
+#### 6.4.11 Use case 11: Find tasks assigned to an individual
 
 **Main Success Scenario (MSS):**
 
@@ -892,7 +909,7 @@ feature would work in practice.
   Use case ends.
 
 ---
-#### 5.4.12 Use case 12: Find the group of individuals assigned to a task
+#### 6.4.12 Use case 12: Find the group of individuals assigned to a task
 
 **Main Success Scenario (MSS):**
 
@@ -909,7 +926,7 @@ feature would work in practice.
   Use case ends.
 
 ---
-#### 5.4.13 Use case 13: Filter persons based on tag
+#### 6.4.13 Use case 13: Filter persons based on tag
 
 **Main Success Scenario (MSS):**
 
@@ -928,7 +945,7 @@ feature would work in practice.
     Use case ends.
   
 ---
-#### 5.4.14 Use case 14: View all assigned persons and tasks
+#### 6.4.14 Use case 14: View all assigned persons and tasks
 
 **Main Success Scenario (MSS):**
 
@@ -938,7 +955,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.15 Use case 15: View assigned persons
+#### 6.4.15 Use case 15: View assigned persons
 
 **Main Success Scenario (MSS):**
 
@@ -948,7 +965,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.16 Use case 16: View assigned tasks
+#### 6.4.16 Use case 16: View assigned tasks
 
 **Main Success Scenario (MSS):**
 
@@ -958,7 +975,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.17 Use case 17: View a person's details
+#### 6.4.17 Use case 17: View a person's details
 
 **Main Success Scenario (MSS):**
 
@@ -968,7 +985,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.18 Use case 18: View a task's details
+#### 6.4.18 Use case 18: View a task's details
 
 **Main Success Scenario (MSS):**
 
@@ -978,7 +995,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.19 Use case 19: View all unassigned persons and tasks
+#### 6.4.19 Use case 19: View all unassigned persons and tasks
 
 **Main Success Scenario (MSS):**
 
@@ -988,7 +1005,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.20 Use case 20: View unassigned persons
+#### 6.4.20 Use case 20: View unassigned persons
 
 **Main Success Scenario (MSS):**
 
@@ -998,7 +1015,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 5.4.21 Use case 21: View unassigned tasks
+#### 6.4.21 Use case 21: View unassigned tasks
 
 **Main Success Scenario (MSS):**
 
@@ -1008,7 +1025,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-### 5.5 Non-Functional Requirements
+### 6.5 Non-Functional Requirements
 
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
 2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation
@@ -1018,7 +1035,7 @@ feature would work in practice.
 5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
 
-### 5.6 Glossary
+### 6.6 Glossary
 
 #### *A*
 * **addp**: Add a new person to the list.
@@ -1073,7 +1090,7 @@ feature would work in practice.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix: Instructions for manual testing
+## 7. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -1083,7 +1100,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 6.1 Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -1100,7 +1117,7 @@ testers are expected to do more *exploratory* testing.
 3. _{ more test cases …​ }_
 
 
-### 6.2 Deleting a person
+### 7.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -1115,7 +1132,7 @@ testers are expected to do more *exploratory* testing.
 
 
 
-### 6.3 Assigning a task to a person
+### 7.3 Assigning a task to a person
 
 1. Assigning a task to a person while all tasks and persons are being shown
 
@@ -1133,7 +1150,7 @@ testers are expected to do more *exploratory* testing.
       larger than the number of persons or tasks contained in the list displayed)<br>
       Expected: similar to previous.
 
-### 6.4 Marking a task as completed
+### 7.4 Marking a task as completed
 
 1. Marking a task that has not been assigned to any persons as completed
 
@@ -1157,7 +1174,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 6.5 Unmarking a task as not completed
+### 7.5 Unmarking a task as not completed
 
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
@@ -1181,7 +1198,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
-### 6.6 Adding a task
+### 7.6 Adding a task
 
 1. Adding a task with no deadline
    1. Prerequisites: There are no tasks with the same title present. 
@@ -1203,7 +1220,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`<br>, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional).
       Expected: Similar to previous
     
-### 6.7 Deleting a task
+### 7.7 Deleting a task
 
 1. Deleting a task while all task are being shown
 
@@ -1215,14 +1232,14 @@ testers are expected to do more *exploratory* testing.
   4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
-### 6.8 Listing all tasks 
+### 7.8 Listing all tasks 
 
 1. Listing all tasks
    1. Prerequisites: None
    2. Test case: `listt`
       Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in status message.
 
-### 6.9 Filtering persons by tag
+### 7.9 Filtering persons by tag
 
 1. There are persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified. 
@@ -1242,7 +1259,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
       Expected: Similar to previous.
 
-### 6.9 Viewing assigned and unassigned tasks and persons
+### 7.10 Viewing assigned and unassigned tasks and persons
 
   1. There are assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons with assignments.
@@ -1281,7 +1298,7 @@ testers are expected to do more *exploratory* testing.
      4. Test case: `viewunassignedt` <br>
         Expected: No tasks are displayed. "There are no unassigned tasks" shown in status message.
 
-### 6.10 Viewing task and person details
+### 7.11 Viewing task and person details
 
   1. Task and person details are available in OfficeConnect.
      1. Prerequisites: The specified task and person indices are valid.
