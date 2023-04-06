@@ -11,18 +11,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateTutorialException;
 import seedu.address.model.event.exceptions.TutorialNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
- * A list of tutorial that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}.
- * As such, adding and updating of tutorial uses Person#isSamePerson(Person) for equality to
- * ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
- * However, the removal of a person uses Person#equals(Object) to ensure that the person with exactly the
- * same fields will be removed.
+ * Lists the tutorial that enforces uniqueness between its elements and does not allow nulls.
+ * A tutorial is considered unique by comparing using {@code Tutorial#isSameTutorial(Tutorial)}.
+ * As such, adding and updating of tutorial uses Tutorial#isSameTutorial(Tutorial) for equality to
+ * ensure that the tutorial being added or updated is unique in terms of identity in the UniqueTutorialList.
+ * However, the removal of a tutorial uses Tutorial#equals(Object) to ensure that the tutorial with
+ * exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Tutorial#isSameTutorial(Tutorial)
  */
 public class UniqueTutorialList implements Iterable<Tutorial> {
 
@@ -39,9 +38,10 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Checks whether an event is contained in the list universally
-     * @param nameOfEvent Name of event
-     * @return A boolean indicator
+     * Checks whether an event is contained in the list universally.
+     *
+     * @param nameOfEvent Name of event.
+     * @return A boolean indicator.
      */
     public boolean containsEventName(String nameOfEvent) {
         requireNonNull(nameOfEvent);
@@ -49,9 +49,10 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Checks whether a note is contained universally
-     * @param note Note to check upon
-     * @return A boolean indicator
+     * Checks whether a note is contained universally.
+     *
+     * @param note Note to check upon.
+     * @return A boolean indicator.
      */
     public boolean containsNote(Note note) {
         requireNonNull(note);
