@@ -150,7 +150,7 @@ Format:
 > 
 > :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
 > 
-> ![EditFormWindow](images/editForm.jpg)
+> ![EditFormWindow](images/EditForm.png)
 
 Keyboard shortcut:
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
