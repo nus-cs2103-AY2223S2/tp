@@ -44,7 +44,7 @@ Contacts can be queried by their `ContactIndex` instead of their index in `Obser
     * Justification: To display the schedule of the `Person` or `User`
   * **`TimingRecommender`** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
     * What it does: Looks through all participant's timetables and find time slots that every participant is free.
-    * Justification: Justification: Using an automated tool to schedule meetups is more efficient compared to relying on NUS students to manually message each other to find a suitable meeting time.
+    * Justification: Using an automated tool to schedule meetups is more efficient compared to relying on NUS students to manually message each other to find a suitable meeting time.
   * **`meet` Command and `TimingRecommender` integration** [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
     * Participated and assisted in the integration work.
 
