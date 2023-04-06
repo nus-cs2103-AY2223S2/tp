@@ -94,8 +94,63 @@ Some example commands you can try:
 
 ---
 
+## Introduction to GoodMatch
+
+### Summary
+GoodMatch serves as a platform for hiring managers to manage and keep track of job listings. Essentially, it functions as a list of job listings, whereby details of each listing can be managed via various commands (which will be explained further in later parts of this guide).
+
+### Listing
+A job listing is the basic building block of GoodMatch. It helps managers to keep track and display all the details relating to the job. Job listings can be created, deleted, or edited. <br> A job listing in GoodMatch contains the following fields:
+
+#### Title
+What the job listing is called. It serves as an identifier for a job listing.<br> Some constraints that a job title include:
+- It is **compulsory** in a job listing.
+- Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
+- Titles must only contain alphanumeric characters.
+
+#### Description
+A simple description of what the job entails.
+- It is **compulsory** in a job listing.
+
+#### Applicants List
+A list of people who applied for the job.
+- It is possible for a job listing to have no applicants.
+
+#### Platforms released
+A list of job platforms on which the job listing has been publicized.
+- It is possible for a job listing to have no platforms released.
+
+### Applicant
+An applicant refers to someone who has applied for a job listing. Applicants are displayed according to their names and are specific to each job listing.
+- An applicant must have a name.
+- An applicant's name must contain only alphanumeric characters.
+- Applicants with identical names are allowed in the same job listing.
+- Can be managed individually or as a whole list in each job listing.
+
+#### IDs
+In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing. 
+<br><br> 
+
+> If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
+
+> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#6969`
+
+
+### Platform
+A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are Linkedin, Indeed, etc.
+- A platform must have a name.
+- A platform's name must contain only alphanumeric characters.
+- Platforms in the same listing cannot have identical names (**no duplicates**).
+- Can be managed individually as a whole list in each job listing.
+
+### Commands
+There are various commands available in GoodMatch which will allow users to manage listings, applicants and platforms. These commands will be discussed in the following sections.
+
+
+---
+
 ## **Features**
-Here is a list of GM features, click on them to jump to the section!
+Here is a list of GM features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
 
 1.  [`help`](#viewing-help--help)
 2.  [`view`](#viewing-all-job-listings--view)
