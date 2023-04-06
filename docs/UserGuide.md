@@ -41,23 +41,23 @@ managers to efficiently delegate tasks in an organised manner.
 #### 1.2 Prefixes used in commands
 Below are the prefixes we use in commands.
 
-| Prefix     | Corresponding Input | Input Meaning             | Example Usage              | Input Restrictions                                                                                                    |
-|------------|---------------------|---------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| **n/**     | NAME                | Name of person            | n/Peter                    | Names given to persons must be unique, should only contain alphanumeric characters and spaces and should not be blank |
-| **p/**     | PHONE NUMBER        | Phone number of person    | p/94738484                 | Phone number entered must conform to Singapore numbers (8 digits) and start wth either 6. 8 or 9. It is also assumed +65 is not necessary.                                                 |
-| **e/**     | EMAIL               | Email of person           | e/nancy@gmail.com          | Emails must have an @                                                                                                 |
-| **a/**     | ADDRESS             | Address of person         | a/Sims Avenue 6            | NA                                                                                                                    |
-| **tag/**   | TAG                 | Tags given to person      | tag/Logistics              | NA                                                                                                                    |
-| **t/**     | TITLE               | Title of task             | t/Work on Project X        | Titles given to tasks must be unique, should only contain alphanumeric characters and spaces and should not be blank  |                                                                         
-| **c/**     | CONTENT             | Content of task           | c/Complete slides for Mr Y | NA                                                                                                                    |
-| **st/**    | STATUS              | Completion status of task | st/true                    | Only true or false values allowed                                                                                     |
-| **dl/**    | DEADLINE            | Deadline set for task     | dl/2023-05-23 20:00        | Date format for deadline is given by yyyy-mm-dd HH:SS, time(HH:SS) is optional                                        |
-| **ti/**    | INDEX               | Index of task             | ti/2                       | Only indexes displayed in GUI are valid                                                                               |
-| **pi/**    | INDEX               | Index of person           | pi/4                       | Only indexes displayed in GUI are valid                                                                               |
+| Prefix     | Corresponding Input | Input Meaning             | Example Usage              | Input Restrictions                                                                                                                         |
+|------------|---------------------|---------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| **n/**     | NAME                | Name of person            | n/Peter                    | Names given to persons must be unique, should only contain alphanumeric characters and spaces and should not be blank.                     |
+| **p/**     | PHONE NUMBER        | Phone number of person    | p/94738484                 | Phone number entered must conform to Singapore numbers (8 digits) and start wth either 6. 8 or 9. It is also assumed +65 is not necessary. |
+| **e/**     | EMAIL               | Email of person           | e/nancy@gmail.com          | Emails must contain an @.                                                                                                                  |
+| **a/**     | ADDRESS             | Address of person         | a/Sims Avenue 6            | NA                                                                                                                                         |
+| **tag/**   | TAG                 | Tags given to person      | tag/Logistics              | NA                                                                                                                                         |
+| **t/**     | TITLE               | Title of task             | t/Work on Project X        | Titles given to tasks must be unique, should only contain alphanumeric characters and spaces and should not be blank.                      |                                                                         
+| **c/**     | CONTENT             | Content of task           | c/Complete slides for Mr Y | NA                                                                                                                                         |
+| **st/**    | STATUS              | Completion status of task | st/true                    | Only true or false values allowed.                                                                                                         |
+| **dl/**    | DEADLINE            | Deadline set for task     | dl/2023-05-23 20:00        | Date format for deadline is given by yyyy-mm-dd HH:SS, time(HH:SS) is optional.                                                            |
+| **ti/**    | INDEX               | Index of task             | ti/2                       | Only indexes displayed in displayed task list are valid.                                                                                   |
+| **pi/**    | INDEX               | Index of person           | pi/4                       | Only indexes displayed in displayed person list are valid.                                                                                 |
 
 - All Prefix listed above **SHOULD NOT** be used in any Corresponding Input.  
   (e.g `ADDRESS` cannot be a/Clementi Road p/Avenue 5 as p/ is a Prefix)
-- After entering a Prefix its Corresponding Input, there should be a space before the next Prefix and its Corresponding Input.  
+- After entering a Prefix and its Corresponding Input, there should be a space before the next Prefix and its Corresponding Input.  
   (e.g `addp n/Peterp/95748483e/pter@gmail.coma/Sims Drive 6` is an invalid command format)
 
 
@@ -112,14 +112,17 @@ learn more about new features.
 
 **:information_source: Notes about the command format:** <br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [Prefix] (#12-prefixes-used-in-commands) section to recap the meaning of these parameters and how they should be used!<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [[Prefix]((#12-prefixes-used-in-commands))] section to recap the meaning of these parameters and how they should be used!<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional, while those not in square brackets are compulsory.<br>
   e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…` can be used as (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+
+* If the same command is keyed in multiple times, only the last command will be used. <br>
+  e.g if you specify `assign pi/1 ti/2 assign pi/1 ti/3`, only `assign pi/1 ti/3` is taken.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -523,7 +526,7 @@ _Details coming soon ..._
 | **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
 | **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| **Edit Tasks**              | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                       |
+| **Edit Tasks**              | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                       |
 | **Exit**                    | `exit`                                                                                                                                                                       |
 | **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |

@@ -334,7 +334,7 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
       to execute the findt command if the current display is empty.
 
 ### 3.5 Edit a Task
-Syntax: `editt INDEX title/TITLE c/CONTENT st/STATUS` </br>
+Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` </br>
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
@@ -467,7 +467,7 @@ Below is a sequence diagram that illustrates how a user can see all tasks stored
 ![ListTaskSequenceDiagram](images/ListTaskSequenceDiagram.png)
 
 ### 3.10 Filter persons according to tag
-Syntax: `filterp t/TAG`  
+Syntax: `filterp tag/TAG`  
 Purpose: Allows users to find all persons with the specified tag
 
 #### 3.10.1 Implementation
@@ -545,54 +545,26 @@ As we slowly improve OfficeConnect to provide support for managers and companies
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                | So that I can…​                                                        |
-|----------|-----------------|---------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user        | see usage instructions                      | refer to instructions when I forget how to use the App                 |
-| `* * *`  | manager         | add tasks                                   |                                                                        |
-| `* * *`  | manager         | edit tasks                                  | keep the task updated with the most updated information                |
-| `* * *`  | manager         | delete tasks                                | remove tasks that I no longer need                                     |
-| `* * *`  | manager         | mark tasks as done and undone               | keep track of tasks that are completed                                 |
-| `* * *`  | manager         | find tasks assigned to specific subordinate | better manage my subordinates workload                                 |
-| `* * *`  | manager         | check all ongoing tasks available           | better delegate my tasks                                               |
-| `* * *`  | manager         | assign tasks to a subordinate               | keep track of which subordinate is in charge of which task             |
-| `* * *`  | manager         | unassign tasks from a subordinate           | assign this task to other subordinate                                  |
-| `* * *`  | manager         | add a subordinate                           |                                                                        |
-| `* * *`  | manager         | delete a subordinate                        | remove subordinates that I no longer need                              |
-| `* * *`  | manager         | find a subordinate by name                  | locate details of persons without having to go through the entire list |
-| `* * *`  | manager         | filter subordinates based on their department(tag) | locate subordinates based on their department(tag)                     |
-| `* * *`  | manager         | view assigned tasks and persons             | have an overview of tasks and persons with assigned tasks              |
-| `* * *`  | manager         | view unassigned tasks and persons           | have an overview of tasks and persons without assigned tasks           |
+| Priority | As a …​  | I want to …​                                       | So that I can…​                                                        |
+|----------|----------|----------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                             | refer to instructions when I forget how to use the App                 |
+| `* * *`  | manager  | add tasks                                          |                                                                        |
+| `* * *`  | manager  | edit tasks                                         | keep the task updated with the most updated information                |
+| `* * *`  | manager  | delete tasks                                       | remove tasks that I no longer need                                     |
+| `* * *`  | manager  | mark tasks as done and undone                      | keep track of tasks that are completed                                 |
+| `* * *`  | manager  | find tasks assigned to specific subordinate        | better manage my subordinates workload                                 |
+| `* * *`  | manager  | check all ongoing tasks available                  | better delegate my tasks                                               |
+| `* * *`  | manager  | assign tasks to a subordinate                      | keep track of which subordinate is in charge of which task             |
+| `* * *`  | manager  | unassign tasks from a subordinate                  | assign this task to other subordinate                                  |
+| `* * *`  | manager  | add a subordinate                                  |                                                                        |
+| `* * *`  | manager  | delete a subordinate                               | remove subordinates that I no longer need                              |
+| `* * *`  | manager  | find a subordinate by name                         | locate details of persons without having to go through the entire list |
+| `* * *`  | manager  | filter subordinates based on their department(tag) | locate subordinates based on their department(tag)                     |
+| `* * *`  | manager  | view assigned tasks and persons                    | have an overview of tasks and persons with assigned tasks              |
+| `* * *`  | manager  | view unassigned tasks and persons                  | have an overview of tasks and persons without assigned tasks           |
 
 
-#### 6.3.1 Example Usage
-
-> addt t/Draft proposal c/Complete proposal by 1st March st/false
-
-- New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
-
-> listt
-
-1. Finish report; Status: Undone; Content: Complete report for Mr Chan by 2nd March
-2. Send email to team; Status: Done; Content: Send an email regarding office hours
-
-> findt report
-
-1. Finish report
-
-> deletet 1
-
-- Deleted task: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
-
-> exit
-
-
-In the example above, the user story is clearly defined at the top, followed by the acceptance criteria for the feature.
-Below that, we have a series of example usages, shown in a code editor block to provide clarity and context for how the
-feature would work in practice.
-
-*{More to be added}*
-
-### 6.4 Use cases
+### 6.3 Use cases
 
 <div markdown="span" class="alert alert-info">
 
@@ -602,7 +574,7 @@ feature would work in practice.
 </div>
 
 ---
-#### 6.4.1 Use case 1: Add a person
+#### 6.3.1 Use case 1: Add a person
 
 **Main Success Scenario (MSS):**
 
@@ -623,7 +595,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.2 Use case 2: Delete a person
+#### 6.3.2 Use case 2: Delete a person
 
 **Main Success Scenario (MSS):**
 
@@ -650,7 +622,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 6.4.3 Use case 3: Delete a task
+#### 6.3.3 Use case 3: Delete a task
 
 **Main Success Scenario (MSS):**
 
@@ -677,7 +649,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 6.4.4 Use case 4: Assign a task to a person
+#### 6.3.4 Use case 4: Assign a task to a person
 
 **Main Success Scenario (MSS):**
 
@@ -726,7 +698,7 @@ feature would work in practice.
       Use case resumes at step 2.
 
 ---
-#### 6.4.5 Use case 5: Remove assignment of task from a person
+#### 6.3.5 Use case 5: Remove assignment of task from a person
 
 **Main Success Scenario (MSS):**
 
@@ -763,7 +735,7 @@ feature would work in practice.
 
 ---
 
-#### 6.4.6 Use case 6: Consulting Help Window
+#### 6.3.6 Use case 6: Consulting Help Window
 
 **Main Success Scenario (MSS):**
 
@@ -790,7 +762,7 @@ feature would work in practice.
       Use case resumes at step 5.
 
 ---
-#### 6.4.7 Use case 7: Add a task
+#### 6.3.7 Use case 7: Add a task
 
 **Main Success Scenario (MSS):**
 
@@ -811,7 +783,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.8 Use case 8: List all tasks
+#### 6.3.8 Use case 8: List all tasks
 
 **Main Success Scenario (MSS):**
 
@@ -822,7 +794,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.9 Use case 9: Mark a task
+#### 6.3.9 Use case 9: Mark a task
 
 **Main Success Scenario (MSS):**
 
@@ -859,7 +831,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.10 Use case 10: Unmark a task
+#### 6.3.10 Use case 10: Unmark a task
 
 **Main Success Scenario (MSS):**
 
@@ -892,7 +864,7 @@ feature would work in practice.
       Use case ends.
 
 ---
-#### 6.4.11 Use case 11: Find tasks assigned to an individual
+#### 6.3.11 Use case 11: Find tasks assigned to an individual
 
 **Main Success Scenario (MSS):**
 
@@ -909,7 +881,7 @@ feature would work in practice.
   Use case ends.
 
 ---
-#### 6.4.12 Use case 12: Find the group of individuals assigned to a task
+#### 6.3.12 Use case 12: Find the group of individuals assigned to a task
 
 **Main Success Scenario (MSS):**
 
@@ -926,7 +898,7 @@ feature would work in practice.
   Use case ends.
 
 ---
-#### 6.4.13 Use case 13: Filter persons based on tag
+#### 6.3.13 Use case 13: Filter persons based on tag
 
 **Main Success Scenario (MSS):**
 
@@ -945,7 +917,7 @@ feature would work in practice.
     Use case ends.
   
 ---
-#### 6.4.14 Use case 14: View all assigned persons and tasks
+#### 6.3.14 Use case 14: View all assigned persons and tasks
 
 **Main Success Scenario (MSS):**
 
@@ -955,7 +927,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.15 Use case 15: View assigned persons
+#### 6.3.15 Use case 15: View assigned persons
 
 **Main Success Scenario (MSS):**
 
@@ -965,7 +937,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.16 Use case 16: View assigned tasks
+#### 6.3.16 Use case 16: View assigned tasks
 
 **Main Success Scenario (MSS):**
 
@@ -975,7 +947,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.17 Use case 17: View a person's details
+#### 6.3.17 Use case 17: View a person's details
 
 **Main Success Scenario (MSS):**
 
@@ -985,7 +957,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.18 Use case 18: View a task's details
+#### 6.3.18 Use case 18: View a task's details
 
 **Main Success Scenario (MSS):**
 
@@ -995,7 +967,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.19 Use case 19: View all unassigned persons and tasks
+#### 6.3.19 Use case 19: View all unassigned persons and tasks
 
 **Main Success Scenario (MSS):**
 
@@ -1005,7 +977,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.20 Use case 20: View unassigned persons
+#### 6.3.20 Use case 20: View unassigned persons
 
 **Main Success Scenario (MSS):**
 
@@ -1015,7 +987,7 @@ feature would work in practice.
    Use case ends.
 
 ---
-#### 6.4.21 Use case 21: View unassigned tasks
+#### 6.3.21 Use case 21: View unassigned tasks
 
 **Main Success Scenario (MSS):**
 
@@ -1025,17 +997,18 @@ feature would work in practice.
    Use case ends.
 
 ---
-### 6.5 Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions.
 2. Maintainability: The system shall be designed to allow for easy maintenance and updates, with clear documentation
    and modular architecture.
-3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux).
+3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux). For MacOS users specifically, **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** is required.
 4. Interoperability: The system shall be able to exchange data with other systems using standard formats and protocols.
 5. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
+6. Accessibility: The system shall be operable even without an internet connection
 
-### 6.6 Glossary
+### 6.5 Glossary
 
 #### *A*
 * **addp**: Add a new person to the list.
@@ -1113,8 +1086,6 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 
 ### 7.2 Deleting a person
@@ -1313,3 +1284,6 @@ testers are expected to do more *exploratory* testing.
         Expected: No task details are displayed. "Task index is invalid" shown in status message.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
         Expected: No person details are displayed. "Person index is invalid" shown in status message.
+
+--------------------------------------------------------------------------------------------------------------------
+## 8. Appendix: Effort
