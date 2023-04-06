@@ -106,6 +106,8 @@ title: Developer Guide
      * [Arrange persons by criteria](#arrange-persons-by-criteria)
      * [Generate a sample EduMate](#generate-a-sample-edumate)
      * [Suggest meetup locations and times](#suggest-meetup-locations-and-times)
+     * [Organise and confirm meetings](#organise-and-confirm-meetings)
+     * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
    * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
@@ -2008,142 +2010,296 @@ testers are expected to do more *exploratory* testing.
 
 ### **Add a new person**
 
-`add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: New person added to EduMate.
+Context: There is no contact named "Thomas" in `EduMate`
 
-`add n/Edward`
+Command executed: `add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
-Expected Output in the Command Output Box: Error message for invalid command format.
+Expected Output in the Person List: New person added to `EduMate`.
+
+#### **_Scenario 2_**
+
+Context: There is contact named "Edward" in `EduMate`
+
+Command executed: `add n/Edward`
+
+Expected Output in the Command Response Box: `This person already exists in the address book`
 
 ### **View a person**
-`view`
 
-Expected Output in the Profile Panel: The user's (you) profile is shown.
+#### **_Scenario 1_**
 
-`view 5`
+Context: None needed.
 
-Expected Output in the Profile Panel: The fifth person's profile is shown.
+Command executed: `view`
 
-`view n/Thomas`
+Expected Output in the Profile Panel: The user's profile is shown.
+
+#### **_Scenario 2_**
+
+Context: There exists a `Person` with `ContactIndex 5` in `EduMate`.
+
+Command executed: `view 5`
+
+Expected Output in the Profile Panel: The `Person` with `ContactIndex 5` is shown.
+
+#### **_Scenario 3_**
+
+Context: Thomas' profile is present in `EduMate`.
+
+Command executed: `view n/Thomas`
 
 Expected Output in the Profile Panel: Thomas' profile is shown.
 
 ### **Edit a person**
 
-`edit 3 n/Henry`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: The third person's name is changed to Henry.
+Context: There exists a `Person` with `ContactIndex 3` in `EduMate`.
 
-`edit n/Gordon`
+Command executed: `edit 3 n/Henry`
+
+Expected Output in the Person List: The Person Card with `ContactIndex 3` contains the name Henry.
+
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `edit n/Gordon`
 
 Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 ### **Delete a person**
 
-`delete 4`
+#### **_Scenario 1_**
 
-Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
+Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
 
-`delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
+Command executed: `delete 4`
 
-Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
+Expected Output in the Person List: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
 
-`delete`
+#### **_Scenario 2_**
 
-Expected Output in the Command Output Box: Error message for invalid command format.
+Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate` and there is no other contact with the name "James".
+
+Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
+
+Expected Output in the Person List: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
+
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `delete`
+
+Expected Output in the Command Output Box: Invalid command format!
+`delete`: Deletes the person identified by the index number used in the displayed person list.
+
+#### **_Scenario 4_**
+
+Context: None needed.
+
+Command executed: `delete 0`
+
+Expected Output in the Command Response Box: Cannot delete your own profile!
 
 ### **Add a tag to a person**
 
 The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
 `tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
 
-`tag 1 m/CS1234`
+#### **_Scenario 1_**
 
-Expected Output in the PersonList: The first person has a new `ModuleTag` added to its 
-`ModuleTagSet` with `tagName` of `CS1234`, if a `ModuleTag` with the same `tagName` does not already exist
-in the person's `ModuleTagSet`.
+Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleTag`. `User` has CS1234 as `ModuleTag`.
 
-`tag 2 m/CS2345 mon 12 13`
+Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: The second person has a new `ModuleTag` added to its `ModuleTagSet`
-with `tagName` of `CS1234`, if a `ModuleTag` with the same `TagName` does not already exist in the person's
-`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`. 
+Expected Output in the PersonList: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
 
-`tag 3 g/Friend`
+#### **_Scenario 2_**
 
-Expected Output in the PersonList: The third person has a new `GroupTag` added to its `GroupTagSet` with a `tagName` of
-`Friend`, if a `GroupTag` with the same `tagName` does not already exist in the person's `GroupTagSet`
+Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleTag`. `User` does not have CS1234 as `ModuleTag`.
+
+Command executed: `tag 1 m/CS1234`
+
+Expected Output in the PersonList: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleTag`. `User` has CS2345 as `ModuleTag`.
+
+Context executed: `tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will  be added.
+
+#### **_Scenario 4_**
+
+Context: `Person` with `ContactIndex 2` exists and has CS2345 `ModuleTag`. `User` has CS2345 as `ModuleTag`.
+
+Context executed: `tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: Lesson added.
+
+#### **_Scenario 5_**
+
+Context: `Person` with `ContactIndex 3` exists and does not have `Friend` as a `GroupTag`.
+
+Command executed: `tag 3 g/Friend`
+
+Expected Output in the PersonList: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
 
 
 ### **Remove a tag from a person**
 
-`untag 1 m/CS1234`
+#### **_Scenario 1_**
 
-Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its 
-`ModuleTagSet`. All lessons belonging to the `ModuleTag` will be dropped.
+Context: `Person` with `ContactIndex 1` exists and has `CS1234` as `ModuleTag`. `User` has CS1234 as `ModuleTag` as well.
 
-`untag 2 m/CS2345 mon 12 13`
+Command executed: `untag 1 m/CS1234`
 
-Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from 
-`ModuleTag` WITH `tagName` of `CS2345`.
+Expected Output in the PersonList: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
 
-`untag 3 g/Enemy`
+#### **_Scenario 2_**
 
-Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its 
-`GroupTagSet`. 
+Context: `Person` with `ContactIndex 2` exists and has CS2345 as `ModuleTag` with a Monday class from 12PM to 1PM and it is his only `Lesson` of CS2345. `User` has CS2345 as `ModuleTag` as well.
+
+Command executed: `untag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 3` exists and has Enemy as `GroupTag`.
+
+Command executed: `untag 3 g/Enemy`
+
+Expected Output in the PersonList: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
 
 ### **Filter persons by keywords**
 
-`find n/Albert`
+#### **_Scenario 1_**
+
+Context: None needed.
+
+Command executed: `find n/Albert`
 
 Expected Output in Person List: All contacts that have the word 'Albert' in their name.
 
-`find m/CS2103T`
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `find m/CS2103T`
 
 Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
-`find n/Albert m/CS2103T`
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `find n/Albert m/CS2103T`
 
 Expected Output in Person List: All contacts that have the word 'Albert' in their name and CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
-`sort`
+#### **_Scenario 1_**
 
-Expected Output in Person List: Contacts are sorted by index.
+Context: None needed.
 
-`sort n/a`
+Command executed: `sort`
+
+Expected Output in Person List: Contacts are sorted by `ContactIndex` in ascending order.
+
+#### **_Scenario 2_**
+
+Context: None needed.
+
+Command executed: `sort n/a`
 
 Expected Output in Person List: Contacts are sorted by name in ascending order.
 
-`sort g/d n/`
+#### **_Scenario 3_**
+
+Context: None needed.
+
+Command executed: `sort g/d n/`
 
 Expected Output in Person List: Contacts are sorted by number of groups in descending order, with names as tiebreaks.
 
 ### **Generate a sample EduMate**
 
-`sample 50`
+#### **_Scenario 1_**
+
+Context: None needed.
+
+Command executed: `sample 50`
 
 Expected Output in Person List: A random sample of 50 contacts is generated. Running it multiple times should result in different EduMates.
 
-`sample 101`
+#### **_Scenario 2_**
 
-Expected Output in Command Output Box: Error message for Invalid Size.
+Context: None needed.
+
+Command executed: `sample 101`
+
+Expected Output in Command Response Box: Error message for Invalid Size.
 
 ### **Suggest meetup locations and times**
 
-`meet 1 4 5`
+#### **_Scenario 1_**
 
-Expected Output in Command Output Box: Suggestions on where and when to meet.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
 
-`eat 1 4 5`
+Command executed: `meet 1 4 5`
 
-Expected Output in Command Output Box: Suggestions on where and when to eat.
+Expected Output in Command Response Box: Suggestions on where and when to meet.
 
-`study 1 4 5`
+#### **_Scenario 2_**
 
-Expected Output in Command Output Box: Suggestions on where and when to study.
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+
+Command executed: `eat 1 4 5`
+
+Expected Output in Command Response Box: Suggestions on where and when to eat.
+
+#### **_Scenario 3_**
+
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate`.
+
+Command executed: `study 1 4 5`
+
+Expected Output in Command Response Box: Suggestions on where and when to study.
+
+### **Organise and confirm meetings**
+
+#### **_Scenario 1_**
+
+Context: `Recommendation` with index 1 exists in Meet Up Recommendation Panel. Scheduled Meet Up Panel has no clashing meet ups with the `Recommendation` with index 1.
+
+Command executed: `organise 1`
+
+Expected Output in Scheduled Meet Up Panel: `Location`, `TimePeriod` and names of contacts with `ContactIndex 1, 4` and `5` will show.
+
+#### **_Scenario 2_**
+
+Context: `Person` with `ContactIndex 1, 4` and `5` exists in `EduMate` and they do not have any `Commitment` from 4PM - 6PM on Thursday.
+
+Command executed: `organise 1 4 5 d/THURSDAY T/16 18 l/Starbucks`
+
+Expected Output in Scheduled Meet Up Panel: `Location` of Starbucks, `TimePeriod` of 4PM - 6PM and names of contacts with `ContactIndex 1, 4` and `5` will show.
+
+### **Cancel scheduled meetings**
+
+#### **_Scenario 1_**
+
+Context: There is a scheduled `MeetUp` in the Scheduled Meet Up Panel of index 1, 2 and 3.
+
+Command executed: `unorganise 2`
+
+Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only left with `MeetUps` of index 1 and 3.
 
 ---
 
