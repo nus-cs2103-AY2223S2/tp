@@ -41,7 +41,8 @@ and take proactive measures to prevent the spread of the disease.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` 
 command to run
 the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+
+   A GUI similar to the following image should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)<br><br>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -206,6 +207,7 @@ Examples:
   and age `18` into DengueHotSpotTracker.
 * If a case with the same name, postal code, and age already exists in the DengueHotspotTracker,
   it cannot be added again.
+
 ![AddCommandExample](images/AddCommandExample.png)
 
 <br>
@@ -228,6 +230,7 @@ Format: `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 Examples:
 * `edit 1 p/912345 d/2001-01-01` edits the postal code and date of the first case to be `S912345` and `2001-01-01`
   respectively.
+
 * `edit 2 n/Betsy Crower v/` edits the name of the second case to be `Betsy Crower` and clears all variants tagged to that case.
 ![EditCommandExample](images/EditCommandExample.png)
 
@@ -252,6 +255,7 @@ Examples:
 command.
 * * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 
 2023 inclusive in the results of the `find` command.
+
 * `list` followed by `delete 2 3` deletes the second and third cases in DengueHotspotTracker.
 
 ![DeleteCommandExample](images/DeleteCommandExample.png)
@@ -312,7 +316,7 @@ Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/
 Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
 
-![result for find v/DENV1](images/findExample.png)
+![FindCommandExample](images/FindCommandExample.png)
 
 <br>
 
@@ -343,9 +347,12 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 
 Example:
 * `undo` after a `edit 2 n/Betsy Crower v/` command:
-  ![UndoCommandExample](images/UndoCommandExample.png)
+
+![UndoCommandExample](images/UndoCommandExample.png)
+
 * `redo` after the undo:
-  ![RedoCommandExample](images/RedoCommandExample.png)
+
+![RedoCommandExample](images/RedoCommandExample.png)
 <br>
 
 ### Changing the overview type : `overview`
