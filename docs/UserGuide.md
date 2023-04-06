@@ -29,11 +29,8 @@ Now it's time to **CONQUER** the semester!
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
-- [Features](#features)
-  - [Navigate to the Root Context](#navigate-to-the-root-context)
-  - [Navigate Relatively](#navigate-relatively)
-  - [Navigate Directly](#navigate-directly)
-  - [Navigate Backwards](#navigate-backwards)
+- [Command Manual](#command-manual)
+  - [Nav](#nav)
   - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
   - [List Modules](#list-modules)
   - [List Lectures of Modules](#list-lectures-of-modules)
@@ -225,15 +222,16 @@ Here are some **examples** of how the navigation system injects the necessary co
 
 ---
 
-## Features
+## Command Manual
 
-### Navigate to the Root Context
+### Nav
+**Navigate to the Root Context**
 
 > Sets the current context to the root context
 
 Format: `nav`
 
-### Navigate Relatively
+**Navigate Relatively**
 
 > Navigates relative to the current context to a module or lecture context
 
@@ -242,7 +240,7 @@ Format: `nav {module_code / lecture_name}`
 - `module_code` has to belong to an existing module that is a child of the current context
 - `lecture_name` has to belong to an existing lecture that is a child of the current context
 
-### Navigate Directly
+**Navigate Directly**
 
 > Navigates directly to the specified module or lecture context
 
@@ -251,7 +249,7 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 - `module_code` has to belong to an existing module
 - `lecture_name` has to belong to an existing lecture
 
-### Navigate Backwards
+**Navigate Backwards**
 
 > Navigates to the parent context of the current context
 
