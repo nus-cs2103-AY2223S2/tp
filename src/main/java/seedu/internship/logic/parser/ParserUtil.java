@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.StringUtil;
@@ -17,7 +16,7 @@ import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -75,10 +74,14 @@ public class ParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(Integer.valueOf(trimmedStatus))) {
+        if (!StringUtil.isInteger(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new Status(Integer.valueOf(trimmedStatus));
+
+        if (!Status.isValidStatus(Integer.parseInt(trimmedStatus))) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(Integer.parseInt(trimmedStatus));
     }
 
     /**

@@ -1,9 +1,9 @@
 package seedu.internship.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Statistics;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Generates useful statistics on current internship application progress for display.

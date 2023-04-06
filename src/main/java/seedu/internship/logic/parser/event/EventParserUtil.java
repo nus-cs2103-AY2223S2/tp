@@ -2,6 +2,8 @@ package seedu.internship.logic.parser.event;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.DateTimeUtil;
 import seedu.internship.commons.util.StringUtil;
@@ -11,8 +13,6 @@ import seedu.internship.model.event.End;
 import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-
-import java.time.LocalDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various EventParser classes.
@@ -84,16 +84,10 @@ public class EventParserUtil extends ParserUtil {
     /**
      * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static EventDescription parseEventDescription(String description) throws ParseException {
+    public static EventDescription parseEventDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        // No need ot check valid descripiton , as anything an be in description
-        // if (!Description.isValidDescription(trimmedDescription)) {
-        //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        // }
         return new EventDescription(trimmedDescription);
     }
 }

@@ -53,7 +53,8 @@ public class LogicManagerTest {
         JsonEventCatalogueStorage eventCatalogueStorage =
                 new JsonEventCatalogueStorage(temporaryFolder.resolve("eventcatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage,eventCatalogueStorage);
+        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage,
+                eventCatalogueStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -86,7 +87,8 @@ public class LogicManagerTest {
                         .resolve("ioExceptionInternshipCatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage, eventCatalogueStorage);
+        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage,
+                eventCatalogueStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -140,7 +142,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
