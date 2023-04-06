@@ -126,7 +126,7 @@ Examples:
 
 Increments the selected person's Transaction Count by the specified amount.
 
-Format: `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
+Format: `incr INDEX tr/TRANSACTION_COUNT_INCREMENT_AMOUNT`
 
 - Increments the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The increment amount cannot be left empty.
@@ -143,7 +143,7 @@ Examples:
 
 Decrements the selected person's Transaction Count by the specified amount.
 
-Format: `decr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
+Format: `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT`
 
 - Decrements the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The decrement amount cannot be left empty.
@@ -278,7 +278,7 @@ Action | Format, Examples
 **Help** | `help`
 **Summary** | `summary`
 **Exit** | `exit`
-**Increment** | `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]` <br> e.g, `incr 1 tr/13`
-**Decrement** | `decr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]` <br> e.g, `decr 1 tr/13`
+**Increment** | `incr INDEX tr/TRANSACTION_COUNT_INCREMENT_AMOUNT` <br> e.g, `incr 1 tr/13`
+**Decrement** | `decr INDEX tr/TRANSACTION_COUNT_DECREMENT_AMOUNT` <br> e.g, `decr 1 tr/13`
 **Mark** | `mark INDEX m/NEED FOLLOWUP:yes/no` <br> e.g, `mark 1 m/yes`
 
