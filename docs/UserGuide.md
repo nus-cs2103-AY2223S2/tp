@@ -76,12 +76,13 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Patient Record Field | Prefix |
 |----------------------|--------|
 | NRIC                 | i/     |
-| Name                 | n/     |
-| Phone                | p/     |
-| Gender               | g/     |
-| Doctor               | ad/    |
-| Email                | e/     |
-| Address              | a/     |
+| Date Of Birth        | dob/   | 
+| Name                 | n/     |  
+| Phone                | p/     |  
+| Gender               | g/     |  
+| Doctor               | ad/    |  
+| Email                | e/     |  
+| Address              | a/     | 
 | Tag                  | t/     |
 | Drug Allergy         | d/     |
 | Medicine             | m/     |
@@ -103,6 +104,11 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
   (i.e. 0 or more times), t/friend t/family etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All commands from this point onwards are to be
+executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considered as invalid. Keywords following commands do
+not need to be in lower case.
+</div>
 
 ### Viewing help : `help`
 
@@ -163,7 +169,7 @@ Examples:
 
 ![Add](images/command_result/Add.png)
 
-Above is the execution result of the input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
 ### Editing a patient record: `edit`
 
