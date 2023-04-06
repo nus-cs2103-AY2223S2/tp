@@ -46,17 +46,17 @@ EduMateStorageManager .up.|> EduMateStorage
 EduMateStorageManager ..> JsonSerializableEduMate
 JsonSerializableEduMate -up-> "*" JsonAdaptedPerson
 JsonSerializableEduMate -up-> "1" JsonAdaptedUser
-JsonAdaptedPerson -up-> "*" JsonAdaptedGroupTag
+JsonAdaptedPerson -up-> "~*  " JsonAdaptedGroupTag
 JsonAdaptedPerson -up-> "*" JsonAdaptedModuleTag
 JsonAdaptedUser --|> JsonAdaptedPerson
 JsonSerializableEduMate -right-> "1" JsonAdaptedParticipants
-JsonSerializableEduMate --> "*" JsonAdaptedRecommendation
+JsonSerializableEduMate --> "~* " JsonAdaptedRecommendation
 JsonSerializableEduMate --> "*" JsonAdaptedMeetUp
 
 JsonAdaptedGroupTag ..|> JsonAdaptedTag
 JsonAdaptedModuleTag ..|> JsonAdaptedTag
 
-JsonAdaptedModuleTag --> "*" JsonAdaptedLesson
+JsonAdaptedModuleTag --> "~* " JsonAdaptedLesson
 
 JsonAdaptedMeetUp -[hidden]right-> JsonAdaptedRecommendation
 JsonAdaptedMeetUp -[hidden]left-> JsonAdaptedParticipants
