@@ -1023,7 +1023,7 @@ Similar to **UC03 Delete a contact**, except,
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
 1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
-1. _{possible UI Enhancements to handle interaction of overflowing text with Tags}_
+1. The current UI make use of **horizontal scroll bar** to handle interaction of overflowing text with Tags in the contact panel. To enhance the user experience, we propose to only display the tag count initially. If the user chooses to view a specific contact, the person card will then expand to show the full list of tags associated with that profile.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1046,14 +1046,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-2. Saving window preferences
+1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ### Adding a contact
 
