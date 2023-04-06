@@ -46,9 +46,16 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
         });
     }
 
-    public void setFeedbackToUser(List<CommandMessage> commandResult) {
-        requireNonNull(commandResult);
-        messageQueue.addAll(commandResult);
+
+    /**
+     * Displays the given list of {@code CommandMessage}. The order that the
+     * messages are displayed will follow the order of the given list.
+     *
+     * @param commandResults - the list of {@code CommandMessage} to display.
+     */
+    public void displayMessage(List<CommandMessage> commandResults) {
+        requireNonNull(commandResults);
+        messageQueue.addAll(commandResults);
     }
 
 
