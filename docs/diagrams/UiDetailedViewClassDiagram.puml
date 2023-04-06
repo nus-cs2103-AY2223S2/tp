@@ -1,4 +1,4 @@
-@startuml UiDetailViewClassDiagram
+@startuml UiDetailedViewClassDiagram
 !include style.puml
 
 skinparam RoundCorner 0
@@ -6,12 +6,12 @@ skinparam RoundCorner 0
 skinparam arrowThickness 1.1
 
 package Ui UI_COLOR_T1 {
-    Class DetailView UI_COLOR {
+    Class DetailedView UI_COLOR {
         -isUpdated: boolean
         -value: T
     }
 }
-show DetailView fields
+show DetailedView fields
 
 package JavaFX {
     Class "<<interface>>\nObjectProperty" as ObjectProperty #000000
@@ -23,10 +23,10 @@ package Java {
     Class "<<interface>>\nFunction" as Function #000000
 }
 
-DetailView --|> VBox
-DetailView -> Function
-DetailView ..> ObjectProperty
-DetailView ..> ChangeListener
+DetailedView --|> VBox
+DetailedView -> Function
+DetailedView ..> ObjectProperty
+DetailedView ..> ChangeListener
 
 ObjectProperty .right.> ChangeListener
 

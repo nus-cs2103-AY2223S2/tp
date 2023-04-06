@@ -1,15 +1,15 @@
-@startuml UiDetailViewPatientObjectDiagram
+@startuml UiDetailedViewPatientObjectDiagram
 !include style.puml
 
 skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
 
-Class "<u>detailpatientView:DetailView</u>" as DetailView UI_COLOR {
+Class "<u>detailedpatientView:DetailedView</u>" as DetailedView UI_COLOR {
     -isUpdated: boolean
     -value: T
 }
-show DetailView fields
+show DetailedView fields
 
 Class "<u>displayFunction:Function</u>" as Function #000000
 
@@ -20,7 +20,7 @@ Class "<u>:ModelManager</u>" as ModelManager LOGIC_COLOR
 
 ModelManager -> ObjectProperty
 ObjectProperty -> ChangeListener : updates >
-ChangeListener -> DetailView : updates >
-DetailView -> Function
+ChangeListener -> DetailedView : updates >
+DetailedView -> Function
 
 @enduml

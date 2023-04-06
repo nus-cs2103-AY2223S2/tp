@@ -1,4 +1,4 @@
-@startuml UiListViewPanelApptObjectDiagram
+@startuml UiListViewPanelVaxObjectDiagram
 !include style.puml
 
 skinparam RoundCorner 0
