@@ -30,6 +30,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandParserTest {
