@@ -500,7 +500,7 @@ Format: `exit`
 Alternative: Click "File" in menu bar > "Exit"
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The `exit` command and alternative also apply for **Timetable Windows** and **Customer Window**.
+The `exit` command and alternative (GUI mode) also apply for **Timetable Windows** and **Customer Window**.
 </div>
 
 ### Saving the data
