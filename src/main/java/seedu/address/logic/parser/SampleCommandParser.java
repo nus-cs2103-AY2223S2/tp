@@ -7,15 +7,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new SampleCommand object
  */
 public class SampleCommandParser implements Parser<SampleCommand> {
-    public static final String INVALID_SIZE = "Invalid size. Please select a number between 1 and 100 inclusive.";
+    public static final String MESSAGE_INVALID_SIZE =
+            "Invalid size. Please select a number between 1 and 100 inclusive.";
 
     @Override
     public SampleCommand parse(String args) throws ParseException {
         try {
             int size = ParserUtil.parseInt(args);
             if (size < 1 || size > 100) {
-                throw new ParseException(String.format(INVALID_SIZE));
-                // problem here is that it doesn't make use of the above line.
+                throw new ParseException(String.format(MESSAGE_INVALID_SIZE));
             }
             return new SampleCommand(size);
         } catch (ParseException pe) {

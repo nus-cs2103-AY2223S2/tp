@@ -12,12 +12,12 @@ public class SampleCommandParserTest {
 
     @Test
     public void parse_negativeSize_throwsParseException() {
-        assertParseFailure(parser, "-1", String.format(SampleCommandParser.INVALID_SIZE));
+        assertParseFailure(parser, "-1", String.format(SampleCommandParser.MESSAGE_INVALID_SIZE));
     }
 
     @Test
     public void parse_exceedSize_throwsParseException() {
-        assertParseFailure(parser, "101", String.format(SampleCommandParser.INVALID_SIZE));
+        assertParseFailure(parser, "101", String.format(SampleCommandParser.MESSAGE_INVALID_SIZE));
     }
 
     @Test

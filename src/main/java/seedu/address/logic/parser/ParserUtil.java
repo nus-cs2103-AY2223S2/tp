@@ -83,12 +83,13 @@ public class ParserUtil {
         if (trimmedInt.isEmpty()) {
             throw new ParseException(MESSAGE_INVALID_INT);
         }
+        Integer integer;
         try {
-            Integer.parseInt(trimmedInt);
+            integer = Integer.parseInt(trimmedInt);
         } catch (NumberFormatException nfe) {
             throw new ParseException(MESSAGE_INVALID_INT);
         }
-        return Integer.parseInt(trimmedInt);
+        return integer;
     }
 
     /**
