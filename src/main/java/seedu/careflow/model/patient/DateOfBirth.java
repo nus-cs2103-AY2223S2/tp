@@ -69,7 +69,15 @@ public class DateOfBirth {
         if (formattedDate == null) {
             return false;
         }
-        return formattedDate.isBefore(maxRangeOfBirth) && formattedDate.isAfter(minRangeOfBirth);
+        return isBeforeOrEqual(formattedDate, maxRangeOfBirth) && isAfterOrEqual(formattedDate, minRangeOfBirth);
+    }
+
+    private static boolean isBeforeOrEqual(LocalDate date, LocalDate test) {
+        return date.isBefore(test) || date.isEqual(test);
+    }
+
+    private static boolean isAfterOrEqual(LocalDate date, LocalDate test) {
+        return date.isAfter(test) || date.isEqual(test);
     }
 
     @Override
