@@ -46,11 +46,12 @@ public class UnlinkCrewToFlightCommand implements Command {
 
     @Override
     public String toString() {
-        String result = crews.entrySet()
+        String result = crews.values()
                 .stream()
-                .map((entry) -> String.format(
+                .map(crew -> String.format(
                         "%s",
-                        entry.getValue().toString()))
+                        crew.toString()
+                ))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
