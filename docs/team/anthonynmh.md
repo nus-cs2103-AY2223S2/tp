@@ -7,7 +7,8 @@ title: Anthony's Project Portfolio Page
 Project: EZ-Schedule
 
 EZ-Schedule is an application that allows for a high-level overview and managing of events,
-optimized for use via a Command Line Interface (CLI).
+optimized for use via a Command Line Interface (CLI). The app stores events chronologically 
+in a list format, while having a calendar for easy overview of events on a month-by-month basis.
 
 ## Summary of contributions
 
