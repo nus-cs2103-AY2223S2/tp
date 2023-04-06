@@ -10,8 +10,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Represents a Module's timeSlot in the module tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String)}
@@ -32,7 +30,7 @@ public class TimeSlot implements Comparable<TimeSlot> {
      * Constructs an {@code TimeSlot}.
      * @param timeSlot A valid timeSlot address.
      */
-    public TimeSlot(String timeSlot)  {
+    public TimeSlot(String timeSlot) {
         requireNonNull(timeSlot);
         String trimmedTimeSlot = timeSlot.trim();
         checkArgument(isValidTimeSlot(trimmedTimeSlot), MESSAGE_CONSTRAINTS);
@@ -47,8 +45,8 @@ public class TimeSlot implements Comparable<TimeSlot> {
             return true;
         }
         return timeSlot.toLowerCase().matches(VALIDATION_REGEX);
-            //Important: We need to change the string to lower case because the validation
-            //regex is in lower case.
+        //Important: We need to change the string to lower case because the validation
+        //regex is in lower case.
     }
 
     /**

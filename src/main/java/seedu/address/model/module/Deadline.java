@@ -51,7 +51,8 @@ public class Deadline implements Comparable<Deadline> {
     public static boolean isValidDate(String test) {
         if (test.equals(EMPTY_INPUT)) {
             return true;
-        } try {
+        }
+        try {
             DateFormat df = new SimpleDateFormat("ddMMyy HH:mm");
             df.setLenient(false);
             df.parse(test);

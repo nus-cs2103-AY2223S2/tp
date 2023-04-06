@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 
-import java.awt.color.ProfileDataException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -38,7 +37,7 @@ public class ParserUtil {
         if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             //Index is valid
             return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-        } if (trimmedIndex.matches("\\d+")) {
+        } else if (trimmedIndex.matches("\\d+")) {
             //Index is not valid because it cannot be stored as an int (overflow)
             throw new IndexException(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
