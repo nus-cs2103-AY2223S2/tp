@@ -166,7 +166,7 @@ Examples:
 
 ![Add](images/command_result/Add.png)
 
-Above is the execution result of the input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
 ### Editing a patient record: `edit`
 
