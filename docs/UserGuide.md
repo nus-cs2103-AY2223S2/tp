@@ -426,7 +426,7 @@ Opens Timetable Window.
 Format: `timetable_date date/YYYY-mm-DD`
 
 * Shows timetable of the week containing the given date.
-* Date must be valid and must only contains numeric characters and spaces.
+* Date must be valid and must only contain numeric characters and spaces.
 * Date must be of format: YYYY-mm-DD.
 * Along with `help` and `exit`, this is the one and only "special" command that Timetable Window can access (identical format).
 
