@@ -90,6 +90,20 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Returns true if the help window is minimized.
+     */
+    public boolean isMinimized() {
+        return getRoot().isIconified();
+    }
+
+    /**
+     * Returns the window back to the original unminimized state.
+     */
+    public void unMinimize() {
+        getRoot().setIconified(false);
+    }
+
+    /**
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML

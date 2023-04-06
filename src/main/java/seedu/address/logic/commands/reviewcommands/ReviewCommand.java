@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.reviewcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class ReviewCommand extends Command {
         List<Deck> deckList = model.getFilteredDeckList();
         boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
         if (isIndexOutOfBound) {
-            throw new CommandException(MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         } else if (model.getDeckSize(deckIndex.getZeroBased()) == 0) {
             throw new CommandException(MESSAGE_EMPTY_DECK);
         } else if (model.getDeckSizeFilteredTag(deckIndex.getZeroBased(), difficulties) == 0) {
