@@ -84,13 +84,13 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
-The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user. 
+The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
-Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc.
 
 ![Subclasses of Page abstract class](images/PageClasses.png)
 
-When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI. 
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
 
 ![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
 
@@ -139,7 +139,7 @@ The `Model` component,
   * model stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
   * model stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-  
+
 
 #### Relationship Between `Internship` and `Event` entities
 Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
@@ -187,38 +187,38 @@ Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execut
 
 Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
 
-Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.   
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.
 
-Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`. 
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`.
 
-Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`. 
+Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`.
 
 Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
 
 Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
 
-Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`. 
+Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`.
 
 Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
 Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
 
 Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
 
-Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI. 
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
-### Add Event feature 
+### Add Event feature
 The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
 
 #### Implementation
- 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`. 
+ 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`.
 
  2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
 
     2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
 
-The Activity Diagram for Add event is 
+The Activity Diagram for Add event is
 
 ![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
 
@@ -280,7 +280,7 @@ Step 1. The user enters the `clash` command into the CLI.
 
 Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
 
-Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, 
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance,
 which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
 
 Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
