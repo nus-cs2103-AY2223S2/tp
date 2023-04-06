@@ -13,6 +13,7 @@ import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import ezschedule.testutil.TypicalEvents;
 import org.junit.jupiter.api.Test;
 
 import ezschedule.commons.core.index.Index;
@@ -53,7 +54,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorDay_success() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -72,7 +73,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorWeek_success() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -91,7 +92,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_withRecurFactorMonth_success() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         String expectedMessage = String.format(RecurCommand.MESSAGE_SUCCESS, eventToRecur);
         Model expectedModel = new ModelManager(new Scheduler(model.getScheduler()), new UserPrefs());
 
@@ -162,7 +163,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurDailyWithClash_failure() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         Date clashDate = new Date(eventToRecur.getDate().date.plusDays(4).toString());
         String month = validDailyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
@@ -177,7 +178,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurWeeklyWithClash_failure() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         Date clashDate = new Date(eventToRecur.getDate().date.plusWeeks(5).toString());
         String month = validWeeklyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
@@ -192,7 +193,7 @@ public class RecurCommandTest {
 
     @Test
     public void execute_recurMonthlyWithClash_failure() {
-        Event eventToRecur = model.getFilteredEventList().get(0);
+        Event eventToRecur = TypicalEvents.ART;
         Date clashDate = new Date(eventToRecur.getDate().date.plusMonths(5).toString());
         String month = validMonthlyRecurCommandStub.intToStringMonth(clashDate.getMonth());
 
