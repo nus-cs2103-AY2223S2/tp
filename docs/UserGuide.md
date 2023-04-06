@@ -16,7 +16,7 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 1. Download the latest `wheregottime.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WhereGotTime.
+1. Copy the file to an **empty** folder that you want to use as the _home folder_ for your WhereGotTime. (e.g.: A new folder in your `Desktop`)
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wheregottime.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
