@@ -59,25 +59,36 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * (To be added)
-        * (To be added)
+        * Improve flow for Tutorial section to make it more approachable for users. ([#152](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/152))
+        * Update Additional Resources section with detailed instructions in running the program. ([#153](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/153))
+        * Add entries to FAQ section. ([#155](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/155))
+        * Add more screenshots to different sections where instructions could seem complicated. ([#155](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/155))
     * Developer Guide:
-        * A(To be added)
+        * Create UI implementation section which explains the majority of design considerations for UI. ([#108](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/108))
+        * Include my implementation and design considerations for `protagonist` system and View Command for `Model` components. ([#164](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/164)) 
 
 
 * **Project management**:
-  * (To be added)
-
+  * Set up shared project folder and project notes through Google Drive.
+  * Note taker for project meetings.
+  * Reminder for project deadlines and milestones to achieve.
+  * Provide directions to help team better adhere to the project requirements.
+  * Write detailed Pull Requests (e.g. [#71](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/71), [#105](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/105))
+  to help team members understand better on my improvements and implementations.
+  * Manage overall code quality to ensure the codebase adhere to Design principles.
 
 
 * **Community**:
-    * (To be added)
-    * (To be added)
-    * (To be added)
-    * (To be added)
+  * Reviewed and commented on teammates' PRs. [PRs reviewed by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aharin0826)
+  * Opened and assigned issues to teammates and me. [Issues opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aharin0826), [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Aharin0826)
+  * Reviewed and merged teammates' PRs.
+  * Reported bugs for other teams. [PE-D](https://github.com/harin0826/ped/issues)
+
 
 * **Tools**:
-    * (To be added)
-    * (To be added)
-
-* _{you can add/remove categories in the list above}_
+  * Java
+  * JavaFX
+  * SceneBuilder
+  * Jackson
+  * Gradle
+  * Junit5
