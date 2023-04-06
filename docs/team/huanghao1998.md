@@ -25,12 +25,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * `to be added soon`
+        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`
     * Developer Guide:
-        * `to be added soon`
+        * Added use cases `UC06`, ``
 
 * **Community**:
-    * `to be added soon`
+    * PRs reviewed (with non-trivial review comments): ().
+    * Contributed to forum discussions: ().
 
-* **Tools**:
-    * `to be added soon`
