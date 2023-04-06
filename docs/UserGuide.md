@@ -314,9 +314,25 @@ Format: `exit`
 
 ## Valid and invalid data
 
-Some sample data here.
+You can refer to this section for some sample valid and invalid data.
 
+<div markdown="block" class="alert alert-info">
 
+**:information_source: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
+know what information are considered valid and what not.<br>
+
+</div>
+
+| Attributes  | Valid                                                            | Invalid                                                            |
+|-------------|------------------------------------------------------------------|--------------------------------------------------------------------|
+| MODULE_NAME | `CS2103T` `CS 2101` `gea1000` `sT2334` `Programming Methodology` | `C$2103T` ` ` `CS2101!!`                                           |
+| TAG         | `Lecture` `Tutorial` `Assignment2` `lab` `PROJECT` ` `           | `Assignment 2` `l@b`                                               |
+| TIMESLOT    | `Friday 12:00 14:00` `Tuesday 09:00 10:00`                       | ` ` `Mon 12:00 14:00` `Wednesday 7:00 8:00` `Thursday 11:00 10:00` |
+| VENUE       | `COM1` `COM 3` `com1-0117`                                       | ` `                                                                |
+| TEACHER     | `Damyth` `Prof John Lee` `Dr Ch'ng` `mr. anderson`               | ` `                                                                |
+| DEADLINE    | `100423 23:59` `120423 11:00` `280223 09:00` `290224 12:00`      | `10423 23:59` `320423 11:00` `290223 09:00` `290224 25:61` ` `     |
+| REMARK      | `Hard module` `Can S/U` `Rewatch` ` ` `PAY ATTENTION`            | _none_                                                             |
+| RESOURCE    | `www.google.com` `WWW.YOUTUBE.COM` `WwW.GmAiL.cOm`               | ` `                                                                |
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -352,6 +368,10 @@ Some text here
 **Q**: How do I transfer my data to another computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous Contact nUS home folder.
+
+**Q**: Must I exit the Contact nUS programme through the `exit` command? <br>
+**A**: Not at all! It is one of the ways you can exit the programme. You may also use the Windows/macOS/Linux's own
+exit function to close the programme. 
 
 --------------------------------------------------------------------------------------------------------------------
 
