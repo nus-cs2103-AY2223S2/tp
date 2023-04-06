@@ -343,7 +343,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.1</b> Class Diagram for UI Components
+    <b>Figure 2.1</b> Class Diagram for UI Controllers
+</div>
+<br>
+
+<img src="images/UiComponentClassDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 2.2</b> Class Diagram for UI Components
 </div>
 <br>
 
