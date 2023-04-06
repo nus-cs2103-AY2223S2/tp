@@ -432,17 +432,19 @@ Once the person has been created, the result display will show a confirmation me
 - n/NAME (eg. `n/John Doe`)
   - names are case-sensitive and allow duplicates
 - e/EMAIL (eg. `e/johndoe123@email.com`)
-  - emails are case-insensitive and does not allow duplicates
+  - emails are case-**in**sensitive and **does not allow duplicates**
 - y/YEAR (eg. `y/3`)
 - c/COURSE_INDEX (eg. `c/1`)
 
+<div style="page-break-after: always;"></div>
+
 **Optional parameters:**
 - g/GITHUB (eg.`g/johnny`)
-  - GitHub usernames are case-sensitive and allow duplicates
+  - GitHub's usernames are case-sensitive and allow duplicates
 - l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
   - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
-  - modules are case-insensitive and allow duplicate module codes but does not allow duplicate module year
+  - modules are case-**in**sensitive and allow duplicate module codes but does not allow duplicate module year
 - s/SKILL (eg. `s/C++`, `s/Rust`)
   - skills are case-sensitive and does not allow duplicates
 
@@ -452,11 +454,12 @@ Once the person has been created, the result display will show a confirmation me
 
 **Examples:**
 - `add n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123`
-  ![Add Example](images/UiAddBetsy.png)
 - `add n/John Doe e/johnd@example.com y/2 c/3`
    ![Add Example](images/UiAddContact.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Viewing a person/Changing tabs : `view`
 
