@@ -10,7 +10,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 public abstract class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "%s names should only contain alphabetical characters and spaces, and it should not be blank";
+            "%s names should only contain alphanumerical characters and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace, otherwise " " (a blank string) becomes a valid input.
