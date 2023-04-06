@@ -780,7 +780,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 * `view n/XYZ` : Display XYZ's profile on the display panel.
 
-* `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 
 </div>
 
@@ -991,7 +991,7 @@ The `organise` command will set a meet up with the time and place for all partic
 :information_source: **Command Formats:** <br>
 
 * `organise INDEX` : Takes the recommendation at the specified `INDEX` and saves it.
-* `organise INDEX_1 INDEX_2... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information. `INDEX_1` refers to the index of the recommendation, while `INDEX_2...` refers to the indices of the participants.
+* `organise RECOMMENDATION_INDEX CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information. `RECOMMENDATION_INDEX` refers to the index of the recommendation, while `CONTACT_INDEX...` refers to the indices of the participants.
 
 </div>
 
@@ -1001,7 +1001,7 @@ On the other hand, the `unorganise` command will remove the meet up at the speci
 
 :information_source: **Command Format:**<br>
 
-* `unorganise INDEX`: Removes the scheduled meet up with the specified index.
+* `unorganise MEET_UP_INDEX`: Removes the scheduled meet up with the specified index.
 
 </div>
 
