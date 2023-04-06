@@ -181,7 +181,7 @@ which listens for the `TAB` event. When triggered, it autocompletes the user's i
 On the other hand, to provide command recommendations, the engine uses the longest prefix matching algorithm. This 
 algorithm first **identifies** the related command based on the user's input and then **verifies** the fields 
 associated with it. For instance, when the user types "add_e" in the command prompt, the engine will first recommend
-"add_elderly", follow by the related fields. If there are ambiguity in the recommendations, the decision is to return 
+"add_elderly", followed by the related fields. If there are ambiguities in the recommendations, the decision is to return 
 the commands based on using lexicographical ordering. 
 
 The CommandRecommendationEngine also uses the concept of **Full Attribute** commands and **Complete** commands. 
