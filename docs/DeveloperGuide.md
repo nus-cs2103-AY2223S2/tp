@@ -960,21 +960,23 @@ prefix `I/` corresponds to the index of the subsection in the parent task.
 - The application currently does not support scheduling subsections so that they can be completed on different days.
 #### Possible Solution
 - One possible solution is to allocate the main task's effort level to the subsection and allow the subsection to be one of a simple task, deadline or event. The scheduling algorithm will allocate big tasks by putting them across different days with different subsections on each day.
-- The new `subsection` command will look something like `subsection n/homework d/cs2109s [E/20]`. If the effort level is not specified, then the effort level of the main task will be even distributed among the subsections.
-- The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will only be the parent tasks along with part of the subsections that is set to be completed on that day.
-- For example, if the task list only contains a parent task has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/50 D/2023-05-04` and today is 2023-05-04, the displayed result 
-will only be the parent task and the subsection "homework A". If the user enters `schedule E/50 D/2023-05-05` then, the same parent task but with subsection "homework B" will be displayed.
+- The new `subsection` command will look something like `subsection n/homework d/cs2109s [E/20] [D/DEADLINE] [F/FROM DATE] [T/TO DATE]`. If the effort level is not specified, then the effort level of the main task will be evenly distributed among the subsections.
+- The `schedule` command will still look like `schedule E/EFFORT D/DATE` but the result will be the parent tasks along with only part of the subsections that is set to be completed on that day.
+- For example, if the task list only contains a parent task that has an effort level of 50, with two subsections called "homework A" and "homework B" with 25 effort level each, when the user enters `schedule E/25 D/2023-05-04` and today is 2023-05-04, the displayed result 
+will only be the parent task and the subsection "homework A". If the user enters `schedule E/25 D/2023-05-05` then, the same parent task with subsection "homework B" will be displayed.
 - This method ensures that each subsection is treated as a somewhat individual task when scheduling, so that the main task's workload can be spread out. The scheduling algorithm will allocate the deadlines' subsections before the deadline date, even if that may result in 
-the total effort on a certain date exceeding daily effort level. 
+the total effort on a certain date exceeding daily effort level. Also, the events' subsections should occur between the events' start and end time. 
+- Moreover, allowing parent tasks to have deadlines and events as subsections will allow deadlines to be broken down into multiple deadlines and events to contain multiple events. Those components will be scheduled individually and displayed along with the parent tasks. 
+This ensures that the user have more flexibility in handling subsections.
 
-
+  
 ### 7.4 Enabling `sort` by subsection
 
 - The application currently does not support sorting subsections so that they can be completed on different days.
 #### Possible Solution
 - One possible solution is to implement a `compareTo` function in the `Subtask` class. This is so that we can call `list.sort()` for the list of subsections in a task with a custom `compareTo` method.
 - The command will now look like `sort-sub INDEX`, where the index is the index of the main task in the task list currently displayed to the user. The result of the command will be that all the subsections
-of the selected parent task will be sorted. The sorting will sort by the effort level of the subsections, breaking ties using the subsection names' alphabetical order.
+of the selected parent task will be sorted. The sorting will sort subsections in the order of simple task > deadlines > events, followed by the effort level of the subsections, breaking ties using the subsection names' alphabetical order. This order is similar to the main tasks' sorting method.
 - The result of the sorted subtasks will be displayed with new indexes inside the parent task.
 - To sort all the tasks, use `sort-sub all/` and the command will call the sorting function on the subsection list of each of the main tasks displayed.
 
