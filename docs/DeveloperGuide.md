@@ -176,8 +176,6 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
-
 
 ### Storage component <a name="storage-component"></a>
 
@@ -457,7 +455,7 @@ The following sequence diagram illustrates how the `view` command works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-The following activity illustrates the workflow of the `view` command:
+The following activity diagram illustrates the workflow of the `view` command:
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
