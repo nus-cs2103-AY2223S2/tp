@@ -32,7 +32,7 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getRecipeBook(), new UserPrefs());
         expectedModel.addRecipe(validRecipe);
         assertCommandSuccess(new AddCommand(DESC_CHICKEN), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validRecipe.getName()), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validRecipe.getName()), expectedModel);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class AddCommandIntegrationTest {
         Recipe recipeInList = model.getRecipeBook().getRecipeList().get(0);
         EditRecipeDescriptorBuilder editRecipeDescriptorBuilder = new EditRecipeDescriptorBuilder(recipeInList);
         assertCommandFailure(new AddCommand(editRecipeDescriptorBuilder.build()),
-                model, AddCommand.MESSAGE_DUPLICATE_RECIPE);
+            model, AddCommand.MESSAGE_DUPLICATE_RECIPE);
     }
 
 }

@@ -74,16 +74,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     protected Optional<HashMap<Ingredient, IngredientInformation>> parseIngredientsForEdit(
-        Collection<String> ingredients) throws ParseException {
+            Collection<String> ingredients) throws ParseException {
         assert ingredients != null;
 
         if (ingredients.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> ingredientList =
-            ingredients.size() == 1 && ingredients.contains("")
-                ? Collections.emptyList()
-                : ingredients;
+        Collection<String> ingredientList = ingredients.size() == 1 && ingredients.contains("")
+            ? Collections.emptyList()
+            : ingredients;
         return Optional.of(ParserUtil.parseIngredients(ingredientList));
     }
 

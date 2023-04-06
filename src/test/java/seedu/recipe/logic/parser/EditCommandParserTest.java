@@ -1,6 +1,7 @@
 package seedu.recipe.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_FISH;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_CHICKEN;
@@ -65,9 +66,9 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -217,54 +218,85 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parseTagsForEdit_emptyTagsOptional() throws ParseException {
+    public void parseTagsForEdit_emptyTagsOptional() {
         Collection<String> tags = Collections.emptyList();
         Optional<Set<Tag>> expectedTagsOptional = Optional.empty();
 
-        assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+        try {
+            assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void parseTagsForEdit_nonEmptyTagsOptional() throws ParseException {
+    public void parseTagsForEdit_nonEmptyTagsOptional() {
         Collection<String> tags = Arrays.asList(VALID_TAG_ITALIAN, VALID_TAG_CHINESE);
         Optional<Set<Tag>> expectedTagsOptional = Optional.of(
                 new HashSet<>(Arrays.asList(new Tag(VALID_TAG_ITALIAN), new Tag(VALID_TAG_CHINESE))));
 
-        assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+        try {
+            assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void parseIngredientsForEdit_emptyIngredientsOptional() throws ParseException {
+    public void parseIngredientsForEdit_emptyIngredientsOptional() {
         Collection<String> ingredients = Collections.emptyList();
         Optional<HashMap<Ingredient, IngredientInformation>> expectedIngredientsOptional = Optional.empty();
 
-        assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+        try {
+            assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void parseIngredientsForEdit_nonEmptyIngredientsOptional() throws ParseException {
-        Collection<String> ingredients = Arrays.asList(VALID_INGREDIENT_FISH);
+    public void parseIngredientsForEdit_nonEmptyIngredientsOptional() {
+        Collection<String> ingredients = List.of(VALID_INGREDIENT_FISH);
         Map<Ingredient, IngredientInformation> expectedIngredientsMap = DESC_FISH.getIngredients().get();
         Optional<Map<Ingredient, IngredientInformation>> expectedIngredientsOptional =
                 Optional.of(expectedIngredientsMap);
-
-        assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+        try {
+            assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void parseStepsForEdit_emptyStepsOptional() throws ParseException {
+    public void parseIngredientsForEdit_emptyStringList() {
+        try {
+            assertEquals(Optional.of(Map.of()), parser.parseIngredientsForEdit(List.of("")));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseStepsForEdit_emptyStepsOptional() {
         Collection<String> steps = Collections.emptyList();
         Optional<List<Step>> expectedStepsOptional = Optional.empty();
 
-        assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+        try {
+            assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void parseStepsForEdit_nonEmptyStepsOptional() throws ParseException {
-        Collection<String> steps = Arrays.asList(VALID_STEP_FISH);
+    public void parseStepsForEdit_nonEmptyStepsOptional() {
+        Collection<String> steps = List.of(VALID_STEP_FISH);
         List<Step> expectedStepsList = DESC_FISH.getSteps().get();
         Optional<List<Step>> expectedStepsOptional = Optional.of(expectedStepsList);
-
-        assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+        try {
+            assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+        } catch (ParseException e) {
+            fail(e.getMessage());
+        }
     }
 }

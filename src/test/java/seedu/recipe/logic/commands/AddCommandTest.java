@@ -2,8 +2,7 @@ package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_FISH;
 import static seedu.recipe.testutil.Assert.assertThrows;
@@ -56,22 +55,22 @@ public class AddCommandTest {
         AddCommand addFishCommand = new AddCommand(DESC_FISH);
 
         // same object -> returns true
-        assertTrue(addChickenCommand.equals(addChickenCommand));
+        assertEquals(addChickenCommand, addChickenCommand);
         // same values -> returns true
         AddCommand addChickenCommandCopy = new AddCommand(DESC_CHICKEN);
-        assertTrue(addChickenCommand.equals(addChickenCommandCopy));
+        assertEquals(addChickenCommand, addChickenCommandCopy);
         // different types -> returns false
-        assertFalse(addChickenCommand.equals(1));
+        assertNotEquals(1, addChickenCommand);
         // null -> returns false
-        assertFalse(addChickenCommand.equals(null));
+        assertNotEquals(null, addChickenCommand);
         // different recipe -> returns false
-        assertFalse(addChickenCommand.equals(addFishCommand));
+        assertNotEquals(addChickenCommand, addFishCommand);
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that causes failures with all its methods.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -146,7 +145,7 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single recipe.
      */
-    private class ModelStubWithRecipe extends ModelStub {
+    private static class ModelStubWithRecipe extends ModelStub {
         private final Recipe recipe;
 
         ModelStubWithRecipe(Recipe recipe) {
@@ -164,7 +163,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the recipe being added.
      */
-    private class ModelStubAcceptingRecipeAdded extends ModelStub {
+    private static class ModelStubAcceptingRecipeAdded extends ModelStub {
         final ArrayList<Recipe> recipesAdded = new ArrayList<>();
 
         @Override
