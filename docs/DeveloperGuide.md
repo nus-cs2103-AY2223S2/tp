@@ -31,6 +31,10 @@ software testers can take in order to test RIZZipe.
 
 Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) below.
 
+### Acknowledgements
+* This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
