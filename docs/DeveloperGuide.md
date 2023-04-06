@@ -72,18 +72,37 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/ui/Ui.java)
 
+The `UI` is responsible for the GUI of VMS. It does so with the aid of JavaFX UI framework. Below shows a (partial) class diagram of the `Ui` component.
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+As seen from the class diagram above, `MainWindow` has composition type relationship with several other classes. Namely,
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+* `DetailedView` - responsible for the graphical display of the **detail panels**.
+  * 1 each for patients and vaccinations.
+* `CommandBox` - responsible for gathering the user's command input.
+* `HelpWindow` - responsible for the graphical display of the help window.
+* `ListViewPanel` - responsible for the graphical display of the **list view panels**.
+  * 1 each for patients, vaccinations and appointments
+* `ResultDisplay` - responsible for displaying messages to the user.
 
-The `UI` component,
+These classes are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state of `MainWindow` after `fillInnerParts()` has been called.
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
+![State of MainWindow](images/UiMainWindowObjectDiagram.png)
+
+To display its contents, `DetailedView` uses an observer pattern to observe for the data that it needs to display. It observes an `ObjectProperty` through a `ChangeListener`, both of which are defined by JavaFX. To convert the observed object to the `Node` object that JavaFX can display, `DetailedView` will also have a `Function`, that is provided on construction, which will do exactly this. Below shows the class diagram and notice how that there are no external dependencies to other parts of VMS.
+
+![Class diagram of DetailedView](images/UiDetailedViewClassDiagram.png)
+
+Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. Below shows the class diagram of `ListViewPanel`.
+
+![Class diagram of ListViewPanel](images/UiListViewPanelClassDiagram.png)
+
+To simplify the creation of GUI layouts of different parts, several classes extends `UiPart` which is responsible for the creation of JavaFX scene graph structures through `.fxml` files. The `.fxml` files of these UI parts are stored in `src/main/resources/view` in with matching names to the class using them. For example, the `.fxml` file of [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+
+<div markdown="span" class="alert alert-info">
+:information_source: **NOTE**: Not all UI classes responsible for displaying something graphically extends `UiPart`. `UiPart` is used as a tool to simplify the creation of complicated GUI layout. Simple GUI parts such as `DetailedView` and `ListViewPanel` do not extend `UiPart`.
+</div>
 
 ### Logic component
 
