@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -143,6 +144,27 @@ public class UniqueProjectList implements Iterable<Project> {
             Project projectToUpdate = projectsToEdit.remove(0);
             Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
             updatedMembers.remove(key);
+            Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
+                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
+                    projectToUpdate.getMeeting(), updatedMembers);
+            setProject(projectToUpdate, updatedProject);
+        }
+    }
+
+    /**
+     * Removes all the {@code members} of each existing {@code Project} from given {@code predicate}.
+     */
+    public void removeAllMemberInProject(Predicate<Person> predicate) {
+        ArrayList<Project> projectsToEdit = new ArrayList<>(); // store projects to edit to avoid concurrent update
+        for (Project project : internalList) {
+            if (project.getMembers().stream().anyMatch(predicate)) {
+                projectsToEdit.add(project);
+            }
+        }
+        while (!projectsToEdit.isEmpty()) {
+            Project projectToUpdate = projectsToEdit.remove(0);
+            Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
+            updatedMembers.removeIf(predicate);
             Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
                     projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
                     projectToUpdate.getMeeting(), updatedMembers);
