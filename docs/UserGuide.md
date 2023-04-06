@@ -21,7 +21,7 @@ With FriendlyLink, you can record elderly and volunteer information and pair the
 
 ## Before you Begin
 
-Please read this section before skipping to specific parts ahead.
+Please read this and [Quick Start](#quick-start) before skipping to specific parts ahead.
 
 ### How to use this User Guide
 
@@ -199,11 +199,11 @@ An elderly can have any number of [tags](#tags) and available dates.
 </div>
 
 Examples:
-
-* `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` adds an elderly named `Betsy Crowe` with [NRIC](#nric)
+* `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` Adds an elderly named `Betsy Crowe` with [NRIC](#nric)
   `S5034567C` to FriendlyLink, with [birth date](#birthdate) `1950-02-03`, [address](#address) `John street`, [risk level](#risk-level) `HIGH` and [phone number](#phone-number) `98765432`.
-* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` adds an elderly named `Sally White` with [NRIC](#nric)
+* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` Adds an elderly named `Sally White` with [NRIC](#nric)
   `S3334567C` to FriendlyLink, with [birth date](#birthdate) `1933-02-03`.
+
 ![](images/userGuide/addElderly.png)
 
 #### Adding a volunteer: `add_volunteer`
@@ -227,6 +227,7 @@ Examples:
   `S9054567D` to FriendlyLink, with [birth date](#birthdate) `1990-11-05`, [address](#address) `New yourk`, [email address](#email) `johnwick@example.com` and [phone number](#phone-number) `99887432`.
 * `add_volunteer n/Sally White bd/1989-03-11 ic/S8957677H` adds a volunteer named `Sally White` with [NRIC](#nric)
   `S8957677H` to FriendlyLink, with [birth date](#birthdate) `1989-03-11`.
+
 ![](images/userGuide/addVolunteer.png)
 
 #### Pair volunteer and elderly: `pair`
@@ -487,6 +488,11 @@ Examples:
 #### Listing persons: `list`
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
+* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps the administrator to easily view all the elderly, volunteer and pairs in the database,
+and is also useful to revert the views after `find` command.
+* If `PAIRED` or `UNPAIRED` keyword is specified, it allows the administrator to quickly view
+the persons who are paired or not paired, therefore helps the decision-making.
+
 
 Format: `list <[PAIRED \ UNPAIRED]>`
 
@@ -512,7 +518,8 @@ Examples:
 
 ### Command Recommendation
 
-FriendlyLink provides command recommendations for registered [commands](#command) and [prefixes](#prefix).
+FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
+This feature helps to facilitate user input, therefore achieve better efficiency and input accuracy.
 
 <img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
 

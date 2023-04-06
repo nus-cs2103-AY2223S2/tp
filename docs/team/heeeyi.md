@@ -70,6 +70,8 @@ how different model classes interacts: [\#131](https://github.com/AY2223S2-CS210
 [\#81](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/81), [\#95](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/95)
     * Contributed to forum discussions (examples: [292](https://github.com/nus-cs2103-AY2223S2/forum/issues/292))
 
-* Extracts from developer guide:
+
+
+* **Extracts from developer guide**:
 
 <img src="../images/developerGuide/ModelDiagram.png" width="600" />
