@@ -337,7 +337,7 @@ The following sequence diagram shows how the sort operation works for persons (i
 
 #### Implementation
 
-The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
+The *find* feature allows users to display a list of contacts from SOCket that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
 `FindCommand` extends `Command` and implements the following operation:
 * `FindCommand#execute()` — Finds and displays the list of persons in the application that contains the given keyword of each respective fields.
@@ -365,9 +365,9 @@ If no argument is provided, an empty list will be shown.
 #### Design considerations
 
 **Aspect: AND search or OR search**
-* An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
-  * List command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making find a duplicate command of list command should find use AND search as well.
-  * We intend for find command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
+* An AND search has been considered for *find* initially but ultimately dropped in favor of OR search due to the following reasons:
+  * *List* command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making *find* a duplicate command of *list* command should *find* command use AND search as well.
+  * We intend for *find* command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
 
 **Aspect: Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
