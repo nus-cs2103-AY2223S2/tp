@@ -27,10 +27,10 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 - [Using This Guide](#using-this-guide)
 - [Table of Contents](#table-of-contents)
 - [Icons Used](#icons-used)
-- [Quick start](#quick-start)
+- [Quick Start](#quick-start)
 - [Summary](#summary)
-  - [Prefix summary](#prefix-summary)
-  - [Command summary](#command-summary)
+  - [Prefix Summary](#prefix-summary)
+  - [Command Summary](#command-summary)
 - [Commands](#commands)
     - [Add a New Event](#add) : `add`
     - [Repeat an Existing Event](#recur) : `recur`
@@ -89,7 +89,7 @@ This section serves to introduce the icons used throughout this guide.
 
 <h2 id="summary">Summary</h2>
 -------------------------------
-<h3 id="prefix-summary">Prefix summary</h3>
+<h3 id="prefix-summary">Prefix Summary</h3>
 
 | Prefix | Representation |
 |:-------|:---------------|
@@ -119,7 +119,7 @@ This section serves to introduce the icons used throughout this guide.
 [[Back to top](#table-of-contents)]
 
 
-<h3 id="command-summary">Command summary</h3>
+<h3 id="command-summary">Command Summary</h3>
 
 | Action | Command Format                                               |
 |:-------|:-------------------------------------------------------------|
