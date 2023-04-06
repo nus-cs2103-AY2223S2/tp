@@ -426,7 +426,7 @@ Parameters:
 > `fish edit <FISH_INDEX> lfd/<LAST_FED_DATE>` command!
 
 Example:
-* It is currently the 6th of April, 2 pm. If you have a tank which index is 1, with 3 fishes, named 'Nemo', 'Dory' and 'Marlin'. `tank feed 1` sets the following details of all three fishes:
+* It is currently the 6th of April, 2.31 pm. If you have a tank which index is 1, with 3 fishes, named 'Nemo', 'Dory' and 'Marlin'. `tank feed 1` sets the following details of all three fishes:
   * Last fed date: 06/04/2023 14:31
 
 ![AddReadingDemo](images/UiTankFeedDemo.png)
@@ -498,7 +498,7 @@ Example:
   * pH: 7
   * Temperature: 27.2 degrees celcius
   * Date and time associated with each reading: 03/04/2023 1200
-* Scenario 2 (Screenshot below): On 6th April 2pm, `tank addReadings tk/1 al/4 ph/14 tp/40` adds the following readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
+* Scenario 2 (Screenshot below): On 6th April 2.33 pm, `tank addReadings tk/1 al/4 ph/14 tp/40` adds the following readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
   * Ammonia level: 4 ppm
   * pH: 14
   * Temperature: 40 degrees celcius
@@ -862,7 +862,7 @@ Parameters: No parameters
 > edit a feeding reminder
 
 Example:
-* It is the 6th of April 2023, 11am. You have fishes named 'Dory', 'Nemo' and 'Marlin' in 'freshwater tank' with a last fed date of 28/03/2023 12:00. When you open *Fish Ahoy!*, you will see the following task in the task panel:
+* It is the 6th of April 2023, 11am. You have fishes named 'Dory', 'Nemo' and 'Marlin' in 'freshwater tank' with a last fed date of 28/03/2023 13:00, 12:00 and 23:00 respectively. When you open *Fish Ahoy!*, you will see the following task in the task panel:
   * Description: Tank feeding reminder
 <br>               Nemo last fed on 28-Mar-2023 12:00
     <br>               Dory last fed on 28-Mar-2023 13:00
