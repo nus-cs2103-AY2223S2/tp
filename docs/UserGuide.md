@@ -65,7 +65,8 @@ sections as needed.
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
 | **Symbol/ Format**   | **Meaning**                                                                                                                                                                                                                                                                                               |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'p'/ 'd'/ 'g'        | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                              |
 | :information_source: | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
 | :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
 | UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
@@ -739,6 +740,9 @@ a specific drug by using the `d find` command and specify the trade name of the 
     * The search is case-insensitive. e.g panadol will match Panadol.
       \
       &nbsp;
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Need to know the inventory count for a specific drug quick? Hover your cursor over the piechart! 
+</div>
 * **Examples:**
     * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
       <p align="center">
@@ -931,7 +935,7 @@ The following commands are drug-related commands that are available in Careflow 
 
 [🠉 Back to top](#top)
 
-# 7. Glossary
+# 7. **Glossary**
 <span id="1">
 1. Command Line Interface (CLI) <br>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think

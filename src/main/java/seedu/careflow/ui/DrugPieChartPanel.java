@@ -58,6 +58,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
         DecimalFormat df = new DecimalFormat("#.##");
         drugPieChart.setData(pieChartData);
         drugPieChart.setLegendSide(Side.RIGHT);
+
         drugPieChart.getData().forEach(data -> {
             data.setName(data.getName() + " ("
                     + df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
@@ -71,23 +72,21 @@ public class DrugPieChartPanel extends UiPart<Region> {
                     Tooltip.install(data.getNode(), tooltip);
                 }
             });
-        });
-        // add drug names and percentage values to the pie chart
-        for (PieChart.Data data : drugPieChart.getData()) {
             Text text = new Text(data.getName());
             text.setStyle("-fx-font-size: 12; -fx-font-weight: bold");
             data.getNode().setUserData(text);
-        }
+        });
     }
 
     private void setupPieChartData(ObservableList<Drug> drugList) {
         pieChartData.clear();
         for (int i = 0; i < drugList.size(); i++) {
             Drug drug = drugList.get(i);
-            PieChart.Data newData = new PieChart.Data(drug.getTradeName().toString(),
-                    drug.getStorageCount().getCount());
-            pieChartData.add(newData);
+            if (drug.getStorageCount().getCount() != 0) {
+                PieChart.Data newData = new PieChart.Data(drug.getTradeName().toString(),
+                        drug.getStorageCount().getCount());
+                pieChartData.add(newData);
+            }
         }
     }
-
 }
