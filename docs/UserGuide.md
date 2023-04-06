@@ -3,16 +3,17 @@ layout: page
 title: User Guide
 ---
 <div style="text-align:center;">
-<img src="images/LogoCoverVersion.png" width="300px">
+<img src="images/LogoCoverVersion.png">
 </div>
 
 AutoM8 is a desktop application for auto repair shops that combines the efficiency of a Command Line Interface (CLI) with the user-friendliness of a Graphical User Interface (GUI) making it easy for users to manage tasks such as customer records, vehicle information, services, appointments, and inventory tracking. AutoM8 is a powerful tool that helps auto repair shops save time and increase productivity.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
