@@ -11,7 +11,7 @@ title: User Guide
 *  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
-*  **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
+*  **[Appendix Planned Enhancements](#appendix-planned-enhancements)**
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview
@@ -357,8 +357,9 @@ Addition:
 Switches between the score list and score chart tabs.
 
 Format: There we support using CLI or mouse.
-CLI format - `switch` 
-Mouse format - click the tab.
+**CLI**<br> `switch`
+
+**Mouse**<br> click the tab.
 
 
 ### 17. Export the student data out: `export`
@@ -368,8 +369,9 @@ The default exported position for CLI will be under the _home folder_ (the folde
 The exported file name is `data.json`.
 
 Format: There we support using CLI or mouse.
-CLI - `export [FILE_PATH]`
-Mouse - Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+**CLI**<br> `export [FILE_PATH]`
+
+**Mouse**<br> Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
 
 Examples:
 * `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
@@ -397,8 +399,8 @@ Imports student data into the application. Users can import the file by dragging
 The imported file must be in `.json` format.
 
 Format: There we support using CLI or mouse.
-CLI - `import FILE_PATH`
-Mouse - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+**CLI**<br> - `import FILE_PATH`
+**Mouse**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
 Examples:
 * For Windows users
@@ -430,7 +432,6 @@ Format: We support CLI or mouse.
 
 **Mouse**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
 up, the user is required to specify which folder to store the exported file.
-
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
 * The `INDEX` **must be a positive integer** 1, 2, 3, ...
@@ -475,7 +476,10 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 --------------------------------------------------------------------------------------------------------------------
 
 ## GUI display restrictions
+We have set up a few GUI display restrictions in order to avoid the GUI being affect by extreme inputs (e.g. super long name) or small screen size, and thus hinder the user experience.
+* If the student name is more than 29 letters, we will display the full student name inside student list. However, the task list will only display at most the first 29 letters, the remaining letters will show as ellipsis.
 
+* If the exam label is more than 11 letters, we will display the full exam label inside score list, text panel. However, the chart tooltip will only display at most the first 11 letters, the remaining letters will show as ellipsis.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -512,6 +516,6 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Planned Enhancements
-### Solution purposed for known feature flaws
+## Appendix Planned Enhancements
+### Solutions purposed for known feature flaws
 1. 
