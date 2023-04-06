@@ -50,7 +50,6 @@ connections_ and _accomplishing your goals_!
   - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
   - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
----
 <div style="page-break-after: always;"></div>
 
 ## Navigating the User Guide
@@ -172,8 +171,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
 
     ![image](images/user-guide/download_codoc.PNG)
 
-    <br> 
-    <div style="page-break-after: always;"></div>
+    <br> <div style="page-break-after: always;"></div>
 
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
@@ -207,7 +205,6 @@ launched in its factory state as shown below.
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 
 ### Navigating CoDoc
