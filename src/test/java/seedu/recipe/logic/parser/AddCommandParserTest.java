@@ -45,22 +45,27 @@ public class AddCommandParserTest {
     public void parse_allFieldsPresent_success() {
         AddCommandParser parser = new AddCommandParser();
         RecipeDescriptor expectedRecipeDescriptor = new RecipeDescriptor(DESC_CHICKEN);
+
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN
-                + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipeDescriptor));
+            + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipeDescriptor));
+
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_FISH + NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN
-                + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipeDescriptor));
+            + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipeDescriptor));
+
         // multiple portions - last portion accepted
         assertParseSuccess(parser, NAME_DESC_CHICKEN + PORTION_DESC_FISH + PORTION_DESC_CHICKEN
-                + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipeDescriptor));
+            + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipeDescriptor));
+
         // multiple durations - last duration accepted
         assertParseSuccess(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_FISH
-                + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipeDescriptor));
+            + DURATION_DESC_CHICKEN + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipeDescriptor));
+
         // multiple tags - all accepted
         Set<Tag> tagSet = new HashSet<>();
         tagSet.add(new Tag(VALID_TAG_CHINESE));
@@ -68,8 +73,8 @@ public class AddCommandParserTest {
         RecipeDescriptor expectedRecipeMultipleTags = new RecipeDescriptor(DESC_CHICKEN);
         expectedRecipeMultipleTags.setTags(tagSet);
         assertParseSuccess(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                + TAG_DESC_CHINESE + TAG_DESC_ITALIAN + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipeMultipleTags));
+            + TAG_DESC_CHINESE + TAG_DESC_ITALIAN + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipeMultipleTags));
     }
 
     @Test
@@ -78,8 +83,8 @@ public class AddCommandParserTest {
         RecipeDescriptor expectedRecipe = new RecipeDescriptor(DESC_CHICKEN);
         expectedRecipe.setTags(null);
         assertParseSuccess(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                        + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                new AddCommand(expectedRecipe));
+            + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            new AddCommand(expectedRecipe));
     }
 
     @Test
@@ -88,34 +93,39 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                        + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                expectedMessage);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN, Name.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN, Name.MESSAGE_CONSTRAINTS);
+
         // invalid portion
         assertParseFailure(parser, NAME_DESC_CHICKEN + INVALID_PORTION_DESC + DURATION_DESC_CHICKEN
-                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                RecipePortion.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            RecipePortion.MESSAGE_CONSTRAINTS);
+
         // invalid duration
         assertParseFailure(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + INVALID_DURATION_DESC
-                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                RecipeDuration.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            RecipeDuration.MESSAGE_CONSTRAINTS);
+
         // invalid tag
         assertParseFailure(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                + INVALID_TAG_DESC + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
-                Tag.MESSAGE_CONSTRAINTS);
+            + INVALID_TAG_DESC + INGREDIENT_DESC_CHICKEN + STEP_DESC_CHICKEN,
+            Tag.MESSAGE_CONSTRAINTS);
+
         // invalid step
         assertParseFailure(parser, NAME_DESC_CHICKEN + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + INVALID_STEP_DESC,
-                Step.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + INVALID_STEP_DESC,
+            Step.MESSAGE_CONSTRAINTS);
+
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PORTION_DESC_CHICKEN + DURATION_DESC_CHICKEN
-                + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + INVALID_STEP_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_CHINESE + INGREDIENT_DESC_CHICKEN + INVALID_STEP_DESC,
+            Name.MESSAGE_CONSTRAINTS);
     }
 }

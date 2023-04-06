@@ -99,11 +99,20 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PORTION_DESC, RecipePortion.MESSAGE_CONSTRAINTS); // invalid portion
-        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, RecipeDuration.MESSAGE_CONSTRAINTS); // invalid duration
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, "1" + INVALID_STEP_DESC, Step.MESSAGE_CONSTRAINTS); // invalid step
+        // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+
+        // invalid portion
+        assertParseFailure(parser, "1" + INVALID_PORTION_DESC, RecipePortion.MESSAGE_CONSTRAINTS);
+
+        // invalid duration
+        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, RecipeDuration.MESSAGE_CONSTRAINTS);
+
+        // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid step
+        assertParseFailure(parser, "1" + INVALID_STEP_DESC, Step.MESSAGE_CONSTRAINTS);
 
         // invalid portion followed by valid duration
         assertParseFailure(parser, "1" + INVALID_PORTION_DESC + DURATION_DESC_CHICKEN,
@@ -124,10 +133,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_RECIPE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_FISH + PORTION_DESC_FISH + DURATION_DESC_FISH
-                + TAG_DESC_ITALIAN + INGREDIENT_DESC_FISH + STEP_DESC_FISH;
+            + TAG_DESC_ITALIAN + INGREDIENT_DESC_FISH + STEP_DESC_FISH;
         EditRecipeDescriptorBuilder descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_FISH)
-                .withPortion(VALID_PORTION_FISH).withDuration(VALID_DURATION_FISH).withTags(VALID_TAG_ITALIAN)
-                .withIngredients(VALID_INGREDIENT_FISH).withSteps(VALID_STEP_FISH);
+            .withPortion(VALID_PORTION_FISH).withDuration(VALID_DURATION_FISH).withTags(VALID_TAG_ITALIAN)
+            .withIngredients(VALID_INGREDIENT_FISH).withSteps(VALID_STEP_FISH);
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor.build());
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -137,7 +146,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_RECIPE;
         String userInput = targetIndex.getOneBased() + PORTION_DESC_FISH + DURATION_DESC_FISH;
         EditRecipeDescriptorBuilder descriptor = new EditRecipeDescriptorBuilder().withPortion(VALID_PORTION_FISH)
-                .withDuration(VALID_DURATION_FISH);
+            .withDuration(VALID_DURATION_FISH);
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor.build());
         assertParseSuccess(parser, userInput, expectedCommand);
     }

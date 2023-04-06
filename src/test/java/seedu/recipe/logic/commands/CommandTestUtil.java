@@ -58,7 +58,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Chicken&"; // '&' not allowed in names
     public static final String INVALID_PORTION_DESC = " " + PREFIX_PORTION + "-1 person"; // negative portion
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "10"; // missing units
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "45"; // missing unit
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Chinese*"; // '*' not allowed in tags
     public static final String INVALID_STEP_DESC = " " + PREFIX_STEP + "***"; // special characters not allowed for step
 
