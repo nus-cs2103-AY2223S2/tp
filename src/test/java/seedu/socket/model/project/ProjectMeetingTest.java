@@ -25,7 +25,7 @@ public class ProjectMeetingTest {
 
     @Test
     public void constructor_invalidMeeting_throwsIllegalArgumentException() {
-        String invalidMeeting = " ";
+        String invalidMeeting = "31/02/2019-2359";
         assertThrows(IllegalArgumentException.class, () -> new ProjectMeeting(invalidMeeting));
     }
 
