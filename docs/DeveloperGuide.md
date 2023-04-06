@@ -390,12 +390,19 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `edit 1 d/Online Assessment@2023-04-01`<br>
        Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Online Assessment" due 2023-04-01.
 
-2. Editing an opening to replace a deadline
+3. Editing an opening to replace a deadline
 
     1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
 
     2. Test case: `edit 1 d/Interview@2023-04-05`<br>
        Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Interview" due 2023-04-05.
+
+4. Editing an opening to remove a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `edit 1 d/`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains no deadlines
 
 ### Showing an opening
 
