@@ -44,6 +44,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_END_HOUR = "End hours can only range from 9am to 11pm!";
 
+    public static final String MESSAGE_INVALID_INT = "No integer entered!";
+
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     /**
@@ -78,8 +80,13 @@ public class ParserUtil {
      */
     public static int parseInt(String intString) throws ParseException {
         String trimmedInt = intString.trim();
-        if (trimmedInt.isEmpty() || !StringUtil.isNonZeroUnsignedInteger(trimmedInt)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        if (trimmedInt.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_INT);
+        }
+        try {
+            Integer.parseInt(trimmedInt);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_INT);
         }
         return Integer.parseInt(trimmedInt);
     }
