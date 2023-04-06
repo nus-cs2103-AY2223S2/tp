@@ -1,8 +1,8 @@
 package ezschedule.logic.commands;
 
 import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
-import static ezschedule.logic.commands.CommandTestUtil.DESC_A;
-import static ezschedule.logic.commands.CommandTestUtil.DESC_B;
+import static ezschedule.logic.commands.CommandTestUtil.EDIT_DESC_A;
+import static ezschedule.logic.commands.CommandTestUtil.EDIT_DESC_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -156,8 +156,8 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        EditCommand standardCommand = new EditCommand(INDEX_FIRST_EVENT, DESC_A);
-        EditEventDescriptor copyDescriptor = new EditEventDescriptor(DESC_A);
+        EditCommand standardCommand = new EditCommand(INDEX_FIRST_EVENT, EDIT_DESC_A);
+        EditEventDescriptor copyDescriptor = new EditEventDescriptor(EDIT_DESC_A);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EVENT, copyDescriptor);
 
         // same values -> returns true
@@ -173,9 +173,9 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EVENT, DESC_A)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EVENT, EDIT_DESC_A)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EVENT, DESC_B)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EVENT, EDIT_DESC_B)));
     }
 }
