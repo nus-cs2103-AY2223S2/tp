@@ -396,14 +396,15 @@ a similar behaviour when adding patients.
 **Target user profile**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
 Here are some characteristics of our target user profile: <br>
+* needs to manipulate patient and doctor information quickly
 * needs to assign patients to the appropriate doctors quickly
-* prefer desktop apps over other types
+* prefer desktop apps over other mediums
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage, faster than a typical mouse/GUI driven app.
-
+**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage, 
+faster than a typical mouse/GUI driven app.
 
 ### Appendix C: User stories
 
