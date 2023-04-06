@@ -360,7 +360,7 @@ Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
 * `edit S8833657U re/CENTRAL r/HIGH` edits the [region](#region) and risk level of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
-* `edit S2568212B t/Overseas t/Undergrad` replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad`
+* `edit S2568212B t/Overseas t/Undergrad` replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad`.
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
 
 <div>
@@ -487,7 +487,7 @@ Format: `list <[PAIRED \ UNPAIRED]>`
 Examples:
 * `list` lists all elderly, volunteers and pairs.
 * `list paired` lists all paired elderly, paired volunteers and all pairs.
-* `list unpaired` lists all unpaired elderly, unpaired volunteers
+* `list unpaired` lists all unpaired elderly, unpaired volunteers.
 
 [Back to top](#table-of-contents)
 
