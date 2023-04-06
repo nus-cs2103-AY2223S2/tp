@@ -388,7 +388,6 @@ If you need more info on the usage of each command, you can refer to the relevan
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 <br>
-<div style="page-break-after: always;"></div>
 
 ---
 
