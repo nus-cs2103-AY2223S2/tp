@@ -174,35 +174,22 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ## 2. Features related to Delivery Jobs
-### *Can only access from Main Window*
-Commands are input in this text field and app response is printed below the text field.
-![input field](images/Inputcommands.png)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Main Window.
+</div>
 
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
 
-**Format**: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+**Format**: `add_job si/SENDER_ID ri/RECIPIENT_ID earn/EARNING [date/DELIVERY_DATE] [slot/DELIVERY_SLOT]`
 
-**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
-
-*Extra constraints with this alternative way of adding jobs:*
-* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5)
-* Only delivery date and slot are optional for alternative way of adding job. 
-* Earning must not be left empty. User should identify earning as $0 instead, if necessary.
-![Create Job](images/Addjob.png)
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Description field is only available in GUI mode.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Description field is only available in GUI mode.
 </div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Delivery date, slot and earning are optional (for original way of adding job using `add_job` command - typing-preferred).
-</div>
-
 
 * Adds the job to delivery job system.
-* `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
+* `SENDER_ID` and `RECIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
 * Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5 (example: `slot/1`).
 * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
@@ -211,10 +198,12 @@ Delivery date, slot and earning are optional (for original way of adding job usi
 * Earning **must be a double**. 
 
 Examples:
-* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
-* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+* `add_job si/ALESAM ri/DAVSAM earn/1.1`
+* `add_job si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
 
+**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 
+![Create Job](images/Addjob.png)
 
 
 ### 2.2. Mass importing jobs
@@ -235,26 +224,29 @@ Format: `list_job`
 
 ![list job](images/listJob.png)
 
-### 2.3.1. Sort and filter jobs
+#### Sorting and filtering job list
 Simply click on the corresponding button to sort and filter jobs.
 
 ![sort filter job](images/listJobSortFilter.png)
 
 ### 2.3.2. View details of a specific job
-Simply double-click on the job card in job list to view its details in the right half of Main Window.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Future improvement:** Application should remember the hidden state of contact details.
+</div>
+
+Simply click on the job card in job list to view its details in the right half of Main Window.
 
 To hide/un-hide the contact details of the chosen job, simply click on the Lock Button.
 
 ![hide_contact_detail](images/hideDetail.png)
 ![unhide_contact_detail](images/unhideDetail.png)
 
-
-
 ### 2.4 Edit job : `edit_job`
 
 Edit a selected job by Index or Job id.
 
-Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
+Format: `edit_job INDEX [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
 Alternative: Double-lick on the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
 
@@ -480,10 +472,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | ***(C)* Edit Customer details**               | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                           |
 | ***(C)* Find Customer**                       | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                 |
 | ***(B)* List Customer**                       | `list` <br/>Or<br/>Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                                                                                                                                                                                                                                                  |
-| ***(M)* Add Job**                             | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                                                                                                                                                                                                                                |
+| ***(M)* Add Job**                             | `add_job si/SENDER_ID ri/RECIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                                                                                                                                                                                                                                |
 | ***(M)* Import Jobs**                         | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                                                                                                                                                                                                                                                    |
 | ***(M)* List Job**                            | `list_job`                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ***(M)* Edit Job**                            | `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br>OR<br/>Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button <br><br/> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                        |
+| ***(M)* Edit Job**                            | `edit_job INDEX [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br>OR<br/>Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button <br><br/> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                                        |
 | ***(M)* Find Job**                            | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]...` <br><br/> e.g., `find_job si/ALE874`                                                                                                                                                                                                                                                                                                                 |
 | ***(M)* Delete Job**                          | `delete_job ji/JOB_ID` <br>OR<br/>Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner<br/><br/> e.g., `delete_job ALBE29E66F`                                                                                                                                                                                                                                                            |
 | ***(M)* Complete Job**                        | `com_job ji/JOB_ID` / `uncom_job ji/JOB_ID`<br>OR<br>Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.<br>OR<br>Alternative 2: Click on the delivery job > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.<br><br>e.g.,`com_job ALBE29E66F` / `uncom_job ALBE29E66F` |                                                                                                                                                                                                                                                                                                                                                                                  |
