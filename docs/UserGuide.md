@@ -110,9 +110,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Index</strong></td>
     <td>
-      An identifier which is the number corresponding to order of which your contacts and courses are listed out, 
-      and used in conjunction with the commands to specify the contact with the given index. Each contact and course 
-      is identified with a unique index. Index must be a positive integer 1, 2, 3, ...
+      An identifier that corresponds to an option. For CoDoc, index are used when selecting courses and contacts—where the index must be a positive integer 1, 2, 3, ...—or navigation of tabs—where the index can be c, m, or s.
     </td>
   </tr>
   <tr>
@@ -124,10 +122,8 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Parameter</strong></td>
     <td>
-      An input that you as the user, will give to the command. These can be in the form of an integer, or a name, 
-      or an email.
-      Some commands take in a parameter after the prefix,
-      some commands take in a parameter without a prefix, and some commands don't take in parameters.
+      An input that you as the user, will give to the command. These can be in the form of numbers or text.
+      Some commands take in a parameter after the prefix, some without a prefix and some without parameters.
     </td>
   </tr>
   <tr>
