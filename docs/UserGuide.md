@@ -244,7 +244,8 @@ Adds a student to the list, along with their education level and any student-spe
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
 > - MODULE: The module code the student is taking (can be multiple words). \\
-> For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
+
+For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
 
 <div markdown="block" class="alert alert-info">
@@ -326,6 +327,16 @@ Edits a student's information _(all information except remarks)_. To remove a st
 > 
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
+> - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
+> - ADDRESS: The student's address.
+> - PHONE: A student's phone number that only contains numbers and is as least 3 numbers long.
+> - EMAIL: A valid email follows the `local@domain` format.
+> - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
+> - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
+> - TAG: A detail about a student (limited to one word long).
+> - MODULE: The module code the student is taking (can be multiple words). \\
+
+For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
 <div markdown="span" class="alert alert-info">:bulb: **Note:** 
 * `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
@@ -361,6 +372,8 @@ edited student's details.
 Edits a student's remarks.
 
 > Format: `remark INDEX`
+> - The index refers to the index number shown in the displayed student list.
+> - The index **must be a positive integer** 1, 2, 3, ...
 
 With `remark` you can type your desired remarks and notes into the popup text box! The text box can take in 
 multiple sentences, paragraphs etc. When you are done, you can simply press `Ctrl` + `S`
@@ -437,13 +450,13 @@ The `find` and `filter` commands allow you to match keywords or partial keywords
 
 `find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all fields EXCEPT tags and modules, where you will have to enter the keywords in full.
 
-The `find` command allows you to zoom in on an entry that matches **all** your `FIELD` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
+The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
 
 > Format: \\
-> `find FIELD... KEYWORDS...` \\
-> `filter FIELD... KEYWORDS...`
+> `find PREFIX... KEYWORDS...` \\
+> `filter PREFIX... KEYWORDS...`
 
-* `FIELD` refers to the type of details such as name, address, email and so on.
+* `PREFIX` refers to the type of details such as name, address, email and so on.
 * Input the field like so:
   * Name: `n/`
   * Address: `a/`
@@ -455,7 +468,9 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
   * Tags: `t/`
   * Modules: `m/`
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
+For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
+
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
 </div>
 
 Examples:
@@ -465,7 +480,7 @@ Examples:
 - `find t/ URGENT` will display students who have the exact tag `URGENT`
 - `find m/ CS2101` will display students who have the exact module `CS2101`
 
-**Using the following input fields** `find n/a m/CS2103T`:
+**Using the following input** `find n/a m/CS2103T`:
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>find</code> command</i>
@@ -575,11 +590,14 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Alphanumeric                   | Characters that are either a numbers or letters.                                                                | 1, 2, 3, a, b, c are alphanumeric                                                                                                                                                                                                                   |
 | Command                        | Instructions for TeachMeSenpai to execute/carry out.                                                            | [Features](#features) like [`add`](#adding-a-student-add), are all commands TeachMeSenpai can execute.                                                                                                                                              |
 | Command Line Interface (CLI)   | A Command Line Interface allows users to use text as command to be executed by an application.                  | The [command line](#guide-to-teachmesenpais-gui) acts as a CLI in this case.                                                                                                                                                                        |
+| Field                          |                                                                                                                 |                                                                                                                                                                                                                                                     |
 | Graphical User Interface (GUI) | A Graphical User Interface allows users to interace with an application through graphics like icons, menus etc. | TeachMeSenpai acts as a GUI in this case.                                                                                                                                                                                                           |
 | Index                          | The number displayed next to the student entry's name after `list` is used.                                     | 1. Alex Yeoh, 1 would be the index for Alex Yeoh.                                                                                                                                                                                                   |
 | Integer                        | An integer is a whole number.                                                                                   | 1, 10, 100 are integers. 1.5, 0.00 are not integers!                                                                                                                                                                                                |
+| Keyword                        | The word you want to [find/filter](#findfilter-students-findfilter) by.                                         | A keyword for a student named "Shao Hong" could be "Shao Hong"                                                                                                                                                                                      |
 | Operating System               | Also known as (OS) of the computer, managers the software and hardware on the computer.                         | -                                                                                                                                                                                                                                                   |
 | Parameter                      | Parameters are information TeachMeSenpai requires you to fill in.                                               | `STUDENT_NAME`, `PHONE` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples. | 
+| Partial keyword                | Part of the word you want to [find/filter](#findfilter-students-findfilter) by.                                 | A partial keyword for a student named "Shao Hong" could be "Sh", or "on" etc.                                                                                                                                                                       |
 | Prefix                         | Indicators for commands. Always ends with a slash `/` and comes before a parameter.                             | `n/` is the prefix for parameter `STUDENT_NAME` which could be a name like Shaun. <br/> You may refer to [Prefix Summary](#prefix-summary) to see all the prefixes used in TeachMeSenpai.                                                           |
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                 |
 
