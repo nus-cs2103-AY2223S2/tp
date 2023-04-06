@@ -139,6 +139,11 @@ public class PilotFlightLinkCommandFactory<T extends Command>
         return linkFunction.apply(flight, pilots);
     }
 
+    /**
+     * The functional interface for the link function.
+     *
+     * @param <T> the type of the command.
+     */
     @FunctionalInterface
     public interface PilotFlightLinkFunction<T extends Command>
             extends LinkFunction<T, Flight, Pilot, FlightPilotType> {

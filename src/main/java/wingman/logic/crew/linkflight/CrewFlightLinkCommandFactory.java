@@ -157,6 +157,11 @@ public class CrewFlightLinkCommandFactory<T extends Command>
         return linkFunction.apply(flight, crews);
     }
 
+    /**
+     * The functional interface that creates the link command.
+     *
+     * @param <T> the type of the link command.
+     */
     @FunctionalInterface
     public interface CrewFlightLinkFunction<T extends Command>
             extends LinkFunction<T, Flight, Crew, FlightCrewType> {

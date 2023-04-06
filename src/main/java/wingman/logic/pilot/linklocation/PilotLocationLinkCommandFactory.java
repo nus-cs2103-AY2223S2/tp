@@ -78,10 +78,20 @@ public class PilotLocationLinkCommandFactory<T extends Command>
         this.linkFunction = linkFunction;
     }
 
+    /**
+     * Creates a new link command factory with the model registered.
+     *
+     * @return the link command factory.
+     */
     public static PilotLocationLinkCommandFactory<LinkPilotToLocationCommand> linkFactory() {
         return new PilotLocationLinkCommandFactory<>(LinkPilotToLocationCommand::new);
     }
 
+    /**
+     * Creates a new unlink command factory with the model registered.
+     *
+     * @return the unlink command factory.
+     */
     public static PilotLocationLinkCommandFactory<UnlinkPilotToLocationCommand> unlinkFactory() {
         return new PilotLocationLinkCommandFactory<>(
                 UnlinkPilotToLocationCommand::new);
@@ -123,6 +133,11 @@ public class PilotLocationLinkCommandFactory<T extends Command>
         return linkFunction.apply(location, pilot);
     }
 
+    /**
+     * Represents a function that accepts a location, a pilot and returns a command.
+     *
+     * @param <T> the type of the command.
+     */
     @FunctionalInterface
     public interface PilotLocationLinkFunction<T extends Command>
             extends LinkFunction<T, Location, Pilot, PilotLocationType> {

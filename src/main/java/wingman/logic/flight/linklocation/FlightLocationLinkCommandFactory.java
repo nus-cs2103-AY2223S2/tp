@@ -87,11 +87,21 @@ public class FlightLocationLinkCommandFactory<T extends Command>
         this.linkFunction = linkFunction;
     }
 
+    /**
+     * Returns a new link command factory.
+     *
+     * @return a new link command factory.
+     */
     public static FlightLocationLinkCommandFactory<LinkFlightToLocationCommand> linkFactory() {
         return new FlightLocationLinkCommandFactory<>(
                 LinkFlightToLocationCommand::new);
     }
 
+    /**
+     * Returns a new unlink command factory.
+     *
+     * @return a new unlink command factory.
+     */
     public static FlightLocationLinkCommandFactory<UnlinkFlightToLocationCommand> unlinkFactory() {
         return new FlightLocationLinkCommandFactory<>(
                 UnlinkFlightToLocationCommand::new);
@@ -141,6 +151,11 @@ public class FlightLocationLinkCommandFactory<T extends Command>
         return linkFunction.apply(flight, locationMap);
     }
 
+    /**
+     * The functional interface that creates a new link command.
+     *
+     * @param <T> the type of the link command.
+     */
     @FunctionalInterface
     public interface FlightLocationLinkFunction<T extends Command>
             extends LinkFunction<T, Flight, Location, FlightLocationType> {
