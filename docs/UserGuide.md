@@ -187,7 +187,7 @@ Format: `clear`
 
 ## 2. Features related to Delivery Jobs
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Command only available from from Main Window.
+:bulb: **Tip:** Command only available from Main Window.
 </div>
 
 ### 2.1. Adding a job: `add_job`
