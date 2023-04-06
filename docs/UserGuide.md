@@ -118,7 +118,15 @@ Adds a patient to MediMeet.
 Format: `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
+A patient can have any number of tags (including 0).
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+MediMeet does not support phone numbers longer than 15 digits. Although MediMeet will still accept phone numbers longer than 15 digits, the application might display the patient list strangely.
+</div>
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Warning:**
+Tags should be limited to 30 characters or less. If you want to record information longer than that, use the `remark` command instead.
 </div>
 
 Examples:
@@ -203,7 +211,7 @@ Adds a remark to a patient in MediMeet.
 Format: `remark_patient INDEX [r/REMARK]`
 
 * Remarks cannot be edited and can only be overwritten.
-* In order to remove notes from a patient, use `remark_patient INDEX` without the optional `[r\REMARK]`.
+* In order to remove notes from a patient, use `remark_patient INDEX` without the optional `[r\REMARK]`, or use `remark_patient INDEX r/`.
 
 * Example:
 * `remark_patient 1 r/Immunocompromised` Adds a note `Immunocompromised` to the patient.

@@ -49,6 +49,22 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if {@code s} is "0" or a representation of the integer zero.
+     * @param s The string to check.
+     * @return True if the string is a representation of the integer zero.
+     */
+    public static boolean isZero(String s) {
+        requireNonNull(s);
+
+        try {
+            int value = Integer.parseInt(s);
+            return value == 0;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
