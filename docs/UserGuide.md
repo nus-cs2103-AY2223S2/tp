@@ -5,7 +5,7 @@ title: User Guide
 
 ![Logo](images/LogoWordmark.png)
 
-## Welcome to **Le Tracker!**
+## Welcome to **Le Tracker** ~
 
 > “The tragedy in life doesn’t lie in not reaching your goal. The tragedy lies in having no goal to reach.” - Benjamin E. Mays
 
@@ -195,19 +195,17 @@ The user can specify their current working context by navigating through the hie
 ![RootContext](images/RootContext.png)
 Navigating **relatively** from the **root context**:
 
-1. Navigate to the module context from the root context.
-
-- `nav CS2040S`
-
-2. Navigate to the lecture context from the module context.
-
-- `nav Week 1`
+1. Navigate to the module context from the root context.\
+   `nav CS2040S`
+2. Navigate to the lecture context from the module context.\
+   `nav Week 1`
 
 _OR_
 
 ![RootContext](images/RootContext.png)
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
+
 Navigating **directly** from any **context**:
 
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
