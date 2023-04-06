@@ -44,7 +44,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
@@ -60,8 +60,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/Main.java)
+and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -101,7 +101,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -111,9 +111,9 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -124,8 +124,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -133,7 +132,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `RoleBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -153,9 +152,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `RoleBookParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RoleBookParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -163,14 +162,14 @@ How the parsing works:
 ### Model component
 
 **
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the role book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
@@ -179,7 +178,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `RoleBook`, which `Person` references. This allows `RoleBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="750" />
 
@@ -187,13 +186,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both role book data and user preference data in json format, and read them back into corresponding
   objects.
 * inherits from both `RoleBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
@@ -202,7 +201,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.RoleBook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -273,7 +272,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedSala
 
 Given below is an example usage of how Salary Command is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the current address
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the current role
    book from the storage and loads it.
 
    <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
@@ -321,8 +320,8 @@ The feature uses operations in the `Model` interface as `Model#displaySortedDead
 
 Given below is an example usage of how Salary Command is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
+   current role book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
@@ -395,8 +394,8 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 
 Given below is an example usage of how TagCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
+   current role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Tag Command` to filter tags.
     - The user executes `tag <keyword>` command to filter roles by their tag.
@@ -426,8 +425,8 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 
 Given below is an example usage of how NameCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
+   current role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
@@ -459,32 +458,33 @@ any roles in the role book.
 
 An example usage of the `View` command is given below:
 
-1. The user launches the application for the first time. The AddressBook will be initialized with the current address book.
-   <img src="images/UICommandImages/ViewCommand0.png" width="800" />
+1. The user launches the application for the first time. The RoleBook will be initialized with the current role book.
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
-   <img src="images/UICommandImages/ViewCommand1.png" width="800" />
+     <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 
 The following sequence diagram shows how the `view` command works:
+
 <img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
 
 #### Design considerations:
 
-**Aspect: How view Command executes:**
+**Aspect: How the `view` command executes:**
 
 * **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
 appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children
-node of `ResultDisplay` based on command given (in this case, `view`).
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay` 
+based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom display). 
+To do so, we can change [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java) 
+to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` 
+method in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the output as per
+normal. However, if the object `T` is a `Role`, we can render a custom display instead.
     * Pros: Provides an easy and extendable way to create custom views
-    * Cons: Need to refactor some UI code.
-
-Todo: 
-(1) write about changing CommandResult<T> to be generic, 
-(2) Create sequence diagram for `view` command
+    * Cons: Need to refactor some UI code and `CommandResult.java` class
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -754,25 +754,38 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned enhancement**
-The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws.
+The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws for now.
 
 ### Implementing support for more websites
 1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. 
+We have thought of one approach to this fix:
+* Letting the website format be `[any char].[any char]`
+  * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+  * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
-1. Unnecessarily complicated (or hard-to-type) command formats can be considered a type.FeatureFlaw as it is expected that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special characters such as $/ in the format when it is possible to avoid them.
+1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected that the input formats will be optimized to get things done fast. 
+Some examples include: using hard-to-type special characters such as `$/` in the format when it is possible to avoid them. 
+Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
-### Seeing very long description and numbers
-1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. A word wrap will be implemented in the future.
+### Displaying very long description and numbers
+1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. We believe that the `view` command is a way for users to view truncated texts
+for now. In the future, we would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
+2. This also affects the `view` command, as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java) is not written to handle
+extremely long texts. Although the attributes of each role would be visible, it is not ideal for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
+and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
-1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage data is incorrectly modified.
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. 
+Error messages should be displayed when storage data is incorrectly modified. This could be done through editing the `initModelManager` function in the [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+class and subsequently, the [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java) class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Won't fix**
 
 ### Issue #205 Sort Command not recognised
-1. Unable to replicate issue. Original tester is uncontactable.
+1. Unable to replicate issue due to lack of information from the bug report.
 
 ### Issue #179 salary asc command does nothing
-1. Unable to replicate issue. Original tester is uncontactable.
+1. Unable to replicate issue due to lack of information from the bug report.
