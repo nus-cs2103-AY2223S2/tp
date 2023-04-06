@@ -1,16 +1,11 @@
 package seedu.wife.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
-import seedu.wife.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

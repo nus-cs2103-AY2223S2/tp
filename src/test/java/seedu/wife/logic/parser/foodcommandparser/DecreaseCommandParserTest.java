@@ -1,9 +1,9 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_DECREASE;
+import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_DEC_MEIJI;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.wife.testutil.TypicalIndex.INDEX_SECOND_FOOD;
@@ -12,17 +12,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
-import seedu.wife.logic.commands.foodcommands.IncreaseCommand;
-import seedu.wife.logic.commands.foodcommands.IncreaseCommand.IncreaseFoodDescriptor;
+import seedu.wife.logic.commands.foodcommands.DecreaseCommand;
 import seedu.wife.model.food.Quantity;
-import seedu.wife.testutil.IncreaseFoodDescriptorBuilder;
+import seedu.wife.testutil.DecreaseFoodDescriptorBuilder;
 
-public class IncreaseCommandParserTest {
+public class DecreaseCommandParserTest {
     private static final String MESSAGE_INVALID_COMMAND =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE);
 
-
-    private IncreaseCommandParser parser = new IncreaseCommandParser();
+    private DecreaseCommandParser parser = new DecreaseCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -32,6 +30,7 @@ public class IncreaseCommandParserTest {
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_COMMAND);
     }
+
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
@@ -61,13 +60,14 @@ public class IncreaseCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FOOD;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_MEIJI;
+        String userInput = targetIndex.getOneBased() + VALID_QUANTITY_DEC_MEIJI;
 
-        IncreaseFoodDescriptor descriptor = new IncreaseFoodDescriptorBuilder()
-                .withQuantity(VALID_QUANTITY_MEIJI)
+        DecreaseCommand.DecreaseFoodDescriptor descriptor = new DecreaseFoodDescriptorBuilder()
+                .withQuantity(VALID_QUANTITY_DECREASE)
                 .build();
-        IncreaseCommand expectedCommand = new IncreaseCommand(targetIndex, descriptor);
+        DecreaseCommand expectedCommand = new DecreaseCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }

@@ -6,12 +6,9 @@ import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 
-import java.util.Set;
-
 import seedu.wife.logic.commands.foodcommands.AddCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.model.food.Food;
-import seedu.wife.model.tag.Tag;
 
 /**
  * A utility class for Food.

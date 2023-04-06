@@ -7,11 +7,8 @@ import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
@@ -25,7 +22,6 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
-import seedu.wife.model.tag.Tag;
 
 /**
  * Edits the details of an existing food item in WIFE.
@@ -47,7 +43,7 @@ public class EditCommand extends Command {
             + PREFIX_QUANTITY + "2";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited food item: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided! \n%s";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in WIFE.";
 
     private final Index index;
@@ -70,7 +66,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Food> lastShownList = model.getFilteredFoodList();
 
-        if (index.getZeroBased() >= lastShownList.size() || index.getOneBased() <= 0) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 

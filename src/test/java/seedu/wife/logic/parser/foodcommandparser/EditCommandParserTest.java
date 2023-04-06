@@ -19,6 +19,7 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
+import static seedu.wife.logic.commands.foodcommands.EditCommand.MESSAGE_NOT_EDITED;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
@@ -27,6 +28,7 @@ import static seedu.wife.testutil.TypicalIndex.INDEX_THIRD_FOOD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
@@ -49,7 +51,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_MEIJI, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", String.format(MESSAGE_NOT_EDITED, EditCommand.MESSAGE_USAGE));
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -58,10 +60,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_MEIJI, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_MEIJI, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_INVALID_INDEX));
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_MEIJI, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_MEIJI, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_INVALID_INDEX));
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);

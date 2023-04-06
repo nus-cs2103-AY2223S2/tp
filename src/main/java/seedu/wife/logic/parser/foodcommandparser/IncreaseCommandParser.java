@@ -1,10 +1,10 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.wife.commons.core.index.Index;
+import seedu.wife.commons.util.StringUtil;
 import seedu.wife.logic.commands.foodcommands.IncreaseCommand;
 import seedu.wife.logic.commands.foodcommands.IncreaseCommand.IncreaseFoodDescriptor;
 import seedu.wife.logic.parser.ArgumentMultimap;
@@ -31,11 +31,7 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), pe);
-        }
+        index = StringUtil.getIndexFromCommand(argMultimap.getPreamble().trim(), IncreaseCommand.MESSAGE_USAGE);
 
         IncreaseFoodDescriptor increaseFoodDescriptor = new IncreaseFoodDescriptor();
         //quantity needs to be > 0
