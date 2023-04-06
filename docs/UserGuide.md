@@ -584,6 +584,8 @@ all patients currently stored in the CareFlow system. Patient records will be pr
   \
   &nbsp;
 * **Format:** `p list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:**
@@ -699,6 +701,7 @@ by specifying its index in the given drug list.
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
 by specifying the trade name.
 * NOTE: you need to prefix the value with + or - for addition and subtraction respectively
+* NOTE: if decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count)
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -792,6 +795,8 @@ using the `d list` command, drug records will be presented in alphabetical order
   \
   &nbsp;
 * **Format:** `d list`
+* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+cause error to the system
   \
   &nbsp;
 * **Example:** `d list`

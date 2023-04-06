@@ -64,8 +64,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidPhone_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -ph abc",
-                "Phone numbers should contain numbers, special character like: space, +, -, (), "
-                        + "and it should be at least 3 or at most 20 digit and special character long");
+                "Phone numbers must consist of numerical digits"
+                        + " and be between 3 and 20 digits long, with no special characters allowed.");
     }
 
     @Test
@@ -117,8 +117,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidDob_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -dob 999999",
-                "Date of birth should only contain numeric characters and spaces,"
-                        + " the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy"
+                "Date of birth should only contain numeric characters."
+                        + " The format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy"
                         + " and the date should fall between 01/01/1900 and current date");
     }
 
@@ -178,8 +178,8 @@ class UpdateCommandParserTest {
 
     @Test
     void parse_changeInvalidEmergencyContact_failure() {
-        assertParseFailure(updateCommandParser, "Roy Balakrishnan -ec abc", "Phone numbers"
-                + " should contain numbers, special character like: "
-                + "space, +, -, (), and it should be at least 3 or at most 20 digit and special character long");
+        assertParseFailure(updateCommandParser, "Roy Balakrishnan -ec abc",
+                "Phone numbers must consist of numerical digits"
+                        + " and be between 3 and 20 digits long, with no special characters allowed.");
     }
 }
