@@ -430,6 +430,8 @@ Example:
 'Fish B':
   * Last fed date: 02/04/2023 12:00
 
+![AddReadingDemo](images/UiTankFeedDemo.png)
+
 ### Viewing a tank: `tank view`
 
 You can view the specific tasks and fishes belonging to the specified tank with the `tank view` command.
@@ -458,7 +460,9 @@ Example:
   * Tanks panel: tanks - 'Freshwater tank' and 'Saltwater tank'
   * Fish panel: fishes - 'Guppy'
   * Task panel: tasks - 'clean tank'
-  
+
+![AddReadingDemo](images/UiTankViewDemo.png)
+
 ### Adding a set of readings: `tank addReadings`
 
 You can add a set of ammonia level, pH and temperature readings to the specified tank with the `tank addReadings` command.
@@ -516,6 +520,8 @@ Parameters:
 Example:
 * You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
 deletes the most recent readings, the set made at 3pm.
+
+![AddReadingDemo](images/UiDelLastReadingsDemo.png)
 
 ## Fishes
 
@@ -681,6 +687,8 @@ Using `tank view 1` followed by `tank sort by/n tk/1` will result in the followi
   * 1 - 'A fish'
   * 2 - 'B fish'
   * 3 - 'C fish'
+
+![AddReadingDemo](images/UiSortNameDemo.png)
 
 ### Viewing a fish: `fish view`
 
