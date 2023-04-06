@@ -31,7 +31,8 @@ than current GUI apps in the industry.
 
 * Table of Contents
 {:toc}
---------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## Quick start
 
@@ -68,7 +69,7 @@ than current GUI apps in the industry.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Glossary
 
@@ -91,28 +92,37 @@ Here is a quick summary of each GUI component within Docedex.
 | **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
 | **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
 | **Result Display**    | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands.                                                                                  |
-| **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a Patient Card, this list will filter to show doctors assigned to said patient.  |
+| **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
 | **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
-| **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a Doctor Card, this list will filter to show patients assigned to said doctor. |
+| **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
 | **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
 | **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
 
-### Note about the GUI
+### Notes about the GUI
 
 **Selecting doctors or patients through commands**
 
-Certain commands involve the selection of doctors and patients immediately after
-they are entered.
+Certain commands involve the selection of doctors
+and patients immediately after they are entered.
 
 For example, when you type in the `add-doc` command, Docedex will automatically select
 the newly added doctor and display their details to you. This gives the user (you!) 
 a nice visual feedback that the command is successful.
 
-However, when selecting a new doctor, the patients list will be cleared, as it 
-displays the patients assigned to the selected doctor.
+Upon selecting a doctor, the Patient List displays the patients assigned
+to the selected doctor. However, if the doctor is newly added, said doctor will have
+no patients, and thus the Patient List will be empty.
 
+This behaviour will also exist if the user adds a patient instead too.
+
+<div markdown="block" class="alert alert-warning">
+Some users have mentioned being alarmed by sudden disappearances of
+their Doctor Cards and Patient Cards within their respective lists
+after entering certain commands. The explainer above details why this happens.
+Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
+</div>
 
 **Unselecting doctors or patients**
 
@@ -152,7 +162,9 @@ look through all the doctors and patients in Docedex, please use the
 | `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
 
 [Scroll back to Table of Contents](#table-of-contents)
---------------------------------------------------------------------------------------------------------------------
+
+---
+
 ## Docedex Tutorial
 
 This is a tutorial for **first-time** Docedex users.
@@ -422,7 +434,8 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 [Scroll back to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+---
+
 ## FAQ
 
 ### Launching Docedex
@@ -460,5 +473,10 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 **Q**: How can I load data from another computer into Docedex installed on another computer?<br>
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
+
+### Using Docedex
+**Q**: I entered a command and my doctor/patient list was cleared. What happenned?
+**A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
+subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
 
 [Scroll back to Table of Contents](#table-of-contents)
