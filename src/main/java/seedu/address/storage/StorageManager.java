@@ -1,4 +1,4 @@
-package seedu.address.experimental.storage;
+package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.model.ReadOnlyUserPrefs;
-import seedu.address.experimental.model.UserPrefs;
+import seedu.address.model.ReadOnlyReroll;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 
 /**
  * Manages storage of Reroll data in local storage.

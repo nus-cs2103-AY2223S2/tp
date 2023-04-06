@@ -1,4 +1,4 @@
-package seedu.address.experimental.model;
+package seedu.address.model;
 
 import java.util.List;
 

@@ -14,18 +14,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.experimental.model.Model;
-import seedu.address.experimental.model.ModelManager;
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.model.UserPrefs;
-import seedu.address.experimental.storage.JsonRerollStorage;
-import seedu.address.experimental.storage.JsonUserPrefsStorage;
-import seedu.address.experimental.storage.StorageManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyReroll;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.entity.Entity;
+import seedu.address.storage.JsonRerollStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
 import seedu.address.testutil.EntityBuilder;
 
 public class LogicManagerTest {

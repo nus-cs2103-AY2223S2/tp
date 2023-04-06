@@ -74,5 +74,4 @@ public class Inventory {
     public List<Item> getItems() {
         return Collections.unmodifiableList(items);
     }
-
 }

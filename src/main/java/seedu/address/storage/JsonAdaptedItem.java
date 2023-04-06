@@ -1,4 +1,4 @@
-package seedu.address.experimental.storage;
+package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
