@@ -48,8 +48,8 @@ public class ParserUtil {
     public static List<Index> parseMultiIndex(String oneBasedIndexes) throws ParseException {
         List<Index> indexes = new ArrayList<>();
         String[] splitIndexes = oneBasedIndexes.trim().split("\\s+");
-        for (int i = 0; i < splitIndexes.length; i++) {
-            indexes.add(parseIndex(splitIndexes[i]));
+        for (String splitIndex : splitIndexes) {
+            indexes.add(parseIndex(splitIndex));
         }
         return indexes;
     }
@@ -108,7 +108,7 @@ public class ParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         String trimmedDate = date.trim();
-        return new Date(date);
+        return new Date(trimmedDate);
     }
 
     /**
