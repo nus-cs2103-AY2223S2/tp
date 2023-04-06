@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-<!-- omit in toc -->
 ## Welcome to Docedex
+{: .no_toc}
 
 ***Taking control of hospital administrative management is just a few keystrokes away!***
 
@@ -26,8 +26,9 @@ than current GUI apps in the industry.
 
 ![NewUi](images/NewUi.png)
 
-<!-- omit in toc -->
 ## Table of Contents
+{: .no_toc}
+
 * Table of Contents
 {:toc}
 
@@ -203,6 +204,38 @@ To view all our features, you may visit our [features section](#features).
 [Scroll back to Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 ## Features
+### Parameter Information
+
+The information below specifies parameter description, constraints and usage through valid and invalid examples.
+
+#### Common Parameters
+
+| Parameter         | Description                        | Constraints                                                                     | Valid Examples                    | Invalid Examples    |
+|-------------------|------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------|
+| n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち |
+| e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2    |
+| p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1               |
+| t/                | Tags                               | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
+| INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649      |
+
+<sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
+
+#### Doctor Parameters
+
+| Parameter | Description             | Constraints                                      | Valid Examples        | Invalid Examples                                 |
+|-----------|-------------------------|--------------------------------------------------|-----------------------|--------------------------------------------------|
+| s/        | Specialty of the doctor | Alphanumeric characters (a to z, A to Z, 1 to 9) | Cardiology, Neurology | N/A (45 specialties are recognized in Singapore) |
+| y/        | Years of experience     | Positive integer between 0 and 99.               | 0, 99                 | -1, 100                                          |
+
+#### Patient Parameters
+
+| Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
+|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
+| h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
+| w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
+| d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                |
+| st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
+
 ### Doctor Commands
 #### Adding a doctor
 

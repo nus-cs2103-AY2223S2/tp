@@ -294,6 +294,7 @@ The following sequence diagram illustrates how the delete patient operation work
 
 ![](images/DeletePatientSequenceDiagram.png)
 
+
 ### GUI Features
 
 #### Enlarged Info Card feature
