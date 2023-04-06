@@ -7,15 +7,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteMultipleIndexCommand;
+import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.logic.commands.EditByIndexCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -51,11 +48,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteMultipleIndexCommand command = (DeleteMultipleIndexCommand) parser.parseCommand(
+        DeleteSingleIndexCommand command = (DeleteSingleIndexCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        ArrayList<Index> list = new ArrayList<Index>();
-        list.add(INDEX_FIRST_PERSON);
-        assertEquals(new DeleteMultipleIndexCommand(list), command);
+        assertEquals(new DeleteSingleIndexCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

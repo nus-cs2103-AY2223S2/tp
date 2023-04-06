@@ -21,7 +21,7 @@ import seedu.address.logic.commands.EditByNameCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
@@ -70,9 +70,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
                 return new EditByIndexCommand(index, editPersonDescriptor);
             } else {
-                String trimmedArgs = args.trim();
-                String[] nameKeywords = trimmedArgs.split("\\s+");
-                return new EditByNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                String nameArg = argMultimap.getPreamble();
+                String[] splitArgs = nameArg.trim().split("\\s");
+                System.out.println(Arrays.toString(splitArgs));
+                return new EditByNameCommand(new NameContainsAllKeywordsPredicate(Arrays.asList(splitArgs)),
                         editPersonDescriptor);
             }
         } catch (ParseException pe) {

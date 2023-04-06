@@ -8,7 +8,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 
@@ -21,13 +21,13 @@ public class EditByNameCommand extends EditCommand {
 
     private final EditPersonDescriptor editPersonDescriptor;
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsAllKeywordsPredicate predicate;
 
     /**
      * @param predicate            predicate of name containing keywords
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditByNameCommand(NameContainsKeywordsPredicate predicate, EditPersonDescriptor editPersonDescriptor) {
+    public EditByNameCommand(NameContainsAllKeywordsPredicate predicate, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
         this.predicate = predicate;
@@ -40,7 +40,7 @@ public class EditByNameCommand extends EditCommand {
         model.updateFilteredPersonList(predicate);
         List<Person> updatedList = model.getFilteredPersonList();
         if (updatedList.isEmpty()) {
-            return new CommandResult(Messages.MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
         if (updatedList.size() == 1) {
             Person personToEdit = updatedList.get(0);
@@ -52,7 +52,7 @@ public class EditByNameCommand extends EditCommand {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         } else {
-            return new CommandResult(
+            throw new CommandException(
                     String.format(Messages.MESSAGE_MULTIPLE_PERSONS_FOUND));
         }
     }
