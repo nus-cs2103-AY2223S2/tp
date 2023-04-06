@@ -663,7 +663,7 @@ _{Explain here how the data archiving feature will be implemented}_ -->
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                          | I want to …​                                                                               | So that I can …​                                                                  |
-| -------- | -------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+|----------|----------------------------------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | `* * *`  | Receptionist                     | check the list of patients details                                                         | verify and mark the new arrival's attendance                                      |
 | `* * *`  | Receptionist                     | check the patient's medical records                                                        | prepare the right type of vaccination                                             |
 | `* * *`  | Receptionist                     | get the patient's contact easily                                                           | contact them when needed.                                                         |
