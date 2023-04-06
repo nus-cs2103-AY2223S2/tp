@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.application.exceptions.DuplicatePersonException;
-import seedu.address.model.application.exceptions.PersonNotFoundException;
+import seedu.address.model.application.exceptions.ApplicationNotFoundException;
+import seedu.address.model.application.exceptions.DuplicateApplicationException;
 
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
@@ -44,7 +44,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
     public void add(InternshipApplication toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateApplicationException();
         }
         internalList.add(toAdd);
     }
@@ -74,11 +74,11 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ApplicationNotFoundException();
         }
 
         if (!target.isSameApplication(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateApplicationException();
         }
 
         internalList.set(index, editedPerson);
@@ -91,7 +91,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
     public void remove(InternshipApplication toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ApplicationNotFoundException();
         }
     }
 
@@ -107,7 +107,7 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
     public void setApplications(List<InternshipApplication> applications) {
         requireAllNonNull(applications);
         if (!applicationsAreUnique(applications)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateApplicationException();
         }
 
         internalList.setAll(applications);
