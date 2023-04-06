@@ -505,8 +505,10 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code> .<br/>
-  Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
+:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code>.
+</div>
+<div class="span" class="alert alert-info">
+:information_source: <b>Tip:</b> Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
 </div>
 
 `edit [OPTIONAL/PARAMETER]...`<br>
