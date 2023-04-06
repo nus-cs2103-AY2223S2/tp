@@ -108,7 +108,7 @@ Format: list
 
 Edits an existing person in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/BUSINESS_SIZE] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/BUSINESS_SIZE] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`
 
 - Edits the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -143,7 +143,7 @@ Examples:
 
 Decrements the selected person's Transaction Count by the specified amount.
 
-Format: `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
+Format: `decr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
 
 - Decrements the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The decrement amount cannot be left empty.
@@ -270,9 +270,15 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/BUSINESS_SIZE] [c/COMPANY_NAME] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG [MORE_TAGS]`<br> e.g., `filter friends clients insurance`
 **Sort** | `sort FIELD DIRECTION` <br> e.g, `sort trans desc` FIELDS: `[trans, size, name, priority]` DIRECTION: `[asc, desc]`
 **List** | `list`
 **Help** | `help`
+**Summary** | `summary`
+**Exit** | `exit`
+**Increment** | `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]` <br> e.g, `incr 1 tr/13`
+**Decrement** | `decr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]` <br> e.g, `decr 1 tr/13`
+**Mark** | `mark INDEX m/NEED FOLLOWUP:yes/no` <br> e.g, `mark 1 m/yes`
+
