@@ -915,7 +915,7 @@ The `save` command allows users to save a copy of EduMate. This information is s
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Saving the Json file**<br>
+:information_source: **Saving the Json file:**<br>
 We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file. 
 
 </div>
@@ -932,7 +932,7 @@ The `save` command allows users to load a previously saved copy of EduMate. This
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Loading the Json file**<br>
+:information_source: **Loading the Json file:**<br>
 Similar to the Save Command, we pass the file path through a `LoadCommandResult`, which will inform the `LogicManager` to load the information from a particular file.
 
 </div>
@@ -950,7 +950,7 @@ The `meet` command allows users to get recommendations of optimal meeting timing
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Sub-Commands** <br>
+:information_source: **Sub-Commands:** <br>
 The `meet` command has 2 different sub-commands : `eat`, `study`.
 However, we will be referring to all 3 commands generally as `meet`.
 </div>
@@ -993,7 +993,7 @@ On the other hand, the `unorganise` command will remove the meet up at the speci
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Format**<br>
+:information_source: **Command Format:**<br>
 
 * `unorganise INDEX`: Removes the scheduled meet up with the specified index.
 
@@ -1008,7 +1008,7 @@ The `sample` command repopulates the EduMate with a fresh set of contacts. Note 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Format**<br>
+:information_source: **Command Format:**<br>
 
 * `sample NUMBER` : Replaces the EduMate with the specified `NUMBER` of sample persons.
 
@@ -1080,8 +1080,7 @@ will be free so that a meetup could be scheduled.
 <div markdown="span" class="alert alert-info">
 
 
-:information_source: **Very important re-emphasis**
-The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
+:information_source: **Very important re-emphasis:** The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
 
