@@ -26,13 +26,18 @@ Now it's time to **CONQUER** the semester!
   - [Prerequisite](#prerequisite)
   - [Installation and Setup](#installation-and-setup)
   - [Getting Started](#getting-started)
+  - [A Brief Guide to Navigation](#a-brief-guide-to-navigation)
   - [Tutorials and Examples](#tutorials-and-examples)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
 - [Command Manual](#command-manual)
   - [Nav](#nav)
-  - [List](#list)
+- [List](#list)
+  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
+  - [List Modules](#list-modules)
+  - [List Lectures of Modules](#list-lectures-of-modules)
+  - [List Videos of Lectures](#list-videos-of-lectures)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -49,7 +54,13 @@ Now it's time to **CONQUER** the semester!
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [Find](#find)
+- [Find](#find)
+  - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
+  - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
+  - [Find Lectures in a Module](#find-lectures-in-a-module)
+  - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
+  - [Find Videos in a Lecture](#find-videos-in-a-lecture)
+  - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
@@ -135,24 +146,43 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 **:information_source: The following are rules applicable to all commands:**
 
-1. Words encapsulated in `{}` are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.\
-   e.g. For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
+1. Items in curly braces (i.e. `{}`) are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code}</code>, <code>{module_code}</code> is an argument value. The command can be used as <code>add CS2040</code>.
+   </details>
 
-2. Items in square brackets are optional.\
-   e.g. For a command with format `add {module_code} [/name {module_name}]`, the `/name` argument is optional. The command can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+2. Items in square brackets (i.e. `[]`) are optional.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} [/name {module_name}]</code>, the <code>/name</code> argument is optional. The command can be used as <code>add CS2040 /name Data Structures and Algorithms</code> or as <code>add CS2040</code>.
+   </details>
 
-3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).\
-   e.g. For a command with format `edit {module_code} /code {updated_code} /name {updated_name}`, `{module_code}` is an unnamed argument, while `/code` and `/name` are named arguments. The command can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, <code>{module_code}</code> is an unnamed argument, while <code>/code</code> and <code>/name</code> are named arguments. The command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
+   </details>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.\
-   e.g. For a command with format `add {module_code} [/name {module_name}]`, if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be taken as the value of the `/name` argument.
+4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
+   </details>
 
-5. Extraneous arguments will be ignored.\
-   e.g. For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
+5. Extraneous arguments will be ignored.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
+   </details>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z or A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace unless it is the end of the command.\
-   e.g. For the command `find Intro /mod CS2040S /byTag`, `/mod` and `/byTag` are both recognised as named arguments.\
-   For the command `find Intro /modCS2040S /byTag`, only `/byTag` is recognised as a named argument while `Intro /modCS2040S` is treated as the value of the unnamed argument.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace or it is the end of the command.
+   <details>
+   <summary>Example</summary>
+   For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
+
+   For the command <code>find Intro /modCS2040S /byTag</code>, only <code>/byTag</code> is recognised as a named argument while <code>Intro /modCS2040S</code> is treated as the value of the unnamed argument.
+   </details>
 
 ---
 
