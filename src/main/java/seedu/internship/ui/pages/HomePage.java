@@ -102,8 +102,8 @@ public class HomePage extends Page {
             reminderBox.getChildren().addAll(reminderEvents.stream()
                     .map(event -> {
                         EventCard eventCard = EventCard.of(event, false);
-                                eventCard.setEventCardContent();
-                                return eventCard.getRoot();
+                        eventCard.setEventCardContent();
+                        return eventCard.getRoot();
                     })
                     .collect(Collectors.toList()));
         } else {

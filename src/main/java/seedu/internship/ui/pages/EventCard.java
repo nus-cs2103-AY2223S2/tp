@@ -82,8 +82,6 @@ public class EventCard extends UiPart<Region> {
             eventCard.separator.setManaged(false);
             eventCard.timelineContainer.setManaged(false);
             eventCard.eventCard.setStyle("-fx-padding: 10 10 10 10;");
-//            eventCard.eventCard.setPrefWidth(300);
-//            eventCard.eventCard.setPrefHeight(200);
             String companyAndPositionString = String.format("[%s, %s] ",
                     event.getInternship().getCompany(),
                     event.getInternship().getPosition());
