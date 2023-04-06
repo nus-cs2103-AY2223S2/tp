@@ -76,8 +76,8 @@ Styles TabPane that contains ListView of tasks and suppliers
 * Modifies tabs and its states
 */
 .tab {
-    -fx-background-color: -fx-background;
     -fx-background: #e1e1e1;
+    -fx-background-color: -fx-background;
     -fx-border-radius: 10 10 10 10;
     -fx-background-radius: 10;
     -fx-focus-color: transparent;
