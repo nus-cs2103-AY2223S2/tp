@@ -341,6 +341,7 @@ Notice that the keys are all close to the enter key so that you can breeze throu
 Flips the card to reveal the answer. 
 
 Format: `p`
+- `p` is case-insensitive (`P` is also excepted).
 
 ### 3.6.5. Next Card: `]`
 
@@ -359,6 +360,7 @@ Format: `[`
 Tags the current card as easy. This replaces any previous tags.
 
 Format: `l`
+- `l` is case-insensitive (`L` is also accepted).
 
 ### 3.6.8. Tagging the Card as Medium: `;`
 
