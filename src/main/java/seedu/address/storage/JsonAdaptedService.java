@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
@@ -71,8 +72,8 @@ class JsonAdaptedService {
         description = source.getDescription();
         estimatedFinishDate = source.getEstimatedFinishDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         status = source.getStatus().getValue();
-        PartMap sourceRequiredParts = source.getRequiredParts();
-        for (Map.Entry<String, Integer> e : sourceRequiredParts.getEntrySet()) {
+        Map<String, Integer> sourceRequiredParts = source.getRequiredParts();
+        for (Map.Entry<String, Integer> e : sourceRequiredParts.entrySet()) {
             parts.add(new JsonAdaptedPart(e.getKey(), e.getValue()));
         }
         assignedToIds.addAll(source.getAssignedToIds().stream()
@@ -102,10 +103,10 @@ class JsonAdaptedService {
      */
     public Service toModelType() throws IllegalValueException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        final PartMap modelParts = new PartMap();
+        final Map<String, Integer> modelParts = new CaseInsensitiveHashMap<>();
         for (JsonAdaptedPart part : parts) {
             Map.Entry<String, Integer> partEntry = part.toModelType();
-            modelParts.addPart(partEntry.getKey(), partEntry.getValue());
+            modelParts.put(partEntry.getKey(), partEntry.getValue());
         }
         final List<Integer> serviceAssignedToIds = new ArrayList<>();
         for (Integer id : assignedToIds) {

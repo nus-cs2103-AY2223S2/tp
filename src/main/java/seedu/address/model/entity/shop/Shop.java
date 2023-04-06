@@ -50,14 +50,14 @@ import seedu.address.model.tag.Tag;
  */
 public class Shop implements ReadOnlyShop {
     public static final String MSG_RUNTIME_ERROR =
-        "Relationships in shop broken, bug in one of the modification methods";
+            "Relationships in shop broken, bug in one of the modification methods";
     private final ObservableList<Customer> customers = FXCollections.observableArrayList();
     private final ObservableList<Vehicle> vehicles = FXCollections.observableArrayList();
     private final ObservableList<Technician> technicians = FXCollections.observableArrayList();
     private final ObservableList<Service> services = FXCollections.observableArrayList();
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
     private final ObservableMap<String, Integer> parts =
-        FXCollections.observableMap(new CaseInsensitiveHashMap<>());
+            FXCollections.observableMap(new CaseInsensitiveHashMap<>());
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
@@ -129,9 +129,9 @@ public class Shop implements ReadOnlyShop {
      */
     private Customer getCustomer(int id) throws CustomerNotFoundException {
         return this.customers.stream()
-            .filter(c -> c.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new CustomerNotFoundException(id));
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
     /**
@@ -141,9 +141,9 @@ public class Shop implements ReadOnlyShop {
      */
     private Vehicle getVehicle(int id) throws VehicleNotFoundException {
         return this.vehicles.stream()
-            .filter(v -> v.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new VehicleNotFoundException(id));
+                .filter(v -> v.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new VehicleNotFoundException(id));
     }
 
     /**
@@ -153,9 +153,9 @@ public class Shop implements ReadOnlyShop {
      */
     private Service getService(int id) throws ServiceNotFoundException {
         return this.services.stream()
-            .filter(c -> c.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new ServiceNotFoundException(id));
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new ServiceNotFoundException(id));
     }
 
     /**
@@ -165,9 +165,9 @@ public class Shop implements ReadOnlyShop {
      */
     private Technician getTechnician(int id) throws TechnicianNotFoundException {
         return this.technicians.stream()
-            .filter(c -> c.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new TechnicianNotFoundException(id));
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new TechnicianNotFoundException(id));
     }
 
     /**
@@ -177,9 +177,9 @@ public class Shop implements ReadOnlyShop {
      */
     private Appointment getAppointment(int id) throws AppointmentNotFoundException {
         return this.appointments.stream()
-            .filter(c -> c.getId() == id)
-            .findFirst()
-            .orElseThrow(() -> new AppointmentNotFoundException(id));
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new AppointmentNotFoundException(id));
     }
 
     /**
@@ -269,7 +269,7 @@ public class Shop implements ReadOnlyShop {
      */
     private boolean emailExists(Email email) {
         return this.customers.stream().anyMatch(c -> c.getEmail().toString().equalsIgnoreCase(email.toString()))
-            || this.technicians.stream().anyMatch(t -> t.getEmail().toString().equalsIgnoreCase(email.toString()));
+                || this.technicians.stream().anyMatch(t -> t.getEmail().toString().equalsIgnoreCase(email.toString()));
     }
 
     /**
@@ -280,7 +280,7 @@ public class Shop implements ReadOnlyShop {
      */
     private boolean phoneExists(Phone phone) {
         return this.customers.stream().anyMatch(c -> c.getPhone().toString().equalsIgnoreCase(phone.toString()))
-            || this.technicians.stream().anyMatch(t -> t.getPhone().toString().equalsIgnoreCase(phone.toString()));
+                || this.technicians.stream().anyMatch(t -> t.getPhone().toString().equalsIgnoreCase(phone.toString()));
     }
 
     /**
@@ -309,7 +309,7 @@ public class Shop implements ReadOnlyShop {
      * @throws DuplicatePhoneNumberException if the phone number already exists
      */
     public void addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
-        throws DuplicateEmailException, DuplicatePhoneNumberException {
+            throws DuplicateEmailException, DuplicatePhoneNumberException {
         if (this.emailExists(email)) {
             logger.info("Duplicate email " + email);
             throw new DuplicateEmailException(email);
@@ -336,7 +336,7 @@ public class Shop implements ReadOnlyShop {
      * @throws DuplicatePlateNumberException if the plate number already exists
      */
     public void addVehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type)
-        throws CustomerNotFoundException, EmptyInputException, DuplicatePlateNumberException {
+            throws CustomerNotFoundException, EmptyInputException, DuplicatePlateNumberException {
         if (plateNumber.isBlank()) {
             logger.info("Empty input for vehicle plate number");
             throw new EmptyInputException("Plate number should not be blank");
@@ -373,7 +373,7 @@ public class Shop implements ReadOnlyShop {
      */
     public void addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
                            Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
-        throws VehicleNotFoundException, EmptyInputException, InvalidDateException {
+            throws VehicleNotFoundException, EmptyInputException, InvalidDateException {
         if (description.isBlank()) {
             logger.info("Empty input for service description");
             throw new EmptyInputException("Description should not be blank");
@@ -386,7 +386,7 @@ public class Shop implements ReadOnlyShop {
         }
         ServiceStatus serviceStatus = maybeServiceStatus.orElse(ServiceStatus.TO_REPAIR);
         Service toAdd = new Service(IdGenerator.generateServiceId(), vehicleId, entryDate, new HashMap<>(),
-            description, estimatedFinishDate, serviceStatus);
+                description, estimatedFinishDate, serviceStatus);
         this.getVehicle(vehicleId).addService(toAdd);
         this.services.add(toAdd);
         logger.info(toAdd + " added");
@@ -404,7 +404,7 @@ public class Shop implements ReadOnlyShop {
      * @throws DuplicatePhoneNumberException if the phone number already exists
      */
     public void addTechnician(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
-        throws DuplicateEmailException, DuplicatePhoneNumberException {
+            throws DuplicateEmailException, DuplicatePhoneNumberException {
         if (this.emailExists(email)) {
             logger.info("Duplicate email " + email);
             throw new DuplicateEmailException(email);
@@ -427,7 +427,7 @@ public class Shop implements ReadOnlyShop {
      * @throws ServiceNotFoundException    if the service is not found
      */
     public void addTechnicianToService(int techId, int serviceId)
-        throws TechnicianNotFoundException, ServiceNotFoundException {
+            throws TechnicianNotFoundException, ServiceNotFoundException {
         Technician technician = this.getTechnician(techId);
         Service service = this.getService(serviceId);
         technician.addServiceId(serviceId);
@@ -443,7 +443,7 @@ public class Shop implements ReadOnlyShop {
      * @throws AppointmentNotFoundException if the appointment is not found
      */
     public void addTechnicianToAppointment(int techId, int appointmentId)
-        throws TechnicianNotFoundException, AppointmentNotFoundException {
+            throws TechnicianNotFoundException, AppointmentNotFoundException {
         Technician technician = this.getTechnician(techId);
         Appointment appointment = this.getAppointment(appointmentId);
         technician.addAppointmentId(appointmentId);
@@ -474,7 +474,7 @@ public class Shop implements ReadOnlyShop {
      * @throws InvalidQuantityException if the quantity is invalid
      */
     public void addPart(String part, int qty)
-        throws InvalidQuantityException, EmptyInputException {
+            throws InvalidQuantityException, EmptyInputException {
         if (part.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
@@ -501,8 +501,8 @@ public class Shop implements ReadOnlyShop {
      * @throws EmptyInputException       If the part name is blank
      */
     public void addPartToService(int serviceId, String partName, int qty)
-        throws PartNotFoundException, InsufficientPartException, ServiceNotFoundException,
-               InvalidQuantityException, EmptyInputException {
+            throws PartNotFoundException, InsufficientPartException, ServiceNotFoundException,
+                   InvalidQuantityException, EmptyInputException {
         if (partName.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
@@ -610,7 +610,7 @@ public class Shop implements ReadOnlyShop {
                     this.parts.put(partName, qty);
                 }
             }
-            this.getVehicle(toRemove.getId()).removeService(toRemove);
+            this.getVehicle(toRemove.getVehicleId()).removeService(toRemove);
             for (int i : toRemove.getAssignedToIds()) {
                 this.getTechnician(i).removeServiceIds(x -> x == serviceId);
             }
@@ -658,7 +658,7 @@ public class Shop implements ReadOnlyShop {
      * @throws EmptyInputException       if the part name is blank
      */
     public void removePart(String name, int quantity)
-        throws PartNotFoundException, InsufficientPartException, InvalidQuantityException, EmptyInputException {
+            throws PartNotFoundException, InsufficientPartException, InvalidQuantityException, EmptyInputException {
         if (name.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
@@ -701,11 +701,11 @@ public class Shop implements ReadOnlyShop {
      * @throws EmptyInputException      if the part name is blank
      */
     public void removePartFromService(String partName, int serviceId, int qtyToRemove)
-        throws PartNotFoundException,
-               ServiceNotFoundException,
-               EmptyInputException,
-               InsufficientPartException,
-               InvalidQuantityException {
+            throws PartNotFoundException,
+                   ServiceNotFoundException,
+                   EmptyInputException,
+                   InsufficientPartException,
+                   InvalidQuantityException {
         if (partName.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
@@ -741,7 +741,7 @@ public class Shop implements ReadOnlyShop {
      * @throws ServiceNotFoundException    if the service is not found
      */
     public void removeTechnicianFromService(int techId, int serviceId)
-        throws TechnicianNotFoundException, ServiceNotFoundException {
+            throws TechnicianNotFoundException, ServiceNotFoundException {
         Service service = this.getService(serviceId);
         Technician technician = this.getTechnician(techId);
         service.removeTechnician(technician);
@@ -757,7 +757,7 @@ public class Shop implements ReadOnlyShop {
      * @throws AppointmentNotFoundException if the appointment is not found
      */
     public void removeTechnicianFromAppointment(int techId, int appointmentId)
-        throws TechnicianNotFoundException, AppointmentNotFoundException {
+            throws TechnicianNotFoundException, AppointmentNotFoundException {
         Appointment appointment = this.getAppointment(appointmentId);
         Technician technician = this.getTechnician(techId);
         appointment.removeTechnician(techId);
@@ -788,8 +788,8 @@ public class Shop implements ReadOnlyShop {
                              Optional<Email> email,
                              Optional<Address> address,
                              Optional<Set<Tag>> tags)
-        throws CustomerNotFoundException,
-               DuplicateEmailException, DuplicatePhoneNumberException, NoFieldEditedException {
+            throws CustomerNotFoundException,
+                   DuplicateEmailException, DuplicatePhoneNumberException, NoFieldEditedException {
         if (allEmpty(name, phone, email, address, tags)) {
             throw new NoFieldEditedException();
         }
@@ -799,14 +799,14 @@ public class Shop implements ReadOnlyShop {
         Email newEmail = email.orElse(customer.getEmail());
         Address newAddress = address.orElse(customer.getAddress());
         Set<Tag> newTags = tags.orElse(customer.getTags());
-        if (this.emailExists(newEmail)) {
+        if (this.emailExists(newEmail) && !newEmail.equals(customer.getEmail())) {
             throw new DuplicateEmailException(newEmail);
         }
-        if (this.phoneExists(newPhone)) {
+        if (this.phoneExists(newPhone) && !newPhone.equals(customer.getPhone())) {
             throw new DuplicatePhoneNumberException(newPhone);
         }
         Customer editedCustomer = new Customer(customerId, newName, newPhone, newEmail, newAddress, newTags,
-            new HashSet<>(customer.getVehicleIds()), new HashSet<>(customer.getAppointmentIds()));
+                new HashSet<>(customer.getVehicleIds()), new HashSet<>(customer.getAppointmentIds()));
         int index = this.customers.indexOf(customer);
         this.customers.set(index, editedCustomer);
         logger.info(String.format("Customer %d edited", customerId));
@@ -834,11 +834,11 @@ public class Shop implements ReadOnlyShop {
                             Optional<String> color,
                             Optional<String> brand,
                             Optional<VehicleType> type)
-        throws VehicleNotFoundException,
-               CustomerNotFoundException,
-               EmptyInputException,
-               DuplicatePlateNumberException,
-               NoFieldEditedException {
+            throws VehicleNotFoundException,
+                   CustomerNotFoundException,
+                   EmptyInputException,
+                   DuplicatePlateNumberException,
+                   NoFieldEditedException {
         if (allEmpty(ownerId, plateNumber, color, brand, type)) {
             throw new NoFieldEditedException();
         }
@@ -848,7 +848,7 @@ public class Shop implements ReadOnlyShop {
         String newColor = color.orElse(vehicle.getColor());
         String newBrand = brand.orElse(vehicle.getBrand());
         VehicleType newType = type.orElse(vehicle.getType());
-        if (this.plateNumberExists(newPlateNumber)) {
+        if (this.plateNumberExists(newPlateNumber) && !newPlateNumber.equals(vehicle.getPlateNumber())) {
             throw new DuplicatePlateNumberException(newPlateNumber);
         }
         if (newPlateNumber.isBlank()) {
@@ -861,7 +861,7 @@ public class Shop implements ReadOnlyShop {
             throw new EmptyInputException("Brand cannot be blank");
         }
         Vehicle editedVehicle = new Vehicle(vehicleId,
-            newOwnerId, newPlateNumber, newColor, newBrand, newType, vehicle.getServiceIdsSet());
+                newOwnerId, newPlateNumber, newColor, newBrand, newType, vehicle.getServiceIdsSet());
         if (newOwnerId != vehicle.getOwnerId()) {
             Customer prevOwner = this.getCustomer(vehicle.getOwnerId());
             Customer newOwner = this.getCustomer(newOwnerId);
@@ -895,11 +895,11 @@ public class Shop implements ReadOnlyShop {
                             Optional<LocalDate> estimatedFinishDate,
                             Optional<ServiceStatus> serviceStatus
     )
-        throws ServiceNotFoundException,
-               VehicleNotFoundException,
-               EmptyInputException,
-               InvalidDateException,
-               NoFieldEditedException {
+            throws ServiceNotFoundException,
+                   VehicleNotFoundException,
+                   EmptyInputException,
+                   InvalidDateException,
+                   NoFieldEditedException {
         if (allEmpty(vehicleId, entryDate, description, estimatedFinishDate, serviceStatus)) {
             throw new NoFieldEditedException();
         }
@@ -917,8 +917,8 @@ public class Shop implements ReadOnlyShop {
         }
 
         Service editedService = new Service(serviceId,
-            newVehicleId, newEntryDate, service.getRequiredParts(),
-            newDescription, newEstimatedFinishDate, newServiceStatus, service.getAssignedToIdsSet());
+                newVehicleId, newEntryDate, service.getRequiredParts(),
+                newDescription, newEstimatedFinishDate, newServiceStatus, service.getAssignedToIdsSet());
         if (newVehicleId != service.getVehicleId()) {
             Vehicle prevVehicle = this.getVehicle(service.getVehicleId());
             Vehicle newVehicle = this.getVehicle(newVehicleId);
@@ -944,7 +944,7 @@ public class Shop implements ReadOnlyShop {
     public void editAppointment(int appointmentId,
                                 Optional<Integer> customerId,
                                 Optional<LocalDateTime> timeDate)
-        throws AppointmentNotFoundException, CustomerNotFoundException, NoFieldEditedException {
+            throws AppointmentNotFoundException, CustomerNotFoundException, NoFieldEditedException {
         if (allEmpty(customerId, timeDate)) {
             throw new NoFieldEditedException();
         }
@@ -953,7 +953,7 @@ public class Shop implements ReadOnlyShop {
         LocalDateTime newTimeDate = timeDate.orElse(appointment.getTimeDate());
 
         Appointment editedAppointment = new Appointment(appointmentId,
-            newCustomerId, newTimeDate, new HashSet<>(appointment.getStaffIds()));
+                newCustomerId, newTimeDate, new HashSet<>(appointment.getStaffIds()));
 
         if (newCustomerId != appointment.getCustomerId()) {
             Customer prevCustomer = this.getCustomer(appointment.getCustomerId());
@@ -986,10 +986,10 @@ public class Shop implements ReadOnlyShop {
                                Optional<Email> email,
                                Optional<Address> address,
                                Optional<Set<Tag>> tags)
-        throws TechnicianNotFoundException,
-               DuplicateEmailException,
-               DuplicatePhoneNumberException,
-               NoFieldEditedException {
+            throws TechnicianNotFoundException,
+                   DuplicateEmailException,
+                   DuplicatePhoneNumberException,
+                   NoFieldEditedException {
         if (allEmpty(name, phone, email, address, tags)) {
             throw new NoFieldEditedException();
         }
@@ -1006,7 +1006,7 @@ public class Shop implements ReadOnlyShop {
             throw new DuplicatePhoneNumberException(newPhone);
         }
         Technician editedTechnician = new Technician(technicianId, newName, newPhone, newEmail, newAddress, newTags,
-            new HashSet<>(technician.getServiceIds()), new HashSet<>(technician.getAppointmentIds()));
+                new HashSet<>(technician.getServiceIds()), new HashSet<>(technician.getAppointmentIds()));
         int index = this.technicians.indexOf(technician);
         this.technicians.set(index, editedTechnician);
         logger.info(String.format("Technician %d edited", technicianId));
@@ -1041,6 +1041,37 @@ public class Shop implements ReadOnlyShop {
         this.appointments.addAll(newData.getAppointmentList());
 
         logger.info("Shop data reset");
+    }
+
+    /**
+     * Replaces the existing data of this {@code shop} with {@code newData}.
+     * This should only be called when loading data from file
+     */
+    public void overrideData(ObservableList<Customer> customers,
+                             ObservableList<Vehicle> vehicles,
+                             ObservableMap<String, Integer> parts,
+                             ObservableList<Service> services,
+                             ObservableList<Technician> technicians,
+                             ObservableList<Appointment> appointments) {
+        this.customers.clear();
+        this.customers.addAll(customers);
+
+        this.vehicles.clear();
+        this.vehicles.addAll(vehicles);
+
+        this.parts.clear();
+        this.parts.putAll(parts);
+
+        this.services.clear();
+        this.services.addAll(services);
+
+        this.technicians.clear();
+        this.technicians.addAll(technicians);
+
+        this.appointments.clear();
+        this.appointments.addAll(appointments);
+
+        logger.info("Shop data overridden");
     }
 
     /**

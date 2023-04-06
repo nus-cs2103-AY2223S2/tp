@@ -81,6 +81,8 @@ public class EditCustomerCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().editCustomer(id, name, phone, email, address, tags);
+            model.resetSelected();
+            model.selectCustomer(lst -> lst.stream().filter(c -> c.getId() == id).findFirst().get());
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, id), Tab.CUSTOMERS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

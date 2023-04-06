@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Map;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -15,17 +16,17 @@ public class PartListPanel extends UiPart<Region> {
 
     private static final String FXML = "PartListPanel.fxml";
 
-    public final PartMap parts;
+    public final ObservableList<Map.Entry<String, Integer>> parts;
     @FXML
     private VBox partListPanel;
 
     /**
      * Creates a part listing.
      */
-    public PartListPanel(PartMap parts) {
+    public PartListPanel(ObservableList<Map.Entry<String, Integer>> parts) {
         super(FXML);
         this.parts = parts;
-        for (Map.Entry<String, Integer> entry : parts.getEntrySet()) {
+        for (Map.Entry<String, Integer> entry : parts) {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Label nameLabel = new Label(key);

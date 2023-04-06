@@ -29,6 +29,7 @@ public class DeleteVehicleCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().removeVehicle(id);
+            model.resetSelected();
             return new CommandResult(String.format(MESSAGE_DELETE_VEHICLE_SUCCESS, id), Tab.VEHICLES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

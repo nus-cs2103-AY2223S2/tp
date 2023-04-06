@@ -69,6 +69,7 @@ public class AddServiceCommand extends RedoableCommand {
         try {
             model.getShop().addService(vehicleId, entryDate, description,
                 estimatedFinishDate, serviceStatus);
+            model.selectService(lst -> lst.get(lst.size() - 1));
         return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

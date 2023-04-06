@@ -30,6 +30,7 @@ public class DeleteCustomerCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().removeCustomer(id);
+            model.resetSelected();
             return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, id), Tab.CUSTOMERS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

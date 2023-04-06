@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -21,6 +22,7 @@ import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -128,12 +130,12 @@ public class SampleDataUtil {
             new Vehicle(IdGenerator.generateVehicleId(), 3, "SGC2345F", "Black and White", "Honda Adv 150",
                 VehicleType.MOTORBIKE, getIntegerSet(7)),
             new Vehicle(IdGenerator.generateVehicleId(), 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV",
-                VehicleType.CAR),
+                VehicleType.CAR, getIntegerSet(6)),
         };
     }
 
     public static Map<String, Integer> getSampleParts() {
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new CaseInsensitiveHashMap<>();
         map.put("Frame", 50);
         map.put("Bolt", 1000);
         map.put("Horn", 100);
@@ -152,21 +154,21 @@ public class SampleDataUtil {
     // NOTE: Ensure Parts added to Services match with the parts added to getSampleParts*
     public static Service[] getSampleServices() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        PartMap samplePartsA = new PartMap();
-        samplePartsA.addPart("Wheels", 4);
-        samplePartsA.addPart("Suspension", 4);
+        Map<String, Integer> samplePartsA = new CaseInsensitiveHashMap<>();
+        samplePartsA.put("Wheels", 4);
+        samplePartsA.put("Suspension", 4);
 
-        PartMap samplePartsB = new PartMap();
-        samplePartsB.addPart("Gearbox", 1);
+        Map<String, Integer> samplePartsB = new CaseInsensitiveHashMap<>();
+        samplePartsB.put("Gearbox", 1);
 
-        PartMap samplePartsC = new PartMap();
-        samplePartsC.addPart("Engine", 1);
+        Map<String, Integer> samplePartsC = new CaseInsensitiveHashMap<>();
+        samplePartsC.put("Engine", 1);
 
-        PartMap samplePartsD = new PartMap();
-        samplePartsD.addPart("Car Battery", 1);
+        Map<String, Integer> samplePartsD = new CaseInsensitiveHashMap<>();
+        samplePartsD.put("Car Battery", 1);
 
-        PartMap samplePartsE = new PartMap();
-        samplePartsE.addPart("Brake Pads", 1);
+        Map<String, Integer> samplePartsE = new CaseInsensitiveHashMap<>();
+        samplePartsE.put("Brake Pads", 1);
 
         return new Service[]{
             new Service(IdGenerator.generateServiceId(), 1, LocalDate.parse("02/03/2022", dtf),
@@ -188,7 +190,7 @@ public class SampleDataUtil {
                 samplePartsE, "Brake pads worn out",
                 LocalDate.parse("02/04/2023", dtf), ServiceStatus.TO_REPAIR, getIntegerSet(1, 3)),
             new Service(IdGenerator.generateServiceId(), 5, LocalDate.parse("16/03/2023", dtf),
-                new PartMap(), "Just a simple inspection",
+                new CaseInsensitiveHashMap<>(), "Just a simple inspection",
                 LocalDate.parse("18/03/2023", dtf), ServiceStatus.TO_REPAIR, getIntegerSet(2)),
             };
     }
@@ -203,31 +205,12 @@ public class SampleDataUtil {
 
     public static ReadOnlyShop getSampleShop() {
         Shop sampleSh = new Shop();
-        for (Customer sampleCustomer : getSampleCustomers()) {
-            sampleSh.addCustomer(sampleCustomer);
-        }
-
-        for (Vehicle sampleVehicle : getSampleVehicles()) {
-            sampleSh.addVehicle(sampleVehicle);
-        }
-
-        for (Map.Entry<String, Integer> entry : getSampleParts().entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            sampleSh.addPart(key, value);
-        }
-
-        for (Service sampleService : getSampleServices()) {
-            sampleSh.addService(sampleService);
-        }
-
-        for (Appointment sampleAppointment : getSampleAppointments()) {
-            sampleSh.addAppointment(sampleAppointment);
-        }
-
-        for (Technician sampleTechnician : getSampleTechnicians()) {
-            sampleSh.addTechnician(sampleTechnician);
-        }
+        sampleSh.overrideData(FXCollections.observableArrayList(getSampleCustomers()),
+            FXCollections.observableArrayList(getSampleVehicles()),
+            FXCollections.observableMap(getSampleParts()),
+            FXCollections.observableArrayList(getSampleServices()),
+            FXCollections.observableArrayList(getSampleTechnicians()),
+            FXCollections.observableArrayList(getSampleAppointments()));
         return sampleSh;
     }
 

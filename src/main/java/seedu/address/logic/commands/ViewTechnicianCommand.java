@@ -34,7 +34,8 @@ public class ViewTechnicianCommand extends Command {
         }
         model.updateFilteredTechnicianList(t -> t.getId() == this.technicianId);
         Technician current = model.getFilteredTechnicianList().get(0);
-        model.selectTechnician(current);
+        model.selectTechnician(lst -> lst.stream().filter(t -> t.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, this.technicianId), Tab.TECHNICIANS);
     }

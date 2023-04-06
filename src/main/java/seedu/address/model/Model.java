@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -143,6 +145,8 @@ public interface Model {
      */
     ObservableList<Customer> getFilteredCustomerList();
 
+    void resetSelected();
+
     /**
      * Updates the filter of the filtered customer list to filter by the given
      * {@code predicate}.
@@ -182,7 +186,7 @@ public interface Model {
     /**
      * Sets currently selected customer
      */
-    void selectCustomer(Customer customer);
+    void selectCustomer(Function<? super List<? extends Customer>, ? extends Customer> selector);
 
     /**
      * Returns currently selected customer
@@ -192,7 +196,7 @@ public interface Model {
     /**
      * Sets currently selected vehicle
      */
-    void selectVehicle(Vehicle vehicle);
+    void selectVehicle(Function<? super List<? extends Vehicle>, ? extends Vehicle> selector);
 
     /**
      * Returns currently selected vehicle
@@ -202,7 +206,7 @@ public interface Model {
     /**
      * Sets currently selected service
      */
-    void selectService(Service service);
+    void selectService(Function<? super List<? extends Service>, ? extends Service> selector);
 
     /**
      * Returns currently selected service
@@ -212,7 +216,7 @@ public interface Model {
     /**
      * Sets currently selected appointment
      */
-    void selectAppointment(Appointment appointment);
+    void selectAppointment(Function<? super List<? extends Appointment>, ? extends Appointment> selector);
 
     /**
      * Returns currently selected service
@@ -227,7 +231,7 @@ public interface Model {
     /**
      * Sets currently selected technician
      */
-    void selectTechnician(Technician technician);
+    void selectTechnician(Function<? super List<? extends Technician>, ? extends Technician> selector);
 
 
     // Sort helper functions

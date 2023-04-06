@@ -35,7 +35,8 @@ public class ViewVehicleCommand extends Command {
         }
         model.updateFilteredVehicleList(v -> v.getId() == this.vehicleId);
         Vehicle current = model.getFilteredVehicleList().get(0);
-        model.selectVehicle(current);
+        model.selectVehicle(lst -> lst.stream().filter(v -> v.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
                 String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current.getId()),
                 Tab.VEHICLES);

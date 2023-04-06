@@ -18,7 +18,7 @@ public class ListCustomersCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        model.selectCustomer(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
     }
 }

@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.FXCollections;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -66,12 +68,12 @@ class JsonSerializableShop {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
         vehicles.addAll(source.getVehicleList().stream().map(JsonAdaptedVehicle::new).collect(Collectors.toList()));
         services.addAll(source.getServiceList().stream().map(JsonAdaptedService::new).collect(Collectors.toList()));
-        source.getPartMap().getEntrySet()
-                .forEach(entry -> parts.add(new JsonAdaptedPart(entry.getKey(), entry.getValue())));
+        source.getPartMap()
+            .forEach(entry -> parts.add(new JsonAdaptedPart(entry.getKey(), entry.getValue())));
         appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
         technicians.addAll(source.getTechnicianList().stream().map(JsonAdaptedTechnician::new)
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -81,59 +83,72 @@ class JsonSerializableShop {
      */
     public Shop toModelType() throws IllegalValueException {
         Shop shop = new Shop();
+        List<Customer> customerLst = new ArrayList<>();
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
             Customer customer = jsonAdaptedCustomer.toModelType();
-            if (shop.hasCustomer(customer)) {
+            if (shop.hasCustomer(customer.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
             IdGenerator.setCustomerIdUsed(customer.getId());
-            shop.addCustomer(customer);
+            customerLst.add(customer);
         }
 
+        List<Vehicle> vehicleLst = new ArrayList<>();
         for (JsonAdaptedVehicle jsonAdaptedVehicle : vehicles) {
             Vehicle vehicle = jsonAdaptedVehicle.toModelType();
-            if (shop.hasVehicle(vehicle)) {
+            if (shop.hasVehicle(vehicle.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VEHICLE);
             }
             IdGenerator.setVehicleIdUsed(vehicle.getId());
-            shop.addVehicle(vehicle);
+            vehicleLst.add(vehicle);
         }
 
+        List<Service> serviceLst = new ArrayList<>();
         for (JsonAdaptedService jsonAdaptedService : services) {
             Service service = jsonAdaptedService.toModelType();
-            if (shop.hasService(service)) {
+            if (shop.hasService(service.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICE);
             }
             IdGenerator.setServiceIdUsed(service.getId());
-            shop.addService(service);
+            serviceLst.add(service);
         }
 
+        Map<String, Integer> partMap = new CaseInsensitiveHashMap<>();
         for (JsonAdaptedPart jsonAdaptedPart : parts) {
             Map.Entry<String, Integer> partEntry = jsonAdaptedPart.toModelType();
             if (shop.hasPart(partEntry.getKey())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PART);
             }
-            shop.addPart(partEntry.getKey(), partEntry.getValue());
+            partMap.put(partEntry.getKey(), partEntry.getValue());
         }
 
+        List<Appointment> appointmentLst = new ArrayList<>();
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
-            if (shop.hasAppointment(appointment)) {
+            if (shop.hasAppointment(appointment.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             IdGenerator.setAppointmentIdUsed(appointment.getId());
-            shop.addAppointment(appointment);
+            appointmentLst.add(appointment);
         }
 
+        List<Technician> technicianLst = new ArrayList<>();
         for (JsonAdaptedTechnician jsonAdaptedTechnician : technicians) {
             Technician technician = jsonAdaptedTechnician.toModelType();
-            if (shop.hasTechnician(technician)) {
+            if (shop.hasTechnician(technician.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TECHNICIAN);
             }
             IdGenerator.setStaffIdUsed(technician.getId());
-            shop.addTechnician(technician);
+            technicianLst.add(technician);
         }
-
+        shop.overrideData(
+            FXCollections.observableArrayList(customerLst),
+            FXCollections.observableArrayList(vehicleLst),
+            FXCollections.observableMap(partMap),
+            FXCollections.observableArrayList(serviceLst),
+            FXCollections.observableArrayList(technicianLst),
+            FXCollections.observableArrayList(appointmentLst)
+        );
         return shop;
     }
 

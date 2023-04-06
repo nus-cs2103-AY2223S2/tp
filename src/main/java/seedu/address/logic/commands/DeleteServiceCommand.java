@@ -30,6 +30,7 @@ public class DeleteServiceCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().removeService(id);
+            model.resetSelected();
             return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, id), Tab.SERVICES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

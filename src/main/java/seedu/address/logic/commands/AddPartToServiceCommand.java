@@ -49,6 +49,10 @@ public class AddPartToServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().addPartToService(serviceId, partName, quantity);
+            model.selectService(lst -> lst.stream()
+                .filter(s -> s.getId() == serviceId)
+                .findFirst()
+                .get());
             return new CommandResult(
                 String.format(MESSAGE_SUCCESS_FORMAT, this.quantity, this.partName, this.serviceId),
                 Tab.SERVICES);

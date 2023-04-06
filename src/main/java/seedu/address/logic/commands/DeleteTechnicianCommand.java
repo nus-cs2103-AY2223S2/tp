@@ -30,6 +30,7 @@ public class DeleteTechnicianCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().removeTechnician(id);
+            model.resetSelected();
             return new CommandResult(String.format(MESSAGE_DELETE_TECHNICIAN_SUCCESS, id), Tab.TECHNICIANS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

@@ -40,6 +40,8 @@ public class RemoveTechnicianFromServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().removeTechnicianFromService(techId, serviceId);
+            model.selectService(lst -> lst.stream().filter(s -> s.getId() == serviceId)
+                .findFirst().orElse(null));
             return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
                 Tab.SERVICES);
         } catch (Exception e) {

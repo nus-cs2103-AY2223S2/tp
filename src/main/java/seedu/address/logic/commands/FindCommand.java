@@ -39,6 +39,8 @@ public class FindCommand extends RedoableCommand {
         model.updateFilteredAppointmentList(predicate);
         model.updateFilteredTechnicianList(predicate);
 
+        model.resetSelected();
+
         return new CommandResult(
             String.format(MESSAGE_SUCCESS, model.getFilteredCustomerList().size(),
                 model.getFilteredVehicleList().size(), model.getFilteredServiceList().size(),

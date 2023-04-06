@@ -67,6 +67,8 @@ public class EditVehicleCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().editVehicle(id, ownerId, plateNumber, color, brand, type);
+            model.resetSelected();
+            model.selectVehicle(lst -> lst.stream().filter(v -> v.getId() == id).findFirst().get());
             return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, id), Tab.VEHICLES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

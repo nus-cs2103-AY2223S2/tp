@@ -5,7 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -279,8 +281,8 @@ public class ModelManager implements Model {
 
     // selecting ===========================================================================================
     @Override
-    public void selectCustomer(Customer customer) {
-        selectedCustomer = customer;
+    public void selectCustomer(Function<? super List<? extends Customer>, ? extends Customer> selector) {
+        selectedCustomer = selector.apply(this.sortedFilteredCustomers);
     }
 
     @Override
@@ -289,8 +291,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void selectVehicle(Vehicle vehicle) {
-        selectedVehicle = vehicle;
+    public void selectVehicle(Function<? super List<? extends Vehicle>, ? extends Vehicle> selector) {
+        selectedVehicle = selector.apply(this.sortedFilteredVehicles);
     }
 
     @Override
@@ -299,8 +301,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void selectService(Service service) {
-        selectedService = service;
+    public void selectService(Function<? super List<? extends Service>, ? extends Service> selector) {
+        selectedService = selector.apply(this.sortedFilteredServices);
     }
 
     @Override
@@ -309,8 +311,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void selectAppointment(Appointment appointment) {
-        selectedAppointment = appointment;
+    public void selectAppointment(Function<? super List<? extends Appointment>, ? extends Appointment> selector) {
+        selectedAppointment = selector.apply(this.sortedFilteredAppointments);
     }
 
     @Override
@@ -319,13 +321,22 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void selectTechnician(Technician technician) {
-        selectedTechnician = technician;
+    public void selectTechnician(Function<? super List<? extends Technician>, ? extends Technician> selector) {
+        selectedTechnician = selector.apply(this.sortedFilteredTechnicians);
     }
 
     @Override
     public Technician getSelectedTechnician() {
         return selectedTechnician;
+    }
+
+    @Override
+    public void resetSelected() {
+        this.selectCustomer(lst -> lst.isEmpty() ? null : lst.get(0));
+        this.selectVehicle(lst -> lst.isEmpty() ? null : lst.get(0));
+        this.selectService(lst -> lst.isEmpty() ? null : lst.get(0));
+        this.selectAppointment(lst -> lst.isEmpty() ? null : lst.get(0));
+        this.selectTechnician(lst -> lst.isEmpty() ? null : lst.get(0));
     }
 
     // Set predicates && comparators =================================================================================

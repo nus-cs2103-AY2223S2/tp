@@ -41,6 +41,8 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().removeTechnicianFromAppointment(techId, appointmentId);
+            model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == appointmentId)
+                .findFirst().orElse(null));
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
                 Tab.APPOINTMENTS);
         } catch (Exception e) {

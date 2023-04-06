@@ -54,6 +54,7 @@ public class AddAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().addAppointment(customerId, dateTime);
+            model.selectAppointment(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
         } catch (CustomerNotFoundException e) {
             throw new CommandException(e.getMessage());

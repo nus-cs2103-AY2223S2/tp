@@ -66,6 +66,8 @@ public class EditAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().editAppointment(id, customerId, dateTime);
+            model.resetSelected();
+            model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == id).findFirst().get());
             return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, id), Tab.APPOINTMENTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

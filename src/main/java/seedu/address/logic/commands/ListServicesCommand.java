@@ -18,6 +18,7 @@ public class ListServicesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        model.selectService(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
     }
 }

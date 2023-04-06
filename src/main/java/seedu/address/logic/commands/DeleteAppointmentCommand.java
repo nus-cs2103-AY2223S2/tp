@@ -29,6 +29,7 @@ public class DeleteAppointmentCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().removeAppointment(id);
+            model.resetSelected();
             return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, id),
                 Tab.APPOINTMENTS);
         } catch (Exception e) {

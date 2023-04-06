@@ -78,6 +78,8 @@ public class EditServiceCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().editService(id, vehicleId, startDate, description, endDate, status);
+            model.resetSelected();
+            model.selectService(lst -> lst.stream().filter(s -> s.getId() == id).findFirst().get());
             return new CommandResult(String.format(MESSAGE_EDIT_SERVICE_SUCCESS, id), Tab.SERVICES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

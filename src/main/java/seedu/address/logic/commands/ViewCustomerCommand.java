@@ -34,7 +34,8 @@ public class ViewCustomerCommand extends Command {
         }
         model.updateFilteredCustomerList(c -> c.getId() == this.customerId);
         Customer current = model.getFilteredCustomerList().get(0);
-        model.selectCustomer(current);
+        model.selectCustomer(lst -> lst.stream().filter(c -> c.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current.getId()), Tab.CUSTOMERS);
     }

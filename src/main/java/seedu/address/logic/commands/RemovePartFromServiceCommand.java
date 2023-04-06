@@ -51,6 +51,8 @@ public class RemovePartFromServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().removePartFromService(partName, serviceId, quantity);
+            model.selectService(lst -> lst.stream().filter(s -> s.getId() == serviceId)
+                .findFirst().orElse(null));
             return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.partName, this.quantity,
                 this.serviceId), Tab.SERVICES);
         } catch (Exception e) {

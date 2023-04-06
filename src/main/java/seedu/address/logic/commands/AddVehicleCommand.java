@@ -67,6 +67,7 @@ public class AddVehicleCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().addVehicle(ownerId, plateNum, color, brand, vehicleType);
+            model.selectVehicle(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

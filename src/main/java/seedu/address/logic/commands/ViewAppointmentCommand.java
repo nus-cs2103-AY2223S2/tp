@@ -34,7 +34,8 @@ public class ViewAppointmentCommand extends RedoableCommand {
         }
         model.updateFilteredAppointmentList(a -> a.getId() == this.appointmentId);
         Appointment current = model.getFilteredAppointmentList().get(0);
-        model.selectAppointment(current);
+        model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW), Tab.APPOINTMENTS);
     }

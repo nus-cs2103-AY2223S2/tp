@@ -73,6 +73,7 @@ public class AddCustomerCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().addCustomer(name, phone, email, address, tags);
+            model.selectCustomer(lst -> lst.get(lst.size() - 1));
             return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

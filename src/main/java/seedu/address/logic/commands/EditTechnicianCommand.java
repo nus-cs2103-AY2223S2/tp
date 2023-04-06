@@ -77,6 +77,8 @@ public class EditTechnicianCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().editTechnician(id, name, phone, email, address, tags);
+            model.resetSelected();
+            model.selectTechnician(lst -> lst.stream().filter(t -> t.getId() == id).findFirst().get());
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, id), Tab.TECHNICIANS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

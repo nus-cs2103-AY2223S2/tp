@@ -40,6 +40,7 @@ public class AddTechnicianToServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().addTechnicianToService(techId, serviceId);
+            model.selectService(lst -> lst.stream().filter(a -> a.getId() == serviceId).findFirst().get());
             return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
                 Tab.SERVICES);
         } catch (Exception e) {

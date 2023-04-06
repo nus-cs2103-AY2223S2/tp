@@ -83,7 +83,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
         vehicleAssignedTo.getChildren().add(vehicleLabel);
 
         List<Technician> technicians = dataMap.getServiceTechnicians(service);
-        PartMap partsRequired = service.getRequiredParts();
+        var partsRequired = service.getRequiredParts();
 
         for (int i = 0; i < technicians.size(); i++) {
             Technician t = technicians.get(i);
@@ -92,7 +92,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
             serviceTechnicians.getChildren().add(tLabel);
         }
 
-        for (Map.Entry<String, Integer> entry : partsRequired.getEntrySet()) {
+        for (Map.Entry<String, Integer> entry : partsRequired.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Label pLabel = new Label(value + " " + key);

@@ -40,6 +40,7 @@ public class AddTechnicianToAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         try {
             model.getShop().addTechnicianToAppointment(techId, appointmentId);
+            model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == appointmentId).findFirst().get());
             return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
                 Tab.APPOINTMENTS);
         } catch (Exception e) {

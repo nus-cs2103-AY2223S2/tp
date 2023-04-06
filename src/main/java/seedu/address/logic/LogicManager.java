@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -23,7 +24,6 @@ import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -59,6 +59,8 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         command.setData(undoRedoStack);
         commandResult = command.execute(model);
+        model.resetMaps();
+        logger.info("Maps reset");
 
         try {
             storage.saveShop(model.getShop());
@@ -127,8 +129,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public PartMap getPartMap() {
-        return model.getPartMap();
+    public ObservableList<Map.Entry<String, Integer>> getPartMap() {
+        return model.getShop().getPartMap();
     }
 
     @Override
