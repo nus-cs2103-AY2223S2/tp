@@ -11,12 +11,10 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain letters and spaces, and it should not be blank."
-                    + "\nTrimmed names can have a maximum length of 54 characters.";
+            "Names should only contain letters and spaces, and it should not be blank.";
 
 
     public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z\\s]*";
-    private static final int MAX_LENGTH = 54;
     public final String fullName;
 
     /**
@@ -35,7 +33,7 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         test = trimName(test);
-        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

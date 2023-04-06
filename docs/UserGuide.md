@@ -137,7 +137,7 @@ This section describes the requirements of the specified data fields.
 
 ### Name
 * Names must only contain letters and spaces, and cannot be blank.
-* Names have a maximum allowed length of 54 characters in line with Singaporean law.
+* Names must contain at least one letter.
 * Longer names may be truncated. To see the full text, resize the app window.
 
 ### Postal code
