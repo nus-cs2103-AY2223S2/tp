@@ -40,7 +40,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             }
             try {
                 Integer value = Integer.parseInt(update);
-                return new UpdateCommand(tradeName, Math.abs(value), value>0);
+                return new UpdateCommand(tradeName, Math.abs(value), value > 0);
             } catch (NumberFormatException e) {
                 throw new ParseException(INVALID_VALUE_MESSAGE);
             }
