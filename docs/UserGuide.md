@@ -35,7 +35,7 @@ The user guide contains certain visuals to aid in conveying information more eff
 
 ### **Target Audience**
 This User Guide is mainly targeted at new users who want to get started on using MyLib to track and organize all
-their reading. 
+their content. 
 
 It also serves as a quick refresher to current users of the application who might have forgotten certain commands or features.
 
@@ -51,7 +51,7 @@ It also serves as a quick refresher to current users of the application who migh
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
 
-5. A GUI similar to the below should appear in a few seconds. You can go [here](#graphical-user-interface) to get an overview of the various components that make up MyLib's GUI.
+5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
 
     <img width="560" height="400"  src="images/Ui.png">
 
