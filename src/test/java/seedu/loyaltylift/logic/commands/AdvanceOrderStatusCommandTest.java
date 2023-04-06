@@ -4,19 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
+import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.testutil.OrderBuilder;
 
 public class AdvanceOrderStatusCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -31,15 +37,19 @@ public class AdvanceOrderStatusCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        LocalDate dateToday = LocalDate.now();
+        String formattedDate = dateToday.format(DATE_FORMATTER);
         Order orderToAdvance = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         AdvanceOrderStatusCommand advanceOrderStatusCommand = new AdvanceOrderStatusCommand(INDEX_FIRST);
 
+        Order advancedOrder = new OrderBuilder(orderToAdvance).withNextStatus(formattedDate).build();
         String expectedMessage = String.format(advanceOrderStatusCommand.MESSAGE_ADVANCE_STATUS_SUCCESS,
                 orderToAdvance, orderToAdvance.getStatus().getLatestStatus());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, null, null);
-        System.out.println(expectedCommandResult.getFeedbackToUser());
-        System.out.println(expectedMessage);
-        assertCommandSuccess(advanceOrderStatusCommand, model, expectedCommandResult, model);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        expectedModel.setOrder(orderToAdvance, advancedOrder);
+        assertCommandSuccess(advanceOrderStatusCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
