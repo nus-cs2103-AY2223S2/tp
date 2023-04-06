@@ -1,13 +1,14 @@
 package ezschedule.logic.commands;
 
 import static ezschedule.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
@@ -29,12 +30,12 @@ public class FindCommand extends Command {
             + "and displays them as a list with index number. \n"
             + "The name can be partially matched, while the date has to match \n"
             + "Parameters: "
-            + CliSyntax.PREFIX_NAME + "NAME "
-            + CliSyntax.PREFIX_DATE + "DATE "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATE + "DATE "
             + "\nExample: " + COMMAND_WORD + " "
             + "Example: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_NAME + "basketball court "
-            + CliSyntax.PREFIX_DATE + "2023-01-01 ";
+            + PREFIX_NAME + "basketball court "
+            + PREFIX_DATE + "2023-01-01 ";
 
     private final FindEventDescriptor findEventDescriptor;
 
