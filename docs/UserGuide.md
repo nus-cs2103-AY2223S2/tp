@@ -125,6 +125,8 @@ Examples:
 
 #### Editing a contact : `edit`
 
+*For when you make a mistake in the details or to update new details of a contact.*
+
 Edits an existing contact in SOCket.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
@@ -156,9 +158,11 @@ Examples:
 
 #### Removing a contact's field : `remove`
 
+*When you just want to wipe a value completely or remove specific values only.*
+
 Removes the specific field value based on the given contact.
 
-Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
+Format: `remove INDEX [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGUAGE] [t/TAG]...`
 
 * Removes field value of the contact at the specific `INDEX`.
 * At least one of the optional fields must be provided.
@@ -166,6 +170,10 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
   * e.g. `l/Java` will remove `Java` from the languages of the contact.
 * Clears the field value(s) when no keyword is provided for the field.
   * e.g. `t/` will remove all the tags associated with the contact.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+You can use the remove command to just remove specific tags/language and keep the rest unedited.
+</div>
 
 Examples:
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
@@ -176,40 +184,11 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
-
-#### Deleting a contact : `delete`
-
-Deletes the specified contact from SOCket.
-
-Format: `delete INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-#### Clearing all contacts or tags : `clear`
-
-Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
-
-Format: `clear [t/TAG]...`
-
-* Removes all contacts with the specified tags.
-* Any tag included is **case-insensitive**.
-  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
-* The tags **must exist** in SOCket.
-* If tags are provided, only remove existing tags.
-  * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
-* If no tag field is provided, remove all contacts in SOCket.
-* A confirmation prompt will appear before removal of contacts.
-
 <div style="page-break-after: always;"></div>
 
 #### Listing all contacts : `list`
+
+*For when you would like to look at a specific group of contacts.*
 
 Lists all contacts in SOCket based on language and tag.
 
@@ -228,6 +207,8 @@ Format: `list [l/LANGUAGE] [t/TAG]`
 * The list by default is sorted by time added (i.e most recently added contact being last in the list).
 
 #### Locating contacts by keyword(s): `find`
+
+*If you ever need to search out contacts that you have forgot parts of its details.*
 
 Find contacts stored in SOCket based on the given keyword(s) for the respective fields.
 
@@ -252,7 +233,10 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
     * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`.
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
     * e.g. `find t/friend` will return contacts who have either tag `friend` or `best friend` or both.
-* If no field is specified, zero contacts will be returned.
+
+<div markdown="span" class="alert alert-primary">:exclamation: Warning:
+If no field is specified, zero contacts will be returned!
+</div>
 
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
@@ -263,6 +247,43 @@ Example:
   <br>
   </p>
 
+<div style="page-break-after: always;"></div>
+
+#### Deleting a contact : `delete`
+
+*Maybe if you want to tidy up your contacts.*
+
+Deletes the specified contact from SOCket.
+
+Format: `delete INDEX`
+
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+You can use the find command or list command to narrow down your contact list first before performing delete based on the filtered list.
+</div>
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+
+#### Clearing all contacts or tags : `clear`
+
+*Deleting contacts one by one is a hassle, clear can solve that hassle.*
+
+Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
+
+Format: `clear [t/TAG]...`
+
+* Removes all contacts with the specified tags.
+* Any tag included is **case-insensitive**.
+  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
+* The tags **must exist** in SOCket.
+* If tags are provided, only remove existing tags.
+  * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
+* If no tag field is provided, remove all contacts in SOCket.
+* A confirmation prompt will appear before removal of contacts.
 
 <div style="page-break-after: always;"></div>
 
@@ -308,6 +329,8 @@ Examples:
 
 
 #### Viewing a contact's detailed information: `view`
+
+*When you need to see the full details of a particular contact.*
 
 Views the details of a contact present in the list.
 
@@ -361,6 +384,8 @@ Examples:
 
 #### Editing a project: `editpj`
 
+*For when you make a mistake in the details or to update new details of a project.*
+
 Edits an existing project in SOCket.
 
 Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeting]`
@@ -383,6 +408,8 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 #### Removing a project's field: `removepj`
+
+*When you just want to wipe a value completely or remove specific values only.*
 
 Removes the specific field based on the given project in SOCket.
 
@@ -418,6 +445,8 @@ Examples:
 
 #### Deleting a project: `deletepj`
 
+*Maybe if you want to tidy up your projects.*
+
 Deletes the specified project from SOCket.
 
 Format: `deletepj INDEX`
@@ -451,6 +480,10 @@ Format: `sortpj [CATEGORY]`
   * repohost
   * deadline
   * meeting
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Use the deadline category to sort your projects based on the nearest due dates!
+</div>
 
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
