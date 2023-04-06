@@ -434,7 +434,8 @@ by the `exit` command to prevent any corruption of the file.
 
 ### Editing the data file
 
-Wife data are saved as a JSON file `wife.json`. Advanced users are welcome to update data directly by editing that data file.
+Wife data are saved as a JSON file `wife.json` in the 'data' folder in the directory where `wife.jar` is in. Advanced
+users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, WIFE will discard all data and start with an empty data file at the next run.
