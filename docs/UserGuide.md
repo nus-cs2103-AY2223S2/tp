@@ -832,7 +832,7 @@ Import modules progress from a JSON-format file to the current tracker.
     exist in the default saving directory at `[JAR file location]/data`)
   - Must allow reading and writing operations
   - Must be of JSON format
-  - Must contain only modules progress
+  - Must be a valid Le Tracker data file
 - <span style="color:#e46c0a">`module_1, module_2, ...`</span> : If specified, Le Tracker will only import progress 
   of these modules from the file specified in `file_path`
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
