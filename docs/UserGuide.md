@@ -9,6 +9,10 @@ title: User Guide
       margin-left: auto;
       margin-right: auto;
    }
+   p.caption {
+      text-align: center;
+      font-style: italic;
+   }
 </style>
 
 
@@ -222,7 +226,9 @@ Let's add his contacts to Team Builder as a new potential teammate for future ev
 
 `add n/John p/98765432 m/Business t/Good Presentor`
 
-**Result**: **Image**
+**Result**:
+
+<img class="center" src="images/JohnAdded.png" alt="Image of John added" />
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:**
@@ -257,13 +263,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]â€
 <img class="center" alt="**BACK OF JOHN'S CARD**" src="images/JohnContactCardBack.jpg" width="60%" />
 
 It seems that we forgot to add some information about **John**.
-
 We missed out the back of his card that has his **email**.
-
 Let's use the `edit` command to update his information.
 
 <img class="center" src="images/JohnIndex.png" alt="John at index 1" /> 
-We see **John** is index 1 in our display.
+<p class="caption"> We see <b>John</b> is index 1 in our display. </p>
 
 **What to type**:
 
@@ -302,7 +306,9 @@ Again, we see **John** is index 1 in our display.
 
 **Result**:
 
-John is no longer in your TeamBuilder contact list!
+<img class="center" src="images/JohnDeleted.png" alt="John deleted" />
+
+<p class="caption"> John is no longer in your TeamBuilder contact list! </p>
 
 <div style="page-break-after: always;"></div>
 
