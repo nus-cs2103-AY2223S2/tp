@@ -4,9 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.tag.Tag;
 
@@ -28,8 +25,6 @@ public class DoctorCard extends ContactCard {
     public final Doctor doctor;
 
     @FXML
-    private HBox cardPane;
-    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -37,8 +32,6 @@ public class DoctorCard extends ContactCard {
     private Label phone;
     @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code DoctorCard} with the given {@code Doctor} and index to display.
