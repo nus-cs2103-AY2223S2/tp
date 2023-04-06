@@ -11,23 +11,28 @@ assistants in the modules they are taking.
 Given below are my contributions to the project.
 
 * **Code contributed**:
-  * To be added soon
+  * Add and edit function 
+  * Test cases for FileManager
 
 * **Enhancements to existing features**:
-  * To be added soon
+  * Done
 
 * **Documentation**:
   * User Guide:
-    * To be added soon
+    * Add in all related functions 
+    * Ensure no grammar errors. 
+    * User Friendly user guide.
   * Developer Guide:
-    * To be added soon
+    * To be done by next week
 
 * **Project management**:
-  * To be added soon
+  * Assist in allocating tasks.
 
 * **Community**:
   * To be added soon
 
 * **Tools**:
-  * To be added soon
+  * Intellij 
+  * Sourcetree
+  * Github
 
