@@ -16,14 +16,14 @@ Given below are my contributions to the project.
   * **Overhaul of `EduMate` From AB3** [#7](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/7), [#32](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/32):
     * What it does: Gives a basic structure of `EduMate` to work with.
     * Justification: Fits into requirements of `EduMate` through adaptation of code.
-  * **Spearhead use of `ContactIndex` and `IndexHandler`** [#124](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/124) Testing: [#134](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/134)
+  * **Spearhead the use of `ContactIndex` and `IndexHandler`** [#124](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/124) Testing: [#134](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/134)
     * What it does: Gives a unique identifier for each contact added to `EduMate`, replacing `Index` entirely.
     * Justification: Use of `Index` is too rigid as it obtains a `Person` from their index in `ObservableList` only.
-    * Highlight: `IndexHandler` can help assign a `ContactIndex` to a newly-added `Person`
-      and that contacts could be queried by their `ContactIndex` instead of their index in `ObservableList`.
+    * Highlight: `IndexHandler` can help assign a `ContactIndex` to a newly-added `Person`. 
+Contacts can be queried by their `ContactIndex` instead of their index in `ObservableList`.
   * **Person Card UI changes** [#134](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/134)
-    * Let each Person Card's index number to display `ContactIndex` instead of just their relative index in `ObservableList`.
-  * **`View` Command**: [#82](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/82), Testing: [#118](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/118)
+    * Let each Person Card's index number display `ContactIndex` instead of just their relative index in `ObservableList`.
+  * **`view` Command**: [#82](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/82), Testing: [#118](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/118)
     * What it does: Displays the `Person` or `User` profile on the Profile Panel.
     * Justification: So that the `User` can view the full profile of the contact or him/herself.
     * Highlight: Can query by `view` (for User), `view CONTACT_INDEX` or `view n/FULL_NAME` (for contacts).
@@ -36,15 +36,15 @@ Given below are my contributions to the project.
     * Justification: Can exploit mathematical properties and structure for cleaner implementation of code.
     * Highlights: Cartesian Product, Indexing.
   * **TimeUtil** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
-    * What it does: Utility functions which help to time-based classes (`HourBlock`, `Timetable` etc) to perform its functionalities.
+    * What it does: Utility functions which help time-based classes (`HourBlock`, `Timetable` etc) to perform its functionalities.
     * Justification: These methods do not necessarily appear in some time-based classes due to OOP.
     * Highlights: Clash Checks, consecutive `TimeBlock`/`HourBlock` checks, merging suitable `TimeBlocks` or `HourBlocks` to form a single `TimePeriods`.
   * **`Timetable` Class** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144)
-    * What it does: Represents a contact's or your timetable.
+    * What it does: Represents a contact's or `User`'s timetable.
     * Justification: To display the schedule of the `Person` or `User`
   * **`TimingRecommender`** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
     * What it does: Looks through all participant's timetables and find time slots that every participant is free.
-    * Justification: Automated tool does the job faster than NUS students messaging each other when is a good time to meet.
+    * Justification: Justification: Using an automated tool to schedule meetups is more efficient compared to relying on NUS students to manually message each other to find a suitable meeting time.
   * **`meet` Command and `TimingRecommender` integration** [#204](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/204)
     * Participated and assisted in the integration work.
 
