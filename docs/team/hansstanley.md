@@ -23,6 +23,7 @@ Given below are my contributions to the project.
   * Initialised team organisation and tP repository
   * Created PR to the module's `master` branch
   * Enabled issue tracker and GitHub Actions (for CI and codecov)
+  * Maintained the issue tracker and milestones
   * Set up and adapted the project website for NeoBook
   * Triaged issues from PE-D
 
@@ -38,6 +39,9 @@ Given below are my contributions to the project.
       * The backgrounds for labels and panes have 3 colour types: `normal`, `accented`, and `muted`. Generally, `muted` is used for background components, while `accented` is used in components containing information useful to the user.
   * Enhanced the help window with the list of all commands (PR [#181](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/181)).
     * The list uses the `MESSAGE_USAGE` from each of the commands, making it consistent with the help messages that show up in the result display.
+  * Added extensive testing for new models and command parsers (PRs [#271](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/271), [#272](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/272)).
+    * Improved code coverage by ~10%.
+    * Fixed several correctness bugs.
 
 * **Documentation**:
   * User Guide:
