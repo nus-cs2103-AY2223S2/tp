@@ -428,7 +428,7 @@ Format: `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/ME
 
 Constraints:
 * `MEETING_DATE_TIME` must be provided in the format as shown [here](#date-and-time-formats).
-* `MEETING_ATTENDEE` must be a valid person in the address book.
+* `MEETING_ATTENDEE` must be a valid contact in the address book.
 
 Examples:
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/04-01-2023 10:00 l/COM1-B103 des/CS2103T Tutorial`
