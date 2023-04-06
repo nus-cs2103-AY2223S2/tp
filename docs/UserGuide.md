@@ -444,9 +444,9 @@ Once the person has been created, the result display will show a confirmation me
 - l/LINKEDIN (eg. `l/linkedin.com/in/john-doe`)
   - LinkedIn profile URLs are case-sensitive and allow duplicates
 - m/MODULE YEAR (eg. `m/AY2223S1 CS2103T`, `m/AY2122S2 CS2101`)
-  - modules are case-**in**sensitive and allow duplicate module codes but does not allow duplicate module year
+  - modules are case-**in**sensitive and allow duplicate module codes but **does not allow duplicate module year**
 - s/SKILL (eg. `s/C++`, `s/Rust`)
-  - skills are case-sensitive and does not allow duplicates
+  - skills are case-sensitive and **does not allow duplicates**
 
 <div markdown="span" class="alert alert-success">
 :bulb: <b>Tip:</b> A person can have any number of [OPTIONAL/PARAMETER] (including 0)
