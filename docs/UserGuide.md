@@ -332,11 +332,6 @@ Toggles between the display of degree progress or module list.
 :bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.
 
 :bulb: **Interpreting data:** You might find that the total MC you have included may not match with the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:** The MCs shown on the screen does NOT equate to the sum of all the MCs in your module lists. After some consideration, we will only show the meaningful credits, which are those that are counted towards the requirements. 
 
 For more detailed information on the calculations, please refer to this [section](DeveloperGuide.md#generation-of-degree-progression-data) in our developer guide.
 </div>
