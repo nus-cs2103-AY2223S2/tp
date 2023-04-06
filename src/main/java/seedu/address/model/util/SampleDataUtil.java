@@ -1,10 +1,10 @@
-package seedu.address.experimental.model.util;
+package seedu.address.model.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.model.Reroll;
+import seedu.address.model.ReadOnlyReroll;
+import seedu.address.model.Reroll;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;

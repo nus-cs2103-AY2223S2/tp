@@ -11,6 +11,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class Inventory {
     private final List<Item> items = new ArrayList<>();
+    private int totalValue = 0;
 
     // Default constructor
     public Inventory() {
@@ -21,6 +22,7 @@ public class Inventory {
      */
     public Inventory(List<Item> items) {
         this.items.addAll(items);
+        updateValue();
     }
 
     /**
@@ -35,6 +37,7 @@ public class Inventory {
      */
     public void addItem(Item item) {
         items.add(item);
+        updateValue();
     }
 
     /**
@@ -46,6 +49,7 @@ public class Inventory {
         } else {
             throw new PersonNotFoundException();
         }
+        updateValue();
     }
 
     /**
@@ -58,6 +62,7 @@ public class Inventory {
         } else {
             throw new PersonNotFoundException();
         }
+        updateValue();
     }
 
     /**
@@ -74,5 +79,21 @@ public class Inventory {
     public List<Item> getItems() {
         return Collections.unmodifiableList(items);
     }
+
+    /**
+     * Returns total value of the inventory
+     */
+    public int getTotalValue() {
+        return totalValue;
+    }
+
+    private void updateValue() {
+        int cost = 0;
+        for (Item item : items) {
+            cost += item.getCost();
+        }
+        totalValue = cost;
+    }
+
 
 }

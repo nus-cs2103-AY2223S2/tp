@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.experimental.model.Model;
+import seedu.address.model.Model;
 import seedu.address.model.entity.Entity;
 
 /**

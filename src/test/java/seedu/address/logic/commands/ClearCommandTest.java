@@ -5,10 +5,10 @@ import static seedu.address.testutil.TypicalEntities.getTypicalReroll;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.experimental.model.Model;
-import seedu.address.experimental.model.ModelManager;
-import seedu.address.experimental.model.Reroll;
-import seedu.address.experimental.model.UserPrefs;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.Reroll;
+import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 

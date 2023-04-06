@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.model.Reroll;
+import seedu.address.model.ReadOnlyReroll;
+import seedu.address.model.Reroll;
 import seedu.address.model.entity.Entity;
 
 /**

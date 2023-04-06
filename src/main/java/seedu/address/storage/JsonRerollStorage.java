@@ -1,4 +1,4 @@
-package seedu.address.experimental.storage;
+package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.experimental.model.ReadOnlyReroll;
+import seedu.address.model.ReadOnlyReroll;
 
 /**
  * A class to access Reroll data stored as a Json file on the hard disk.

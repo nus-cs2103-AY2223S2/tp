@@ -7,9 +7,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.experimental.model.Model;
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.storage.Storage;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,7 +14,10 @@ import seedu.address.logic.parser.EditModeParser;
 import seedu.address.logic.parser.RerollParser;
 import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyReroll;
 import seedu.address.model.entity.Entity;
+import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.

@@ -1,4 +1,4 @@
-package seedu.address.experimental.storage;
+package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.experimental.model.ReadOnlyReroll;
-import seedu.address.experimental.model.Reroll;
+import seedu.address.model.ReadOnlyReroll;
+import seedu.address.model.Reroll;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;

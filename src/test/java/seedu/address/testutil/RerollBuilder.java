@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.experimental.model.Reroll;
+import seedu.address.model.Reroll;
 import seedu.address.model.entity.Entity;
 
 /**

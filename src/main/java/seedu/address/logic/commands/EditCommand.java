@@ -2,9 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.experimental.model.ReadOnlyEntities;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyEntities;
 import seedu.address.model.entity.Entity;
 
 /**
@@ -33,7 +34,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(seedu.address.experimental.model.Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ReadOnlyEntities rerollEntities;
         switch (toEditClassification) {

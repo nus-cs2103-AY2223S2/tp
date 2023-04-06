@@ -1,4 +1,4 @@
-package seedu.address.experimental.model;
+package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
