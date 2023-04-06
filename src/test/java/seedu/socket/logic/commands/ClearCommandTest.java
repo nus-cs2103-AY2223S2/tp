@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
-import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
@@ -34,7 +33,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyClearSocket_success() {
         Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
-        expectedModel.setSocket(new Socket());
+        expectedModel.hasDeleteMultiplePerson(x -> true);
         FindCommandTagPredicate emptyPredicate = new FindCommandTagPredicate(new ArrayList<>());
         assertCommandSuccess(new ClearCommand(emptyPredicate), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
