@@ -35,7 +35,6 @@ public class ImportCommand extends Command {
      * @param stage The UI stage that triggered this command.
      */
     public ImportCommand(Stage stage) {
-        requireNonNull(stage);
         this.importManager = new ImportManager(stage);
         this.hasDuplicate = false;
     }
