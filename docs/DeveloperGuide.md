@@ -16,11 +16,13 @@ Todo: Add links
    3. [Model Component](#model-component)
    4. [Storage Component](#storage-component)
 4. [Implementation](#implementation)
-   1. [Salary Command](#implemented-salary-command-feature)
-   2. [Deadline Command](#implemented-deadline-command-feature)
-   3. [Company Command](#implemented-company-command-feature)
-   4. [Tag Command](#implemented-tag-command-feature)
-   5. [View Command](#implemented-view-command-feature)
+   1. [Add Command](#implemented-add-command-feature)
+   2. [Edit Command](#implementation-edit-command-feature)
+   3. [Salary Command](#implemented-salary-command-feature)
+   4. [Deadline Command](#implemented-deadline-command-feature)
+   5. [Company Command](#implemented-company-command-feature)
+   6. [Tag Command](#implemented-tag-command-feature)
+   7. [View Command](#implemented-view-command-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,6 +209,59 @@ Classes used by multiple components are in the `seedu.RoleBook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command
+The `add` command is used to create a new role in the app and set the necessary fields for that role,
+namely they are the: `Name`, `Contact`, `Email`, `Company`, `Job Description`, `Tag`, `Website`, `Salary`, `Deadline`,
+`Experience` fields. Note that the `Tag` field is not necessary, while the rest of the fields are necessary for the command to work.
+
+The format for the `add` command can be seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#adding-a-role-add).
+
+When `add ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to parse the
+input. An instance of the `AddCommandParser` to parse the `args` is created through the respective static
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last instance is taken,
+similar to how [`edit`](#edit-command) are executed.
+
+The `AddCommandParser` will then create the corresponding `Role` object, parsing to a `AddCommand` object it
+creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Role` to the model.
+
+The following sequence diagram shows how the `add` command works:
+
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the argument parsing for the `add` command works:
+
+![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
+
+
+
+### Edit Command
+The `edit` command is used to change the information of an existing patient in the app. The fields supported are:
+`Name`, `Contact`, `Email`, `Company`, `JobDescription`,`Tag`, `Website`, `Salary`,
+`Deadline` and `Experience`. Note that the `Tag` field can be inputted with multiple tags (`t/java t/python`) while the rest does not.
+
+The format for the `edit` command can be seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#editing-a-role-edit).
+
+When `edit INDEX ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to parse the
+input. An instance of the `EditCommandParser` to parse the `INDEX` and `args` is created through the respective static
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last instance is taken,
+similar to how [`add`](#add-command) are executed.
+
+The `EditCommandParser` will then create the corresponding `EditRoleDescriptor` object, parsing it to a
+`EditCommand` object it creates and returns. The `LogicManager` then executes the `EditCommand`, which creates a
+`Role` from the `EditRoleDescriptor` provided and updates the model with this new `Role`.
+
+The following sequence diagram shows how the `edit` command works:
+
+![Edit Command Sequence Diagram](images/EditCommandSequenceDiagram.png)
+
+The following sequence diagram shows how the argument parsing for the `edit` command works:
+
+![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
+
+
+
+
+
 ### \[Implemented\] Salary Command Feature
 
 The proposed SalaryCommand feature allows the user to sort their roles based on the given salaries. The idea is that the
@@ -250,8 +305,7 @@ The following sequence diagram shows how the `salary` command works:
     * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
 #### Limitations:
-
-The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of 
+The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
 the roles. E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc` will
 sort both views.
 
@@ -295,7 +349,7 @@ The following sequence diagram shows how the `deadline` command works:
 #### Limitations:
 
 The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
-the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc` 
+the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
 will sort both views.
 
 
@@ -407,7 +461,6 @@ An example usage of the `View` command is given below:
 1. The user launches the application for the first time. The RoleBook will be initialized with the current role book.
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
-   
      <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 
 The following sequence diagram shows how the `view` command works:
