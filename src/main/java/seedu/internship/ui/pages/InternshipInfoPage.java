@@ -79,7 +79,7 @@ public class InternshipInfoPage extends Page {
         position.setText(internship.getPosition().positionName);
         company.setText(internship.getCompany().companyName);
         status.setText(internship.getStatus().toString());
-        description.setText(internship.getDescription().descriptionMessage);
+        description.setText(internship.getDescription().toString());
         eventPanel.getChildren().addAll(makeEventCards()
                         .stream()
                         .map(param -> param.getRoot())
@@ -87,7 +87,7 @@ public class InternshipInfoPage extends Page {
     }
 
     /**
-     * Returns an ArrayList<EventCard> of indexed {@code EventCard}
+     * Returns an ArrayList<{@code EventCard}> of indexed {@code EventCard}.
      */
     public ArrayList<EventCard> makeEventCards() {
         ArrayList<EventCard> eventCards = new ArrayList<>();

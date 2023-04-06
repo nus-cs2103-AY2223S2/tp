@@ -10,6 +10,7 @@ import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipC
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -30,7 +31,7 @@ public class JsonInternshipCatalogueStorageTest {
         assertThrows(NullPointerException.class, () -> readInternshipCatalogue(null));
     }
 
-    private java.util.Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(String filePath) throws Exception {
+    private Optional<ReadOnlyInternshipCatalogue> readInternshipCatalogue(String filePath) throws Exception {
         return new JsonInternshipCatalogueStorage(Paths.get(filePath)).readInternshipCatalogue(
                 addToTestDataPathIfNotNull(filePath));
     }
@@ -59,7 +60,7 @@ public class JsonInternshipCatalogueStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidAndValidInternshipInternshipCatalogue_throwDataConversionException() {
+    public void readInternshipCatalogue_invalidAndValidInternshipInternshipCatalogue_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readInternshipCatalogue(
                 "invalidAndValidInternshipInternshipCatalogue.json"));
     }
@@ -97,7 +98,7 @@ public class JsonInternshipCatalogueStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code internshipCatalogue} at the specified {@code filePath}.
      */
     private void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, String filePath) {
         try {

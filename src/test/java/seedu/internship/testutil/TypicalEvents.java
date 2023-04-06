@@ -15,19 +15,19 @@ public class TypicalEvents {
     public static final String VALID_NAME_EM11 = "Interview";
     public static final String VALID_START_EM11 = "04/04/2023 1500";
     public static final String VALID_END_EM11 = "04/04/2023 1800";
-    public static final String VALID_EVENT_DESCRIPTION_EM11 = "The is the first event for ML1.";
+    public static final String VALID_EVENT_DESCRIPTION_EM11 = "This is the first Event for ML1.";
     public static final Internship VALID_INTERNSHIP_EM11 = new InternshipBuilder(ML1).build();
 
     public static final String VALID_NAME_EM12 = "HR Meeting";
     public static final String VALID_START_EM12 = "05/04/2023 1500";
     public static final String VALID_END_EM12 = "05/04/2023 1800";
-    public static final String VALID_EVENT_DESCRIPTION_EM12 = "The is the second event for ML1.";
+    public static final String VALID_EVENT_DESCRIPTION_EM12 = "This is the second Event for ML1.";
     public static final Internship VALID_INTERNSHIP_EM12 = new InternshipBuilder(ML1).build();
 
     public static final String VALID_NAME_EMD1 = "Take Home Project";
     public static final String VALID_START_EMD1 = "06/04/2023 1500";
     public static final String VALID_END_EMD1 = "06/04/2023 1500";
-    public static final String VALID_EVENT_DESCRIPTION_EMD1 = "The is the first Deadline for ML1.";
+    public static final String VALID_EVENT_DESCRIPTION_EMD1 = "This is the first Deadline for ML1.";
     public static final Internship VALID_INTERNSHIP_EMD1 = new InternshipBuilder(ML1).build();
 
     public static Event EM11 = new EventBuilder()
@@ -54,12 +54,12 @@ public class TypicalEvents {
     public static final Event EM21 = new EventBuilder(EM12)
             .withStart("05/04/2023 1200")
             .withEnd("05/04/2023 1400")
-            .withDescription("The is the first event for ML2.")
+            .withDescription("This is the first Event for ML2.")
             .withInternship(new InternshipBuilder(ML2).build()).build();
 
     public static final Event EMD2 = new EventBuilder(EMD1)
             .withInternship(new InternshipBuilder(ML2).build())
-            .withDescription("This is the first Deadline for ML2").build();
+            .withDescription("This is the first Deadline for ML2.").build();
 
 
     private TypicalEvents() {} // prevents instantiation

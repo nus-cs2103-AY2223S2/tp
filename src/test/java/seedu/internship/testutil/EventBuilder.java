@@ -1,19 +1,23 @@
 package seedu.internship.testutil;
 
-
 import java.time.LocalDateTime;
+
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
 import seedu.internship.model.internship.Internship;
-import seedu.internship.model.internship.Status;
 
+/**
+ * A utility class to help with building Event objects.
+ */
 public class EventBuilder {
     public static final String DEFAULT_NAME = "Interview";
-    public static final LocalDateTime DEFAULT_START = LocalDateTime.parse("04/04/2023 1500", Start.NUMERIC_DATE_TIME_FORMATTER);
-    public static final LocalDateTime DEFAULT_END = LocalDateTime.parse("04/04/2023 1800", End.NUMERIC_DATE_TIME_FORMATTER);
+    public static final LocalDateTime DEFAULT_START = LocalDateTime.parse("04/04/2023 1500",
+            Start.NUMERIC_DATE_TIME_FORMATTER);
+    public static final LocalDateTime DEFAULT_END = LocalDateTime.parse("04/04/2023 1800",
+            End.NUMERIC_DATE_TIME_FORMATTER);
     public static final String DEFAULT_EVENT_DESCRIPTION = "The is a dummy event.";
     public static final InternshipBuilder DEFAULT_INTERNSHIP_BUILDER = new InternshipBuilder();
 

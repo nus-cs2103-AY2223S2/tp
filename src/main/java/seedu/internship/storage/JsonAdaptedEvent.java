@@ -1,9 +1,9 @@
 package seedu.internship.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.LocalDateTime;
 
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.commons.util.DateTimeUtil;
@@ -85,7 +85,6 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(End.MESSAGE_CONSTRAINTS);
         }
         final End modelEnd = new End(LocalDateTime.parse(end, End.NUMERIC_DATE_TIME_FORMATTER));
-
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

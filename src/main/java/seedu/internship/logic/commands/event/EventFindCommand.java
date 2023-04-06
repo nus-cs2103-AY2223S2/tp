@@ -1,22 +1,27 @@
 package seedu.internship.logic.commands.event;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
+
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
-import seedu.internship.model.ModelManager;
-import seedu.internship.model.event.*;
-import seedu.internship.model.internship.Internship;
-import seedu.internship.model.ModelManager.*;
+import seedu.internship.model.event.End;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.Name;
+import seedu.internship.model.event.Start;
 
-import java.util.Optional;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.internship.logic.parser.CliSyntax.*;
-
+/**
+ * Finds an Event from TinS.
+ */
 public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
@@ -24,15 +29,18 @@ public class EventFindCommand extends EventCommand {
             + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
             + "[" + PREFIX_EVENT_START + "START] "
             + "[" + PREFIX_EVENT_END + "END] "
-            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500" ;
+            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500";
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
-
     private final FilterEventDescriptor filterEventDescriptor;
 
+    /**
+     * Creates an Event Find Command.
+     * @param filterEventDescriptor Filter created using descriptors provided.
+     */
     public EventFindCommand(FilterEventDescriptor filterEventDescriptor) {
         requireNonNull(filterEventDescriptor);
         this.filterEventDescriptor = filterEventDescriptor;
@@ -81,7 +89,9 @@ public class EventFindCommand extends EventCommand {
         return filterEventDescriptor.equals(f.filterEventDescriptor);
     }
 
-
+    /**
+     * Creates a Filter based on inputs for Event Catalogue.
+     */
     public static class FilterEventDescriptor {
         private Name name;
         private Start start;
