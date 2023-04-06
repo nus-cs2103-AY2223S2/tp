@@ -4,11 +4,13 @@ title: User Guide
 ---
 
 ## Introduction
-MedInfo is a desktop application for **private hospital administrative staff**. It helps manage your patients,
-their status, discharge and ward, and your wards.
+Welcome to the MedInfo User Guide!
 
-This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
-with its features and using it. If this is your first time using this Guide, you may refer to this segment
+MedInfo is a desktop application for **private hospital administrative staff** to 
+help manage patients and wards.
+
+This User Guide will guide you through installing the app, getting familiarised with its features and using it.
+If this is your first time using this Guide, you may refer to this segment
 on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ## Table of Contents
@@ -17,10 +19,10 @@ on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ---
 ## About MedInfo
-MedInfo is a very simple and intuitive application that will help you manage your patients' **status, ward,
-discharge date** and your wards' **occupancies**. <br>
+MedInfo is a simple application that will help you manage your patients' **statuses, wards, 
+discharge dates**, and ward **occupancies**. <br>
 <br>
-With the time-critical nature of a private hospital's services, patient and ward management are
+With the time-critical nature of hospital services, patient and ward management are
 of utmost priority, where the smallest delays or lapses in updating information can affect
 how your hospital attends to your patients. **MedInfo** has simplified, focused patient and ward management down to a
 tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
@@ -29,21 +31,32 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
 ---
 
-## Quick start
+## Getting Started
+Below, you'll find everything you need to install and set up MedInfo.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### System Requirements
+For the best possible experience, we recommend that you use MedInfo on one of the following operating systems:
+- Windows
+- macOS
+- Linux
 
-1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases/tag/v1.3-trial).
+To run MedInfo, you will need to have Java 11 or above installed on your system. If you don't, you can find the 
+appropriate version for your system [here](https://www.oracle.com/java/technologies/downloads/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+### Quick Start
+1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases).
 
-1. Run the application by
-   2. Double-clicking the jar file or 
-   2. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar` command to run the application.<br>
-1. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+2. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+
+3. Run the application by
+   2. Double-clicking the `.jar` file or 
+   3. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar`
+command to run the application.<br>
+4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing 
+<kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
    - `list` : Lists all patients.
@@ -54,7 +67,7 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
    - `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) section below for details on each command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -65,7 +78,7 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
 The main GUI has 7 sections as highlighted above.
 - **_Menu Bar_**: File and Help buttons to exit or get help.
-- **_Command Input_**: Key in commands here and press <kbd>enter</kbd> to execute.
+- **_Command Input_**: Key in commands here and press <kbd>Enter</kbd> to execute.
 - **_Result Display_**: Responses from the application including error and success messages appear here.
 - **_Adjustable Panels_**: Click and drag on the purple highlighted areas to customize the panel sizes to your preference.
 - **_Patient List_**: List of patients you have.
