@@ -5,31 +5,40 @@ title: Yuan Xun's Project Portfolio Page
 
 ### Project: PetPal
 
-PetPal is a desktop pet management application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * to be added soon
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-  * to be added soon
-* **Code contributed**: [RepoSense link]()
-  * to be added soon
+* **Remind/Deadline Feature**: Added the ability to add deadlines for pets.
+  * Justification: Users have many pets to manage and might forget important tasks due for certain pets. 
+  * Highlights: Deadlines that are due soon are highlighted in the GUI and the user is reminded of them.
+  * PRs : [#44](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/44), [#45](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/45)
+  * Credits:
+    * Remind and deadline function was inspired by my ip project, which was a to-do list app.
+* **Change Cost Feature**: Added the ability to change the cost calculation of a pet.
+  * Justification: Certain species of pets may incur a different cost than the default cost.
+  * Highlights: Deadlines that are due soon are highlighted in the GUI and the user is reminded of them.
+  * PRs : [#56](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/56)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yuanxun9834&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added soon
+  * [Issues](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3AYuanXun9834) added by me
 
 * **Enhancements to existing features**:
-  * to be added soon
+  * Changed previous commands from AB3 to suit PetPal's needs as well as added functionality to include adding and editing of deadlines. 
 * **Documentation**:
   * User Guide:
-    * to be added soon
+    * Wrote introduction section of UG
+    * Also added a legend for the use of symbols in the UG.
+    * Added documentation for the features `add`, `remind` and `deadline`.
+    * Added a table for constraints of parameters.
   * Developer Guide:
-    * to be added soon
+    * Changed UML diagrams of the following diagrams :
+      * ArchitectureSequenceDiagram
+      * UiClassDiagram
+      * LogicClassDiagram
+    * Added UML diagrams :
+      * RemindSequenceDiagram
+      * RemindActivityDiagram
 
-* **Community**:
-  * to be added soon
 
-* **Tools**:
-  * to be added soon
-* _{you can add/remove categories in the list above}_
