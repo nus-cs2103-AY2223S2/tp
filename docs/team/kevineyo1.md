@@ -5,25 +5,32 @@ title: KevinEyo1's Project Portfolio Page
 
 ### Project: Ultron
 
-Ultron is an application to help students track their internship applications as openings.
+Ultron is an application to help students track their internship applications as openings. With capabilities to add, edit, filter and much more, it is the one stop solution to any students internship application's organisational needs.
 
 * **Code contributed**:
-    * To be added soon
+    * https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kevineyo1&breakdown=true
 
 * **Enhancements implemented**:
-    * To be added soon
+    * Status Command Implementation and Parsing
+    * Refactoring of Edit Command and Parser
+    * Refactoring of Date to Keydate after design change
+    * Testing of new Opening fields in Model
 
 * **User Guide Contributions**:
-    * To be added soon
+    * Overall leading and refining of User Guide
+    * Status Command section
 
 * **Developer Guide Contributions**:
-    * To be added soon
+    * Status Command Feature section
+    * Maintaining of User Stories
 
-* **Maintaining issue tracker**:
-    * To be added soon
+* **Contributions to team-based tasks**:
+    * Refactoring of edit command
+    * Maintaining of issue tracker
 
 * **Review Contributions**:
-    * To be added soon
+    * https://github.com/AY2223S2-CS2103T-F12-4/tp/pull/16
+    * https://github.com/AY2223S2-CS2103T-F12-4/tp/pull/65
 
-* **Tools**:
-    * To be added soon
+* **Contributions beyond the project team**:
+  * https://github.com/AY2223S2-CS2103-W17-1/tp/issues/145
