@@ -9,7 +9,8 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Transaction Count will start and zero and be increment to a value >= 0"
-                    + " less than or equal to 9223372036854775807";
+                    + " less than or equal to 9223372036854775807.\n"
+                    + " It should be a whole number.";
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;

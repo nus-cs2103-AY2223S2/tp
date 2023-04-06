@@ -9,7 +9,8 @@ public class BusinessSize implements Comparable<BusinessSize> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Potential Sale Value can take any number greater than or equal to 0 and "
-                    + "less than or equal to 9223372036854775807, and it should not be blank";
+                    + "less than or equal to 9223372036854775807, and it should not be blank.\n"
+                    + " It should be a whole number.";
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;
