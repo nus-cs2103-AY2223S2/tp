@@ -13,7 +13,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -124,28 +123,6 @@ public class MainWindow extends UiPart<Stage> {
      * Selects a client based on user input.
      */
     public void handleSelect() {
-//        ClientLabel selectedClientCard;
-//        AppointmentLabel selectedAppointmentCard;
-//
-//        if (logic.getFilteredClientList().isEmpty()) {
-//            selectedClientCard = null;
-//            selectedAppointmentCard = null;
-//        } else {
-//            Client selectedClient = logic.getSelectedClient();
-//            int selectedClientIndex = logic.getSelectedClientIndex();
-//            selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-//            selectedAppointmentCard = new AppointmentLabel(selectedClient);
-//        }
-//
-//        if (clientLabel.getChildren().size() > 0) {
-//            clientLabel.getChildren().remove(0);
-//            appointmentLabel.getChildren().remove(0);
-//        }
-//        clientLabel.getChildren().add(selectedClientCard.getRoot());
-//        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
-//
-//        policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
-
         if (!logic.getFilteredClientList().isEmpty()) {
             // Populate client list
             clientListPanel = new ClientListPanel(logic.getFilteredClientList());
