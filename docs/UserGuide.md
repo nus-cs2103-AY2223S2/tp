@@ -317,7 +317,8 @@ Vegetables
 ```
 
 ### Listing all foods by their tag(s) : `listbytag`
-Shows a list of all food items in WIFE by the specified tag(s).
+Shows a list of all food item in WIFE by specified tag(s).
+Food items that contains any tags specified in the command will be listed.
 
 Format: `listbytag n/TAG NAME [n/TAG NAME]...`
 
