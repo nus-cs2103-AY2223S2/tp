@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -102,6 +104,7 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasGroup(group));
     }
 
+
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
@@ -110,6 +113,42 @@ public class ModelManagerTest {
     @Test
     public void getFilteredGroupList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGroupList().remove(0));
+    }
+
+    @Test
+    public void addPersonInGroup_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.addPersonInGroup(null, new Group("CS2103")));
+    }
+
+    @Test
+    public void addPersonInGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.addPersonInGroup(new PersonBuilder(ALICE).build(), null));
+    }
+
+    @Test
+    public void removePersonFromGroup_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.removePersonFromGroup(new PersonBuilder(ALICE).build(), null));
+    }
+
+    @Test
+    public void removePersonFromGroup_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.removePersonFromGroup(null, new Group("CS2103")));
+    }
+
+    @Test
+    public void updateFilteredTimeSlotList_nullGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.updateFilteredTimeSlotList(null, LocalDate.of(299, 1, 1)));
+    }
+
+    @Test
+    public void updateFilteredTimeSlotList_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.updateFilteredTimeSlotList(new Group("CS2103"), null));
     }
 
     @Test

@@ -24,9 +24,10 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
 
     /**
      * Constructor for IsolatedEvent class.
+     *
      * @param eventName name of the isolated event added.
      * @param startDate in which the isolated event starts.
-     * @param endDate in which the isolated event ends.
+     * @param endDate   in which the isolated event ends.
      */
     public IsolatedEvent(String eventName, LocalDateTime startDate, LocalDateTime endDate) {
         super(eventName);
@@ -41,6 +42,14 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
 
     public LocalDateTime getEndDate() {
         return this.endDate;
+    }
+
+    public int getStartDayValue() {
+        return startDate.getDayOfWeek().getValue();
+    }
+
+    public int getEndDayValue() {
+        return endDate.getDayOfWeek().getValue();
     }
 
     public String getEventName() {
@@ -104,8 +113,9 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     /**
      * Returns a {@code boolean} that indicates if the {@code Event} occurs between the
      * given period.
+     *
      * @param startPeriod The start of the given period.
-     * @param endPeriod The end of the given period.
+     * @param endPeriod   The end of the given period.
      * @return A boolean indicating if the even occurs during the given period.
      */
     @Override
@@ -127,6 +137,7 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
      */
     public void checkDateTime() throws EventConflictException {
         LocalDateTime now = LocalDateTime.now();
+
         if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
             throw new EventConflictException(Messages.MESSAGE_EVENT_START_AFTER_END);
         }
