@@ -9,39 +9,39 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Quick start](#quick-start)
-  * [Glossary](#glossary)
+  - [Glossary](#glossary)
 - [GUI](#gui)
-  * [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
-    + [Profile Page](#profile-page)
-    + [Homework Page](#homework-page)
-    + [Lessons Page](#lessons-page)
-    + [Exams Page](#exams-page)
+  - [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
+    - [Profile Page](#profile-page)
+    - [Homework Page](#homework-page)
+    - [Lessons Page](#lessons-page)
+    - [Exams Page](#exams-page)
 - [Commands](#commands)
-  * [Profile Commands](#profile-commands)
-    + [Create a new student profile](#create-a-new-student-profile)
-    + [Update Student Information](#update-student-information)
-  * [Homework Commands](#homework-commands)
-    + [Assign Homework to a Student](#assign-homework-to-a-student)
-    + [View the Homework of Students](#view-the-homework-of-students)
-    + [Delete Homework from a Student](#delete-homework-from-a-student)
-    + [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
-    + [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
-    + [Update Homework of a Student](#update-homework-of-a-student)
-  * [Lessons Commands](#lessons-commands)
-    + [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
-    + [View Lessons History](#view-lessons-history)
-  * [Remove a Lesson](#remove-a-lesson)
-  * [Update a Lesson](#update-a-lesson)
-  * [Exams Commands](#exams-commands)
-    + [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
-    + [Remove an exam](#remove-an-exam)
-    + [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
-    + [Edit exam details](#edit-exam-details)
+  - [Profile Commands](#profile-commands)
+    - [Create a new student profile](#create-a-new-student-profile)
+    - [Update Student Information](#update-student-information)
+  - [Homework Commands](#homework-commands)
+    - [Assign Homework to a Student](#assign-homework-to-a-student)
+    - [View the Homework of Students](#view-the-homework-of-students)
+    - [Delete Homework from a Student](#delete-homework-from-a-student)
+    - [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
+    - [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
+    - [Update Homework of a Student](#update-homework-of-a-student)
+  - [Lessons Commands](#lessons-commands)
+    - [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
+    - [View Lessons](#view-lessons)
+  - [Delete a Lesson from a student](#delete-a-lesson-from-a-student)
+  - [Update a Lesson](#update-a-lesson)
+  - [Exams Commands](#exams-commands)
+    - [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
+    - [Remove an exam](#remove-an-exam)
+    - [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
+    - [Edit exam details](#edit-exam-details)
 - [FAQ](#faq)
 - [Summary](#summary)
-  * [List of Commands](#list-of-commands)
-  * [List of Prefixes](#list-of-prefixes)
-  * [Supported date-time formats](#supported-date-time-formats)
+  - [List of Commands](#list-of-commands)
+  - [List of Prefixes](#list-of-prefixes)
+  - [Supported date-time formats](#supported-date-time-formats)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents
 generated with markdown-toc</a></i></small>
@@ -223,7 +223,7 @@ Examples:
 
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
 and DEADLINE should all only appear at most once and should not be empty.
@@ -251,7 +251,7 @@ Examples:
 
 ![View Homework](images/view-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STATUS should only appear at most once and should not be empty.
 STUDENT_NAME can be zero or multiple, but they all can't be empty.
@@ -275,7 +275,7 @@ Examples:
 
 :bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -296,7 +296,7 @@ Examples:
 
 ![Mark Homework](images/mark-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -317,7 +317,7 @@ Examples:
 
 ![Unmark Homework](images/unmark-homework.jpg)
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -346,7 +346,7 @@ Examples:
 
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
-:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
 and DEADLINE should all only appear at most once and should not be empty.
@@ -362,53 +362,111 @@ Creates a new lesson for a given student, with a lesson title and time.
 
 Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields, except for additional student names, are mandatory.
-
-Examples:
-* `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
-
-
-#### View Lessons History
-
-Displays the lesson history for a given student/all students.
-
-Format: `view-lesson [name/STUDENT_NAME]`
-
-* Displays the lesson history for all the tutor’s students if no student name is specified.
-* Displays the lesson history for a specific student if a student's name is specified with the `name/` prefix.
 * The `STUDENT_NAME` must be an existing student of the tutor.
+* The `START_TIME` and `END_TIME` must be in the format given in the support date and time formats' appendix.
+* `START_TIME` must be before `END_TIME`, and their difference must be at least 30 minutes and at most 3 hours.
+* `START_TIME` and `END_TIME` must be in the future.
+* A success message will be displayed if the lesson is successfully created. Otherwise, an error message will be displayed.
+
+Examples:
+* `new-lesson name/John Doe lesson/The Water Cycle start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+* `new-lesson name/Bernice Yu lesson/Photosynthesis start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `Bernice Yu` with the lesson title `Photosynthesis` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+* `new-lesson name/David Li lesson/Metamorphic Rocks start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `David Li` with the lesson title `Metamorphic Rocks` starting at `2025 Mar 2023 13:00` and ending at `2025 Mar 2023 15:00`.
+
+![New Lesson](images/new-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME, LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once and should not be empty.
+
+:exclamation: **Caution:** A student can have multiple lessons with the same lesson title, even if they have different start and end times.
+
+#### View Lessons
+
+Displays the lessons for a given student/all students.
+
+Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (optional)[date/DATE] (optional)[done/DONE]`
+
+* By default, the lessons for all the tutor’s students will be displayed if no parameters are specified.
+* To view the lessons for specific students, specify the names using `name/STUDENT_NAME`s.
+* To view the lessons for a specific subject, specify the subject using `subject/SUBJECT`.
+* To view the lessons for a specific date, specify the date using `date/DATE`.
+* To view the lessons that have been completed, include `done/done`.
+* To view the lessons that have not been completed, include `done/not done`.
 
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
-* `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
-
-Examples:
-* `view-lesson` Displays the lesson history for all the tutor’s students.
+* `view-lesson name/John` Displays the lesson history for the student named John.
 * `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
-* `view-lesson done/done` Displays all lessons that'd been completed
+* `view-lesson done/done` Displays all lessons that have been completed
+* `view-lesson done/not done` Displays all lessons that have not been completed
+* `view-lesson name/John done/done` Displays all lessons that have been completed for student John
+* `view-lesson name/John name/Bernice done/not done` Displays all lessons that have not been completed for students John and Bernice
 
-### Remove a Lesson
+![View Lesson](images/view-lesson.jpg)
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** SUBJECT, DATE, and DONE should all only appear at most once and should not be empty.
+STUDENT_NAME can appear multiple times, but none should empty.
+
+### Delete a Lesson from a student
 Deletes a lesson for a given student.
 
 Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Deletes the lesson at the specified `LESSON_INDEX`.
+* The `LESSON_INDEX` must be a positive integer that is within the range of the student's lesson list.
+* A success message will be displayed if the lesson is successfully deleted. Otherwise, an error message will be displayed.
 
 Example:
 * `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
+* `delete-lesson name/Bernice Yu index/2` deletes the second lesson for the student named Bernice Yu.
+
+![Delete Lesson](images/delete-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME and LESSON_INDEX should all appear exactly once and should not be empty.
+
 
 ### Update a Lesson
-Updates a lesson for a given student. This includes the lesson title, start time, and end time.
+Updates a lesson for a given student. This includes the lesson title, start time, and/or end time.
 
-Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
+Format: `update-lesson [name/STUDENT_NAME] [index/LESSON_INDEX] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
-* At least one of the fields must be specified.
+* The `LESSON_INDEX` must be a positive integer that is within the range of the student's lesson list.
+* At least one of the optional parameters must be provided.
+* The `START_TIME`, and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
+* The provided `START_TIME` must be before the provided `END_TIME`, or, if the `END_TIME` is not provided, it must be before the original end time of the lesson.
+* The provided `END_TIME` must be after the provided `START_TIME`, or, if the `START_TIME` is not provided, it must be after the original start time of the lesson.
+* The updated lesson's duration must be at least 30 minutes and at most 3 hours.
+* A success message will be displayed if the lesson is successfully updated. Otherwise, an error message will be displayed.
 
 Example:
-* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
+* `update-lesson name/John Doe index/1 lesson/The Water Cycle start/2025-03-23 1300 end/2025-03-23 1500` updates the first lesson for the student named John Doe to have the lesson title "The Water Cycle", start time "2025-03-23 1300", and end time "2025-03-23 1500".
+* `update-lesson name/Bernice Yu index/2 lesson/Photosynthesis` updates the second lesson for the student named Bernice Yu to have the lesson title "Photosynthesis".
+* `update-lesson name/John Doe index/1 start/2025-03-23 1300` updates the first lesson for the student named John Doe to have the start time "2025-03-23 1300".
+* `update-lesson name/Bernice Yu index/2 end/2025-03-23 1500` updates the second lesson for the student named Bernice Yu to have the end time "2025-03-23 1500".
+
+![Update Lesson](images/update-lesson.jpg)
+
+:bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
+
+:bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-and-time-formats).
+
+:exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
+
+:exclamation: **Caution:** STUDENT_NAME, LESSON_INDEX should appear exactly once and should not be empty.
+
+:exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should appear at most once and should not be empty.
 
 ### Exams Commands
 
