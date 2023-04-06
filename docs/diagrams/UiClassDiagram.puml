@@ -17,6 +17,7 @@ Class ClientLabel
 Class PolicyListPanel
 Class PolicyCard
 Class CommandBox
+Class AppointmentLabel
 }
 
 package Model <<Rectangle>> {
@@ -38,6 +39,7 @@ MainWindow *-down-> "1" ClientListPanel
 MainWindow *-down-> "1" PolicyListPanel
 MainWindow --> "0..1" HelpWindow
 MainWindow *-down-> "0..1" ClientLabel
+MainWindow *-down-> "0..1" AppointmentLabel
 
 ClientListPanel -down-> "*" ClientCard
 PolicyListPanel -down-> "*" PolicyCard
@@ -51,14 +53,17 @@ ClientCard --|> UiPart
 PolicyListPanel --|> UiPart
 PolicyCard --|> UiPart
 ClientLabel --|> UiPart
+AppointmentLabel --|> UiPart
+
 HelpWindow --|> UiPart
 
-ClientCard ..> Model
-PolicyCard ..> Model
+ClientCard .right.> Model
+PolicyCard .right.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 ClientListPanel -[hidden]left- HelpWindow
+ClientListPanel -[hidden]left- AppointmentLabel
 ClientCard -[hidden]left- PolicyCard
 PolicyListPanel -[hidden]left- HelpWindow
 PolicyCard -[hidden]left- ClientCard

@@ -4,10 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package Model{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelInterface
 Class AddressBook
 Class ModelManager
 Class UserPrefs
@@ -25,19 +25,30 @@ Class PolicyName
 Class CustomDate
 Class Premium
 Class Frequency
+Class Appointment
+Class AppointmentName
+Class MeetupDate
+Class VersionedAddressBook
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInterface
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+ModelManager .up.|> ModelInterface
+ModelInterface .right.> ReadOnlyUserPrefs
+ModelInterface .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "~* filtered" Client
+ModelManager -[dashed]-> UniquePolicyList
+
+ModelManager -down-> "1" VersionedAddressBook
+
 UserPrefs .up.|> ReadOnlyUserPrefs
+
+VersionedAddressBook -left-> "1..*" AddressBook
 
 AddressBook *--> "1" UniqueClientList
 UniqueClientList --> "~* all" Client
@@ -53,9 +64,12 @@ Policy *--> CustomDate
 Policy *--> Premium
 Policy *--> Frequency
 
+Client *--> Appointment
+Appointment *--> AppointmentName
+Appointment *--> MeetupDate
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Client
 @enduml

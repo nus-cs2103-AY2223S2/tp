@@ -6,20 +6,23 @@ skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniqueClientList
 AddressBook *-right-> "1" UniqueTagList
+AddressBook *--> "1" UniquePolicyList
+
 UniqueTagList -[hidden]down- UniqueClientList
 UniqueTagList -[hidden]down- UniqueClientList
 
 UniqueTagList -right-> "*" Tag
+
 UniqueClientList -right-> Client
 
 Client -up-> "*" Tag
+Client --> "*" Policy
 
 Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
-Client *--> UniquePolicyList
-UniquePolicyList --> Policy
+UniquePolicyList --> "*" Policy
 Policy *--> PolicyName
 Policy *--> CustomDate
 Policy *--> Premium

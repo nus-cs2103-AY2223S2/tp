@@ -4,7 +4,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:DeletePolicyCommand" as DeletePolicyCommand LOGIC_COLOR
+participant ":DeletePolicyCommandParser" as DeletePolicyCommandParser LOGIC_COLOR
+participant "d:DeletePolicyCommand" as DeletePolicyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -14,17 +16,33 @@ end box
 [-> LogicManager : execute("deletePolicy 1 pi/1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("("deletePolicy 1 pi/1")
+LogicManager -> AddressBookParser : parseCommand("deletePolicy 1 pi/1")
 activate AddressBookParser
 
+create DeletePolicyCommandParser
+AddressBookParser -> DeletePolicyCommandParser
+activate DeletePolicyCommandParser
+
+DeletePolicyCommandParser --> AddressBookParser
+deactivate DeletePolicyCommandParser
+
+AddressBookParser -> DeletePolicyCommandParser : parse("1 pi/1")
+activate DeletePolicyCommandParser
+
 create DeletePolicyCommand
-AddressBookParser -> DeletePolicyCommand
+DeletePolicyCommandParser -> DeletePolicyCommand
 activate DeletePolicyCommand
 
-DeletePolicyCommand --> AddressBookParser
+DeletePolicyCommand --> DeletePolicyCommandParser : d
 deactivate DeletePolicyCommand
 
-AddressBookParser --> LogicManager: u
+DeletePolicyCommandParser --> AddressBookParser : d
+deactivate DeletePolicyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeletePolicyCommandParser -[hidden]-> AddressBookParser
+destroy DeletePolicyCommandParser
+
+AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
 LogicManager -> DeletePolicyCommand : execute()
@@ -36,9 +54,29 @@ activate Model
 Model --> DeletePolicyCommand
 deactivate Model
 
+DeletePolicyCommand -> Model : setClient(client, editedClient)
+activate Model
+
+Model --> DeletePolicyCommand
+deactivate Model
+
+DeletePolicyCommand -> Model : updateFilteredClientList(predicate)
+activate Model
+
+Model -> DeletePolicyCommand
+deactivate Model
+
+create CommandResult
+DeletePolicyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeletePolicyCommand
+deactivate CommandResult
+
 DeletePolicyCommand --> LogicManager : result
 deactivate DeletePolicyCommand
-DeletePolicyCommand -[hidden]-> LogicManager : result
+
+DeletePolicyCommand -[hidden]-> AddressBookParser
 destroy DeletePolicyCommand
 
 [<--LogicManager
