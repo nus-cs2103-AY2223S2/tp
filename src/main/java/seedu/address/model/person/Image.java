@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Person's image in the address book.
  */
@@ -16,6 +18,7 @@ public class Image {
      * @param imageName A valid image name.
      */
     public Image(String imageName) {
+        requireNonNull(imageName);
         this.imageName = imageName;
     }
 
