@@ -32,7 +32,7 @@ public class ModuleSearchSection extends ModuleSection {
     }
 
     /**
-     * Updates the filtered modules.
+     * Updates the filtered modules in the ModuleSearchSection.
      * @param filteredModules The filtered modules.
      * @param filters The list of filters applied.
      */
@@ -52,7 +52,7 @@ public class ModuleSearchSection extends ModuleSection {
         private FlowPane findNav;
 
         /**
-         * Instantiates a ModuleSectionFindNav.
+         * Instantiates a ModuleSectionFindNav component.
          * @param filters The list of filters to display on the navigation bar.
          */
         public ModuleSectionFindNav(List<String> filters) {

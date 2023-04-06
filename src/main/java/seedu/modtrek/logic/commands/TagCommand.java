@@ -2,7 +2,6 @@ package seedu.modtrek.logic.commands;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_MODULE_MISSING;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
@@ -46,7 +45,8 @@ public class TagCommand extends Command {
      */
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
 
-    public static final String MESSAGE_MISSING_PREFIX = "Missing tag prefix /t.";
+    public static final String MESSAGE_MISSING_PREFIX = "Missing tag prefix /t.\n\n"
+            + "Example: tag cs2109s include /t CSF /t CSBD";
     public static final String MESSAGE_TAG_MODULE_FAIL = "Module %1$s is not yet added.";
 
     private final Code code;
@@ -68,7 +68,7 @@ public class TagCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Module> lastShownList = model.getFilteredModuleList();
+        List<Module> lastShownList = model.getDegreeProgression().getModuleList();
 
         // possibly make module list a hash set instead of list
         Module moduleToEdit = new Module(code);
@@ -90,7 +90,7 @@ public class TagCommand extends Command {
                 newTags, moduleToEdit.getGrade());
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.updateFilteredModuleList(model.getPredicate());
 
         return new CommandResult(generateSuccessMessage(editedModule));
     }

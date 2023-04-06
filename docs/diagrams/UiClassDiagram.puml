@@ -6,15 +6,22 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
+
 Class ProgressSection
+Class DoughnutChart
+
 Class ResultsSection
-Class ModuleSection
+Class ModuleListSection
+Class ModuleSearchSection
+Class ModuleList
 Class ModuleGroup
-Class FooterButtonGroup
+Class ModuleCard
+
 Class CliSection
+Class CliScreen
+Class CliInput
 }
 
 package Model <<Rectangle>> {
@@ -32,29 +39,25 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CliSection
 MainWindow *-down-> "1" ResultsSection
-ResultsSection *-down-> "1" ModuleSection
 ResultsSection *-down-> "1" ProgressSection
-ProgressSection *-down-> "1" FooterButtonGroup
+ResultsSection *-down-> "1" ModuleListSection
+ResultsSection *-down-> "1" ModuleSearchSection
 
-ModuleSection -down-> "*" ModuleGroup
+ProgressSection *-down-> "1" DoughnutChart
 
-MainWindow -left-|> UiPart
+ModuleListSection *-down-> "1" ModuleList
+ModuleSearchSection *-down-> "1" ModuleList
 
-ResultsSection --|> UiPart
-CliSection --|> UiPart
-ModuleSection --|> UiPart
-ModuleGroup --|> UiPart
-FooterButtonGroup --|> UiPart
-ProgressSection--|> UiPart
+CliSection *-down-> "1" CliScreen
+CliSection *-down-> "1" CliInput
 
-ModuleGroup ..> Model
-ProgressSection ..> Model
+ModuleList *-down-> "*" ModuleGroup
+ModuleGroup *-down-> "1..*" ModuleCard
+
+
+ModuleList ..> Model
+DoughnutChart ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-ModuleSection -[hidden]left- ProgressSection
-ProgressSection -[hidden]left- CliSection
-CliSection -[hidden]left- ResultsSection
-
-MainWindow -[hidden]-|> UiPart
 @enduml

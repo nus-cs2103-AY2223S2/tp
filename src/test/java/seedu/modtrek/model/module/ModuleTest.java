@@ -63,10 +63,10 @@ public class ModuleTest {
         // different type -> returns false
         assertFalse(CS1101S.equals(5));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(CS1101S.equals(MA2002));
 
-        // different name -> returns false
+        // different code -> returns false
         Module editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
         assertFalse(CS1101S.equals(editedCS1101s));
     }

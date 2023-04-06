@@ -10,23 +10,24 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ## Table of Contents
 
-1. [Implementation](#implementation)
-   1.  [Design](#design) 
-   2. [Architecture](#architecture)
-      1. [UI](#ui-component)
-      2. [Logic](#logic-component)
-      3. [Model](#model-component)
-      4. [Storage](#storage-component)
-   3. [Feature Implementation](#implementation-a-nameimplementation-a)
-      1. [Add module](#add-module-feature)
-      2. [Find module](#find-module-feature)
-      3. [Delete module](#delete-module-feature)
-      4. [Sort modules](#sort-modules-feature)
-      5. [View Progress/View modules](#view-progress--modules-feature)
-2. [Appendix: Requirements](#appendix)
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up)
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI component](#ui-component)
+   3. [Logic component](#logic-component)
+   4. [Model component](#model-component)
+   5. [Storage component](#storage-component)
+   6. [Common classes](#common-classes)
+4. [Implementation](#implementation)
+   1. [Add module feature](#add-module-feature)
+   2. [Find module feature](#find-module-feature)
+   3. [Delete module feature](#delete-module-feature)
+   4. [Sort modules feature](#sort-modules-feature)
+   5. [View progress/modules feature](#view-feature)
+5. [Documentation, logging, testing, configuration, dev-ops](#miscellaneous)
+6. [Appendix: Requirements](#appendix)
    1. [Product Scope](#product-scope)
-        1. Target User Profile
-        2. Value Proposition
    2. [User Stories](#user-stories)
    3. [Use Cases](#use-cases)
    4. [Non-Functional Requirements](#non-functional-requirements)
@@ -34,26 +35,26 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Acknowledgements** <a name="acknowledgements"></a>
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up, getting started** <a name="setting-up"></a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Design** <a name="design"></a>
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### Architecture <a name="architecture"></a>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -94,24 +95,44 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component <a name="ui-component"></a>
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Most components contained in `MainWindow` (with the exception of `DoughnutChart`, `CliScreen` and `CliInput`) inherit from the abstract `UiPart` class (not shown in the above class diagram) which captures the commonalities between classes that represent parts of the visible GUI.
+</div>
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The UI consists of a `MainWindow` that is made up of two main sections: `ResultsSection` and `CliSection`, as depicted below:
+![MainWindow GUI](images/Ui-mainwindow.png)
 
-The `UI` component,
+`CliSection` consists of `CliScreen` and `CliInput` components, depicted below:
+
+<img src="images/Ui-clisection.png" height="300">
+
+`ResultsSection` consists of three subsections: `ProgressSection`, `ModuleListSection` and `ModuleSearchSection`, as depicted below. At any point in time, only one section is actively shown on the `ResultsSection`.
+![ResultsSection GUI](images/Ui-resultssection.png)
+
+Each of these subsections consists of smaller UI components, which are annotated below:
+![Subsections (detailed) GUI](images/Ui-subsections-detailed.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+There are no separate Java classes created for `CliScreen` and `CliInput` due their simplicity in functionality. It is sufficient to compose them within the `CliSection` class in the form of basic JavaFx components (`CliScreen` as a `VBox` and `CliInput` as a `TextField`). They are referenced in [`CliSection.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/clisection/CliSection.fxml). 
+Likewise, many smaller, simple components composed within larger components like [`ModuleCard`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/modulesection/ModuleCard.java) do not have separate Java classes created for them.
+</div>
+
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` and `DegreeProgression` objects residing in the `Model`.
 
-### Logic component
+### Logic component <a name="logic-component"></a>
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -140,7 +161,7 @@ How the parsing works:
 * When called upon to parse a user command, the `ModTrekParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModTrekParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### Model component <a name="model-component"></a>
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -158,7 +179,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### Storage component <a name="storage-component"></a>
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -169,7 +190,7 @@ The `Storage` component,
 * inherits from both `DegreeProgressionStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common classes <a name="common-classes"></a>
 
 Classes used by multiple components are in the `seedu.modtrek.commons` package.
 
@@ -179,7 +200,7 @@ Classes used by multiple components are in the `seedu.modtrek.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Add module feature**
+### **Add module feature** <a name="add-module-feature"></a>
 
 #### About this feature
 
@@ -224,7 +245,7 @@ The following activity diagram shows what happens when a user executes an `add` 
 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
 
-### **Find module feature**
+### **Find module feature** <a name="find-module-feature"></a>
 
 #### About this feature
 
@@ -273,7 +294,7 @@ The following activity diagram shows what happens when a user executes a `find` 
 
 ![Activity diagram of find command](images/FindActivityDiagram.png)
 
-### **Delete module feature**
+### **Delete module feature** <a name="delete-module-feature"></a>
 
 #### About this feature
 The delete feature allows users to delete multiple modules via the command
@@ -330,7 +351,7 @@ The following sequence diagram shows how the `delete`:
 The following activity diagram shows what happens when a user executes a `delete` command:
 ![Activity Diagram of delete command](images/DeleteActivityDiagram.png)
 
-### **Sort modules feature**
+### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
 The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
@@ -380,7 +401,7 @@ As the user adds more modules, he/she might find it more useful to look at the l
 However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, 
 the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
-### **View progress / modules feature**
+### **View progress/modules feature** <a name="view-feature"></a>
 
 #### About this feature
 The View feature displays either the degree progress or modules tracked by the app on the left panel (`ResultsSection`) of the GUI. The syntax of the command for this feature is `view <VIEW_TARGET>`, where `<VIEW_TARGET>` can either be `progress` or `modules`.
@@ -441,14 +462,14 @@ The following activity illustrates the workflow of the `view` command:
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
 #### Design considerations
-**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the `Single Responsibility Principle` is not violated.**
+**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Single Responsibility Principle_ is not violated?**
 
-The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the `Single Responsibility Principle`, we have a find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
+The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the _Single Responsibility Principle_, we have to find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
 - **Solution:** Pass the information to the `CommandResult` returned by executing `ViewProgressCommand` or `VieWModulesCommand`. Since `MainWindow` already has access to `CommandResult` and through it, can easily obtain the correct information regarding which screen to display.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops** <a name="miscellaneous"></a>
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -458,10 +479,10 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** <a name="appendix"></a>
 
 
-### Product scope
+### Product scope <a name="product-scope"></a>
 
 **Target user profile**:
 
@@ -480,7 +501,7 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 * Offers a higher level of convenience, since the user can access module features within clicks on a keyboard
 
 
-### User stories
+### User stories <a name="user-stories"></a>
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -493,18 +514,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |  * * *   | User     | tag a module with  degree requirements (e.g. University Level Requirements, Computer Science Foundation etc). | track which degree requirement each module fulfils                     |
 |  * * *   | New user |                                            see usage instructions                                             | refer to instructions when I forget how to use the App                 |
 |   * *    | User     |                             find a module by code, grade, semester and/or credits                             | locate some specific modules without having to go through the entire list |
-|   * *    | User     |                             sort modules by subject, grade, semester, credits, level, tag                     | view my modules from another consolidated point of view |
-|   * *    | User     |                                      view my GPA                                       | know how well I have done so far in my CS |
-|   * *    | User     |                      check how much of each degree requirement I have completed                  |  know what requirements I still need to complete |
-|   * *    | User     |                  view my current degree completion progress in terms of percentage and number of MCs completed                     | - |
+|   * *    | User     |                         sort modules by subject, grade, semester, credits, level, tag                         | view my modules from another consolidated point of view |
+|   * *    | User     |                                                  view my CAP                                                  | know how well I have done so far in my CS |
+|   * *    | User     |                          check how much of each degree requirement I have completed                           |  know what requirements I still need to complete |
+|   * *    | User     |         view my current degree completion progress in terms of percentage and number of MCs completed         | - |
 
 *{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Use cases
+### Use cases <a name="use-cases"></a>
 
-(For all use cases below, the **System** is the `ModTrek` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MODTrek` and the **Actor** is the `user`, unless specified otherwise)
 
 <br>
 
@@ -512,69 +533,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a module
-2.  ModTrek adds the module
+1.  User requests to add a module.
+2.  MODTrek adds the module to the module list.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing or invalid.
+* 1a. The given module code, credits and/or year-semester is missing or invalid.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
-
+      Use case ends.
+  
 <br>
 
 #### Use case: Edit a module
 
 **MSS**
 
-1.  User requests to edit a module’s details
-2.  ModTrek edits the module’s details
+1.  User requests to edit a module’s details.
+2.  MODTrek edits the module’s details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing or invalid
+* 1a. No fields to edit (e.g. module code, year-semester) are provided.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
-
+      Use case ends.
+  
 <br>
 
 #### Use case: Delete a module
 
 **MSS**
 
-1.  User requests to list modules
-2.  ModTrek shows a list of modules
-3.  User requests to delete a specific module in the list
-4.  ModTrek deletes the module
+1. User requests to delete a specific module(s) in the module list.
+2. MODTrek deletes the module(s).
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
+
+    * 1a1. No modules are deleted.
 
   Use case ends.
 
-* 3a. The given module code is invalid.
+* 1b. The module requested to be deleted is not present in the module list.
 
-    * 3a1. ModTrek shows an error message.
+    * 1b1. No modules are deleted.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-* 3b. User wants to delete all modules.
+* 1c. The given module code is invalid.
 
-    * 3b1. User requests to delete all modules.
-    * 3b2. ModTrek clears the list of modules.
+    * 1c1. MODTrek shows an error message.
 
-      Use case ends.
+  Use case ends.
 
 <br>
 
@@ -582,24 +602,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find modules
-2.  ModTrek finds the modules and displays them
+1.  User requests to find modules according to a certain set of filters (e.g. module code, year-semester etc).
+2.  ModTrek finds the modules satisfying the set of filters and displays them.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing.
+* 1a. The set of filters provided by the user is empty.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2a. No matching modules were found.
 
-    * 2a1. ModTrek shows an error message.
+    * 2a1. MODTrek shows a message indicating that no matching modules were found.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 <br>
 
@@ -607,64 +627,109 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to tag a module with mapping requirements.
+1.  User requests to tag a module with one or more degree requirement(s).
 2.  ModTrek tags the module and displays it.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code is missing.
+* 1a. The module requested to be tagged is not present in the module list.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 2a. The module already has the tag.
+* 1b. A tag provided by the user is not one of the six valid degree requirements.
 
-    * 2a1. ModTrek shows an error message.
+    * 1b1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 <br>
 
-#### Use case: List modules
+#### Use case: View all modules
 
 **MSS**
 
-1. User requests to list modules
-2. ModTrek shows the list of modules
+1. User requests to view all modules in the module list.
+2. MODTrek shows the list of modules.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The module list is empty.
+    * 2a1. MODTrek shows a message indicating that there are no modules found in the module list.
 
-  Use case ends.
+      Use case ends.
 
-**Use case: View a graph of degree progress**
+<br>
 
+#### Use case: View degree progress
 
 **MSS**
 
-1. User requests to view a graph showing degree progress
-2. ModTrek shows the graph
+1. User requests to view the degree progress.
+2. MODTrek shows the user's degree progression data.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list of modules is empty.
+* 2a. The module list is empty.
+    * 2a1. MODTrek shows an empty degree progression data.
 
-  Use case ends.
+      Use case ends.
 
-*{More to be added}*
+<br>
 
+#### Use case: Sort modules
+
+**MSS**
+
+1.  User requests to sort the modules in the module list by a certain category (year, code, credits, grade or tag).
+2.  MODTrek sorts the module by the category.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. No category is provided.
+    * 1a1. MODTrek shows an error message.
+
+      Use case ends.
+
+* 1b. The category provided is invalid.
+    * 1b1. MODTrek shows an error message.
+
+      Use case ends.
+
+* 1c. The module list is empty.
+    * 1c1. MODTrek shows a message indicating that there are no modules found in the module list.
+
+      Use case ends.
+
+
+#### Use case: Requesting for help
+
+**MSS**
+
+1. User requests for help to check out the list of commands available and their syntax.
+2. MODTrek shows the list of commands available on MODTrek.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User requests for help on a particular command available on MODTrek.
+    * 1a1. MODTrek shows the use case of each command and its syntax.
+
+      Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Non-Functional Requirements
+### Non-Functional Requirements <a name="non-functional-requirements"></a>
 
 1.  The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The application should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
@@ -676,7 +741,7 @@ Use case ends.
 
 *{More to be added}*
 
-### Glossary
+### Glossary <a name="glossary"></a>
 
 |        Term        |                                                                                                                             Explanation                                                                                                                            |
 |:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
