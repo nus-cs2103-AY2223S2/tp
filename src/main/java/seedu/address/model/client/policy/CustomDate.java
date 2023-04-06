@@ -3,7 +3,9 @@ package seedu.address.model.client.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -14,7 +16,8 @@ import java.time.format.DateTimeParseException;
 public class CustomDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "date should only contain numbers, in the format of dd.mm.yyyy";
+            "Date should only contain numbers, in the format of dd.mm.yyyy. Be sure of " +
+                    "leap years as well!";
 
     public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}.\\d{4}$";
 
@@ -39,8 +42,17 @@ public class CustomDate {
      * @return LocalDate object.
      */
     public static LocalDate stringToDate(String date) {
-        DateTimeFormatter sf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        LocalDate localDate = LocalDate.from(sf.parse(date));
+        LocalDate localDate;
+        String[] dateParts = date.split("\\.");
+        int day = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int year = Integer.parseInt(dateParts[2]);
+        if (day == 29 && month == 2 && !Year.of(year).isLeap()) {
+            localDate = null;
+        } else {
+            DateTimeFormatter sf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            localDate = LocalDate.from(sf.parse(date));
+        }
         return localDate;
     }
 
@@ -51,6 +63,9 @@ public class CustomDate {
         boolean valid = true;
         try {
             LocalDate localDate = stringToDate(date);
+            if (localDate == null) {
+                valid = false;
+            }
         } catch (DateTimeParseException e) {
             valid = false;
         }
