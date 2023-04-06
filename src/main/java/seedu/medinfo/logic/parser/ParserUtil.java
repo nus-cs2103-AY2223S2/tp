@@ -124,7 +124,7 @@ public class ParserUtil {
     public static Discharge parseDischarge(String discharge) throws ParseException {
         requireNonNull(discharge);
         String trimmedDischarge = discharge.trim();
-        if (!Discharge.isValidDischarge(trimmedDischarge)) {
+        if (!Discharge.isValidFutureDischarge(trimmedDischarge)) {
             throw new ParseException(Discharge.MESSAGE_CONSTRAINTS);
         }
         return new Discharge(trimmedDischarge);
