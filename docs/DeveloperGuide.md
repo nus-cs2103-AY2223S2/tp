@@ -33,7 +33,10 @@ Todo: Add links
 7. [Instructions for manual testing](#instructions-for-manual-testing)
 8. [Planned Enhancements for Feature Flaws](#planned-enhancements-for-feature-flaws)
 9. [Won't Fix / Out of Scope](#wont-fix--out-of-scope)
-10. [Glossary](#glossary)
+10. [Effort](#effort)
+    1. [Morphing of AB3 to TechTrack](#morphing-of-ab3-to-techtrack)
+    2. [Revamping of UI](#revamping-of-ui)
+11. [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -809,6 +812,13 @@ class to render the message on startup.
 ### Issue #179 salary asc command does nothing
 
 1. Unable to replicate issue due to lack of information from the bug report.
+
+## Effort
+
+### Morphing of AB3 to TechTrack
+
+### Revamping of UI
+
 
 ## Glossary
 
