@@ -226,13 +226,13 @@ Add Video 1 to lecture Week 1 of module CS2040S.
 
 ### Nav
 
-**Navigate to the Root Context**
+#### Navigate to the Root Context
 
 > `nav`
 
 Navigate to the root context from any context.
 
-**Navigate From Root Context to Module Context**
+#### Navigate From Root Context to Module Context
 
 > `nav {module_code}`
 
@@ -241,7 +241,7 @@ Navigates from the root context to a module context.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
 
-**Navigate From Module Context to Lecture Context**
+#### Navigate From Module Context to Lecture Context
 
 > `nav {lecture_name}`
 
@@ -250,7 +250,7 @@ Navigates from a module context to a lecture context.
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
 
-**Navigate Directly**
+#### Navigate Directly
 
 > `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
@@ -261,7 +261,7 @@ Navigates directly to the specified module or lecture context
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
 
-**Navigate Backwards**
+#### Navigate Backwards
 
 > `navb`
 
