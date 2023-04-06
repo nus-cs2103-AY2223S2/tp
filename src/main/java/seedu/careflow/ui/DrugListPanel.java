@@ -119,7 +119,7 @@ public class DrugListPanel extends UiPart<Region> {
      * Set drug display to empty
      */
     public void updateNullDisplay() {
-        selectedTradeName.setText("Please select a patient");
+        selectedTradeName.setText("Please select a drug");
         selectedActiveIngredient.setText("");
         selectedDirection.setText("");
         selectedStorageCount.setText("");
