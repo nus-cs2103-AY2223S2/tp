@@ -31,20 +31,19 @@ deactivate CompanyCommandParser
 RoleBookParser -> CompanyCommandParser : parse("Google")
 activate CompanyCommandParser
 
+create CompanyContainsKeywordsPredicate
+CompanyCommandParser -> CompanyContainsKeywordsPredicate
+activate CompanyContainsKeywordsPredicate
+
+CompanyContainsKeywordsPredicate --> CompanyCommandParser
+deactivate CompanyContainsKeywordsPredicate
+
 create CompanyCommand
 CompanyCommandParser -> CompanyCommand
 activate CompanyCommand
 
 CompanyCommand --> CompanyCommandParser
 deactivate CompanyCommand
-
-create CompanyContainsKeywordsPredicate
-CompanyCommand -> CompanyContainsKeywordsPredicate
-activate CompanyContainsKeywordsPredicate
-
-CompanyContainsKeywordsPredicate --> CompanyCommand
-deactivate CompanyContainsKeywordsPredicate
-
 
 CompanyCommandParser --> RoleBookParser
 deactivate CompanyCommandParser
