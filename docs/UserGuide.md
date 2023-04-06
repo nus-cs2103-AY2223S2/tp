@@ -180,7 +180,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
    1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
 
-   <div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>
    
 4. Launch CoDoc.
 
