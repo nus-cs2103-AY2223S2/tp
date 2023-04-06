@@ -270,7 +270,9 @@ Format: `navb`
 
 Root context: modules, Module context: lectures, Lecture context: videos
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
 
 ### List Modules
 
@@ -645,7 +647,9 @@ Examples:
 - In module level within `CS2040S`, `find week 1, week 2` searches for lectures `week 1` or `week 2` from the lecture list of module `CS2040S`.
 - In lecture level within `week2` of `CS2040S`, `find vid1, vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
 ### Find Modules or Lectures or Videos By Tag
 
