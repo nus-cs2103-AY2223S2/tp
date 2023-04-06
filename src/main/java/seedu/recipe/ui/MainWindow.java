@@ -35,7 +35,6 @@ import seedu.recipe.ui.events.EditRecipeEvent;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private boolean usingKeyboardNavigation = false;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -91,11 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
         getRoot().addEventFilter(EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
-                usingKeyboardNavigation = true;
-            }
-        });
+
         helpWindow = new HelpWindow();
     }
 
