@@ -327,7 +327,8 @@ Edits a student's information _(all information except remarks)_. To remove a st
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:**
+<div markdown="block" class="alert alert-info">
+:bulb: **Note:**
 * `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 * `edit` command does not allow you to change the name of a student to an existing student's name in the student list!
 </div>
@@ -366,8 +367,7 @@ With `remark` you can type your desired remarks and notes into the popup text bo
 multiple sentences, paragraphs etc. When you are done, you can simply press `Ctrl` + `S`
 and your remarks will be saved once the text box closes.
 
-<div markdown="block" class="alert alert-info">
-
+<div markdown="span" class="alert alert-info">
 :bulb: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
 The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
 </div>
@@ -391,8 +391,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>remark</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">
-
+<div markdown="span" class="alert alert-info">
 :bulb: **Note:** Notice that remarks in the [student list](#guide-to-teachmesenpais-gui) (right panel) are truncated to make your student list more succinct :)
 To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
 </div>
