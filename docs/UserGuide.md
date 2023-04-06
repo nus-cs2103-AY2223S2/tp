@@ -123,7 +123,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     <td><strong>Parameter</strong></td>
     <td>
       An input that you as the user, will give to the command. These can be in the form of numbers or text.
-      Some commands take in a parameter after the prefix while some don't require a prefix/parameter.
+      Some commands take in a parameter after the prefix while some don't require a prefix at all.
     </td>
   </tr>
   <tr>
@@ -146,8 +146,6 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
 </table>
-
-As recommended in the introduction, we would like to direct you to read the [Quick Start](#quick-start) section next.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 <div style="page-break-after: always;"></div>
