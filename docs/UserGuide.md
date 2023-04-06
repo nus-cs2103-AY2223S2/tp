@@ -231,6 +231,7 @@ This commands allow you to add a card to the **selected** deck.
 A card must contain a question, an answer, and an optional difficulty tag. 
 
 Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
+-   `QUESTION` field of Card is case-sensitive and cannot be duplicated, e.g., if you already have a card with question `What is a loop`, you cannot create another card with question `What is a loop`.
 
 <div markdown="span" class="alert alert-primary">
 
