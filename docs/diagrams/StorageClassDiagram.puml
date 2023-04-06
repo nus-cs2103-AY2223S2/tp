@@ -21,8 +21,13 @@ Class JsonSerializableEduMate
 Class JsonAdaptedPerson
 Class JsonAdaptedUser
 Class JsonAdaptedTag
-}
-
+Class JsonAdaptedParticipants
+Class JsonAdaptedRecommendation
+Class JsonAdaptedMeetUp
+Class JsonAdaptedLocation
+Class JsonAdaptedTimePeriod
+Class JsonAdaptedModuleTag
+Class JsonAdaptedGroupTag
 }
 
 Class HiddenOutside #FFFFFF
@@ -38,9 +43,28 @@ Storage1 -right-|> EduMateStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 EduMateStorageManager .up.|> EduMateStorage
 EduMateStorageManager ..> JsonSerializableEduMate
-JsonSerializableEduMate --> "*" JsonAdaptedPerson
-JsonSerializableEduMate --> JsonAdaptedUser
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableEduMate -up-> "*" JsonAdaptedPerson
+JsonSerializableEduMate -up-> "1" JsonAdaptedUser
+JsonAdaptedPerson -up-> "*" JsonAdaptedGroupTag
+JsonAdaptedPerson -up-> "*" JsonAdaptedModuleTag
 JsonAdaptedUser --|> JsonAdaptedPerson
+JsonSerializableEduMate --> "1" JsonAdaptedParticipants
+JsonSerializableEduMate --> "*" JsonAdaptedRecommendation
+JsonSerializableEduMate --> "*" JsonAdaptedMeetUp
+
+JsonAdaptedGroupTag ..|> JsonAdaptedTag
+JsonAdaptedModuleTag ..|> JsonAdaptedTag
+
+JsonAdaptedMeetUp -[hidden]right-> JsonAdaptedRecommendation
+JsonAdaptedMeetUp -[hidden]left-> JsonAdaptedParticipants
+
+JsonAdaptedRecommendation --> "1" JsonAdaptedLocation
+JsonAdaptedRecommendation --> "1" JsonAdaptedTimePeriod
+
+JsonAdaptedMeetUp --> "1" JsonAdaptedLocation
+JsonAdaptedMeetUp --> "1" JsonAdaptedTimePeriod
+
+JsonAdaptedMeetUp -left-> "1" JsonAdaptedParticipants
+JsonAdaptedParticipants -up-> "*" JsonAdaptedPerson
 
 @enduml
