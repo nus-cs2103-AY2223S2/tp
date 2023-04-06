@@ -39,6 +39,16 @@ title: Developer Guide
 
 ## Implementation
 
+This section will focus on the implementation of the various features that BookFace
+provides. UML diagrams will be included to facilitate the explanation for the
+implementations.
+
+> **Note**: When viewing the sequence diagrams provided, it can be seen that the
+> lifeline of several classes extend beyond its destroy marker (X). A proper sequence
+> diagram will have the lifeline terminated at that point. However, due to the
+> limitations of PlantUML (the software used to generate the UML diagrams), the
+> lifeline extends beyond the destroy marker until the end of the diagram.
+
 ### Add Feature
 
 #### Add Implementation
@@ -52,7 +62,7 @@ instance of a `AddCommand` containing the details encapsulated in Person class i
 at the desired index to a default image, and deletes the existing person through
 `DeleteCommand`.
 
-Given below is an example usage scenario for how the add mechanism behaves.
+Given below is an example usage scenario for how the `add` mechanism behaves.
 
 Step 1: User starts up the application and sees their list of contacts. User must then enter
 [name] [status] [phone] [email] [address] as they are required by the system if not it will cause
@@ -73,12 +83,8 @@ The following sequence diagram shows how the `add` operation works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-> **Note**: The lifeline of the `AddCommandParser` and `AddCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
-
 The following activity diagram summarizes what happens when a user executes a
-add command:
+`add` command:
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
@@ -104,11 +110,31 @@ add command:
 
 #### Delete Implementation
 
-{Todo: Add delete implementation}
+The `delete` command allows users to delete a contact based on the provided index. 
+This feature is facilitated by the `ParserUtil`, `DeleteCommandParser`, and
+`DeleteCommand` classes. The user input is first passed to an instance of `DeleteCommandParser`,
+which calls on `ParserUtil#parseIndex` in `DeleteCommandParser#parse` to obtain the
+index in the user input. If the index provided is invalid, an error would be thrown.
+If the provided index was valid, an instance of `DeleteCommand` with the provided
+index is created. Finally, `DeleteCommand#execute` is called to delete the specified
+contact from the list of contacts.
 
-#### Design Considerations
+An example is provided below to better illustrate the `delete` behaviour.
 
-{Todo: Add design considerations for delete}
+Step 1: User starts up the application and sees their list of contacts. 
+
+Step 2: User decides that they no longer want the contact in position 1 to be on their
+list anymore, and hence enters `delete 1` into the user input.
+
+Step 3: `DeleteCommandParser#parse` is called, which calls `ParserUtil#parseIndex` to
+obtain the index from the user input. 
+
+Step 4: An instance of `DeleteCommand` is created with the provided Index, and `DeleteCommand#execute`
+is called to delete the contact from the list.
+
+The sequence diagram below illustrates how the `delete` mechanism works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 [Back to top](#top)
 
@@ -127,7 +153,7 @@ It returns a `AddImageCommand` with the 2 information retrieved.
 one.
 It also saves the file name of the new image to the `model`.
 
-Given below is an example usage scenario and how the add-image mechanism behaves at each step.
+Given below is an example usage scenario and how the `add-image` mechanism behaves at each step.
 
 Step 1. When user wants to add an image to a contact, they use the `add-image` command.
 
@@ -145,13 +171,11 @@ Finally `AddImageCommand#execute` updates the model provided in the arguments.
 > **Note**: If the path given is invalid or if the file at the given path is not a png/jpeg image, the command will not
 > be completed.
 
-The following sequence diagram shows how the add-image operation works:<br>
+The following sequence diagram shows how the `add-image` operation works:<br>
 ![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
-> **Note**: The lifeline of the `AddImageCommandParser` and `AddImageCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
 
-The following activity diagram summarizes what happens when a user executes add-image command: <br>
+
+The following activity diagram summarizes what happens when a user executes `add-image` command: <br>
 ![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
 
 #### Design considerations:
@@ -184,7 +208,7 @@ instance of a `DeleteImageCommand` containing the desired index is returned.
 at the desired index to a default image, and deletes the existing image through
 `ImageUtil#deleteImage`.
 
-Given below is an example usage scenario for how the delete-image mechanism behaves.
+Given below is an example usage scenario for how the `delete-image` mechanism behaves.
 
 Step 1: User starts up the application and sees their list of contacts. Some of
 which have already had an image added.
@@ -208,12 +232,8 @@ The following sequence diagram shows how the delete-image operation works.
 
 ![DeleteImageSequenceDiagram](images/DeleteImageSequenceDiagram.png)
 
-> **Note**: The lifeline of the `DeleteImageCommandParser` and `DeleteImageCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
-
 The following activity diagram summarizes what happens when a user executes a
-delete-image command:
+`delete-image` command:
 
 ![DeleteImageActivityDiagram](images/DeleteImageActivityDiagram.png)
 
@@ -246,7 +266,7 @@ a `ImportCommand` containing the desired faculty from either `SocContacts` or
 `ChsContacts` is then returned. `ImportCommand#execute` is then called,
 which calls `Model#addPerson` to add the unique contacts into BookFace.
 
-Given below is an example usage scenario for how the import mechanism behaves.
+Given below is an example usage scenario for how the `import` mechanism behaves.
 
 Step 1: User starts up the application and sees their list of contacts.
 
@@ -268,7 +288,7 @@ The following sequence diagram shows how the import command works.
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes an
-import command:
+`import` command:
 
 ![ImportActivityDiagram](images/ImportActivityDiagram.png)
 
@@ -332,6 +352,11 @@ to display the final filtered list to the user.
 The sequence diagram below illustrates this process.
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes
+the `find` command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design Considerations:
 
