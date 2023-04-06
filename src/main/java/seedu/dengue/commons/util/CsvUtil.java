@@ -111,25 +111,43 @@ public class CsvUtil {
     }
 
     /**
-     * Assumes Csv file exists
+     * Reads data from a file located at the given {@link Path} and returns a {@link BufferedReader}
+     * for reading the file contents.
+     * @param file The {@link Path} to the file to be read.
+     * @return A {@link BufferedReader} for reading the contents of the file.
+     * @throws FileNotFoundException If the file specified by the given {@link Path} does not exist or cannot be opened.
      */
-    public static Reader readFile(Path file) throws FileNotFoundException {
+    public static BufferedReader readFile(Path file) throws FileNotFoundException {
         return new BufferedReader(new FileReader(file.toString()));
     }
 
     /**
-     * Assumes Csv file exists
+     * Reads data from a CSV file and converts it into a list of objects of the given class type.
+     * @param file          The {@link Path} to the CSV file to be read.
+     * @param instanceClass The {@link Class} representing the type of objects to be created from the CSV data.
+     * @param <T>           The generic type representing the class of objects to be created.
+     * @return A {@link List} of objects of the given class type, representing the data read from the CSV file.
+     * @throws IOException             If an I/O error occurs while reading the CSV file.
+     * @throws DataConversionException If the data read from the CSV file is empty.
      */
     public static <T> List<T> readFromCsvFile(Path file, Class<T> instanceClass)
             throws IOException, DataConversionException {
-        Reader reader = readFile(file);
+        BufferedReader reader = readFile(file);
         CsvToBean<T> csvReader = createCsvReader(reader, instanceClass);
         List<T> parsed = csvReader.parse();
         if (parsed.isEmpty()) {
+            reader.close();
             throw new DataConversionException(new Exception("Data is empty!"));
         }
         reader.close();
         return parsed;
+    }
+
+    /**
+     * Checks header equality
+     */
+    private static boolean checkHeader(String header, String classHeader) {
+        return header.equals(classHeader);
     }
 
     /**

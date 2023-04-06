@@ -16,6 +16,7 @@ import seedu.dengue.model.person.csvutil.DateConverter;
 import seedu.dengue.model.person.csvutil.NameConverter;
 import seedu.dengue.model.person.csvutil.PostalConverter;
 import seedu.dengue.model.person.csvutil.VariantsConverter;
+import seedu.dengue.model.person.exceptions.PersonHasNullAttributesException;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -37,6 +38,7 @@ public class Person {
     private Set<Variant> variants = new HashSet<>();
 
     public Person() {}
+
     /**
      * Every field must be present and not null.
      */
@@ -64,7 +66,6 @@ public class Person {
     public Age getAge() {
         return age;
     }
-
 
     public Person getCopy() {
         return new Person(this.name, this.postal, this.date, this.age, this.variants);
@@ -95,8 +96,6 @@ public class Person {
             isSame = hasSameAge && hasSameName && hasSamePostal;
             return isSame;
         }
-
-
     }
 
     /**
@@ -145,6 +144,23 @@ public class Person {
         return result.toArray(csvString);
     }
 
+    /**
+     * Returns an array of the string headers for CSV storage
+     * @return A String[] representing the Headers for Person class formatted for CSV storage.
+     */
+    public static String[] getHeaders() {
+        return new String[]{"Patient Name", "Age", "Date", "Postal Code", "Variants"};
+    }
+
+    /**
+     * Checks if person has Null Attributes
+     */
+    public void isNonNullAttributesPerson() throws PersonHasNullAttributesException {
+        if (getName() == null | getPostal() == null | getDate() == null | getAge() == null) {
+            throw new PersonHasNullAttributesException();
+        }
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -164,8 +180,9 @@ public class Person {
 
         Set<Variant> variantSet = getVariants();
         if (!variantSet.isEmpty()) {
-            builder.append("; Variants: ");
-            variantSet.forEach(builder::append);
+            builder.append("; Variants: [");
+            builder.append(String.join(",", variantSet.stream().map(Variant::toString).toArray(String[]::new)));
+            builder.append("]");
         }
         return builder.toString();
     }
