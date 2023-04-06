@@ -248,8 +248,8 @@ This will add a new person named Bob to our contact list.
 
 After executing the command, we see that Bob has been added below the list.
 
-<div markdown="span" class="alert alert-danger">  
-:exclamation: <b>Caution:</b> You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
+<div class="span" class="alert alert-danger">  
+:exclamation: <b>Caution:</b> You must specify minimally, the person's <i>name</i>, <i>email</i>, <i>year</i> and <i>course</i> when adding a person.
 </div>
 
 <div markdown="span" class="alert alert-info">
