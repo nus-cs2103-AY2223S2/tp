@@ -3,11 +3,9 @@ layout: page
 title: Welcome to Docedex
 ---
 
-[//]: # (TODO: Change this link)
 [![CI Status](https://github.com/AY2223S2-CS2103T-F12-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-F12-1/tp/actions)
 
-[//]: # (TODO: Change this link after codecov created!)
-[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-F12-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-F12-1/tp/)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-F12-1/tp/branch/docs%2Flanding-page/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-F12-1/tp/)
 
 ![NewUi](images/NewUi.png)
 
