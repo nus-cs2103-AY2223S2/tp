@@ -3,7 +3,6 @@ package seedu.address.model.client.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -16,8 +15,8 @@ import java.time.format.DateTimeParseException;
 public class CustomDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numbers, in the format of dd.mm.yyyy. Be sure of " +
-                    "leap years as well!";
+            "Date should only contain numbers, in the format of dd.mm.yyyy. Be sure of "
+                   + "leap years as well!";
 
     public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}.\\d{4}$";
 
