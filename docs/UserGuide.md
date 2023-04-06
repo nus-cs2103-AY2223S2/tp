@@ -98,7 +98,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as CoDoc) where users enter a specific command, press "Enter" and wait for a response.
+      A way for users to interact with a piece of software via text in the form of commands where users enter a specific command, press "Enter" and wait for a response.
     </td>
   </tr>
   <tr>
@@ -116,7 +116,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Prefix</strong></td>
     <td>
-      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill ...
+      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill.
     </td>
   </tr>
   <tr>
@@ -136,14 +136,13 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     <td><div markdown="span" class="alert alert-success"><strong>:bulb: Tip</strong></div></td>
     <td>
       To provide you with relevant suggestions on how to use the commands as well as address potential confusions when using
-      these commands, so you will be able to better understand how the commands work.
+      these commands.
     </td>
   </tr>
   <tr>
     <td><div markdown="span" class="alert alert-danger"><strong>:exclamation: Caution</strong></div></td>
     <td>
-      To inform you of some unintended or unexpected consequences that may occur when you use the commands, so you will be
-      able to use them appropriately.
+      To inform you of some unintended or unexpected consequences that may occur when you use the commands.
     </td>
   </tr>
 </table>
