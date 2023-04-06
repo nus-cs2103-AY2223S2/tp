@@ -9,4 +9,24 @@ MyLib is a desktop bookmarking application used for keeping track of books a use
 
 Given below are my contributions to the project.
 
-* to be added soon
+* **Code Contributed**: [RepoSense hyperlink](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=zhoyx&tabRepo=AY2223S2-CS2103T-T13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+* **New Feature**: Added new Rating field. 
+  * What it does: Allow users add a numeric rating from 0 to 5 to each bookmark.
+  * Justification: This field can then be used for sorting based on rating to allow users to easily find the best and worst content stored in the library. [#157](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/157)
+
+* **New Feature**: Created fixed list of Genres and validation to only allow Genres from that list. [#139](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/139)
+
+* **Enhancements**:
+    * Created Progress field when modifying AddressBook to MyLib. [#75](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/75)
+    * Updated Test cases for Fixed set of Genres. [#155](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/155)
+
+* **Documentation**:
+    * User Guide:
+        * Added Target Audience
+        * Added Key Definitions Section
+        * Updated Add and Edit Section to include new Genre requirement and Ratings field
+        * 
+
+    * Developer Guide:
+
