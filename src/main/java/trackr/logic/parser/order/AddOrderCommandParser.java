@@ -44,7 +44,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
                         PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ORDERNAME, PREFIX_ORDERQUANTITY, PREFIX_DEADLINE,
-                PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS)
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
         }
