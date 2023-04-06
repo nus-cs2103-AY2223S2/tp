@@ -22,5 +22,5 @@ public interface LinkFunction<C extends Command, S extends Item, T extends Item,
      * @param targets the map of target items.
      * @return the link command.
      */
-    C create(S source, Map<K, T> targets);
+    C apply(S source, Map<K, T> targets);
 }

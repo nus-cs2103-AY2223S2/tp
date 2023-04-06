@@ -128,7 +128,7 @@ public class CrewLocationLinkCommandFactory<T extends Command>
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);
         }
-        return linkFunction.create(location, crews);
+        return linkFunction.apply(location, crews);
     }
 
     /**

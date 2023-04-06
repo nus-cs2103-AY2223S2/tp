@@ -138,7 +138,7 @@ public class FlightLocationLinkCommandFactory<T extends Command>
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
 
-        return linkFunction.create(flight, locationMap);
+        return linkFunction.apply(flight, locationMap);
     }
 
     @FunctionalInterface

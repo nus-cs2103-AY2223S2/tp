@@ -154,7 +154,7 @@ public class CrewFlightLinkCommandFactory<T extends Command>
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);
         }
-        return linkFunction.create(flight, crews);
+        return linkFunction.apply(flight, crews);
     }
 
     @FunctionalInterface
