@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import teambuilder.commons.core.LogsCenter;
 import teambuilder.model.team.Team;
 
+//@@author chen-jerry-junior
 /**
  * Panel containing the list of teams.
  */

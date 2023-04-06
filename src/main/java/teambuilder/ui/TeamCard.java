@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import teambuilder.model.team.Team;
 
+//@@author chen-jerry-junior
 /**
  * A UI component that displays information of a {@code Team}.
  */
