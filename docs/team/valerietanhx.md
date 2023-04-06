@@ -24,7 +24,7 @@ Given below are my contributions to the project.
     but never at the same time. Much abstraction was required to keep the code clean and readable.
 * **New Feature:** Added the ability to delete all cases from a given date range.
   * Justification: This feature allows users to delete all cases from a given date at once, which may be useful
-    when the user wants to clear erroneous cases from the same date from the DengueHotspotTracker.
+    when the user wants to clear erroneous cases from the same date from the `DengueHotspotTracker`.
   * Highlights: Similar to the previous feature, this enhancement was challenging as it required significant changes
     to the architecture of the delete command parser and delete command. In addition to the aforementioned changes
     to the parser and use of the `Optional` class, new classes such as `Range`, `StartDate`, and `EndDate`, as well as
