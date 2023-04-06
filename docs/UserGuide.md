@@ -10,13 +10,11 @@ title: User Guide
 
 ## **Introduction**
 
-MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read!
+MyLib is a desktop bookmarking application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, its general bookmarking features is more than capable of handling any other bookmarking tasks you might have. This not only includes other types of novels, but also blogs, articles, reddit posts, Youtube videos and anything else that you want to track!
 
-With MyLib, you have the ability to easily organise all your reading materials in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
+With MyLib, you have the ability to easily organise all your bookmarks in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
 
-MyLib is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks.
-
-If you are a fast typer who is seeking a one-stop platform to organise and track your readings (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
+MyLib is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 --------------------------------------------------------------------------------------------------------------------
 ## **About User Guide**
@@ -36,44 +34,46 @@ The user guide contains certain visuals to aid in conveying information more eff
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
 
-
-### Getting Started
-Head on over to the [Quick start](#quick-start) section to get started with MyLib!
-
-If you are an experienced user, you can refer to [Command Summary](#command-summary) for a quick overview of MyLib's commands.
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `myLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
+2. Download the latest `MyLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
 
-5. A GUI similar to the below should appear in a few seconds with first bookmark selected. Note how the app contains some sample data.
+5. A GUI similar to the below should appear in a few seconds. You can go [here](#graphical-user-interface) to get an overview of the various components that make up MyLib's GUI.
 
     <img width="560" height="400"  src="images/Ui.png">
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+6. If this is your first time running the application, it should contain some sample bookmarks.
 
-   * `list` : Lists all Bookmarks.
+7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 
-   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature` : Adds a bookmark for the book `The Odessey` to the Library.
+8. Let's start by trying to add a bookmark.
 
-   * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
+   * Enter `add n/My Book a/My Book's Author g/Fantasy r/4` into the command box and press the Enter key.
+   * Adds a bookmark for the book with the title `My Book`, the author `My Book's Author` and the genre `Fantasy` to your bookmark library.
+   
+9. Now, let's try editing the title in the bookmark you just added
 
-   * `clear` : Deletes all Bookmarks.
+   * Enter `edit 5 n/Edited Title` into the command box and press the Enter key.
+   
+   * This edits the title of your bookmark, changing it from `My Book` to `Edited Title`
 
-   * `goto 1` : Opens the url of 1st Bookmark shown in current list.
+10. Finally, let's delete that bookmark and exit the application
 
-   * `exit` : Exits the app.
+    * Enter `delete 5` into the command box and press the Enter key.
+   
+    * This will delete your bookmark
 
-7. Refer to the [Features](#features) below for details of each command.
+    * Next, use `exit` to exit the application.
+
+11. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
