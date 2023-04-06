@@ -10,6 +10,7 @@ public class Keyword {
     public static final String MAIN_BASIC_STRING = "basic";
     public static final String MAIN_EXIT_STRING = "exit";
     public static final String MAIN_HELP_STRING = "help";
+    public static final String MAIN_KEYWORD_STRING = "keyword";
     public static final String MAIN_PATIENT_STRING = "patient";
     public static final String MAIN_VACCINATION_STRING = "vaccination";
 
@@ -84,6 +85,9 @@ public class Keyword {
             return false;
 
         case (MAIN_HELP_STRING):
+            return false;
+
+        case (MAIN_KEYWORD_STRING):
             return false;
 
         default:
