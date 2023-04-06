@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -15,9 +14,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
-import seedu.address.model.person.patient.PatientFilter;
 
 /**
  * Panel containing the list of doctors.

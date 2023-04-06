@@ -85,9 +85,9 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
         yearsOfExperience.setText(selectedDoctor.getYoe().value);
         tags.getChildren().clear();
         selectedDoctor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
                 .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
+                    Label tagLabel = new Label(tag.getTagName());
                     tagLabel.setWrapText(true);
                     tagLabel.setMaxWidth(150);
                     tags.getChildren().add(tagLabel);

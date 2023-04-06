@@ -9,11 +9,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
 
 /**
  * The manager of the UI component.

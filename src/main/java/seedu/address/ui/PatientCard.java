@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays the name, phone number, email and tags of a {@code Patient}.
@@ -50,9 +51,9 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         email.setText(patient.getEmail().value);
         patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
+                    Label tagLabel = new Label(tag.getTagName());
                     tagLabel.setWrapText(true);
                     tagLabel.setMaxWidth(150);
                     tags.getChildren().add(tagLabel);

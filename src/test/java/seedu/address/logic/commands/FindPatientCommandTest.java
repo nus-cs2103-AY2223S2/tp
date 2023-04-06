@@ -33,7 +33,7 @@ public class FindPatientCommandTest {
     public void equals() {
 
         Set<String> zaydenTags = ZAYDEN.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
 
         PatientFilter emptyFilter = new PatientFilter("", "",
                 "", "", "", "", "", "", new HashSet<>());
@@ -92,7 +92,7 @@ public class FindPatientCommandTest {
     public void execute_exactKeywords_onePersonFound() {
 
         Set<String> zaydenTags = ZAYDEN.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
         PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().fullName,
                 ZAYDEN.getPhone().value,
                 ZAYDEN.getEmail().value,

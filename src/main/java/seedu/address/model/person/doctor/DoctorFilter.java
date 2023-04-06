@@ -1,7 +1,6 @@
 package seedu.address.model.person.doctor;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -86,7 +85,7 @@ public class DoctorFilter {
             Set<String> tagStringSet = doctor
                     .getTags()
                     .stream()
-                    .map(tag -> tag.tagName.toLowerCase())
+                    .map(tag -> tag.getTagName().toLowerCase())
                     .collect(Collectors.toSet());
             result = result && tagStringSet.containsAll(tagsFilter
                     .stream()
@@ -103,14 +102,28 @@ public class DoctorFilter {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DoctorFilter // instanceof handles nulls
-                && this.nameFilter.equals(((DoctorFilter) other).nameFilter)
-                && this.phoneFilter.equals(((DoctorFilter) other).phoneFilter)
-                && this.emailFilter.equals(((DoctorFilter) other).emailFilter)
-                && this.specialtyFilter.equals(((DoctorFilter) other).specialtyFilter)
-                && this.yoeFilter.equals(((DoctorFilter) other).yoeFilter)
-                && this.tagsFilter.equals(((DoctorFilter) other).tagsFilter))
-                && this.patientFilter.equals(((DoctorFilter) other).patientFilter); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DoctorFilter)) {
+            return false;
+        }
+
+        DoctorFilter otherFilter = (DoctorFilter) other;
+        boolean isSamePatientFilter;
+        if (this.patientFilter == null) {
+            isSamePatientFilter = otherFilter.patientFilter == null;
+        } else {
+            isSamePatientFilter = this.patientFilter.equals(otherFilter.patientFilter);
+        }
+
+        return this.nameFilter.equals(otherFilter.nameFilter)
+                && this.phoneFilter.equals(otherFilter.phoneFilter)
+                && this.emailFilter.equals(otherFilter.emailFilter)
+                && this.specialtyFilter.equals(otherFilter.specialtyFilter)
+                && this.yoeFilter.equals(otherFilter.yoeFilter)
+                && this.tagsFilter.equals(otherFilter.tagsFilter)
+                && isSamePatientFilter;
     }
 }

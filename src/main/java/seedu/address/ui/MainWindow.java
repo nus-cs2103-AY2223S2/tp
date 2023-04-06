@@ -12,13 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -51,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -120,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

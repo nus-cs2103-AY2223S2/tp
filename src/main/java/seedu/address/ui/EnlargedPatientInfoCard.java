@@ -94,9 +94,9 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
         remark.setText(selectedPatient.getRemark().toString());
         tags.getChildren().clear();
         selectedPatient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
                 .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
+                    Label tagLabel = new Label(tag.getTagName());
                     tagLabel.setWrapText(true);
                     tagLabel.setMaxWidth(150);
                     tags.getChildren().add(tagLabel);

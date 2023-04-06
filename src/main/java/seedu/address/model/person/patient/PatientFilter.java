@@ -1,7 +1,6 @@
 package seedu.address.model.person.patient;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -108,7 +107,7 @@ public class PatientFilter {
             Set<String> tagStringSet = patient
                     .getTags()
                     .stream()
-                    .map(tag -> tag.tagName.toLowerCase())
+                    .map(tag -> tag.getTagName().toLowerCase())
                     .collect(Collectors.toSet());
             result = result && tagStringSet.containsAll(tagsFilter
                     .stream()
@@ -125,17 +124,31 @@ public class PatientFilter {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof PatientFilter // instanceof handles nulls
-                && this.nameFilter.equals(((PatientFilter) other).nameFilter)
-                && this.phoneFilter.equals(((PatientFilter) other).phoneFilter)
-                && this.emailFilter.equals(((PatientFilter) other).emailFilter)
-                && this.heightFilter.equals(((PatientFilter) other).heightFilter)
-                && this.weightFilter.equals(((PatientFilter) other).weightFilter)
-                && this.diagnosisFilter.equals(((PatientFilter) other).diagnosisFilter)
-                && this.statusFilter.equals(((PatientFilter) other).statusFilter)
-                && this.remarkFilter.equals(((PatientFilter) other).remarkFilter)
-                && this.tagsFilter.equals(((PatientFilter) other).tagsFilter))
-                && this.doctorFilter.equals(((PatientFilter) other).doctorFilter); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PatientFilter)) {
+            return false;
+        }
+
+        PatientFilter otherFilter = (PatientFilter) other;
+        boolean isSameDoctorFilter;
+        if (this.doctorFilter == null) {
+            isSameDoctorFilter = otherFilter.doctorFilter == null;
+        } else {
+            isSameDoctorFilter = this.doctorFilter.equals(otherFilter.doctorFilter);
+        }
+
+        return this.nameFilter.equals(otherFilter.nameFilter)
+                && this.phoneFilter.equals(otherFilter.phoneFilter)
+                && this.emailFilter.equals(otherFilter.emailFilter)
+                && this.heightFilter.equals(otherFilter.heightFilter)
+                && this.weightFilter.equals(otherFilter.weightFilter)
+                && this.diagnosisFilter.equals(otherFilter.diagnosisFilter)
+                && this.statusFilter.equals(otherFilter.statusFilter)
+                && this.remarkFilter.equals(otherFilter.remarkFilter)
+                && this.tagsFilter.equals(otherFilter.tagsFilter)
+                && isSameDoctorFilter; // state check
     }
 }

@@ -73,7 +73,7 @@ public class StorageManager implements Storage {
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        logger.log(Level.WARNING, "Updating the file manually may result in unexpected behaviour and/or data loss");
+        logger.log(Level.INFO, "Updating the file manually may result in unexpected behaviour and/or data loss");
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
