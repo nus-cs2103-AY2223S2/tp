@@ -6,7 +6,6 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.careflow.commons.core.index.Index;
-import seedu.careflow.logic.commands.drugcommands.DeleteCommand;
 import seedu.careflow.logic.commands.patientcommands.ViewCommand;
 import seedu.careflow.logic.parser.ArgumentMultimap;
 import seedu.careflow.logic.parser.ArgumentTokenizer;
@@ -26,17 +25,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     @Override
     public ViewCommand parse(String userInput) throws ParseException {
-        try {
-            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
-            if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
-                Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-                return new ViewCommand(index);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        seedu.careflow.logic.commands.drugcommands.DeleteCommand.MESSAGE_USAGE));
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+        if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+            Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+            return new ViewCommand(index);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    seedu.careflow.logic.commands.drugcommands.DeleteCommand.MESSAGE_USAGE));
         }
     }
 
