@@ -17,6 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_REGION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_TAG_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
@@ -35,7 +36,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
@@ -44,8 +48,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseOptionalSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalVolunteers.AMY;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -134,11 +138,90 @@ public class AddVolunteerCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Volunteer expectedVolunteer = new VolunteerBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY + REGION_DESC_AMY,
-                new AddVolunteerCommand(expectedVolunteer));
+        // missing phone
+        Volunteer expectedVoluneer1 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                .withTags(VALID_TAG_STRONG).withMedicalTags(VALID_MEDICAL_TAG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB
+                + MEDICAL_TAG_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing email
+        Volunteer expectedVoluneer2 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                .withTags(VALID_TAG_STRONG)
+                .withMedicalTags(VALID_MEDICAL_TAG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB
+                + MEDICAL_TAG_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing address
+        Volunteer expectedVoluneer3 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
+                .withTags(VALID_TAG_STRONG)
+                .withMedicalTags(VALID_MEDICAL_TAG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB
+                + MEDICAL_TAG_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing region
+        Volunteer expectedVoluneer4 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_STRONG)
+                .withMedicalTags(VALID_MEDICAL_TAG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB
+                + MEDICAL_TAG_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing medical tags
+        Volunteer expectedVoluneer5 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withRegion(VALID_REGION_BOB).withTags(VALID_TAG_STRONG)
+                .withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB
+                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE);
+
+        // missing available date
+        Volunteer expectedVoluneer6 = new VolunteerBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
+                .withBirthDate(VALID_BIRTH_DATE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withRegion(VALID_REGION_BOB).withTags(VALID_TAG_STRONG).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + MEDICAL_TAG_DESC_BOB
+                + TAG_DESC_STRONG);
+
+        // missing tags
+        assertParseOptionalSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY + REGION_DESC_AMY
+                + MEDICAL_TAG_DESC_BOB);
+
+        // all optional fields missing
+        Volunteer expectedVoluneer8 = new VolunteerBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
+                .withBirthDate(VALID_BIRTH_DATE_AMY).build();
+        assertParseOptionalSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY);
     }
 
     @Test
@@ -203,6 +286,14 @@ public class AddVolunteerCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC,
+                Phone.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + INVALID_NRIC_DESC + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC,
+                Nric.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

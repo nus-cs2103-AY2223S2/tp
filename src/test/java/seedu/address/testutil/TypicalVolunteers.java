@@ -32,7 +32,7 @@ public class TypicalVolunteers {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends")
             .withBirthDate("1990-01-01").withRegion("CENTRAL").withNric("S9673908G")
-            .withMedicalTags("CPR BASIC")
+            .withMedicalTags("CPR,BASIC")
             .withAvailableDates("2023-05-01", "2023-05-12")
             .withAvailableDates("2023-05-02", "2023-05-14")
             .withAvailableDates("2023-05-12", "2023-05-15").build();
@@ -47,7 +47,7 @@ public class TypicalVolunteers {
     public static final Volunteer CARL = new VolunteerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withBirthDate("1992-03-01").withRegion("EAST")
-            .withMedicalTags("BLS INTERMEDIATE", "AED BASIC").withNric("S3634466J").build();
+            .withMedicalTags("BLS,INTERMEDIATE", "AED,BASIC").withNric("S3634466J").build();
     public static final Volunteer DANIEL = new VolunteerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("friends").withBirthDate("1993-04-01").withRegion("NORTH")
@@ -59,7 +59,7 @@ public class TypicalVolunteers {
     public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withBirthDate("1995-06-01").withRegion("EAST")
-            .withNric("S3576311B").withMedicalTags("AED ADVANCED")
+            .withNric("S3576311B").withMedicalTags("AED,ADVANCED")
             .withAvailableDates("2023-02-01", "2023-03-01").build();
 
     public static final Volunteer GEORGE = new VolunteerBuilder().withName("George Best").withPhone("9482442")
@@ -75,7 +75,7 @@ public class TypicalVolunteers {
     public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withBirthDate("1997-08-01").withRegion("EAST")
-            .withNric("S8866775G").withMedicalTags("CPR ADVANCED", "BLS BASIC")
+            .withNric("S8866775G").withMedicalTags("CPR,ADVANCED", "BLS,BASIC")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

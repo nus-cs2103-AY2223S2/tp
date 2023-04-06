@@ -140,7 +140,7 @@ public class SampleDataUtil {
     public static Set<MedicalQualificationTag> getMedicalTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(s -> {
-                    String[] parts = s.split(" ");
+                    String[] parts = s.split(",");
                     return new MedicalQualificationTag(parts[0], parts[1]);
                 })
                 .collect(Collectors.toSet());

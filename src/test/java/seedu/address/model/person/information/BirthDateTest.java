@@ -32,6 +32,7 @@ class BirthDateTest {
         assertFalse(BirthDate.isValidBirthDate(" ")); // spaces only
         assertFalse(BirthDate.isValidBirthDate("hello")); // random letters
         assertFalse(BirthDate.isValidBirthDate("23-03-2020")); // not correct format
+        assertFalse(BirthDate.isValidBirthDate("2020 Apr 03"));
 
         // valid birthdate
         assertTrue(BirthDate.isValidBirthDate("2023-03-23"));

@@ -31,25 +31,43 @@ public class MedicalQualificationTagTest {
 
         // valid
         assertTrue(MedicalQualificationTag.isValidQualification("BASIC"));
+        assertTrue(MedicalQualificationTag.isValidQualification("basic"));
+        assertTrue(MedicalQualificationTag.isValidQualification("INTERmediate"));
         assertTrue(MedicalQualificationTag.isValidQualification("adVanCed"));
     }
 
 
     @Test
     public void changeQualificationLevel() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag("CPR", "ADVANCED");
+        MedicalQualificationTag medicalQualificationTag1 = new MedicalQualificationTag("CPR", "ADVANCED");
+        MedicalQualificationTag medicalQualificationTag2 = new MedicalQualificationTag("AED", "basic");
+        MedicalQualificationTag medicalQualificationTag3 = new MedicalQualificationTag("BLS", "interMEDIATE");
 
-        medicalQualificationTag.setQualificationLevel("BASIC");
+        medicalQualificationTag1.setQualificationLevel("BASIC");
         assertEquals("BASIC",
-                medicalQualificationTag.getQualificationLevel());
+                medicalQualificationTag1.getQualificationLevel());
+
+        medicalQualificationTag2.setQualificationLevel("intermediate");
+        assertEquals("INTERMEDIATE",
+                medicalQualificationTag2.getQualificationLevel());
+
+        medicalQualificationTag1.setQualificationLevel("adVANCED");
+        assertEquals("ADVANCED",
+                medicalQualificationTag1.getQualificationLevel());
     }
 
 
     @Test
     public void testFullStringConversion() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag("AED", "ADVANCED");
+        MedicalQualificationTag medicalQualificationTag1 = new MedicalQualificationTag("AED", "ADVANCED");
+        MedicalQualificationTag medicalQualificationTag2 = new MedicalQualificationTag("CPR", "basic");
+        MedicalQualificationTag medicalQualificationTag3 = new MedicalQualificationTag("BLS", "interMEDIATE");
+        String fullString1 = "[AED] ADVANCED";
+        String fullString2 = "[CPR] BASIC";
+        String fullString3 = "[BLS] INTERMEDIATE";
 
-        String fullString = "[AED] ADVANCED";
-        assertEquals(fullString, medicalQualificationTag.toFullString());
+        assertEquals(fullString1, medicalQualificationTag1.toFullString());
+        assertEquals(fullString2, medicalQualificationTag2.toFullString());
+        assertEquals(fullString3, medicalQualificationTag3.toFullString());
     }
 }

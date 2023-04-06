@@ -28,10 +28,18 @@ class NricTest {
         assertFalse(Nric.isValidNric(" ")); // spaces only
         assertFalse(Nric.isValidNric("hello")); // too little characters
         assertFalse(Nric.isValidNric("hellokitty123")); // too much characters
+        // invalid NRIC, wrong formats
+        assertFalse(Nric.isValidNric("X2233233M")); // wrong prefix
+        assertFalse(Nric.isValidNric("TAAAAAAAB")); // middle 7 not numbers
+        assertFalse(Nric.isValidNric("S1234567@"));
 
-        // valid NRIC
+        // valid NRIC, one each for the allowed prefix
         assertTrue(Nric.isValidNric("T1234567C"));
         assertTrue(Nric.isValidNric("S2345678B")); // 9 characters
+        assertTrue(Nric.isValidNric("F1234567A"));
+        assertTrue(Nric.isValidNric("G1234567Z"));
+        assertTrue(Nric.isValidNric("M1234567B"));
+
     }
 
 }
