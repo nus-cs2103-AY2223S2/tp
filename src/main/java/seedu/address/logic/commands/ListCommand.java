@@ -23,12 +23,22 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPartMap(PREDICATE_SHOW_ALL_PARTS);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        model.updateCustomerComparator((a, b) -> a.getId() - b.getId());
+
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateAppointmentComparator((a, b) -> a.getDateStatus().compareTo(b.getDateStatus()));
+
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        model.updateServiceComparator((a, b) -> a.getId() - b.getId());
+
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        model.updateVehicleComparator((a, b) -> a.getId() - b.getId());
+
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
+        model.updateTechnicianComparator((a, b) -> a.getId() - b.getId());
+
+        model.updateFilteredPartMap(PREDICATE_SHOW_ALL_PARTS);
         return new CommandResult(MESSAGE_SUCCESS, Tab.ALL);
     }
 }

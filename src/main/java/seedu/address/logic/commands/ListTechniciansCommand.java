@@ -18,6 +18,7 @@ public class ListTechniciansCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
+        model.updateTechnicianComparator((a, b) -> a.getId() - b.getId());
         model.selectTechnician(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.TECHNICIANS);
     }

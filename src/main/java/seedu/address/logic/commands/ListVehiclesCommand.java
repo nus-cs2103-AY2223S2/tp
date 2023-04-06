@@ -18,6 +18,7 @@ public class ListVehiclesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        model.updateVehicleComparator((a, b) -> a.getId() - b.getId());
         model.selectVehicle(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
     }
