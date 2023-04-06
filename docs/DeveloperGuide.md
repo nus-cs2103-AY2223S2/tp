@@ -72,9 +72,19 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/ui/Ui.java)
 
-The `UI` is responsible for the GUI of VMS. It does so with the aid of JavaFX UI framework. Below shows a (partial) class diagram of the `Ui` component.
+The `UI` is responsible for the GUI of VMS. It does so with the aid of JavaFX UI framework. To simplify the creation of GUI layouts of different parts, several classes extends `UiPart` which is responsible for the creation of JavaFX scene graph structures through `.fxml` files. The `.fxml` files of these UI parts are stored in `src/main/resources/view` in with matching names to the class using them. For example, the `.fxml` file of [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+
+<div markdown="span" class="alert alert-info">
+:information_source: **NOTE**: Not all UI classes responsible for displaying something graphically extends `UiPart`. `UiPart` is used as a tool to simplify the creation of complicated GUI layout. Simple GUI parts such as `DetailedView` and `ListViewPanel` do not extend `UiPart`.
+</div>
+
+Below shows a (partial) class diagram of the main parts of `Ui` component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **NOTE**: `UiPart` has been omitted as the purpose of this diagram is to show the structure between the main parts of the `UI` component.
+</div>
 
 As seen from the class diagram above, `MainWindow` has composition type relationship with several other classes. Namely,
 
@@ -90,19 +100,25 @@ These classes are only initialized when `fillInnerParts()` method of `MainWindow
 
 ![State of MainWindow](images/UiMainWindowObjectDiagram.png)
 
+##### `DetailedView`
+
 To display its contents, `DetailedView` uses an observer pattern to observe for the data that it needs to display. It observes an `ObjectProperty` through a `ChangeListener`, both of which are defined by JavaFX. To convert the observed object to the `Node` object that JavaFX can display, `DetailedView` will also have a `Function`, that is provided on construction, which will do exactly this. Below shows the class diagram and notice how that there are no external dependencies to other parts of VMS.
 
 ![Class diagram of DetailedView](images/UiDetailedViewClassDiagram.png)
+
+##### `ListViewPanel`
 
 Similar to `DetailedView`, `ListViewPanel` also uses an observer pattern and a `Function` to convert the observed object to a `Node`. However, it observes an `ObservableMap` through a `MapChangeListener`, both of which also defined by JavaFX. Only the values of the observed map will be displayed and the `Function` of `ListViewPanel` is used to convert these values to their equivalent `Node` representations. The order in which the values of the observed map are displayed is defined by a `Comparator` by default is the comparator produced from `Comparator.naturalOrder()`. Below shows the class diagram of `ListViewPanel`.
 
 ![Class diagram of ListViewPanel](images/UiListViewPanelClassDiagram.png)
 
-To simplify the creation of GUI layouts of different parts, several classes extends `UiPart` which is responsible for the creation of JavaFX scene graph structures through `.fxml` files. The `.fxml` files of these UI parts are stored in `src/main/resources/view` in with matching names to the class using them. For example, the `.fxml` file of [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/java/seedu/vms/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+##### `ResultDisplay`
 
-<div markdown="span" class="alert alert-info">
-:information_source: **NOTE**: Not all UI classes responsible for displaying something graphically extends `UiPart`. `UiPart` is used as a tool to simplify the creation of complicated GUI layout. Simple GUI parts such as `DetailedView` and `ListViewPanel` do not extend `UiPart`.
-</div>
+To display messages to the user after every command that the user has inputted, a `Consumer`, that accepts a list of `CommandMessage`, is used to update `ResultDisplay` whenever `Logic` has completed the execution of a command regardless if it was successful. The `Consumer` only function is to call the `displayMessage(List<CommandMessage>)` method of `ResultDisplay`. This method will convert all `CommandMessage` to their equivalent `Node` representation, via `ResultMessageBox`, allowing `CommandMessage` to be graphically displayed. To understand more about when this `Consumer` is called within `Logic`, read [here](#executing-a-command). Below shows the class and activity diagram for better visualization of the structure of `ResultDisplay` and the activities taking place when `displayMessage(List<CommandMessage>)` is called respectively.
+
+![Class diagram of ResultDisplay](images/UiResultDisplayClassDiagram.png)
+
+![Activity diagram of ResultDisplay](images/UiResultDisplayActivityDiagram.png)
 
 ### Logic component
 
