@@ -97,7 +97,7 @@ public class Gui extends Application {
         try {
             userPrefs = storage.readUserPrefs();
         } catch (IOException ex) {
-            LOGGER.info("Problem while reading user prefs from file...");
+            LOGGER.warning("Problem while reading user prefs from file...");
             userPrefs = new UserPrefs();
         }
         try {
