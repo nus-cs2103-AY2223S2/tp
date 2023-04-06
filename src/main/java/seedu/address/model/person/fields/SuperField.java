@@ -11,6 +11,10 @@ import java.util.Set;
 public abstract class SuperField<T extends Field> {
     public final Set<T> values;
 
+    /**
+     * Constructor for SuperField
+     * @param values
+     */
     public SuperField(Set<T> values) {
         Objects.requireNonNull(values);
         this.values = values;

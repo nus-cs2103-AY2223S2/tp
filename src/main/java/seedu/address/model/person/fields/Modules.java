@@ -1,6 +1,5 @@
 package seedu.address.model.person.fields;
 
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.fields.subfields.NusMod;
