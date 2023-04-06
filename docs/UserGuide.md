@@ -98,18 +98,13 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
   <tr>
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
-      allows a user to perform tasks by entering commands. <br>
-      Users enter the specific command, press “Enter”, and then wait for a response.
-      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+      A text-based interface that is used to operate software (such as CoDoc) where users enter a specific command, press "Enter" and wait for a response.
     </td>
   </tr>
   <tr>
     <td><strong>Graphical User Interface (GUI)</strong></td>
     <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information,
-      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
-      interacts with them.
+      A way for users to interact with a piece of software via visual elements instead of entering commands
     </td>
   </tr>
   <tr>
@@ -135,7 +130,6 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
       some commands take in a parameter without a prefix, and some commands don't take in parameters.
     </td>
   </tr>
-  <div style="page-break-after: always;"></div>
   <tr>
     <td><div markdown="span" class="alert alert-info"><strong>:information_source: Note</strong></div></td>
     <td>
@@ -161,7 +155,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
 As recommended in the introduction, we would like to direct you to read the [Quick Start](#quick-start) section next.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
-
+<div style="page-break-after: always;"></div>
 
 
 ## Quick Start
