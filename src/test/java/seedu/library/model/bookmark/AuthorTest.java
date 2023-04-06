@@ -29,8 +29,8 @@ public class AuthorTest {
         assertFalse(Author.isValidAuthor(" ")); // spaces only
 
         // valid author
-        assertTrue(Author.isValidAuthor("Blk 456, Den Road, #01-355"));
+        assertTrue(Author.isValidAuthor("Eiichiro Oda"));
         assertTrue(Author.isValidAuthor("-")); // one character
-        assertTrue(Author.isValidAuthor("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Author.isValidAuthor("Ratko Adamović")); // Author name with special character
     }
 }
