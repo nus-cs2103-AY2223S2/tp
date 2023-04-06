@@ -108,7 +108,7 @@ Welcome to the Main Mode of the PowerCards application! This is the default mode
 
 In the Main Mode, you can quickly and easily create new decks, add new cards to your decks, delete and modify existing cards or decks as needed, and more!
 
-![UiComponent](images/MainModeComponent.png)
+![MainModeComponent](images/MainModeComponent.png)
 
 | Component         | Description                                                                                                                                |
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -167,6 +167,7 @@ Format: `findDecks KEYWORD...`
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite `program` being a partial word of `programming`.
 - Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+- Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
 - `findDecks CS2103T software` filters decks whose names match keywords 'CS2103T' **or** 'software'.
@@ -290,13 +291,21 @@ Format: `findCards KEYWORD...`
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findCards partia` and `findCards partial` will **not** return the same result despite "partia" being a partial word of "partial". 
 - Keywords are case-insensitive. `findCards what` and `findCards WHAT` will return the same filtered cards.
+- Question field of cards matching at least one keyword will be returned (i.e. `OR` search).
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Since the command does not support partial words, take extra caution when searching for words ending with punctuation! For example `findCards loop` will **not** return a Card with question `What is a loop?`. For this example, you should search `findCards loop?` instead.  
 </div>
 
 Example:
-- `findCards loop recursion` shows all the cards whose questions match the keywords 'loop' **or** 'recursion'.
+- `findCards when how` shows all the cards whose questions match the keywords `when` **or** `how`.
+![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** Notice how there is a small text box `Finding Cards with keyword: when how` below the filtered list of questions. This text box is to help you remember what you have previously searched for!  
+
+</div>
 
 ### 3.4.5. Showing all Cards : `showCards`
 
@@ -337,8 +346,10 @@ Examples:
 
 Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test - e.g. you just want test medium and hard cards only.
 
+![ReviewModeComponent](images/ReviewModeComponent.png)
+
 In the review mode, you will see:
-- On the left panel - updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
+- On the left panel - a review panel with the updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
 - On the right panel - the card that is currently under review, which you can flip to reveal the answer and then tag with a given difficulty.
 
 To review a card, you can attempt the question on the card (in your mind or on a paper if you prefer!) before flipping it. 
@@ -384,6 +395,7 @@ Flips the card to reveal the answer.
 
 Format: `p`
 - `p` is case-insensitive (`P` is also excepted).
+![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
 
 ### 3.6.5. Next Card: `]`
 
