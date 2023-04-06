@@ -210,7 +210,7 @@ The following sequence diagram illustrates how the add doctor operation works:
 ### What it does
 {: .no_toc}
 
-Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be 
+Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
 updated to the input values and all other values will remain the same. The doctor to be edited can be specified through
 the doctor's index.
 
@@ -222,7 +222,7 @@ Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
 the abstract `Command` class and implements the `execute()` method. The `EditDoctorDescriptor` is created with the arguments given
 by the user. A new `Doctor` object is created with the new arguments, with the attributes of the old `Doctor` object copied over
-if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`. 
+if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`.
 The `EditDoctorCommand` is created using the `EditDoctorDescriptor`. Upon execution of `EditDoctorCommand`, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
 
 The following activity diagram illustrates the user flow for editing a doctor:
@@ -403,7 +403,7 @@ Here are some characteristics of our target user profile: <br>
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage, 
+**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage,
 faster than a typical mouse/GUI driven app.
 
 ### Appendix C: User stories

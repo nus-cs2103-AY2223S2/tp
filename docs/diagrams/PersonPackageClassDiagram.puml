@@ -42,5 +42,4 @@ Package Person {
             Patient *--> "0..1" Remark
         }
 }
-
 @enduml
