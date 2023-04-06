@@ -1,16 +1,14 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +28,6 @@ import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -41,17 +38,6 @@ public class AddCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
-    }
-
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
@@ -104,12 +90,12 @@ public class AddCommandTest {
 
         @Override
         public Path getShopFilePath() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setShopFilePath(Path shopFilePath) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -118,12 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyAddressBook addressBook) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -138,12 +119,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public Shop getShop() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,17 +149,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Service> getFilteredServiceList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public PartMap getPartMap() {
+        public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -178,147 +164,32 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredCustomerList(Predicate<? super Customer> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addCustomer(Customer customer) {
+        public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasCustomer(int customerId) {
+        public void resetSelected() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCustomer(Customer target) {
+        public void updateFilteredCustomerList(Predicate<? super Customer> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCustomer(Customer target, Customer editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addVehicle(int customerId, Vehicle vehicle) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasVehicle(int vehicleId) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasVehicle(Vehicle vehicle) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteVehicle(Vehicle target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setVehicle(Vehicle target, Vehicle editedVehicle) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addService(int vehicleId, Service service) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasService(int serviceId) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteAppointment(Appointment target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteService(Service service) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasAppointment(int appointmentId) {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public void addPart(String partName, int quantity) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPart(String partName) {
+        public ObservableList<Vehicle> getFilteredVehicleList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Technician> getFilteredTechnicianList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTechnician(int id) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTechnician(Technician technician) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updatePartsMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTechnician(Technician target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTechnician(Technician target, Technician editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -338,16 +209,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAppointment(Appointment target, Appointment editedAppointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public ObservableList<Customer> getFilteredCustomerList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Vehicle> getFilteredVehicleList() {
+        public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -363,16 +225,21 @@ public class AddCommandTest {
 
         @Override
         public AppointmentDataMap getAppointmentDataMap() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public TechnicianDataMap getTechnicianDataMap() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void selectCustomer(Customer customer) {
+        public ObservableList<Map.Entry<String, Integer>> getFilteredPartMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectCustomer(Function<? super List<? extends Customer>, ? extends Customer> selector) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -382,7 +249,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void selectVehicle(Vehicle vehicle) {
+        public void selectVehicle(Function<? super List<? extends Vehicle>, ? extends Vehicle> selector) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -392,7 +259,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void selectService(Service service) {
+        public void selectService(Function<? super List<? extends Service>, ? extends Service> selector) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -402,7 +269,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void selectAppointment(Appointment appointment) {
+        public void selectAppointment(Function<? super List<? extends Appointment>, ? extends Appointment> selector) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -417,12 +284,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void selectTechnician(Technician technician) {
+        public void selectTechnician(Function<? super List<? extends Technician>, ? extends Technician> selector) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setService(Service target, Service editedService) {
+        public void updateFilteredPartMap(Predicate<? super Map.Entry<String, Integer>> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -455,55 +322,5 @@ public class AddCommandTest {
         public void resetMaps() {
             throw new AssertionError("This method should not be called.");
         }
-
-
-        @Override
-        public ReadOnlyShop getShop() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
-
-
-    // TODO: 3/14/2023 Extend AddCommandTest   ModelStubWithParts ModelStubWithVehicles etc
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-        @Override
-        public ReadOnlyShop getShop() {
-            return new Shop();
-        }
-    }
-
 }
