@@ -14,18 +14,18 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
   * **New feature**: GUI Implementation
     * What it does: MODTrek GUI provides a user-centric interface for users to add and track their modules using keyboard commands. The GUI consists of the CLI Section (right panel of app) that accepts user input and displays the visual output of the execution of commands in the Results Section (left panel of app).
-    * Highlights: Implemented the GUI by creating controllers (Java classes) for MODTrek UI components (e.g. CliSection, ResultsSection, ModuleCard etc) for MODTrek and methods for dynamic rendering of data. Constructed MODTrek UI components from primary components provided by JavaFX library using FXML and styled them with CSS. Footer buttons implemented in the Results Section to toggle between the different subsections (Degree Progress, Module List, Module Search) and show the current active subsection.
+    * Highlights: Implemented the GUI by creating controllers for MODTrek UI components (e.g. CliSection, ResultsSection, ModuleCard etc) that encapsulate methods for dynamic rendering of data. These components are constructed from primary components provided by JavaFX library using FXML and styled them with CSS. Footer buttons implemented in the Results Section to toggle between the different subsections (Degree Progress, Module List, Module Search) and show the current active subsection.
 
   * **New feature:** Degree Progress Section
     * What it does: Displays a summary of the degree progression which includes the total MCs completed, current CAP and a detailed breakdown of the completion status of each requirement.
-    * Justification: This feature fulfils the app's main function of tracking a typical Computer Science student's degree progress. It calculates and displays important details of the degree progress and graduation requirements.
-    * Highlights: Created the donut chart which provides a meaningful and impressionable view of the user's degree progress, capturing essential data concerning the degree progress in an easily understandable and digestible manner.
-    * Credits: Skeleton implementation of donut chart taken from [this stackoverflow post](https://stackoverflow.com/questions/24121580/can-piechart-from-javafx-be-displayed-as-a-doughnut), authored by _@jewelsea_.
+    * Justification: A crucial feature in MODTrek which calculates and displays the user's degree progress.
+    * Highlights: Created the donut chart which captures user's degree progress data in a graphical view.
+    * Credits: Skeleton implementation of donut chart taken from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
 
   * **New feature:** Module List Section
     * What it does: Displays all the modules added by the user and tracked by the app thus far.
-    * Justification: A must-have in a module tracker. The app generates statistics concerning the user's current degree progress based on the modules added in the module list.
-    * Highlights: Modules are displayed in groups based on the current active sorting criteria (year, code, credits, grade or tag). Each module is displayed as a card showing all the attributes of the module (code, year-semester, credits, grade, tags). Dynamic display of completed/incomplete modules. Implemented dropdown menu to toggle between the different sorting criteria and show the current active sorting criteria.
+    * Justification: A must-have in any typical module tracker. The app generates statistics concerning the user's current degree progress based on the modules added in the module list.
+    * Highlights: Modules are displayed in groups based on the current active sorting criteria (year, code, credits, grade or tag). Each module is displayed as a card showing all the attributes of the module (code, year-semester, credits, grade, tags). Clear distinction of completed and incomplete modules in the UI. Implemented dropdown menu to toggle between the different sorting criteria and show the current active criteria.
 
   * **New feature:** Module Search Section 
     * What it does: Displays modules satisfying a certain set of filters provided by the user in the `find` command.
@@ -37,15 +37,19 @@ Given below are my contributions to the project.
     
 * **Documentation**:
   * User Guide:
-    * Collated series of bugs to fix (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/90), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/89))
+    * Created GUI screenshots for GUI overview and illustration of features
+    * Collated UG bugs to fix (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/90), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/89))
   * Developer Guide:
-    * to be added soon
+    * Updated UML diagram and description for UI Architecture.
+    * Added explanation and diagrams for 'View progress/modules' feature
+    * Added use cases
+    * 
 
 * **Contributions to team-based tasks**:
+  * Transferred documentation from team's collaborative doc to markdown file
   * Managed [JAR file releases](https://github.com/AY2223S2-CS2103T-T13-1/tp/releases) for v1.2 and v1.3
   * Created [video demo](https://drive.google.com/file/d/1lBHdc5UN_4B30-9FWedEo36OZ-psfIBS/view?usp=share_link) for v1.2
   * Created demo screenshots for v1.3
-  * Created [GUI screenshots]() for UG
 
 * **Review/mentoring contributions**:
   * Reviewed PRs (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/107), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/62))
