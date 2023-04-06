@@ -8,6 +8,9 @@ import trackr.model.commons.Name;
  */
 public class TaskName extends Name {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
+
     /**
      * Constructs a {@code TaskName}.
      *

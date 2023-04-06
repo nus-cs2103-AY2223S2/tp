@@ -2,6 +2,7 @@ package trackr.model.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -83,23 +84,23 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // One keyword
         predicate =
-                new OrderPredicateBuilder().withOrderNameKeywords(Collections.singletonList("Buy")).build();
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
+                new OrderPredicateBuilder().withOrderNameKeywords(Collections.singletonList("Chocolate")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Multiple keywords
         predicate =
-                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Buy", "Food")).build();
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Only one matching keyword
         predicate =
-                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Buy", "flour")).build();
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Food").build()));
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Chocolate", "flour")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Mixed-case keywords
         predicate =
-                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("BuY", "FloUr")).build();
-        assertTrue(predicate.test(new OrderBuilder().withOrderName("Buy Flour").build()));
+                new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("ChOcOlAtE", "CoOkiEs")).build();
+        assertTrue(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Deadline only
         predicate =
@@ -136,17 +137,17 @@ public class OrderNameContainsKeywordPredicateTest {
         // Zero keywords
         predicate =
                 new OrderPredicateBuilder().withOrderNameKeywords(Collections.emptyList()).build();
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Buy").build()));
+        assertFalse(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Non-matching keyword
         predicate =
                 new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("Buy")).build();
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Sort Inventory").build()));
+        assertFalse(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Keywords match deadline and status, but does not match name
         predicate =
                 new OrderPredicateBuilder().withOrderNameKeywords(Arrays.asList("11/11/2024", "N")).build();
-        assertFalse(predicate.test(new OrderBuilder().withOrderName("Buy").withOrderDeadline("11/11/2024")
+        assertFalse(predicate.test(new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M).withOrderDeadline("11/11/2024")
                 .withOrderStatus("N").build()));
 
         // Non-matching deadline
@@ -156,12 +157,12 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // Match name and status, but not deadline
         predicate = new OrderPredicateBuilder()
-                .withOrderNameKeywords(Arrays.asList("Buy", "Flour"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
         testTask = new OrderBuilder()
-                .withOrderName("Buy Flour")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("11/11/2023")
                 .build();
@@ -174,12 +175,12 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // Match name and deadline, but not status
         predicate = new OrderPredicateBuilder()
-                .withOrderNameKeywords(Arrays.asList("Buy", "Flour"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
         testTask = new OrderBuilder()
-                .withOrderName("Buy Flour")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("D")
                 .withOrderDeadline("01/01/2023")
                 .build();
@@ -193,10 +194,10 @@ public class OrderNameContainsKeywordPredicateTest {
         // Same name and deadline
         predicate = new OrderPredicateBuilder()
                 .withOrderDeadline("01/01/2023")
-                .withOrderNameKeywords(Arrays.asList("Buy", "Food"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .build();
         assertTrue(predicate.test(new OrderBuilder().withOrderDeadline("01/01/2023")
-                .withOrderName("Buy Food").build()));
+                .withOrderItem(CHOCOLATE_COOKIE_M).build()));
 
         // Same deadline and status
         predicate = new OrderPredicateBuilder()
@@ -207,11 +208,11 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // Same name and status
         predicate = new OrderPredicateBuilder()
-                .withOrderNameKeywords(Arrays.asList("Buy", "Food"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .withOrderStatus("N")
                 .build();
         Order testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .build();
         assertTrue(predicate.test(testTask));
@@ -224,12 +225,12 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // Same name, different deadline and status
         predicate = new OrderPredicateBuilder()
-                .withOrderNameKeywords(Arrays.asList("Buy", "Food"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .withOrderStatus("D")
                 .withOrderDeadline("11/11/2023")
                 .build();
         testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
@@ -242,7 +243,7 @@ public class OrderNameContainsKeywordPredicateTest {
                 .withOrderDeadline("01/01/2023")
                 .build();
         testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
@@ -255,7 +256,7 @@ public class OrderNameContainsKeywordPredicateTest {
                 .withOrderDeadline("01/01/2023")
                 .build();
         testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
@@ -268,12 +269,12 @@ public class OrderNameContainsKeywordPredicateTest {
 
         // Same name, deadline and status
         predicate = new OrderPredicateBuilder()
-                .withOrderNameKeywords(Arrays.asList("Buy", "Food"))
+                .withOrderNameKeywords(Arrays.asList("Chocolate", "Cookies"))
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
         Order testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();
@@ -291,7 +292,7 @@ public class OrderNameContainsKeywordPredicateTest {
                 .withOrderDeadline("11/11/2023")
                 .build();
         Order testTask = new OrderBuilder()
-                .withOrderName("Buy Food")
+                .withOrderItem(CHOCOLATE_COOKIE_M)
                 .withOrderStatus("N")
                 .withOrderDeadline("01/01/2023")
                 .build();

@@ -24,7 +24,7 @@ public class OrderQuantityTest {
         OrderQuantity orderQuantity = new OrderQuantity("123");
 
         assertTrue(Integer.toString(orderQuantity.hashCode()).equals(Integer.toString(orderQuantity.hashCode())));
-        assertTrue(orderQuantity.toString().equals("123"));
+        assertTrue(orderQuantity.toString().equals("Quantity: 123"));
 
 
         // null phone number

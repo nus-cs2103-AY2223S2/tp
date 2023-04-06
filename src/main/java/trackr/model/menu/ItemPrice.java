@@ -2,7 +2,6 @@ package trackr.model.menu;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
-import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DecimalFormat;
 
@@ -12,7 +11,7 @@ import java.text.DecimalFormat;
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers, and it should be at most 2 decimal place";
-    private static final String VALIDATION_REGEX = "^\\d+(.\\d{0,2})?$";
+    private static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private static final DecimalFormat DF = new DecimalFormat("0.00");
     private final Double value;
     private final String formattedValue;
@@ -28,23 +27,14 @@ public class ItemPrice {
     }
 
     /**
-     * Constructs a {@code ItemPrice} with {@code itemSellingPrice} and {@code itemCost}
-     */
-    public ItemPrice(ItemSellingPrice sell, ItemCost cost) {
-        requireAllNonNull(sell, cost);
-        this.value = sell.getValue() - cost.getValue();
-        this.formattedValue = DF.format(this.value);
-        checkArgument(isValidPrice(formattedValue), MESSAGE_CONSTRAINTS);
-    }
-
-    /**
-     * Constructs a {@code ItemPrice} with {@code itemPrice} of any numerical format.
+     * Constructs a {@code ItemProfit} with {@code itemProfit} of any numerical format.
      */
     public ItemPrice(Double itemPrice) {
         requireNonNull(itemPrice);
         this.value = itemPrice;
         this.formattedValue = DF.format(this.value);
     }
+
     /**
      * Returns true if a given string is a valid price.
      */
@@ -66,14 +56,14 @@ public class ItemPrice {
 
     @Override
     public String toString() {
-        return "Price: $" + formattedValue;
+        return formattedValue;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemPrice // instanceof handles nulls
-                && value == ((ItemPrice) other).value); // state check
+                && value.equals(((ItemPrice) other).getValue())); // state check
     }
 
     @Override

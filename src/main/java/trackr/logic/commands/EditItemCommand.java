@@ -13,15 +13,18 @@ import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.ItemDescriptor;
+import trackr.model.menu.MenuItem;
+import trackr.model.order.Order;
 
 /**
  * Edits the details of an existing item in the item list.
  */
 public abstract class EditItemCommand<T extends Item> extends Command {
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited %s: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited %s: %s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %1$s already exists in the %1$s list.";
+    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu.";
 
     private final ModelEnum modelEnum;
     private final Index index;
@@ -49,6 +52,17 @@ public abstract class EditItemCommand<T extends Item> extends Command {
 
         Item itemToEdit = lastShownTaskList.get(index.getZeroBased());
         Item editedItem = createEditedItem((T) itemToEdit, editItemDescriptor);
+
+        if (editedItem instanceof Order) {
+            Order editedOrder = (Order) editedItem;
+            List<MenuItem> currentMenuItems = model.getFilteredMenu();
+            MenuItem existingItem = currentMenuItems.stream()
+                .filter(item -> item.getItemName().getName()
+                .equals(editedOrder.getOrderName().getName()))
+                .findAny()
+                .orElseThrow(() ->
+                    new CommandException(MESSAGE_NO_MENU_ITEM));
+        }
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem, modelEnum)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum.toString().toLowerCase()));
