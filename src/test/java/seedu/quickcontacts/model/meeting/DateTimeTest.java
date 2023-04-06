@@ -89,6 +89,7 @@ public class DateTimeTest {
         assertTrue(DateTime.isValidDateTime("28/02/2023")); // all februarys have 28 days
         assertTrue(DateTime.isValidDateTime("01/01/2023")); // first day of a month
         assertTrue(DateTime.isValidDateTime("31/01/2023")); // last day of a month
+        assertTrue(DateTime.isValidDateTime("29/02/2020")); // leap year extra day True
     }
 
     @Test
