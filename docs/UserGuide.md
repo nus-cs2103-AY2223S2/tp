@@ -215,10 +215,15 @@ Navigating **directly** from any **context**:
 After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
-1. Add Video 2 to the lecture Week 1 of module CS2040S.
+1. ![LectureContext](images/LectureContext.png)
+Add Video 2 to the lecture Week 1 of module CS2040S.
 - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-2. List the contents of lecture Week 1 of module CS2040S.
+2. ![LectureContext](images/LectureContext.png)
+List the contents of lecture Week 1 of module CS2040S.
 - `list` -> `list /mod CS2040S /lec Week 1`
+3. ![LectureContext](images/LectureContext.png)
+Add Video 1 to lecture Week 1 of module CS2040S.
+- `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040SS /lec Week 1`
 
 ---
 
