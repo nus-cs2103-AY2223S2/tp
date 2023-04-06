@@ -11,7 +11,7 @@ title: User Guide
 *  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
-*  **[Appendix: Planned Enhancements](#appendix:-planned-enhancements)**
+*  **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
 
 --------------------------------------------------------------------------------------------------------------------
 ## Overview
