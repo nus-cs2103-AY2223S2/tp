@@ -49,7 +49,7 @@ public class UpdateCommand extends Command {
             + " [ " + PREFIX_DOB + " DATE_OF_BIRTH ] "
             + " [ " + PREFIX_GENDER + " GENDER ] "
             + " [ " + PREFIX_IC + " IC ] "
-            + " [ " + PREFIX_NAME + " DRUG ALLERGY ] "
+            + " [ " + PREFIX_DRUG_ALLERGY + " DRUG ALLERGY ] "
             + " [ " + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMERGENCY CONTACT ]\n"
             + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " Bernice Yu "
             + PREFIX_PHONE + " 91234567 "
