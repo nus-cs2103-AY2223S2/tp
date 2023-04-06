@@ -8,7 +8,37 @@ toc: true
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Design
+<div style="page-break-after: always;"></div>
+## **Introduction**
+
+### Purpose
+
+RIZZipe is a command-based recipe database that was designed with versatile tagging and searching features in mind so 
+you can always find the recipe you need! Make use of RIZZipe’s many features to achieve your culinary rizz.
+
+This developer guide aims to detail the architecture and software design decisions behind RIZZipe, and is intended for
+developers, designers, and software testers of RIZZipe. As RIZZipe is built on Java 8 and JavaFX 11, some 
+technical knowledge of Java and JavaFX is recommended when reading this developer guide. 
+
+### How to Use
+This developer guide is broken down into 4 main sections:
+1. **[Design](#design)**, which aims to detail the overall design and architecture of RIZZipe,
+2. **[Feature Implementation](#feature-implementation)**, which aims to detail the implementation of some
+notable features of RIZZipe,
+3. **[Requirements](#appendix-requirements)**, which aims to detail the software requirements of RIZZipe, and
+4. **[Instructions for manual testing](#appendix-instructions-for-manual-testing)**, which aims to detail steps that
+software testers can take in order to test RIZZipe.
+
+Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) below.
+
+### Acknowledgements
+* This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+## **Design**
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
@@ -20,17 +50,20 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img src="images/ArchitectureDiagram.png" width="250px">
+<img src="images/ArchitectureDiagram.png" width="341px">
 
+<div style="page-break-after: always;"></div>
 #### Main components of the architecture
 
 `Main` has 2 classes called `Main` and `MainApp`. Its responsibilities are:
 
-* On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) and connects them with each other.
+* On startup: Initializes all components in the appropriate sequence (storage, model, logic, UI) 
+  and connects them with each other.
 
 * On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
 
-`Commons` represents a collection of classes used by multiple other components, and it stores information like GUI settings and user-visible error messages.
+`Commons` represents a collection of classes used by multiple other components, and it stores information 
+like GUI settings and user-visible error messages.
 
 The rest of the App consists of four components.
 
@@ -41,14 +74,15 @@ The rest of the App consists of four components.
 
 #### How the architecture components interact with each other
 
-The following _Sequence Diagram_ shows how the different components interact with each other for the scenario where the user issues the command `delete 1`.
+The following _Sequence Diagram_ shows how the different components interact with each other for the 
+scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="500px">
-
+<img src="images/ArchitectureSequenceDiagram.png" width="539px">
 
 Each of the four main components as shown in the diagram above,
 * defines its API in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component name}Manager` class (which follows the corresponding API `interface` mentioned above)
+* implements its functionality using a concrete `{Component name}Manager` class 
+  (which follows the corresponding API `interface` mentioned above).
 
 For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class (in order to prevent external components being coupled to the implementation of a component) as illustrated in the (partial) class diagram below.
@@ -57,11 +91,12 @@ Other components interact with a given component through its interface rather th
 
 The following sections will give more details on each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="650px">
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `RecipeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -74,12 +109,13 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
 ### Logic component
-The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="500"/>
 
 How the `Logic` component works:
 
@@ -103,8 +139,9 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="550"/>
 
+<div style="page-break-after: always;"></div>
 How the parsing works:
 * When called upon to parse a user command, the `RecipeBookParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
@@ -113,12 +150,12 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
 ### Model component
 
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="500" />
-
 
 The `Model` component,
 
@@ -130,11 +167,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components)
-* However, it is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only
-  pass valid `IngredientBuilder` instances to `Recipe` objects.
-  The `Recipe` class will then populate its own `Ingredient` and `IngredientQuantifier` fields, via `IngredientBuilder`
-  and its use of `IngredientParser`.
+  should make sense on their own without depending on other components).
+
+It is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only 
+pass valid `IngredientBuilder` instances to `Recipe` objects.
+The `Recipe` class will then populate its own `Ingredient` and `IngredientQuantifier` fields, via the given `IngredientBuilder`
+and its use of `IngredientParser`.
 
 <div markdown="span" class="alert alert-info">
 
@@ -150,26 +188,27 @@ extension feature to this project.<br/><br/>
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 **Structure:**
+<img src="images/StorageClassDiagram.png" width="794" />
 
-<img src="images/StorageClassDiagram.png" width="500" />
-
-<img src="images/JsonAdaptersDiagram.png" width="500" />
+<img src="images/JsonAdaptersDiagram.png" width="1089" />
 
 **The `Storage` component:**
 
-* saves both recipe data and user preferences data in JSON format
-* reads saved JSON recipe data and user preferences data into their respective objects
+* saves both recipe data and user preferences data in JSON format.
+* reads saved JSON recipe data and user preferences data into their respective objects.
 * inherits from both the `RecipeBookStorage` and `UserPrefStorage` interfaces, which means it can be treated as either
   one (if the functionality of only one is needed).
 * depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
-  belong to the Model)
+  belong to the Model).
 
+<div style="page-break-after: always;"></div>
 **Implementation:**
 
 Serialization and deserialization of recipe book objects is done using [Jackson](https://github.com/FasterXML/jackson).
@@ -186,6 +225,7 @@ Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -231,12 +271,17 @@ Notes
 If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
+<div style="page-break-after: always;"></div>
 ### Feature: Find-by-property
+
+#### Overview
 
 The `find` command allows the user to filter recipes by their properties: 
 e.g. their name, tags, or ingredients.
+The following sequence diagram illustrates how the different components interact with each other
+in the execution of a `find tag italian indian` command.
 
-<img src="images/FindSequenceDiagram.png" width="1000" />
+<img src="images/FindSequenceDiagram.png" width="1128" />
 
 #### Implementation
 As with all commands, the find command goes through the standard command execution pipeline.
@@ -246,20 +291,20 @@ Keyword validation and predicate creation is then done depending on the target p
 
 To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
 * `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
-matches any of the keywords
+matches any of the keywords.
   * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
-  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match
+  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match.
 * `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
-in a collection of property T matches any of the keywords
+in a collection of property T matches any of the keywords.
   * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
-  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match
+  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match.
 
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
 
 --------------------------------------------------------------------------------------------------------------------
 
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -271,6 +316,7 @@ of the property, as long as the relevant getters are supplied.
 
 **Value proposition:** manage recipes more conveniently and quickly as opposed to a typical mouse app
 
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -292,6 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added soon!}*
 
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
@@ -327,7 +374,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b3. Chef clicks the "file fixed" button
 
       Use case resumes from step 2.
-    
+
+<div style="page-break-after: always;"></div>
 #### **Use case: Add a recipe**
 
 **MSS**
@@ -356,7 +404,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a2. The recipe keyed is not added.
 
       Use case ends.
-    
+
+<div style="page-break-after: always;"></div>
 #### **Use case: View a recipe**
 
 **MSS**
@@ -376,6 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
+<div style="page-break-after: always;"></div>
 #### **Use case: Delete a recipe**
 
 **MSS**
@@ -398,6 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
+<div style="page-break-after: always;"></div>
 #### **Use case: Find a recipe by name**
 
 **MSS**
@@ -434,6 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
 #### **Use case: Find an ingredient substitute**
 
 **MSS**
@@ -465,6 +517,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
 ### Non-Functional Requirements
 
 1.  The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -482,6 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -495,6 +549,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.

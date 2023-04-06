@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/Aglio Olio i/pasta i/pepper")
+[-> LogicManager : execute("add n/Aglio Olio\n i/pasta i/pepper")
 activate LogicManager
 
-LogicManager -> RecipeBookParser : parseCommand("add n/Aglio Olio i/pasta i/pepper")
+LogicManager -> RecipeBookParser : parseCommand("add \nn/Aglio Olio i/pasta i/pepper")
 activate RecipeBookParser
 
 create AddCommandParser
@@ -26,7 +26,7 @@ activate AddCommandParser
 AddCommandParser --> RecipeBookParser
 deactivate AddCommandParser
 
-RecipeBookParser -> AddCommandParser : parse("n/Aglio Olio i/pasta i/pepper")
+RecipeBookParser -> AddCommandParser : parse("n/Aglio Olio\n i/pasta i/pepper")
 activate AddCommandParser
 
 create AddCommand

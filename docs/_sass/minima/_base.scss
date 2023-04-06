@@ -66,6 +66,9 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -288,7 +291,7 @@ table {
     text-align: center;
   }
   .site-header:before {
-    content: "RIZZ-ipe";
+    content: "RIZZipe";
     font-size: 32px;
   }
 }
