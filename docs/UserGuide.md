@@ -180,7 +180,7 @@ Format: `add_date INDEX d/DATE_TIME`
 - Adds an interview date to the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
-- `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be before the current date and time.
+- `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be after the current date and time.
 
 Examples:
 * `add_date 1 d/2023-05-02 11:30 AM` adds the date and time 2023-05-02 11:30 AM to the first application in the list of applications.
