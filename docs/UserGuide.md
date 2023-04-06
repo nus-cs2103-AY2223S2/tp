@@ -243,13 +243,13 @@ Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter      | Compulsory | Constraints| 
-|--------|----------------|------------|------------|
-| `r/`   | Role           | Yes        |            |
-| `c/`   | Company Name   | Yes        |            |
-| `e/`   | Company Email  | Yes        |            |
-| `s/`   | Status         | Yes        |            |
-| `t/`   | Tag            | No         |            |
+| Prefix | Parameter      | Compulsory | Constraints                                                                                                     | 
+|--------|----------------|------------|-----------------------------------------------------------------------------------------------------------------|
+| `r/`   | Role           | Yes        | Must be **alphanumeric** characters and **spaces** only.                                                        |
+| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters and **spaces** only.                                                        |
+| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**.                                                                   |
+| `s/`   | Status         | Yes        | Must be one of the four: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive. |
+| `t/`   | Tag            | No         | Must be **alphanumeric** characters only.                                                                       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application. An application can have multiple tags or none at all. 
@@ -501,8 +501,8 @@ The following table details the parameters to be used with the `sort` command:
 
 | Parameter | Compulsory | Constraints                                 | 
 |-----------|------------|---------------------------------------------|
-| Sequence  | Yes        | Must be either `a` or `d`                   |
-| Order     | Yes        | Must be either `alphabetical` or `deadline` |
+| Sequence  | Yes        | Must be either `a` or `d`.                  |
+| Order     | Yes        | Must be either `alphabetical` or `deadline`.|
 
 Additional things to note: 
 * `a` and `d` for `SEQEUENCE` refer to **ascending** and **descending** respectively.
