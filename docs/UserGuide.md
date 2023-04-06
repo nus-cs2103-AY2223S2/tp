@@ -50,6 +50,7 @@ connections_ and _accomplishing your goals_!
   - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
   - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
+---
 <div style="page-break-after: always;"></div>
 
 ## Navigating the User Guide
