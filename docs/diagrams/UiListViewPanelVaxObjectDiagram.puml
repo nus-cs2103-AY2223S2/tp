@@ -1,0 +1,34 @@
+@startuml UiListViewPanelApptObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+Class "<u>vaxTypeListPanel:ListViewPanel</u>" as ListViewPanel UI_COLOR
+Class "<u>displayFunction:BiFunction</u>" as BiFunction #000000
+Class "<u>comparatorProperty:ObjectProperty</u>" as ComparatorProperty #000000
+Class "<u>changeProperty:ObjectProperty</u>" as ChangeProperty #000000
+class "<u>:ObservableList</u>" as DisplayList #000000
+
+Class "<u>:MapChangeListener</u>" as MapChangeListener #000000
+Class "<u>:ObservableMap</u>" as ObservableMap #000000
+
+Class "<u>:VaxTypeManager</u>" as VaxTypeManager LOGIC_COLOR
+Class "<u>:ModelManager</u>" as ModelManager LOGIC_COLOR
+Class "<u>vaxDisplayList:ObservableList</u>" as ModelList #000000
+
+ListViewPanel -right-> ChangeProperty
+ListViewPanel -down-> BiFunction
+ListViewPanel -down-> ComparatorProperty
+ListViewPanel -left-> DisplayList
+
+MapChangeListener -> ChangeProperty : updates >
+ObservableMap -down-> MapChangeListener : updates >
+VaxTypeManager -right-> ObservableMap
+
+ModelManager -down-> ModelList
+ModelManager -right-> VaxTypeManager
+ModelList -down-> DisplayList : observes >
+
+@enduml

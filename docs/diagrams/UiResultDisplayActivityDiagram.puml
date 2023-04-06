@@ -1,0 +1,17 @@
+@startuml UiResultDisplayActivityDiagram
+!include style.puml
+
+start
+:Accept list of CommandMessage;
+while() is ([else])
+    :Next CommandMessage;
+    :Convert to ResultMessageBox;
+    :Create Node;
+    if () then ([else])
+        :Delete 1st displayed Node;
+    else ([messages displayed < 30])
+    endif
+endwhile ([all CommandMessage displayed])
+stop
+
+@enduml

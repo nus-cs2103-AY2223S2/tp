@@ -1,0 +1,15 @@
+@startuml UiResultDisplayObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+skinparam arrowThickness 1.1
+
+Class "<u>:ResultDisplay</u>" as ResultDisplay UI_COLOR
+
+Class "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+Class "<u>completionHandler:Consumer</u>" as Consumer #000000
+
+LogicManager -> Consumer
+Consumer .right.> ResultDisplay : updates >
+
+@enduml

@@ -22,7 +22,9 @@ Class HiddenOut <<hidden>>
 package Ui UI_COLOR_T1 {
     Class "<<interface>>\nUi" as Ui UI_COLOR
     Class UiManager UI_COLOR
-    Class MainWindow UI_COLOR
+    Class MainWindow UI_COLOR {
+        ~fillInnerParts()
+    }
     Class ListViewPanel UI_COLOR
     Class DetailedView UI_COLOR
     Class HelpWindow UI_COLOR
@@ -30,6 +32,7 @@ package Ui UI_COLOR_T1 {
     Class ResultDisplay UI_COLOR
     Class ResultMessageBox UI_COLOR
 }
+show MainWindow members
 
 package Logic LOGIC_COLOR_T1 {
     Class "<<interface>>\nLogic" as Logic LOGIC_COLOR
