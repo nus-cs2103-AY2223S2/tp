@@ -32,18 +32,18 @@ public class PersonBuilder {
 
     public static final String DEFAULT_FACULTY = "School Of Computing";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private Tags tags;
-    private Gender gender;
-    private Major major;
-    private Modules modules;
-    private Race race;
-    private CommunicationChannel comms;
+    protected Name name;
+    protected Phone phone;
+    protected Email email;
+    protected Address address;
+    protected Tags tags;
+    protected Gender gender;
+    protected Major major;
+    protected Modules modules;
+    protected Race race;
+    protected CommunicationChannel comms;
 
-    private Faculty faculty;
+    protected Faculty faculty;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -92,6 +92,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = new Tags(SampleDataUtil.getTagSet(tags));
+        return this;
+    }
+
+    /**
+     * Parses the {@code mods} into a {@code Set<NusMod>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String ... mods) {
+        this.modules = new Modules(SampleDataUtil.getModsSet(mods));
         return this;
     }
 
