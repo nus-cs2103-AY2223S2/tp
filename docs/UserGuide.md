@@ -355,7 +355,8 @@ Examples:
 
 ### 7.2.3. Find departments by name: `fdep`
 
-Finds departments whose names contain any of the given keywords.
+Finds departments whose names contain any of the given keywords. Displays the departments found in the department
+window.
 
 Format: `fdep KEYWORD [MORE_KEYWORDS]`
 
@@ -388,8 +389,8 @@ Format: `ldep`
 
 ### 7.2.6. Add employee to a department: `aetd`
 
-Adds an employee to a department using his ID. After adding, the department window will show the department being added
-to and the employee window will contain all the employees in that department.
+Adds an employee to a department using his ID. Displays the department that the employee was added to, and also
+displays all employees in that department.
 
 Format: `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -403,8 +404,8 @@ Examples:
 
 ### 7.2.7. Remove employee from a department: `refd`
 
-Removes an employee from a department using his ID. After removing, the department window will show the department
-being removed from and the employee window will contain all the employees in that department.
+Removes an employee from a department using his ID. Displays the department that the employee was removed from, and also
+displays all employees in that department.
 
 Format: `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -414,7 +415,7 @@ Examples:
 
 ### 7.2.8. List an employee's departments: `led`
 
-List all departments and employee is in.
+List all departments an employee is in.
 
 Format: `led eid/EMPLOYEE_ID`
 
