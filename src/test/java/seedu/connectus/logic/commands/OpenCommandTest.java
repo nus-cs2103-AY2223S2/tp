@@ -16,7 +16,7 @@ import seedu.connectus.model.socialmedia.Telegram;
 
 public class OpenCommandTest {
 
-    private final Model model = new ModelManager(getTypicalConnectUs(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalConnectUs(), new UserPrefs());
     @Test
     public void execute_platformNotExist_throwsCommandException() {
         Person nameOnlyPerson = new Person(new Name("unique name"));
