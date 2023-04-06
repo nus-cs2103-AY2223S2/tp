@@ -491,6 +491,8 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### 4. Editing a person : `edit`
 
 Does one of your contacts have outdated information? Overwrite them in the view panel with the edit command!
