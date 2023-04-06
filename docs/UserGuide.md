@@ -108,7 +108,7 @@ running `java -jar modtrek.jar` in your terminal.
 
 ## 3. GUI Overview <a name="gui-overview"></a>
 
-The following is an annotated breakdown of **MODtrek's** GUI:
+The following is an annotated breakdown of **MODTrek's** GUI:
 ![UI Breakdown](images/Ui-breakdown.png)
 <p align="center"><em>Breakdown of GUI</em><br></p>
 
@@ -118,6 +118,17 @@ messages and resul
 3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
 to toggle between the module list in **MODTrek** or the user's degree progression. Using the `find` command when making 
 a query on the module list will navigate you to the module search screen.
+
+The following is the annotated breakdown of the Results Section of **MODTrek's** GUI:
+![UI subsection](images/Ui-subsections-detailed.png)
+<p align="center"><em>Breakdown of Results Section</em><br></p>
+
+1. **Doughnut Chart:** This will be shown on the degree progress section. It shows the completion progress of the degree
+and individual sub requirements of the degree. Your total MCS completed and CAP are also displayed.
+2. **Module List:** This will be shown in both the module list section and module search section. It shows all the module in the list.
+3. **Module Group:** This will be shown in both the module list section and module search section. It shows the modules in
+each sub category when sorted.
+4. **Module Card:** This will be shown in both the module list section and module search section. Each module card shows the detail of each module.
 
 [Back to Table of Contents](#toc)
 
@@ -153,10 +164,10 @@ Adds a module to the module list in **MODTrek**. This will kick start your **MOD
 **Syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
 Additional details:
-* `<code>` refers to the module code
+* `<code>` refers to the module code. Format of module code should be <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
 * `<credits>` refers to the module's modular credits
-* `<year-semester>` refers to the year and semester the module is taken. E.g. y1s2, y3st1
-* `<grade>` refers to the grade obtained for the module. Range from A+ to U.
+* `<year-semester>` refers to the year and semester the module is taken. We only support years from 0 to 5 and semesters s1, s2, st1 and st2.
+* `<grade>` refers to the grade obtained for the module. Range from A+ to U excluding W grade.
 * `<tag>` refers to the requirement the modules fulfils. This includes:
    * `ULR` University Level Requirements
    * `CSF` Computer Science Foundations
@@ -173,24 +184,7 @@ Additional details:
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** You cannot add 2 modules with the same module code into **MODTrek**. Modules must have distinct module codes.
-</div>
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** You must only use valid NUS module codes in **MODTrek**. They are of the form <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
-</div>
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:** We currently do not support "W" grades for modules. If you have withdrawn from a module, please do not add this module to MODTrek. You may also delete modules you have withdrawn from using the [Delete module](#42-delete-a-module--delete-a-namedelete-module-a) function.
-We decided not to include them since they do not contribute to degree progression or CAP.
-
-Grades we support are A+, A, A-, B+, B, B-, C+, C, C-, D, F, S and U.
-We only support years from 0 to 5 and semesters S1, S2, ST1 and ST2.
-
-We understand that the NUS curriculum is **very** flexible so application tries to accomodate as any different curriculums as possible. 
-Any deviations from these constraints for any reason (eg. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
-For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
+If there are reasons you need to add a module with the same module code (e.g. retaken module, MOOCs) refer to this [faq](#faq3) for suggested fixes.
 </div>
 
 **Example:** 
@@ -250,13 +244,8 @@ Tags a module to include or remove one or more degree requirements (e.g. Univers
 Refer to [Add a module](#add-module) for the tags that you can use.
 
 **Syntax:**
-* _To include tags:_ `tag <code> include <tag1> (<tag2>...)`
-* _To remove tags:_ `tag <code> remove <tag1> (<tag2>...)`
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:** Remember to add /t before each tag so that it can be detected. Refer to our examples.
-</div>
+* _To include tags:_ `tag <code> include /t <tag1> (/t <tag2>...)`
+* _To remove tags:_ `tag <code> remove /t <tag1> (/t <tag2>...)`
 
 **Example:**
 * `tag CS2030S include /t CSF`
@@ -283,20 +272,20 @@ Alternatively, you may find a specific module by its module code.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** Code prefix refers to the first alphabetic part of a module code.
-For example, CS is the code prefix of Computer Science modules like CS1101S and CS2106.
+E.g. CS is the code prefix of Computer Science modules like CS1101S and CS2106.
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Using more keywords from different categories will filter the results you want to find further.<br>
+:bulb: **Tip:** Using more keywords from different categories will filter the results you want to find further.
 Using more keywords from the same category will return you all the modules that satisfy at least one of those keywords in that parameter.
 </div>
 
 **Example:**
 * `find /c 4 /g A+`
 * `find /y y2s2`
-* `find /m cs /m ma /m ge` ![Ui Find](images/Ui-find3.png)
 * `find cs1101s`
+* `find /m cs /m ma /m ge` ![Ui Find](images/Ui-find3.png)
 <p align="center"><em>Result of find command</em><br></p>
 
 [Back to Table of Contents](#toc)
@@ -341,6 +330,8 @@ Toggles between the display of degree progress or module list.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.
+
+:bulb: **Interpreting data:** You might find that the total MC you have included may not match with the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -372,6 +363,11 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div markdown="span" class="alert alert-warning">
 
+:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application! 
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, **MODTrek** will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -383,13 +379,23 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 ## 5. Frequently Asked Questions (FAQ) <a name="faq"></a>
 
-**Q**: Why is it that I can add in modules not offered in NUS<br>
+**Q**: Why is it that I can add in modules not offered in NUS?<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
 We can only check if the module code is formatted correctly, and we trust users to key in modules that
 are provided only by NUS.
 
-**Q**: Why are the old terms (modules, CAP, MCs) used when referring to modules information<br>
-**A**: We used these terms to specifically cater to our target audience, who are CS students students matriculated in AY 21/22.
+**Q**: Why are the old terms (modules, CAP, MCs) used when referring to modules information?<br>
+**A**: We used these terms to specifically cater to our target audience, who are CS students matriculated in AY 21/22.
+
+**Q**: Why is it that I cannot add a module I intend to retake in upcoming semester?<br> <a name="faq3"></a>
+**A**: Unfortunately as per our add command, we do no allow 2 modules with the same module code to be present in our app
+as of now. We understand that the NUS curriculum is **very** flexible so application tries to accomodate as any different curriculums as possible.
+Any deviations from these constraints for any reason (eg. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
+For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
+
+**Q**: Why is "W" grade not allowed?<br>
+**A**: We do not think adding "W" grade will be of any value. It is equivalent to deleting the module from the
+record since credits will no longer count towards degree progression.
 
 [Back to Table of Contents](#toc)
 
@@ -399,16 +405,16 @@ are provided only by NUS.
 
 ## 6. Command Summary <a name="command-summary"></a>
 
-| Action   | Format, Examples                                                                                                                                          |
-|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                            |
-| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                |
-| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                  |
-| **Tag**  | `tag /m <code> include <tag1> (<tag2>...)` or `tag /m <code> remove <tag1> (<tag2>...)` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
-| **Find** | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find /g A+`                                                               |
-| **Sort** | `sort <category>`<br> e.g. `sort /m`                                                                                                                      |
-| **View** | `view progress` or `view modules`                                                                                                                         |
-| **Exit** | `exit`                                                                                                                                                    |
+| Action   | Format, Examples                                                                                                                                                      |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                                        |
+| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                            |
+| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                              |
+| **Tag**  | `tag /m <code> include /t <tag1> (/t <tag2>...)` or `tag /m <code> remove /t <tag1> (/t <tag2>...)` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
+| **Find** | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find /g A+`                                                                           |
+| **Sort** | `sort <category>`<br> e.g. `sort /m`                                                                                                                                  |
+| **View** | `view progress` or `view modules`                                                                                                                                     |
+| **Exit** | `exit`                                                                                                                                                                |
 
 <div markdown="span" class="alert alert-info">
 
