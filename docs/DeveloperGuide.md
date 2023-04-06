@@ -619,9 +619,9 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
-* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]... [m/MODULE]...`
+* `add n/NAME [p/PHONE] [s/STATION] [e/EMAIL] [t/TELEGRAM] [g/GROUP]... [m/MODULE]...`: Adds a contact to EduMate.
 
 </div>
 
