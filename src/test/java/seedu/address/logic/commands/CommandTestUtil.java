@@ -56,7 +56,7 @@ public class CommandTestUtil {
             + PREFIX_MODULE + VALID_MODULE_CS2103T;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String TELEGRAM_DESC_ALICE = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
+    public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String EMPTY_ADDRESS_DESC = " " + PREFIX_ADDRESS;
     public static final String EMPTY_EMAIL_DESC = " " + PREFIX_EMAIL;
