@@ -40,9 +40,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         LocalDateTime dateTime = date.atTime(time);
 
-        Appointment appointment = new Appointment(IdGenerator.generateAppointmentId(), customerId, dateTime);
 
-        return new AddAppointmentCommand(appointment);
+        return new AddAppointmentCommand(customerId, dateTime);
     }
 
     /**

@@ -44,10 +44,8 @@ public class AddVehicleCommandParser implements Parser<AddVehicleCommand> {
 
         VehicleType type = ParserUtil.parseVehicleType(vehicleType);
 
-        Vehicle vehicle = new Vehicle(IdGenerator.generateVehicleId(), customerId, plateNumber, vehicleColor, brand,
-                type);
 
-        return new AddVehicleCommand(vehicle);
+        return new AddVehicleCommand(customerId, plateNumber, vehicleColor, brand, type);
     }
 
     /**

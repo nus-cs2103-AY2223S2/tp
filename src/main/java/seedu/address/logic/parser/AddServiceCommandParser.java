@@ -6,13 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddServiceCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 
 /**
@@ -30,23 +29,44 @@ public class AddServiceCommandParser implements Parser<AddServiceCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_VEHICLE_ID, PREFIX_SERVICE_DURATION, PREFIX_SERVICE_STATUS,
                 PREFIX_SERVICE_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_VEHICLE_ID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_VEHICLE_ID, PREFIX_SERVICE_DESCRIPTION)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddServiceCommand.MESSAGE_USAGE));
         }
 
         int vehicleId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_VEHICLE_ID).get());
-        String serviceDesc = argMultimap.getAllValues(PREFIX_SERVICE_DESCRIPTION).stream().findFirst().orElse("");
-        Optional<String> rawServiceDuration = argMultimap.getAllValues(PREFIX_SERVICE_DURATION).stream().findFirst();
-        Optional<String> rawServiceStatus = argMultimap.getAllValues(PREFIX_SERVICE_STATUS).stream().findFirst();
+        String serviceDesc = argMultimap.getValue(PREFIX_SERVICE_DESCRIPTION).get();
+        Optional<String> rawServiceDuration = argMultimap.getValue(PREFIX_SERVICE_DURATION);
+        Optional<String> rawServiceStatus = argMultimap.getValue(PREFIX_SERVICE_STATUS);
 
-        int serviceDuration = ParserUtil.parseInt(
-            rawServiceDuration.orElse(String.valueOf(Service.DEFAULT_SEVEN_DAYS)));
-        ServiceStatus serviceStatus = ParserUtil.parseServiceStatus(rawServiceStatus.orElse("to repair"));
+        Optional<LocalDate> estimatedFinishDate = rawServiceDuration.flatMap(s -> {
+            try {
+                int d = ParserUtil.parseInt(s);
+                return Optional.of(LocalDate.now().plusDays(d));
+            } catch (ParseException e) {
+                return Optional.empty();
+            }
+        });
 
-        Service service = new Service(IdGenerator.generateServiceId(), vehicleId, serviceDuration, serviceDesc,
-            serviceStatus);
-        return new AddServiceCommand(service);
+        if (estimatedFinishDate.isEmpty() && rawServiceDuration.isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddServiceCommand.MESSAGE_USAGE));
+        }
+
+        Optional<ServiceStatus> serviceStatus = rawServiceStatus.flatMap(s -> {
+            try {
+                ServiceStatus status = ParserUtil.parseServiceStatus(s);
+                return Optional.of(status);
+            } catch (ParseException e) {
+                return Optional.empty();
+            }
+        });
+
+        if (serviceStatus.isEmpty() && rawServiceStatus.isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddServiceCommand.MESSAGE_USAGE));
+        }
+
+        return new AddServiceCommand(vehicleId, Optional.empty(),
+            serviceDesc, estimatedFinishDate, serviceStatus);
     }
 
     /**
