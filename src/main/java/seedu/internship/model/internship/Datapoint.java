@@ -2,11 +2,19 @@ package seedu.internship.model.internship;
 
 import java.util.Objects;
 
+/**
+ * Represents a Datapoint in diagram.
+ */
 public class Datapoint {
 
     private String name;
     private int value;
 
+    /**
+     * Creates a Datapoint.
+     * @param name Name of datapoint
+     * @param value Value of datapoint
+     */
     public Datapoint(String name, int value) {
         this.name = name;
         this.value = value;

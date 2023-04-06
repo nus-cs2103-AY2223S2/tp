@@ -87,7 +87,7 @@ public class InternshipInfoPage extends Page {
     }
 
     /**
-     * Returns an ArrayList<EventCard> of indexed {@code EventCard}
+     * Returns an ArrayList<{@code EventCard}> of indexed {@code EventCard}.
      */
     public ArrayList<EventCard> makeEventCards() {
         ArrayList<EventCard> eventCards = new ArrayList<>();

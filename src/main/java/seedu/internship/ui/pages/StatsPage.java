@@ -1,5 +1,7 @@
 package seedu.internship.ui.pages;
 
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,12 +12,15 @@ import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.internship.Datapoint;
 import seedu.internship.model.internship.Statistics;
 
-import java.util.logging.Logger;
-
+/**
+ * A panel to display statistics.
+ */
 public class StatsPage extends Page {
     private static final String FXML = "StatsPage.fxml";
-    private final Logger logger = LogsCenter.getLogger(StatsPage.class);
+
     private static final String PAGE_TITLE = "Statistics";
+
+    private final Logger logger = LogsCenter.getLogger(StatsPage.class);
 
     private final Statistics statistics;
 
@@ -34,6 +39,11 @@ public class StatsPage extends Page {
     @FXML
     private Label statsSummary;
 
+    /**
+     * Creates a StatsPage based on given Statistics
+     *
+     * @param statistics Calculated statistics
+     */
     public StatsPage(Statistics statistics) {
         super(FXML);
         this.statistics = statistics;

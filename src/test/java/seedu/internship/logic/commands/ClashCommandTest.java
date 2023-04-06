@@ -1,19 +1,19 @@
 package seedu.internship.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.internship.logic.commands.ClashCommand.MESSAGE_CLASH_INTERNSHIP_SUCCESS;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.*;
 import seedu.internship.model.event.Event;
 import seedu.internship.testutil.EventBuilder;
 import seedu.internship.testutil.EventCatalogueBuilder;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import static seedu.internship.logic.commands.ClashCommand.MESSAGE_CLASH_INTERNSHIP_SUCCESS;
 
 public class ClashCommandTest {
 
@@ -131,7 +131,7 @@ public class ClashCommandTest {
     }
 
     @Test
-    public void execute_clashingInterviewOverMultipleDays_Clash() throws CommandException {
+    public void execute_clashingOverMultipleDays_Clash() throws CommandException {
         // If interview clashes over multiple days, all the days which the event clashes on should be displayed.
         // Only days with events of clashing timings should be listed.
         EventCatalogue eventCatalogue = new EventCatalogueBuilder().withEvent(new Event[] {
