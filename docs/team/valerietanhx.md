@@ -27,7 +27,7 @@ Given below are my contributions to the project.
     when the user wants to clear erroneous cases from the same date from the DengueHotspotTracker.
   * Highlights: Similar to the previous feature, this enhancement was challenging as it required significant changes
     to the architecture of the delete command parser and delete command. In addition to the aforementioned changes
-    to the parser and use of Optionals, new classes such as `Range`, `StartDate`, and `EndDate`, as well as
+    to the parser and use of the `Optional` class, new classes such as `Range`, `StartDate`, and `EndDate`, as well as
     new generic interfaces `Start` and `End`, had to be created in line with the object-oriented style of programming
     used throughout the rest of the project. Range validation also had to be implemented.
 * **New Feature:** Added the ability to sort cases by name, age, postal code, and date.
