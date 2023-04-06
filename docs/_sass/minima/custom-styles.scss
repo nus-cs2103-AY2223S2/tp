@@ -24,6 +24,12 @@ h2, h3, h4, h5, h6 {
   font-weight: $alert-link-font-weight;
 }
 
+// Provide caption for images
+.img-caption {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 // Generate contextual modifier classes for colorizing the alert.
 
 @each $color, $value in $theme-colors {

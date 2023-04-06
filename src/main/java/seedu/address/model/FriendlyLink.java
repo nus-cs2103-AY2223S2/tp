@@ -3,8 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -12,7 +10,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
@@ -69,7 +66,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         setPairs(newData.getPairList());
     }
 
-
     /**
      * Replaces the contents of the pair list with {@code pairs}.
      * {@code pairs} must not contain duplicate pairs.
@@ -90,7 +86,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         this.elderly.setPersons(elderly);
     }
 
-
     /**
      * Replaces the contents of the volunteer list with {@code volunteers}.
      * {@code volunteers} must not contain duplicate volunteers.
@@ -99,26 +94,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public void setVolunteers(List<Volunteer> volunteers) {
         this.volunteers.setPersons(volunteers);
-    }
-
-    /**
-     * Resets the existing elderly data of this {@code FriendlyLink} with {@code newData}.
-     *
-     * @param newData Replacement elderly data.
-     */
-    public void resetElderlyData(ReadOnlyElderly newData) {
-        requireNonNull(newData);
-        setAllElderly(newData.getElderlyList());
-    }
-
-    /**
-     * Resets the existing volunteer data of this {@code FriendlyLink} with {@code newData}.
-     *
-     * @param newData Replacement volunteer data.
-     */
-    public void resetVolunteerData(ReadOnlyVolunteer newData) {
-        requireNonNull(newData);
-        setVolunteers(newData.getVolunteerList());
     }
 
     //// person-level operations
@@ -253,11 +228,12 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the elderly list.
+     * {@code key} must not be null and exist in the elderly list.
      *
      * @param key Elderly to remove.
      */
     public void removeElderly(Elderly key) {
+        requireNonNull(key);
         for (Volunteer volunteer : getPairedVolunteers(key.getNric())) {
             removePair(key.getNric(), volunteer.getNric());
         }
@@ -266,11 +242,12 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the volunteers list.
+     * {@code key} must not be null and exist in the volunteers list.
      *
      * @param key Volunteer to remove.
      */
     public void removeVolunteer(Volunteer key) {
+        requireNonNull(key);
         for (Elderly elderly : getPairedElderly(key.getNric())) {
             removePair(elderly.getNric(), key.getNric());
         }
@@ -297,7 +274,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param pair Pair to add into FriendlyLink.
      */
     public void addPair(Pair pair) {
-        this.addPair(pair.getElderly().getNric(), pair.getVolunteer().getNric());
+        pairs.add(pair);
     }
 
     /**
@@ -307,9 +284,12 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      *
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
+     * @return The added pair.
      */
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
+    public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
+        Pair pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
+        addPair(pair);
+        return pair;
     }
 
     /**
@@ -371,57 +351,36 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Checks whether regions of an elderly and a volunteer are the same.
-     * If null is specified for any Nric, checks are conducted on all involved pairs.
-     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     * Checks that an elderly satisfies the predicate with all their paired volunteers.
+     * The elderly must not be null and must exist in FriendlyLink.
      *
-     * @param elderlyNric Nric of the elderly.
-     * @param volunteerNric Nric of the volunteer.
-     * @return True if both persons of all involved pairs belong in the same region, false otherwise.
+     * @param elderly Elderly to check.
+     * @param predicate Predicate to check elderly and their paired volunteers.
+     * @return True if elderly satisfies the predicate with all their paired volunteers, false otherwise.
      */
-    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
-        return checkPairs(elderlyNric,
-                volunteerNric, Person::isSameRegion);
+    public boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        requireNonNull(elderly);
+        for (Volunteer volunteer : getPairedVolunteers(elderly.getNric())) {
+            if (!predicate.apply(elderly, volunteer)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
-     * Checks whether there are suitable available dates between an elderly and a volunteer.
-     * If null is specified for any Nric, checks are conducted on all involved pairs.
-     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     * Checks that a volunteer satisfies the predicate with all their paired elderly.
+     * The volunteer must not be null and must exist in FriendlyLink.
      *
-     * @param elderlyNric Nric of the elderly.
-     * @param volunteerNric Nric of the volunteer.
-     * @return True if both persons share common available dates or at least one person
-     *     has no specified available dates for all involved pairs, false otherwise.
+     * @param volunteer Volunteer to check.
+     * @param predicate Predicate to check volunteer and their paired elderly.
+     * @return True if volunteer satisfies the predicate with all their paired elderly, false otherwise.
      */
-    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
-        return checkPairs(elderlyNric,
-                volunteerNric, Person::hasSuitableAvailableDates);
-    }
-
-    /**
-     * Checks whether pairs with specified elderly and volunteer satisfies a given predicate.
-     * If null is specified for any Nric, checks are conducted on all involved pairs.
-     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
-     *
-     * @param elderlyNric Nric of the elderly.
-     * @param volunteerNric Nric of the volunteer.
-     * @param predicate Predicate to check pairs.
-     * @return True if all involved pairs satisfies the given predicate, false otherwise.
-     */
-    private boolean checkPairs(Nric elderlyNric, Nric volunteerNric,
-            BiFunction<Elderly, Volunteer, Boolean> predicate) {
-        List<Elderly> elderlyToCheck = elderlyNric == null
-                ? getPairedElderly(volunteerNric)
-                : new ArrayList<>(Collections.singletonList(getElderly(elderlyNric)));
-        List<Volunteer> volunteerToCheck = volunteerNric == null
-                ? getPairedVolunteers(elderlyNric)
-                : new ArrayList<>(Collections.singletonList(getVolunteer(volunteerNric)));
-        for (Elderly elderly : elderlyToCheck) {
-            for (Volunteer volunteer : volunteerToCheck) {
-                if (!predicate.apply(elderly, volunteer)) {
-                    return false;
-                }
+    public boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        requireNonNull(volunteer);
+        for (Elderly elderly : getPairedElderly(volunteer.getNric())) {
+            if (!predicate.apply(elderly, volunteer)) {
+                return false;
             }
         }
         return true;
@@ -429,51 +388,26 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Gets list of volunteers paired with a specified elderly.
-     * Returns the full list of volunteers if {@code elderlyNric} is null.
+     * {@code elderlyNric} must not be null.
      *
      * @param elderlyNric Nric of the specified elderly
      * @return List of volunteers paired with the specified elderly.
      */
     private List<Volunteer> getPairedVolunteers(Nric elderlyNric) {
-        ArrayList<Volunteer> result = new ArrayList<>();
-        if (elderlyNric != null) {
-            Elderly elderly = getElderly(elderlyNric);
-            for (Pair pair : pairs) {
-                if (pair.getElderly().equals(elderly)) {
-                    result.add(pair.getVolunteer());
-                }
-            }
-
-        } else {
-            for (Volunteer volunteer : volunteers) {
-                result.add(volunteer);
-            }
-        }
-        return result;
+        requireNonNull(elderlyNric);
+        return pairs.getPairedVolunteers(elderlyNric);
     }
 
     /**
      * Gets list of elderly paired with a specified volunteer.
-     * Returns the full list of elderly if {@code volunteerNric} is null.
+     * {@code volunteerNric} must not be null.
      *
      * @param volunteerNric Nric of the specified volunteer
      * @return List of elderly paired with the specified volunteer.
      */
     private List<Elderly> getPairedElderly(Nric volunteerNric) {
-        ArrayList<Elderly> result = new ArrayList<>();
-        if (volunteerNric != null) {
-            Volunteer volunteer = getVolunteer(volunteerNric);
-            for (Pair pair : pairs) {
-                if (pair.getVolunteer().equals(volunteer)) {
-                    result.add(pair.getElderly());
-                }
-            }
-        } else {
-            for (Elderly elderly : elderly) {
-                result.add(elderly);
-            }
-        }
-        return result;
+        requireNonNull(volunteerNric);
+        return pairs.getPairedElderly(volunteerNric);
     }
 
     @Override

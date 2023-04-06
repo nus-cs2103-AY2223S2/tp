@@ -19,14 +19,13 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.ModelManagerBuilder;
-import seedu.address.testutil.TypicalVolunteers;
 
 public class DeleteVolunteerCommandTest {
 
     @Test
     public void execute_validNric_success() {
         final Model model = getTypicalModelManager();
-        Volunteer volunteerToDelete = TypicalVolunteers.getTypicalVolunteers().get(0);
+        Volunteer volunteerToDelete = getTypicalVolunteers().get(0);
         DeleteVolunteerCommand deleteVolunteerCommand = new DeleteVolunteerCommand(volunteerToDelete.getNric());
 
         String expectedMessage = String.format(

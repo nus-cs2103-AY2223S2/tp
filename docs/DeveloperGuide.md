@@ -276,14 +276,18 @@ with the values specified in the `EditDescriptor`
 The `Elderly`/`Volunteer` and then edited in the model using the `setElderly`/`setVolunteer` methods
 of `Model` respectively.
 
+Design decisions:
+- The reason behind the `editDescriptor` class, as opposed to directly using an `Elderly` or `Volunteer` class, is that
+  it better encapsulates the logic behind editing. That is, with the same `editDescriptor` object, we can easily "edit" multiple
+  `Elderly` and `Volunteer` objects simply through the `createEditedElderly`/`createEditedVolunteer` methods.
+- Initially, we had created 2 separate descriptor classes `ElderlyEditDescriptor` and `VolunteerEditDescriptor`. However,
+  we felt that this was simply unnecessary, and combined them into a single `editDescriptor` class instead.
+
 As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
 the NRIC `S1234567I` belongs to an existing **volunteer**:
 <img src="images/developerGuide/EditSequenceDiagram.png" width="1200"/>
 
 :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-Examples:
-* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 
 ### Find by keyword
 
@@ -403,6 +407,9 @@ Proposed behaviour:
 * Edits the pair at the specified `INDEX` in the displayed pair list.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
+
+Examples:
+* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 
 ### Deleting a pair by index: `delete_pair`
 

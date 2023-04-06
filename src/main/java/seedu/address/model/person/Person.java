@@ -109,15 +109,16 @@ public abstract class Person {
     }
 
     /**
-     * Returns true if both persons belong to the same region.
+     * Returns true if both persons belong to suitable regions.
      * {@code otherPerson} must not be null.
      *
      * @param otherPerson Person to be compared to.
-     * @return True if both persons belong to the same region and false otherwise.
+     * @return True if both persons belong to the same region or at least one person
+     *      has no specified region, false otherwise.
      */
-    public boolean isSameRegion(Person otherPerson) {
+    public boolean isSuitableRegion(Person otherPerson) {
         requireNonNull(otherPerson);
-        return otherPerson.getRegion().equals(region);
+        return otherPerson.getRegion().isMatch(region);
     }
 
     /**
