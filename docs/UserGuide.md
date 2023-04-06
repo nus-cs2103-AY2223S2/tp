@@ -436,7 +436,7 @@ Format: `help`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program or current window.
 
 Format: `exit`
 
