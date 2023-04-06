@@ -9,11 +9,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays all information of a {@code Patient}.
  */
-public class EnlargedPatientInfoCard extends UiPart<Region> {
+public class EnlargedPatientInfoCard extends EnlargedInfoCard {
     private static final String FXML = "EnlargedPatientInfoCard.fxml";
 
     /**
@@ -26,7 +27,7 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
 
     private Optional<Patient> selectedPatientOptional;
 
-    @javafx.fxml.FXML
+    @FXML
     private VBox enlargedPatientInfoCard;
     @FXML
     private Label name;
@@ -46,14 +47,6 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
-
-    /**
-     * Creates a {@code EnlargedPatientInfoCard} with the given {@code Optional< Patient >}.
-     */
-    public EnlargedPatientInfoCard(Optional<Patient> selectedPatientOptional) {
-        super(FXML);
-        updateSelectedPatientOptional(selectedPatientOptional);
-    }
 
     /**
      * Creates an empty {@code EnlargedPatientInfoCard}.
@@ -94,13 +87,8 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
         remark.setText(selectedPatient.getRemark().toString());
         tags.getChildren().clear();
         selectedPatient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getTagName()))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.getTagName());
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(this::addTagToFlowPane);
     }
 
     /**

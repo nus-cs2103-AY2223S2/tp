@@ -1,26 +1,22 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.tag.Tag;
 
 /**
- * A UI component that displays key information about a Doctor or Patient
- * within a list view.
+ * A UI component that displays all information about a Doctor or Patient.
  */
-abstract class ContactCard extends UiPart<Region> {
+abstract class EnlargedInfoCard extends UiPart<Region> {
 
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code ContactCard}
+     * Creates a {@code EnlargedInfoCard}
      */
-    public ContactCard(String FXML) {
+    public EnlargedInfoCard(String FXML) {
         super(FXML);
     }
 

@@ -9,11 +9,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays all information of a {@code Doctor}.
  */
-public class EnlargedDoctorInfoCard extends UiPart<Region> {
+public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
     private static final String FXML = "EnlargedDoctorInfoCard.fxml";
 
     /**
@@ -26,7 +27,7 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
 
     private Optional<Doctor> selectedDoctorOptional;
 
-    @javafx.fxml.FXML
+    @FXML
     private VBox enlargedDoctorInfoCard;
     @FXML
     private Label name;
@@ -41,13 +42,6 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    /**
-     * Creates a {@code EnlargedDoctorInfoCard} with the given {@code Optional< Doctor >}.
-     */
-    public EnlargedDoctorInfoCard(Optional<Doctor> selectedDoctorOptional) {
-        super(FXML);
-        updateSelectedDoctorOptional(selectedDoctorOptional);
-    }
 
     /**
      * Creates an empty {@code EnlargedDoctorInfoCard}.
@@ -85,13 +79,8 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
         yearsOfExperience.setText(selectedDoctor.getYoe().value);
         tags.getChildren().clear();
         selectedDoctor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getTagName()))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.getTagName());
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(this::addTagToFlowPane);
     }
 
     /**
