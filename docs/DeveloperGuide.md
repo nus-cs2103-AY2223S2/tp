@@ -206,6 +206,25 @@ with a `Group`.
       standardise the same for groups as well.
     * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
 
+**Aspect: Creating new group through add command**
+* **Alternative 1:** Create a new `Group` using the existing add command.
+    * Pros:
+      * Lesser commands for users to use
+      * Easier to implement
+    * Cons:
+      * More bug-prone due to having multiple parameters to check including group
+
+* **[Current implementation] Alternative 2:** Create a new `Group` using a new command 'group_create'.
+    * Pros:
+      * Dedicated command for creating a group
+      * Less bug-prone as the only input is one group instead of having multiple information such as name, email etc.
+    * Cons:
+      * Users need to create a group first before adding a person to it.
+
+* **Justification**
+    * As the add command is relatively lengthy, having more input parameters would result in users creating a wrong group.
+    * Having a dedicated command for creating groups is less bug-prone as it only has to check for the validity of one group
+
 ### \[Developed\] Group delete
 
 The group delete feature allows users to delete a group and remove persons from that group.
@@ -597,20 +616,22 @@ timetables one by one. WGT then helps students to easily find FTS within their f
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I can …​                                                       | So that I can…​                                                       |
-|----------|----------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the App                |
-| `* * *`  | user     | add a new friend                                               | store their events                                                    |
-| `* * *`  | user     | delete a friend                                                | remove entries that I no longer need                                  |
-| `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
-| `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
-| `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
-| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                                         |
-| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better                                               |
-| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | make sure i wouldn't miss a meeting                                   |
-| `* *`    | user | be able to categorize my contact lists                         | easily find someone                                                   |
+| Priority | As a …​                        | I can …​                                                       | So that I can…​                                                       |
+|----------|--------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user                       | see usage instructions                                         | refer to instructions when I forget how to use the App                |
+| `* * *`  | user                           | add a new friend                                               | store their events                                                    |
+| `* * *`  | user                           | delete a friend                                                | remove entries that I no longer need                                  |
+| `* * `   | user                           | find a person by name                                          | locate details of friend without having to go through the entire list |
+| `* * *`  | user                           | store my timetable                                             | keep track of my timetable                                            |
+| `* * *`  | user                           | store my friends' timetable                                    | keep track of my friends' timetable                                   |
+| `* * *`  | student                        | find a FTS within my group of friends                          | know when my friends are free                                         |
+| `* *`    | student with many friends      | be able to have multiple groups                                | manage my groups better                                               |
+| `* *`    | forgetful student              | be notified about upcoming meetings i have with my friends     | make sure I wouldn't miss a meeting                                   |
+| `* *`    | user                           | be able to categorize my contact lists                         | easily find someone                                                   |
 | `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | remember my tasks                                                     |
-| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient                                          |
+| `*`      | user                           | easily find out the venue and time of my upcoming lessons      | make my life more convenient                                          |
+| `* * *`  | student                        | find a FTS within my group of friends                          | know when my friends are free                                         |
+| `* *`    | student with many friends      | be able to have multiple groups                                | manage my groups better                                               |
 
 ### Use cases
 

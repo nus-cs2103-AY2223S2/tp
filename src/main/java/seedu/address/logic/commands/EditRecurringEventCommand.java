@@ -90,13 +90,14 @@ public class EditRecurringEventCommand extends Command {
 
         editedRecurringEvent.checkPeriod();
 
+        RecurringEventList.checkForClashesInRecurringEvent(personToEdit, editedRecurringEvent, originalEvent);
+
         RecurringEventList.listConflictedEventWithIsolated(editedRecurringEvent, personToEdit.getIsolatedEventList());
 
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedRecurringEvent)
-                + " for " + personToEdit.getName()
-                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
+        return new CommandResult("Original Event: " + originalEvent + " for " + personToEdit.getName()
+                + "\n" + String.format(MESSAGE_SUCCESS, editedRecurringEvent) + " for " + personToEdit.getName());
 
     }
 
@@ -105,8 +106,7 @@ public class EditRecurringEventCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static RecurringEvent createEditedRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
-                                                             EditEventDescriptor
-                                                                     eventDescriptor) {
+                                                             EditEventDescriptor eventDescriptor) {
         assert personToEdit != null;
 
         String updatedEventName = eventDescriptor.getEventName().orElse(originalEvent.getEventName());
@@ -114,8 +114,14 @@ public class EditRecurringEventCommand extends Command {
         LocalTime startTime = eventDescriptor.getStartTime().orElse(originalEvent.getStartTime());
         LocalTime endTime = eventDescriptor.getEndTime().orElse(originalEvent.getEndTime());
 
-        return new RecurringEvent(updatedEventName, dayOfWeek, startTime, endTime);
+        RecurringEvent newlyEditedRecurringEvent =
+                new RecurringEvent(updatedEventName, dayOfWeek, startTime, endTime);
+
+
+        return newlyEditedRecurringEvent;
     }
+
+
 
     /**
      * Stores the details to edit the event with. Each non-empty field value will replace the
