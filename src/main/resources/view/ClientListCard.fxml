@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="390.0" minWidth="390.0" prefWidth="390.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox id="cardPane" fx:id="cardPane" alignment="CENTER_LEFT" prefHeight="40.0" spacing="4.0" styleClass="client-list-card">
          <Circle fill="#80808080" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
