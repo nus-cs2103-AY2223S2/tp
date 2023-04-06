@@ -173,6 +173,32 @@ The rake symbol (in the Check validity of command action above) is used to show 
 
 ### Implementation of Main Mode Features
 
+List of decks and list of cards are stored separately in `UniqueDeckList` and `UniqueCardList`. Although a card belongs to a deck, it is not stored within a deck. Each card indicates a deck that it belongs to itself.
+A deck stores its name and a Boolean value of whether it is selected or not.
+
+#### addDeck Feature
+
+`MasterDeck` extends `ReadOnlyMasterDeck`, stored internally as a `UniqueDeckList`. It implements following operation:
+- `MasterDeck#addDeck()` - Add a new deck to the list.
+
+This operation is exposed in the Model interface as `Model#addDeck()`. It is supported by the dependence of the model interface on `MasterDeck#addDeck()`.
+
+Given below is an example usage scenario and how the `addDeck()` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MasterDeck` will be initialized with the default MasterDeck state.
+
+Step 2. The user executes `addDeck deck1` command to add a new deck. The `addDeck` command calls `Model#addDeck()`, which executes adding a new deck feature.
+
+Step 3. A new deck is now added on the list and able to execute further functionalities.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In case of a duplicate deck name, an exception will be thrown and the newly created deck will not be saved in the `MasterDeck`.
+
+The following sequence diagram shows how the addDeck operation works:
+
+![AddDeckSequenceDiagram](images/AddDeckSequenceDiagram.png)
+
+
+
 ### Implementation of Card Mode Features
 
 ### Implementation of Review Mode Features
