@@ -45,6 +45,7 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists for the customer today";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -72,6 +73,10 @@ public class EditOrderCommand extends Command {
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
+
+        if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
 
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
