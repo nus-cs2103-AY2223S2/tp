@@ -27,13 +27,10 @@ Given below are my contributions to the project.
     * What it does: Displays the `Person` or `User` profile on the Profile Panel.
     * Justification: So that the `User` can view the full profile of the contact or him/herself.
     * Highlight: Can query by `view` (for User), `view CONTACT_INDEX` or `view n/FULL_NAME` (for contacts).
-  * **`HourBlock`, `TimeBlock`, `TimePeriod`** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
+  * **`HourBlock`, `TimeBlock`, `TimePeriod`, `Day`** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193) Testing: [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144), [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
     * What it does: Represents periods of a time in a `Timetable`.
     * Justification: Abstracts out a period of time for the `TimingRecommender`.
     * Highlight: Built using [Joda-Time](https://www.joda.org/joda-time/index.html)
-  * **`Day` Enum** [#144](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/144)
-    * What it does: Day contains the days on a **WeekDay**.
-    * Justification: Allows `Lesson`, `Commitment` and `Timetable` to hold days of the week.
   * **MathUtil** [#193](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/193)
     * What it does: Uses mathematical tools which assists `TimingRecommender` to perform its functions.
     * Justification: Can exploit mathematical properties and structure for cleaner implementation of code.
