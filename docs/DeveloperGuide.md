@@ -443,14 +443,14 @@ use cases elaborated upon below are only detailed for doctors. Nonetheless, they
 can be extrapolated for patients too, without changes to the major details within
 the use case. Such associated pairs of use cases are listed in the table below.
 
-| **Doctor Use Case** | **Respective Patient Use Case** |
-|-----------------|-----------------------------|
-| UC1 - Add Doctor         | user                        |
-| `* * *`         | user                        |
-| `* * *`         | user                        |
-| `* * *`         | user                        |
-| `* * *`         | user                        |
-| `* * *`         | user                        |
+| **Doctor Use Case**            | **Respective Patient Use Case** |
+|--------------------------------|---------------------------------|
+| UC1 - Add Doctor               | UC7 - Add Patient               |
+| UC2 - Delete Doctor            | UC8 - Delete Patient            |
+| UC3 - Edit Doctor              | UC9 - Edit Patient              |
+| UC4 - Find Doctor              | UC10 - Find Patient             |
+| UC5 - List Doctor              | UC11 - List Patient             |
+| UC6 - Assign Doctor to Patient | UC12 - Assign Patient to Doctor |
 
 
 **Use case: UC1 - Add Doctor**
