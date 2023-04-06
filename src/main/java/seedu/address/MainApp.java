@@ -114,7 +114,7 @@ public class MainApp extends Application {
 
             initialDeliveryJobSystemData = deliveryJobSystemOptional
                     .orElseGet(SampleDataUtil::getSampleDeliveryJobSystem);
-        } catch (NullPointerException | DataConversionException e) {
+        } catch (IllegalArgumentException | NullPointerException | DataConversionException e) {
             logger.warning(
                     "[DS] Data file not in the correct format. Will be starting with an empty DeliveryJobSystem");
             initialDeliveryJobSystemData = new DeliveryJobSystem();

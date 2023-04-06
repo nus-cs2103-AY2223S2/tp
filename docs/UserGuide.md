@@ -94,15 +94,12 @@ Alternatively, you can simply click on the corresponding button to open the wind
 
 </div>
 
-
-
-
 ## 1. Features related to Customers
-### *Can only access from Customer Window*
-To access the address book containing all customers from Main Window, please use command `list` to list all customers and open Customer Window. 
-
-Alternatively, you can click on `Customers` in menu bar > `Address Book`.
-![address book](images/Dukedeliveryaddressbook.png)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Customer Window.  
+To access the address book containing all customers from Main Window, please use command `list` to list all customers and open Customer Window.   
+Alternatively, you can click on `Customers` in menu bar > `Address Book`.  
+</div>
 
 ### 1.1. Adding a person: `add`
 
@@ -111,10 +108,17 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * Customers' name should only include Latin alphabet and/or numeric characters.
+* Phone number must be at least 3 digits long.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**  
+1. A person can have any number of tags (including 0).  
+2. System does not check for duplicate emails. 
 </div>
+<div markdown="span" class="alert alert-primary">
+:bulb: **Future improvement:** Support special characters (e.g /, Æ) for name field.
+</div>
+
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -174,33 +178,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### 1.6 Clearing all contact entries : `clear`
+
+Clears all contact entries from address book (i.e. in Customer Window).
+
+Format: `clear`
+
+
 ## 2. Features related to Delivery Jobs
-### *Can only access from Main Window*
-Commands are input in this text field and app response is printed below the text field.
-![input field](images/Inputcommands.png)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Main Window.
+</div>
 
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
 
-**Format**: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
-
-**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
-
-*Extra constraints with this alternative way of adding jobs:*
-* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5 or empty slot)
-* Only delivery date and slot are optional for alternative way of adding job. 
-* Earning must not be left empty. User should specify earning as $0 instead, if necessary.
-![Create Job](images/Addjob.png)
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Description field is only available in GUI mode.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Delivery date, slot and earning are optional (for original way of adding job using `add_job` command - typing-preferred).
-</div>
-
+**Format**: `add_job si/SENDER_ID ri/RECIPIENT_ID earn/EARNING [date/DELIVERY_DATE] [slot/DELIVERY_SLOT]`
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
@@ -209,13 +203,27 @@ Delivery date, slot and earning are optional (for original way of adding job usi
 * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
 * Delivery slots must start from 1 (i.e. `slot/1` - delivery slots only start from 10AM), however, could also be larger than 5 (i.e. `slot/6`).
 * Delivery slots larger than 5 (outside valid range) will be classified as "Extra hours (4PM++)". These delivery slots are still considered invalid slots.
-* Earning **must be a double**. 
+* Earning **must be a double** and could contain more than 2 decimal inputs. 
 
 Examples:
-* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
-* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+* `add_job si/ALESAM ri/DAVSAM earn/1.1`
+* `add_job si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
 
+**Alternative**:   
+Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+*Extra constraints with GUI mode of adding jobs:*
+* Only allows adding jobs with either **valid slots** or **no slot** (i.e. slots within range 1 - 5 or empty slot)
+* Only delivery date and slot are optional for alternative way of adding job. 
+* Earning must not be left empty. User should specify earning as $0 instead, if necessary.
+![Create Job](images/Addjob.png)
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**   
+1. Description field is only available in GUI mode.  
+2. Earning field allows for more than 2 decimal inputs.
+</div>
+
+![Create Job](images/Addjob.png)
 
 
 ### 2.2. Mass importing jobs
@@ -236,33 +244,42 @@ Format: `list_job`
 
 ![list job](images/listJob.png)
 
-### 2.3.1. Sort and filter jobs
+#### Sorting and filtering job list
 Simply click on the corresponding button to sort and filter jobs.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Click again for switching between ascending and descending mode.
+</div>
 
 ![sort filter job](images/listJobSortFilter.png)
 
-### 2.3.2. View details of a specific job
-Simply double-click on the job card in job list to view its details in the right half of Main Window.
+#### View details of a specific job
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Future improvement:** Application should remember the hidden state of contact details.
+</div>
+
+Simply click on the job card in job list to view its details in the right half of Main Window.
 
 To hide/un-hide the contact details of the chosen job, simply click on the (Un)Lock Button.
 
 ![hide_contact_detail](images/hideDetail.png)
 ![unhide_contact_detail](images/unhideDetail.png)
 
-
-
 ### 2.4 Edit job : `edit_job`
 
 Edit a selected job by Index or Job ID.
 
+
 Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
+or `edit_job ji/JOB_ID [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
 Alternative: Double-lick on the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
 
 * Existing values will be overwritten by the input values.
-* At least one of the optional fields must be provided.
+* At least one of the optional fields should be provided.
 * The optional field `done/t | f` indicates whether the job should be marked as completed or uncompleted.
-* Edits the delivery job at the specified `INDEX`.
+* Edits the delivery job at the specified `INDEX` or `JOB_ID` provided by user.
 * The index refers to the index number shown in the displayed job list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Refer to `list_job` for argument constrains.
@@ -270,8 +287,10 @@ Alternative: Double-lick on the delivery job to view its detail > Click on the m
 Examples:
 * `edit_job 1 slot/4`
 * `edit_job 1 date/2023-03-01`
-* `edit_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+* `edit_job ji/<job_id> si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
 
+**Alternative**:
+Select the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
 
 
 ### 2.5 Find job : `find_job`
@@ -289,20 +308,25 @@ Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DAT
 Examples:
 * `find_job ji/<job_id>`
 * `find_job date/2023-03-01 slot/4`
-* `find_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+* `find_job ji/<job_id> si/ALESAM ri/DAVSAM date/2023-03-01 slot/3 earn/20`
 
 ### 2.6 Delete job : `delete_job`
 
-Deletes the job identified by the job ID. Support `del` key in job list.
+Deletes the job identified by the job ID. Support `del` key in job list by selecting in job list.
 
 Format: `delete_job JOB_ID`
 
-Alternative: Double-lick on the delivery job you want to delete to view its detail > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** User can copy the job id by selecting a job and press `ctrl-c` from the job list.
+</div>
 
 * The job ID must be **valid**.
 
 Example:
 * `delete_job ALBE29E66F`
+
+**Alternative**:  
+Double-lick on the delivery job you want to delete to view its detail > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
 
 ### 2.7 Mark job as completed/uncompleted : `com_job` / `uncom_job`
 
@@ -312,10 +336,16 @@ Format: `com_job JOB_ID` / `uncom_job JOB_ID`
 
 * The job ID **must be valid**.
 
-Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.
+**Alternative 1**:  
+Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.
 ![checked](images/Checked.png)
 
-Alternative 2: Double-click on the delivery job to view its details > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.
+**Alternative 2**:  
+Select the delivery job to view its details > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** User can copy the job id by selecting a job and press `ctrl-c` from the job list.
+</div>
 
 Example:
 * `com_job ALBE29E66F`
@@ -323,7 +353,11 @@ Example:
 
 
 ## 3. Features available for Reminders
-### *Can only access from Main Window*
+### *Can only access from Main Window and Reminder Window*
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Main Window.
+</div>
+
 ### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Reminder Window.
@@ -363,7 +397,9 @@ Examples:
 
 
 ## 4. Features available for Timetable
-### *Can only access from Main Window*
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Main Window.
+</div>
 
 ### 4.1. Showing timetable : `timetable`
 
@@ -409,7 +445,11 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ![Unscheduled jobs](images/Unscheduledjobs.png)
 
 ## 5. Features available for Statistics
-### *Can only access from Main Window*
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Command only available from from Main Window.
+</div>
+
 ### 5.1. Showing Statistics : `stats`
 ![Statistics](images/Statistics.png)
 
@@ -423,14 +463,6 @@ Similar statistics are shown for jobs in the previous week
 
 
 ## Other features
-
-
-
-### Clearing all entries : `clear`
-
-Clears all entries from the delivery job system and address book.
-
-Format: `clear`
 
 ### Viewing help : `help`
 
@@ -468,7 +500,8 @@ Duke Driver data are saved in the hard disk automatically after any command that
 Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.json` and `[JAR file location]/data/deliveryjobsystem.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Delivery Job System and Address Book will discard all data and start with an empty data file at the next run. 
+* Invalid sender, recipient id, slot however will not clear the job system, user can use the edit function to correct the job detail.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -495,11 +528,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | ***(C)* Delete Customer**                     | `list`<br/>**Or**<br/> Click on `Customers` in menu bar > `Address Book`. <br><br> Then, input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                         |
 | ***(C)* Edit Customer details**               | `list`<br/>**Or**<br/> Click on `Customers` in menu bar > `Address Book`. <br><br> Then, input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                            |
 | ***(C)* Find Customer**                       | `list`<br/>**Or**<br/> Click on `Customers` in menu bar > `Address Book`. <br><br> Then, input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                  |
+| ***(C)* Clear all contact entries in Customer Window** | `list`<br/>**Or**<br/> Click on `Customers` in menu bar > `Address Book`. <br><br> Then, input `clear`  
 | ***(B)* List Customer**                       | `list` <br/>**Or**<br/>Click on `Customers` in menu bar > `Address Book` then input `list`.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ***(M)* Add Job**                             | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20` <br><br>**OR**<br/>**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job` > Specify job details > Click on `Create Job`.                                                                                                                                                                                      |
+| ***(M)* Add Job**                             | `add_job si/SENDER_ID ri/RECIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20` <br><br>**OR**<br/>**Alternative**: Click on `Delivery Job System` in menu bar > `Create Job` > Specify job details > Click on `Create Job`.                                                                                                                                                                                      |
 | ***(M)* Import Jobs**                         | Click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                                                                                                                                                                                                                                                                                       |
 | ***(M)* List Job**                            | `list_job`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ***(M)* Edit Job**                            | `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br><br/> e.g., `edit_job 1 slot/4` <br><br>**OR**<br/>Click on the specific delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button.                                                                                                                                                  |
+| ***(M)* Edit Job**                            | `edit_job INDEX [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]` <br><br/> e.g., `edit_job 1 slot/4` <br><br>**OR**<br/>Click on the specific delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button.                                                                                                                                                  |
 | ***(M)* Find Job**                            | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/COMPLETED_STATUS_AS_BOOLEAN]` <br><br/> e.g., `find_job si/ALE874`                                                                                                                                                                                                                                                                                                                    |
 | ***(M)* Delete Job**                          | `delete_job JOB_ID` <br/><br/> e.g., `delete_job ALBE29E66F` <br><br>**OR**<br/>**Alternative:** Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner.                                                                                                                                                                                                                                                                                    |
 | ***(M)* (Un)Complete Job**                    | `com_job JOB_ID` / `uncom_job JOB_ID` <br><br>e.g.,`com_job ALBE29E66F` / `uncom_job ALBE29E66F` <br><br>**OR**<br/>**Alternative 1:** Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to mark job as uncompleted.<br><br>**OR**<br/>**Alternative 2:** Click on the specific delivery job > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job. |                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -510,9 +544,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | ***(M) (T)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>**OR**<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                                                                                                                                                                                                                                                                                    |
 | ***(M)* Show List of Completed Jobs**         | `timetable_completed`<br/>**OR**<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ***(M)* Show List of Unscheduled Jobs**       | `timetable_unscheduled`<br/>**OR**<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ***(M)* Show Statistics**                     | `stats`<br/>**OR**<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ***(B)* Clear all entries**                   | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ***(M)* Show Statistics**                     | `stats`<br/>**OR**<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ***(A)* Help**                                | `help`<br/>**Or**<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ***(A)* Exit**                                | `exit`<br/>**Or**<br/>Click on `File` in menu bar > `Exit`                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-
-
