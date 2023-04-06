@@ -4,10 +4,9 @@ title: User Guide
 ---
 USER GUIDE FOR WIFE
 ---
-Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
-their food items in the fridge, and never question her. With this, one never have to worry about
-optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
-improving the efficiency of grocery shopping.
+Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage their
+items in the fridge. With this, one never has to worry about optimizing storage and organization of food items in their
+refrigerator!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
