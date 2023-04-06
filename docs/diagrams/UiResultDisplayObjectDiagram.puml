@@ -4,12 +4,15 @@
 skinparam RoundCorner 0
 skinparam arrowThickness 1.1
 
-Class "<u>:ResultDisplay</u>" as ResultDisplay UI_COLOR
+Class "<u>:ResultDisplay</u>" as ResultDisplay UI_COLOR {
+    -messageQueue: LinkedBlockingDeque<CommandMessage>
+}
+show ResultDisplay fields
 
 Class "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
 Class "<u>completionHandler:Consumer</u>" as Consumer #000000
 
-LogicManager -> Consumer
-Consumer .right.> ResultDisplay : updates >
+LogicManager -down-> Consumer
+Consumer .down.> ResultDisplay : queues messages >
 
 @enduml
