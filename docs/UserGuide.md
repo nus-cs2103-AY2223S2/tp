@@ -257,7 +257,7 @@ Navigates directly to the specified module or lecture context
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-- `lecture_name` has to belong to an existing lecture
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
 
 **Navigate Backwards**
