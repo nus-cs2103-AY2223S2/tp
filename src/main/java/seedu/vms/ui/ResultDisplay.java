@@ -53,17 +53,9 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
      *
      * @param commandResults - the list of {@code CommandMessage} to display.
      */
-    public void displayMessage(List<CommandMessage> commandResults) {
+    public void displayMessages(List<CommandMessage> commandResults) {
         requireNonNull(commandResults);
         messageQueue.addAll(commandResults);
-    }
-
-
-    @Override
-    public void refresh() {
-        for (int i = 0; i < messageQueue.size(); i++) {
-            displayMessage(messageQueue.poll());
-        }
     }
 
 
@@ -71,6 +63,14 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
         displayArea.getChildren().add(new ResultMessageBox(commandResult).getRoot());
         if (displayArea.getChildren().size() > DISPLAY_LIMIT) {
             displayArea.getChildren().remove(0);
+        }
+    }
+
+
+    @Override
+    public void refresh() {
+        for (int i = 0; i < messageQueue.size(); i++) {
+            displayMessage(messageQueue.poll());
         }
     }
 }
