@@ -63,15 +63,19 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
 
 ## 1.1 Installation
 
-1. Ensure you have Java `11` or above installed in your Computer. If you aren't sure of the version, follow these [instructions](#4-how-do-i-check-my-java-versionbr).
-If you don't have Java downloaded or have an outdated version, download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. Ensure you have Java `11` or above installed in your Computer. If you aren't sure of the version, follow these 
+[instructions](#4-how-do-i-check-my-java-versionbr).
+If you don't have Java downloaded or have an outdated version, download it 
+[here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-3. Download the latest `piedpiper.jar` [here](https://github.com/AY2223S2-CS2103T-W15-3/tp/releases).
+2. Download the latest `piedpiper.jar` [here](https://github.com/AY2223S2-CS2103T-W15-3/tp/releases).
 
-4. Copy the file to the folder you want to use as the _home folder_ for Pied Piper.
+3. Copy the file to the folder you want to use as the _home folder_ for Pied Piper.
 
-5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar piedpiper.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar piedpiper.jar` command 
+to run the application.<br>
+   
+A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 [↑ Back to table of contents](#table-of-contents)
@@ -92,11 +96,14 @@ The task list can be viewed using the [view](#213-listing-tasks-list) command.<b
 
 ![appLayout](images/AppLayout.PNG)
 
-**Command Box**: This is where you type in commands to work your way around Pied Piper. A quick summary of commands can be found [here](#5-command-summary).
+**Command Box**: This is where you type in commands to work your way around Pied Piper. A quick summary of commands can 
+be found [here](#5-command-summary).
 
-**Message Box**: This is where Pied Piper provides feedback to show what actions have just been done, as well as to display error messages if you input the wrong commands.
+**Message Box**: This is where Pied Piper provides feedback to show what actions have just been done, as well as to 
+display error messages if you input the wrong commands.
 
-**Lists**: Depending on whether you chose to display the `PersonList` or the `TaskList`, this window shows you all currently stored persons or tasks.
+**Lists**: Depending on whether you chose to display the `PersonList` or the `TaskList`, this window shows you all 
+currently stored persons or tasks.
 
 [↑ Back to table of contents](#table-of-contents)
 
@@ -202,7 +209,8 @@ Creates a new event task.
 
 Format: `event task/TASK_NAME from/DATE to/DATE`
 
-Note: The dates input must follow chronological order, meaning the date supplied to the `to/` field must come after the date supplied to the `from/` field.
+Note: The dates input must follow chronological order, meaning the date supplied to the `to/` field must come after the 
+date supplied to the `from/` field.
 
 Example:
 * `event task/Manage Open House from/11/12/2023 to/16/12/2023`
@@ -255,7 +263,8 @@ Format: `edittask INDEX type/TASK_TYPE [task/TASK_DESCRIPTION] [c/COMMENT] [DATE
 
 Note: 
 * To denote todo, deadline and event tasks, parameters for `TASK_TYPE` are `T`, `D` and `E` respectively.
-* When editing a task to change types, the DATE parameters follow the formats of [deadline task](#23-creating-a-task-with-a-deadline-deadline) and [event task](#24-creating-a-task-that-is-an-event-event).
+* When editing a task to change types, the DATE parameters follow the formats of 
+[deadline task](#23-creating-a-task-with-a-deadline-deadline) and [event task](#24-creating-a-task-that-is-an-event-event).
 * Editing a task removes the assigned member from the task.
 
 Examples:
@@ -384,7 +393,8 @@ Allows for toggling between light mode and dark mode based on user preference.
 # 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Pied Piper home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous Pied Piper home folder.
 
 **Q**: How do I check my Java version?<br>
 **A**: Check [here](#4-how-do-i-check-my-java-versionbr).
@@ -400,12 +410,14 @@ Allows for toggling between light mode and dark mode based on user preference.
 For windows:
 1. Open your system's command line by searching `cmd` in the windows search bar.
 2. Enter the command `java -version`.
-3. You should see the version of java installed here highlighted in yellow:<br>![javaVersionExampleWindows](images/JavaVersionExampleWindows.PNG)
+3. You should see the version of java installed here highlighted in yellow:<br>
+![javaVersionExampleWindows](images/JavaVersionExampleWindows.PNG)
 
 For mac:
 1. Use the spotlight search bar and search using `terminal`.
 2. Enter the command `java -version`.
-3. You should see the version of java installed here highlighted in yellow:<br>![javaVersionExampleMac](images/JavaVersionExampleMac.PNG)
+3. You should see the version of java installed here highlighted in yellow:<br>
+![javaVersionExampleMac](images/JavaVersionExampleMac.PNG)
 
 [↑ Back to table of contents](#table-of-contents)
 
