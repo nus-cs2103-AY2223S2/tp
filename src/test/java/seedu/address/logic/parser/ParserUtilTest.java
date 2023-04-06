@@ -31,11 +31,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE_1 = "+651234";
     private static final String INVALID_PHONE_2 = "34";
-//    private static final String INVALID_ADDRESS = "@#@!"; //conidered a valid address... // currently do not have in invalid address
+    //private static final String INVALID_ADDRESS = "@#@!";
+    //considered a valid address... currently do not have in invalid address
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-//    private static final String INVALID_GENDER = "123"; //valid gender cause alphanumeric
+    //private static final String INVALID_GENDER = "123";
+    //valid gender cause alphanumeric
 
     private static final String INVALID_GENDER_1 = "!!!";
 
@@ -48,7 +50,8 @@ public class ParserUtilTest {
     private static final String INVALID_RACE_1 = ")@#$%^&*(";
     private static final String INVALID_RACE_2 = "12345";
     private static final String INVALID_MODULE = "AA111D";
-//    private static final String INVALID_COMMS_1 = "^&(*"; //there is no invalid comms
+    //private static final String INVALID_COMMS_1 = "^&(*";
+    //there is no invalid comms
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -65,9 +68,10 @@ public class ParserUtilTest {
     private static final String VALID_RACE_2 = "more than one word race";
     private static final String VALID_MODULE_1 = "AC5001";
 
-//    private static final String VALID_MODULE_2 = "cas5101"; //lowercase not considered valid
+    //private static final String VALID_MODULE_2 = "cas5101";
+    // lowercase not considered valid
     private static final String VALID_MODULE_2 = "CAS5101";
-//    private static final String VALID_MODULE_3 = "ce5611qb";
+    //private static final String VALID_MODULE_3 = "ce5611qb";
 
     private static final String VALID_MODULE_3 = "CE5611QB";
     private static final String VALID_COMMS_1 = "linkedIN";
@@ -118,10 +122,10 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-//    @Test
-//    public void parsePhone_null_throwsNullPointerException() {
-//        //assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-//    }
+    //@Test
+    //public void parsePhone_null_throwsNullPointerException() {
+    // assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    //}
 
     @Test
     public void parsePhone_null_returnsNull() throws Exception {
@@ -156,10 +160,10 @@ public class ParserUtilTest {
         assertEquals(null, ParserUtil.parseAddress((String) null));
     }
 
-//    @Test
-//    public void parseAddress_invalidValue_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-//    }
+    //    @Test
+    //    public void parseAddress_invalidValue_throwsParseException() {
+    //        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    //    }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
@@ -197,10 +201,10 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
-//    @Test
-//    public void parseTag_null_throwsNullPointerException() {
-//        //assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-//    }
+    //    @Test
+    //    public void parseTag_null_throwsNullPointerException() {
+    //        //assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    //    }
 
     @Test
     public void parseTag_null_returnsNull() throws Exception {
@@ -466,7 +470,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseModules_collectionWithInvalidModules_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseModules(Arrays.asList(VALID_MODULE_1, INVALID_MODULE)));
+        assertThrows(ParseException.class, (
+        ) -> ParserUtil.parseModules(Arrays.asList(VALID_MODULE_1, INVALID_MODULE)));
     }
 
     @Test
@@ -476,7 +481,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseModules_collectionWithValidModules_returnsModuleSet() throws Exception {
-        Modules actualModuleSet = ParserUtil.parseModules(Arrays.asList(VALID_MODULE_2, VALID_MODULE_2, VALID_MODULE_3));
+        Modules actualModuleSet = ParserUtil.parseModules(
+                Arrays.asList(VALID_MODULE_2, VALID_MODULE_2, VALID_MODULE_3));
         Modules expectedModuleSet = new Modules(new HashSet<>(
                 Arrays.asList(new NusMod(VALID_MODULE_2), new NusMod(VALID_MODULE_2), new NusMod(VALID_MODULE_3))));
 
