@@ -27,4 +27,3 @@ Given below are my contributions to the project.
     * Added documentation for the feature `sort` [\#190](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/190)
   * Developer Guide:
     * Added implementation details of the `addtag`, `dtag`, and `tags` features.
-  
