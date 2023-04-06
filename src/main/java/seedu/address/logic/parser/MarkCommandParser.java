@@ -34,11 +34,11 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         }
 
         List<LocalDate> dates = new ArrayList<>();
-        if (args.length >= 2) {
+        if (args.length == 2) {
             dates.add(LocalDate.now());
         } else {
             // User provided an index and possibly a date
-            for (int i = 1; i < args.length; i++) {
+            for (int i = 2; i < args.length; i++) {
                 try {
                     dates.add(LocalDate.parse(args[i], DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT)));
                 } catch (DateTimeParseException e) {
