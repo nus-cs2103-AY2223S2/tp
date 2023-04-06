@@ -158,6 +158,9 @@ Format: `list`
 
 Edits an existing person in the address book.
 
+Note that the lead status of the person is not available for editing here. Modifying the lead status
+should be done via the `status` command.
+
 Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
@@ -414,12 +417,12 @@ _Details coming soon ..._
 _italic_ - optional
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                          |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- | --- |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
 | **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                            |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                       |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                                   |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |     |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |     
 | **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                 |
 | **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
 | **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                                       |
@@ -430,5 +433,5 @@ _italic_ - optional
 | **FindTag**    | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                                           |
 | **FindLead**   | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`                                                                                                                                                                                                                       |
 | **FindAll**    | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`                                                                                                                                                        |
-| **FindTxn**    | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                         |     |     |     |     |     |     |
+| **FindTxn**    | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                         |
 | **Help**       | `help`                                                                                                                                                                                                                                                                                    |
