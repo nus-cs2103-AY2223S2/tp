@@ -96,7 +96,7 @@ Alternatively, you can simply click on the corresponding button to open the wind
 
 ## 1. Features related to Customers
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Command only available from from Customer Window.  
+:bulb: **Tip:** Command only available from Customer Window.  
 To access the address book containing all customers from Main Window, please use command `list` to list all customers and open Customer Window.   
 Alternatively, you can click on `Customers` in menu bar > `Address Book`.  
 </div>
@@ -127,6 +127,8 @@ Examples:
 ### 1.2. Listing all persons : `list`
 
 Shows a list of all persons in the address book in Customer Window.
+
+Opens Customer Window.
 
 Format: `list`
 
@@ -287,7 +289,7 @@ Alternative: Double-lick on the delivery job to view its detail > Click on the m
 Examples:
 * `edit_job 1 slot/4`
 * `edit_job 1 date/2023-03-01`
-* `edit_job ji/<job_id> si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
+* `edit_job ji/BECHE8833A si/ALESAM ri/DAVSAM date/2023-04-01 slot/3 earn/20`
 
 **Alternative**:
 Select the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
@@ -306,9 +308,9 @@ Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DAT
 * Refer to `list_job` for argument constrains.
 
 Examples:
-* `find_job ji/<job_id>`
+* `find_job ji/BECHE8833A`
 * `find_job date/2023-03-01 slot/4`
-* `find_job ji/<job_id> si/ALESAM ri/DAVSAM date/2023-03-01 slot/3 earn/20`
+* `find_job ji/BECHE8833A si/ALESAM ri/DAVSAM date/2023-03-01 slot/3 earn/20`
 
 ### 2.6 Delete job : `delete_job`
 
@@ -317,7 +319,7 @@ Deletes the job identified by the job ID. Support `del` key in job list by selec
 Format: `delete_job JOB_ID`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** User can copy the job id by selecting a job and press `ctrl-c` from the job list.
+:bulb: **Tip:** User can copy the job ID by selecting a job and press `ctrl-c` from the job list.
 </div>
 
 * The job ID must be **valid**.
@@ -344,7 +346,7 @@ Scroll to the job and click on the circle on the left, which a tick will appear 
 Select the delivery job to view its details > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** User can copy the job id by selecting a job and press `ctrl-c` from the job list.
+:bulb: **Tip:** User can copy the job ID by selecting a job and press `ctrl-c` from the job list.
 </div>
 
 Example:
@@ -355,7 +357,7 @@ Example:
 ## 3. Features available for Reminders
 ### *Can only access from Main Window and Reminder Window*
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Command only available from from Main Window.
+:bulb: **Tip:** Command only available from Main Window.
 </div>
 
 ### 3.1. Listing all reminders : `list_reminder`
@@ -398,12 +400,14 @@ Examples:
 
 ## 4. Features available for Timetable
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Command only available from from Main Window.
+:bulb: **Tip:** Command only available from Main Window.
 </div>
 
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
+
+Opens Timetable Window.
 
 Format: `timetable`
 
@@ -415,7 +419,9 @@ Alternative: Click on `Timetable` in menu bar > `Scheduled Jobs`
 Asides from general commands (`help`, `exit`), this is the only command that Timetable Window can access
 </div>
 
-Shows timetable of specific week containing a specific date
+Shows timetable of specific week containing a specific date.
+
+Opens Timetable Window.
 
 Format: `timetable_date date/YYYY-mm-DD`
 
@@ -447,11 +453,13 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ## 5. Features available for Statistics
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Command only available from from Main Window.
+:bulb: **Tip:** Command only available from Main Window.
 </div>
 
 ### 5.1. Showing Statistics : `stats`
 ![Statistics](images/Statistics.png)
+
+Opens Statistics Window.
 
 Shows a summary of statistics related to the jobs in the job list
 * Total number of jobs in the job list
@@ -501,7 +509,7 @@ Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Delivery Job System and Address Book will discard all data and start with an empty data file at the next run. 
-* Invalid sender, recipient id, slot however will not clear the job system, user can use the edit function to correct the job detail.
+* Invalid sender, recipient ID, slot however will not clear the job system, user can use the edit function to correct the job detail.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
