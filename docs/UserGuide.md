@@ -227,33 +227,44 @@ Here are some **examples** of how the navigation system injects the necessary co
 ### Nav
 **Navigate to the Root Context**
 
-> Sets the current context to the root context
+> `nav`
 
-Format: `nav`
+Navigate to the root context from any context.
 
-**Navigate Relatively**
+**Navigate From Root Context to Module Context**
 
-> Navigates relative to the current context to a module or lecture context
+> `nav {module_code}`
 
-Format: `nav {module_code / lecture_name}`
+Navigates from the root context to a module context.
 
-- `module_code` has to belong to an existing module that is a child of the current context
-- `lecture_name` has to belong to an existing lecture that is a child of the current context
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+
+**Navigate From Module Context to Lecture Context**
+
+> `nav {lecture_name}`
+
+Navigates from a module context to a lecture context.
+
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+  - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
 
 **Navigate Directly**
 
-> Navigates directly to the specified module or lecture context
+> `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
-Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+Navigates directly to the specified module or lecture context
 
-- `module_code` has to belong to an existing module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
 - `lecture_name` has to belong to an existing lecture
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
 
 **Navigate Backwards**
 
-> Navigates to the parent context of the current context
+> `navb`
 
-Format: `navb`
+Navigates to the parent context of the current context unless current context is root
 
 ### List Modules or Lectures or Videos
 
