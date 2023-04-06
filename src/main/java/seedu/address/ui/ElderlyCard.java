@@ -139,7 +139,6 @@ public class ElderlyCard extends UiPart<Region> {
 
         // state check
         ElderlyCard card = (ElderlyCard) other;
-        return id.getText().equals(card.id.getText())
-                && elderly.equals(card.elderly);
+        return elderly.equals(card.elderly);
     }
 }

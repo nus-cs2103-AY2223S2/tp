@@ -135,7 +135,6 @@ public class VolunteerCard extends UiPart<Region> {
 
         // state check
         VolunteerCard card = (VolunteerCard) other;
-        return id.getText().equals(card.id.getText())
-                && volunteer.equals(card.volunteer);
+        return volunteer.equals(card.volunteer);
     }
 }
