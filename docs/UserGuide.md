@@ -5,7 +5,7 @@ title: User Guide
 
 # 1. Introduction
 
-Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
+Welcome to PowerCards, a **lightweight flashcard application** that helps you streamline your learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
 As a university student, you can capitalise on our **powerful card management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 
 This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
@@ -87,10 +87,10 @@ This section explains some common components you may find in a command.
 |---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Parameter**             | `QUESTION`, `ANSWER` | Parameters are placeholders where you have to insert your input.<br/> <br/>Suppose `add q\QUESTION a\ANSWER` is a valid command to add a card. You can simply replace `QUESTION` and `ANSWER` with the question and answer of your choice.                                                                               |  
 | **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
-| **Optional Component**    | `[t\TAG]`            | Optional components can be omitted in the certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
+| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
 | **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
 | **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                            |
-| **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as easy only.                                                                                                                                                |
+| **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as **easy** only.                                                                                                                                            |
 
 <div markdown="block" class="alert alert-info">
 
@@ -158,10 +158,23 @@ Format: `deleteDeck INDEX`
 
 Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
-### 3.3.4. Selecting a Deck : `selectDeck`
+### 3.3.4. Finding a Deck : `findDecks`
 
-Once you have created your deck, you can access the list of cards inside it with this command. 
+### 3.3.5. Showing all Decks : `showDecks`
+
+### 3.3.6. Selecting a Deck : `selectDeck`
+
+Once a deck has been created, you can access the list of cards inside it with this command. 
 Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
+
+<div markdown="block" class="alert alert-info">
+
+💡 **Tip:** <br>
+
+- A deck can be selected and accessed anytime as long as you are in the Main Mode.
+- This means you can switch to different deck while already selecting another deck!
+
+</div>
 
 Format: `selectDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
@@ -170,14 +183,14 @@ Examples:
 * `selectDeck 2` will select the deck at index 2. 
   * The cards in this deck (if exist) will be displayed on the right panel. 
 
-### 3.3.5. Clearing the data : `clear`
+### 3.3.7. Clearing the data : `clear`
 
 Perhaps you want to start over and create new sets of decks and cards. 
 This command clears all the existing decks and their associated cards from the application database. 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:exclamation: **Caution:**<br>
 This command is irreversible! You cannot retrieve your data after executing this command.
 
 </div>
