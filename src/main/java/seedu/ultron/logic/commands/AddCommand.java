@@ -26,7 +26,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STATUS + "STATUS "
             + "[" + PREFIX_REMARK + "REMARK] "
-            + "[" + PREFIX_KEYDATE + "KEY@DATE]...\n"
+            + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Backend Developer "
             + PREFIX_COMPANY + "Shopee "

@@ -2,14 +2,30 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- Table of Contents
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  - [Add remark feature](#add-remark-feature)
+  - [Show opening details feature](#show-opening-details-feature)
+  - [Upcoming keydates feature](#upcoming-keydates-feature)
+  - [Filter by status feature](#filter-by-status-feature)
+- [**Appendix: Requirements**](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting an opening](#deleting-a-opening)
+  - [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +39,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +52,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -49,7 +66,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -59,7 +75,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -69,13 +85,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `OpeningListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,16 +102,17 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `UltronParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a opening).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an opening).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,14 +127,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `UltronParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `UltronParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -132,21 +150,21 @@ The `Model` component,
 
 </div> -->
 
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-4/tp/blob/master/src/main/java/seedu/ultron/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
+
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `UltronStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.ultron.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,104 +172,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedUltron`. It extends `Ultron` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedUltron#commit()` — Saves the current address book state in its history.
-* `VersionedUltron#undo()` — Restores the previous address book state from its history.
-* `VersionedUltron#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitUltron()`, `Model#undoUltron()` and `Model#redoUltron()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedUltron` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th opening in the address book. The `delete` command calls `Model#commitUltron()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add p/Engineer …​` to add a new opening. The `add` command also calls `Model#commitUltron()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitUltron()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the opening was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoUltron()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Ultron state, then there are no previous Ultron states to restore. The `undo` command uses `Model#canUndoUltron()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoUltron()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone Ultron states to restore. The `redo` command uses `Model#canRedoUltron()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitUltron()`, `Model#undoUltron()` or `Model#redoUltron()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitUltron()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add p/Engineer …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the opening being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
-
+### Add remark feature
+<!-- Darren -->
+### Show opening details feature
+<!-- Yu Fei -->
+### Upcoming keydates feature
+<!-- Anton, Alex -->
+### Filter by status feature
+<!-- Kevin -->
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -264,8 +192,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage openings faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -301,7 +228,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Ultron adds the opening to its list of openings
    Use case ends.
 
-
 **Extensions**
 
 1a. Ultron detects an error in the entered data.
@@ -315,7 +241,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters a command to delete an opening
 2. Ultron deletes the opening from its list of openings
    Use case ends.
-
 
 **Extensions**
 
@@ -331,7 +256,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Ultron edits the opening based on the user input parameters
    Use case ends.
 
-
 **Extensions**
 
 1a. Ultron detects an error in the entered data.
@@ -345,7 +269,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters a command to list all openings
 2. Ultron shows the user a list of all the openings that the user has added
    Use case ends.
-
 
 **Extensions**
 
@@ -361,8 +284,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Ultron shows the user a list of all the openings that match the status given by the user
    Use case ends.
 
-
-
 **Extensions**
 
 1a. No opening contains the status specified by the user
@@ -376,7 +297,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User enters a command to sort all openings by deadline in ascending order
 2. Ultron shows the user a list of openings that contain deadlines, sorted by deadlines in ascending order
    Use case ends.
-
 
 *{More to be added}*
 
@@ -393,7 +313,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Opening**: Item representing an internship opening
 * **Keydate**: Item representing a event tied to a particular date or deadline
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -412,38 +331,191 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample openings. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Exiting via command line
 
-### Deleting a opening
+   1. Test case: `exit`<br>
+      Expected: App exits with no issues and window closes
 
-1. Deleting a opening while all openings are being shown
+### Adding an opening
+
+1. Adding an opening that does not already exist in the list
+
+    1. Prerequisites: Openings that are being added do not already exist in the list. Meaning that the opening does not share both the company name and position name with another opening
+
+    2. Test case: `add p/position c/company e/example@example.com s/applied`<br>
+       Expected: An opening is added to the end of the list. Success message shown in the status message. Opening added contains fields that match those given in the command line.
+
+    3. Test case: `add p/position c/company s/applied`<br>
+       Expected: No opening is added. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect add commands to try: `add`<br>
+       Expected: Similar to previous.
+
+2. Trying to add an opening that already exists in the list
+
+    1. Prerequisites: Openings that are trying to be added already exist in the list. Meaning that the opening shares both the company name and position name with another opening
+
+    2. Test case: `add p/position c/company e/example@example.com s/applied`<br>
+       Expected: No opening is added. Error details shown in the status message. Command line remains the same.
+    
+
+### Editing an opening
+
+1. Editing an opening to change a field
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `edit 1 p/new position`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now has "new position" in its position field.
+
+    3. Test case: `edit 0 p/new position`<br>
+       Expected: No opening is edited. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect edit commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Editing an opening to add a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `edit 1 d/Online Assessment@2023-04-01`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Online Assessment" due 2023-04-01.
+
+3. Editing an opening to replace a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `edit 1 d/Interview@2023-04-05`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains a deadline named "Interview" due 2023-04-05.
+
+4. Editing an opening to remove a deadline
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `edit 1 d/`<br>
+       Expected: First opening gets edited. Success message shown in the status message. First opening now contains no deadlines
+
+### Showing an opening
+
+1. Viewing the details of an opening while all openings are being shown
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: Details of first opening is shown in the right panel. Details of the shown opening shown in the status message.
+
+    3. Test case: click on an opening on the left panel<br>
+       Expected: Details of clicked opening is shown in the right panel.
+
+    4. Test case: `show 0`<br>
+       Expected: No new opening is shown. Error details shown in the status message. Command line remains the same.
+
+    5. Other incorrect show commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Adding, editing or deleting a remark
+
+1. Adding a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. 
+
+    2. Test case: `remark x r/3 rounds of interviews` (where x is the index of an opening without an existing remark) <br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has "3 rounds of interviews" in its remark field, visible after using the show command.
+
+    3. Test case: `remark 0 r/3 rounds of interviews`<br>
+       Expected: No opening is edited. Error details shown in the status message. Command line remains the same.
+
+    4. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Deleting a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
+
+    2. Test case: `remark x r/` (where x is the index of an opening with an existing remark)<br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has no remarks in its remark field.
+
+3. Editing a remark
+
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. First opening contains a deadline
+
+    2. Test case: `remark x r/Has difficult online assessment` (where x is the index of an opening with an existing remark) <br>
+       Expected: Opening gets edited. Success message shown in the status message. Opening now has "Has difficult online assessment" in its remark field, visible after using the show command.
+
+### Deleting an opening
+
+1. Deleting an opening while all openings are being shown in list
 
    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First opening is deleted from the list. Details of the deleted opening shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete 1`<br>
+      Expected: First opening is deleted from the list. Details of the deleted opening shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No opening is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No opening is deleted. Error details shown in the status message. Command line remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting an opening currently being shown in the right panel
 
-### Saving data
+    1. Prerequisites: List all openings using the `list` command. Multiple openings in the list. Show the opening to be deleted using `show x` command (where x is index of opening to be deleted)
 
-1. Dealing with missing/corrupted data files
+    1. Test case: `delete x`<br>
+       Expected: Opening with index x is deleted from the list. Details of the deleted opening shown in the status message. Right panel is now empty.
+   
+### Clearing all openings
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Clearing all openings
 
-1. _{ more test cases …​ }_
+    1. Test case: `clear`<br>
+       Expected: All openings are deleted from the list. Success message shown in status message.
+
+### Finding an opening by company or position
+
+1. Finding an opening by keyword
+
+    1. Prerequisites: At least one opening with the word "developer" in its position or company name exists in the list
+
+    2. Test case: `find developer`<br>
+       Expected: List filters out all openings that do not have the word "developer" in its position or company name. Number of found openings is shown in the status message. Command line remains the same
+
+   3.Test case: `find`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
+
+### Finding an opening by status
+
+1. Finding an opening by status
+
+    1. Prerequisites: At least one opening with "interviewing" as its status
+
+    2. Test case: `status interviewing`<br>
+       Expected: List filters out all openings that do not have "interviewing" as its status. Number of found openings is shown in the status message. Command line remains the same.
+
+   3.Test case: `status`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
+
+### Getting openings with upcoming deadlines
+
+1. Getting openings with upcoming deadlines
+
+    1. Prerequisites: Multiple openings in the list. Openings contain deadlines not passed due within 5 days of today.
+
+    2. Test case: `upcoming 5`<br>
+       Expected: List shows openings that contain deadlines not passed within 5 days of today. Openings are sorted in order, with the openings with the closer deadlines on top. Number of found openings is shown in the status message.
+
+    3. Test case: `upcoming`<br>
+   Expected: List remains the same. Error details shown in the status message. Command line remains the same.
+
+## **Appendix: Effort**
+
+## **Appendix: Planned Enhancements**
