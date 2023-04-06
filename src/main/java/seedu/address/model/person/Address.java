@@ -11,6 +11,7 @@ public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
+    public static final String MESSAGE_LENGTH_ERROR = "Addresses should be between 1-38 characters long";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

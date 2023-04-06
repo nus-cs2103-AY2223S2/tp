@@ -11,14 +11,14 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Status should only contain alphanumeric characters, numbers and spaces, and it should not be blank. "
-            + "Max characters: 20";
+            + "Max characters: 30";
 
     /*
      * The first character denotes the year of the student and must not be a whitespace,
      * while the second character denotes the course of the student and must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{1,30}";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,29}";
 
     public final String fullStatusDetail;
 

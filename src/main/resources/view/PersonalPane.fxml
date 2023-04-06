@@ -36,7 +36,8 @@
                 </HBox>
                 <HBox alignment="CENTER">
                     <Label text="Address: " minWidth="60" wrapText="true"/>
-                    <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+                    <Label fx:id="address" textAlignment="CENTER" styleClass="cell_small_label" text="\$address"
+                           minHeight="30"/>
                 </HBox>
 
                 <HBox alignment="CENTER">
