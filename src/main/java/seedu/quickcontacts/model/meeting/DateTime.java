@@ -194,6 +194,8 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
+    // Idea adapted from
+    // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
     private static LocalDate parseDate(String date, String pattern) {
         try {
             if (!pattern.equals("ddMM")) {
@@ -215,6 +217,8 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
+    // Idea adapted from
+    // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
     private static LocalTime parseTime(String time, String pattern) {
         try {
             return LocalTime.parse(time, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
@@ -223,6 +227,8 @@ public class DateTime implements Comparable<DateTime> {
         }
     }
 
+    // Idea adapted from
+    // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
     private static String getDateFormat(String date) throws InvalidDateTimeFormatException {
         String dateFormat = "";
         for (String separator : DATE_SEPARATORS) {
@@ -250,6 +256,8 @@ public class DateTime implements Comparable<DateTime> {
         return dateFormat;
     }
 
+    // Idea adapted from
+    // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
     private static String getTimeFormat(String time) throws InvalidDateTimeFormatException {
         String timeFormat = "";
         for (String separator : TIME_SEPARATORS) {
@@ -272,6 +280,8 @@ public class DateTime implements Comparable<DateTime> {
         return timeFormat;
     }
 
+    // Idea adapted from
+    // https://stackoverflow.com/questions/4024544/how-to-parse-dates-in-multiple-formats-using-simpledateformat
     private static String patternForSeparator(String template, String sep) {
         return template.replace(SEPARATOR_PLACEHOLDER, sep);
     }

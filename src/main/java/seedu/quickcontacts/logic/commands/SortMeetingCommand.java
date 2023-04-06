@@ -18,7 +18,7 @@ public class SortMeetingCommand extends Command {
     public static final String COMMAND_WORD = "sortm";
     public static final String MESSAGE_USAGE = "Sort meetings by their attributes: "
             + "title (m/), dateTime (dt/), location (l/), description (des/). \n"
-            + "Example: `sortm m/`.i \n"
+            + "Example: `sortm m/` \n"
             + "For reverse sorting, append an `r` after the prefix.\n"
             + "Example: `sortm m/r`";
     public static final String COMMAND_DESCRIPTION = "Sorts meetings by their attributes.";
