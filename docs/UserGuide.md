@@ -1,7 +1,4 @@
----
-layout: page
-title: User Guide
----
+
 # CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in NUS to connect with each other for the benefit of their course of study.
 CoDoc is **optimized for** use via your **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
