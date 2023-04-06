@@ -73,7 +73,9 @@ If you don't have Java downloaded or have an outdated version, download it
 3. Copy the file to the folder you want to use as the _home folder_ for Pied Piper.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar piedpiper.jar` command 
-to run the application.<br>
+to run the application. If you need help on how to navigate the command terminal, check out 
+[this](https://www.wikihow.com/Open-a-Folder-in-Cmd#:~:text=The%20%22cd%22%20command%20is%20used,not%20press%20Enter%20just%20yet.&text=Type%20the%20address%20of%20the,the%20folder%20is%20located%20in.) 
+link.<br>
    
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
