@@ -8,7 +8,6 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 **_Our contact information will be updated soon!_**
 
 ## Project team
-
 ### Vigneshwar Hariharan
 
 <img src="images/vigonometry.png" width="200px">
@@ -35,8 +34,9 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 [[github](http://github.com/praveenkrishna0512)]
 [[portfolio](team/praveenkrishna0512.md)]
 
-* Role: Documentation
-* Responsibilities: Responsible for the quality of various project documents.
+* Role: GUI, Storage and Documentation
+* Responsibilities: Responsible for the implementation of the GUI and Storage within Docedex,
+as well as the quality of various project documents.
 
 ### Owen Yap Yuhan
 
