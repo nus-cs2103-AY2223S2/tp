@@ -57,7 +57,7 @@ public class MarkCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("YES"));
-        expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("YES"));
+        //expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("YES"));
 
         assertCommandFailure(markCommand, model, expectedMessage);
     }
@@ -71,7 +71,7 @@ public class MarkCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("no"));
-        expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("no"));
+        //expectedModel.markPerson(INDEX_FIRST_PERSON, new Mark("no"));
 
         assertCommandFailure(markCommand, model, expectedMessage);
     }
