@@ -4,7 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
 import static seedu.vms.commons.core.Messages.MESSAGE_KEYWORD_IS_EMPTY;
-import static seedu.vms.model.keyword.Keyword.*;
+import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_HELP_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_KEYWORD_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
