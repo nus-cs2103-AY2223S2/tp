@@ -28,13 +28,13 @@ public class FindCommandParserTest {
     @Test
     public void parse_multiplePrefixes_throwsParseException() {
         assertParseFailure(parser, " n/ m/ Bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_PREFIX_MESSAGE));
         assertParseFailure(parser, " n/ i/ Bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_PREFIX_MESSAGE));
         assertParseFailure(parser, " n/ i/ m/ t/ tokyo",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_PREFIX_MESSAGE));
         assertParseFailure(parser, " n/ i/ m/ Bob",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MULTIPLE_PREFIX_MESSAGE));
     }
 
 
