@@ -135,6 +135,8 @@ placeholder
 
 * For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits. Postal codes should be valid, i.e. their first two digits should start with a valid postal sector in Singapore.
 
+* The Dengue Hotspot Tracker can accept up to ~2 billion cases, specifically 2,147,483,647 cases.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
