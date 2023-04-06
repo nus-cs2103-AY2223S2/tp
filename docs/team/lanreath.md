@@ -5,18 +5,27 @@ title: Lanreath's Project Portfolio Page
 
 ### Project: Ultron
 
+Ultron is an application to help students track their internship applications as openings.
+
 * **Code contributed**:
-  * To be added soon
+  * [RepoSense report](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lanreath&breakdown=true)
 
 * **Enhancements implemented**:
-  * To be added soon
+  * Implemented 'Opening' model
+  * Adapted parser to fit new model
+  * Keydate sorting
+  * UI improvements
 
 * **Documentation**:
+  * User Guide:
+    * Show command
+    * FAQ
   * Developer Guide:
-    * To be added soon
+    * Appendix: Effort
+    * Implementation: Show command
 
 * **Testing**:
   * To be added soon
 
 * **Review/mentoring contributions**:
-  * To be added soon
+  * Reviewed, approved and merged most implementation PRs
