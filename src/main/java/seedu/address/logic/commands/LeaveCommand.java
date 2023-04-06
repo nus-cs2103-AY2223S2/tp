@@ -28,7 +28,7 @@ public class LeaveCommand extends Command {
 
     public static final String MESSAGE_LEAVE_SUCCESS = "Employee: %1$s took %2$s days of leave.";
     public static final String MESSAGE_NOT_ENOUGH_LEAVE = "Employee: %1$s does not have enough leave.";
-    public static final String MESSAGE_INVALID_LEAVE = "Leave number has to be an integer more than 1.";
+    public static final String MESSAGE_INVALID_LEAVE = LeaveCounter.MESSAGE_CONSTRAINTS;
 
     private final EmployeeId employeeId;
     private final int numberOfDaysLeave;
@@ -47,7 +47,7 @@ public class LeaveCommand extends Command {
         if (!EmployeeId.isValidEmployeeId(employeeId.toString())) {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
-        if (numberOfDaysLeave < 1) {
+        if (numberOfDaysLeave < 0 || numberOfDaysLeave > 365) {
             throw new CommandException(MESSAGE_INVALID_LEAVE);
         }
 
