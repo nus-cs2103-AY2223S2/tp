@@ -488,6 +488,61 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
+### \[Developed\] Export
+
+The export feature allows users to export a person's details to a json file. Groups and tags are not exported.
+
+This is implemented using the `ExportCommand`, `ExportCommandParser` and
+`UniquePersonList` and `Storage` classes.
+
+The `ExportCommand` receives an `Index` of a `Person` to be exported from the `UniquePersonList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+<img src="images/ExportCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/ExportCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the export `COMMAND_WORD`, the `AddressBookParser` creates a `ExportCommandParser`
+   to parse the user input.
+3. If `ExportCommandParser` parse the command successfully, it creates a `ExportCommand` and initialise it
+   with an `Index`.
+4. The `ExportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ExportCommand` instance which obtains the person from the 
+   `UniquePersonList`.
+6. Execution of `ExportCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+7. `LogicManager` then passes the person obtained from `ExportCommand` to the method `exportPerson()` of Storage
+8. Storage then creates a json file of the person to be exported in data/export.json
+
+#### Design consideration
+
+**Aspect: Exporting multiple persons**
+* **Alternative 1:** Export multiple `Person` in one user command.
+    * Pros:
+        * Users can export multiple persons at once instead of exporting each person one at a time.
+    * Cons:
+        * More bug-prone due to multiple index given by user
+
+* **[Current implementation] Alternative 2:** Only allow one person to be exported in one user command.
+    * Pros:
+        * Easy to implement.
+        * Less bug-prone as only one index has to be checked for validity
+    * Cons:
+        * Users have to export one person at a time.
+
+* **Justification**
+    * Purpose of exporting is to export one's details and send to their friends instead of exporting multiple persons' details 
+    * Exporting multiple persons' details increase the length of the command which leads to more error 
+
+
 ### \[Proposed\] Undo/redo feature
 
 
