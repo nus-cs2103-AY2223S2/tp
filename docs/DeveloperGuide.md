@@ -54,6 +54,7 @@ title: Developer Guide
          * [Edit Command](#edit-command)
          * [Delete Command](#delete-command)
          * [Tag Command](#tag-command)
+         * [Untag Command](#untag-command)
          * [View Command](#view-command)
          * [Find Command](#find-command)
          * [Sort Command](#sort-command)
@@ -728,9 +729,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 #### **Tag Command**
 
-Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/TagCommandParser.java)
 
-The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
+The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing contact in EduMate.
 
 **Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
@@ -738,11 +739,15 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 :information_source: **Command Formats:** <br>
 
-* `tag m/MODULE`: Tags a module to user.
+* `tag m/MODULE...`: Tags modules to the user.
 
-* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+* `tag INDEX m/MODULE...`: Tags modules to the contact at the specified index.
 
-* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+* `tag m/MODULE DAY START END...`: Tags lessons to the user with the specified parameters, and tags the module if not already done so.
+
+* `tag g/GROUP...`: Tags groups to the user.
+
+* `tag INDEX g/GROUP...`: Tags groups to the contact at the specified index.
 
 </div>
 
@@ -753,6 +758,30 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
     <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution 
 </div>
 <br>
+
+#### **Untag Command**
+
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/UntagCommandParser.java)
+
+Similar to the `tag` command, the `untag` command allows user to remove `ModuleTag`s and `GroupTag`s from an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Formats:** <br>
+
+* `untag m/MODULE...`: Untags modules from the user.
+
+* `untag INDEX m/MODULE...`: Untags modules from the contact at the specified index.
+
+* `untag m/MODULE DAY START END...`: Untags lessons from the user with the specified parameters, and untags the module if it is empty.
+
+* `untag g/GROUP...`: Untags groups from the user.
+
+* `untag INDEX g/GROUP...`: Untags groups from the contact at the specified index.
+
+</div>
 
 <img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
