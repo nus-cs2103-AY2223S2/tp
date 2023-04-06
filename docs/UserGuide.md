@@ -157,7 +157,7 @@ after entering certain commands. The explainer above details why this happens.
 Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
 </div>
 
-### Unselecting doctors or patients**
+#### Unselecting doctors or patients**
 
 Unselecting doctors and patients is currently not supported in Docedex. If you wish to
 look through all the doctors and patients in Docedex, please use the
