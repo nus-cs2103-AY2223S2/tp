@@ -146,7 +146,7 @@ public class ClassList implements ReadOnlyStudentList {
 
     @Override
     public String toString() {
-        return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " persons";
+        return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " person(s)";
 
     }
 
