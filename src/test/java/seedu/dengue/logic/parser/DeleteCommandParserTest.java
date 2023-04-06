@@ -4,6 +4,9 @@ import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dengue.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +24,22 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgsSingleIndex_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArgsSingleIndex_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgsMultiIndex_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1 2", new DeleteCommand(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)));
+    }
+
+    @Test
+    public void parse_invalidArgsMultiIndex_throwsParseException() {
+        assertParseFailure(parser, "1 2 a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

@@ -2,11 +2,8 @@ package seedu.dengue.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -21,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.core.Messages;
 import seedu.dengue.commons.core.index.Index;
-import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
