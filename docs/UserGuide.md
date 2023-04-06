@@ -828,9 +828,8 @@ Import modules progress from a JSON-format file to the current tracker.
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file to export the modules progress from
   - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `[JAR
     file location]/data`)
-  - The file specified in `file_path` must exist in the directory. (:exclamation: If not specified, the default saving 
-    directory is `
-    [JAR file location]/data`)
+  - The file specified in `file_path` must exist. (:exclamation: If only the file's name is specified, the file must 
+    exist in the default saving directory at `[JAR file location]/data`)
   - Must allow reading and writing operations
   - Must be of JSON format
   - Must contain only modules progress
