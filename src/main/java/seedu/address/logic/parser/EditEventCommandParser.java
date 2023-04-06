@@ -33,6 +33,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         boolean isTutorial;
         boolean isLab;
         boolean isConsultation;
+        boolean isOldDate;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -66,6 +67,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             isLab = false;
             isConsultation = true;
         }
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_LAB).isPresent()) {
             editEventDescriptor.setDate(ParserUtil.parseEditEventDate(argMultimap.getValue(PREFIX_DATE).get(), 2));
         } else if (argMultimap.getValue(PREFIX_DATE).isPresent()
@@ -76,6 +78,8 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             editEventDescriptor.setDate(ParserUtil.parseEditEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1));
         }
 
+        isOldDate = argMultimap.getValue(PREFIX_DATE).isEmpty();
+
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
             editEventDescriptor.setAttachments(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
         }
@@ -84,6 +88,6 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             throw new ParseException(EditEventCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditEventCommand(index, editEventDescriptor, isTutorial, isLab, isConsultation);
+        return new EditEventCommand(index, editEventDescriptor, isTutorial, isLab, isConsultation, isOldDate);
     }
 }
