@@ -28,7 +28,7 @@ public class ClassList implements ReadOnlyStudentList {
      * @param name the name of the class.
      */
     public ClassList(String name) {
-        assignments = new AssignmentList();
+        assignments = AssignmentList.INSTANCE;
         students = new UniqueStudentList();
         this.classId = ++lastId;
         this.className = name;
@@ -38,7 +38,7 @@ public class ClassList implements ReadOnlyStudentList {
      * Creates a class list instance with a default name.
      */
     public ClassList() {
-        assignments = new AssignmentList();
+        assignments = AssignmentList.INSTANCE;
         students = new UniqueStudentList();
         this.classId = ++lastId;
     }

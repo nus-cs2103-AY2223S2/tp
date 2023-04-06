@@ -70,7 +70,7 @@ public class ModelManager implements Model {
     private final FilteredList<ClassList> filteredClassLists;
     private final AlarmList alarmList;
 
-    private final AssignmentList assignmentList = new AssignmentList();
+    private final AssignmentList assignmentList = AssignmentList.INSTANCE;
     private Predicate<ClassList> activeClassListPredicate;
 
     /**

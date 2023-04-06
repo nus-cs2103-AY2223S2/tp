@@ -24,6 +24,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
+import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
@@ -62,6 +63,10 @@ public class ImportCommand extends CsvCommand {
 
     private static void throwEntryFormatError(CSVRecord record, String errMsg) throws CommandException {
         throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + Arrays.toString(record.values()) + "\". " + errMsg);
+    }
+
+    private static void testValidSubmissions() {
+
     }
 
     static Student parseFromCsvRec(CSVRecord record) throws CommandException {
@@ -113,6 +118,11 @@ public class ImportCommand extends CsvCommand {
         if (!submitStr.isBlank()) {
             Collections.addAll(submissions, submitStr.trim().split(";"));
         }
+        try {
+            AssignmentList.INSTANCE.testValidCsvSubmissions(submissions);
+        } catch (ParseException e) {
+            throwEntryFormatError(record, e.getMessage());
+        }
 
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throwEntryFormatError(record, mkMsgNoColumn(CsvUtil.KW_TAGS));
@@ -120,7 +130,7 @@ public class ImportCommand extends CsvCommand {
         final String tagStr = record.get(CsvUtil.KW_TAGS).trim();
         Set<Tag> parsedTags = null;
         try {
-            //ignore all tokens that are empty strings.
+            // ignore all tokens that are empty strings.
             parsedTags = ParserUtil.parseTags(
                     Arrays.stream(tagStr.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
@@ -184,7 +194,9 @@ public class ImportCommand extends CsvCommand {
         AppUtil.closeIfClosable(parser);
         AppUtil.closeIfClosable(reader);
         toDel.forEach(model::deleteStudent);
+        toDel.forEach(model::deleteStudentSubmission);
         toAdd.forEach(model::addStudent);
+        toAdd.forEach(model::addStudentAssignment);
         return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }
