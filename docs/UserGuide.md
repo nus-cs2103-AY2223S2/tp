@@ -38,12 +38,8 @@ Now it's time to **CONQUER** the semester!
   - [List Modules](#list-modules)
   - [List Lectures of Modules](#list-lectures-of-modules)
   - [List Videos of Lectures](#list-videos-of-lectures)
-  - [Add a Module](#add-a-module)
-  - [Add a Lecture](#add-a-lecture)
-  - [Add a Video](#add-a-video)
-  - [Edit a Module](#edit-a-module)
-  - [Edit a Lecture](#edit-a-lecture)
-  - [Edit a Video](#edit-a-video)
+  - [Add](#add)
+  - [Edit](#edit)
   - [Delete Module](#delete-module)
   - [Delete Lecture](#delete-lecture)
   - [Delete Video](#delete-video)
@@ -340,7 +336,9 @@ Examples:
 
 _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS2040S`_
 
-### Add a Module
+### Add
+
+#### Add a Module
 
 > `add {module_code} [/name {name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -363,7 +361,7 @@ Examples:
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
-### Add a Lecture
+#### Add a Lecture
 
 > `add {lecture_name} /mod {module_code} [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -383,9 +381,7 @@ Examples:
 
 - `add Week 1 /mod CS2040S /tags Intro, Important`
 
-:information_source: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
-
-### Add a Video
+#### Add a Video
 
 > `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -412,7 +408,9 @@ Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
 
-### Edit a Module
+### Edit
+
+#### Edit a Module
 
 > `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -435,7 +433,7 @@ Examples:
 
 :information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
-### Edit a Lecture
+#### Edit a Lecture
 
 > `edit {lecture_name} /mod {module_code} [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -459,7 +457,7 @@ Examples:
 
 :information_source: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
-### Edit a Video
+#### Edit a Video
 
 > `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
