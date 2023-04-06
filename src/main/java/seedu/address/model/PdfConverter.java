@@ -302,10 +302,12 @@ public class PdfConverter {
      * @param y initial y-coordinate of the text
      * @throws IOException
      */
-    public void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
+    public void setUpContentStream(String curString, PDFont font, int fontSize, float x, float y, Color color) throws IOException {
         this.contentStream.beginText();
         this.contentStream.setFont(font, fontSize);
         this.contentStream.moveTextPositionByAmount(x, y);
+        this.contentStream.setNonStrokingColor(color);
+        drawText(curString, font, fontSize);
     }
 
     /**
@@ -396,6 +398,28 @@ public class PdfConverter {
         return contentStream;
     }
 
+    public void drawText(String curString, PDFont font, int fontSize) throws IOException {
+        this.contentStream.drawString(curString);
+        this.contentStream.endText();
+        this.x += textLength(curString, font, fontSize);
+    }
+
+    public void handleNextLine(int count, PDFont font, int fontSize, float xPosition) {
+        if (count != 0) {
+            this.y -= textHeight(font, fontSize, this.margin / 2);
+        }
+        this.x = xPosition;
+    }
+
+    public void handleWrapNextPage(int count, float yPrev, List<String> maxContentWidthString, PDFont font,
+                                   int fontSize, float xPosition) throws IOException {
+        float yTemp = (count != 0) ? this.y - 2 * this.margin : yPrev - this.margin;
+        this.contentStream = handleNextPage(yTemp, maxContentWidthString, this.margin, font, fontSize);
+        this.x = xPosition;
+        this.y = yInit;
+        this.yInitTable = this.y + textHeight(font, fontSize, 0) / 2 + 2 * this.margin;
+    }
+
     /**
      * Wraps the string given to fit in the specified wrap length.
      * @param text text string
@@ -424,28 +448,13 @@ public class PdfConverter {
             }
             float yPrev = this.y;
             if (lengthUsed > wrap) {
-                if (count != 0) {
-                    this.y -= textHeight(font, fontSize, this.margin / 2);
-                }
-                this.x = xPosition;
+                handleNextLine(count, font, fontSize, xPosition);
                 lengthUsed = textLength(curString, font, fontSize);
             }
             if (this.y <= 90) {
-                float yTemp = yPrev - this.margin;
-                if (count != 0) {
-                    yTemp = this.y - 2 * this.margin;
-                }
-                contentStream = handleNextPage(yTemp, maxContentWidthString, margin, font,
-                        fontSize);
-                this.x = xPosition;
-                this.y = yInit;
-                this.yInitTable = this.y + textHeight(font, fontSize, 0) / 2 + 2 * this.margin;
+                handleWrapNextPage(count, yPrev, maxContentWidthString, font, fontSize, xPosition);
             }
-            setUpContentStream(font, fontSize, this.x, this.y);
-            this.contentStream.setNonStrokingColor(this.curColor);
-            this.contentStream.drawString(curString);
-            this.contentStream.endText();
-            this.x += textLength(curString, font, fontSize);
+            setUpContentStream(curString, font, fontSize, this.x, this.y, this.curColor);
             count += 1;
         }
         this.x = xPosition;
