@@ -1044,16 +1044,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Adding a contact
 
@@ -1062,13 +1062,13 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add n/John Doe p/98765432 g/johndoe l/Python`<br>
        Expected: Adds a contact with the name `John Doe` and the provided phone, GitHub profile, and language details.
 
-    1. Test case: `add n/John Doe`<br>
+    2. Test case: `add n/John Doe`<br>
        Expected: Adds a contact with the name `John Doe` and no other details.
 
-    1. Test case: `add n/John Doe p/abc`<br>
+    3. Test case: `add n/John Doe p/abc`<br>
        Expected: No contact is added. An error message is shown as an invalid phone number was given. An error is logged in the console.
 
-    1. Other incorrect add commands to try: `add`, `add John Doe`
+    4. Other incorrect add commands to try: `add`, `add John Doe`
        Expected: No contact is added. An error message is shown as an invalid command was given. An error is logged in the console.
 
 ### Editing a contact
@@ -1077,41 +1077,41 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all contacts using the `list` command. At least one contact in the list.
 
-    1. Test case: `edit 1 n/Dohn Joe`<br>
+    2. Test case: `edit 1 n/Dohn Joe`<br>
        Expected: First contact in the list is edited with the name `Dohn Joe`
 
-    1. Test case: `edit 1 t/friend t/owesmoney`<br>
+    3. Test case: `edit 1 t/friend t/owesmoney`<br>
        Expected: Existing tags of the first contact in the list are replaced with the tags `friend` and `owesmoney`
 
-    1. Test case: `edit 1 l/Python`<br>
+    4. Test case: `edit 1 l/Python`<br>
        Expected: The `Python` language is added to the existing languages of the first contact. An error is logged in the console.
 
-   1. Test case: `edit 1`<br>
-      Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+    5. Test case: `edit 1`<br>
+       Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
 
-   1. Test case: `edit 0`<br>
-      Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+    6. Test case: `edit 0`<br>
+       Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
 
-    1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
+    7. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
        Expected: No contact is edited. An error message is shown as an invalid command was given.
 
 ### Listing contacts
 1. Listing contacts while all contacts are being shown.
    1. Prerequisites: At least one contact in the list.
    
-   1. Test case: `list t/friend`<br>
+   2. Test case: `list t/friend`<br>
       Expected: Contacts tagged with `friend` is shown.
    
-   1. Test case: `list l/Java` <br>
+   3. Test case: `list l/Java` <br>
       Expected: Contacts with language `Java` is shown.
    
-   2. Test case: `list t/friend l/Java`<br>
+   4. Test case: `list t/friend l/Java`<br>
       Expected: Contacts with tag `friend` and language `Java` is shown.
    
-   4. Test case: `list l/`<br>
+   5. Test case: `list l/`<br>
       Expected: An error is message is shown as an invalid syntax for language is given.
    
-   5. Test case: `list 12345`<br>
+   6. Test case: `list 12345`<br>
       Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
    
 2. Listing contacts while some contacts are being shown. 
@@ -1125,7 +1125,23 @@ testers are expected to do more *exploratory* testing.
    
 ### Removing a contact's field
 
-1. _{ more test cases …​ }_
+1. Removing a contact's field while all contacts are being shown
+    1. Prerequisites: At least one contact in the shown list.
+
+    2. Test case: `remove 1 l/`<br>
+       Expected: First contact language field is removed. Language field in the person detail panel becomes empty.
+
+    3. Test case: `remove 1 l/ t/`<br>
+       Expected: First contact language and tag fields are removed. Language and tag field in the person detail card becomes empty.
+
+    4. Test case: `remove 1 t/friends`<br>
+       Expected: First contact tag is removed only if its tag name previously was `friends`. Otherwise, an error message is shown as the field does not exist in the SOCKet.
+
+    5. Test case: `remove 0 t/`<br>
+       Expected: No contact field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
+
+    6. Test case: `remove 0`<br>
+       Expected: No contact field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
 ### Deleting a contact
 
@@ -1133,18 +1149,30 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Clearing all contacts or tags
 
-1. _{ more test cases …​ }_
+1. Clearing all contacts or contacts associated with the tags while all contacts are being shown
+
+   1. Test case: `clear`<br>
+      Expected: All contacts will be cleared.
+   
+   2. Test case: `clear t/`<br>
+      Expected: All contacts will be cleared.
+   
+   3. Test case: `clear t/friends`
+      Expected: All contacts with tag `friends` will be cleared.
+   
+   4. Test case: `clear t/enemy`
+      Expected: If there are no contact with tag `enemy`, no contact will be cleared. An error message is shown as no such tag was found in the SOCket.
 
 ### Sorting contacts
 
@@ -1152,7 +1180,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing a contact's detailed information
 
-1. _{ more test cases …​ }_
+1. Viewing a contact's detail while all the contacts are being shown
+
+   1. Prerequisites: At least one project in the list.
+
+   2. Test case: `view 1`<br>
+      Expected: First contact in the list is viewed. Detailed information of the contact is displayed in the person detail panel.
+   
+   3. Test case: `view 1 t/`<br>
+      Expected: No contact is viewed. An error message is shown as an invalid command was given.
+   
+   4. Test case: `view 0`<br>
+      Expected: No contact is viewed. An error message is shown as an invalid index was given. An error is logged in the console. 
 
 ### Adding a project
 
@@ -1163,19 +1202,19 @@ testers are expected to do more *exploratory* testing.
 1. Editing a project while all projects are being shown
     1. Prerequisites: At least one project in the list.
 
-    1. Test case: `editpj 1 n/Project Bravo`<br>
+    2. Test case: `editpj 1 n/Project Bravo`<br>
        Expected: First project in the list is edited with the project name `Project Bravo`
 
-    1. Test case: `editpj 1 r/BravoRepo`<br>
+    3. Test case: `editpj 1 r/BravoRepo`<br>
        Expected: Existing repo name of the first project in the list are replaced with the repo name `BravoRepo`
 
-    1. Test case: `editpj 1`<br>
+    4. Test case: `editpj 1`<br>
        Expected: No project is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
 
-    1. Test case: `editpj 0`<br>
+    5. Test case: `editpj 0`<br>
        Expected: No project is edited. An error message is shown as an invalid index was given. An error is logged in the console.
 
-    1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
+    6. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
        Expected: No project is edited. An error message is shown as an invalid command was given.
 
 ### Deleting a project
@@ -1184,27 +1223,27 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: At least one project in the shown list.
 
-    1. Test case: `deletepj 1`<br>
+    2. Test case: `deletepj 1`<br>
        Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `deletepj 0`<br>
+    3. Test case: `deletepj 0`<br>
        Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `deletepj`, `deletepj x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `deletepj`, `deletepj x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Removing a project's field
 
 1. Removing a project while all projects are being shown
-   2. Prerequisites: At least one project in the shown list.
+   1. Prerequisites: At least one project in the shown list.
    
-   3. Test case: `removepj 1 h/`<br>
+   2. Test case: `removepj 1 h/`<br>
       Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
    
-   4. Test case: `removepj 1 h/ r/`<br>
+   3. Test case: `removepj 1 h/ r/`<br>
       Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
    
-   5. Test case: `removepj 1 r/first-project`<br>
+   4. Test case: `removepj 1 r/first-project`<br>
       Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
    
    5. Test case: `removepj 0 h/`<br>
