@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.event.EventAddCommand;
-import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.commands.event.EventDeleteCommand;
+import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**

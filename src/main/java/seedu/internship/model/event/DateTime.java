@@ -9,14 +9,14 @@ import java.time.format.ResolverStyle;
 /**
  * Parses Date and Time String
  */
-abstract public class DateTime implements Comparable<DateTime> {
+public abstract class DateTime implements Comparable<DateTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Date not in the format DD/MM/YYYY HHMM";
 
-    public final static String NUMERIC_DATE_TIME_FORMAT = "d/M/uuuu HHmm";
+    public static final String NUMERIC_DATE_TIME_FORMAT = "d/M/uuuu HHmm";
 
     // Fix Adapted from : https://stackoverflow.com/questions/56029619/localdate-is-silently-correcting-bad-dates
-    public final static DateTimeFormatter NUMERIC_DATE_TIME_FORMATTER =
+    public static final DateTimeFormatter NUMERIC_DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern((NUMERIC_DATE_TIME_FORMAT)).withResolverStyle(ResolverStyle.STRICT);
 
     public static final String ALPHANUMERIC_DATE_TIME_FORMAT = "E,dd'%s' MMMM,yyyy ha";

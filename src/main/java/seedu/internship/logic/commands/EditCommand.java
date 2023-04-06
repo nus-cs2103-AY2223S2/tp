@@ -59,6 +59,8 @@ public class EditCommand extends Command {
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
+     * Creates Edit Command.
+     *
      * @param index of the person in the filtered person list to edit
      * @param editInternshipDescriptor details to edit the person with
      */
@@ -98,7 +100,8 @@ public class EditCommand extends Command {
 
         model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
         ObservableList<Event> events = model.getFilteredEventList();
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship), ResultType.SHOW_INFO, editedInternship, events);
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
+                ResultType.SHOW_INFO, editedInternship, events);
     }
 
     /**

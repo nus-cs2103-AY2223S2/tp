@@ -3,6 +3,7 @@ package seedu.internship.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.CommandResult;
@@ -13,6 +14,9 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
+/**
+ * Deletes an event from the event catalogue.
+ */
 public class EventDeleteCommand extends EventCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "

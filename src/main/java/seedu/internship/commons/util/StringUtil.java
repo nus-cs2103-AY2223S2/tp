@@ -48,6 +48,12 @@ public class StringUtil {
         return t.getMessage() + "\n" + sw.toString();
     }
 
+    /**
+     * Checks if String input is an Integer
+     *
+     * @param s Input String.
+     * @return True if input String can be parsed to an Integer.
+     */
     public static boolean isInteger(String s) {
         requireNonNull(s);
 

@@ -55,12 +55,13 @@ public class DeleteCommand extends Command {
         // Necessary to create an unmofifable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
-        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
-            Event e  = eventListToDeleteArray[i];
+        for (int i = 0; i < eventListToDeleteArray.length; i++) {
+            Event e = eventListToDeleteArray[i];
             // Delete the Events associated with that iternship
             model.deleteEvent(e);
         }
-         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
+        return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete),
+                ResultType.HOME);
     }
 
     @Override
