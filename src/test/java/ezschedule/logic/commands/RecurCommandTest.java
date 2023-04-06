@@ -220,8 +220,26 @@ public class RecurCommandTest {
         String expectedMonthApr = "April";
         String actualMonthApr = validDailyRecurCommandStub.intToStringMonth(4);
 
+        String expectedMonthMay = "May";
+        String actualMonthMay = validDailyRecurCommandStub.intToStringMonth(5);
+
         String expectedMonthJun = "June";
         String actualMonthJun = validDailyRecurCommandStub.intToStringMonth(6);
+
+        String expectedMonthJul = "July";
+        String actualMonthJul = validDailyRecurCommandStub.intToStringMonth(7);
+
+        String expectedMonthAug = "August";
+        String actualMonthAug = validDailyRecurCommandStub.intToStringMonth(8);
+
+        String expectedMonthSep = "September";
+        String actualMonthSep = validDailyRecurCommandStub.intToStringMonth(9);
+
+        String expectedMonthOct = "October";
+        String actualMonthOct = validDailyRecurCommandStub.intToStringMonth(10);
+
+        String expectedMonthNov = "November";
+        String actualMonthNov = validDailyRecurCommandStub.intToStringMonth(11);
 
         String expectedMonthDec = "December";
         String actualMonthDec = validDailyRecurCommandStub.intToStringMonth(12);
@@ -230,7 +248,13 @@ public class RecurCommandTest {
         assertTrue(expectedMonthFeb.equals(actualMonthFeb));
         assertTrue(expectedMonthMar.equals(actualMonthMar));
         assertTrue(expectedMonthApr.equals(actualMonthApr));
+        assertTrue(expectedMonthMay.equals(actualMonthMay));
         assertTrue(expectedMonthJun.equals(actualMonthJun));
+        assertTrue(expectedMonthJul.equals(actualMonthJul));
+        assertTrue(expectedMonthAug.equals(actualMonthAug));
+        assertTrue(expectedMonthSep.equals(actualMonthSep));
+        assertTrue(expectedMonthOct.equals(actualMonthOct));
+        assertTrue(expectedMonthNov.equals(actualMonthNov));
         assertTrue(expectedMonthDec.equals(actualMonthDec));
     }
 
