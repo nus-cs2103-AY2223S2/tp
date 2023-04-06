@@ -250,8 +250,7 @@ Food items are being sorted by their expiry dates.
 Creates a new pre-defined tag in WIFE.
 
 Format: `createtag n/TAG NAME [n/TAG NAME]...`
-* Creates new `Tag` with `Tag Name`
-
+* `TAG NAME` has a maximum limit of **15 characters**.
 Example:
 `createtag n/Stir Fry n/Soup` displays
 ```markdown
@@ -272,7 +271,7 @@ Pre-Defined Tags:
 * `Dairy`
 
 Format: `tag INDEX n/TAG NAME`
-* Tag the food item of `INDEX` with `TAG NAME`
+* Each food item can have a maximum of 4 tags.
 * Only one tag can be tagged to a food item per command
 * Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
