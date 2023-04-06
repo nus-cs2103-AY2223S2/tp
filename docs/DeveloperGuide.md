@@ -605,12 +605,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
 | `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
 | `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
-| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
-| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better |
-| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting |
-| `* *`    | user | be able to categorize my contact lists                         | easily find someone |
-| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
-| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
+| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                                         |
+| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better                                               |
+| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | make sure i wouldn't miss a meeting                                   |
+| `* *`    | user | be able to categorize my contact lists                         | easily find someone                                                   |
+| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | remember my tasks                                                     |
+| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient                                          |
 
 ### Use cases
 
@@ -629,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -652,7 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
     Use case ends.
   
@@ -691,7 +691,7 @@ Similar to UC02
     Use case ends.
 
 **Extensions**
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
     Use case ends.
 
@@ -732,7 +732,7 @@ Similar to UC03
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -753,7 +753,7 @@ Similar to UC03
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -808,7 +808,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+    Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
