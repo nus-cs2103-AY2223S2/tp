@@ -881,7 +881,7 @@ The `list` command will allow users to view all the contacts saved in `EduMate`.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
 * `list`: lists all contacts in the EduMate Application.
 
@@ -895,7 +895,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:** <br>
+:information_source: **Command Format:** <br>
 
 * `exit`: Exits the EduMate Application.
 
