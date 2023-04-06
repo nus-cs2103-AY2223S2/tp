@@ -990,8 +990,8 @@ The `organise` command will set a meet up with the time and place for all partic
 
 :information_source: **Command Formats:** <br>
 
-* `organise INDEX` : Takes the recommendation at the specified `INDEX` and saves it.
-* `organise RECOMMENDATION_INDEX CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information. `RECOMMENDATION_INDEX` refers to the index of the recommendation, while `CONTACT_INDEX...` refers to the indices of the participants.
+* `organise RECOMMENDATION_INDEX` : Takes the recommendation at the specified index and saves it.
+* `organise CONTACT_INDEX... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information. `CONTACT_INDEX...` refers to the indices of the participants.
 
 </div>
 
