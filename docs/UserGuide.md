@@ -116,6 +116,7 @@ Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GRO
 * Groups can only be added if it has been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
     specifying any tags/groups after it.
+* Adding duplicate groups/tags to a `Person` would not result in multiple groups/tags created.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.

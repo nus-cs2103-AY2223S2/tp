@@ -519,8 +519,8 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 5. The `LogicManager` then executes the `ExportCommand` instance which obtains the person from the 
    `UniquePersonList`.
 6. Execution of `ExportCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
-7. `LogicManager` then passes the person obtained from `ExportCommand` to the method `exportPerson()` of Storage
-8. Storage then creates a json file of the person to be exported in data/export.json
+7. `LogicManager` then passes the person obtained from `ExportCommand` to the method `exportPerson()` of `Storage`
+8. `Storage` then creates a json file of the person to be exported in data/export.json
 
 #### Design consideration
 
@@ -541,6 +541,25 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 * **Justification**
     * Purpose of exporting is to export one's details and send to their friends instead of exporting multiple persons' details 
     * Exporting multiple persons' details increase the length of the command which leads to more error 
+
+**Aspect: Exporting all details**
+* **Alternative 1:** Export all details of a `Person`.
+    * Pros:
+        * Users can export all details of a `Person` including `Groups` and `Tags`
+        * Easier to implement
+    * Cons:
+        * Exporting groups and tags is not used in import
+
+* **[Current implementation] Alternative 2:** Export all details of a `Person` except `Group` and `Tag`
+    * Pros:
+        * Less bug prone as lesser details are exported.
+        * Do not have to recreate a new UniqueGroupList for exported `Person`.
+    * Cons:
+        * Harder to implement
+
+* **Justification**
+    * As import does not import `Group` and `Tag`. Exporting all details of a `Person` is not required.
+    * Different users may have different `Tag` or `Group` for their contact. Hence `Group` and `Tag` is not exported/imported.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -800,7 +819,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Domain rules: The system should ideally be an NUS student.
 8.  Notes about project scope: The product is not required to handle people with the same full name
 
-*{More to be added}*
 
 ### Glossary
 
