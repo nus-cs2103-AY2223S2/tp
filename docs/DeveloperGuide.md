@@ -42,13 +42,10 @@ Please refer to the [About Us](AboutUs.md) page for information about the develo
 ## **About MyLib**
 This Developer Guide provides in-depth documentation on how MyLib is designed and implemented. It covers the architecture of MyLib, detailed specifications on smaller pieces of the design, and an outline of all parts of the software and how they will work.
 
-You can use this guide to maintain and evolve FoodRem.
+You can use this guide to maintain and evolve MyLib.
 
 This Developer Guide is accurate as of 30 March 2023.
 
-### Setting up, getting started
-
-Head over to [Setting up and getting started](#SettingUp.md) to get started!
 <div style="page-break-after: always;"></div>
 
 ## **Design**
@@ -659,54 +656,201 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **Appendix: Instructions for manual testing**
+## **Appendix A: Instructions for Manual Testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions and test cases to test MyLib manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** These instructions only provide a starting point for testers to work on.
+Testers are expected to do more *exploratory* testing. Also, each test case is independent of the other test cases.
 
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
-1. Initial launch
+1. **Initial launch**
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the [MyLib jar file](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases) and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file.
 
-1. Saving window preferences
+   **Expected**: Shows the GUI with a set of sample bookmarks. The window size may not be optimal.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+2. **Saving window preferences**
 
-1. _{ more test cases …​ }_
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-### Deleting a bookmark
+    2. Re-launch the app by double-clicking the jar file.<br>
 
-1. Deleting a bookmark while all bookmarks are being shown
+   **Expected**: The most recent window size and location is retained.
 
-   1. Prerequisites: List all bookmark using the `list` command.
+### Listing all Bookmarks
 
-   1. Test case: `delete 1`<br>
-      Expected: First bookmark is deleted from the list. Details of the deleted bookmark shown in the status message. Timestamp in the status bar is updated.
+1. `list`
 
-   1. Test case: `delete 0`<br>
-      Expected: No bookmark is deleted. prompts user to enter valid index in the status message. Status bar remains the same.
+   **Expected**: All bookmark entries are listed out and displayed in the List Panel.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size or x is not an integer)<br>
-      Expected: No bookmark is deleted. prompts user to enter valid index in the status message. Status bar remains the same.
 
-1. _{ more test cases …​ }_
+2. `list hello`
+
+   **Expected**: All bookmark entries are listed out and displayed in the List Panel.
+
+### Adding a Bookmark
+
+1. `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature`
+
+   **Expected**: A new bookmark entry is successfully added. The bookmark will have Title `The Odyssey`, author `Homer`, progress `Vol 1 Chapter 1 Page 1`, genre `Fantasy`, rating `4`, URL `http://classics.mit.edu/Homer/odyssey.html` and tag `Literature`. The View Panel displays all these information except URL, and a success message is displayed in the Result Display.
+
+2. `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
+
+   **Expected**: A new bookmark entry is successfully added. The new bookmark entry will have Title `Hobbit`, author `J. R. R. Tolkien`, progress `Vol 1 Chapter ~ Page 256`, Rating `4` and genre `Fantasy`. The View Panel displays the information for this new bookmark entry, where tag is will be empty. A success message is displayed in the Result Display.
+
+3. `add n/Chainsaw Man r/5`
+
+   **Expected**: No new bookmark is added. An error message is displayed in the Result Display. This is because the compulsory field Genre is missing.
+
 <div style="page-break-after: always;"></div>
 
-### Saving data
+### Editing a Bookmark
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
 
-1. Dealing with missing/corrupted data files
+1. `edit 2 n/Kimetsu No Yaiba`
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   **Expected**: The Title of the second bookmark is updated to `Kimetsu No Yaiba`. The View Panel displays the updated details of the second bookmark entry.
 
-1. _{ more test cases …​ }_
+2. `edit 2 n/Darwin's Game r/1`
+
+   **Expected**: The Title and Rating of the second bookmark entry are updated to`Darwin's Game` and `1` respectively. The View Panel displays the updated details of the second bookmark entry.
+
+3. `edit 2 t/`
+
+   **Expected**: All previous tags for the second bookmark entry are removed. The View Panel displays the updated details fo the second bookmark
+   entry.
+
+4. Unsuccessful editing after finding a bookmark
+    1.  `find n/Solo Leveling t/Cheats`
+    2.  `edit 3 n/No Game No Life`
+
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entries, so `3` is not a valid value for the
+   `INDEX` field.
+
+5. `edit`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1 optional field must be specified.
+
+<div style="page-break-after: always;"></div>
+
+### Viewing a Bookmark
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
+1. `view 1`
+
+   **Expected**: The View Panel displays the details for the first Bookmark.
+
+2. Successful viewing after finding
+
+    1. `find n/Solo n/Cheats`
+    2. `view 1`
+
+   **Expected**: The View Panel displays the details for the first Bookmark entry in the filtered bookmark list. In this case, it displays the details for the entry whose Title name is `Solo Leveling`.
+
+3. Unsuccessful viewing after finding
+    1. `find n/Solo n/Cheats`
+    2. `view 2`
+
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered bookmark list, there is only 1 bookmark entry, implying that`2` is not a valid value for the `INDEX` field.
+
+4. `view -1`
+
+   **Expected**: An error message is displayed in the Result Display. This is because the `INDEX` field must be a positive integer greater than or equal to 1.
+
+<div style="page-break-after: always;"></div>
+
+### Finding Bookmarks
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
+1. `find n/Solo`
+
+   **Expected**: The List Panel shows the bookmark entry whose Title matches with`Solo`. A success message is displayed in the Result Display.
+
+2. `find n/Solo n/Defense`
+
+   **Expected**: The List Panel shows the bookmark entries whose Title  matches with `Defense` as find ignores first prefix if more than one of same prefix is given. A success message is displayed in the Result Display.
+
+3. `find`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1 optional field must be specified.
+
+5. `find t/Weird`
+
+   **Expected**: An error message is displayed in the Result Display. This is because `Weird` is not in the valid tag list.
+
+<div style="page-break-after: always;"></div>
+
+
+### Deleting bookmarks
+Prerequisites: List all bookmarks using the `list` command. Multiple bookmarks are present in the list.
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
+
+1. `delete 1`
+
+   **Expected**: The first bookmark entry in the List Panel is deleted. A success message is displayed in the Result Display.
+
+2. `delete 1 2`
+
+   **Expected**: An error message is displayed in the Result Display. This is because delete only takes in 1 positive index.
+
+3. `delete`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1 index must be specified.
+
+3. Deleting bookmark after finding
+    1. `find n/Solo`
+    2. `delete 1`
+
+   **Expected**: The first bookmark of title `Solo Leveling` is deleted. A success message is displayed in the Result Display.
+
+### Clear all bookmark
+
+1. `clear`
+
+   **Expected**: All bookmark entries are deleted. 
+
+
+2. `clear hello`
+
+   **Expected**: All bookmark entries are deleted. 
+
+### Get Help
+
+1. `help`
+
+   **Expected**: The help window opens.
+
+
+2. `help hello`
+
+   **Expected**: The help window opens.
+
+### Exit MyLib
+
+1. `exit`
+
+   **Expected**: MyLib closes.
+
+
+2. `exit hello`
+
+   **Expected**: MyLib closes.
+
+
+### Save Data
+
+1. Missing Data File
+
+   Prerequisite: There is no file called `library.json` in the `data` subfolder of the folder
+   where MyLib is located.
+
+    1. If you have an existing `library.json` file, delete the file.
+    2. Double-click MyLib's jar file.
+
+   **Expected**: MyLib launches with the sample bookmark data shown in the List Panel. There
+   is a total of 4 bookmark entries.
