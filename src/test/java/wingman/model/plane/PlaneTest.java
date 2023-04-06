@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Test;
-import wingman.model.location.Location;
-
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import wingman.model.location.Location;
 
 public class PlaneTest {
     private final String model1 = "model";
@@ -28,6 +29,11 @@ public class PlaneTest {
         assertDoesNotThrow(() -> new Plane(model1, age1));
         assertDoesNotThrow(() -> new Plane(model2, age1));
         assertDoesNotThrow(() -> new Plane(model1, age2));
+    }
+
+    @Test
+    public void testGetModel() {
+        assertEquals(model1, plane1.getModel());
     }
 
     @Test
