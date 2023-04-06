@@ -933,15 +933,15 @@ with (ENTER).
 ## Appendix: Planned Enhancements
 
 2. Limiting number of characters for a field or wrapping text to fix the issue
-    of long strings not visible (ellipses or truncated)
+    of long strings not visible in a card (ellipses or truncated)
    * We are considering two alternatives to solve this issue in future iterations: 
-     * First solution: Limit the number of characters in a field. This will make 
+     * First solution: Limit the number of characters for a field. This will make 
      sure that the number of characters will not exceed the screen size and will 
      not take up too much space. For example, for a screen of 1366 pixels wide, 
      can fix approximately 170 characters at regular font size. As around 40% width 
-     of the screen size is used by entity panel, around 68 characters can fit in 
-     the full screen size. To make up for the field name such as 'Name: ', we 
-     put 60 as the maximum capacity for number of characters for a field. 
+     of the screen size is used by a panel such as entity panel, around 68 characters 
+     can fit in the full screen size. To make up for the field name such as 'Name: ', 
+     we put 60 as the maximum capacity for number of characters for a field. 
      * Second solution: Wrap the text around using `TextFlow` and `Text` in 
      JavaFX, even if the word needs to be broken. For this approach, the 
      number of characters that can be fit onto a line will still be needed. 
