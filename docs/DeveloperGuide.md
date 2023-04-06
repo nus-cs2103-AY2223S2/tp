@@ -10,23 +10,24 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ## Table of Contents
 
-1. [Implementation](#implementation)
-   1.  [Design](#design) 
-   2. [Architecture](#architecture)
-      1. [UI](#ui-component)
-      2. [Logic](#logic-component)
-      3. [Model](#model-component)
-      4. [Storage](#storage-component)
-   3. [Feature Implementation](#implementation-a-nameimplementation-a)
-      1. [Add module](#add-module-feature)
-      2. [Find module](#find-module-feature)
-      3. [Delete module](#delete-module-feature)
-      4. [Sort modules](#sort-modules-feature)
-      5. [View Progress/View modules](#view-progress--modules-feature)
-2. [Appendix: Requirements](#appendix)
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up)
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI component](#ui-component)
+   3. [Logic component](#logic-component)
+   4. [Model component](#model-component)
+   5. [Storage component](#storage-component)
+   6. [Common classes](#common-classes)
+4. [Implementation](#implementation)
+   1. [Add module feature](#add-module-feature)
+   2. [Find module feature](#find-module-feature)
+   3. [Delete module feature](#delete-module-feature)
+   4. [Sort modules feature](#sort-modules-feature)
+   5. [View progress/modules feature](#view-feature)
+5. [Documentation, logging, testing, configuration, dev-ops](#miscellaneous)
+6. [Appendix: Requirements](#appendix)
    1. [Product Scope](#product-scope)
-        1. Target User Profile
-        2. Value Proposition
    2. [User Stories](#user-stories)
    3. [Use Cases](#use-cases)
    4. [Non-Functional Requirements](#non-functional-requirements)
@@ -34,26 +35,26 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Acknowledgements** <a name="acknowledgements"></a>
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up, getting started** <a name="setting-up"></a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Design** <a name="design"></a>
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### Architecture <a name="architecture"></a>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -94,7 +95,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component <a name="ui-component"></a>
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -131,7 +132,7 @@ The `Ui` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` and `DegreeProgression` objects residing in the `Model`.
 
-### Logic component
+### Logic component <a name="logic-component"></a>
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -160,7 +161,7 @@ How the parsing works:
 * When called upon to parse a user command, the `ModTrekParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModTrekParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### Model component <a name="model-component"></a>
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -178,7 +179,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### Storage component <a name="storage-component"></a>
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -189,7 +190,7 @@ The `Storage` component,
 * inherits from both `DegreeProgressionStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common classes <a name="common-classes"></a>
 
 Classes used by multiple components are in the `seedu.modtrek.commons` package.
 
@@ -199,7 +200,7 @@ Classes used by multiple components are in the `seedu.modtrek.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### **Add module feature**
+### **Add module feature** <a name="add-module-feature"></a>
 
 #### About this feature
 
@@ -244,7 +245,7 @@ The following activity diagram shows what happens when a user executes an `add` 
 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
 
-### **Find module feature**
+### **Find module feature** <a name="find-module-feature"></a>
 
 #### About this feature
 
@@ -293,7 +294,7 @@ The following activity diagram shows what happens when a user executes a `find` 
 
 ![Activity diagram of find command](images/FindActivityDiagram.png)
 
-### **Delete module feature**
+### **Delete module feature** <a name="delete-module-feature"></a>
 
 #### About this feature
 The delete feature allows users to delete multiple modules via the command
@@ -350,7 +351,7 @@ The following sequence diagram shows how the `delete`:
 The following activity diagram shows what happens when a user executes a `delete` command:
 ![Activity Diagram of delete command](images/DeleteActivityDiagram.png)
 
-### **Sort modules feature**
+### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
 The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
@@ -400,7 +401,7 @@ As the user adds more modules, he/she might find it more useful to look at the l
 However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, 
 the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
 
-### **View progress / modules feature**
+### **View progress/modules feature** <a name="view-feature"></a>
 
 #### About this feature
 The View feature displays either the degree progress or modules tracked by the app on the left panel (`ResultsSection`) of the GUI. The syntax of the command for this feature is `view <VIEW_TARGET>`, where `<VIEW_TARGET>` can either be `progress` or `modules`.
@@ -468,7 +469,7 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops** <a name="miscellaneous"></a>
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -478,10 +479,10 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** <a name="appendix"></a>
 
 
-### Product scope
+### Product scope <a name="product-scope"></a>
 
 **Target user profile**:
 
@@ -500,7 +501,7 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 * Offers a higher level of convenience, since the user can access module features within clicks on a keyboard
 
 
-### User stories
+### User stories <a name="user-stories"></a>
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -522,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Use cases
+### Use cases <a name="use-cases"></a>
 
 (For all use cases below, the **System** is the `MODTrek` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -728,7 +729,7 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Non-Functional Requirements
+### Non-Functional Requirements <a name="non-functional-requirements"></a>
 
 1.  The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The application should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
@@ -740,7 +741,7 @@ Use case ends.
 
 *{More to be added}*
 
-### Glossary
+### Glossary <a name="glossary"></a>
 
 |        Term        |                                                                                                                             Explanation                                                                                                                            |
 |:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
