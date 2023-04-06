@@ -1091,17 +1091,4 @@ public class Shop implements ReadOnlyShop {
     //        // TODO: modify this
     //    }
     //
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof Shop // instanceof handles nulls
-//                && customers.equals(((Shop) other).customers));
-//    }
-
-//    @Override
-//    public int hashCode() {
-//        return customers.hashCode();
-//    }
-
-    //// Others
 }

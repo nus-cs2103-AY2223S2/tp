@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;

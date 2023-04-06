@@ -31,7 +31,7 @@ public class DeletePartCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().deletePart(userString);
-        return new CommandResult(String.format(MESSAGE_DELETE_PART_SUCCESS, userString), Tab.PARTS);
+            return new CommandResult(String.format(MESSAGE_DELETE_PART_SUCCESS, userString), Tab.PARTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

@@ -13,19 +13,19 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "removeappointmenttech";
     public static final String MESSAGE_SUCCESS_FORMAT = "Technician %d unassigned from Appointment %d";
     public static final String COMMAND_USAGE =
-        COMMAND_WORD + ": Unassigns an existing technician from an existing appointment. "
-            + "Parameters: "
-            + PREFIX_TECHNICIAN_ID + "TECHNICIAN_ID "
-            + PREFIX_SERVICE_ID + "SERVICE_ID "
-            + "Example Usage: "
-            + PREFIX_TECHNICIAN_ID + "2 "
-            + PREFIX_SERVICE_ID + "3";
+            COMMAND_WORD + ": Unassigns an existing technician from an existing appointment. "
+                    + "Parameters: "
+                    + PREFIX_TECHNICIAN_ID + "TECHNICIAN_ID "
+                    + PREFIX_SERVICE_ID + "SERVICE_ID "
+                    + "Example Usage: "
+                    + PREFIX_TECHNICIAN_ID + "2 "
+                    + PREFIX_SERVICE_ID + "3";
 
     private final int techId;
     private final int appointmentId;
 
     /**
-     * @param techId    ID of technician
+     * @param techId        ID of technician
      * @param appointmentId ID of appointment
      */
     public RemoveTechnicianFromAppointmentCommand(int techId, int appointmentId) {
@@ -41,9 +41,9 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
         try {
             model.getShop().removeTechnicianFromAppointment(techId, appointmentId);
             model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == appointmentId)
-                .findFirst().orElse(null));
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
-                Tab.APPOINTMENTS);
+                    .findFirst().orElse(null));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
+                    Tab.APPOINTMENTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

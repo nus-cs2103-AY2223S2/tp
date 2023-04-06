@@ -31,7 +31,7 @@ public class ViewPartCommand extends Command {
         try {
             model.getShop().getPartQty(userString);
             model.updateFilteredPartMap(e -> e.getKey().equalsIgnoreCase(userString));
-        return new CommandResult(String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW), Tab.PARTS);
+            return new CommandResult(String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW), Tab.PARTS);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

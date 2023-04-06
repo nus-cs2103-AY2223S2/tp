@@ -19,16 +19,16 @@ import seedu.address.model.service.ServiceStatus;
 public class AddServiceCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addservice";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a service to the shop. "
-        + "Parameters: "
-        + PREFIX_VEHICLE_ID + "VEHICLE ID "
-        + PREFIX_SERVICE_DESCRIPTION + "DESCRIPTION "
-        + "Optional: " + PREFIX_SERVICE_DURATION + "SERVICE DURATION "
-        + "Optional: " + PREFIX_SERVICE_STATUS + "STATUS "
-        + "Example: " + COMMAND_WORD + " "
-        + PREFIX_VEHICLE_ID + "10 "
-        + PREFIX_SERVICE_DURATION + "8 "
-        + PREFIX_SERVICE_STATUS + "in progress "
-        + PREFIX_SERVICE_DESCRIPTION + "Customer says abc";
+            + "Parameters: "
+            + PREFIX_VEHICLE_ID + "VEHICLE ID "
+            + PREFIX_SERVICE_DESCRIPTION + "DESCRIPTION "
+            + "Optional: " + PREFIX_SERVICE_DURATION + "SERVICE DURATION "
+            + "Optional: " + PREFIX_SERVICE_STATUS + "STATUS "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_VEHICLE_ID + "10 "
+            + PREFIX_SERVICE_DURATION + "8 "
+            + PREFIX_SERVICE_STATUS + "in progress "
+            + PREFIX_SERVICE_DESCRIPTION + "Customer says abc";
 
     public static final String MESSAGE_SUCCESS = "New service added";
     private final int vehicleId;
@@ -67,9 +67,9 @@ public class AddServiceCommand extends RedoableCommand {
         requireNonNull(model);
         try {
             model.getShop().addService(vehicleId, entryDate, description,
-                estimatedFinishDate, serviceStatus);
+                    estimatedFinishDate, serviceStatus);
             model.selectService(lst -> lst.get(lst.size() - 1));
-        return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
+            return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

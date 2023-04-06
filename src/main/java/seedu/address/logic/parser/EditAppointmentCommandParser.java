@@ -28,6 +28,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     /**
      * Parses the given {@code String} of arguments in the context of the EditAppointment
      * and returns an EditAppointment object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditAppointmentCommand parse(String args) throws ParseException {
@@ -44,7 +45,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         int appointmentId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get());
         Optional<Integer> customerId = Optional.empty();
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
-                customerId = Optional.of(ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
+            customerId = Optional.of(ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
         } // Invalid customer Id handled by EditAppointmentCommand
 
         Optional<LocalDateTime> dateTime = Optional.empty();
