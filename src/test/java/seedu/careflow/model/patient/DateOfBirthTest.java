@@ -53,6 +53,7 @@ public class DateOfBirthTest {
         assertTrue(DateOfBirth.isValidBirthDate("13/11/2022"));
         assertTrue(DateOfBirth.isValidBirthDate("13.11.2022"));
         assertTrue(DateOfBirth.isValidBirthDate("13-11-2022"));
+        assertTrue(DateOfBirth.isValidBirthDate("01-01-1900")); // check for boundary date
         assertTrue(DateOfBirth.isValidBirthDate("28-02-2022")); // check for non leap year
         assertTrue(DateOfBirth.isValidBirthDate("29-02-2020")); // check for leap year
         assertTrue(DateOfBirth.isValidBirthDate("13/11/22"));
