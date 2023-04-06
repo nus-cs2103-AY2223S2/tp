@@ -6,8 +6,8 @@
 
 1. Remodelling of AB3's `Model`, `Logic`, and `Storage` interfaces
 
-2. Implemented `undo`, `find`, `sort` commands
-3. Contributed to `
+2. Implemented `undo`, `find`, `sort`, and navigation commands
+3. Contributed to `add`, `edit`, `delete` commands
 4. Implemented page navigation (back-end)
 5. Add additional parsing methods better suited for the added commands
 
