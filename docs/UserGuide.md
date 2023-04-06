@@ -1,6 +1,6 @@
 ---
 layout: page
-title: HMHero User Guide
+title: User Guide
 ---
 
 ## Table of Contents
