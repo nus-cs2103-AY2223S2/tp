@@ -396,11 +396,11 @@ The above activity diagram does not include the mapping of the UP and DOWN keys 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the information of the user's contacts i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the command history i.e., all command strings (which are contained in a `ArrayList<String>` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* maintains a _filtered_ and _sorted_ list of currently selected persons, which can be accessed as an unmodifiable `ObservableList<Person>`. This list is observable, allowing for easy UI integration with automatic updates when data changes.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* does not depend on any of the other three components. This means that it can function independently and make sense on its own, without relying on other components.
 
 ### **Person**
 
