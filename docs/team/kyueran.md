@@ -38,6 +38,7 @@ Given below are my contributions to the project.
     * What it does: The `sort ORDER` (`ORDER = asc or desc`) feature will receive either `asc` to sort recipes in ascending order of price or `desc` to sort recipes in descending order of price.
     * Justification: Other than filtering recipe by price condition, we want to help student chefs on a tight budget decide what to cook by seeing the cheapest to most expensive recipes in the RecipeBook.
     * Highlights: To accomplish this, I first used the parser to perform input validation on the parameters. Next, I obtained the list of recipes from the model then used the `sort` function from `Java Collections`. Finally, I set the recipe book to the sorted version to be displayed in the UI.
+
 * **Project management**:
   * Create the Github organisation, set milestones and setup code coverage for the repository. 
   * Liaise with team members on how to split the work for v1.2 and decided on working on individual components (`Model`, `Logic`, `Parser`, `UI`, `Storage`). I took the `Model` component and coordinated with the team on what fields and methods they required from `Model` which will define how the other components should interact with our custom Recipe objects (Morph project). The `Model` is the first code-related PR to be pushed for the other components to start work. [\#75](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/75)
@@ -71,3 +72,4 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trival review comments): [\#101](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/101),
   [\#140](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/140),
   [\#163](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/163)
+  
