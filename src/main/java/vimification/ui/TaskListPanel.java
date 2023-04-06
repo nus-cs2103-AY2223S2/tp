@@ -36,7 +36,7 @@ public class TaskListPanel extends UiPart<VBox> {
     public TaskListPanel(UiTaskList taskList) {
         super(FXML);
         this.taskList = taskList;
-        taskListView.setItems(taskList.getInternalList());
+        taskListView.setItems(taskList.getUiSource());
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 

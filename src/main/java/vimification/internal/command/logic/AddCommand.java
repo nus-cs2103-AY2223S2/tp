@@ -8,7 +8,7 @@ import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
 /**
- * Creates a new task and adds it to the application.
+ * Creates a new task and adds it to the list.
  */
 public class AddCommand extends UndoableLogicCommand {
 
@@ -35,7 +35,7 @@ public class AddCommand extends UndoableLogicCommand {
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.pop();
+        taskList.removeLast();
         return new CommandResult(UNDO_MESSAGE);
     }
 

@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import vimification.common.util.JsonUtil;
 import vimification.model.MacroMap;
 
-public class JsonMacroMapStorage {
+public class JsonMacroMapStorage implements MacroMapStorage {
 
     private Path filePath;
 
@@ -14,16 +14,20 @@ public class JsonMacroMapStorage {
         this.filePath = filePath;
     }
 
+    @Override
     public Path getMacroMapFilePath() {
         return filePath;
     }
 
+    @Override
     public MacroMap readMacroMap() throws IOException {
-        return JsonUtil.readJsonFile(filePath, JsonAdaptedMacroMap.class).toModelType();
+        return JsonUtil
+                .readJsonFile(filePath, JsonAdaptedMacroMap.class)
+                .toModelType();
     }
 
+    @Override
     public void saveMacroMap(MacroMap macroMap) throws IOException {
         JsonUtil.saveJsonFile(new JsonAdaptedMacroMap(macroMap), filePath);
     }
-
 }

@@ -3,7 +3,6 @@ package vimification.model;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
-import java.util.stream.Stream;
 
 import vimification.internal.command.logic.UndoableLogicCommand;
 
@@ -39,10 +38,6 @@ public class CommandStack {
 
     public boolean isEmpty() {
         return commands.isEmpty();
-    }
-
-    public Stream<UndoableLogicCommand> stream() {
-        return commands.stream();
     }
 
     @Override

@@ -20,7 +20,9 @@ public class EditCommand extends UndoableLogicCommand {
 
     private final Index targetIndex;
     private final EditRequest request;
+
     private Task oldTask = null;
+    private int actualIndex = 0;
 
     public EditCommand(Index targetIndex, EditRequest request) {
         this.targetIndex = targetIndex;
@@ -29,8 +31,8 @@ public class EditCommand extends UndoableLogicCommand {
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        int index = targetIndex.getZeroBased();
-        Task oldTask = taskList.get(index);
+        actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
+        Task oldTask = taskList.get(actualIndex);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
         if (request.getEditedTitle() != null) {
@@ -49,14 +51,14 @@ public class EditCommand extends UndoableLogicCommand {
             newTask.removeLabel(pair.getFirst());
             newTask.addLabel(pair.getSecond());
         });
-        taskList.set(index, newTask);
+        taskList.set(actualIndex, newTask);
         commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.set(targetIndex.getZeroBased(), oldTask);
+        taskList.set(actualIndex, oldTask);
         return new CommandResult(UNDO_MESSAGE);
     }
 
@@ -69,7 +71,8 @@ public class EditCommand extends UndoableLogicCommand {
             return false;
         }
         EditCommand otherCommand = (EditCommand) other;
-        return Objects.equals(targetIndex, otherCommand.targetIndex)
+        return actualIndex == otherCommand.actualIndex
+                && Objects.equals(targetIndex, otherCommand.targetIndex)
                 && Objects.equals(request, otherCommand.request)
                 && Objects.equals(oldTask, otherCommand.oldTask);
     }

@@ -11,6 +11,8 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getLogicTaskListFilePath();
+    Path getTaskListFilePath();
+
+    Path getMacroMapFilePath();
 
 }

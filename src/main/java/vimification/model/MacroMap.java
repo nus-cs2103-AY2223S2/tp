@@ -1,45 +1,41 @@
 package vimification.model;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 public class MacroMap {
 
-    private Map<String, String> definedMacros;
+    private Map<String, String> macros;
 
     public MacroMap() {
-        this.definedMacros = new HashMap<>();
+        this.macros = new HashMap<>();
     }
 
-    public MacroMap(Map<String, String> definedMacros) {
-        this.definedMacros = new HashMap<>(definedMacros);
+    public MacroMap(Map<String, String> macros) {
+        this.macros = new HashMap<>(macros);
     }
 
     public Optional<String> get(String macro) {
-        return Optional.ofNullable(definedMacros.get(macro));
+        return Optional.ofNullable(macros.get(macro));
     }
 
     public void put(String macro, String command) {
-        definedMacros.put(macro, command);
+        macros.put(macro, command);
     }
 
     public void remove(String macro) {
-        definedMacros.remove(macro);
-    }
-
-    public Set<Map.Entry<String, String>> entrySet() {
-        return definedMacros.entrySet();
+        macros.remove(macro);
     }
 
     public boolean isEmpty() {
-        return definedMacros.isEmpty();
+        return macros.isEmpty();
     }
 
-    @Override
-    public String toString() {
-        return "MacroMap [definedMacros=" + definedMacros + "]";
+    public Map<String, String> getMapping() {
+        return Collections.unmodifiableMap(macros);
     }
 
     @Override
@@ -51,6 +47,6 @@ public class MacroMap {
             return false;
         }
         MacroMap otherMap = (MacroMap) other;
-        return definedMacros.equals(otherMap.definedMacros);
+        return Objects.equals(macros, otherMap.macros);
     }
 }

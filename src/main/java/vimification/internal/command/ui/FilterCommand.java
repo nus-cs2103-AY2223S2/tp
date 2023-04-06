@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.task.Task;
 import vimification.ui.MainScreen;
@@ -18,6 +19,7 @@ public class FilterCommand extends UiCommand {
         this.request = request;
     }
 
+    @Override
     public CommandResult execute(MainScreen mainScreen) {
         List<Predicate<Task>> predicates = new ArrayList<>();
         if (request.getSearchedKeyword() != null) {
@@ -37,6 +39,7 @@ public class FilterCommand extends UiCommand {
         }
         request.getSearchedLabels()
                 .forEach(label -> predicates.add(task -> task.containsLabel(label)));
+
         Predicate<Task> predicate = null;
         switch (request.getMode()) {
         case DEFAULT:
@@ -49,7 +52,7 @@ public class FilterCommand extends UiCommand {
             predicate = predicates.stream().reduce(Predicate::or).orElse(ignore -> false);
             break;
         default:
-            throw new RuntimeException("Should not reach here!");
+            throw new CommandException("Should not reach here!");
         }
         mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
         return new CommandResult(SUCCESS_MESSAGE);

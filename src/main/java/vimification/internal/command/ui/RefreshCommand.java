@@ -1,15 +1,20 @@
 package vimification.internal.command.ui;
 
 import vimification.internal.command.CommandResult;
+import vimification.model.UiTaskList;
 import vimification.ui.MainScreen;
 
 public class RefreshCommand extends UiCommand {
 
+    public static final String SUCCESS_MESSAGE = "Refreshed your task list.";
+
+    @Override
     public CommandResult execute(MainScreen mainScreen) {
-        mainScreen.getTaskTabPanel()
+        UiTaskList taskList = mainScreen.getTaskTabPanel()
                 .getOngoingTaskListPanel()
-                .getTaskList()
-                .refresh();
-        return new CommandResult("Refreshed Task List.");
+                .getTaskList();
+        taskList.setPredicate(null);
+        taskList.setComparator(null);
+        return new CommandResult(SUCCESS_MESSAGE);
     }
 }

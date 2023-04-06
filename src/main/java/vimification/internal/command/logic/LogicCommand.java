@@ -10,7 +10,7 @@ import vimification.model.LogicTaskList;
  */
 public abstract class LogicCommand implements Command {
 
-    public static final String FINISHED_EXECUTION_MESSAGE =
+    public static final String ALREADY_EXECUTED_MESSAGE =
             "This command has been executed. It cannot be executed again.";
 
     /**

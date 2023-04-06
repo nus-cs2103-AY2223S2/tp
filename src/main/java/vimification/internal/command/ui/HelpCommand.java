@@ -6,9 +6,12 @@ import vimification.ui.ManualPanel;
 
 public class HelpCommand extends UiCommand {
 
+    public static final String SUCCESS_MESSAGE = "Displaying manual page.";
+
+    @Override
     public CommandResult execute(MainScreen mainScreen) {
         ManualPanel manualPanel = new ManualPanel();
         mainScreen.loadRightComponent(manualPanel);
-        return new CommandResult("Displaying Manual Page.");
+        return new CommandResult(SUCCESS_MESSAGE);
     }
 }

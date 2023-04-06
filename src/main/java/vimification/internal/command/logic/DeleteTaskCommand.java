@@ -19,7 +19,9 @@ public class DeleteTaskCommand extends DeleteCommand {
             "The command has been undone. The deleted task has been added back.";
 
     private final Index targetIndex;
+
     private Task deletedTask = null;
+    private int actualIndex = 0;
 
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -27,14 +29,15 @@ public class DeleteTaskCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        deletedTask = taskList.remove(targetIndex.getZeroBased());
+        actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
+        deletedTask = taskList.remove(actualIndex);
         commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.display()));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.add(targetIndex.getZeroBased(), deletedTask);
+        taskList.add(actualIndex, deletedTask);
         return new CommandResult(UNDO_MESSAGE);
     }
 
@@ -47,7 +50,8 @@ public class DeleteTaskCommand extends DeleteCommand {
             return false;
         }
         DeleteTaskCommand otherCommand = (DeleteTaskCommand) other;
-        return Objects.equals(targetIndex, otherCommand.targetIndex)
+        return actualIndex == otherCommand.actualIndex
+                && Objects.equals(targetIndex, otherCommand.targetIndex)
                 && Objects.equals(deletedTask, otherCommand.deletedTask);
     }
 }

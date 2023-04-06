@@ -13,7 +13,7 @@ import javafx.collections.transformation.SortedList;
 import vimification.model.task.Task;
 
 
-public class TaskList implements LogicTaskList1, UiTaskList1 {
+public class TaskList implements LogicTaskList, UiTaskList {
 
     private final ObservableList<Task> allTasks;
     private final FilteredList<Task> filteredTasks;
@@ -29,23 +29,29 @@ public class TaskList implements LogicTaskList1, UiTaskList1 {
         this(List.of());
     }
 
-    private int getActualIndex(int index) {
-        return sortedTasks.getSourceIndexFor(allTasks, index);
+    @Override
+    public int size() {
+        return allTasks.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return allTasks.isEmpty();
     }
 
     @Override
     public Task get(int index) {
-        return sortedTasks.get(index);
+        return allTasks.get(index);
     }
 
     @Override
     public void set(int index, Task task) {
-        allTasks.set(getActualIndex(index), task);
+        allTasks.set(index, task);
     }
 
     @Override
     public Task remove(int index) {
-        return allTasks.remove(getActualIndex(index));
+        return allTasks.remove(index);
     }
 
     @Override
@@ -54,8 +60,18 @@ public class TaskList implements LogicTaskList1, UiTaskList1 {
     }
 
     @Override
-    public Task pop() {
+    public void add(int index, Task task) {
+        allTasks.add(index, task);
+    }
+
+    @Override
+    public Task removeLast() {
         return allTasks.remove(allTasks.size() - 1);
+    }
+
+    @Override
+    public int getLogicSourceIndex(int index) {
+        return sortedTasks.getSourceIndexFor(allTasks, index);
     }
 
     @Override

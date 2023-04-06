@@ -18,7 +18,9 @@ public class InsertCommand extends UndoableLogicCommand {
 
     private final Index targetIndex;
     private final InsertRequest request;
+
     private Task oldTask = null;
+    private int actualIndex = 0;
 
     public InsertCommand(Index targetIndex, InsertRequest request) {
         this.targetIndex = targetIndex;
@@ -27,22 +29,22 @@ public class InsertCommand extends UndoableLogicCommand {
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        int index = targetIndex.getZeroBased();
-        Task oldTask = taskList.get(index);
+        actualIndex = targetIndex.getZeroBased();
+        Task oldTask = taskList.get(actualIndex);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
         if (request.getInsertedDeadline() != null) {
             newTask.setDeadline(request.getInsertedDeadline());
         }
         request.getInsertedLabels().forEach(newTask::addLabel);
-        taskList.set(index, newTask);
+        taskList.set(actualIndex, newTask);
         commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.set(targetIndex.getZeroBased(), oldTask);
+        taskList.set(actualIndex, oldTask);
         return new CommandResult(UNDO_MESSAGE);
     }
 
@@ -55,7 +57,8 @@ public class InsertCommand extends UndoableLogicCommand {
             return false;
         }
         InsertCommand otherCommand = (InsertCommand) other;
-        return Objects.equals(targetIndex, otherCommand.targetIndex)
+        return actualIndex == otherCommand.actualIndex
+                && Objects.equals(targetIndex, otherCommand.targetIndex)
                 && Objects.equals(request, otherCommand.request)
                 && Objects.equals(oldTask, otherCommand.oldTask);
     }

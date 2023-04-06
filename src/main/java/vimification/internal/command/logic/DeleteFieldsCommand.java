@@ -20,7 +20,9 @@ public class DeleteFieldsCommand extends DeleteCommand {
 
     private final Index targetIndex;
     private final DeleteFieldsRequest request;
+
     private Task oldTask = null;
+    private int actualIndex = 0;
 
     /**
      * Creates a new {@code DeleteFieldsCommand} instance.
@@ -35,22 +37,22 @@ public class DeleteFieldsCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
-        int index = targetIndex.getZeroBased();
-        Task oldTask = taskList.get(index);
+        actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
+        Task oldTask = taskList.get(actualIndex);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
         if (request.shouldDeleteDeadline()) {
             newTask.deleteDeadline();
         }
         request.getDeletedLabels().forEach(newTask::removeLabel);
-        taskList.set(index, newTask);
+        taskList.set(actualIndex, newTask);
         commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
-        taskList.set(targetIndex.getZeroBased(), oldTask);
+        taskList.set(actualIndex, oldTask);
         return new CommandResult(UNDO_MESSAGE);
     }
 
@@ -63,7 +65,8 @@ public class DeleteFieldsCommand extends DeleteCommand {
             return false;
         }
         DeleteFieldsCommand otherCommand = (DeleteFieldsCommand) other;
-        return Objects.equals(targetIndex, otherCommand.targetIndex)
+        return actualIndex == otherCommand.actualIndex
+                && Objects.equals(targetIndex, otherCommand.targetIndex)
                 && Objects.equals(request, otherCommand.request)
                 && Objects.equals(oldTask, otherCommand.oldTask);
     }
