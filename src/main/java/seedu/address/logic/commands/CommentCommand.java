@@ -26,7 +26,7 @@ public class CommentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a comment to a specific task "
             + "Parameters: "
-            + PREFIX_TASK_INDEX + "TASK_ID "
+            + PREFIX_TASK_INDEX + "TASK_INDEX "
             + PREFIX_COMMENT + "COMMENT "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_INDEX + "1 "

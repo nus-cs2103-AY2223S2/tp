@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unmarks the task identified by the index number in the displayed task list as not done.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: " + PREFIX_TASK_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TASK_INDEX + "1";
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
@@ -50,7 +50,7 @@ public class UnmarkCommand extends Command {
         Task unmarkedTask = createUnmarkedTask(taskToUnmark);
         taskBookModel.unmarkTask(taskToUnmark, unmarkedTask, targetIndex);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
     }
 
     private static Task createUnmarkedTask(Task taskToUnmark) {

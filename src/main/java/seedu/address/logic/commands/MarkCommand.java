@@ -72,7 +72,7 @@ public class MarkCommand extends Command {
         taskBookModel.markTask(taskToMark, markedTask, targetIndex);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()));
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask, score.toString()));
     }
 
     private static Task createMarkedTask(Task taskToMark, Score score) {

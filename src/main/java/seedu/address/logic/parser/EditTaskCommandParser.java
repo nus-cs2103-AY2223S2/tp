@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_DEADLINE_INCO
 import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_EVENT_INCORRECT_FORMAT;
 import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_TASK_TYPE_MISMATCH;
+import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_TODO_INCORRECT_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -40,6 +41,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+            if (!argumentMultimap.getValue(PREFIX_TASKTYPE).isPresent()) {
+                throw new ParseException("");
+            }
             taskType = ParserUtil.parseTaskType(argumentMultimap.getValue(PREFIX_TASKTYPE).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
@@ -60,7 +64,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             if (argumentMultimap.getValue(PREFIX_DATE).isPresent()
                     || argumentMultimap.getValue(PREFIX_START_DATE).isPresent()
                     || argumentMultimap.getValue(PREFIX_END_DATE).isPresent()) {
-                throw new ParseException(String.format(MESSAGE_TASK_TYPE_MISMATCH));
+                throw new ParseException(String.format(MESSAGE_TASK_TYPE_MISMATCH + MESSAGE_TODO_INCORRECT_FORMAT));
             }
         }
         if (taskType.equals("D")) {

@@ -3,12 +3,18 @@ layout: page
 title: User Guide
 ---
 
-Pied Piper is a user-friendly task management application tailored for computing students. The app helps them stay organised, collaborate with peers, and prepare for real-world situations by simulating performance reviews. Key features include creating tasks, assigning tasks to team members, setting due dates, rating tasks out of 5, and providing feedback through comments. Ideal for personal projects and team collaboration, Pied Piper aims to improve productivity and equip computing students with valuable skills for their future careers.
+Pied Piper is a user-friendly task management application tailored for current and future university student leaders. 
+The app helps them stay organised and prepare for real-world situations by helping them manage project groups, and 
+simulate the real world review system. Key features include creating tasks, assigning tasks to team members, setting 
+due dates, rating completed tasks out of 5, and providing feedback through comments. The ability to seamlessly toggle 
+between a person list and task list also helps team leaders easily identify each team members' roles and their assigned 
+task to complete. Ideal for personal projects and team collaboration, Pied Piper aims to improve productivity and equip 
+university students with valuable skills for their future careers.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
   {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -35,6 +41,12 @@ Pied Piper is a user-friendly task management application tailored for computing
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
+* Words in front of `/` are parameter prefixes that need to be included when inputting the parameters.<br>
+e.g When adding a `todo` task, the format is `todo task/TASK_NAME`. If your task name is 'Homework', 
+the full command will be `todo task/Homework`.
+
+* As a result of the above, the character `/` cannot be used in any parameters.
+
 * Words within `Curly Bracket {}` are must have parameters.
 
 * Items in square brackets are optional.<br>
@@ -47,7 +59,7 @@ Pied Piper is a user-friendly task management application tailored for computing
 
 ### Adding a person: `add`
 
-Adds a person
+Adds a person.
 
 Format: `add n/{NAME} p/{PHONE} e/{EMAIL} a/{ADDRESS} [r/{ROLE}]`
 
@@ -56,9 +68,9 @@ Examples:
 * `add n/Jane Roe p/98123456 e/janer@nus.com a/Jane street, block 321 r/Member`
 
 
-### Creating a task: `todo`
+### Creating a regular task: `todo`
 
-Creates a new task
+Creates a new task.
 
 Format: `todo task/{TASK_NAME}`
 
@@ -68,7 +80,7 @@ Example:
 
 ### Creating a task with a deadline: `deadline`
 
-Creates a new deadline task
+Creates a new deadline task.
 
 Format: `deadline task/{TASK_NAME} by/{DD/MM/YYYY}`
 
@@ -78,7 +90,7 @@ Example:
 
 ### Creating a task that is an event: `event`
 
-Creates a new event task
+Creates a new event task.
 
 Format: `event task/{TASK_NAME} from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
 
@@ -88,9 +100,10 @@ Example:
 
 ### Commenting on a task: `comment`
 
-Adds a comment to a task
+Adds a comment to a task that exists in the task list. The task index follows <br>
+The task list can be viewed by using the `view` command.
 
-Format: `comment t/{TASK_ID} c/{COMMENTS} `
+Format: `comment t/{TASK_INDEX} c/{COMMENTS} `
 
 Example:
 * `comment t/1 c/task was done well and on time`
@@ -98,7 +111,8 @@ Example:
 
 ### Editing a person: `edit`
 
-Edits the properties of an existing person in the persons list
+Edits the properties of an existing person in the persons list.<br>
+The person list can be viewed by using the `list` command.
 
 Format: `edit INDEX [n/{NAME}] [p/{PHONE}] [e/{EMAIL}] [a/{ADDRESS}] [r/{ROLE}]`
 
@@ -108,22 +122,37 @@ Example:
 
 ### Editing a task: `edittask`
 
-Edits the properties of an existing task in the task list
+Edits the details of the task identified by the index number used in the displayed task list. 
+Existing values will be overwritten by the input values. The desired task type must be specified, and the date 
+modifiers must match the format of the task type input.<br>
+Todo tasks should not include a {DATE} field.<br>
+The task list can be viewed using the `view` command.
 
-Format: `edittask INDEX type/{TASK_TYPE} [task/{TASK_DESCRIPTION}] [{DATE}]`
+Format: `edittask INDEX type/{TASK_TYPE} [task/{TASK_DESCRIPTION}] [c/{COMMENT}] [{DATE}]`
 
 Note: 
 * To denote todo, deadline and event tasks, parameters for `TASK_TYPE` are `T`, `D` and `E` respectively.
 * When editing a task to change types, the {DATE} parameters are as follows:
   * `deadline`: `by/{DD/MM/YYYY}`
   * `event`: `from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
+* Editing a task removes the assigned member from the task.
+
+Examples:
+* Changing an existing task at index 1 to a `deadline` task, with a different name
+  * `edittask 1 type/D n/Assignment 1 by/20/04/2023`
+* Changing an existing task at index 2 to an `event` task, with the date changed
+  * `edittask 2 type/E from/05/04/2023 to/10/04/2023`
 
 
 ### Assigning task to member: `assign`
 
-Assign a task to a person
+Assign a task to a person. The indexes used follows the index on the task and person list respectively.<br>
+The task list can be viewed using the `view` command, and the persons list can be viewed using the `list` command.
 
-Format: `assign  t/{TASK_ID} i/{MEMBER_ID}`
+Note:
+* For every task, only one person can be assigned to it.
+
+Format: `assign  t/{TASK_INDEX} i/{MEMBER_INDEX}`
 
 Examples:
 *  `assign t/1 i/3`
@@ -131,9 +160,10 @@ Examples:
 
 ### Marking a task: `mark`
 
-Marks a task as completed and give a score to the marked task
+Marks the target task as completed and give a score to the marked task.<br>
+The task list can be viewed using the `view` command.
 
-Format: `mark t/{TASK_ID} s/{PERFORMANCE_SCORE}`
+Format: `mark t/{TASK_INDEX} s/{PERFORMANCE_SCORE}`
 
 Examples:
 * `mark t/1 s/4`
@@ -141,9 +171,10 @@ Examples:
 
 ### Unmarking a task: `unmark`
 
-Sets a task's status as incomplete and remove any given score
+Sets the target task's status as incomplete and remove any given score.<br>
+The task list can be viewed using the `view` command.
 
-Format: `unmark t/{TASK_ID}`
+Format: `unmark t/{TASK_INDEX}`
 
 Examples:
 * `unmark t/1`
@@ -151,9 +182,10 @@ Examples:
 
 ### Deleting a person: `delete`
 
-Deletes an existing person
+Deletes an existing person at the given index.<br>
+The task list can be viewed using the `view` command.
 
-Format: `delete {MEMBER_ID}`
+Format: `delete {MEMBER_INDEX}`
 
 Examples:
 * `delete 1`
@@ -161,9 +193,10 @@ Examples:
 
 ### Deleting a task: `deletetask`
 
-Deletes an existing task
+Deletes an existing task at the given index.<br>
+The task list can be viewed using the `view` command.
 
-Format: `deletetask {TASK_ID}`
+Format: `deletetask {TASK_INDEX}`
 
 Examples:
 * `deletetask 2`
@@ -171,21 +204,21 @@ Examples:
 
 ### Listing tasks: `list`
 
-Shows all tasks
+Shows all tasks.
 
 Format: `list`
 
 
 ### Viewing persons: `view`
 
-Shows all persons
+Shows all persons.
 
 Format: `view`
 
 
 ### Viewing statistics: `review`
 
-Shows task and score statistics of all persons in the persons list
+Shows task and score statistics of all persons in the persons list.
 
 Format: `review`
 
