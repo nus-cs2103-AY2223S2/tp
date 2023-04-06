@@ -275,9 +275,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.markProjectAsNotDone(project);
     }
 
+    public int noProjectSize() {
+        return projects.noProjectSize();
+    }
 
-    public String getProjectsContent() {
-        return projects.getProjectsContent();
+    public int noOverdueProjects() {
+        return projects.noOverdueProjects();
+    }
+
+    public int noDoneProjects() {
+        return projects.noDoneProjects();
+    }
+
+    public int noNotDoneProjects() {
+        return projects.noNotDoneProjects();
     }
 
     //// util methods

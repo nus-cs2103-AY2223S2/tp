@@ -32,13 +32,29 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        String message = String.format(MESSAGE_PROJECTS_CONTENT, model.getProjectsContent());
+        String formattedMessage = getMessageProjectsContent(model);
+        String message = String.format(MESSAGE_PROJECTS_CONTENT, formattedMessage);
         return new CommandResult(MESSAGE_SUCCESS + "\n" + message, ListType.PROJECT);
     }
 
     /** Get all valid command words as an unmodifiable set. */
     public static Set<String> getCommandWords() {
         return Collections.unmodifiableSet(COMMAND_WORDS);
+    }
+
+    /**
+     * Returns message of contents of the project list.
+     */
+    public static String getMessageProjectsContent(Model model) {
+        int projectSize = model.noProjectSize();
+        int overdueProjects = model.noOverdueProjects();
+        int doneProjects = model.noDoneProjects();
+        int notDoneProjects = model.noNotDoneProjects();
+        String formattedMessage = "Total number of Projects: " + projectSize + "\n"
+                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
+                + "Total number of Projects DONE: " + doneProjects + "\n"
+                + "Total number of Projects NOT DONE: " + notDoneProjects;
+        return formattedMessage;
     }
 
 }

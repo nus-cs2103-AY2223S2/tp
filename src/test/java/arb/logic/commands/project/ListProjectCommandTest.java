@@ -22,8 +22,13 @@ public class ListProjectCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        int projectSize = expectedModel.noProjectSize();
+        int overdueProjects = expectedModel.noOverdueProjects();
+        int doneProjects = expectedModel.noDoneProjects();
+        int notDoneProjects = expectedModel.noNotDoneProjects();
+        String formattedMessage = ListProjectCommand.getMessageProjectsContent(expectedModel);
         expectedModelProjectsMessage = String.format(ListProjectCommand.MESSAGE_PROJECTS_CONTENT,
-                expectedModel.getProjectsContent());
+                formattedMessage);
     }
 
     @Test

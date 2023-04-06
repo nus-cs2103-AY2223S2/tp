@@ -226,9 +226,26 @@ public interface Model {
     ObservableList<TagMapping> getTagMappingList();
 
     /**
-     * Returns contents of list of project.
+     * Returns number of Projects in Project list.
      */
-    String getProjectsContent();
+    int noProjectSize();
+
+    /**
+     * Returns number of Overdue Projects.
+     */
+    int noOverdueProjects();
+
+    /**
+     * Returns number of Done Projects.
+     * @return
+     */
+    int noDoneProjects();
+
+    /**
+     * Returns number of Not Done Projects.
+     * @return
+     */
+    int noNotDoneProjects();
 
     /**
      * Resets the filtered and sorted client lists to their
