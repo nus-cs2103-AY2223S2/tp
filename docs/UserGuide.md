@@ -91,13 +91,13 @@ This section serves to introduce the icons used throughout this guide.
 -------------------------------
 <h3 id="prefix-summary">Prefix Summary</h3>
 
-| Prefix | Representation |
-|:-------|:---------------|
-| n/     | Name           |
-| d/     | Date           |
-| s/     | Start time     |
-| e/     | End time       |
-| every/ | Every          |
+| Prefix | Representation | Remark                                                                                                |
+|:-------|:---------------|:------------------------------------------------------------------------------------------------------|
+| n/     | Name           | Name is alphanumeric only                                                                             |
+| d/     | Date           | Dates should follow a `YYYY-MM-DD` format                                                             |
+| s/     | Start time     | Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required. |
+| e/     | End time       | ^                                                                                                     |
+| every/ | Every          | Recurring factor is given by `day/week/month                                                          | 
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Name is alphanumeric only.
@@ -142,9 +142,10 @@ This section serves to introduce the icons used throughout this guide.
 -------------------------------
 <h3 id="add">Add a New Event</h3>
 
+Format: `add n/<event> d/<date> s/<start time> e/<end time>`
+
 Adds an event into the scheduler.
 
-Format: `add n/<event> d/<date> s/<start time> e/<end time>`  
 Example: `add n/tennis d/2023-04-20 s/15:00 e/17:00`
 
 Parameters:
@@ -153,14 +154,8 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** Name is alphanumeric only.
-</div>
-
 <div markdown="span" class="alert alert-warning">
-:warning: **Warning:**  
-Start time should come before.  
-Adding of events that overlaps in time is not allowed.
+:warning: **Warning:** Adding of events that overlaps in time is not allowed.
 </div>
 
 
@@ -169,9 +164,10 @@ Adding of events that overlaps in time is not allowed.
 
 <h3 id="recur">Repeat an Existing Event</h3>
 
+Format: `recur <index> d/<end date> every/<recur factor>`   
+
 Repeats an event from the scheduler until the specified end date.
 
-Format: `recur <index> d/<end date> every/<recur factor>`   
 Example: `recur 1 d/2024-01-01 every/month`
 
 Parameters:  
@@ -191,9 +187,10 @@ Recurring of events not existing in scheduler is not allowed.
 
 <h3 id="edit">Edit an Event</h3>
 
+Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`  
+
 Edits an event in the scheduler.
 
-Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`  
 Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
 
 Parameters:  
@@ -212,9 +209,10 @@ Parameters:
 
 <h3 id="delete">Delete Events</h3>
 
+Format: `delete <index>` or `delete <index index ... index>`  
+
 Deletes the event(s) in the scheduler.
 
-Format: `delete <index>` or `delete <index index ... index>`  
 Example: `delete 1` or `delete 1 4 5`
 
 <div markdown="span" class="alert alert-warning">
@@ -227,9 +225,10 @@ Example: `delete 1` or `delete 1 4 5`
 
 <h3 id="find">Locate Events</h3>
 
+Format:`find n/<name> d/<date>`  
+
 Search the scheduler and returns all events that matches the name, date or a combination of both.
 
-Format:`find n/<name> d/<date>`  
 Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
 
 Parameters:  
@@ -250,9 +249,10 @@ Parameters:
 
 <h3 id="next">Retrieve Next Events</h3>
 
+Format:`next <count>`  
+
 Shows the next upcoming event(s).
 
-Format:`next <count>`  
 Example: `next` or `next 2`
 
 Parameter:  
@@ -269,9 +269,10 @@ Parameter:
 
 <h3 id="undo">Undo Previous Command</h3>
 
+Format: `undo`  
+
 Undo the previously executed valid command.
 
-Format: `undo`  
 Example: `undo`
 
 <div markdown="span" class="alert alert-warning">
@@ -284,9 +285,10 @@ Example: `undo`
 
 <h3 id="list">List All Events</h3>
 
+Format: `list`  
+
 Displays all events currently saved in the scheduler.
 
-Format: `list`  
 Example: `list`
 
 
@@ -295,9 +297,10 @@ Example: `list`
 
 <h3 id="help">View Help</h3>
 
+Format: `help`  
+
 Provide a link to access this website.
 
-Format: `help`  
 Example: `help`
 
 
@@ -306,9 +309,10 @@ Example: `help`
 
 <h3 id="exit">Exit Application</h3>
 
+Format: `exit`  
+
 Exits the application.
 
-Format: `exit`  
 Example: `exit`
 
 
