@@ -1,7 +1,7 @@
----  
-layout: page 
+---
+layout: page
 title: User Guide
----  
+---
 
 # Introduction
 
@@ -22,29 +22,29 @@ The purpose of this user guide document is to provide staff with a clear underst
 
 # Table of Contents:
 
-- [Setup](#setup)  
-- [GUI Information](#gui-information)  
-- [Command Prefixes](#command-prefixes)  
-- [Features](#features)  
-  - [Help](#viewing-help--help) `help`  
-  - [Undo](#undoing-previous-command-undo) `undo`  
-  - [Redo](#redoing-previous-undo-redo) `redo`  
-  - [Add patient](#adding-a-patient-record-add): `add`  
-  - [Edit patient](#editing-a-patient-record-edit): `edit`  
-  - [Delete patient](#deleting-a-patient-record-delete): `delete`  
-  - [List all patients](#listing-all-patients-list): `list`  
-  - [Filter patients](#filtering-patients-by-attribute-find): `find`  
-  - [Backup patient records](#backing-up-patient-records-backup): `backup`  
-  - [Load backups](#loading-data-load): `load`  
-  - [View backups](#viewing-backup-data-viewbackups): `viewbackups`  
-  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup`  
-  - [Clear all data](#clearing-all-data-clear): `clear`  
-  - [Light mode](#switching-to-light-mode-light): `light`  
-  - [Dark mode](#switching-to-dark-mode-dark): `dark`  
-- [FAQ](#faq)  
-- [Command Summary](#command-summary)  
+- [Setup](#setup)
+- [GUI Information](#gui-information)
+- [Command Prefixes](#command-prefixes)
+- [Features](#features)
+  - [Help](#viewing-help--help) `help`
+  - [Undo](#undoing-previous-command-undo) `undo`
+  - [Redo](#redoing-previous-undo-redo) `redo`
+  - [Add patient](#adding-a-patient-record-add): `add`
+  - [Edit patient](#editing-a-patient-record-edit): `edit`
+  - [Delete patient](#deleting-a-patient-record-delete): `delete`
+  - [List all patients](#listing-all-patients-list): `list`
+  - [Filter patients](#filtering-patients-by-attribute-find): `find`
+  - [Backup patient records](#backing-up-patient-records-backup): `backup`
+  - [Load backups](#loading-data-load): `load`
+  - [View backups](#viewing-backup-data-viewbackups): `viewbackups`
+  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup` 
+  - [Clear all data](#clearing-all-data-clear): `clear`
+  - [Light mode](#switching-to-light-mode-light): `light` 
+  - [Dark mode](#switching-to-dark-mode-dark): `dark`
+- [FAQ](#faq)
+- [Command Summary](#command-summary) 
 
---------------------------------------------------------------------------------------------------------------------  
+--------------------------------------------------------------------------------------------------------------------
 
 ## Setup
 
@@ -54,8 +54,8 @@ The purpose of this user guide document is to provide staff with a clear underst
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HospiSearch.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>  
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>  
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 5. Type in a command in the command box to execute it. Some commands to try:
     1. `help` opens up the help menu.
@@ -68,14 +68,14 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 ## GUI Information
 
 ![DefinedGUI](images/DefinedGUI.png)
-  
---------------------------------------------------------------------------------------------------------------------  
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command Prefixes
 
 | Patient Record Field | Prefix |
 |----------------------|--------|
-| NRIC                 | i/     | 
+| NRIC                 | i/     |
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
@@ -150,7 +150,7 @@ Adds a person to the patient records.
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are
 optional.
 </div>
 
@@ -207,7 +207,7 @@ Deletes the specified patient from the patient records.
 
 Format: `delete i/NRIC…​`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple deletes are made in a single 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple deletes are made in a single
 command, `undo` command will not undo all deletes made, but only **one** at a time.
 </div>
 
@@ -251,12 +251,12 @@ Command Prefixes that can be searched:
 
 Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** `find` searches by **complete strings** and not **substrings**. The search will only be carried out for
-**one** given attribute. 
+**one** given attribute.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** The search is **case-insensitive**. The order of the keywords does not matter.
 </div>
 
@@ -334,7 +334,7 @@ Above is the execution result of the input `viewbackups`.
 
 Deletes the data from a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after
 deletion.
 </div>
 
@@ -386,8 +386,8 @@ Format: `dark`
 
 Above is the execution result of the input `dark`.
 
-  
---------------------------------------------------------------------------------------------------------------------  
+
+--------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
 
 ## FAQ
@@ -397,8 +397,8 @@ Above is the execution result of the input `dark`.
 
 **Q**: Where is my HospiSearch `data` directory? <br>
 **A**: The `data` directory is created in the same folder your HospiSearch Jar file is opened in.
-  
---------------------------------------------------------------------------------------------------------------------  
+
+--------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
 
 ## Command summary
