@@ -279,12 +279,9 @@ Now that you have added Bob into CoDoc, you can view his details by using the [V
 This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
-numbered `8` in this example. This is his _index_.
+numbered `8` in this example. This is his _index_. Now enter `view 8` into the command box. His _contact_ details will then be shown in the **Info Panel**.
 
-Now enter `view 8` into the command box.
-His _contact_ details will then be shown in the **Info Panel**.
-
-![viewing-bob](images/UG-tutorial/viewing-bob_2400x1500.png)
+![viewing-bob](images/UG-tutorial/viewing-bob.png)
 
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
