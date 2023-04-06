@@ -476,11 +476,11 @@ Similar statistics are shown for jobs in the previous week
 
 Shows a message explaining how to access the help page.
 
-Command also available for Timetable and Customer Window (identical format).
-
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+* Command also available for Timetable and Customer Window (identical format).
 
 Alternative: Click "Help" in menu bar > "Help"
 
@@ -493,9 +493,9 @@ The `help` command also applies for **Timetable Windows** and **Customer Window*
 
 Exits the program or current window.
 
-Command also available for Timetable and Customer Window (identical format).
-
 Format: `exit`
+
+* Command also available for Timetable and Customer Window (identical format).
 
 Alternative: Click "File" in menu bar > "Exit"
 
