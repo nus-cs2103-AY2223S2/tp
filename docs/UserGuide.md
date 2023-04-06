@@ -257,9 +257,9 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
 Format: `navb`
 
-## List
+### List
 
-### List Modules or Lectures or Videos
+#### List Modules or Lectures or Videos
 
 > `list`
 
@@ -269,13 +269,13 @@ Root context: modules, Module context: lectures, Lecture context: videos
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
 
-### List Modules
+#### List Modules
 
 > `list /r`
 
 Lists all modules
 
-### List Lectures of Modules
+#### List Lectures of Modules
 
 > `list [/mod {module_code}]`
 
@@ -289,7 +289,7 @@ Examples:
 
 - `list /mod CS2040S` lists lectures belonging to CS2040S
 
-### List Videos of Lectures
+#### List Videos of Lectures
 
 > In module context: `list [/lec {lecture_name}]`\
 > In any context: `list [/mod {module_code} /lec {lecture_name}]`
@@ -628,9 +628,9 @@ Examples:
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the
   lecture `Lecture_1` that belongs to the module `CS2040`
 
-## Find
+### Find
 
-### Find Modules or Lectures or Videos
+#### Find Modules or Lectures or Videos
 
 > `find {keywords}`
 
@@ -646,7 +646,7 @@ Examples:
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
-### Find Modules or Lectures or Videos By Tag
+#### Find Modules or Lectures or Videos By Tag
 
 > `find {keywords} [/byTag]`
 
@@ -663,7 +663,7 @@ Examples:
 - In module level within `CS2040S`, `find array /byTag` will show lecture `Week 1` from the lecture list of module `CS2040S`.
 - In lecture level within `Week 1` of `CS2040S`, `find cont /byTag` will show video `Vid 1` from the video list of lecture `Week 1` of module `CS2040S`.
 
-### Find Lectures in a Module
+#### Find Lectures in a Module
 
 > `find {keywords} [/mod {module_code}]`
 
@@ -677,7 +677,7 @@ Examples:
 
 - `find week 1, week 2 /mod CS2040S` searches for lectures `Week 1` or `Week 2` from the lecture list of module `CS2040S`.
 
-### Find Lectures in a Module By Tag
+#### Find Lectures in a Module By Tag
 
 > `find {keywords} [/byTag /mod {module_code}]`
 
@@ -694,7 +694,7 @@ Examples:
 
 - `find intro, array /byTag /mod CS2040S` will show lecture `Week 1` from the lecture list of module `CS2040S`.
 
-### Find Videos in a Lecture
+#### Find Videos in a Lecture
 
 > In module context: `find {keywords} [/lec {lecture_name}]`\
 > In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
@@ -715,7 +715,7 @@ Examples:
 
 _\* Both commands searches for videos `vid1` or `vid2` from the video list of lecture `Week 2` of module `CS2040S`_
 
-### Find Videos in a Lecture By Tag
+#### Find Videos in a Lecture By Tag
 
 > In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
 > In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
