@@ -16,8 +16,8 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 
 <h2 id="using-this-guide">Using this Guide</h2>
 -------------------------------------
-- If you are running __Ez-Schedule__ for the first time, please refer to our [Quick Start](#quick-start) guide.
-- If you are learning how to use __Ez-Schedule__, please refer to our [Commands](#commands) section for a detailed guide.
+- If you are running _Ez-Schedule_ for the first time, please refer to our [Quick Start](#quick-start) guide.
+- If you are learning how to use _Ez-Schedule_, please refer to our [Commands](#commands) section for a detailed guide.
 - If you are interested in contributing to this project, please check out our [Developer Guide](https://ay2223s2-cs2103-w17-3.github.io/tp/DeveloperGuide.html).
 - If you are an experienced user, you may find the [Command Summary](#command-summary) helpful as it provides a summarized table of all
   the available commands.
@@ -60,7 +60,7 @@ This section serves to introduce the icons used throughout this guide.
 </div>
 
 <div markdown="span" class="alert alert-success">
-:bulb: **Tip:** Tips in improving your experience when using __Ez-Schedule__.
+:bulb: **Tip:** Tips in improving your experience when using _Ez-Schedule_.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -68,7 +68,7 @@ This section serves to introduce the icons used throughout this guide.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:exclamation: **Danger:** Necessary cautions to heed to ensure that __Ez-Schedule__ operates as intended.
+:exclamation: **Danger:** Necessary cautions to heed to ensure that _Ez-Schedule_ operates as intended.
 </div>
 
 
