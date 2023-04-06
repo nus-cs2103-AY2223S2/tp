@@ -34,10 +34,8 @@ including details on the installation process and features. For more advanced us
 this guide will also help customize your experience.
 
 [//]: # (@@author eugenetangkj - reused with modifications)
-
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
-[//]: # ()
 ### Using the User Guide
 This uses guide uses a set of formatting standards and visuals to better communicate information.
 
@@ -120,6 +118,9 @@ Keyboard keys are indicated using rounded buttons.
 Do refer to [Features](#features) below for a comprehensive list of supported features and their associated details.
 
 <div style="page-break-after: always;"></div>
+
+[//]: # (@@author eugenetangkj - reused with modifications)
+[//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
 ## **Exploring the Graphical User Interface**
 Figure 2 provides a visual representation of the different parts of InternBuddy's GUI, while
