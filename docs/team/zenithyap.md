@@ -21,6 +21,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Changed the naming of the codebase to fit our application (Pull request [\#65](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/65))
 
+* Added test cases to increase code coverage [\#270](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/270) [\#280](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/280)
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addtag`, `dtag`, and `tags` [\#159](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/159)
