@@ -16,7 +16,7 @@ public class SkillCommand extends Command {
 
     public static final String COMMAND_WORD = "skill";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons with notes that"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons with notes that "
             + "matches all the keywords input and displays them as a "
             + "list with index numbers.\n\n"
             + "Parameters: KEYWORDS (Space-separated, Case-insensitive)\n\n"

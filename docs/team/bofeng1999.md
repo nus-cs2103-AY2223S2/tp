@@ -115,6 +115,8 @@ Here are the list of all applicants:
 
 - Enhanced the `EditCommand` and `AdvanceCommand` to check that `applicateDateTime` <= `interviewDateTime`.
 
+- Implement `NoteContainsKeywordsPredicateTest` and `PhoneContainsKeywordsPredicateTest`.
+
 - **Documentation**:
 
   - Wrote the Commands Section for UserGuide.
