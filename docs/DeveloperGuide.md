@@ -936,7 +936,9 @@ with (ENTER).
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Planned Enhancements
-1. Utilising checksum on JSON file to prevent manual tampering of data and display explicit exceptions when the JSON file is corrupted or tampered with.
+1. **Issue: Lost all data after modifying data file** <br>
+   We plan to utilise checksum on JSON file to prevent manual tampering of data and display explicit exceptions 
+   when the JSON file is corrupted or tampered with.
    * A checksum could be generated in `checksum.txt` in the same directory as the JSON file.
    * Any modification to the JSON file would result in a different checksum, which can be
       detected by comparing with the checksum stored in `checksum.txt`.
@@ -946,3 +948,36 @@ with (ENTER).
       contains invalid values, the JSON file will be ignored and the application will start as an
       empty application with no projects and clients.
    * Possible checksum algorithms are MD5, SHA-1, SHA-256, SHA-512.
+   
+2. **Issue: Long strings are cut off** <br>
+   We are considering two alternatives: limiting the number of characters for a field 
+    or wrapping text to fix the issue
+* First solution: Limit the number of characters for a field. This will make 
+sure that the number of characters will not exceed the screen size and will 
+not take up too much space. For example, for a screen of 1366 pixels wide, 
+can fix approximately 170 characters at regular font size. As around 40% width 
+of the screen size is used by a panel such as entity panel, around 68 characters 
+can fit in the full screen size. To make up for the field name such as 'Name: ', 
+we put 60 as the maximum capacity for number of characters for a field. 
+
+* Second solution: Wrap the text around using `TextFlow` and `Text` in 
+JavaFX, even if the word needs to be broken. For this approach, the 
+number of characters that can be fit onto a line will still be needed. 
+Basically, a string will be checked if it exceeds the limit of characters 
+on a line. If it does, the `Text` including all the characters up to the 
+limit will be added to the `TextFlow` node. The same process will be done 
+repeatedly for the rest of the string until all characters run out. 
+This is to make sure that even if a word is too long, the text 
+will still be wrapped to the card size.
+
+3. **Issue: Pie chart for project status spins even when no statuses change** <br>
+
+    We plan to add a check to prevent pie chart from refreshing when no changes to 
+   status of any project were made     
+* The current hashmap of project status along with the count of 
+  the corresponding status will be stored. If there are any new changes 
+to the list of projects, a new hashmap will be generated. This new hashmap 
+will then be compared with the current one. If there are any changes in the status
+count, the pie chart will be refreshed. Else, the current pie chart will be kept. 
+* This will make sure that only changes related to project status will trigger 
+the refreshing of pie chart. 
