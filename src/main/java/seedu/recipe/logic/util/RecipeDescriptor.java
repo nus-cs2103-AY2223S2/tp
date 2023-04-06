@@ -72,12 +72,17 @@ public class RecipeDescriptor {
             : recipeToEdit.getDurationNullable());
         newRecipe.setDuration(updatedDuration);
 
-        RecipePortion updatedPortion = getPortion().orElseGet((
-        ) -> portionChanged ? null : recipeToEdit.getPortionNullable()); // checkstyle'd
+        RecipePortion updatedPortion = getPortion()
+            .orElseGet(() -> portionChanged
+                ? null
+                : recipeToEdit.getPortionNullable()
+            );
         newRecipe.setPortion(updatedPortion);
 
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
-        newRecipe.setTags(updatedTags);
+        if (updatedTags.length > 0) {
+            newRecipe.setTags(updatedTags);
+        }
 
         HashMap<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
             .map(HashMap::new)
@@ -85,7 +90,9 @@ public class RecipeDescriptor {
         newRecipe.setIngredients(updatedIngredients);
 
         Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
-        newRecipe.setSteps(updatedSteps);
+        if (updatedSteps.length > 0) {
+            newRecipe.setSteps(updatedSteps);
+        }
 
         return newRecipe;
     }
@@ -138,7 +145,9 @@ public class RecipeDescriptor {
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null && tags.size() > 0)
+            ? Optional.of(Collections.unmodifiableSet(tags))
+            : Optional.empty();
     }
 
     /**
@@ -150,7 +159,9 @@ public class RecipeDescriptor {
     }
 
     public Optional<Map<Ingredient, IngredientInformation>> getIngredients() {
-        return (ingredients != null) ? Optional.of(Collections.unmodifiableMap(ingredients)) : Optional.empty();
+        return (ingredients != null && ingredients.size() > 0)
+            ? Optional.of(Collections.unmodifiableMap(ingredients))
+            : Optional.empty();
     }
 
     public void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientTable) {
@@ -164,7 +175,9 @@ public class RecipeDescriptor {
     }
 
     public Optional<List<Step>> getSteps() {
-        return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
+        return (steps != null && steps.size() > 0)
+            ? Optional.of(Collections.unmodifiableList(steps))
+            : Optional.empty();
     }
 
     public void setSteps(List<Step> steps) {
