@@ -1286,16 +1286,16 @@ suggest new features, and it is easily extensible!
 
 | Prefix | Representation  |
 |--------|-----------------|
-| n/     | Name            |
-| s/     | Station         | 
-| p/     | Telegram Handle | 
-| e/     | Email           | 
-| g/     | Group           | 
-| m/     | Module          | 
-| d/     | Day             |
-| l/     | Location        |
-| T/     | Time Period     |
-| "   "  | Empty           | 
+| `n/`   | Name            |
+| `s/`   | Station         | 
+| `p/`   | Telegram Handle | 
+| `e/`   | Email           | 
+| `g/`   | Group           | 
+| `m/`   | Module          | 
+| `d/`   | Day             |
+| `l/`   | Location        |
+| `T/`   | Time Period     |
+| ` `    | Empty           | 
 
 ### Command Summary
 
@@ -1321,16 +1321,16 @@ suggest new features, and it is easily extensible!
 ### How to check your Java version
 
 #### For **Windows** Users
-**Step 1.** Open up Command Prompt
+**Step 1.** Open up Command Prompt.
 
-**Step 2.** Run the command `java -version`
+**Step 2.** Run the command `java -version`.
 
 **Step 3.** Check the version number from the output.
 
 #### For **Mac** and **Linux** Users
 **Step 1.** Open up Terminal.
 
-**Step 2.** Run the command `java -version`
+**Step 2.** Run the command `java -version`.
 
 **Step 3.** Check the version number from the output.
 
