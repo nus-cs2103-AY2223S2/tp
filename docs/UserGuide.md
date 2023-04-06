@@ -87,6 +87,9 @@ Here is a short overview of the features and capabilities of CookHub:
   - e.g. *INGREDIENT* can be `White wine vinegar, 2, tbsp, 0.10`
   - e.g. *INGREDIENT* can be `Large egg, 4, unit, 0.80`
 
+* Ellipsis `...` attached directly behind a certain flag or parameter indicates that you can input multiple instances of that item.
+
+[Back to top](#top)
 </div>
 
 ---
@@ -121,7 +124,7 @@ multiple `i/` command flags are allowed. A recipe similar to the image shown bel
 
 <img src="images/AddError.png" width=500 height=400>
 
-
+[Back to top](#top)
 
 ---
 #### Edit a recipe: `edit RECIPE_NUMBER`
@@ -153,7 +156,7 @@ Example:
 
 <img src="images/EditError.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 ### Delete a recipe : `delete RECIPE_NUMBER`
 This command deletes the recipe at the specified *recipe number* from your recipe book.
@@ -184,7 +187,7 @@ Our initial recipe book:
 
 <img src="images/DeleteResult2.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### List recipe : `list`
 
@@ -196,7 +199,7 @@ Example: `list` will list all the recipes similar to the image shown below:
 
 <img src="images/ListResult.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Clear recipe : `clear`
 
@@ -208,7 +211,7 @@ Example: `clear` will clear all recipes similar to the image shown below:
 
 <img src="images/ClearResult.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 ### Advanced commands
 
@@ -253,7 +256,7 @@ shown below:
 
 <img src="images/FindError2.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Search recipe with limited ingredients: `only`
 
@@ -282,7 +285,7 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 
 <img src="images/OnlyError.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Sort recipe by cost: `sort ORDER`
 
@@ -307,6 +310,7 @@ Our initial recipe book:
 
 <img src="images/SortResult.png" width=500 height=400>
 
+[Back to top](#top)
 ---
 ### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
 
@@ -328,6 +332,8 @@ Example: `groceries 1,3,4`
 Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the output box along with their quantities.
 
 <img src="images/GroceriesResult.png" width=500 height=400>
+
+[Back to top](#top)
 ---
 
 #### Filter recipe by price: `fp COMPARATOR PRICE`
@@ -357,7 +363,7 @@ Our initial recipe book:
 
 <img src="images/FpResult.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
@@ -388,7 +394,7 @@ Our initial recipe book:
 
 <img src="images/StarResult2.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
@@ -418,7 +424,7 @@ Our initial recipe book:
 
 <img src="images/UnstarResult2.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### List all recipes in the favorites : `favorites`
 
@@ -436,7 +442,7 @@ Our initial recipe book:
 
 <img src="images/FavoritesResult.png" width=500 height=400>
 
-
+[Back to top](#top)
 ---
 #### Provide link to the user guide : `help`
 
@@ -449,12 +455,14 @@ This command generates a link to our user guide.
 
 Format: `help`
 
-
+[Back to top](#top)
 <hr style="border:2px solid gray">
 
 ### Saving the data
 
 CookHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to top](#top)
 
 ### Editing the data file
 
@@ -465,10 +473,13 @@ update data directly by editing that data file.
 If your changes to the data file makes its format invalid, CookHub will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to top](#top)
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
+[Back to top](#top)
 <hr style="border:2px solid gray">
 
 ## FAQ
@@ -476,6 +487,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CookHub home folder.
 
+[Back to top](#top)
 <hr style="border:2px solid gray">
 
 ## Command summary
@@ -492,6 +504,7 @@ Format meanings:
 | Sort Recipes by price    | sort ORDER              | sort asc  |
 |  Filter Recipes by price | filter COMPARATOR PRICE | fp < 4.20 |
 
+[Back to top](#top)
 <hr style="border:2px solid gray">
 
 ## Glossary
