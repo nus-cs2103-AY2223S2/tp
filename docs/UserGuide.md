@@ -5,7 +5,7 @@ title: User Guide
 
 ![Logo](images/LogoWordmark.png)
 
-## Welcome to **Le Tracker**
+## Welcome to **Le Tracker!**
 
 > “The tragedy in life doesn’t lie in not reaching your goal. The tragedy lies in having no goal to reach.” - Benjamin E. Mays
 
