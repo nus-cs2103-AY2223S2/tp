@@ -782,6 +782,49 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
        
 
+### Editing a person
+
+1. Editing a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+
+   2. Test case: `edit 1 n/Bob`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new name.
+
+   3. Test case: `edit 1 p/98765432`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new phone number.
+
+   4. Test case: `edit 1 n/Tom p/92223333`
+   Expected: First contact is edited from the visible list. List is updated to show edited contact with new name and phone number.
+
+   5. Test case: `edit 1 g/`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with no groups.
+   
+   6. Test case: `edit 1 g/CS103`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new group.
+   
+   7. Test case: `edit ``m/ g/CS2101`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new group and existing group.
+   
+   8. Test case: `edit 1 t/`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with no tags.
+   
+   9. Test case: `edit 1 t/Borrowed my pen`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag.
+   
+   10. Test case: `edit 1 m/ t/Saw at school today`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag and existing tag.
+   
+   11. Test case: `edit 1 g/Somegroup`
+      Expected: No contact is edited. Error details shown in the status message. The group(s) provided does not exist
+   
+   12. Test case: `edit 0 n/Bob`
+      Expected: No contact is edited. Error details shown in the status message.
+
+   13. Test case : `edit 1`
+      Expected: No contact is edited. Error details shown in the status message. At least one field to edit must be provided.
+      
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -825,8 +868,10 @@ testers are expected to do more *exploratory* testing.
 ### Finding a group
 
 1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
+
 2. Test case: `group_find CS2103`
    Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
+
 3. Test case: `group_find Bestfriends`
    Expected: Group and person list will not display anytrhing
    
