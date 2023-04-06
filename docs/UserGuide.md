@@ -505,7 +505,7 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code>. Therefore, use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
+:exclamation: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values of <code>m/</code> or <code>s/</code>. Use <code>m+/</code> or <code>s+/</code> to <b><u>append</u></b> information or <code>m-/</code> or <code>s-/</code>  to <b><u>delete</u></b> information instead.
 </div>
 
 `edit [OPTIONAL/PARAMETER]...`<br>
@@ -535,8 +535,8 @@ At least one of the optional fields must be provided.
 </div>
 
 **Examples:**
-- `edit g/johndoeee e/johndoeee@example.com` will edit the GitHub username and email address of the person to be johndoeee and johndoeeee@example.com respectively.
-- `edit s/java s+/python` resets the skill list to contain only java and ignores the python skill addition.
+- `edit g/johndoeee e/johndoeee@example.com`: edit the _GitHub username_ and _email address_ of the person to be `johndoeee` and `johndoeeee@example.com` respectively.
+- `edit s/java s+/python` resets the skill list to contain only java and ignores `s+/python`.
 ![View Example](images/UiEditSkills.png)
 - `edit m-/ay2223s2 cs3230` displays an error message as the module does not exist.
 ![View Example](images/UiEditError.png)
