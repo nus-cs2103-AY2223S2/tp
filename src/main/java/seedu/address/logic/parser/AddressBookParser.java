@@ -54,6 +54,7 @@ import seedu.address.logic.commands.TotalAppointmentCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
+import seedu.address.logic.commands.ViewPartCommand;
 import seedu.address.logic.commands.ViewServiceCommand;
 import seedu.address.logic.commands.ViewTechnicianCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
@@ -184,6 +185,9 @@ public class AddressBookParser {
 
         case ViewServiceCommand.COMMAND_WORD:
             return new ViewServiceCommandParser().parse(arguments.trim());
+
+        case ViewPartCommand.COMMAND_WORD:
+            return new ViewPartCommand(arguments.trim());
 
         // Delete
 

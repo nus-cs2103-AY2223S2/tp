@@ -130,7 +130,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Map.Entry<String, Integer>> getPartMap() {
-        return model.getShop().getPartMap();
+        return model.getFilteredPartMap();
     }
 
     @Override
