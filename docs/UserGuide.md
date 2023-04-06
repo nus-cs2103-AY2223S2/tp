@@ -178,7 +178,9 @@ to our GitHub Releases page. Find the latest release and download the latest ver
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
    1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
-   2. Place `codoc.jar` into the newly created folder.
+   2. Place `codoc.jar` into the newly created folder. 
+   
+   <br>
    
 4. Launch CoDoc.
 
