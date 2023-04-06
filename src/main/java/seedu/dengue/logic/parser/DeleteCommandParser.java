@@ -72,7 +72,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         .getValue(PREFIX_STARTDATE)));
                 EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argMultimap
                         .getValue(PREFIX_ENDDATE)));
-                if (!startDate.isBefore(endDate)) {
+                if (!(startDate.isValidStartDate(endDate) && endDate.isValidEndDate(startDate))) {
                     throw new ParseException(MESSAGE_INVALID_RANGE);
                 }
                 Range<Date> range = ContinuousData.generateRange(startDate, endDate);

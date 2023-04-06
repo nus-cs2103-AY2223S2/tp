@@ -272,7 +272,7 @@
     -fx-text-fill: #3D4A5A;
 }
 
-#helpMessage:focused {
+#helpMessage, #helpMessage:focused {
     -fx-font-family: "Lucida Sans Typewriter";
     -fx-font-size: 12px;
     -fx-padding: 5 0 5 0;

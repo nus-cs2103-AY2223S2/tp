@@ -73,7 +73,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .getValue(PREFIX_STARTDATE)));
         EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argumentMultimap
                 .getValue(PREFIX_ENDDATE)));
-        if (!startDate.isBefore(endDate)) {
+        if (!(startDate.isValidStartDate(endDate) && endDate.isValidEndDate(startDate))) {
             throw new ParseException(MESSAGE_INVALID_RANGE);
         }
         return ContinuousData.generateRange(startDate, endDate);
@@ -84,7 +84,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .getValue(PREFIX_STARTAGE)));
         EndAge endAge = new EndAge(ParserUtil.parseOptionalAge(argumentMultimap
                 .getValue(PREFIX_ENDAGE)));
-        if (!startAge.isBefore(endAge)) {
+        if (!(startAge.isValidStartAge(endAge) && endAge.isValidEndAge(startAge))) {
             throw new ParseException(MESSAGE_INVALID_RANGE);
         }
         return ContinuousData.generateRange(startAge, endAge);
