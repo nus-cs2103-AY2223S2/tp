@@ -16,6 +16,7 @@ import seedu.patientist.logic.Logic;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.logic.parser.exceptions.ParseException;
+import seedu.patientist.model.Patientist;
 import seedu.patientist.model.person.Person;
 
 /**
@@ -162,10 +163,13 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the details window.
      */
     public void handleWards(CommandResult commandResult) {
+        Patientist patientist = (Patientist) this.logic.getPatientist();
         if (commandResult.isShowWards()) {
             personListPanelPlaceholder.getChildren().setAll(wardListPanel.getRoot());
+            patientist.setShowingPersonList(false);
         } else if (commandResult.isShowPersons()) {
             personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+            patientist.setShowingPersonList(true);
         }
     }
 

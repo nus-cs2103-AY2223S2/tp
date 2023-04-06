@@ -24,6 +24,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Delete Command does not work with wards.";
+
 
     private final Index targetIndex;
 
@@ -34,6 +36,12 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -41,7 +49,6 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        Patientist patientist = (Patientist) model.getPatientist();
         patientist.removePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

@@ -33,6 +33,7 @@ public class AddPatientStatusCommand extends Command {
 
     public static final String MESSAGE_ADD_STATUS_SUCCESS = "Added status %1$s to %2$s.";
     public static final String MESSAGE_NOT_PATIENT = "Person selected is not a Patient.";
+    public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Add Patient Status Command does not work with wards.";
 
     private final Index targetIndex;
     private final List<PatientStatusDetails> statusDetails;
@@ -48,6 +49,12 @@ public class AddPatientStatusCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Patientist patientist = (Patientist) model.getPatientist();
+        if (!patientist.isShowingPersonList()) {
+            throw new CommandException(MESSAGE_NOT_SHOWING_PERSON_LIST);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -79,7 +86,6 @@ public class AddPatientStatusCommand extends Command {
             patientToAdd.addPatientStatusDetails(statusDetail);
         }
 
-        Patientist patientist = (Patientist) model.getPatientist();
         patientist.removePerson(personToAdd);
         model.addPatient(patientToAdd, ward);
 
