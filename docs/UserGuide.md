@@ -21,7 +21,7 @@ With FriendlyLink, you can record elderly and volunteer information and pair the
 
 ## Before you Begin
 
-Please read this section before skipping to specific parts ahead.
+Please read this and [Quick Start](#quick-start) before skipping to specific parts ahead.
 
 ### How to use this User Guide
 
@@ -201,7 +201,16 @@ An elderly can have any number of tags and available dates.
 Examples:
 
 * `add_elderly n/Betsy Crowe p/98765432 e/johnd@example.com a/John street ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17`
+Adds an elderly named Betsy Crowe, NRIC number S1234567C, whose email is johnd@example.com, whose number is 98765432 and who lives in John street.
+The elderly's birthdate is 1950 Feb 03, lives in north region of Singapore, has high medical risk,
+is available for visit between 2023 June 03 to June 17, and is very lonely.
+
+
 * `add_elderly n/John Wick ic/S1234567C bd/1950-02-03 re/NORTH r/HIGH`
+Adds an elderly named Betsy Crowe, NRIC number S1234567C, whose birthdate is 1950 Feb 03, lives in north region of Singapore
+and have high medical risk. This example is to show some attribute fields are optional.
+
+
 ![](images/userGuide/addElderly.png)
 
 #### Adding a volunteer: `add_volunteer`
@@ -220,7 +229,17 @@ A volunteer can have any number of tags, medical qualifications and available da
 Examples:
 
 * `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15 mt/CPR, BASIC`
+Adds a volunteer named John Wick, with NRIC number T1234567D, whose birthdate is 1990 Nov 05, 
+with email being johnwick@example.com, phone number 1234561 and lives in New Yourk. 
+The volunteer is available for visit between 2023 Apr 01 to Apr 15, and is equipped with basic level of CPR skills.
+
+
 * `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
+Adds a volunteer named Sally White, with NRIC number S8457677H,
+lives in east region of Singapore, and is born on 1990 Nov 05. 
+This example is to show some fields are optional.
+
+
 ![](images/userGuide/addVolunteer.png)
 
 #### Pair volunteer and elderly: `pair`
@@ -468,6 +487,11 @@ Examples:
 #### Listing persons: `list`
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
+* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps the administrator to easily view all the elderly, volunteer and pairs in the database,
+and is also useful to revert the views after `find` command.
+* If `PAIRED` or `UNPAIRED` keyword is specified, it allows the administrator to quickly view
+the persons who are paired or not paired, therefore helps the decision-making.
+
 
 Format: `list <[PAIRED \ UNPAIRED]>`
 
@@ -492,6 +516,8 @@ Examples:
 ### Command Recommendation
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
+This feature helps to facilitate user input, 
+therefore achieve better efficiency and input accuracy.
 
 <img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
 

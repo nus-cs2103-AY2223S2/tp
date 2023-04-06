@@ -741,6 +741,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC09- Find person and related pairs**
+
+**MSS**
+
+1. User enters the details of all the fields to be matched.
+2. FL searches for the existing person and pair database, and return lists of matching elderly, volunteer and pairs.
+3. User see the matching persons and pairs appearing in the UI.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects that no field is specified for matching.
+    * 1a1. FL feedbacks that at least one field must be specified for finding records.
+
+      Use case ends.
+
+* 1b. FL detects an error in the data to be searched.
+    * 1b1. FL feedbacks that entered data is in a wrong format.
+
+      Use case ends.
+
+**Use case: UC10- Look up Help Page**
+
+**MSS**
+
+1. User types `help` in the input text box.
+2. FL returns the pop-up whose link directs user to the user guide.
+3. User see the pop-up message.
+
+   Use case ends.
+
+**Use case: UC11- Exit the app**
+
+**MSS**
+
+1. User types `exit` in the input text box.
+2. FL saves the current data and exits.
+3. User see the software interface closes.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
