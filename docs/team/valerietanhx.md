@@ -17,19 +17,19 @@ Given below are my contributions to the project.
   * Justification: This feature allows users to delete all cases from a given date at once, which may be useful
     when the user wants to clear older or erroneous cases from the same date from the DengueHotspotTracker.
   * Highlights: This enhancement was challenging as it required significant changes to the original delete command parser.
-    It caused the delete command to be the only command that could accept indexes and prefixes, but never together.
+    It caused the delete command to be the only command that could accept indexes and prefixes, _but never together_.
     This meant that much effort had to be put into ensuring that the parser could accurately detect when the two had been mixed,
     regardless of the index(es) came before or after the date, and throw exceptions accordingly.
-    The delete command itself was also updated to use Optionals instead, as it now had to hold both indexes and dates.
-    Much abstraction was required to keep the code clean and readable.
+    The delete command itself was also updated to use Optionals instead, as it now had to hold both indexes and dates,
+    but never at the same time. Much abstraction was required to keep the code clean and readable.
 * **New Feature:** Added the ability to delete all cases from a given date range.
   * Justification: This feature allows users to delete all cases from a given date at once, which may be useful
     when the user wants to clear erroneous cases from the same date from the DengueHotspotTracker.
   * Highlights: Similar to the previous feature, this enhancement was challenging as it required significant changes
     to the architecture of the delete command parser and delete command. In addition to the aforementioned changes
-    to the parser and use of Optionals, new classes such as Range, StartDate, and EndDate had to be created
-    in line with the object-oriented style of programming used throughout the rest of the project, and range validation
-    had to be implemented.
+    to the parser and use of Optionals, new classes such as `Range`, `StartDate`, and `EndDate`, as well as
+    new generic interfaces `Start` and `End`, had to be created in line with the object-oriented style of programming
+    used throughout the rest of the project. Range validation also had to be implemented.
 * **New Feature:** Added the ability to sort cases by name, age, postal code, and date.
   * Justification: This features allows users another avenue to get an overview of the cases by viewing them in a natural sorted order.
 * **Code contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=valerietanhx)
