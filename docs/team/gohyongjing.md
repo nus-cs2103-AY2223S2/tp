@@ -57,7 +57,7 @@ Given below are my contributions to the project.
         * Open the app by entering `java -jar friendlylink.jar` into the terminal.
 
 
-* Extracts from developer guide
+* **Extracts from developer guide**
 
     The `stats` command displays summary statistics about FriendlyLink, such as the total number of elderly, volunteers and unpaired persons.
 
