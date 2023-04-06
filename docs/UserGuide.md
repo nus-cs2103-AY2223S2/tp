@@ -9,6 +9,10 @@ title: User Guide
       margin-left: auto;
       margin-right: auto;
    }
+   p.caption {
+      text-align: center;
+      font-style: italic;
+   }
 </style>
 
 
@@ -110,13 +114,13 @@ Below is the full table of contents, in case you are looking for something very 
 
 Action |          Type          |Format, Examples
 :--------:|:----------------------:|:--------:
-[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]...`
+[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]... [T/TEAM_NAME]...`
 [**Clear**](#clearing-all-entries--clear) |       Modifying        |`clear`
 [**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
 [**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]... â€‹`
 [**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find NAME/MAJOR/TAG [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.gg., `sort desc tcount`
-[**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
+[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
+[**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESC [t/TAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
 [**Show**](#listing-all-teammates-in-a-team--show) |        Listing         |`show TEAM_NAME [OTHER_TEAM_NAME]...`
 [**List**](#listing-all-contacts--list) |        Listing         |`list`
 [**Remove**](#removing-a-team--remove) |       Modifying        |`remove TEAM_NAME`
@@ -222,7 +226,9 @@ Let's add his contacts to Team Builder as a new potential teammate for future ev
 
 `add n/John p/98765432 m/Business t/Good Presentor`
 
-**Result**: **Image**
+**Result**:
+
+<img class="center" src="images/JohnAdded.png" alt="Image of John added" />
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:**
@@ -257,20 +263,19 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]â€
 <img class="center" alt="**BACK OF JOHN'S CARD**" src="images/JohnContactCardBack.jpg" width="60%" />
 
 It seems that we forgot to add some information about **John**.
-
 We missed out the back of his card that has his **email**.
-
 Let's use the `edit` command to update his information.
 
 <img class="center" src="images/JohnIndex.png" alt="John at index 1" /> 
-We see **John** is index 1 in our display.
+<p class="caption"> We see <b>John</b> is index 1 in our display. </p>
 
 **What to type**:
 
 `edit 1 e/john@example.com`
 
 **Result**:
-<img class="center" src="images/JohnFullContact.png" alt="John with email added />
+<img class="center" src="images/JohnFullContact.png" alt="John with email added" />
+<p class="caption"> <b>John's email</b> is now reflected on our contact list. </p>
 
 
 <div markdown="block" class="alert alert-info">
@@ -302,7 +307,9 @@ Again, we see **John** is index 1 in our display.
 
 **Result**:
 
-John is no longer in your TeamBuilder contact list!
+<img class="center" src="images/JohnDeleted.png" alt="John deleted" />
+
+<p class="caption"> John is no longer in your TeamBuilder contact list! </p>
 
 <div style="page-break-after: always;"></div>
 
@@ -319,7 +326,7 @@ This includes:
 
 ### Creating a team: `create`
 
-Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
+Format: `create tn/TEAM_NAME td/TEAM_DESC [t/TAG]...`
 
 **Example context**:
 
@@ -421,7 +428,7 @@ of skills first.
 
 ### Add a person to a team : `edit`
 
-Format: `edit INDEX [T/TEAMTAG]...`
+Format: `edit INDEX [T/TEAM_NAME]...`
 
 **Example context**:
 
@@ -457,15 +464,33 @@ NUSMeets team.
 
 <img class="center" alt="result for 'edit 1'" src="images/ShowNUSMeets.png" width="50%" />
 
+### Removing a teammate from a team : `edit`
 
-### Removing a team : `remove`
-
-Format: `remove TEAMNAME`
+Format: `edit INDEX [T/TEAM_NAME]`
 
 **Example context**:
 
-Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run. You decide to 
-not participate in it anymore. 
+Alex reached out to you later that he is now unable to attend Hack&Roll due to some personal circumstances.
+We have no choice but to remove Alex from our team.
+
+
+**What to type**:
+
+`edit 1 T/`
+
+**Result**:
+
+<img class="center" alt="result for 'edit 1'" src="images/AlexRemoveFromTeam.png"/>
+<p class="caption"> We see that Alex's team tag is removed and the team no longer has Alex as a member </p>
+
+### Removing a team : `remove`
+
+Format: `remove TEAM_NAME`
+
+**Example context**:
+
+Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run.
+Taking into account Alex's absence as well, You decide to not participate in it anymore. 
 
 **What to type**:
 
@@ -514,8 +539,16 @@ Let's use the `undo` command to revert our Team Builder back to before we typed 
 
 These are all acceptable as anything after `undo` is discarded.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-You can only `undo` up to 10 times in a row! After the 10th `undo`, no more `undo` is possible.
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Caution:**
+
+* You can only `undo` up to 10 times in a row! After the 10th `undo`, no more `undo` is possible.
+
+* You can only `undo` [modifying commands](#full-table-of-commands).
+
+* You may also undo into a state where `find` was called and so your contact list is not shown fully.
+Simply use `list` to view the full contact list again.
+
 </div>
 
 ### Redoing an undo command : `redo`
