@@ -188,26 +188,23 @@ Le Tracker organises content using a **hierarchical structure** (Modules -> Lect
 
 When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
 
-To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
+To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your **current working context** instead. This context will allow the navigation system to **inject** the required module and lecture parameters into commands for you.
 
-The user can specify their current working context by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
+The user can specify their **current working context** by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
 
 ![RootContext](images/RootContext.png)
 Navigating **relatively** from the **root context**:
-
-1. Navigate to the module context from the root context.\
-   `nav CS2040S`
-2. Navigate to the lecture context from the module context.\
-   `nav Week 1`
+1. Navigate to the module context from the root context.
+- `nav CS2040S`
+2. Navigate to the lecture context from the module context.
+- `nav Week 1`
 
 _OR_
 
 ![RootContext](images/RootContext.png)
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-
 Navigating **directly** from any **context**:
-
 1. Navigate directly to the lecture Week 1 of the module CS2040S.
 - `nav /mod CS2040S /lec Week 1`
 
