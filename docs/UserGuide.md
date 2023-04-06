@@ -34,7 +34,7 @@ Welcome to the CareFlow user guide! This guide is designed to help you make the 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
 1. Section [1. About this user guide](#1-about-this-user-guide)
-    - if you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+    - If you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
 2. Section [2. Quick Start](#2-quick-start)
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
@@ -46,14 +46,17 @@ To help you navigate the guide, we've divided it into several sections, each cov
 4. Section [4. Commands](#4-commands)
     - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
 
-5. Section [5. FAQ](#5-faq)
-    - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
+5. Section [5. Data Storage](#5-data-storage)
+    - If you're looking for information on CareFlow's data storage mechanism, check out Section 5, "Data Storage".
 
-6. Section [6. Command Summary](#6-command-summary)
-    - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+6. Section [6. FAQ](#6-faq)
+    - If you have any questions about using CareFlow or running into any issues, take a look at Section 6, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
 
-7. Section [7. Glossary](#7-glossary)
-    - If you come across a term you're not familiar with, the glossary in Section 7 is a useful resource. It
+7. Section [7. Command Summary](#7-command-summary)
+    - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+
+8. Section [8. Glossary](#8-glossary)
+    - If you come across a term you're not familiar with, the glossary in section 8 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
 To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of
@@ -70,7 +73,7 @@ Throughout this user guide, you may come across different formatting styles and 
 | :information_source: | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
 | :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
 | UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
-| [brackets]           | Items in square brackets are optional. E.g. update -n NAME [-ph PHONE] can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
+| [brackets]           | Items in square brackets are optional. E.g. `update -n NAME [-ph PHONE]` can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
 | `command`            | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
 | [1. About](#1-about) | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
 
@@ -259,19 +262,19 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
     </p>
-7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
+7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`g help`** and hit `Enter` will open the help window.<br>
    <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
-        <li><code>p list </code> : Lists all patients. </li>
+        <li><code>p list</code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
-        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
-        <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
+        <li><code>p add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
+        <li><code>p delete -i 3</code> : Deletes the 3rd patient record shown in the current list.</li>
         <li><code>p clear</code> : Deletes all patient records.</li>
         <li><code>d clear</code> : Deletes all drug records.</li>
-        <li><code>exit</code> : Exits the app.</li>
-   </ul>
-      </details>
+        <li><code>g exit</code> : Exits the app.</li>
+    </ul>
+    </details>
     <br>
 
 [↑ Back to top](#top)
@@ -324,7 +327,7 @@ are committed to constantly improving our software to meet your needs.
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
-### View help : `g help`
+### View help
 * Feeling stuck or lost? This command shows all valid command formats and their functionalities.
 <br><br/>
   <p align="left">
@@ -342,7 +345,7 @@ drug of CareFlow.
 
 <br>
 
-### Exit the program : `g exit`
+### Exit the program
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
   \
   &nbsp;
@@ -358,7 +361,7 @@ ___
 
 ## 4.2 Patient Commands
 
-### Add a Patient record:  `p add`
+### Add a Patient record
 * Have a new patient visiting your clinic for the first time? You can use this command to add a new patient to the patient records.
   \
   &nbsp;
@@ -367,7 +370,6 @@ ___
   &nbsp;
 * Parameter constraint:
 
-  <br>
 | Parameter                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Example                               |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
 | PATIENT_NAME             | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                                                                                                                                                                          | John Smith                            |
@@ -405,7 +407,7 @@ ___
 
 <br>
 
-### Delete a patient record by NRIC: `p delete`
+### Delete a patient record by NRIC
 * Trying to remove an irrelevant or dated patient record? This command deletes the specified patient from the patient list
 and records.
   \
@@ -440,7 +442,7 @@ and records.
 
 <br>
 
-### Delete a patient record by index: `p delete`
+### Delete a patient record by index
 * Trying to remove an irrelevant or dated patient record without using their NRIC? You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
     * The index refers to the index number shown in the displayed person list.
     * The index must be a positive integer 1, 2, 3, …​
@@ -471,7 +473,7 @@ and records.
 
 <br>
 
-### Update a patient by name: `p update`
+### Update a patient by name
 
 * A patient reports a change of address, phone number, or any other information? You can easily update the information of that patient with the `p update` command.
   \
@@ -501,7 +503,7 @@ and records.
 
 <br>
 
-### Retrieve a patient record by name: `p find`
+### Retrieve a patient record by name
 * Need to promptly search for a specific patient record? You can quickly retrieve the information of a patient by searching with his or her name.
   \
   &nbsp;
@@ -525,7 +527,7 @@ and records.
 
 <br>
 
-### View a patient's full information: `p view`
+### View a patient's full information
 
 
 * Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command. 
@@ -541,8 +543,9 @@ The full detail of the retrieved patient will be shown on the right side of the 
       <p align="center">
             <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:100%">
       </p>
+      
+<br>
 
-      <br>
 [↑ Go to Patient Commands](#42-patient-commands)
 <br>
 [↑ Back to top](#top)
@@ -550,11 +553,13 @@ The full detail of the retrieved patient will be shown on the right side of the 
 <br>
 
 
-### Clear all patient records : `p clear`
+### Clear all patient records
 
 * Wish to terminate your subscription with CareFlow and move to another system? :pensive: 
 You can also clear all patient records. 
-* :exclamation: Run this command with caution!
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use this with command with caution!
+</div>
   \
   &nbsp;
 * **Format:** `p clear`
@@ -566,7 +571,7 @@ You can also clear all patient records.
             <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:100%">
       </p>
 
-      <br>
+<br>
     
 [↑ Go to Patient Commands](#42-patient-commands)
 <br>
@@ -575,15 +580,16 @@ You can also clear all patient records.
 <br>
 
 
-### List all patient records : `p list`
+### List all patient records
 
 * Want to have an overview of patient records? You can use the `list` command to see the list of 
 all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
   \
   &nbsp;
 * **Format:** `p list`
-* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
-cause error to the system
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `p list hellothere` or `p list 1234?!` will not 
+raise errors in the system
+</div>
   \
   &nbsp;
 * **Example:**
@@ -604,7 +610,7 @@ ___
 
 ## 4.3 Drug Commands
 
-### Add a drug entry: `d add`
+### Add a drug entry
 * Decided to prescribe a new drug? You can add a new drug to the list of drug records with the `d add` command.
   \
   &nbsp;
@@ -631,7 +637,7 @@ ___
 <br>
 
 
-### Delete a drug entry by TRADE_NAME: `d delete`
+### Delete a drug entry by TRADE_NAME
 * Decided to stop prescribing a certain drug? You can also delete the specified drug with the
 `d delete` command by specifying the trade name of the drug.
   \
@@ -663,7 +669,7 @@ ___
 <br>
 
 
-### Delete a drug entry by INDEX : `d delete`
+### Delete a drug entry by INDEX
 * Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list 
 by specifying its index in the given drug list.
   \
@@ -695,11 +701,14 @@ by specifying its index in the given drug list.
 <br>
 
 
-### Update storage count of a drug entry: `d update`
+### Update storage count of a drug entry
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry 
 by specifying the trade name.
-* NOTE: you need to prefix the value with + or - for addition and subtraction respectively
-* NOTE: if decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the decremented amount exceeds current storage count, updated storage count will be 0 (lower limit of storage count).
+</div>
+
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -731,7 +740,7 @@ by specifying the trade name.
 <br>
 
 
-### Retrieve a drug entry by TRADE_NAME: `d find`
+### Retrieve a drug entry by TRADE_NAME
 * Need to access a drug information swiftly? You can quickly retrieve the information of 
 a specific drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
@@ -763,16 +772,18 @@ a specific drug by using the `d find` command and specify the trade name of the 
 <br>
 
 
-### Clear all drug entries : `d clear`
+### Clear all drug entries
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
-* :exclamation: Use this with caution!
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use this with command with caution!
+</div>
   \
   &nbsp;
 * **Format:** `d clear`
   \
   &nbsp;
 * **Example:**
-    * Enter the command `d clear` and all drug information will be permanantly removed.
+    * Enter the command `d clear` and all drug information will be permanently removed.
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:100%">
       </p>
@@ -785,14 +796,15 @@ a specific drug by using the `d find` command and specify the trade name of the 
 <br>
 
 
-### List all drug entries: `d list`
+### List all drug entries
 * Want to have an overview of all drug records? You can view all drug records currently stored in the CareFlow system by
 using the `d list` command, drug records will be presented in alphabetical order.
   \
   &nbsp;
 * **Format:** `d list`
-* NOTE: In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
-cause error to the system
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. Example: `d list hellothere` or `d list 1234?!` will not 
+raise any errors in the system.
+</div>
   \
   &nbsp;
 * **Example:** `d list`
@@ -809,7 +821,7 @@ cause error to the system
 <br>
 
 
-### View a drug by index: `d view`
+### View a drug by index
 * Need to view additional information of a drug record? You can view detailed information of 
 a drug in the CareFlow. The full details of the selected drug will be shown on the right side of the application.
 * Index refers to the index number shown in the displayed drug list.
@@ -830,10 +842,10 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 <br>
 [↑ Back to top](#top)
 
-<br>
+--------------------------------------------------------------------------------------------------------------------
+# **5. Data Storage**
 
-
-### Saving the data
+## 5.1 Saving the data
 
 * CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -844,7 +856,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 <br>
 
 
-### Editing the data file
+## 5.2 Editing the data file
 
 * All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
@@ -859,16 +871,22 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 <br>
 
 
-## Archiving data files `[coming in v2.0]`
+## 5.3 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **5. FAQ**
+# **6. FAQ**
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.<br>
+
+**Q**: Do I need internet access to use CareFlow?<br>
+**A**: No, CareFlow does not require internet access to be used.<br>
+
+**Q**: Do I have to pay to use CareFlow?<br>
+**A**: No, CareFlow does not require any form of payment.<br>
 
 <br>
 
@@ -878,11 +896,11 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 
-# 6. **Command Summary**
+# **7. Command Summary**
 
 If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
 
-## 6.1 General Commands
+## 7.1 General Commands
 
 The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
 
@@ -895,7 +913,7 @@ The following are the general commands that are available in Careflow for you to
   <i>Table 2. Summary of general commands.</i>
 </p>
 
-## 6.2 Patient Commands
+## 7.2 Patient Commands
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
@@ -914,7 +932,7 @@ The following commands are patient-related commands that are available in Carefl
   <i>Table 3. Summary of patient commands.</i>
 </p>
 
-## 6.3 Drug Commands
+## 7.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
@@ -935,17 +953,18 @@ The following commands are drug-related commands that are available in Careflow 
 
 [🠉 Back to top](#top)
 
-# 7. **Glossary**
-<span id="1">
-1. Command Line Interface (CLI) <br>
+--------------------------------------------------------------------------------------------------------------------
+# **8. Glossary**
+
+* Command Line Interface (CLI) <br>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
-</span>
+
 <br><br>
-<span id="2">
-2. Graphical User Interface (GUI) <br>
+
+* Graphical User Interface (GUI) <br>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
-</span>
+
 <br><br>
 
 [🠉 Back to top](#top)

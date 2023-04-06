@@ -78,7 +78,7 @@ public class PatientListPanel extends UiPart<Region> {
 
         setClickEventListener();
         setUpdateEventListener(logic);
-
+        setupStyle();
     }
 
     /**
@@ -115,8 +115,8 @@ public class PatientListPanel extends UiPart<Region> {
     public void updateDisplay(Patient selectedPatient) {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
             drugAllergyField, emergencyContactField};
-        Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
-            selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+        Label[] details = new Label[]{selectedName, selectedPhone, selectedAddress, selectedEmail, selectedBirthDate,
+                selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);
@@ -182,8 +182,8 @@ public class PatientListPanel extends UiPart<Region> {
         selectedIc.setText(selectedPatient.getIc().value);
         DrugAllergy drugAllergy = selectedPatient.getDrugAllergy();
         selectedDrugAllergy.setText(drugAllergy == null ? "N.A." : drugAllergy.value);
-        Phone emergenctContact = selectedPatient.getEmergencyContact();
-        selectedEmergencyContact.setText(emergenctContact == null ? "N.A." : emergenctContact.value);
+        Phone emergentContact = selectedPatient.getEmergencyContact();
+        selectedEmergencyContact.setText(emergentContact == null ? "N.A." : emergentContact.value);
         for (Label detail : details) {
             detail.setWrapText(true);
             detail.setMinWidth(0);
