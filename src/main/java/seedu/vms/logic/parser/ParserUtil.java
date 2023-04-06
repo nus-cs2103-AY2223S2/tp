@@ -4,12 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
 import static seedu.vms.commons.core.Messages.MESSAGE_KEYWORD_IS_EMPTY;
-import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_HELP_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
+import static seedu.vms.model.keyword.Keyword.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -286,7 +281,7 @@ public class ParserUtil {
         if (!Keyword.isNotMainKeyword(trimmedKeyword)) {
             throw new ParseException(String.format(MESSAGE_INVALID_SUB_KEYWORD,
             MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING,
-            MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING));
+            MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING, MAIN_KEYWORD_STRING));
         }
 
         return trimmedKeyword;
