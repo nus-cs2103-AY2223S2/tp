@@ -729,7 +729,7 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats**: <br>
+:information_source: **Command Formats:** <br>
 
 * `tag m/MODULE`: Tags a module to user.
 
@@ -768,7 +768,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats** <br>
+:information_source: **Command Formats:** <br>
 
 * `view` : Displays user's profile on the display panel.
 
