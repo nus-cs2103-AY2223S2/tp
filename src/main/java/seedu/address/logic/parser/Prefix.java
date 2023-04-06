@@ -19,25 +19,22 @@ public class Prefix {
     }
 
     /**
-     * Constructs a {@code Prefix} with given prefix and an no placeholder text.
-     * @param prefix Prefix value.
-     */
-    public Prefix(String prefix) {
-        this(prefix, "", false, false);
-    }
-
-    //@@author EvitanRelta-reused
-    // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
-    // with minor modifications.
-    /**
      * Constructs a {@code Prefix} with given prefix and placeholder text.
      * @param prefix Prefix value.
      * @param placeholderText Placeholder text describing the expected data for the prefix.
      */
     public Prefix(String prefix, String placeholderText) {
+        //Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
         this(prefix, placeholderText, false, false);
     }
-    //@@author
+
+    /**
+     * Constructs a {@code Prefix} with given prefix and an no placeholder text.
+     * @param prefix Prefix value.
+     */
+    public Prefix(String prefix) {
+        this(prefix, "");
+    }
 
     /**
      * Returns true if this {@code Prefix} is just a placeholder for
