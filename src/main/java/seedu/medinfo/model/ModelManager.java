@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyMedInfo addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with medinfo book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with MedInfo: " + addressBook + " and user prefs " + userPrefs);
 
         this.medInfo = new MedInfo(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -194,6 +194,7 @@ public class ModelManager implements Model {
     public List<String> getStatsInfo() {
         return medInfo.getStatsInfo();
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
