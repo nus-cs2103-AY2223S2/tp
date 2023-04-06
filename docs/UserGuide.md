@@ -53,7 +53,7 @@ It also serves as a quick refresher to current users of the application who migh
 
 5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
 
-    <img width="560" height="400"  src="images/Ui.png">
+    <img width="560" height="400" style="margin-top:20px; margin-bottom:20px" src="images/Ui.png">
 
 6. If this is your first time running the application, it should contain some sample bookmarks.
 
