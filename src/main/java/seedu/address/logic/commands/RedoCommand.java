@@ -26,14 +26,14 @@ public class RedoCommand extends Command {
     private String commandToRedo;
 
     @Override
-    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.checkRedoable()) {
             throw new CommandException(MESSAGE_FAILURE);
         } else {
             model.redoAddressBook();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            commandToRedo = commandHistory.getLatestModifyingCommand();
+            commandToRedo = model.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
             return new CommandResult(message);
         }

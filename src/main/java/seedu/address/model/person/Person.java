@@ -92,7 +92,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name, number, or telegram handle.
+     * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -100,19 +100,8 @@ public class Person {
             return true;
         }
 
-        boolean isSameName = otherPerson.getName().fullName.equalsIgnoreCase(getName().fullName);
-
-        Phone thisNumber = this.getOptionalPhone().orElse(null);
-        Phone otherNumber = otherPerson.getOptionalPhone().orElse(null);
-        boolean isSameNumber = thisNumber == otherNumber
-                && thisNumber != null && otherNumber != null;
-
-        Telegram thisTele = this.getOptionalTelegram().orElse(null);
-        Telegram otherTele = otherPerson.getOptionalTelegram().orElse(null);
-        boolean isSameTele = thisTele == otherTele
-                && thisTele != null && otherTele != null;
-
-        return otherPerson != null && (isSameName || isSameNumber || isSameTele);
+        return otherPerson != null
+                && otherPerson.getName().equals(getName());
     }
 
     /**

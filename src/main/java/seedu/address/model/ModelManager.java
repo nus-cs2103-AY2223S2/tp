@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> targetPerson;
     private final VersionedAddressBook versionedAddressBook;
+    private final CommandHistory commandHistory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        commandHistory = new CommandHistory();
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         targetPerson = new FilteredList<Person>(versionedAddressBook.getPersonList());
@@ -144,10 +146,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void commitAddressBook() {
+    public void commitAddressBook(String lastExecutedCommand) {
         versionedAddressBook.commit();
+        commandHistory.updateAsModifyingHistory(lastExecutedCommand);
     }
 
+    @Override
+    public String getLastExecutedCommand() {
+        return commandHistory.getLastExecutedCommand();
+    }
+
+    @Override
+    public String getLatestModifyingCommand() {
+        return commandHistory.getLatestModifyingCommand();
+    }
 
 
 
