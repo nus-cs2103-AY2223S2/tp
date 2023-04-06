@@ -356,9 +356,13 @@ Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
     <img src="images/annotated/groceriesCommand.svg" width="100%">
 </p>
 
-Example: `groceries 1,3,4`
+Example: 
 
-Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the output box along with their quantities.
+Our initial recipe book:
+
+<img src="images/GroceriesStart.png" width=500 height=400>
+
+- `groceries 1,3,4` will display the groceries you need to cook recipes 1, 3 and 4 similar to the image shown below:
 
 <img src="images/GroceriesResult.png" width=500 height=400>
 
