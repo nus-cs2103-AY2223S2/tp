@@ -263,13 +263,13 @@ Throughout this user guide, you may come across different formatting styles and 
    <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
-        <li><code>p list </code> : Lists all patients. </li>
+        <li><code>p list</code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
-        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
-        <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
+        <li><code>p add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
+        <li><code>p delete -i 3</code> : Deletes the 3rd patient record shown in the current list.</li>
         <li><code>p clear</code> : Deletes all patient records.</li>
         <li><code>d clear</code> : Deletes all drug records.</li>
-        <li><code>exit</code> : Exits the app.</li>
+        <li><code>g exit</code> : Exits the app.</li>
    </ul>
       </details>
     <br>
