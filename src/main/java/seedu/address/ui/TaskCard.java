@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.shared.Datetime;
 import seedu.address.model.task.Task;
 
 /**
@@ -62,16 +63,17 @@ public class TaskCard extends UiPart<Region> {
         title.setText(task.getTitle().getValue());
         content.setText(task.getContent().getValue());
         setStatusSymbol(task.getStatus().isValue());
-        createDate.setText("Create Date: " + task.getCreateDateTime().getTimestamp().map(timestamp -> {
+        createDate.setText("Created Date: " + task.getCreateDateTime().getTimestamp().map(timestamp -> {
             LocalDateTime datetime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
             return datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }).orElse(""));
 
         if (task.getDeadline().getTimestamp().isPresent()) {
-            LocalDateTime endTime = LocalDateTime.ofInstant(Instant
-                .ofEpochMilli(task.getDeadline().getTimestamp().get()), ZoneId.systemDefault());
-            LocalDateTime startTime = LocalDateTime.ofInstant(Instant
-                .ofEpochMilli(task.getCreateDateTime().getTimestamp().get()), ZoneId.systemDefault());
+
+
+            LocalDateTime endTime = Datetime.convertToLocalTime(task.getDeadline());
+
+            LocalDateTime startTime = Datetime.convertToLocalTime(task.getCreateDateTime());
 
             deadline.setText("Deadline: " + endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -97,7 +99,7 @@ public class TaskCard extends UiPart<Region> {
         }
 
 
-        task.getPeoples()
+        task.getPersons()
             .forEach(person -> {
                 Label label = new Label(String.valueOf(person.getName()));
                 label.getStyleClass().add("cell_small_label");

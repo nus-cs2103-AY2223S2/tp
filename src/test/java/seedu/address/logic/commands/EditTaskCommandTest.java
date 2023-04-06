@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
@@ -28,7 +29,7 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
 public class EditTaskCommandTest {
     private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -40,7 +41,7 @@ public class EditTaskCommandTest {
 
         OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(
                 new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
 
         expectedOfficeConnectModel.getTaskModelManager()
                 .setItem(officeConnectModel.getTaskModelManagerFilteredItemList().get(0), editedTask);
@@ -70,7 +71,7 @@ public class EditTaskCommandTest {
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
         OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(
                 new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
 
         expectedOfficeConnectModel.getTaskModelManager().setItem(lastTask, editedTask);
 

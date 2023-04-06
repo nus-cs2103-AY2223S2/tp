@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
@@ -24,9 +25,9 @@ public class ListTaskCommandTest {
     @BeforeEach
     public void setUp() {
         model = new OfficeConnectModel(new RepositoryModelManager<>(getTypicalTaskRepository()),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
         expectedModel = new OfficeConnectModel(model.getTaskModelManager(),
-                new RepositoryModelManager<>(new Repository<AssignTask>()));
+                new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
     }
 
     @Test
