@@ -1,0 +1,42 @@
+@startuml UiResultDisplayClassDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+hide <<hidden>> stereotype
+
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
+
+Class HiddenOut <<hidden>>
+
+package Ui UI_COLOR_T1 {
+    Class ResultDisplay UI_COLOR
+    Class ResultMessageBox UI_COLOR
+}
+
+package Logic LOGIC_COLOR_T1 {
+    Class CommandMessage LOGIC_COLOR
+}
+
+package JavaFX {
+    Class Node #000000
+}
+
+ResultDisplay .down.> ResultMessageBox : uses >
+ResultDisplay .left.> CommandMessage : displays >
+ResultDisplay -right-> Node
+
+ResultMessageBox .left.> CommandMessage
+ResultMessageBox .right.> Node : creates >
+
+@enduml
