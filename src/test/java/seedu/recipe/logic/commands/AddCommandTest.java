@@ -44,28 +44,27 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateRecipe_throwsCommandException() {
-         AddCommand addCommand = new AddCommand(DESC_FISH);
-         ModelStub modelStub = new ModelStubWithRecipe(DESC_FISH.toRecipe());
-         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RECIPE,
-         () -> addCommand.execute(modelStub));
+        AddCommand addCommand = new AddCommand(DESC_FISH);
+        ModelStub modelStub = new ModelStubWithRecipe(DESC_FISH.toRecipe());
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RECIPE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-         AddCommand addChickenCommand = new AddCommand(DESC_CHICKEN);
-         AddCommand addFishCommand = new AddCommand(DESC_FISH);
+        AddCommand addChickenCommand = new AddCommand(DESC_CHICKEN);
+        AddCommand addFishCommand = new AddCommand(DESC_FISH);
 
-         // same object -> returns true
-         assertTrue(addChickenCommand.equals(addChickenCommand));
-         // same values -> returns true
-         AddCommand addChickenCommandCopy = new AddCommand(DESC_CHICKEN);
-         assertTrue(addChickenCommand.equals(addChickenCommandCopy));
-         // different types -> returns false
-         assertFalse(addChickenCommand.equals(1));
-         // null -> returns false
-         assertFalse(addChickenCommand.equals(null));
-         // different recipe -> returns false
-         assertFalse(addChickenCommand.equals(addFishCommand));
+        // same object -> returns true
+        assertTrue(addChickenCommand.equals(addChickenCommand));
+        // same values -> returns true
+        AddCommand addChickenCommandCopy = new AddCommand(DESC_CHICKEN);
+        assertTrue(addChickenCommand.equals(addChickenCommandCopy));
+        // different types -> returns false
+        assertFalse(addChickenCommand.equals(1));
+        // null -> returns false
+        assertFalse(addChickenCommand.equals(null));
+        // different recipe -> returns false
+        assertFalse(addChickenCommand.equals(addFishCommand));
     }
 
     /**
