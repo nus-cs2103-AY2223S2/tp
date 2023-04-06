@@ -260,6 +260,11 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public void commitAddressBook(String lastExecutedCommand) {
+            return;
+        }
     }
 
 }
