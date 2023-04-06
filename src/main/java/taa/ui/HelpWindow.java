@@ -60,9 +60,9 @@ public class HelpWindow extends UiPart<Stage> {
                     + "+-----------------------------+---------------------------------------------------+\n"
                     + "| List Assignment             | list_asgn                                         |\n"
                     + "+-----------------------------+---------------------------------------------------+\n"
-                    + "| Import CSV data             | import [FLAG] FILE_PATH                           |\n"
+                    + "| Import CSV data             | import [-force] FILE_PATH                         |\n"
                     + "+-----------------------------+---------------------------------------------------+\n"
-                    + "| Export CSV data             | export [FLAG] FILE_PATH                           |\n"
+                    + "| Export CSV data             | export [-force] FILE_PATH                         |\n"
                     + "+-----------------------------+---------------------------------------------------+\n";
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t14-4.github.io/tp/UserGuide.html";

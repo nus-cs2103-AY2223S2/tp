@@ -14,4 +14,13 @@ public class ParseException extends IllegalValueException {
     public ParseException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    /**
+     * Consumer that might throw a {@link ParseException}.
+     *
+     * @param <E> input type.
+     */
+    public interface Consumer<E> {
+        void accept(E e) throws ParseException;
+    }
 }
