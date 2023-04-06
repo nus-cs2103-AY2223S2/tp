@@ -780,8 +780,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+       
 
 ### Deleting a person
 
@@ -798,7 +797,65 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a group
+
+1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
+
+2. Test case: `group_create g/CS2100`
+   Expected: Group created with name 'CS2100'.
+
+3. Test case: `group_create g/Best friends`
+   Expected: Group not created. Status message indicates that group name can only be alphanumeric
+
+4. Test case: `group_create g/CS2103`
+   Expected: Group not created. Status message indicates that group already exists.
+      
+### Deleting a group
+
+1. Deleting a group while all groups are being shown
+
+   1. Prerequisities: List all groups using `group_list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+
+   2. Test case: `group_delete 1`
+      Expected: Group named CS2103 deleted and all persons removed from that group
+   
+   3. Test case: `group_create g/Best friends`
+      Expected: Group not deleted. Status message indicates invalid command format
+
+### Finding a group
+
+1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
+2. Test case: `group_find CS2103`
+   Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
+3. Test case: `group_find Bestfriends`
+   Expected: Group and person list will not display anytrhing
+   
+   
+### Export a person
+
+1. Export a person while all persons are being shown
+   1. Prerequisities: List all persons using the `list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+   
+   2. Test case: `export 1`
+      Expected: First person in the personList is exported and details of the person are shown in the status message
+   
+   3. Test case: `export 2`
+      Expected: Second person in the personList is exported and details of the person are shown in the status message
+   
+   4. Test case: `export 99`
+      Expected: No person is exported. Status message indicated person index provided is invalid
+
+2. Export a person while person list is filtered
+
+   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). The preloaded data for groups are not modified. (No groups are removed or added)
+   
+   2. Test case: `export 1`
+      Expected: First person in the personList is exported and details of the person are shown in the status message
+   
+   3. Test case: `export 2`
+      Expected: No person is exported. Status message indicated person index provided is invalid
+
+
 
 ### Saving data
 
@@ -806,4 +863,3 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
