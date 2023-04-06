@@ -76,6 +76,7 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Patient Record Field | Prefix |
 |----------------------|--------|
 | NRIC                 | i/     |
+| Date Of Birth        | dob/   | 
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
