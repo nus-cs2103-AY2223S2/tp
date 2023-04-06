@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -92,7 +93,7 @@ public class UploadCommand extends Command {
 
             Files.copy(sourcePath, destPath.resolve(sourcePath.getFileName()), REPLACE_EXISTING);
             return new CommandResult(this, generateSuccessMessage(sourcePath), willModifyState);
-        } catch (IOException e) {
+        } catch (InvalidPathException | IOException e) {
             throw new CommandException(MESSAGE_INVALID_FILEPATH);
         }
     }

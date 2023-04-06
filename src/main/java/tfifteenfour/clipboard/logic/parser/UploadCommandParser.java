@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic.parser;
 
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,7 +14,7 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
  */
 public class UploadCommandParser implements Parser<UploadCommand> {
 
-
+    public static final String MESSAGE_INVALID_FILEPATH = "File path is not valid!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCommand
@@ -26,7 +27,11 @@ public class UploadCommandParser implements Parser<UploadCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadCommand.MESSAGE_USAGE));
         }
 
-        Path sourcePath = Paths.get(trimmedArgs);
-        return new UploadCommand(sourcePath);
+        try {
+            Path sourcePath = Paths.get(trimmedArgs);
+            return new UploadCommand(sourcePath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(MESSAGE_INVALID_FILEPATH);
+        }
     }
 }
