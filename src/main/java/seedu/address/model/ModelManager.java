@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -143,7 +142,7 @@ public class ModelManager implements Model, Undoable {
     }
 
     @Override
-    public void deleteMultiplePersons(ArrayList<Person> list) {
+    public void deleteMultiplePersons(List<Person> list) {
         for (Person target: list) {
             addressBook.removePerson(target);
         }

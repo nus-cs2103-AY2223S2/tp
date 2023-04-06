@@ -148,7 +148,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteMultiplePersons(ArrayList<Person> listOfPeople) {
+        public void deleteMultiplePersons(List<Person> listOfPeople) {
             throw new AssertionError("This method should not be called.");
         }
         @Override

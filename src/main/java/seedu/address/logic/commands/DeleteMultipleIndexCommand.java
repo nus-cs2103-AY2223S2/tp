@@ -18,9 +18,9 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted People Successfully ";
 
-    private final ArrayList<Index> indexes;
+    private final List<Index> indexes;
 
-    public DeleteMultipleIndexCommand(ArrayList<Index> indexes) {
+    public DeleteMultipleIndexCommand(List<Index> indexes) {
         this.indexes = indexes;
     }
 
@@ -31,7 +31,7 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
         List<Person> lastShownList = model.getFilteredPersonList();
         isIndexesValid(lastShownList);
 
-        ArrayList<Person> listOfPeople = new ArrayList<Person>();
+        List<Person> listOfPeople = new ArrayList<Person>();
         for (Index targetIndex : this.indexes) {
 
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());

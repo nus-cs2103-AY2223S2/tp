@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -85,7 +84,7 @@ public interface Model {
      *
      * @param listOfPeople ArrayList of Person.
      */
-    void deleteMultiplePersons(ArrayList<Person> listOfPeople);
+    void deleteMultiplePersons(List<Person> listOfPeople);
 
     /**
      * Adds the given person.
