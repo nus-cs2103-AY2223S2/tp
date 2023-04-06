@@ -336,12 +336,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Note
-
-* Some long text may be truncated by the app.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 Action | Format, Examples
