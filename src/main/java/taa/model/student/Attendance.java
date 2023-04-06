@@ -197,6 +197,10 @@ public class Attendance {
         return res.toString();
     }
 
+    /**
+     * @param str Attendance string from json file
+     * @return true if string is valid and false otherwise
+     */
     public static boolean isValidAttendanceStorageString(String str) {
         String[] arr = str.split(";");
         if (arr.length != 12) {
@@ -210,6 +214,10 @@ public class Attendance {
         return true;
     }
 
+    /**
+     * @param str Participation points string from storage
+     * @return true if string is valid and false otherwise
+     */
     public static boolean isValidPPStorageString(String str) {
         String[] arr = str.split(";");
         if (arr.length != 12) {
