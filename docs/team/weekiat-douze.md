@@ -11,8 +11,12 @@ BookFace also has a contact import features which adds important contacts based 
 This feature aims to help newer or exchange students to better navigate the university. 
 
 ### Summary of Contributions
+
+
 #### Code Contributed
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=weekiat-douze&breakdown=true)
+
+
 #### Enhancement Implemented
 * Add Image to contact
   * What it does: Enables user to specify an image file to be used as a contact profile picture
@@ -47,12 +51,13 @@ This feature aims to help newer or exchange students to better navigate the univ
 Wrote the following sections of the BookFace [User Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/UserGuide.html):
 * Add an image for contacts (`add-image` function)
 * Quick Import for admin contacts (`import` function)
+
 #### Contributions to Developer Guide
 Wrote the following sections of the BookFace [Developer Guide](https://ay2223s2-cs2103-f11-4.github.io/tp/DeveloperGuide.html):
 * Add Image Feature
 * Planned Enhancement
 
-Some diagrams contributions to the Developer Guide:
+Some diagram contributions to the Developer Guide:
 <div style="text-align: center">
     <img src="../images/AddImageSequenceDiagram.png" />
     <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 1: Add Image sequence diagram</i></p>
