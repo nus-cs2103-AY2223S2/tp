@@ -1,11 +1,14 @@
 package seedu.internship.model.internship;
 
+import java.util.Objects;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 
-import java.util.Objects;
-
+/**
+ * Calculates Statistics based on current Internship List and Event List.
+ */
 public class Statistics {
 
     public static final Statistics EMPTY_STATISTICS = new Statistics();
@@ -27,6 +30,12 @@ public class Statistics {
         allDatapoints.addAll(totalInternships, numInterested, numApplied, numOffered, numRejected);
     }
 
+    /**
+     * Creates Statistics based on current internships and events
+     *
+     * @param internships Current List of Internships
+     * @param events Current List of Events
+     */
     public Statistics(ObservableList<Internship> internships, ObservableList<Event> events) {
         this();
         parseInternshipList(internships);
@@ -36,18 +45,20 @@ public class Statistics {
     private void parseInternshipList(ObservableList<Internship> internships) {
         for (Internship internship : internships) {
             switch (internship.getStatusId()) {
-                case 0:
-                    numInterested.incrementValue(1);
-                    break;
-                case 1:
-                    numApplied.incrementValue(1);
-                    break;
-                case 2:
-                    numOffered.incrementValue(1);
-                    break;
-                case 3:
-                    numRejected.incrementValue(1);
-                    break;
+            case 0:
+                numInterested.incrementValue(1);
+                break;
+            case 1:
+                numApplied.incrementValue(1);
+                break;
+            case 2:
+                numOffered.incrementValue(1);
+                break;
+            case 3:
+                numRejected.incrementValue(1);
+                break;
+            default:
+                break;
             }
             totalInternships.incrementValue(1);
         }

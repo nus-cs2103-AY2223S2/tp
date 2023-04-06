@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
     }
 
     @Test
@@ -34,14 +34,16 @@ public class AddCommandIntegrationTest {
 
         Internship validInternship = new InternshipBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         expectedModel.addInternship(validInternship);
         expectedModel.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
 
         ObservableList<Event> events = model.getFilteredEventList();
 
         assertCommandSuccess(new AddCommand(validInternship), model,
-                new CommandResult(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), ResultType.SHOW_INFO, validInternship, events), expectedModel);
+                new CommandResult(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), ResultType.SHOW_INFO,
+                        validInternship, events), expectedModel);
     }
 
     @Test

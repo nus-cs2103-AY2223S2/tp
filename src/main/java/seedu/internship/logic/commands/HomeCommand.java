@@ -1,13 +1,13 @@
 package seedu.internship.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.internship.model.Model;
-import seedu.internship.model.event.Event;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
 
 /**
  * Displays the home screen which contains reminders of events and summary of functions.
