@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
+import seedu.address.logic.parser.exceptions.IndexException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -39,10 +41,15 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_TAG, PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
 
         Index index;
-
         try {
+            //index should only include numbers. If it does not, it means that incorrect prefixes are included.
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IndexException indexException) {
+            //thrown if the index is too big to be stored as an int
+            throw new ParseException(String.format(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX, EditCommand.MESSAGE_USAGE),
+                    indexException);
         } catch (ParseException pe) {
+            //thrown if the command has invalid prefixes
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
@@ -69,7 +76,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TEACHER).isPresent()) {
             editModuleDescriptor.setTeacher(ParserUtil.parseTeacher(argMultimap.getValue(PREFIX_TEACHER).get()));
         }
-
         if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

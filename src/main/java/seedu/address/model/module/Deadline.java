@@ -42,7 +42,6 @@ public class Deadline implements Comparable<Deadline> {
         if (test.equals(EMPTY_INPUT)) {
             return true;
         }
-
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -50,7 +49,9 @@ public class Deadline implements Comparable<Deadline> {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        try {
+        if (test.equals(EMPTY_INPUT)) {
+            return true;
+        } try {
             DateFormat df = new SimpleDateFormat("ddMMyy HH:mm");
             df.setLenient(false);
             df.parse(test);

@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDRESS + "VENUE] "
             + "[" + PREFIX_RESOURCE + "RESOURCE] "
             + "[" + PREFIX_TEACHER + "TEACHER] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
