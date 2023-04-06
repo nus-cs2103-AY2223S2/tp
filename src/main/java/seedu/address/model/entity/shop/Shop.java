@@ -4,18 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import com.sun.javafx.collections.ObservableListWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,28 +22,24 @@ import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.entity.person.Technician;
-import seedu.address.model.entity.person.UniqueCustomerList;
-import seedu.address.model.entity.person.UniqueTechnicianList;
-import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
 import seedu.address.model.entity.shop.exception.AppointmentNotFoundException;
 import seedu.address.model.entity.shop.exception.CustomerNotFoundException;
+import seedu.address.model.entity.shop.exception.DuplicateEmailException;
+import seedu.address.model.entity.shop.exception.DuplicatePhoneNumberException;
+import seedu.address.model.entity.shop.exception.DuplicatePlateNumberException;
 import seedu.address.model.entity.shop.exception.EmptyInputException;
 import seedu.address.model.entity.shop.exception.InsufficientPartException;
+import seedu.address.model.entity.shop.exception.InvalidDateException;
 import seedu.address.model.entity.shop.exception.InvalidQuantityException;
+import seedu.address.model.entity.shop.exception.PartNotFoundException;
 import seedu.address.model.entity.shop.exception.ServiceNotFoundException;
 import seedu.address.model.entity.shop.exception.TechnicianNotFoundException;
 import seedu.address.model.entity.shop.exception.VehicleNotFoundException;
-import seedu.address.model.entity.shop.exception.PartNotFoundException;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
-import seedu.address.model.service.ServiceList;
 import seedu.address.model.service.ServiceStatus;
-import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
 import seedu.address.model.service.appointment.Appointment;
-import seedu.address.model.service.appointment.UniqueAppointmentList;
-import seedu.address.model.service.exception.PartLessThanZeroException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -64,7 +53,8 @@ public class Shop implements ReadOnlyShop {
     private final ObservableList<Technician> technicians = FXCollections.observableArrayList();
     private final ObservableList<Service> services = FXCollections.observableArrayList();
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
-    private final ObservableMap<String, Integer> parts = FXCollections.observableHashMap();
+    private final ObservableMap<String, Integer> parts =
+        FXCollections.observableMap(new CaseInsensitiveHashMap<>());
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
@@ -81,7 +71,7 @@ public class Shop implements ReadOnlyShop {
         resetData(toBeCopied);
     }
 
-    // Getters ---------------------------------------------------------------------
+    // Getters =========================================================================================================
 
     // Whole list
     public ObservableList<Customer> getCustomerList() {
@@ -144,14 +134,15 @@ public class Shop implements ReadOnlyShop {
         if (partName.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
-        String normalizedName = partName.toUpperCase();
-        if (!this.parts.containsKey(normalizedName)) {
-            throw new PartNotFoundException(normalizedName);
+        if (!this.parts.containsKey(partName)) {
+            throw new PartNotFoundException(partName);
         }
-        return this.parts.get(normalizedName);
+        return this.parts.get(partName);
     }
 
-    // Checkers -----------------------------------------------------------------------------------
+    // ================================================================================================
+
+    // Checkers =======================================================================================
 
     private boolean hasCustomer(int id) {
         return this.customers.stream().anyMatch(c -> c.getId() == id);
@@ -174,19 +165,59 @@ public class Shop implements ReadOnlyShop {
     }
 
     private boolean hasPart(String partName) {
-        return this.parts.containsKey(partName.toUpperCase());
+        return this.parts.containsKey(partName);
     }
 
-    // Add ------------------------------------------------------------------------------------------------------
+    /**
+     * Checks if the email exists in the shop.
+     * @param email email to check
+     * @return true if email exists, false otherwise
+     */
+    private boolean emailExists(Email email) {
+        return this.customers.stream().anyMatch(c -> c.getEmail().toString().equalsIgnoreCase(email.toString()))
+            || this.technicians.stream().anyMatch(t -> t.getEmail().toString().equalsIgnoreCase(email.toString()));
+    }
 
-    public void addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    /**
+     * Checks if the phone exists in the shop.
+     * @param phone phone to check
+     * @return true if phone exists, false otherwise
+     */
+    private boolean phoneExists(Phone phone) {
+        return this.customers.stream().anyMatch(c -> c.getPhone().toString().equalsIgnoreCase(phone.toString()))
+            || this.technicians.stream().anyMatch(t -> t.getPhone().toString().equalsIgnoreCase(phone.toString()));
+    }
+
+    /**
+     * Checks if the plate number exists in the shop.
+     * @param plateNumber plate number to check
+     * @return true if plate number exists, false otherwise
+     */
+    private boolean plateNumberExists(String plateNumber) {
+        return this.vehicles.stream().anyMatch(v -> v.getPlateNumber().equalsIgnoreCase(plateNumber));
+    }
+
+    // ================================================================================================
+
+    // Add ========================================================================================
+
+    public void addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
+        throws DuplicateEmailException, DuplicatePhoneNumberException {
+        if (this.emailExists(email)) {
+            logger.info("Duplicate email " + email);
+            throw new DuplicateEmailException(email);
+        }
+        if (this.phoneExists(phone)) {
+            logger.info("Duplicate phone " + phone);
+            throw new DuplicatePhoneNumberException(phone);
+        }
         Customer toAdd = new Customer(IdGenerator.generateCustomerId(), name, phone, email, address, tags);
         this.customers.add(toAdd);
         logger.info(toAdd + " added");
     }
 
     public void addVehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type)
-            throws CustomerNotFoundException, EmptyInputException {
+            throws CustomerNotFoundException, EmptyInputException, DuplicatePlateNumberException {
         if (plateNumber.isBlank()) {
             logger.info("Empty input for vehicle plate number");
             throw new EmptyInputException("Plate number should not be blank");
@@ -199,6 +230,10 @@ public class Shop implements ReadOnlyShop {
             logger.info("Empty input for vehicle brand");
             throw new EmptyInputException("Brand should not be blank");
         }
+        if (this.plateNumberExists(plateNumber)) {
+            logger.info("Duplicate plate number " + plateNumber);
+            throw new DuplicatePlateNumberException(plateNumber);
+        }
         Vehicle toAdd = new Vehicle(IdGenerator.generateVehicleId(), ownerId, plateNumber, color, brand, type);
         this.getCustomer(ownerId).addVehicle(toAdd.getId());
         this.vehicles.add(toAdd);
@@ -207,13 +242,17 @@ public class Shop implements ReadOnlyShop {
 
     public void addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
                            Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
-                throws VehicleNotFoundException, EmptyInputException {
+                throws VehicleNotFoundException, EmptyInputException, InvalidDateException {
         if (description.isBlank()) {
             logger.info("Empty input for service description");
             throw new EmptyInputException("Description should not be blank");
         }
         LocalDate entryDate = maybeEntryDate.orElseGet(LocalDate::now);
         LocalDate estimatedFinishDate = maybeEstimatedFinishDate.orElseGet(() -> entryDate.plusDays(7));
+        if (estimatedFinishDate.isBefore(entryDate)) {
+            logger.info("Invalid date for service estimated finish date before entry date");
+            throw new InvalidDateException(estimatedFinishDate, entryDate);
+        }
         ServiceStatus serviceStatus = maybeServiceStatus.orElse(ServiceStatus.TO_REPAIR);
         Service toAdd = new Service(IdGenerator.generateServiceId(), vehicleId,entryDate, new HashMap<>() ,
             description, estimatedFinishDate, serviceStatus);
@@ -261,15 +300,14 @@ public class Shop implements ReadOnlyShop {
         if (part.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
-        String normalizedPartName = part.toUpperCase();
         if (qty <= 0) {
             throw new InvalidQuantityException(qty);
         }
-        if (!this.hasPart(normalizedPartName)) {
-            throw new PartNotFoundException(normalizedPartName);
+        if (!this.hasPart(part)) {
+            throw new PartNotFoundException(part);
         }
-        this.parts.put(normalizedPartName, this.parts.get(normalizedPartName) + qty);
-        logger.info(String.format("%s, %d added", normalizedPartName, qty));
+        this.parts.put(part, this.parts.get(part) + qty);
+        logger.info(String.format("%s, %d added", part, qty));
     }
 
     public void addPartToService(int serviceId, String partName, int qty)
@@ -278,22 +316,23 @@ public class Shop implements ReadOnlyShop {
         if (partName.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
-        String normalizedPartName = partName.toUpperCase();
         if (qty <= 0) {
             throw new InvalidQuantityException(qty);
         }
-        if (!this.hasPart(normalizedPartName)) {
-            throw new PartNotFoundException(normalizedPartName);
+        if (!this.hasPart(partName)) {
+            throw new PartNotFoundException(partName);
         }
-        if (this.getPartQty(normalizedPartName) < qty) {
-            throw new InsufficientPartException(normalizedPartName, this.getPartQty(normalizedPartName));
+        if (this.getPartQty(partName) < qty) {
+            throw new InsufficientPartException(partName, this.getPartQty(partName));
         }
         Service service = this.getService(serviceId);
-        this.parts.put(normalizedPartName, this.parts.get(normalizedPartName) - qty);
-        service.addPart(normalizedPartName, qty);
+        this.parts.put(partName, this.parts.get(partName) - qty);
+        service.addPart(partName, qty);
     }
 
-    // Delete -----------------------------------------------------------------------------------------------
+    // ==============================================================================================
+
+    // Delete ==============================================================================================
 
     public void removeCustomer(int customerId) throws CustomerNotFoundException {
         Customer toRemove = this.getCustomer(customerId);
@@ -393,16 +432,15 @@ public class Shop implements ReadOnlyShop {
         if (name.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
-        String normalizedPartName = name.toUpperCase();
         if (quantity <= 0) {
             throw new InvalidQuantityException(quantity);
         }
-        if (this.getPartQty(normalizedPartName) < quantity) {
-            throw new InsufficientPartException(normalizedPartName, quantity);
+        if (this.getPartQty(name) < quantity) {
+            throw new InsufficientPartException(name, quantity);
         }
-        int newQty = this.getPartQty(normalizedPartName) - quantity;
-        this.parts.put(normalizedPartName, newQty);
-        logger.info(String.format("%s x %d added", normalizedPartName, quantity));
+        int newQty = this.getPartQty(name) - quantity;
+        this.parts.put(name, newQty);
+        logger.info(String.format("%s x %d removed", name, quantity));
     }
 
     public void removePartFromService(String partName, int serviceId)
@@ -410,19 +448,18 @@ public class Shop implements ReadOnlyShop {
         if (partName.isBlank()) {
             throw new EmptyInputException("PartName cannot be blank");
         }
-        String normalizedPartName = partName.toUpperCase();
         Service service = this.getService(serviceId);
-        if (!service.getRequiredParts().containsKey(normalizedPartName)) {
-            throw new PartNotFoundException(normalizedPartName);
+        if (!service.getRequiredParts().containsKey(partName)) {
+            throw new PartNotFoundException(partName);
         }
-        int qty = service.getRequiredParts().get(normalizedPartName);
-        if (this.parts.containsKey(normalizedPartName)) {
-            this.parts.put(normalizedPartName, this.getPartQty(normalizedPartName) + qty);
+        int qty = service.getRequiredParts().get(partName);
+        if (this.parts.containsKey(partName)) {
+            this.parts.put(partName, this.getPartQty(partName) + qty);
         } else {
-            this.parts.put(normalizedPartName, qty);
+            this.parts.put(partName, qty);
         }
-        service.getRequiredParts().remove(normalizedPartName);
-        logger.info(String.format("%s x % d transferred back to shop", normalizedPartName, qty);
+        service.getRequiredParts().remove(partName);
+        logger.info(String.format("%s x % d transferred back to shop", partName, qty);
     }
 
     public void removeTechnicianFromService(int techId, int serviceId)
@@ -441,459 +478,144 @@ public class Shop implements ReadOnlyShop {
         logger.info(String.format("Technician %d unassigned from appointment %d", techId, appointmentId));
     }
 
-    // Edit --------------------------------------------------------------------------------------------------
+    // ================================================================================================================
 
-//    // --------------------------------------------------
-//    //// Service-level operations
-//
-//    /**
-//     * Adds service to the system
-//     *
-//     * @param service Service to be added to the system
-//     * @throws VehicleNotFoundException If vehicle not in the system
-//     */
-//    public void addService(Service service) throws VehicleNotFoundException {
-//        this.addService(service.getVehicleId(), service);
-//    }
-//
-//    /**
-//     * Adds service to a vehicle
-//     *
-//     * @param vehicleId Id of vehicle
-//     * @param service   Service to be added to vehicle
-//     * @throws VehicleNotFoundException If vehicle not in the system
-//     */
-//    public void addService(int vehicleId, Service service) throws VehicleNotFoundException {
-//        for (var vehicle : this.getVehicleList()) {
-//            if (vehicle.getId() == vehicleId) {
-//                vehicle.addService(service);
-//                this.services.add(service);
-//                return;
-//            }
-//        }
-//        throw new VehicleNotFoundException();
-//    }
-//
-//    /**
-//     * Checks if service already added
-//     *
-//     * @param serviceId Service ID to check
-//     */
-//    public boolean hasService(int serviceId) {
-//        return this.getServiceList()
-//            .stream()
-//            .anyMatch(s -> s.getId() == serviceId);
-//    }
-//
-//    /**
-//     * Wrapper function to also check if service already added
-//     * but using Service param
-//     *
-//     * @param service Service to check
-//     */
-//    public boolean hasService(Service service) {
-//        return this.hasService(service.getId());
-//    }
-//
-//    @Override
-//    public ObservableList<Service> getServiceList() {
-//        return this.services.asUnmodifiableObservableList();
-//    }
-//
-//    /**
-//     * Replaces the contents of the service list with {@code services}.
-//     */
-//    public void setServices(List<Service> services) {
-//        this.services.setServices(services);
-//    }
-//
-//    public void setService(Service services, Service edit) {
-//
-//        this.services.setService(services, edit);
-//    }
-//
-//    /**
-//     * Removes {@code key} from this {@code AddressBook}.
-//     * {@code key} must exist in the address book.
-//     */
-//    public void removeService(Service key) {
-//        services.remove(key);
-//    }
-//
-//    // --------------------------------------------------
-//    //// Appointment-level operations
-//
-//    /**
-//     * Adds appointment to the appointment list
-//     *
-//     * @param appointment Appointment to be added
-//     */
-//    public void addAppointment(Appointment appointment) throws PersonNotFoundException {
-//        for (var customer : customers) {
-//            if (customer.getId() == appointment.getCustomerId()) {
-//                customer.addAppointment(appointment);
-//                this.appointments.add(appointment);
-//                return;
-//            }
-//        }
-//        throw new PersonNotFoundException();
-//    }
-//
-//    @Override
-//    public ObservableList<Appointment> getAppointmentList() {
-//        return this.appointments.asUnmodifiableObservableList();
-//    }
-//
-//    public void removeAppointment(Appointment key) {
-//        appointments.remove(key);
-//    }
-//
-//    public void setAppointment(Appointment target, Appointment editedAppointment) {
-//        requireNonNull(editedAppointment);
-//        appointments.setAppointment(target, editedAppointment);
-//    }
-//
-//    /**
-//     * Wrapper function to also check if appointment already added
-//     * but using appointment param
-//     *
-//     * @param appointment Appointment to check
-//     */
-//    public boolean hasAppointment(Appointment appointment) {
-//        return appointments.contains(appointment);
-//    }
-//
-//    /**
-//     * Checks if appointment in the system
-//     *
-//     * @param appointmentId ID of appointment
-//     */
-//    public boolean hasAppointment(int appointmentId) {
-//        return this.getAppointmentList().stream().anyMatch(a -> a.getId() == appointmentId);
-//    }
-//
-//    /**
-//     * Replaces the contents of the appointment list with {@code appointments}.
-//     * {@code appointments} must not contain appointment customers.
-//     */
-//    public void setAppointments(List<Appointment> appointments) {
-//        this.appointments.setAppointments(appointments);
-//    }
-//
-//    // --------------------------------------------------
-//    //// part-level operations
-//    @Override
-//    public PartMap getPartMap() {
-//        return this.partMap;
-//    }
-//
-//    /**
-//     * Adds part
-//     *
-//     * @param partName Name of the part to add
-//     * @param quantity Quantity of the part to add
-//     */
-//    public void addPart(String partName, int quantity) {
-//        this.getPartMap().addPart(partName, quantity);
-//    }
-//
-//    /**
-//     * Adds part to service
-//     *
-//     * @param serviceId ID of service
-//     * @param partName  Name of part
-//     * @param quantity  Quantity of part
-//     * @throws NoSuchElementException    If service not in system
-//     * @throws PartNotFoundException     If part not registered
-//     * @throws PartLessThanZeroException If part insufficient
-//     */
-//    public void addPartToService(int serviceId, String partName, int quantity)
-//            throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
-//        Optional<Service> serviceOption = this.getServiceList()
-//            .stream()
-//            .filter(s -> s.getId() == serviceId)
-//            .findFirst();
-//        Service service = serviceOption.orElseThrow();
-//        this.getPartMap().decreasePartQuantity(partName, quantity);
-//        service.addPart(partName, quantity);
-//    }
-//
-//    /**
-//     * Assigns existing technician to existing service
-//     *
-//     * @param serviceId    ID of service
-//     * @param technicianId ID of technician
-//     * @throws NoSuchElementException If service or technician doesn't exist
-//     */
-//    public void addTechnicianToService(int serviceId, int technicianId) throws NoSuchElementException {
-//        if (!this.hasTechnician(technicianId)) {
-//            throw new NoSuchElementException();
-//        }
-//        Service service = this.getServiceList().stream()
-//            .filter(s -> s.getId() == serviceId)
-//            .findFirst()
-//            .orElseThrow();
-//        service.assignTechnician(technicianId);
-//    }
-//
-//    /**
-//     * Assigns existing technician to existing appointment
-//     *
-//     * @param technicianId ID of technician
-//     * @param appointmentId ID of appointment
-//     * @throws NoSuchElementException if technician ID or appointment ID does not exist
-//     */
-//    public void addTechnicianToAppointment(int technicianId, int appointmentId) throws NoSuchElementException {
-//        if (!this.hasTechnician(technicianId)) {
-//            throw new NoSuchElementException();
-//        }
-//        Appointment appointment = this.getAppointmentList().stream()
-//            .filter(a -> a.getId() == appointmentId)
-//            .findFirst()
-//            .orElseThrow();
-//        appointment.addTechnician(technicianId);
-//    }
-//
-//    /**
-//     * Increases part stock by a specified quantity
-//     *
-//     * @param partName Name of part
-//     * @param quantity Quanity to increase by
-//     */
-//    public void addPartStock(String partName, int quantity) throws PartNotFoundException {
-//        this.partMap.increasePartQuantity(partName, quantity);
-//    }
-//
-//    /**
-//     * Checks if part already in the system
-//     *
-//     * @param partName Name of part to check
-//     */
-//    public boolean hasPart(String partName) {
-//        return this.partMap.contains(partName);
-//    }
-//
-//    /**
-//     * Replaces the contents of the part map with {@code parts}.
-//     */
-//    public void setParts(PartMap parts) {
-//        this.partMap.replace(parts);
-//    }
-//
-//    // --------------------------------------------------
-//    //// customer-level operations
-//
-//    /**
-//     * Adds customer to the shop
-//     *
-//     * @param customer Customer to be added
-//     */
-//    public void addCustomer(Customer customer) {
-//        this.customers.add(customer);
-//    }
-//
-//    /**
-//     * Adds vehicle to the shop and to customer's vehicle ids
-//     *
-//     * @param customerId Customer ID to check
-//     */
-//    public boolean hasCustomer(int customerId) {
-//        return this.getCustomerList().stream()
-//            .anyMatch(c -> c.getId() == customerId);
-//    }
-//
-//    /**
-//     * Returns true if a customer with the same id or identity as {@code customer}
-//     * exists in the autom8 system.
-//     */
-//    public boolean hasCustomer(Customer customer) {
-//        requireNonNull(customer);
-//        return customers.contains(customer);
-//    }
-//
-//
-//    /**
-//     * Replaces the contents of the customer list with {@code customers}.
-//     * {@code customers} must not contain duplicate customers.
-//     */
-//    public void setCustomers(List<Customer> customers) {
-//        this.customers.setCustomers(customers);
-//    }
-//
-//    /**
-//     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-//     * {@code target} must exist in the address book.
-//     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-//     */
-//    public void setCustomer(Customer target, Customer editedPerson) {
-//        requireNonNull(editedPerson);
-//        customers.setCustomer(target, editedPerson);
-//    }
-//
-//    /**
-//     * Removes {@code key} from this {@code AddressBook}.
-//     * {@code key} must exist in the address book.
-//     */
-//    public void removeCustomer(Customer key) {
-//        key.getAppointmentIds().stream()
-//            .flatMap(i -> this.getAppointment(i).stream())
-//            .forEach(this::removeAppointment);
-//        key.getVehicleIds().stream()
-//            .flatMap(i -> this.getVehicle(i).stream())
-//            .forEach(this::removeVehicle);
-//        customers.remove(key);
-//    }
-//
-//    @Override
-//    public ObservableList<Customer> getCustomerList() {
-//        return this.customers.asUnmodifiableObservableList();
-//    }
-//
-//    // --------------------------------------------------
-//    //// technician-level operations
-//
-//    /**
-//     * Returns true if a person with the same identity as {@code person} exists in the address book.
-//     */
-//    public boolean hasTechnician(Technician person) {
-//        requireNonNull(person);
-//        return technicians.contains(person);
-//    }
-//
-//    /**
-//     * Checks if technician already in the system
-//     *
-//     * @param technicianId ID of technician to check against
-//     */
-//    public boolean hasTechnician(int technicianId) {
-//        return this.getTechnicianList().stream()
-//            .anyMatch(p -> p.getId() == technicianId);
-//    }
-//
-//    /**
-//     * Adds a person to the address book.
-//     * The person must not already exist in the address book.
-//     */
-//    public void addTechnician(Technician p) {
-//        technicians.add(p);
-//    }
-//
-//    /**
-//     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-//     * {@code target} must exist in the address book.
-//     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-//     */
-//    public void setTechnician(Technician target, Technician editedPerson) {
-//        requireNonNull(editedPerson);
-//        technicians.setTechnician(target, editedPerson);
-//    }
-//
-//    /**
-//     * Removes {@code key} from this {@code AddressBook}.
-//     * {@code key} must exist in the address book.
-//     */
-//    public void removeTechnician(Technician key) {
-//        technicians.remove(key);
-//    }
-//
-//    /**
-//     * Replaces the contents of the technicians list with {@code technicians}.
-//     * {@code technicians} must not contain duplicate technicians.
-//     */
-//    public void setTechnicians(List<Technician> technicians) {
-//        this.technicians.setTechnicians(technicians);
-//    }
-//
-//    @Override
-//    public ObservableList<Technician> getTechnicianList() {
-//        return this.technicians.asUnmodifiableObservableList();
-//    }
-//
-//    // --------------------------------------------------
-//    //// Vehicle-level operations
-//
-//    /**
-//     * Adds vehicle to the shop
-//     *
-//     * @param customerId Id of vehicle's owner
-//     * @param vehicle    Vehicle to be added
-//     * @throws PersonNotFoundException Customer not registered with the shop
-//     */
-//    public void addVehicle(int customerId, Vehicle vehicle) throws PersonNotFoundException {
-//        for (var customer : customers) {
-//            if (customer.getId() == customerId) {
-//                customer.addVehicle(vehicle);
-//                this.vehicles.add(vehicle);
-//                return;
-//            }
-//        }
-//        throw new PersonNotFoundException();
-//    }
-//
-//    /**
-//     * Adds vehicle to the shop
-//     *
-//     * @param vehicle Vehicle to be added
-//     */
-//    public void addVehicle(Vehicle vehicle) {
-//        this.vehicles.add(vehicle);
-//    }
-//
-//    /**
-//     * Checks if vehicle is in the shop
-//     *
-//     * @param vehicleId Vehicle ID to check
-//     */
-//    public boolean hasVehicle(int vehicleId) {
-//        return this.getVehicleList().stream()
-//            .anyMatch(v -> v.getId() == vehicleId);
-//    }
-//
-//    /**
-//     * Returns true if a vehicle with the same plate number as {@code vehicle}
-//     * exists in the autom8 system.
-//     */
-//    public boolean hasVehicle(Vehicle vehicle) {
-//        requireNonNull(vehicle);
-//        return vehicles.contains(vehicle);
-//    }
-//
-//    /**
-//     * Replaces the contents of the vehicle list with {@code vehicles}.
-//     * {@code vehicles} must not contain duplicate vehicles.
-//     */
-//    public void setVehicles(List<Vehicle> vehicles) {
-//        this.vehicles.setVehicles(vehicles);
-//    }
-//
-//    /**
-//     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-//     * {@code target} must exist in the address book.
-//     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-//     */
-//    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
-//        requireNonNull(editedVehicle);
-//        vehicles.setVehicle(target, editedVehicle);
-//    }
-//
-//    /**
-//     * Removes {@code key} from this {@code AddressBook}.
-//     * {@code key} must exist in the address book.
-//     */
-//    public void removeVehicle(Vehicle key) {
-//        key.getServiceIds().stream()
-//            .flatMap(i -> getService(i).stream())
-//            .forEach(this::removeService);
-//        vehicles.remove(key);
-//    }
-//
-//    @Override
-//    public ObservableList<Vehicle> getVehicleList() {
-//        return this.vehicles.asUnmodifiableObservableList();
-//    }
+    // Edit ===========================================================================================================
 
+    public void editCustomer(int customerId,
+                             Optional<Name> name,
+                             Optional<Phone> phone,
+                             Optional<Email> email,
+                             Optional<Address> address,
+                             Optional<Set<Tag>> tags) throws CustomerNotFoundException {
+        Customer customer = this.getCustomer(customerId);
+        Name newName = name.orElse(customer.getName());
+        Phone newPhone = phone.orElse(customer.getPhone());
+        Email newEmail = email.orElse(customer.getEmail());
+        Address newAddress = address.orElse(customer.getAddress());
+        Set<Tag> newTags = tags.orElse(customer.getTags());
+        Customer editedCustomer = new Customer(customerId, newName, newPhone, newEmail, newAddress, newTags,
+            new HashSet<>(customer.getVehicleIds()), new HashSet<>(customer.getAppointmentIds()));
+        int index = this.customers.indexOf(customer);
+        this.customers.set(index, editedCustomer);
+        logger.info(String.format("Customer %d edited", customerId));
+    }
 
-    // --------------------------------------------------
+    public void editVehicle(int vehicleId,
+                            Optional<Integer> ownerId,
+                            Optional<String> plateNumber,
+                            Optional<String> color,
+                            Optional<String> brand,
+                            Optional<VehicleType> type)
+            throws VehicleNotFoundException, CustomerNotFoundException, EmptyInputException {
+        Vehicle vehicle = this.getVehicle(vehicleId);
+        int newOwnerId = ownerId.orElse(vehicle.getOwnerId());
+        String newPlateNumber = plateNumber.orElse(vehicle.getPlateNumber());
+        String newColor = color.orElse(vehicle.getColor());
+        String newBrand = brand.orElse(vehicle.getBrand());
+        VehicleType newType = type.orElse(vehicle.getType());
+        if (newPlateNumber.isBlank()) {
+            throw new EmptyInputException("PlateNumber cannot be blank");
+        }
+        if (newColor.isBlank()) {
+            throw new EmptyInputException("Color cannot be blank");
+        }
+        if (newBrand.isBlank()) {
+            throw new EmptyInputException("Brand cannot be blank");
+        }
+        Vehicle editedVehicle = new Vehicle(vehicleId,
+            newOwnerId, newPlateNumber, newColor, newBrand, newType, vehicle.getServiceIdsSet());
+        if (newOwnerId != vehicle.getOwnerId()) {
+            Customer prevOwner = this.getCustomer(vehicle.getOwnerId());
+            Customer newOwner = this.getCustomer(newOwnerId);
+            prevOwner.removeVehicle(vehicle);
+            newOwner.addVehicle(vehicle);
+        }
+        int index = this.vehicles.indexOf(vehicle);
+        this.vehicles.set(index, editedVehicle);
+        logger.info(String.format("Vehicle %d edited", vehicleId));
+    }
+
+    public void editService(int serviceId,
+                            Optional<Integer> vehicleId,
+                            Optional<LocalDate> entryDate,
+                            Optional<String> description,
+                            Optional<LocalDate> estimatedFinishDate,
+                            Optional<ServiceStatus> serviceStatus
+                            )
+            throws ServiceNotFoundException, VehicleNotFoundException, EmptyInputException, InvalidDateException {
+        Service service = this.getService(serviceId);
+        int newVehicleId = vehicleId.orElse(service.getVehicleId());
+        LocalDate newEntryDate = entryDate.orElse(service.getEntryDate());
+        String newDescription = description.orElse(service.getDescription());
+        LocalDate newEstimatedFinishDate = estimatedFinishDate.orElse(service.getEstimatedFinishDate());
+        ServiceStatus newServiceStatus = serviceStatus.orElse(service.getStatus());
+        if (newDescription.isBlank()) {
+            throw new EmptyInputException("Description cannot be blank");
+        }
+        if (newEstimatedFinishDate.isBefore(newEntryDate)) {
+            throw new InvalidDateException(newEstimatedFinishDate, newEntryDate);
+        }
+
+        Service editedService = new Service(serviceId,
+            newVehicleId, newEntryDate, service.getRequiredParts(),
+            newDescription, newEstimatedFinishDate, newServiceStatus, service.getAssignedToIdsSet());
+        if (newVehicleId != service.getVehicleId()) {
+            Vehicle prevVehicle = this.getVehicle(service.getVehicleId());
+            Vehicle newVehicle = this.getVehicle(newVehicleId);
+            prevVehicle.removeService(service);
+            newVehicle.addService(editedService);
+        }
+        int index = this.services.indexOf(service);
+        this.services.set(index, editedService);
+        logger.info(String.format("Service %d edited", serviceId));
+    }
+
+    public void editAppointment(int appointmentId,
+                                Optional<Integer> customerId,
+                                Optional<LocalDateTime> timeDate)
+            throws AppointmentNotFoundException, CustomerNotFoundException {
+        Appointment appointment = this.getAppointment(appointmentId);
+        int newCustomerId = customerId.orElse(appointment.getCustomerId());
+        LocalDateTime newTimeDate = timeDate.orElse(appointment.getTimeDate());
+
+        Appointment editedAppointment = new Appointment(appointmentId,
+            newCustomerId, newTimeDate, new HashSet<>(appointment.getStaffIds()));
+
+        if (newCustomerId != appointment.getCustomerId()) {
+            Customer prevCustomer = this.getCustomer(appointment.getCustomerId());
+            Customer newCustomer = this.getCustomer(newCustomerId);
+            prevCustomer.removeAppointment(appointment);
+            newCustomer.addAppointment(editedAppointment);
+        }
+        int index = this.appointments.indexOf(appointment);
+        this.appointments.set(index, editedAppointment);
+        logger.info(String.format("Appointment %d edited", appointmentId));
+    }
+
+    public void editTechnician(int technicianId,
+                               Optional<Name> name,
+                               Optional<Phone> phone,
+                               Optional<Email> email,
+                               Optional<Address> address,
+                               Optional<Set<Tag>> tags)
+            throws TechnicianNotFoundException {
+        Technician technician = this.getTechnician(technicianId);
+        Name newName = name.orElse(technician.getName());
+        Phone newPhone = phone.orElse(technician.getPhone());
+        Email newEmail = email.orElse(technician.getEmail());
+        Address newAddress = address.orElse(technician.getAddress());
+        Set<Tag> newTags = tags.orElse(technician.getTags());
+        Technician editedTechnician = new Technician(technicianId, newName, newPhone, newEmail, newAddress, newTags,
+            new HashSet<>(technician.getServiceIds()), new HashSet<>(technician.getAppointmentIds()));
+        int index = this.technicians.indexOf(technician);
+        this.technicians.set(index, editedTechnician);
+        logger.info(String.format("Technician %d edited", technicianId));
+    }
+
+    // =================================================================================================================
+
+    // Additional helper methods  ======================================================================================
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -901,42 +623,26 @@ public class Shop implements ReadOnlyShop {
     public void resetData(ReadOnlyShop newData) {
         requireNonNull(newData);
 
-        setCustomers(newData.getCustomerList());
-        setVehicles(newData.getVehicleList());
-        setParts(newData.getPartMap());
-        setServices(newData.getServiceList());
-        setTechnicians(newData.getTechnicianList());
-        setAppointments(newData.getAppointmentList());
-        setTechnicians(newData.getTechnicianList());
+        this.customers.clear();
+        this.customers.addAll(newData.getCustomerList());
+
+        this.vehicles.clear();
+        this.vehicles.addAll(newData.getVehicleList());
+
+        this.parts.clear();
+        this.parts.putAll(newData.getPartMap());
+
+        this.services.clear();
+        this.services.addAll(newData.getServiceList());
+
+        this.technicians.clear();
+        this.technicians.addAll(newData.getTechnicianList());
+
+        this.appointments.clear();
+        this.appointments.addAll(newData.getAppointmentList());
+
+        logger.info("Shop data reset");
     }
-
-    // Private getters to help in cascading removal
-
-//    private Optional<Customer> getCustomer(int customerId) {
-//        return this.getCustomerList().stream()
-//            .filter(c -> c.getId() == customerId)
-//            .findFirst();
-//    }
-
-//    private Optional<Vehicle> getVehicle(int vehicleId) {
-//        return this.getVehicleList().stream()
-//            .filter(v -> v.getId() == vehicleId)
-//            .findFirst();
-//    }
-//
-//    private Optional<Service> getService(int serviceId) {
-//        return this.getServiceList().stream()
-//            .filter(v -> v.getId() == serviceId)
-//            .findFirst();
-//    }
-//
-//    private Optional<Appointment> getAppointment(int appointmentId) {
-//        return this.getAppointmentList().stream()
-//            .filter(a -> a.getId() == appointmentId)
-//            .findFirst();
-//    }
-
-    //// Delete operations
 
     // --------------------------------------------------
     //// util methods
@@ -948,17 +654,17 @@ public class Shop implements ReadOnlyShop {
     //        // TODO: modify this
     //    }
     //
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Shop // instanceof handles nulls
-                && customers.equals(((Shop) other).customers));
-    }
+//    @Override
+//    public boolean equals(Object other) {
+//        return other == this // short circuit if same object
+//                || (other instanceof Shop // instanceof handles nulls
+//                && customers.equals(((Shop) other).customers));
+//    }
 
-    @Override
-    public int hashCode() {
-        return customers.hashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//        return customers.hashCode();
+//    }
 
     //// Others
 }

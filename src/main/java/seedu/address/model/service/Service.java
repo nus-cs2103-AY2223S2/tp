@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Findable;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
 
 /**
  * The Service class contains information about what task to be performed on the vehicle.
@@ -22,7 +23,7 @@ public class Service implements Findable {
     private final int id;
     private final int vehicleId;
     private final LocalDate entryDate;
-    private final Map<String, Integer> requiredParts = new HashMap<>();
+    private final Map<String, Integer> requiredParts = new CaseInsensitiveHashMap<>();
     private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();

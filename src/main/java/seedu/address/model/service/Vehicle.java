@@ -197,6 +197,10 @@ public class Vehicle implements Findable {
         this.serviceIds.add(service.getId());
     }
 
+    public void addService(int serviceId) {
+        this.serviceIds.add(serviceId);
+    }
+
     /**
      * This method removes a service that was added to this vehicle...
      *
