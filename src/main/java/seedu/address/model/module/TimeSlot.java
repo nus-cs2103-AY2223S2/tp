@@ -34,6 +34,7 @@ public class TimeSlot implements Comparable<TimeSlot> {
         requireNonNull(timeSlot);
         String trimmedTimeSlot = timeSlot.trim();
         checkArgument(isValidTimeSlot(trimmedTimeSlot), MESSAGE_CONSTRAINTS);
+        checkArgument(isStartTimeBeforeEndTime(trimmedTimeSlot), MESSAGE_STARTTIME_BEFORE_ENDTIME);
         processStringToTimeSlot(trimmedTimeSlot);
     }
 
@@ -55,6 +56,9 @@ public class TimeSlot implements Comparable<TimeSlot> {
      * @return a boolean
      */
     public static boolean isStartTimeBeforeEndTime(String timeSlot) {
+        if (timeSlot.equals(EMPTY_INPUT)) {
+            return true;
+        }
         String[] values = timeSlot.split(" ");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime startTime = LocalTime.parse(values[1], dateTimeFormatter);
@@ -109,6 +113,10 @@ public class TimeSlot implements Comparable<TimeSlot> {
         return storedInputString.hashCode();
     }
 
+    /**
+     * Gets the next occurrence of this timeslot in the form of a LocalDateTime
+     * @return a LocalDateTime instance
+     */
     public LocalDateTime getLocalDateTime() {
         //Get the current LocalDateTime of machine
         LocalDateTime timeNow = LocalDateTime.now();

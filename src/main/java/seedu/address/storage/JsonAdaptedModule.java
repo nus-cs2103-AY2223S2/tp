@@ -129,7 +129,7 @@ class JsonAdaptedModule {
                     Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidFormat(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT);
         }
         if (!Deadline.isValidDate(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);

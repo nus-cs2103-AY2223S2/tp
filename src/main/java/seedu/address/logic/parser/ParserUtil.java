@@ -117,7 +117,7 @@ public class ParserUtil {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Deadline.isValidFormat(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT);
         } else if (!Deadline.isValidDate(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE);
         }
