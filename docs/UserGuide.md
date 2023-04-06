@@ -11,8 +11,12 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ---
 
-### Table of Contents
+## Table of Contents
 
+- [User Guide Information](#user-guide-information)
+  - [Purpose of this guide](#purpose-of-this-guide)
+  - [How to use this guide](#how-to-use-this-guide)
+  - [Legends](#legends)
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help--help)
@@ -34,6 +38,9 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ---
 
+## User Guide Information
+
+
 ### Purpose of this guide
 
 Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process. We aim to help you find the best candidates for your company. 
@@ -49,7 +56,6 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 ✏️ **Format**: Shows you what you should type in order to use a command.
 
 ℹ️ **Notes**: You can find additional information about the command or feature here.
-
 
 📚 **Examples**: You can find some sample usages of the command here.
 
@@ -139,6 +145,8 @@ Shows a message explaining how to access the help page.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+--- 
+
 ### Viewing all job listings: `view`
 
 Lists out all the jobs that are currently in the listing book.
@@ -186,7 +194,7 @@ Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 If the above format is not followed, an error message will be displayed.
 
@@ -216,10 +224,14 @@ Edits the details of a job listing.
 
   then only the title and the description of listing 1 will be edited (the applicants will remain unchanged)
 
+
 📚 **Examples:**
 
 - `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
 - `edit 2 t/Videographer d/Films videos`
+- `edit 1 a/` (clears all applicants from the listing)
+- `edit 3 p/` (clears all platforms from the listing)
+- `edit 1 t/Photographer p/`
 
 🎯 **Expected Output:**
 
@@ -233,7 +245,7 @@ Job Description: Cooks tasty noodles
 Applicants: Johnson
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 A valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
 messages shown below will be displayed.
@@ -279,7 +291,7 @@ Job Description: farms chickens
 Applicants: Tommy, Connor
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 If an index is invalid or absent, an error message such as the one below will be displayed.
 
@@ -320,7 +332,7 @@ Applicant Tom added to the listing Computer Science Intern
 ```
 
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 If an index is invalid or absent, an error message such as the one below will be displayed.
 
@@ -361,7 +373,7 @@ An example is shown below:
 Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 A valid index must be provided, and same name applicants must be specified with their unique id. Otherwise, one of the error
 messages shown below will be displayed.
@@ -413,7 +425,7 @@ A confirmation message will show, along with the details of the listing. An exam
 Applicant: Tom has been deleted from Computer Science Intern!
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 
 If an index is invalid or the command does not follow the format, an error message such as the ones below will be displayed.
 
@@ -581,7 +593,7 @@ If no listings match the keyword(s), the following message will show:
 0 listing(s) shown!
 ```
 
-❌ **Possible Error**
+❌ **Possible Errors**
 If no keyword is provided, an error message will display:
 
 ```ignorelang
@@ -611,7 +623,7 @@ Sort job listings by the field specified by the user and display the sorted list
 - The `description` field sorts the listings in alphabetical order of their listings.
 - The `applicants` field sorts the listings in increasing number of applicants.
 - The `none` field resets the sorter and stop sorting the listings.
-- Note that if more than one field is provided, the last field will be taken into consideration.
+- Note that if more than one field is provided, only the last field will be taken into consideration.
 
 📚 **Examples:**
 
@@ -625,7 +637,7 @@ A confirmation message will show:
 Listings have been sorted.
 ```
 
-❌ **Possible Error:**
+❌ **Possible Errors:**
 If the `field` is not present, an error message will show:
 
 ```ignorelang
