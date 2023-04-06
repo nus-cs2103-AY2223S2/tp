@@ -18,6 +18,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [How to use this guide](#how-to-use-this-guide)
   - [Legends](#legends)
 - [Quick Start](#quick-start)
+- [Introduction to GoodMatch](#introduction-to-goodmatch)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help--help)
   - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
