@@ -11,6 +11,13 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTimeUtil {
 
+    /**
+     * Checks if a given String is in the correct Date Time format
+     *
+     * @param s Input String.
+     * @param dateTimeFormatter Format of Date Time.
+     * @return True if the String is in correct format.
+     */
     public static boolean isValidLocalDateTimeString(String s, DateTimeFormatter dateTimeFormatter) {
         requireNonNull(s);
         requireNonNull(dateTimeFormatter);

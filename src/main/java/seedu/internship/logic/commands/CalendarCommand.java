@@ -24,6 +24,7 @@ public class CalendarCommand extends Command {
         model.updateFilteredEventList(model.PREDICATE_SHOW_ALL_EVENTS);
         ObservableList<Event> allEvents = model.getFilteredEventList();
         model.updateSelectedInternship(null);
-        return new CommandResult(MESSAGE_SHOW_CALENDAR + MESSAGE_CALENDAR_TIP, ResultType.CALENDAR, Internship.EMPTY_INTERNSHIP, allEvents);
+        return new CommandResult(MESSAGE_SHOW_CALENDAR + MESSAGE_CALENDAR_TIP, ResultType.CALENDAR,
+                Internship.EMPTY_INTERNSHIP, allEvents);
     }
 }

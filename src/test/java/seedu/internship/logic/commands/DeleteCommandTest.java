@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.internship.logic.commands.CommandTestUtil.showInternshipAtIndex;
-import static seedu.internship.logic.commands.DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS;
 import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.model.Model;
@@ -29,26 +29,29 @@ import seedu.internship.model.internship.Internship;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipCatalogue(),
+            getTypicalEventCatalogue(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Internship internshipToDelete = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_INTERNSHIP);
 
-        CommandResult expectedCommandResult = new CommandResult(String.format(DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
 
-        ModelManager expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
         // After Deleting Internship , it is important to delete all the events associated.
         expectedModel.updateFilteredEventList(new EventByInternship(internshipToDelete));
         List<Event> eventListToDelete = expectedModel.getFilteredEventList();
-        // Necessary to create an unmofifable array , as eventListToDelete() is getting updated with deletion
+        // Necessary to create an unmodifiable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
-        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
-            Event e  = eventListToDeleteArray[i];
-            // Delete the Events associated with that iternship
+        for (int i = 0; i < eventListToDeleteArray.length; i++) {
+            Event e = eventListToDeleteArray[i];
+            // Delete the Events associated with that internship
             expectedModel.deleteEvent(e);
         }
 
@@ -70,20 +73,22 @@ public class DeleteCommandTest {
         Internship internshipToDelete = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_INTERNSHIP);
 
-        CommandResult expectedCommandResult = new CommandResult(String.format(DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
+        CommandResult expectedCommandResult = new CommandResult(String.format(
+                DeleteCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
 
 
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
         // After Deleting Internship , it is important to delete all the events associated.
         expectedModel.updateFilteredEventList(new EventByInternship(internshipToDelete));
         List<Event> eventListToDelete = expectedModel.getFilteredEventList();
-        // Necessary to create an unmofifable array , as eventListToDelete() is getting updated with deletion
+        // Necessary to create an unmodifiable array , as eventListToDelete() is getting updated with deletion
         Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
 
-        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
-            Event e  = eventListToDeleteArray[i];
-            // Delete the Events associated with that iternship
+        for (int i = 0; i < eventListToDeleteArray.length; i++) {
+            Event e = eventListToDeleteArray[i];
+            // Delete the Events associated with that internship
             expectedModel.deleteEvent(e);
         }
         showNoInternship(expectedModel);

@@ -4,9 +4,11 @@ title: TinS
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-W11-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W11-2/tp/actions)
+
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W11-2/tp/branch/master/graph/badge.svg?token=WF8JHZGGK4)](https://codecov.io/gh/AY2223S2-CS2103T-W11-2/tp)
 
-![Ui](images/home_page.png)
+![Ui](images/ug/home_page.png)
+
 
 **The Intern's Ship (TinS) is a desktop application for managing your Internships.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 

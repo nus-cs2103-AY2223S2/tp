@@ -1,13 +1,13 @@
 package seedu.internship.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.internship.model.Model;
-import seedu.internship.model.ModelManager;
-
 import static seedu.internship.logic.commands.CalendarCommand.MESSAGE_CALENDAR_TIP;
 import static seedu.internship.logic.commands.CalendarCommand.MESSAGE_SHOW_CALENDAR;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
 
 public class CalendarCommandTest {
     private Model model = new ModelManager();

@@ -8,6 +8,9 @@ import seedu.internship.logic.commands.event.EventAddCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.model.event.Event;
 
+/**
+ * Util commands required for events tests.
+ */
 public class EventUtil {
 
     /**

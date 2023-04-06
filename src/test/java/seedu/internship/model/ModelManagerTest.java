@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalEvents.EM11;
-import static seedu.internship.testutil.TypicalInternships.ML1;
-import static seedu.internship.testutil.TypicalEvents.EM11;
 import static seedu.internship.testutil.TypicalEvents.EM21;
+import static seedu.internship.testutil.TypicalInternships.ML1;
 import static seedu.internship.testutil.TypicalInternships.ML2;
 
 import java.nio.file.Path;
@@ -105,8 +104,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(internshipCatalogue,eventCatalogue, userPrefs);
-        ModelManager modelManager1Copy = new ModelManager(internshipCatalogue,eventCatalogue, userPrefs);
+        modelManager = new ModelManager(internshipCatalogue, eventCatalogue, userPrefs);
+        ModelManager modelManager1Copy = new ModelManager(internshipCatalogue, eventCatalogue, userPrefs);
         assertTrue(modelManager.equals(modelManager1Copy));
 
         // same object -> returns true
@@ -119,7 +118,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentInternshipCatalogue,eventCatalogue, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentInternshipCatalogue, eventCatalogue, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
@@ -127,7 +126,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setInternshipCatalogueFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(internshipCatalogue,eventCatalogue, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(internshipCatalogue, eventCatalogue, differentUserPrefs)));
     }
 }
 
