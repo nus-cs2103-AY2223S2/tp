@@ -19,6 +19,8 @@ connections_ and _accomplishing your goals_!
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
+
 # Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
