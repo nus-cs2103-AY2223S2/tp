@@ -299,7 +299,7 @@ Since the command does not support partial words, take extra caution when search
 
 Example:
 - `findCards when how` shows all the cards whose questions match the keywords `when` **or** `how`.
-![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
+  ![FindCardsCommandDisplay](images/FindCardsCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
@@ -395,7 +395,7 @@ Flips the card to reveal the answer.
 
 Format: `p`
 - `p` is case-insensitive (`P` is also excepted).
-![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
+  ![FlipCardCommandDisplay](images/FlipCardCommandDisplay.png)
 
 ### 3.6.5. Next Card: `]`
 
