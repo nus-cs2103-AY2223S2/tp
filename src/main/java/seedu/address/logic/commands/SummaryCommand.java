@@ -27,11 +27,11 @@ public class SummaryCommand extends Command {
         try {
             long potentialEarnings = model.getAddressBook().getPotentialEarnings();
             SummaryWindow.setPotentialEarnings(String.valueOf(potentialEarnings));
-        } catch (InvocationTargetException e) {
-            throw new CommandException(SUM_OF_POTENTIAL_EARNING_EXCEEDS_MAX);
-        } finally {
+        } catch (RuntimeException e) {
             long potentialEarnings = Long.MAX_VALUE;
             SummaryWindow.setPotentialEarnings(">" + potentialEarnings);
+            throw new CommandException(SUM_OF_POTENTIAL_EARNING_EXCEEDS_MAX);
+        } finally {
             String tags = model.getAddressBook().getTags();
             SummaryWindow.setTags(tags);
             String companies = model.getAddressBook().getCompanies();
