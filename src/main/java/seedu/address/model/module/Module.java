@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static seedu.address.commons.util.CollectionUtil.isAllNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -32,7 +33,9 @@ public class Module {
      */
     public Module(Name name, Resource resource, TimeSlot timeSlot, Address address, Set<Tag> tags, Remark remark,
                   Deadline deadline, Teacher teacher) {
-        requireAllNonNull(name, resource, timeSlot, address, tags);
+        requireAllNonNull(name, resource, timeSlot, address, tags, remark, deadline, teacher);
+        boolean isAllNonNull = isAllNonNull(name, resource, timeSlot, address, tags, remark, deadline, teacher);
+        assert isAllNonNull == true : "Module object is not created properly.";
         this.name = name;
         this.resource = resource;
         this.timeSlot = timeSlot;

@@ -32,4 +32,14 @@ public class CollectionUtil {
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
+
+    public static boolean isAllNonNull(Object... items) {
+        boolean isAllNonNull = true;
+        int noItems = items.length;
+        for (int i = 0; i < noItems; i++) {
+            isAllNonNull = !items[i].equals(null);
+        }
+        return isAllNonNull;
+
+    }
 }

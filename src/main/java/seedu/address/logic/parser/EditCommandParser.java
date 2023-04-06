@@ -42,14 +42,15 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
         try {
-            //index should only include numbers. If it does not, it means that incorrect prefixes are included.
+            //This should return only a valid index.
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IndexException indexException) {
             //thrown if the index is too big to be stored as an int
             throw new ParseException(String.format(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX, EditCommand.MESSAGE_USAGE),
                     indexException);
         } catch (ParseException pe) {
-            //thrown if the command has invalid prefixes
+            //thrown if the index contains incorrect prefixes (eg. z/)
+            //these incorrect indexes will not be filtered out by ArgumentTokenizer
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
