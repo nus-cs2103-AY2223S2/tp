@@ -436,19 +436,19 @@ _Details coming soon ..._
 
 ## 5.1. Main Mode - before selecting a Deck
 
-| Action         | Format, Examples                                             |
-|----------------|--------------------------------------------------------------|
-| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`               |
-| Add Deck       | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`           |
-| Edit Deck      | `editDeck INDEX DECK_NAME` <br /> e.g., `editDeck 3 Physics` |
-| Delete Deck    | `deleteDeck INDEX`                                           |
-| Find Decks     | `findDecks KEYWORDS...`                                      |
-| Show All Decks | `showDecks`                                                  |
-| Start Review   | `review INDEX`                                               |
-| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`              |
-| Clear          | `clear`                                                      |
-| Help           | `help`                                                       |
-| Exit           | `exit`                                                       |
+| Action         | Format, Examples                                                     |
+|----------------|----------------------------------------------------------------------|
+| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                       |
+| Add Deck       | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`                   |
+| Edit Deck      | `editDeck INDEX DECK_NAME` <br /> e.g., `editDeck 3 Physics`         |
+| Delete Deck    | `deleteDeck INDEX`                                                   |
+| Find Decks     | `findDecks KEYWORDS...` <br /> e.g., `findDecks programming history` |
+| Show All Decks | `showDecks`                                                          |
+| Start Review   | `review INDEX`                                                       |
+| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30` or `setLimit none`   |
+| Clear          | `clear`                                                              |
+| Help           | `help`                                                               |
+| Exit           | `exit`                                                               |
 
 ## 5.2. Main Mode - after selecting a Deck
 
@@ -456,7 +456,7 @@ _Details coming soon ..._
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | Unselect Deck  | `unselectDeck`                                                                                                                                   |
 | Add Card       | `addCard q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
-| Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Caarbon? a\C t\Hard`                     |
+| Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Carbon? a\C t\Hard`                      |
 | Delete Card    | `deleteCard INDEX`                                                                                                                               |
 | Find Cards     | `findCards KEYWORDS...`                                                                                                                          |
 | Show All Cards | `showCards`                                                                                                                                      |
@@ -471,10 +471,10 @@ _Details coming soon ..._
 | Action        | Format, Examples |
 |---------------|------------------|
 | End Review    | `endReview`      |
-| Flip          | `p`              |
+| Flip          | `p` or `P`       |
 | Previous Card | `[`              |
 | Next Card     | `]`              |
-| Tag Easy      | `l`              |
+| Tag Easy      | `l` or `L`       |
 | Tag Medium    | `;`              |
 | Tag Hard      | `'`              |
 | Help          | `help`           |
