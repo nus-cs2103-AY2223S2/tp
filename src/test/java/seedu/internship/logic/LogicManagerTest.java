@@ -105,6 +105,11 @@ public class LogicManagerTest {
         assertEquals(logic.getSelectedInternship(), APPLE);
     }
 
+    @Test
+    public void getModel_success() {
+        assertEquals(logic.getModel(), model);
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

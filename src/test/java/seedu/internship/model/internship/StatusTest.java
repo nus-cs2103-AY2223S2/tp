@@ -1,6 +1,8 @@
 package seedu.internship.model.internship;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
 
@@ -50,5 +52,24 @@ public class StatusTest {
         assertTrue(Status.isValidStatus("AcCepted"));
         assertTrue(Status.isValidStatus("ACCEPTED"));
         assertTrue(Status.isValidStatus("accepted"));
+    }
+
+    @Test
+    public void equals() {
+        Status statusOne = new Status("Accepted");
+        Status statusTwo = new Status("accepted");
+        Status statusThree = new Status("Offered");
+
+        // Same object -> true
+        assertEquals(statusOne, statusOne);
+
+        // Different captialisation -> true
+        assertEquals(statusOne, statusTwo);
+
+        // Different status -> false
+        assertNotEquals(statusOne, statusThree);
+
+        // Not a status -> false
+        assertNotEquals(statusOne, "Accepted");
     }
 }
