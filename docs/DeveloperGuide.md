@@ -459,4 +459,3 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
 For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
-The application will not allow both the sample inputs to be executed.
