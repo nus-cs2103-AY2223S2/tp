@@ -3,14 +3,15 @@ layout: page
 title: User Guide
 ---
 
-ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done faster than traditional GUI apps.
+ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their employee information, 
+optimized for use via a Command Line Interface (CLI)** while still having the benefits of a 
+Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done 
+faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
-  
+
 --------------------------------------------------------------------------------------------------------------------
-
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -18,26 +19,27 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
         - If you are using Windows, open up command prompt and type `java -version` and enter.
         - If you are using Mac, open up terminal and type `java -version` and enter.
     2. If you do not have Java `11`:
-        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from [here](https://www.oracle.com/java/technologies/downloads/).
-        - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version 
+        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from
+       [here](https://www.oracle.com/java/technologies/downloads/).
+        - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version
        from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ExecutivePro.
 
-4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds. 
+4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds.
    Note how the app contains some sample data.<br>
 
   <img class="centerImage" src="./images/UserGuide/Ui.png"/>
 
-5. You can start by typing a command in the command panel and pressing Enter to execute it. e.g. 
+5. You can start by typing a command in the command panel and pressing Enter to execute it. e.g.
    typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`list`** : Lists all employees in the company.
-   
+
     - **`add`** :`add n/Mark Doe p/98765432 d/Marketing pr/1000 15 e/markd@example.com a/311, Clementi Ave 2, #02-25
-   t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, department, payroll, 
+   t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, department, payroll,
    email, address, and tags to ExecutivePro's database.
 
     - **`delete 3`** : Deletes employee with ID 3.
@@ -54,7 +56,7 @@ Here are some of the symbols to take note of when going through this user guide:
 | Symbol      | Meaning                                                           |
 |-------------|-------------------------------------------------------------------|
 | `code`      | Text relevant to commands or name of a file.                      |
-| [`code`]    | The brackets around the code indicate that the field is optional. | 
+| [`code`]    | The brackets around the code indicate that the field is optional. |
 | :bulb:      | Tips for ExecutivePro Users.                                      |
 | :warning:   | Be wary and proceed with caution.                                 |
 
@@ -66,9 +68,8 @@ Here are some of the symbols to take note of when going through this user guide:
 * Items with `…` after them can either be omitted or used one or more times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-  
 :warning: **Note:**
-To get started with ExecutivePro, the HR manager will need to run the application using 
+To get started with ExecutivePro, the HR manager will need to run the application using
 their terminal or command prompt. Follow the steps below:
 
 Step 1 (Opening Terminal or Command Prompt) :
@@ -78,29 +79,29 @@ On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
 
 Step 2 (Navigating to the Jar File Location) :
 
-Use the cd command to navigate to the directory where the ExecutivePro.jar file is located. 
+Use the cd command to navigate to the directory where the ExecutivePro.jar file is located.
 For example, if the file is located in the Downloads folder, you can type cd Downloads and hit Enter.
 
 Step 3 (Running the Application) :
 Once you are in the correct directory, type the following command and hit Enter:
 `java -jar ExecutivePro.jar`
 
-This command will start the application, and the data folder should appear in the same directory as the 
+This command will start the application, and the data folder should appear in the same directory as the
 ExecutivePro.jar file after the application is run successfully.
 
 If the data folder is still missing, simply create a `data` folder by creating a new folder in the same
 folder where the jar file is located.
 
-Now that the application is running, you can follow the steps in the user guide to perform various tasks 
-such as adding employees using the batchadd command and exporting the database using the batchexport command.
+Now that the application is running, you can follow the steps in the user guide to perform various tasks
+such as adding employees using the batchadd command and exporting the database using the `batchexport` command.
 
 </div>
 
 ### Viewing help : `help`
-There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro, 
+There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro,
 getting help with the commands is just a simple step away.
 
-Entering the `help` command will open up window with the command summary for the various functions of the application, 
+Entering the `help` command will open up window with the command summary for the various functions of the application,
 and if you have more doubts, the _Help Window_ also contains a button to open up this User Guide in your browser.
 
 Format: `help`
@@ -114,17 +115,17 @@ With this command, you should see a window like this appear.
 
 How do we build an employee profile?
 
-The first step is to add a new employee to the database, 
-so ExecutivePro can begin managing their particulars and profile for you. 
+The first step is to add a new employee to the database,
+so ExecutivePro can begin managing their particulars and profile for you.
 To do this, use the add command, together with the employee particulars that you have available for this person.
 
-Upon successfully adding a new employee, ExecutivePro will then keep track of the new profile and details in the 
+Upon successfully adding a new employee, ExecutivePro will then keep track of the new profile and details in the
 database, and you are free to access and modify the particulars with other commands later on.
 
 However, this function could fail (and ExecutivePro simply does not add any employee), if:
 
 1. There are missing particulars which are compulsory, you can find these listed below.
-2. The particulars are in the wrong format, the program will prompt you on the correct format. 
+2. The particulars are in the wrong format, the program will prompt you on the correct format.
 3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name and
     details.
 
@@ -169,18 +170,18 @@ Things to note:
 
 Order of headers is as such (**Order must be followed**):
 
-| Index | Field           | Requirement    | 
+| Index | Field           | Requirement    |
 |-------|-----------------|----------------|
-| 1.    | `NAME`          | **Compulsory** | 
+| 1.    | `NAME`          | **Compulsory** |
 | 2.    | `PHONE`         | **Compulsory** |
-| 3.    | `DEPARTMENT`    | **Compulsory** | 
-| 4.    | `PAYROLL`       | **Compulsory** | 
-| 5.    | `EMAIL`         | Optional       | 
-| 6.    | `ADDRESS`       | Optional       | 
-| 7.    | `LEAVECOUNT`    | Optional       | 
+| 3.    | `DEPARTMENT`    | **Compulsory** |
+| 4.    | `PAYROLL`       | **Compulsory** |
+| 5.    | `EMAIL`         | Optional       |
+| 6.    | `ADDRESS`       | Optional       |
+| 7.    | `LEAVECOUNT`    | Optional       |
 | 8.    | `DATEOFBIRTH`   | Optional       |
 | 9.    | `DATEOFJOINING` | Optional       |
-| 10.   | `TAGS`          | Optional       | 
+| 10.   | `TAGS`          | Optional       |
 
 Sample `.csv` file:
 ![](images/UserGuide/sampleCSV.png)
@@ -188,13 +189,13 @@ Sample `.csv` file:
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: 
+:warning:
 **Caution:** For the fields, do ensure that they follow the same specifications as in the [Field Formats below](#field-formats).
 
 </div>
 
 **Step 2 (Uploading CSV file) :**
-Before we proceed to uploading the CSV file, you would need to have done the first steps of entering 
+Before we proceed to uploading the CSV file, you would need to have done the first steps of entering
 `java -jar ExecutivePro.jar` in your terminal as per the instructions at the start of this section, in order
 to upload your csv file in the `data` folder
 
@@ -293,27 +294,27 @@ Shows a list of all employees in ExecutivePro whose names match the keyword prov
 
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
-* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords. 
-* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords. 
+* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords.
+* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords.
 * Even if the keyword just partially matches a part of employees full name, it is considered a match.
 * For finding department, the keyword has to be a full match.
 * Keyword is to search for the name and department of the employee only, not any other details.
 
 Examples:
-* `find John Sales` displays list of all employees whose full name contains a 'John' in it, 
-or they are in the 'Sales' department 
+* `find John Sales` displays list of all employees whose full name contains a 'John' in it,
+or they are in the 'Sales' department
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
 ### Filtering out employees: `filter`
 
-Filters out all the employees satisfying the given condition. 
+Filters out all the employees satisfying the given condition.
 
-Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`  
+Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 
 
 * The filtering condition can be based on Payroll(`pr`) or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
-* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT` 
+* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
 * The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
 
 Examples:
@@ -431,7 +432,7 @@ This table describes the requirements for the input format of the fields.
 | `DATE_OF_BIRTH`            | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-01-10`                             |
 | `DATE_OF_JOINING`          | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
 | `TAG`                      | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
-                                                                                                                                                                                                                                                              
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
