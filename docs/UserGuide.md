@@ -3,10 +3,7 @@ layout: page
 title: User Guide
 ---
 
-BookFace is a desktop GUI application for the students in the National University
-of Singapore (NUS) to manage the contact information of the people they meet in the various lessons or clubs that they participate in. 
-Since NUS Students often take many classes and meet different people. This application helps them to organise their
-contacts list for an easier way to set up proper communication channels.
+BookFace is a desktop GUI application for the students in the National University of Singapore (NUS) to manage the contact information of the people they meet in the various lessons or clubs that they participate in. Since NUS Students often take many classes and meet different people. This application helps them to organise their contacts list for an easier way to set up proper communication channels.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
