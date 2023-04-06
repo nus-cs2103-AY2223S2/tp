@@ -96,8 +96,12 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Builds the Event
+     * @return Event Object
+     */
     public Event build() {
-        if (this.internship == null){
+        if (this.internship == null) {
             // This is important to test event commands
             return new Event(this.name, this.start, this.end, description);
         }

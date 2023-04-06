@@ -1,20 +1,20 @@
 package seedu.internship.model.internship;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
+import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
+
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
 import seedu.internship.model.UserPrefs;
 import seedu.internship.testutil.StatisticsBuilder;
 
-import javax.xml.crypto.Data;
-import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
-import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 public class StatisticsTest {
 
@@ -35,8 +35,8 @@ public class StatisticsTest {
         Predicate<Internship> predicateNumOffered = internship -> internship.getStatusId() == statusIdOffered;
         Predicate<Internship> predicateNumRejected = internship -> internship.getStatusId() == statusIdRejected;
 
-        model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
-        expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(), new UserPrefs());
         StatisticsBuilder statisticsBuilder = new StatisticsBuilder();
 
         // total internships

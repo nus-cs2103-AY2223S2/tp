@@ -1,16 +1,17 @@
 package seedu.internship.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.model.Model;
-import seedu.internship.model.ModelManager;
-import seedu.internship.model.UserPrefs;
-
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.internship.logic.commands.exceptions.CommandException;
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
 
 public class DeleteAllCommandTest {
 
@@ -19,7 +20,7 @@ public class DeleteAllCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
         expectedModel = new ModelManager();
     }
 
