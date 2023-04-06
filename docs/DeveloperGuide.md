@@ -701,25 +701,38 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned enhancement**
-The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws.
+The team is unable to add the following features due to the v1.4 feature freeze. Therefore, these issues are labelled as feature flaws, therefore the team will not be addressing these flaws for now.
 
 ### Implementing support for more websites
 1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. 
+We have thought of one approach to this fix:
+* Letting the website format be `[any char].[any char]`
+  * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+  * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
-1. Unnecessarily complicated (or hard-to-type) command formats can be considered a type.FeatureFlaw as it is expected that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special characters such as $/ in the format when it is possible to avoid them.
+1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected that the input formats will be optimized to get things done fast. 
+Some examples include: using hard-to-type special characters such as `$/` in the format when it is possible to avoid them. 
+Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
-### Seeing very long description and numbers
-1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. A word wrap will be implemented in the future.
+### Displaying very long description and numbers
+1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the screen size. We believe that the `view` command is a way for users to view truncated texts
+for now. In the future, we would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
+2. This also affects the `view` command, as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java) is not written to handle
+extremely long texts. Although the attributes of each role would be visible, it is not ideal for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
+and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
-1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage data is incorrectly modified.
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. Instead, all existing data is deleted and there is no roles listed. 
+Error messages should be displayed when storage data is incorrectly modified. This could be done through editing the `initModelManager` function in the [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+class and subsequently, the [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java) class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Won't fix**
 
 ### Issue #205 Sort Command not recognised
-1. Unable to replicate issue. Original tester is uncontactable.
+1. Unable to replicate issue due to lack of information from the bug report.
 
 ### Issue #179 salary asc command does nothing
-1. Unable to replicate issue. Original tester is uncontactable.
+1. Unable to replicate issue due to lack of information from the bug report.
