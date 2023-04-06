@@ -39,6 +39,9 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " ad/" + "Shannon" + "\n"
             + "Example: " + COMMAND_WORD + " t/" + "Diabetic" + "\n";
 
+    public static final String MULTIPLE_PREFIX_MESSAGE = "Multiple attributes inputted. Only one attribute can be "
+            + "filtered at a time";
+
     private final Predicate<Person> predicate;
 
     public FindCommand(Predicate<Person> predicate) {
