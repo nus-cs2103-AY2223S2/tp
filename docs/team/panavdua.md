@@ -1,4 +1,4 @@
-# Panav's Project Portfolio Page 
+# Panav's Project Portfolio Page
 
 ## Overview
 
@@ -12,7 +12,7 @@ If you can type fast, EP can get your employee management tasks done **faster** 
 **Enhancements implemented :**
 - Improved `find` command to have functionality to choose between _normal search_
   (return all employees whose details match any part of **any** inputted keywords) and _advanced search_
-  (return all employees whose details match any part of **all** inputted keywords). 
+  (return all employees whose details match any part of **all** inputted keywords).
 - Improved `find` command to have functionality to search employees based on the departments (Finance, Marketing etc.)
 in addition to searching based on their full name.
 - Created `filter` command from scratch which filters out all the employees satisfying the inputted criteria. Currently,
@@ -40,10 +40,10 @@ and `filter` command, such as `FilterByPayrollPredicate`, `NameContainsAllKeywor
 - Added custom messages in the `Messages` class for the team to use.
 - Helped with the sequence diagrams and adapting them to _ExecutivePro_ from the previous _AddressBook_ implementation.
 - Implemented utility functions related to `String` and `Parser` class, for everyone's use.
-- Helped fix general bugs received after the Practical Exam dry-run. 
+- Helped fix general bugs received after the Practical Exam dry-run.
 
 **Review/mentoring contributions :**
-- Pull Requests reviewed and merged: 
+- Pull Requests reviewed and merged:
 [#177](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/177),
 [#168](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/168),
 [#164](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/164),
@@ -66,7 +66,7 @@ and `filter` command, such as `FilterByPayrollPredicate`, `NameContainsAllKeywor
 
 
 **Contributions beyond the project team :**
-- Reported numerous bugs for team [_CS2103T-W12-4(Medimeet)_](https://github.com/AY2223S2-CS2103T-W12-4/tp)  
+- Reported numerous bugs for team [_CS2103T-W12-4(Medimeet)_](https://github.com/AY2223S2-CS2103T-W12-4/tp)
   Some examples are: [#136](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/136), [#128](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/128),
 [#133](https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/133)
 
