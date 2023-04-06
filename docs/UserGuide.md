@@ -267,8 +267,9 @@ Soup
 Tag the specified food item in your fridge with our pre-defined tags.
 
 Pre-Defined Tags:
-* Status - `USED`, `UNUSED`
-* Categories - `MEAT`, `DAIRY`, `VEGETABLES`
+* `New`
+* `Used`
+* `Dairy`
 
 Format: `tag INDEX n/TAG NAME`
 * Tag the food item of `INDEX` with `TAG NAME`
@@ -465,7 +466,7 @@ There is no support for mobile devices yet.
 | Add                 | Adds a food item to the food list        | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
 | List                | Lists all food items                     | `list`                                                      | `list`                                    |
 | Edit                | Edits a food item                        | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
-| Find                | Finds a food item                        | `find KEYWORD`                                              | `find Broccoli`                           |
+| Find                | Finds a food item                        | `find KEYWORD [KEYWORD]...`                                 | `find Broccoli`                           |
 | Increase            | Increases the quantity of a food item    | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
 | Decrease            | Decreases the quantity of a food item    | `dec INDEX [q/QUANTITY]`                                    | `dec 1 q/100`                             |
 | Delete              | Deletes a food item                      | `delete INDEX`                                              | `del 3`                                   |
