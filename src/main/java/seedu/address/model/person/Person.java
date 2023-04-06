@@ -109,12 +109,12 @@ public abstract class Person {
     }
 
     /**
-     * Returns true if both persons belong to the suitable regions.
+     * Returns true if both persons belong to suitable regions.
      * {@code otherPerson} must not be null.
      *
      * @param otherPerson Person to be compared to.
      * @return True if both persons belong to the same region or at least one person
-     *      has no specified available dates, false otherwise.
+     *      has no specified region, false otherwise.
      */
     public boolean isSuitableRegion(Person otherPerson) {
         requireNonNull(otherPerson);

@@ -147,7 +147,7 @@ public class UniquePairList implements Iterable<Pair> {
 
     /**
      * Gets list of elderly paired with a specified volunteer.
-     * Returns the full list of elderly if {@code volunteerNric} is null.
+     * {@code volunteerNric} must not be null.
      *
      * @param volunteerNric Nric of the specified volunteer
      * @return List of elderly paired with the specified volunteer.
