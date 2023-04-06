@@ -18,7 +18,8 @@ connections_ and _accomplishing your goals_!
 :bulb: <b>Tip:</b> For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize yourself with CoDoc.
 </div>
 
-## Table of Contents
+---
+# Table of Contents
 - [Navigating the User Guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
@@ -134,6 +135,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
       some commands take in a parameter without a prefix, and some commands don't take in parameters.
     </td>
   </tr>
+  <div style="page-break-after: always;"></div>
   <tr>
     <td><div markdown="span" class="alert alert-info"><strong>:information_source: Note</strong></div></td>
     <td>
@@ -160,7 +162,6 @@ As recommended in the introduction, we would like to direct you to read the [Qui
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-<div style="page-break-after: always;"></div>
 
 
 ## Quick Start
