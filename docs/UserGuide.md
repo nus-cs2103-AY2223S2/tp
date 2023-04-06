@@ -313,7 +313,7 @@ date `d/` or age `a/` prefixes respectively
 Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
 
-![result for find v/DENV1](images/FindCommandExample.png)
+![FindCommandExample](images/FindCommandExample.png)
 
 <br>
 
