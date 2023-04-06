@@ -162,6 +162,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Task feature
+
+#### Implementation
+
+The implementation of the add task function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being "todo". The second argument is a description of the task.
+
+The format is as follows:
+- `todo task/{Task_Description}`
+
+Given below is an example scenario and how the delete function woks at each step.
+
+Step 1. The user executes `todo task/organise pantry` command to add the task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
+
+Step 4. A `ToDoCommandParser` is created, which generates a new `toAdd:Task` and a new `ToDoCommand`.
+
+Step 5. `LogicManager` then calls `execute` in `ToDoCommand`, which carries out the addition if the task is valid. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the addition has taken place.
+
+**Note:** The command can only work if a task with the same description is not already present in Pied Piper.
+
+The following sequence diagram shows how the addition operation works:
+
+<img src="images/ToDoSequenceDiagramUML.png"/>
+
 ### Delete/deletetask feature
 
 #### Implementation
@@ -193,35 +220,6 @@ Step 5. `LogicManager` then calls `execute` in `DeleteCommand`, which carries ou
 The following sequence diagram shows how the delete operation works:
 
 <img src="images/DeleteCommandUML.png"/>
-
-
-
-### Add Task feature
-
-#### Implementation
-
-The implementation of the add task function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being "todo". The second argument is a description of the task.
-
-The format is as follows:
-- `todo task/{Task_Description}`
-
-Given below is an example scenario and how the delete function woks at each step.
-
-Step 1. The user executes `todo task/organise pantry` command to add the task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
-
-Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
-
-Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
-
-Step 4. A `ToDoCommandParser` is created, which generates a new `toAdd:Task` and a new `ToDoCommand`.
-
-Step 5. `LogicManager` then calls `execute` in `ToDoCommand`, which carries out the addition if the task is valid. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the addition has taken place.
-
-**Note:** The command can only work if a task with the same description is not already present in Pied Piper.
-
-The following sequence diagram shows how the addition operation works:
-
-<img src="images/ToDoSequenceDiagramUML.png"/>
 
 
 #### Proposed Implementation
