@@ -63,8 +63,6 @@ Let's clear a little confusion that might arise:
 - Why are students not allowed to be added together with the creation of an event?
   - This ie because the app is meant for an attendance taking for a CS2040 TA who plans ahead. So, if a student can be added with an event,
    it defeats the purpose of it being an attendance taking application
-- Why can't I see the notes even after adding it?
-  - You are supposed to navigate into the events tab and double-click on the event card that you have added the event to
 - Why are overlapping event date and time not allowed to be added?
   - It is because TrAcker also functions as a schedule application for the CS2040 TA. So, if overlapping events
     can be added, the TA will be unsure if they are actually free during that period
@@ -113,6 +111,8 @@ Examples:
 
 * `touch Tutorial/makeUpTutorial`
 * `touch Tutorial/examReview -date 01/01/2030 16:00`
+
+![Ui](images/AddTutorialSuccess.png)
 
 <div id='add-lab'></div>
 
@@ -277,6 +277,8 @@ Examples:
 * `addStudent 1 Tutorial/2`
 * `addStudent 4 Lab/1`
 
+![Ui](images/AddStudentSuccess.png)
+
 <div id='delete-student-from-event'></div>
 
 ### Delete student from event: `deleteStudent`
@@ -310,15 +312,17 @@ Note that there can be an unlimited amount of notes to be created for each event
 
 Each addition increases node index by one.
 
-Format: `addNote note content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]`
+Format: `addNote content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]`
 
 Examples:
 
-* `addNote note content/Bring pen type/Tutorial name/Tut1`
-* `addNote note content/Bring goggles type/lab name/Lab1`
-* `addNote note content/ Prepare questions type/consultation name/consult1`
+* `addNote content/Bring pen type/Tutorial name/Tut1`
+* `addNote content/Bring goggles type/lab name/Lab1`
+* `addNote content/ Prepare questions type/consultation name/consult1`
 
 You need to double-click the event to expand notes!
+
+![Ui](images/AddNoteSuccess.png)
 
 <div id='delete-note-from-event'></div>
 
@@ -376,6 +380,8 @@ Examples:
 * `sort-student consultation email nonreverse`
 * `sort-student all remark nonreverse`
 
+![Ui](images/SortSuccess.png)
+
 <div id='filter-students'></div>
 
 ### Filter students in recurring events: `filter`
@@ -416,6 +422,13 @@ Examples:
 * `help event tutorial`
 * `help event consultation`
 * `help organisation`
+
+![Ui](images/HelpSuccess.png)
+
+Should you want to take a look at the User Guide in the repository, you can click on the "help" menu.
+Then, you can click on "copy url" and paste it in your browser
+
+![Ui](images/HelpUrl.png)
 
 --------------------------------------------------------------------
 
@@ -606,13 +619,13 @@ By double-clicking on events, the notes section will appear
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>addNote note content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]</code>
+      <td><code>addNote content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]</code>
       </td>
       <td>
          <ul>
-            <li><code>addNote note content/Bring pen type/Tutorial name/Tut1</code>
-            <li><code>addNote note content/Bring goggles type/Lab name/Lab1</code></li>
-            <li><code>addNote note content/Prepare questions type/Consultation name/Consult1</code></li>
+            <li><code>addNote content/Bring pen type/Tutorial name/Tut1</code>
+            <li><code>addNote content/Bring goggles type/Lab name/Lab1</code></li>
+            <li><code>addNote content/Prepare questions type/Consultation name/Consult1</code></li>
          </ul>
       </td>
    </tr>
