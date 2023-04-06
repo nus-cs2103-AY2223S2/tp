@@ -15,39 +15,39 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 </div>
 
 <h2 id="using-this-guide">Using this Guide</h2>
+-------------------------------------
+We highly recommend that you read the [Terminology](#terminology) section if you are new to this user guide. Otherwise,
 
-We highly recommend that you read the [Terminology]() section if you are new to this user guide. Otherwise,
-
-- If you are running Ez-Schedule for the first time, please refer to our [Quick Start]() guide.
-- If you are learning how to use Ez-Schedule, please refer to our [Commands]() section for a detailed guide.
-- If you are interested in contributing to this project, please check out our [Developer Guide]().
-- If you are an experienced user, you may find the [Command Summary]() helpful as it provides a summarized table of all
+- If you are running Ez-Schedule for the first time, please refer to our [Quick Start](#quick-start) guide.
+- If you are learning how to use __Ez-Schedule__, please refer to our [Commands](#commands) section for a detailed guide.
+- If you are interested in contributing to this project, please check out our [Developer Guide](https://ay2223s2-cs2103-w17-3.github.io/tp/DeveloperGuide.html).
+- If you are an experienced user, you may find the [Command Summary](#command-summary) helpful as it provides a summarized table of all
   the available commands.
 
 <h2 id="table-of-contents">Table of Contents</h2>
-
-- [Using this Guide](#using-this-guide)
+-------------------------------------
+- [Using This Guide](#using-this-guide)
 - [Table of Contents](#table-of-contents)
 - [Terminology](#terminology)
-    - [Icons used](#icons-used)
+    - [Icons Used](#icons-used)
     - [Glossary](#glossary)
 - [Quick start](#quick-start)
 - [Commands](#commands)
-    - [Add a new event](#add) : `add`
-    - [Repeat an existing event](#recur) : `recur`
-    - [Edit an event](#edit) : `edit`
-    - [Delete events](#delete) : `delete`
-    - [Locate events](#find) : `find`
-    - [Retrieve next events](#next) : `next`
-    - [Undo previous command](#undo) : `undo`
-    - [List all events](#list) : `list`
-    - [View help](#help) : `help`
-    - [Exit application](#exit) : `exit`
+    - [Add a New Event](#add) : `add`
+    - [Repeat an Existing Event](#recur) : `recur`
+    - [Edit an Event](#edit) : `edit`
+    - [Delete Events](#delete) : `delete`
+    - [Locate Events](#find) : `find`
+    - [Retrieve Next Events](#next) : `next`
+    - [Undo Previous Command](#undo) : `undo`
+    - [List All Events](#list) : `list`
+    - [View Help](#help) : `help`
+    - [Exit Application](#exit) : `exit`
 - [Graphical User Interface](#gui)
     - [Command Box](#command-box)
     - [Response Box](#response-box)
-    - [Event List](#events-panel)
-    - [Upcoming Events](#upcoming-events-panel)
+    - [Events Panel](#events-panel)
+    - [Upcoming Events Panel](#upcoming-events-panel)
     - [Calendar](#calendar)
 - [Summary](#summary)
     - [Prefix summary](#prefix-summary)
@@ -55,20 +55,18 @@ We highly recommend that you read the [Terminology]() section if you are new to 
 - [Limitations](#limitations)
 - [FAQ](#faq)
 
--------------------------------------
-
 <h2 id="terminology">Terminology</h2>
-
+-------------------------------------
 This section serves to introduce the key terminology used throughout this guide.
 
-<h2 id="icons-used">Icons used</h2>
+<h2 id="icons-used">Icons Used</h2>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Useful information for you to be aware of.
 </div>
 
 <div markdown="span" class="alert alert-success">
-:bulb: **Tip:** Tips in improving your experience when using Ez-Schedule.
+:bulb: **Tip:** Tips in improving your experience when using __Ez-Schedule__.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -76,7 +74,7 @@ This section serves to introduce the key terminology used throughout this guide.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:exclamation: **Danger:** Necessary cautions to heed to ensure that Ez-Schedule operates as intended.
+:exclamation: **Danger:** Necessary cautions to heed to ensure that __Ez-Schedule__ operates as intended.
 </div>
 
 <h2 id="glossary">Glossary</h2>
@@ -85,10 +83,8 @@ to be added soon (from DG)
 
 [[Back to top](#table-of-contents)]
 
--------------------------------------
-
 <h2 id="quick-start">Quick Start</h2>
-
+-------------------------------------
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ez-Schedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-3/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your _Ez-Schedule_.
@@ -97,10 +93,8 @@ to be added soon (from DG)
 
 [[Back to top](#table-of-contents)]
 
--------------------------------
-
 <h2 id="commands">Commands</h2>
-
+-------------------------------
 <h3 id="add">Add a new event `add`</h3>
 
 Adds an event into the scheduler.
@@ -115,10 +109,7 @@ Parameters:
 `e/`: End time of the event
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Name is alphanumeric only.  
-Date should follow a `YYYY-MM-DD` format.  
-Time should be in 24-hour `HH:mm` format, ranging from `00:00` to `23:59`. Leading zero are required.
+:information_source: **Note:** Name is alphanumeric only.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -275,10 +266,8 @@ Example: `exit`
 
 [[Back to top](#table-of-contents)]
 
--------------------------------
-
 <h2 id="gui">Graphical User Interface</h2>
-
+-------------------------------
 <h3 id="command-box">Command Box</h3>
 ![command-box.png](images/command-box.png)
 This feature enables you to type the command in the command box and execute it by pressing Enter  
@@ -314,7 +303,8 @@ This feature displays both ongoing (if you have not started on them yet) and upc
 
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:**
-While the default is one upcoming event, you can use the `next` command to change the number of upcoming events shown.
+While the default is one upcoming event, 
+you can use the `next` command to change the number of upcoming events shown.
 </div>
 
 [[Back to top](#table-of-contents)]
@@ -341,8 +331,8 @@ Clicking on any calendar date box that has events will display those events in t
 [[Back to top](#table-of-contents)]
 
 <h2 id="summary">Summary</h2>
-
-<h3 id="prefix-summary">Prefix summary</h2>
+-------------------------------
+<h3 id="prefix-summary">Prefix summary</h3>
 
 | Prefix | Representation |
 |:-------|:---------------|
@@ -370,7 +360,7 @@ Clicking on any calendar date box that has events will display those events in t
 
 [[Back to top](#table-of-contents)]
 
-<h3 id="command-summary">Command summary</h2>
+<h3 id="command-summary">Command summary</h3>
 
 | Action | Command Format                                               |
 |:-------|:-------------------------------------------------------------|
@@ -387,10 +377,8 @@ Clicking on any calendar date box that has events will display those events in t
 
 [[Back to top](#table-of-contents)]
 
--------------------------------------
-
 <h2 id="limitations">Limitations</h2>
-
+-------------------------------------
 - Currently, we only support same-day events.
   Events which stretches across multiple days are not supported.
 - `undo` can only undo the most recent valid command.
@@ -399,34 +387,32 @@ Clicking on any calendar date box that has events will display those events in t
 
 [[Back to top](#table-of-contents)]
 
--------------------------------------
-
 <h2 id="faq">FAQ</h2>
----------------------
+-------------------------------------
 **Q:** On a scale of 1 to 10, how awesome is _Ez-Schedule_?  
 **A:** I would say off the charts, but it looks like 10 is the highest :v:
 
 **Q:** What is one example of someone who would use this?  
 **A:** A secretary who needs to keep track the boss's meetings,
-and inform the boss of what the next meeting is for.
+       and inform the boss of what the next meeting is for.
 
 **Q:** I am not allowed to add an event with no start/end time. Why?  
 **A:** Events with no start/end time are not the focus of _Ez-Schedule_,
-since these events inherently cannot be scheduled.
+       since these events inherently cannot be scheduled.
 
 **Q:** The `recur` feature only allow me to repeat in certain frequency. It does not have the frequency I want.  
 **A:** Oh no, that is sad to hear. As a extra feature designed for user convenience,
-we cannot possibly support everyone's preferred frequency.
-In case that you really need to have events repeating at an unsupported frequency,
-you can manually add the events one by one. (You type fast, right? :sunglasses:)
+       we cannot possibly support everyone's preferred frequency.
+       In case that you really need to have events repeating at an unsupported frequency,
+       you can manually add the events one by one. (You type fast, right? :sunglasses:)
 
 **Q:** The calendar only displays a one or two events only,
-even though I have more events on that day. Is this a bug?  
+       even though I have more events on that day. Is this a bug?  
 **A:** As with other conventional calendar applications (eg. Google/Outlook calendar),
-the UI has limited space and thus almost impossible to display all events on that day.
+       the UI has limited space and thus almost impossible to display all events on that day.
 
 **Q:** You say this is optimised for CLI use, but there is no command to transverse the calendar?  
 **A:** The calendar UI is a value-added feature and is not meant to totally replace the `find` feature,
-which allows the user to focus directly to a specific day.
+       which allows the user to focus directly to a specific day.
 
 [[Back to top](#table-of-contents)]
