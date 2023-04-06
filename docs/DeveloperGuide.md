@@ -121,9 +121,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the roster data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the roster data i.e., all `Course` objects (which can subsequently be traversed to access all stored data)
+* stores a `CurrentSelection` object that is a container object for pointing to the various `Course`/`Group`/`Student`/`Session`/`Task` objects that the user has selected.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Course` list in the `CLIpboard`. This allows `CLIpboard` to only require one `Course` object.<br>
@@ -154,7 +155,13 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo feature
+`undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
+
+If new commands are to be added, it's interaction with `undo` must be kept in mind.
+For typical commands that do CRUD operations on roster data, `undo` can handle them.
+
+For navigating and UI related commands, some extra handling may be needed to also restore and refresh the UI to the previous state (e.g `back` command).
 
 #### Proposed Implementation
 
