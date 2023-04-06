@@ -63,8 +63,8 @@ public class CoverLetterLinkTest {
         assertTrue(CoverLetterLink.isValidCoverLetterLink("https://example.com/coverletter-1"));
         // hyphen in domain name
         assertTrue(CoverLetterLink.isValidCoverLetterLink("https://example-1.com/coverletter-1"));
-        assertTrue(CoverLetterLink.isValidCoverLetterLink("http://localhost/coverletter")); // alphabets only
-        assertTrue(CoverLetterLink.isValidCoverLetterLink("http://12.34.56.78/9")); // numeric domain name and path
+        assertTrue(CoverLetterLink.isValidCoverLetterLink("http://example.com/coverletter")); // alphabets only
+        assertTrue(CoverLetterLink.isValidCoverLetterLink("http://12.34.56.78/9")); // IP address and path
         // mixture of alphanumeric and special characters
         assertTrue(CoverLetterLink.isValidCoverLetterLink("http://example1.com/a1+be."));
         // long domain name
