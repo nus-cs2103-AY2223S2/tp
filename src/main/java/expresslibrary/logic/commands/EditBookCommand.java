@@ -122,6 +122,14 @@ public class EditBookCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_BORROW_DATE_AFTER_CURRENT_DATE);
             }
             editedBook.loanBookTo(updatedBorrower, updatedBorrowDate, updatedDueDate);
+        } else {
+            // Make sure user can't edit borrow date and due date if book is not borrowed
+            if (editBookDescriptor.getBorrowDate().orElse(null) != null) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EDIT_BORROW_DATE);
+            }
+            if (editBookDescriptor.getDueDate().orElse(null) != null) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EDIT_BORROW_DATE);
+            }
         }
 
         return editedBook;
