@@ -233,16 +233,20 @@ Example:
 
 ### 3.4.3. Editing a Card : `editCard`
 
-If you want to edit any fields (question, answer, tag) of an existing card, you can execute this command.
+You realised you made some mistakes after creating a card. 
+Worry not, as you can easily edit any existing card with this command!
 
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
 * Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* At least **one** of the optional fields must be provided.
+* Existing values of the card will be replaced by the input values.
+* If the same prefix appears multiple times, only the last occurrence of the prefix will be considered. 
 
 Examples:
-*  `editCard 1 q\What is chemical symbol for Carbon? a\C` Edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
+* `editCard 1 q\What is chemical symbol for Carbon? a\C` edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
+* `edit 2 q\What is a recursion?` will only edit the question of the 2nd card to `What is a recursion?`. The other fields of the card (answer, tag) remain unchanged.
+* `edit 3 q\What is a recursion? q\What is a loop?` edits the question of the 3rd card to be `What is a loop?`. 
 
 ### 3.4.4. Finding Cards by Keywords in Question : `findCards`
 
