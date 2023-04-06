@@ -17,8 +17,8 @@ abstract class ContactCard extends UiPart<Region> {
     /**
      * Creates a {@code ContactCard}
      */
-    public ContactCard(String FXML) {
-        super(FXML);
+    public ContactCard(String fxmlFilePath) {
+        super(fxmlFilePath);
     }
 
     /**

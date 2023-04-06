@@ -16,8 +16,8 @@ abstract class EnlargedInfoCard extends UiPart<Region> {
     /**
      * Creates a {@code EnlargedInfoCard}
      */
-    public EnlargedInfoCard(String FXML) {
-        super(FXML);
+    public EnlargedInfoCard(String fxmlFilePath) {
+        super(fxmlFilePath);
     }
 
     /**
