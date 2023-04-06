@@ -3,7 +3,6 @@ package trackr.model.menu;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
