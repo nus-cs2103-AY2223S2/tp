@@ -38,8 +38,8 @@ public class IngredientBuilderTest {
         Ingredient polishedRice = Ingredient.of("polished rice");
         polishedRice.setCommonName("rice");
         assertEquals(COMMAND_STRING_SAMPLE, new IngredientBuilder(polishedRice,
-                new IngredientInformation(IngredientQuantity.of("300 g"), "1 scoop", new String[]{"washed"},
-                        new Ingredient[]{Ingredient.of("noodle")})).toString());
+            new IngredientInformation(IngredientQuantity.of("300 g"), "1 scoop", new String[]{"washed"},
+                new Ingredient[]{Ingredient.of("noodle")})).toString());
     }
 
     @Test
