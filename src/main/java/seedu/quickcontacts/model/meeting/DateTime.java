@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,9 +49,9 @@ public class DateTime implements Comparable<DateTime> {
     private static final String[] TIME_SEPARATORS = {":", "", "."};
     private static final String SEPARATOR_PLACEHOLDER = "{sep}";
     private static final String DDMMYYYY_TEMPLATE = "dd" + SEPARATOR_PLACEHOLDER + "MM"
-            + SEPARATOR_PLACEHOLDER + "yyyy";
+            + SEPARATOR_PLACEHOLDER + "uuuu";
     private static final String DDMMYY_TEMPLATE = "dd" + SEPARATOR_PLACEHOLDER + "MM"
-            + SEPARATOR_PLACEHOLDER + "yy";
+            + SEPARATOR_PLACEHOLDER + "uu";
     private static final String DDMM_TEMPLATE = "dd" + SEPARATOR_PLACEHOLDER + "MM";
     private static final String HHMM_TEMPLATE = "HH" + SEPARATOR_PLACEHOLDER + "mm";
     private static final String HHMM_AM_PM_TEMPLATE = "h" + SEPARATOR_PLACEHOLDER + "mma";
@@ -199,7 +200,8 @@ public class DateTime implements Comparable<DateTime> {
     private static LocalDate parseDate(String date, String pattern) {
         try {
             if (!pattern.equals("ddMM")) {
-                return LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
+                return LocalDate.parse(date,
+                        DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH).withResolverStyle(ResolverStyle.STRICT));
             }
 
             if (date.length() != 4 && date.length() != 5) {
@@ -211,7 +213,9 @@ public class DateTime implements Comparable<DateTime> {
                 newDate = date + date.charAt(2) + Year.now();
             }
 
-            return LocalDate.parse(newDate, DateTimeFormatter.ofPattern(getDateFormat(newDate), Locale.ENGLISH));
+            return LocalDate.parse(newDate,
+                    DateTimeFormatter.ofPattern(getDateFormat(newDate), Locale.ENGLISH)
+                        .withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException | InvalidDateTimeFormatException e) {
             return LocalDate.MAX;
         }
