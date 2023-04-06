@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 public class Date {
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-MM-dd, "
+    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format YYYY-MM-DD, "
             + "and it should be a valid date";
 
     public final String fullDate;

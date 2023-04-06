@@ -3,6 +3,7 @@ package seedu.internship.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_APPLE;
+import static seedu.internship.logic.commands.CommandTestUtil.DESC_APPLE_DIFFERENT_COMMENT;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
@@ -131,7 +132,7 @@ public class EditCommandTest {
                 .withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     /**
@@ -148,7 +149,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -174,6 +175,9 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_GOOGLE)));
+
+        // different comments -> return false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_APPLE_DIFFERENT_COMMENT)));
     }
 
 }

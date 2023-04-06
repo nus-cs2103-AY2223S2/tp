@@ -124,7 +124,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
+        @Override
+        public void copyInternship(Internship target) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyInternBuddy getInternBuddy() {

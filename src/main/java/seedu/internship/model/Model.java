@@ -126,4 +126,11 @@ public interface Model {
      * @param target The internship that is selected for viewing
      */
     void updateSelectedInternship(Internship target);
+
+    /**
+     * Copies the content of the internship onto the clipboard of the computer
+     * {@code internship} must not already exist in InternBuddy.
+     */
+
+    void copyInternship(Internship target);
 }

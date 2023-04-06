@@ -14,8 +14,8 @@ import java.util.List;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be one of the following: new, applied, assessment, interview, offered, "
-                    + "rejected or accepted. It should not be blank too.";
+            "Status should only be one of the following: New, Applied, Assessment, Interview, Offered, "
+                    + "Accepted or Rejected. It should not be blank too.";
 
     public static final String NEW = "new";
     public static final String APPLIED = "applied";

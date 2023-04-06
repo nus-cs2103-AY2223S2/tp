@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.internship.logic.parser.ParserUtil;
+import seedu.internship.logic.parser.exceptions.ParseException;
+
 /**
  * Helper functions for handling strings.
  */
@@ -70,20 +73,33 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} represents a non-zero unsigned integer
-     * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
-     * Will return false for any other non-null string input
-     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
-     * @throws NullPointerException if {@code s} is null.
+     * Throws ParseException objects with error message {@code Messages.MESSAGE_INVALID_COMMAND_FORMAT} if {@code s}
+     *   does not represent an integer or represents a positive integer with the plus sign "+" in front and
+     *   {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer. Else,
+     *   does nothing.
+     * @param s String input
+     * @throws ParseException with error message {@code Messages.MESSAGE_INVALID_COMMAND_FORMAT} if {@code s}
+     *     does not represent an integer or represents a positive integer with the plus sign "+" in front and
+     *     {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer.
      */
-    public static boolean isNonZeroUnsignedInteger(String s) {
+    public static void nonZeroUnsignedIntegerCheck(String s) throws ParseException {
         requireNonNull(s);
 
+        int value;
+
         try {
-            int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            value = Integer.parseInt(s);
         } catch (NumberFormatException nfe) {
-            return false;
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
         }
+
+        if (s.startsWith("+")) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX);
+        }
+
+        if (value <= 0) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX);
+        }
+
     }
 }

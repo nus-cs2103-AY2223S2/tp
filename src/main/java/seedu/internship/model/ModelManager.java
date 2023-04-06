@@ -167,5 +167,9 @@ public class ModelManager implements Model {
         this.selectedInternship = target;
     }
 
+    @Override
+    public void copyInternship(Internship target) {
+        internBuddy.copyInternship(target);
+    }
 
 }

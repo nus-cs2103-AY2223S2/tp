@@ -115,7 +115,7 @@ public class InternshipCardTest extends GuiUnitTest {
         internship = new InternshipBuilder().withStatus(REJECTED).build();
         internshipCard = new InternshipCard(internship, 1);
         assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
-                "Date of Notice of Rejection: ");
+                "Date of Rejection: ");
         // Test accepted
         internship = new InternshipBuilder().withStatus(ACCEPTED).build();
         internshipCard = new InternshipCard(internship, 1);

@@ -7,6 +7,7 @@ import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.model.Model;
 import seedu.internship.model.ReadOnlyInternBuddy;
 import seedu.internship.model.internship.Internship;
 
@@ -54,5 +55,11 @@ public interface Logic {
      * @return the currently selected Internship
      */
     Internship getSelectedInternship();
+
+    /**
+     * Gets the model associated with the logic object.
+     * @return the model in the logic object.
+     */
+    Model getModel();
 
 }

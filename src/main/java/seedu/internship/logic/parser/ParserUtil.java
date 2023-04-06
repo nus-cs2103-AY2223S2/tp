@@ -25,7 +25,9 @@ import seedu.internship.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is smaller than 1.";
+    public static final String MESSAGE_INVALID_POSITIVE_SIGNED_INDEX = "Index has positive sign.";
+    public static final String MESSAGE_INVALID_INDEX_FORMAT = "Index is not an integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -34,8 +36,10 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        try {
+            StringUtil.nonZeroUnsignedIntegerCheck(trimmedIndex);
+        } catch (ParseException pe) {
+            throw pe;
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -233,4 +237,72 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    //@@author kohkaixun
+
+    /**
+     * Parses {@code List<String> unparsedNames} into a {@code List<String>} of parsed company names.
+     * @param unparsedNames The list of company name strings to be parsed.
+     * @return The list of company name strings that has the correct format.
+     * @throws ParseException if any of the given company names in the list cannot be parsed.
+     */
+    public static List<String> parseCompanyNamesToString(List<String> unparsedNames) throws ParseException {
+        List<String> parsedNames = ParserUtil.parseCompanyNames(unparsedNames).stream()
+                .map(name -> name.fullCompanyName)
+                .collect(Collectors.toList());
+        return parsedNames;
+    }
+
+    /**
+     * Parses {@code List<String> unparsedRoles} into a {@code List<String>} of parsed role names.
+     * @param unparsedRoles The list of role strings to be parsed.
+     * @return The list of role strings that has the correct format.
+     * @throws ParseException if any of the given roles in the list cannot be parsed.
+     */
+    public static List<String> parseRolesToString(List<String> unparsedRoles) throws ParseException {
+        List<String> parsedRoles = ParserUtil.parseRoles(unparsedRoles).stream()
+                .map(role -> role.fullRole)
+                .collect(Collectors.toList());
+        return parsedRoles;
+    }
+
+    /**
+     * Parses {@code List<String> unparsedStatuses} into a {@code List<String>} of parsed statuses.
+     * @param unparsedStatuses The list of status strings to be parsed.
+     * @return The list of status strings that has the correct format.
+     * @throws ParseException if any of the given statuses in the list cannot be parsed.
+     */
+    public static List<String> parseStatusesToString(List<String> unparsedStatuses) throws ParseException {
+        List<String> parsedStatuses = ParserUtil.parseStatuses(unparsedStatuses).stream()
+                .map(status -> status.fullStatus)
+                .collect(Collectors.toList());
+        return parsedStatuses;
+    }
+
+    /**
+     * Parses {@code List<String> unparsedDates} into a {@code List<String>} of parsed dates.
+     * @param unparsedDates The list of date strings to be parsed.
+     * @return The list of date strings that has the correct format.
+     * @throws ParseException if any of the given dates in the list cannot be parsed.
+     */
+    public static List<String> parseDatesToString(List<String> unparsedDates) throws ParseException {
+        List<String> parsedDates = ParserUtil.parseDates(unparsedDates).stream()
+                .map(date -> date.fullDate)
+                .collect(Collectors.toList());
+        return parsedDates;
+    }
+
+    /**
+     * Parses {@code List<String> unparsedTags} into a {@code List<String>} of parsed tags.
+     * @param unparsedTags The list of tag strings to be parsed.
+     * @return The list of tag strings that has the correct format.
+     * @throws ParseException if any of the given tags in the list cannot be parsed.
+     */
+    public static List<String> parseTagsToString(List<String> unparsedTags) throws ParseException {
+        List<String> parsedTags = ParserUtil.parseTags(unparsedTags).stream()
+                .map(tag -> tag.tagName)
+                .collect(Collectors.toList());
+        return parsedTags;
+    }
+    //@@author
 }

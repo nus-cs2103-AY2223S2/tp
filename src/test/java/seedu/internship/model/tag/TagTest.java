@@ -1,6 +1,8 @@
 package seedu.internship.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
 
@@ -31,6 +33,19 @@ public class TagTest {
         //Valid Tag Names
         assertTrue(Tag.isValidTagName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); //exactly 30 characters
         assertTrue(Tag.isValidTagName("Game Developer For Apple AAAAA"));
+    }
+
+    @Test
+    public void equals() {
+        Tag originalTag = new Tag("tagOne");
+        Tag originalTagDuplicate = new Tag("tagOne");
+        Tag tagWithDifferentContent = new Tag("tagTwo");
+
+        assertEquals(originalTag, originalTag);
+        assertEquals(originalTag, originalTagDuplicate);
+        assertNotEquals(originalTag, tagWithDifferentContent);
+        assertNotEquals(originalTag, "tagThree");
+
     }
 
 }

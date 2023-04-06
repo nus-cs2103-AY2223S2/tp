@@ -143,7 +143,7 @@ public class InternshipCard extends UiPart<Region> {
             dateLabel = "Date of Acceptance: ";
             break;
         case REJECTED:
-            dateLabel = "Date of Notice of Rejection: ";
+            dateLabel = "Date of Rejection: ";
             break;
         case OFFERED:
             dateLabel = "Deadline of Offer Acceptance: ";
@@ -151,12 +151,13 @@ public class InternshipCard extends UiPart<Region> {
         case INTERVIEW:
             dateLabel = "Date of Interview: ";
             break;
-        case ASSESSMENT:
-            dateLabel = "Date of Assessment: ";
-            break;
         case APPLIED:
             dateLabel = "Date Applied: ";
             break;
+        case ASSESSMENT:
+            dateLabel = "Date of Assessment: ";
+            break;
+
         default:
             dateLabel = "Deadline of Application: ";
         }

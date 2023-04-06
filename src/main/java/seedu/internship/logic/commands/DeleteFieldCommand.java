@@ -5,6 +5,7 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,22 +31,22 @@ public class DeleteFieldCommand extends Command {
     public static final String COMMAND_WORD = "delete-field";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes all internships identified by the index numbers used in the displayed internship list.\n"
-            + "If optional parameters are given, only the selected internships whose company names contain any"
-            + " of the specified name, role, status, and date will be deleted.\n"
-            + "Parameters: [" + PREFIX_COMPANY_NAME + "NAME_KEYWORD]... "
-            + "[" + PREFIX_ROLE + "ROLE_KEYWORD]... "
-            + "[" + PREFIX_DATE + "DATE_KEYWORD]... "
-            + "[" + PREFIX_STATUS + "STATUS_KEYWORD]... "
-            + "Example: " + COMMAND_WORD
-            + PREFIX_COMPANY_NAME + "apple "
-            + PREFIX_COMPANY_NAME + "google ";
+            + ": Deletes all internships containing at least one of the inputs for every different field "
+            + "(COMPANY_NAME, ROLE, STATUS, DATE or TAG) that you have provided.\n"
+            + "Fields: [" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
+            + "[" + PREFIX_ROLE + "ROLE]... "
+            + "[" + PREFIX_DATE + "DATE]... "
+            + "[" + PREFIX_STATUS + "STATUS]... "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COMPANY_NAME + "Apple "
+            + PREFIX_COMPANY_NAME + "Google ";
 
-    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internships have been deleted!";
+    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internship/s have been deleted!";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private final InternshipContainsKeywordsPredicate predicate;
     /**
-     * Create a DeleteCommand object from the list of user supplied indexes and a predicate
+     * Create a DeleteFieldCommand object from the list of user supplied indexes and a predicate
      * @param predicate A user supplied predicate to filter internships.
      */
     public DeleteFieldCommand(InternshipContainsKeywordsPredicate predicate) {

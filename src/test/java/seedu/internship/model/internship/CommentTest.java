@@ -59,4 +59,22 @@ public class CommentTest {
         assertEquals(commentOne.toString(), "[hello]");
     }
 
+    @Test
+    public void hashcode() {
+        //Same string
+        Comment commentOne = new Comment("hello");
+        Comment commentOneDuplicate = new Comment("hello");
+        Comment commentTwo = new Comment("Hello");
+        Comment commentThree = new Comment("helloThere!");
+
+        // same string -> equal
+        assertEquals(commentOne.hashCode(), commentOneDuplicate.hashCode());
+
+        // different capitalisation -> not equal
+        assertNotEquals(commentOne.hashCode(), commentTwo.hashCode());
+
+        // different strings -> not equal
+        assertNotEquals(commentOne.hashCode(), commentThree.hashCode());
+    }
+
 }

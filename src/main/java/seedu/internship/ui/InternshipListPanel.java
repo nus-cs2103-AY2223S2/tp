@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.internship.commons.core.LogsCenter;
+import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -17,16 +18,30 @@ public class InternshipListPanel extends UiPart<Region> {
     private static final String FXML = "InternshipListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InternshipListPanel.class);
 
+    private Model model;
+
+    private MainWindow mainWindow;
     @FXML
     private ListView<Internship> internshipListView;
 
     /**
      * Creates a {@code InternshipListPanel} with the given {@code ObservableList}.
      */
-    public InternshipListPanel(ObservableList<Internship> internshipList) {
+    public InternshipListPanel(ObservableList<Internship> internshipList, Model selectedModel,
+                               MainWindow selectedMainWindow) {
         super(FXML);
         internshipListView.setItems(internshipList);
         internshipListView.setCellFactory(listView -> new InternshipListViewCell());
+        model = selectedModel;
+        mainWindow = selectedMainWindow;
+        // @@author potty10-reused
+        // Reused from https://stackoverflow.com/a/34646172
+        // with minor modifications
+        internshipListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            model.updateSelectedInternship(newValue);
+            mainWindow.updateRightPanel();
+        });
+        // @@author
     }
 
     /**

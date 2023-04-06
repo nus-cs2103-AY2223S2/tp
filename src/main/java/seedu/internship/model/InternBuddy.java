@@ -2,7 +2,11 @@ package seedu.internship.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
+import javax.swing.SwingUtilities;
 
 import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
@@ -76,7 +80,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
 
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the intern buddy.
      * The internship identity of {@code editedInternship} must not be the same as another existing internship
      * in the address book.
      */
@@ -104,6 +108,21 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     }
 
 
+    /**
+     * Copies the content of the specific internship to the clipboard
+     * Gets {@code key} from this {@code InternBuddy}.
+     * {@code key} must exist in InternBuddy.
+     */
+    public void copyInternship(Internship key) {
+        String content = "Company Name: " + key.toString();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                StringSelection selection = new StringSelection(content);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, null);
+            }
+        });
+    }
 
     //// util methods
 

@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.DeleteFieldCommand;
 import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.commands.EditCommand;
@@ -85,6 +86,13 @@ public class InternBuddyParserTest {
         InternshipContainsKeywordsPredicate p = new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords,
                 statusKeywords, keyDate, new ArrayList<>());
         assertEquals(new DeleteFieldCommand(p), command);
+    }
+
+    @Test
+    public void parseCommand_copy() throws Exception {
+        CopyCommand command = (CopyCommand) parser.parseCommand(
+                CopyCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new CopyCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
     @Test

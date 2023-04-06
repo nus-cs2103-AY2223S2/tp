@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
 import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.DeleteFieldCommand;
 import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.commands.EditCommand;
@@ -76,6 +77,9 @@ public class InternBuddyParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case CopyCommand.COMMAND_WORD:
+            return new CopyCommandParser().parse(arguments);
 
         case UpcomingCommand.COMMAND_WORD:
             return new UpcomingCommand();

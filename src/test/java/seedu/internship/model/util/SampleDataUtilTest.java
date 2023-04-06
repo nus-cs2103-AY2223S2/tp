@@ -46,8 +46,8 @@ public class SampleDataUtilTest {
     public void getSampleInternBuddy_success() {
         InternBuddy ib = (InternBuddy) SampleDataUtil.getSampleInternBuddy();
         Internship internshipToCheck = new Internship(new CompanyName("Apple"), new Role("iOS Developer"),
-                new Status("applied"), new Date("2023-02-01"), new Comment("My dream company!"),
-                getTagSet("front"));
+                new Status("applied"), new Date("2023-03-20"), new Comment("My dream company!"),
+                getTagSet("iOS"));
         assertTrue(ib.hasInternship(internshipToCheck));
     }
 

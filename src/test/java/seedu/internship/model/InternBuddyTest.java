@@ -2,11 +2,13 @@ package seedu.internship.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalInternships.APPLE;
+import static seedu.internship.testutil.TypicalInternships.GOOGLE;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternBuddy;
 
 import java.util.Arrays;
@@ -81,6 +83,17 @@ public class InternBuddyTest {
     @Test
     public void getInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> internBuddy.getInternshipList().remove(0));
+    }
+
+    @Test
+    public void hashcode() {
+        List<Internship> oneInternships = Arrays.asList(APPLE);
+        InternBuddyStub internBuddyWithOneInternship = new InternBuddyStub(oneInternships);
+        List<Internship> twoInternships = Arrays.asList(APPLE, GOOGLE);
+        InternBuddyStub internBuddyWithTwoInternships = new InternBuddyStub(twoInternships);
+
+        // different internships -> returns different hashcode
+        assertNotEquals(internBuddyWithOneInternship.hashCode(), internBuddyWithTwoInternships.hashCode());
     }
 
     /**
