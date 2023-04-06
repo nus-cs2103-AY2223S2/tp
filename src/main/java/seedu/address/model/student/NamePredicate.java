@@ -26,7 +26,7 @@ public class NamePredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         for (String name : names) {
-            if (student.getName().toString().contains(name)) {
+            if (student.getName().toString().toLowerCase().contains(name.toLowerCase())) {
                 return true;
             }
         }
