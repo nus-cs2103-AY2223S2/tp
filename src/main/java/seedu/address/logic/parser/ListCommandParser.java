@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -54,13 +53,4 @@ public class ListCommandParser implements Parser<ListExpensesCommand> {
                 Optional.ofNullable(categoryPredicate),
                 Optional.ofNullable(timespanPredicate));
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
