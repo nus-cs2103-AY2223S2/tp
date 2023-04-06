@@ -505,7 +505,7 @@ Detailed example:
 
 <div style="page-break-after: always;"></div>
 
-* Table 7 explains the rationale behind Figure 5.
+* Table 7 explains the reasoning behind Figure 5.
   
 
 | Index of Internship | Returned? | Explanation                                                                       |
