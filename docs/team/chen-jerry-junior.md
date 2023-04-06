@@ -9,8 +9,17 @@ Team Builder is a desktop personal contacts book application used by the user to
 
 Given below are my contributions to the project.
 
-* **New Feature**: Major Field
-    * To be added
+* **Show Team Feature**
+  * Justification:
+    * Users might want to list all people under a certain team they created
+    * Rather than checking everyone's person card, they can just use `show` followed by the target team name.
+    * This is especially useful when users want to compare a team's skill requirements with skills possessed by the members.
+
+  * Highlights:
+    * Able to show all members who belong to multiple teams, use `show` followed by names of multiple teams that are separated by spaces.
+
+  * Credits:
+    * Unique TeamList Design Pattern
 
 * **New Feature**: To be added
 
