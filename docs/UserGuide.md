@@ -175,7 +175,7 @@ Example: <br/>
 
 ### Increasing the quantity of a food: `inc`
 
-Increases the quantity of a Food item in WIFE.
+Increases the quantity of a food item in WIFE.
 
 Format: `inc INDEX [q/QUANTITY]`
 
@@ -201,7 +201,7 @@ Examples:
 
 ### Decreasing the quantity of a food: `dec`
 
-Decreases the quantity of a Food item in WIFE.
+Decreases the quantity of a food item in WIFE.
 
 Format: `dec INDEX [q/QUANTITY]`
 
@@ -316,7 +316,7 @@ Vegetables
 ```
 
 ### Listing all foods by their tag(s) : `listbytag`
-Shows a list of all food items in WIFE by specified tag(s).
+Shows a list of all food items in WIFE by the specified tag(s).
 
 Format: `listbytag n/TAG NAME [n/TAG NAME]...`
 
@@ -428,7 +428,7 @@ Format: `exit`
 ### Saving the data
 
 Your data is automatically saved after any executed commands. But to be safe, we will suggest to always exit the application
-by the `exit` command o prevent any corruption of the file.
+by the `exit` command to prevent any corruption of the file.
 
 ### Editing the data file
 
