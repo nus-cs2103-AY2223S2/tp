@@ -3,47 +3,35 @@ layout: page
 title: Developer Guide
 ---
 
-{{ site.data.techtrack.about.summary }}
-
 ##### Table of Contents
 
-Todo: Add links
+{:toc}
 
-1. [Acknowledgements](#acknowledgements)
-2. [Setting up, getting started](#setting-up-getting-started)
-3. [Design](#design)
-   1. [UI Component](#ui-component)
-   2. [Logic Component](#logic-component)
-   3. [Model Component](#model-component)
-   4. [Storage Component](#storage-component)
-4. [Implementation](#implementation)
-   1. [Add Command](#add-command)
-   2. [Edit Command](#edit-command)
-   3. [Salary Command](#implemented-salary-command-feature)
-   4. [Deadline Command](#implemented-deadline-command-feature)
-   5. [Company Command](#implemented-company-command-feature)
-   6. [Tag Command](#implemented-tag-command-feature)
-   7. [View Command](#implemented-view-command-feature)
-5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-6. [Requirements](#requirements)
-   1. [Product Scope](#product-scope)
-   2. [User Stores](#user-stories)
-   3. [Use Cases](#use-cases)
-   4. [Non-Functional Requirements](#non-functional-requirements)
-7. [Instructions for manual testing](#instructions-for-manual-testing)
-8. [Planned Enhancements for Feature Flaws](#planned-enhancements-for-feature-flaws)
-9. [Won't Fix / Out of Scope](#wont-fix--out-of-scope)
-10. [Effort](#effort)
-    1. [Morphing of AB3 to TechTrack](#morphing-of-ab3-to-techtrack)
-    2. [Revamping of UI](#revamping-of-ui)
-11. [Glossary](#glossary)
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+{{ site.data.techtrack.about.summary }}
+
+### Technologies
+The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user interface. 
+Gradle serves as the project management and build tool. JUnit is utilized for conducting software testing.
+
+### Features
+
+### Functions
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Third-party software used in this project:
+* [Gradle](https://gradle.org/)
+* [CheckStyle](https://checkstyle.sourceforge.io/)
+* [Codecov](https://codecov.io/)
+* [JavaFx](https://openjfx.io/)
+* [JUnit](https://junit.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -694,7 +682,7 @@ Use case ends.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
-5. The CLI should be reliable and stable, with no crashes or data corruption.
+5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
 6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
 7. The CLI should be accessible to users with different abilities and needs, including support for assistive
    technologies and localization.
@@ -813,6 +801,8 @@ class to render the message on startup.
 
 1. Unable to replicate issue due to lack of information from the bug report.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Effort
 
 ### Morphing of AB3 to TechTrack
@@ -825,6 +815,8 @@ Ideas:
 1. aesthetic and arrangement of UI
 2. New UI functionalities
 3. Help window
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
