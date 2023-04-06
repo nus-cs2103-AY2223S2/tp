@@ -99,7 +99,7 @@
     -fx-margin: 5 5 5 5;
     -fx-background-radius: 18 18 18 18;
     -fx-background-insets: 5, 5 ;
-
+    -fx-background-color: derive(#dbdbdb, 20%);
 }
 
 .list-cell:filled:even {
