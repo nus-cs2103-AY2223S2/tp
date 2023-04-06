@@ -327,12 +327,26 @@ help
 Keywords are identified by their sub and main keywords. Following is the list of the attributes that a keyword has.
 
 * **Keyword name** : `<keyword>` - the name of the user-defined keyword.
-* **Main Keyword** : `<string>` - the main keyword that the user-defined keyword is paired to.
+* **Main Keyword** : `<main-keyword>` - the main keyword that the user-defined keyword is paired to.
 
 Default keywords implemented are shown in the list below.
 * pat-->patient
 * appt-->appointment
 * vacc-->vaccination
+
+`<main-keyword>` is limited to the following values (case sensitive):
+* `patient`
+* `vaccination`
+* `appointment`
+
+The following values (case sensitive) are not allowed for `<keyword>`:
+* `patient`
+* `vaccination`
+* `appointment`
+* `keyword`
+* `basic`
+* `help`
+* `exit`
 
 #### `add` - Add a keyword
 
@@ -378,7 +392,7 @@ keyword delete <var>KEYWORD</var>
 Example assumes that the keyword already exists.
 
 ```text
-keyword delete pat
+keyword delete pa
 ```
 
 Output:
