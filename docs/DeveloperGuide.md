@@ -39,6 +39,16 @@ title: Developer Guide
 
 ## Implementation
 
+This section will focus on the implementation of the various features that BookFace
+provides. UML diagrams will be included to facilitate the explanation for the
+implementations.
+
+> **Note**: When viewing the sequence diagrams provided, it can be seen that the
+> lifeline of several classes extend beyond its destroy marker (X). A proper sequence
+> diagram will have the lifeline terminated at that point. However, due to the
+> limitations of PlantUML (the software used to generate the UML diagrams), the
+> lifeline extends beyond the destroy marker until the end of the diagram.
+
 ### Add Feature
 
 #### Add Implementation
@@ -72,10 +82,6 @@ change the contents inside and update the program directory.
 The following sequence diagram shows how the `add` operation works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-> **Note**: The lifeline of the `AddCommandParser` and `AddCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
 
 The following activity diagram summarizes what happens when a user executes a
 `add` command:
@@ -167,9 +173,7 @@ Finally `AddImageCommand#execute` updates the model provided in the arguments.
 
 The following sequence diagram shows how the `add-image` operation works:<br>
 ![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
-> **Note**: The lifeline of the `AddImageCommandParser` and `AddImageCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
+
 
 The following activity diagram summarizes what happens when a user executes `add-image` command: <br>
 ![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
@@ -227,10 +231,6 @@ from the program directory.
 The following sequence diagram shows how the delete-image operation works.
 
 ![DeleteImageSequenceDiagram](images/DeleteImageSequenceDiagram.png)
-
-> **Note**: The lifeline of the `DeleteImageCommandParser` and `DeleteImageCommand`
-> should end at the destroy marker (X) but due to the limitations of PlantUML, the
-> lifeline reaches the end of the diagram.
 
 The following activity diagram summarizes what happens when a user executes a
 `delete-image` command:
