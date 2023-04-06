@@ -9,13 +9,15 @@ import seedu.address.model.tag.Tag;
  */
 public class TagLabel extends Label {
 
-    private static final String FXML = "TagLabel.fxml";
+    private double tagMaxWidth = 150.0;
+    private boolean tagWrapText = true;
 
     /**
      * Creates a {@code TagLabel}.
      */
     public TagLabel(Tag tag) {
-        super(FXML);
         this.setText(tag.getTagName());
+        this.setMaxWidth(tagMaxWidth);
+        this.setWrapText(tagWrapText);
     }
 }
