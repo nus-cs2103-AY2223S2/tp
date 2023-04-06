@@ -180,7 +180,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
    1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
 
-<div style="page-break-after: always;"></div>
+    <div style="page-break-after: always;"></div>
    
 4. Launch CoDoc.
 
@@ -209,11 +209,7 @@ launched in its factory state as shown below.
 
 ### Navigating CoDoc
 
-If it's your first time using this program, the starting screen could seem a little overwhelming.
-
-Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
-We recommend **maximizing** the program window to have a clearer view.
-This way you can see more content as well.
+If it's your first time using this program, the starting screen could seem a little overwhelming. Not to worry, let's familiarize ourselves with the different parts of the CoDoc interface together. We recommend **maximizing** the program window to have a clearer view. This way you can see more content as well.
 
 <div style="page-break-after: always;"></div>
 
@@ -239,7 +235,7 @@ Below is the breakdown of the CoDoc screen:
 Now that you know how to navigate CoDoc, we recommend you try the following steps to familiarize with 
 available features of CoDoc.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### 1. Adding a person
 
