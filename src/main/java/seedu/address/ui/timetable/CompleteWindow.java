@@ -44,6 +44,15 @@ public class CompleteWindow extends UiPart<Stage> {
         this.logic = logic;
     }
 
+    /**
+     * Creates a {@code CompleteWindow} with the given {@code Logic}.
+     */
+    public CompleteWindow(Logic logic) {
+        super(FXML, new Stage());
+        this.primaryStage = new Stage();
+        this.logic = logic;
+    }
+
 
     /**
      * Show complete window.

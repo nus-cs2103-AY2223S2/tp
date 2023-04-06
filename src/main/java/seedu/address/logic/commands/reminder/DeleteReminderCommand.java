@@ -44,4 +44,12 @@ public class DeleteReminderCommand extends Command {
         model.deleteReminder(targetIndex);
         return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteReminderCommand // instanceof handles nulls
+                && targetIndex == (((DeleteReminderCommand) other).targetIndex)); // state check
+    }
+
 }
