@@ -5,7 +5,6 @@ import static seedu.socket.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
-import seedu.socket.model.Socket;
 import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 /**
@@ -35,7 +34,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (tagPredicate.isEmpty()) {
-            model.setSocket(new Socket());
+            model.hasDeleteMultiplePerson(x -> true);
         } else if (!model.hasDeleteMultiplePerson(tagPredicate)) {
             throw new CommandException(MESSAGE_NOT_SUCCESS);
         }

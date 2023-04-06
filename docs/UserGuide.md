@@ -73,7 +73,8 @@ You can use the links in the Table of Contents to quickly navigate through this 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Keywords in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
-  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.
+  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.<br>
+  **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so an error message will not be shown even if there is a wrong keyword in a subsequent prefix.
 
 * Fields in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -166,6 +167,12 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
   * e.g. `l/Java` will remove `Java` from the languages of the contact.
 * Clears the field value(s) when no keyword is provided for the field.
   * e.g. `t/` will remove all the tags associated with the contact.
+
+<div markdown="span" class="alert alert-primary"> :bulb: Tip
+
+  If no keyword is provided, `remove` will still **execute successfully** on an empty field.
+
+</div>
 
 Examples:
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
@@ -544,8 +551,8 @@ Undoes the last change made to SOCket.
 
 Format: `undo`
 Keyboard Shortcut:
-1. `Ctrl+Z` __(Windows)__.
-2. `Command+Z` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>Z</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>Z</kbd> __(Mac)__.
 
 * A message is shown if no changes were made to SOCket.
 
@@ -555,8 +562,8 @@ Restores a previously undone change made to SOCket.
 
 Format: `redo`
 Keyboard Shortcut:
-1. `Ctrl+Shift+Z` __(Windows)__.
-2. `Command+Shift+Z` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> __(Mac)__.
 
 * A message is shown if no undone changes exist.
 
@@ -571,8 +578,8 @@ Exits the program.
 Format: `exit`
 
 Shortcut key:
-1. `Ctrl+Q` __(Windows)__.
-2. `Command+Q` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>Q</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>Q</kbd>  __(Mac)__.
 
 <div style="page-break-after: always;"></div>
 
@@ -588,7 +595,7 @@ Displays window showing the list of commands and a clickable URL to access help 
 
 Format: `help`
 
-Keyboard Shortcut: `F1`
+Keyboard Shortcut: <kbd>F1</kbd>
 
 <div style="page-break-after: always;"></div>
 
@@ -617,26 +624,26 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                            |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| Action          | Format, Examples                                                                                                                                                                            |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Add**         | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
-| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                                               |
-| **Delete**      | `delete INDEX`                                                                                                                                                                                              |
-| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                                       |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                  |
-| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                   |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                                             |
-| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                          |
-| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                                    |
-| **Clear Projects** | `clearpj`                                                                                                                                                                                                   |
-| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                            |
-| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                                       |    
-| **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                                            |
-| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                                  |
-| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                                   |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                              | 
-| **View**        | `view INDEX`                                                                                                                                                                                                |
-| **Undo**        | `undo`<br>Keyboard Shortcut: `Ctrl+Z`/ `Command+Z`                                                                                                                                                          |
-| **Redo**        | `redo`<br>Keyboard Shortcut: `Ctrl+Shift+Z`/ `Command+Shift+Z`                                                                                                                                              |
-| **Help**        | `help`<br>Keyboard Shortcut: `F1`                                                                                                                                                                           |
-| **Exit**        | `exit`<br>Keyboard Shortcut: `Ctrl+Q`/ `Command+Q`                                                                                                                                                          |
+| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                               |
+| **Delete**      | `delete INDEX`                                                                                                                                                                              |
+| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                       |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                  |
+| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                   |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                             |
+| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                          |
+| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                    |
+| **Clear Projects** | `clearpj`                                                                                                                                                                                   |
+| **Delete Project** | `deletepj INDEX`                                                                                                                                                                            |
+| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                       |    
+| **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                            |
+| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                  |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                   |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                              | 
+| **View**        | `view INDEX`                                                                                                                                                                                |
+| **Undo**        | `undo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>Z</kbd>                                                                                                 |
+| **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                               |
+| **Help**        | `help`<br>Keyboard Shortcut: <kbd>F1</kbd>                                                                                                                                                  |
+| **Exit**        | `exit`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Q</kbd> / <kbd>command</kbd>+<kbd>Q</kbd>                                                                                                 |
