@@ -1,11 +1,11 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.storage.ChsContacts.CHS_CONTACTS;
 
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 
