@@ -1,6 +1,8 @@
 package seedu.recipe.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_FISH;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_CHICKEN;
 import static seedu.recipe.logic.commands.CommandTestUtil.DURATION_DESC_FISH;
 import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_FISH;
@@ -31,16 +33,29 @@ import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
@@ -200,4 +215,55 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parseTagsForEdit_emptyTagsOptional() throws ParseException {
+        Collection<String> tags = Collections.emptyList();
+        Optional<Set<Tag>> expectedTagsOptional = Optional.empty();
+
+        assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+    }
+
+    @Test
+    public void parseTagsForEdit_nonEmptyTagsOptional() throws ParseException {
+        Collection<String> tags = Arrays.asList(VALID_TAG_ITALIAN, VALID_TAG_CHINESE);
+        Optional<Set<Tag>> expectedTagsOptional = Optional.of(
+                new HashSet<>(Arrays.asList(new Tag(VALID_TAG_ITALIAN), new Tag(VALID_TAG_CHINESE))));
+
+        assertEquals(expectedTagsOptional, parser.parseTagsForEdit(tags));
+    }
+
+    @Test
+    public void parseIngredientsForEdit_emptyIngredientsOptional() throws ParseException {
+        Collection<String> ingredients = Collections.emptyList();
+        Optional<HashMap<Ingredient, IngredientInformation>> expectedIngredientsOptional = Optional.empty();
+
+        assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+    }
+
+    @Test
+    public void parseIngredientsForEdit_nonEmptyIngredientsOptional() throws ParseException {
+        Collection<String> ingredients = Arrays.asList(VALID_INGREDIENT_FISH);
+        Map<Ingredient, IngredientInformation> expectedIngredientsMap = DESC_FISH.getIngredients().get();
+        Optional<Map<Ingredient, IngredientInformation>> expectedIngredientsOptional =
+                Optional.of(expectedIngredientsMap);
+
+        assertEquals(expectedIngredientsOptional, parser.parseIngredientsForEdit(ingredients));
+    }
+
+    @Test
+    public void parseStepsForEdit_emptyStepsOptional() throws ParseException {
+        Collection<String> steps = Collections.emptyList();
+        Optional<List<Step>> expectedStepsOptional = Optional.empty();
+
+        assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+    }
+
+    @Test
+    public void parseStepsForEdit_nonEmptyStepsOptional() throws ParseException {
+        Collection<String> steps = Arrays.asList(VALID_STEP_FISH);
+        List<Step> expectedStepsList = DESC_FISH.getSteps().get();
+        Optional<List<Step>> expectedStepsOptional = Optional.of(expectedStepsList);
+
+        assertEquals(expectedStepsOptional, parser.parseStepsForEdit(steps));
+    }
 }
