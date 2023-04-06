@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
   * Highlights: Updating the Ingredient class is more complex compared to the other classes within our Recipe object as it is now a custom class with additional fields which behaves differently from existing classes in AB3. Since we are adding three additional fields to ingredient, the other components have to be modified to accomodate this change. First, I updated the parser to parse the fields in an Ingredient and perform input validation on each of them. Next, I updated the storage to work with JsonAdaptedIngredient which had multiple subfields that does not follow the normal @JsonCreator annotation like the other classes within our Recipe object (`Title`, `Description`, `Step`). I also updated the UI to display our Recipe object with the new Ingredient fields and the total cost of each Recipe (calculated by summing the cost of all ingredients). Lastly, the testcases and test inputs have to be modified to ensure that they work with the new Ingredient class.
 
-* **New Feature**: 
+* **New Features**: 
   * Add the ability for user to filter recipe by a specified price condition
   [\#147](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/147)
     * What it does: The `fp COMPARATOR PRICE` (`COMPARATOR = < or >` , `PRICE = +ve number`) will take in a comparator and a price and filter the list of recipes such that those remaining fulfils the price condition. E.g. `fp < 4.5` will return a list of all Recipes with total cost less than $4.50.
@@ -72,4 +72,3 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trival review comments): [\#101](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/101),
   [\#140](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/140),
   [\#163](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/163)
-  
