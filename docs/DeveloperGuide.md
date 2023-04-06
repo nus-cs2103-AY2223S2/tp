@@ -171,8 +171,6 @@ The implementation of the add task function is facilitated by `LogicManager`. It
 The format is as follows:
 - `todo task/{Task_Description}`
 
-Given below is an example scenario and how the delete function woks at each step.
-
 Step 1. The user executes `todo task/organise pantry` command to add the task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
 
 Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
@@ -190,8 +188,6 @@ The following sequence diagram shows how the addition operation works:
 <img src="images/ToDoSequenceDiagramUML.png"/>
 
 ### Delete/deletetask feature
-
-#### Implementation
 
 The implementation of the delete/deletetask function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being either `delete` or `deletetask`, depending on whether the user wants to delete a person or task respectively. The second argument is an index, denoting the index of the person or task the user wishes to delete.
 
