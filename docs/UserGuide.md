@@ -16,8 +16,6 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 
 <h2 id="using-this-guide">Using this Guide</h2>
 -------------------------------------
-We highly recommend that you read the [Terminology](#terminology) section if you are new to this user guide. Otherwise,
-
 - If you are running __Ez-Schedule__ for the first time, please refer to our [Quick Start](#quick-start) guide.
 - If you are learning how to use __Ez-Schedule__, please refer to our [Commands](#commands) section for a detailed guide.
 - If you are interested in contributing to this project, please check out our [Developer Guide](https://ay2223s2-cs2103-w17-3.github.io/tp/DeveloperGuide.html).
