@@ -22,7 +22,7 @@ Now it's time to **CONQUER** the semester!
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Quick Start Guide](#quick-start-guide)
   - [Prerequisite](#prerequisite)
   - [Installation and Setup](#installation-and-setup)
   - [Getting Started](#getting-started)
@@ -32,10 +32,7 @@ Now it's time to **CONQUER** the semester!
 - [Navigation](#navigation)
 - [Command Manual](#command-manual)
   - [Nav](#nav)
-  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
-  - [List Modules](#list-modules)
-  - [List Lectures of Modules](#list-lectures-of-modules)
-  - [List Videos of Lectures](#list-videos-of-lectures)
+  - [List](#list)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
