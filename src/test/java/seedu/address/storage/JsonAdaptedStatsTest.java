@@ -1,9 +1,12 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.entity.Stats;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class JsonAdaptedStatsTest {
     private static final int VALID_INT = 3;

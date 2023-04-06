@@ -1,23 +1,24 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entity.Name;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntities.SPOON;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.Name;
 
 class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "BR@KEN SPOON";
     private static final int INVALID_COST = -2;
     private static final float INVALID_WEIGHT = -2.33f;
 
-    private static final String VALID_NAME =  SPOON.getName().toString();
+    private static final String VALID_NAME = SPOON.getName().toString();
     private static final int VALID_COST = SPOON.getCost();
     private static final float VALID_WEIGHT = SPOON.getWeight();
     private static final List<JsonAdaptedTag> VALID_TAGS = SPOON.getTags().stream()
