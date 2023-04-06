@@ -53,7 +53,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
             + "[" + PREFIX_IS_DELIVERED + "COMPLETE_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SENDER_ID + "ALE874 \n"
-            + COMMAND_WORD +" " + PREFIX_JOB_ID + "ALBE29E66F "
+            + COMMAND_WORD + " " + PREFIX_JOB_ID + "ALBE29E66F "
             + PREFIX_IS_DELIVERED + "t";
 
     public static final String MESSAGE_EDIT_JOB_SUCCESS = "Edited Job: %1$s";
