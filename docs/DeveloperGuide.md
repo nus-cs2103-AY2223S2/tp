@@ -373,6 +373,38 @@ Below is the sequence diagram for Marking attendane of a student
 
 <img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
 
+## **Insert Participation**
+
+Below is the main success scenario of Mark/Unmark
+
+
+**MSS**
+
+1. User requests to insert participation points of student
+2. TAA shows a list of students
+3. User requests to insert participation points for a specific student in the list for a specified week
+4. TAA inserts participation points
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index/week/participation points is invalid.
+
+    * 3a1. TAA shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The given week's attendance is not marked
+
+    * 3a1. TAA shows message that attendance must be marked first before adding participation points.
+
+      Use case resumes at step 2.
+
+
 ## **Add Assignment**
 
 Below is the main success scenario of adding an Assignment
