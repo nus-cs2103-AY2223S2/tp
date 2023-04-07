@@ -40,7 +40,7 @@ You can click on the respective links below to read up on the relevant sections.
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
-<!-- TOC -->
+<!-- TOC --><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,13 +51,13 @@ Trackr is a desktop application catered towards small businesses to trackr their
 **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md).<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+<br>**Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
@@ -95,7 +95,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+<br>**How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
@@ -116,7 +116,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
   <br>Figure 3: Logic Class Diagram
 </p>
 
-The sections below give more details of each component.
+The sections below give more details of each component.<br><br>
 
 ### UI component
 
@@ -136,7 +136,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.<br><br>
 
 ### Logic component
 
@@ -172,7 +172,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 
 * When called upon to parse a user command, the `TrackrParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackrParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.<br><br>
 
 ### Model component
 
@@ -191,6 +191,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+
+<br>**Item**
+
 Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
@@ -200,6 +203,8 @@ Here is the `Item` class that is what all model objects depend on.
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
+
+<br>**Supplier & Customer**
 
 This is the class representation for the `Supplier` and `Customer` class.
 
@@ -214,6 +219,8 @@ Here is how `Supplier` and `Customer` works:
 * Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
 
+<br>**Task**
+
 This is the class representation for the `Task` class.
 
 <p align="center">
@@ -226,6 +233,9 @@ Here is how `Task` works:
 * Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
 * Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
+
+
+<br>**Menu**
 
 This is the class representation for the `Menu` class.
 
@@ -254,6 +264,8 @@ Here is how `Menu` works:
     * Advantage: Convenient to implement.
     * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
+<br>**Order**
+
 This is the class representation for the `Order` class.
 
 <p align ="center">
@@ -267,7 +279,7 @@ Here is how `Order` works:
 * Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadline` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
-* The `Order` object have its `List` called `OrderList` and `UniqueList`.
+* The `Order` object have its `List` called `OrderList` and `UniqueList`.<br><br>
 
 ### Storage component
 
@@ -282,11 +294,11 @@ The `Storage` component,
 
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)<br><br>
 
 ### Common classes
 
-Classes used by multiple components are in the `trackr.commons` package.
+Classes used by multiple components are in the `trackr.commons` package.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -294,7 +306,7 @@ Classes used by multiple components are in the `trackr.commons` package.
 
 This section describes the details on how the common commands are implemented.
 
-The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.<br><br>
 
 ### AddXYZCommand
 
@@ -316,7 +328,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class -`AddItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
-
+<br><br>
 ### DeleteXYZCommand
 
 The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
@@ -336,7 +348,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class -`DeleteItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
-
+<br><br>
 ### Edit feature
 
 The `edit` command edits item `XYZ` from the internal `XYZList`.
@@ -367,8 +379,7 @@ Lastly, Changes made are saved to local data and success message will be shown.
 
 The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class -`EditItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
-
-
+<br><br>
 ### FindXYZCommand
 
 The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
@@ -392,7 +403,7 @@ The following activity diagram summarizes what happens when the user executes th
 The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class -`FindItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
 The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
-
+<br><br>
 ### ListXYZCommand
 
 The `list` command lists all the `XYZ` objects in the internal `FilteredXYZList`.
@@ -408,7 +419,8 @@ The following activity diagram summarizes what happens when the user executes th
   <br>Figure 18: List Command Activity Diagram
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------- 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -417,7 +429,7 @@ The following activity diagram summarizes what happens when the user executes th
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
+<br><br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
@@ -441,7 +453,7 @@ The following activity diagram summarizes what happens when the user executes th
 Our application:
 * allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
-* enables faster contact management compared to a typical mouse/_GUI_ driven app
+* enables faster contact management compared to a typical mouse/_GUI_ driven app<br><br>
 
 ### User stories
 
@@ -476,20 +488,22 @@ Our application:
 | new user       | be able to import past data | use the application easily when transferring data         |
 | user           | be able to export data      | keep track of past orders without lagging the application |
 
+<br>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
 
 **Use case: UC01 - Add a new supplier**
 
-MSS
+**MSS**
 
-1. Actor requests to add a new supplier.
-2. Actor enters a command to add a supplier with the required information.
-3. Trackr saves the new supplier to the system.
-4. Trackr shows the new supplier added to the list.
+ 1. Actor requests to add a new supplier.
+ 2. Actor enters a command to add a supplier with the required information.
+ 3. Trackr saves the new supplier to the system.
+ 4. Trackr shows the new supplier added to the list.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -558,7 +572,7 @@ MSS
 
 **Use case: UC03 - Edit a contact**
 
-MSS
+**MSS**
 
 1. Actor requests to list contacts.
 2. Trackr shows a list of contacts.
@@ -599,7 +613,7 @@ MSS
 
 **Use case: UC04 - Finding a supplier**
 
-MSS
+**MSS**
 
 1. Actor requests to find a supplier.
 2. Actor enters the command with the desired search criteria.
@@ -638,13 +652,13 @@ MSS
 
 **Use case: UC50 - Switch to another tab**
 
-MSS
+**MSS**
 
 1. Actor requests to switch to another tab.
 2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 
-   Use case ends.
+   Use case ends.<br><br>
 
 ### Non-Functional Requirements
 
@@ -655,7 +669,7 @@ MSS
 1. Should be able to hold up to 200 tasks without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
-1. Should store data locally only.
+1. Should store data locally only.<br><br> 
 
 ### Glossary
 
@@ -666,9 +680,9 @@ MSS
 * **Customer**: Customer refers to someone whom the user receives an order from
 * **Order**: Order refers to the customers' orders the user accepts
 * **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
-* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
+* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers
 * **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
-* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted <br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -696,7 +710,7 @@ testers are expected to do more *exploratory* testing.
   1. Re-launch the app by double-clicking the jar file.<br>
      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }_<br><br>
 
 ### Deleting a person
 
@@ -713,7 +727,7 @@ testers are expected to do more *exploratory* testing.
   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }_<br><br>
 
 ### Saving data
 
