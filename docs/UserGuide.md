@@ -564,14 +564,16 @@ Want to find people with certain qualities? Use find command to find people that
   * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a></div>
 * m/ACADEMIC_YEAR MODULES
   * e.g. `find m/AY2223S1 CS2103`: load all person with `AY2223S1 CS2103` in their module list including `AY2223S1 CS2103T` and `AY2223S1 CS2103R`
-  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can omit ACADEMIC_YEAR as a constraint. For example, <code>find m/CS2103</code> will load all person with `CS2103`, `CS2103T` and `CS2103R` regardless of ACADEMIC_YEAR.</div>
-  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space. For example,  <code>find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230</code> will load all persons that have taken
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can omit ACADEMIC_YEAR as a constraint. E.g. <code>find m/CS2103</code> will load all person with <code>CS2103</code>,<code>CS2103T</code> and <code>CS2103R</code> regardless of ACADEMIC_YEAR in their module list</div>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space. E.g. <code>find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230</code> will load all persons that have taken <br>
     <code>CS1101</code>, <code>`CS1231`</code> regardless of academic year <br>
     <code>CS2040</code>` in <code>AY2223S1</code> <br>
-    <code>>CS2090</code>, <code>CS3230</code> in <code>AY2223S2</code>
+    <code>>CS2090</code>, <code>CS3230</code> in <code>AY2223S2</code> </div>
 * s/SKILLS (e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`)
-    * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
- 
+    * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add as many skills as you want separated by a space.</div>
+
+<div style="page-break-after: always;"></div>
+
 
 **Examples:**
 - execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
