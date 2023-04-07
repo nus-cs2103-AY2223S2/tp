@@ -44,6 +44,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated `find` command to be able to search on any field of Persons, instead of only the name field [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
+  * Added `convertArgumentsIntoList` method in `StringUtil.java` to abstract out the need to break arguments in a list of words, reducing the need to repeat the same line of codes throughout the entire codebase. [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
   * Refactored predicate classes name and location to remove any confusion caused due to similar naming [\#122](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/122)
   * Refactored test case names and its location for the predicate classes to match with the actual predicate class location in main [\#198](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/198) 
   * Updated `ParserUtilTest.java` to include test cases for project fields [\#199](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/199)
