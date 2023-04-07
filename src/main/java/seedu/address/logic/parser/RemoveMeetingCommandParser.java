@@ -27,8 +27,8 @@ public class RemoveMeetingCommandParser implements Parser<RemoveMeetingCommand> 
 
         String[] indexes = args.trim().split(" ");
         if (indexes.length > 2) {
-            String message_Invalid_Argument_Count = "meetingRemove only accepts 2 arguments!";
-            throw new ParseException(message_Invalid_Argument_Count);
+            String invalidArgumentCountError = "meetingRemove only accepts 2 arguments!";
+            throw new ParseException(invalidArgumentCountError);
         }
 
         try {
