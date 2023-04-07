@@ -23,9 +23,9 @@ public class ScheduleCommand extends Command {
             + PREFIX_EFFORT + "EFFORT\n"
             + "Example: " + COMMAND_WORD + " D/2023-04-26" + " E/5";
 
-    public static final String SCHEDULE_SUCCESS_MESSAGE = "Daily Plan Displayed";
+    public static final String SCHEDULE_SUCCESS_MESSAGE = "Daily Plan Displayed.";
     public static final String OUT_OF_RANGE_MESSAGE =
-            "Date entered is outside of planner date range (30 days from today).\n"
+            "Date entered is outside of planner date range (30 days from date generated).\n"
             + "Try re-planning with 'E/' flag, or entering another date.";
     private final LocalDate date;
     private final Effort effort;
