@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 
@@ -17,9 +17,9 @@ import seedu.address.model.person.Person;
  */
 public class DeleteByNameCommand extends DeleteCommand {
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsAllKeywordsPredicate predicate;
 
-    public DeleteByNameCommand(NameContainsKeywordsPredicate predicate) {
+    public DeleteByNameCommand(NameContainsAllKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
