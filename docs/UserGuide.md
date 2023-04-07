@@ -464,6 +464,8 @@ deletec CINDEX
 
 </div>
 
+[//]: # (@@author JavonTeo)
+
 #### Marking a customer : `markc`
 
 Bookmarks a customer from the list of customers.
@@ -511,6 +513,8 @@ unmarkc CINDEX
   Un-bookmarks the 1st customer in the results of the `findc` command.
 
 </div>
+
+[//]: # (@@author CloudHill)
 
 #### Setting a customer's note : `setnotec`
 
@@ -575,6 +579,8 @@ appendnotec CINDEX nt/NOTE
   Adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
 
 </div>
+
+[//]: # (@@author Dawson)
 
 ### Rewards
 
@@ -644,6 +650,8 @@ Addition will also result in an addition of cumulative points, while subtraction
 
 </div>
 
+[//]: # (@@author jednghk)
+
 ### Orders
 
 #### Adding an order : `addo`
@@ -712,6 +720,8 @@ Currently, you are unable to add the same order name and quantity for the same c
 
 </div>
 
+[//]: # (@@author CloudHill)
+
 #### Locating orders by name : `findo`
 
 Find orders whose names contain any of the given keywords.
@@ -741,6 +751,8 @@ findo KEYWORD [MORE_KEYWORDS]
 
 </div>
 
+[//]: # (@@author Junyi00)
+
 #### View an order : `viewo`
 
 Displays an order's information in the **Information Panel**.
@@ -765,6 +777,8 @@ You can click on the order in the table directly for the same effect!
   Displays the second order in the **Information Panel**
 
 </div>
+
+[//]: # (@@author jednghk)
 
 #### Editing an order : `edito`
 
@@ -903,6 +917,8 @@ deleteo OINDEX
 
 </div>
 
+[//]: # (@@author CloudHill)
+
 #### Setting an order's note : `setnoteo`
 
 Sets an order's note.
@@ -966,6 +982,8 @@ appendnoteo OINDEX nt/NOTE
   Adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
 
 </div>
+
+[//]: # (@@author)
 
 ### Miscellaneous
 
