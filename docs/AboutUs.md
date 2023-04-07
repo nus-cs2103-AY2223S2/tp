@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/9fc70c892.png" width="200px">
 
 [[github](https://github.com/9fc70c892)]
-[[portfolio](team/edwin.md)]
+[[portfolio](team/9fc70c892.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops
