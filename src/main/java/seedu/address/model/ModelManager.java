@@ -149,7 +149,7 @@ public class ModelManager implements Model {
     @Override
     public void archivePet(Pet petToArchive) {
         this.petPalCache = new PetPal(petPal);
-        this.archiveCache = new PetPal(petPal);
+        this.archiveCache = new PetPal(archiveStorage);
 
         requireNonNull(petToArchive);
         archiveStorage.archivePet(petToArchive);
