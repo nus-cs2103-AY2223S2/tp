@@ -12,6 +12,8 @@ public class Name {
 
     public final String name;
 
+    public static final String VALIDATION_REGEX = "\\S.+";
+
     /**
      * Constructs a {@code Name}.
      *
@@ -28,11 +30,7 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         // Anything can be a valid Name, so return True
-        if (test.equals("")) {
-            // An Empty String Cannot Be Valid
-            return false;
-        }
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

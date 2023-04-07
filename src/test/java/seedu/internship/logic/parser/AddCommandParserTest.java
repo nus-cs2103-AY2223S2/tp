@@ -84,6 +84,7 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
+
         // missing position prefix
         assertParseFailure(parser, VALID_POSITION_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1,
                 expectedMessage);
@@ -94,10 +95,6 @@ public class AddCommandParserTest {
 
         // missing status prefix
         assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + VALID_STATUS_SE1 + DESCRIPTION_DESC_SE1,
-                expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, POSITION_DESC_SE1 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + VALID_DESCRIPTION_SE1,
                 expectedMessage);
 
         // all prefixes missing

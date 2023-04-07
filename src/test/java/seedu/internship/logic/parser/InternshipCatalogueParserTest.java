@@ -14,8 +14,15 @@ import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.event.EventAddCommand;
+import seedu.internship.logic.commands.event.EventCommand;
+import seedu.internship.logic.commands.event.EventDeleteCommand;
+import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.testutil.EventBuilder;
+import seedu.internship.testutil.EventUtil;
 import seedu.internship.testutil.InternshipBuilder;
 import seedu.internship.testutil.InternshipUtil;
 
@@ -47,6 +54,20 @@ public class InternshipCatalogueParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_event_add() throws Exception {
+        Event event = new EventBuilder().withInternship(null).build();
+        EventAddCommand command = (EventAddCommand) parser.parseCommand(EventUtil.getEventAddCommand(event));
+        assertEquals(new EventAddCommand(event), command);
+    }
+
+    @Test
+    public void parseCommand_event_delete() throws Exception {
+        EventDeleteCommand command = (EventDeleteCommand) parser.parseCommand(EventCommand.COMMAND_WORD + " " +
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new EventDeleteCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
     @Test
