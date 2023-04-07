@@ -66,7 +66,7 @@ public class ExportProgressCommand extends Command {
 
         Path parentDir = Paths.get(this.filePath).getParent();
         if (parentDir != null) {
-            try{
+            try {
                 Files.createDirectories(parentDir);
             } catch (IOException e) {
                 throw new CommandException(e.getMessage());
