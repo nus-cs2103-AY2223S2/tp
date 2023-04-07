@@ -822,14 +822,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 # 9. Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: A command line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicators.
-* **JavaFX**: A Java library used for creating and delivering desktop applications.
-* **NUS**: National University of Singapore.
-* **SoC**: School of Computing, a computing school in NUS.
-* **CS2103T**: The module code for a Software Engineering module in NUS.
-* **CCA**: Co-curricular activities that students participate in.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+### C
+> **CCA:**
+> Co-curricular activities that students participate in.
+>
+> **Command Line Interface (CLI):**
+> A text-based user interface used to run programs.
+>
+> **Command:**
+> Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
+>
+> **ConnectUS.jar:**
+> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
+> 
+> **CS2103T:**
+> The module code for a Software Engineering module in the National Unviersity of Singapore.
+
+### F
+> **Format:**
+> In this Developer Guide, the format of a command is the correct input usage of a command.
+
+### G
+> **GitHub:**
+> A web-based version control and collaboration platform for software developers.
+>
+> **Graphical User Interface (GUI):**
+> A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
+
+### J
+>**Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
+>
+> **JavaFX:**
+> A Java library used for creating and delivering desktop applications.
+>
+> **JSON:**
+> Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
+
+### M
+> **Mainstream OS:**
+> Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
+> 
+> **Major:**
+> Majors are the main programmes that students take at the National University of Singapore.
+>
+> **Module:**
+> Modules are courses that students take at the National University of Singapore.
+
+### N
+> **NUS:**
+> Short for the National University of Singapore.
+
+### P
+> **Parameter:**
+> Parameters are user inputs that ConnectUS requires to perform certain commands.
+
+### S
+> **School of Computing:**
+> Also known as SoC. A computing school in the National University of Singapore.
+
+[↑ Back to top](#table-of-contents)
 
 
