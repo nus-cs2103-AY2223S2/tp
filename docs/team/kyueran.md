@@ -65,6 +65,8 @@ Given below are my contributions to the project.
     * Add documentation for `fp` and `sort` feature, improve formatting and add glossary [\#154](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/154)
     * Improve on the description of CookHub, add separate sections for new user and returning user, improve readability of notes on command format [\#160](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/160)
     * Fix UG bugs and improve navigability [\#238](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/238)
+    * Add tips, warnings and contraints with proper formatting for all commands [\#254](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/254) 
+    * Add summary table for all commands [\#255](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/255)
   * Developer Guide
     * Create initial draft of DeveloperGuide.md for CookHub [\#48](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/48)
     * Contributed to the user stories in the Developer Guide
