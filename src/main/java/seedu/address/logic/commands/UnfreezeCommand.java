@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,8 +14,9 @@ import seedu.address.model.exceptions.ModifyFrozenStateException;
  * Unfreezes the address book.
  */
 public class UnfreezeCommand extends Command {
-
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"unfreeze", "unf"});
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("unfreeze", "unf"));
+    //CHECKSTYLE.ON: VisibilityModifier
     public static final String MESSAGE_SUCCESS = "Address book has been unfrozen!";
     public static final String MESSAGE_FAILURE = "Address book is not frozen!";
 
