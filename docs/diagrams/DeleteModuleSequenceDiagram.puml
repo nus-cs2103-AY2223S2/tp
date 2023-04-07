@@ -5,6 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" LOGIC_COLOR
 participant ":TrackerParser" LOGIC_COLOR
 participant ":DeleteCommandParser" LOGIC_COLOR
+participant "MultipleEventsParser" LOGIC_COLOR
 participant ":DeleteMultipleModulesCommand" LOGIC_COLOR
 participant ":DeleteModuleCommand" LOGIC_COLOR
 participant "r:CommandResult" LOGIC_COLOR
@@ -23,6 +24,12 @@ activate ":TrackerParser"
 create ":DeleteCommandParser"
 ":TrackerParser" -> ":DeleteCommandParser"
 activate ":DeleteCommandParser"
+
+":DeleteCommandParser" -> "MultipleEventsParser": parseModuleCodes("CS2103, CS2040S")
+activate "MultipleEventsParser"
+
+":DeleteCommandParser" <-- "MultipleEventsParser": ModuleCode[]
+deactivate "MultipleEventsParser"
 
 create ":DeleteMultipleModulesCommand"
 ":DeleteCommandParser" -> ":DeleteMultipleModulesCommand"
@@ -64,18 +71,24 @@ loop for each module specified
     ":DeleteModuleCommand" <-- "m:Model"
     deactivate "m:Model"
 
-    create "r:CommandResult"
-    ":DeleteModuleCommand" -> "r:CommandResult"
-    activate "r:CommandResult"
-
-    ":DeleteModuleCommand" <-- "r:CommandResult": r
-    deactivate "r:CommandResult"
-
-    ":DeleteMultipleModulesCommand" <-- ":DeleteModuleCommand": r
+    ":DeleteMultipleModulesCommand" <-- ":DeleteModuleCommand"
     deactivate ":DeleteModuleCommand"
 end
 
-":LogicManager" <-- ":DeleteMultipleModulesCommand"
+":DeleteMultipleModulesCommand" -> "MultipleEventsParser": convertArrayListToString(ArrayList)
+activate "MultipleEventsParser"
+
+":DeleteMultipleModulesCommand" <-- "MultipleEventsParser"
+deactivate "MultipleEventsParser"
+
+create "r:CommandResult"
+":DeleteMultipleModulesCommand" -> "r:CommandResult"
+activate "r:CommandResult"
+
+":DeleteMultipleModulesCommand" <-- "r:CommandResult": r
+deactivate "r:CommandResult"
+
+":LogicManager" <-- ":DeleteMultipleModulesCommand": r
 deactivate ":DeleteMultipleModulesCommand"
 
 <-- ":LogicManager"
