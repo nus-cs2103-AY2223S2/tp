@@ -40,9 +40,7 @@ Now it's time to **CONQUER** the semester!
   - [Edit a Module](#edit-a-module)
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
-  - [Delete Module](#delete-module)
-  - [Delete Lecture](#delete-lecture)
-  - [Delete Video](#delete-video)
+  - [Delete](#delete)
   - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
@@ -111,7 +109,9 @@ Scenario 1 - Tracking a new module CS2103:
 1. To add a video, run `add Vid 1 /mod CS2103 /lec Week 1`.
 1. To add a timestamp, run `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
 1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
-1. To delete this module, run `delete CS2103`.
+1. To delete this video, run `delete Vid 1 /mod CS2103 /lec Week 1`.
+1. To delete the lecture, run `delete Week 1 /mod CS2103`.
+1. To delete the module, run `delete CS2103`.
 
 Scenario 2 - Navigating, finding & archiving data:
 
@@ -526,48 +526,66 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
-### Delete Module
+### Delete
 
-> Deletes the specified module(s) and all its embodied content from the application
+#### Delete Module
 
-Format: `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
+> `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-- `module_code_1`, `module_code_2`, `module_code_3`, ...: Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
-- Module codes must be of valid format
-- If any module specified does not exist, nothing changes within the model
+Deletes the specified module(s) and all its embodied content from the application
+- `module_code_1`, `module_code_2`, `module_code_3`, ... : The codes of modules to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - must exist in Le Tracker
+  - must not contain duplicates
+  - Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
 
 Examples:
 
 - `delete CS2040`
 - `delete CS2040, ST2334`
 
-### Delete Lecture
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
 
-> Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`
+#### Delete Lecture
 
-- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
-- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
-- Lecture names must be of valid format
-- If any lecture specified does not exist within specified module, nothing changes within the model
+> `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
+
+Deletes the specified lecture(s) and all its embodied content from the same specified module
+
+- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: The Names of Lectures to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
+  - must exist in Module of `module_code`
+  - must not contain duplicates
+- `module_code`: The Code of Module to delete Lectures from
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - must exist in Le Tracker
 
 Examples:
 
 - `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
 - `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
 
-### Delete Video
+#### Delete Video
 
-> Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
+> `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Format: `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
+Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
-- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
-- `lecture_name` must be of valid format and have a lecture of `lecture_name` exist in module of `module_code`
-- Video names must be of valid format
-- If any video specified does not exist within the specified lecture of the specified module, nothing changes within the model
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: The Names of Videos to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
+  - Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
+  - must exist in the Lecture of `lecture_name` in the Module of `module_code`
+  - must not contain duplicates
+- `module_code`: The Code of the Module that contains the lecture to delete from
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - must exist in Le Tracker
+- `lecture_name`: The Name of the Lecture to delete from
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - must exist in the Module of `module_code`
 
 Examples:
 
