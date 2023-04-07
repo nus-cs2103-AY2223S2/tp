@@ -60,7 +60,7 @@ This guide is designed for users with and without technical experience and is to
   e.g. `[e/optional]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com` 
 
 * `[]...` - are input fields that can be supplied any number of times including zero times.<br/>
-  e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/React`, `t/React t/AWS` etc.
 
 </div>
 
