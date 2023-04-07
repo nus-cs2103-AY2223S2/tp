@@ -10,64 +10,66 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.model.person.Person;
 import seedu.dengue.testutil.PersonBuilder;
+import seedu.dengue.testutil.PersonListBuilder;
 
 public class VariantAnalystTest {
     private static final PersonBuilder PERSON_BUILDER = new PersonBuilder().withVariants("DENV1");
-    private static final List<Person> EMPTY_PERSON_LIST = new ArrayList<>();
-    private static final List<Person> SINGLE_PERSON_LIST = List.of(PERSON_BUILDER.build());
+    private static final List<String[]> VALID_VARIANTS = List.of(
+            new String[]{},
+            new String[]{"DENV1"},
+            new String[]{"DENV2"},
+            new String[]{"DENV1", "DENV2"},
+            new String[]{"DENV2", "DENV3"});
+    private static final PersonListBuilder LIST_BUILDER = new PersonListBuilder()
+            .withDefaultPerson(PERSON_BUILDER.build())
+            .withVariants(VALID_VARIANTS);
 
     private VariantAnalyst analyst;
 
-    private List<Person> makePersonList() {
-        PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
-        List<Person> personList = new ArrayList<>();
-
-        personList.add(tempBuilder.withVariants().build());
-        personList.add(tempBuilder.withVariants("DENV1").build());
-        personList.add(tempBuilder.withVariants("DENV2").build());
-        personList.add(tempBuilder.withVariants("DENV1", "DENV2").build());
-        personList.add(tempBuilder.withVariants("DENV2", "DENV3").build());
-
-        return personList;
+    private void setAnalyst() {
+        analyst = new VariantAnalyst(LIST_BUILDER.build());
     }
 
-    private void setAnalystWith(List<Person> personList) {
-        analyst = new VariantAnalyst(personList);
+    private void setEmptyAnalyst() {
+        analyst = new VariantAnalyst(LIST_BUILDER.buildEmpty());
+    }
+
+    private void setSingleAnalyst() {
+        analyst = new VariantAnalyst(LIST_BUILDER.buildSingle());
     }
 
     @Test
     public void getTotal_emptyList_zero() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(0, analyst.getTotal());
     }
 
     @Test
     public void getTotal_singleList_one() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertEquals(1, analyst.getTotal());
     }
 
     @Test
     public void getTotal_normalList_correct() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
-        assertEquals(5, analyst.getTotal());
+        assertEquals(VALID_VARIANTS.size(), analyst.getTotal());
     }
 
     @Test
     public void getSortedBins_emptyList_empty() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(new ArrayList<>(), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
         DataBin bin = new DataBin("DENV1");
         bin.addPerson(PERSON_BUILDER.build());
 
@@ -76,14 +78,14 @@ public class VariantAnalystTest {
 
     @Test
     public void getSortedBins_singleList_false() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertNotEquals(List.of(new DataBin("DENV2")), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_normalList_true() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin1 = new DataBin("DENV1");
         bin1.addPerson(PERSON_BUILDER.build());
@@ -104,7 +106,7 @@ public class VariantAnalystTest {
 
     @Test
     public void getSortedBins_normalList_falseBecauseUnsorted() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin1 = new DataBin("DENV1");
         bin1.addPerson(PERSON_BUILDER.build());
@@ -125,14 +127,14 @@ public class VariantAnalystTest {
 
     @Test
     public void equals_emptyList_trueWithSelf() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertTrue(analyst.equals(analyst));
     }
 
     @Test
     public void equals_emptyList_true() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         VariantAnalyst otherAnalyst = new VariantAnalyst(List.of());
 
@@ -141,7 +143,7 @@ public class VariantAnalystTest {
 
     @Test
     public void equals_emptyList_false() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         VariantAnalyst otherAnalyst = new VariantAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -150,7 +152,7 @@ public class VariantAnalystTest {
 
     @Test
     public void equals_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         VariantAnalyst otherAnalyst = new VariantAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -159,7 +161,7 @@ public class VariantAnalystTest {
 
     @Test
     public void equals_singleList_trueWithOtherName() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         VariantAnalyst otherAnalyst = new VariantAnalyst(List.of(tempBuilder.withName("different name").build()));
@@ -169,7 +171,7 @@ public class VariantAnalystTest {
 
     @Test
     public void equals_singleList_falseWithOtherVariant() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         VariantAnalyst otherAnalyst = new VariantAnalyst(List.of(tempBuilder.withVariants("DENV2").build()));

@@ -10,63 +10,59 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.model.person.Person;
 import seedu.dengue.testutil.PersonBuilder;
+import seedu.dengue.testutil.PersonListBuilder;
 
 public class PostalAnalystTest {
     private static final PersonBuilder PERSON_BUILDER = new PersonBuilder();
-    private static final List<Person> EMPTY_PERSON_LIST = new ArrayList<>();
-    private static final List<Person> SINGLE_PERSON_LIST = List.of(PERSON_BUILDER.build());
-    private static final String[] VALID_POSTALS = {"S123456", "S321321", "S598765", "S314159", "S918887"};
+    private static final List<String> VALID_POSTALS = List.of("S123456", "S321321", "S598765", "S314159", "S918887");
+    private static final PersonListBuilder LIST_BUILDER = new PersonListBuilder().withPostals(VALID_POSTALS);
 
     private PostalAnalyst analyst;
 
-    private List<Person> makePersonList() {
-        PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
-        List<Person> personList = new ArrayList<>();
-
-        for (String postal : VALID_POSTALS) {
-            personList.add(tempBuilder.withPostal(postal).build());
-        }
-
-        return personList;
+    private void setAnalyst() {
+        analyst = new PostalAnalyst(LIST_BUILDER.build());
     }
 
-    private void setAnalystWith(List<Person> personList) {
-        analyst = new PostalAnalyst(personList);
+    private void setEmptyAnalyst() {
+        analyst = new PostalAnalyst(LIST_BUILDER.buildEmpty());
+    }
+
+    private void setSingleAnalyst() {
+        analyst = new PostalAnalyst(LIST_BUILDER.buildSingle());
     }
 
     @Test
     public void getTotal_emptyList_zero() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(0, analyst.getTotal());
     }
 
     @Test
     public void getTotal_singleList_one() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertEquals(1, analyst.getTotal());
     }
 
     @Test
     public void getTotal_normalList_correct() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
-        assertEquals(VALID_POSTALS.length, analyst.getTotal());
+        assertEquals(VALID_POSTALS.size(), analyst.getTotal());
     }
 
     @Test
     public void getSortedBins_emptyList_empty() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(new ArrayList<>(), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
         DataBin bin = new DataBin("[65 66 67 68]\nHillview\nDairy Farm\nBukit Panjang\nChoa Chu Kang");
         bin.addPerson(PERSON_BUILDER.build());
 
@@ -75,14 +71,14 @@ public class PostalAnalystTest {
 
     @Test
     public void getSortedBins_singleList_false() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertNotEquals(List.of(new DataBin("[49 50 81 91]\nLoyang\nChangi")), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_normalList_true() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin11 = new DataBin("[11 12 13]\nPasir Panjang\nHong Leong Garden\nClementi New Town");
         bin11.addPerson(PERSON_BUILDER.build());
@@ -104,7 +100,7 @@ public class PostalAnalystTest {
 
     @Test
     public void getSortedBins_normalList_falseBecauseUnsorted() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin11 = new DataBin("[11 12 13]\nPasir Panjang\nHong Leong Garden\nClementi New Town");
         bin11.addPerson(PERSON_BUILDER.build());
@@ -126,14 +122,14 @@ public class PostalAnalystTest {
 
     @Test
     public void equals_emptyList_trueWithSelf() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertTrue(analyst.equals(analyst));
     }
 
     @Test
     public void equals_emptyList_true() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         PostalAnalyst otherAnalyst = new PostalAnalyst(List.of());
 
@@ -142,7 +138,7 @@ public class PostalAnalystTest {
 
     @Test
     public void equals_emptyList_false() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         PostalAnalyst otherAnalyst = new PostalAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -151,7 +147,7 @@ public class PostalAnalystTest {
 
     @Test
     public void equals_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PostalAnalyst otherAnalyst = new PostalAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -160,7 +156,7 @@ public class PostalAnalystTest {
 
     @Test
     public void equals_singleList_trueWithOtherName() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         PostalAnalyst otherAnalyst = new PostalAnalyst(List.of(tempBuilder.withName("different name").build()));
@@ -170,7 +166,7 @@ public class PostalAnalystTest {
 
     @Test
     public void equals_singleList_falseWithOtherPostal() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         PostalAnalyst otherAnalyst = new PostalAnalyst(List.of(tempBuilder.withPostal("S111111").build()));
