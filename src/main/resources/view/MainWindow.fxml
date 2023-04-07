@@ -60,7 +60,7 @@
         </VBox>
 
         <VBox>
-          <StackPane fx:id="filtersDisplayPlaceholder" VBox.vgrow="ALWAYS" maxWidth="350" maxHeight="200" styleClass="pane-with-border">
+          <StackPane fx:id="filtersDisplayPlaceholder" VBox.vgrow="ALWAYS" minHeight="200" maxWidth="350" maxHeight="200" styleClass="pane-with-border">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
