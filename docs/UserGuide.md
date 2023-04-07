@@ -112,7 +112,7 @@ employee.
 
 ### 3.1.4 Departments
 The leftmost panel is the Departments section. Here you can view the status of the departments in your
-company. The main data you can view on hand is the number of employees available.
+company. The main data displayed is the number of employees available.
 
 ### 3.1.5 Leaves
 The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have 
