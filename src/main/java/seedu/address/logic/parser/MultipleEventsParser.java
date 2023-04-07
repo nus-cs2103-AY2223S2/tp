@@ -49,7 +49,7 @@ public interface MultipleEventsParser {
         for (int i = 0; i < numOfModuleCodes; i++) {
             ModuleCode m = ParserUtil.parseModuleCode(moduleCodeStrings[i]);
 
-            if (containsDuplicates(moduleCodes, m)) {
+            if (containsDuplicates(moduleCodes, m) && !duplicates.contains(m)) {
                 duplicates.add(m);
             }
 
@@ -80,7 +80,7 @@ public interface MultipleEventsParser {
         for (int i = 0; i < numOfLectureNames; i++) {
             LectureName l = ParserUtil.parseLectureName(lectureNameStrings[i]);
 
-            if (containsDuplicates(lectureNames, l)) {
+            if (containsDuplicates(lectureNames, l) && !duplicates.contains(l)) {
                 duplicates.add(l);
             }
 
@@ -110,7 +110,7 @@ public interface MultipleEventsParser {
         for (int i = 0; i < numOfVideoNames; i++) {
             VideoName v = ParserUtil.parseVideoName(videoNameStrings[i]);
 
-            if (containsDuplicates(videoNames, v)) {
+            if (containsDuplicates(videoNames, v) && !duplicates.contains(v)) {
                 duplicates.add(v);
             }
 
