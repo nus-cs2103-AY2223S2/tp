@@ -44,16 +44,16 @@ public class AddCommand extends Command {
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
             + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_EDUCATION + "P6"
-            + PREFIX_REMARK + "Needs help with algebra"
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_TELEGRAM + "@johndtele";
+            + PREFIX_NAME.getPrefix() + "John Doe "
+            + PREFIX_PHONE.getPrefix() + "98765432 "
+            + PREFIX_EMAIL.getPrefix() + "johnd@example.com "
+            + PREFIX_ADDRESS.getPrefix() + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EDUCATION.getPrefix() + "P6 "
+            + PREFIX_REMARK.getPrefix() + "Needs help with algebra "
+            + PREFIX_TAG.getPrefix() + "friends "
+            + PREFIX_TAG.getPrefix() + "owesMoney "
+            + PREFIX_MODULE.getPrefix() + "CS2103T "
+            + PREFIX_TELEGRAM.getPrefix() + "@johndtele";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
@@ -77,8 +77,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        model.commitAddressBook();
-        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
+        model.commitAddressBook(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -36,7 +36,7 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, new CommandHistory());
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -49,7 +49,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
-                addCommand.execute(modelStub, new CommandHistory()));
+                addCommand.execute(modelStub));
     }
 
     @Test
@@ -193,7 +193,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void commitAddressBook() {
+        public void commitAddressBook(String lastExecutedCommand) {
             throw new AssertionError("This method should not be called");
         }
 
@@ -209,6 +209,16 @@ public class AddCommandTest {
 
         @Override
         public void setDefaultShowPerson() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public String getLastExecutedCommand() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public String getLatestModifyingCommand() {
             throw new AssertionError("This method should not be called");
         }
     }
