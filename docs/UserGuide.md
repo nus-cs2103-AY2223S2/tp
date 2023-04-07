@@ -249,13 +249,13 @@ Our initial recipe book:
 
 
 <p align="center" width="100%">
-<img src="images/DeleteResult1.png" width=500 height=400>
+<img src="images/DeleteResult.png" width=500 height=400>
 </p>
 
 - `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
 <p align="center" width="100%">
-<img src="images/DeleteResult2.png" width=500 height=400>
+<img src="images/DeleteError.png" width=500 height=400>
 </p>
 
 
