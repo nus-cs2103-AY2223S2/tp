@@ -172,18 +172,6 @@ Clicking on any calendar date box that has events will display those events in t
 [[Back to top](#table-of-contents)]
 
 
-<h2 id="limitations">Limitations</h2>
--------------------------------------
-- Currently, we only support same-day events.
-  Events which stretches across multiple days are not supported.
-- `undo` can only undo the most recent valid command.
-- Data files are not allowed to be modified directly.
-  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
-
-
-[[Back to top](#table-of-contents)]
-
-
 <h2 id="summary">Summary</h2>
 -------------------------------
 <h3 id="prefix-summary">Prefix Summary</h3>
@@ -395,6 +383,18 @@ Format: `exit`
 Exits the application.
 
 Example: `exit`
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h2 id="limitations">Limitations</h2>
+-------------------------------------
+- Currently, we only support same-day events.
+  Events which stretches across multiple days are not supported.
+- `undo` can only undo the most recent valid command.
+- Data files are not allowed to be modified directly.
+  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
 
 [[Back to top](#table-of-contents)]
