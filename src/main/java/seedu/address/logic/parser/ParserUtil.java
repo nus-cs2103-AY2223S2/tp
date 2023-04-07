@@ -4,8 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSONS_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -258,10 +262,6 @@ public class ParserUtil {
                 indexes.add(ind);
             }
             return indexes;
-//            List<Index> indexes =  Arrays.stream(indexStrings)
-//                                .map(Integer::parseInt)
-//                                .map(Index::fromOneBased)
-//                                .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new ParseException("One or more index values are not positive integers.");
         }
