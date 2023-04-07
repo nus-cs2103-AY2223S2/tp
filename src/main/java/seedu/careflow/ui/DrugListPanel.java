@@ -122,11 +122,11 @@ public class DrugListPanel extends UiPart<Region> {
     public void updateViewCommandDisplay(Drug selectedDrug) {
         drugListView.getSelectionModel().select(drugListView.getItems().indexOf(selectedDrug));
         Label[] fields = new Label[]{
-                activeIngredientField, directionField, purposesField,
-                sideEffectsField, storageCountField};
+            activeIngredientField, directionField, purposesField,
+            sideEffectsField, storageCountField};
         Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient,
-                selectedDirection, selectedPurposes,
-                selectedSideEffects, selectedStorageCount};
+            selectedDirection, selectedPurposes,
+            selectedSideEffects, selectedStorageCount};
         setupStyle();
         setDrugFieldsDisplay(fields);
         updateDisplayedDrugDetail(selectedDrug, details);
