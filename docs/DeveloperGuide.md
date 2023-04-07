@@ -2,66 +2,28 @@
 layout: page
 title: Developer Guide
 ---
-<h2 id="table-of-contents">Table of Contents</h2>
-1. [Introduction](#introduction)
-    * [Acknowledgements](#acknowledgements)
-    * [Setting Up, Getting Started](#setting-up-getting-started)
-2. [Design](#design)
-    * [Architecture](#architecture) 
-    * [How the Architecture Components Interact With Each Other](#interacting-components)
-    * [UI Component](#ui-component)
-    * [Logic Component](#logic-component)
-    * [Model Component](#model-component)
-    * [Storage Component](#storage-component)
-    * [Common Classes](#common-classes)
-3. [Implementation](#implementation)
-    * [Add Command](#add-commnand)
-    * [Recur Command](#recur-command)
-    * [Edit Command](#edit-command)
-    * [Delete Command](#delete-command)
-    * [Find Command](#find-command)
-    * [Next Command](#next-command)
-    * [Undo Command](#undo-command)
-    * [List Command](#list-command)
-    * [Help Command](#help-command)
-    * [Exit Command](#exit-command)
-4. [Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation)
-5. [Appendix](#appendix)
-    * [Planned Enhancements](#planned-enhancements)
-    * [Project Requirements](#project-requirements)
-      * [Product Scope](#product-scope)
-      * [User Stories](#user-stories)
-      * [Use Cases](#use-cases)
-      * [Non-Functional Requirements](#nfr)
-    * [Instructions for Manual Testing](#manual-testing)
-      * [Launch and Shutdown](#launch-and-shutdown-test)
-      * [Adding an Event](#adding-test)
-      * [Recurring an Event](#recur-test)
-      * [Editing an Event](#edit-test)
-      * [Deleting Events](#delete-test)
-      * [Finding Events](#find-test)
-      * [Show Next Events](#next-test)
-      * [Undo a Command](#undo-test)
-    * [Glossary](#glossary)
+* Table of Contents
+  {:toc}
 
+## **Introduction**
 
-<h2 id="introduction">Introduction</h2>
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 _Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
 Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
-<h3 id="acknowledgements">Acknowledgements</h3>
+### **Acknowledgements**
 
 * This project is based on the AddressBook Level 3 (AB3) project created by the SE-EDU initiative.
 * Libraries used: JavaFX, JUnit5
 
-<h3 id="setting-up-getting-started">Setting Up, Getting Started</h3>
+### **Setting Up, Getting Started**
 
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
-<h2 id="design">Design</h2>
+## **Design**
+
 --------------------------------------------------------------------------------------------------------------------
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:** 
@@ -71,7 +33,7 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
-<h3 id="architecture">Architecture</h3>
+### **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -97,7 +59,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-<h3 id="interacting-components">How the Architecture Components Interact With Each</h3>
+### **How the Architecture Components Interact With Each**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
 the command `delete 1`.
@@ -117,7 +79,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 <img src="images/ComponentManagers.png" width="300" />
 
-<h3 id="ui-component">UI Component</h3>
+### **UI Component**
 
 The **API** of this component is specified in 
 [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
@@ -140,7 +102,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
-<h3 id="logic-component">Logic Component</h3>
+### **Logic Component**
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
 
@@ -169,7 +131,7 @@ How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-<h3 id="model-component">Model Component</h3>
+### **Model Component**
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -186,7 +148,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
-<h3 id="storage-component">Storage Component</h3>
+### **Storage Component**=
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -198,35 +160,37 @@ The `Storage` component,
   functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-<h3 id="common-classes">Common Classes</h3>
+### **Common Classes**
 
 Classes used by multiple components are in the `ezschedule.commons` package.
 
-<h2 id="implementation">Implementation</h2>
+## **Implementation**
+
 --------------------------------------------------------------------------------------------------------------------
 This section describes some noteworthy details on how certain features are implemented.
 
-<h3 id="add-command">Add Command</h3>
+### **Add Command**
 
-<h3 id="recur-command">Recur Command</h3>
+### **Recur Command**
 
-<h3 id="edit-command">Edit Command</h3>
+### **Edit Command**
 
-<h3 id="delete-command">Delete Command</h3>
+### **Delete Command**
 
-<h3 id="find-command">Find Command</h3>
+### **Find Command**
 
-<h3 id="next-command">Next Command</h3>
+### **Next Command**
 
-<h3 id="undo-command">Undo Command</h3>
+### **Undo Command**
 
-<h3 id="list-command">List Command</h3>
+### **List Command**
 
-<h3 id="help-command">Help Command</h3>
+### **Help Command**
 
-<h3 id="exit-command">Exit Command</h3>
+### **Exit Command**
 
-<h2 id="documentation">Documentation, Logging, Testing, Configuration, Dev-Ops</h2>
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
+
 --------------------------------------------------------------------------------------------------------------------
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -234,13 +198,15 @@ This section describes some noteworthy details on how certain features are imple
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-<h2 id="appendix">Appendix</h2>
+## **Appendix**
+
 --------------------------------------------------------------------------------------------------------------------
-<h2 id="planned-enhancements">Planned Enhancements</h2>
 
-<h2 id="project-requirements">Project Requirements</h2>
+## **Planned Enhancements**
 
-<h3 id="product-scope">Product Scope</h3>
+## **Project Requirements**
+
+### **Product Scope**
 
 **Target user profile**:
 
@@ -252,7 +218,7 @@ This section describes some noteworthy details on how certain features are imple
 
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
 
-<h3 id="user-stories">User Stories</h3>
+### **User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -273,7 +239,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-<h3 id="use-cases">Use Cases</h3>
+### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -376,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-<h3 id="nfr">Non-Functional Requirements</h3>
+### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
@@ -385,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-<h2 id="manual-testing">Instructions for Manual Testing</h2>
+## **Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -394,7 +360,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 </div>
 
-<h3 id="launch-and-shutdown-test">Launch and Shutdown</h3>
+### **Launch and Shutdown**
 
 1. Initial launch
 
@@ -415,13 +381,13 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-<h3 id="adding-test">Adding an Event</h3>
+### **Adding an Event**
 
-<h3 id="recur-test">Recurring an Event</h3>
+### **Recurring an Event**
 
-<h3 id="edit-test">Editing an Event</h3>
+### **Editing an Event**
 
-<h3 id="delete-test">Deleting Events</h3>
+### **Deleting Events**
 
 1. Deleting a event while all events are shown
 
@@ -439,13 +405,14 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-<h3 id="find-test">Finding Events</h3>
+### **Finding Events**
 
-<h3 id="next-test">Show Next Events</h3>
+### **Show Next Events**
 
-<h3 id="undo-test">Undo a Command</h3>
+### **Undo a Command**
 
-<h2 id="glossary">Glossary</h2>
+## **Glossary**
+
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
