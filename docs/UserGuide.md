@@ -118,8 +118,8 @@ This example also highlights the adaptive nature of VMS CLI syntax from steps 2 
   </pre>
   For CLI input examples, a clipboard (:clipboard:) will follow which represents the copy and paste version.
 * **Square brackets** (`[` and `]`) around arguments indicate that the argument is _optional_. For example,
-  <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
-* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
+  <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <code>--n <var>NEW_NAME</var></code> is optional.
+* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
 * **Plus** (`+`) indicates that the argument before must occur at least once but may be repeated multiple times.
 * **Three dots with no space** (`...`) <u>before</u> and <u>after</u> an argument would indicate that a _list_ of that argument is required. The elements of a list are delimited by commas (`,`) and the keyword `<EMPTY>` (case sensitive) is used to represent an empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of <code><var>GROUP</var></code> is required. Accepted arguments may be <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g <EMPTY>` for an empty list of groups.
 * **Triangle brackets** (`<` and `>`) around words represent a [type](#types).
@@ -162,6 +162,35 @@ The general command line syntax is as follows:<br>
 
 The list of available components are given in the [components section](#components).
 
+#### `<boolean>`
+
+Represents logical `true` or `false`. Only an input "true" (case insensitive) will result in logical `true`. All other values will result in `false`.
+
+Therefore, the following values are allowed an will evaluate to `false`:
+
+* `false`
+* `true with additional characters`
+* `123`
+* A blank argument.
+
+#### `<integer>`
+
+An integer value between `-2147483648` and `2147483647`.
+
+#### `<index>`
+
+An extension of `<integer>` allowing only positive non-zero values (ie. `x > 0`).
+
+#### `<age>`
+
+An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
+allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
+value will be evaluated to be equal.
+
+#### `<string>`
+
+Strings can take on any character sequence that do not contain `--` or new line characters.
+
 #### `<main-keyword>`
 
 Only these values (case sensitive) are allowed:
@@ -183,39 +212,10 @@ The following values (case sensitive) are not allowed:
 * `help`
 * `exit`
 
-#### `<boolean>`
-
-Represents logical `true` or `false`. Only an input "true" (case insensitive) will result in logical `true`. All other values will result in `false`.
-
-Therefore, the following values are allowed an will evaluate to `false`:
-
-* `false`
-* `true with additional characters`
-* `123`
-* A blank argument.
-
-#### `<string>`
-
-Strings can take on any character sequence that do not contain `--` or new line characters.
-
 #### `<group-name>`
 
 A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
 (`<` and `>`). The character limit is **30** characters.
-
-#### `<integer>`
-
-An integer value between `-2147483648` and `2147483647`.
-
-#### `<index>`
-
-An extension of `<integer>` allowing only positive non-zero values (ie. `x > 0`).
-
-#### `<age>`
-
-An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
-allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
-value will be evaluated to be equal.
 
 #### `<blood-type>`
 
@@ -1258,21 +1258,8 @@ Keyword data are stored in `[JAR file location]/data/keyword.json`.
 }
 </pre>
 
-* <code><var>KEYWORD</var></code> : `<string>`
+* <code><var>KEYWORD</var></code> : `<keyword>`
 * <code><var>MAIN_KEYWORD</var></code> : `<main-keyword>`
-
-###### Restrictions
-
-On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword invalid. In all cases, VMS will ignore the entire keyword data file if an invalid keyword is present.
-
-* <code><var>KEYWORD</var></code> cannot be any of these values (case sensitive):
-  * `basic`
-  * `help`
-  * `exit`
-  * `keyword`
-  * `patient`
-  * `vaccination`
-  * `appointment`
 
 ### Patient data files
 
