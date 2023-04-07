@@ -113,7 +113,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:**  
 1. A person can have any number of tags (including 0).  
-2. System does not check for duplicate emails. 
+2. System does not check for duplicate emails.
 </div>
 <div markdown="span" class="alert alert-primary">
 :bulb: **Future improvement:** Support special characters (e.g /, Æ) for name field.
