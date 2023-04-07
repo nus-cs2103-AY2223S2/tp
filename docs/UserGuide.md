@@ -240,8 +240,8 @@ An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/777 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add id/123 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### 7.1.2. Listing all employees : `list`
 
