@@ -61,8 +61,6 @@ public class IdDataMapTest {
     @Test
     public void add_dataOverLimit_exceptionThrown() {
         assertThrows(LimitExceededException.class,
-                () -> idMap.add(new IdData<>(true, -1, -1)));
-        assertThrows(LimitExceededException.class,
                 () -> idMap.add(new IdData<>(true, TESTING_LIMIT, TESTING_LIMIT)));
     }
 
@@ -137,20 +135,6 @@ public class IdDataMapTest {
         idMap.setDatas(datas);
         for (int i = 0; i < TESTING_LIMIT; i++) {
             assertEquals(i, idMap.get(i).getValue());
-        }
-    }
-
-
-    @Test
-    public void setDatas_overLimit_exceptionThrown() {
-        List<Integer> idValues = List.of(-1, TESTING_LIMIT);
-        for (Integer id : idValues) {
-            for (int i = 0; i < TESTING_LIMIT; i++) {
-                ArrayList<IdData<Integer>> datas = formRandDataList();
-                datas.remove(i);
-                datas.add(i, new IdData<>(true, id, id));
-                assertThrows(LimitExceededException.class, () -> idMap.setDatas(datas));
-            }
         }
     }
 

@@ -71,8 +71,12 @@ public class IdDataMap<T> {
      */
     public IdData<T> add(IdData<T> data) throws LimitExceededException {
         Objects.requireNonNull(data);
-        if (!isValidId(data.getId())) {
+        if (!isWithinLimit(data.getId())) {
+            // if ID exceeds limit
             throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
+        } else if (!isValidId(data.getId())) {
+            // all other cases of invalid ID
+            throw new IllegalArgumentException("Invalid ID");
         }
         internalMap.put(data.getId(), data);
         nextId = Math.max(nextId, data.getId() + 1);
@@ -187,7 +191,14 @@ public class IdDataMap<T> {
     }
 
 
+    /** Returns if the given ID is valid. */
     private boolean isValidId(int id) {
         return 0 <= id && id < limit;
+    }
+
+
+    /** Returns if the given ID is within the set limit. */
+    private boolean isWithinLimit(int id) {
+        return id < limit;
     }
 }
