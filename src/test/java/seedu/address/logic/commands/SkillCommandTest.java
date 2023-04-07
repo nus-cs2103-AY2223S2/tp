@@ -68,7 +68,7 @@ public class SkillCommandTest {
         NoteContainsKeywordsPredicate emptyNotePredicate = new NoteContainsKeywordsPredicate(" ");
         SkillCommand skillCommand = new SkillCommand(emptyNotePredicate);
 
-        CommandException exceptionThrown = assertThrows(ParseException, () -> {
+        CommandException exceptionThrown = assertThrows(CommandException.class, () -> {
             skillCommand.execute(model);
         });
 
