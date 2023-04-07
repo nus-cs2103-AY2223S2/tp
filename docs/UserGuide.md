@@ -427,8 +427,11 @@ displays all employees in that department.
 Format: `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
 Examples:
-* `refd eid/1 n/Software Engineering`
-* `refd eid/100 n/Sales`
+* `refd eid/100 n/Software Engineering`
+* `refd eid/1 n/Sales`
+
+
+![result for 'refd eid/1 n/Sales'](images/UiRemoveEmployeeFromDepartmentCommand.png)
 
 ### 7.2.8. List an employee's departments: `leid`
 
@@ -462,7 +465,10 @@ of the current date of inputting the command.
 
 Examples:
 * `ldhc n/Human Resources`
-* `ldhc n/Engineering d/2023-03-30`
+* `ldhc n/Sales d/2023-06-03`
+
+
+![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
 
 ## 7.3. Leave Commands
 
@@ -486,6 +492,9 @@ Examples:
 * `aetl eid/2 d/2023-03-05`
 
 
+![result for 'aetl eid/2 d/2023-03-05'](images/UiAddEmployeeToLeaveCommand.png)
+
+
 ### 7.3.2. Adding all leaves in range : `aelr`
 
 Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave window.
@@ -506,7 +515,10 @@ The input start and end dates must be of the form YYYY-MM-DD
 
 Examples:
 * `aelr eid/1 s/2023-03-05 e/2023-03-08`
-* `aelr eid/2 s/2023-03-05 e/2023-03-06`
+* `aelr eid/2 s/2023-04-10 e/2023-04-12`
+
+
+![result for 'aelr eid/2 s/2023-04-10 e/2023-04-12'](images/UiAddEmployeeToLeaveRangeCommand.png)
 
 
 ### 7.3.3. Deleting a leave: `defl`
@@ -537,7 +549,11 @@ The input date must be of the form YYYY-MM-DD
 
 Examples:
 * `leol 2023-03-05`
-* `leol 2023-03-08`
+* `leol 2023-04-11`
+
+
+![result for 'leol 2023-04-11'](images/UiListEmployeeOnLeaveCommand.png)
+
 
 ### 7.3.5. Listing all leave dates: `llve`
 
