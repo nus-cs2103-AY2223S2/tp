@@ -1,0 +1,36 @@
+@startuml UiObjectDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+Class "<u>:UiManager</u>" as UiManager UI_COLOR
+Class "<u>:MainWindow</u>" as MainWindow UI_COLOR
+
+Class "<u>patientListPanel:ListViewPanel</u>" as PatientList UI_COLOR
+Class "<u>vaxTypeListPanel:ListViewPanel" as VaccinationList UI_COLOR
+Class "<u>appointmentListPanel:ListViewPanel</u>" as AppointmentList UI_COLOR
+
+Class "<u>detailedPatientView:DetailedView</u>" as PatientDetail UI_COLOR
+Class "<u>detailedVaxTypeView:DetailedView</u>" as VaccinationDetail UI_COLOR
+
+Class "<u>:CommandBox</u>" as CommandBox UI_COLOR
+Class "<u>:ResultDisplay</u>" as ResultDisplay UI_COLOR
+Class "<u>:HelpWindow</u>" as HelpWindow UI_COLOR
+
+Class "<u>:LogicManager</u>" as LogicManager LOGIC_COLOR
+
+UiManager -> MainWindow
+
+MainWindow -up-> PatientList
+MainWindow -up-> VaccinationList
+MainWindow -up-> AppointmentList
+MainWindow -up-> PatientDetail
+MainWindow -right-> LogicManager
+MainWindow -down-> VaccinationDetail
+MainWindow -down-> HelpWindow
+MainWindow -down-> CommandBox
+MainWindow -down-> ResultDisplay
+
+@enduml

@@ -280,7 +280,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObjectProperty<VaxType> detailedVaxTypeProperty() {
+        public ObjectProperty<VaxType> detailedVaccinationProperty() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'detailVaxTypeProperty'");
         }

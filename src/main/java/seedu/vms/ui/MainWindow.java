@@ -157,7 +157,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         resultDisplay = new ResultDisplay();
         Region resultDisplayRegion = resultDisplay.getRoot();
         resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
-        logic.setOnExecutionCompletion(resultDisplay::setFeedbackToUser);
+        logic.setOnExecutionCompletion(resultDisplay::queueMessages);
 
         CommandBox commandBox = new CommandBox(logic::queue);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

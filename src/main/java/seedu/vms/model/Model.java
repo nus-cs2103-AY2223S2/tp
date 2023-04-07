@@ -183,7 +183,7 @@ public interface Model {
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
 
 
-    ObjectProperty<VaxType> detailedVaxTypeProperty();
+    ObjectProperty<VaxType> detailedVaccinationProperty();
 
 
     void setDetailedVaxType(VaxType vaxType);

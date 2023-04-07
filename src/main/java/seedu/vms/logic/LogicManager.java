@@ -361,7 +361,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObjectProperty<VaxType> detailedVaxTypeProperty() {
-        return model.detailedVaxTypeProperty();
+        return model.detailedVaccinationProperty();
     }
 
 

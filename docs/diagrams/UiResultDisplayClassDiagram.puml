@@ -1,0 +1,32 @@
+@startuml UiResultDisplayClassDiagram
+!include style.puml
+
+skinparam RoundCorner 0
+
+skinparam arrowThickness 1.1
+
+package Ui UI_COLOR_T1 {
+    Class ResultDisplay UI_COLOR {
+        -messageQueue: LinkedBlockingDeque<CommandMessage>
+        +queueMessages(messages: List<CommandMessage>)
+    }
+    Class ResultMessageBox UI_COLOR
+}
+show ResultDisplay members
+
+package Logic LOGIC_COLOR_T1 {
+    Class CommandMessage LOGIC_COLOR
+}
+
+package JavaFX {
+    Class "{abstract}\nNode" as Node #000000
+}
+
+ResultDisplay .down.> ResultMessageBox : uses >
+ResultDisplay .left.> CommandMessage : displays >
+ResultDisplay -right-> Node
+
+ResultMessageBox .left.> CommandMessage
+ResultMessageBox .up.> Node : creates >
+
+@enduml
