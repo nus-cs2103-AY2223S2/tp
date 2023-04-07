@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
@@ -81,6 +82,7 @@ public class CommandTestUtil {
     public static final String VALID_END_DATE_TWO = "2023-02-15";
 
     public static final String VALID_TAG_STRONG = "strong";
+    public static final String VALID_MEDICAL_TAG = "CPR,BASIC";
 
     public static final String INVALID_NRIC = "S1234325252B"; // nric has exactly 8 characters
 
@@ -97,6 +99,7 @@ public class CommandTestUtil {
 
     public static final String BIRTH_DATE_DESC_AMY = " " + PREFIX_BIRTH_DATE + VALID_BIRTH_DATE_AMY;
     public static final String BIRTH_DATE_DESC_BOB = " " + PREFIX_BIRTH_DATE + VALID_BIRTH_DATE_BOB;
+    public static final String MEDICAL_TAG_DESC_BOB = " " + PREFIX_MEDICAL_TAG + VALID_MEDICAL_TAG;
 
     public static final String REGION_DESC_AMY = " " + PREFIX_REGION + VALID_REGION_AMY;
     public static final String REGION_DESC_BOB = " " + PREFIX_REGION + VALID_REGION_BOB;

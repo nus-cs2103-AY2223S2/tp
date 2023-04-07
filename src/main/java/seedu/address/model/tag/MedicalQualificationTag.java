@@ -54,7 +54,7 @@ public class MedicalQualificationTag extends Tag {
      * @param qualificationLevel The new level.
      */
     public void setQualificationLevel(String qualificationLevel) {
-        this.qualificationLevel = SkillLevel.valueOf(qualificationLevel);
+        this.qualificationLevel = SkillLevel.valueOf(qualificationLevel.toUpperCase());
     }
 
     /**

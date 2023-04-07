@@ -8,13 +8,26 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.MedicalQualificationTag;
 
 class SampleDataUtilTest {
+
+    @Test
+    public void getMedicalTagTest() {
+        try {
+            MedicalQualificationTag tag1 = ParserUtil.parseMedicalTag("CPR, ADVANCED");
+            MedicalQualificationTag tag2 = ParserUtil.parseMedicalTag("CPR, ADVANCED");
+            MedicalQualificationTag tag3 = ParserUtil.parseMedicalTag("CPR, ADVANCED");
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+    }
     @Test
     public void getMedicalTagSetTest() {
         Set<MedicalQualificationTag> medicalTags =
-                getMedicalTagSet("CPR BASIC", "AED ADVANCED", "BLS INTERMEDIATE");
+                getMedicalTagSet("CPR,BASIC", "AED,ADVANCED", "BLS,INTERMEDIATE");
         Set<MedicalQualificationTag> standardSet = new HashSet<>();
         MedicalQualificationTag tag1 = new MedicalQualificationTag("CPR", "BASIC");
         MedicalQualificationTag tag2 = new MedicalQualificationTag("AED", "ADVANCED");
@@ -24,5 +37,6 @@ class SampleDataUtilTest {
         standardSet.add(tag3);
         assertEquals(standardSet, medicalTags);
     }
+
 
 }

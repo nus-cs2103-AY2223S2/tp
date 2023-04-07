@@ -40,16 +40,16 @@ class MedicalQualificationContainsKeywordPredicateTest {
         // exact match
         MedicalQualificationContainsKeywordPredicate<Volunteer> predicate =
                 new MedicalQualificationContainsKeywordPredicate<>("cpr");
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr basic").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("cpr,basic").build()));
 
         // substring match
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("acpr basic").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("acpr,basic").build()));
 
         // substring match with numbers
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("2a1cpr44 basic").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("2a1cpr44,basic").build()));
 
         // case insensitive
-        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("CPR basic").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withMedicalTags("CPR,basic").build()));
     }
 
     @Test
@@ -57,13 +57,13 @@ class MedicalQualificationContainsKeywordPredicateTest {
         // completely different
         MedicalQualificationContainsKeywordPredicate<Volunteer> predicate =
                 new MedicalQualificationContainsKeywordPredicate<>("cpr");
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("hello basic").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("hello,basic").build()));
 
         // subsequence
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("coprring basic").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("coprring,basic").build()));
 
         // anagram
-        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("pcr basic").build()));
+        assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("pcr,basic").build()));
     }
 
     @Test
