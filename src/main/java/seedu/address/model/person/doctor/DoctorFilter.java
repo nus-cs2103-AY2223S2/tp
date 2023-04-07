@@ -1,7 +1,6 @@
 package seedu.address.model.person.doctor;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,36 +13,13 @@ import seedu.address.model.person.patient.Patient;
 public class DoctorFilter {
 
     //Filter fields
-    private final String nameFilter;
-    private final String phoneFilter;
-    private final String emailFilter;
-    private final String specialtyFilter;
-    private final String yoeFilter;
-    private final Set<String> tagsFilter;
-    private final Optional<Patient> patientFilter;
-
-    /**
-     * Constructs a {@code DoctorFilter}.
-     *
-     * @param name name in string (can be empty string).
-     * @param phone phone in string (can be empty string).
-     * @param email email in string (can be empty string).
-     * @param specialty specialty in string (can be empty string).
-     * @param yoe yoe in string (can be empty string).
-     * @param tags set of tags in string (can be empty list).
-     * @param patient optional containing patient object (OfNullable).
-     */
-    public DoctorFilter(String name, String phone, String email,
-                        String specialty, String yoe,
-                        Set<String> tags, Optional<Patient> patient) {
-        this.nameFilter = name;
-        this.phoneFilter = phone;
-        this.emailFilter = email;
-        this.specialtyFilter = specialty;
-        this.yoeFilter = yoe;
-        this.tagsFilter = tags;
-        this.patientFilter = patient;
-    }
+    private String nameFilter = "";
+    private String phoneFilter = "";
+    private String emailFilter = "";
+    private String specialtyFilter = "";
+    private String yoeFilter = "";
+    private Set<String> tagsFilter = new HashSet<>();
+    private Patient patientFilter = null;
 
     /**
      * Constructs a {@code DoctorFilter}.
@@ -57,11 +33,21 @@ public class DoctorFilter {
      */
     public DoctorFilter(String name, String phone, String email,
                         String specialty, String yoe, Set<String> tags) {
-        this(name, phone, email, specialty, yoe, tags, Optional.empty());
+        this.nameFilter = name;
+        this.phoneFilter = phone;
+        this.emailFilter = email;
+        this.specialtyFilter = specialty;
+        this.yoeFilter = yoe;
+        this.tagsFilter = tags;
     }
 
-    public DoctorFilter(Optional<Patient> patient) {
-        this("", "", "", "", "", new HashSet<>(), patient);
+    /**
+     * Constructs a {@code DoctorFilter}.
+     *
+     * @param patient a patient object (can be null).
+     */
+    public DoctorFilter(Patient patient) {
+        this.patientFilter = patient;
     }
 
     /**
@@ -80,7 +66,7 @@ public class DoctorFilter {
             Set<String> tagStringSet = doctor
                     .getTags()
                     .stream()
-                    .map(tag -> tag.tagName.toLowerCase())
+                    .map(tag -> tag.getTagName().toLowerCase())
                     .collect(Collectors.toSet());
             result = result && tagStringSet.containsAll(tagsFilter
                     .stream()
@@ -88,8 +74,8 @@ public class DoctorFilter {
                     .collect(Collectors.toSet()));
         }
 
-        if (patientFilter.isPresent()) {
-            result = result && doctor.hasPatient(patientFilter.get());
+        if (patientFilter != null) {
+            result = result && doctor.hasPatient(patientFilter);
         }
 
         return result;
@@ -97,14 +83,28 @@ public class DoctorFilter {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DoctorFilter // instanceof handles nulls
-                && this.nameFilter.equals(((DoctorFilter) other).nameFilter)
-                && this.phoneFilter.equals(((DoctorFilter) other).phoneFilter)
-                && this.emailFilter.equals(((DoctorFilter) other).emailFilter)
-                && this.specialtyFilter.equals(((DoctorFilter) other).specialtyFilter)
-                && this.yoeFilter.equals(((DoctorFilter) other).yoeFilter)
-                && this.tagsFilter.equals(((DoctorFilter) other).tagsFilter))
-                && this.patientFilter.equals(((DoctorFilter) other).patientFilter); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DoctorFilter)) {
+            return false;
+        }
+
+        DoctorFilter otherFilter = (DoctorFilter) other;
+        boolean isSamePatientFilter;
+        if (this.patientFilter == null) {
+            isSamePatientFilter = otherFilter.patientFilter == null;
+        } else {
+            isSamePatientFilter = this.patientFilter.equals(otherFilter.patientFilter);
+        }
+
+        return this.nameFilter.equals(otherFilter.nameFilter)
+                && this.phoneFilter.equals(otherFilter.phoneFilter)
+                && this.emailFilter.equals(otherFilter.emailFilter)
+                && this.specialtyFilter.equals(otherFilter.specialtyFilter)
+                && this.yoeFilter.equals(otherFilter.yoeFilter)
+                && this.tagsFilter.equals(otherFilter.tagsFilter)
+                && isSamePatientFilter;
     }
 }

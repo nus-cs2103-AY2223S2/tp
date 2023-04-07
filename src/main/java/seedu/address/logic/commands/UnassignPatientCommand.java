@@ -69,7 +69,7 @@ public class UnassignPatientCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_UNASSIGN_PATIENT_SUCCESS,
                 patientToUnassign.getName().fullName,
-                doctorToUnassign.getName().fullName), true, patientWithoutAssign);
+                doctorToUnassign.getName().fullName), patientWithoutAssign);
     }
 
     private static Doctor createDoctorWithoutAssign(Doctor doctorToUnassign, Patient patientToUnassign)

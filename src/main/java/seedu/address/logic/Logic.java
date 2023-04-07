@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -57,11 +56,17 @@ public interface Logic {
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
-    /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
-    Optional<Doctor> getDoctorIfPresent();
+    /**
+     * Updates filtered doctor list in {@code Model}
+     * to contain doctors associated with the {@code Patient} supplied.
+     */
+    void updateFilteredDoctorListBasedOnPatient(Patient patient);
 
-    /** Returns an Optional containing a patient if the filtered list of patient is not empty */
-    Optional<Patient> getPatientIfPresent();
+    /**
+     * Updates filtered patient list in {@code Model}
+     * to contain patients associated with the {@code Doctor} supplied.
+     */
+    void updateFilteredPatientListBasedOnDoctor(Doctor doctor);
 
     /**
      * Returns the user prefs' address book file path.

@@ -67,7 +67,7 @@ public class AssignPatientCommand extends Command {
         model.setPatient(patientToAssign, patientWithAssign);
         return new CommandResult(String.format(MESSAGE_ASSIGN_PATIENT_SUCCESS,
                 patientToAssign.getName().fullName,
-                doctorToAssign.getName().fullName), true, patientWithAssign);
+                doctorToAssign.getName().fullName), patientWithAssign);
     }
 
     private static Doctor createDoctorWithAssign(Doctor doctorToAssign, Patient patientToAssign)

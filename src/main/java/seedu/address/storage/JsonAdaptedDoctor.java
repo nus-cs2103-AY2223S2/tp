@@ -62,6 +62,22 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted doctor.
      */
     public Doctor toModelType() throws IllegalValueException {
+        final Specialty modelSpecialty = validateSpecialty();
+        final Yoe modelYearsOfExperience = validateYearsOfExperience();
+        final Set<Patient> modelPatients = validatePatient();
+
+        Person doctorPerson = super.toModelType();
+        return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),
+                modelSpecialty, modelYearsOfExperience, doctorPerson.getTags(), modelPatients);
+    }
+
+    /**
+     * Validate the specialty supplied from storage.
+     *
+     * @return a valid specialty object.
+     * @throws IllegalValueException if specialty supplied is not valid.
+     */
+    private Specialty validateSpecialty() throws IllegalValueException {
         if (specialty == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Specialty.class.getSimpleName()));
@@ -69,25 +85,37 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
         if (!Specialty.isValidSpecialty(specialty)) {
             throw new IllegalValueException(Specialty.MESSAGE_CONSTRAINTS);
         }
-        final Specialty modelSpecialty = new Specialty(specialty);
+        return new Specialty(specialty);
+    }
 
+    /**
+     * Validate the years of experience supplied from storage.
+     *
+     * @return a valid years of experience object.
+     * @throws IllegalValueException if years of experience supplied is not valid.
+     */
+    private Yoe validateYearsOfExperience() throws IllegalValueException {
         if (yearsOfExperience == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Yoe.class.getSimpleName()));
         }
         if (!Yoe.isValidYoe(yearsOfExperience)) {
             throw new IllegalValueException(Yoe.MESSAGE_CONSTRAINTS);
         }
-        final Yoe modelYearsOfExperience = new Yoe(yearsOfExperience);
+        return new Yoe(yearsOfExperience);
+    }
 
+    /**
+     * Validate the patients supplied from storage.
+     *
+     * @return a valid set of patients
+     * @throws IllegalValueException if patients supplied are not valid.
+     */
+    private Set<Patient> validatePatient() throws IllegalValueException {
         final List<Patient> patientsList = new ArrayList<>();
         for (JsonAdaptedPatient patient : patients) {
             patientsList.add(patient.toModelType());
         }
-        final Set<Patient> modelPatients = new HashSet<>(patientsList);
-
-        Person doctorPerson = super.toModelType();
-        return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),
-                modelSpecialty, modelYearsOfExperience, doctorPerson.getTags(), modelPatients);
+        return new HashSet<>(patientsList);
     }
 
 }

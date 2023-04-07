@@ -4,15 +4,13 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays the name, phone number, email and tags of a {@code Patient}.
  */
-public class PatientCard extends UiPart<Region> {
+public class PatientCard extends ContactCard {
 
     private static final String FXML = "PatientListCard.fxml";
 
@@ -27,8 +25,6 @@ public class PatientCard extends UiPart<Region> {
     public final Patient patient;
 
     @FXML
-    private HBox cardPane;
-    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -36,8 +32,6 @@ public class PatientCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
@@ -50,13 +44,8 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         email.setText(patient.getEmail().value);
         patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(this::addTagToFlowPane);
     }
 
     @Override

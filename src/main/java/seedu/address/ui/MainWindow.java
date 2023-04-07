@@ -12,13 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -51,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -120,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -174,15 +171,15 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getCliFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getCliFeedbackToUser());
             contactDisplay.setFeedbackToUser(commandResult);
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
+            if (commandResult.shouldExit()) {
                 handleExit();
             }
 
@@ -192,43 +189,5 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
-    }
-
-    /**
-     * Updates {@code ContactDisplay} to show information about selected {@code Doctor}.
-     *
-     * @param doctor a selected doctor.
-     */
-    public void showSelectedDoctor(Doctor doctor) {
-        contactDisplay.showSelectedDoctor(doctor);
-    }
-
-    /**
-     * Updates {@code ContactDisplay} to show information about selected {@code Patient}.
-     *
-     * @param patient a selected patient.
-     */
-    public void showSelectedPatient(Patient patient) {
-        contactDisplay.showSelectedPatient(patient);
-    }
-
-    /**
-     * Scrolls down the doctor list panel
-     * to show information about selected {@code Doctor}.
-     *
-     * @param doctorIndex the Index of the selected doctor.
-     */
-    public void scrollToSelectedDoctor(Index doctorIndex) {
-        contactDisplay.scrollToSelectedDoctor(doctorIndex);
-    }
-
-    /**
-     * Scrolls down the patient list panel
-     * to show information about selected {@code Patient}.
-     *
-     * @param patientIndex the Index of the selected patient.
-     */
-    public void scrollToSelectedPatient(Index patientIndex) {
-        contactDisplay.scrollToSelectedPatient(patientIndex);
     }
 }
