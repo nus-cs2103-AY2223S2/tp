@@ -272,6 +272,7 @@ If the user clicks the "Cancel" button or presses the ESC key, the form will be 
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
 <div style="page-break-after: always;"></div>
+
 ### Feature: Find-by-property
 
 #### Overview
@@ -301,6 +302,35 @@ in a collection of property T matches any of the keywords.
 
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
+
+
+### Feature: Substitution
+
+#### Overview
+
+The `sub` command allows the user to search for commonly used substitutions for ingredients.
+The following sequence of diagram illustrates how the different components interact with each other
+in the execution of a `sub soy sauce` command.
+
+<img src ="images/SubSequenceDiagram.png" width="1128" />
+
+#### Implementation
+The sub command likewise goes through the standard command execution pipeline.
+
+In `SubCommandParser`, we determine whether the ingredient defined by the user to be searched up for substitutes 
+is valid using the regex for ingredient names that was previously defined.
+
+In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions
+and then queried in every recipe within the recipe book. 
+
+Should the ingredient be found in the preloaded list, the corresponding substitutions will be added to the list of
+substitutes to be returned to user. Otherwise, should the ingredient be found in any recipe in the recipe book, should 
+any substitutes for that ingredient be stored, it will likewise be added to the list.
+
+This list is created in the form of a `HashSet` such that any duplicates will not be displayed more than once.
+
+The display of the results will be in the command result box which is different from the other commands, since the 
+results of the `sub` command return ingredients instead of recipes. 
 
 --------------------------------------------------------------------------------------------------------------------
 
