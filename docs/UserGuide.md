@@ -107,7 +107,7 @@ commands.
 
 ### 3.1.3 Employees
 Next to the Departments panel is the Employees section. This panel displays all the information regarding your 
-employees. The information shown include the employee id, email, phone number, address, emails and tags given to the
+employees. The information shown include the employee id, email, phone number, address and tags given to the
 employee
 
 ### 3.1.4 Departments
