@@ -134,16 +134,5 @@
   "budget" : {
     "amount" : "0.0"
   },
-  "recurringGenerators" : [ {
-    "expenseName" : "milk",
-    "expenseAmount" : "4.5",
-    "expenseCategory" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    },
-    "nextExpenseDate" : "2000-05-22",
-    "startDate" : "2000-03-20",
-    "endDate" : "2000-05-15",
-    "recurringExpenseType" : "WEEKLY"
-  } ]
+  "recurringGenerators" : [ ]
 }
