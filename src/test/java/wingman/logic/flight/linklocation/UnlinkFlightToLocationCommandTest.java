@@ -21,10 +21,8 @@ import wingman.model.link.exceptions.LinkException;
 import wingman.model.location.FlightLocationType;
 import wingman.model.location.Location;
 
-
 @ExtendWith(MockitoExtension.class)
-public class LinkFlightToLocationCommandTest {
-
+public class UnlinkFlightToLocationCommandTest {
     @Mock
     Flight flight;
 
@@ -39,19 +37,19 @@ public class LinkFlightToLocationCommandTest {
 
     @Test
     void execute_validState_doesNotThrow() throws LinkException {
-        LinkFlightToLocationCommand command = new LinkFlightToLocationCommand(
+        UnlinkFlightToLocationCommand command = new UnlinkFlightToLocationCommand(
                 flight,
                 Map.of(FlightLocationType.LOCATION_DEPARTURE, location1)
         );
         assertDoesNotThrow(() -> command.execute(model));
-        Mockito.verify(flight, times(1)).setLocation(
+        Mockito.verify(flight, times(1)).removeLocation(
                 eq(FlightLocationType.LOCATION_DEPARTURE),
                 eq(location1));
     }
 
     @Test
     void execute_twoTypes_calledWithEach() throws LinkException {
-        LinkFlightToLocationCommand command = new LinkFlightToLocationCommand(
+        UnlinkFlightToLocationCommand command = new UnlinkFlightToLocationCommand(
                 flight,
                 Map.of(
                         FlightLocationType.LOCATION_DEPARTURE, location1,
@@ -59,24 +57,23 @@ public class LinkFlightToLocationCommandTest {
                 )
         );
         assertDoesNotThrow(() -> command.execute(model));
-        Mockito.verify(flight, times(1)).setLocation(
+        Mockito.verify(flight, times(1)).removeLocation(
                 eq(FlightLocationType.LOCATION_DEPARTURE),
                 eq(location1));
-        Mockito.verify(flight, times(1)).setLocation(
+        Mockito.verify(flight, times(1)).removeLocation(
                 eq(FlightLocationType.LOCATION_ARRIVAL),
                 eq(location2));
     }
 
     @Test
-    void execute_failedToSetLocation_throwsLinkException() throws LinkException {
-        LinkFlightToLocationCommand command = new LinkFlightToLocationCommand(
+    void execute_invalidState_throwsCommandException() throws LinkException {
+        UnlinkFlightToLocationCommand command = new UnlinkFlightToLocationCommand(
                 flight,
                 Map.of(FlightLocationType.LOCATION_DEPARTURE, location1)
         );
-        Mockito.doThrow(new LinkException("")).when(flight).setLocation(
-                any(),
-                any());
+        Mockito.doThrow(LinkException.class).when(flight).removeLocation(
+                any(FlightLocationType.class),
+                any(Location.class));
         assertThrows(CommandException.class, () -> command.execute(model));
     }
-
 }
