@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
