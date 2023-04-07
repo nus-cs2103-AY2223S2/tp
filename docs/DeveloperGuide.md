@@ -145,7 +145,7 @@ When the created `Thread` in `startNext()` is started, Java Virtual Machine will
 
 Here's a (partial) class diagram of the Model component:
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![Class Diagram for Model component](images%2FModelClassDiagram.png)
 
 `ModelManager` is a concrete implementation of `Model` which handles the model components of VMS.
 The responsibilities of `Model` component,
@@ -165,7 +165,7 @@ The responsibilities of `Model` component,
 
 Here's a (partial) class diagram of the Patient component:
 
-<img src="images/ModelPatientClassDiagram.png" width="450" />
+![Class Diagram of Patient](images%2FModelPatientClassDiagram.png)
 
 To represent a patient, `Patient` contains the Identity and Medical information using the following attributes:
 
@@ -196,7 +196,7 @@ Vaccinations are represented as `VaxType` objects and stored within `VaxTypeMana
 
 Here's a (partial) class diagram of the VaxType component:
 
-<img src="images/ModelVaxTypeClassDiagram.png" width="450" />
+![Class Diagram of VaxType](images%2FModelVaxTypeClassDiagram.png)
 
 To represent a vaccination, `VaxType` contains the following attributes:
 
@@ -219,7 +219,7 @@ On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of 
 
 Here's a (partial) class diagram of the Appointment component:
 
-<img src="images/ModelAppointmentClassDiagram.png" width="450" />
+![Class Diagram of Appointment](images%2FModelAppointmentClassDiagram.png)
 
 The `Appointment` component,
 
@@ -241,7 +241,7 @@ On top of storing `Appointment` objects, `AppointmentManager` ensures the unique
 
 Here's a (partial) class diagram of the Keyword component:
 
-<img src="images/ModelKeywordClassDiagram.png" width="450" />
+![Class Diagram of Keyword](images%2FModelKeywordClassDiagram.png)
 
 The `Keyword` component,
 
