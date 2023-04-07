@@ -24,8 +24,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             List<Index> indexes = ParserUtil.parseIndexes(args);
             return new DeleteCommand(indexes);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            String err = pe.getMessage();
+            throw new ParseException(err + '\n' + DeleteCommand.MESSAGE_USAGE, pe);
         } catch (IndexOutOfBoundsException iobe) {
             throw new ParseException(
                     MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, iobe
