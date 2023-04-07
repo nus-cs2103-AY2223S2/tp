@@ -75,22 +75,21 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook initialData = new AddressBook();
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isPresent()) {
+                initialData = addressBookOptional.get();
+            } else {
                 logger.info("Data file not found. Will be starting with"
-                        + "a sample doctor and patient list");
+                        + " an empty doctor and patient list");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with"
-                    + "an empty doctor and patient list");
-            initialData = new AddressBook();
+                    + " an empty doctor and patient list");
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with"
-                    + "an empty doctor and patient list");
-            initialData = new AddressBook();
+                    + " an empty doctor and patient list");
         }
 
         return new ModelManager(initialData, userPrefs);
