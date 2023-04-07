@@ -14,13 +14,13 @@ MyLib is a desktop bookmarking application originally built to serve as a single
 
 With MyLib, you have the ability to easily organise all your bookmarks in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
 
-MyLib is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
+MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 --------------------------------------------------------------------------------------------------------------------
 ## **About User Guide**
 ### Objectives of the User Guide
 
-This User Guide provides an easy to understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
+This User Guide provides an easy-to-understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
 <div style="page-break-after: always;"></div>
 
 ### How to use the User Guide
@@ -33,6 +33,11 @@ The user guide contains certain visuals to aid in conveying information more eff
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
+### **Target Audience**
+This User Guide is mainly targeted at new users who want to get started on using MyLib to track and organize all
+their content. 
+
+It also serves as a quick refresher to current users of the application who might have forgotten certain commands or features.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,34 +51,65 @@ The user guide contains certain visuals to aid in conveying information more eff
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
 
-5. A GUI similar to the below should appear in a few seconds. You can go [here](#graphical-user-interface) to get an overview of the various components that make up MyLib's GUI.
+5. A GUI similar to the one below should appear in a few seconds. You can get an overview of the various components that make up MyLib's GUI [here](#graphical-user-interface).
 
-    <img width="560" height="400"  src="images/Ui.png">
+    <img width="560" height="400" style="margin-top:20px; margin-bottom:20px" src="images/Ui.png">
 
 6. If this is your first time running the application, it should contain some sample bookmarks.
 
 7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
 
-8. Let's start by trying to add a bookmark.
+### Let's try out some of the features
+1. Let's start by trying to add a bookmark.
 
    * Enter `add n/My Book a/My Book's Author g/Fantasy r/4` into the command box and press the Enter key.
    * Adds a bookmark for the book with the title `My Book`, the author `My Book's Author` and the genre `Fantasy` to your bookmark library.
    
-9. Now, let's try editing the title in the bookmark you just added
+2. Now, let's try editing the title in the bookmark you just added
 
    * Enter `edit 5 n/Edited Title` into the command box and press the Enter key.
    
    * This edits the title of your bookmark, changing it from `My Book` to `Edited Title`
 
-10. Finally, let's delete that bookmark and exit the application
+3. Finally, let's delete that bookmark and exit the application
 
-    * Enter `delete 5` into the command box and press the Enter key.
+   * Enter `delete 5` into the command box and press the Enter key.
    
-    * This will delete your bookmark
+   * This will delete your bookmark
 
-    * Next, use `exit` to exit the application.
+   * Next, use `exit` to exit the application.
 
-11. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
+4. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
+
+--------------------------------------------------------------------------------------------------------------------
+## Key Definitions
+
+### Bookmark
+A bookmark is a collection of information relating to a piece of content which includes:
+* Title
+* Author
+* Progress
+* Genre
+* Rating
+* Tag
+* URL
+
+### Content
+
+Content refers to any multimedia content that is tracked with bookmarks. These include, but are not limited to, novels, blogs, reddit posts, manga and web novels.
+
+### Parameters
+Parameters refer to the upper-cased words used to represent required user inputs into the commands.
+
+| Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
+|:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  `n/`  |   TITLE   | TITLE is the name used to identify each bookmark added to the library. Usually it refers to the name of the book.<br/><br/>**Restrictions:**<br/>None<br/>                                                                                                                                                                                         |
+|  `a/`  |  AUTHOR   | AUTHOR is the author of the book/manga/webnovel.<br/><br/>**Restrictions:**<br/>None                                                                                                                                                                                                                                                               |
+|  `p/`  | PROGRESS  | PROGRESS is the current reading progress for the bookmark and it is tracked using the three markers Volume, Chapter and Page.<br/> If any of the markers do not apply, they can be replaced with "~" to remove tracking for that progress marker.<br/><br/>**Restrictions:**<br/>3 positive integers or "~" with space between [Vol] [Chap] [Page] |
+|  `g/`  |   GENRE   | GENRE is used to categorize the genre for each bookmark. It is selected from a fixed list included in the application.<br/> Should none of the default GENREs apply, "Others" can be used to categorize the bookmark.<br/><br/>**Restrictions:**<br/>Must be one from pre-defined genre list :information_source: Case sensitive                   |
+|  `u/`  |    URL    | URL is used to store the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
+|  `r/`  |  RATING   | Rating is the rating given each content.<br/><br/>**Restrictions:**<br/>Must be an integer from 0 to 5                                                                                                                                                                                                                                             |
+|  `t/`  |    TAG    | TAGs are used to personalize and classify bookmarks stored on MyLib. <br/><br/>**Restrictions:**<br/>Must only contains Alphabets and Numbers no spaces are allowed                                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -105,6 +141,7 @@ The bookmark in the BookmarkList panel will only contain the:
 * Rating
 * Tag
 
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -126,7 +163,7 @@ The bookmark in the BookmarkList panel will only contain the:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/TITLE a/AUTHOR`, `a/AUTHOR n/TITLE` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/John Butcher a/Jim Butcher`, only `a/Jim Butcher` will be taken.
 
 * Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `genre`, `tags` and `clear`) will be ignored.<br>
@@ -137,21 +174,15 @@ The bookmark in the BookmarkList panel will only contain the:
 <div markdown="block" class="alert alert-info">
 * List of prefixes used in commands :
 
-| Prefix | Parameter |                                 restrictions                                 |
-|:------:|:---------:|:----------------------------------------------------------------------------:|
-|  `n/`  |   TITLE   |                                     None                                     |
-|  `a/`  |  AUTHOR   |                                     None                                     |
-|  `p/`  | PROGRESS  |          3 positive integers with space between [Vol] [Chap] [Page]          |
-|  `g/`  |   GENRE   | Must be one from pre-defined genre list :information_source: Case sensitive  |
-|  `u/`  |    URL    | Must contain [Protocol][Domain name] for example: [http://]www.[example.com] |
-|  `t/`  |   TAGS    |        Must only cotains Alphabets and Numbers no spaces are allowed         |
-
 </div>
 <div style="page-break-after: always;"></div>
+
 
 ### Adding a tag: `addtag`
 
 Adds a tag to the list of tags.
+
+:bulb: **Tip:** You need to add a tag to the tag list first before using it. 
 
 Format: `addtag [t/TAG]…`
 
@@ -168,7 +199,7 @@ Format: `dtag TAGNAME`
 Example:
 * `dtag MaleProtagonist`
 
-### Listing all tags: tags
+### Listing all tags: `tags`
 Lists all tags in the tag list.
 
 Format: `tags`
