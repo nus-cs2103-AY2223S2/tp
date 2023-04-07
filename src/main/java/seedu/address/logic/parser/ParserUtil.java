@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DEADLINE_NOT_IN_FUTURE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -211,10 +210,6 @@ public class ParserUtil {
         if (Datetime.validateInput(trimmedStatus) == null) {
             throw new ParseException(Datetime.MESSAGE_CONSTRAINTS_DATETIME);
         }
-        if (Datetime.isPastDateTime(trimmedStatus)) {
-            throw new ParseException(MESSAGE_DEADLINE_NOT_IN_FUTURE);
-        }
-
         return new Datetime(datetime);
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATEDATE;
@@ -11,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.ParseIndexException;
 
 
 /**
@@ -31,6 +33,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIndexException pie) {
+            throw new ParseIndexException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, pie);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
         }
@@ -53,8 +57,6 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         if (argMultimap.getValue(PREFIX_TASK_CREATEDATE).isPresent()) {
             editTaskDescriptor.setCreateDate(ParserUtil.parseDateTime(argMultimap
                 .getValue(PREFIX_TASK_CREATEDATE).get()));
-
-
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
