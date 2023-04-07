@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -45,28 +44,22 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            INDEX_PLACEHOLDER,
+            INDEX_PLACEHOLDER.setExamples("1"),
             PREFIX_NAME.asOptional(),
-            PREFIX_PHONE.asOptional(),
-            PREFIX_EMAIL.asOptional(),
+            PREFIX_PHONE.asOptional().setExamples("91234567"),
+            PREFIX_EMAIL.asOptional().setExamples("johndoe@example.com"),
             PREFIX_ADDRESS.asOptional(),
             PREFIX_EDUCATION.asOptional(),
-            PREFIX_TELEGRAM.asOptional(),
+            PREFIX_TELEGRAM.asOptional().setExamples("@john_goh"),
             PREFIX_TAG.asOptional().asRepeatable(),
             PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: "
-            + ARGUMENT_PREFIXES.stream()
-                    .map(Prefix::toString)
-                    .collect(Collectors.joining(" "))
-            + "\nExample: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_TELEGRAM + "@john_goh"
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Existing values will be overwritten by the input values."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
