@@ -282,7 +282,7 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 ![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete i/T1234567A` command to delete the person with NRIC T1234567A. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
+calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete i/T1234567A` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
