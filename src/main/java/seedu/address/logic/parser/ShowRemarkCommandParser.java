@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ShowRemarkCommand;
@@ -24,14 +23,7 @@ public class ShowRemarkCommandParser implements Parser<ShowRemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowRemarkCommand.MESSAGE_USAGE));
         }
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(args);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, pe
-            );
-        }
+        Index index = ParserUtil.parseIndex(args);
         return new ShowRemarkCommand(index);
     }
 }
