@@ -3,47 +3,49 @@ layout: page
 title: WesleyBLDC's Project Portfolio Page
 ---
 
-### Project: SalesPUNCH
+## Project: SalesPUNCH
+
+### Overview
 
 SalesPUNCH is a lightweight alternative Customer Relationship Management (CRM)
 software, inspired by the conventional CRM software, such as SalesForce, but uses
 a CLI-based user interface instead of a GUI, aimed towards enhancing efficiency
 for fast typists.
 
-* **New feature**:
-  * What it does:
-  * Justification:
-  * Highlights:
-  * Credits:
+### Summary of contributions
 
-* **Code contributed**: [RepoSense link]()
+#### Code contributed: [RepoSense link]()
 
-Setup the CS2103 Team Repo, Organisation and Codecov setup
-Adding description for Saving the data file and Editing the data file
+#### Enhancements to existing features:
+Enhancements implemented: A summary of the enhancements you implemented.
+Contributions to the UG: Which sections did you contribute to the UG?
+Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
 
-Implemented the findtag feature
-Implemented the unit tests for findtag
-UG for findtag feature
+- Setup the CS2103 Team Repo and Organisation
+- Codecov setup for repo
+- Adding description for Saving the data file and Editing the data file
+- Updated UG for find feature
+- Wrote findtag feature
+  - Wrote unit tests for findtag
+  - UG,DG for findtag feature
+- Wrote findlead feature
+  - Wrote unit tests for findlead
+  - UG,DG for findlead feature
+- Wrote findall feature
+  - Wrote unit tests for findall
+  - UG,DG ffor findall feature
+- Wrote findtxn feature
+  - Wrote unit tests for findtxn
+  - UG,DG for findtxn feature
 
-Wrote the findlead feature
-Wrote the findall feature
-Wrote the findtxn feature
-
-Contributions to the DG based on each feature that I wrote.
-
-* **Project management**:
-
-Setup the CS2103 Team Repo, Organisation and Codecov setup
-
-Review, comment and approve teammate PRs
-
-* **Enhancements to existing features**:
-  * example
-  * example
+#### Contributions to team-based tasks:
 
 
-* **Documentation**:
+- Setup the CS2103 Team Repo, Organisation and Codecov setup
+- Review, comment and approve teammate PRs
 
-* **Community**:
+#### Review/mentoring contributions:
 
-* **Tools**:
+Links to PRs reviewed, instances of helping team members in other ways.
+
+#### Contributions beyond the project team:
