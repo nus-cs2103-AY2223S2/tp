@@ -48,7 +48,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ## **Acknowledgements** <a name="acknowledgements"></a>
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The skeleton implementation of the [doughnut chart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in the [Degree Progress Section](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
 
 [Back to Table of Contents](#toc)
 
