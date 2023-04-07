@@ -114,15 +114,23 @@ class JsonAdaptedPerson {
         }
         for (JsonAdaptedIsolatedEvent isolatedEvent : isolatedEvents) {
             IsolatedEvent modelIsolatedEvent = isolatedEvent.toModelType();
+
             try {
-                modelIsolatedEvent.checkDateTime();
+                modelIsolatedEvent.checkValidStartEnd();
                 modelIsolatedEventList.checkClashingIsolatedEvent(modelIsolatedEvent.getStartDate(),
                         modelIsolatedEvent.getEndDate());
                 modelIsolatedEvent.checkConflictsRecurringEventList(modelRecurringEventList);
-                modelIsolatedEventList.insert(isolatedEvent.toModelType());
             } catch (EventConflictException e) {
                 throw new IllegalValueException(e.getMessage());
             }
+
+            try {
+                modelIsolatedEvent.checkNotEnded();
+            } catch (EventConflictException e) {
+                continue;
+            }
+
+            modelIsolatedEventList.insert(isolatedEvent.toModelType());
         }
         for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {
             RecurringEvent modelRecurringEvent = recurringEvent.toModelType();

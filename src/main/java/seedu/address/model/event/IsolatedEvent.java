@@ -130,20 +130,34 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     }
 
     /**
-     * Checks if the start date and the end date of the event is valid for isolated event.
-     * @throws EventConflictException if start time is after the end time or the dates keyed in are before today.
+     * Checks if the start of an {@code IsolatedEvent} is before its end.
+     * @throws EventConflictException if the start is after the end
      */
-    public void checkDateTime() throws EventConflictException {
-        LocalDateTime now = LocalDateTime.now();
-
+    public void checkValidStartEnd() throws EventConflictException {
         if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
             throw new EventConflictException(Messages.MESSAGE_EVENT_START_AFTER_END);
         }
+    }
+
+    /**
+     * Checks if the {@code IsolatedEvent} has already ended.
+     * @throws EventConflictException if the {@code IsolatedEvent} has already ended.
+     */
+    public void checkNotEnded() throws EventConflictException {
+        LocalDateTime now = LocalDateTime.now();
 
         if (this.endDate.isBefore(now)) {
             throw new EventConflictException(Messages.MESSAGE_EVENT_INVALID_DATE);
         }
+    }
 
+    /**
+     * Checks if the start date and the end date of the event is valid for isolated event.
+     * @throws EventConflictException if start time is after the end time or the dates keyed in are before today.
+     */
+    public void checkDateTime() throws EventConflictException {
+        this.checkValidStartEnd();
+        this.checkNotEnded();
     }
 
     @Override
