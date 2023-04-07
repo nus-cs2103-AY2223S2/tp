@@ -11,7 +11,8 @@ title: Developer Guide
 
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its
 inventory management system, users can easily edit their fridge's inventory and view it in a sleek and easy-to-read
-list. Users can also tag their food items according to their preferences. </br>
+list. Users can also tag their food items according to their preferences. 
+</br>
 
 This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its
 architecture, design choices as well outlines for all features of the software. This project is released under the MIT
@@ -30,6 +31,7 @@ Java dependencies:
 -   [JUnit 5](https://github.com/junit-team/junit5) for testing
 
 Documentation dependencies:
+
 
 -   [Jekyll](https://jekyllrb.com/) for conversion of .md files to .html files for rendering of website
 -   [PlantUML](https://plantuml.com/) for UML diagrams
@@ -520,7 +522,7 @@ to parse and check whether the user input is valid. After which a `CreateTagComm
 tag name.
 The second stage requires CreateTagCommand#execute() to be called.
 
-The following sequence diagram shows how the `createtag` command.
+The following sequence diagram shows how the `createtag` command works:
 
 <img src="images/CreateTagSequenceDiagram.png" width="700" />
 
@@ -540,7 +542,7 @@ The following sequence diagram shows how the `createtag` command.
 
 The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
-<img src="images/CreateTagActivityDiagram.png" width="700" />
+<img src="images/CreateTagActivityDiagram.png" width="300" />
 
 #### Deleting a Tag
 
@@ -567,6 +569,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Tagging a Food
 
+**Overview**
+
 User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can simply
 be done using the command `tag`. This tagging function allows user to easily classify their `Food` in
 the fridge.
@@ -577,6 +581,10 @@ The first stage of the implementation is parsing the user input to `TagFoodComma
 to parse and check whether the user input is valid. After which a `TagFoodCommand` object is created with the specified
 index and tag name.
 The second stage requires TagFoodCommand#execute() to be called.
+
+The following sequence diagram shows how the `tag` command works.
+
+<img src="images/TagFoodSequenceDiagram.png" width="700" />
 
 **Usage Scenario**
 
@@ -589,6 +597,10 @@ The second stage requires TagFoodCommand#execute() to be called.
    before having access to the tag.
 5. Completion of step 4 without any exception will result in successful tagging of the food with the
    specified tag.
+
+The following activity diagram summarizes what happens when a user executes a new `tag` command:
+
+<img src="images/TagFoodActivityDiagram.png" width="300" />
 
 #### Untagging a Food
 
