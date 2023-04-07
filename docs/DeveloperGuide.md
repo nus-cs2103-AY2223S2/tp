@@ -377,7 +377,14 @@ Add functionality to find employees based on other details such as Department, R
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
 
+1. Currently, user can filter employees by creating a `Predicate` with the `=` (equal to), `>` (greater than) or `<` (lesser than) 
+operator to compare with inputted value. We plan to include further options for the user to use relational operators such as `>=` 
+(greater than or equal to), `<=` (lesser than or equal to) and `!=` (not equal to) for filtering employees.
+2. Currently, user can find employees using either `Name` or `Department`. We plan to add functionality to find 
+employees based on the `Tag` too.
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
 ### Product scope
