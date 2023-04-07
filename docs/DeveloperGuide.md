@@ -191,7 +191,6 @@ How the parsing works:
   <em>Class diagram for the Model Component</em>
 </p>
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Listing` objects (which are contained in a `UniqueListingList` object).
@@ -226,7 +225,65 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
----
+--------------------------------------------------------------------------------------------------------------------
+
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Undo feature
+
+#### Overview
+
+The undo mechanism utilises the `prevListingBookStates` field in `ModelManager`. Additionally, it implements the following operations:
+
+* `Model#undo()` — Restores the previous listing book state from its history.
+* `Model#hasPreviousState()` — Checks if there are available listing book states in the history to undo into.
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `prevListingBookStates` will be initialized with an empty `ArrayList`.
+
+![UndoRedoState0](images/UndoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th listing in the listing book. The `delete` command calls `Model#commitListingBook()`, causing the modified state of the listing book after the `delete 5` command executes to be saved in the `prevListingBookStates`.
+
+![UndoRedoState1](images/UndoState1.png)
+
+Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add` command also calls `Model#commitListingBook()`, causing another modified listing book state to be saved into the `prevListingBookStates`.
+
+![UndoRedoState2](images/UndoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitListingBook()`, so the listing book state will not be saved into the `prevListingBookStates`.
+
+</div>
+
+Step 4. The user now decides that adding the listing was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which restores the previous listing book state by setting as the `listingBook` and deleting it from `prevListingBookStates`.
+
+![UndoRedoState3](images/UndoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `prevListingBookStates` is empty, then there are no previous ListingBook states to restore. The `undo` command uses `Model#hasPreviousState()` to check if undo is possible. If not, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the listing book, such as `list`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
+
+![UndoRedoState4](images/UndoState4.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -236,7 +293,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -291,9 +348,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 *{More to be added}*
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `ListingBook` and the **Actor** is the `Recruiter` unless specified otherwise)
+
+**Use case: Add a new job listing**
+
+**MSS**
+
+1. The recruiter requests to add a new job listing.
+2. ListingBook adds the job listing to the list of job listings.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The placeholders used are invalid.
+    - 2a1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2b. The new job title is invalid.
+    - 2b1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2c. The new job description is invalid.
+    - 2c1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2d. There is a duplicate listing in the listing book.
+    - 2d1. ListingBook shows an error message.
+    - Use case resumes at step 1.
 
 **Use case: Delete a Listing**
 
@@ -334,32 +418,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     Use case ends.
 
 
-**Use case: Add a new job listing**
-
-**MSS**
-
-1. The recruiter requests to add a new job listing.
-2. ListingBook adds the job listing to the list of job listings.
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The placeholders used are invalid.
-    - 2a1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2b. The new job title is invalid.
-    - 2b1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2c. The new job description is invalid.
-    - 2c1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2d. There is a duplicate listing in the listing book.
-    - 2d1. ListingBook shows an error message.
-    - Use case resumes at step 1.
 
 **Use case: Update a job listing**
 
