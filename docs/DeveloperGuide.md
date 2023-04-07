@@ -139,6 +139,10 @@ How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+Shown below is the activity diagram for how SOCket parses a user input:
+
+<p align="center"><img src="images/UserInputActivityDiagram.png" width="800" /></p>
+
 <div style="page-break-after: always;"></div>
 
 ### Model component
