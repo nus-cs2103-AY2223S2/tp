@@ -138,7 +138,7 @@ Item | Description
 **Variant** | Dengue Variant person got (DENV1, DENV2 etc.).
 
 <div style="page-break-after: always;"></div>
-Here is the breakdown of an individual *bin card*.
+Here is the breakdown of an individual **bin card**.
 
 ![OverviewCardUi](images/OverviewCardUi.png)
 
