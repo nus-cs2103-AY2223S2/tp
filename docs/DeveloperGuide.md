@@ -50,7 +50,7 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img src="images/ArchitectureDiagram.png" width="341px">
+<img class="diagram" src="images/ArchitectureDiagram.png" width="341px">
 
 <div style="page-break-after: always;"></div>
 #### Main components of the architecture
@@ -77,7 +77,7 @@ The rest of the App consists of four components.
 The following _Sequence Diagram_ shows how the different components interact with each other for the 
 scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="539px">
+<img class="diagram" src="images/ArchitectureSequenceDiagram.png" width="539px">
 
 Each of the four main components as shown in the diagram above,
 * defines its API in an `interface` with the same name as the Component.
@@ -87,7 +87,7 @@ Each of the four main components as shown in the diagram above,
 For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class (in order to prevent external components being coupled to the implementation of a component) as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300px">
+<img class="diagram" src="images/ComponentManagers.png" width="300px">
 
 The following sections will give more details on each component.
 
@@ -96,7 +96,7 @@ The following sections will give more details on each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" width="650px">
+<img class="diagram" src="images/UiClassDiagram.png" width="650px">
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `RecipeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -115,7 +115,7 @@ The **API** of this component is specified in [`Logic.java`](https://github.com/
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="500"/>
+<img class="diagram" src="images/LogicClassDiagram.png" width="500"/>
 
 How the `Logic` component works:
 
@@ -139,7 +139,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="550"/>
+<img class="diagram" src="images/ParserClasses.png" width="550"/>
 
 <div style="page-break-after: always;"></div>
 How the parsing works:
@@ -155,7 +155,7 @@ How the parsing works:
 
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="500" />
+<img class="diagram" src="images/ModelClassDiagram.png" width="500" />
 
 The `Model` component,
 
@@ -184,7 +184,7 @@ This, however is highly complex and adds additional dependencies,
 which may in turn introduce more vulnerabilities or points of failure. As such, its implementation is a proposed
 extension feature to this project.<br/><br/>
 
-<img src="images/BetterModelClassDiagram.png" width="500" />
+<img class="diagram" src="images/BetterModelClassDiagram.png" width="500" />
 
 </div>
 
@@ -195,9 +195,9 @@ The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 **Structure:**
-<img src="images/StorageClassDiagram.png" width="794" />
+<img class="diagram" src="images/StorageClassDiagram.png" width="794" />
 
-<img src="images/JsonAdaptersDiagram.png" width="1089" />
+<img class="diagram" src="images/JsonAdaptersDiagram.png" width="1089" />
 
 **The `Storage` component:**
 
@@ -281,7 +281,7 @@ e.g. their name, tags, or ingredients.
 The following sequence diagram illustrates how the different components interact with each other
 in the execution of a `find tag italian indian` command.
 
-<img src="images/FindSequenceDiagram.png" width="1128" />
+<img class="diagram" src="images/FindSequenceDiagram.png" width="1128" />
 
 #### Implementation
 As with all commands, the find command goes through the standard command execution pipeline.
@@ -562,19 +562,17 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
+    1. Download the jar file and copy into an empty folder.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
 
-    1. Download the jar file and copy into an empty folder
-
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
-
-1. Saving window preferences
-
+2. Saving window preferences
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
+3. Shutdown
+   1. When the app is open, type `exit` into the command bar and press "enter".<br>
+      Expected: The app closes
 
 ### Saving data
 
