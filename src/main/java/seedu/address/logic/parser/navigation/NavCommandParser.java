@@ -47,7 +47,7 @@ public class NavCommandParser implements Parser<NavCommand> {
 
         String target = argMultimap.getPreamble();
 
-        boolean isDirect = moduleCode.isPresent();
+        boolean isDirect = moduleCode.isPresent() || lectureName.isPresent();
         boolean isRelative = !target.isBlank();
 
         if (isDirect == isRelative) {
