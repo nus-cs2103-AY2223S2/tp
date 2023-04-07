@@ -304,11 +304,11 @@ has to be appended at the end of the command if you are not in the root context.
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures of Module](#list-lectures-of-module) or [List Videos of Lecture](#list-videos-of-lecture)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures](#list-lectures) or [List Videos](#list-videos)
 
 (refer to [Navigation](#navigation) for more information)
 
-#### List Lectures of Module
+#### List Lectures
 
 > `list /mod {module_code}`
 
@@ -322,7 +322,7 @@ Examples:
 
 - `list /mod CS2040S` lists lectures belonging to CS2040S
 
-#### List Videos of Lecture
+#### List Videos
 
 > `list /mod {module_code} /lec {lecture_name}`
 
@@ -691,7 +691,7 @@ Assuming a Module `CS2040S` has tags `["heavy", 'math']`,
 
 - `find heav /byTag` will show module `CS2040S` in the list.
 
-#### Find Lectures in a Module
+#### Find Lectures
 
 > `find {keywords} /mod {module_code} [/byTag]`
 
@@ -708,7 +708,7 @@ Examples:
 - `find week 1, week 2 /mod CS2040S`
 - `find intro, array /mod CS2040S /byTag`
 
-#### Find Videos in a Lecture
+#### Find Videos
 
 > `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`
 
