@@ -338,7 +338,8 @@ Example given `mark 1`
 
 * :bulb: **Note:**
 
-You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+1. You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+2. Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
 
 </div>
 
