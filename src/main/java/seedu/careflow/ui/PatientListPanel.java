@@ -116,7 +116,7 @@ public class PatientListPanel extends UiPart<Region> {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
             drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedAddress, selectedEmail, selectedBirthDate,
-                selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+            selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);
@@ -129,9 +129,9 @@ public class PatientListPanel extends UiPart<Region> {
     public void updateViewCommandDisplay(Patient selectedPatient) {
         patientListView.getSelectionModel().select(patientListView.getItems().indexOf(selectedPatient));
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
-                drugAllergyField, emergencyContactField};
+            drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
-                selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+            selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);
