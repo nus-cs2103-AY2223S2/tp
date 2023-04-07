@@ -5,16 +5,18 @@ title: User Guide
 
 ![Ui](images/Logo.png)
 
-Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers,
-we know that freelancing can be both rewarding and challenging. As freelancers ourselves, we understand the unique
-obstacles and opportunities that come with freelancing. That's why we created Paidlancers – a desktop app
-designed to help you streamline your freelancing event management tasks.
+Welcome to the Paidlancers User Guide! This user guide is targeted towards freelancers who are new to using Paidlancers
+or freelancers who need a reference guide to help them achieve the full potential of Paidlancers.
+
+We're really thrilled to have you here! At Paidlancers, we know that freelancing can be both rewarding and challenging.
+As freelancers ourselves, we understand the unique obstacles and opportunities that come with freelancing. That's why we
+created Paidlancers – a desktop app designed to help you streamline your freelancing event management tasks.
 
 ## Introducing Paidlancers
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line
-Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
+Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Paidlancers is optimised for fast
+typists to get event management tasks done faster than traditional GUI apps!
 
 This user guide will help you get up to speed in no time!
 
@@ -103,11 +105,18 @@ The UI is split into 4 main parts
 
 2. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
+3. Copy the file to the folder you want to use as the _main folder_ for Paidlancers. (Do note that the application will
+create other folders and files in this folder as well.)
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
-   - A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open Terminal / Command Prompt, `cd` to into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
+   - A GUI similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A command prompt is a text-based interface in which you can enter commands to interact with your computer. It's a way to
+give your computer specific instructions by typing commands into a text field rather than using a graphical user
+interface (GUI) with icons and menus!
+</div>
 
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
@@ -425,8 +434,8 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 
 **Q**: How do I transfer my data to another Computer?
 1. Follow the quickstart guide until step 3.
-2. In the same _home folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
-   - Your _home folder_ should contain the following files and folders:
+2. In the same _main folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
+   - Your _main folder_ should contain the following files and folders:
     ```
        Paidlancers.jar
        data/
