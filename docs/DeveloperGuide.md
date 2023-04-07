@@ -336,11 +336,11 @@ Given below is an example usage of how CompanyCommand is being used in the follo
    current role book.
 
 2. The user can choose to use the `Company Command` to filter companies.
-    - The user executes `company <keyword>` command to filter roles by their company.
+    - The user executes `company <keyword>` command to filter roles with the given company.
 
 The following sequence diagram shows how the `company` command works:
 
-<img src="images/CompanyCommandSequenceDiagram.png" width="800" />
+![Company Command Sequence Diagram](images/CompanyCommandSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -348,9 +348,9 @@ The following sequence diagram shows how the `company` command works:
 
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
+    * Cons: More CLI arguments need to be added if more attributes are needed to filter the list.
 
-* **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
+* **Alternative 2 (alternative choice):** Filter roles by extending a generic find command.
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
@@ -559,7 +559,7 @@ Use case ends.
 
 **Extensions**
 
-* 3a. Job exists.
+* 3a. Job is valid.
     * 3a1. TechTrack resumes.
 
       Use case resumes at step 3b.

@@ -61,7 +61,7 @@ LogicManager -> CompanyCommand : execute(model)
 activate CompanyCommand
 
 
-CompanyCommand -> Model : updateFilteredRoleList()
+CompanyCommand -> Model : updateFilteredRoleList(pred)
 activate Model
 
 Model --> CompanyCommand
