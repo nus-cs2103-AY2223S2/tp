@@ -84,7 +84,7 @@ the guide for a guided tour of how Mycelium is intended to be used.
 :warning: As you perform commands in Mycelium, you will notice that a
 new data file `mycelium.json` is created in `data/` directory as the default.
 Corruption or tampering with it may lead to the data file becoming unreadable
-or containing invalid values. This will result in the the file being ignored
+or containing invalid values. This will result in the file being ignored
 and Mycelium will start as an empty application with no projects and clients.
 </div>
 
@@ -193,7 +193,7 @@ keystrokes. Also note that all commands and argument flags are case-sensitive.
 :information_source: **A note on dates:** some arguments are in the form of
 dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
-
+<br>
 The range of valid years is from -9999 to 9999.
 </div>
 

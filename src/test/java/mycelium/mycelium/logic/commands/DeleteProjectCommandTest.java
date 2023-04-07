@@ -3,7 +3,7 @@ package mycelium.mycelium.logic.commands;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
@@ -66,7 +66,7 @@ public class DeleteProjectCommandTest {
             "null", Pair.of(deleteBing, null)
         );
         unequalTests.forEach((desc, tt) -> {
-            assertFalse(tt.first.equals(tt.second), "While testing case: " + desc);
+            assertNotEquals(tt.first, tt.second, "While testing case: " + desc);
         });
     }
 }
