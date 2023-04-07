@@ -2040,7 +2040,7 @@ Expected Output in the Person List: New person added to `EduMate`.
 
 #### **_Scenario 2_**
 
-Context: There is contact named "Edward" in `EduMate`
+Context: There is a contact named "Edward" in `EduMate`
 
 Command executed: `add n/Edward`
 
