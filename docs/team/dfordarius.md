@@ -67,7 +67,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because it allows user to easily delete all Routines that have been stored in the Routine's Storage.
   * Highlights: It required an in-depth analysis of design alternatives.
 
-* **New Feature**: Added tests for Gender, Goal, Weight, listRoutines, findRoutines, clearRoutines.
+* **Testing**: Added tests for Gender, Goal, Weight, listRoutines, findRoutines, clearRoutines.
   * What it does: run automated checks for features for this app to mitigate some bugs.
   * Justification: This feature improves the product significantly by mitigating any potential bugs.
   * Highlights: Testing has to be done on a case to case basis. Testings for features are not simple and required an in-depth analysis of design alternatives.
@@ -91,8 +91,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `export`, `exportRoutine`, `findRoutine`, `clearRoutine`, `deleteRoutine`, `addExercise`, `deleteExercise`, `listRoutines` [\#146](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/146/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb)
+    * Did cosmetic tweaks to existing documentation of features: [\#155](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/155/files)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added use case for  `edit` feature. [\#79](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/79/files)
+    * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
 
