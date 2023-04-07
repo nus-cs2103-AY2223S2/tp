@@ -11,7 +11,7 @@ public class YoeTest {
     @Test
     public void constructor_validYoe_success() {
         Yoe yoe = new Yoe("00005");
-        assertEquals("5", yoe.value);
+        assertEquals("5", yoe.getValue());
     }
 
     @Test

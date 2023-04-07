@@ -40,9 +40,9 @@ public class PatientCard extends ContactCard {
         super(FXML);
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        email.setText(patient.getEmail().value);
+        name.setText(patient.getName().getValue());
+        phone.setText(patient.getPhone().getValue());
+        email.setText(patient.getEmail().getValue());
         patient.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);

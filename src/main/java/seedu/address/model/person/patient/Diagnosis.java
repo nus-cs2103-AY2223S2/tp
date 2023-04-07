@@ -18,7 +18,7 @@ public class Diagnosis {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String diagnosis;
+    private final String diagnosis;
 
     /**
      * Constructs a {@code Diagnosis}.
@@ -54,6 +54,10 @@ public class Diagnosis {
     @Override
     public int hashCode() {
         return diagnosis.hashCode();
+    }
+
+    public String getValue() {
+        return diagnosis;
     }
 
 }

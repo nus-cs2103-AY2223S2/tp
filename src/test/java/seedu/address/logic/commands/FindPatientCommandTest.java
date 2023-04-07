@@ -38,24 +38,24 @@ public class FindPatientCommandTest {
         PatientFilter emptyFilter = new PatientFilter("", "",
                 "", "", "", "", "", "", new HashSet<>());
 
-        PatientFilter yannieFilter = new PatientFilter(YANNIE.getName().fullName,
-                YANNIE.getPhone().value,
-                YANNIE.getEmail().value,
-                YANNIE.getHeight().value,
-                YANNIE.getWeight().value,
-                YANNIE.getDiagnosis().diagnosis,
-                YANNIE.getStatus().status,
-                YANNIE.getRemark().remark,
+        PatientFilter yannieFilter = new PatientFilter(YANNIE.getName().getValue(),
+                YANNIE.getPhone().getValue(),
+                YANNIE.getEmail().getValue(),
+                YANNIE.getHeight().getValue(),
+                YANNIE.getWeight().getValue(),
+                YANNIE.getDiagnosis().getValue(),
+                YANNIE.getStatus().getValue(),
+                YANNIE.getRemark().getValue(),
                 new HashSet<>());
 
-        PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().fullName,
-                ZAYDEN.getPhone().value,
-                ZAYDEN.getEmail().value,
-                ZAYDEN.getHeight().value,
-                ZAYDEN.getWeight().value,
-                ZAYDEN.getDiagnosis().diagnosis,
-                ZAYDEN.getStatus().status,
-                ZAYDEN.getRemark().remark,
+        PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().getValue(),
+                ZAYDEN.getPhone().getValue(),
+                ZAYDEN.getEmail().getValue(),
+                ZAYDEN.getHeight().getValue(),
+                ZAYDEN.getWeight().getValue(),
+                ZAYDEN.getDiagnosis().getValue(),
+                ZAYDEN.getStatus().getValue(),
+                ZAYDEN.getRemark().getValue(),
                 zaydenTags);
 
         PatientContainsKeywordsPredicate firstPredicate =
@@ -93,14 +93,14 @@ public class FindPatientCommandTest {
 
         Set<String> zaydenTags = ZAYDEN.getTags().stream()
                 .map(t -> t.getTagName()).collect(Collectors.toSet());
-        PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().fullName,
-                ZAYDEN.getPhone().value,
-                ZAYDEN.getEmail().value,
-                ZAYDEN.getHeight().value,
-                ZAYDEN.getWeight().value,
-                ZAYDEN.getDiagnosis().diagnosis,
-                ZAYDEN.getStatus().status,
-                ZAYDEN.getRemark().remark,
+        PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().getValue(),
+                ZAYDEN.getPhone().getValue(),
+                ZAYDEN.getEmail().getValue(),
+                ZAYDEN.getHeight().getValue(),
+                ZAYDEN.getWeight().getValue(),
+                ZAYDEN.getDiagnosis().getValue(),
+                ZAYDEN.getStatus().getValue(),
+                ZAYDEN.getRemark().getValue(),
                 zaydenTags);
 
         String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 1);

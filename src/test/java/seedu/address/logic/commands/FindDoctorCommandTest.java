@@ -38,18 +38,18 @@ public class FindDoctorCommandTest {
         DoctorFilter emptyFilter = new DoctorFilter("", "",
                 "", "", "", new HashSet<>());
 
-        DoctorFilter aliceFilter = new DoctorFilter(ALICE.getName().fullName,
-                ALICE.getPhone().value,
-                ALICE.getEmail().value,
-                ALICE.getSpecialty().specialty,
-                ALICE.getYoe().value,
+        DoctorFilter aliceFilter = new DoctorFilter(ALICE.getName().getValue(),
+                ALICE.getPhone().getValue(),
+                ALICE.getEmail().getValue(),
+                ALICE.getSpecialty().getValue(),
+                ALICE.getYoe().getValue(),
                 new HashSet<>());
 
-        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().fullName,
-                BENSON.getPhone().value,
-                BENSON.getEmail().value,
-                BENSON.getSpecialty().specialty,
-                BENSON.getYoe().value,
+        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().getValue(),
+                BENSON.getPhone().getValue(),
+                BENSON.getEmail().getValue(),
+                BENSON.getSpecialty().getValue(),
+                BENSON.getYoe().getValue(),
                 bensonTags);
 
         DoctorContainsKeywordsPredicate firstPredicate =
@@ -87,11 +87,11 @@ public class FindDoctorCommandTest {
 
         Set<String> bensonTags = BENSON.getTags().stream()
                 .map(t -> t.getTagName()).collect(Collectors.toSet());
-        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().fullName,
-                BENSON.getPhone().value,
-                BENSON.getEmail().value,
-                BENSON.getSpecialty().specialty,
-                BENSON.getYoe().value,
+        DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().getValue(),
+                BENSON.getPhone().getValue(),
+                BENSON.getEmail().getValue(),
+                BENSON.getSpecialty().getValue(),
+                BENSON.getYoe().getValue(),
                 bensonTags);
 
         String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 1);

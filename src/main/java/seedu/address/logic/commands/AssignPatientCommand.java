@@ -76,8 +76,8 @@ public class AssignPatientCommand extends Command implements CommandInterface {
         model.setDoctor(doctorToAssign, doctorWithAssign);
         model.setPatient(patientToAssign, patientWithAssign);
         return new CommandResult(String.format(MESSAGE_ASSIGN_PATIENT_SUCCESS,
-                patientToAssign.getName().fullName,
-                doctorToAssign.getName().fullName), patientWithAssign);
+                patientToAssign.getName().getValue(),
+                doctorToAssign.getName().getValue()), patientWithAssign);
     }
 
     private static Doctor createDoctorWithAssign(Doctor doctorToAssign, Patient patientToAssign)
@@ -88,8 +88,8 @@ public class AssignPatientCommand extends Command implements CommandInterface {
 
         if (patientsSet.contains(patientToAssign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
-                    patientToAssign.getName().fullName,
-                    doctorToAssign.getName().fullName));
+                    patientToAssign.getName().getValue(),
+                    doctorToAssign.getName().getValue()));
         }
 
         patientsSet.add(patientToAssign);
@@ -112,8 +112,8 @@ public class AssignPatientCommand extends Command implements CommandInterface {
 
         if (doctorsSet.contains(doctorToAssign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
-                    patientToAssign.getName().fullName,
-                    doctorToAssign.getName().fullName));
+                    patientToAssign.getName().getValue(),
+                    doctorToAssign.getName().getValue()));
         }
 
         doctorsSet.add(doctorToAssign);

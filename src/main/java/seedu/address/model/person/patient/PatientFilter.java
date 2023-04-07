@@ -71,14 +71,14 @@ public class PatientFilter {
      */
     public boolean isMatch(Patient patient) {
 
-        boolean result = StringUtil.containsSubstringIgnoreCase(patient.getName().fullName, nameFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getPhone().value, phoneFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getEmail().value, emailFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getHeight().value, heightFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getWeight().value, weightFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getDiagnosis().diagnosis, diagnosisFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getStatus().status, statusFilter)
-                && StringUtil.containsSubstringIgnoreCase(patient.getRemark().remark, remarkFilter);
+        boolean result = StringUtil.containsSubstringIgnoreCase(patient.getName().getValue(), nameFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getPhone().getValue(), phoneFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getEmail().getValue(), emailFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getHeight().getValue(), heightFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getWeight().getValue(), weightFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getDiagnosis().getValue(), diagnosisFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getStatus().getValue(), statusFilter)
+                && StringUtil.containsSubstringIgnoreCase(patient.getRemark().getValue(), remarkFilter);
 
         if (!tagsFilter.isEmpty()) {
             Set<String> tagStringSet = patient

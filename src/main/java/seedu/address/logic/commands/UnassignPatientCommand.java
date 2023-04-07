@@ -80,8 +80,8 @@ public class UnassignPatientCommand extends Command implements CommandInterface 
         model.setPatient(patientToUnassign, patientWithoutAssign);
 
         return new CommandResult(String.format(MESSAGE_UNASSIGN_PATIENT_SUCCESS,
-                patientToUnassign.getName().fullName,
-                doctorToUnassign.getName().fullName), patientWithoutAssign);
+                patientToUnassign.getName().getValue(),
+                doctorToUnassign.getName().getValue()), patientWithoutAssign);
     }
 
     private static Doctor createDoctorWithoutAssign(Doctor doctorToUnassign, Patient patientToUnassign)
@@ -93,8 +93,8 @@ public class UnassignPatientCommand extends Command implements CommandInterface 
 
         if (!patientsSet.contains(patientToUnassign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_NOT_ASSIGNED,
-                    patientToUnassign.getName().fullName,
-                    doctorToUnassign.getName().fullName));
+                    patientToUnassign.getName().getValue(),
+                    doctorToUnassign.getName().getValue()));
         }
 
         patientsSet.remove(patientToUnassign);
@@ -116,8 +116,8 @@ public class UnassignPatientCommand extends Command implements CommandInterface 
 
         if (!doctorsSet.contains(doctorToUnassign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_NOT_ASSIGNED,
-                    patientToUnassign.getName().fullName,
-                    doctorToUnassign.getName().fullName));
+                    patientToUnassign.getName().getValue(),
+                    doctorToUnassign.getName().getValue()));
         }
 
         doctorsSet.remove(doctorToUnassign);

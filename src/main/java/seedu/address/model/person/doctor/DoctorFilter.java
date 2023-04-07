@@ -56,11 +56,11 @@ public class DoctorFilter {
      */
     public boolean isMatch(Doctor doctor) {
 
-        boolean result = StringUtil.containsSubstringIgnoreCase(doctor.getName().fullName, nameFilter)
-                && StringUtil.containsSubstringIgnoreCase(doctor.getPhone().value, phoneFilter)
-                && StringUtil.containsSubstringIgnoreCase(doctor.getEmail().value, emailFilter)
-                && StringUtil.containsSubstringIgnoreCase(doctor.getSpecialty().specialty, specialtyFilter)
-                && StringUtil.containsSubstringIgnoreCase(doctor.getYoe().value, yoeFilter);
+        boolean result = StringUtil.containsSubstringIgnoreCase(doctor.getName().getValue(), nameFilter)
+                && StringUtil.containsSubstringIgnoreCase(doctor.getPhone().getValue(), phoneFilter)
+                && StringUtil.containsSubstringIgnoreCase(doctor.getEmail().getValue(), emailFilter)
+                && StringUtil.containsSubstringIgnoreCase(doctor.getSpecialty().getValue(), specialtyFilter)
+                && StringUtil.containsSubstringIgnoreCase(doctor.getYoe().getValue(), yoeFilter);
 
         if (!tagsFilter.isEmpty()) {
             Set<String> tagStringSet = doctor

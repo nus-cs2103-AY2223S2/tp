@@ -16,9 +16,9 @@ public class Specialty {
      * The first character of the specialty must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String specialty;
+    private final String specialty;
 
     /**
      * Constructs a {@code Specialty}.
@@ -53,5 +53,9 @@ public class Specialty {
     @Override
     public int hashCode() {
         return specialty.hashCode();
+    }
+
+    public String getValue() {
+        return specialty;
     }
 }
