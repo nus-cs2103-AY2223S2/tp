@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -29,6 +28,8 @@ import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
+
+import javafx.stage.Stage;
 
 public class AddCommandTest {
 
