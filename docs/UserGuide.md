@@ -305,25 +305,41 @@ Example: `exit`
 
 <h2 id="gui">Graphical User Interface</h2>
 -------------------------------
+This section serves to introduce the GUI components in _Ez-Schedule_.  
+
+_Ez-Schedule_ is composed of the following components, which are numbered for easy reference:
+
+1. [Command Box](#command-box)
+2. [Response Box](#response-box)
+3. [Events Panel](#events-panel)
+4. [Upcoming Events Panel](#upcoming-events-panel)
+5. [Calendar](#calendar)
+
+![gui.png](images/gui.png)
+
 <h3 id="command-box">Command Box</h3>
 ![command-box.png](images/command-box.png)
 
-This feature enables you to type the command in the command box and execute it by pressing Enter  
-E.g., typing `help` and pressing Enter will open the help window.
+This component enables you to type the command in the command box and execute it by pressing Enter.  
+For example, typing `help` and pressing Enter will open the help window.
+
 
 [[Back to top](#table-of-contents)]
+
 
 <h3 id="response-box">Response Box</h3>
 ![response-box.png](images/response-box.png)
 
-This feature displays the feedback of the command you entered into the command box.
+This component displays the feedback of the command you entered into the command box.
+
 
 [[Back to top](#table-of-contents)]
 
-<h3 id="events-panel">Events Panel</h3>
-![event-list.png](images/event-list.png)
 
-This feature displays all the events that you have.  
+<h3 id="events-panel">Events Panel</h3>
+![events-panel.png](images/events-panel.png)
+
+This component displays all the events that you have.  
 You can use commands like `list` and `find` to view the events in your scheduler.
 
 <div markdown="span" class="alert alert-info">
@@ -339,7 +355,7 @@ Events are displayed in chronological order.
 <h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
 ![upcoming-events.png](images/upcoming-events.png)
 
-This feature displays both ongoing (if you have not started on them yet) and upcoming events that you have.
+This component displays both ongoing (if you have not started on them yet) and upcoming events that you have.
 
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:**
@@ -354,9 +370,7 @@ you can use the `next` command to change the number of upcoming events shown.
 <h3 id="calendar">Calendar</h3>
 ![calendar.png](images/calendar.png)
 
-This feature gives you a comprehensive summary of all the events that you have for a particular month.
-
-Functionality:
+This component gives you a comprehensive summary of all the events that you have for a particular month.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**
