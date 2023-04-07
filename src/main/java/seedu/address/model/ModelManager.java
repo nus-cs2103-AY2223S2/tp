@@ -204,7 +204,6 @@ public class ModelManager implements Model {
 
     @Override
     public void updatePersonView(Person updatedPerson) {
-        requireNonNull(updatedPerson);
         displayedPerson = updatedPerson;
     }
 
