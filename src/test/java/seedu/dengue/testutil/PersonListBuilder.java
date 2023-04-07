@@ -133,7 +133,7 @@ public class PersonListBuilder {
     /**
      * Returns a {@code List} containing only one default {@code Person} instance.
      *
-     * @return A singleton containing the default person.
+     * @return A list containing one element - the default person.
      */
     public List<Person> buildSingle() {
         return List.of(this.personBuilder.build());
