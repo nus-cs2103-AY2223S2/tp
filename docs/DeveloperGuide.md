@@ -7,8 +7,7 @@ title: Developer Guide
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Introduction
+## **Introduction**
 
 {{ site.data.techtrack.about.summary }}
 
@@ -129,8 +128,7 @@ The `UI` component,
 
 ### Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -167,8 +165,7 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -194,8 +191,7 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -466,7 +462,7 @@ The following sequence diagram shows how the `view` command works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Requirements
+## **Requirements**
 
 ### Product Scope
 
@@ -780,7 +776,7 @@ feature flaws, therefore the team will not be addressing these flaws for now.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Effort
+## **Effort**
 
 ### Morphing of AB3 to TechTrack
 
@@ -798,7 +794,7 @@ Ideas:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Role**: Refers to internships or full-time jobs

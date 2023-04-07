@@ -33,6 +33,13 @@ deactivate DeadlineCommandParser
 RoleBookParser -> DeadlineCommandParser : parse("asc")
 activate DeadlineCommandParser
 
+create Order
+DeadlineCommandParser -> Order
+activate Order
+
+Order --> DeadlineCommandParser : o
+deactivate Order
+
 create DeadlineCommand
 DeadlineCommandParser -> DeadlineCommand
 activate DeadlineCommand
@@ -40,13 +47,8 @@ activate DeadlineCommand
 DeadlineCommand --> DeadlineCommandParser : d
 deactivate DeadlineCommand
 
-create Order
-DeadlineCommand -> Order
-activate Order
-
 Order --> DeadlineCommand : o
 deactivate Order
-
 
 DeadlineCommandParser --> RoleBookParser : d
 deactivate DeadlineCommandParser

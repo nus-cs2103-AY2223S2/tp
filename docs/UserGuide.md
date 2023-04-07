@@ -3,34 +3,14 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+  {:toc}
+
+# **Introduction**
+
 {{ site.data.techtrack.about.summary }}
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-   1. [What is a Role?](#what-is-a-role)
-   2. [Creating Role Info](#creating-role-info)
-      1. [Add Roles: `add`](#adding-a-role-add)
-      2. [Edit Role: `edit`](#editing-a-role-edit)
-      3. [Delete Role: `delete`](#deleting-a-role-delete)
-   3. [Viewing Role Info](#viewing-role-info)
-      1. [Finding roles](#finding-roles)
-         1. [Find roles by name `name`](#find-roles-by-name-name)
-         2. [Find roles by company `company`](#find-roles-by-company-company)
-         3. [Find roles by tag `tag`](#find-roles-by-tag-tag)
-      2. [Sorting roles](#sorting-roles)
-         1. [Sorting a role by deadline `deadline`](#sorting-by-deadline-deadline)
-         2. [Sorting a role by salary `salary`](#sorting-by-salary-salary)
-   4. [Viewing more details of a role `view`](#viewing-more-details-of-a-role-view)
-   5. [General Commands](#general-commands)
-      1. [List all roles `list`](#list-list)
-      2. [Clear all roles `clear`](#clear-clear)
-      3. [Help `help`](#help-help)
-      4. [Exit TechTrack `exit`](#exit-exit)
-   6. [Editing raw data](#editing-raw-data)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
-
-# Quick Start
+# **Quick Start**
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [TechTrack.jar](https://github.com/AY2223S2-CS2103-W16-2/tp/releases) from here.
 3. Copy the file to the folder you want to use as the home folder for TechTrack.
@@ -39,7 +19,7 @@ title: User Guide
 
 ![QuickStart](images/UICommandImages/QuickStart.png)
 
-# What is a Role?
+# **What is a Role?**
 
 In TechTrack, users can manage their favourite roles through various commands. 
 Here is what TechTrack can store per role:
@@ -70,7 +50,7 @@ Here is what TechTrack can store per role:
 
 💡 **Note:** TechTrack does not allow users to store duplicate Roles. Roles are considered duplicates if they have the same NAME and COMPANY (both are case-sensitive).
 
-# Features
+# **Features**
 
 This section guides you on how to utilise features available in TechTrack.
 
@@ -171,7 +151,7 @@ Examples:
 ![DeleteCommand1](images/UICommandImages/DeleteCommand1.png)
 [link to `company` command](#find-roles-by-company-company)
 
-# Viewing Role Info
+# **Viewing Role Info**
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
 These commands are:
 
@@ -260,7 +240,7 @@ Example 1: `salary asc`
 Example 2: `salary desc`
 ![Salary](images/UICommandImages/SalaryCommand2.png)
 
-### Viewing more details of a role: `view`
+## Viewing more details of a role: `view`
 The view command allows users to view more detailed information about a specific role. While the list of role cards 
 on the left side of the GUI only displays key information such as the role's name, company, salary, deadline, and 
 required experience, the view command generates a graphic on the right side of the GUI that presents additional 
@@ -278,7 +258,7 @@ Examples:
 * `company meta` followed by `view 1`
 ![View](images/UICommandImages/ViewCommand1.png)
 
-## General Commands
+# **General Commands**
 
 * [List all roles](#list-list)
 * [Clear all roles](#clear-clear)
@@ -301,17 +281,17 @@ Display commands that are available in TechTrack and the proper format for usage
 ### Exit: `exit`
 Exits and closes TechTrack.
 
-# Editing raw data
+# **Editing raw data**
 You can directly edit TechTrack's data file after running and exiting the app. 
 
 ❗ **Caution:** If your changes to the data file makes its format invalid, TechTrack will discard that data file and start with an empty list of roles.
 
-# FAQ
+# **FAQ**
 Q: How do I transfer my data to another Computer?
 
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
 
-# Command Summary
+# **Command Summary**
 
 | Command      | Format                                                                                                                                                             | Example                                                                                                                                                                                                   |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

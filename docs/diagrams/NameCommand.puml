@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+skinparam defaultFontSize 40
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
@@ -31,28 +33,27 @@ deactivate NameCommandParser
 RoleBookParser -> NameCommandParser : parse("Software")
 activate NameCommandParser
 
+create NameContainsKeywordsPredicate
+NameCommandParser -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> NameCommandParser
+deactivate NameContainsKeywordsPredicate
+
 create NameCommand
 NameCommandParser -> NameCommand
 activate NameCommand
 
-NameCommand --> NameCommandParser
+NameCommand --> NameCommandParser : n
 deactivate NameCommand
 
-create NameContainsKeywordsPredicate
-NameCommand -> NameContainsKeywordsPredicate
-activate NameContainsKeywordsPredicate
-
-NameContainsKeywordsPredicate --> NameCommand
-deactivate NameContainsKeywordsPredicate
-
-
-NameCommandParser --> RoleBookParser
+NameCommandParser --> RoleBookParser : n
 deactivate NameCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 NameCommandParser -[hidden]-> RoleBookParser
 destroy NameCommandParser
 
-RoleBookParser --> LogicManager
+RoleBookParser --> LogicManager : n
 deactivate RoleBookParser
 
 
@@ -60,7 +61,7 @@ LogicManager -> NameCommand : execute(model)
 activate NameCommand
 
 
-NameCommand -> Model : updateFilteredRoleList()
+NameCommand -> Model : updateFilteredRoleList(pred)
 activate Model
 
 Model --> NameCommand
@@ -73,7 +74,7 @@ activate CommandResult
 CommandResult --> NameCommand
 deactivate CommandResult
 
-NameCommand --> LogicManager
+NameCommand --> LogicManager : result
 deactivate NameCommand
 
 [<--LogicManager
