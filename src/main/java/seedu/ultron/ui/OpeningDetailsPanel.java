@@ -44,7 +44,11 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         company.setText("Company: " + opening.getCompany().fullCompany);
         status.setText("Status: " + opening.getStatus().fullStatus);
         email.setText("Email: " + opening.getEmail().value);
-        remark.setText(String.format("Remark: %s", opening.getRemark().value));
+        if (opening.getRemark().value != "") {
+            remark.setText(String.format("Remark: %s", opening.getRemark().value));
+        } else {
+            remark.setText("");
+        }
         dates.setHgap(20);
         opening.getKeydates().stream()
                 .forEach(date -> {
