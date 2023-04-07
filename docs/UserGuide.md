@@ -102,10 +102,10 @@ should be able to see the list being updated as such:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may notice that there are progress bars of different 
-   <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task. 
-<br>The <span style="color:green">**green**</span> colored taskbar indicates that the task is done, and before the deadline.
-<br>The <span style="color:red">**red**</span> colored taskbar indicates that the task is undone, and that the deadline has passed.
-<br>The <span style="color:blue">**blue**</span> colored taskbar indicates that the task is undone, **but** the deadline has not passed.
+   <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task. Let's look at what each color means!
+<br>The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
+<br>The <span style="color:red">**red**</span> colored progress bar indicates that the task is undone, and that the deadline has passed.
+<br>The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is undone, **but** the deadline has not passed.
 </div>
 
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 
