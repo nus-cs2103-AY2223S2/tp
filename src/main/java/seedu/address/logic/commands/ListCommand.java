@@ -86,11 +86,9 @@ public class ListCommand extends Command {
      * @param friendlyLink Application cache.
      * @return Elderly predicate.
      */
-    public Predicate<Elderly> getPairedElderlyPredicate(FriendlyLink friendlyLink) {
+    private Predicate<Elderly> getPairedElderlyPredicate(FriendlyLink friendlyLink) {
         requireNonNull(friendlyLink);
-        List<Pair> pairList = friendlyLink.getPairList();
-        List<Elderly> pairedElderlyList =
-                pairList.stream().map(pair -> pair.getElderly()).collect(Collectors.toList());
+        List<Elderly> pairedElderlyList = getPairedElderlyList(friendlyLink);
 
         return elderly -> pairedElderlyList.contains(elderly);
     }
@@ -101,11 +99,9 @@ public class ListCommand extends Command {
      * @param friendlyLink Application cache.
      * @return Volunteer predicate.
      */
-    public Predicate<Volunteer> getPairedVolunteerPredicate(FriendlyLink friendlyLink) {
+    private Predicate<Volunteer> getPairedVolunteerPredicate(FriendlyLink friendlyLink) {
         requireNonNull(friendlyLink);
-        List<Pair> pairList = friendlyLink.getPairList();
-        List<Volunteer> pairedVolunteerList =
-                pairList.stream().map(pair -> pair.getVolunteer()).collect(Collectors.toList());
+        List<Volunteer> pairedVolunteerList = getPairedVolunteerList(friendlyLink);
 
         return volunteer -> pairedVolunteerList.contains(volunteer);
     }
@@ -116,11 +112,9 @@ public class ListCommand extends Command {
      * @param friendlyLink Application cache.
      * @return Elderly predicate.
      */
-    public Predicate<Elderly> getUnPairedElderlyPredicate(FriendlyLink friendlyLink) {
+    private Predicate<Elderly> getUnPairedElderlyPredicate(FriendlyLink friendlyLink) {
         requireNonNull(friendlyLink);
-        List<Pair> pairList = friendlyLink.getPairList();
-        List<Elderly> pairedElderlyList =
-                pairList.stream().map(pair -> pair.getElderly()).collect(Collectors.toList());
+        List<Elderly> pairedElderlyList = getPairedElderlyList(friendlyLink);
 
         return elderly -> !pairedElderlyList.contains(elderly);
     }
@@ -131,13 +125,33 @@ public class ListCommand extends Command {
      * @param friendlyLink Application cache.
      * @return Volunteer predicate.
      */
-    public Predicate<Volunteer> getUnPairedVolunteerPredicate(FriendlyLink friendlyLink) {
+    private Predicate<Volunteer> getUnPairedVolunteerPredicate(FriendlyLink friendlyLink) {
         requireNonNull(friendlyLink);
-        List<Pair> pairList = friendlyLink.getPairList();
-        List<Volunteer> pairedVolunteerList =
-                pairList.stream().map(pair -> pair.getVolunteer()).collect(Collectors.toList());
+        List<Volunteer> pairedVolunteerList = getPairedVolunteerList(friendlyLink);
 
         return volunteer -> !pairedVolunteerList.contains(volunteer);
+    }
+
+    /**
+     * Returns the list of volunteers who are paired.
+     *
+     * @param friendlyLink Application cache.
+     * @return List of volunteers who are paired.
+     */
+    private List<Volunteer> getPairedVolunteerList(FriendlyLink friendlyLink) {
+        List<Pair> pairList = friendlyLink.getPairList();
+        return pairList.stream().map(Pair::getVolunteer).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the list of Elderly who are paired.
+     *
+     * @param friendlyLink Application cache.
+     * @return List of Elderly who are paired.
+     */
+    private List<Elderly> getPairedElderlyList(FriendlyLink friendlyLink) {
+        List<Pair> pairList = friendlyLink.getPairList();
+        return pairList.stream().map(Pair::getElderly).collect(Collectors.toList());
     }
 
     @Override

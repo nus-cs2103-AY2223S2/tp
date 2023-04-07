@@ -26,7 +26,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         String trimmedArgs = args.trim().toLowerCase();
         switch (trimmedArgs) {
         case "":
+            // Fallthrough
         case "unpaired":
+            // Fallthrough
         case "paired":
             return new ListCommand(trimmedArgs);
         default:

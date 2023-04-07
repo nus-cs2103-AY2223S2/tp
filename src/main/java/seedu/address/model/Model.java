@@ -49,42 +49,42 @@ public interface Model {
     /**
      * Returns the user prefs' elderly database file path.
      *
-     * @return elderly database file path.
+     * @return Elderly database file path.
      */
     Path getElderlyFilePath();
 
     /**
      * Sets the user prefs' elderly database file path.
      *
-     * @param elderlyFilePath elderly database file path to be set.
+     * @param elderlyFilePath Elderly database file path to be set.
      */
     void setElderlyFilePath(Path elderlyFilePath);
 
     /**
      * Returns the user prefs' volunteer database file path.
      *
-     * @return volunteer database file path.
+     * @return Volunteer database file path.
      */
     Path getVolunteerFilePath();
 
     /**
      * Sets the user prefs' volunteer database file path.
      *
-     * @param volunteerFilePath volunteer database file path to be set.
+     * @param volunteerFilePath Volunteer database file path to be set.
      */
     void setVolunteerFilePath(Path volunteerFilePath);
 
     /**
      * Returns the user prefs' pair database file path.
      *
-     * @return pair database file path.
+     * @return Pair database file path.
      */
     Path getPairFilePath();
 
     /**
      * Sets the user prefs' pair database file path.
      *
-     * @param pairFilePath pair database file path to be set.
+     * @param pairFilePath Pair database file path to be set.
      */
     void setPairFilePath(Path pairFilePath);
 
