@@ -56,10 +56,10 @@ This guide is designed for users with and without technical experience and is to
 * `UPPER_CASE` - are the input fields to be supplied by the user.<br/>
   e.g. in `add n/NAME`, `NAME` is an input field which can be used as `add n/John Doe`.
 
-* `[]` - are optional parameters that can be used or not used at all.<br/>
+* `[]` - are optional input fields.<br/>
   e.g. `[e/optional]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com` 
 
-* `[]...` - are parameters that can be used multiple times including zero times.<br/>
+* `[]...` - are input fields that can be supplied any number of times including zero times.<br/>
   e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 </div>
