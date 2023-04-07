@@ -993,5 +993,30 @@ status of any project were made
 * This will make sure that only changes related to project status will trigger
   the refreshing of pie chart. 
 
+**4. Case sensitivity of emails**
 
+Currently, it is possible to create clients with the same email but in
+different cases, e.g. *foo@bar.com* and *FOO@bar.com*. However, in the real
+world emails are [not case
+sensitive](https://mailchimp.com/resources/are-email-addresses-case-sensitive/).
+Thus, the application should reflect this. Thankfully, the fix is easy, as it
+involves changing the `equals()` method on the `Email` class.
+
+We can change it from this:
+
+```java
+ public boolean equals(Object other) {
+     return other == this || (other instanceof Email
+         && this.value.equals(((Email) other).value));
+ }
+ ```
+
+to this:
+
+```java
+ public boolean equals(Object other) {
+     return other == this || (other instanceof Email
+         && this.value.toLowerCase().equals(((Email) other).value.toLowerCase()));
+ }
+ ```
 
