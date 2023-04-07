@@ -33,7 +33,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified arguments,
-     * and {@code hasGuiInteraction} set to its default value.
+     * and other fields set to its default value.
      */
     public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp, boolean shouldExit) {
         this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
