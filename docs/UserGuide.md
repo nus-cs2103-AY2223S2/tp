@@ -214,7 +214,7 @@ Example:
   [Back to top](#top)
 
 ---
-### Delete a recipe : `delete RECIPE_NUMBER`
+#### Delete a recipe : `delete RECIPE_NUMBER`
 This command deletes the recipe at the specified *recipe number* from your recipe book.
 
 
@@ -576,13 +576,15 @@ Format meanings:
 <hr style="border:2px solid gray">
 
 ## Glossary
-| Word	|    Definition                                                  |
-|-------|----------------------------------------------------------------------|
-
-**Command Line Interface (CLI)** | 	A program that mainly uses typed commands to interact with the app. 
-**Graphical User Interface (GUI)** | 	What the user sees when interacting with the app.                   
-Alphanumeric | A combination of both letters and numbers without space.             
-Terminal| A text-based interface for the computer.                             
+| Word	                              | Definition                                                               |
+|------------------------------------|--------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | 	A program that mainly uses typed commands to interact with the app.     | 
+| **Graphical User Interface (GUI)** | 	What the user sees when interacting with the app.                       |
+| Alphanumeric                       | A combination of both letters and numbers without space.                 |
+| Terminal                           | A text-based interface for the computer.                                 |
+| Favorites                          | All your starred recipes                                                 |
+| Starring                           | Adding a star to your recipe                                             |
+| Unstarring                         | Removing a star from your recipe                                         |
 
 [Back to top](#top)
 
