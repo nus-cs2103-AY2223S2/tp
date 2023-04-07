@@ -20,6 +20,7 @@ easier way to set up proper communication channels.
     * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
     * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
     * [Exit the program](#exit-the-program-exit)
+    * [Editing the data file](#editing-the-data-file)
 * [Command summary](#command-summary)
 
 ---
