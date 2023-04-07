@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+skinparam defaultFontSize 40
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
@@ -45,6 +47,8 @@ activate DeadlineCommand
 DeadlineCommand --> DeadlineCommandParser : d
 deactivate DeadlineCommand
 
+Order --> DeadlineCommand : o
+deactivate Order
 
 DeadlineCommandParser --> RoleBookParser : d
 deactivate DeadlineCommandParser
