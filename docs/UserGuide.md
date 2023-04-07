@@ -250,7 +250,7 @@ Examples:
 * `add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern`
 
 
-![result for 'feid eid/7'](images/UiAddEmployeeCommand.png)
+![result for 'add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern'](images/UiAddEmployeeCommand.png)
 
 
 ### 7.1.2. Listing all employees : `list`
@@ -258,6 +258,9 @@ Examples:
 Shows a list of all employees in SudoHR.
 
 Format: `list`
+
+
+![result for 'list'](images/UiListCommand.png)
 
 ### 7.1.3. Editing an employee : `edit`
 
@@ -279,6 +282,11 @@ Examples:
   `23`, `91234567`, and `johndoe@example.com` respectively.
 * `edit eid/2 n/Betsy Crower t/` Edits the name of the employee with ID 2 to be `Betsy Crower` and clears all existing tags.
 
+
+![result for 'edit eid/2 n/Betsy Crower t/'](images/UiEditCommand.png)
+
+
+
 ### 7.1.4. Find employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
@@ -295,6 +303,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+
   
 
 
