@@ -79,6 +79,9 @@ class JsonAdaptedPerson {
         }
 
         for (JsonAdaptedBook book : books) {
+            if (book.toModelType().getBorrowDate() == null) {
+                throw new IllegalValueException("Book is not borrowed!");
+            }
             personBooks.add(book.toModelType());
         }
 
