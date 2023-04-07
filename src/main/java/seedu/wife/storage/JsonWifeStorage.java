@@ -45,15 +45,15 @@ public class JsonWifeStorage implements WifeStorage {
     public Optional<ReadOnlyWife> readWife(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableWife> jsonWife = JsonUtil.readJsonFile(
-                filePath, JsonSerializableWife.class);
-        if (!jsonWife.isPresent()) {
-            return Optional.empty();
-        }
-
         try {
+            Optional<JsonSerializableWife> jsonWife = JsonUtil.readJsonFile(
+                    filePath, JsonSerializableWife.class);
+            if (!jsonWife.isPresent()) {
+                return Optional.empty();
+            }
+
             return Optional.of(jsonWife.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (NumberFormatException | IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
