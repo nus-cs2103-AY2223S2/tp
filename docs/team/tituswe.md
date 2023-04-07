@@ -40,8 +40,9 @@ Given below are my contributions to the project.
         * Added control flow and detailed documentation of the 'UI' component.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#60](), [\70](), [\#79]()
+    * PRs reviewed (with non-trivial review
+      comments): [\#60](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/60), [\70](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/70), [\#79](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/79)
     * Contributed to forum discussions (
-      examples: [\#7](), [\#142](), [\#164](), [\#194](), [\#198](), [\#227](), [\#249](), [\#251](), [\#252]())
+      examples: [\#7](https://github.com/nus-cs2103-AY2223S2/forum/issues/7), [\#142](https://github.com/nus-cs2103-AY2223S2/forum/issues/142), [\#164](https://github.com/nus-cs2103-AY2223S2/forum/issues/164), [\#194](https://github.com/nus-cs2103-AY2223S2/forum/issues/194), [\#198](https://github.com/nus-cs2103-AY2223S2/forum/issues/198), [\#227](https://github.com/nus-cs2103-AY2223S2/forum/issues/227), [\#249](https://github.com/nus-cs2103-AY2223S2/forum/issues/249), [\#251](https://github.com/nus-cs2103-AY2223S2/forum/issues/251), [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252))
     * Reported bugs and suggestions for other teams (
       examples: [\#177](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/177), [\#179](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/179), [\#182](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/182), [\#189](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/189), [\#192](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/192), [\#195](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues/195)
