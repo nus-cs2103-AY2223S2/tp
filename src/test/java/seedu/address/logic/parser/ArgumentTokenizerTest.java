@@ -21,7 +21,6 @@ public class ArgumentTokenizerTest {
     private final String slashCValue = "111";
     private final String unknownValue = "some value";
 
-
     @Test
     public void tokenize_emptyArgsString_noValues() {
         String argsString = "  ";
@@ -93,22 +92,28 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void tokenize_oneUnspecifiedPrefix() {
-        // Preamble present
+        // Preamble present, Argument has value
         String argsString = "  " + preambleValue + " " + slashA.getPrefix() + " " + slashAValue;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString);
         assertPreamblePresent(argMultimap, preambleValue);
         assertArgumentAbsent(argMultimap, slashA);
 
-        // No preamble
+        // No preamble, Argument has value
         argsString = " " + slashA.getPrefix() + "   " + slashAValue + " ";
         argMultimap = ArgumentTokenizer.tokenize(argsString);
         assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, slashA);
 
-        // Argument has no value
+        // Preabmble present, Argument has no value
         argsString = " " + preambleValue + " " + slashA.getPrefix();
         argMultimap = ArgumentTokenizer.tokenize(argsString);
         assertPreamblePresent(argMultimap, preambleValue);
+        assertArgumentAbsent(argMultimap, slashA);
+
+        // Preamble and argument both have no value
+        argsString = " " + slashA.getPrefix();
+        argMultimap = ArgumentTokenizer.tokenize(argsString);
+        assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, slashA);
     }
 

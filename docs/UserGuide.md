@@ -26,13 +26,18 @@ Now it's time to **CONQUER** the semester!
   - [Prerequisite](#prerequisite)
   - [Installation and Setup](#installation-and-setup)
   - [Getting Started](#getting-started)
+  - [A Brief Guide to Navigation](#a-brief-guide-to-navigation)
   - [Tutorials and Examples](#tutorials-and-examples)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
 - [Command Manual](#command-manual)
   - [Nav](#nav)
-  - [List](#list)
+- [List](#list)
+  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
+  - [List Modules](#list-modules)
+  - [List Lectures of Modules](#list-lectures-of-modules)
+  - [List Videos of Lectures](#list-videos-of-lectures)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -49,7 +54,13 @@ Now it's time to **CONQUER** the semester!
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [Find](#find)
+- [Find](#find)
+  - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
+  - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
+  - [Find Lectures in a Module](#find-lectures-in-a-module)
+  - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
+  - [Find Videos in a Lecture](#find-videos-in-a-lecture)
+  - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
@@ -75,7 +86,8 @@ Now it's time to **CONQUER** the semester!
 
 3. Run the jar file by `java -jar leTracker.jar`.
 
-### Getting Started
+### User Interface and Getting Started
+![GettingAround](images/GettingAround.png)
 
 1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to toggle through the texts you have typed.
 
@@ -84,11 +96,14 @@ Now it's time to **CONQUER** the semester!
 
 ### A Brief Guide to Navigation
 
-**Context Indicator** - Displays which context you are currently working at.
+Current Working Context Indicator
 
-![ContextLabel](images/ContextLabelScreenshot.png)
+- The **blue label** on the left of the command box displays your [current working context](#current-working-context).
 
-**Navigating** to different contexts:
+- ![ContextLabel](images/ContextLabelScreenshot.png)
+
+**Navigating** to different contexts
+- Here are some ways you can **navigate** between different contexts.
 
 ![NavDiagram](images/NavDiagram.png)
 
@@ -135,24 +150,43 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 **:information_source: The following are rules applicable to all commands:**
 
-1. Words encapsulated in `{}` are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.\
-   e.g. For a command with format `add {module_code}`, `{module_code}` is an argument value. The command can be used as `add CS2040`.
+1. Items in curly braces (i.e. `{}`) are placeholders for some actual value. In a command format, they represent the argument values to be supplied by the user.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code}</code>, <code>{module_code}</code> is an argument value. The command can be used as <code>add CS2040</code>.
+   </details>
 
-2. Items in square brackets are optional.\
-   e.g. For a command with format `add {module_code} [/name {module_name}]`, the `/name` argument is optional. The command can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+2. Items in square brackets (i.e. `[]`) are optional.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} [/name {module_name}]</code>, the <code>/name</code> argument is optional. The command can be used as <code>add CS2040 /name Data Structures and Algorithms</code> or as <code>add CS2040</code>.
+   </details>
 
-3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).\
-   e.g. For a command with format `edit {module_code} /code {updated_code} /name {updated_name}`, `{module_code}` is an unnamed argument, while `/code` and `/name` are named arguments. The command can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+3. Named arguments can be specified in any order as long as it is after all unnamed arguments (if any).
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, <code>{module_code}</code> is an unnamed argument, while <code>/code</code> and <code>/name</code> are named arguments. The command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
+   </details>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.\
-   e.g. For a command with format `add {module_code} [/name {module_name}]`, if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be taken as the value of the `/name` argument.
+4. If a named argument is expected only once in the command but the user specified it multiple times, only the last occurrence of the argument will be taken.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
+   </details>
 
-5. Extraneous arguments will be ignored.\
-   e.g. For a command with format `add {module_code} /name {module_name}`, if used as `add CS2040 /name DSAG /foo bar`, the `/foo` argument is ignored.
+5. Extraneous arguments will be ignored.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
+   </details>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z or A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace unless it is the end of the command.\
-   e.g. For the command `find Intro /mod CS2040S /byTag`, `/mod` and `/byTag` are both recognised as named arguments.\
-   For the command `find Intro /modCS2040S /byTag`, only `/byTag` is recognised as a named argument while `Intro /modCS2040S` is treated as the value of the unnamed argument.
+6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a named argument if there is a whitespace before `/{argument_name}` and `/{argument_name}` is followed by a whitespace or it is the end of the command.
+   <details>
+   <summary>Example</summary>
+   For the command <code>find Intro /mod CS2040S /byTag</code>, <code>/mod</code> and <code>/byTag</code> are both recognised as named arguments.
+
+   For the command <code>find Intro /modCS2040S /byTag</code>, only <code>/byTag</code> is recognised as a named argument while <code>Intro /modCS2040S</code> is treated as the value of the unnamed argument.
+   </details>
 
 ---
 
@@ -180,46 +214,77 @@ Feel free to play around with the sample data to familiarise yourself with the c
 
 ## Navigation
 
+### Current Working Context
+
 Le Tracker organises content using a **hierarchical structure** (Modules -> Lectures -> Videos).
-
-![RootContext](images/RootContext.png)
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
-
 When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
 
-To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify your current working context instead. This context will allow the navigation system to inject the required module and lecture parameters into commands for you.
+To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify a **current working context** instead.
 
-The user can specify their current working context by navigating through the hierarchy. For example, the user can navigate to the _lecture Week 1 of the module CS2040S_ by:
+Type of contexts
 
+- ![RootContext](images/RootContext.png) **Root context**: The default and top-most context.
+- ![ModContext](images/ModContext.png) **Module context**: Represents a specified module.
+- ![LectureContext](images/LectureContext.png) **Lecture context**: Represents a specified lecture that belongs to a specified module.
+
+### Two Ways of Navigating
+
+You can specify a current working context by **navigating**.
+
+- There two ways of **navigating** - **relatively** or **directly**.
+
+For example, you can navigate to the **lecture context** - lecture Week 1 of the module CS2040S by
+
+- Navigating **relatively** from the **root context**
 ![RootContext](images/RootContext.png)
-Navigating **relatively** from the **root context**:
 
-1. Navigate to the module context from the root context.\
-   `nav CS2040S`
-2. Navigate to the lecture context from the module context.\
-   `nav Week 1`
+  1. Navigate to the module context from the root context.
+  - `nav CS2040S`
+  2. Navigate to the lecture context from the module context.
+  - `nav Week 1`
 
-_OR_
+- Navigating **directly** from any **context**
+  ![RootContext](images/RootContext.png)![ModContext](images/ModContext.png)![LectureContext](images/LectureContext.png)
+  1. Navigate directly to the lecture Week 1 of the module CS2040S.
+  - `nav /mod CS2040S /lec Week 1`
 
-![RootContext](images/RootContext.png)
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
 
-Navigating **directly** from any **context**:
+### Navigation Injection
 
-1. Navigate directly to the lecture Week 1 of the module CS2040S.
-
-- `nav /mod CS2040S /lec Week 1
-
-After navigating to specific context, the navigation system can specify module and lecture parameters so that you don't have to!
+After navigating to a lecture or module context, the navigation system will **inject** the required module and lecture parameters (i.e. `/mod CS2040S`, `/lec Week`) into commands so you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-1. Add Video 2 to the lecture Week 1 of module CS2040S.
-   - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-2. List the contents of lecture Week 1 of module CS2040S.
-   `list /mod CS2040S /lec Week 1` -> `list`
+1. ![LectureContext](images/LectureContext.png)
+Add "Video 2" to the lecture Week 1 of module CS2040S.
+- `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+2. ![LectureContext](images/LectureContext.png)
+List the videos of lecture Week 1 of module CS2040S.
+- `list` -> `list /mod CS2040S /lec Week 1`
+3. ![LectureContext](images/LectureContext.png)
+Add "Video 1" to lecture Week 1 of module CS2040S.
+- `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
+
+### Specifying Your Own Context In Commands
+
+To specify your own context for a command without any [injection](#navigation-injection), you can use the `/r`, `/mod`, `lec` prefixes in your commands.
+
+The following can be performed at **any** [current working context](#current-working-context)
+
+- Including the `/r` prefix will perform a command from the **root context**.
+  - e.g. List all modules at the root context.
+  - `list /r` -> `list`
+- Including the `/mod` prefix will perform a command from the **module context**.
+  - e.g. Add lecture "Week 10" for module CS2040S.
+  - `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
+- Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
+  - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
+  - `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
+
+To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
+- e.g. List videos of lecture Week 5 of module CS2040S
+- ![LectureContext](images/LectureContext.png) `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
+- Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
 ---
 
@@ -227,37 +292,46 @@ Here are some **examples** of how the navigation system injects the necessary co
 
 ### Nav
 
-**Navigate to the Root Context**
+#### Navigate to the Root Context
 
-> Sets the current context to the root context
+> `nav`
 
-Format: `nav`
+Navigate to the root context from any context.
 
-**Navigate Relatively**
+#### Navigate From Root Context to Module Context
 
-> Navigates relative to the current context to a module or lecture context
+> `nav {module_code}`
 
-Format: `nav {module_code / lecture_name}`
+Navigates from the root context to a module context.
 
-- `module_code` has to belong to an existing module that is a child of the current context
-- `lecture_name` has to belong to an existing lecture that is a child of the current context
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
 
-**Navigate Directly**
+#### Navigate From Module Context to Lecture Context
 
-> Navigates directly to the specified module or lecture context
+> `nav {lecture_name}`
 
-Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+Navigates from a module context to a lecture context.
 
-- `module_code` has to belong to an existing module
-- `lecture_name` has to belong to an existing lecture
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+  - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
 
-**Navigate Backwards**
+#### Navigate Directly
 
-> Navigates to the parent context of the current context
+> `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
-Format: `navb`
+Navigates directly to the specified module or lecture context
 
-## List
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+
+#### Navigate Backwards
+
+> `navb`
+
+Navigates backwards to the a parent context unless already at root context
 
 ### List Modules or Lectures or Videos
 
@@ -331,7 +405,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation-injection) for more information).
 
 ### Add a Lecture
 
@@ -352,8 +426,6 @@ Add a lecture to a module.
 Examples:
 
 - `add Week 1 /mod CS2040S /tags Intro, Important`
-
-:information_source: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Video
 
@@ -381,6 +453,10 @@ Add a video to a lecture.
 Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
+
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
 
 ### Edit a Module
 
