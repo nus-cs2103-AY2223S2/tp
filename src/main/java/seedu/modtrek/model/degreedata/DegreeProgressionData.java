@@ -16,6 +16,8 @@ import seedu.modtrek.model.tag.ValidTag;
  */
 public class DegreeProgressionData {
 
+    // ============= Fields ===================================================
+
     public static final int TOTALCREDIT = 160;
     public static final String ERROR =
             new StringBuilder("Based on the calculation, this is an impossible scenario.\n\n")
@@ -24,6 +26,9 @@ public class DegreeProgressionData {
             .append("If you believe this is an error, please raise an issue at MODTrek github!")
             .toString();
 
+    /**
+     * InvalidDegreeData is a singleton to indicate a failed degree calculation
+     */
     private static class InvalidDegreeData extends DegreeProgressionData {
         public InvalidDegreeData() {
             super();
@@ -58,6 +63,8 @@ public class DegreeProgressionData {
     private int overallPercentage;
     private int meaningfulCredits;
 
+    // ============= Constructor and Factory ===================================================
+
     private DegreeProgressionData() {}
 
     /**
@@ -89,8 +96,29 @@ public class DegreeProgressionData {
         }
     }
 
-    private void updateUeTotal() {
-        this.totalRequirementCredits.merge("UE", this.duplicatedCredits, (x, y) -> x + y);
+    // ============= Calculation Methods ===================================================
+
+    private void initCompletedRequirementCredits() {
+        List<String> tags = ValidTag.getTags();
+        for (String tag : tags) {
+            completedRequirementCredits.put(ValidTag.getShortForm(tag).toString(), 0);
+        }
+    }
+
+    private void computeSingleTagModule(Module module) {
+        assert module != null;
+        int credit = Integer.valueOf(module.getCredit().toString());
+        if (module.isComplete() && module.isGradeable()) {
+            if (module.isPass()) { // Checks for F grade
+                addToRequirement(module, credit);
+            }
+            if (!module.isSatisfactory()) { // Checks for SU option
+                completedCredit += credit;
+                cumulativePoints += credit * module.getGrade().toPoints();
+            }
+        } else if (!module.isComplete()) {
+            plannedCredit += credit;
+        }
     }
 
     private void computeMultiTagModules(Stack<Module> stack) throws DegreeProgressionException {
@@ -98,25 +126,10 @@ public class DegreeProgressionData {
             Module module = stack.pop();
             int credit = Integer.valueOf(module.getCredit().toString());
             if (module.isComplete() && module.isGradeable()) {
-                int total = module.getTags()
-                        .stream()
-                        .map((tag) -> {
-                            String tagName = tag.tagName;
-                            return Math.min(credit,
-                                    totalRequirementCredits.get(tagName) - completedRequirementCredits.get(tagName));
-                        })
-                        .reduce(0, (old, next) -> {
-                            return old + next;
-                        });
-                duplicatedCredits += total - credit;
-                module.getTags().forEach((tag) -> {
-                    completedRequirementCredits.merge(tag.tagName,
-                            credit, (oldValue, newValue) -> {
-                                int merged = oldValue + newValue;
-                                int cap = totalRequirementCredits.get(tag.tagName);
-                                return merged > cap ? cap : merged;
-                            });
-                });
+                if (module.isPass()) { // Checks for F grade
+                    int total = addToRequirement(module, credit);
+                    duplicatedCredits += total - credit;
+                }
                 if (!module.isSatisfactory()) { // Checks for SU option
                     completedCredit += credit;
                     cumulativePoints += credit * module.getGrade().toPoints();
@@ -129,6 +142,55 @@ public class DegreeProgressionData {
             throw new DegreeProgressionException();
         }
     }
+
+    private void updateUeTotal() {
+        this.totalRequirementCredits.merge("UE", this.duplicatedCredits, (x, y) -> x + y);
+    }
+
+    private void computeGpa() {
+        if (completedCredit == 0) {
+            this.gpa = 5.00f;
+            return;
+        }
+        this.gpa = cumulativePoints / completedCredit;
+    }
+
+    private void calculateProgress() {
+        float totalRequirementCompletion = 0;
+        for (Entry<String, Integer> entry : completedRequirementCredits.entrySet()) {
+            int total = totalRequirementCredits.get(entry.getKey());
+            int current = entry.getValue();
+            totalRequirementCompletion += Math.min(total, current);
+        }
+        totalRequirementCompletion -= duplicatedCredits;
+        assert totalRequirementCompletion >= 0;
+        meaningfulCredits = (int) totalRequirementCompletion;
+        overallPercentage = (int) (totalRequirementCompletion / TOTALCREDIT * 100);
+    }
+
+    private int addToRequirement(Module module, int credit) {
+        int total = module.getTags()
+                .stream()
+                .map((tag) -> {
+                    String tagName = tag.tagName;
+                    return Math.min(credit,
+                            totalRequirementCredits.get(tagName) - completedRequirementCredits.get(tagName));
+                })
+                .reduce(0, (old, next) -> {
+                    return old + next;
+                });
+        module.getTags().forEach((tag) -> {
+            completedRequirementCredits.merge(tag.tagName,
+                    credit, (oldValue, newValue) -> {
+                        int merged = oldValue + newValue;
+                        int cap = totalRequirementCredits.get(tag.tagName);
+                        return merged > cap ? cap : merged;
+                    });
+        });
+        return total;
+    }
+
+    // ============= Getter Methods ===================================================
 
     public Map<String, Integer> getTotalRequirementCredits() {
         return totalRequirementCredits;
@@ -169,62 +231,13 @@ public class DegreeProgressionData {
                 .stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> {
                     float percent = ((float) entry.getValue() / totalRequirementCredits.get(entry.getKey())) * 100;
-                    return percent > 100 ? 100 : (int) percent;
+                    return Math.min((int) percent, 100);
                 }));
         return result;
     }
 
     public int getOverallPercentage() {
         return overallPercentage;
-    }
-
-    private void calculateProgress() {
-        float totalRequirementCompletion = 0;
-        for (Entry<String, Integer> entry : completedRequirementCredits.entrySet()) {
-            int total = totalRequirementCredits.get(entry.getKey());
-            int current = entry.getValue();
-            totalRequirementCompletion += Math.min(total, current);
-        }
-        totalRequirementCompletion -= duplicatedCredits;
-        assert totalRequirementCompletion >= 0;
-        meaningfulCredits = (int) totalRequirementCompletion;
-        overallPercentage = (int) (totalRequirementCompletion / TOTALCREDIT * 100);
-    }
-
-    private void computeSingleTagModule(Module module) {
-        assert module != null;
-        int credit = Integer.valueOf(module.getCredit().toString());
-        if (module.isComplete() && module.isGradeable()) {
-            module.getTags().forEach((tag) -> {
-                completedRequirementCredits.merge(tag.tagName,
-                        credit, (oldValue, newValue) -> {
-                            int merged = oldValue + newValue;
-                            int cap = totalRequirementCredits.get(tag.tagName);
-                            return merged > cap ? cap : merged;
-                        });
-            });
-            if (!module.isSatisfactory()) { // Checks for SU option
-                completedCredit += credit;
-                cumulativePoints += credit * module.getGrade().toPoints();
-            }
-        } else if (!module.isComplete()) {
-            plannedCredit += credit;
-        }
-    }
-
-    private void computeGpa() {
-        if (completedCredit == 0) {
-            this.gpa = 5.00f;
-            return;
-        }
-        this.gpa = cumulativePoints / completedCredit;
-    }
-
-    private void initCompletedRequirementCredits() {
-        List<String> tags = ValidTag.getTags();
-        for (String tag : tags) {
-            completedRequirementCredits.put(ValidTag.getShortForm(tag).toString(), 0);
-        }
     }
 
     public boolean isValid() {

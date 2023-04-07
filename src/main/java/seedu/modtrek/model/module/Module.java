@@ -104,6 +104,10 @@ public class Module {
         return grade.isSatisfactory();
     }
 
+    public boolean isPass() {
+        return grade.isPass();
+    }
+
     public boolean isMultiTagged() {
         return tags.size() > 1;
     }
