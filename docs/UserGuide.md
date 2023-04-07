@@ -27,7 +27,7 @@ connections_ and _accomplishing your goals_!
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigating CoDoc](#navigating-codoc)
-  - [Tutorial](#codoc-tutorial-your-first-steps)
+  - [CoDoc Tutorial: Your first steps](#codoc-tutorial--your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
     - [Editing a person's modules](#3-editing-a-persons-details)
@@ -48,7 +48,6 @@ connections_ and _accomplishing your goals_!
 - [Upcoming Features](#upcoming-features)
 - [Command Summary](#command-summary)
 - [Additional Resources](#additional-resources)
-  - [How To Check Java Version](#how-to-check-java-version)
   - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
   - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
@@ -758,8 +757,6 @@ _Details coming soon ..._
 <div style="page-break-after: always;"></div>
 
 ## Additional Resources
-
-[Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
 1. Create your *home folder* and place the jar file into it. In this example, <br>
