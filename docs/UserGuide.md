@@ -162,7 +162,7 @@ First time using CoDoc? Welcome aboard! Follow the steps below to familiarize yo
 
 Before you can use CoDoc, you need to download it. To do this, follow these steps:
 
-1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
+1. Ensure you have `Java 11` or above installed in your Computer.
    * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11)
    
    <br>
@@ -758,9 +758,6 @@ _Details coming soon ..._
 <div style="page-break-after: always;"></div>
 
 ## Additional Resources
-### How To Check Java Version
-![mac_check_java](images/user-guide/mac_check_java.png)
-
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
