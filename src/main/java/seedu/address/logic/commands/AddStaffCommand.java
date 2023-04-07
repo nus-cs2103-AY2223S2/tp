@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Manages adding of Staff
  */
-public class AddStaffCommand extends RedoableCommand {
+public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstaff";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the shop. "
         + "Parameters: "
@@ -69,7 +69,7 @@ public class AddStaffCommand extends RedoableCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         throw new CommandException(MESSAGE_UNSUPPORTED_COMMAND);
     }
 }

@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Manages adding of customers
  */
-public class AddCustomerCommand extends RedoableCommand {
+public class AddCustomerCommand extends Command {
     public static final String COMMAND_WORD = "addcustomer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Registers a customer with the shop. "
         + "Parameters: "
@@ -69,7 +69,7 @@ public class AddCustomerCommand extends RedoableCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().addCustomer(name, phone, email, address, tags);

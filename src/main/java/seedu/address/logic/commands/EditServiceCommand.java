@@ -19,7 +19,7 @@ import seedu.address.model.service.ServiceStatus;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditServiceCommand extends RedoableCommand {
+public class EditServiceCommand extends Command {
 
     public static final String COMMAND_WORD = "editservice";
 
@@ -68,7 +68,7 @@ public class EditServiceCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().editService(id, vehicleId, startDate, description, endDate, status);

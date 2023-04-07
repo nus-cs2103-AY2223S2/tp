@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Manages adding of parts to services
  */
-public class RemovePartFromServiceCommand extends RedoableCommand {
+public class RemovePartFromServiceCommand extends Command {
     public static final String COMMAND_WORD = "removeservicepart";
     public static final String MESSAGE_SUCCESS_FORMAT = "%s (x %d) removed from service %d";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -47,7 +47,7 @@ public class RemovePartFromServiceCommand extends RedoableCommand {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().removePartFromService(partName, serviceId, quantity);
             model.selectService(lst -> lst.stream().filter(s -> s.getId() == serviceId)

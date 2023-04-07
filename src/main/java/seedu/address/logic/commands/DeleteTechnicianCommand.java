@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Deletes a technician identified using it's displayed index from viewtechnician or listtechnicians.
  */
-public class DeleteTechnicianCommand extends RedoableCommand {
+public class DeleteTechnicianCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetechnician";
 
@@ -26,7 +26,7 @@ public class DeleteTechnicianCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().removeTechnician(id);

@@ -78,6 +78,9 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     public Shop() {
     }
 
+    /**
+     * Creates a Shop using the data in the {@code other}
+     */
     public Shop(Shop other) {
         this.idGenerator.resetData(other.idGenerator);
         this.customers.setAll(DeepCopy.copyCollection(other.customers.stream()).collect(Collectors.toList()));
@@ -596,6 +599,8 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      */
     public void removeCustomer(int customerId) throws CustomerNotFoundException {
         Customer toRemove = this.getCustomer(customerId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         try {
             for (int i : toRemove.getVehicleIds()) {
                 this.removeVehicle(i);
@@ -605,8 +610,6 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
                 this.removeAppointment(i);
                 this.undoStack.pop();
             }
-            this.undoStack.push(this.copy());
-            this.redoStack.clear();
             this.customers.removeIf(c -> c.getId() == customerId);
             logger.info(String.format("Customer %d removed", customerId));
             this.idGenerator.setCustomerIdUnused(customerId);
@@ -624,18 +627,19 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      */
     public void removeVehicle(int vehicleId) throws VehicleNotFoundException {
         Vehicle toRemove = this.getVehicle(vehicleId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         try {
             for (int i : toRemove.getServiceIds()) {
                 this.removeService(i);
                 this.undoStack.pop();
             }
-            this.undoStack.push(this.copy());
-            this.redoStack.clear();
             this.getCustomer(toRemove.getOwnerId()).removeVehicle(toRemove);
             this.vehicles.removeIf(v -> v.getId() == vehicleId);
             logger.info(String.format("Vehicle %d removed", vehicleId));
             this.idGenerator.setVehicleIdUnused(vehicleId);
         } catch (ServiceNotFoundException | CustomerNotFoundException e) {
+            this.undoStack.pop();
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
         }

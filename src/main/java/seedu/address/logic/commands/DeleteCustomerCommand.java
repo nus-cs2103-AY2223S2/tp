@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Deletes a customer identified using it's displayed index from viewcustomer or listcustomers.
  */
-public class DeleteCustomerCommand extends RedoableCommand {
+public class DeleteCustomerCommand extends Command {
 
     public static final String COMMAND_WORD = "deletecustomer";
 
@@ -26,7 +26,7 @@ public class DeleteCustomerCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().removeCustomer(id);

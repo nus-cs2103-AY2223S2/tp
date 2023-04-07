@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditTechnicianCommand extends RedoableCommand {
+public class EditTechnicianCommand extends Command {
 
     public static final String COMMAND_WORD = "edittechnician";
 
@@ -69,7 +69,7 @@ public class EditTechnicianCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().editTechnician(id, name, phone, email, address, tags);

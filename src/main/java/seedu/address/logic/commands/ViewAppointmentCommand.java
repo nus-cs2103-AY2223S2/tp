@@ -10,7 +10,7 @@ import seedu.address.model.service.appointment.Appointment;
 /**
  * Finds and returns the appointment details of the provided id.
  */
-public class ViewAppointmentCommand extends RedoableCommand {
+public class ViewAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "viewappointment";
 
@@ -27,7 +27,7 @@ public class ViewAppointmentCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.getShop().hasAppointment(this.appointmentId)) {
             throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND, this.appointmentId));

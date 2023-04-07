@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 /**
  * Edits the details of an existing appointment in autom8.
  */
-public class EditAppointmentCommand extends RedoableCommand {
+public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "editappointment";
 
@@ -54,7 +54,7 @@ public class EditAppointmentCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().editAppointment(id, customerId, dateTime);
             model.resetSelected();

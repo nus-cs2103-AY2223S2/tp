@@ -13,7 +13,7 @@ import seedu.address.model.entity.shop.exception.CustomerNotFoundException;
 /**
  * Manages adding appointments
  */
-public class AddAppointmentCommand extends RedoableCommand {
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addappointment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment with customer. "
@@ -48,7 +48,7 @@ public class AddAppointmentCommand extends RedoableCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().addAppointment(customerId, dateTime);
             model.selectAppointment(lst -> lst.get(lst.size() - 1));

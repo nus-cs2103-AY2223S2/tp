@@ -269,6 +269,6 @@ public class Vehicle implements Findable, DeepCopy<Vehicle> {
 
     @Override
     public Vehicle copy() {
-        return new Vehicle(this.id, this.plateNumber, this.color, this.brand, this.type, this.serviceIds);
+        return new Vehicle(this.id, this.ownerId, this.plateNumber, this.color, this.brand, this.type, this.serviceIds);
     }
 }

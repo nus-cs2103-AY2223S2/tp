@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  * Deletes a part identified using it's displayed name from viewpart or listparts.
  * This only deletes from the global list, and does not affect each appointment individually.
  */
-public class DeletePartCommand extends RedoableCommand {
+public class DeletePartCommand extends Command {
 
     public static final String COMMAND_WORD = "deletepart";
 
@@ -27,7 +27,7 @@ public class DeletePartCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().deletePart(userString);

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Deletes a service  identified using it's displayed index from viewservice and listservices.
  */
-public class DeleteServiceCommand extends RedoableCommand {
+public class DeleteServiceCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteservice";
 
@@ -26,7 +26,7 @@ public class DeleteServiceCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().removeService(id);

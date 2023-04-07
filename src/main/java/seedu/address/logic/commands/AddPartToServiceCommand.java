@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Manages adding of parts to services
  */
-public class AddPartToServiceCommand extends RedoableCommand {
+public class AddPartToServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservicepart";
     public static final String MESSAGE_SUCCESS_FORMAT = "%d x (%s) added to service %d";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a part to the service. "
@@ -46,7 +46,7 @@ public class AddPartToServiceCommand extends RedoableCommand {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().addPartToService(serviceId, partName, quantity);
             model.selectService(lst -> lst.stream()

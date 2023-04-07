@@ -59,7 +59,7 @@ public class AddTechnicianCommand extends AddStaffCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().addTechnician(this.name, this.phone, this.email, this.address, this.tags);

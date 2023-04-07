@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Deletes a vehicle identified using it's displayed index from viewvehicle or listvehicles.
  */
-public class DeleteVehicleCommand extends RedoableCommand {
+public class DeleteVehicleCommand extends Command {
 
     public static final String COMMAND_WORD = "deletevehicle";
 
@@ -25,7 +25,7 @@ public class DeleteVehicleCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().removeVehicle(id);

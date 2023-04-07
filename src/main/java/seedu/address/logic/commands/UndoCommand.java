@@ -12,24 +12,17 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_USAGE_SUCCESS = "Undo success!";
-    public static final String MESSAGE_USAGE_FAILURE = "No more commands to undo!";
-    public static final String MESSAGE_ERROR = "Unable to undo the last comamand.";
-    public static final String MESSAGE_NO_ACTION = "Nothing to undo";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireAllNonNull(model, undoRedoStack);
+        requireAllNonNull(model);
 
-        if (!undoRedoStack.canUndo()) {
-            throw new CommandException(MESSAGE_USAGE_FAILURE);
+        try {
+            model.getShop().revert();
+            model.resetSelected();
+            return new CommandResult(MESSAGE_USAGE_SUCCESS, Tab.ALL);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        undoRedoStack.popUndo().undo(model);
-        return new CommandResult(MESSAGE_USAGE_SUCCESS);
-    }
-
-    @Override
-    public void setData(StackUndoRedo undoRedoStack) {
-        this.undoRedoStack = undoRedoStack;
     }
 }

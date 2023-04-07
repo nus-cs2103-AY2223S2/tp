@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 /**
  * Manages the adding of a technician to a specific service
  */
-public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
+public class RemoveTechnicianFromAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "removeappointmenttech";
     public static final String MESSAGE_SUCCESS_FORMAT = "Technician %d unassigned from Appointment %d";
     public static final String COMMAND_USAGE =
@@ -37,7 +37,7 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         try {
             model.getShop().removeTechnicianFromAppointment(techId, appointmentId);
             model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == appointmentId)

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Deletes the appointment identified using it's displayed index from viewappointment or listappointments.
  */
-public class DeleteAppointmentCommand extends RedoableCommand {
+public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteappointment";
 
@@ -25,7 +25,7 @@ public class DeleteAppointmentCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
             model.getShop().removeAppointment(id);
