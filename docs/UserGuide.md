@@ -69,7 +69,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
 
-* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. e.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
+* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   E.g. if the command specifies `help 123`, it will be interpreted as `help`.
