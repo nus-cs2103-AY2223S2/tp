@@ -636,7 +636,7 @@ Format: "mark m/INDEX..." or "unmark m/INDEX..."
 To view all meetings, use `findm` with no parameters.
 </div>
 
-Shows meetings that are not marked as done and are in the future i.e not over yet.
+Shows meetings that are not marked as done and those that are in the future i.e not over yet.
 
 Format: `pending`
 
