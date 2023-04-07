@@ -66,6 +66,8 @@ public class EditDepartmentCommand extends Command {
 
         model.setDepartment(departmentToEdit, editedDepartment);
         model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
+        model.refresh(); //defensive coding
+
         return new CommandResult(String.format(MESSAGE_EDIT_DEPARTMENT_SUCCESS, editedDepartment));
     }
 

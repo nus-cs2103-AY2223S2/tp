@@ -2,43 +2,62 @@
 layout: page
 title: User Guide
 ---
+# 1. Table of contents:
 
-# 1. What is SudoHR?
+    
+1. [Introduction](#introduction)
+    1. [What is SudoHR?](#11-what-is-sudohr)
+    2. [Features](#13-features)
+2. [Quick start](#2-quick-start)
+---
 
-SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leaves data,
+
+# Introduction
+
+## 1.1 What is SudoHR?
+
+SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leave data,
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
 (GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
+## 1.2 Notations
 
+[//]: # (Explain notations used in the UG)
 
-# 2. Table of Contents
-Table of Contents
-* TBC
+You will see several types of annotations in the user guide:
 
-[//]: # ({:toc})
+<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
+Good practices you can follow to enhance your experience using SudoHR.
+</div>
 
---------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
+Things to remember when using SudoHR so you don't get confused.
+</div>
 
-# 3. Features
+<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
+Important things to remember when using SudoHR that may cause problems.
+</div> 
+
+## 1.3 Features
 
 There are 3 main data types in SudoHR:
-* Employees
-* Departments
-* Leaves
+* [Employees](#321-employee)
+* [Departments](#322-department)
+* [Leaves](#323-leave)
 
-SudoHR allows you to manage these components by:
+SudoHR allows you to manage all of these by:
 1. Creating, updating, listing and deleting of the 3 data types.
 2. Adding/Removing employees in departments/leaves.
 3. Applying different filters on the data.
 
-<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
-SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
-and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
-problems.
+<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
+SudoHR can access the data at breakneck speeds, up to 10,000 employees, 10,000 departments, 10,000 leaves
+and 10,000 tags!
 </div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4. Quick start
+# 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -59,29 +78,13 @@ problems.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. Notations
 
-[//]: # (Explain notations used in the UG)
-
-You will see several types of annotations in the user guide:
-
-<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
-Good practices you can follow to enhance your experience using SudoHR.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
-Things to remember when using SudoHR so you don't get confused.
-</div>
-
-<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
-Important things to remember when using SudoHR that may cause problems.
-</div> 
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 6. Quick Reference Guide
+# 3. Quick Reference Guide
 
-## 6.1. Layout
+## 3.1. Layout
 
 ![Screenshot of SudoHR app](images/Ui.png)
 
@@ -93,30 +96,30 @@ Our app interface consists of 5 main components:
 4. Employee section
 5. Department section
 
-### 6.1.1 Command line
+### 3.1.1 Command line
 The command line box located at the top of the application window serves to receive your typed inputs. 
 
 To start typing a command, move your cursor over to the command line and click it.
 
-### 6.1.2 Result display
+### 3.1.2 Result display
 Underneath the command line is the result display. This text box displays necessary information when executing
 commands.
 
-### 6.1.3 Departments
-The leftmost panel is the Departments section. Here you can view what are is the status of the departments in your
-company. The main data you can view on hand is the number of employees available.
-
-### 6.1.4 Employees
-Next to the Departments panel is the Employee section. This panel displays all the information regarding your 
+### 3.1.3 Employees
+Next to the Departments panel is the Employees section. This panel displays all the information regarding your 
 employees. The information shown include the employee id, email, phone number, address, emails and tags given to the
 employee
 
-### 6.1.5 Leaves
+### 3.1.4 Departments
+The leftmost panel is the Departments section. Here you can view the status of the departments in your
+company. The main data you can view on hand is the number of employees available.
+
+### 3.1.5 Leaves
 The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have 
 applied for leave. Each leave date would contain the number of employees who applied leaves on that day.
 
 
-## 6.2. Key definitions
+## 3.2. Key definitions
 
 [//]: # (GENERAL FORMAT OF DATA TYPE DEFINITION:)
 
@@ -124,9 +127,9 @@ applied for leave. Each leave date would contain the number of employees who app
 [//]: # (2. Explain fields)
 [//]: # (3. Explain constraints)
 
-### 6.2.1. Employee
+### 3.2.1. Employee
 
-An employee models a person in the company. Employees can be added to SudoHR to better 
+Employees can be added to SudoHR to better 
 track their data, involvement in the company, as well as easy retrieval of information.
 
 An employee possesses the following attributes:
@@ -137,7 +140,7 @@ An employee possesses the following attributes:
 5. (Home) Address
 6. [Optional] Tags
 
-Employees are identified by their IDs. An employee's ID is a unique identification assigned by the company.
+Employees are identified by their IDs. An employee's ID is a unique identification number assigned by the company.
 So, no two employees should share the same ID.
 
 Similarly, email address and phone number are fields that are not intended for sharing. 
@@ -148,10 +151,9 @@ You cannot add an employee that share any of the following fields with a differe
 2. Phone Number
 3. Email Address
 
-### 6.2.2. Department
+### 3.2.2. Department
 
-A department is a group of employees. A department can have many employees and
-an employee can be in many departments.
+A department is made up of a group of employees. A department can have many employees and an employee can be in many departments.
 
 Every employee in a department must be unique.
 
@@ -161,7 +163,7 @@ The following attributes are stored for each department:
 Departments are unique by name and case-sensitive. You cannot add more than one
 department of the same name.
 
-### 6.2.3. Leave
+### 3.2.3. Leave
 
 [//]: # 
 A leave represents a day on which an employee would be absent from the company. It is not possible for the employee to take more than 1 leave in a day.
@@ -171,7 +173,7 @@ The following attributes are stored for each leave:
 
 Each employee can only take a leave once per day. Leaves are unique by date.
 
-### 6.2.4. Prefixes
+### 3.2.4. Prefixes
 
 [//]: # (Explain prefixes in the command and their corresponding placeholders)
 
@@ -195,17 +197,31 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | e/     | END_DATE                   |
 
 
-### 6.2.5. Placeholders
+### 3.2.5. Placeholders
 
 
-![table1](images/table1.png)
-![table2](images/table2.png)
-![table3](images/table3.png)
+List placeholders in the command
+| Placeholder             | Corresponding Prefix | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|-------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **ID**                  | id/                  | ID is the unique identifier for an employee. Leading zeroes are ignored. <br/> **Note: This flag is only used when adding an employee into the app**. <br/> It has the following constraints: <li> Must be a positive integer <ol> <li> 0 is often reserved for administrative use </li> <li> negative numbers are not conventionally used </li> </ol> </li> <li> Cannot be empty </li> <br/> Valid Examples: <li>1</li> <li>100</li> Invalid Examples: <li>Bob</li> <li>0</li> <li>-1</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **EMPLOYEE_ID**         | eid/                 | Similar to ID, The EMPLOYEE_ID represents the ID of an employee. <br/> It is used for any commands that require referencing an employee. <br/> It follows the same constraints as ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **NAME**                | n/                   | NAME represents the name of an employee. <br/> It has the following constraints: <li> It must only contain alphabetical characters </li> <li> Cannot be empty </li> <br/> Valid Examples: <li>Kenneth</li> <li>Bob Lim</li> Invalid Examples: <li>Bob*</li> <li>1Alice</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **PHONE_NUMBER**        | p/                   | PHONE_NUMBER represents the phone number of an employee. <br/> It has the following constraints: <li> It must contain only 8 digits </li> <li> First 4 digits can be space-separated from the last 4 digits </li> <li> it must be unique </li> <br/> Valid Examples: <li>12345678</li> <li>9762 8372</li> Invalid Examples: <li>123</li> <li>Hello</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **EMAIL**               | e/                   | EMAIL represents the email address of an employee. It must be of the format local-part@domain <br/> It has the following constraints: <li> It must be unique </li> <li> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, &#40; +_.- &#41;. The local-part may not start or end with any special characters. </li>  <li> This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. </li> <li> The domain name must: <ol><li>End with a domain label at least 2 characters long</li><li>Have each domain label start and end with alphanumeric characters</li><li>Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.</li></ol></li> Valid Examples: <li>PeterJack+1190@example.com</li> <li>a1+be.d@example1.com</li> Invalid Examples: <li>peter jack@example.com</li> <li>-peterjack@example.com</li> |
+| **ADDRESS**             | a/                   | ADDRESS represents the home address of an employee. <br/> It can take on any value!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **TAG**                 | t/                   | TAG represents a tag of an employee. This field is optional and is not restrictive in usage. <br/> For example, it can be used to indicate an employee's position in the department or simple remarks about the employee. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **DEPARTMENT_NAME**     | n/                   | DEPARTMENT_NAME is the unique identifier for a department. It is used when creating and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **OLD_DEPARTMENT_NAME** | NA                   | OLD_DEPARTMENT_NAME represents the original department name before editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **NEW_DEPARTMENT_NAME** | n/                   | NEW_DEPARTMENT_NAME represents the new department name when editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **DATE**                | d/                   | DATE represents the date of the leave. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br> |
+| **START_DATE**          | s/                   | START_DATE represents the start of a range of days where leave is taken. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **END_DATE**            | e/                   | START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the END_DATE cannot be earlier than the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br/> |
 
 
-[//]: # (Talk about their constraints, type, format, etc)
 
-## 6.3. Command Format
+(Talk about their constraints, type, format, etc)
+
+## 3.3. Command Format
 
 [//]: # (Explain the general command format: command, prefixes, placeholders)
 
@@ -226,11 +242,11 @@ It consists of:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Commands
+# 5. Commands
 
-## 7.1. Employee Commands
+## 5.1. Employee Commands
 
-### 7.1.1. Adding an employee: `add`
+### 5.1.1. Adding an employee: `add`
 
 Adds an employee to SudoHR.
 
@@ -339,7 +355,8 @@ Examples:
 
 ### 7.2.3. Find departments by name: `fdep`
 
-Finds departments whose names contain any of the given keywords.
+Finds departments whose names contain any of the given keywords. Displays the departments found in the department
+window.
 
 Format: `fdep KEYWORD [MORE_KEYWORDS]`
 
@@ -372,8 +389,8 @@ Format: `ldep`
 
 ### 7.2.6. Add employee to a department: `aetd`
 
-Adds an employee to a department using his ID. After adding, the department window will show the department being added
-to and the employee window will contain all the employees in that department.
+Adds an employee to a department using his ID. Displays the department that the employee was added to, and also
+displays all employees in that department.
 
 Format: `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -387,8 +404,8 @@ Examples:
 
 ### 7.2.7. Remove employee from a department: `refd`
 
-Removes an employee from a department using his ID. After removing, the department window will show the department
-being removed from and the employee window will contain all the employees in that department.
+Removes an employee from a department using his ID. Displays the department that the employee was removed from, and also
+displays all employees in that department.
 
 Format: `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -398,7 +415,7 @@ Examples:
 
 ### 7.2.8. List an employee's departments: `led`
 
-List all departments and employee is in.
+List all departments an employee is in.
 
 Format: `led eid/EMPLOYEE_ID`
 
@@ -434,7 +451,7 @@ Examples:
 
 ### 7.3.1. Adding a leave: `aetl`
 
-Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave view.
+Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave window.
 
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
@@ -454,7 +471,7 @@ Examples:
 
 ### 7.3.2. Adding all leaves in range : `aelr`
 
-Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave view.
+Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave window.
 
 Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
@@ -476,7 +493,7 @@ Examples:
 
 
 ### 7.3.3. Deleting a leave: `defl`
-Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave view.
+Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave window.
 
 Format: `defl eid/EMPLOYEE_ID d/DATE`
 
@@ -491,14 +508,19 @@ The input start and end dates must be of the form YYYY-MM-DD
 
 Lists all employees that are on leave on a given date.
 
-Format: `leol d/DATE`
+Format: `leol DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-No employee information will be shown if no employees take leave on the specific day</div>
+No employee information will be shown if no employees take leave on the specific day
+</div>
+
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The input date must be of the form YYYY-MM-DD
+</div>
 
 Examples:
-* `leol d/2023-03-05`
-* `leol d/2023-03-08`
+* `leol 2023-03-05`
+* `leol 2023-03-08`
 
 ### 7.3.5. Listing all leave dates: `llve`
 
@@ -585,7 +607,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **Add employee to leave**                                | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
 | **Add employee to range of leaves**                      | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
 | **Remove an employee from leave**                        | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
-| **Listing all employees on leave for a given date**      | `leol d/DATE`                                                                     |
+| **Listing all employees on leave for a given date**      | `leol DATE`                                                                     |
 | **Listing all days where employees are on leave**        | `llve`                                                                            |
 | **Get help for SudoHR**                                  | `help`                                                                            |
 | **Show all employees, departments and leaves in SudoHR** | `sa`                                                                              |

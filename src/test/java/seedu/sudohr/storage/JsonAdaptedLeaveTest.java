@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.leave.LeaveDate;
 
@@ -30,7 +31,7 @@ public class JsonAdaptedLeaveTest {
     @Test
     public void toModelType_invalidLeaveDate_throwsIllegalValueException() {
         JsonAdaptedLeave leave = new JsonAdaptedLeave(INVALID_LEAVE_DATE, VALID_EMPLOYEES);
-        String expectedMessage = LeaveDate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Messages.MESSAGE_INVALID_DATE_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, leave::toModelType);
     }
 
