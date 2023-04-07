@@ -146,7 +146,7 @@ public class PilotFlightLinkCommandFactory<T extends Command>
                 pilotFlyingIdOptional,
                 FlightPilotType.PILOT_FLYING,
                 pilots
-        ) || addTarget(
+        ) | addTarget(
                 PILOT_MONITORING_PREFIX,
                 pilotMonitoringIdOptional,
                 FlightPilotType.PILOT_MONITORING,

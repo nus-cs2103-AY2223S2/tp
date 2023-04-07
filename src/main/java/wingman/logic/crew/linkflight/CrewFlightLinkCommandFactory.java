@@ -40,7 +40,9 @@ public class CrewFlightLinkCommandFactory<T extends Command>
                     + "/tr for the Trainees. \nCommand format: %s";
     private static final String COMMAND_FORMAT =
             "%s /fl flight-index /csd crew-index /sfa crew-index /fa "
-                    + "crew-index /tr crew-index";
+                    + "crew-index /tr crew-index\n"
+                    + "/csd: Cabin Service Director, /sfa: Senior Flight "
+                    + "Attendant, /fa: Flight Attendant, /tr: Trainee";
 
     private final CrewFlightLinkFunction<T> linkFunction;
     private final String commandWord;
@@ -157,17 +159,17 @@ public class CrewFlightLinkCommandFactory<T extends Command>
                 cabinServiceDirectorIdOptional,
                 FlightCrewType.CABIN_SERVICE_DIRECTOR,
                 crews
-        ) || addTarget(
+        ) | addTarget(
                 SENIOR_FLIGHT_ATTENDANT_PREFIX,
                 seniorFlightAttendantIdOptional,
                 FlightCrewType.SENIOR_FLIGHT_ATTENDANT,
                 crews
-        ) || addTarget(
+        ) | addTarget(
                 FLIGHT_ATTENDANT_PREFIX,
                 flightAttendantIdOptional,
                 FlightCrewType.FLIGHT_ATTENDANT,
                 crews
-        ) || addTarget(
+        ) | addTarget(
                 TRAINEE_PREFIX,
                 traineeIdOptional,
                 FlightCrewType.TRAINEE,

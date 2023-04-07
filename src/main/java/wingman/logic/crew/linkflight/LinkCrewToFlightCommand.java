@@ -17,10 +17,6 @@ import wingman.model.link.exceptions.LinkException;
  * The command that links a crew to a flight
  */
 public class LinkCrewToFlightCommand implements Command {
-    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with ID %s can't be found.";
-    private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Linked %s to %s.";
 

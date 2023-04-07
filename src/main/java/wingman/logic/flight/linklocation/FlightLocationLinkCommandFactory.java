@@ -110,7 +110,7 @@ public class FlightLocationLinkCommandFactory<T extends Command>
 
     @Override
     public String getCommandWord() {
-        return LINK_COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -139,11 +139,11 @@ public class FlightLocationLinkCommandFactory<T extends Command>
         Map<FlightLocationType, Location> locationMap = new HashMap<>();
 
         boolean hasLocation = addTarget(
-                LOCATION_ARRIVAL_PREFIX,
+                LOCATION_DEPARTURE_PREFIX,
                 locationDepartureIdOptional,
                 FlightLocationType.LOCATION_DEPARTURE,
                 locationMap
-        ) || addTarget(
+        ) | addTarget(
                 LOCATION_ARRIVAL_PREFIX,
                 locationArrivalIdOptional,
                 FlightLocationType.LOCATION_ARRIVAL,
