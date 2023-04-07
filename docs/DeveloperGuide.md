@@ -1505,7 +1505,7 @@ To illustrate this side-effect, we use an example of the `find` command. `find t
 
 <p style="text-align: center;">Figure XX: Result of the find command in figure XX </p>
 
-There could be another conflicting meaning of the command. In this case, `find t/javascript t/react` tries to find "numbers" or "cheese". but the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
+There could be another conflicting meaning of the command. In this case, instead of trying to find entries with either the tag `javascript` or `react`, the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
 **Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
    message is displayed in the Result Display.
