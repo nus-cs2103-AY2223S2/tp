@@ -2,6 +2,7 @@ package seedu.address.logic.commands.navigation;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,7 +34,7 @@ public class RelativeNavCommand extends NavCommand {
             } else if (navContext.getLayer() == NavLayer.MODULE) {
                 navigateToLecFromMod(model, navContext);
             } else {
-                throw new CommandException("Nothing to navigate to!");
+                throw new CommandException(NavCommand.MESSAGE_NAV_INVALID);
             }
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
@@ -46,7 +47,7 @@ public class RelativeNavCommand extends NavCommand {
         ModuleCode moduleCode = new ModuleCode(target);
 
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException("The module code provided is invalid!");
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         model.navigateToModFromRoot(moduleCode);
@@ -58,7 +59,7 @@ public class RelativeNavCommand extends NavCommand {
         LectureName lectureName = new LectureName(target);
 
         if (!model.hasLecture(moduleCode, lectureName)) {
-            throw new CommandException("The lecture name provided is invalid!");
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, moduleCode, lectureName));
         }
 
         model.navigateToLecFromMod(lectureName);

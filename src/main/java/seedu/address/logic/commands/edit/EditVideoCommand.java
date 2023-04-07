@@ -6,8 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_VIDEO_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,7 +28,10 @@ import seedu.address.model.video.VideoTimestamp;
  */
 public class EditVideoCommand extends EditCommand {
 
+    /** The message for when a {@code Video} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited video of lecture %s of module %s: %s";
+
+    /** The error message for when a duplicate {@code Video} is detected. */
     public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s.";
 
     private final ModuleCode moduleCode;
@@ -39,7 +40,7 @@ public class EditVideoCommand extends EditCommand {
     private final EditVideoDescriptor editVideoDescriptor;
 
     /**
-     * Creates an {@code EditVideoDescriptor} to edit the details of a video whose name is {@code videoName} in the
+     * Constructs an {@code EditVideoCommand} to edit the details of a video whose name is {@code videoName} in the
      * lecture whose name is {@code lectureName} in the module whose code is {@code moduleCode}.
      *
      * @param moduleCode The code of the module containing the lecture which contains the video.
@@ -62,41 +63,16 @@ public class EditVideoCommand extends EditCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
-        }
-
-        if (!model.hasLecture(moduleCode, lectureName)) {
-            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
-        }
-
-        if (!model.hasVideo(moduleCode, lectureName, videoName)) {
-            throw new CommandException(String.format(MESSAGE_VIDEO_DOES_NOT_EXIST, videoName, lectureName, moduleCode));
-        }
-
-        ReadOnlyModule module = model.getModule(moduleCode);
-        ReadOnlyLecture lecture = module.getLecture(lectureName);
-        Video videoToEdit = lecture.getVideo(videoName);
+        ReadOnlyModule module = getModuleContainingLecture(model);
+        ReadOnlyLecture lecture = getLectureContainingVideo(module);
+        Video videoToEdit = getVideoToEdit(lecture);
         Video editedVideo = createEditedVideo(videoToEdit);
 
-        if (!videoToEdit.isSameVideo(editedVideo) && lecture.hasVideo(editedVideo)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
-        }
+        validateVideoIsNotDuplicate(lecture, videoToEdit, editedVideo);
 
         model.setVideo(lecture, videoToEdit, editedVideo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo),
-                new VideoEditInfo(moduleCode, lectureName, videoToEdit, editedVideo));
-    }
 
-    private Video createEditedVideo(Video videoToEdit) {
-        requireNonNull(videoToEdit);
-
-        VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
-        boolean hasWatchedUpdated = editVideoDescriptor.hasWatched().orElse(videoToEdit.hasWatched());
-        VideoTimestamp updatedTimestamp = editVideoDescriptor.getTimestamp().orElse(videoToEdit.getTimestamp());
-        Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
-
-        return new Video(updatedName, hasWatchedUpdated, updatedTimestamp, updatedTags);
+        return createSuccessResult(videoToEdit, editedVideo);
     }
 
     @Override
@@ -117,17 +93,81 @@ public class EditVideoCommand extends EditCommand {
                 && editVideoDescriptor.equals(otherCommand.editVideoDescriptor);
     }
 
+    private ReadOnlyModule getModuleContainingLecture(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+        }
+
+        return model.getModule(moduleCode);
+    }
+
+    private ReadOnlyLecture getLectureContainingVideo(ReadOnlyModule module) throws CommandException {
+        requireNonNull(module);
+
+        if (!module.hasLecture(lectureName)) {
+            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
+        }
+
+        return module.getLecture(lectureName);
+    }
+
+    private Video getVideoToEdit(ReadOnlyLecture lecture) throws CommandException {
+        requireNonNull(lecture);
+
+        if (!lecture.hasVideo(videoName)) {
+            throw new CommandException(String.format(MESSAGE_VIDEO_DOES_NOT_EXIST, videoName, lectureName, moduleCode));
+        }
+
+        return lecture.getVideo(videoName);
+    }
+
+    private Video createEditedVideo(Video videoToEdit) {
+        requireNonNull(videoToEdit);
+
+        VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
+        boolean hasWatchedUpdated = editVideoDescriptor.hasWatched().orElse(videoToEdit.hasWatched());
+        VideoTimestamp updatedTimestamp = editVideoDescriptor.getTimestamp().orElse(videoToEdit.getTimestamp());
+        Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
+
+        return new Video(updatedName, hasWatchedUpdated, updatedTimestamp, updatedTags);
+    }
+
+    private void validateVideoIsNotDuplicate(ReadOnlyLecture lecture, Video videoToEdit, Video editedVideo)
+            throws CommandException {
+
+        requireAllNonNull(lecture, videoToEdit, editedVideo);
+
+        if (!videoToEdit.isSameVideo(editedVideo)
+                && lecture.hasVideo(editedVideo)) {
+
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
+        }
+    }
+
+    private CommandResult createSuccessResult(Video videoToEdit, Video editedVideo) {
+        requireAllNonNull(videoToEdit, editedVideo);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo),
+                new VideoEditInfo(moduleCode, lectureName, videoToEdit, editedVideo));
+    }
+
     /**
      * Stores the details to edit the video with.<p>
      * Each non-empty field value will replace the corresponding field value of the video.
      */
-    public static class EditVideoDescriptor {
+    public static class EditVideoDescriptor extends EditEntityDescriptor {
         private VideoName name;
         private Boolean hasWatched;
         private VideoTimestamp timestamp;
-        private Set<Tag> tags;
 
-        public EditVideoDescriptor() {}
+        /**
+         * Constructs an {@code EditVideoDescriptor}.
+         */
+        public EditVideoDescriptor() {
+            super();
+        }
 
         /**
          * Copy constructor.
@@ -135,19 +175,13 @@ public class EditVideoCommand extends EditCommand {
          * @param toCopy The {@code EditVideoDescriptor} to copy.
          */
         public EditVideoDescriptor(EditVideoDescriptor toCopy) {
+            super(toCopy);
+
+            requireNonNull(toCopy);
+
             setName(toCopy.name);
             setWatched(toCopy.hasWatched);
             setTimestamp(toCopy.timestamp);
-            setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         *
-         * @return True if at least one field is edited. Otherwise, false.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, hasWatched, timestamp, tags);
         }
 
         public Optional<VideoName> getName() {
@@ -174,26 +208,10 @@ public class EditVideoCommand extends EditCommand {
             this.timestamp = timestamp;
         }
 
-        /**
-         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
-         * {@code UnsupportedOperationException} if modification is attempted.<p>
-         *
-         * Else, returns an {@code Optional#empty()}.
-         *
-         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
-         *         {@code Optional#empty()}.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
-        }
-
-        /**
-         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
-         *
-         * @param newTags The new tags.
-         */
-        public void setTags(Set<Tag> newTags) {
-            this.tags = newTags == null ? null : new HashSet<>(newTags);
+        @Override
+        public boolean isAnyFieldEdited() {
+            return super.isAnyFieldEdited()
+                    || CollectionUtil.isAnyNonNull(name, hasWatched, timestamp);
         }
 
         @Override
@@ -208,10 +226,10 @@ public class EditVideoCommand extends EditCommand {
 
             EditVideoDescriptor descriptor = (EditVideoDescriptor) other;
 
-            return getName().equals(descriptor.getName())
+            return super.equals(other)
+                    && getName().equals(descriptor.getName())
                     && hasWatched().equals(descriptor.hasWatched())
-                    && getTimestamp().equals(descriptor.getTimestamp())
-                    && getTags().equals(descriptor.getTags());
+                    && getTimestamp().equals(descriptor.getTimestamp());
         }
     }
 }

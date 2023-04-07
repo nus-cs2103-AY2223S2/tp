@@ -3,8 +3,6 @@ package seedu.address.logic.commands.edit;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2040S;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CONTENT;
@@ -13,9 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
+import seedu.address.testutil.ObjectUtil;
 
 public class EditModuleDescriptorTest {
 
@@ -57,35 +57,19 @@ public class EditModuleDescriptorTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
-        EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(EDIT_MODULE_DESC_CS2103);
-        assertTrue(EDIT_MODULE_DESC_CS2103.equals(descriptorWithSameValues));
+        EditModuleDescriptor descriptor = CommandTestUtil.getEditModuleDescriptorCs2103();
 
-        // same object -> returns true
-        assertTrue(EDIT_MODULE_DESC_CS2103.equals(EDIT_MODULE_DESC_CS2103));
+        EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(descriptor);
 
-        // null -> returns false
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(null));
-
-        // different types -> returns false
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(1));
-
-        // different values -> returns false
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(EDIT_MODULE_DESC_CS2040S));
-
-        // different code -> returns false
-        EditModuleDescriptor editedCs2103 = new EditModuleDescriptorBuilder(EDIT_MODULE_DESC_CS2103)
+        EditModuleDescriptor descriptorWithDifferentCode = new EditModuleDescriptorBuilder(descriptor)
                 .withCode(VALID_MODULE_CODE_2040).build();
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(editedCs2103));
-
-        // different name -> returns false
-        editedCs2103 = new EditModuleDescriptorBuilder(EDIT_MODULE_DESC_CS2103)
+        EditModuleDescriptor descriptorWithDifferentName = new EditModuleDescriptorBuilder(descriptor)
                 .withName(VALID_MODULE_NAME_2040).build();
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(editedCs2103));
+        EditModuleDescriptor descriptorWithDifferentTags = new EditModuleDescriptorBuilder(descriptor)
+                .withTags(VALID_TAG_EASY).build();
 
-        // different tags -> returns false
-        editedCs2103 = new EditModuleDescriptorBuilder(EDIT_MODULE_DESC_CS2103).withTags(VALID_TAG_EASY).build();
-        assertFalse(EDIT_MODULE_DESC_CS2103.equals(editedCs2103));
+        ObjectUtil.testEquals(descriptor, descriptorWithSameValues, 1,
+                descriptorWithDifferentCode, descriptorWithDifferentName, descriptorWithDifferentTags);
     }
 
 }

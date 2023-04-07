@@ -52,8 +52,7 @@ public class MarkAsUnwatchedCommandParser implements Parser<MarkCommand> {
             }
 
         } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(pe.getMessage()));
         }
     }
 

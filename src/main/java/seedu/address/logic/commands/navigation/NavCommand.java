@@ -29,6 +29,7 @@ public abstract class NavCommand extends Command {
                     + "lecture_name] \n" + "Example: " + COMMAND_WORD + " /mod CS2040S /lec L1 \n";
 
     public static final String MESSAGE_NAV_SUCCESS = "You navigated to %s";
+    public static final String MESSAGE_NAV_INVALID = "Nothing to navigate to!";
 
     public static CommandResult getSuccessfulCommandResult(NavigationContext context, Model model) {
         return new CommandResult(NavCommand.getSuccessfulNavMessage(context), context.toString());

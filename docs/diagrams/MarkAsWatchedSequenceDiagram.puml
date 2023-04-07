@@ -1,0 +1,133 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ": LogicManager" LOGIC_COLOR
+participant ": TrackerParser" LOGIC_COLOR
+participant ": MarkAsWatchedCommandParser" LOGIC_COLOR
+participant "MultipleEventsParser" LOGIC_COLOR
+participant ": MarkAsWatchedCommand" LOGIC_COLOR
+participant "r: CommandResult" LOGIC_COLOR
+endbox
+
+box Model MODEL_COLOR_T1
+participant "m: Model" MODEL_COLOR
+participant "v: Video" MODEL_COLOR
+participant "w: Video" MODEL_COLOR
+end box
+
+-> ": LogicManager": parseComamnd("mark Vid 1\n/mod CS2040S /lec Week 1")
+
+activate ": LogicManager"
+
+": LogicManager" -> ": TrackerParser": parse("Vid 1 /mod\nCS2040S /lec Week 1")
+
+activate ": TrackerParser"
+
+create ": MarkAsWatchedCommandParser"
+": TrackerParser" -> ": MarkAsWatchedCommandParser"
+
+": MarkAsWatchedCommandParser" -> "MultipleEventsParser": parseVideoNames("Vid 1")
+activate "MultipleEventsParser"
+
+": MarkAsWatchedCommandParser" <-- "MultipleEventsParser": VideoName[]
+deactivate "MultipleEventsParser"
+
+activate ": MarkAsWatchedCommandParser"
+
+create ": MarkAsWatchedCommand"
+": MarkAsWatchedCommandParser" -> ": MarkAsWatchedCommand"
+
+activate ": MarkAsWatchedCommand"
+
+": MarkAsWatchedCommandParser" <-- ": MarkAsWatchedCommand"
+
+deactivate ": MarkAsWatchedCommand"
+
+": TrackerParser" <-- ": MarkAsWatchedCommandParser"
+
+deactivate ": MarkAsWatchedCommandParser"
+
+": LogicManager" <-- ": TrackerParser"
+
+deactivate ": TrackerParser"
+
+": LogicManager" -> ": MarkAsWatchedCommand": execute(Model m)
+
+activate ": MarkAsWatchedCommand"
+
+loop for each video specified
+
+": MarkAsWatchedCommand" -> "m: Model": hasVideo(ModuleCode, \nLectureName, VideoName)
+
+activate "m: Model"
+
+": MarkAsWatchedCommand" <-- "m: Model": true
+
+deactivate "m: Model"
+
+": MarkAsWatchedCommand" -> "m: Model": getVideo(ModuleCode, \nLectureName, VideoName)
+
+note right
+implementation details of how the model
+gets the video are not included
+end note
+
+activate "m: Model"
+
+": MarkAsWatchedCommand" <-- "m: Model": v
+
+deactivate "m: Model"
+
+": MarkAsWatchedCommand" -> "v: Video": hasWatched()
+
+activate "v: Video"
+
+": MarkAsWatchedCommand" <-- "v: Video": false
+
+deactivate "v: Video"
+
+create "w: Video"
+": MarkAsWatchedCommand" -> "w: Video"
+
+activate "w: Video"
+
+": MarkAsWatchedCommand" <-- "w: Video"
+
+deactivate "w: Video"
+
+": MarkAsWatchedCommand" -> "m: Model": setVideo(Video v, Video w)
+
+activate "m: Model"
+
+": MarkAsWatchedCommand" <-- "m: Model"
+
+deactivate "m: Model"
+
+end
+
+": MarkAsWatchedCommand" -> "MultipleEventsParser": convertArrayListToString(ArrayList)
+activate "MultipleEventsParser"
+
+": MarkAsWatchedCommand" <-- "MultipleEventsParser"
+deactivate "MultipleEventsParser"
+
+
+create "r: CommandResult"
+": MarkAsWatchedCommand" -> "r: CommandResult": CommandResult()
+
+activate "r: CommandResult"
+
+": MarkAsWatchedCommand" <-- "r: CommandResult": r
+
+deactivate "r: CommandResult"
+
+": LogicManager" <-- ": MarkAsWatchedCommand": r
+
+deactivate ": MarkAsWatchedCommand"
+
+<-- ": LogicManager"
+
+deactivate ": LogicManager"
+
+@enduml
