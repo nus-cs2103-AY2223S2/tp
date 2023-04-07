@@ -34,6 +34,10 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
         return Optional.ofNullable(taskNameKeywords);
     }
 
+    /**
+     * Returns true if any of the fields in the {@code Task} object are present or not.
+     * @return true if any of the fields in the {@code Task} object are present or not.
+     */
     public boolean isAnyFieldPresent() {
         return isAnyFieldNonNull() || taskNameKeywords != null;
     }

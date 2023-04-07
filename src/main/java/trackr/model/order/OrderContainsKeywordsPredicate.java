@@ -38,6 +38,10 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         return Optional.ofNullable(orderNameKeywords);
     }
 
+    /**
+     * Returns true if any of the fields in the {@code Order} object are present or not.
+     * @return true if any of the fields in the {@code Order} object are present or not.
+     */
     public boolean isAnyFieldPresent() {
         return isAnyFieldNonNull() || orderNameKeywords != null;
     }

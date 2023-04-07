@@ -59,20 +59,48 @@ public interface Model {
 
     // =================================================== Item =======================================================
 
+    /**
+     * Sets the item list for the specified {@code ModelEnum}.
+     */
     <T extends Item> void setItemList(ModelEnum modelEnum);
 
+    /**
+     * Returns an unmodifiable view of the item list for the specified {@code ModelEnum}.
+     * @return an unmodifiable view of the item list for the specified {@code ModelEnum}.
+     */
     ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum);
 
+    /**
+     * Returns true if the specified item exists in the item list for the specified {@code ModelEnum}.
+     * @return true if the specified item exists in the item list for the specified {@code ModelEnum}, false otherwise.
+     */
     <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
 
+    /**
+     * Deletes the specified item from the item list for the specified {@code ModelEnum}.
+     */
     <T extends Item> void deleteItem(T item, ModelEnum modelEnum);
 
+    /**
+     * Adds the specified item to the item list for the specified {@code ModelEnum}.
+     */
     <T extends Item> void addItem(T item, ModelEnum modelEnum);
 
+    /**
+     * Replaces the specified item in the item list for the specified {@code ModelEnum} with the edited item.
+     */
     <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum);
 
+    /**
+     * Returns an {@code ObservableList} of items that have been filtered based on the specified criteria for the
+     * specified {@code ModelEnum}.
+     */
     ObservableList<? extends Item> getFilteredItemList(ModelEnum modelEnum);
 
+    /**
+     * Updates the filtered list of items according to the given {@code predicate}.
+     * @throws NullPointerException If {@code predicate} or {@code modelEnum} is {@code null}.
+     */
     void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
 
 
