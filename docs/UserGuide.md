@@ -30,15 +30,9 @@ easier way to set up proper communication channels.
 2. Download the latest `bookface.jar` from [here](https://github.com/AY2223S2-CS2103-F11-4/tp/releases).
 3. Place `bookface.jar` file in the folder you would like to use as the *home directory*.
 4. Ensure that the *home directory* is empty and does not contain folder such as 'data'.
-5. Run the application. This can be done by either executing the `jar` file,
-   or opening a command terminal, `cd` into the *home directory*, and running the
-   `java -jar bookface.jar` command. The following GUI will appear upon first
-   use of the application.
-
-![GUI upon first use](images/Ui.png)
-
-6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below.
-   Experienced users can delete the sample data and proceed with regular usage.
+5. Run the application. This can be done by either executing the `jar` file, or opening a command terminal, `cd` into the *home directory*, and running the `java -jar bookface.jar` command. The following GUI will appear upon first use of the application.
+   ![GUI upon first use](images/Ui.png)
+6. The application is initially loaded with sample data for new users to try out the [features](#features) listed below. Experienced users can delete the sample data and proceed with regular usage.
 
 [Back to top](#top)
 
