@@ -1806,6 +1806,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+**Use Case: Clear all Modules**
+**MSS**
+1. User requests to clear all modules
+2. Le Tracker clears all modules
+
 ### Non-Functional Requirements
 
 Usability:
