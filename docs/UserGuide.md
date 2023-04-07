@@ -318,7 +318,7 @@ _Ez-Schedule_ is composed of the following components, which are numbered for ea
 ![gui.png](images/gui.png)
 
 <h3 id="command-box">Command Box</h3>
-![command-box.png](images/command-box.png)
+![command-box-gui.png](images/command-box-gui.png)
 
 This component enables you to type the command in the command box and execute it by pressing Enter.  
 For example, typing `help` and pressing Enter will open the help window.
@@ -328,7 +328,7 @@ For example, typing `help` and pressing Enter will open the help window.
 
 
 <h3 id="response-box">Response Box</h3>
-![response-box.png](images/response-box.png)
+![response-box-gui.png](images/response-box-gui.png)
 
 This component displays the feedback of the command you entered into the command box.
 
@@ -353,7 +353,7 @@ Events are displayed in chronological order.
 
 
 <h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
-![upcoming-events.png](images/upcoming-events.png)
+![upcoming-events-gui.png](images/upcoming-events-gui.png)
 
 This component displays both ongoing (if you have not started on them yet) and upcoming events that you have.
 
