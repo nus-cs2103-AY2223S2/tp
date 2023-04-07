@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -17,25 +19,70 @@ PetPal uses Java 11, and can be run on most operating systems that supports Java
 --------------------------------------------------------------------------------------------------------------------
 
 ## About the Developer Guide
-This developer guide is meant for developers interested in contributing to PetPal, and serves as a guide for them to
-easily setup and get started with PetPal.
-
-The developer guide details the overall design structure of PetPal and explains the various design decisions that led
-to how various features were implemented. The Design section makes use of various UML diagrams which were created using
-[PlantUML](https://plantuml.com/)
 
 ### Objectives
 This guide is targeted towards potential developers that would want to contribute to the open-source project - PetPal.
-This developer guide serves as a way for them to hopefully be able to learn about the overall design architecture of PetPal and
-the current and proposed features, detailing the design considerations and how it is implemented/going to be implemented
 
-###
+This developer guide serves as a way for them to hopefully be able to learn about the overall design architecture of PetPal and
+the current and proposed features, detailing the design considerations and how it is implemented/going to be implemented.
+
+The Design section makes use of various UML diagrams which were created using [PlantUML](https://plantuml.com/)
+
+### Instructions for use
+
+#### General formatting conventions
+* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
+* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
+* Text in `code snippets such as this` are used to show inputs and their format.
+
+<div markdown="block" class="alert alert-block alert-info">
+
+* :white_check_mark: **Input Shortcut:**
+  Shortened forms of commands which can help increase your efficiency in using PetPal
+</div>
+
+<div markdown="block" class="alert alert-block alert-success">
+
+* :bulb: **Note:**
+  Information that might be useful to know to enhance your PetPal experience, might not be compulsory to know
+</div>
+
+<div markdown="block" class="alert alert-block alert-danger">
+
+* :heavy_exclamation_mark: **Caution:**
+  Important information to note which might negatively impact your experience in using PetPal as it might cause fatal
+  errors
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+* :information_source: **Information**
+
+Information that you need to know
+
+</div>
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+## **Getting started**
+After [setting up](#setting-up), double-click the jar file to launch PetPal.
+
+### Getting Familiar With Your User Interface
+
+![Ui Breakdown](images/UI/UiHighlighted.png)
+
+1. **Pet Cards**: Contain all the information of a pet. (Highlighted in red)
+2. **Command Line**: Type in your commands here. (Highlighted in yellow)
+3. **Result Display**: The result of your command execution appears here. (Highlighted in blue)
+4. **Help Button**: Provides the URL of this user guide.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,6 +218,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.PetPal.commons` package.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -405,7 +454,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoPetPal()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite—it calls `Model#redoPetPal()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `petPalStateList.size() - 1`, pointing to the latest address book state, then there are no undone PetPal states to restore. The `redo` command uses `Model#canRedoPetPal()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -436,7 +485,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the pet being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -504,6 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | poor staff          | keep track of hours worked             | keep track of earnings                                                     |
 | `*`      | business owner      | keep track of money owed by pet owners |                                                                            |
 
+[Return to Table of Contents](#table-of-contents)
 
 ### Use cases
 
@@ -578,6 +629,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -636,9 +689,13 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases … }_
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
+[Return to Table of Contents](#table-of-contents)
