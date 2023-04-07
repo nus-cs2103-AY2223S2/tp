@@ -8,9 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Income {
-    public static final String MESSAGE_CONSTRAINTS = "Incomes can take any integer values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Incomes can take any integer values, and it should not be blank and less than 2^64";
 
-    public final Double income;
+    public final Long income;
 
     /**
      * Constructs an {@code Address}.
@@ -20,7 +21,7 @@ public class Income {
     public Income(String income) {
         requireNonNull(income);
         checkArgument(isValidIncome(income), MESSAGE_CONSTRAINTS);
-        this.income = Double.parseDouble(income);
+        this.income = Long.parseLong(income);
     }
 
     /**
@@ -28,7 +29,7 @@ public class Income {
      */
     public static boolean isValidIncome(String test) {
         try {
-            Double income = Double.parseDouble(test);
+            Long income = Long.parseLong(test);
             return income >= 0;
         } catch (Exception e) {
             return false;
