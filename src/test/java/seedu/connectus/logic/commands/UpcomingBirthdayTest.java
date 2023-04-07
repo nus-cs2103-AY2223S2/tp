@@ -2,7 +2,10 @@ package seedu.connectus.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.connectus.commons.core.Messages.MESSAGE_PERSONS_UPCOMING_BIRTHDAY;
+import static seedu.connectus.testutil.TypicalPersons.ALICE;
 import static seedu.connectus.testutil.TypicalPersons.BENSON;
+import static seedu.connectus.testutil.TypicalPersons.CARL;
+import static seedu.connectus.testutil.TypicalPersons.DANIEL;
 import static seedu.connectus.testutil.TypicalPersons.getTypicalConnectUs;
 
 import java.time.LocalDate;
@@ -17,8 +20,6 @@ import seedu.connectus.model.UserPrefs;
 import seedu.connectus.model.person.Birthday;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.RecentBirthdayPredicate;
-
-
 
 public class UpcomingBirthdayTest {
 
@@ -42,6 +43,23 @@ public class UpcomingBirthdayTest {
         benson.setBirthday(new Birthday(LocalDate.now().plusDays(100).withYear(2017)));
 
         assertWithPeople(List.of(benson), List.of());
+    }
+
+    @Test
+    public void execute_multiple_upcoming() {
+        Person benson = BENSON;
+        benson.setBirthday(new Birthday(LocalDate.now().plusDays(30).withYear(2003)));
+
+        // doesn't have a birthday in the app
+        Person alice = ALICE;
+
+        Person carl = CARL;
+        carl.setBirthday(new Birthday(LocalDate.now().plusDays(1).withYear(2017)));
+
+        Person daniel = DANIEL;
+        daniel.setBirthday(new Birthday(LocalDate.now().plusDays(90).withYear(2004)));
+
+        assertWithPeople(List.of(alice, benson, carl, daniel), List.of(benson, carl));
     }
 
     private void assertWithPeople(
