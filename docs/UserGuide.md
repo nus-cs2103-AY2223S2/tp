@@ -139,7 +139,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation:
 Caution:<br>
 
-* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
 </div>
 
 ### 3. Viewing student contacts as a list: `list`
@@ -396,10 +396,6 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
-</div>
-
 
 ### 18. Import the student data in: `import`
 
@@ -424,10 +420,6 @@ Examples:
 * For Windows users, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
 
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
 
@@ -466,9 +458,6 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
-</div>
 
 ### Saving the data
 
