@@ -60,7 +60,7 @@ public class ExportCommandTest {
 
     @Test
     public void execute_exportEmptyCsv_success() throws CommandException, IOException {
-        Path filePath = testFolder.resolve("TempDengueHotspotTracker.csv");
+        Path filePath = testFolder.resolve("TempEmptyDengueHotspotTracker.csv");
         Model model = new ModelManager(new DengueHotspotTracker(), new UserPrefs());
         Model expectedModel = new ModelManager(new DengueHotspotTracker(), new UserPrefs());
 
