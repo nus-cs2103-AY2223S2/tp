@@ -17,7 +17,4 @@ public class Messages {
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing arguments! \n%1$s";
 
 
-    public static final String MESSAGE_MISSING_INDEX = "Missing an index! \n%1$s";
-    public static final String MESSAGE_MISSING_ARGUMENTS = "Missing arguments! \n%1$s";
-
 }
