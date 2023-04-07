@@ -1,53 +1,73 @@
 @startuml
+
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model as PackageModel <<Rectangle>>{
-Class "<<interface>>\nReadOnlyMasterDeck" as ReadOnlyMasterDeck
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class MasterDeck
-Class ModelManager
-Class UserPrefs
+Package "Model" as PackageModel <<Rectangle>> {
+    Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nReadOnlyMasterDeck" as ReadOnlyMasterDeck
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<enumeration>>\nTagName" as TagName
 
-Class UniqueCardList
-Class UniqueDeckList
-Class Review
-Class Card
-Class Question
-Class Answer
-Class Tag
-Class Deck
+    Class ModelManager {
+        -selectedDeck: Deck
+    }
+
+    Class MasterDeck
+    Class UserPrefs
+
+    Package "Card" as PackageCard <<Rectangle>> {
+        Class UniqueCardList
+        Class Card
+        Class Question
+        Class Answer
+        Class Tag
+    }
+
+    Package "Deck" as PackageDeck <<Rectangle>> {
+       Class UniqueDeckList
+       Class Deck
+    }
+
+    Class Review
 
 }
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-MasterDeck .up.|> ReadOnlyMasterDeck
+Model .l.> ReadOnlyUserPrefs
+Model .r.> ReadOnlyMasterDeck
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyMasterDeck
-ModelManager -down-> "1" MasterDeck
-ModelManager -right-> "1" UserPrefs
-ModelManager -left-> "0..1" Review
+
+MasterDeck .up.|> ReadOnlyMasterDeck
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-MasterDeck *--> "1" UniqueCardList
+ModelManager -l-> "1" UserPrefs
+ModelManager -r-> "1" MasterDeck
+ModelManager -down-> "0..1" Review
+
 MasterDeck *--> "1" UniqueDeckList
-UniqueCardList --> "~* all" Card
-UniqueDeckList -right-> "~* all" Deck
+MasterDeck *---> "1" UniqueCardList
+
+UniqueCardList o--> "~* all" Card
+UniqueDeckList o-l-> "~* all" Deck
+
 Card *--> "1" Question
 Card *--> "1" Answer
 Card --> "0..1" Tag
-Card -up-> "1" Deck
+Card -r> "1" Deck
+Tag --> TagName
 
+'Force position
+Question -right[hidden]- Answer
+Answer -right[hidden]- Tag
 
-ModelManager --->"~* filtered" Card
-ModelManager --> "0..1 selected" Deck
+ModelManager -->"~* filtered" Card
 ModelManager -->"~* filtered" Deck
 
 @enduml
