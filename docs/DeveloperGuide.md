@@ -50,7 +50,7 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img src="images/ArchitectureDiagram.png" width="341px">
+<img class="diagram" src="images/ArchitectureDiagram.png" width="341px">
 
 <div style="page-break-after: always;"></div>
 #### Main components of the architecture
@@ -77,7 +77,7 @@ The rest of the App consists of four components.
 The following _Sequence Diagram_ shows how the different components interact with each other for the 
 scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="539px">
+<img class="diagram" src="images/ArchitectureSequenceDiagram.png" width="539px">
 
 Each of the four main components as shown in the diagram above,
 * defines its API in an `interface` with the same name as the Component.
@@ -87,7 +87,7 @@ Each of the four main components as shown in the diagram above,
 For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class (in order to prevent external components being coupled to the implementation of a component) as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300px">
+<img class="diagram" src="images/ComponentManagers.png" width="300px">
 
 The following sections will give more details on each component.
 
@@ -96,7 +96,7 @@ The following sections will give more details on each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/Ui.java)
 
-<img src="images/UiClassDiagram.png" width="650px">
+<img class="diagram" src="images/UiClassDiagram.png" width="650px">
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `RecipeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -115,7 +115,7 @@ The **API** of this component is specified in [`Logic.java`](https://github.com/
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="500"/>
+<img class="diagram" src="images/LogicClassDiagram.png" width="500"/>
 
 How the `Logic` component works:
 
@@ -139,7 +139,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="550"/>
+<img class="diagram" src="images/ParserClasses.png" width="550"/>
 
 <div style="page-break-after: always;"></div>
 How the parsing works:
@@ -155,7 +155,7 @@ How the parsing works:
 
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="500" />
+<img class="diagram" src="images/ModelClassDiagram.png" width="500" />
 
 The `Model` component,
 
@@ -184,7 +184,7 @@ This, however is highly complex and adds additional dependencies,
 which may in turn introduce more vulnerabilities or points of failure. As such, its implementation is a proposed
 extension feature to this project.<br/><br/>
 
-<img src="images/BetterModelClassDiagram.png" width="500" />
+<img class="diagram" src="images/BetterModelClassDiagram.png" width="500" />
 
 </div>
 
@@ -195,9 +195,9 @@ The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 **Structure:**
-<img src="images/StorageClassDiagram.png" width="794" />
+<img class="diagram" src="images/StorageClassDiagram.png" width="794" />
 
-<img src="images/JsonAdaptersDiagram.png" width="1089" />
+<img class="diagram" src="images/JsonAdaptersDiagram.png" width="1089" />
 
 **The `Storage` component:**
 
@@ -282,7 +282,7 @@ e.g. their name, tags, or ingredients.
 The following sequence diagram illustrates how the different components interact with each other
 in the execution of a `find tag italian indian` command.
 
-<img src="images/FindSequenceDiagram.png" width="1128" />
+<img class="diagram" src="images/FindSequenceDiagram.png" width="1128" />
 
 #### Implementation
 As with all commands, the find command goes through the standard command execution pipeline.
@@ -304,15 +304,10 @@ The use of generic types in the above predicates allows it to be implemented ind
 of the property, as long as the relevant getters are supplied.
 
 
-### Feature: Substitution
+### Feature: Ingredient Substitutions
 
 #### Overview
-
 The `sub` command allows the user to search for commonly used substitutions for ingredients.
-The following sequence of diagram illustrates how the different components interact with each other
-in the execution of a `sub soy sauce` command.
-
-<img src ="images/SubSequenceDiagram.png" width="1128" />
 
 #### Implementation
 The sub command likewise goes through the standard command execution pipeline.
@@ -320,8 +315,9 @@ The sub command likewise goes through the standard command execution pipeline.
 In `SubCommandParser`, we determine whether the ingredient defined by the user to be searched up for substitutes 
 is valid using the regex for ingredient names that was previously defined.
 
-In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions
-and then queried in every recipe within the recipe book. 
+In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions. 
+This preloaded list is stored within SubstitutionsUtil and accessed through a getter from the recipe book.
+Subsequently, the same ingredient is then queried in every recipe within the recipe book. 
 
 Should the ingredient be found in the preloaded list, the corresponding substitutions will be added to the list of
 substitutes to be returned to user. Otherwise, should the ingredient be found in any recipe in the recipe book, should 
@@ -536,7 +532,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### **Use case: Clear recipe book**
+#### **Use case: Clear recipe book**  
+
+**User Acceptance Testing**  
+Test Case 1:  
+Description: Verify recipe pop up card appears when prompted.  
+Preconditions: User is on the default MainWindow page.  
+Test Steps:
+   1. Click on a Recipe Card once.
+   2. Press 'P' on the keyboard.  
+
+Expected Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.  
+Actual Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.   
+Status: `Accepted`
+
+Test Case 2:  
+Description: Verify add form opens properly when prompted.   
+Preconditions: User is on the default Main Window page.  
+Test Steps:
+   1. Type "addf" in the command box and enter.
+
+Expected Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right. 
+Actual Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.  
+Status: `Accepted`
+
+Test Case 3:  
+Description: Verify add form saves the newly added recipe properly.  
+Preconditions: User is on the add recipe form.  
+Test Steps:
+   1. Fill up the form with a sample recipe given in the user guide.
+   2. Click 'Save' at the bottom of the form to save and exit the form. 
+   3. Scroll to the bottom of the recipe list and click on the newly added recipe. 
+   4. Press the 'P' key to view its details. 
+
+Expected Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
+Actual Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
+Status: `Accepted`
+
+Test Case 4:  
+Description: Verify edit form displays correctly when prompted. 
+Preconditions: User is on the default Main Window page.   
+Test Steps:
+   1. Hover over or click a recipe card.
+   2. Press the 'F' key on the keyboard.
+
+Expected Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right. 
+Actual Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.   
+Status: `Accepted`
+
+Test Case 5:  
+Description: Verify edit form saves the edited recipe properly.
+Preconditions: User is on edit recipe form.   
+Test Steps:
+   1. Edit the any of the fields in the form, using the format provided in the user guide as reference. 
+   2. Click the `Save` button at the bottom right of the form. 
+   3. Scroll to the bottom of the recipe list and click on the edited recipe.
+   4. Press the 'P' key to view its details. 
+
+Expected Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.
+Actual Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.  
+Status: `Accepted`
 
 **MSS**
 
@@ -592,19 +647,17 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
+    1. Download the jar file and copy into an empty folder.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
 
-    1. Download the jar file and copy into an empty folder
-
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.
-
-1. Saving window preferences
-
+2. Saving window preferences
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
+3. Shutdown
+   1. When the app is open, type `exit` into the command bar and press "enter".<br>
+      Expected: The app closes
 
 ### Saving data
 

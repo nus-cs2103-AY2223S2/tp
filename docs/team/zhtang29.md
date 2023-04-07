@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: 
 * **Substitution** ([\#196]()) 
-  * What id does: Allows users to search for ingredient substitutions for any ingredient in their recipe
+  * What it does: Allows users to search for ingredient substitutions for any ingredient in their recipe
   * Justification: Enables users to find replacements for missing ingredients that they may be lacking while cooking
   * Highlights:
     * Implemented a preloaded list of popular condiments with their common substitutes
@@ -29,10 +29,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add` [\28](), `edit` [\#179](), `addf` [\#179](), `sub`[#201]()
+    * Added documentation for the features `add` [\28](), `edit` [\#179](), `addf` [\#179](), `find`[\#179]() and sub`[#201]()
+    * Consistently refine additional tips and comments for all features
+    * Add introduction and purpose of UG 
+    * Ensure outgoing tone is consistent throughout UG
     * Added import/export instructions [\#179]()
     * Formatted and updated User Guide to reflect Keyboard Shortcuts
     * Added Keyboard Shortcuts summary table
+    * Added glossary of tech jargon terms
     
   * Developer Guide:
     * Added user stories table
