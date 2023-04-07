@@ -4,8 +4,16 @@ title: Vigneshwar Hariharan's Project Portfolio Page
 ---
 
 ### Docédex
+{:.no_toc}
 
-Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
+Docedex is a **desktop application** built for **medical administrative assistants**
+to manage doctors and patients within clinics.
+
+Here's a **quick snapshot** of how Docedex can help you
+streamline your hospital management processes.
+- Store and edit information about your patients and doctors
+- Track the status of your patients and doctors
+- Assign patients to doctors upon triaging
 
 * Table of Contents
   {:toc}
@@ -29,6 +37,14 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 
 #### Contributions to the UG
 Here are my contributions to the UG.
+- Sections
+  - Created the template for [User Guide](../UserGuide.md)
+  - Added parameters section in the [glossary](../UserGuide.md#glossary) for ease of reference
+  - Added section on [features provided by Docedex](../UserGuide.md#features) and associated sub-sections
+  - Aided in development of [command summary](../UserGuide.md#command-summary).
+  - Created a [tutorial section](../UserGuide.md#docedex-tutorial--for-new-users-) for new users to get started with Docedex
+  - Created a [FAQ section](../UserGuide.md#faq) to address common user queries
+  - Created a [quick start](../UserGuide.md#quick-start) section to help users get started with Docedex
 
 
 
