@@ -243,7 +243,7 @@ The `add` command creates a new `Listing` in GoodMatch's Job Listing Management 
   `add t/TITLE d/DESCRIPTION [p/PLATFORM]... [a/APPLICANT]...`
 </div>
 
-What happens when a user use the `add` command.
+When a user use the `add` command:
 1. When a user tries to run an add command, the system executes several steps to add a new listing to the application. 
 2. The first step is to check if all the compulsory prefixes are present in the command and if the preamble is empty. 
 3. If the check passes, the system creates a new listing with attributes based on the prefixes. 
@@ -285,6 +285,55 @@ Please refer to the activity diagram below to see what happens when the user ent
   * Add a `XYZCommand` class into `src/main/java/seedu/address/logic/commands` to execute the parsed command from the step above.
   * Return the command result from the `XYZCommand` mentioned in the step above.
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
+
+### Autocomplete feature
+
+The autocomplete feature allows a user to cycle through suggested commands based on the partial command that is typed in the command box.
+
+To use it, a user has to type a partial command, then press TAB to cycle through a list of suggested commands that was generated based on the partial command.
+For example, when a user types `a` into the command box, `add`, `add_app`, and `add_plat` will be suggested and the user is able to cycle through them by pressing TAB.
+
+When a user types a partial command:
+1. Check if the user's input is already in the list of suggestions and is not equal to `add`.
+2. If the check passes, no new suggestions are generated.
+3. Else, a new list of suggestions is generated like so
+   1. Command suggestions are added from a list of possible commands.
+   2. Command usages are added based on the command suggestions from step (i).
+   3. The entire list is sorted based on the length of suggestion and returned.
+4. If there is at least 1 suggestion, the prompt "TAB to cycle through suggestions" will be made visible.
+
+When a user presses TAB:
+1. GoodMatch gets the text currently in the commandTextField and searches for it in a list of suggestions. 
+2. If the text is not found in the list of suggestions, the first suggestion is selected. 
+3. If the text is found in the list of suggestions, the next suggestion in the list is selected. 
+4. The selected suggestion is then set as the text in the commandTextField.
+5. The focus is set back to the commandTextField.
+6. The text cursor is positioned at the end of the suggestion.
+
+Please refer to the activity diagram below to see what happens when a user uses the autocomplete feature.
+
+<p>
+  <img src="images/AutocompleteActivityDiagram.png" />
+  <em>Activity Diagram for the autocomplete feature</em>
+</p>
+
+#### Feature Implementation details
+
+1. commandTextField is the text input field on the GUI for users to type their inputs in.
+2. Autocomplete is only done for commands at the moment and not for commonly used words.
+
+#### Design considerations
+
+1. This is an early version of the feature.
+2. Only commands are inside the word list and since the word list is small, we can afford to find for matches directly.
+3. There are plans on expanding this feature and improving on it as stated below.
+   1. Apply autocomplete to commonly used words in the job search industry. 
+      1. Searching for words cannot be done directly, due to slow performances issues.
+      2. Searching will be implemented using Tries for faster performance.
+      3. Commonly used words include "manager", "senior", "engineer"
+   2. Show suggested words and allow users to click to select desired word.
+      1. Better user experience for instances where user wants a long suggestion.
+      2. User is able to see at a glance whether the correct suggestion is generated rather than having to cycle through everything.
 
 ---
 
