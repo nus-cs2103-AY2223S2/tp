@@ -113,9 +113,6 @@ these different parts throughout this developer guide.
 <p style="text-align: center;">Table 1: Explanation of the different parts of InternBuddy's GUI</p>
 
 
-<br/>
-
-<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -847,8 +844,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-<div style="page-break-after: always;"></div>
-
 **Use Case: Edit an internship**
 
 **Main Success Story**
@@ -1002,6 +997,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
+<div style="page-break-after: always;"></div>
 
 **Use Case: Delete internships by fields**
 
@@ -1058,7 +1054,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-<div style="page-break-after: always;"></div>
 
 **Use case: Exit InternBuddy**
 
@@ -1579,14 +1574,22 @@ Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-fie
 message is displayed in the Result Display. Do refer to Figures 22 and 23 for an illustrated example.
 
 
-![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
+<p align="center">
+  <img src="images/images/dg-case-insensitive-add-before.png" width="500" />
+</p>
 
 <p style="text-align: center;">Figure 22: Adding a new entry with case-insensitive prefix</p>
 
-![CaseInsensitiveAddAfterExample](images/dg-case-insensitive-add-after.png)
+
+<p align="center">
+  <img src="images/images/images/dg-case-insensitive-add-after.png" width="500" />
+</p>
+
 
 <p style="text-align: center;">Figure 23: Result of the add command in figure 22</p>
 
+
+<div style="page-break-after: always;"></div>
 
 A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown in Figure 24. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
 
@@ -1602,6 +1605,8 @@ A possible implementation is to change the `findPrefixPosition()` method in `see
 This would address the above problem. For example, `find t/javascript t/react` should have the same result as `find T/javascript T/react`. This would remove the confusion as substrings such as `T/` cannot be entered in any of the fields. 
 
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 ### Inaccurate Error Message for Integer Overflow
 #### Problem
