@@ -102,17 +102,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteListing(Listing target) {
-        ListingBook currState = new ListingBook();
-        currState.setListings(listingBook.getListingList());
-        this.prevListingBookStates.add(currState);
+        commitListingBook();
         listingBook.removeListing(target);
     }
 
     @Override
     public void addListing(Listing listing) {
-        ListingBook currState = new ListingBook();
-        currState.setListings(listingBook.getListingList());
-        this.prevListingBookStates.add(currState);
+        commitListingBook();
         listingBook.addListing(listing);
         updateFilteredListingBook(PREDICATE_SHOW_ALL_LISTINGS);
     }
@@ -120,9 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void setListing(Listing target, Listing editedListing) {
         requireAllNonNull(target, editedListing);
-        ListingBook currState = new ListingBook();
-        currState.setListings(listingBook.getListingList());
-        this.prevListingBookStates.add(currState);
+        commitListingBook();
 
         listingBook.setListing(target, editedListing);
     }
@@ -142,6 +136,15 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPreviousState() {
         return !this.prevListingBookStates.isEmpty();
+    }
+
+    /**
+     * Saves the current listing book state into prevListingBookStats.
+     */
+    public void commitListingBook() {
+        ListingBook currState = new ListingBook();
+        currState.setListings(listingBook.getListingList());
+        this.prevListingBookStates.add(currState);
     }
 
     //=========== Filtered Listing List Accessors =============================================================
