@@ -33,6 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TAG_TOO_LONG = "abcdefghijklmnopqrstuvwxyz";
+    private static final String INVALID_TASK_NAME = "Do homework now__";
     private static final String INVALID_SCORE_LABEL = "Math_Paper";
     private static final String INVALID_SCORE_VALUE = "123";
     private static final String INVALID_SCORE_DATE = "20220309";
@@ -44,6 +45,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TASK_NAME = "Complete Exercise 1";
     private static final String VALID_SCORE_LABEL = "Math Paper";
     private static final String VALID_SCORE_VALUE = "63";
     private static final String VALID_SCORE_DATE = "2020-04-04";
@@ -258,6 +260,29 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTaskName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskName(null));
+    }
+
+    @Test
+    public void parseTaskName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskName(INVALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithoutWhitespace_returnsName() throws Exception {
+        Name expectedTaskName = new Name(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(VALID_TASK_NAME));
+    }
+
+    @Test
+    public void parseTaskName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String taskNameWithWhitespace = WHITESPACE + VALID_TASK_NAME + WHITESPACE;
+        Name expectedTaskName = new Name(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(taskNameWithWhitespace));
     }
 
     @Test
