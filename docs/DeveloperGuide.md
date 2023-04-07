@@ -286,11 +286,11 @@ The following is a description of the code execution flow
 1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
    The following table below depicts the consideration of inputs against the user's argument:
 
-   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent        |
-   | ------------ | ------------------- | -------------------- | ------------- |
-   | Yes          | No                  | No                   | Delete Module |
-   | Yes          | Yes                 | No                   | DeleteLecture |
-   | Yes          | Yes                 | Yes                  | DeleteVideo   |
+   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent         |
+   | ------------ | ------------------- |----------------| ------------- |
+   | Yes          | No                  | No                   | Delete Module  |
+   | Yes          | Yes                 | No                   | Delete Lecture |
+   | Yes          | Yes                 | Yes                  | Delete Video   |
 
 2. The argument values are then checked on as such:
 
@@ -600,18 +600,32 @@ Steps:
 
 The `tag` command supports:
 
-- Tagging a module in the tracker
-- Tagging a lecture of a module in the tracker
-- Tagging a video of a lecture which belongs to a module in the tracker
+- Adding multiple `Tag` objects to a `Module` object in a `Tracker` object contained in the `ModelManager` object
+- Adding multiple `Tag` objects to a `Lecture` object of a `Module` object contained in a `Tracker` object
+- Adding multiple `Tag` objects to a `Video` object of a `Lecture` object contained in a `Module` object in a `Tracker` object
 
-The `tag` behaviour is dependent on the arguments provided by the user. Modules, lectures, and videos can have
-multiple, unique tags. If a command contains new tags and tags that were already added to modules, lectures, or
-videos, only the new tags will be added.
+The `tag` behaviour is dependent on the arguments provided by the user. `Module` objects, `Lecture` objects, and 
+`Video` objects can have multiple, unique `Tag` objects. If a command contains new tags and tags that were already 
+added to `Module` objects, `Lecture` objects, or `Video` objects, only the new tags will be added.
+
+**Notable Classes**
 
 The feature utilises the following classes:
 
-- `TagCommandParser` – Creates the appropriate `TagCommand` subclass object based on the user's input
-- `TagCommand` – Execute the command to add tags to a module, lecture, or video based on the user's input
+- `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
+- `TagCommand` – Handles adding `Tag` objects to a `Module` object, a `Lecture` object, or a `Video` object based on 
+  the user's input
+
+**Execution**
+
+The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
+`Tracker` object.
+
+TODO: ADD GRAPH
+
+Below is an activity diagram that showcase the events that occurs when a `tag` command is executed.
+
+TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
@@ -621,35 +635,52 @@ The following is a description of the code execution flow:
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
-   | Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-   | ----------- | ----------------- | ----------------- | ----------------- | ------------------ |
-   | Tag Module  | No                | No                | No                | Yes                |
-   | Tag Lecture | Optional          | No                | No                | Yes                |
-   | Tag Video   | Optional          | Optional          | No                | Yes                |
+   | Intent       | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
+   |:------------:|:-----------------:|:-----------------:|:------------------:|
+   | Tag Module   |        No         |        No         |        Yes         |
+   | Tag Lecture  |        Yes        |        No         |        Yes         |
+   | Tag Video    |        Yes        |        Yes        |        Yes         |
 
-3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an
-   appropriate `TagCommand` object and returns it to the called.
+3. A set of `Tag` objects to add is then determined from the user's input. Afterwards, The command creates an
+   appropriate `TagCommand` object and returns it to the caller.
 4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by
-   `TagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
-   provided, or if the tracker doesn't contain the specified module, lecture, or video.
-5. If no errors occur (no exceptions are thrown), the command succeeds in tagging the module, lecture, or video.
+   `TagCommandParser#parse(String)`. During the execution, a `CommandException` will be thrown if no tags were
+   provided, or if the tracker doesn't contain the specified `Module` object, `Lecture` object, or `Video` object.
+5. If no exceptions are thrown, the command succeeds in adding `Tag` objects to the `Module` object, `Lecture` object,
+   or `Video` object.
 
 ### Untag module, lecture, and video feature
 
 The `untag` command supports:
 
-- Removing tags from a module in the tracker
-- Removing tags from a lecture of a module in the tracker
-- Removing tags from a video of a lecture which belongs to a module in the tracker
+- Removing multiple `Tag` objects from a `Module` object in a `Tracker` object that is contained in a `ModelManager` 
+  object
+- Removing multiple `Tag` objects from a `Lecture` object of a `Module` object in a `Tracker` object
+- Removing multiple `Tag` objects from a `Video` object of a `Lecture` object which belongs to a `Module` object in a 
+  `Tracker` object
 
-The `untag` behaviour is dependent on the arguments provided by the user. Multiple tags can be deleted in a single
-command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
-videos, a `CommandException` will be thrown.
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a 
+single command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
+videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored. 
+
+**Notable Classes**
 
 The feature utilises the following classes:
 
-- `UntagCommandParser` – Creates the appropriate `UntagCommand` subclass object based on the user's input
-- `UntagCommand` – Execute the command to remove tags from a module, lecture, or video based on the user's input
+- `UntagCommandParser` – Creates the appropriate `UntagCommand` object based on the user's input
+- `UntagCommand` – Handles removing `Tag` objects from a `Module` object, a `Lecture` object, or a `Video` object
+  based on the user's input
+
+**Execution**
+
+The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
+in a `Tracker` object.
+
+TODO: ADD GRAPH
+
+Below is an activity diagram that showcase the events that occurs when an `untag` command is executed.
+
+TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
@@ -659,22 +690,30 @@ The following is a description of the code execution flow:
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
-   | Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-   | ------------- | ----------------- | ----------------- | ----------------- | ------------------ |
-   | Untag Module  | No                | No                | No                | Yes                |
-   | Untag Lecture | Optional          | No                | No                | Yes                |
-   | Untag Video   | Optional          | Optional          | No                | Yes                |
+   | Intent        | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
+   |:-------------:|:-----------------:|:-----------------:|:------------------:|
+   | Untag Module  |        No         |        No         |        Yes         |
+   | Untag Lecture |        Yes        |        No         |        Yes         |
+   | Untag Video   |        Yes        |        Yes        |        Yes         |
 
-3. A set of tags to remove is then determined from the user's input. Afterwards, The command creates an
-   appropriate `UntagCommand` object and returns it to the called.
+3. A set of tags to remove is then determined from the user's input. Afterwards, the command creates an
+   appropriate `UntagCommand` object and returns it to the caller.
 4. `LogicManager` calls the `Command#execute(Model)` method of the `UntagCommand` object returned by
-   `UntagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
-   provided, if the tracker doesn't contain the specified module, lecture, or video, or if there are tags from the
-   user input that doesn't exist in the module, lecture, or video.
-5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
-   or video.
+   `UntagCommandParser#parse(String)`. During the execution, a `CommandException` will be thrown if no tags were
+   provided, if the tracker doesn't contain the specified `Module` object, `Lecture` object, or `Video` object, or if there are tags from the
+   user input that do not correspond with existing `Tag` objects in the `Module` object, `Lecture` object, or `Video` object.
+5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the `Module` object, 
+   `Lecture` object, or `Video` object.
 
 ### Import archived data feature
+
+The `import` command supports:
+
+**Notable Classes**
+
+The feature utilises the following classes:
+- `ImportCommandParser`
+- `ImportCommand`
 
 **Reasons for such implementation**
 
@@ -683,9 +722,42 @@ The following is a description of the code execution flow:
 
 ### Exporting data feature
 
-**Reasons for such implementation**
+The `export` command supports:
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to a new file path, in a JSON 
+  format file
+- Saving a `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to an existing file path, in a 
+  JSON format file, overwriting its content
 
-- The user need to save storage space after finished studying a module. The UI will also be less packed
+The `export` behaviour is dependent on the arguments provided by the user.
+
+**Notable Classes**
+
+The feature utilises the following classes:
+- `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
+- `ExportCommand` - ` Create the appropriate `CommandResult` object based on the user's input to 
+- `Archive` - Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
+  the specified file path
+
+**Execution**
+
+Below is an activity diagram that showcase the events that occurs when an `export` command is executed.
+
+TODO: ADD ACTIVITY DIAGRAM
+
+The following is a description of the code execution flow:
+
+1. `ExportCommandParser#parse(String)` takes in the user input and determine the file path that the user wants to 
+   export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the 
+   `/overwrite` flag. A `ParseException` will be thrown if the file path is empty, and the command will not be executed
+2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
+3. `LogicManager` calls the `Command#execute(Model)` method of the `ExportCommand` object returned by
+   `ExportCommandParser#parse(String)`. An appropriate `CommandResult` object is then returned to the caller. A 
+   `CommandException` will be thrown if the file path provided in the user's input is invalid. 
+4. From the `CommandResult` object, `LogicManager` then calls the `Archive#exportToArchive(Path, ReadOnlyTracker, 
+   boolean, Path)`. A `CommandException` will be thrown if the file at the specified file path does not have write 
+   permission, or if the user is trying to export to an existing file without the `/overwrite` flag.
+5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and 
+   `Video` objects it contains to the specified file.
 
 ## Documentation, logging, testing, configuration, dev-ops
 
