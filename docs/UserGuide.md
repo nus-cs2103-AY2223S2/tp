@@ -390,10 +390,6 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
-</div>
-
 
 ### 18. Import the student data in: `import`
 
@@ -418,10 +414,6 @@ Examples:
 * For Windows users, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
 
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
 
@@ -460,9 +452,6 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: Caution:
-If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
-</div>
 
 ### Saving the data
 
