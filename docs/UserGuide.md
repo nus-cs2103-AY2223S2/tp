@@ -86,7 +86,7 @@ and 10,000 tags!
 
 ## 3.1. Layout
 
-![Screenshot of SudoHR app](images/Ui.png)
+![Screenshot of SudoHR app](images/UiLayout.png)
 
 [//]: # (<-- Insert labelled UI here -->)
 Our app interface consists of 5 main components:
@@ -285,7 +285,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findTheMythDaMithByEid.png)
 
 ### 7.1.5. Find employees by ID: `feid`
 
