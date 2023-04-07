@@ -63,6 +63,11 @@ activate Model
 
 Model --> EditCommand
 deactivate Model
+EditCommand -> Model : updateSelectedInternship(toEdit)
+activate Model
+
+Model --> EditCommand
+deactivate Model
 
 create CommandResult
 EditCommand -> CommandResult
@@ -74,7 +79,7 @@ deactivate CommandResult
 EditCommand --> LogicManager : cr
 deactivate EditCommand
 
-[<--LogicManager
+[<--LogicManager : cr
 destroy EditCommand
 deactivate LogicManager
 @enduml
