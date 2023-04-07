@@ -217,7 +217,7 @@ In turn, the sequence diagram of `UndoCommand` is:
 
 #### Design considerations:
 
-Given the [proposed] inclusion of `import` and `export` commands, implementing a specific
+Given the inclusion of `import` and `export` commands, implementing a specific
 reversal for each individual command was deemed impractical. Instead, the approach chosen was
 to store previous `Model` states in their entirety.
 
