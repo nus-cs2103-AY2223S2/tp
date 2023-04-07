@@ -6,6 +6,7 @@ title: User Guide
 ## Table of Contents
 *  **[Overview](#overview)**
 *  **[Quick start](#quick-start)**
+*  **[User interface layout](#user-interface-layout)**
 *  **[User input restrictions](#user-input-restrictions)**
 *  **[Features](#features)**
 *  **[GUI display restrictions](#gui-display-restrictions)**
@@ -65,6 +66,12 @@ If you need to switch to a new device, you can also export and import your previ
 7. Refer to the [Features](#features) below for details of each command.
 
 [Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User interface layout
+
+![Layout](images/Layout.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
