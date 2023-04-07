@@ -812,6 +812,7 @@ _Details coming soon ..._
 <div style="page-break-after: always;"></div>
 
 ### How to Open CoDoc for Windows
+Batch file method for Windows users:
 
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
