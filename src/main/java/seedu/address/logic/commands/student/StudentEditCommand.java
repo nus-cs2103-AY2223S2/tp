@@ -3,6 +3,7 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
@@ -64,6 +65,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_CCA + "CCA "
+            + PREFIX_COMMENT + "COMMENT "
             + PREFIX_PHONESTUDENT + "STUDENT NUMBER "
             + PREFIX_EMAILSTUDENT + "STUDENT EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -80,6 +82,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "10 "
             + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_CCA + "AIKIDO "
+            + PREFIX_COMMENT + "Quiet "
             + PREFIX_PHONESTUDENT + "90909090 "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245) "
@@ -111,7 +114,7 @@ public class StudentEditCommand extends StudentCommand {
     private Name newParentName;
 
     /**
-     * @param indexNumber of the person in the filtered person list to edit
+         * Creates a StudentEditCommand to edit the specified {@code Student}
      */
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
@@ -142,11 +145,15 @@ public class StudentEditCommand extends StudentCommand {
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
 
-        if (!model.hasStudent(indexNumber, studentClass)) {
+        //@@author diatbbin-reused
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main
+        // /java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //with modifications
+        Student studentToEdit = model.getStudent(indexNumber, studentClass);
+        if (studentToEdit == null) {
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
-
-        Student studentToEdit = model.getStudent(indexNumber, studentClass);
+        //@@author
         Student editedStudent = createEditedStudent(studentToEdit);
 
         model.setStudent(studentToEdit, setParent(editedStudent, model, studentToEdit));
@@ -298,15 +305,22 @@ public class StudentEditCommand extends StudentCommand {
      * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
     private Parent editParent(Parent parent, Parent newParent, Model model) {
+        List<Student> students = null;
         if (parent.hasStudents()) {
-            List<Student> students = parent.getStudents();
-            for (Student student : students) {
-                Student originalStudent = student;
-                student.setParent(newParent);
-                model.setStudent(originalStudent, student);
-                newParent.addStudent(student);
-            }
+            students = parent.getStudents();
         }
+
+        if (students == null) {
+            return newParent;
+        }
+
+        for (Student student : students) {
+            Student originalStudent = student;
+            student.setParent(newParent);
+            model.setStudent(originalStudent, student);
+            newParent.addStudent(student);
+        }
+
         return newParent;
     }
 }

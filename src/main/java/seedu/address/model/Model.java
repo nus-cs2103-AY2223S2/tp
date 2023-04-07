@@ -88,14 +88,6 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a student with the same index number and class as {@code student} exists in the PCClass.
-     * @param indexNumber must not be null.
-     * @param studentClass must not be null.
-     * @return true if a student with the same identity as {@code student} exists in the PCClass.
-     */
-    boolean hasStudent(IndexNumber indexNumber, Class studentClass);
-
-    /**
      * Returns student with the same index number and class as {@code student} exists in the PCClass.
      * @param indexNumber must not be null.
      * @param studentClass must not be null.
@@ -109,14 +101,6 @@ public interface Model {
      * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      */
     boolean hasParent(Parent parent);
-
-    /**
-     * Returns true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
-     * @param name must not be null.
-     * @param phone must not be null.
-     * @return true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
-     */
-    boolean hasParent(Name name, Phone phone);
 
     /**
      * Returns true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.

@@ -199,40 +199,15 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the PCClass.
+     * Returns student with the same index number and Class as {@code student} exists in the PCClass.
      *
      * @param indexNumber must not be null.
      * @param studentClass must not be null.
-     * @return true if a student with the same identity as {@code student} exists in the PCClass.
-     */
-    @Override
-    public boolean hasStudent(IndexNumber indexNumber, Class studentClass) {
-        requireNonNull(indexNumber);
-        requireAllNonNull(studentClass);
-        UniqueStudentList students = Class.getAllStudents();
-
-        for (Student student : students) {
-            IndexNumber currStudentIndexNumber = student.getIndexNumber();
-            Class currStudentClass = student.getStudentClass();
-
-            if (currStudentIndexNumber.equals(indexNumber) && currStudentClass.equals(studentClass)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if a student with the same identity as {@code student} exists in the PCClass.
-     *
-     * @param indexNumber must not be null.
-     * @param studentClass must not be null.
-     * @return true if a student with the same identity as {@code student} exists in the PCClass.
+     * @return stuent with the same index number and Class as {@code student} exists in the PCClass.
      */
     @Override
     public Student getStudent(IndexNumber indexNumber, Class studentClass) {
-        requireNonNull(indexNumber);
-        requireAllNonNull(studentClass);
+        requireAllNonNull(indexNumber, studentClass);
         UniqueStudentList students = Class.getAllStudents();
 
         for (Student student : students) {
@@ -266,32 +241,8 @@ public class ModelManager implements Model {
      * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      */
     @Override
-    public boolean hasParent(Name name, Phone phone) {
-        requireNonNull(name);
-        requireNonNull(phone);
-        ObservableList<Parent> parentList = parents.getParentList();
-        for (Parent parent : parentList) {
-            Name currParentName = parent.getName();
-            Phone currParentPhoneNumber = parent.getPhone();
-
-            if (currParentName.equals(name) && currParentPhoneNumber.equals(phone)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
-     *
-     * @param name must not be null.
-     * @param phone must not be null.
-     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
-     */
-    @Override
     public Parent getParent(Name name, Phone phone) {
-        requireNonNull(name);
-        requireNonNull(phone);
+        requireAllNonNull(name, phone);
         ObservableList<Parent> parentList = parents.getParentList();
         for (Parent parent : parentList) {
             Name currParentName = parent.getName();

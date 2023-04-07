@@ -21,7 +21,7 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
    5. [Storage Component](#storage-component)
    6. [Common Classes](#common-classes)
 4. [Implementation](#implementation)
-   1. [Student Delete Feature](#delete-student-feature)
+   1. [Student/Parent Delete Feature](#delete-student/parent-feature)
    2. [Attendance Feature](#attendance-feature)
    3. [Grade Feature](#grade-feature)
    4. [Parent/NOK Add Feature](#parentnok-add-feature)
@@ -251,57 +251,65 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "delete-student-feature"/>
+<a name = "delete-student/parent-feature"/>
 
-## Delete student feature
+## Delete student/parent feature
 
 ### Current Implementation
-PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`.
+PowerConnect allows users to delete 
+* Student from `UniqueStudentList` of `Class` using their class and index number.
+* Parent from `UniqueParentList` of `parents` using their name and phone number.
 
-When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call
-`Logic#execute` which will return a `CommandResult`. The `execute` method is facilitated by `StudentDeleteCommand`
-class. When `StudentDeleteCommand#execute` is called, it will call `deleteStudent()` method from model. This would call
-`removeStudent` method from Class which in turn deletes the student from the `UniqueStudentList`.
+However, a parent can only be deleted if no student is attached to that parent.
 
-#### General Flow for StudentDeleteCommand
+#### General Flow for deleting a student and the parent for that student
 
-The flow for StudentDeleteCommand#execute is as such:
+1. The user launches the application and wants to delete a student, `Bernice`, and her parent, `Bob`, who are already stored inside.
+2. The user tries deleting the parent first using `parent delete n/Bob pnP/91234567`.
+3. PowerConnect displays an error saying `"The parent you are trying to delete has a student attached! You can't delete the parent!"`.
+4. The user then tries to delete that student using `student 1A delete in/1`.
+5. `PowerConnectParser` and `StudentCommandParser` will check if command provided by the user is valid before `StudentDeleteCommand#execute(Model)` is called.
+6. This would call `Model#deleteStudent(Student)` method to delete the student.
+7. It will then check if the student to be deleted exists in `UniqueStudentList` of `Class` before deleting the student. 
+8. The deleted student will also be removed from its parent's list of children.
+9. The success message and resulting list of students will be displayed via the dashboard.
+10. The user tries deleting the parent again, it follows `step 5-7` in a similar way to just that it is now for parent instead of student.
+11. After step 7, it will check that `Bob` has no students attached before deleting him and showing the success message.
 
-The `StudentClass` and `IndexNumber` to be used for deleting is retrieved from the user input
 
-The user inputs will be parsed into the `StudentCommandParser` which will then return a new `StudentDeleteCommand`
+Sequence diagram for parent delete
 
-The StudentDeleteCommand will then be immediately executed to delete the student from their UniqueStudentList via class and index number
+![Sequence Diagram](images/ParentDeleteSequentialDiagram.png)
 
-The delete success message and result list of students will then be shown back to the user via the dashboard
+Sequence diagram for student delete
 
-Full implementation sequence diagram
-
-![Sequence Diagram](images/DeleteSequentialDiagram.png)
+![Sequence Diagram](images/StudentDeleteSequentialDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Design considerations
-We want to keep it simple for the user to delete students, using students' class and index number is sufficient to
-identify the student that needs to be deleted.
 
-1.Exception is thrown immediately if either student class or index number is invalid
-2.Remove the student from the parent's list of children too so the necessary changes will be displayed
+#### Aspect 1: How to delete students
 
-#### Aspect: How to delete students
-
-* **Alternative 1 (current choice):** Having a studentList for each class
-    * Pros: When deleting students, we do not have to go through all the students stored, improving its time complexity
-    * Pros: More flexible to add more class related features
-    * Pros: Displayed list of students will be neater
-    * Cons: Difficult to manage
+* **Alternative 1 (current choice):** Delete student from their class's student list
+    * pros: Provides flexibility in adding new features. eg. deleting all students in a class 
     * Cons: Harder to implement
-    * Cons: Uses more memory
-    * Cons: Harder to access and manipulate student data
 
-* **Alternative 2:** Allowing the users to delete a particular field of the student
-    * Pros: More flexibility for users
-    * Cons: Hard to implement, need to check the different prefixes to determine which field to delete
+* **Alternative 2:** Delete student from a student list containing all students
+    * Pros: Uses less memory
+    * Cons: Time performance will be worse when there are a lot of students
+
+#### Aspect 2: Whether parent can be deleted if there is a student attached
+
+Current implementation allows a parent can have any number of students attached
+
+* **Alternative 1 (current choice):** Parent cannot be deleted if there is a student attached to ensure that every student always have one parent
+    * Pros: Easier to implement, since we do not have to update multiple students when a parent is deleted
+    * Pros: Easier to add features that involve both a student and a parent 
+
+* **Alternative 2:** Parent can be deleted if there is a student attached
+    * Pros: Deletion of parent will be more flexible
+    * Cons: Can be time-consuming to update if there are a lot of students attached to one parent
 
 [Back to Table of Contents](#table-of-contents)
 
