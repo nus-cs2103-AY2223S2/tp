@@ -759,112 +759,112 @@ cases.
 
 **Creating a client**
 
-1. Type the command "c" followed by a space and then the client's name (-cn
-   name) and email (-e email).
-1. Verify that the new client's name and email are displayed on the interface
-   after successfully creating the contact.
-1. Optionally, add any combination of the year of birth (-y argument), platform
-   source (-src argument), and mobile number (-mn argument) after the email in
-   the command. Verify that the corresponding information is displayed on the
-   interface.
-1. Test that an error message is displayed if a client with the same email
-   already exists.
-1. Test that an error message is displayed if no client name or email is
-   provided.
-1. Test that an error message is displayed if an invalid argument is entered.
+* Prerequisite: there is no client with email *spiderman@gmail.com*
+* Command: `c -cn spider man -e spiderman@gmail.com`
+* The output box should display a message confirming that the new client has
+  added
+* The client should be appended to the bottom of the Clients tab
+
+<!-- -->
+
+* Pre-requisite: none
+* Command: `c -cn spider man`
+* The output box should display an error message on invalid command format
 
 **Deleting a client**
 
-1. Identify an existing client contact to delete and note down their email
-   address.
-1. Type the command "dc" followed by a space and then the email address of the
-   client to be deleted (-e email).
-1. Verify that the interface displays the name and email of the deleted client.
-1. Confirm that the deleted client's information is no longer accessible
-   through the interface.
-1. Test that an error message is displayed if no email address is provided.
-1. Test that an error message is displayed if the email address provided does
-   not correspond to an existing client contact.
+* Prerequisite: there is a client with email *spiderman@gmail.com*
+* Command: `dc -e spiderman@gmail.com`
+* The output box should display a message confirming the deletion
+* There should not be a client with the email *spiderman@gmail.com* listed in
+  the Clients panel
+
+<!-- -->
+
+* Prerequisite: none
+* Command: `dc -cn spider man`
+* The output box should display an error message on invalid command format
 
 **Updating a client**
 
-1. Identify an existing client contact to update and note down their email
-   address.
-1. Type the command "uc" followed by a space and then the email address of the
-   client to be updated (-e email).
-1. Optionally, add any combination of the client's new name (-cn client_name),
-   new email (-e2 email), new year of birth (-y year_of_birth), new platform
-   source (-src source), or new mobile number (-mn mobile_number) after the
-   email address in the command. Verify that the corresponding information is
-   displayed on the interface after successful update.
-1. Test that the client information is updated correctly by checking that the
-   updated information is displayed on the interface.
-1. Test that an error message is displayed if no email address is provided.
-1. Test that an error message is displayed if the email address provided does
-   not correspond to an existing client contact.
-1. Test that an error message is displayed if a new email address is provided
-   that is already associated with an existing client contact.
-1. Test that if an optional argument is not provided, the corresponding field
-   is not updated and the existing information is retained.
+* Pre-requisite: there is a client with email *spiderman@gmail.com*, but no
+  client with email *spoderman@gmail.com*
+* Command: `uc -e spiderman@gmail.com -e2 spoderman@gmail.com`
+* The output box should display a message confirming the update
+* There should be no client with the email *spiderman@gmail.com*, and one
+  client with email *spoderman@gmail.com* listed in the Clients panel
+
+<!-- -->
+
+* Pre-requisite: there is a client with email *spiderman@gmail.com*
+* Command: `uc -e spiderman@gmail.com -e2 spiderman@gmail.com`
+* The output box should display a message indicating that no update was made
+
+<!-- -->
+
+* Pre-requisite: there is a client with email *spiderman@gmail.com*, and a
+  client with email *batman@gmail.com*
+* Command: `uc -e spiderman@gmail.com -e2 batman@gmail.com`
+* The output box should display a message indicating that a client with the new
+  email already exists
 
 ### Project commands
 
 **Creating a project**
 
-1. Type the command "p" followed by a space and then the project's name (-pn
-   project_name) and the email of the client who submitted the project (-e
-   client_email).
-1. Verify that a message confirming the addition of the project is displayed.
-1. Optionally, add any combination of the project's status (-s status), source
-   (-src source), description (-d description), accepted date (-ad
-   accepted_date), and deadline date (-dd deadline_date) after the client's
-   email in the command. Verify that the corresponding information is displayed
-   on the interface.
-1. Test that an error message is displayed if no project name or client email
-   is provided.
-1. Test that an error message is displayed if a project with the same name
-   already exists.
-1. Test that the project information is stored correctly by checking that the
-   information is displayed on the interface after successful creation.
-1. Test that the default values are assigned correctly for the optional
-   arguments.
-1. Test that an error message is displayed if an invalid argument is entered.
+* Prerequisite: there is no project with name *project1*
+* Command: `p -pn project1 -e foo@bar.baz`
+* The output box should display a message confirming that the new project has
+  been added
+* The project should be appended to the bottom of the Projects tab
+
+<!-- -->
+
+* Prerequisite: none
+* Command: `p -pn project1`
+* The output box should display an error message on invalid command format
 
 **Deleting a project**
 
-1. Identify an existing project to delete and note down its name.
-1. Type the command "dp" followed by a space and then the project's name (-pn
-   project_name).
-1. Verify that a message confirming the deletion of the project is displayed.
-1. Confirm that the deleted project's information is no longer accessible
-   through the interface.
-1. Test that an error message is displayed if no project name is provided.
-1. Test that an error message is displayed if the project name provided does
-   not correspond to an existing project.
+* Prerequisite: there is a project with name *project1*
+* Command: `dp -pn project1`
+* The output box should display a message confirming the deletion
+* There should not be a project with the name *project1* listed in the Projects
+  panel
+
+<!-- -->
+
+* Prerequisite: none
+* Command: `dp -e foo@bar.baz`
+* The output box should display an error message on invalid command format
 
 **Updating a project**
 
-1. Identify an existing project to update and note down its name.
-1. Type the command "up" followed by a space and then the project's name (-pn
-   project_name).
-1. Optionally, add any combination of a new project name (-pn2
-   new_project_name), a new client email (-e client_email), a new project
-   status (-s status), a new source for the project (-src source), a new
-   description for the project (-d description), a new accepted-on date for the
-   project (-ad accepted_date), and a new deadline for the project (-dd
-   deadline_date) after the project name in the command. Verify that the
-   corresponding information is displayed on the interface after successful
-   update.
-1. Test that the project information is updated correctly by checking that the
-   updated information is displayed on the interface.
-1. Test that an error message is displayed if no project name is provided.
-1. Test that an error message is displayed if the project name provided does
-   not correspond to an existing project.
-1. Test that if an optional argument is not provided, the corresponding field
-   is not updated and the existing information is retained.
-1. Test that an error message is displayed if an invalid argument is entered.
+* Pre-requisite: there is a project with name *project1*, but no project with
+  name *project2*
+* Command: `up -pn project1 -pn2 project2`
+* The output box should display a message confirming the update
+* There should be no project with the name *project1*, and one project with
+  name *project2* listed in the Projects panel
+
+<!-- -->
+
+* Pre-requisite: there is a project with name *project1*
+* Command: `up -pn project1 -pn2 project1`
+* The output box should display a message indicating that no update was made
+
+<!-- -->
+
+* Pre-requisite: there is a project with name *project1*, and a project with
+  name *project2*
+* Command: `up -pn project1 -pn2 project2`
+* The output box should display a message indicating that a project with the
+  new name already exists
 
 ### Fuzzy search
+
+As fuzzy search is a more involved feature different from the other commands, we
+provide a more detailed suggested test plan for it.
 
 1. Press (CTRL+F) to toggle to search mode, and note that the command box
    should switch color as an indication.
@@ -880,50 +880,24 @@ cases.
    box to its original color.
 1. Repeat the above steps for client names.
 
-The following steps test the feature for extracting project names and emails
-with (ENTER).
+The following steps test the feature for extracting project names and client
+emails with (ENTER).
 
-1. Ensure there are some projects and clients in Mycelium.
 1. Press (CTRL+F) to enter search mode.
 1. In the search box, type a query for a project or client name that exists in
    the list, but do not press enter.
 1. Use (CTRL+J) and (CTRL+K) to navigate and select the desired project or
    client in the search results.
-1. Press (ENTER) to exit search mode and append the name or email of the
-   selected project or client to the command box.
-1. Verify that the selected project or client name/email is appended to the
-   command box correctly.
-1. Try executing some commands while in search mode and verify that they are
-   not executed.
-1. Try searching while in command mode and verify that no searching can be
-   done.
+1. Press (ENTER) to exit search mode and append the project's name or client's
+   email to the command box.
+1. Verify that the selected name or email is appended to the command box
+   correctly.
 
 ### Hotkeys
 
-1. Verify that the Help page can be accessed by pressing (F1).
-1. Verify that Mycelium can be quickly quit by pressing (CTRL+Q).
-1. Verify that the cursor can be moved to the start of the line in the command
-   box by pressing (CTRL+W).
-1. Verify that the cursor can be moved to the end of the line in the command
-   box by pressing (CTRL+E).
-1. Verify that the current line in the command box can be quickly cleared by
-   pressing (CTRL+D).
-1. Verify that the command log found below the command box is also cleared when
-   using (CTRL+D).
-1. Verify that the focus can be switched between the Entity panel and the
-   Statistics panel by pressing (CTRL+S).
-1. Verify that the panel in focus is highlighted with a blue header.
-1. Verify that the tabs can be switched in the currently selected panel by
-   pressing (CTRL+L).
-1. Verify that the next item on the list in the currently selected tab can be
-   selected by pressing (CTRL+J).
-1. If the last item is selected, verify that the next item is the first item in
-   the list.
-1. Verify that the previous item on the list in the currently selected tab can
-   be selected by pressing (CTRL+K).
-1. If the first item is selected, verify that the previous item is the last
-   item in the list.
-
+The testing of hotkeys is simple and you can reference the [user
+guide](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys) on
+the expected behaviour of each hotkey.
 
 ## Appendix: Documentation, Logging, Testing, Configuration, and DevOps
 
