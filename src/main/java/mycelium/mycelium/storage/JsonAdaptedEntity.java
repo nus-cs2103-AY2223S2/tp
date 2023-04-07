@@ -1,5 +1,7 @@
 package mycelium.mycelium.storage;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
 
 /**
@@ -7,6 +9,7 @@ import mycelium.mycelium.commons.exceptions.IllegalValueException;
  */
 public abstract class JsonAdaptedEntity {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s's %s field is missing!";
+    @JsonIgnore
     private String entityName;
 
     public JsonAdaptedEntity(String entityName) {
