@@ -42,7 +42,7 @@ your teaching assistant tasks done faster than traditional GUI apps.
 
 - **Documentation**
     - **User Guide**
-        - Updated feature explanations for the following commands
+        - Added feature explanations for the following commands
           ([PR #60](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/60)):
           - `list`
           - `find`
@@ -55,4 +55,8 @@ your teaching assistant tasks done faster than traditional GUI apps.
             - `list`
             - `find`
             - `create_class`
-
+        - Added sequence diagrams and MSS for the following commands:
+          ([PR #218](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/218)):
+            - `add_alarm`
+            - `delete_alarm`
+            - `list_alarms`
