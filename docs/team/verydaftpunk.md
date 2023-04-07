@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Reviewed PRs for team members
 
 * **Enhancements to existing features**:
-  * Edit feature of project 
+  * Edit feature of project
     * Allow existing projects in project list to be edited
     * Allow optional fields of project to be nullable
     * Relevant tests implemented
