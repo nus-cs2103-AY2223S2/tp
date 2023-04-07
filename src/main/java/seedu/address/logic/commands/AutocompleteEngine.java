@@ -23,8 +23,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
-//@@author EvitanRelta-reused
-// Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+//Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
 // with almost complete overhauling, including refactoring, bug-fixing, adding
 // of asserts, and changing the behaviour of the feature to suit our needs.
 /**
@@ -281,4 +280,3 @@ public class AutocompleteEngine {
         return remainingArgs;
     }
 }
-//@@author
