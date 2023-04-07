@@ -9,7 +9,7 @@ import seedu.medinfo.model.ward.Ward;
 
 
 /**
- * Unmodifiable view of an medinfo book
+ * Unmodifiable view of a MedInfo
  */
 public interface ReadOnlyMedInfo {
 
@@ -22,5 +22,6 @@ public interface ReadOnlyMedInfo {
     ObservableList<Patient> getPatientList();
 
     ObservableList<Ward> getWardList();
+
     List<String> getStatsInfo();
 }
