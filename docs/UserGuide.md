@@ -423,7 +423,12 @@ of skills first.
 * The ORDER can only be either ascending (`asc`) or descending (`desc`)
 * The following SORT_BY are available:
     * `tcount` Sorts by person's tag count
+</div>
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+Sort would be performed on the current list of persons displayed on the UI. If you are looking to sort all persons after
+performing a `find` command etc., remember to use `list` command before using `sort`. 
 </div>
 
 ### Add a person to a team : `edit`
