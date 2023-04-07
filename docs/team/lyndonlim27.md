@@ -50,7 +50,6 @@ Contributions to my project are given below. [RepoSense link](https://nus-cs2103
 * **Contributions to team-based tasks**:
   * Set-up team's organisation and repository
   * Set-up Codecov for team's repository
-  * Reviewed several PRs [PR1](https://github.com/AY2223S2-CS2103T-T09-2/tp/pull/89)
 
 * **Contributions beyond the project team**:
   * Reviewed and merged PRs for team members 
