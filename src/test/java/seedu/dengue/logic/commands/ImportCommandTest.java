@@ -17,18 +17,19 @@ import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code SortCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ImportCommand}.
  */
 public class ImportCommandTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
-            "data", "CsvDengueHotspotTrackerStorageTest");
+            "data", "ImportExportTest");
 
     private static final String TYPICAL_PERSONS_FILE = "typicalPersonsDengueHotspotTracker.csv";
 
     private static final String EMPTY_PERSONS_FILE = "emptyDengueHotspotTracker.csv";
 
     private Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+
     private Model expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

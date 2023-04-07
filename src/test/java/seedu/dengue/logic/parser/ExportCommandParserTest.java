@@ -26,6 +26,7 @@ public class ExportCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "sampledata", MESSAGE_INVALID_FORMAT); // missing.csv
         assertParseFailure(parser, "sample/data", MESSAGE_INVALID_FORMAT); // invalid csv file name
+        assertParseFailure(parser, "sample/data.csv", MESSAGE_INVALID_FORMAT); // invalid filepath
         assertParseFailure(parser, "s@!@$(^.csv", MESSAGE_INVALID_FORMAT); // invalid csv file name
     }
 
