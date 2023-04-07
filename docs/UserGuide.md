@@ -375,7 +375,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation-injection) for more information).
 
 ### Add a Lecture
 
@@ -396,8 +396,6 @@ Add a lecture to a module.
 Examples:
 
 - `add Week 1 /mod CS2040S /tags Intro, Important`
-
-:information_source: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Video
 
@@ -425,6 +423,8 @@ Add a video to a lecture.
 Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
+
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
 
 ### Edit a Module
 
