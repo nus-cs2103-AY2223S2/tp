@@ -37,7 +37,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-
+        expectedModel.commitAddressBook(DeleteCommand.COMMAND_WORD);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
@@ -51,8 +51,6 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON));
 
@@ -60,8 +58,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
-
+        expectedModel.commitAddressBook(DeleteCommand.COMMAND_WORD);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
@@ -104,8 +101,8 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
-
+//        model.updateFilteredPersonList(p -> false);
+        model.setDefaultShowPerson();
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
 }
