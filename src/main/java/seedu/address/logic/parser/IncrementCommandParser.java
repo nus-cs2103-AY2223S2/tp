@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.IncrementCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -36,6 +37,10 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
         if (argMultimap.getValue(PREFIX_TRANSACTION_COUNT).isPresent()) {
             editPersonDescriptor.setTransactionCount(ParserUtil.parseTransactionCount(
                     argMultimap.getValue(PREFIX_TRANSACTION_COUNT).get()));
+        }
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(IncrementCommand.MESSAGE_MISSING_INCREMENT_VALUE);
         }
 
         return new IncrementCommand(index, editPersonDescriptor);

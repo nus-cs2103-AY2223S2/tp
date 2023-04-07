@@ -8,7 +8,7 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Transaction Count will start and zero and be increment to a value >= 0"
+            "Transaction Count will start and zero and be incremented to a value >= 0"
                     + " less than or equal to 9223372036854775807.\n"
                     + " It should be a whole number.";
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
@@ -34,7 +34,7 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
     public static boolean isValidTransactionCount(String test) {
         try {
-            return test.matches(VALIDATION_REGEX) && Long.parseLong(test) >= 0
+            return test.matches(VALIDATION_REGEX) && Long.parseLong(test) > 0
                     && Long.parseLong(test) <= Long.MAX_VALUE;
         } catch (Exception e) {
             return false;

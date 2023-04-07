@@ -30,6 +30,9 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count incremented";
 
+    public static final String MESSAGE_MISSING_INCREMENT_VALUE = "A value to increment " +
+            "(integer >=0) needs to be present";
+
     private final EditPersonDescriptor editPersonDescriptor;
     private final Index index;
 
