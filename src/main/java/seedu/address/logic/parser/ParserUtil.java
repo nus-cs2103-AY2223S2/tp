@@ -126,12 +126,20 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        String[] modParts = trimmedTag.split("XXXXX");
+        String tagType = modParts[0];
+        String tagNameWithoutTypeIdentifier = tagType.equals("Module") || tagType.equals("Commitment")
+            ? modParts[1]
+            : trimmedTag;
+
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        String[] modParts = trimmedTag.split("XXXXX");
+        if (tagNameWithoutTypeIdentifier.length() < 1 || tagNameWithoutTypeIdentifier.length() > 20) {
+            throw new ParseException(Tag.MESSAGE_TAG_LENGTH_ERROR);
+        }
 
-        return (modParts[0].equals("Module")) ? new ModuleTag(trimmedTag) : (modParts[0].equals("Commitment")
+        return (tagType.equals("Module")) ? new ModuleTag(trimmedTag) : (tagType.equals("Commitment")
             ? new CommitmentTag(trimmedTag)
             : new Tag(trimmedTag));
 
