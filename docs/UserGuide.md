@@ -118,8 +118,12 @@ Adds a student to the student list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: Tip:
-   A student can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+:bulb: Tips:<br>
+* A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
+* If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
+* A student can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -130,13 +134,6 @@ Examples:
 Caution: </div> 
 
 * In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
-<div markdown="span" class="alert alert-primary">
-
-:bulb: Tips:<br>
-* A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
-* If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
-* A student can have any number of tags (including 0)
-</div>
 
 ### 3. Viewing student contacts as a list: `list`
 
