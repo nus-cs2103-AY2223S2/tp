@@ -577,7 +577,7 @@ Want to find people with certain qualities? Use find command to find people that
 
 
 **Example:**
-- Start by executing `find y/2` to find all person from year 2 <br> <br> ![UiFind_02](images/UiFind_02_2.png)
+- Start by executing `find y/2` to find all person from year 2 <br> <br> ![UiFind_02](images/UiFind_02_2.png) <br> <br>
 - Next, execute `find m/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints** <br> <br> ![UiFind_03](images/UiFind_03_02.png) <br> <br>
 - Finally, use `list` to get back the unfiltered list
 
@@ -594,9 +594,6 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 <div class="span" class="alert alert-success">
 :bulb: <b>Tip:</b> Use this command to revert back to the original list after performing the <code>find</code> command to shorten the list displayed.
 </div>
-
-* `list`
-![result for list](images/UiList.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
