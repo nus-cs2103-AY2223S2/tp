@@ -20,8 +20,8 @@ import seedu.address.model.navigation.NavigationContext;
  */
 public class NavigationInjector extends Injector {
 
-    private static final String[] WHITELIST = {NavCommand.COMMAND_WORD,
-            ImportCommand.COMMAND_WORD, ExportCommand.COMMAND_WORD};
+    public static final String[] WHITELIST =
+            {NavCommand.COMMAND_WORD, ImportCommand.COMMAND_WORD, ExportCommand.COMMAND_WORD};
 
     @Override
     public String inject(String commandText, Model model) {
@@ -48,18 +48,21 @@ public class NavigationInjector extends Injector {
     }
 
     private String injectMissingArgs(String commandText, ArgumentMultimap argMultimap, NavigationContext navContext) {
-        boolean rootSpecified = argMultimap.getValue(PREFIX_ROOT).isPresent();
-        boolean lectureArgSpecified = argMultimap.getValue(PREFIX_LECTURE).isPresent();
-        boolean moduleArgSpecified = argMultimap.getValue(PREFIX_MODULE).isPresent();
+        boolean hasRootPrefix = argMultimap.getValue(PREFIX_ROOT).isPresent();
+        boolean hasLecturePrefix = argMultimap.getValue(PREFIX_LECTURE).isPresent();
+        boolean hasModulePrefix = argMultimap.getValue(PREFIX_MODULE).isPresent();
 
         commandText = removeRootPrefix(commandText);
-        if (rootSpecified && !lectureArgSpecified && !moduleArgSpecified) {
+
+        // Don't inject context prefixes if only root prefix present.
+        if (hasRootPrefix && !hasLecturePrefix) {
             return commandText;
         }
 
-        if (!moduleArgSpecified) {
+        // Inject context prefixes.
+        if (!hasModulePrefix) {
             commandText = injectModulePrefixArg(commandText, navContext);
-            if (!lectureArgSpecified) {
+            if (!hasLecturePrefix) {
                 commandText = injectLecturePrefixArg(commandText, navContext);
             }
         }
