@@ -2,9 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-* Table of contents
+* Table of Contents
   {:toc}
---------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
 
@@ -203,11 +202,11 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Planned Enhancements**
+### **Planned Enhancements**
 
-## **Project Requirements**
+### **Project Requirements**
 
-### **Product Scope**
+#### **Product Scope**
 
 **Target user profile**:
 
@@ -219,7 +218,7 @@ This section describes some noteworthy details on how certain features are imple
 
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
 
-### **User Stories**
+#### **User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -240,7 +239,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### **Use Cases**
+#### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -343,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### **Non-Functional Requirements**
+#### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
@@ -352,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-## **Instructions for Manual Testing**
+### **Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -361,7 +360,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 </div>
 
-### **Launch and Shutdown**
+#### **Launch and Shutdown**
 
 1. Initial launch
 
@@ -382,13 +381,13 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### **Adding an Event**
+#### **Adding an Event**
 
-### **Recurring an Event**
+#### **Recurring an Event**
 
-### **Editing an Event**
+#### **Editing an Event**
 
-### **Deleting Events**
+#### **Deleting Events**
 
 1. Deleting a event while all events are shown
 
@@ -406,14 +405,13 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### **Finding Events**
+#### **Finding Events**
 
-### **Show Next Events**
+#### **Show Next Events**
 
-### **Undo a Command**
+#### **Undo a Command**
 
-## **Glossary**
-
+### **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
