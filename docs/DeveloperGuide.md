@@ -2150,7 +2150,7 @@ Expected Output in the PersonList: 'Person' with `ContactIndex 1` will still be 
 
 Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleTag`. `User` has CS2345 as `ModuleTag`.
 
-Context executed: `tag 2 m/CS2345 mon 12 13`
+Command executed: `tag 2 m/CS2345 mon 12 13`
 
 Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will  be added.
 
