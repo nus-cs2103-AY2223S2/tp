@@ -620,7 +620,7 @@ Tag a specified module.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to be tagged
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format)
+  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the module (if any) will be ignored
 
@@ -644,7 +644,7 @@ Tag a specified lecture.
   - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the lecture
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format)
+  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the lecture (if any) will be ignored
 
@@ -671,7 +671,7 @@ Tag a specified video.
   - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
     case sensitive)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the video
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format)
+  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the video (if any) will be ignored
 
@@ -709,7 +709,8 @@ Remove specified tags from a lecture.
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be untagged
   - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is 
-  case sensitive- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
+  case sensitive
+  - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
   - Must belong to existing tags in the lecture specified in `lecture_name` (:exclamation:Tag matching is case 
     sensitive)
   - Repeated tags (if any) will be ignored
@@ -731,7 +732,8 @@ Remove specified tags from a video.
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is
+  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching 
+    is case sensitive)
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be untagged
   - Must belong to an existing video in the lecture specified in `lecture_name` (:exclamation:Video name matching is 
     case sensitive)
@@ -878,15 +880,14 @@ Exit the application.
 Export all modules progress to a JSON-format file. 
 
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file to export the modules progress to
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `[JAR 
-    file location]/data`)
-  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `
-    [JAR file location]/data/letracker.json`)
+  - User must have writing permission to `file_path`
   - If `/overwrite` is not specified, the file specified in `file_path` must not exist
-- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in 
-  the file specified in `file_path` with the current modules progress in Le Tracker
-  - If the file specified in `file_path` exists, it must allow reading and writing operations
-  - If the file specified in `file_path` exists, it must be of JSON format
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR 
+    file location}/data`)
+  - Must not coincide with Le Tracker's current tracker file path. (:exclamation:The default tracker file path is `
+    {JAR file location}/data/letracker.json`)
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` 
+  if it exists
   - If the file specified in `file_path` exists, the flag `/overwrite` will be ignored
 
 Examples: 
@@ -902,23 +903,22 @@ Examples:
 Import modules progress from a JSON-format file to the current tracker.
 
 - <span style="color:#e46c0a">`file_path`</span> : The path of the file to export the modules progress from
-  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `[JAR
-    file location]/data`)
-  - The file specified in `file_path` must exist. (:exclamation: If only the file's name is specified, the file must 
-    exist in the default saving directory at `[JAR file location]/data`)
-  - Must allow reading and writing operations
-  - Must be of JSON format
+  - User must have read permission of the file in `file_path`
   - Must be a valid Le Tracker data file
-- <span style="color:#e46c0a">`module_1, module_2, ...`</span> : If specified, Le Tracker will only import progress 
+  - Must be relative to Le Tracker's default saving directory (:exclamation:The default saving directory is `{JAR
+    file location}/data`)
+  - The file specified in `file_path` must exist. (:exclamation:If only the file's name is specified, the file must 
+    exist in the default saving directory at `{JAR file location}/data`)
+- <span style="color:#e46c0a">`/mod {module_1}[, {module_2}[, {module_3}, ...]] `</span> : If specified, Le Tracker will only import progress 
   of these modules from the file specified in `file_path`
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-  - If `overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker 
-  - Must belong to existing modules in the file specified in `file_path` (:exclamation: Module matching is case 
+  - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker 
+  - Must belong to existing modules in the file specified in `file_path` (:exclamation:Module matching is case 
     sensitive)
   - Repeated modules (if any) will be ignored
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules 
-  progress with the progress of the imported modules, provided they have the same code (:exclamation: Module matching is case sensitive)
-  - If the imported modules do not exist in the current tracker, the flag `overwrite` will be ignored
+  progress with the progress of the imported modules, provided they have the same code (:exclamation:Module matching is case sensitive)
+  - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
 Examples:
 
@@ -939,14 +939,14 @@ Examples:
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 - Editing the data file\
-  Le Tracker data are saved as a JSON file `[JAR file location]/data/letracker.json`. Advanced users are welcome to update data directly by editing that data file.
+  Le Tracker data are saved as a JSON file `{JAR file location}/data/letracker.json`. Advanced users are welcome to 
+  update data directly by editing that data file.
 
 ---
 
 ## Warning
 
-:warning: If your changes to the tracker data file makes its format invalid, Le Tracker will discard all data and 
-start with an empty data file at the next run.
+:warning: If your changes to the tracker data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
 
 ---
 
