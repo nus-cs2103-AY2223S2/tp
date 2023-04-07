@@ -351,14 +351,6 @@ Examples:
 * `list` followed by `clear` clears all cases from DengueHotspotTracker.
 * `find n/Betsy` followed by `clear` deletes all cases with names that include "Betsy".
 
-<div markdown="block" class="alert alert-primary">
-
-**:exclamation: Warning:**<br>
-
-As `clear` resets all the data in `DengueHotspotTracker` you should use [`delete`](#deleting-cases-delete) for use cases of deleting specific or groups of cases.
-
-</div>
-
 <br>
 
 ### Listing all cases: `list`
