@@ -113,6 +113,9 @@ class JsonAdaptedBookmark {
             modelAuthor = new Author(author);
         }
 
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
         Rating modelRating = null;
         if (rating != null) {
             if (!Rating.isValidRating(rating)) {

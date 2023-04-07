@@ -1,7 +1,6 @@
 package seedu.library.model.bookmark;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.library.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -33,5 +32,11 @@ public class RatingTest {
         assertTrue(Rating.isValidRating("0")); // lowest value possible
         assertTrue(Rating.isValidRating("5")); // highest value possible
         assertTrue(Rating.isValidRating("3")); // value in valid range
+    }
+
+    @Test
+    public void validStringRepresentation() {
+        Rating rating = new Rating("4");
+        assertEquals("4", rating.toString());
     }
 }
