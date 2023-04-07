@@ -208,7 +208,7 @@ The following sequence diagram shows how the sort events operation works.
 
 ![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
 
-Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
+Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
 
 This sorting feature can only be executed when there are more than 1 event listed on the UI.
 It will only sort the event list based on the last String entered in the user input.
@@ -330,6 +330,31 @@ Use case ends.
 2.  PlanEase shows a list of events.
 
 Use case ends.
+
+<br>
+
+**Use case: Sorts current list of events**
+
+**MSS**
+
+1.  User requests to sort all events that are currently displayed based on a given sorting key.
+2.  PlanEase shows the list of sorted events based on the user's choice of sorting key.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The given character to represent the sorting key is invalid (i.e. not a, b, c, or d).
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. The current list of events displayed has less than 2 events.
+
+    - 1b1. PlanEase shows an error message.
+
+  Use case ends.
 
 <br>
 
