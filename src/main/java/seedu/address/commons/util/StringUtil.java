@@ -73,8 +73,8 @@ public class StringUtil {
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      * </pre>
-     * @param leadStatus cannot be null
-     * @param keywordStatus     cannot be null, cannot be empty, must be a single word
+     * @param leadStatus    cannot be null
+     * @param keywordStatus cannot be null, cannot be empty, must be a single word
      */
     public static boolean containsStatusIgnoreCase(LeadStatus leadStatus, String keywordStatus) {
         requireNonNull(leadStatus);
@@ -86,6 +86,18 @@ public class StringUtil {
 
         String preppedStatus = leadStatus.toString();
         String[] wordsInPreppedStatus = preppedStatus.split(" - ");
+
+        // Check if keywordStatus is one of the specified values
+        if (!(preppedWord.equals("Uncontacted")
+                || preppedWord.equals("U")
+                || preppedWord.equals("Working")
+                || preppedWord.equals("W")
+                || preppedWord.equals("Qualified")
+                || preppedWord.equals("Q")
+                || preppedWord.equals("Unqualified")
+                || preppedWord.equals("X"))) {
+            return false;
+        }
 
         return Arrays.stream(wordsInPreppedStatus)
                 .anyMatch(preppedWord::equalsIgnoreCase);
@@ -118,6 +130,7 @@ public class StringUtil {
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
+
     /**
      * Returns a detailed message of the t, including the stack trace.
      */
