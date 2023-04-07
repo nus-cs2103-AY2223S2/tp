@@ -505,12 +505,12 @@ project](#creating-a-project-p) for more details on what each argument means.
 
 **Example**
 
-Suppose we have a project named *Mycelium Desktop*, and wish to update
+Suppose you have a project named *Mycelium Desktop*, and wish to update
 
 1. its name to *Mycelium Mobile*; and
 1. its status to `in_progress`.
 
-The following command is what we would use:
+You may use the following command:
 
 ```bash
 up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
