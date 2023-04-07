@@ -2,6 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+<p align="center" width="100%">
+    <img src="images/Logo.svg" width="100%">
+</p>
+
 * Table of Contents
 {:toc}
 
@@ -9,7 +13,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+CookHub is adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project 
+created by the [SE-EDU initative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -300,7 +305,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Student chefs who favour their own collection of personal recipes rather than online recipes
 * Student chefs on a tight budget and schedule
 * Student chefs who have limited ingredients
-* Student chefs who are capable in typing fast
+* Student chefs who are capable of typing fast
 * Prefers typing to mouse interaction
 * Is reasonably comfortable using CLI applications
 
@@ -360,43 +365,220 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CookHub` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a recipe**
+**Use case: UC01 - Add a recipe**
 
 **MSS**
 
-1. User requests to add in a recipe
-2. CookHub continually prompts the user for each recipe instruction
-3. User tells CookHub that he/she has finished typing in all the recipe instructions
-4. CookHub stores the recipe, and shows a success message
-
-   Use case ends.
-
-
-**Use case: Delete a recipe**
-
-**MSS**
-
-1. User requests to list the recipe names
-2. CookHub shows a list of recipe names
-3. User requests to delete a recipe from the list using its index
-4. CookHub deletes the recipe at the specified index
-5. CookHub shows a success message
+1. User requests to add a recipe.
+2. CookHub creates the recipe and displays the updated recipe list.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User did not provide details for mandatory fields (title, description, ingredients, steps).
+  * 1a1. CookHub displays an error message that specifies the fields that are missing.
+    
+    Use case ends.
+
+
+* 1b. Error occurred when parsing arguments for certain fields.
+  * 1b1. CookHub displays an error message that specifies the incorrect input field value entered.
+
+    Use case ends.
+
+
+* 1c. Recipe already exists in CookHub.
+  * 1c1. CookHub displays an error message that informs user of the duplicate recipe.
+
+    Use case ends.
+
+    
+**Use case: UC02 - Delete a recipe**
+
+**MSS**
+
+1. User requests to delete a specific recipe.
+2. CookHub deletes the recipe and displays the updated recipe list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a.  The specified index is invalid
-   *  3a1. CookHub shows an error message
+* 1a.  The specified index is invalid.
+   *  1a1. CookHub shows an error message.
 
-      Use case resumes at step 2
+      Use case ends.
+
+* 1b. User did not provide any index.
+  * 1b1. CookHub shows an error message.
+
+    Use case ends.
+  
+
+**Use case: UC03 - Edit a recipe**
+
+**MSS**
+1. User requests to edit a specific recipe.
+2. CookHub edits the recipe and displays the updated recipe list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 1a.  The specified index is invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
 
 
-*{More to be added}*
+* 1c. Error occurred when parsing arguments for specified fields to edit.
+    * 1c1. CookHub displays an error message that specifies the incorrect input field value entered.
+
+      Use case ends.
+
+
+
+**Use case: UC04 - Clear recipe list**
+
+**MSS**
+1. User requests to clear all recipes in the recipe book.
+2. CookHub displays a new empty recipe book.
+
+   Use case ends.
+
+
+**Use case: UC05 - Exit CookHub**
+
+**MSS**
+1. User requests to exit the program.
+2. CookHub closes the program window.
+
+    Use case ends.
+
+
+
+**Use case: UC06 - Find recipes by keywords**
+
+**MSS**
+1. User requests to find recipes using the title, description, ingredient, step or tag as the keyword.
+2. CookHub displays the filtered list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide any keyword.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. No matching recipes are found and the filtered list is empty.
+    
+    Use case resumes at step 2.
+
+
+**Use case: UC07 - Sort recipes by specified order**
+
+**MSS**
+1. User requests to sort recipe book by ascending or descending order of price.
+2. CookHub displays the sorted list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide any order.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. User provided an order that is not recognized by CookHub (not ascending nor descending).
+    * 1b1. CookHub displays an error message.
+
+      Use case ends.
+    
+
+**Use case: UC08 - Filter recipes by price**
+
+**MSS**
+1. User requests to filter recipes that are lower than or higher than specified value.
+2. CookHub displays the filtered list of recipes.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. User did not provide the right command format.
+    * 1a1. CookHub displays an error message.
+
+      Use case ends.
+
+* 1b. No recipes fall in the range of price and the filtered list is empty.
+
+  Use case resumes at step 2.
+
+
+**Use case: UC09 - Favourite a recipe**
+
+**MSS**
+
+1. User requests to add a specific recipe to favourites.
+2. CookHub adds the recipe to favourites and displays the updated recipe list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a.  The specified index is invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Get groceries for recipes**
+
+**MSS**
+
+1. User requests to get a list of groceries for the specified recipes.
+2. CookHub displays the ingredients required for the specified recipes.
+
+   Use case ends.
+
+**Extensions**
+
+
+* 1a.  The specified indices are invalid.
+    *  1a1. CookHub shows an error message.
+
+       Use case ends.
+
+* 1b. User did not provide any index.
+    * 1b1. CookHub shows an error message.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
