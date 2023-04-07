@@ -51,7 +51,7 @@ Given below are my contributions to the project.
       (Pull Request [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127)).
     * Developer Guide:
       * Added implementation details of the `linkcontact` feature
-      (Pull Request [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137)). 
+      (Pull Request [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137)).
 
 
 * **Community**:

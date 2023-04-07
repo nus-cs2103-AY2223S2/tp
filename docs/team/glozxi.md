@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to view upcoming events.
   * What it does: Allows the user to use a command to view events starting within a specified number of days.
-  * Justification: This feature improves the product significantly because the user would want to know what events to prepare for. 
+  * Justification: This feature improves the product significantly because the user would want to know what events to prepare for.
   * Highlights: This enhancement required a way to get the current date and time. It required an in-depth analysis of design alternatives for a testable and useful implementation.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=glozxi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)

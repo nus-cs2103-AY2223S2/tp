@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+Object "<u>:Clock</u>" as Clock
+Object "<u>:EventBookParser</u>" as EventBookParser
+Object "<u>:RemindCommandParser</u>" as RemindCommandParser
+Object "<u>:LogicManager</u>" as LogicManager
+Object "<u>:StartTimeWithinDaysPredicate</u>" as StartTimeWithinDaysPredicate
+Object "<u>:RemindCommand</u>" as RemindCommand
+
+LogicManager -up-> "1" EventBookParser
+EventBookParser -up-> "1" Clock
+RemindCommandParser -up-> "1" Clock
+StartTimeWithinDaysPredicate -up-> "1" Clock
+RemindCommand -up-> "1" StartTimeWithinDaysPredicate
+
+@enduml

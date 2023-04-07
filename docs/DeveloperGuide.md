@@ -5,41 +5,42 @@ title: Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-  -    <details>
-       <summary>Design</summary>
-
-       - [Architecture](#architecture)
-       - [UI component](#ui-component)
-       - [Logic component](#logic-component)
-       - [Model component](#model-component)
-       - [Event component](#event-component)
-       - [Contact component](#contact-component)
-       - [Storage component](#storage-component)
-
-       </details>
+  <!-- <details>
+  <summary>Design</summary>
+   -->
+   - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Event component](#event-component)
+   - [Contact component](#contact-component)
+   - [Storage component](#storage-component)
+<!-- 
+  </details> -->
 - [Implementation](#implementation)
-   -   <details>
-       <summary>Features</summary>
-      
-       - [New Contact feature](#new-contact-feature)
-       - [Mark feature](#mark-feature)
-       - [Unmark feature](#unmark-feature)
-       - [Reminder feature](#reminder-feature)
-       - [Linkcontact feature](#linkcontact-feature)
-
-       </details>
+  <!-- <details>
+  <summary>Features</summary> 
+  -->
+   - [New Contact feature](#new-contact-feature)
+   - [Mark feature](#mark-feature)
+   - [Unmark feature](#unmark-feature)
+   - [Reminder feature](#reminder-feature)
+   - [Linkcontact feature](#linkcontact-feature)
+<!-- 
+  </details> -->
 - [Appendix: Requirements](#appendix-requirements)
-  -    <details>
-       <summary>more</summary>
-
-       * [Product scope](#product-scope)
-       * [User stories](#user-stories)
-       * [Use cases](#use-cases)
-       * [Non-Functional Requirements](#non-functional-requirements)
-       * [Glossary](#glossary)
-
-       </details>
+  <!-- <details>
+  <summary>more</summary> 
+  -->
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
+<!-- 
+  </details> -->
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +71,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -110,7 +111,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 <div style="width:80%;margin:0">
@@ -119,7 +120,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 <br>
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -130,7 +131,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/logic/Logic.java)
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
@@ -141,7 +142,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -168,7 +169,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -184,7 +185,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### Event component
-**API** : [`Event.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+**API** : [`Event.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/event/Event.java)
 
 <img src="images/EventClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -207,7 +208,7 @@ The `Event` component,
 * the event will be added to the UniqueEventList.
 
 ### Contact component
-**API** : [`Contact.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+**API** : [`Contact.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/contact/Contact.java)
 
 <img src="images/ContactClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -218,11 +219,12 @@ The `Event` component,
 The `Contact` component,
 - it is made up of 2 objects the `ContactName` and `ContactPhone`
 - both objects are created using user input.
+- the contact will be added into the UniqueContactList.
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -243,14 +245,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### New Contact feature
 
-### Implementation
+The `newcontact` feature allows for users to add new contacts to their contact list.
 
-The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
-A new contact created will be added to the contact list which will be saved in a JSON file.
+#### Implementation
 
-### Design considerations:
+The `newcontact` feature is facilitated by the `Contact` class. The feature is implemented as follows:
+- encapsulate two attributes of a contact with the help of `ContactName` and `ContactPhone` class.
+- Phone number should only be numerical and shall not be shorter than 8 digits.
+- A contact is unique to its `ContactPhone`, having the same phone number will result in an error.
+- Once a new contact is created it will be added to the contact list which will be saved in a JSON file.
 
-**Aspect: How new contact is created:**
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
     * Pros: More levels of abstraction to prevent the accidental change of information.
@@ -258,12 +263,39 @@ A new contact created will be added to the contact list which will be saved in a
 * **Alternative 2:** Created a new contact through storing strings input by user.
     * Pros: Easy to code.
     * Cons: Might be hard to keep track or do comparisons with.
-  
+
+<img src="images/NewContactActivityDiagram.png" width="400" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.1</b> Activity diagram of 'New Contact'
+</div>
 
 ### Mark feature
-The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
 
-**Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
+The `mark` feature allows for marking of the 'Mark' attribute to indicate that the event is done.
+
+#### Implementation
+
+The `mark` feature is implemented with the following considerations:
+- A `Mark` class facilitates the implementation of the mark feature. The class also contains a `isDone` attribute to indicate whether the event is done or not.'
+- A valid `index` will be taken in as a parameter to facilitate marking of the correct event.
+- Marking of a done event would not result in error or exceptions as this action does not reduce correctness of presented information.
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Calls on `mark` method in 'Mark' class to set the tracked boolean variable 'isDone' to true
+  * Pros: Easier to implement.
+  * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
+
+* **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
+  * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
+  * Cons: May have performance issues in terms of memory usage and runtime.
+
+Below shows the activity diagram of the `mark` command:
+
+<img src="images/MarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.2</b> Activity diagram of 'Mark'
+</div>
 
 ### Unmark feature
 
@@ -278,27 +310,35 @@ The `unmark` feature is implemented with the following considerations:
 - Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
 - Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
-#### Design considerations:  
+#### Design considerations:
 
-* **Alternative 1 (current choice): Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false** 
+* **Alternative 1 (current choice):** Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false
   * Pros: Easier to implement.
   * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
 
-* **Alternative 2: Replace current instance of specified event with a new unmarked event instance**
+* **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
+Below shows the activity diagram of the `unmark` command:
+
+<img src="images/UnmarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.3</b> Activity diagram of 'Unmark'
+</div>
+
 ### Reminder feature
+The `remind` feature allows for users to view upcoming events.
 
 #### Implementation
 
-The reminder feature is facilitated by `StartTimeWithinDaysPredicate`, that tests if ane event is within the given days.
+The `reminder` feature is implemented with the following considerations:
+* It is facilitated by `StartTimeWithinDaysPredicate`, that tests if an event's start date is within the inputted days of the current time.
+* The current time is determined by a `Clock` that is created by `LogicManager`.
+* The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer.
 
-The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` with `Clock` as an attribute. When parsing a remind command, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute.
-
-The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
-
-The `RemindCommand` is then executed by `LogicManager`. After testing all events with the `StartTimeWithinDaysPredicate`, filtered events are displayed.
+The following object diagram shows objects involved in the execution of a <b>remind</b> command.
+![RemindObjectDiagram](images/RemindObjectDiagram.png)
 
 #### Design considerations:
 
@@ -338,6 +378,37 @@ The linkcontact feature will take in a contact number as a parameter. This param
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
 
+<img src="images/LinkContactActivityDiagram.png" width="430" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.5</b> Activity diagram of 'linkcontact'
+</div>
+
+### Revenue feature
+
+The `revenue` feature allows for calculating the total revenue earned so far.
+
+#### Implementation
+
+The `revenue` feature is implemented with the following considerations:
+- The revenue takes into account whether the event is marked or not. It only sums up the rate if the event is marked as done.
+- The revenue will display `0.00` and not result in any errors even if there are no events that are done yet.
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called.
+  * Pros: Easier to implement.
+  * Cons: Runtime complexity scales as the event book increases in size.
+
+* **Alternative 2:** Keep a static attribute of the revenue and increase accordingly as events are completed.
+  * Pros: Will maintain a low runtime complexity.
+  * Cons: Hard to implement in the case that events are unmarked or deleted.
+
+Below shows the activity diagram of the `revenue` command:
+
+<img src="images/RevenueActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.6</b> Activity diagram of 'Revenue'
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
@@ -554,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+<!-- **Use case: UC7 - Display Rate**
 
 **MSS**
 
@@ -574,9 +645,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User enters an invalid index.
    * 2b1. System displays that the index is invalid and to try again.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2. -->
 
-**Use case: UC8 - Add Contact**
+**Use case: UC7 - Add Contact**
 
 **MSS**
 
@@ -597,7 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC9 - Add Date to Event**
+**Use case: UC8 - Add Date to Event**
 
 **MSS**
 
@@ -629,7 +700,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC10 - Edit Event**
+**Use case: UC9 - Edit Event**
 
 **MSS**
 
@@ -709,7 +780,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. 
+      Expected: No event is deleted. Error details shown in the status message.
 
 
 
@@ -717,12 +788,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`<br>
       Expected: New event created. Details of event created shown in the status message.
-   
+
    1. Test case: `newevent n/ r/`<br>
       Expected: No event is created. Error details shown in the status message.
 
 
-### Adding a contact 
+### Adding a contact
 
    1. Test case: `newcontact n/Deborah Tan p/91234567`<br>
    Expected: New contact created. Details of contact created shown in status message.
@@ -783,6 +854,20 @@ testers are expected to do more *exploratory* testing.
 * **User Interface (UI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A freelancing gig
+
+## Appendix: Planned Enhancements
+1. The current `newevent` and `edit` commands allows an event's start time to be after its end time. We plan to only allow an event to be added or successfully edited if its start time is before or the same as its end time, with an error message `Start time must be before end time.` being shown otherwise.
+
+2. The current `linkcontact` command does not recognise an inputted phone number if there are extra spaces around it. For example, `linkcontact 1      12345678` is not allowed. We plan to allow the extra spaces by ignoring extra spaces when splitting the input arguments.
+
+3. Upon using the current `linkcontact` command on a contact that is already linked to a specified event, the application returns a `Successfully linked` message in the message display box. We plan to change the display message to `Contact already linked` instead for contacts that are already linked.
+
+4. The current UI does not wrap text displayed into a new line, instead a scroll bar is used to scroll and view textual informations that are too long. We plan to add a text wrapping feature to provide better readability to users so that scrolling is not needed.
+
+5. The current `edit` command is for editing events only, there is no way to edit the contact object details. We plan to implement an `edit` function for the contact objects.
+
+6. The current contact book does not allow deleting of contacts. We plan to implement a `delete` method for deleting contacts.
+
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
