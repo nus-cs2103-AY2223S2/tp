@@ -157,18 +157,21 @@ add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]
        
    A Graphical User Interface (pictured below) will appear. Note how the app contains some sample data.<br>
 
-![Ui](images/Ui.png)
+![Ui](images/Ui_Revised.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all expenses
+   
+    * `clear` : Clears the sample data
 
     * `add c/groceries n/milk p/4.50 d/14/2/23` : Adds an expense named `milk` to the expenses list with a price of $4.50 and a date of 14/02/2023
 
     * `delete 3` : Deletes the 3rd expense shown in the current list
 
     * `exit` : Exits the app
+
 
 7. Refer to the [Features](#features) below for details of each command.
 
