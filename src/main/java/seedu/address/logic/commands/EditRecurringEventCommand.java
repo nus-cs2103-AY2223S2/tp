@@ -90,9 +90,9 @@ public class EditRecurringEventCommand extends Command {
 
         editedRecurringEvent.checkPeriod();
 
-        RecurringEventList.checkForClashesInRecurringEvent(personToEdit, editedRecurringEvent, originalEvent);
+        personToEdit.getRecurringEventList().checkForClashesInRecurringEvent(editedRecurringEvent, originalEvent);
 
-        RecurringEventList.listConflictedEventWithIsolated(editedRecurringEvent, personToEdit.getIsolatedEventList());
+        editedRecurringEvent.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
 
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
 
@@ -196,7 +196,7 @@ public class EditRecurringEventCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditEventDescriptor)) {
                 return false;
             }
 

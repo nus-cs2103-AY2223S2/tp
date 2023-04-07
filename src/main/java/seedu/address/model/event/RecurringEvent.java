@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.event.exceptions.EventConflictException;
 
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
@@ -99,6 +100,51 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
         return 0;
 
+    }
+
+    /**
+     * This function cross-check with the isolated event list to check for any conflicts.
+     * @param isolatedEventList is the event list to be checked with
+     * @throws seedu.address.model.event.exceptions.EventConflictException if there is a conflicted event
+     */
+    public void listConflictedEventWithIsolated(
+            IsolatedEventList isolatedEventList) throws EventConflictException {
+
+        int index = 1;
+        for (IsolatedEvent ie : isolatedEventList.getIsolatedEvents()) {
+            LocalDateTime startPeriod = ie.getStartDate();
+            LocalDateTime endPeriod = ie.getEndDate();
+
+            long count = this.numberOfDaysBetween(startPeriod, endPeriod, this.getDayOfWeek());
+
+            if (count == -1) {
+                continue;
+            }
+
+            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+
+            LocalDateTime dummyEventStartDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), this.getStartTime());
+
+            LocalDateTime dummyEventEndDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), this.getEndTime());
+
+            boolean isEventBefore = false;
+            boolean isEventAfter = false;
+
+            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
+                isEventBefore = true;
+            }
+
+            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
+                isEventAfter = true;
+            }
+
+            if (!(isEventBefore || isEventAfter)) {
+                throw new EventConflictException("Isolated Event List:\n" + index + " " + ie);
+            }
+
+        }
     }
 
     /**

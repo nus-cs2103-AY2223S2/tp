@@ -66,7 +66,7 @@ public class AddRecurringEventCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
 
-        RecurringEventList.listConflictedEventWithIsolated(eventToAdd, personToEdit.getIsolatedEventList());
+        eventToAdd.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
 
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
