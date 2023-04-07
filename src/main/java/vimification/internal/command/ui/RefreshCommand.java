@@ -19,8 +19,7 @@ public class RefreshCommand extends UiCommand {
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         UiTaskList taskList = mainScreen.getTaskTabPanel()
-                .getOngoingTaskListPanel()
-                .getTaskList();
+                .getUiTaskList();
         taskList.setPredicate(null);
         taskList.setComparator(null);
         return new CommandResult(SUCCESS_MESSAGE);
