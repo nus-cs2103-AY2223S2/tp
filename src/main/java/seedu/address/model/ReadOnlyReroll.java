@@ -1,9 +1,9 @@
 package seedu.address.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
-
-import java.util.List;
 
 /**
  * Unmodifiable view of Reroll.

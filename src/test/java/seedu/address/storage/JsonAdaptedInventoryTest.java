@@ -1,10 +1,11 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.entity.Inventory;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalFields.BIG_INVENTORY;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.entity.Inventory;
 
 public class JsonAdaptedInventoryTest {
 

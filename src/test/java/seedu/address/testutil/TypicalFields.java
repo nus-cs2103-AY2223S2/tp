@@ -1,13 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.model.entity.Inventory;
-import seedu.address.model.entity.Stats;
-
-import java.util.Arrays;
-
 import static seedu.address.testutil.TypicalEntities.RIZZ;
 import static seedu.address.testutil.TypicalEntities.SPOON;
 
+import java.util.Arrays;
+
+import seedu.address.model.entity.Inventory;
+import seedu.address.model.entity.Stats;
+
+/**
+ * A utility class containing fields for Entity to use.
+ */
 public class TypicalFields {
 
     public static final Inventory BIG_INVENTORY = new Inventory(Arrays.asList(RIZZ, SPOON));

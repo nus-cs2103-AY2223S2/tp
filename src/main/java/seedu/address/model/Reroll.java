@@ -4,14 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Template;
 
