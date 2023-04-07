@@ -202,7 +202,23 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
-### The Lead Status feature
+### Status Feature: Abstract Class - `Status`
+
+During the development of transactions and implementing `TxnStatus`, the realisation of it sharing similar characteristics
+to `LeadStatus` gave rose to the abstract parent class `Status`. These characteristics are:
+
+- Contains a timestamp representing the creation of the existing status
+- Has methods allowing the viewer of the status to see how long it has been since the timestamp
+- Has a set of pre-defined status types
+
+The `Status` class was created to encapsulate the similarities between statuses. If new object types that require a
+status feature are introduced, the abstract `Status` class can be used (for example, implementing the done status of a Task).
+
+The following diagram shows the structure of the implementation of Statuses, as of v1.3.
+
+![](images/StatusDiagram.png)
+
+#### Lead Status feature
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
@@ -212,18 +228,22 @@ Because we would like to limit the types of statuses a contact should have, for 
 type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for
 abbreviations of each status type.
 
-![](images/PersonLeadStatusDiagram.png)
+![](images/LeadStatusDiagram.png)
 
 The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
 The user is able to change the lead status of a contact to any other lead status. The timestamp is updated to the
 `Instant.now()` of when the command is executed, which takes place in the creation of a lead status.
 
-If the lead status to change to is the same as the preexisting
-one, the command returns and does not alter the previous lead status nor its timestamp.
+#### The `status` Command
+
+The updating of the status is similar to the implementation of edit. The main difference lies in StatusCommand having an 
+additional check, to verify if the LeadStatusName of the new status would be the same as the previous. If it is the same,
+an error is thrown, the user is alerted. No creation of new LeadStatus will take place and the timestamp does not change.
+
+If the lead status to change to is the same as the preexisting one, the command returns and does not alter the previous lead status nor its timestamp.
 This also means that a lead status should not be updated when any other attributes are updated (via `edit`).
 
 ![](images/StatusSequenceDiagram.png)
-(to update seq diagram to reflect timestamp implementation)
 
 #### Transaction Statuses
 
@@ -231,17 +251,9 @@ Transactions have also been implemented with a `TxnStatus status`. Transaction s
 names, and also defined in a similar fashion as `LeadStatus`. Both types of statuses have similar characteristics,
 in terms of existing compulsorily in their container class `Transaction` and `Person`.
 
-#### Abstract Class - `Status`
+The default status for a Transaction is `OPEN`. This represents an incomplete transaction process.
 
-During the development of transactions and implementing `TxnStatus`, the realisation of it sharing similar characteristics
-to `LeadStatus` gave rose to the abstract parent class `Status`. These characteristics are:
-
-- Contains a timestamp representing the creation of the existing status
-- Has methods allowing the viewer of the status to see how long it has been since the timestamp
-- Has a set of pre-defined status types
-
-The `Status` class was created to encapsulate the similarities between statuses. If new object types that require a 
-status feature are introduced, the abstract `Status` class can be used (for example, implementing the done status of a Task).
+![](images/TxnStatusDiagram.png)
 
 
 ### Tasks Feature

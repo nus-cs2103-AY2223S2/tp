@@ -14,6 +14,8 @@ public abstract class Status {
     private static int NUM_SECS_IN_AN_HOUR = 60 * 60;
     private static int NUM_SECS_IN_A_MINUTE = 60;
 
+    private Instant timestamp;
+
     public abstract String getInstantInIso();
 
     public abstract Instant getTimestamp();

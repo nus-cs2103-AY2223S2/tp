@@ -2,21 +2,30 @@
 skinparam classAttributeIconSize 0
 hide circle
 
+
 class Person
 class LeadStatus
+abstract class Status
 enum "<<enumeration>>\nLeadStatusName" as LeadStatusName
 
+Status <|-- LeadStatus
 LeadStatusName <-- LeadStatus
 LeadStatus <-- Person
+
+class Status {
+//-timestamp:Instant//
+//+getTimestamp()//
+//+getDurationSinceLastUpdate()//
++formatDuration()
++isValidTimestamp()
+}
 
 class Person {
 }
 
 class LeadStatus {
--lastUpdateTime:LocalDateTime
+-timestamp:Instant
 
-+update(LeadStatusName newStatus)
-+getTimestamp()
 }
 
 enum LeadStatusName {
@@ -31,5 +40,4 @@ UNQUALIFIED
 +isValidStatusName(String)
 +get(String)
 }
-
 @enduml
