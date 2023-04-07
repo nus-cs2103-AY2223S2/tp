@@ -760,6 +760,8 @@ by specifying the trade name.
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
         </p>
         <br/>
+* <span markdown="span" class="alert alert-info">:information_source: Note that the storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values without reporting an error.</span>
+<br/>
 
 [↑ Go to Drug Commands](#43-drug-commands)
 <br/>
