@@ -50,7 +50,7 @@ public class FindMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof FindMeetingCommand // instanceof handles nulls
-            && meetingStart.equals(((FindMeetingCommand) other).meetingStart)); // state check
+            && meetingStart.isEqual(((FindMeetingCommand) other).meetingStart)); // state check
     }
 }
 

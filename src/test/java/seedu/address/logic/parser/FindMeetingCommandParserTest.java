@@ -18,7 +18,6 @@ public class FindMeetingCommandParserTest {
     @Test
     public void parse_returnsCorrectMeeting() throws ParseException {
         assertEquals(parser.parse(startDate), new FindMeetingCommand(date));
-
     }
 
 }
