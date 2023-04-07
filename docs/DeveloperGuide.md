@@ -179,7 +179,7 @@ Commands in the Main Mode that are implemented for when a deck is not selected b
 
 #### addDeck Feature
 
-`MasterDeck` extends `ReadOnlyMasterDeck`, stored internally as a `UniqueDeckList`. It implements following operation:
+`MasterDeck` extends `ReadOnlyMasterDeck`, which stores a reference to `UniqueDeckList`. It implements following operation:
 - `MasterDeck#addDeck()` - Add a new deck to the list.
 
 This operation is exposed in the Model interface as `Model#addDeck()`. It is supported by the dependence of the model interface on `MasterDeck#addDeck()`.
