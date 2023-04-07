@@ -375,7 +375,7 @@ The following activity diagram summarizes what happens when the user executes th
 <p align="center">
   <img src="images/EditCommandActivityDiagram.svg" width="500" />
   <br>Figure 17: Edit Command Activity Diagram
-</p>
+</p><br>
 
 <p align="center">
   <img src="images/EditItemXYZRakeActivityDiagram.svg" width="500" />
@@ -420,7 +420,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 <p align="center">
   <img src="images/ListCommandActivityDiagram.svg">
-  <br>Figure 21: List Command Activity Diagram
+  <br>Figure 20: List Command Activity Diagram
 </p><br>
 
 ### SortXYZCommand
@@ -439,7 +439,7 @@ The following activity diagram summarizes what happens when the user executes th
 
 <p align="center">
   <img src="images/SortCommandActivityDiagram.svg">
-  <br>Figure 20: Sort Command Activity Diagram
+  <br>Figure 21: Sort Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
