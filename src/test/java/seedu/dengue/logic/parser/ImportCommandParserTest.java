@@ -2,8 +2,13 @@ package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import seedu.dengue.logic.commands.ImportCommand;
 
@@ -25,13 +30,7 @@ public class ImportCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "sampledata", MESSAGE_INVALID_FORMAT); // missing.csv
-        assertParseFailure(parser, "sample/data", MESSAGE_INVALID_FORMAT); // invalid postal
-
+        assertParseFailure(parser, "sample/data", MESSAGE_INVALID_FORMAT); // invalid filepath
+        assertParseFailure(parser, "s@!@$(^.csv", MESSAGE_INVALID_FORMAT); // invalid csv file name
     }
-
-    //    @Test
-    //    public void parse_validFilename_success() {
-    //        String expectedCommand = String.format(ImportCommand.MESSAGE_SUCCESS, "sampledata.csv")
-    //        assertParseSuccess(parser, "sampledata.csv", expectedCommand);
-    //    }
 }
