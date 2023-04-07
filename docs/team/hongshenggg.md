@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Lee Hong Sheng's Project Portfolio Page
+title: Hong Sheng's Project Portfolio Page
 ---
 
 ## Project: BookFace
 
 ### Overview
 
-BookFace is an NUS-centered contacts management system that allows students of NUS to organise their list of friends and acquaintances that they have met in their various classes, CCAs, project groups etc. The application aims to provide NUS students a means to keep track of the contact details of the numerous people they have met during their time in NUS in hopes of facilitating better communication among peers, as well as provide a centralised channel for students to obtain relevant administrative contact information of the various departments and faculties that are in the school.
+BookFace is an NUS-centered contacts management system that allows students of NUS to organise their list of friends and acquaintances that they have met in their various classes, CCAs, project groups etc. The application aims to provide NUS students a means to keep track of the contact details of the numerous people they have met in school, as well as provide a centralised channel for students to obtain school staff contact information.
 
 ### Summary of Contributions
 
