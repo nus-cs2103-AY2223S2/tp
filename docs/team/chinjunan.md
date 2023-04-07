@@ -30,10 +30,10 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases v1.3 - v1.5rc (3 releases) on GitHub
+  * Managed releases v1.3 - v1.4 (2 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Modified existing a storage and model for handling reminders
+  * Modified existing storage and model to handle storing reminders in the app.
 
 * **Documentation**:
   * User Guide:
