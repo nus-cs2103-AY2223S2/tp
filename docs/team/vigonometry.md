@@ -4,8 +4,16 @@ title: Vigneshwar Hariharan's Project Portfolio Page
 ---
 
 ### Docédex
+{:.no_toc}
 
-Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
+Docedex is a **desktop application** built for **medical administrative assistants**
+to manage doctors and patients within clinics.
+
+Here's a **quick snapshot** of how Docedex can help you
+streamline your hospital management processes.
+- Store and edit information about your patients and doctors
+- Track the status of your patients and doctors
+- Assign patients to doctors upon triaging
 
 * Table of Contents
   {:toc}
