@@ -787,11 +787,9 @@ Examples:
 
 ### Clear all Modules
 
-> Clears all information (modules, lectures, videos, tags) from Le Tracker
+> `clear`
 
-Format:
-
-- `clear`
+Clears all information (modules, lectures, videos, tags) from Le Tracker
 
 - any following term entered after `clear` is ignored
 - calling `clear` will result in an empty Tracker
