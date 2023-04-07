@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.task;
 
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -11,7 +11,6 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.task.AddTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;

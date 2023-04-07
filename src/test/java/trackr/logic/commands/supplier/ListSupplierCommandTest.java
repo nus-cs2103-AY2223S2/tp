@@ -1,7 +1,7 @@
-package trackr.logic.commands;
+package trackr.logic.commands.supplier;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
@@ -11,7 +11,7 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.order.ListOrderCommand;
+import trackr.logic.commands.ListItemCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
@@ -19,9 +19,9 @@ import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListOrderCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListOrderCommandTest {
+public class ListSupplierCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -35,19 +35,19 @@ public class ListOrderCommandTest {
     }
 
     @Test
-    public void execute_orderListIsNotFiltered_showsSameList() throws ParseException {
-        assertCommandSuccess(new ListOrderCommand(),
+    public void execute_listIsNotFiltered_showsSameList() throws ParseException {
+        assertCommandSuccess(new ListSupplierCommand(),
                 model,
-                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER.toString().toLowerCase()),
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER.toString().toLowerCase()),
                 expectedModel);
     }
 
     @Test
-    public void execute_taskListIsFiltered_showsEverything() throws ParseException {
-        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
-        assertCommandSuccess(new ListOrderCommand(),
+    public void execute_listIsFiltered_showsEverything() throws ParseException {
+        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
+        assertCommandSuccess(new ListSupplierCommand(),
                 model,
-                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER.toString().toLowerCase()),
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER.toString().toLowerCase()),
                 expectedModel);
     }
 }

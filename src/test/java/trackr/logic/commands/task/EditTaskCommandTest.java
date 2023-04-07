@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.task;
 
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
-import trackr.logic.commands.task.EditTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Menu;
 import trackr.model.Model;

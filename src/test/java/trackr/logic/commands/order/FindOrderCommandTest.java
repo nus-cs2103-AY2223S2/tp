@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,7 +19,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.order.FindOrderCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;

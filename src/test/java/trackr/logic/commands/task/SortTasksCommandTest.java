@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.task;
 
 public class SortTasksCommandTest {
 }

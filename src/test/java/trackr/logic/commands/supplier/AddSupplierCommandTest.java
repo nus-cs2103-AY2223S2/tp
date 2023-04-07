@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.supplier;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
-import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.model.ModelEnum;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.SupplierList;
