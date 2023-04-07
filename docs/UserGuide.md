@@ -9,41 +9,11 @@ events and their friends' events **via a Command Line Interface (CLI)** while st
 Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to 
 meet instead of having to manually compare timetables with each other.
 
-- [Quick start](#quick-start)
-- [Features](#features)
-- [Person-related commands](#person-related-commands)
-    * [Adding a person: `add`](#adding-a-person---add-)
-    * [Listing all persons : `list`](#listing-all-persons----list-)
-    * [Editing a person : `edit` <a id="EditPerson" />](#editing-a-person----edit---a-id--editperson----)
-    * [Locating persons by name: `find`](#locating-persons-by-name---find-)
-    * [Deleting a person : `delete`](#deleting-a-person----delete-)
-- [Group-related commands](#group-related-commands)
-    * [Creating a group : `group_create`](#creating-a-group----group-create-)
-    * [Deleting a group : `group_delete`](#deleting-a-group----group-delete-)
-    * [List all groups: `group_list`](#list-all-groups---group-list-)
-    * [Find a group: `group_find`](#find-a-group---group-find-)
-- [Event-related commands](#event-related-commands)
-    * [Creating an event:](#creating-an-event-)
-        + [1) Isolated event: `event_create`](#1--isolated-event---event-create-)
-        + [2) Weekly Recurring Event `event_create_recur`](#2--weekly-recurring-event--event-create-recur-)
-    * [Deleting an event:](#deleting-an-event-)
-        + [1) Delete an isolated event: `ie_delete`](#1--delete-an-isolated-event---ie-delete-)
-        + [2) Delete recurring event: `re_delete`](#2--delete-recurring-event---re-delete-)
-    * [Editing an event:](#editing-an-event-)
-        + [1) Edit an isolated event: `ie_edit`](#1--edit-an-isolated-event---ie-edit-)
-        + [2) Edit a recurring event: `re_edit`](#2--edit-a-recurring-event---re-edit-)
-    * [List all events: `event list`  [coming soon]](#list-all-events---event-list----coming-soon-)
-    * [Clearing all entries : `clear` <a id="Clear" />](#clearing-all-entries----clear---a-id--clear----)
-    * [Exiting the program : `exit` <a id="Exit" />](#exiting-the-program----exit---a-id--exit----)
-    * [Viewing help : `help`](#viewing-help----help-)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick start
+### Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -71,7 +41,7 @@ meet instead of having to manually compare timetables with each other.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+### Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -81,7 +51,7 @@ meet instead of having to manually compare timetables with each other.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -89,7 +59,7 @@ meet instead of having to manually compare timetables with each other.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -126,7 +96,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]�
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
+* When editing tags/groups, the existing tags/groups of the person will be removed i.e. adding of tags/groups is not cumulative.
 * To add on to existing groups/tags without overwriting it, include the prefix `m/` (merge).
 * When using prefix `m/`, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
@@ -145,7 +115,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -211,7 +181,7 @@ Finds persons in groups whose group names contain any of the given keywords.
 
 Format: `group_find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `CS2103` will match `cs2103`
+* The search is case-insensitive. e.g. `CS2103` will match `cs2103`
 * The order of the keywords does not matter. e.g. `CS2103 CS2101` will match `CS2101 CS2103`
 * Only the group name is searched.
 * Only full words will be matched e.g. `CS2103` will not match `CS2103T`
