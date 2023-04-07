@@ -303,6 +303,10 @@ public class OfficeConnectModel {
         }
     }
 
+    public Model getPersonModelManger() {
+        return personModelManger;
+    }
+
     //@@author cyiting
     private List<Task> getTaskList(Person person) {
         List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
