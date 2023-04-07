@@ -1,6 +1,7 @@
 
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command
@@ -8,7 +9,8 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or
 forgetting about a client!
 
-* Table of Contents {:toc}
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
