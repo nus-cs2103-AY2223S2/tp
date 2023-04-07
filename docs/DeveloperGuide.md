@@ -138,6 +138,8 @@ How the parsing works:
 - When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+### Injector component
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -799,6 +801,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Navigate to a lecture context**
+
+**MSS**
+
+1. User requests to navigate to a specific lecture belonging to a specific module.
+2. Le Tracker navigates to the specified lecture and displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The user does not enter sufficient details for the lecture.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The specified lecture or module does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
 
 **Use case: List modules**
 
