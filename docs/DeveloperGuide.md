@@ -1487,39 +1487,42 @@ Prefixes are case-sensitive, hence command arguments such as ` T/` will be inter
    and tag `javascript T/react`.
   Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
 
-![ViewSequenceDiagram](images/dg-case-sensitive-prefix-add-example.png)
+![CaseSensitiveAddExample](images/dg-case-sensitive-prefix-add-example.png)
 
-<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure XX: Adding the tag 'javascript T/react'</p>
 
 Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
 
 We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
 
- For example, using the `find` command, `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
+To illustrate this side-effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
 
-![ViewSequenceDiagram](images/dg-case-sensitive-find-before.png)
+![CaseSensitiveFindBeforeExample](images/dg-case-sensitive-find-before.png)
 
-<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure XX: Find the tags "javascript" and "react" </p>
 
-![ViewSequenceDiagram](images/dg-case-sensitive-find-after.png)
+![CaseSensitiveFindAfterExample](images/dg-case-sensitive-find-after.png)
 
-<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure XX: Result of the find command in figure XX </p>
 
 There could be another conflicting meaning of the command. In this case, `find t/javascript t/react` tries to find "numbers" or "cheese". but the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
-**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. A new internship entry will be successfully added. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
+**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
    message is displayed in the Result Display.
 
 
-![ViewSequenceDiagram](images/dg-case-sensitive-prefix-tag.png)
+![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
 
-<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure XX: Adding a new entry with case-insenstive prefix</p>
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![CaseInsensitiveAddAfterExample](images/dg-case-insensitive-add-after.png)
 
-<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure XX: Result of the add command in figure XX</p>
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
+
+![CaseInsensitiveFixSnippet](images/dg-case-insensitive-prefix-fix.png)
 
 <p style="text-align: center;">Figure XX: The parser checks for both lowercase prefix and uppercase prefix</p>
 
