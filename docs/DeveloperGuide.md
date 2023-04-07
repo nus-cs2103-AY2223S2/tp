@@ -240,7 +240,7 @@ fields include application date time and notes about the applicant.
    will be displayed. The user will be prompted to enter the command correctly via the error message.
 1. All applicants added will start at the Applied Status.
 1. If application date time was not provided, HMHero would assume the application date time of the Applicant to be now
-   (the current time on the user's computer)
+   (the current date and time on the user's computer)
 1. The applicant is cross-referenced in the `Model` to check if it already exists. If it does, an error is raised
 to inform the user.
 1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
@@ -248,9 +248,8 @@ to inform the user.
 ##### Feature Considerations
 
 When checking for duplicates in the `UniquePersonList` inside `Model`, any `Person` cannot have the same name and phone
-as another. While it is unlikely applicants have the same full name, it is still possible in reality. However, it is
-impossible for unique applicants to share the same number. Thus, HMHero checks name and phone number when checking for
-duplicates.
+as another. HMHero checks for both the name and phone number when checking for duplicates to prevent the situation of
+applicants having the same name.
 
 When implementing this feature, we restricted users to only add applicants into the `APPLIED` status. This is because
 we wanted HMHero to adhere to the flow of the hiring process. Allowing users to add applicants into specific statuses
@@ -261,7 +260,7 @@ could introduce confusion to how `add` command is used.
 
 ##### Overview
 
-The `advance` command advances an `Person` in HMHero, which advances the `status` of a `Person`.
+The `advance` command advances an `Person` in HMHero, which advances the `Status` of a `Person`.
 
 <div markdown="span" class="alert alert-info" role="alert">
 
@@ -270,9 +269,6 @@ The `advance` command advances an `Person` in HMHero, which advances the `status
 Refer to [Glossary](#glossary) for more information on Command format and applicant status.
 </div>
 
-The activity diagram is as such:
-
-![Advance activity diagram](diagrams/AdvanceActivityDiagram.puml)
 
 Here is the activity diagram showing the process of the `advance` command:
 ![Advance activity diagram](images/AdvanceActivityDiagram.png)
@@ -289,7 +285,7 @@ correctly via an error message.
 correctly via an error message.
 7. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
 correctly via an error message.
-8. If step 7 is reached without any error message, HMHero advances the specified `Person`'s `status`.
+8. If step 7 is reached without any error message, HMHero advances the specified `Person`'s `Status`.
 
 ##### Feature Considerations
 
@@ -310,14 +306,11 @@ The `reject` command rejects a `Person` in HMHero, which changes the `status` of
 `reject n/NAME p/PHONE` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
+
 Here is the activity diagram showing the process of the `reject` command:
+
 ![RejectApplicantActivityDiagram](images/RejectApplicantActivityDiagram.png)
 
-The activity diagram is as such:
-[Add in later]()
-
-Here is the activity diagram showing the process of the `reject` command:
-[Add in later]()
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
@@ -330,11 +323,13 @@ enter the command correctly via an error message.
 
 ##### Feature Considerations
 
-It is feasible to implement the reject feature to successfully executes when `reject` command executes on 
-applicants with `REJECTED` status. However, an absence of the error message provides little value to the user and 
-may present confusingly to the user. <br>
+While it may be feasible to implement the `reject` command to successfully execute on 
+applicants with `REJECTED` status, we felt that throwing an error message would provide more value for the user to 
+inform them that the applicant has already been rejected. <br>
 Additionally, we realised that it is common for hiring managers to reject applicants without removing them. Thus, the
 `reject` command does not perform the same functionality as the `delete` command.
+We also allowed the rejecting of applicants with the `ACCEPTED` status for the rare case where users might want to
+reject an accepted applicant due to an unforeseen circumstance.
 
 #### Finding an Applicant
 
@@ -399,8 +394,6 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
-The activity diagram is as such:
-[add in later]()
 
 Here is the activity diagram showing the process of the `edit` command:
 [EditApplicantActivityDiagram]()
@@ -418,10 +411,10 @@ Here is the activity diagram showing the process of the `edit` command:
 
 ##### Feature Considerations
 
-Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the
+Similar to the `add` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the
 `Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and
-`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and
-`91823452`.
+phone number `91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and
+phone number `91823452`.
 
 When providing multiple arguments with the same delimiter,
 the last instance of the repeat delimiter is taken during the `parse` command.
@@ -443,9 +436,10 @@ Here is the activity diagram showing the process of the `list` command:
 
 ##### Feature Considerations
 
-The five statistics were chosen as a baseline, and they are a good starting point for users to help
-track the number of applicants. For example, the user can obtain the total number of applicants, and also provide
-the total numbers of applicants for each status.
+The statistics of the number of applicants in each stage of the application cycle were chosen as a baseline, 
+and they are a good starting point for users to help track the number of applicants. 
+For example, the user can obtain the total number of applicants, 
+and also provide the total numbers of applicants for each status.
 
 #### Showing all shortlisted applicants
 
@@ -458,9 +452,21 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 3. The resulting filtered applicant list is sorted by interview date, from earliest to latest.
 4. HMHero displays the resulting `SortedList` to the user.
 
+
 #### Filter applicants based on notes
 
+##### Overview
+The `skill` command displays the list of applicants that matches the keyword provided.
 
+##### Feature Details
+1. The user calls the `skill` command.
+2. The applicant list is filtered for applicants with notes that match the keyword provided.
+3. HMHero displays the filtered applicant list to the user.
+
+##### Feature Considerations
+
+We limited the length of the keyword to a maximum of 45 characters because the longest word in the English dictionary
+has a length of 45 characters so there is no reason for the keyword to have a length longer than that.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1090,9 +1096,49 @@ Expected: All applicants in HMHero are deleted.
 Test case: `exit`<br>
 Expected: HMHero application closes.
 
-## Effort
+## **Effort**
 
 It was not easy to develop HMHero. Our team struggled with ways to make our product unique and stand out from existing products in the market,
 while at the same time ensuring that this product could be completed in the short span of time given.
+
+### Managing Tasks
+
+While working on this project, our team was also occupied with other modules that we were juggling throughout the semester. 
+Hence, it was not easy carving out time every week to meet with the team, apart from the scheduled weekly meetings.
+Some weeks required more than one meeting, and we had to work around the different clashes in timetables between each team members.
+However, we are grateful for the effort that every member has put in to make this project a success and meet our expectations.
+
+### Improved UI
+The original AB3 program only displayed the list of persons which is not very useful for an application tracking applicants. 
+To make our app effective, we enhanced the output command box to include information of each applicant for each command that is associated with the specific applicant. 
+This makes it easier for the user to track the status of their applicants as they execute their commands.
+
+In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own blue and light colored theme to give this app a nice, warm and welcoming feel. 
+
+
+### Extensive Testing
+
+The increased number of classes, along with all the commands, means that code coverage is likely to decrease and more testing had to be done as compared to that in AB3.
+
+Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests for our commands, 
+parsers and model objects. We redesigned how testing is done for commands and manage to cover all commands successfully. 
+We maintained a ~83% code coverage from the original ~72% in AB3, and increased the number of test cases from 248 (in AB3) to 527 (in HMHero).
+
+## **Planned Enhancements**
+
+1. Allowing a command specific to adding of notes to an applicant. Our current implementation requires for the user to re-key every single note that was already registered in HMHero when trying to 
+edit the applicant and adding extra notes to the applicant. This may be very cumbersome and troublesome for the user especially if the applicant already has a long list of notes registered.
+2. Enhancing commands involving date time inputs to check for invalid date inputs for specific months. For example, `31-02-2023` is an invalid date for the month of February.
+However, with Java's LocalDateTime class, it does not see this as an invalid LocalDateTime class but instead automatically refactors this date to `28-02-2023`, without notifying the user.
+This would be better if an error message is thrown to alert the user of this automatic change instead of silently changing it without notifying the user. Note that an error is still thrown for obvious invalid dates
+such as `32-02-2023`, but just not for the case of specific dates that may be valid in certain months but invalid for other months.
+3. Enhancing the `edit` command to check for changing an interview date to a date in the past should throw a warning to alert the user that the edited interview date time is in the past. This should not be the case
+when the user edits the interview date time of an applicant and hence should be warned to the user, but still allow the change to execute.
+4. Enhancing the GUI to show more information such as the Application DateTime of an applicant more easily instead of having to execute a command to view information. 
+Currently out GUI hides these information and is only available for the user after the user executes a relevant command that changes these information. This might be inconvenient for users and is a room for improvment
+in future enhancements.
+5. Enhancing the `add` and `edit` command to warn the user if duplicate phone numbers are used in the new or edited entries. While phone numbers are unique, there is the slight possibility that a new applicant is using the phone number 
+of an old applicant (who has changed his/her phone number). Hence, we shall not deny these commands to throw an error but rather we should warn the user when these commands are executed so that the user aware of it.
+
 
 
