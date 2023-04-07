@@ -37,4 +37,4 @@ Given below are my contributions to the project.
 
 * **Community**:
 * PRs reviewed (with non-trivial review comments): [\#61](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/61),
-  [\#63](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/63), 
+  [\#63](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/63),
