@@ -699,7 +699,7 @@ Also, this avoids clashing acronyms such as CS which could be interpreted as Chi
 
 <br>
 
-**Q: My find command is not showing the correct list of people**
+**Q: My find command is not showing the correct list of people.**
 
 **A:** This could be because there is an existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
@@ -708,7 +708,7 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 
 **Q: I cannot find the course I want to add in the Course List Panel.**
 
-**A:** We understand that the current list of courses available is limited. We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
+**A:** We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
