@@ -2032,7 +2032,7 @@ testers are expected to do more *exploratory* testing.
 
 #### **_Scenario 1_**
 
-Context: There is no contact named "Thomas" in `EduMate`
+Context: There is no contact named "Thomas" in `EduMate`.
 
 Command executed: `add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
