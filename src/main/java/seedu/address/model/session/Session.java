@@ -247,12 +247,7 @@ public class Session implements Comparable<Session> {
      * This defines a stronger notion of equality between two sessions.
      */
     public boolean isSameSession(Session otherSession) {
-        if (otherSession == this) {
-            return true;
-        }
-
-        return otherSession != null
-                && otherSession.getName().equals(getName());
+        return otherSession.getName().equalsIgnoreCase(this.getName());
     }
 
     /**

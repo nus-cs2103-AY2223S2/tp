@@ -137,20 +137,4 @@ public class UniqueSessionList implements Iterable<Session> {
         }
         return true;
     }
-
-    //    /**
-    //     * Sorts the list of sessions according to the given attribute.
-    //     * @param attribute the attribute to sort by. 1 indicates sorting by name,
-    //     and 2 indicates sorting by pay rate.
-    //     * @throws NumberFormatException if the pay rate is not in a valid format
-    //     */
-    //    public void sort(int attribute) {
-    //        if (attribute == 1) {
-    //            // Sort by name
-    //            internalList.sort(Comparator.comparing(person -> person.getName().toString()));
-    //        } else if (attribute == 2) {
-    //            // Sort by pay rate
-    //            internalList.sort(Comparator.comparing(person -> Integer.parseInt(person.getPayRate().toString())));
-    //        }
-    //    }
 }
