@@ -1023,7 +1023,7 @@ Similar to **UC03 Delete a contact**, except,
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
 1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
-1. The current UI make use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
+1. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
