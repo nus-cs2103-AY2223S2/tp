@@ -229,9 +229,15 @@ It consists of:
 
 ## 5.1. Employee Commands
 
+
+
 ### 5.1.1. Adding an employee: `add`
 
-Adds an employee to SudoHR.
+To add and store an employee to the application, we can use the add command, 
+which takes in as input values an employee ID, name, phone number, email, 
+address, and a list of tags that can be used to store auxiliary information
+about the individual.
+
 
 Format: `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -240,8 +246,12 @@ An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add id/777 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add id/123 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/123 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Residences p/1234567 t/intern t/vegan`
+* `add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern`
+
+
+![result for 'feid eid/7'](images/UiAddEmployeeCommand.png)
+
 
 ### 7.1.2. Listing all employees : `list`
 
@@ -287,7 +297,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   
 
-  ![result for 'find alex david'](images/findTheMythDaMithByEid.png)
+
 
 ### 7.1.5. Find employees by ID: `feid`
 
@@ -297,6 +307,9 @@ Format: `feid eid/EMPLOYEE_ID`
 
 Examples:
 * `feid eid/7` returns Employee with ID 7.
+  
+
+  ![result for 'feid eid/7'](images/findTheMythDaMithByEid.png)
 
 ### 7.1.6. Deleting an employee : `del`
 
