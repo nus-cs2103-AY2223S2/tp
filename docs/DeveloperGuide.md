@@ -1018,12 +1018,12 @@ Similar to **UC03 Delete a contact**, except,
       1. `12345678`
    1. Invalid `Phone` fields:
       1. `+65 12345678`
-      2. `01234-012345`
-      3. `(01234) 012345` 
+      1. `01234-012345`
+      1. `(01234) 012345` 
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
 1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
-1. _{possible UI Enhancements to handle interaction of overflowing text with Tags}_
+1. The current UI makes use of a horizontal scroll bar to handle the interaction of overflowing text with tags in the contact panel. To enhance the user experience, we plan to only display the tag count initially. If the user chooses to view a specific contact, the contact card will then expand to show the full list of tags associated with that contact.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1052,8 +1052,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Adding a contact
 
@@ -1086,11 +1084,11 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `edit 1 l/Python`<br>
        Expected: The `Python` language is added to the existing languages of the first contact. An error is logged in the console.
 
-   1. Test case: `edit 1`<br>
-      Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+    1. Test case: `edit 1`<br>
+       Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
 
-   1. Test case: `edit 0`<br>
-      Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+    1. Test case: `edit 0`<br>
+       Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
 
     1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
        Expected: No contact is edited. An error message is shown as an invalid command was given.
@@ -1105,27 +1103,43 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `list l/Java` <br>
       Expected: Contacts with language `Java` is shown.
    
-   2. Test case: `list t/friend l/Java`<br>
+   1. Test case: `list t/friend l/Java`<br>
       Expected: Contacts with tag `friend` and language `Java` is shown.
    
-   4. Test case: `list l/`<br>
+   1. Test case: `list l/`<br>
       Expected: An error is message is shown as an invalid syntax for language is given.
    
-   5. Test case: `list 12345`<br>
+   1. Test case: `list 12345`<br>
       Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
    
 2. Listing contacts while some contacts are being shown. 
    1. Prerequisites: Filter the contact list with `find` or `list [l/LANGUAGE] [t/TAG]`. At least one contact in the list. 
    
-   2. Test case: `list`<br>
+   1. Test case: `list`<br>
       Expected: All contacts from the unfiltered list is shown.
    
-   3. Test case: `list t/friend`<br>
+   1. Test case: `list t/friend`<br>
       Expected: Contacts tagged with `friend` in the filtered list is shown.
    
 ### Removing a contact's field
 
-1. _{ more test cases …​ }_
+1. Removing a contact's field while all contacts are being shown
+    1. Prerequisites: At least one contact in the shown list.
+
+    1. Test case: `remove 1 l/`<br>
+       Expected: The language field of the first contact is removed. Language field in the person detail panel becomes empty.
+
+    1. Test case: `remove 1 l/ t/`<br>
+       Expected: The language and tag field of the first contact are removed. Language and tag field in the person detail card becomes empty.
+
+    1. Test case: `remove 1 t/friends`<br>
+       Expected: The language field of the first contact is removed only if its tag name previously was `friends`. Otherwise, an error message is shown as the field does not exist in the SOCKet.
+
+    1. Test case: `remove 0 t/`<br>
+       Expected: No contact field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
+
+    1. Test case: `remove 0`<br>
+       Expected: No contact field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
 ### Deleting a contact
 
@@ -1144,7 +1158,19 @@ testers are expected to do more *exploratory* testing.
 
 ### Clearing all contacts or tags
 
-1. _{ more test cases …​ }_
+1. Clearing all contacts or contacts associated with the given tag(s) while all contacts are being shown
+
+   1. Test case: `clear`<br>
+      Expected: All contacts are cleared.
+   
+   1. Test case: `clear t/`<br>
+      Expected: All contacts are cleared.
+   
+   1. Test case: `clear t/friends`
+      Expected: Contacts with tag `friends` are cleared.
+   
+   1. Test case: `clear t/enemy`
+      Expected: If there are no contact with the tag `enemy`, no contact is cleared. An error message is shown as no such tag was found in the SOCket.
 
 ### Sorting contacts
 
@@ -1152,7 +1178,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing a contact's detailed information
 
-1. _{ more test cases …​ }_
+1. Viewing a contact's detail while all the contacts are being shown
+
+   1. Prerequisites: At least one project in the list.
+
+   1. Test case: `view 1`<br>
+      Expected:  Detailed information of the first contact is displayed in the person detail panel.
+   
+   1. Test case: `view 1 t/`<br>
+      Expected: No contact is displayed in the person details panel. An error message is shown as an invalid command was given.
+   
+   1. Test case: `view 0`<br>
+      Expected: No contact is displayed in the person details panel. An error message is shown as an invalid index was given. An error is logged in the console. 
 
 ### Adding a project
 
@@ -1196,26 +1233,34 @@ testers are expected to do more *exploratory* testing.
 ### Removing a project's field
 
 1. Removing a project while all projects are being shown
-   2. Prerequisites: At least one project in the shown list.
+   1. Prerequisites: At least one project in the shown list.
    
-   3. Test case: `removepj 1 h/`<br>
+   1. Test case: `removepj 1 h/`<br>
       Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
    
-   4. Test case: `removepj 1 h/ r/`<br>
+   1. Test case: `removepj 1 h/ r/`<br>
       Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
    
-   5. Test case: `removepj 1 r/first-project`<br>
+   1. Test case: `removepj 1 r/first-project`<br>
       Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
    
-   5. Test case: `removepj 0 h/`<br>
+   1. Test case: `removepj 0 h/`<br>
       Expected: No project field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
    
-   6. Test case: `removepj 0`<br>
+   1. Test case: `removepj 0`<br>
       Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
 ### Clearing all projects
 
-1. _{ more test cases …​ }_
+1. Clearing all projects in the list.
+   1. Test case: `clearpj`
+      Expected: All projects are cleared.
+   
+   1. Test case: `clearpj 123`
+      Expected: All projects are cleared.
+   
+   1. Test case: `clearpj h/`
+      Expected: All projects are cleared.
 
 ### Sorting projects
 
