@@ -527,7 +527,7 @@ Below is the sequence diagram for adding an assignment.
 * 2b. User does not provide a valid index
     * 2a1. TAA shows an error message.
       Use case ends.
-    
+
 Below is the sequence diagram for adding an assignment.
 
 <img src="/images/DeleteAlarmSequenceDiagram.png" />
@@ -540,7 +540,7 @@ Below is the sequence diagram for adding an assignment.
 * 2a. There is no alarms scheduled.
     * 2a1. TAA shows an error message.
       Use case ends.
-  
+
 Below is the sequence diagram for adding an assignment.
 
 <img src="/images/ListAlarmsSequenceDiagram.png" />

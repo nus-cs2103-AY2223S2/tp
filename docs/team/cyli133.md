@@ -13,11 +13,11 @@ your teaching assistant tasks done faster than traditional GUI apps.
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cyli133&breakdown=true)
 - **New Features**
     - **Alarm Scheduling** ([PR #137](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/137))
-        - **What it does**: 
+        - **What it does**:
           - Allows users to schedule alarms that will ring at the scheduled time.
           - This feature greatly helps the TAs to manage their time during class, which is an existing problem faced
             by many TAs.
-          - Users can create alarms with specified time and comment, upon time-up the alarm will sound off, 
+          - Users can create alarms with specified time and comment, upon time-up the alarm will sound off,
             with a notification window popping up.
           - Users can delete scheduled alarm as well. Upon deletion, the alarm deleted will no longer ring.
 - **Enhancements**
@@ -35,9 +35,9 @@ your teaching assistant tasks done faster than traditional GUI apps.
 - **Bug Fixes**
     - Fixed bug where `add_alarm` does not report errors properly for negative or non-numeric input.
       ([PR #212](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/212))
-    - Fixed bug where  `create_class` does not behave as expected when optional student names is added. 
+    - Fixed bug where  `create_class` does not behave as expected when optional student names is added.
       ([PR #212](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/212))
-    - Fixed bug where `add_alarm`, no error thrown when parameters are empty. 
+    - Fixed bug where `add_alarm`, no error thrown when parameters are empty.
       ([PR #212](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/212))
 
 - **Documentation**

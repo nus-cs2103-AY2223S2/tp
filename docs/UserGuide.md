@@ -9,13 +9,13 @@ title: User Guide
 
 ## **Introduction**
 ### About this application
-Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, 
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities,
 optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
 TAA provides a one-stop solution that meets the following teaching needs of a TA in just one single application:
 1. You can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
 2. You can even view grade statistics without the use of a dedicated data analysis application!
-3. You can schedule alarms that help you manage your time during class. Gone are the days of you unknowingly spending 
+3. You can schedule alarms that help you manage your time during class. Gone are the days of you unknowingly spending
    too much time on a single question during tutorial or forgetting to mark students' attendance at the end of class.
 4. You can save the troubles of manually importing and exporting data into and out of the TAA application, thanks to our
    CSV parser!
@@ -667,7 +667,7 @@ Consequently, such operations will not be allowed to execute, and an error messa
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
-|           Term           |                                                                               Explanation                                                                                | 
+|           Term           |                                                                               Explanation                                                                                |
 |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |       Desktop App        |                           A software program that runs on a computer's desktop or laptop operating system, rather than through a web browser.                            |
 |  Command Line Interface  |            A way of interacting with a computer program by typing in text commands instead of using a graphical user interface (GUI) with buttons and menus.             |
