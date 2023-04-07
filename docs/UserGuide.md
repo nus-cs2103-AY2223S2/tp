@@ -285,6 +285,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  
+
   ![result for 'find alex david'](images/findTheMythDaMithByEid.png)
 
 ### 7.1.5. Find employees by ID: `feid`
@@ -294,7 +296,7 @@ Finds the employee who has the given ID.
 Format: `feid eid/EMPLOYEE_ID`
 
 Examples:
-* `feid eid/100` returns Employee with ID 100.
+* `feid eid/7` returns Employee with ID 7.
 
 ### 7.1.6. Deleting an employee : `del`
 
@@ -459,7 +461,7 @@ Adds an employee's leave from the start date to an end date inclusive for SudoHr
 Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-The start date must be before the end date.
+The start date cannot be stated to be after the end date.
 </div>
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
