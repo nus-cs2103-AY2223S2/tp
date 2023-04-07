@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * Updated the UI colour scheme.
     * Designed background for side panel with Figma.
     * Replaced menu bar with sidebar and replaced `File`,`Help` options with intuitive icon buttons.
-    * Modified UI to include various visual effects using JavaFX and CSS, such as animated scaling, button rotation, and color changes when hovering or clicking over different components; providing users with a more dynamic and engaging experience.
+    * Modified UI to include various visual effects using JavaFX and CSS, such as animated scaling, button rotation, and color changes when hovering or clicking over different components, providing users with a more dynamic and engaging experience.
     * Credits: 
       * Help window, scheduled meet up pane and meet recommendation pane were done in collaboration with [@seanfirefox](https://ay2223s2-cs2103t-w14-2.github.io/tp/team/seanfirefox.html).
       * Certain images and icons used were sourced from [upklyak](https://www.freepik.com/free-vector/pensive-people-think-about-question-problem-vector-flat-set-curious-doubt-confused-puzzled-women-men-with-hand-head-chin-expression-people-making-decision-choice_23639641.htm) and [flaticon](https://www.flaticon.com).
