@@ -148,7 +148,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
-### **Storage Component**=
+### **Storage Component**
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
