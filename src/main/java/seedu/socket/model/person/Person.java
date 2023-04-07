@@ -157,29 +157,6 @@ public class Person {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Profile: ")
-                .append(getProfile())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
-        Set<Language> languages = getLanguages();
-        if (!languages.isEmpty()) {
-            builder.append("; Languages: ");
-            languages.forEach(builder::append);
-        }
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-
-        return builder.toString();
+        return getName().toString();
     }
 }

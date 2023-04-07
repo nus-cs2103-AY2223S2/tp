@@ -9,28 +9,34 @@ SOCket is a desktop address book application used for teaching Software Engineer
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
-    * What it does: `to be added soon`
+* **New Feature**: `remove` command
+    * What it does: Allows users to remove a specific field value
     * Justification: `to be added soon`
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other)
+* **New Feature**: Added keyboard shortcut
+  * What it does: Allows users to perform `undo`, `redo` and `exit` command
+  * Justification: `to be added soon`
+  * Highlights: `to be added soon`
+  * Credits: *{`to be added soon`}*
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&breakdown=true)
 
 * **Project management**:
     * `to be added soon`
 
 * **Enhancements to existing features**:
-    * `to be added soon`
+    * Clear contacts with given tag(s)
 
 * **Documentation**:
     * User Guide:
-        * `to be added soon`
+        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`
     * Developer Guide:
-        * `to be added soon`
+        * Added use cases `UC06`, `UC13`, `UC15`
+        * Update UI class diagram
 
 * **Community**:
-    * `to be added soon`
+    * PRs reviewed (with non-trivial review comments): ().
+    * Contributed to forum discussions: ().
 
-* **Tools**:
-    * `to be added soon`

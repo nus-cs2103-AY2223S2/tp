@@ -135,27 +135,7 @@ public class Project {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-            .append("; Repo Host: ")
-            .append(getRepoHost())
-            .append("; Repo Name: ")
-            .append(getRepoName())
-            .append("; Deadline: ")
-            .append(getDeadline())
-            .append("; Meeting: ")
-            .append(getMeeting());
-
-        Set<Person> members = getMembers();
-        if (!members.isEmpty()) {
-            builder.append("; Members: \n");
-            for (Person member : members) {
-                builder.append(member.getName());
-                builder.append("\n");
-            }
-        }
-
-        return builder.toString();
+        return getName().toString();
     }
 
     /**

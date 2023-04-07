@@ -246,4 +246,5 @@ public class ParserUtil {
         }
         return new ProjectMeeting(trimmedName);
     }
+
 }

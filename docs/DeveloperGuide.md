@@ -13,11 +13,27 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
+## **Introduction**
+
+This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of **SOCket**, an application for managing contacts and projects, with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.3`.
+
+The Developer Guide is written to aid present and future developers of SOCket with understanding the architecture, design and non-trivial implementations of SOCket's features. In doing so, this guide imparts the knowledge required for developers to further modify and extend the features and functionality of SOCket beyond its current state.
+
+The code for SOCket is hosted on GitHub **[here](https://github.com/AY2223S2-CS2103T-T12-4/tp)**.
+
+Refer to the following section for how to **[set up and get started](#setting-up-getting-started)** with SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -28,7 +44,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center"><img src="images/ArchitectureDiagram.png" width="280" /></p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -52,26 +68,32 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center"><img src="images/ComponentManagers.png" width="300" /></p>
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Shown below is the class diagram for the `UI` component:
+
+<p align="center"><img src="images/UiClassDiagram.png" /></p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -82,15 +104,15 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Project` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center"><img src="images/LogicClassDiagram.png" width="550"/></p>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `SocketParser` class to parse the user command.
@@ -98,26 +120,33 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center"><img src="images/DeleteSequenceDiagram.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center"><img src="images/ParserClasses.png" width="600"/></p>
 
 How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="800" />
+Shown below is the class diagram for the `Model` component:
 
+<p align="center"><img src="images/ModelClassDiagram.png" width="800" /></p>
 
 The `Model` component,
 
@@ -130,16 +159,19 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<p align="center"><img src="images/BetterModelClassDiagram.png" width="450" /></p>
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+Shown below is the class diagram for the `Storage` component:
+
+<p align="center"><img src="images/StorageClassDiagram.png" width="550" /></p>
 
 The `Storage` component,
 * can save both `Socket` data and user preference data in json format, and read them back into corresponding objects.
@@ -153,15 +185,19 @@ Classes used by multiple components are in the `seedu.socket.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/redo feature
+### Undo/Redo feature
+
+#### Implementation
 
 _This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)_
 
-The proposed undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedSocket#commit()` — Saves the current 'Socket' state in its history.
 * `VersionedSocket#undo()` — Restores the previous 'Socket' state from its history.
@@ -173,15 +209,17 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedSocket` will be initialized with the initial `Socket` state, and the `currentStatePointer` pointing to that single `Socket` state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center"><img src="images/UndoRedoState0.png" /></p>
+
+<div style="page-break-after: always;"></div>
 
 Step 2. The user executes `delete 5` command to delete the 5th person in 'Socket'. The `delete` command calls `Model#commitSocket()`, causing the modified state of `Socket` after the `delete 5` command executes to be saved in the `socketStateList`, and the `currentStatePointer` is shifted to the newly inserted `Socket` state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p align="center"><img src="images/UndoRedoState1.png" /></p>
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitSocket()`, causing another modified `Socket` state to be saved into the `socketStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p align="center"><img src="images/UndoRedoState2.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSocket()`, so the `Socket` state will not be saved into the `socketStateList`.
 
@@ -189,7 +227,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSocket()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `Socket` state, and restores `Socket` to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center"><img src="images/UndoRedoState3.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Socket` state, then there are no previous `Socket` states to restore. The `undo` command uses `Model#canUndoSocket()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -198,7 +236,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center"><img src="images/UndoSequenceDiagram.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -212,17 +250,18 @@ The `redo` command does the opposite — it calls `Model#redoSocket()`, whic
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the `Socket`, such as `list`, will usually not call `Model#commitSocket()`, `Model#undoSocket()` or `Model#redoSocket()`. Thus, the `socketStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p align="center"><img src="images/UndoRedoState4.png" /></p>
 
 Step 6. The user executes `clear`, which calls `Model#commitSocket()`. Since the `currentStatePointer` is not pointing at the end of the `socketStateList`, all `Socket` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center"><img src="images/UndoRedoState5.png" /></p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<p align="center"><img src="images/CommitActivityDiagram.png" width="250" /></p>
 
-#### Design considerations:
+
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -234,8 +273,11 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
- 
+
 ### List Feature 
+
+#### Implementation
+
 The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
 The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
 `ListCommand` extends `Command` and implements the following operation: 
@@ -252,13 +294,25 @@ Otherwise, this list of Predicate classes include:
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
-### Design considerations:
-**Filtering by other fields** 
+<div style="page-break-after: always;"></div>
+
+The following sequence diagram shows how the `list` operation works:
+<p align="center"><img src="images/ListSequenceDiagram.png" /></p>
+
+#### Design considerations
+
+**Aspect: Filtering by other fields** 
+
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
   * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
-  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
+  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields only.
+
+<div style="page-break-after: always;"></div>
 
 ### Sort Feature
+
+#### Implementation
+
 The sort feature allows users to sort the list of persons and projects in the application. 
 The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
 They extend `Command` and implements the following operations:
@@ -270,9 +324,19 @@ The respective classes verify that the user input is valid and create the comman
 If no argument is provided, Persons will be sorted by name and Projects will be sorted by deadline by default.
 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
-The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
+The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. 
+If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
+
+The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
+<p align="center"><img src="images/SortSequenceDiagram.png" /></p>
+
+
+<div style="page-break-after: always;"></div>
 
 ### Find Feature
+
+#### Implementation
+
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
 `FindCommand` extends `Command` and implements the following operation:
@@ -296,32 +360,128 @@ The Predicate classes works using an OR search, as long as a keyword matches any
 
 If no argument is provided, an empty list will be shown.
 
-#### Design considerations:
+<div style="page-break-after: always;"></div>
 
-**AND search or OR search**
+#### Design considerations
+
+**Aspect: AND search or OR search**
 * An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
   * List command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making find a duplicate command of list command should find use AND search as well.
   * We intend for find command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
 
-**Full keyword match or Partial keyword match**
+**Aspect: Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+<div style="page-break-after: always;"></div>
 
+### Remove Feature
+
+#### Implementation
+
+The remove feature allows users to remove a given value in Person's and Project's respective fields.
+The feature is facilitated by the `RemoveCommand` class and `RemoveProjectCommand` classes.
+They extend `Command` and implement the following operations:
+* `RemoveCommand#execute()`  — Removes the respective Person's field value based on the given input.
+* `RemoveProjectCommand#execute()`  — Removes the respective Project's field value based on the given input.
+
+The `RemoveCommandParser` and `RemoveProjectCommandParser` classes are used to parse the user input and remove the value that matches to the existing value in the respective field using `RemovePersonDescriptor` and `RemoveProjectDescriptor` respectively.
+`RemovePersonDescriptor` and `RemoveProjectDescriptor` objects are created and pass with the `Index` (parsed from the user input) into respective commands.
+The respective classes verify that the user input is valid and create the commands accordingly.
+
+If no argument is provided, an exception will be thrown. Otherwise, if only predicate is present, the corresponding field of the Person/Project will be emptied.
+
+#### Design considerations
+
+**Remove a specific field value**
+* While an edit feature that allows users to add or remove field values can be useful in certain contexts, it may not be appropriate or necessary in all situations:
+    * If user decides to remove 1 out of many field values in a person's tag field, user will have a difficult time to type all the must-have value. WIth remove feature, user just need to type out the tag that he/she wish to remove.
+    * Currently, edit feature for language field is cumulative, language will not be removed, so remove feature helps to resolve the issue on language removal.
+
+<div style="page-break-after: always;"></div>
+
+### Project feature:
+
+#### Implementation
+
+This feature allows users to create and track ongoing projects. Details of each `Project` are recorded as attributes of the `Project`, which include `ProjectName`, `ProjectRepoHost`, `ProjectRepoName`, `ProjectDeadline`, `ProjectMeeting`, and a `Set<Person>`, which stores the `Person` objects involved with the `Project`. `Project` objects are stored in a `UniqueProjectList` in `Socket`.
+
+Any changes to `Person` objects that are associated with a `Project` object automatically updates the outdated `Person` object in the associated `Project` object (i.e., `edit`, `remove`, `delete`).
+
+The following sequence diagram shows how updates are made to the associated `Project` object when updates are made to `Person` objects on execution of a `DeleteCommand`:
+
+<p align="center"><img src="images/UpdateProjectOnDeletePersonSequenceDiagram.png" /></p>
+
+Step 1. The `DeleteCommand#execute()` method is called.
+
+Step 2. The `ModelManager#deletePerson(p)` method of the `ModelManager` implementing the `Model` interface is then called.
+
+Step 3. This calls the method `Socket#removePerson(p)`, which:
+
+* calls `UniquePersonList#remove(p)` to delete the person `p` from the `UniquePersonList` `persons`.
+* calls `UniqueProjectList#removeMemberInProjects(p)` which removes any stored references to the deleted person `p` from the `Project` objects in the `UniqueProjectList` `projects`.
+
+Step 4. The execution of the `DeleteCommand` then continues, and the result is encapsulated as a `CommandResult` (not shown) and returned.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The diagram omits the `commitSocket()` and creation of a `CommandResult` portions of the execution as they are not relevant to the discussion.
+</div>
+
+Updates to `Person` objects associated with a `Project` object through the other commands are handled similarly.
+
+The following classes handle operations on `Project` objects:
+* `XYZProjectCommand` - represents a command operating on `Project` objects, i.e., `AddProjectCommand`, `EditProjectCommand`, etc.
+* `XYZProjectCommandParser` - parses the respective `XYZProjectCommand` that operates on `Project` objects.
+* `AssignCommand`, `UnassignCommand` - represent commands for assigning/unassigning a `Person` object to a `Project` object.
+
+The `JsonAdaptedProject` class handles the reading/writing to storage for `Project` objects. It makes use of `JsonAdaptedPerson` to store the `Person` objects associated with the `Project`. Storage for `Person` objects associated with a `Project` object are stored in the `.json` file by making a copy of the data for the `Person` in the "persons" list in the "members" list under the respective `Project` object in the "projects" list.
+
+When `JsonSerializableSocket#toModelType` is called to convert the stored data into a `Socket` object, the restored `Person` objects in the `UniquePersonList` are matched to the duplicate `Person` objects in the `Project` objects and the duplicate `Person` objects are replaced with the exiting objects in the `UniquePersonList`.
+
+#### Design considerations:
+
+**Aspect: How `Project` objects are stored:**
+
+* **Alternative 1 (current choice):** Stores the `Project` objects with the `Person` objects in a single `.json` file.
+    * Pros: Fewer files to manage, simpler to write data to upon any changes to `Socket`.
+    * Cons: Corrupt data in "projects" will cause entire file to be discarded, deleting "persons" data.
+
+* **Alternative 2:** Stores the `Project` objects with the `Person` objects in separate `.json` files.
+    * Pros: Corrupt data in "projects" will only cause "projects" file to be discarded.
+    * Cons: More files to manage, harder to write data to upon any changes to `Socket`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+The [Documentation guide](Documentation.md) covers how documentation is managed for SOCket.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Logging**
+
+The [Logging guide](Logging.md) covers how logging is used in SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Testing**
+
+The [Testing guide](Testing.md) covers types of test cases used in SOCket, as well as how to run them.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Configuration**
+
+The [Configuration guide](Configuration.md) covers how certain properties of SOCket can be managed through the configuration file.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Dev-ops**
+
+The [DevOps guide](DevOps.md) covers build automation and steps to create releases for SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -346,28 +506,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                          | I can…​                                                    | So that I can…​                                                                           |
-|----------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user                                                         | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                                             | add a new person                                           |                                                                                           |
-| `* * *`  | user                                                             | delete a person                                            | remove entries that I no longer need                                                      |
-| `* * *`  | user                                                             | find a person by name                                      | locate details of persons without having to go through the entire list                    |
-| `* * *`  | student with many friends                                        | save my friend's details                                   | easily contact them                                                                       |
-| `* * *`  | student who likes to ask questions                               | save my professors' details                                | easily contact them to ask questions                                                      |
-| `* * *`  | student with fast typing speed                                   | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
-| `* *`    | user                                                             | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
-| `* *`    | student involved in project work                                 | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
-| `* *`    | student with many assignments                                    | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
-| `* *`    | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
-| `* *`    | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
-| `* *`    | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
-| `* *`    | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
-| `* *`    | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
-| `* *`    | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
-| `* *`    | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
-| `* *`    | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
-| `* *`    | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
-| `* *`    | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
+| Priority | As a …​                                                         | I can…​                                                    | So that I can…​                                                                           |
+|----------|-----------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                                        | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                                            | add a new person                                           |                                                                                           |
+| `* * *`  | user                                                            | delete a person                                            | remove entries that I no longer need                                                      |
+| `* * *`  | user                                                            | find a person by name                                      | locate details of persons without having to go through the entire list                    |
+| `* * *`  | student with many friends                                       | save my friend's details                                   | easily contact them                                                                       |
+| `* * *`  | student who likes to ask questions                              | save my professors' details                                | easily contact them to ask questions                                                      |
+| `* * *`  | student with fast typing speed                                  | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
+| `* *`    | user                                                            | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
+| `* *`    | student involved in project work                                | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
+| `* *`    | student with many assignments                                   | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
+| `* *`    | organised user                                                  | group contacts into different groups                       | manage my contacts easily                                                                 |
+| `* *`    | software engineering student with many SE projects              | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
+| `* *`    | student interested in hackathons                                | find students based on skills                              | form groups with them                                                                     |
+| `* *`    | software engineering student                                    | find repositories of group projects I am involved in       | easily access team repositories                                                           |
+| `* *`    | student who is organised                                        | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
+| `* *`    | software engineering student                                    | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
+| `* *`    | advanced user                                                   | use the shortcut keys                                      | get things done more effectively                                                          |
+| `* *`    | busy software engineering student                               | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
+| `* *`    | student constantly getting into new projects with other members | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
+| `* *`    | software engineering student with many peers                    | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -458,6 +620,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC04 Sort contacts**
 
 **MSS:**
@@ -465,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to sort the list by a category.
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
+4.  SOCket sorts the contacts by that category and displays the sorted contact list.
 
     Use case ends.
 
@@ -480,14 +644,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. SOCket shows an error message. 
   
     Use case resumes from step 2.
-
-* 3b. No category is given.
-
-    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
   
 * 3b. No category is given.
 
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  * 3b1. SOCket sorts the list by name and displays the sorted list.
     
      Use case ends.
 
@@ -561,6 +721,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC07 List contacts**
 
 **MSS:**
@@ -607,6 +769,8 @@ Use case ends.
 2.  SOCket exits.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC10 Hide contact details**
 
@@ -657,6 +821,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC12 Access peer GitHub information**
 
 **MSS:**
@@ -694,6 +860,8 @@ Use case ends.
     * 1a1. SOCket shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC14 Redo recent undone changes**
 
@@ -737,6 +905,8 @@ Use case ends.
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions:**
 
 * 5a. SOCket detects a syntax error in the entered date.
@@ -774,25 +944,90 @@ Use case ends.
 3. User wishes to view the first contact in the list.
 4. SOCket displays all the person's information at the detail display window.
 
-*{More to be added}*
+   Use case ends.
+
+**Use case: UC19 Sorting project list**
+
+Similar to **UC04 Sort Contacts**, except,
+* the list being sorted is the list of projects instead of contacts
+* the default sort when no category is provided is by the deadline of the project instead of the name.
+
+<div style="page-break-after: always;"></div>
+
+**Use case: UC20 Assigning a member from a project**
+1. _{ to be added }_
+
+**Use case: UC21 Unassigning a member from a project**
+1. User requests to remove a member from a project.
+2. SOCket removes the member from the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen member is not assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
+
+**Use case: UC22 Delete a project**
+
+Similar to **UC03 Delete a contact**, except,
+* a list of projects is shown instead of contacts.
+* a project is deleted instead of a contact.
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should work on 64-bit environments.
-3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on 64-bit environments.
+1.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
-### Glossary
+## **Appendix: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **GitHub profiles**: GitHub username e.g. `chia-yh`
+* **GitHub profile**: GitHub username e.g. `chia-yh`
 * **GitHub repository**: repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. The current `VALIDATION_REGEX` for validating the `Name` field is flawed, and does not consider names with `/`, `-` or `.` valid.
+   1. Valid `Name` fields:
+      1. `Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr`
+      1. `Alex Yeoh2`
+   1. Invalid `Name` fields:
+      1. `Balakrishnan s/o Nagamuthu`
+      1. `Chien-Ming Wang`
+      1. `S. R. Nathan`
+
+   We plan to update the `VALIDATION_REGEX` to also allow other possible names including, but not limited to, those under "Invalid `Name` fields" above. The `VALIDATION_REGEX` currently does not restrict `Name` length to allow for contacts with long names. These cases are handled in the UI by allowing the contact list to be scrollable, and wrapping long names in the detail panel.
+1. The current `VALIDATION_REGEX` for validating the `Phone` field is flawed, and does not consider phone numbers with `+`, `-`, ` `, `(`, or `)` valid.
+   1. Valid `Phone` fields:
+      1. `995`
+      1. `12345678`
+   1. Invalid `Phone` fields:
+      1. `+65 12345678`
+      2. `01234-012345`
+      3. `(01234) 012345` 
+
+   We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
+1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
+1. _{possible UI Enhancements to handle interaction of overflowing text with Tags}_
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -820,20 +1055,177 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+1. Adding a contact to the contact list
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add n/John Doe p/98765432 g/johndoe l/Python`<br>
+       Expected: Adds a contact with the name `John Doe` and the provided phone, GitHub profile, and language details.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: Adds a contact with the name `John Doe` and no other details.
+
+    1. Test case: `add n/John Doe p/abc`<br>
+       Expected: No contact is added. An error message is shown as an invalid phone number was given. An error is logged in the console.
+
+    1. Other incorrect add commands to try: `add`, `add John Doe`
+       Expected: No contact is added. An error message is shown as an invalid command was given. An error is logged in the console.
+
+### Editing a contact
+
+1. Editing a contact while all contacts are being shown
+
+    1. Prerequisites: List all contacts using the `list` command. At least one contact in the list.
+
+    1. Test case: `edit 1 n/Dohn Joe`<br>
+       Expected: First contact in the list is edited with the name `Dohn Joe`
+
+    1. Test case: `edit 1 t/friend t/owesmoney`<br>
+       Expected: Existing tags of the first contact in the list are replaced with the tags `friend` and `owesmoney`
+
+    1. Test case: `edit 1 l/Python`<br>
+       Expected: The `Python` language is added to the existing languages of the first contact. An error is logged in the console.
+
+   1. Test case: `edit 1`<br>
+      Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+
+   1. Test case: `edit 0`<br>
+      Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+
+    1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
+       Expected: No contact is edited. An error message is shown as an invalid command was given.
+
+### Listing contacts
+1. Listing contacts while all contacts are being shown.
+   1. Prerequisites: At least one contact in the list.
+   
+   1. Test case: `list t/friend`<br>
+      Expected: Contacts tagged with `friend` is shown.
+   
+   1. Test case: `list l/Java` <br>
+      Expected: Contacts with language `Java` is shown.
+   
+   2. Test case: `list t/friend l/Java`<br>
+      Expected: Contacts with tag `friend` and language `Java` is shown.
+   
+   4. Test case: `list l/`<br>
+      Expected: An error is message is shown as an invalid syntax for language is given.
+   
+   5. Test case: `list 12345`<br>
+      Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
+   
+2. Listing contacts while some contacts are being shown. 
+   1. Prerequisites: Filter the contact list with `find` or `list [l/LANGUAGE] [t/TAG]`. At least one contact in the list. 
+   
+   2. Test case: `list`<br>
+      Expected: All contacts from the unfiltered list is shown.
+   
+   3. Test case: `list t/friend`<br>
+      Expected: Contacts tagged with `friend` in the filtered list is shown.
+   
+### Removing a contact's field
+
+1. _{ more test cases …​ }_
+
+### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Clearing all contacts or tags
+
+1. _{ more test cases …​ }_
+
+### Sorting contacts
+
+1. _{ more test cases …​ }_
+
+### Viewing a contact's detailed information
+
+1. _{ more test cases …​ }_
+
+### Adding a project
+
+1. _{ more test cases …​ }_
+
+### Editing a project
+
+1. Editing a project while all projects are being shown
+    1. Prerequisites: At least one project in the list.
+
+    1. Test case: `editpj 1 n/Project Bravo`<br>
+       Expected: First project in the list is edited with the project name `Project Bravo`
+
+    1. Test case: `editpj 1 r/BravoRepo`<br>
+       Expected: Existing repo name of the first project in the list are replaced with the repo name `BravoRepo`
+
+    1. Test case: `editpj 1`<br>
+       Expected: No project is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+
+    1. Test case: `editpj 0`<br>
+       Expected: No project is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+
+    1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
+       Expected: No project is edited. An error message is shown as an invalid command was given.
+
+### Deleting a project
+
+1. Deleting a project while all projects are being shown
+
+    1. Prerequisites: At least one project in the shown list.
+
+    1. Test case: `deletepj 1`<br>
+       Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deletepj 0`<br>
+       Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deletepj`, `deletepj x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Removing a project's field
+
+1. Removing a project while all projects are being shown
+   2. Prerequisites: At least one project in the shown list.
+   
+   3. Test case: `removepj 1 h/`<br>
+      Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
+   
+   4. Test case: `removepj 1 h/ r/`<br>
+      Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
+   
+   5. Test case: `removepj 1 r/first-project`<br>
+      Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
+   
+   5. Test case: `removepj 0 h/`<br>
+      Expected: No project field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
+   
+   6. Test case: `removepj 0`<br>
+      Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
+
+### Clearing all projects
+
+1. _{ more test cases …​ }_
+
+### Sorting projects
+
+1. _{ more test cases …​ }_
+
+### Assigning a contact to a project
+
+1. _{ more test cases …​ }_
+
+### Unassigning a contact to a project
 
 1. _{ more test cases …​ }_
 
@@ -841,6 +1233,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: A `.json` data file containing some data
+   1. Test case: Corrupted `.json` file
 
-1. _{ more test cases …​ }_
+      Open the `.json` file with a text editor and change any field to an invalid value (e.g. change a `"phone"` field to `abc`). Launch SOCket.
+   
+      Expected: SOCket starts with no data. An error is logged in the console.

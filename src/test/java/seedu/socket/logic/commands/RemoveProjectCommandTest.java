@@ -39,7 +39,12 @@ public class RemoveProjectCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
-        ProjectBuilder projectInList = new ProjectBuilder().withName("Charlie Project");
+        ProjectBuilder projectInList = new ProjectBuilder()
+                .withName("Charlie Project")
+                .withRepoHost("")
+                .withRepoName("")
+                .withProjectDeadline("")
+                .withProjectMeeting("");
         Project removedFieldProject = projectInList.withMembers(lastProject.getMembers()).build();
 
         RemoveProjectDescriptor descriptor = new RemoveProjectDescriptorBuilder()
@@ -60,13 +65,19 @@ public class RemoveProjectCommandTest {
     }
 
     /**
-     * Test when user only inputs prefix
+     * Test when user only inputs index
      */
     @Test
     public void execute_allFieldsNotSpecifiedUnfilteredList_success() {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
-        ProjectBuilder projectInList = new ProjectBuilder().withName("Charlie Project");
+        ProjectBuilder projectInList = new ProjectBuilder()
+                .withName("Charlie Project")
+                .withRepoHost("")
+                .withRepoName("")
+                .withProjectDeadline("")
+                .withProjectMeeting("");
+
         Project removedFieldProject = projectInList.withMembers(lastProject.getMembers()).build();
 
         RemoveProjectDescriptor descriptor = new RemoveProjectDescriptorBuilder()
@@ -92,7 +103,10 @@ public class RemoveProjectCommandTest {
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
         ProjectBuilder projectInList = new ProjectBuilder();
-        Project removedFieldProject = projectInList.withName("Charlie Project")
+        Project removedFieldProject = projectInList
+                .withName("Charlie Project")
+                .withRepoHost("")
+                .withRepoName("")
                 .withProjectDeadline("03/01/23-2359")
                 .withProjectMeeting("03/01/23-1000").withMembers(lastProject.getMembers()).build();
 
@@ -116,7 +130,10 @@ public class RemoveProjectCommandTest {
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
         ProjectBuilder projectInList = new ProjectBuilder();
-        Project removedFieldProject = projectInList.withName("Charlie Project")
+        Project removedFieldProject = projectInList
+                .withName("Charlie Project")
+                .withRepoHost("")
+                .withRepoName("")
                 .withProjectDeadline("03/01/23-2359")
                 .withProjectMeeting("03/01/23-1000").withMembers(lastProject.getMembers()).build();
 
@@ -141,7 +158,12 @@ public class RemoveProjectCommandTest {
     public void execute_allDifferentFieldNotMatchUnfilteredList_failure() {
         Index indexSecondProject = Index.fromOneBased(model.getFilteredProjectList().size() - 1);
         Project lastProject = model.getFilteredProjectList().get(indexSecondProject.getZeroBased());
-        ProjectBuilder projectInList = new ProjectBuilder().withName("Bravo Project");
+        ProjectBuilder projectInList = new ProjectBuilder()
+                .withName("Bravo Project")
+                .withRepoHost("")
+                .withRepoName("")
+                .withProjectDeadline("")
+                .withProjectMeeting("");
         Project removedFieldProject = projectInList.withMembers(lastProject.getMembers()).build();
 
         RemoveProjectDescriptor descriptor = new RemoveProjectDescriptorBuilder()

@@ -66,6 +66,7 @@ public class UnassignCommand extends Command {
                 projectToUnassign.getRepoName(), projectToUnassign.getDeadline(), projectToUnassign.getMeeting(),
                 newMembers);
         model.setProject(projectToUnassign, editedProject);
+        model.commitSocket();
         return new CommandResult(String.format(MESSAGE_UNASSIGN_SUCCESS, name, editedProject.getName()));
     }
 

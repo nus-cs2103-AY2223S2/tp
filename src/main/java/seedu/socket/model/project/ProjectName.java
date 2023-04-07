@@ -15,7 +15,7 @@ public class ProjectName {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^(?!.*  )[\\p{Alnum}][\\p{Alnum} ]*(?<! )$";
     public final String projectName;
 
     /**
@@ -44,7 +44,7 @@ public class ProjectName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ProjectName // instanceof handles nulls
-            && projectName.equals(((ProjectName) other).projectName)); // state check
+            && projectName.toLowerCase().equals(((ProjectName) other).projectName.toLowerCase())); // state check
     }
 
     @Override

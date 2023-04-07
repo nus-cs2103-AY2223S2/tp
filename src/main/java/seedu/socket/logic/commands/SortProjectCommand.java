@@ -14,7 +14,7 @@ public class SortProjectCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Sorted by: ";
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Sorts the list of projects by the given category. "
-        + "Sorts by deadline if none is given.\n"
+        + "Sorts by deadline if no category is given.\n"
         + "Parameters: [KEYWORD]\n"
         + "Example: \"" + COMMAND_WORD + " name\"\n"
         + "The following are the available categories:\n"

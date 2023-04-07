@@ -41,6 +41,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.AddProjectCommand;
+import seedu.socket.logic.commands.AssignCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.DeleteCommand;
@@ -71,6 +73,7 @@ import seedu.socket.testutil.EditProjectDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
 import seedu.socket.testutil.ProjectBuilder;
+import seedu.socket.testutil.ProjectUtil;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 import seedu.socket.testutil.RemoveProjectDescriptorBuilder;
 
@@ -83,6 +86,13 @@ public class SocketParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addpj() throws Exception {
+        Project project = new ProjectBuilder().withProjectMeeting("01/01/23-1000").build();
+        AddProjectCommand command = (AddProjectCommand) parser.parseCommand(ProjectUtil.getAddProjectCommand(project));
+        assertEquals(new AddProjectCommand(project), command);
     }
 
     @Test
@@ -295,6 +305,13 @@ public class SocketParserTest {
                 + INDEX_FIRST_PROJECT.getOneBased() + " " + REPO_NAME_DESC_ALPHA
                 + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
         assertEquals(new RemoveProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        AssignCommand command = (AssignCommand) parser.parseCommand(AssignCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new AssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PROJECT), command);
     }
 
     @Test

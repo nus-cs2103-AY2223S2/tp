@@ -11,23 +11,23 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.testutil.PersonBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class FindCommandAddressPredicateTest {
 
     @Test
-    public void equals() {
+    public void testEquals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FindCommandNamePredicate firstPredicate = new FindCommandNamePredicate(
+        FindCommandAddressPredicate firstPredicate = new FindCommandAddressPredicate(
                 firstPredicateKeywordList);
-        FindCommandNamePredicate secondPredicate = new FindCommandNamePredicate(
+        FindCommandAddressPredicate secondPredicate = new FindCommandAddressPredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FindCommandNamePredicate firstPredicateCopy = new FindCommandNamePredicate(
+        FindCommandAddressPredicate firstPredicateCopy = new FindCommandAddressPredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -37,54 +37,60 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different profile -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
-        FindCommandNamePredicate predicate = new FindCommandNamePredicate(
-                Collections.singletonList("Alice"));
+        FindCommandAddressPredicate predicate =
+                new FindCommandAddressPredicate(Collections.singletonList("bedok"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
+                .withAddress("Bedok block 999")
                 .build()));
 
         // Multiple keywords
-        predicate = new FindCommandNamePredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new FindCommandAddressPredicate(Arrays.asList("Bedok", "99"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
+                .withAddress("Bedok block 999")
                 .build()));
 
         // Only one matching keyword
-        predicate = new FindCommandNamePredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new FindCommandAddressPredicate(Arrays.asList("Bedok", "99"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Carol")
+                .withAddress("Bedok block 1")
                 .build()));
 
         // Mixed-case keywords
-        predicate = new FindCommandNamePredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new FindCommandAddressPredicate(Arrays.asList("bEDok", "bLOck"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
+                .withAddress("Bedok block 999")
                 .build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_addressDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        FindCommandNamePredicate predicate = new FindCommandNamePredicate(Collections.emptyList());
+        FindCommandAddressPredicate predicate = new FindCommandAddressPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
+                .withAddress("Bedok block 999")
                 .build()));
 
         // Non-matching keyword
-        predicate = new FindCommandNamePredicate(Arrays.asList("Carol"));
+        predicate = new FindCommandAddressPredicate(Arrays.asList("Kentridge"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
+                .withAddress("Bedok block 999")
                 .build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new FindCommandNamePredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        // Keywords match phone, email and name, but does not match address
+        predicate = new FindCommandAddressPredicate(Arrays.asList("12345", "alice@email.com", "Alice"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
                 .withPhone("12345")

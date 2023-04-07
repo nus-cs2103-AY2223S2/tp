@@ -5,7 +5,6 @@ import static seedu.socket.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
-import seedu.socket.model.Socket;
 import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 /**
@@ -15,8 +14,8 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all persons or persons whose tag "
-            + "contain any of the keyword(s) (case-insensitive) in the tag fields.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all persons, or persons whose tag(s) "
+            + "contain any of the keyword(s) (case-insensitive).\n"
             + "Parameters: "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "friend OR " + COMMAND_WORD;
@@ -35,7 +34,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (tagPredicate.isEmpty()) {
-            model.setSocket(new Socket());
+            model.hasDeleteMultiplePerson(x -> true);
         } else if (!model.hasDeleteMultiplePerson(tagPredicate)) {
             throw new CommandException(MESSAGE_NOT_SUCCESS);
         }

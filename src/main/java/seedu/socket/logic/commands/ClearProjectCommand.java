@@ -12,7 +12,7 @@ import seedu.socket.model.Model;
 public class ClearProjectCommand extends Command {
     public static final String COMMAND_WORD = "clearpj";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all project.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all projects.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Project list has been cleared!";

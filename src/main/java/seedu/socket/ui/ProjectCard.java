@@ -25,6 +25,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label repoName;
     @FXML
+    private Label repoHost;
+    @FXML
     private Label deadline;
     @FXML
     private Label meeting;
@@ -44,8 +46,21 @@ public class ProjectCard extends UiPart<Region> {
         } else {
             repoName.setText("Not available");
         }
-        deadline.setText(project.getDeadline().deadline);
-        meeting.setText(project.getMeeting().meeting);
+        if (!project.getRepoHost().value.isEmpty()) {
+            repoHost.setText(project.getRepoHost().value);
+        } else {
+            repoHost.setText("Not available");
+        }
+        if (!project.getDeadline().deadline.isEmpty()) {
+            deadline.setText(project.getDeadline().deadline);
+        } else {
+            deadline.setText("Not available");
+        }
+        if (!project.getMeeting().meeting.isEmpty()) {
+            meeting.setText(project.getMeeting().meeting);
+        } else {
+            meeting.setText("Not available");
+        }
         project.getMembers().stream()
                 .sorted(Comparator.comparing(member -> member.getName().fullName))
                 .forEach(member -> members.getChildren().add(new Label(member.getName().fullName)));
