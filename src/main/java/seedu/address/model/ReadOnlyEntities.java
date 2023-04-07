@@ -13,4 +13,21 @@ public interface ReadOnlyEntities {
      * The list will not contain duplicate items.
      */
     ObservableList<Entity> getEntityList();
+
+    /**
+     * Returns an unmodifiable view of all items.
+     */
+    ObservableList<Entity> getItemList();
+
+    /**
+     * Returns an unmodifiable view of all characters.
+     */
+    ObservableList<Entity> getCharList();
+
+    /**
+     * Returns an unmodifiable view of all mobs.
+     */
+    ObservableList<Entity> getMobList();
+
+
 }

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
@@ -77,28 +76,6 @@ public class Reroll implements ReadOnlyReroll {
 
 
     // Misc ====================
-
-    /**
-     * Return list for the all entities in Reroll.
-     */
-    public ObservableList<Entity> getAllList() {
-        return entities.getEntityList();
-    }
-
-    @Override
-    public ObservableList<Entity> getItemList() {
-        return entities.getItems();
-    }
-
-    @Override
-    public ObservableList<Entity> getCharList() {
-        return entities.getCharacters();
-    }
-
-    @Override
-    public ObservableList<Entity> getMobList() {
-        return entities.getMobs();
-    }
 
     public Character createFromTemplate(Name newEntity, Name templateName) throws NoSuchElementException {
         return this.templates.generateCharacter(newEntity, templateName);

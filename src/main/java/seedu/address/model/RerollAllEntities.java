@@ -67,21 +67,24 @@ public class RerollAllEntities implements ReadOnlyEntities {
         entities.remove(entity);
     }
 
-    ObservableList<Entity> getCharacters() {
-        return characters;
-    }
-
-    ObservableList<Entity> getItems() {
-        return items;
-    }
-
-    ObservableList<Entity> getMobs() {
-        return mobs;
-    }
-
     @Override
     public ObservableList<Entity> getEntityList() {
         return entities.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Entity> getCharList() {
+        return characters;
+    }
+
+    @Override
+    public ObservableList<Entity> getItemList() {
+        return items;
+    }
+
+    @Override
+    public ObservableList<Entity> getMobList() {
+        return mobs;
     }
 
     @Override

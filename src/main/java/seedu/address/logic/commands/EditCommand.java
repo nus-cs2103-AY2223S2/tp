@@ -40,15 +40,15 @@ public class EditCommand extends Command {
         switch (toEditClassification) {
         case "c":
         case "char":
-            entities = model.getReroll().getCharList();
+            entities = model.getReroll().getEntities().getCharList();
             break;
         case "m":
         case "mob":
-            entities = model.getReroll().getMobList();
+            entities = model.getReroll().getEntities().getMobList();
             break;
         case "i":
         case "item":
-            entities = model.getReroll().getItemList();
+            entities = model.getReroll().getEntities().getItemList();
             break;
         default:
             throw new CommandException("Invalid Classification!");

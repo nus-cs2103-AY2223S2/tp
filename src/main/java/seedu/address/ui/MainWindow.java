@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         listModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         viewModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         listModePanel = new ListModePanel(listModeEntityListPanel);
-        entityDetailsPanel = new EntityDetailsPanel(logic.getReroll().getItemList());
+        entityDetailsPanel = new EntityDetailsPanel(logic.getReroll().getEntities().getItemList());
         viewModePanel = new ViewModePanel(viewModeEntityListPanel, entityDetailsPanel);
         modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
 
