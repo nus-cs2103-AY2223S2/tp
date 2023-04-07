@@ -88,6 +88,7 @@ Let's clear a little confusion that might arise:
   * e.g. if you specify `:wq help`, the parser interprets it as `:wq`.
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly, especially for date field.
   * e.g. if you specify `touch Tutorial/firstTutorial -date 10/10/2025 10:00 2025`, the parser interprets it as adding a tutorial with date 10/10/2025 10:00 2025, which is not a valid date. Hence, TrAcker throws an error.
+* Visual images for successful commands have been shown for each feature. Not all commands have visual images to avoid clutter.
 * All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
 </div>
 
@@ -121,8 +122,10 @@ date format: dd/MM/yyyy HH:mm
 
 Examples:
 
-* `touch Tutorial/examReview -date 01/01/2030 16:00`
 * `touch Tutorial/makeUpTutorial`
+* `touch Tutorial/examReview -date 01/01/2030 16:00`
+
+`touch Tutorial/makeUpTutorial` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
 ![Ui](images/AddTutorialSuccess.png)
 
 <div id='add-lab'></div>
@@ -178,7 +181,7 @@ date format: dd/MM/yyyy HH:mm
 
 Examples:
 
-* `mkdir Consultation/reviewConnectedComponents`
+* `mkdir Consultation/reviewGraphs`
 * `mkdir Consultation/reviewDijsktra -date 01/01/2032 16:00`
 
 ### Edit an event: `editEvent`
@@ -195,8 +198,8 @@ Format: `editEvent EVENT_INDEX EVENT_TYPE/NEW_EVENT_NAME [-date dd/MM/yyyy HH:mm
 Examples:
 
 * `editEvent 1 Tutorial/BellmanFord -date 10/10/2050 10:00`
-* `editEvent 2 Lab/VisuAlgo`
-* `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00`
+* `editEvent 1 Lab/VisuAlgo`
+* `editEvent 1 Consultation/ConsultEmily -date 10/10/2040 16:00`
 
 ### Delete event: `delete`
 
@@ -285,10 +288,10 @@ Format: `addStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX`
 
 Examples:
 
-* `addStudent 1 Tutorial/2`
+* `addStudent 1 Tutorial/1`
 * `addStudent 4 Lab/1`
 
-* `addStudent 1 Tutorial/1`
+`addStudent 1 Tutorial/1` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
 ![Ui](images/AddStudentSuccess.png)
 
 <div id='delete-student-from-event'></div>
@@ -299,7 +302,7 @@ Deletes a student from an event.
 
 - The STUDENT_INDEX input refers to the index of the student in the student list.
 - The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
-- The index inputs are 1-based.
+- The index inputs are 1-based and it is the index of the student in the event card.
 - Valid indexes must be provided (TrAcker checks for valid event index first before checking for valid student index).
 - EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
 - Event type input must be valid and the first letter must be capitalized.
@@ -309,7 +312,7 @@ Format: `deleteStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX`
 Examples:
 
 * `deleteStudent 1 Tutorial/1`
-* `deleteStudent 4 Lab/5`
+* `deleteStudent 1 Lab/1`
 
 --------------------------------------------------------------------
 ## Note Features
@@ -330,11 +333,11 @@ Format: `addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME`
 
 Examples:
 
-* `addNote content/Bring pen type/Tutorial name/Tut1`
-* `addNote content/Bring goggles type/Lab name/Lab1`
-* `addNote content/ Prepare questions type/Consultation name/consult1`
+* `addNote content/Bring pen type/Tutorial name/examReview`
+* `addNote content/Bring laptop type/Lab name/VisuAlgo`
+* `addNote content/ Prepare questions type/Consultation name/consultEmily`
 
-* `addNote content/remember to go through bellman ford type/Tutorial name/makeUpTutorial`
+`addNote content/remember to go through bellman ford type/Tutorial name/makeUpTutorial` visual. The labs and consultation are populated before-hand for a better visual depiction.TrAcker will not display the exact same for you if this is your first time running it.
 ![Ui](images/AddNoteSuccess.png)
 
 <div id='delete-note-from-event'></div>
@@ -393,10 +396,10 @@ Examples:
 * `sort-student all remark nonreverse`
 
 
-* `sort-student all name reverse`
+`sort-student all name reverse` visual.
 ![Ui](images/SortSuccess.png)
 
-* `sort-student consulation name reverse`
+* `sort-student consulation name reverse` visual.
 ![Ui](images/SortConsultationSuccess.png)
 
 <div id='filter-students'></div>
@@ -429,7 +432,7 @@ Returns a list of instructions on what are the commands and also what input form
 
 This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
 
-Format: `help [TYPE]`
+Format: `help [TYPE] [EVENT_TYPE]`
 
 Examples:
 * `help`
@@ -440,11 +443,13 @@ Examples:
 * `help event consultation`
 * `help organisation`
 
+`help` visual.
 ![Ui](images/HelpSuccess.png)
 
 Should you want to take a look at the User Guide in the repository, you can click on the "help" menu.
 Then, you can click on "copy url" and paste it in your browser
 
+help url visual.
 ![Ui](images/HelpUrl.png)
 
 --------------------------------------------------------------------
@@ -465,11 +470,11 @@ Examples:
 
 <div id='switch-tabs'></div>
 
-### Navigate tabs: `cd`
+### Navigate tabs: `cd_`
 
 Navigates to the event or student tab
 
-Format: `cd_[TAB_TYPE]`
+Format: `cd_TAB_TYPE`
 
 Examples:
 
@@ -477,22 +482,6 @@ Examples:
 * `cd_student`
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div id='populated-tracker'></div>
-
-## Populated TrAcker
-
-Here is an example of how the populated TrAcker events page will look like
-
-![Ui](images/Ui2.png)
-
-By double-clicking on events, the notes section will appear 
-
-![Ui](images/Ui3.png)
-
---------------------------------------------------------------------------------------------------------------------
-
-
 ## Command Summary
 
 <table>
@@ -507,7 +496,7 @@ By double-clicking on events, the notes section will appear
    <tr>
       <td><strong>Add Tutorial</strong>
       </td>
-      <td><code>touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm]</code>
+      <td><code>touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
