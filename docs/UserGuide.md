@@ -68,7 +68,7 @@ Symbols | Meaning
 Formatting | Meaning
 --------|------------------
 *italics* | This is used to give slight emphasis to certain words.
-**boldface** | This is used to emphasize certain words. The degree of emphasis is stronger than *italics*.
+**boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*.
 `code` | This is used to denote user input or special text.
 
 
