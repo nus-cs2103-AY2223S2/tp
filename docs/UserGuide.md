@@ -24,7 +24,7 @@ title: User Guide
 * We are **still working** on making our user guide as user friendly as possible. You can help us by providing feedback [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/new)
 </div>
 
-**Team Builder (TB)** is a desktop app primarily for Computer Science students to manage their contacts and build a multidisciplinary team based on soft skills and technical skills.
+**Team Builder (TB)** is a desktop app primarily for cross-faculty students to manage their contacts and build a multidisciplinary team based on soft skills and technical skills.
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TB can help you build your team through your contacts much faster than traditional GUI apps.
 
