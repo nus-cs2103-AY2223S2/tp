@@ -25,18 +25,31 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
    * What it does: Changed the theme of the user interface to make it cleaner, more minimalistic and conducive for work. The new theme utilises a mixture of light blue and white hues to achieve an aesthetic appeal. 
    * Highlights: The graphical user interface of the desktop application was built using `JavaFX`. As such, changing the theme of the user interface was a challenging task that required a strong understanding of `JavaFX` documentation and `FXML` files. Using the `Scene Builder` software proved particularly useful as it helped with visualing how the code interacted with the GUI across several layers. 
  
+#### Additional code contributions
+1. Improving code quality by utilising the KISS and SLAP principles
+2. Employing greater use of exceptions, assertions and defensive programming
+3. Fixing of failing test cases
+4. Fixing checkstyle errors 
+
 #### Contributions to the User Guide (UG) 
 
 #### Contributions to the Developer Guide (DG) 
 
 #### Contributions to team-based tasks
 My contributions to team-based tasks include but are not limited to the following: 
-1. Creation of issues and project milestones
-2. 
+1. Creating of issues and project milestones
+2. Setting priority of issues 
+3. Closing of issues
+4. Creating and management of releases  
+5. Organising internal project documents to make them cleaner and better structured 
 
 #### Review/ Mentoring contributions 
+1. Review pull requests of team members
+2. Helping team members to better understand the code base and assist them with difficulties they faced with implementing features or bug fixing 
+
 
 #### Contributions beyond the project team
+1. Participated in software testing of other project teams to catch bugs and help them improve their product 
 
 
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jayhee3&breakdown=true)
