@@ -3,9 +3,26 @@ layout: page
 title: User Guide
 toc: true
 ---
-***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching**
-features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
-**culinary rizz**.
+Are you an _avid chef_ with the desire to **store**, **access** and **share** your recipes easily?
+
+***RIZZ***ipe is a **command-based recipe database** that was designed for chefs to manage their recipes!
+
+RIZZipe stars 3 main features:
+1. Versatile **tagging** and powerful **searching** function
+2. Recipe sharing
+3. Search function for ingredient substitutions
+
+Make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+
+## Using this Guide
+* If you want to run RIZZipe for the first time, check out our handy [Quick Start guide](#Quick-Start).
+* If you want to learn how to use RIZZipe, refer to our [Features](#Features) section for a detailed guide on 
+* how to run each different command.
+* If you are an experienced developer and want to learn more about our design decisions, refer to our Developer Guide.
+
+For **experienced users**, you may refer to the [Command summary](#Command-summary) and [Keyboard Shortcuts](#Keyboard-Shortcuts-summary) 
+summary for a summarised table
+of all the commands and keyboard shortcuts available.
 
 * Table of Contents
 {:toc}
@@ -63,19 +80,20 @@ before continuing to type!
 
 ### Adding a recipe: `add`
 
-Come up with a new innovative recipe and want to store it for future reference,
-and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
+Come up with a new innovative recipe and afraid that you'll forget about it in the future,
+or just want to share it with your friends? Simply run the `add` command, and follow the prompts to save different
+information about your recipe such as ingredients and steps! 
 
 Add Format:
 
-| Fields         | Format, Examples                                          
-|----------------|------------------------------------------------------|
-| **Name**       | `n/RECIPE_NAME` <br/> e.g., `n/Caesar Salad`     |
-| **Duration**   | `d/RECIPE_DURATION` <br/> e.g., `d/15 minutes`                                                               |
-| **Portion**    | `p/RECIPE_PORTION` <br/> e.g., `p/1-2 servings`  |
-| **Ingredients**| `i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]...` <br/> e.g.,` i/-a 2 tbsp -n Cider Vinegar -cn Vinegar -r Optional` <br/> e.g., ` i/-n Pasta`|
-| **Steps** | `s/RECIPE_STEPS`<br/> e.g., `s/Add cider vinegar to salad`|
-| **Tags**    | `t/RECIPE_TAGS` <br/> e.g. `t/Vegetarian`         |
+| Fields          | Format, Examples                                                                                                                                                                                   |    
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**        | `n/RECIPE_NAME` <br/> e.g., `n/Caesar Salad`                                                                                                                                                       |
+| **Duration**    | `d/RECIPE_DURATION` <br/> e.g., `d/15 minutes`                                                                                                                                                     |
+| **Portion**     | `p/RECIPE_PORTION` <br/> e.g., `p/1-2 servings`                                                                                                                                                    |
+| **Ingredients** | `i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]...` <br/> e.g.,` i/-a 2 tbsp -n Cider Vinegar -cn Vinegar -r Optional` <br/> e.g., ` i/-n Pasta` |
+| **Steps**       | `s/RECIPE_STEPS`<br/> e.g., `s/Add cider vinegar to salad`                                                                                                                                         |
+| **Tags**        | `t/RECIPE_TAGS` <br/> e.g. `t/Vegetarian`                                                                                                                                                          |
 
 
 Example(s) of usage:
@@ -172,10 +190,10 @@ While the recipe to that you want to edit is being selected, simply type `f` to 
 ### Finding a recipe by name: `find`
 
 Have a certain recipe at the back of your mind that you want to refer to?
-Or want to look up all recipes associated with a specific tag or those containing a specific ingredient?
+Or want to look up all recipes associated with a specific tag or those containing a specific ingredient that you're desperate to clear but have no idea what to pair it with?
 
 `find` helps to save your time scrolling through your whole list of recipes by displaying
-only those that match any of your specified keywords straight away.
+only those that match any of your specified keywords straight away!
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
@@ -206,7 +224,7 @@ Example(s) of usage:
 
 ### Deleting a recipe: `delete`
 
-No longer like a certain recipe? Simply delete it from the database by its index!
+No longer like a certain recipe? Simply `delete` it from the database by its index!
 
 Format:
 `delete INDEX`
