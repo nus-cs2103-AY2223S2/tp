@@ -11,10 +11,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -31,15 +32,20 @@ import seedu.address.testutil.TypicalPersons;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
 
     @Test
     public void equals() {
         String first = "first";
         String second = "second";
         ArgumentMultimap firstMultimap = ArgumentTokenizer.tokenize(first);
-        ArgumentMultimap secondMultimap = ArgumentTokenizer.tokenize(first);
+        ArgumentMultimap secondMultimap = ArgumentTokenizer.tokenize(second);
         FullMatchKeywordsPredicate firstPredicate =
                 new FullMatchKeywordsPredicate(firstMultimap);
         FullMatchKeywordsPredicate secondPredicate =
@@ -65,14 +71,20 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+    // TODO
+    // Change behavior to disallow field-less find.
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_noArgs_allPersonFound() {
+        int totalNumOfPersons = model.getAddressBook().getPersonList().size();
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, totalNumOfPersons);
         FullMatchKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(predicate);
+
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(model.getAddressBook().getPersonList(), model.getFilteredPersonList());
     }
 
     /**
@@ -85,14 +97,29 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        FullMatchKeywordsPredicate predicate = preparePredicate("n/Kurz n/Elle n/Kunz");
+    public void execute_singleNameArg_multiplePersonsFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        FullMatchKeywordsPredicate predicate = preparePredicate(" n/meier");
         FindCommand command = new FindCommand(predicate);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(predicate);
+
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
-                model.getFilteredPersonList());
+        assertEquals(List.of(TypicalPersons.BENSON, TypicalPersons.DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleNameArgs_onePersonFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        FullMatchKeywordsPredicate predicate = preparePredicate(" n/meier n/ben");
+        FindCommand command = new FindCommand(predicate);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateFilteredPersonList(predicate);
+
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(List.of(TypicalPersons.BENSON), model.getFilteredPersonList());
     }
 
 }
