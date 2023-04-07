@@ -27,7 +27,7 @@ public class EditApplicantCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an applicant's details for a listing. "
             + "Ordered by the index number of the listing used in the displayed listing book.\n"
             + "      Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the range of the number of listings shown) "
             + PREFIX_APPLICANT_WITH_ID + "OLD_APPLICANT "
             + PREFIX_APPLICANT + "NEW_APPLICANT\n"
             + "Example: " + COMMAND_WORD + " 1 "

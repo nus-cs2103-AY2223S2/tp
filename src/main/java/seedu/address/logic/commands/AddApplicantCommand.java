@@ -21,7 +21,7 @@ public class AddApplicantCommand extends Command {
     public static final String COMMAND_WORD = "add_app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to a listing in the listing book.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the range of the number of listings shown) "
             + PREFIX_APPLICANT + "APPLICANT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPLICANT + "John Doe";

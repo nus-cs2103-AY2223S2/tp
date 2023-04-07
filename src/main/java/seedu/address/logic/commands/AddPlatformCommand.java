@@ -21,7 +21,7 @@ public class AddPlatformCommand extends Command {
     public static final String COMMAND_WORD = "add_plat";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a platform to a listing in the listing book.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer within the range of the number of listings shown) "
             + PREFIX_PLATFORM + "PLATFORM\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PLATFORM + "LinkedIn";
