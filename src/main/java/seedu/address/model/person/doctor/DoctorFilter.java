@@ -13,36 +13,13 @@ import seedu.address.model.person.patient.Patient;
 public class DoctorFilter {
 
     //Filter fields
-    private final String nameFilter;
-    private final String phoneFilter;
-    private final String emailFilter;
-    private final String specialtyFilter;
-    private final String yoeFilter;
-    private final Set<String> tagsFilter;
-    private final Patient patientFilter;
-
-    /**
-     * Constructs a {@code DoctorFilter}.
-     *
-     * @param name name in string (can be empty string).
-     * @param phone phone in string (can be empty string).
-     * @param email email in string (can be empty string).
-     * @param specialty specialty in string (can be empty string).
-     * @param yoe yoe in string (can be empty string).
-     * @param tags set of tags in string (can be empty list).
-     * @param patient a patient object (can be null).
-     */
-    public DoctorFilter(String name, String phone, String email,
-                        String specialty, String yoe,
-                        Set<String> tags, Patient patient) {
-        this.nameFilter = name;
-        this.phoneFilter = phone;
-        this.emailFilter = email;
-        this.specialtyFilter = specialty;
-        this.yoeFilter = yoe;
-        this.tagsFilter = tags;
-        this.patientFilter = patient;
-    }
+    private String nameFilter = "";
+    private String phoneFilter = "";
+    private String emailFilter = "";
+    private String specialtyFilter = "";
+    private String yoeFilter = "";
+    private Set<String> tagsFilter = new HashSet<>();
+    private Patient patientFilter = null;
 
     /**
      * Constructs a {@code DoctorFilter}.
@@ -56,7 +33,12 @@ public class DoctorFilter {
      */
     public DoctorFilter(String name, String phone, String email,
                         String specialty, String yoe, Set<String> tags) {
-        this(name, phone, email, specialty, yoe, tags, null);
+        this.nameFilter = name;
+        this.phoneFilter = phone;
+        this.emailFilter = email;
+        this.specialtyFilter = specialty;
+        this.yoeFilter = yoe;
+        this.tagsFilter = tags;
     }
 
     /**
@@ -65,8 +47,7 @@ public class DoctorFilter {
      * @param patient a patient object (can be null).
      */
     public DoctorFilter(Patient patient) {
-        this("", "", "", "",
-                "", new HashSet<>(), patient);
+        this.patientFilter = patient;
     }
 
     /**

@@ -13,45 +13,16 @@ import seedu.address.model.person.doctor.Doctor;
 public class PatientFilter {
 
     //Filter fields
-    private final String nameFilter;
-    private final String phoneFilter;
-    private final String emailFilter;
-    private final String heightFilter;
-    private final String weightFilter;
-    private final String diagnosisFilter;
-    private final String statusFilter;
-    private final String remarkFilter;
-    private final Set<String> tagsFilter;
-    private final Doctor doctorFilter;
-
-    /**
-     * Constructs a {@code PatientFilter}.
-     *
-     * @param name name in string (can be empty string).
-     * @param phone phone in string (can be empty string).
-     * @param email email in string (can be empty string).
-     * @param height height in string (can be empty string).
-     * @param weight weight in string (can be empty string).
-     * @param diagnosis diagnosis in string (can be empty string).
-     * @param status status in string (can be empty string).
-     * @param remark remark in string (can be empty string).
-     * @param tags set of tags in string (can be empty list).
-     * @param doctor a doctor object (can be null).
-     */
-    public PatientFilter(String name, String phone, String email, String height,
-                         String weight, String diagnosis, String status,
-                         String remark, Set<String> tags, Doctor doctor) {
-        this.nameFilter = name;
-        this.phoneFilter = phone;
-        this.emailFilter = email;
-        this.heightFilter = height;
-        this.weightFilter = weight;
-        this.diagnosisFilter = diagnosis;
-        this.statusFilter = status;
-        this.remarkFilter = remark;
-        this.tagsFilter = tags;
-        this.doctorFilter = doctor;
-    }
+    private String nameFilter = "";
+    private String phoneFilter = "";
+    private String emailFilter = "";
+    private String heightFilter = "";
+    private String weightFilter = "";
+    private String diagnosisFilter = "";
+    private String statusFilter = "";
+    private String remarkFilter = "";
+    private Set<String> tagsFilter = new HashSet<>();
+    private Doctor doctorFilter = null;
 
     /**
      * Constructs a {@code PatientFilter}.
@@ -74,8 +45,15 @@ public class PatientFilter {
                          String diagnosis,
                          String status,
                          String remark, Set<String> tags) {
-        this(name, phone, email, height, weight,
-                diagnosis, status, remark, tags, null);
+        this.nameFilter = name;
+        this.phoneFilter = phone;
+        this.emailFilter = email;
+        this.heightFilter = height;
+        this.weightFilter = weight;
+        this.diagnosisFilter = diagnosis;
+        this.statusFilter = status;
+        this.remarkFilter = remark;
+        this.tagsFilter = tags;
     }
 
     /**
@@ -84,8 +62,7 @@ public class PatientFilter {
      * @param doctor a doctor object (can be null).
      */
     public PatientFilter(Doctor doctor) {
-        this("", "", "", "", "",
-                "", "", "", new HashSet<>(), doctor);
+        this.doctorFilter = doctor;
     }
 
     /**
