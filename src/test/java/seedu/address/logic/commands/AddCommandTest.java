@@ -183,12 +183,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void undoAddressBook() {
+        public String undoAddressBook() {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void redoAddressBook() {
+        public String redoAddressBook() {
             throw new AssertionError("This method should not be called");
         }
 
@@ -209,16 +209,6 @@ public class AddCommandTest {
 
         @Override
         public void setDefaultShowPerson() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public String getLastExecutedCommand() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public String getLatestModifyingCommand() {
             throw new AssertionError("This method should not be called");
         }
     }
