@@ -73,7 +73,17 @@ public class DeleteCommand extends Command {
                     }
                 }
                 if (deletedPerson.isDoctor()) {
-
+                    Doctor deletedDoctor = (Doctor) deletedPerson;
+                    ArrayList<Appointment> drAppmts = deletedDoctor.getPatientAppointments();
+                    int drAppmtsSize = drAppmts.size();
+                    for (int i = 0; i < drAppmtsSize; i++) {
+                        Appointment a = drAppmts.get(i);
+                        model.deleteAppointment(a);
+                        deletedDoctor.deletePatientAppointment(a);
+                        Nric drIc = a.getPatientNric();
+                        Patient p = (Patient) model.retrievePersonByNric(drIc);
+                        p.deletePatientAppointment(a);
+                    }
                 }
 
                 model.deletePerson(deletedPerson);
