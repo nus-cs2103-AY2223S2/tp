@@ -45,6 +45,30 @@ class ExportProgressCommandParserTest {
     }
 
     @Test
+    public void parse_multiplePrefix_success() {
+        assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " " + System.getProperty("user.home")
+                + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
+
+        assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " "
+                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
+
+        assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " ???????????????????????????????????????????"
+                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
+
+        assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " %%%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$"
+                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
+
+        assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " %%%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$"
+                        + " " + PREFIX_FILEPATH + " ???????????????????????????????????????????"
+                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
+    }
+
+    @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "-", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportProgressCommand.MESSAGE_USAGE));
@@ -55,11 +79,19 @@ class ExportProgressCommandParserTest {
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportProgressCommand.MESSAGE_USAGE));
 
+        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ExportProgressCommand.MESSAGE_USAGE));
+
         assertParseFailure(parser, "??", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportProgressCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "1 " + PREFIX_FILEPATH + " " + "1",
-               MESSAGE_INVALID_DIRECTORY);
+        assertParseFailure(parser, "9999999999999999999999999999999999999999999999999999999999999999999999999",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportProgressCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "-9999999999999999999999999999999999999999999999999999999999999999999999999",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportProgressCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "1 " + PREFIX_FILEPATH + " " + "1", MESSAGE_INVALID_DIRECTORY);
 
         assertParseFailure(parser, "1 " + PREFIX_FILEPATH + " " + "??", MESSAGE_INVALID_DIRECTORY);
 
