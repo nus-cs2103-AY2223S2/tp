@@ -339,7 +339,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added soon!}*
 
 <div style="page-break-after: always;"></div>
-### Use cases
+
+### **Use cases**
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
@@ -376,6 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Add a recipe**
 
 **MSS**
@@ -406,6 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: View a recipe**
 
 **MSS**
@@ -426,6 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Delete a recipe**
 
 **MSS**
@@ -449,6 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Find a recipe by name**
 
 **MSS**
@@ -486,6 +491,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 #### **Use case: Find an ingredient substitute**
 
 **MSS**
@@ -508,11 +514,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### **Use case: Clear recipe book**  
 
-**User Acceptance Testing**  
-Test Case 1:  
+**MSS**
+
+1. Chef requests to clear the Book
+2. The Book clears all recipes and returns to an empty state.
+3. Book shows a message that states that the Book has been cleared.
+
+**Extensions**
+* 2a. Book is already empty
+    * 2a1. Book proceeds normally.
+
+  Use case resumes from step 3.
+
+*{More to be added}*
+
+<div style="page-break-after: always;"></div>
+
+### **User Acceptance Testing**  
+
+#### **Test Case 1:**
+
 Description: Verify recipe pop up card appears when prompted.  
 Preconditions: User is on the default MainWindow page.  
 Test Steps:
+
    1. Click on a Recipe Card once.
    2. Press 'P' on the keyboard.  
 
@@ -520,69 +545,69 @@ Expected Result: A modal showing containing the name, duration, portion, ingredi
 Actual Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.   
 Status: `Accepted`
 
-Test Case 2:  
-Description: Verify add form opens properly when prompted.   
+#### **Test Case 2:**
+
+Description: Verify add form opens properly when prompted.
 Preconditions: User is on the default Main Window page.  
 Test Steps:
-   1. Type "addf" in the command box and enter.
+
+   1. Type `addf` in the command box and enter.
 
 Expected Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right. 
 Actual Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.  
 Status: `Accepted`
 
-Test Case 3:  
+#### **Test Case 3:**
+
 Description: Verify add form saves the newly added recipe properly.  
 Preconditions: User is on the add recipe form.  
 Test Steps:
+
    1. Fill up the form with a sample recipe given in the user guide.
-   2. Click 'Save' at the bottom of the form to save and exit the form. 
-   3. Scroll to the bottom of the recipe list and click on the newly added recipe. 
-   4. Press the 'P' key to view its details. 
+   2. Click 'Save' at the bottom of the form to save and exit the form.
+   3. Scroll to the bottom of the recipe list and click on the newly added recipe.
+   4. Press the 'P' key to view its details.
 
 Expected Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
 Actual Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
 Status: `Accepted`
 
-Test Case 4:  
-Description: Verify edit form displays correctly when prompted. 
-Preconditions: User is on the default Main Window page.   
+#### **Test Case 4:**
+
+Description: Verify edit form displays correctly when prompted.
+Preconditions: User is on the default Main Window page.
 Test Steps:
+
    1. Hover over or click a recipe card.
    2. Press the 'F' key on the keyboard.
 
-Expected Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right. 
-Actual Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.   
+Expected Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.
+Actual Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.
 Status: `Accepted`
 
-Test Case 5:  
+#### **Test Case 5:**
+
 Description: Verify edit form saves the edited recipe properly.
-Preconditions: User is on edit recipe form.   
+Preconditions: User is on edit recipe form.
 Test Steps:
-   1. Edit the any of the fields in the form, using the format provided in the user guide as reference. 
-   2. Click the `Save` button at the bottom right of the form. 
+
+   1. Edit the any of the fields in the form, using the format provided in the user guide as reference.
+   2. Click the `Save` button at the bottom right of the form.
    3. Scroll to the bottom of the recipe list and click on the edited recipe.
-   4. Press the 'P' key to view its details. 
+   4. Press the 'P' key to view its details.
 
 Expected Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.
 Actual Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.  
 Status: `Accepted`
 
-**MSS**
-
-1. Chef requests to clear recipe book
-2. Book clears itself of all recipes
-
-   Use case ends.
-
-*{More to be added}*
-
 <div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
-1.  The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-    able to accomplish most of the tasks faster using commands than using the mouse.
+1. The app should be able to operate on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. The app should be able to hold up to 1000 recipes without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+  able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should have a high level of test coverage to ensure quality.
 5. The app should have automated testing and deployment processes to facilitate maintenance.
 6. The app should have clean and well-documented code that is easy to maintain and update.
@@ -595,6 +620,7 @@ Status: `Accepted`
 *{More to be added}*
 
 <div style="page-break-after: always;"></div>
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -609,11 +635,14 @@ Status: `Accepted`
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -628,7 +657,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
+
 3. Shutdown
    1. When the app is open, type `exit` into the command bar and press "enter".<br>
       Expected: The app closes
