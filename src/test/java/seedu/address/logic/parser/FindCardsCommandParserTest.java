@@ -8,27 +8,25 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.deckcommands.FindDecksCommand;
+import seedu.address.logic.commands.cardcommands.FindCardsCommand;
 
-public class FindDecksCommandParserTest {
-
-    private FindDecksCommandParser parser = new FindDecksCommandParser();
+public class FindCardsCommandParserTest {
+    private FindCardsCommandParser parser = new FindCardsCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindDecksCommand.MESSAGE_USAGE));
+                FindCardsCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validArgs_returnsFindDecksCommand() {
+    public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindDecksCommand expectedFindDecksCommand =
-                new FindDecksCommand(Arrays.asList("science", "programming"));
-        assertParseSuccess(parser, "science programming", expectedFindDecksCommand);
+        FindCardsCommand expectedFindCardsCommand =
+                new FindCardsCommand(Arrays.asList("What's", "gravity"));
+        assertParseSuccess(parser, "What's gravity", expectedFindCardsCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n science \n \t programming  \t", expectedFindDecksCommand);
+        assertParseSuccess(parser, " \n What's \n \t gravity  \t", expectedFindCardsCommand);
     }
-
 }
