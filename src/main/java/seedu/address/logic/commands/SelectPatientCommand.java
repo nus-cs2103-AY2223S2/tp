@@ -41,6 +41,6 @@ public class SelectPatientCommand extends Command {
         Patient patientToShow = lastShownList.get(targetIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_SELECT_PATIENT_SUCCESS, patientToShow),
-                true, patientToShow);
+                patientToShow);
     }
 }

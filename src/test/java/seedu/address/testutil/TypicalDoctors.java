@@ -76,6 +76,7 @@ public class TypicalDoctors {
         for (Doctor doctor : getTypicalDoctors()) {
             ab.addDoctor(doctor);
             for (Patient patient : doctor.getPatients()) {
+                patient.assignDoctor(doctor);
                 ab.addPatient(patient);
             }
         }
@@ -85,6 +86,10 @@ public class TypicalDoctors {
     }
 
     public static List<Doctor> getTypicalDoctors() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, DANIEL, CARL));
+        return new ArrayList<>(Arrays.asList(
+                new DoctorBuilder(ALICE).build(),
+                new DoctorBuilder(BENSON).build(),
+                new DoctorBuilder(DANIEL).build(),
+                new DoctorBuilder(CARL).build()));
     }
 }

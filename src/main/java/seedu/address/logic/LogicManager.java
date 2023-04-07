@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -20,7 +19,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 import seedu.address.storage.Storage;
 
 /**
@@ -93,21 +96,24 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Optional<Doctor> getDoctorIfPresent() {
-        Optional<Doctor> optionalDoctor = Optional.empty();
-        if (!model.getFilteredDoctorList().isEmpty()) {
-            optionalDoctor = Optional.of(model.getFilteredDoctorList().get(0));
-        }
-        return optionalDoctor;
+    public void updateFilteredPatientListBasedOnDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        PatientFilter patientContainsDoctor =
+                new PatientFilter(doctor);
+        Predicate<Patient> patientsOfDoctorPredicate =
+                new PatientContainsKeywordsPredicate(patientContainsDoctor);
+        this.updateFilteredPatientList(patientsOfDoctorPredicate);
     }
 
     @Override
-    public Optional<Patient> getPatientIfPresent() {
-        Optional<Patient> optionalPatient = Optional.empty();
-        if (!model.getFilteredPatientList().isEmpty()) {
-            optionalPatient = Optional.of(model.getFilteredPatientList().get(0));
-        }
-        return optionalPatient;
+    public void updateFilteredDoctorListBasedOnPatient(Patient patient) {
+        requireNonNull(patient);
+        DoctorFilter doctorContainsPatient =
+                new DoctorFilter(patient);
+        Predicate<Doctor> doctorsOfPatientPredicate =
+                new DoctorContainsKeywordsPredicate(doctorContainsPatient);
+        this.updateFilteredDoctorList(doctorsOfPatientPredicate);
+
     }
 
     @Override

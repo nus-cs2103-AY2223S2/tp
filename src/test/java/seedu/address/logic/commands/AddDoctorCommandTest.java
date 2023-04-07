@@ -35,7 +35,8 @@ public class AddDoctorCommandTest {
 
         CommandResult commandResult = new AddDoctorCommand(validDoctor).execute(modelStub);
 
-        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, validDoctor), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, validDoctor),
+                commandResult.getCliFeedbackToUser());
         assertEquals(Arrays.asList(validDoctor), modelStub.doctorsAdded);
     }
 

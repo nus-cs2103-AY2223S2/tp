@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * A UI component representing the Help Window.
  */
 public class HelpWindow extends UiPart<Stage> {
 

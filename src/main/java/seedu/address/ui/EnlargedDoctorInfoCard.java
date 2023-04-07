@@ -1,19 +1,17 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays all information of a {@code Doctor}.
  */
-public class EnlargedDoctorInfoCard extends UiPart<Region> {
+public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
     private static final String FXML = "EnlargedDoctorInfoCard.fxml";
 
     /**
@@ -24,9 +22,9 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private Optional<Doctor> selectedDoctorOptional;
+    private Doctor selectedDoctor;
 
-    @javafx.fxml.FXML
+    @FXML
     private VBox enlargedDoctorInfoCard;
     @FXML
     private Label name;
@@ -38,16 +36,7 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
     private Label specialty;
     @FXML
     private Label yearsOfExperience;
-    @FXML
-    private FlowPane tags;
 
-    /**
-     * Creates a {@code EnlargedDoctorInfoCard} with the given {@code Optional< Doctor >}.
-     */
-    public EnlargedDoctorInfoCard(Optional<Doctor> selectedDoctorOptional) {
-        super(FXML);
-        updateSelectedDoctorOptional(selectedDoctorOptional);
-    }
 
     /**
      * Creates an empty {@code EnlargedDoctorInfoCard}.
@@ -60,38 +49,32 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
     /**
      * Updates the selected doctor stored in {@code EnlargedDoctorInfoCard}.
      *
-     * @param selectedDoctor the given {@code Optional< Doctor >}
+     * @param selectedDoctor the given {@code Doctor}
      */
-    public void updateSelectedDoctorOptional(Optional<Doctor> selectedDoctor) {
-        this.selectedDoctorOptional = selectedDoctor;
+    public void updateSelectedDoctor(Doctor selectedDoctor) {
+        this.selectedDoctor = selectedDoctor;
         updateDisplay();
     }
 
     /**
      * Updates the information shown on the {@code EnlargedDoctorInfoCard}
-     * with that of the stored {@code Optional< Doctor >}.
+     * with that of the stored {@code Doctor}.
      * If no doctor is stored, then the {@code EnlargedDoctorInfoCard} is cleared.
      */
     private void updateDisplay() {
-        if (selectedDoctorOptional.isEmpty()) {
-            clearDisplay();
+        clearDisplay();
+        if (selectedDoctor == null) {
             return;
         }
-        Doctor selectedDoctor = selectedDoctorOptional.get();
+
         name.setText(selectedDoctor.getName().fullName);
         phone.setText(selectedDoctor.getPhone().value);
         email.setText(selectedDoctor.getEmail().value);
         specialty.setText(selectedDoctor.getSpecialty().specialty);
         yearsOfExperience.setText(selectedDoctor.getYoe().value);
-        tags.getChildren().clear();
         selectedDoctor.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(this::addTagToFlowPane);
     }
 
     /**
@@ -103,7 +86,7 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
         email.setText("");
         specialty.setText("");
         yearsOfExperience.setText("");
-        tags.getChildren().clear();
+        this.clearTags();
     }
 
     @Override
@@ -120,6 +103,9 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
 
         // state check
         EnlargedDoctorInfoCard card = (EnlargedDoctorInfoCard) other;
-        return selectedDoctorOptional.equals(card.selectedDoctorOptional);
+        if (selectedDoctor == null) {
+            return card.selectedDoctor == null;
+        }
+        return selectedDoctor.equals(card.selectedDoctor);
     }
 }

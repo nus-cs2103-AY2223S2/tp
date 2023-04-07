@@ -33,7 +33,7 @@ public class FindDoctorCommandTest {
     public void equals() {
 
         Set<String> bensonTags = BENSON.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
 
         DoctorFilter emptyFilter = new DoctorFilter("", "",
                 "", "", "", new HashSet<>());
@@ -86,7 +86,7 @@ public class FindDoctorCommandTest {
     public void execute_exactKeywords_onePersonFound() {
 
         Set<String> bensonTags = BENSON.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
         DoctorFilter bensonFilter = new DoctorFilter(BENSON.getName().fullName,
                 BENSON.getPhone().value,
                 BENSON.getEmail().value,

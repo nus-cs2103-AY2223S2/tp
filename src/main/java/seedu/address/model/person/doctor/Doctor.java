@@ -1,5 +1,6 @@
 package seedu.address.model.person.doctor;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
@@ -76,7 +77,7 @@ public class Doctor extends Person {
      * @param patient a patient.
      */
     public void assignPatient(Patient patient) {
-        assert patient != null;
+        requireNonNull(patient);
         if (!this.hasPatient(patient)) {
             patients.add(patient);
         }

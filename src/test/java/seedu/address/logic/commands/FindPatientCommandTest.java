@@ -7,7 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVI
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.YANNIE;
 import static seedu.address.testutil.TypicalPatients.ZAYDEN;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientsOnlyAddressBook;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,14 +26,14 @@ import seedu.address.model.person.patient.PatientFilter;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientsOnlyAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPatientsOnlyAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
 
         Set<String> zaydenTags = ZAYDEN.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
 
         PatientFilter emptyFilter = new PatientFilter("", "",
                 "", "", "", "", "", "", new HashSet<>());
@@ -92,7 +92,7 @@ public class FindPatientCommandTest {
     public void execute_exactKeywords_onePersonFound() {
 
         Set<String> zaydenTags = ZAYDEN.getTags().stream()
-                .map(t -> t.tagName).collect(Collectors.toSet());
+                .map(t -> t.getTagName()).collect(Collectors.toSet());
         PatientFilter zaydenFilter = new PatientFilter(ZAYDEN.getName().fullName,
                 ZAYDEN.getPhone().value,
                 ZAYDEN.getEmail().value,
