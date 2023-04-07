@@ -1,15 +1,15 @@
 @startuml
 
 start
-:User's command;
+:User enters command;
 
-if () then ([command is valid in current mode])
-    :Save Command Result to Model;
+if (Checking validity of command in current application mode) then ([command is valid])
     :Store changes in MasterDeckStorage;
-    :Display Command Result;
+    :Save Command Result to Logic Manager;
+    :Display Command Result on Result Display;
 else ([else])
-    :Throws CommandException;
-    :Displays error message;
+    :Throws ParseException;
+    :Displays error message on Result Display;
 
 endif
 
