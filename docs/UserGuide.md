@@ -486,6 +486,11 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |   [View Upcoming Events](#view-upcoming-events)    |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
 |              [Save data](#save-data)               |                                      NIL                                      |                                                          NIL                                                          |
 
+If you have made it this far into the User Guide, you are awesome:trophy:! Thank you for reading!
+
+We sincerely hope that you will enjoy using Paidlancers! If you have any questions or feedback, please contact us
+[here](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/new) by raising a new issue via GitHub!
+
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
 </div>
