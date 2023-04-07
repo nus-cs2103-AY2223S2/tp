@@ -1,5 +1,6 @@
 package seedu.vms.model;
 
+import java.util.Objects;
 
 /**
  * Represents an association of an ID with a value.
@@ -80,14 +81,7 @@ public class IdData<T> implements Comparable<IdData<T>> {
 
     @Override
     public int hashCode() {
-        // magic numbers from https://stackoverflow.com/a/113600
-        int result = 17;
-
-        result = 37 * result + ((isActive) ? 1 : 0);
-        result = 37 * result + id;
-        result = 37 * value.hashCode();
-
-        return result;
+        return Objects.hash(isActive, id, value);
     }
 
 
