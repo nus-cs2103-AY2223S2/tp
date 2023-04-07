@@ -2,13 +2,8 @@ package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 import seedu.dengue.logic.commands.ImportCommand;
 
