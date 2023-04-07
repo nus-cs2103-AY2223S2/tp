@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ShowRemarkCommand;
@@ -16,12 +18,24 @@ public class ShowRemarkCommandParser implements Parser<ShowRemarkCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ShowRemarkCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        String[] splitArr = args.stripLeading().split("\\s+", 2);
+        assert splitArr.length >= 1 : "'splitArr' should have at least 1 element";
+
+        String indexStr = splitArr[0];
+        Index index;
+
+        if (splitArr.length > 1 || indexStr.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowRemarkCommand.MESSAGE_USAGE));
+        }
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ShowRemarkCommand(index);
+            index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowRemarkCommand.MESSAGE_USAGE), pe);
+                    MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, pe
+            );
         }
+        return new ShowRemarkCommand(index);
     }
 }
