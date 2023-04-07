@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipCatalogueParser" as InternshipCatalogueParser LOGIC_COLOR
+participant "c:ClashCommand" as ClashCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "eventCatalogue:EventCatalogue" as EventCatalogue MODEL_COLOR
+participant "events:UniqueEventList" as UniqueEventList MODEL_COLOR
+end box
+[-> LogicManager : execute("clash")
+activate LogicManager
+
+LogicManager -> InternshipCatalogueParser : parseCommand("clash")
+activate InternshipCatalogueParser
+
+create ClashCommand
+InternshipCatalogueParser -> ClashCommand : ClashCommand()
+activate ClashCommand
+
+ClashCommand --> InternshipCatalogueParser
+deactivate ClashCommand
+
+InternshipCatalogueParser --> LogicManager : c
+deactivate InternshipCatalogueParser
+destroy InternshipCatalogueParser
+
+LogicManager -> ClashCommand : execute()
+activate ClashCommand
+
+ClashCommand --> Model : getEventCatalogue()
+activate Model
+
+Model --> ClashCommand
+deactivate Model
+
+ClashCommand -> EventCatalogue : findClashEvents()
+activate EventCatalogue
+
+EventCatalogue -> UniqueEventList : getEventClashHash()
+activate UniqueEventList
+
+UniqueEventList -> EventCatalogue
+deactivate UniqueEventList
+
+EventCatalogue -> ClashCommand
+deactivate EventCatalogue
+
+create CommandResult
+ClashCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClashCommand
+deactivate CommandResult
+
+ClashCommand --> LogicManager : result
+deactivate ClashCommand
+ClashCommand -[hidden]-> LogicManager : result
+destroy ClashCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
