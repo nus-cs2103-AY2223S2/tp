@@ -1,42 +1,50 @@
 ---
+layout: page
 title: Phone Khant Paing's Project Portfolio Page
 ---
 
-### Project: BookFace
+Overview
+BookFace is an NUS-centered contacts management system that allows students of NUS to organise their list of friends and acquaintances that they have met in their various classes, CCAs, project groups etc. The application aims to provide NUS students a means to keep track of the contact details of the numerous people they have met during their time in NUS in hopes of facilitating better communication among peers, as well as provide a centralised channel for students to obtain relevant administrative contact information of the various departments and faculties that are in the school.
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+### Summary of Contributions
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does:
-    * Justification:
-    * Highlights:
-    * Credits:
+**Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=pkpaing&tabRepo=AY2223S2-CS2103-F11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **New Feature**:
+**Features implemented**
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: `import`
+* What it does:
+* Justification:
 
-* **Project management**:
+**Contributions to the UG**
 
+The following are the list of sections that have been contributed to the UG:
 
-* **Enhancements to existing features**:
-  *
+**Contributions to the DG**
 
-* **Documentation**:
-    * User Guide:
+The following are the list of sections that have been contributed to the DG:
 
-    * Developer Guide:
+**Contributions to team-based tasks**
 
+The following are the list of team-based tasks accomplished:
+- Maintaining the issue tracker
+- Adding non-feature related sections to the UG and DG
 
-* **Community**:
-    * PRs reviewed (with non-trivial review comments):
-    * Contributed to forum discussions (examples: )
-    * Reported bugs and suggestions for other teams in the class ()
-    * Some parts of the history feature I added was adopted by several other class mates ()
+**Review/mentoring contributions**
 
-* **Tools**:
+Main contributions in this aspect revolve around reviewing and approving of teammate's Pull Requests, as well as sharing technical opinions through informal channels, such as team meetings and group chat with team members.
+
+**Contributions beyond the project team**
+
+Participated in the Practical Exam Dry Run and performed bug testing on the [E-Lister](https://github.com/AY2223S2-CS2103T-T17-3/tp) application.
+
+<div style="page-break-after: always;"></div>
+
+### Contributions to the Developer Guide (Extracts)
+
+The diagrams contributed to the DG are reproduced below.
 
 
 
