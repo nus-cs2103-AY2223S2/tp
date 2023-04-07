@@ -73,7 +73,7 @@ public class MenuItemPriceTest {
     }
 
     @Test
-    public void toString_similarityCheck() {
+    public void toStringTest() {
         assertEquals("10.00", new ItemPrice("10.00").toString());
         assertEquals("10.00", new ItemPrice("10.0").toString());
         assertEquals("10.00", new ItemPrice("10").toString());
@@ -82,7 +82,7 @@ public class MenuItemPriceTest {
     }
 
     @Test
-    public void getFormattedValue_similarityCheck() {
+    public void getFormattedValueTest() {
         assertEquals("10.00", new ItemPrice("10.00").getFormattedValue());
         assertEquals("10.00", new ItemPrice("10.0").getFormattedValue());
         assertEquals("10.00", new ItemPrice("10").getFormattedValue());
