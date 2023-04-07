@@ -159,7 +159,7 @@ This component gives you a comprehensive summary of all the events that you have
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**
 Newly added events will appear in their corresponding calendar boxes.  
-The find command will highlight the calendar boxes corresponding to the events that match your search criteria.
+The `find` command will highlight the calendar boxes corresponding to the events that match your search criteria.
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -223,16 +223,16 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning:** Adding of events that overlaps in time is not allowed.
-</div>
-
 ![add-command-result.png](images%2Fadd-command-result.png)
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
-If an event is added successfully, a message similar to the one above will be displayed.  
-You should also be able to see the event added to both the Events List Panel and the Calendar.
+If an event is added successfully, a message similar to the one above will be displayed in the `Response Box`.  
+The event will be added to the `Events List Panel` and `Calendar`.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning:** Adding of events that overlaps in time is not allowed.
 </div>
 
 
@@ -276,6 +276,14 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
+![edit-command-result.png](images/edit-command-result.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+If an event is edited successfully, a message similar to the one above will be displayed in the `Response Box`.  
+Any changes made to the event will be reflected in both the Events `List Panel` and `Calendar`.
+</div>
+
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:** At least one field must be provided.
 </div>
@@ -291,6 +299,14 @@ Format: `delete <index>` or `delete <index index ... index>`
 Deletes the event(s) in the scheduler.
 
 Example: `delete 1` or `delete 1 4 5`
+
+![delete-command-result.png](images%2Fdelete-command-result.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+If an event is deleted successfully, a message similar to the one above will be displayed in the `Response Box`.  
+Deleting the event will cause it to be removed from both the `Events List Panel` and `Calendar`.  
+</div>
 
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:** Index must be a positive integer and exist in the scheduler.
