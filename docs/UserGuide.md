@@ -305,7 +305,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 
-  ![result for 'feid eid/7'](images/UiFindCommand.png)
+  ![result for 'find alex david'](images/UiFindCommand.png)
 
 
 
@@ -351,6 +351,9 @@ Examples:
 * `adep n/Software Engineering`
 * `adep n/Marketing`
 
+
+![result for 'adep n/Marketing'](images/UiAddDepartmentCommand.png)
+
 ### 7.2.2. Editing a department: `edep`
 
 Edits an existing department.
@@ -360,6 +363,9 @@ Format: `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`
 Examples:
 * `edep Software Engineering n/Software Development`
 * `edep Marketing n/Sales`
+
+
+![result for 'edep Marketing n/Sales'](images/UiEditDepartmentCommand.png)
 
 ### 7.2.3. Find departments by name: `fdep`
 
@@ -407,8 +413,11 @@ You cannot add an employee to a department twice.
 </div>
 
 Examples:
-* `aetd eid/1 n/Software Engineering`
-* `aetd eid/100 n/Sales`
+* `aetd eid/100 n/Software Engineering`
+* `aetd eid/1 n/Sales`
+
+
+![result for 'aetd eid/1 n/Sales'](images/UiAddEmployeeToDepartmentCommand.png)
 
 ### 7.2.7. Remove employee from a department: `refd`
 
