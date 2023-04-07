@@ -57,8 +57,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        command.setData(undoRedoStack);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, undoRedoStack);
         model.resetMaps();
         logger.info("Maps reset");
 
