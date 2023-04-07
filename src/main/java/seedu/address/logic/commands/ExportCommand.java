@@ -42,7 +42,7 @@ public class ExportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, InvalidPathException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Path archivePath;
 
