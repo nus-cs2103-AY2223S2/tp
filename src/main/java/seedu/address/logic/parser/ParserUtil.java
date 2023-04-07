@@ -192,17 +192,32 @@ public class ParserUtil {
      * @throws ParseException to be thrown if there is error.
      */
     public static void checkDateExist(LocalDateTime date, String day) throws ParseException {
-        boolean isLeapYear = date.getYear() % 4 == 0;
+        boolean isLeapYear = isLeapYear(date.getYear());
         boolean isFeb = date.getMonth().getValue() == 2;
         int lastDay = date.getMonth().maxLength();
 
         if (!isLeapYear && isFeb) {
             lastDay--;
         }
-        System.out.println(lastDay);
-
         if (Integer.parseInt(day) > lastDay) {
             throw new ParseException(Messages.MESSAGE_NONEXISTENT_DATE);
+        }
+    }
+
+    /**
+     * Check if a year is a leap year
+     * @param year to be checked
+     * @return true or false
+     */
+    public static boolean isLeapYear(int year) {
+        if (year % 4 != 0) {
+            return false;
+        } else if (year % 100 != 0) {
+            return true;
+        } else if (year % 400 != 0) {
+            return false;
+        } else {
+            return true;
         }
     }
 
