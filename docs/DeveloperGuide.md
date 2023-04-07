@@ -376,29 +376,68 @@ The following sequence diagram provides details on how the `informationFields` a
 
 ## 4.3 Delete Command
 
+**Overview:**
+
+**Feature Details:**
+
 <div style="page-break-after: always"></div>
 
 ## 4.4 Help Command
+
+**Overview:**
+
+The `help` command provides the user with instructions on how to access the User Guide, or how to use a specified command.
+
+**Feature Details:**
+
+1. The user specifies a command that they need help with using `help` followed by the word needed to execute a particular command available in ConnectUS.
+2. If a command is not specified, the help window with the URL to access the ConnectUS User Guide will be shown, as well as a general feedback message to denote successful execution of the command.
+3. If a command is specified, the provided command is cross-referenced with all available commands in ConnectUS. If the command specified by the user does not exist, an error is thrown. A `help` feedback message with instructions on accessing `help` command with the User Guide will be shown.
+4. The command usage instructions will be shown in the command feedback box. There will also be a message to denote successful execution of the `help` command.
+
+The following activity diagram shows the logic of the `help` command.
+
+![HelpCommandActivityDiagram](images/HelpCommandActivityDiagram.png)
 
 <div style="page-break-after: always"></div>
 
 ## 4.5 Adding Additional Tags Command
 
+**Overview:**
+
+**Feature Details:**
+
 <div style="page-break-after: always"></div>
 
 ## 4.6 Deleting Individual Tags Command
+
+**Overview:**
+
+**Feature Details:**
 
 <div style="page-break-after: always"></div>
 
 ## 4.7 Search Command
 
+**Overview:**
+
+**Feature Details:**
+
 <div style="page-break-after: always"></div>
 
 ## 4.8 Upcoming Birthdays Command
 
+**Overview:**
+
+**Feature Details:**
+
 <div style="page-break-after: always"></div>
 
 ## 4.9 Open Command
+
+**Overview:**
+
+**Feature Details:**
 
 <div style="page-break-after: always"></div>
 
