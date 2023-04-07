@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.edit;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.EDIT_LECTURE_DESC_L1;
@@ -29,6 +27,7 @@ import seedu.address.model.video.Video;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ObjectUtil;
 import seedu.address.testutil.TypicalLectures;
 
 /**
@@ -36,140 +35,149 @@ import seedu.address.testutil.TypicalLectures;
  */
 public class EditLectureCommandTest {
 
+    private static final ModuleCode MODULE_CODE = new ModuleCode(VALID_MODULE_CODE_2103);
+    private static final LectureName LECTURE_NAME = new LectureName(VALID_LECTURE_NAME_L1);
+
     private final Model model = new ModelManager();
 
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(null,
-                        new LectureName(VALID_LECTURE_NAME_L1), EDIT_LECTURE_DESC_L2));
+                new EditLectureCommand(null, LECTURE_NAME, EDIT_LECTURE_DESC_L2));
     }
 
     @Test
     public void constructor_nullLectureName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(new ModuleCode(VALID_MODULE_CODE_2103),
-                        null, EDIT_LECTURE_DESC_L2));
+                new EditLectureCommand(MODULE_CODE, null, EDIT_LECTURE_DESC_L2));
     }
 
     @Test
     public void constructor_nullEditLectureDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(new ModuleCode(VALID_MODULE_CODE_2103),
-                        new LectureName(VALID_LECTURE_NAME_L1), null));
+                new EditLectureCommand(MODULE_CODE, LECTURE_NAME, null));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        EditLectureCommand command = new EditLectureCommand(new ModuleCode(VALID_MODULE_CODE_2103),
-                new LectureName(VALID_LECTURE_NAME_L1), EDIT_LECTURE_DESC_L1);
-
+        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, EDIT_LECTURE_DESC_L1);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void execute_editAcceptedByModel_success() {
+        /* Setup */
+        // Setup modules and lectures
         Module originalModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
         Module editedModule = new ModuleBuilder(originalModule).build();
         Lecture originalLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
-        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).withVideos().build();
-        originalLecture.getVideoList().stream().forEach(v -> editedLecture.addVideo((Video) v));
+        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2())
+                .withVideos(originalLecture.getVideoList().toArray(Video[]::new))
+                .build();
 
+        originalModule.addLecture(originalLecture);
+
+        // Setup commad
         EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(editedLecture).build();
-
         EditLectureCommand command = new EditLectureCommand(
                 originalModule.getCode(), originalLecture.getName(), descriptor);
 
-        originalModule.addLecture(originalLecture);
+        // Setup model
         model.addModule(originalModule);
 
+        /* Create expected results */
+        // Create expected command result
         String expectedMessage = String.format(
                 EditLectureCommand.MESSAGE_SUCCESS, originalModule.getCode(), editedLecture);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                new LectureEditInfo(originalModule.getCode(), originalLecture, editedLecture));
+        LectureEditInfo expectedEditInfo = new LectureEditInfo(originalModule.getCode(),
+                originalLecture, editedLecture);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedEditInfo);
 
+        // Create expected model
         Model expectedModel = new ModelManager();
         editedModule.addLecture(editedLecture);
         expectedModel.addModule(editedModule);
 
+        /* Execute test */
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_moduleDoesNotExist_failure() {
-        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
-        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+        /* Setup */
         EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L1;
+        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
 
-        EditLectureCommand command = new EditLectureCommand(moduleCode, lectureName, descriptor);
+        /* Create expected results */
+        String expectedMessage = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, MODULE_CODE);
 
-        String expectedMessage = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
+        /* Execute test */
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_lectureDoesNotExist_failure() {
+        /* Setup */
+        // Setup module
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
-        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+
+        // Setup command
         EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L1;
+        EditLectureCommand command = new EditLectureCommand(module.getCode(), LECTURE_NAME, descriptor);
 
-        EditLectureCommand command = new EditLectureCommand(module.getCode(), lectureName, descriptor);
-
+        // Setup model
         model.addModule(module);
 
-        String expectedMessage = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, module.getCode());
+        /* Create expected results */
+        String expectedMessage = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, LECTURE_NAME, module.getCode());
+
+        /* Execute test */
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_duplicateLecture_failure() {
+        /* Setup */
+        // Setup module and lectures
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
         Lecture originalLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
-        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).withVideos().build();
-        originalLecture.getVideoList().stream().forEach(v -> editedLecture.addVideo((Video) v));
-
-        EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(editedLecture).build();
+        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2())
+                .withVideos(originalLecture.getVideoList().toArray(Video[]::new))
+                .build();
 
         module.addLecture(originalLecture);
         module.addLecture(editedLecture);
-        model.addModule(module);
 
+        // Setup command
+        EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(editedLecture).build();
         EditLectureCommand command = new EditLectureCommand(module.getCode(), originalLecture.getName(), descriptor);
 
+        // Setup model
+        model.addModule(module);
+
+        /* Create expected result */
         String expectedMessage = String.format(EditLectureCommand.MESSAGE_DUPLICATE_LECTURE, module.getCode());
+
+        /* Execute test */
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
-        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
-        EditLectureCommand command = new EditLectureCommand(moduleCode, lectureName, EDIT_LECTURE_DESC_L2);
+        EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L2;
 
-        // same values -> returns true
-        EditLectureCommand commandWithSameValues = new EditLectureCommand(
-                moduleCode, lectureName, EDIT_LECTURE_DESC_L2);
-        assertTrue(command.equals(commandWithSameValues));
+        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
 
-        // same object -> returns true
-        assertTrue(command.equals(command));
+        EditLectureCommand commandWithSameValues = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
 
-        // null -> returns false
-        assertFalse(command.equals(null));
+        EditLectureCommand commandWithDiffModuleCode = new EditLectureCommand(
+                new ModuleCode(VALID_MODULE_CODE_2040), LECTURE_NAME, descriptor);
+        EditLectureCommand commandWithDiffLectureName = new EditLectureCommand(
+                MODULE_CODE, new LectureName(VALID_LECTURE_NAME_L2), descriptor);
+        EditLectureCommand commandWithDiffDescriptor = new EditLectureCommand(
+                MODULE_CODE, LECTURE_NAME, EDIT_LECTURE_DESC_L1);
 
-        // different types -> returns false
-        assertFalse(command.equals(1));
-
-        // different module code -> returns false
-        assertFalse(command.equals(
-                new EditLectureCommand(new ModuleCode(VALID_MODULE_CODE_2040), lectureName, EDIT_LECTURE_DESC_L2)));
-
-        // different lecture name -> returns false
-        assertFalse(command.equals(
-                new EditLectureCommand(moduleCode, new LectureName(VALID_LECTURE_NAME_L2), EDIT_LECTURE_DESC_L2)));
-
-        // different descriptor -> returns false
-        assertFalse(command.equals(
-                new EditLectureCommand(moduleCode, lectureName, EDIT_LECTURE_DESC_L1)));
+        ObjectUtil.testEquals(command, commandWithSameValues, 1,
+                commandWithDiffModuleCode, commandWithDiffLectureName, commandWithDiffDescriptor);
     }
 }
