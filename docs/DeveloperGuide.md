@@ -248,18 +248,38 @@ Each of the project detail classes have their own validation check that is run u
 
 ### Sorting
 
+Users have the option to sort visible clients and projects.
+
 #### Implementation
-Sorting is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html), which sorts its contents based on the supplied `Comparator`. As mentioned in the [model](#model-component) section of the architecture overview, the sorted list is exposed to the UI in the form of an unmodifiable `ObservableList`, such that any updates to the sorted list is propagated to the UI.
 
-The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
+There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-For the client list, it is only sorted with a `Comparator` that compares the names of the clients.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command.
 
-For the project list, it can be sorted either by deadline or name. When the user executes a `sort` command, they can input which option they wish to sort by, which is parsed by `SortProjectCommandParser`.
+<img src="images/SortingSequenceDiagram.png" width="600" />
 
-### \[Proposed\] Data archiving
+As the contents of the sorted list is the already filtered list, executing sorting will only sort clients/projects that are currently visible. Clients/projects that are hidden due to a previous `find command` will remain hidden.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Alternatives
+An alternative would be for sorting to sort all clients/projects instead of only those that are visible, causing sorting commands to show all clients/projects but sorted. We did not go with this implementation as we wanted users to be able to combine the effects of filtering and sorting for better data organisation.
+
+### Linking Projects to Clients
+
+Users have the ability to link projects to clients.
+
+#### Implementation
+
+#### Future improvements
+Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
+
+In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
+
+### Better filtering
+
+Users now have the ability to find clients and projects using a greater number of parameters, such as tags and deadlines.
+
+#### Implementation
 
 ### Done Status
 
