@@ -527,7 +527,7 @@ The following sequence diagram shows how the `createtag` command works:
 
 The following activity diagram summarizes what happens when a user executes a new `createtag` command:
 
-<img src="images/CreateTagActivityDiagram.png" width="500" />
+<img src="images/CreateTagActivityDiagram.png" width="300" />
 
 
 #### Deleting a Tag
@@ -551,6 +551,8 @@ The following sequence diagram shows how the `deltag` command.
 *(Sequence diagram to be inserted)*
 
 #### Tagging a Food
+
+**Overview**
 
 User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can simply
 be done using the command `tag`. This tagging function allows user to easily classify their `Food` in
@@ -578,6 +580,10 @@ The following sequence diagram shows how the `tag` command works.
    before having access to the tag.
 5. Completion of step 4 without any exception will result in successful tagging of the food with the
    specified tag.
+
+The following activity diagram summarizes what happens when a user executes a new `tag` command:
+
+<img src="images/TagFoodActivityDiagram.png" width="300" />
 
 #### Untagging a Food
 
