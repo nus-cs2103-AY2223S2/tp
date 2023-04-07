@@ -12,10 +12,12 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.showStudentA
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.parser.EditCommandParser.EditStudentDescriptor;
 import tfifteenfour.clipboard.model.Model;
@@ -29,13 +31,20 @@ import tfifteenfour.clipboard.testutil.TypicalModel;
  * Contains integration tests (interaction with the Model) and unit tests for EditStudentCommand.
  */
 public class EditStudentCommandTest {
+    private Model model;
+    private Group actualSelectedGroup;
 
-    private Model model = new TypicalModel().getTypicalModel();
-    private Group actualSelectedGroup = model.getCurrentSelection().getSelectedGroup();
+    @BeforeEach
+    public void setUp() {
+        this.model = new TypicalModel().getTypicalModel();
+        this.actualSelectedGroup = model.getCurrentSelection().getSelectedGroup();
+        this.model.getCurrentSelection().setCurrentPage(PageType.STUDENT_PAGE);
+    }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedStudent = model.getCurrentSelection().getSelectedStudent();
+        Student editedStudent = new StudentBuilder(model.getCurrentSelection().getSelectedStudent()).withStudentId("A1397522R").build();
+
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).withStudentId("A1397522R").build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 

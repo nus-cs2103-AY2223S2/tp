@@ -1,0 +1,2735 @@
+{
+	"courses" : [ {
+	  "courseCode" : "CS2103T",
+	  "groups" : [ {
+		"groupName" : "T15",
+		"students" : [ {
+		  "name" : "Han Wei Jie",
+		  "phone" : "999",
+		  "email" : "han.weijie@email.com",
+		  "studentId" : "A6789012F",
+		  "remark" : "loves swimming"
+		}, {
+		  "name" : "Siti Aisyah",
+		  "phone" : "90907788",
+		  "email" : "siti.aisyah@email.com",
+		  "studentId" : "A7890123G",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Kim Choo",
+		  "phone" : "90001111",
+		  "email" : "lim.kimchoo@email.com",
+		  "studentId" : "A8901234H",
+		  "remark" : ""
+		}, {
+		  "name" : "Mohamed Yusof",
+		  "phone" : "93456789",
+		  "email" : "m.yusof@email.com",
+		  "studentId" : "A9012345I",
+		  "remark" : ""
+		}, {
+		  "name" : "Chin Li Mei",
+		  "phone" : "94567890",
+		  "email" : "chin.limei@email.com",
+		  "studentId" : "A0123456J",
+		  "remark" : ""
+		}, {
+		  "name" : "Lau Chin Hui",
+		  "phone" : "94567891",
+		  "email" : "lau.chinhui@email.com",
+		  "studentId" : "A1234567K",
+		  "remark" : ""
+		}, {
+		  "name" : "Koh Mei Ling",
+		  "phone" : "93456789",
+		  "email" : "koh.meiling@email.com",
+		  "studentId" : "A2345678L",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "values" : [ 1, 0, 1, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 1, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial3",
+		  "keys" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 1, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab2",
+		  "keys" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 1, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "OP1",
+		  "students" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "OP2",
+		  "students" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 1",
+		  "students" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 2",
+		  "students" : [ {
+			"name" : "Siti Aisyah",
+			"phone" : "90907788",
+			"email" : "siti.aisyah@email.com",
+			"studentId" : "A7890123G",
+			"remark" : ""
+		  }, {
+			"name" : "Chin Li Mei",
+			"phone" : "94567890",
+			"email" : "chin.limei@email.com",
+			"studentId" : "A0123456J",
+			"remark" : ""
+		  }, {
+			"name" : "Han Wei Jie",
+			"phone" : "999",
+			"email" : "han.weijie@email.com",
+			"studentId" : "A6789012F",
+			"remark" : "loves swimming"
+		  }, {
+			"name" : "Lau Chin Hui",
+			"phone" : "94567891",
+			"email" : "lau.chinhui@email.com",
+			"studentId" : "A1234567K",
+			"remark" : ""
+		  }, {
+			"name" : "Mohamed Yusof",
+			"phone" : "93456789",
+			"email" : "m.yusof@email.com",
+			"studentId" : "A9012345I",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kim Choo",
+			"phone" : "90001111",
+			"email" : "lim.kimchoo@email.com",
+			"studentId" : "A8901234H",
+			"remark" : ""
+		  }, {
+			"name" : "Koh Mei Ling",
+			"phone" : "93456789",
+			"email" : "koh.meiling@email.com",
+			"studentId" : "A2345678L",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  }, {
+		"groupName" : "T16",
+		"students" : [ {
+		  "name" : "Raj Kumar",
+		  "phone" : "90001234",
+		  "email" : "raj.kumar@email.com",
+		  "studentId" : "A3456789M",
+		  "remark" : ""
+		}, {
+		  "name" : "Siti Noraini",
+		  "phone" : "91234567",
+		  "email" : "siti.noraini@email.com",
+		  "studentId" : "A4567890N",
+		  "remark" : ""
+		}, {
+		  "name" : "Lee Siew Ling",
+		  "phone" : "94567890",
+		  "email" : "lee.siewling@email.com",
+		  "studentId" : "A5678901O",
+		  "remark" : ""
+		}, {
+		  "name" : "Jin Wei Ping",
+		  "phone" : "92345678",
+		  "email" : "jin.weiping@email.com",
+		  "studentId" : "A6789012P",
+		  "remark" : ""
+		}, {
+		  "name" : "Mohd Ali",
+		  "phone" : "91234567",
+		  "email" : "mohd.ali@email.com",
+		  "studentId" : "A7890123Q",
+		  "remark" : ""
+		}, {
+		  "name" : "Chew Yee Ling",
+		  "phone" : "92345678",
+		  "email" : "chew.yeeling@email.com",
+		  "studentId" : "A8901234R",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Chee Wei",
+		  "phone" : "90001111",
+		  "email" : "lim.cheewei@email.com",
+		  "studentId" : "A9012345S",
+		  "remark" : ""
+		}, {
+		  "name" : "Siti Fatimah",
+		  "phone" : "93456789",
+		  "email" : "siti.fatimah@email.com",
+		  "studentId" : "A0123456T",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab2",
+		  "keys" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "OP1",
+		  "students" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "OP2",
+		  "students" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 1",
+		  "students" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 2",
+		  "students" : [ {
+			"name" : "Jin Wei Ping",
+			"phone" : "92345678",
+			"email" : "jin.weiping@email.com",
+			"studentId" : "A6789012P",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Noraini",
+			"phone" : "91234567",
+			"email" : "siti.noraini@email.com",
+			"studentId" : "A4567890N",
+			"remark" : ""
+		  }, {
+			"name" : "Chew Yee Ling",
+			"phone" : "92345678",
+			"email" : "chew.yeeling@email.com",
+			"studentId" : "A8901234R",
+			"remark" : ""
+		  }, {
+			"name" : "Raj Kumar",
+			"phone" : "90001234",
+			"email" : "raj.kumar@email.com",
+			"studentId" : "A3456789M",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Siew Ling",
+			"phone" : "94567890",
+			"email" : "lee.siewling@email.com",
+			"studentId" : "A5678901O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Fatimah",
+			"phone" : "93456789",
+			"email" : "siti.fatimah@email.com",
+			"studentId" : "A0123456T",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Chee Wei",
+			"phone" : "90001111",
+			"email" : "lim.cheewei@email.com",
+			"studentId" : "A9012345S",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Ali",
+			"phone" : "91234567",
+			"email" : "mohd.ali@email.com",
+			"studentId" : "A7890123Q",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  }, {
+		"groupName" : "T17",
+		"students" : [ {
+		  "name" : "Tan Hui Min",
+		  "phone" : "91234567",
+		  "email" : "tan.huimin@email.com",
+		  "studentId" : "A1234567U",
+		  "remark" : ""
+		}, {
+		  "name" : "Chua Wei Jun",
+		  "phone" : "92345678",
+		  "email" : "chua.weijun@email.com",
+		  "studentId" : "A2345678V",
+		  "remark" : ""
+		}, {
+		  "name" : "Teo Mei Ling",
+		  "phone" : "93456789",
+		  "email" : "teo.meiling@email.com",
+		  "studentId" : "A3456789W",
+		  "remark" : ""
+		}, {
+		  "name" : "Lee Wen Jun",
+		  "phone" : "94567890",
+		  "email" : "lee.wenjun@email.com",
+		  "studentId" : "A4567890X",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Kian Wei",
+		  "phone" : "90001111",
+		  "email" : "lim.kianwei@email.com",
+		  "studentId" : "A5678901Y",
+		  "remark" : ""
+		}, {
+		  "name" : "Ahmad Bin Rahim",
+		  "phone" : "91234567",
+		  "email" : "ahmad.rahim@email.com",
+		  "studentId" : "A6789012Z",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "OP1",
+		  "students" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "OP2",
+		  "students" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 1",
+		  "students" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Critical Reflection 2",
+		  "students" : [ {
+			"name" : "Ahmad Bin Rahim",
+			"phone" : "91234567",
+			"email" : "ahmad.rahim@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Jun",
+			"phone" : "92345678",
+			"email" : "chua.weijun@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Teo Mei Ling",
+			"phone" : "93456789",
+			"email" : "teo.meiling@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Lee Wen Jun",
+			"phone" : "94567890",
+			"email" : "lee.wenjun@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hui Min",
+			"phone" : "91234567",
+			"email" : "tan.huimin@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Kian Wei",
+			"phone" : "90001111",
+			"email" : "lim.kianwei@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  } ]
+	}, {
+	  "courseCode" : "CS2101",
+	  "groups" : [ {
+		"groupName" : "S04",
+		"students" : [ {
+		  "name" : "Chen Wei Ming",
+		  "phone" : "91231234",
+		  "email" : "chen.weiming@email.com",
+		  "studentId" : "A1234567U",
+		  "remark" : ""
+		}, {
+		  "name" : "Tan Hwee Leng",
+		  "phone" : "92341234",
+		  "email" : "tan.hweeleng@email.com",
+		  "studentId" : "A2345678V",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Ming Xuan",
+		  "phone" : "93451234",
+		  "email" : "lim.mingxuan@email.com",
+		  "studentId" : "A3456789W",
+		  "remark" : ""
+		}, {
+		  "name" : "Wong Jing Wen",
+		  "phone" : "94561234",
+		  "email" : "wong.jingwen@email.com",
+		  "studentId" : "A4567890X",
+		  "remark" : ""
+		}, {
+		  "name" : "Mohd Hassan bin Abdullah",
+		  "phone" : "91234521",
+		  "email" : "mohd.hassan@email.com",
+		  "studentId" : "A6789012Z",
+		  "remark" : ""
+		}, {
+		  "name" : "Loh Xin Yi",
+		  "phone" : "90001122",
+		  "email" : "loh.xinyi@email.com",
+		  "studentId" : "A5678901Y",
+		  "remark" : ""
+		}, {
+		  "name" : "Nur Amira binte Abdul Rahman",
+		  "phone" : "92345612",
+		  "email" : "nur.amira@email.com",
+		  "studentId" : "A7890123A",
+		  "remark" : ""
+		}, {
+		  "name" : "Jaya Kumar",
+		  "phone" : "93456778",
+		  "email" : "jaya.kumar@email.com",
+		  "studentId" : "A3456789G",
+		  "remark" : ""
+		}, {
+		  "name" : "Chua Wei Qi",
+		  "phone" : "91234556",
+		  "email" : "chua.weiqi@email.com",
+		  "studentId" : "A1234567E",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Mei Hui",
+		  "phone" : "90001245",
+		  "email" : "lim.meihui@email.com",
+		  "studentId" : "A0123456D",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Recitation1",
+		  "keys" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "Assignment 1",
+		  "students" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Assignment 2",
+		  "students" : [ {
+			"name" : "Mohd Hassan bin Abdullah",
+			"phone" : "91234521",
+			"email" : "mohd.hassan@email.com",
+			"studentId" : "A6789012Z",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Ming Xuan",
+			"phone" : "93451234",
+			"email" : "lim.mingxuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Jaya Kumar",
+			"phone" : "93456778",
+			"email" : "jaya.kumar@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Chen Wei Ming",
+			"phone" : "91231234",
+			"email" : "chen.weiming@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Jing Wen",
+			"phone" : "94561234",
+			"email" : "wong.jingwen@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Mei Hui",
+			"phone" : "90001245",
+			"email" : "lim.meihui@email.com",
+			"studentId" : "A0123456D",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Hwee Leng",
+			"phone" : "92341234",
+			"email" : "tan.hweeleng@email.com",
+			"studentId" : "A2345678V",
+			"remark" : ""
+		  }, {
+			"name" : "Nur Amira binte Abdul Rahman",
+			"phone" : "92345612",
+			"email" : "nur.amira@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Loh Xin Yi",
+			"phone" : "90001122",
+			"email" : "loh.xinyi@email.com",
+			"studentId" : "A5678901Y",
+			"remark" : ""
+		  }, {
+			"name" : "Chua Wei Qi",
+			"phone" : "91234556",
+			"email" : "chua.weiqi@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  }, {
+		"groupName" : "S05",
+		"students" : [ {
+		  "name" : "Lim Wei Jie",
+		  "phone" : "91234567",
+		  "email" : "lim.weijie@email.com",
+		  "studentId" : "A1234567U",
+		  "remark" : ""
+		}, {
+		  "name" : "Daniel Lee",
+		  "phone" : "94567890",
+		  "email" : "daniel.lee@email.com",
+		  "studentId" : "A4567890X",
+		  "remark" : ""
+		}, {
+		  "name" : "Tan Wei Xuan",
+		  "phone" : "93456789",
+		  "email" : "tan.weixuan@email.com",
+		  "studentId" : "A3456789W",
+		  "remark" : ""
+		}, {
+		  "name" : "Justin Tan",
+		  "phone" : "93456788",
+		  "email" : "justin.tan@email.com",
+		  "studentId" : "A7890123A",
+		  "remark" : ""
+		}, {
+		  "name" : "Mandeep Kaur",
+		  "phone" : "90001234",
+		  "email" : "mandeep.kaur@email.com",
+		  "studentId" : "A0123456N",
+		  "remark" : ""
+		}, {
+		  "name" : "Gopal Singh",
+		  "phone" : "93456783",
+		  "email" : "gopal.singh@email.com",
+		  "studentId" : "A8901234L",
+		  "remark" : ""
+		}, {
+		  "name" : "Chloe Ng",
+		  "phone" : "93456732",
+		  "email" : "chloe.ng@email.com",
+		  "studentId" : "A1234567E",
+		  "remark" : ""
+		}, {
+		  "name" : "Kelly Lee",
+		  "phone" : "91234554",
+		  "email" : "kelly.lee@email.com",
+		  "studentId" : "A3456789G",
+		  "remark" : ""
+		}, {
+		  "name" : "Nurul Aini binte Iskandar",
+		  "phone" : "90001110",
+		  "email" : "nurul.iskandar@email.com",
+		  "studentId" : "A5678901I",
+		  "remark" : ""
+		}, {
+		  "name" : "Charlotte Chen",
+		  "phone" : "91234598",
+		  "email" : "charlotte.chen@email.com",
+		  "studentId" : "A7890123K",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab2",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Recitation1",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Recitation2",
+		  "keys" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "Assignment 1",
+		  "students" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Assignment 2",
+		  "students" : [ {
+			"name" : "Justin Tan",
+			"phone" : "93456788",
+			"email" : "justin.tan@email.com",
+			"studentId" : "A7890123A",
+			"remark" : ""
+		  }, {
+			"name" : "Mandeep Kaur",
+			"phone" : "90001234",
+			"email" : "mandeep.kaur@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Kelly Lee",
+			"phone" : "91234554",
+			"email" : "kelly.lee@email.com",
+			"studentId" : "A3456789G",
+			"remark" : ""
+		  }, {
+			"name" : "Daniel Lee",
+			"phone" : "94567890",
+			"email" : "daniel.lee@email.com",
+			"studentId" : "A4567890X",
+			"remark" : ""
+		  }, {
+			"name" : "Charlotte Chen",
+			"phone" : "91234598",
+			"email" : "charlotte.chen@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Tan Wei Xuan",
+			"phone" : "93456789",
+			"email" : "tan.weixuan@email.com",
+			"studentId" : "A3456789W",
+			"remark" : ""
+		  }, {
+			"name" : "Chloe Ng",
+			"phone" : "93456732",
+			"email" : "chloe.ng@email.com",
+			"studentId" : "A1234567E",
+			"remark" : ""
+		  }, {
+			"name" : "Gopal Singh",
+			"phone" : "93456783",
+			"email" : "gopal.singh@email.com",
+			"studentId" : "A8901234L",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Wei Jie",
+			"phone" : "91234567",
+			"email" : "lim.weijie@email.com",
+			"studentId" : "A1234567U",
+			"remark" : ""
+		  }, {
+			"name" : "Nurul Aini binte Iskandar",
+			"phone" : "90001110",
+			"email" : "nurul.iskandar@email.com",
+			"studentId" : "A5678901I",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  }, {
+		"groupName" : "S06",
+		"students" : [ {
+		  "name" : "Edward Ng",
+		  "phone" : "94567831",
+		  "email" : "edward.ng@email.com",
+		  "studentId" : "A0123456N",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Shu Ting",
+		  "phone" : "92345665",
+		  "email" : "lim.shuting@email.com",
+		  "studentId" : "A4567890H",
+		  "remark" : ""
+		}, {
+		  "name" : "Zhang Mingzhe",
+		  "phone" : "94567843",
+		  "email" : "zhang.mingzhe@email.com",
+		  "studentId" : "A2345678F",
+		  "remark" : ""
+		}, {
+		  "name" : "Kavita Devi",
+		  "phone" : "92345672",
+		  "email" : "kavita.devi@email.com",
+		  "studentId" : "A7890123K",
+		  "remark" : ""
+		}, {
+		  "name" : "Ethan Lee",
+		  "phone" : "91234567",
+		  "email" : "ethan.lee@email.com",
+		  "studentId" : "A1234567O",
+		  "remark" : ""
+		}, {
+		  "name" : "Wong Kai Wen",
+		  "phone" : "93456789",
+		  "email" : "wong.kaiwen@email.com",
+		  "studentId" : "A3456789Q",
+		  "remark" : ""
+		}, {
+		  "name" : "Kevin Lim",
+		  "phone" : "94567890",
+		  "email" : "kevin.lim@email.com",
+		  "studentId" : "A4567890R",
+		  "remark" : ""
+		}, {
+		  "name" : "Siti Nurul Huda",
+		  "phone" : "91234567",
+		  "email" : "siti.nurulhuda@email.com",
+		  "studentId" : "A1234567V",
+		  "remark" : ""
+		}, {
+		  "name" : "Mohd Fauzi bin Ismail",
+		  "phone" : "92345678",
+		  "email" : "mohd.fauzi@email.com",
+		  "studentId" : "A2345678W",
+		  "remark" : ""
+		}, {
+		  "name" : "Lim Zhi Wei",
+		  "phone" : "93456788",
+		  "email" : "lim.zhiwei@email.com",
+		  "studentId" : "A2345678T",
+		  "remark" : ""
+		} ],
+		"sessions" : [ {
+		  "sessionName" : "Tutorial1",
+		  "keys" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Tutorial2",
+		  "keys" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Lab1",
+		  "keys" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "sessionName" : "Recitation1",
+		  "keys" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "values" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ],
+		"tasks" : [ {
+		  "taskName" : "Assignment 1",
+		  "students" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		}, {
+		  "taskName" : "Assignment 2",
+		  "students" : [ {
+			"name" : "Ethan Lee",
+			"phone" : "91234567",
+			"email" : "ethan.lee@email.com",
+			"studentId" : "A1234567O",
+			"remark" : ""
+		  }, {
+			"name" : "Siti Nurul Huda",
+			"phone" : "91234567",
+			"email" : "siti.nurulhuda@email.com",
+			"studentId" : "A1234567V",
+			"remark" : ""
+		  }, {
+			"name" : "Kevin Lim",
+			"phone" : "94567890",
+			"email" : "kevin.lim@email.com",
+			"studentId" : "A4567890R",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Zhi Wei",
+			"phone" : "93456788",
+			"email" : "lim.zhiwei@email.com",
+			"studentId" : "A2345678T",
+			"remark" : ""
+		  }, {
+			"name" : "Wong Kai Wen",
+			"phone" : "93456789",
+			"email" : "wong.kaiwen@email.com",
+			"studentId" : "A3456789Q",
+			"remark" : ""
+		  }, {
+			"name" : "Zhang Mingzhe",
+			"phone" : "94567843",
+			"email" : "zhang.mingzhe@email.com",
+			"studentId" : "A2345678F",
+			"remark" : ""
+		  }, {
+			"name" : "Kavita Devi",
+			"phone" : "92345672",
+			"email" : "kavita.devi@email.com",
+			"studentId" : "A7890123K",
+			"remark" : ""
+		  }, {
+			"name" : "Edward Ng",
+			"phone" : "94567831",
+			"email" : "edward.ng@email.com",
+			"studentId" : "A0123456N",
+			"remark" : ""
+		  }, {
+			"name" : "Mohd Fauzi bin Ismail",
+			"phone" : "92345678",
+			"email" : "mohd.fauzi@email.com",
+			"studentId" : "A2345678W",
+			"remark" : ""
+		  }, {
+			"name" : "Lim Shu Ting",
+			"phone" : "92345665",
+			"email" : "lim.shuting@email.com",
+			"studentId" : "A4567890H",
+			"remark" : ""
+		  } ],
+		  "grades" : [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+		} ]
+	  } ]
+	} ]
+  }

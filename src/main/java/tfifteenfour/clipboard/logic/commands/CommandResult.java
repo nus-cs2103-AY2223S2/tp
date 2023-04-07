@@ -47,9 +47,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && hasChangedRosterState == otherCommandResult.hasChangedRosterState
-                && (command == null || otherCommandResult.command == null
+                && ((command == null || otherCommandResult.command == null)
                 ? command == otherCommandResult.command
-                : command.getClass() == otherCommandResult.command.getClass());
+                : command.equals(otherCommandResult.command));
     }
 
     @Override

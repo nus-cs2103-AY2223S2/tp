@@ -87,6 +87,9 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
+            System.out.println("expected feedback:" + expectedCommandResult.getFeedbackToUser());
+            System.out.println("actual feedback:" + result.getFeedbackToUser());
+
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
