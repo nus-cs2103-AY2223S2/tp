@@ -981,6 +981,14 @@ of the selected parent task will be sorted. The sorting will sort subsections in
 - To sort all the tasks, use `sort-sub all/` and the command will call the sorting function on the subsection list of each of the main tasks displayed.
 
 
+### 7.5 Better error messages
+
+- Currently, there are still some error messages that are not specific enough. For example, for the edit command, if the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:
+  ![text-wrap0](images/index-error.png)
+However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
+- Moreover, there is another minor bug about index inputs when the user enters the index `0` in all sorts of commands, such as `delete`, `edit`, `subsection`, and `remove-subsection`. The error message will show each command's expected usage, such as the one shown in the example above. However, a more
+specific usage will still be `The index provided is invalid`, which will be the standard behaviour for index errors in the future.
+
 
 
 
