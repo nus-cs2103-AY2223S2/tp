@@ -934,7 +934,7 @@ long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` caus
 a task by its subsection name or description.
 #### Possible Solution
 - One possible solution is to add a predicate in the `model.task` package that allows the list to be filtered based on whether the task has a certain subsection name/description.
-- The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d`.
+- The find command parser also needs to be modified to take in prefixes such as `sub-n/` and `sub-d/`.
 - Inside the predicates, we go through each task's subsections and see whether at least one subsection contains the user's input name or description. 
 - The new command will look something like `find sub-n/Name`, which finds a task by its subsection name. Find by subsection description command can look like 
 `find sub-d/Description`.
