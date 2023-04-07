@@ -16,7 +16,7 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
   * [Client Commands](#client-commands)
   * [Project Commands](#project-commands)
   * [Tag Commands](#tag-commands)
-  * [General Features](#general-features)
+  * [General Commands](#general-commands)
 * [FAQ](#faq)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -471,7 +471,7 @@ Short form: `lt`
 
 Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
-## General features
+## General commands
 
 ### Viewing help
 #### Format: `help`
@@ -500,8 +500,6 @@ Advanced users are welcome to update data directly by editing the JSON file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
 </div>
-
-[<small>Back to top</small>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
