@@ -28,9 +28,6 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         requireNonNull(args);
 
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            return new HelpCommand("");
-        }
         switch (trimmedArgs.toUpperCase()) {
         case "ADD":
             return new HelpCommand(AddCommand.MESSAGE_USAGE);
@@ -49,8 +46,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         case "SORT":
             return new HelpCommand(SortCommand.MESSAGE_USAGE);
         default:
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new HelpCommand("");
         }
     }
 }
