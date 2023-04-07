@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_VIDEO_DOES_NOT_EXIST;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_VIDEO_DESC_V1;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_VIDEO_DESC_V2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
@@ -18,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.model.Model;
@@ -43,25 +42,26 @@ public class EditVideoCommandTest {
     private final ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
     private final LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
     private final VideoName videoName = new VideoName(VALID_VIDEO_NAME_V2);
+    private final EditVideoDescriptor descriptor = CommandTestUtil.getEditVideoDescriptorV1();
 
     private final Model model = new ModelManager();
 
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditVideoCommand(null, lectureName, videoName, EDIT_VIDEO_DESC_V2));
+                new EditVideoCommand(null, lectureName, videoName, descriptor));
     }
 
     @Test
     public void constructor_nullLectureName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditVideoCommand(moduleCode, null, videoName, EDIT_VIDEO_DESC_V2));
+                new EditVideoCommand(moduleCode, null, videoName, descriptor));
     }
 
     @Test
     public void constructor_nullVideoName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditVideoCommand(moduleCode, lectureName, null, EDIT_VIDEO_DESC_V2));
+                new EditVideoCommand(moduleCode, lectureName, null, descriptor));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class EditVideoCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, EDIT_VIDEO_DESC_V1);
+        EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
@@ -119,7 +119,7 @@ public class EditVideoCommandTest {
     @Test
     public void execute_moduleDoesNotExist_failure() {
         /* Setup */
-        EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, EDIT_VIDEO_DESC_V1);
+        EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
 
         /* Create expected result */
         String expectedMessage = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
@@ -132,7 +132,7 @@ public class EditVideoCommandTest {
     public void execute_lectureDoesNotExist_failure() {
         /* Setup */
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
-        EditVideoCommand command = new EditVideoCommand(module.getCode(), lectureName, videoName, EDIT_VIDEO_DESC_V1);
+        EditVideoCommand command = new EditVideoCommand(module.getCode(), lectureName, videoName, descriptor);
 
         model.addModule(module);
 
@@ -153,8 +153,7 @@ public class EditVideoCommandTest {
         module.addLecture(lecture);
 
         // Setup command
-        EditVideoCommand command = new EditVideoCommand(module.getCode(), lecture.getName(), videoName,
-                EDIT_VIDEO_DESC_V1);
+        EditVideoCommand command = new EditVideoCommand(module.getCode(), lecture.getName(), videoName, descriptor);
 
         // Setup model
         model.addModule(module);
@@ -198,8 +197,6 @@ public class EditVideoCommandTest {
 
     @Test
     public void equals() {
-        EditVideoDescriptor descriptor = EDIT_VIDEO_DESC_V1;
-
         EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
 
         EditVideoCommand commandWithSameValues = new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
@@ -211,7 +208,7 @@ public class EditVideoCommandTest {
         EditVideoCommand commandWithDiffVideoName = new EditVideoCommand(
                 moduleCode, lectureName, new VideoName(VALID_VIDEO_NAME_V1), descriptor);
         EditVideoCommand commandWithDiffDescriptor = new EditVideoCommand(
-                moduleCode, lectureName, videoName, EDIT_VIDEO_DESC_V2);
+                moduleCode, lectureName, videoName, CommandTestUtil.getEditVideoDescriptorV2());
 
         ObjectUtil.testEquals(command, commandWithSameValues, 1,
                 commandWithDiffModuleCode, commandWithDiffLectureName, commandWithDiffVideoName,

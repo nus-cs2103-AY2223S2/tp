@@ -2,8 +2,6 @@ package seedu.address.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2040S;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -12,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.Model;
@@ -29,24 +28,25 @@ import seedu.address.testutil.TypicalModules;
  */
 public class EditModuleCommandTest {
 
+    private final ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2040);
+    private final EditModuleDescriptor descriptor = CommandTestUtil.getEditModuleDescriptorCs2103();
+
     private final Model model = new ModelManager();
 
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () ->
-                new EditModuleCommand(null, EDIT_MODULE_DESC_CS2103));
+        assertThrows(NullPointerException.class, () -> new EditModuleCommand(null, descriptor));
     }
 
     @Test
     public void constructor_nullEditModuleDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditModuleCommand(new ModuleCode(VALID_MODULE_CODE_2040), null));
+                new EditModuleCommand(moduleCode, null));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        EditModuleCommand command = new EditModuleCommand(
-                new ModuleCode(VALID_MODULE_CODE_2040), EDIT_MODULE_DESC_CS2103);
+        EditModuleCommand command = new EditModuleCommand(moduleCode, descriptor);
 
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
@@ -84,8 +84,6 @@ public class EditModuleCommandTest {
     @Test
     public void execute_moduleDoesNotExist_failure() {
         /* Setup */
-        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
-        EditModuleDescriptor descriptor = EDIT_MODULE_DESC_CS2040S;
         EditModuleCommand command = new EditModuleCommand(moduleCode, descriptor);
 
         /* Create expected results */
@@ -123,16 +121,14 @@ public class EditModuleCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        EditModuleCommand command = new EditModuleCommand(moduleCode, descriptor);
 
-        EditModuleCommand command = new EditModuleCommand(moduleCode, EDIT_MODULE_DESC_CS2040S);
-
-        EditModuleCommand commandWithSameValues = new EditModuleCommand(moduleCode, EDIT_MODULE_DESC_CS2040S);
+        EditModuleCommand commandWithSameValues = new EditModuleCommand(moduleCode, descriptor);
 
         EditModuleCommand commandWithDiffModuleCode =
-                new EditModuleCommand(new ModuleCode(VALID_MODULE_CODE_2040), EDIT_MODULE_DESC_CS2040S);
+                new EditModuleCommand(new ModuleCode(VALID_MODULE_CODE_2103), descriptor);
         EditModuleCommand commandWithDiffDescriptor =
-                new EditModuleCommand(moduleCode, EDIT_MODULE_DESC_CS2103);
+                new EditModuleCommand(moduleCode, CommandTestUtil.getEditModuleDescriptorCs2040s());
 
         ObjectUtil.testEquals(command, commandWithSameValues, 1,
                 commandWithDiffModuleCode, commandWithDiffDescriptor);

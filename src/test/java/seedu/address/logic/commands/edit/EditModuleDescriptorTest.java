@@ -3,7 +3,6 @@ package seedu.address.logic.commands.edit;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CONTENT;
@@ -12,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -57,7 +57,7 @@ public class EditModuleDescriptorTest {
 
     @Test
     public void equals() {
-        EditModuleDescriptor descriptor = EDIT_MODULE_DESC_CS2103;
+        EditModuleDescriptor descriptor = CommandTestUtil.getEditModuleDescriptorCs2103();
 
         EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(descriptor);
 

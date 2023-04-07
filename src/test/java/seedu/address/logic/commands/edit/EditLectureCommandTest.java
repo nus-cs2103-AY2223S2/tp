@@ -3,8 +3,6 @@ package seedu.address.logic.commands.edit;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_LECTURE_DESC_L1;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_LECTURE_DESC_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
@@ -15,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
 import seedu.address.model.Model;
@@ -35,32 +34,33 @@ import seedu.address.testutil.TypicalLectures;
  */
 public class EditLectureCommandTest {
 
-    private static final ModuleCode MODULE_CODE = new ModuleCode(VALID_MODULE_CODE_2103);
-    private static final LectureName LECTURE_NAME = new LectureName(VALID_LECTURE_NAME_L1);
+    private final ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+    private final LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+    private final EditLectureDescriptor descriptor = CommandTestUtil.getEditLectureDescriptorL2();
 
     private final Model model = new ModelManager();
 
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(null, LECTURE_NAME, EDIT_LECTURE_DESC_L2));
+                new EditLectureCommand(null, lectureName, descriptor));
     }
 
     @Test
     public void constructor_nullLectureName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(MODULE_CODE, null, EDIT_LECTURE_DESC_L2));
+                new EditLectureCommand(moduleCode, null, descriptor));
     }
 
     @Test
     public void constructor_nullEditLectureDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditLectureCommand(MODULE_CODE, LECTURE_NAME, null));
+                new EditLectureCommand(moduleCode, lectureName, null));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, EDIT_LECTURE_DESC_L1);
+        EditLectureCommand command = new EditLectureCommand(moduleCode, lectureName, descriptor);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
@@ -105,11 +105,10 @@ public class EditLectureCommandTest {
     @Test
     public void execute_moduleDoesNotExist_failure() {
         /* Setup */
-        EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L1;
-        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
+        EditLectureCommand command = new EditLectureCommand(moduleCode, lectureName, descriptor);
 
         /* Create expected results */
-        String expectedMessage = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, MODULE_CODE);
+        String expectedMessage = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
 
         /* Execute test */
         assertCommandFailure(command, model, expectedMessage);
@@ -122,14 +121,13 @@ public class EditLectureCommandTest {
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
 
         // Setup command
-        EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L1;
-        EditLectureCommand command = new EditLectureCommand(module.getCode(), LECTURE_NAME, descriptor);
+        EditLectureCommand command = new EditLectureCommand(module.getCode(), lectureName, descriptor);
 
         // Setup model
         model.addModule(module);
 
         /* Create expected results */
-        String expectedMessage = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, LECTURE_NAME, module.getCode());
+        String expectedMessage = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, module.getCode());
 
         /* Execute test */
         assertCommandFailure(command, model, expectedMessage);
@@ -164,18 +162,16 @@ public class EditLectureCommandTest {
 
     @Test
     public void equals() {
-        EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L2;
+        EditLectureCommand command = new EditLectureCommand(moduleCode, lectureName, descriptor);
 
-        EditLectureCommand command = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
-
-        EditLectureCommand commandWithSameValues = new EditLectureCommand(MODULE_CODE, LECTURE_NAME, descriptor);
+        EditLectureCommand commandWithSameValues = new EditLectureCommand(moduleCode, lectureName, descriptor);
 
         EditLectureCommand commandWithDiffModuleCode = new EditLectureCommand(
-                new ModuleCode(VALID_MODULE_CODE_2040), LECTURE_NAME, descriptor);
+                new ModuleCode(VALID_MODULE_CODE_2040), lectureName, descriptor);
         EditLectureCommand commandWithDiffLectureName = new EditLectureCommand(
-                MODULE_CODE, new LectureName(VALID_LECTURE_NAME_L2), descriptor);
+                moduleCode, new LectureName(VALID_LECTURE_NAME_L2), descriptor);
         EditLectureCommand commandWithDiffDescriptor = new EditLectureCommand(
-                MODULE_CODE, LECTURE_NAME, EDIT_LECTURE_DESC_L1);
+                moduleCode, lectureName, CommandTestUtil.getEditLectureDescriptorL1());
 
         ObjectUtil.testEquals(command, commandWithSameValues, 1,
                 commandWithDiffModuleCode, commandWithDiffLectureName, commandWithDiffDescriptor);

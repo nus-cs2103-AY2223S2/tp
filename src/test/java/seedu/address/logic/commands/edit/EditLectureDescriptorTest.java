@@ -3,7 +3,6 @@ package seedu.address.logic.commands.edit;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_LECTURE_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CONTENT;
@@ -12,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
@@ -51,7 +51,7 @@ public class EditLectureDescriptorTest {
 
     @Test
     public void equals() {
-        EditLectureDescriptor descriptor = EDIT_LECTURE_DESC_L1;
+        EditLectureDescriptor descriptor = CommandTestUtil.getEditLectureDescriptorL1();
 
         EditLectureDescriptor descriptorWithSameValues = new EditLectureDescriptor(descriptor);
 

@@ -3,7 +3,6 @@ package seedu.address.logic.commands.edit;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.EDIT_VIDEO_DESC_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CONTENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
@@ -14,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_TIMESTAMP
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditVideoDescriptorBuilder;
@@ -71,17 +71,17 @@ public class EditVideoDescriptorTest {
 
     @Test
     public void equals() {
-        EditVideoDescriptor descriptor = EDIT_VIDEO_DESC_V1;
+        EditVideoDescriptor descriptor = CommandTestUtil.getEditVideoDescriptorV1();
 
         EditVideoDescriptor descriptorWithSameValues = new EditVideoDescriptor(descriptor);
 
-        EditVideoDescriptor descriptorWithDiffName = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
+        EditVideoDescriptor descriptorWithDiffName = new EditVideoDescriptorBuilder(descriptor)
                 .withName(VALID_VIDEO_NAME_V2).build();
-        EditVideoDescriptor descriptorWithDiffTimestamp = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
+        EditVideoDescriptor descriptorWithDiffTimestamp = new EditVideoDescriptorBuilder(descriptor)
                 .withTimestamp(VALID_VIDEO_TIMESTAMP_2).build();
-        EditVideoDescriptor descriptorWithDiffWatched = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
-                .withWatched(!EDIT_VIDEO_DESC_V1.hasWatched().get()).build();
-        EditVideoDescriptor descriptorWithDiffTags = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
+        EditVideoDescriptor descriptorWithDiffWatched = new EditVideoDescriptorBuilder(descriptor)
+                .withWatched(!descriptor.hasWatched().get()).build();
+        EditVideoDescriptor descriptorWithDiffTags = new EditVideoDescriptorBuilder(descriptor)
                 .withTags(VALID_TAG_EASY).build();
 
         ObjectUtil.testEquals(descriptor, descriptorWithSameValues, 1,
