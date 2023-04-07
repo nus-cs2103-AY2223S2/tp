@@ -139,7 +139,10 @@ interface (GUI) with icons and menus!
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
-Adds a new contact.
+This command allows you to add client contacts.
+
+You can add the contacts of your clients to the contact list so that you can easily refer to them when you are
+viewing events.
 
 **Format**: `newcontact n/NAME p/NUMBER`
 
@@ -173,7 +176,10 @@ After adding Deborah Tan into the contact list
 
 ### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
-Clears all events in Paidlancers.
+This command will clear all events in Paidlancers.
+
+You may wish to use this command to clear all events and contacts in Paidlancers
+once you get familiarized with Paidlancers!
 
 **Format**: `clear`
 
@@ -184,7 +190,9 @@ Please be careful when using this command.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
-Adds a new event.
+This command will add a new event into Paidlancers.
+
+You may wish to use this command to add new events into Paidlancers.
 
 **Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 - Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and optionally `TAGS`.
@@ -206,7 +214,7 @@ Adds a new event.
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
-Deletes the specified event.
+You can delete specified events in Paidlancers.
 
 **Format**: `delete INDEX`
 
@@ -233,7 +241,9 @@ After deleting 2nd event
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
-Edits the specified event from the event book.
+This command allows you to edit the existing events in Paidlancers.
+
+This command is helpful if you made any mistakes when creating the event.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
@@ -280,14 +290,16 @@ After editing 1st event to Wedding Dinner Photography at Carlton Hotel ballroom
 
 ### Exit application: `exit` <a id = "exit-application"></a>
 
-Closes Paidlancers.
+This command will close Paidlancers! Alternatively, you may wish to exit through the close button on your application!
 
 **Format**: `exit`
 
 
 ### Find Event: `find` <a id = "find-event"></a>
 
-Finds event(s) from the event book based on the given search string.
+This command will find event(s) from the event book based on the given search string.
+
+You can use this command to search through the event list.
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -307,7 +319,9 @@ Finds event(s) from the event book based on the given search string.
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-Links a client contact to an event.
+This command will links a client contact to an event.
+
+You may wish to link a contact to an event if you have already added the contact to Paidlancers.
 
 **Format**: `linkcontact INDEX PHONE`
 
@@ -341,7 +355,9 @@ Displays all events.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Marks a specified event in Paidlancers as done.
+This command marks a specified event in Paidlancers as done.
+
+You may wish to indicate that an event has been completed using this command!
 
 **Format**: `mark INDEX`
 
@@ -369,7 +385,9 @@ After marking 1st event
 
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
-Unmarks a specified event in Paidlancers.
+This command unmarks a specified event in Paidlancers.
+
+You may wish to undo the mark command using this!
 
 **Format**: `unmark INDEX`
 
@@ -401,6 +419,8 @@ Displays the total revenue based on all the events marked as done.
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
 Displays events that start within a specified number of days.
+
+You may wish to use this command to find out the events that are coming up soon!
 
 **Format**: `remind DAYS`
 
