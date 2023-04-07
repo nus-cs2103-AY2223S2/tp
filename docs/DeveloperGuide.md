@@ -113,12 +113,10 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/ui/Ui.java)
 
-{TODO update diagram}
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 ### Logic component
 
-{TODO update link}
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -579,8 +577,6 @@ The following sequence diagram shows how the `UiAction` that switches the tab to
 ![SwitchToProjectsUiAction sequence diagram](images/uiaction/SwitchToProjectsUiAction.png)
 
 Upon being executed, `UiAction` instance calls the appropriate method in `MainWindow` to perform the action from a successful command. In this case, the `UiAction` calls `MainWindow#selectProjectTab` to switch the tab to the Projects tab.
-
-### Parser
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1055,3 +1051,69 @@ The validation is currently done using this regexp string: `\\d{3,}` via
 `String#matches`. As long as there is a match, the number is considered valid.
 We can simply update the regexp to `\\d{3,35}` to enforce this upper bound.
 
+## Appendix: Effort
+
+AB3 was only able to support a single entity type, which was the `Person` class.
+We had to modify the codebase to support multiple entity types,
+which are the `Project` and `Client` classes. We also decided to stray away from the default
+command syntax in favour of a more unix-like syntax. This was a challenge as we had to extend the parser
+support a different and larger set commands.
+
+One of the challenges we faced was how to display 2 entity types in the same panel.
+We decided to use tabs to display the different entity types. This was a challenge as we had
+to learn how to use the JavaFX `TabPane` and `Tab` classes, and structure the
+components to follow good design principles.
+
+This brings us to the next challenge, which was how ensure that Mycelium remained keyboard-centric.
+The addition of tabs meant that the user had to use the mouse to switch between tabs. To solve
+this problem, we decided to allow the user to switch between tabs using the keyboard with vim-like
+shortcuts. This was a challenge as we had to learn how to use the JavaFX `KeyEvent` class and
+implement the shortcuts in a way that was extensible for new shortcuts. This led us to come up
+with the `UiEvent` class as a single place to add new shortcuts.
+
+By supporting 2 type of entities, we would need to have commands related to each entity.
+We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
+project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
+we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
+onto the response of a command execution.
+
+Another challenge was to enable easy and intuitive searching of projects and clients.
+We were inspired by the command-line fuzzy finder `fzf` which ranks the options according
+to how well it matches the query as the user searches. When the command box is in its 
+default command mode, it only executes commands when the input is submitted; when the command box is in search mode,
+it will read the input as the user types and rank the projects and clients based on how well 
+it matches said input. This was quite challenging as the behaviour of the command box of AB3 
+had to be drastically modified to support different modes. This was done with the addition
+of the `Mode` class which is a component attached to the command box that
+dictates the command box behaviour when the user input is changed or submitted. 
+
+We decided to utilise a keyboard shortcut to allow the user to toggle between command mode
+and search mode easily. This was done by leveraging off the existing `UiEvent`
+class that we have implemented earlier.
+
+We wanted the user to be able to get an overview of their projects. 
+To do this, we created another panel to display
+
+* a pie chart to show the proportions of projects in each status, and
+* a table to show which projects are overdued and which projects are due soon.
+ 
+This was a challenge as it was adding complexity to the UI and required us to learn
+how to use the `PieChart` class. With another panel, we now also need an additional
+keyboard shortcut to switch focus between the 2 main panels to ensure Mycelium
+remained keyboard-centric.
+
+Overall, the team project was moderately challenging. Navigating the codebase was difficult
+at first as there were many levels of abstractions and many classes to understand.
+We got our hands dirty by trying to understand and starting with the easier features 
+such as:
+
+* Implementing the basic CRUD functionality of projects and clients,
+* Adding tabs to the application, and
+* Tweaking the parser to support the new commands.
+
+The process of adding small features allowed to get a better understanding of the codebase
+and gave us confidence in adding more advanced features. 
+By splitting up the work and specialising in different parts of the codebase, each of us
+gain a stake in the project and were more motivated constantly improve the project.
+We also reviewed each other's code, helped each other out when we encountered problems, and
+hold weekly meetings to discuss our progress and to plan out the next week's work.
