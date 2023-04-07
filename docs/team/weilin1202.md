@@ -10,36 +10,39 @@ It provides a centralised platform for them to manage their work, contacts, and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
-  * What it does: to be added soon
-  * Justification: to be added soon
-  * Highlights: to be added soon
-  * Credits: *{to be added soon}*
+* **New Feature**: Added an event tagging feature to the `add` and `edit` command ([\#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48))
+  * What it does: Allows user to tag an existing event to a person 
+  * Justification: This improves the product because a user can associate events to persons in the event planner. 
+  * Highlights: While this is similar to the previous `tag` feature, user can add an event tagged to a person through the event index, user need not enter the entire event name.
 
-* **New Feature**: to be added soon
-  * What it does: to be added soon
-  * Justification: to be added soon
-  * Highlights: to be added soon
-  * Credits: *{to be added soon}*
+
+* **New Feature**: Added a `listevcontact` command to list all contacts associated to an event ([\#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56))
+  * What it does: Allows user to list all persons with a specified event tagged to them 
+  * Justification: This improves the product because a user easily can get a filtered list of persons who are associated to a specific event. 
+  * Highlights: User can list all contacts associated to the specified event simply through the event index, user need not type out the entire event name.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=weilin1202&breakdown=true)
 
-* **Enhancements implemented**:
-  * to be added soon
 
 * **Contributions to the Developer Guide**
-  * to be added soon
+  * Added implementation details and sequence diagram of the `listevcontact` feature ([\#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68))
+
 
 * **Contributions to the User Guide**
-  * to be added soon
+  * Added documentation for the features `listevcontact` ([\#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56))
+  * Updated the documentation for event tagging for the `add` and `edit` feature ([\#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48))
+
 
 * **Contributions to team-based tasks**
-  * to be added soon
+  * Updated Project Notes with `v1.3` Feature Demo
+
 
 * **Review/mentoring contributions**
-  * to be added soon
+  * PRs reviewed (with non-trivial comments): ([\#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55))
+
 
 * **Contributions beyond the project team**
-  * to be added soon
+  * Reported 19 bugs and suggestions for: [PE-D Issues link](https://github.com/weilin1202/ped/issues)
 
 
