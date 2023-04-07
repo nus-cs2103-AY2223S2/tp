@@ -7,7 +7,7 @@ This is a guide for developers looking to contribute to the codebase. There are 
 
 You can click on the respective links below to read up on the relevant sections.
 
-**Table of Contents**
+## **Table of Contents**
 
 <!-- TOC -->
   * [**Introduction**](#introduction)
