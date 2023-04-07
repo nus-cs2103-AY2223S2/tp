@@ -65,7 +65,7 @@ public class PdfConverter {
 
     private PDPageContentStream contentStream;
 
-    public void setUp() throws IOException {
+    public void setup() throws IOException {
         this.document = new PDDocument();
         this.page = new PDPage();
         this.document.addPage(page);
@@ -113,7 +113,7 @@ public class PdfConverter {
      */
     public PDDocument exportProgress(Student key) throws IOException {
         requireAllNonNull(key);
-        setUp();
+        setup();
         createContents(key);
         this.contentStream.close();
         return this.document;
