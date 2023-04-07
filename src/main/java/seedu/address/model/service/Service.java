@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.DeepCopy;
 import seedu.address.model.Findable;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
@@ -17,7 +18,7 @@ import seedu.address.model.entity.shop.CaseInsensitiveHashMap;
 /**
  * The Service class contains information about what task to be performed on the vehicle.
  */
-public class Service implements Findable {
+public class Service implements Findable, DeepCopy<Service> {
     public static final int DEFAULT_SEVEN_DAYS = 7;
     private final int id;
     private final int vehicleId;
@@ -292,7 +293,7 @@ public class Service implements Findable {
     @Override
     public boolean hasKeyword(String keyword) {
         boolean stringMatch = this.status.toString().toLowerCase().contains(keyword)
-            || this.description.toLowerCase().contains(keyword);
+                || this.description.toLowerCase().contains(keyword);
         try {
             LocalDate date = LocalDate.parse(keyword);
             boolean dateMatch = this.entryDate.equals(date) || this.estimatedFinishDate.equals(date);
@@ -300,5 +301,11 @@ public class Service implements Findable {
         } catch (DateTimeParseException ex) {
             return stringMatch;
         }
+    }
+
+    @Override
+    public Service copy() {
+        return new Service(id, vehicleId, entryDate, requiredParts, description, estimatedFinishDate, status,
+                assignedToIds);
     }
 }

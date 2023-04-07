@@ -154,4 +154,10 @@ public class Customer extends Person {
         String temp = super.toString();
         return temp + StringUtil.NEWLINE + String.format("Vehicles: %s", this.getVehicleIds());
     }
+
+    @Override
+    public Customer copy() {
+        return new Customer(this.id, this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getTags(), this.vehicleIds, this.appointmentIds);
+    }
 }
