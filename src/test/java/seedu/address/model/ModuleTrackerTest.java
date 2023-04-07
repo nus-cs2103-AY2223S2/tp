@@ -3,8 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2106_TUT;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleTracker;
@@ -46,8 +44,7 @@ public class ModuleTrackerTest {
     @Test
     public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
         // Two modules with the same identity fields
-        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219)
-                .withTags(VALID_TAG_LECTURE).build();
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).build();
         List<Module> newModules = Arrays.asList(CS2106_TUT, editedAlice);
         ModuleTrackerStub newData = new ModuleTrackerStub(newModules);
 
@@ -73,8 +70,7 @@ public class ModuleTrackerTest {
     @Test
     public void hasModule_moduleWithSameIdentityFieldsInModuleTracker_returnsTrue() {
         moduleTracker.addModule(CS2106_TUT);
-        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE)
-                .build();
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).build();
         assertTrue(moduleTracker.hasModule(editedAlice));
     }
 

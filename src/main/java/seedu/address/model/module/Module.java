@@ -83,7 +83,7 @@ public class Module {
     }
 
     /**
-     * Returns true if both modules have the same name.
+     * Returns true if both modules have the same name and same tag.
      * This defines a weaker notion of equality between two modules.
      */
     public boolean isSameModule(Module otherModule) {

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
         Module editedModule = moduleInList.withName(VALID_NAME_CS3219).withResource(VALID_RESOURCE_CS3219)
-                .withTags(VALID_TAG_LECTURE).build();
+                .withTags(VALID_TAG_CS3219).build();
 
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219)
-                .withResource(VALID_RESOURCE_CS3219).withTags(VALID_TAG_LECTURE).build();
+                .withResource(VALID_RESOURCE_CS3219).withTags(VALID_TAG_CS3219).build();
         EditCommand editCommand = new EditCommand(indexLastModule, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);

@@ -33,6 +33,11 @@ public class CollectionUtil {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
 
+    /**
+     * Checks if every attribute class is non-null for a Module object.
+     * @param items the list of attribute class objects
+     * @return true or false
+     */
     public static boolean isAllNonNull(Object... items) {
         boolean isAllNonNull = true;
         int noItems = items.length;

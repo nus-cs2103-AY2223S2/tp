@@ -35,10 +35,12 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            //Index is valid
+            //Index is valid (>0 and also does not overflow)
             return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-        } else if (trimmedIndex.matches("\\d+")) {
-            //Index is not valid because it cannot be stored as an int (overflow)
+        } else if (trimmedIndex.matches("^-?\\d+$")) {
+            //Index contains:
+            // negative sign (optional) which suggests it is not valid since it is not >0
+            // digits only which suggests it overflowed, and is not valid either
             throw new IndexException(MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
         //Index is not valid (possibly because there are incorrect prefixes)

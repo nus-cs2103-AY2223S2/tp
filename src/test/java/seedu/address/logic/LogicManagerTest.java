@@ -4,9 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.RESOURCE_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TEACHER_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS3230;
 
@@ -80,12 +84,16 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CS3230 + TYPE_DESC_CS3230 + TIMESLOT_DESC_CS3230
-                + ADDRESS_DESC_CS3230;
-        Module expectedModule = new ModuleBuilder(CS3230).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CS3230 + TIMESLOT_DESC_CS3230
+                + ADDRESS_DESC_CS3230 + RESOURCE_DESC_CS3230 + DEADLINE_DESC_CS3230 + TEACHER_DESC_CS3230
+                + REMARK_DESC_CS3230 + TAG_DESC_CS3230;
+        Module expectedModule = new ModuleBuilder(CS3230).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addModule(expectedModule);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        // This is supposed to compare:
+        // 1) that command Exception is thrown because storage cannot store another module that is exactly the same
+        // 2) that the two models are the same state
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 

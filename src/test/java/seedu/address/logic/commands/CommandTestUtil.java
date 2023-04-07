@@ -31,14 +31,14 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_CS3230 = "CS3230";
     public static final String VALID_NAME_CS3219 = "CS3219";
-    public static final String VALID_RESOURCE_CS3230 = "11111111";
-    public static final String VALID_RESOURCE_CS3219 = "22222222";
+    public static final String VALID_RESOURCE_CS3230 = "www.cs3230.com";
+    public static final String VALID_RESOURCE_CS3219 = "www.cs3219.com";
     public static final String VALID_TIMESLOT_CS3230 = "Tuesday 14:00 16:00";
     public static final String VALID_TIMESLOT_CS3219 = "Tuesday 12:00 14:00";
-    public static final String VALID_ADDRESS_CS3230 = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_CS3219 = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_LECTURE = "Lecture";
-    public static final String VALID_TAG_TUTORIAL = "Tutorial";
+    public static final String VALID_ADDRESS_CS3230 = "COM1 02-10";
+    public static final String VALID_ADDRESS_CS3219 = "COM1 02-12";
+    public static final String VALID_TAG_CS3219 = "Lecture";
+    public static final String VALID_TAG_CS3230 = "Tutorial";
     public static final String VALID_DEADLINE_CS3219 = "270223 14:00";
     public static final String VALID_DEADLINE_CS3230 = "300523 12:00";
     public static final String VALID_REMARK_CS3219 = "Hybrid";
@@ -48,14 +48,15 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_CS3230 = " " + PREFIX_NAME + VALID_NAME_CS3230;
     public static final String NAME_DESC_CS3219 = " " + PREFIX_NAME + VALID_NAME_CS3219;
-    public static final String TYPE_DESC_CS3230 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3230;
-    public static final String TYPE_DESC_CS3219 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3219;
+    public static final String TAG_DESC_CS3230 = " " + PREFIX_TAG + VALID_TAG_CS3230;
+    public static final String TAG_DESC_CS3219 = " " + PREFIX_TAG + VALID_TAG_CS3219;
+    public static final String TAG_DESC_CS3230_MULTIPLE_TAGS = TAG_DESC_CS3230 + TAG_DESC_CS3219;
     public static final String TIMESLOT_DESC_CS3230 = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_CS3230;
     public static final String TIMESLOT_DESC_CS3219 = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_CS3219;
     public static final String ADDRESS_DESC_CS3230 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3230;
     public static final String ADDRESS_DESC_CS3219 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3219;
-    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
-    public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
+    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_CS3230;
+    public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_CS3219;
     public static final String DEADLINE_DESC_CS3219 = " " + PREFIX_DEADLINE + VALID_DEADLINE_CS3219;
     public static final String DEADLINE_DESC_CS3230 = " " + PREFIX_DEADLINE + VALID_DEADLINE_CS3230;
     public static final String REMARK_DESC_CS3219 = " " + PREFIX_REMARK + VALID_REMARK_CS3219;
@@ -63,13 +64,18 @@ public class CommandTestUtil {
     public static final String TEACHER_DESC_CS3219 = " " + PREFIX_TEACHER + VALID_TEACHER_CS3219;
     public static final String TEACHER_DESC_CS3230 = " " + PREFIX_TEACHER + VALID_TEACHER_CS3230;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TYPE_DESC = " " + PREFIX_RESOURCE + "911a"; // 'a' not allowed in types
+    public static final String RESOURCE_DESC_CS3230 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3230;
+
+    public static final String RESOURCE_DESC_CS3219 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3219;
+
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "ST2334&"; // '&' not allowed in names
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_TAG + "911a"; // 'a' not allowed in types
     public static final String INVALID_TIMESLOT_DESC = " " + PREFIX_TIMESLOT + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    // public static final String PREAMBLE_WHITESPACE = " \n  \t ";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditModuleDescriptor DESC_CS3230;
@@ -79,11 +85,11 @@ public class CommandTestUtil {
         DESC_CS3230 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230)
                 .withResource(VALID_RESOURCE_CS3230).withTimeSlot(VALID_TIMESLOT_CS3230)
                 .withAddress(VALID_ADDRESS_CS3230)
-                .withTags(VALID_TAG_TUTORIAL).build();
+                .withTags(VALID_TAG_CS3230).build();
         DESC_CS3219 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219)
                 .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219)
                 .withAddress(VALID_ADDRESS_CS3219)
-                .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
+                .withTags(VALID_TAG_CS3219, VALID_TAG_CS3230).build();
     }
 
     /**

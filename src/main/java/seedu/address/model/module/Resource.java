@@ -1,5 +1,8 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Module's type number in the module tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidResource(String)}
@@ -18,9 +21,8 @@ public class Resource {
      * @param resource A valid resource.
      */
     public Resource(String resource) {
-        // resource is optional so we do not need requireNonNull
-        // requireNonNull(resource);
-        // checkArgument(isValidResource(resource), MESSAGE_CONSTRAINTS);
+        requireNonNull(resource);
+        checkArgument(isValidResource(resource), MESSAGE_CONSTRAINTS);
         value = resource;
     }
 

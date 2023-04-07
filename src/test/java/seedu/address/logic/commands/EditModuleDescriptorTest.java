@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3219;
 
 import org.junit.jupiter.api.Test;
@@ -53,7 +53,7 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withTags(VALID_TAG_LECTURE).build();
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withTags(VALID_TAG_CS3219).build();
         assertFalse(DESC_CS3230.equals(editedAmy));
     }
 }
