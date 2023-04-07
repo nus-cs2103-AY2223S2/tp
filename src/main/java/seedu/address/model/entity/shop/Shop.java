@@ -311,10 +311,11 @@ public class Shop implements ReadOnlyShop {
      * @param email   email of the customer
      * @param address address of the customer
      * @param tags    tags of the customer
+     * @return id of the customer added
      * @throws DuplicateEmailException       if the email already exists
      * @throws DuplicatePhoneNumberException if the phone number already exists
      */
-    public void addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
+    public int addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
             throws DuplicateEmailException, DuplicatePhoneNumberException {
         if (this.emailExists(email)) {
             logger.info("Duplicate email " + email);
@@ -327,6 +328,7 @@ public class Shop implements ReadOnlyShop {
         Customer toAdd = new Customer(IdGenerator.generateCustomerId(), name, phone, email, address, tags);
         this.customers.add(toAdd);
         logger.info(toAdd + " added");
+        return toAdd.getId();
     }
 
     /**
@@ -337,11 +339,12 @@ public class Shop implements ReadOnlyShop {
      * @param color       color of the vehicle
      * @param brand       brand of the vehicle
      * @param type        type of the vehicle
+     * @return id of the vehicle added
      * @throws CustomerNotFoundException     if the customer is not found
      * @throws EmptyInputException           if the plate number, color or brand is blank
      * @throws DuplicatePlateNumberException if the plate number already exists
      */
-    public void addVehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type)
+    public int addVehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type)
             throws CustomerNotFoundException, EmptyInputException, DuplicatePlateNumberException {
         if (plateNumber.isBlank()) {
             logger.info("Empty input for vehicle plate number");
@@ -363,6 +366,7 @@ public class Shop implements ReadOnlyShop {
         this.getCustomer(ownerId).addVehicle(toAdd.getId());
         this.vehicles.add(toAdd);
         logger.info(toAdd + " added");
+        return toAdd.getId();
     }
 
     /**
@@ -373,11 +377,12 @@ public class Shop implements ReadOnlyShop {
      * @param description              description of the service
      * @param maybeEstimatedFinishDate estimated finish date of the service
      * @param maybeServiceStatus       status of the service
+     * @return id of the service added
      * @throws VehicleNotFoundException if the vehicle is not found
      * @throws EmptyInputException      if the description is blank
      * @throws InvalidDateException     if the date is invalid
      */
-    public void addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
+    public int addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
                            Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
             throws VehicleNotFoundException, EmptyInputException, InvalidDateException {
         if (description.isBlank()) {
@@ -396,6 +401,7 @@ public class Shop implements ReadOnlyShop {
         this.getVehicle(vehicleId).addService(toAdd);
         this.services.add(toAdd);
         logger.info(toAdd + " added");
+        return toAdd.getId();
     }
 
     /**
@@ -406,10 +412,11 @@ public class Shop implements ReadOnlyShop {
      * @param email   email of the technician
      * @param address address of the technician
      * @param tags    tags of the technician
+     * @return id of the technician added
      * @throws DuplicateEmailException       if the email already exists
      * @throws DuplicatePhoneNumberException if the phone number already exists
      */
-    public void addTechnician(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
+    public int addTechnician(Name name, Phone phone, Email email, Address address, Set<Tag> tags)
             throws DuplicateEmailException, DuplicatePhoneNumberException {
         if (this.emailExists(email)) {
             logger.info("Duplicate email " + email);
@@ -422,6 +429,7 @@ public class Shop implements ReadOnlyShop {
         Technician toAdd = new Technician(IdGenerator.generateStaffId(), name, phone, email, address, tags);
         this.technicians.add(toAdd);
         logger.info(toAdd + " added");
+        return toAdd.getId();
     }
 
     /**
@@ -461,14 +469,16 @@ public class Shop implements ReadOnlyShop {
      *
      * @param customerId id of the customer
      * @param timeDate   time and date of the appointment
+     * @return id of the appointment added
      * @throws CustomerNotFoundException if the customer is not found
      */
-    public void addAppointment(int customerId, LocalDateTime timeDate) throws CustomerNotFoundException {
+    public int addAppointment(int customerId, LocalDateTime timeDate) throws CustomerNotFoundException {
         Customer customer = this.getCustomer(customerId);
         Appointment toAdd = new Appointment(IdGenerator.generateAppointmentId(), customerId, timeDate);
         customer.addAppointment(toAdd);
         this.appointments.add(toAdd);
         logger.info(toAdd + " added");
+        return toAdd.getId();
     }
 
     /**
