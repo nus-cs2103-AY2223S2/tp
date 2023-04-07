@@ -22,10 +22,11 @@ on [how to use our User Guide](#how-to-use-the-user-guide)
 MedInfo is a simple application that will help you manage your patients' **statuses, wards, 
 discharge dates**, and ward **occupancies**. <br>
 <br>
-With the time-critical nature of hospital services, patient and ward management are
+Considering the time-critical nature of hospital services, patient and ward management are
 of utmost priority, where the smallest delays or lapses in updating information can affect
-how your hospital attends to your patients. **MedInfo** has simplified, focused patient and ward management down to a
-tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
+how your hospital attends to your patients. **MedInfo** was designed with this in mind.
+It has simplified and optimized patient and ward management, allowing you to in-process, update, and move patients 
+around while still being able to view overall stats of the hospital at a glance.<br>
 <br>
 [Back to Table of Contents](#table-of-contents)
 
