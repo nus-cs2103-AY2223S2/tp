@@ -18,7 +18,7 @@ public class HelpCommandParserTest {
 
     @Test
     public void parse_helpNoArgs_success() {
-        assertParseSuccess(parser, "", new HelpCommand(""));
+        assertParseSuccess(parser, "", new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE));
     }
 
     @Test
@@ -58,6 +58,6 @@ public class HelpCommandParserTest {
 
     @Test
     public void parse_helpInvalidArgs_success() {
-        assertParseSuccess(parser, "wrong", new HelpCommand(""));
+        assertParseSuccess(parser, "wrong", new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE));
     }
 }
