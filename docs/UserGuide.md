@@ -836,6 +836,7 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
 
     ![open_done](images/user-guide/open_done.PNG)
 
+<br>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 
