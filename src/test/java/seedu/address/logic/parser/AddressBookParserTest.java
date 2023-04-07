@@ -42,7 +42,7 @@ import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TypicalSortEventTypes;
+import seedu.address.testutil.TypicalSortEventKeys;
 
 public class AddressBookParserTest {
 
@@ -144,8 +144,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_sortEvent() throws Exception {
         SortEventCommand command = (SortEventCommand) parser.parseCommand(
-                SortEventCommand.COMMAND_WORD + " " + TypicalSortEventTypes.SORT_BY_START_DATE_TIME);
-        assertEquals(new SortEventCommand(SortEventType.SORT_BY_START_DATE_TIME), command);
+                SortEventCommand.COMMAND_WORD + " " + TypicalSortEventKeys.SORT_BY_START_DATE_TIME);
+        assertEquals(new SortEventCommand(SortEventKey.SORT_BY_START_DATE_TIME), command);
     }
 
     @Test
