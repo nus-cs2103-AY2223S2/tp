@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case in-sensitive.
  */
-public class FindCommand extends RedoableCommand {
+public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
@@ -30,7 +30,7 @@ public class FindCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         model.updateFilteredCustomerList(predicate);
@@ -38,6 +38,8 @@ public class FindCommand extends RedoableCommand {
         model.updateFilteredServiceList(predicate);
         model.updateFilteredAppointmentList(predicate);
         model.updateFilteredTechnicianList(predicate);
+
+        model.resetSelected();
 
         return new CommandResult(
             String.format(MESSAGE_SUCCESS, model.getFilteredCustomerList().size(),

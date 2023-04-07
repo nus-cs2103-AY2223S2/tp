@@ -5,13 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import seedu.address.model.DeepCopy;
 import seedu.address.model.tag.Tag;
 
 /**
  * A technician is a special type of staff, in which they handle the works on the vehicle.
  */
-public class Technician extends Staff {
+public class Technician extends Staff implements DeepCopy<Technician> {
     private final Set<Integer> serviceIds = new HashSet<>();
     private final Set<Integer> appointmentIds = new HashSet<>();
     /**
@@ -49,6 +51,32 @@ public class Technician extends Staff {
         return new ArrayList<>(this.appointmentIds);
     }
 
+    public void removeAppointmentIds(Predicate<? super Integer> pred) {
+        this.appointmentIds.removeIf(pred);
+    }
+
+    public void removeServiceIds(Predicate<? super Integer> pred) {
+        this.serviceIds.removeIf(pred);
+    }
+
+    /**
+     * This method adds a service id to the list of service ids this technician is assigned to.
+     *
+     * @param serviceId service id to be added.
+     */
+    public void addServiceId(int serviceId) {
+        this.serviceIds.add(serviceId);
+    }
+
+    /**
+     * This method adds an appointment id to the list of appointment ids this technician is assigned to.
+     *
+     * @param appointmentId appointment id to be added.
+     */
+    public void addAppointmentId(int appointmentId) {
+        this.appointmentIds.add(appointmentId);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -64,5 +92,11 @@ public class Technician extends Staff {
     @Override
     public int hashCode() {
         return Objects.hash(this.getId());
+    }
+
+    @Override
+    public Technician copy() {
+        return new Technician(this.getId(), this.getName(), this.getPhone(), this.getEmail(),
+                this.getAddress(), this.getTags(), this.serviceIds, this.appointmentIds);
     }
 }

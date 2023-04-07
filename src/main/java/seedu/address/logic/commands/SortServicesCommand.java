@@ -36,6 +36,7 @@ public class SortServicesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateServiceComparator(cmp);
+        model.selectService(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
     }
 }

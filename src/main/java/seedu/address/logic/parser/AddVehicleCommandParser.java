@@ -10,9 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddVehicleCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
 
 /**
@@ -44,10 +42,8 @@ public class AddVehicleCommandParser implements Parser<AddVehicleCommand> {
 
         VehicleType type = ParserUtil.parseVehicleType(vehicleType);
 
-        Vehicle vehicle = new Vehicle(IdGenerator.generateVehicleId(), customerId, plateNumber, vehicleColor, brand,
-                type);
 
-        return new AddVehicleCommand(vehicle);
+        return new AddVehicleCommand(customerId, plateNumber, vehicleColor, brand, type);
     }
 
     /**

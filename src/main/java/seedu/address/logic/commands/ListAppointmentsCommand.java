@@ -18,6 +18,8 @@ public class ListAppointmentsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateAppointmentComparator((a, b) -> a.getDateStatus().compareTo(b.getDateStatus()));
+        model.selectAppointment(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
     }
 }

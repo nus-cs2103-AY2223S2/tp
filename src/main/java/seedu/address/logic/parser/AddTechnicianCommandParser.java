@@ -11,13 +11,11 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTechnicianCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
-import seedu.address.model.entity.person.Technician;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,9 +44,7 @@ public class AddTechnicianCommandParser implements Parser<AddTechnicianCommand> 
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Technician technician = new Technician(IdGenerator.generateStaffId(), name, phone, email, address, tagList);
-
-        return new AddTechnicianCommand(technician);
+        return new AddTechnicianCommand(name, phone, email, address, tagList);
     }
 
     /**
