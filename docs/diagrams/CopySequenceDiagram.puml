@@ -42,10 +42,10 @@ activate CopyCommand
 CopyCommand --> CopyCommandParser
 deactivate CopyCommand
 
-CopyCommandParser --> InternBuddyParser : v
+CopyCommandParser --> InternBuddyParser : c
 deactivate CopyCommandParser
 
-InternBuddyParser --> LogicManager : v
+InternBuddyParser --> LogicManager : c
 destroy CopyCommandParser
 deactivate InternBuddyParser
 

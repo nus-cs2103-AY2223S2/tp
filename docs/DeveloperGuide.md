@@ -540,7 +540,7 @@ The following gives a more detailed explanation of the `copy` command.
 6. If the `Index` is invalid, a `CommandException` will be thrown.
 7. Else if the `Index` is valid, the `Internship` which belongs to that `Index` will be
    retrieved by accessing the filtered `Internship` list.
-8. Following which, `CopyCommand#execute(Model model)` method is called which eventually calls the `Model#copyInternship(Internship toEdit, Internship edited)` method, put the `toString()` representation of the `Internship` object onto the clipboard.
+8. Following which, `CopyCommand#execute(Model model)` method is called which eventually calls the `Model#copyInternship(Internship target)` method, put the `toString()` representation of the `Internship` object onto the clipboard.
 
 ####Design Considerations
 
