@@ -2098,7 +2098,7 @@ Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
 
 Command executed: `delete 4`
 
-Expected Output in the PersonList: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
+Expected Output in the Person List: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
 
 #### **_Scenario 2_**
 
@@ -2106,7 +2106,7 @@ Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate
 
 Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
-Expected Output in the PersonList: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
+Expected Output in the Person List: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
 
 #### **_Scenario 3_**
 
@@ -2136,7 +2136,7 @@ Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleT
 
 Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
+Expected Output in the Person List: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
 
 #### **_Scenario 2_**
 
@@ -2144,7 +2144,7 @@ Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleT
 
 Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
+Expected Output in the Person List: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
 
 #### **_Scenario 3_**
 
@@ -2152,7 +2152,7 @@ Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleT
 
 Command executed: `tag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
+Expected Output in the Person List: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
 
 #### **_Scenario 4_**
 
@@ -2160,7 +2160,7 @@ Context: `Person` with `ContactIndex 2` exists and has CS2345 `ModuleTag`. `User
 
 Context executed: `tag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: Lesson added.
+Expected Output in the Person List: Lesson added.
 
 #### **_Scenario 5_**
 
@@ -2168,7 +2168,7 @@ Context: `Person` with `ContactIndex 3` exists and does not have `Friend` as a `
 
 Command executed: `tag 3 g/Friend`
 
-Expected Output in the PersonList: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
+Expected Output in the Person List: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
 
 
 ### **Remove a tag from a person**
@@ -2179,7 +2179,7 @@ Context: `Person` with `ContactIndex 1` exists and has `CS1234` as `ModuleTag`. 
 
 Command executed: `untag 1 m/CS1234`
 
-Expected Output in the PersonList: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
+Expected Output in the Person List: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
 
 #### **_Scenario 2_**
 
@@ -2187,7 +2187,7 @@ Context: `Person` with `ContactIndex 2` exists and has CS2345 as `ModuleTag` wit
 
 Command executed: `untag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
+Expected Output in the Person List: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
 
 #### **_Scenario 3_**
 
@@ -2195,7 +2195,7 @@ Context: `Person` with `ContactIndex 3` exists and has Enemy as `GroupTag`.
 
 Command executed: `untag 3 g/Enemy`
 
-Expected Output in the PersonList: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
+Expected Output in the Person List: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
 
 ### **Filter persons by keywords**
 
