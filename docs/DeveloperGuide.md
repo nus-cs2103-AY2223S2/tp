@@ -239,13 +239,23 @@ Here's a (partial) class diagram of the Keyword component:
 
 <img src="images/ModelKeywordClassDiagram.png" width="450" />
 
-<!-- TODO -->
+The `Keyword` component,
+
+* Contains the mapping of a custom keyword to a main keyword
+  * The custom' `<keyword>`
+  * The main `<keyword>`:
+    * `appointment` for `Appointment` class
+    * `basic`
+    * `exit`
+    * `help`
+    * `patient` for `Patient` class
+    * `vaccination` for `VaxType` class
 
 #### KeywordManager
 
 **API** : [`KeywordManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/keyword/KeywordManager.java)
 
-<!-- TODO -->
+The `KeywordManager` main responsibility is the storing of `Keyword` objects.
 
 ### Storage component
 
