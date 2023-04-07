@@ -96,8 +96,10 @@ The UI is split into 4 main parts
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    * If you think that you have Java installed. you can input command `java -version` into the command terminal to display current version of java installed.
-      * If the command is not recognized, you can install Java `11` from this link [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+    * If you think that you have Java installed. you can input command `java -version` into the command terminal to
+   display current version of java installed.
+      * If the command is not recognized, you can install Java `11` from this link
+      [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
       * Any version that is under the Java version `11` will work. (E.G. `11.0.1`, `11.1.5`).
     * Mac Users are encouraged to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
@@ -108,7 +110,8 @@ The UI is split into 4 main parts
 3. Copy the file to the folder you want to use as the _main folder_ for Paidlancers. (Do note that the application will
 create other folders and files in this folder as well.)
 
-4. Open Terminal / Command Prompt, `cd` to into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
+4. Open Terminal / Command Prompt, `cd <foldername>` to into the folder you put the jar file in, and use the `java -jar
+Paidlancers.jar` command to run the application.<br>
    - A GUI similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
@@ -243,7 +246,7 @@ After deleting 2nd event
 
 This command allows you to edit the existing events in Paidlancers.
 
-This command is helpful if you made any mistakes when creating the event.
+This command is helpful if you have made any mistakes when creating the event.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
@@ -319,7 +322,7 @@ You can use this command to search through the event list.
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-This command will links a client contact to an event.
+This command will link a client contact to an event.
 
 You may wish to link a contact to an event if you have already added the contact to Paidlancers.
 
@@ -453,7 +456,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?
-1. Follow the quickstart guide until step 3.
+1. Follow the [quickstart](#quick-start) guide until step 3.
 2. In the same _main folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
    - Your _main folder_ should contain the following files and folders:
     ```
