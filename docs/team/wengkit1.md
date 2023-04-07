@@ -15,7 +15,7 @@ Given below are my contributions to the project.
   * PRs : [#43](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/43)
   * Credits:
     
-* **Change Cost Feature**: Added undo feature
+* **Undo Feature**: Added undo feature
   * Justification: Adding and deleting pets off list take a lot of time, an undo feature lets users undo commands they may have done on accident, such that they do not lose progress.
   * Highlights: Undo works with archive command as well.
   * PRs :  [#48](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/48)
