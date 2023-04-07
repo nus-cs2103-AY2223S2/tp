@@ -30,8 +30,36 @@ some sample recipes for you already.
 the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
 
 <div style="page-break-after: always;"></div>
-
 ---
+## Recipe Format
+
+Recipes are the building blocks of RIZZipe! Each recipe comprises multiple fields, which are listed in the table below:
+
+| Field | Prefix | Accepted Format | Compulsory? | Example |
+|-------|-----|-|-|
+| **Name** | `n/` | **`NAME`** <br> `NAME` can contain these characters: `A-Z a-z 0-9 - \ ' " and space`. | Yes | `Chicken Rice`, <br>`Broccoli Stir-Fry` |
+| **Duration** | `d/` | **`DURATION UNIT`** <br> `DURATION` is a positive integer, decimal number, or fraction <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `3 hours`, <br>`30.5 minutes`, <br>`2/5 Time Intervals` | 
+| **Portion** | `p/` | **`AMOUNT UNIT`** or **`AMOUNT "-" or "to" AMOUNT UNIT`** <br> `AMOUNT` is a positive integer <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `1 person`, <br>`3-5 people`, <br>`4 to 6 hungry individuals` |
+| **Ingredients** | `i/` | `-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED_AMOUNT] [-cn COMMON_NAME] [-r REMARKS]...[-s SUBSTITUTION]...` <br>See "Ingredients" section below | No | |
+| **Steps** | `s/` | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space` | No | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
+| **Tags** | `t/` | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space` | No | `Italian`, <br>`Comfort Food`, <br>`Gluten Free` |
+
+## Ingredient Format
+
+Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
+
+| Field | Prefix | Accepted Format | Compulsory? | Example |
+|-------|-----|-|-|
+|**Name**|`-n`|**`INGREDIENT_NAME`** <br> `INGREDIENT_NAME` can contain these characters: `A-Z a-z - and space` | Yes | `Salt` <br> `Soy Sauce` <br> `Barley-Wheat Bread` |
+|**Amount**|`-a`|**`AMOUNT UNIT`** <br> `AMOUNT` is a positive integer, decimal number, fraction, "a", or "one" <br> `UNIT` can contain these characters: `A-Z a-z and space` | No | `a pinch of` <br> `one pint` <br> `3 fl oz` <br> `4.5 grams` <br> `2/3 cup` |
+|**Estimated Amount**|`-e`|**`ESTIMATED_AMOUNT`** <br> No restrictions on `ESTIMATED_AMOUNT`|No|`Around 3 tablespoons`|
+|**Common Name**|`-cn`|**`COMMON_NAME`** <br> `COMMON_NAME` can contain these characters: `A-Z a-z - and space` | No | `Eggplant` <br> `Saiyote` |
+|**Remarks**|`-r`|**`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space` | No | `Optional` <br> `Diced` <br> `thinly sliced`|
+|**Substitutions**|`-s`|**`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space` | No | `Seaweed Flakes` <br> `Capsicum` |
+
+
+<div style="page-break-after: always;"></div>
+--- 
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -68,14 +96,6 @@ and want to classify it by ingredients? Simply run the `add` command, and follow
 
 Add Format:
 
-| Fields         | Format, Examples                                          
-|----------------|------------------------------------------------------|
-| **Name**       | `n/RECIPE_NAME` <br/> e.g., `n/Caesar Salad`     |
-| **Duration**   | `d/RECIPE_DURATION` <br/> e.g., `d/15 minutes`                                                               |
-| **Portion**    | `p/RECIPE_PORTION` <br/> e.g., `p/1-2 servings`  |
-| **Ingredients**| `i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]...` <br/> e.g.,` i/-a 2 tbsp -n Cider Vinegar -cn Vinegar -r Optional` <br/> e.g., ` i/-n Pasta`|
-| **Steps** | `s/RECIPE_STEPS`<br/> e.g., `s/Add cider vinegar to salad`|
-| **Tags**    | `t/RECIPE_TAGS` <br/> e.g. `t/Vegetarian`         |
 
 
 Example(s) of usage:
