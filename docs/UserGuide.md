@@ -289,6 +289,7 @@ the edit will override the existing tag
 Pet Card information indicates the amount of money owed to you for taking good care of their pets!
 
 Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
+
 ![](images/UG/amount.png)
 
 
@@ -495,9 +496,9 @@ If you do not want the entry in the archive, you will need to manually delete th
 
 <br><br>
 
-**Q**: Why there are some pets highlighted even though the deadline is already passed
+**Q**: Why there are some pets highlighted even though the deadline is already passed?
 
-**A**: If you already done the task, run 'mark INDEX' function to mark it as done and remove the highlight.
+**A**: If you already done the task, run `mark` function to mark it as done and remove the highlight.
 
 <br><br>
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
