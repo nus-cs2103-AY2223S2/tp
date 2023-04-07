@@ -121,8 +121,13 @@ To see what the command format means, you can refer to the [Features](#features)
 Add a new food into WIFE. (This is the command when you tried out your first command!)
 
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
-
-*All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
+Note:
+* All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
+* `QUANTITY` of the food item should be less than `1,000,000`.
+* `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
+  * 11-11-2025
+  * 07-04-2024
+* `EXPIRY DATE` of the new food should not be before the date of insertion.
 
 Example:
 
@@ -152,7 +157,13 @@ Edit food items in WIFE.
 
 Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]`
 
-* Index must be a valid integer that refers to an an item currently in the fridge
+Note:
+* `INDEX` must be a valid integer that refers to an item currently in the fridge.
+* `QUANTITY` of the food item should be less than `1,000,000`.
+* `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
+  * 11-11-2025
+  * 07-04-2024
+* `EXPIRY DATE` of the edited food should not be before the date of insertion.
 
 Example: <br/>
 `edit 1 n/Cauliflower q/20` returns
@@ -178,11 +189,12 @@ Increases the quantity of a food item in WIFE.
 
 Format: `inc INDEX [q/QUANTITY]`
 
+Note:
 * Increases the quantity of the food item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed food item list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* If no quantity is specified, the default quantity to increase is 1.
-* If a quantity is specified, it **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed food item list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* If no `QUANTITY` is specified, the default `QUANTITY` to increase is 1.
+* If a `QUANTITY` is specified, it **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -206,7 +218,8 @@ Format: `dec INDEX [q/QUANTITY]`
 
 Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
 
-* The quantity specified to decrease by **cannot be equal to or greater than** the current quantity of the food item.
+Note:
+* The `QUANTITY` specified to decrease by **cannot be equal to or greater than** the current quantity of the food item.
 If you wish to delete the item, please use the `delete` command!
 
 ### Delete a food: `delete`
@@ -215,9 +228,10 @@ Deletes the specified food item from WIFE.
 
 Format: `delete INDEX`
 
+Note:
 * Deletes the food item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed food item list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed food item list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Result:
 
@@ -249,7 +263,14 @@ Food items are being sorted by their expiry dates.
 Creates a new pre-defined tag in WIFE.
 
 Format: `createtag n/TAG NAME [n/TAG NAME]...`
+
+Note:
 * `TAG NAME` has a maximum limit of **15 characters**.
+* `TAG NAME` is case-insensitive and two tags with the same name will be classified as duplicates.
+* If in the case where any of the tags (but not all) already exists in WIFE, the non-duplicate tags will be created. 
+  However, if all of the tags being declared already exist in WIFE, WIFE will return an error response to prevent 
+  the creation of duplicate tags.
+
 Example:
 `createtag n/Stir Fry n/Soup` displays
 ```markdown
@@ -270,9 +291,13 @@ Pre-Defined Tags:
 * `Dairy`
 
 Format: `tag INDEX n/TAG NAME`
-* Each food item can have a maximum of 4 tags.
-* Only one tag can be tagged to a food item per command
-* Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+
+Note:
+* Each food item can have a maximum of **4** tags.
+* Only one tag can be tagged to a food item per command.
+* `TAG NAME` must be a valid tag created in WIFE. List of tags available can easily be checked 
+* using the [`listtag`](#list-all-tags-listtag) command.
+* `INDEX` refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example: <br/>
 `tag 2 n/Stir Fry` returns
@@ -287,9 +312,10 @@ Kai Lan successfully tagged with Stir Fry
 Remove a tag from a specified food item in your fridge.
 
 Format: `untag INDEX n/TAG NAME`
-* Remove `Tag Name` from the food item with index `Index`
-* Only one tag can be from a food item per command
-* Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+* Remove `TAG NAME` from the food item with index `INDEX`.
+* `TAG NAME` must be an existing tag of the selected food item.
+* Only one tag can be removed from a food item per command.
+* `INDEX` refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example:
 `untag 2 n/Stir Fry` returns
