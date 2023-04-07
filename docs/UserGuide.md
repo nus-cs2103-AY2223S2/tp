@@ -73,7 +73,7 @@ product effectively.
    * You can view what courses and groups you have selected, and what page you are currently on here.
 3. Navigation Tabs
    * Compared to the Navigation Route, the Navigation Tabs give you a quick overview on what type of page you are currently on. 
-   * Refer to the [<i>Figure 3</i>](#figure-3) below for the Navigation Guide on the different pages in CLIpboard.
+   * Refer to the [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide on the different pages in CLIpboard.
 4. Command Box
    * Here is where you will type in your commands.
 5. Log Box
