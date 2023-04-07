@@ -17,14 +17,14 @@ public class MarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": mark attendance of specified person\n"
-            + "Parameters: SESSION INDEX " + PREFIX_NAME + "STUDENT_NAME\n"
+            + ": Marks an athlete (by name) as present for a specified session (by index).\n"
+            + "Parameters: SESSION_INDEX " + PREFIX_NAME + "ATHLETE_NAME\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "marked attendance of %1s in %2s\n";
+    public static final String MESSAGE_SUCCESS = "Marked attendance of %1s in %2s.\n";
 
-    public static final String MESSAGE_PERSON_NOT_FOUND = "person specified cannot be found";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Athlete specified cannot be found.";
 
     private Name personName;
     private Index index;

@@ -106,7 +106,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the 'destroy' marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a coach command:
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a Coach command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
@@ -173,9 +173,9 @@ Step 4. The Coach then decides to execute the command `sort 1`.
 
 Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allow coaches to specify how to sort their list.
-    * Pros: More flexible and customisable to the needs of the coach.
-    * Cons: More troublesome as coach needs to check the User Guide to learn what integers to use.
+* **Alternative 1 (current choice):** Allow Coaches to specify how to sort their list.
+    * Pros: More flexible and customisable to the needs of the Coach.
+    * Cons: More troublesome as Coach needs to check the User Guide to learn what integers to use.
 
 ### Undo/redo feature
 
@@ -267,6 +267,25 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+1. **The names of the individual tag and session-related commands are inconsistent.**<br>
+   For example, creating a new athlete uses `add`, while a new session uses `create-session`, and adding an athlete to a session uses `student-add`.<br>
+   We plan on standardising the names to `add`, `add-session`, and `add-athlete` to avoid confusion.
+
+
+2. **Displayed messages cannot be seen entirely in the output box without scrolling.**<br>
+   This is especially the case when the message is long (i.e. an error message).<br>
+   We plan on adjusting the app UI such that the features scale according to the size of the window, including the output box which will<br> display its entire contents without needing to scroll through it.
+
+
+3. **The app cannot be navigated solely through keyboard input alone.**<br>
+   Mouse clicks are still required to select an athlete/session even after using keyboard shortcuts to switch tabs.<br>
+   This may make it inconvenient for those who may prefer CLI apps.<br>
+   We plan on making the app completely navigable through keyboard input while also allowing one to click parts of the GUI.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -278,7 +297,7 @@ The following activity diagram summarizes what happens when a Coach executes a n
 * can type fast.
 * prefers typing rather than mouse interaction.
 * is reasonably comfortable using CLI (Command Line Interface) apps.
-* requires to organise their coaching schedule on a frequent basis.
+* requires to organise their Coaching schedule on a frequent basis.
 
 **Value proposition**:
 * manage contacts faster than a typical mouse/GUI-driven app.
@@ -292,149 +311,188 @@ Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Lo
 
 | Priority | As a …​                           | I want to …​                              | So that I can…​                                                           |
 |----------|-----------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
-| `* * *`  | new coach                         | see usage instructions                    | refer to instructions when I forget how to use the app                    |
-| `* * *`  | coach                             | add a new athlete                         | record their profile                                                      |
-| `* * *`  | coach                             | delete an athlete                         | remove athletes that I no longer train                                    |
-| `* * *`  | coach                             | edit an athlete's details                 | refer to accurate information regarding that athlete                      |
-| `* *`    | coach                             | find an athlete by name                   | locate details of an athlete without having to go through the entire list |
-| `* *`    | coach                             | hide an athlete's private contact details | minimize chance of someone else seeing them by accident                   |
-| `* *`    | coach                             | organise athletes by groups               | facilitate better contact management                                      |
-| `*`      | coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
-| `*`      | coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
+| `* * *`  | new Coach                         | see usage instructions                    | refer to instructions when I forget how to use the app                    |
+| `* * *`  | Coach                             | add a new athlete                         | record their profile                                                      |
+| `* * *`  | Coach                             | delete an athlete                         | remove athletes that I no longer train                                    |
+| `* * *`  | Coach                             | edit an athlete's details                 | refer to accurate information regarding that athlete                      |
+| `* *`    | Coach                             | find an athlete by name                   | locate details of an athlete without having to go through the entire list |
+| `* *`    | Coach                             | hide an athlete's private contact details | minimize chance of someone else seeing them by accident                   |
+| `* *`    | Coach                             | organise athletes by groups               | facilitate better contact management                                      |
+| `*`      | Coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
+| `*`      | Coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
 
 ### Use cases
 
-#### Use case: Ask for help
+#### Use case UC01 - Ask for help
 
 **MSS**
 
 1. Coach requests for help.
-2. SportSync displays a link to the SportSync User Guide.
+2. SportSync displays a window containing a link to the SportSync User Guide.
 
     Use case ends.
 
-#### Use case: Add an athlete
+
+#### Use case UC02 - Add an athlete to the contact list
+**Guarantee:** A new athlete with specified name, phone number, pay rate, address and at least<br>
+one tag is created and added to the contact list.
 
 **MSS**
 
-1. Coach requests to add a new athlete in the list.
-2. SportSync adds the athlete.
+1. Coach requests to add a new athlete in the contact list.
+2. Coach adds in the following details:
+   * Name
+   * Phone Number
+   * Pay rate
+   * Address
+   * Tag (optional, can be more than one)
+3. SportSync adds the athlete.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Not enough details of the athlete were given.
-
-    * 1a1. SportSync shows an error message.
-
+* 2a. Not enough details of the athlete were given.
+    * 2a1. SportSync shows an error message with the correct command format.<br>
       Use case resumes at step 1.
 
-#### Use case: Delete an athlete
+* 2b. An athlete with the same name already exists within the contact list.
+    * 2b1. SportSync shows an error message telling the Coach that the athlete already exists.<br>
+      Use case resumes at step 1.
+
+* 2c. At least one of the details specified is of invalid format.
+    * 2c1. SportSync shows an error message specifying how the detail is of the wrong format.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC03 - Delete an athlete from the contact list
 
 **MSS**
 
-1. Coach requests to delete a specific athlete in the list.
+1. Coach requests to delete a specific athlete by providing their index in the contact list.
 2. SportSync deletes the athlete.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-
-    * 1a1. SportSync shows an error message.
-
+* 1a. The given index is not a positive integer.
+    * 1a1. SportSync shows an error message with the correct command format.
       Use case resumes at step 1.
 
-* 2a. The list is empty.
-
-    * 2a1. SportSync shows an error message.
-
+* 2a. The index given is out of bounds with respect to the size of the contact list.
+    * 2a1. SportSync shows an error message stating the index is out of bounds.
       Use case resumes at step 1.
 
-   Use case ends.
 
-#### Use case: Edit an athlete
+#### Use case UC04 - Edit an athlete's details
 
 **MSS**
 
-1. Coach requests to edit a specific athlete's attribute in the list.
-2. SportSync edits the specified athlete's attribute.
+1. Coach requests to edit a specific athlete's details by providing their index in the contact list.
+2. Coach provides at least one of the following fields to edit:
+    * Name
+    * Phone Number
+    * Pay rate
+    * Address
+    * Tag
+3. SportSync edits the specified fields.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index/attribute(s) are invalid.
-
-    * 1a1. SportSync shows an error message.
-
+* 1a. The given index is not a positive integer.
+    * 1a1. SportSync shows an error message with the correct command format.
       Use case resumes at step 1.
 
-#### Use case: Find an athlete
+* 1b. The index given is out of bounds with respect to the size of the contact list.
+    * 1b1. SportSync shows an error message stating the index is out of bounds.
+      Use case resumes at step 1.
+
+* 2a. At least one of the edited fields is of invalid format.
+    * 2a1. SportSync shows an error message specifying how the field is of the wrong format.<br>
+      Use case resumes at step 1.
+
+
+#### Use case UC05 - Find an athlete in the contact list
 
 **MSS**
 
-1. Coach requests to find a specific athlete by part of their name, in the list.
+1. Coach requests to find athletes in the contact list, by name, by providing a keyword.
 2. SportSync displays the search results.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given name / part of the name does not exist within the list.
-
-    * 1a1. SportSync shows an empty list.
-
+* 1a. The given keyword does not correspond to any athlete's name within the contact list.
+    * 1a1. SportSync shows no athletes listed in the results.
       Use case resumes at step 1.
 
-#### Use case: List all athletes
+
+#### Use case UC06 - List all athletes in the contact list
+**Guarantee:** All athletes in the contact list will be shown.
 
 **MSS**
 
-1. Coach requests to list out all athletes.
-2. SportSync displays all athletes.
+1. Coach requests to list out all athletes in the contact list.
+2. SportSync displays all athletes in the contact list.
 
     Use case ends.
 
-#### Use case: Clear the list
+
+#### Use case UC07 - Clear the contact and session lists
 
 **MSS**
 
-1.  Coach requests to clear all athletes from the list.
-2.  SportSync clears all athletes from the list.
+1.  Coach requests to clear all athletes from the contact list, and sessions from the session list.
+2.  SportSync clears all athletes from the contact list, and sessions from the session list.
 
     Use case ends.
 
-#### Use case: Sort the list by name in alphabetical order
+
+#### Use case UC08 - Sort the contact list by a specified attribute, in ascending order.
 
 **MSS**
 
-1. Coach requests to sort all athletes in the list by name in alphabetical order.
-2. SportSync sorts all athletes in the list by name in alphabetical order.
+1. Coach requests to sort all athletes in the contact list by a specified attribute, in ascending order.
+2. Coach provides one of the following integers to signify the attribute to sort by:
+    1. Name
+    2. Pay rate
+3. SportSync sorts all athletes in the contact list by the specified attribute, in ascending order.
 
     Use case ends.
 
-#### Use case: Sort the list by pay rate in increasing order
+**Extensions**
+
+* 2a. The given integer is not 1 or 2.
+    * 2a1. SportSync does not sort the contact list.
+      Use case resumes at step 1.
+
+
+#### Use case UC09 - Show all athletes belonging to one or more tags.
 
 **MSS**
 
-1.  Coach requests to sort all athletes in the list by pay rate in increasing order.
-2.  SportSync sorts all athletes in the list by pay rate in increasing order.
-
-    Use case ends.
-
-#### Use case: Display all athletes belonging to tag(s)
-
-**MSS**
-
-1. Coach requests to display all athletes belonging to specified tag(s) by name.
-2. SportSync displays all athletes by name, belonging to one or more of the specified tag(s).
+1. Coach requests to show all athletes belonging to specified tag(s) by name.
+2. Coach provides one or more tags.
+3. SportSync shows all athletes by name, belonging to one or more of the specified tag(s).
 
    Use case ends.
 
-#### Use case: Undo a command
+**Extensions**
+
+* 2a. No tags are given.
+    * 2a1. SportSync shows an error message with the correct command format.
+      Use case resumes at step 1.
+
+* 2b. One of the tags given do not exist.
+    * 2b1. SportSync shows an error message stating that the tag does not exist.
+      Use case resumes at step 1.
+
+
+#### Use case UC10 - Undo a command
 
 **MSS**
 
@@ -443,24 +501,26 @@ Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Lo
 
    Use case ends.
 
-#### Use case: Redo a command
+**Extensions**
 
-**MSS**
+* 1a. An undo operation is not possible as there is nothing left to undo.
+    * 1a1. SportSync shows an error message stating that there is nothing left to undo.
+      Use case resumes at step 1.
 
-1. Coach requests to redo a mistakenly undone command.
-2. SportSync redoes the mistakenly undone command.
+#### Use case UC11 - Redo a command
 
-   Use case ends.
+* Similar to UC10.
 
-#### Use case: View calendar events
+#### Use case UC12 - View calendar events
 
 **MSS**
 
 1. Coach requests to view the calendar events.
 2. SportSync displays the calendar events on the interface.
-3. Coach interacts with the calendar events as required. 
+3. Coach interacts with the calendar events as desired. 
 
     Use case ends.
+
 
 ### Non-Functional Requirements
 

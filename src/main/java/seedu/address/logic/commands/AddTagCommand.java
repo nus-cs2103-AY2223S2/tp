@@ -26,9 +26,11 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "add-tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag specified to a athlete at index i . "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds the specified tag(s) to an athlete, by their index.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG "
+            + "[MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "varsity";
     public static final String ADD_TAG_PERSON_SUCCESS = "Added tag: %2$s to athlete: %1$s";

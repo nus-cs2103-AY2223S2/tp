@@ -12,11 +12,11 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts list by given attribute\n"
-            + "Parameters: ATTRIBUTE (1 - pay rate or 2 - name)\n"
+            + ": Sorts all athletes in the contact list according to the provided attribute.\n"
+            + "Parameters: ATTRIBUTE (1 - Name or 2 - Pay rate)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons according to given attribute.\n";
+    public static final String MESSAGE_SUCCESS = "Sorted all athletes.\n";
 
     private final int attribute;
 

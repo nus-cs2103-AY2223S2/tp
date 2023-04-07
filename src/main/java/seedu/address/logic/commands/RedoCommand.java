@@ -12,7 +12,7 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redo a previous command. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redoes a previously undone command. "
             + "Example: " + COMMAND_WORD + " ";
 
     public static final String MESSAGE_SUCCESS = "Redid previous command";

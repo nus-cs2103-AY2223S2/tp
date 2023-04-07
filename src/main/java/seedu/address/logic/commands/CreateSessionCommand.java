@@ -18,7 +18,8 @@ import seedu.address.model.session.Session;
 public class CreateSessionCommand extends Command {
     public static final String COMMAND_WORD = "create-session";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new session to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Creates a new session and adds it to the session list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "
@@ -29,7 +30,7 @@ public class CreateSessionCommand extends Command {
             + PREFIX_LOCATION + "Leon Lim Sports Hall Of Champions";
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SESSION = "This session name already exists in the address book.\n"
+    public static final String MESSAGE_DUPLICATE_SESSION = "This session name already exists in the session list.\n"
             + "Try a different session name instead.";
     public static final String MESSAGE_SESSION_OVERLAP = "This session overlaps with an existing session.";
 

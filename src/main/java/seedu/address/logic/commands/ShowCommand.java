@@ -14,14 +14,14 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all athletes who belong to at least one of "
-            + "the specified tags (case-insensitive).\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds athletes in the contact list who have any of the specified tags.\n"
+            + "Parameters: TAG_NAME [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " Varsity Hall";
 
-    public static final String MESSAGE_SHOW_GROUP_SUCCESS = "Listed all athletes that belong to "
-            + "at least one of the following tags specified: %1$s. \n"
-            + "Enter: Sort 1 to show all persons again";
+    public static final String MESSAGE_SHOW_GROUP_SUCCESS = "Found all athletes that belong to "
+            + "at least one of the following tags specified: %1$s. \n";
+
     public static final String MESSAGE_TAG_NOT_FOUND_FAILURE = "Tag does not exist.";
 
     private final TagContainsGroupsPredicate predicate;
