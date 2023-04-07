@@ -291,9 +291,23 @@ This section describes some noteworthy details on how certain features are imple
 <div style="page-break-after: always"></div>
 
 ## 4.1 Add Command
+
+**Overview:**
+
 The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as `Module`, `CCA`, `Major`, and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
+
+**Feature Details:**
+
+1. The user specifies a name for the `Person` to be added. The user can optionally specify the `Phone`, `Email`, `Address`, `Birthday`, `Social Media`, and tags such as `Module`, `CCA`, `Major`, and `Remark` fields.
+2. If the person name is not provided, or if invalid command arguments are provided, the user will be prompted to re-enter the command correctly via an error message. 
+3. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+4. If step 3 completes without exceptions, the new `Person` will be successfully added and stored inside the contact list.
+
+The following activity diagram shows the logic of adding a `Person` into the contact list.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
 
 The sequence of the `add` command is as follows:
 
@@ -308,10 +322,6 @@ If duplicate parameters are entered (e.g. `add n/Jason p/91234567 p/12345678`, w
 
 The `AddCommandParser` creates the corresponding `Person` object, which is then taken as an input by the `AddCommand` object that it creates and returns. `Logic Manager` then runs `AddCommand`, which then adds the `Person` to the model.
 
-The following activity diagram shows the logic of representing a `Person` in the contact list.
-
-![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
-
 The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
@@ -325,9 +335,25 @@ The following sequence diagram provides details on how the `informationFields` a
 <div style="page-break-after: always"></div>
 
 ## 4.2 Edit Command
-The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
+
+**Overview:**
+
+The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
+
+**Feature Details:**
+
+1. The user specifies a person index that represents a `Person` to be edited.
+2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+3. At least one field to be edited must be provided. If no field is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+4. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
+5. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+6. If step 6 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+
+The following activity diagram shows the logic of editing an existing `Person` in the contact list.
+
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
 The sequence of the `edit` command is as follows:
 
@@ -342,7 +368,7 @@ The sequence of the `edit` command is as follows:
 The following sequence diagram shows how `edit` works:
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
 <div style="page-break-after: always"></div>
