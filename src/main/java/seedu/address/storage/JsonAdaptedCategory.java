@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UserDefinedCategory;
+
 
 
 /**
@@ -53,6 +55,10 @@ class JsonAdaptedCategory {
         }
 
         final String modelDescription = summary;
+
+        if (categoryName.equalsIgnoreCase("misc")) {
+            return new MiscellaneousCategory();
+        }
         return new UserDefinedCategory(modelCategoryName, modelDescription);
     }
 

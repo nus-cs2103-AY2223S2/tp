@@ -26,16 +26,9 @@ public class Budget {
         return this.monthBudget / 4;
     }
 
-    /**
-     * Set monthlyBudget.
-     * @param monthBudget
-     */
-    public void setMonthlyBudget(double monthBudget) {
-        this.monthBudget = monthBudget;
-    }
 
     @Override
     public String toString() {
-        return Double.toString(this.monthBudget);
+        return "$" + this.monthBudget;
     }
 }

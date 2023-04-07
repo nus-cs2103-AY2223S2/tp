@@ -116,7 +116,7 @@ public class EditRecurringExpenseManagerCommand implements EditCommand {
         }
 
         if (newExpenseAmount != null) {
-            if (!Price.isValidPrice(String.format("%d", newExpenseAmount))) {
+            if (!Price.isValidPrice(String.valueOf(newExpenseAmount))) {
                 throw new CommandException(Price.MESSAGE_CONSTRAINTS);
             }
             generatorToEdit.setAmount(newExpenseAmount);

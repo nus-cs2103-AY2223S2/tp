@@ -88,12 +88,10 @@ public class Expense {
 
     @Override
     public String toString() {
-        return "Expense{"
-                + "name='" + name + '\''
-                + ", amount=" + amount
-                + ", date=" + date
-                + ", category='" + category + '\''
-                + '}';
+        return "Name: " + name
+                + ", Amount: $" + amount
+                + ", Date: " + date
+                + ", Category: " + category;
     }
 
     /**

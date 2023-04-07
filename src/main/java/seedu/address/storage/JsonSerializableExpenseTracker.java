@@ -2,16 +2,19 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.RecurringExpenseManager;
 
@@ -64,6 +67,8 @@ class JsonSerializableExpenseTracker {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ExpenseTracker toModelType() throws IllegalValueException {
+        Logger logger = LogsCenter.getLogger(JsonSerializableExpenseTracker.class);
+
         ExpenseTracker expenseTracker = new ExpenseTracker();
 
         for (JsonAdaptedCategory jsonAdaptedCategory : categories) {
@@ -75,7 +80,10 @@ class JsonSerializableExpenseTracker {
             RecurringExpenseManager expenseGenerator = jsonAdaptedGenerator.toModelType();
             Category associatedCategory = getAssociatedCategoryForRecurring(expenseGenerator, expenseTracker);
             if (associatedCategory == null) {
-                expenseTracker.addCategory(expenseGenerator.getExpenseCategory());
+                if (!(expenseGenerator.getExpenseCategory() instanceof MiscellaneousCategory)) {
+                    logger.info(expenseGenerator.getExpenseCategory().getClass().toString());
+                    expenseTracker.addCategory(expenseGenerator.getExpenseCategory());
+                }
             } else {
                 expenseGenerator.setExpenseCategory(associatedCategory);
             }
@@ -86,7 +94,9 @@ class JsonSerializableExpenseTracker {
             Expense expense = jsonAdaptedExpense.toModelType();
             Category associatedCategory = getAssociatedCategory(expense, expenseTracker);
             if (associatedCategory == null) {
-                expenseTracker.addCategory(expense.getCategory());
+                if (!(expense.getCategory() instanceof MiscellaneousCategory)) {
+                    expenseTracker.addCategory(expense.getCategory());
+                }
             } else {
                 expense.setCategory(associatedCategory);
             }

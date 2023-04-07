@@ -31,7 +31,7 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        if (!(price >= -0.0)) {
+        if (!(price > -0.0)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         value = String.valueOf(price);
@@ -41,7 +41,7 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) >= -0;
+        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) > -0;
     }
 
 
