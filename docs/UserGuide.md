@@ -52,7 +52,7 @@ so you can improve your knowledge on the use of DengueHotspotTracker.
 1. First, you can read the [Quick Start](#quick-start) section to ensure that your system is compatible with DengueHotspotTracker.
 We recommend that you follow along the instructions to download and use DengueHotspotTracker with the commands introduced in this guide.
 2. Do have a glance at [Conventions](#conventions) to understand the symbols and formatting used across this guide.
-3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the User Interface [here](#navigating-the-user-interface).
+3. Now that you have had an initial look at DengueHotspotTracker, we have a detailed listing of how to understand the user interface [here](#navigating-the-user-interface).
 4. Now that you understand how to use the interface of DengueHotspotTracker, you are ready to take a deeper dive into our commands. 
 We have some general guidelines on what user input is considered as valid. You should refer to [commands](#commands) to get a detailed coverage of the available commands.
 
