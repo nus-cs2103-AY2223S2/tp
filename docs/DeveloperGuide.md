@@ -91,7 +91,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" />
 
 `LogicManager` is a concrete implementation of `Logic` which handles the logical components of VMS. Its main responsibility is to handle the execution of user entered commands.
 
@@ -134,6 +134,10 @@ When the created `Thread` in `startNext()` is started, Java Virtual Machine will
 6. An attempt is then made to start the next command through `startNext()` as described in the section before.
 
 <img src="images/LogicCommandExecutionSequenceDiagram.png" id="logic-command-execution-sequence-diagram">
+
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: The parsing of commands are handled in `Model` to allow for user custom keywords.
+</div>
 
 ### Model component
 
