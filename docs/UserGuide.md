@@ -18,15 +18,15 @@ This application is currently geared towards NUS Computer Science Students of th
 3. [GUI Overview](#gui-overview)
 4. [Features](#features)<br>
    4.1 [Add a module:](#add-module) `add`<br>
-   4.2 [Remove a/all module:](#delete-module) `delete`<br>
-   4.3 [Change module details:](#edit-module) `edit`<br>
+   4.2 [Delete module(s):](#delete-module) `delete`<br>
+   4.3 [Edit module details:](#edit-module) `edit`<br>
    4.4 [Tag a module:](#tag-module) `tag`<br>
-   4.5 [Find modules by keyword:](#find-module) `find`<br>
-   4.6 [Sort all modules:](#sort-module) `sort`<br>
-   4.7 [Toggle between module lists and progress:](#change-view) `view`<br>
-   4.8 [Exiting the program:](#exit-app) `exit`<br>
-   4.9 [Saving the data](#save-data)<br>
-   4.10 [Editing the data file](#edit-data)
+   4.5 [Find module(s):](#find-module) `find`<br>
+   4.6 [Sort modules:](#sort-module) `sort`<br>
+   4.7 [Toggle between Degree Progress and Module List screens:](#change-view) `view`<br>
+   4.8 [Exit MODTrek:](#exit-app) `exit`<br>
+   4.9 [Save MODTrek data](#save-data)<br>
+   4.10 [Edit MODTrek data file](#edit-data)
 5. [Frequently Asked Questions (FAQ)](#faq)
 6. [Command Summary](#command-summary)
 
@@ -153,7 +153,7 @@ E.g. if the command specifies `exit 123`, it will be interpreted as `exit.`
 
 ### MODTrek supports the following features:
 
-#### 4.1 Add a Module : `add` <a name="add-module"></a>
+#### 4.1 Add a module : `add` <a name="add-module"></a>
 
 Adds a module to the module list in **MODTrek**. This will kick start your **MODTrek** journey.
 
@@ -189,7 +189,7 @@ If there are reasons you need to add a module with the same module code (e.g. re
 
 [Back to Table of Contents](#toc)
 
-#### 4.2 Delete a Module : `delete` <a name="delete-module"></a>
+#### 4.2 Delete a module : `delete` <a name="delete-module"></a>
 
 Deletes the specified module(s) from the module list. You can also choose to delete all the modules from the module list.
 
@@ -210,7 +210,7 @@ Deletes the specified module(s) from the module list. You can also choose to del
 
 [Back to Table of Contents](#toc)
 
-#### 4.3 Edit a Module : `edit` <a name="edit-module"></a>
+#### 4.3 Edit module details: `edit` <a name="edit-module"></a>
 
 Edits an existing module in the module list. Use this command to rectify any mistakes or add in any details you have omitted.
 
@@ -234,7 +234,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 [Back to Table of Contents](#toc)
 
-#### 4.4 Tag a Module : `tag` <a name="tag-module"></a>
+#### 4.4 Tag a module : `tag` <a name="tag-module"></a>
 
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.<br>
 Refer to [Add a module](#add-module) for the tags that you can use.
@@ -249,7 +249,7 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 [Back to Table of Contents](#toc)
 
-#### 4.5 Find modules by keyword(s) : `find` <a name="find-module"></a>
+#### 4.5 Find module(s) : `find` <a name="find-module"></a>
 
 Displays specific module(s) and their details previously logged by the user which satisfies the keyword(s) queried.
 Use this command to find modules that match the keywords are interested in without needing to manually scroll through the list of modules.
@@ -286,7 +286,7 @@ Using more keywords from the same category will return you all the modules that 
 
 [Back to Table of Contents](#toc)
 
-#### 4.6 Sort all modules : `sort` <a name="sort-module"></a>
+#### 4.6 Sort modules : `sort` <a name="sort-module"></a>
 
 Sort the modules according to the category indicated by the user. Use this command if you want to know what modules are
 in each level of the category you are interested in.
@@ -312,7 +312,7 @@ category to sort by when **MODTrek** is in the module list screen.
 
 [Back to Table of Contents](#toc)
 
-#### 4.7 Toggle screens : `view` <a name="change-view"></a>
+#### 4.7 Toggle between Degree Progress and Module List screens : `view` <a name="change-view"></a>
 
 Toggles between the display of degree progress or module list.
 
@@ -342,13 +342,13 @@ Exits the program. Alternatively you can exit the program by clicking the top-ri
 
 [Back to Table of Contents](#toc)
 
-#### 4.9 Saving MODTrek data <a name="save-data"></a>
+#### 4.9 Save MODTrek data <a name="save-data"></a>
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to Table of Contents](#toc)
 
-#### 4.10 Editing MODTrek data <a name="edit-data"></a>
+#### 4.10 Edit MODTrek data file <a name="edit-data"></a>
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
 

@@ -8,7 +8,7 @@ title: Developer Guide
 
 ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
 
-## Table of Contents
+## Table of Contents <a name="toc"></a>
 
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up)
@@ -32,18 +32,33 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
    3. [Use Cases](#use-cases)
    4. [Non-Functional Requirements](#non-functional-requirements)
    5. [Glossary](#glossary)
-
+7. [Appendix: Instructions for manual testing](#manual-testing)
+   1. [Launch and shutdown](#launch-and-shutdown)
+   2. [Adding a module](#adding-a-module)
+   3. [Deleting a module](#deleting-module)
+   4. [Editing a module](#editing-a-module)
+   5. [Adding/removing tag(s) to a module](#tagging-a-module)
+   6. [Finding module(s)](#finding-module)
+   7. [Sorting modules](#sorting-modules)
+   8. [Toggling between Degree Progress and Module List screens](#toggling-screens)
+   9. [Requesting for help](#requesting-for-help)
+   10. [Exiting the program](#exiting-program)
+   11. [Saving data](#saving-data)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements** <a name="acknowledgements"></a>
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The skeleton implementation of the [doughnut chart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in the [Degree Progress Section](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
+
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started** <a name="setting-up"></a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,6 +68,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Back to Table of Contents](#toc)
 
 ### Architecture <a name="architecture"></a>
 
@@ -64,7 +81,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -87,7 +104,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -97,7 +114,7 @@ The sections below give more details of each component.
 
 ### UI component <a name="ui-component"></a>
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -132,9 +149,11 @@ The `Ui` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` and `DegreeProgression` objects residing in the `Model`.
 
+[Back to Table of Contents](#toc)
+
 ### Logic component <a name="logic-component"></a>
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -161,11 +180,15 @@ How the parsing works:
 * When called upon to parse a user command, the `ModTrekParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModTrekParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+[Back to Table of Contents](#toc)
+
+### Model component <a name="model-component"></a>
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+[Back to Table of Contents](#toc)
 
 The `Model` component,
 
@@ -176,8 +199,7 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
-
+[Back to Table of Contents](#toc)
 
 ### Storage component <a name="storage-component"></a>
 
@@ -190,9 +212,13 @@ The `Storage` component,
 * inherits from both `DegreeProgressionStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Back to Table of Contents](#toc)
+
 ### Common classes <a name="common-classes"></a>
 
 Classes used by multiple components are in the `seedu.modtrek.commons` package.
+
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,6 +267,8 @@ The following sequence diagram shows how the `add` command works:
 The following activity diagram shows what happens when a user executes an `add` command:
 
 ![Activity diagram of add command](images/AddActivityDiagram.png)
+
+[Back to Table of Contents](#toc)
 
 ### **Find module feature** <a name="find-module-feature"></a>
 
@@ -291,6 +319,8 @@ The following activity diagram shows what happens when a user executes a `find` 
 
 ![Activity diagram of find command](images/FindActivityDiagram.png)
 
+[Back to Table of Contents](#toc)
+
 ### **Delete module feature** <a name="delete-module-feature"></a>
 
 #### About this feature
@@ -301,7 +331,7 @@ The delete feature allows users to delete multiple modules via the command
 When the user inputs `delete` command, the input will be parsed and the `all` keyword will be extracted using
 `ArgumentMultimap#preamble()`. Otherwise, if the parser does not find the `all` keyword in the input,
 the parser will parse module codes in the input in the form `/m <module code>` using
-`ArgumentMultimap#getAllValues(PREFIX_CODE)`. As the commmand is executed, all modules will be removed from the
+`ArgumentMultimap#getAllValues(PREFIX_CODE)`. As the command is executed, all modules will be removed from the
 `UniqueModuleList` if the `all` keyword is present or the modules with the matching parsed modules codes
 will be removed from the `UniqueModuleList` using the command `ModelManager#deleteModule(Module)`.
 
@@ -346,6 +376,8 @@ The following sequence diagram shows how the `delete`:
 
 The following activity diagram shows what happens when a user executes a `delete` command:
 ![Activity Diagram of delete command](images/DeleteActivityDiagram.png)
+
+[Back to Table of Contents](#toc)
 
 ### **Sort modules feature** <a name="sort-modules-feature"></a>
 
@@ -394,6 +426,8 @@ The following activity diagram shows the logic flow as the user inputs the `sort
 *Aspect: Command to sort the modules*
 
 As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories. However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
+
+[Back to Table of Contents](#toc)
 
 ### **View progress/modules feature** <a name="view-feature"></a>
 
@@ -481,6 +515,8 @@ The following activity diagram illustrates the workflow of the algorithm when `D
 The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the _Single Responsibility Principle_, we have to find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
 - **Solution:** Pass the information to the `CommandResult` returned by executing `ViewProgressCommand` or `VieWModulesCommand`. Since `MainWindow` already has access to `CommandResult` and through it, can easily obtain the correct information regarding which screen to display.
 
+[Back to Table of Contents](#toc)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops** <a name="miscellaneous"></a>
@@ -491,10 +527,11 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[Back to Table of Contents](#toc)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements** <a name="appendix"></a>
-
 
 ### Product scope <a name="product-scope"></a>
 
@@ -514,6 +551,7 @@ The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms o
 * All module information taken by student is recorded in a single platform and can be referred to easily
 * Offers a higher level of convenience, since the user can access module features within clicks on a keyboard
 
+[Back to Table of Contents](#toc)
 
 ### User stories <a name="user-stories"></a>
 
@@ -533,7 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |   * *    | User     |                          check how much of each degree requirement I have completed                           |  know what requirements I still need to complete |
 |   * *    | User     |         view my current degree completion progress in terms of percentage and number of MCs completed         | - |
 
-*{More to be added}*
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -741,6 +779,8 @@ Use case ends.
 
       Use case ends.
 
+[Back to Table of Contents](#toc)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements <a name="non-functional-requirements"></a>
@@ -753,7 +793,7 @@ Use case ends.
 6. The application is not required to allocate modules to their mapping requirement automatically.
 7. The application is not required to handle any conflicts (eg. preclusion, prerequisites, corequisites) for any modules.
 
-*{More to be added}*
+[Back to Table of Contents](#toc)
 
 ### Glossary <a name="glossary"></a>
 
@@ -770,11 +810,13 @@ Use case ends.
 | CLI | Command line interface. This is the bottom-right section of the app, whereby users input data on a command line. |
 | GUI | Graphical user interface. Our app has a GUI that will be launched upon using the jar file |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These modules information are specific to National University of Singapore. Furthermore, we are using the old terms `Module`, `Modular Credits`, `CAP` prior to 1 August 2023. After 1 August 2023, `Module` is changed to `Course`, `Modular Credits` to `Units`, `CAP` to `GPA` (Grade Point Average). We used these terms to specifically cater to our target audience, who are CS students students matriculated in AY 21/22. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above module information are specific to National University of Singapore. Furthermore, we are using the old terms `Module`, `Modular Credits`, `CAP` prior to 1 August 2023. After 1 August 2023, `Module` is changed to `Course`, `Modular Credits` to `Units`, `CAP` to `GPA` (Grade Point Average). We used the old terms to specifically cater to our target audience, who are CS students matriculated in AY 21/22.</div>
+
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for manual testing** <a name="manual-testing"></a>
 
 Given below are instructions to test the app manually.
 
@@ -783,13 +825,14 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch and shutdown <a name="launch-and-shutdown"></a>
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `modtrek.jar` file and copy it into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.<br>
+      Expected: Shows the GUI with ProgressSection shown by default on the right panel and CliSection shown on the left panel. The initial module list is empty by default.
 
 1. Saving window preferences
 
@@ -798,27 +841,172 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+[Back to Table of Contents](#toc)
+      
+### Adding a module <a name="adding-a-module"></a>
+Command: `add`<br>
+For more details regarding the usage, refer to [Add a module](UserGuide.md#add-module).
 
-### Deleting a module
+1. Test case: `add /m CS2103T /y Y1S1 /c 4`<br>
+   Expected: Module with the code "CS2103T" will be added. The card UI component representing the module will show it as incomplete. Details of the added module shown in the response message on the command screen.
+2. Test case: `add /m CS2103T /y Y1S1 /c 4 /g A+`<br>
+   Expected: Similar to the previous test case.
+3. Test case: `add /m CS2103T /y Y1S1 /c 4 /g A+ /t CSF`<br>
+   Expected: Module with the code "CS2103T" will be added. The card UI component representing the module will show it as completed. Details of the added module shown in the response message on the command screen.
+4. Test case: `add /m CS2103T /y Y1S1`<br>
+   Expected: No module is added. Error details shown in the response message on the command screen.
+5. Other invalid `add` commands to try: `add`, `add /m 2103T /y Y1S1 /c 4`, `add /m CS2103T /c 4`
+   Expected: Similar to the previous test case.
 
-1. Deleting a module while all modules are being shown
+[Back to Table of Contents](#toc)
 
-   1. Test case: `delete /m cs1101s`<br>
-      Expected: Module with the code "CS1101S" will be deleted. Details of the deleted module shown in the status message.
+### Deleting module(s) <a name="deleting-module"></a>
+Command: `delete`<br>
+For more details regarding the usage, refer to [Delete module(s)](UserGuide.md#delete-module).
 
-   1. Test case: `delete /m 1101S`<br>
-      Expected: No module is deleted. Error details shown in the response message.
+1. Deleting a module that is in the module list<br>
+   Prerequisites: The module "CS2103T" is in the module list.
+   1. Test case: `delete /m CS2103T`<br>
+      Expected: Module with the code "CS2103T" will be deleted. Details of the deleted module shown in the status message.
+   2. Test case: `delete /m 2103T`<br>
+      Expected: No module is deleted. Error details shown in the response message on the command screen.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+2. Deleting a module that is not in the module list<br>
+   Prerequisites: The module "MA1521" is not in the module list.
+   1. Test case: `delete /m MA1521`<br>
+   Expected: No module is deleted. Error details shown in the response message on the command screen.
+   
+3. Deleting all modules in the module list<br>
+   1. Test case: `delete all`<br>
+   Expected: All modules in the module list will be deleted.
 
-1. _{ more test cases …​ }_
+4. Other incorrect `delete` commands to try: `delete`<br>
+   Expected: No module is deleted. Error details shown in the response message on the command screen.
 
-### Saving data
+[Back to Table of Contents](#toc)
 
-1. Dealing with missing/corrupted data files
+### Editing a module <a name="editing-a-module"></a>
+1. Editing a module that is in the module list<br>
+   Prerequisites: The module "CS2103X" is in the module list.
+   1. Test case: `edit CS2103X /m CS2103T /g A+`<br>
+      Expected: Module with the code "CS2103X" will be edited, with its new code being "CS2103T" and new grade being "A+". Details of the edited module shown in the response message on the command screen.
+   2. Test case: `edit CS2103X`<br>
+      Expected: No module is edited. Error details shown in the response message on the command screen.
+   
+2. Editing a module that is not in the module list<br>
+   Prerequisites: The module "CS2103T" is in the module list.
+   1. Test case: `edit CS2103T /m g A+`<br>
+      Expected: No module is edited. Error details shown in the response message on the command screen.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+3. Other incorrect `edit` commands to try: `edit`, `edit /m CS2103T`<br>
+   Expected: No module is edited. Error details shown in the response message on the command screen.
 
-1. _{ more test cases …​ }_
+[Back to Table of Contents](#toc)
+
+### Adding/removing tag(s) to a module <a name="tagging-a-module"></a>
+Command: `tag`<br>
+For more details regarding the usage, refer to [Tag a module](UserGuide.md#tag-module).
+
+1. Tagging/untagging a module that is in the module list<br>
+   Prerequisites: The module "CS3230" is in the module list.<br>
+    1. Test case: `tag CS3230 include /t CSF /t CSBD`<br>
+       Expected: The tags "CSF" and "CSBD" will be added to the module with the code "CS3230". Details of the tagged module shown in the response message on the command screen.
+    2. Test case: `tag CS3230 remove /t CSBD`<br>
+       Expected: The tag "CSBD" will be removed from the module with the code "CS3230", if it already exists. Otherwise, no tag is removed. 
+    3. Test case: `tag CS3230`<br>
+       Expected: No module is tagged. Error details shown in the response message on the command screen.
+
+3. Tagging/untagging a module that is not in the module list<br>
+   Prerequisites: The module "CS2104" is in the module list.
+    1. Test case: `tag CS2104 include /t CSBD`<br>
+       Expected: No module is tagged. Error details shown in the response message on the command screen.
+    2. Test case: `tag CS2104 remove /t CSBD`<br>
+       Expected: Similar to the previous test case.
+
+4. Other incorrect `tag` commands to try: `tag`, `tag GESS1000 include /t ULR`, `tag MA2001 /t MS`<br>
+   Expected: No module is tagged/untagged. Error details shown in the response message on the command screen.
+
+[Back to Table of Contents](#toc)
+
+### Finding module(s) <a name="finding-module"></a>
+Command: `sort`<br>
+For more details regarding the usage, refer to [Find module(s)](UserGuide.md#find-module).
+
+1. Test case: `find CS2103T`<br>
+   Expected: If module with the code "CS2103T" exists in the module list, the module will be displayed on the Module Search Section. Otherwise, a message indicating that no modules are found will be shown on the Module Search Section.
+2. Test case: `find /m CS /g A+`<br>
+   Expected: All "CS" modules with grade "A+" in the module list will be displayed on the Module Search Screen. If none of such modules exist, a message indicating that no modules are found will be shown on the Module Search Section.
+3. Test case: `find /m CS1101S`<br>
+   Expected: No modules will be found. Error details shown in the response message on the command screen.
+4. Other incorrect `find` commands to try: `find`, `find A+`<br>
+   Expected: No modules will be found. Error details shown in the response message on the command screen.
+
+[Back to Table of Contents](#toc)
+
+### Sorting modules <a name="sorting-modules"></a>
+Command: `sort`<br>
+For more details regarding the usage, refer to [Sort modules](UserGuide.md#sort-module).
+
+1. Test case: `sort /g`<br>
+   Expected: Modules in the Module List Section will be categorized by grade.
+2. Test case: `sort /t`<br>
+   Expected: Modules in the Module List Section will be categorized by tag.
+3. Test case: `sort /p`<br>
+   Expected: Modules in the Module List Section will not be changed in the way they are originally sorted. Error details shown in the response message on the command screen.
+4. Test case: `sort`<br>
+   Expected: Similar to the previous test case.
+
+[Back to Table of Contents](#toc)
+
+### Toggling between Degree Progress and Module List screens <a name="toggling-screens"></a>
+Command: `view`<br>
+For more details regarding the usage, refer to [Toggle between Degree Progress and Module List screens](UserGuide.md#change-view)
+
+1. Test case: `view modules`<br>
+   Expected: The right panel of the GUI will be switched to the Module List Section, if it is not already active. All modules tracked by the app will be displayed. The way the modules are sorted will be unchanged. Modules are sorted according to year by default.
+2. Test case: `view progress`<br>
+   Expected: The right panel of the GUI will be switched to the Degree Progress Section, if it is not already active. Data regarding the degree progress (calculated from all the modules in the module list) will be displayed in a doughnut chart.
+
+[Back to Table of Contents](#toc)
+
+### Requesting for help <a name="requesting-for-help"></a>
+Command: `help`<br>
+For more details regarding the usage, refer to <TO ADD LINK TO UG>.
+
+1. Test case: `help`<br>
+   Expected: A response message showing a list of help commands will be displayed on the command screen.
+
+[Back to Table of Contents](#toc)
+
+### Exiting the program <a name="exiting-program"></a>
+Command: `exit`<br>
+For more details regarding the usage, refer to [Exit MODTrek](UserGuide.md#exit-app).
+
+1. Test case: `exit`<br>
+   Expected: The GUI will close in 2 seconds. All data will be saved.
+
+[Back to Table of Contents](#toc)
+
+### Saving data <a name="saving-data"></a>
+
+1. Dealing with corrupted data files
+
+   1. Open `modtrek.jar` through the `java -jar modtrek.jar` command. Using commands supported on MODTrek, make changes to the module list, leaving at least one module in list.
+
+   2. Close `modtrek.jar` and edit the `data/degreeprogression.json` file by making any one of the following dummy changes that causes the file to be corrupted, i.e. of an invalid format:
+      * Change the "grade" attribute of one of the modules to "Z".
+      * For one of the modules, add an extra attribute "Professor" with the value "James Tan" assigned to it.
+      * Make any other illogical or nonsensical change to the file.
+
+   3. Re-open `modtrek.jar` again. Expected: MODTrek will start with a clean slate, with an empty module list. 
+
+
+2. Dealing with missing data files
+   1. Test case: Delete the `data/degreeprogression.json` file.<br>
+      Expected: MODTrek will start with a clean slate on the next launch of `modtrek.jar`, with an empty module list. 
+   2. Test case: Delete the `config.json` file.<br>
+      Expected: MODTrek will start with all data previously saved, on the next launch of `modtrek.jar`. User's previously saved GUI preferences are also kept.
+   3. Test case: Delete the `preferences.json` file.<br>
+      Expected: MODTrek will start with all data previously saved, on the next launch of `modtrek.jar`. User's previously saved GUI preferences are deleted and reset to the default settings.
+
+[Back to Table of Contents](#toc)
