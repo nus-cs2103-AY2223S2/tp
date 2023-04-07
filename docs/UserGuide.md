@@ -167,17 +167,21 @@ Below shows how you can add an *Orange juice* recipe.
 Examples:
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe similar to the image
 shown below will be added to the recipe book:
-  
-<img src="images/AddResult1.png" width=500 height=400>
+
+<p align="center" width="100%">
+    <img src="images/AddResult1.png" width=500 height=400>
+</p>
+
 
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid as 
 multiple `i/` command flags are allowed. A recipe similar to the image shown below will be added to the recipe book:
-
-<img src="images/AddResult2.png" width=500 height=400>
-
+<p align="center" width="100%">
+    <img src="images/AddResult2.png" width=500 height=400>
+</p>
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because the command flag `s/` is compulsory. An error message will appear, similar to the one shown below:
-
-<img src="images/AddError.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/AddError.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -201,15 +205,20 @@ Example:
 
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the image shown below:
 
-<img src="images/EditResult1.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/EditResult1.png" width=500 height=400>
+</p>
 
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted. The recipe will be edited as shown below:
 
-<img src="images/EditResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/EditResult2.png" width=500 height=400>
+</p>
 
 - `edit 1` is not valid as at least one flag is required and you will see an error message similar to that of the one shown below:
-
-<img src="images/EditError.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/EditError.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -232,18 +241,23 @@ Format: `delete RECIPE_NUMBER`
 Examples:
 
 Our initial recipe book:
-
-<img src="images/UiInWindows.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/UiInWindows.png" width=500 height=400>
+</p>
 
 - `delete 1` will result in a recipe book as shown below:
 
-<img src="images/DeleteResult.png" width=500 height=400>
+
+<p align="center" width="100%">
+    <img src="images/DeleteResult1.png" width=500 height=400>
+</p>
 
 - `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
-<img src="images/DeleteError.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/DeleteResult2.png" width=500 height=400>
+</p>
 
-  [Back to top](#top)
 
 ---
 #### List recipe : `list`
@@ -253,8 +267,9 @@ This command lists out all the recipes that you have added to the recipe book
 Format: `list`
 
 Example: `list` will list all the recipes similar to the image shown below:
-
-<img src="images/ListResult.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/ListResult.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -267,7 +282,9 @@ Format: `clear`
 
 Example: `clear` will clear all recipes similar to the image shown below:
 
-<img src="images/ClearResult.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/ClearResult.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -299,21 +316,29 @@ Examples:
 
 Our initial recipe book:
 
-<img src="images/AddResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - `find r/eggs` is valid and the result of the recipe book is as shown below:
 
-<img src="images/FindResult.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/FindResult.png" width=500 height=400>
+</p>
 
 - `find r/eggs s/fry the egg` is not valid as only one command flag is allowed. You should see an error message similar to
   the one in the image shown below:
 
-<img src="images/FindError1.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/FindError1.png" width=500 height=400>
+</p>
 
 - `find` is not valid as at least one flag is required. You should see an error message like the one in the image
 shown below:
 
-<img src="images/FindError2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/FindError2.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -329,21 +354,29 @@ Examples:
 
 Our initial recipe book:
 
-<img src="images/AddResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - e.g. `only eggs` is valid, and will search for recipes that have ingredients that at most contain eggs, and nothing more. The result of the command is as shown below:
 
-<img src="images/OnlyResult1.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/OnlyResult1.png" width=500 height=400>
+</p>
 
 - e.g. `only eggs flour` will search for recipes that have ingredients that at most contains eggs and flour.
 A recipe that only needs eggs will also be valid. The result of the command is shown below:
 
-<img src="images/OnlyResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/OnlyResult2.png" width=500 height=400>
+</p>
 
 - e.g. `only` is not valid as at least one parameter is needed. You should see an error message similar to the one in the image shown
   below:
 
+<p align="center" width="100%">
 <img src="images/OnlyError.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -365,11 +398,15 @@ Example:
 
 Our initial recipe book:
 
-<img src="images/AddResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - `sort desc` will display your sorted recipe book similar to the image shown below:
 
-<img src="images/SortResult.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/SortResult.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -391,11 +428,11 @@ Example:
 
 Our initial recipe book:
 
-<img src="images/GroceriesStart.png" width=500 height=400>
 
-- `groceries 1,3,4` will display the groceries you need to cook recipes 1, 3 and 4 similar to the image shown below:
-
-<img src="images/GroceriesResult.png" width=500 height=400>
+Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the output box along with their quantities.
+<p align="center" width="100%">
+    <img src="images/GroceriesResult.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -480,16 +517,21 @@ Below shows you can remove the first recipe from your favourites.
 Examples:
 
 Our initial recipe book:
-
-<img src="images/AllRecipesStarred.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/AllRecipesStarred.png" width=500 height=400>
+</p>
 
 - `unstar 1` will remove the star of the first recipe, as shown in the image below:
 
-<img src="images/UnstarResult1.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/UnstarResult1.png" width=500 height=400>
+</p>
 
 - `unstar 2` will remove the star of the second recipe, as shown in the image below:
 
-<img src="images/UnstarResult2.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/UnstarResult2.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
@@ -503,11 +545,15 @@ Example:
 
 Our initial recipe book:
 
-<img src="images/StarResult1.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/StarResult1.png" width=500 height=400>
+</p>
 
 - `favorites` will display all your starred recipes, as shown in the image below:
 
-<img src="images/FavoritesResult.png" width=500 height=400>
+<p align="center" width="100%">
+    <img src="images/FavoritesResult.png" width=500 height=400>
+</p>
 
 [Back to top](#top)
 
@@ -576,13 +622,13 @@ Format meanings:
 <hr style="border:2px solid gray">
 
 ## Glossary
-| Word	|    Definition                                                  |
-|-------|----------------------------------------------------------------------|
+| Term	                              | Definition                                                          |
+|------------------------------------|---------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | A program that mainly uses typed commands to interact with the app. |
+| **Graphical User Interface (GUI)** | What the user sees when interacting with the app.                   |
+|     Alphanumeric                   | A combination of both letters and numbers without space.            |
+|     Terminal                       | A text-based interface for the computer.                            |
 
-**Command Line Interface (CLI)** | 	A program that mainly uses typed commands to interact with the app. 
-**Graphical User Interface (GUI)** | 	What the user sees when interacting with the app.                   
-Alphanumeric | A combination of both letters and numbers without space.             
-Terminal| A text-based interface for the computer.                             
 
 [Back to top](#top)
 
