@@ -164,8 +164,8 @@ public class UniqueSupplierListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                                                                  -> uniqueSupplierList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                        uniqueSupplierList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
