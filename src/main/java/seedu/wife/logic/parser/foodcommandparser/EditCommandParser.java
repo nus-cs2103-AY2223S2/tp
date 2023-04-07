@@ -1,19 +1,15 @@
 package seedu.wife.logic.parser.foodcommandparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.wife.logic.commands.foodcommands.EditCommand.MESSAGE_NOT_EDITED;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.wife.commons.core.index.Index;
+import seedu.wife.commons.util.StringUtil;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.logic.parser.ArgumentMultimap;
@@ -21,7 +17,6 @@ import seedu.wife.logic.parser.ArgumentTokenizer;
 import seedu.wife.logic.parser.Parser;
 import seedu.wife.logic.parser.ParserUtil;
 import seedu.wife.logic.parser.exceptions.ParseException;
-import seedu.wife.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -41,11 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
+        index = StringUtil.getIndexFromCommand(argMultimap.getPreamble().trim(), EditCommand.MESSAGE_USAGE);
 
         EditFoodDescriptor editFoodDescriptor = new EditFoodDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -63,25 +54,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (!editFoodDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_NOT_EDITED, EditCommand.MESSAGE_USAGE));
         }
 
         return new EditCommand(index, editFoodDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }

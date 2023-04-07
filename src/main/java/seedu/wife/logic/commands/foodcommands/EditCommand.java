@@ -7,11 +7,8 @@ import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.wife.commons.core.Messages;
 import seedu.wife.commons.core.index.Index;
@@ -25,7 +22,6 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
-import seedu.wife.model.tag.Tag;
 
 /**
  * Edits the details of an existing food item in WIFE.
@@ -47,7 +43,7 @@ public class EditCommand extends Command {
             + PREFIX_QUANTITY + "2";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited food item: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided! \n%s";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in WIFE.";
 
     private final Index index;
@@ -97,9 +93,8 @@ public class EditCommand extends Command {
         Unit updatedUnit = editFoodDescriptor.getUnit().orElse(foodToEdit.getUnit());
         Quantity updatedQuantity = editFoodDescriptor.getQuantity().orElse(foodToEdit.getQuantity());
         ExpiryDate updatedExpiryDate = editFoodDescriptor.getExpiryDate().orElse(foodToEdit.getExpiryDate());
-        Set<Tag> updatedTags = editFoodDescriptor.getTags().orElse(foodToEdit.getTags());
 
-        return new Food(updatedName, updatedUnit, updatedQuantity, updatedExpiryDate, updatedTags);
+        return new Food(updatedName, updatedUnit, updatedQuantity, updatedExpiryDate, foodToEdit.getTags());
     }
 
     @Override
@@ -122,14 +117,13 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the food item with. Each non-empty field value will replace the
-     * corresponding field value of the food.
+     * corresponding field value of the food. Note that tags cannot be changed in EditFoodDescriptor and EditCommand.
      */
     public static class EditFoodDescriptor {
         private Name name;
         private Unit unit;
         private Quantity quantity;
         private ExpiryDate expiryDate;
-        private Set<Tag> tags;
 
         public EditFoodDescriptor() {}
 
@@ -142,14 +136,13 @@ public class EditCommand extends Command {
             setUnit(toCopy.unit);
             setQuantity(toCopy.quantity);
             setExpiryDate(toCopy.expiryDate);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, unit, quantity, expiryDate, tags);
+            return CollectionUtil.isAnyNonNull(name, unit, quantity, expiryDate);
         }
 
         public void setName(Name name) {
@@ -182,23 +175,6 @@ public class EditCommand extends Command {
 
         public Optional<ExpiryDate> getExpiryDate() {
             return Optional.ofNullable(expiryDate);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override

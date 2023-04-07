@@ -72,6 +72,24 @@ public class IncreaseCommand extends Command {
                 foodToIncrease.getExpiryDate(), foodToIncrease.getTags());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof IncreaseCommand)) {
+            return false;
+        }
+
+        // state check
+        IncreaseCommand e = (IncreaseCommand) other;
+        return index.equals(e.index)
+                && increaseFoodDescriptor.equals(e.increaseFoodDescriptor);
+    }
+
     /**
      * Stores the quantity to increase the quantity of the food item with. A non-negative value will increase the
      * corresponding quantity of the food item by that value.
@@ -80,13 +98,15 @@ public class IncreaseCommand extends Command {
 
         private Quantity quantity;
 
-        public IncreaseFoodDescriptor() {}
+        public IncreaseFoodDescriptor() {
+            this.quantity = new Quantity("1");
+        }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public IncreaseFoodDescriptor(IncreaseCommand.IncreaseFoodDescriptor toCopy) {
+        public IncreaseFoodDescriptor(IncreaseFoodDescriptor toCopy) {
             setQuantity(toCopy.quantity);
         }
 
