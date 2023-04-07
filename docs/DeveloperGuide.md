@@ -506,7 +506,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### **Use case: Clear recipe book**
+#### **Use case: Clear recipe book**  
+
+**User Acceptance Testing**  
+Test Case 1:  
+Description: Verify recipe pop up card appears when prompted.  
+Preconditions: User is on the default MainWindow page.  
+Test Steps:
+   1. Click on a Recipe Card once.
+   2. Press 'P' on the keyboard.  
+
+Expected Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.  
+Actual Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.   
+Status: `Accepted`
+
+Test Case 2:  
+Description: Verify add form opens properly when prompted.   
+Preconditions: User is on the default Main Window page.  
+Test Steps:
+   1. Type "addf" in the command box and enter.
+
+Expected Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right. 
+Actual Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.  
+Status: `Accepted`
+
+Test Case 3:  
+Description: Verify add form saves the newly added recipe properly.  
+Preconditions: User is on the add recipe form.  
+Test Steps:
+   1. Fill up the form with a sample recipe given in the user guide.
+   2. Click 'Save' at the bottom of the form to save and exit the form. 
+   3. Scroll to the bottom of the recipe list and click on the newly added recipe. 
+   4. Press the 'P' key to view its details. 
+
+Expected Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
+Actual Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
+Status: `Accepted`
+
+Test Case 4:  
+Description: Verify edit form displays correctly when prompted. 
+Preconditions: User is on the default Main Window page.   
+Test Steps:
+   1. Hover over or click a recipe card.
+   2. Press the 'F' key on the keyboard.
+
+Expected Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right. 
+Actual Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.   
+Status: `Accepted`
+
+Test Case 5:  
+Description: Verify edit form saves the edited recipe properly.
+Preconditions: User is on edit recipe form.   
+Test Steps:
+   1. Edit the any of the fields in the form, using the format provided in the user guide as reference. 
+   2. Click the `Save` button at the bottom right of the form. 
+   3. Scroll to the bottom of the recipe list and click on the edited recipe.
+   4. Press the 'P' key to view its details. 
+
+Expected Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.
+Actual Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.  
+Status: `Accepted`
 
 **MSS**
 
