@@ -3,13 +3,13 @@
 start
 :User executes addDeck command;
 
-:Call addDeck in Model;
+:Call hasdDeck;
 
 if () then ([Deck name already exists])
     :Throw DuplicateDeckException;
 else ([else])
     :Add the deck to the MasterDeck;
-    :Store changes in storage;
+    :Store changes in MasterDeckStorage;
     :Display newly added deck on the list;
 
 endif
