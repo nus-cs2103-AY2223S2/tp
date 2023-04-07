@@ -1,4 +1,4 @@
-package fasttrack.logic.commands;
+package fasttrack.logic.commands.list;
 
 import static fasttrack.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static fasttrack.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -12,7 +12,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import fasttrack.logic.commands.list.ListExpensesCommand;
 import fasttrack.model.Model;
 import fasttrack.model.ModelManager;
 import fasttrack.model.UserPrefs;
