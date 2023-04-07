@@ -215,8 +215,7 @@ This command clears all the existing decks and their associated cards from the a
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**<br>
-This command is irreversible! You cannot retrieve your data after executing this command.
+:exclamation: **Caution:** This command is irreversible! You cannot retrieve your data after executing this command.
 
 </div>
 
@@ -245,8 +244,8 @@ Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
-- A tag can only be of value Easy, Medium, or Hard (**case-insensitive**). 
+💡 **Tip:**
+- A tag can only be of value Easy, Medium, or Hard (**case-insensitive**).   
 - Each card can have at most one tag.
 
 </div> 
