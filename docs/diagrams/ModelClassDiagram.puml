@@ -18,34 +18,34 @@ Package \nModel <<Rectangle>>{
     Class KeywordManager
 
     class Patient MODEL_COLOR {
-        -Name name
-        -Phone phone
-        -Dob dateOfBirth
-        -BloodType bloodType
-        -Set<GroupName> allergies
-        -Set<GroupName> vaccines
+        -name: Name
+        -phone: Phone
+        -dateOfBirth: Dob
+        -bloodType: BloodType
+        -allergies: Set<GroupName>
+        -vaccines: Set<GroupName>
     }
 
     class Appointment MODEL_COLOR {
-        -Index patientId
-        -LocalDateTime startTime
-        -LocalDateTime endTime
-        -GroupName vaccine
-        -Boolean isCompleted
+        -patientId: Index
+        -startTime: LocalDateTime
+        -endTime: LocalDateTime
+        -vaccine: GroupName
+        -isCompleted: Boolean
     }
 
     class VaxType MODEL_COLOR {
-        -GroupName name;
-        -HashSet<GroupName> groups;
-        -Age minAge;
-        -Age maxAge;
-        -HashSet<GroupName> ingredients;
-        -List<Requirement> historyReqs;
+        -name: GroupName
+        -groups: HashSet<GroupName>
+        -minAge: Age
+        -maxAge: Age
+        -ingredients: HashSet<GroupName>
+        -historyReqs: List<Requirement>
     }
 
     class Keyword MODEL_COLOR {
-        -String keyword
-        -String mainKeyword
+        -keyword: String
+        -mainKeyword: String
     }
 }
 
