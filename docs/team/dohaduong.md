@@ -5,7 +5,7 @@ title: Do Ha Duong's Project Portfolio Page
 
 ### Project: Duke Driver
 
-Duke Driver is a task and contact management app that aims to help busy delivery men. Duke Driver is built by implementing CLI and GUI, helping to enhance users' experience.
+Duke Driver is a task and contact management app that aims to help busy delivery men. It is built by implementing CLI and GUI, helping to enhance users' experience.
 
 Given below are my contributions to the project.
 
