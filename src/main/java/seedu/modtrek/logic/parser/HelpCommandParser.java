@@ -1,7 +1,6 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.DeleteCommand;
