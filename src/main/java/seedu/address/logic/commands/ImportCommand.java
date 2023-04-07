@@ -13,8 +13,8 @@ import javafx.stage.FileChooser;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyElister;
-import seedu.address.storage.ElisterStorage;
 import seedu.address.storage.CsvElisterStorage;
+import seedu.address.storage.ElisterStorage;
 
 /**
  * Exports to a csv file at a location specified by the user.
