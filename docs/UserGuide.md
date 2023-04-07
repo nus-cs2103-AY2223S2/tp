@@ -819,7 +819,7 @@ _Details coming soon ..._
 
 2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
 
-    ![open_save_text](images/user-guide/open_save_text_mini.PNG)
+    ![open_save_text](images/user-guide/open_save_text_tiny.png)
     <div style="page-break-after: always;"></div>
 
 3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how to see the file 
