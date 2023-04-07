@@ -169,6 +169,13 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     * Returns number of projects.
+     */
+    public int noProjectSize() {
+        return this.internalList.size();
+    }
+
+    /**
      * Returns number of Overdue projects.
      */
     public int noOverdueProjects() {
@@ -211,21 +218,6 @@ public class UniqueProjectList implements Iterable<Project> {
             }
         }
         return notDoneProjects;
-    }
-
-    /**
-     * Returns contents of list of project.
-     */
-    public String getProjectsContent() {
-        int projectSize = this.internalList.size();
-        ObservableList<Project> projectList = this.internalList;
-        int overdueProjects = noOverdueProjects();
-        int doneProjects = noDoneProjects();
-        int notDoneProjects = noNotDoneProjects();
-        return "Total number of Projects: " + projectSize + "\n"
-                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
-                + "Total number of Projects DONE: " + doneProjects + "\n"
-                + "Total number of Projects NOT DONE: " + notDoneProjects + "\n";
     }
 
     /**

@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Project *--> Title
+Project *--> Status
+Project *--> "0..1" Deadline
+Project *--> "0..1" Price
+Project *--> "0..1 linked" Client
+Project *--> "*" Tag
+@enduml

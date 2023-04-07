@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -53,14 +53,14 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-client 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="594" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -70,24 +70,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client`, `Project` and `TagMapping` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -96,14 +96,14 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-client 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-client 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -111,34 +111,36 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse an user input, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+The `Client` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
+<img src="images/ClientClassDiagram.png" width="450" />
+
+The `Project` object stores a few pieces of data as separate objects, some of which are optional, as shown in the diagram below. (These details were omitted from the model class diagram.)
+<img src="images/ProjectClassDiagram.png" width="450" />
+
+The `TagMapping` objects stores a `Tag` object and how many `Client` and `Project` objects it belongs to, as shown in the diagram below. (These details were omitted from the model class diagram.)<br>
+<img src="images/TagMappingClassDiagram.png" width="120" height="150" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data: all `Client` objects (which are contained in a `UniqueClientList` object), all `Project` objects (which are contained in a `UniqueProjectList` object), and all `TagMapping` objects (which are contained in a `UniqueTagMappingList` object).
+* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list, and stores the currently 'sorted' `Client` objects (e.g., results of a sort query) as a separate _sorted_ list. Both lists are exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Project` objects (e.g., results of a search query) as a separate _filtered_ list, and stores the currently 'sorted' `Project` objects (e.g., results of a sort query) as a separate _sorted_ list. Both lists are exposed to outsiders as an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-1/tp/tree/master/src/main/java/arb/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="600" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -246,27 +248,47 @@ Each of the project detail classes have their own validation check that is run u
 
 ### Sorting
 
+Users have the option to sort visible clients and projects.
+
 #### Implementation
-Sorting is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html), which sorts its contents based on the supplied `Comparator`. As mentioned in the [model](#model-component) section of the architecture overview, the sorted list is exposed to the UI in the form of an unmodifiable `ObservableList`, such that any updates to the sorted list is propagated to the UI.
 
-The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
+There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
-For the client list, it is only sorted with a `Comparator` that compares the names of the clients.
+Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator`. The below diagram shows what occurs when a user executes a `sort-client` command.
 
-For the project list, it can be sorted either by deadline or name. When the user executes a `sort` command, they can input which option they wish to sort by, which is parsed by `SortProjectCommandParser`.
+<img src="images/SortingSequenceDiagram.png" width="600" />
 
-### \[Proposed\] Data archiving
+As the contents of the sorted list is the already filtered list, executing sorting will only sort clients/projects that are currently visible. Clients/projects that are hidden due to a previous `find command` will remain hidden.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Alternatives
+An alternative would be for sorting to sort all clients/projects instead of only those that are visible, causing sorting commands to show all clients/projects but sorted. We did not go with this implementation as we wanted users to be able to combine the effects of filtering and sorting for better data organisation.
+
+### Linking Projects to Clients
+
+Users have the ability to link projects to clients.
+
+#### Implementation
+
+#### Future improvements
+Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
+
+In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
+
+### Better filtering
+
+Users now have the ability to find clients and projects using a greater number of parameters, such as tags and deadlines.
+
+#### Implementation
 
 ### Done Status
 
 #### Implementation
 
 The displaying of the "DONE" status is facilitated by the `markAsDone()`
-method in the Project class. 
+method in the Project class.
 
-The Done status is highlighted in the UI when the project is done. 
+The Done status is highlighted in the UI when the project is done.
 The ProjectCard class has been updated to run the aforementioned `markAsDone()`
 method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 
@@ -284,16 +306,16 @@ method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 ### Overdue Status
 
 #### Implementation
-The displaying of the "OVERDUE" status is facilitated by the isOverdue method 
-in the Project class. The isOverdue method returns a boolean after using the 
-compareTo method in the Deadline class which checks the current date 
-against the deadline date of the project, i.e. check if a project's deadline 
+The displaying of the "OVERDUE" status is facilitated by the isOverdue method
+in the Project class. The isOverdue method returns a boolean after using the
+compareTo method in the Deadline class which checks the current date
+against the deadline date of the project, i.e. check if a project's deadline
 is past the current date.
 
-The Overdue status is highlighted in the UI when any project is past its deadline. 
-The ProjectCard class has been updated to run the aforementioned isOverdue 
-method for any project before setting its status to OVERDUE, DONE, or NOT DONE. 
-The OVERDUE status is shown for existing projects in the list that are overdue, and 
+The Overdue status is highlighted in the UI when any project is past its deadline.
+The ProjectCard class has been updated to run the aforementioned isOverdue
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
+The OVERDUE status is shown for existing projects in the list that are overdue, and
 if a user adds a project with a deadline with a data that has already past.
 --------------------------------------------------------------------------------------------------------------------
 
@@ -393,13 +415,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Use case - Delete Project**
 
 **MSS**:
-1. User enters command for deleting project of certain client. 
+1. User enters command for deleting project of certain client.
 2. ArB deletes project for client.
 
     Use case ends.
 
 **Extension**:
-1a. User wants to remove a project of a client that is not found in the list. 
+1a. User wants to remove a project of a client that is not found in the list.
 
 2a1. ARB tells user that the project of the client does not exist.
 
@@ -409,8 +431,8 @@ Use case ends.
 **Use case: Use case - Edit Project**
 
 **MSS**:
-1. User enters command to editing project, including project ID and details to edit 
-2. ArB edits project to use new details 
+1. User enters command to editing project, including project ID and details to edit
+2. ArB edits project to use new details
 3. Use case ends.
 
 **Extension**:
@@ -433,23 +455,23 @@ Use case ends.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The final product should be a result of evolving/enhancing/morphing the given code base. 
-5. The product should be targeting users who can type fast and prefer typing over other means of input. 
-6. The product should be for a single user i.e. (not a multi-user product). 
-7. The product needs to be developed in a breadth-first incremental manner over the project duration. 
-8. The data should be stored locally and should be in a human-editable text file. 
-9. Do not use a DBMS to store data. 
-10. The software should follow the Object-oriented paradigm primarily 
-11. The software should work on the Windows, Linux, and OS-X platforms. 
-12. The software should work on a computer that has version 11 of Java 
-13. The software should work without requiring an installer. 
-14. The software should not depend on your own remote server. 
-15. The use of third-party frameworks/libraries/services is allowed but only if they are free, open-source (this doesn't apply to services), have permissive license terms, do not require any installation by the user of your software and do not violate other constraints. 
-16. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125% 
-17. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%. 
-18. Everything needs to be packaged into a single JAR file. 
-19. The file sizes of the product should be reasonable and not exceed the limit of 100MB 
-20. The DG and UG should be PDF-friendly. Don't use expandable panels, embedded videos, animated GIFs etc. 
+4. The final product should be a result of evolving/enhancing/morphing the given code base.
+5. The product should be targeting users who can type fast and prefer typing over other means of input.
+6. The product should be for a single user i.e. (not a multi-user product).
+7. The product needs to be developed in a breadth-first incremental manner over the project duration.
+8. The data should be stored locally and should be in a human-editable text file.
+9. Do not use a DBMS to store data.
+10. The software should follow the Object-oriented paradigm primarily
+11. The software should work on the Windows, Linux, and OS-X platforms.
+12. The software should work on a computer that has version 11 of Java
+13. The software should work without requiring an installer.
+14. The software should not depend on your own remote server.
+15. The use of third-party frameworks/libraries/services is allowed but only if they are free, open-source (this doesn't apply to services), have permissive license terms, do not require any installation by the user of your software and do not violate other constraints.
+16. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%
+17. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%.
+18. Everything needs to be packaged into a single JAR file.
+19. The file sizes of the product should be reasonable and not exceed the limit of 100MB
+20. The DG and UG should be PDF-friendly. Don't use expandable panels, embedded videos, animated GIFs etc.
 22. The product should be testable
 
 
@@ -512,5 +534,4 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 1. _{ more test cases …​ }_

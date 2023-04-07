@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with efficiently managing clients and project information**. It is optimized for use via keyboard commands that you can enter quickly and easily while displaying your data in an appealing and well-organised visual format so you can always find what you need. If you can type fast, ArB can get your client and project management tasks done faster than other applications that only use the mouse.
 
 ## **Table of Contents**
 {:toc}
@@ -13,11 +13,12 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 * [Command Syntax](#syntax)
 * [Prefixes](#prefixes)
 * [Features](#features)
-* [General Features](#general-features)
-* [Client Commands](#client-commands)
-* [Project Commands](#project-commands)
-* [Tag Commands](#tag-commands)
+  * [Client Commands](#client-commands)
+  * [Project Commands](#project-commands)
+  * [Tag Commands](#tag-commands)
+  * [General Commands](#general-commands)
 * [FAQ](#faq)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
@@ -26,18 +27,22 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 1. Download the latest `arb.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to a new folder you want to use as the _home folder_ for your ArB
+1. Copy the file into a new folder. For example, you can create a new folder in your desktop folder called `ArB` and place the file there.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. The app may contain some sample data if being opened for the first time.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal ([Windows](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/), [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Terminal%20for%20me-,Open%20Terminal,%2C%20then%20double%2Dclick%20Terminal), [Linux](https://www.makeuseof.com/how-to-open-terminal-in-linux/#:~:text=Use%20Keyboard%20Shortcuts%20to%20Open%20the%20Linux%20Terminal&text=If%20you%20are%20a%20fan,to%20fire%20up%20the%20terminal)).<br>
+   Use the [`cd` command](https://www.ibm.com/docs/en/aix/7.1?topic=c-cd-command) to navigate to the folder you placed the jar file in. Following the previous example, you can type `cd Desktop/ArB` into the command terminal.<br>
+   Then use the `java -jar arb.jar` command to run the application.<br>
+   A window similar to the below should appear in a few seconds. The app will contain some sample data if being opened for the first time.<br>
+   ![Ui](images/Ui.png)<br><br>
+   Below is the same window annotated to show what each part is for.<br>
+   ![Annotated Ui](images/UiAnnotated.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list-client` : Lists all clients.
 
-   * `list-project`: Lists all projects. 
+   * `list-project`: Lists all projects.
 
    * `add-client name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the ArB.
 
@@ -50,6 +55,52 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 ## **Detailed Setup**
 
 [To be added]
+
+--------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
+
+## **Command format**
+
+<div markdown="block" class="alert alert-info">
+
+* All command formats given in this user guide come in the form of `command-word additional-details`.
+Example: `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+
+* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+
+* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+
+* Additional details with * after them can be used multiple times, including zero times.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]*`
+
+`[tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.`
+
+* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
+Example:  `delete-client <index>`
+
+* All command-words are case-insensitive.
+
+</div>
+
+### **Prefixes**
+
+| Prefix      | Short form | Description                                        |
+|-------------|------------|----------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                             |
+| `email/`    | `e/`       | Valid email address                                |
+| `phone/`    | `p/`       | Valid phone number                                 |
+| `deadline/` | `d/`       | Valid deadline for project                         |
+| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
+| `tag/`      | `t/`       | Alphanumeric tag                                   |
+| `client/`   | `c/`       | Keywords to search for client to link to a project |
+| `option/`   | `o/`       | Valid option to sort projects with                 |
+| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
+| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
+| `status/`   | `st/`      | Valid status for finding projects                  |
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
@@ -76,97 +127,9 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 | **Sorting all Project**       | `sp`  | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Syntax**
-
-`[ACTION VERB] [options]`
-
-`<Required argument> [optional argument]`
-
-An asterisk `*` after any argument indicates that it can be entered a variable number of times. E.g. `[tag/TAG]*`
-
-All commands are case-insensitive.
-
-## **Prefixes**
-
-| Prefix      | Short form | Description                                        |
-|-------------|------------|----------------------------------------------------|
-| `name/`     | `n/`       | Name of client/project                             |
-| `email/`    | `e/`       | Valid email address                                |
-| `phone/`    | `p/`       | Valid phone number                                 |
-| `deadline/` | `d/`       | Valid deadline for project                         |
-| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
-| `tag/`      | `t/`       | Alphanumeric tag                                   |
-| `client/`   | `c/`       | Keywords to search for client to link to a project |
-| `option/`   | `o/`       | Valid option to sort projects with                 |
-| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
-| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
-| `status/`   | `st/`      | Valid status for finding projects                  |
-
-<br>
-
---------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
 ## **Features**
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add-client name/NAME`, `NAME` is a parameter which can be used as `add-client name/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as [help](#viewing-help-help), [list-client](#list-all-clients-list-client), [list-project](#listing-all-projects--list-project), [list-tag](#listing-all-tags--list-tag), [exit](#exiting-the-program--exit), [clear-client](#clearing-the-client-list--clear-client), [clear-project](#clear) and [sort-client](#sorting-all-clients--sort-client)) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Extraneous parameters for commands that take in only one parameter (such as [delete-client](#deleting-a-client--delete-client)) will be ignored.<br>
-  e.g. if the command specifices `delete-client 1 abc` it will be interpreted as `delete-client 1`.
-
-* Most commands and parameters have shorter aliases that can be used the same way, such as [list-project](#listing-all-projects--list-project) having the alias `lp` and `name/` having the alias `n/`.<br>
-  e.g. specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
-
-</div>
-
-[<small>Back to top</small>](#table-of-contents)
-
-## General features
-
-### Viewing help
-#### Format: `help`
-
-Shows a message explaining how to access the help page (this guide).
-
-![help message](images/helpMessage.png)
-
-### Exiting the program
-#### Format: `exit`
-
-Exits the program.
-
-### Saving the data
-
-ArB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-ArB's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
-</div>
 
 [<small>Back to top</small>](#table-of-contents)
 
@@ -196,7 +159,7 @@ Short form: `ac <n/NAME> [e/EMAIL] [p/PHONE] [t/TAG]*`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client, along with any number of tags to be added.
 
-Only the name of the client is compulsory. 
+Only the name of the client is compulsory.
 
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
@@ -222,7 +185,7 @@ Fields that can be changed:
 * Phone number
 * Tags
 
-Note: 
+Note:
 * Using an empty `tag/` flag removes all tags of the client. This cannot be used with any non-empty `tag/` flags e.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one field to edit must be provided.
 
@@ -266,10 +229,16 @@ Short form: `fc [n/NAME] [t/TAG]*`
 
 Finds a client based on the details provided. Details that can be supplied are the names and tags.
 
-Note: 
+Note:
 * The matching with supplied names and tags are case-insensitive.
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid names and tags will be ignored
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+
+</div>
 
 Examples:
 * `find-client name/bob tag/friend` will find any client whose name contains the word `bob` and is tagged with `friend`.
@@ -312,7 +281,7 @@ Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
-Only the name of the project is compulsory. 
+Only the name of the project is compulsory.
 
 Deadlines can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
 
@@ -320,7 +289,7 @@ Prices must be in a recognisable price format, such as `3.08` or `5`.
 
 Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
-Note: 
+Note:
 * Each tag to be added needs a separate `tag/TAG` flag.
 * Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
 * Invalid client name keywords will be ignored.
@@ -419,11 +388,17 @@ Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CL
 
 Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, price, tags, the client the project is linked to, and the status of the project.
 
-Note: 
+Note:
 * The matching with supplied names and tags are case-insensitive.
 * Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid project names, tags and linked client names will be ignored
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+
+</div>
 
 Examples:
 * `find-project name/sculpture client/alice tag/personal start/yesterday end/tomorrow price/500 status/done` will find any project whose name contains `sculpture`, is linked to a client whose name contains `alice`, is tagged `personal`, has a price of $500, is done and has a deadline that falls between yesterday and tomorrow.
@@ -441,7 +416,7 @@ Sorts all projects that exist in the ArB. Projects can be sorted via the given o
 Note:
 * Option matching is case-insensitive
 
-Examples: 
+Examples:
 * `sort-project option/name`
 * `sort-project option/n`
 * `sort-project option/deadline`
@@ -451,9 +426,23 @@ Examples:
 
 ### Linking a Project to a Client
 
-This is only applicable if the client parameter has been specified when [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
+This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
 
-ArB will display a list of clients that match the provided keywords. Entering an index specifies the client in the list to link to a project. Entering `0` will cancel the linking operation, but the previously added or edited project will remain.
+ArB will display a list of clients that match the
+keywords you provided in your command.<br>
+For example, if `add-project name/oil painting client/alice` was entered, you might see something similar to the window below.
+
+![LinkingExample](images/LinkingExample.png)
+
+To choose a client in the displayed list to link to the project, you can enter an index.<br>
+Following from the previous example, if `1` was entered, the project `oil painting` will be linked to the client `Alice Zheng`, as shown in the image below.
+
+![LinkSuccessful](images/LinkSuccessful.png)
+
+Entering `0` will cancel the linking operation, but the previously added or edited project will remain.<br>
+Following from the previous example, if `0` was entered, the project `oil painting` will still be created, but it will not be linked to any client, as shown in the image below.
+
+![LinkingCancelled](images/LinkingCancelled.png)
 
 Examples:
 * `1` links the 1st client in the shown list of clients
@@ -468,10 +457,46 @@ Short form: `lt`
 
 Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
+## General commands
+
+### Viewing help
+#### Format: `help`
+
+Shows a message explaining how to access the help page (this guide).
+
+![help message](images/helpMessage.png)
+
+### Exiting the program
+#### Format: `exit`
+
+Exits the program.
+
+### Saving the data
+
+ArB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+ArB's data is saved as a [JSON file](https://docs.fileformat.com/web/json/) named `arb.json`, found in a folder named `data`, as shown in the image below.
+
+![DataFileLocation](images/DataFileLocation.png)
+
+Advanced users are welcome to update data directly by editing the JSON file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous artistic addressbook home folder.
+**A**: [Install](#quick-start) the app in the other computer and overwrite the empty JSON file it creates with the JSON file that contains your previous data.
+
+**Q**: I can't seem to find what I want using the `find commands`. What can I do?<br>
+**A**: Here are some tips for when you can’t find what you’re looking for:
+* If too many results are shown, you can provide more parameters to narrow down the search scope.
+* If what you’re looking for is not among the results shown, you can provide fewer parameters to broaden the search scope.
+

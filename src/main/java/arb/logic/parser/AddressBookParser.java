@@ -36,6 +36,7 @@ import arb.logic.parser.project.AddProjectCommandParser;
 import arb.logic.parser.project.DeleteProjectCommandParser;
 import arb.logic.parser.project.EditProjectCommandParser;
 import arb.logic.parser.project.FindProjectCommandParser;
+import arb.logic.parser.project.LinkProjectToClientCommandParser;
 import arb.logic.parser.project.MarkProjectCommandParser;
 import arb.logic.parser.project.SortProjectCommandParser;
 import arb.logic.parser.project.UnmarkProjectCommandParser;
@@ -55,7 +56,7 @@ public class AddressBookParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -107,6 +108,17 @@ public class AddressBookParser {
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Parses user input into an index for a {@code LinkProjectToClientCommand}.
+     *
+     * @param userInput full user input string
+     * @return LinkProjectToClientCommand based on the inputted index
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    public Command parseIndex(String userInput) throws ParseException {
+        return new LinkProjectToClientCommandParser().parse(userInput);
     }
 
     public static boolean isCommandWord(Set<String> commandWords, String commandWord) {
