@@ -35,7 +35,7 @@ public class HelpMenuTest {
     void displayHelpMenu_checkCorrectOutput_success() {
         String expected = "Type 'help COMMAND' to see specific help for a command."
                 + System.lineSeparator()
-                + "Commands Available: add, edit, dec, inc, delete, find, list, expiry, "
+                + "Commands Available: add, edit, dec, inc, delete, find, list, expiry, view, "
                 + "tag, untag, delbytag, listbytag, createtag, deltag, listtag, clear, help, exit";
         String actual = HelpMenu.displayHelpMenu();
         assertEquals(expected, actual);
