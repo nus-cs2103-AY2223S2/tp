@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Income {
-    public static final String MESSAGE_CONSTRAINTS = 
+    public static final String MESSAGE_CONSTRAINTS =
             "Incomes can take any integer values, and it should not be blank and less than 2^64";
 
     public final Long income;
