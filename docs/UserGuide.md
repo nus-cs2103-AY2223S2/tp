@@ -106,7 +106,7 @@ Salespeople managing client contacts who prefer a CLI
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   <br>
 
- - Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
+- Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
 
 </div>
 
@@ -183,7 +183,6 @@ Note that the lead status of the person is not available for editing here. Modif
 should be done via the `status` command.
 
 Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
-
 
 - Edits the person at the specified required `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -421,12 +420,12 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 ## Command summary
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                          |
-|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [status]` <br> e.g., `sort name`                                                                                                                                            |
+| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [status]` <br> e.g., `sort name`                                                                                                                                                     |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                       |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                                   |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |     
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |
 | **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                 |
 | **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
 | **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                                       |
