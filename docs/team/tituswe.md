@@ -10,8 +10,8 @@ Advis.io (AIO) is a all-in-one solution for financial advisors with problems man
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to select client
-  * What it does: allows the user to select a client and display his or her information with their relevant policies on the UI panel. 
-  * Justification: It is neater to be able to view the specific client information that you are interested in only. 
+  * What it does: allows the user to select a client and display his or her information with their relevant policies on the UI panel.
+  * Justification: It is neater to be able to view the specific client information that you are interested in only.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tituswe&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 
