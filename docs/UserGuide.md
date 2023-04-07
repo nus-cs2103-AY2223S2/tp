@@ -5,16 +5,18 @@ title: User Guide
 
 ![Ui](images/Logo.png)
 
-Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers,
-we know that freelancing can be both rewarding and challenging. As freelancers ourselves, we understand the unique
-obstacles and opportunities that come with freelancing. That's why we created Paidlancers – a desktop app
-designed to help you streamline your freelancing event management tasks.
+Welcome to the Paidlancers User Guide! This user guide is targeted towards freelancers who are new to using Paidlancers
+or freelancers who need a reference guide to help them achieve the full potential of Paidlancers.
+
+We're really thrilled to have you here! At Paidlancers, we know that freelancing can be both rewarding and challenging.
+As freelancers ourselves, we understand the unique obstacles and opportunities that come with freelancing. That's why we
+created Paidlancers – a desktop app designed to help you streamline your freelancing event management tasks.
 
 ## Introducing Paidlancers
 
 Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line
-Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
+Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Paidlancers is optimised for fast
+typists to get event management tasks done faster than traditional GUI apps!
 
 This user guide will help you get up to speed in no time!
 
@@ -39,7 +41,7 @@ This user guide will help you get up to speed in no time!
     * [Unmark an Event](#unmark-event)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
-    * [Saving data](#saving-data)
+    * [Save data](#save-data)
 <!-- 
     </details> -->
 - [FAQ](#faq)
@@ -94,8 +96,10 @@ The UI is split into 4 main parts
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    * If you think that you have Java installed. you can input command `java -version` into the command terminal to display current version of java installed.
-      * If the command is not recognized, you can install Java `11` from this link [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+    * If you think that you have Java installed. you can input command `java -version` into the command terminal to
+   display current version of java installed.
+      * If the command is not recognized, you can install Java `11` from this link
+      [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
       * Any version that is under the Java version `11` will work. (E.G. `11.0.1`, `11.1.5`).
     * Mac Users are encouraged to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
@@ -103,11 +107,19 @@ The UI is split into 4 main parts
 
 2. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
+3. Copy the file to the folder you want to use as the _main folder_ for Paidlancers. (Do note that the application will
+create other folders and files in this folder as well.)
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
-   - A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open Terminal / Command Prompt, `cd <foldername>` to into the folder you put the jar file in, and use the `java -jar
+Paidlancers.jar` command to run the application.<br>
+   - A GUI similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+A command prompt is a text-based interface in which you can enter commands to interact with your computer. It's a way to
+give your computer specific instructions by typing commands into a text field rather than using a graphical user
+interface (GUI) with icons and menus!
+</div>
 
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
@@ -130,7 +142,10 @@ The UI is split into 4 main parts
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
-Adds a new contact.
+This command allows you to add client contacts.
+
+You can add the contacts of your clients to the contact list so that you can easily refer to them when you are
+viewing events.
 
 **Format**: `newcontact n/NAME p/NUMBER`
 
@@ -164,7 +179,10 @@ After adding Deborah Tan into the contact list
 
 ### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
-Clears all events in Paidlancers.
+This command will clear all events in Paidlancers.
+
+You may wish to use this command to clear all events and contacts in Paidlancers
+once you get familiarized with Paidlancers!
 
 **Format**: `clear`
 
@@ -175,7 +193,9 @@ Please be careful when using this command.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
-Adds a new event.
+This command will add a new event into Paidlancers.
+
+You may wish to use this command to add new events into Paidlancers.
 
 **Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 - Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and optionally `TAGS`.
@@ -197,7 +217,7 @@ Adds a new event.
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
-Deletes the specified event.
+You can delete specified events in Paidlancers.
 
 **Format**: `delete INDEX`
 
@@ -224,7 +244,9 @@ After deleting 2nd event
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
-Edits the specified event from the event book.
+This command allows you to edit the existing events in Paidlancers.
+
+This command is helpful if you have made any mistakes when creating the event.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
@@ -236,9 +258,8 @@ Edits the specified event from the event book.
 - The `INDEX` must be below 1,000,000.
 - `[]` are optional parameters.
 - At least one of the optional fields must be provided.
-- Edits will replace existing values, edits are not cumulative.
 - Tags can be removed by typing `t/` without specifying any tags after it.
-- Existing tags will also be removed when editing editing tags, it will be necessary to input all the existing tags during the edit.
+- Existing tags will be removed when editing tags, it will be necessary to input all the existing tags during the edit.
 - Do note that `edit` is only for editing the event details, not the contact details.
 - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
@@ -271,14 +292,16 @@ After editing 1st event to Wedding Dinner Photography at Carlton Hotel ballroom
 
 ### Exit application: `exit` <a id = "exit-application"></a>
 
-Closes Paidlancers.
+This command will close Paidlancers! Alternatively, you may wish to exit through the close button on your application!
 
 **Format**: `exit`
 
 
 ### Find Event: `find` <a id = "find-event"></a>
 
-Finds event(s) from the event book based on the given search string.
+This command will find event(s) from the event book based on the given search string.
+
+You can use this command to search through the event list.
 
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -298,7 +321,9 @@ Finds event(s) from the event book based on the given search string.
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-Links a client contact to an event.
+This command will link a client contact to an event.
+
+You may wish to link a contact to an event if you have already added the contact to Paidlancers.
 
 **Format**: `linkcontact INDEX PHONE`
 
@@ -332,7 +357,9 @@ Displays all events.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Marks a specified event in Paidlancers as done.
+This command marks a specified event in Paidlancers as done.
+
+You may wish to indicate that an event has been completed using this command!
 
 **Format**: `mark INDEX`
 
@@ -360,7 +387,9 @@ After marking 1st event
 
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
-Unmarks a specified event in Paidlancers.
+This command unmarks a specified event in Paidlancers.
+
+You may wish to undo the mark command using this!
 
 **Format**: `unmark INDEX`
 
@@ -393,6 +422,8 @@ Displays the total revenue based on all the events marked as done.
 
 Displays events that start within a specified number of days.
 
+You may wish to use this command to find out the events that are coming up soon!
+
 **Format**: `remind DAYS`
 
 - Displays events that start within the specified number of `DAYS`
@@ -414,7 +445,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-### Saving data: <a id = "saving-data"></a>
+### Save data: <a id = "save-data"></a>
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
@@ -424,9 +455,9 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?
-1. Follow the quickstart guide until step 3.
-2. In the same _home folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
-   - Your _home folder_ should contain the following files and folders:
+1. Follow the [quickstart](#quick-start) guide until step 3.
+2. In the same _main folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
+   - Your _main folder_ should contain the following files and folders:
     ```
        Paidlancers.jar
        data/
@@ -453,7 +484,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |          [Unmark an Event](#unmark-event)          |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
 |     [View Total Revenue](#view-total-revenue)      |                                   `revenue`                                   |                                                       `revenue`                                                       |
 |   [View Upcoming Events](#view-upcoming-events)    |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
-|            [Saving data](#saving-data)             |                                      NIL                                      |                                                          NIL                                                          |
+|              [Save data](#save-data)               |                                      NIL                                      |                                                          NIL                                                          |
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
