@@ -44,11 +44,12 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
    9. [Requesting for help](#requesting-for-help)
    10. [Exiting the program](#exiting-program)
    11. [Saving data](#saving-data)
+   
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements** <a name="acknowledgements"></a>
 
-* The skeleton implementation of the [doughnut chart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in the [Degree Progress Section](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
+* The skeleton implementation of [DoughnutChart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in [ProgressSection](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
 
 [Back to Table of Contents](#toc)
 
@@ -960,7 +961,7 @@ For more details regarding the usage, refer to [Sort modules](UserGuide.md#sort-
 
 ### Toggling between Degree Progress and Module List screens <a name="toggling-screens"></a>
 Command: `view`<br>
-For more details regarding the usage, refer to [Toggle between Degree Progress and Module List screens](UserGuide.md#change-view)
+For more details regarding the usage, refer to [Toggle between Degree Progress and Module List screens](UserGuide.md#change-view).
 
 1. Test case: `view modules`<br>
    Expected: The right panel of the GUI will be switched to the Module List Section, if it is not already active. All modules tracked by the app will be displayed. The way the modules are sorted will be unchanged. Modules are sorted according to year by default.
@@ -971,7 +972,7 @@ For more details regarding the usage, refer to [Toggle between Degree Progress a
 
 ### Requesting for help <a name="requesting-for-help"></a>
 Command: `help`<br>
-For more details regarding the usage, refer to <TO ADD LINK TO UG>.
+For more details regarding the usage, refer to (TO ADD LINK TO UG).
 
 1. Test case: `help`<br>
    Expected: A response message showing a list of help commands will be displayed on the command screen.
@@ -999,7 +1000,8 @@ For more details regarding the usage, refer to [Exit MODTrek](UserGuide.md#exit-
       * Make any other illogical or nonsensical change to the file.
 
    3. Re-open `modtrek.jar` again. Expected: MODTrek will start with a clean slate, with an empty module list. 
-
+   
+<br>
 
 2. Dealing with missing data files
    1. Test case: Delete the `data/degreeprogression.json` file.<br>
