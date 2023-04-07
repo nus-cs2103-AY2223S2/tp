@@ -110,6 +110,7 @@ List of commands:
     - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
     - [Editing a course: ](#editing-a-course-edit-course) `edit course`
     - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
+    - [Finding a course: ](#finding-a-course-find-course) `find course`
 - [Group Page Commands: ](#group-page-commands)
     - [Adding a group: ](#adding-a-group-add-group) `add group`
     - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
@@ -117,6 +118,7 @@ List of commands:
     - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
     - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
     - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
+    - [Finding a group: ](#finding-a-group-find-group) `find group`
 - [Students Page Commands: ](#students-page-commands)
     - [Adding a student: ](#adding-a-student-add-student) `add student`
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
@@ -133,6 +135,7 @@ List of commands:
     - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
     - [Editing a session: ](#editing-a-session-edit-session) `edit session`
     - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
+    - [Finding a session: ](#finding-a-session-find-session) `find session`
 - [Attendance Page Commands: ](#attendance-page-commands)
     - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
     - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
@@ -142,6 +145,7 @@ List of commands:
     - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
     - [Editing a task: ](#editing-a-task-edit-task) `edit task`
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
+    - [Finding a task: ](#finding-a-task-find-task) `find task`
 - [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 
@@ -353,6 +357,24 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a course: `find course`
+
+Finds course(s) that contains any of the given keywords(s) in the module code.
+
+Format:
+```
+find course <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find course CS2103T` and `find course cs2103t` will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find course CS` returns `CS2103T`, `CS2101`.
+- `find course 03` returns `CS2103T`.
+
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Group Page Commands
@@ -420,7 +442,6 @@ Examples:
 [Back to list of commands](#commands)
 
 
-
 ### Selecting a group: `select`
 
 Selects an existing group to display its corresponding Student Page.
@@ -465,6 +486,23 @@ task <INDEX>
 
 Examples:
 - `task 1` will return a list of tasks for the first group.
+
+[Back to list of commands](#commands)
+
+### Finding a group: `find group`
+
+Finds group(s) that contains any of the given keywords(s) in the group name.
+
+Format:
+```
+find group <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find group T15` and `find group t15` will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find group 15` returns `T15`.
 
 [Back to list of commands](#commands)
 
@@ -564,6 +602,7 @@ find student <KEYWORD> [<MORE_KEYWORDS>]
 
 - You can find students using either `name` or `student ID` for the keyword(s).
 - Keywords are separated by spaces.
+- This command is key-insensitive.
 
 Examples:
 - `find student John` returns `John`.
@@ -760,6 +799,24 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Finding a session: `find session`
+
+Finds session(s) that contains any of the given keywords(s) in the session name.
+
+Format:
+```
+find session <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find session tutorial1` and `find session Tutorial1` 
+will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find session 1` returns `Tutorial1` and `Lab1`.
+
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Attendance Page Commands
@@ -889,6 +946,24 @@ select <INDEX>
 
 Examples:
 - `select 1` will return a list of students who was assigned the first task on the list.
+
+[Back to list of commands](#commands)
+
+### Finding a task: `find task`
+
+Finds task(s) that contains any of the given keywords(s) in the task name.
+
+Format:
+```
+find task <KEYWORD> [<MORE_KEYWORDS>]
+```
+
+- This command is case-insensitive. (e.g. `find task op1` and `find task OP1`
+  will give you the same result)
+- Keywords are separated by spaces.
+
+Examples:
+- `find task 1` returns `OP1` and `Critical Reflection 1`.
 
 [Back to list of commands](#commands)
 
