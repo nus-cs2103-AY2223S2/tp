@@ -1482,10 +1482,14 @@ have been finalised.
 
 ### Make prefixes for commands case-insensitive
 **Problem:**
-Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/Golang T/c++` will add an internship entry with company name
+Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
-   and tag `Golang T/c++`.
+   and tag `javascript T/react`.
   Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
+
+![ViewSequenceDiagram](images/dg-case-sensitive-prefix-add-example.png)
+
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
 
 Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
 
@@ -1493,14 +1497,36 @@ We originally intended for this design to allow maximum flexibility for the user
 
  For example, using the `find` command, `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
 
+![ViewSequenceDiagram](images/dg-case-sensitive-find-before.png)
+
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+
+![ViewSequenceDiagram](images/dg-case-sensitive-find-after.png)
+
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+
 There could be another conflicting meaning of the command. In this case, `find t/javascript t/react` tries to find "numbers" or "cheese". but the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
-**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 c/Considering to apply t/Payment` should have the same result as `add N/Visa r/Software Engineer s/New D/2023-03-01 c/Considering to apply t/Payment`, where `n/` and `N/` both refer to the company name field, and `d/` and `D/` both refer to the date field. A new internship entry will be successfully added. The new internship entry will have company name
-   `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, comment `Considering to apply`,
-   and tag `Payment`. The View Panel displays the information for this new internship entry, and a success
+**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. A new internship entry will be successfully added. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
    message is displayed in the Result Display.
 
+
+![ViewSequenceDiagram](images/dg-case-sensitive-prefix-tag.png)
+
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+<p style="text-align: center;">Figure XX: The parser checks for both lowercase prefix and uppercase prefix</p>
+
 This would address the above problem. For example, `find t/javascript t/react` should have the same result as `find T/javascript T/react`. This would remove the confusion as substrings such as `T/` cannot be entered in any of the fields. 
+
+<br/>
+
 ### Integer overflow causes wrong error message
 **Problem:**
 There are currently 4 types of commands that require internship indexes: `edit`, `view` `copy` and `delete-index`.
