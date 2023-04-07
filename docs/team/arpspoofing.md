@@ -46,15 +46,25 @@ Given below are my contributions to the project.
     * Managed releases `v1.3 Trial` - `v1.3.1` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+    * Changed the GUI from list view to table view (Pull requests [\#59](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/59), [\#61](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/61), [\#67](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/67), [\#70](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/70))
+    * Ensured the color and display of the tableview suits the theme (Pull requests  [\#174](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/174))
+    * Created GUI for tutorials, events and consultation
+    * Add photos to students gui
+    * Improved gui of search bar, and TrAcker logo
+    * Improved gui with tabs navigation
+    * Improved gui with icons in events tab
+  
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `touch`, `vim`, `mkdir`, `editEvent`, `rm`, `delete`
+        * Ensured documentation has enough visuals.
+        * Ensured documentation has a command summary.
+        * Added table of contents to documentation.
+        * Ensured examples are correct.
+        * Ensured formatting of different command sections are consistent.
+        * Added icons such as warning, information, and bulb to the documentation to improve readability.
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `touch`,`vim`, `mkdir`, `editEvent`, `rm`, `delete` features.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
@@ -63,7 +73,6 @@ Given below are my contributions to the project.
     * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
 * **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * JavaFX TableView
+    * JavaFX ImageView
+    * JavaFX ListView
