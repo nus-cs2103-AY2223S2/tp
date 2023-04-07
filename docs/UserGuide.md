@@ -43,8 +43,8 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
 <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
 <br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds. 
 <br><i>Note how the app contains some sample data.</i>
-5. You will start on the `Course page` (Refer to [<i>Figure 2</i>](#navigation-guide) below for the Navigation Guide).
-6. Type your command in the command box (Refer to [<i>Figure 1</i>](#introduction) above for the Visual Guide) and press Enter/Return to execute it.
+5. You will start on the `Course page` (Refer to [<i>Figure 3</i>](#navigation-guide) below for the Navigation Guide).
+6. Type your command in the command box (Refer to [<i>Figure 2</i>](#visual-guide) below for the Visual Guide) and press Enter/Return to execute it.
 <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
     <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
@@ -57,14 +57,39 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
 
 --------------------------------------------------------------------------------------------------------------
 
+## Visual Guide
+
+Look through the visual guide before you get started. It will provide you with a clear and easy-to-follow overview 
+of the basic elements and features of the product's interface, making it easier for you to navigate and use the 
+product effectively.
+
+![image](./images/visualguide.png)
+###### Figure 2
+
+1. Clickable File and Help Tabs
+   * You can manually exit the app with your mouse by clicking `File>Exit` or open the 
+   help window with `Help>Help`.
+2. Navigation Route
+   * You can view what courses and groups you have selected, and what page you are currently on here.
+3. Navigation Tabs
+   * Compared to the Navigation Route, the Navigation Tabs give you a quick overview on what type of page you are currently on. 
+   * Refer to the [<i>Figure 3</i>](#figure-3) below for the Navigation Guide on the different pages in CLIpboard.
+4. Command Box
+   * Here is where you will type in your commands.
+5. Log Box
+   * Clipboard will give you feedback on whether or not your command was successful here.
+   * Help messages on the valid arguments of the command you are typing will also appear here if your command has failed.
+
+--------------------------------------------------------------------------------------------------------------
+
 ## Navigation Guide
 
 Moving between pages is easy with our navigation tools.
 Simply use a combination of `select`, `back`, `session`, and `task` commands.
 If you need more information on how to use these commands, just refer to our handy navigation guide below.
 
-![image](./images/navigation.png 'Navigation Image')
-###### Figure 2
+![image](./images/navigation.png)
+###### Figure 3
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -250,7 +275,7 @@ exit
 
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
-###### Figure 3
+###### Figure 4
 
 
 ### Adding a course: `add course`
@@ -263,7 +288,7 @@ add course <COURSE>
 ```
 
 - Adding a course with the same module code is not allowed.
-    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message.
+    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message inside the log box.
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
 e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
@@ -332,7 +357,7 @@ Examples:
 
 ## Group Page Commands
 ![image](./images/UiGroupPage.png)
-###### Figure 4
+###### Figure 5
 
 ### Adding a group: `add group`
 
@@ -345,7 +370,7 @@ add group <GROUP>
 
 - Adding a group with the same group name is not allowed.
     - For example, if a group with group name `T15` already exists in CLIpboard, 
-  entering `add group T15` will display an error message.
+  entering `add group T15` will display an error message inside the log box.
 
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
@@ -447,7 +472,7 @@ Examples:
 
 ## Students Page Commands
 ![image](./images/UiStudentPage.png)
-###### Figure 5
+###### Figure 6
 
 
 ### Adding a student: `add student`
@@ -460,7 +485,7 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
 - Adding a student with the same student ID is not allowed.
-    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
+    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message inside the log box.
 
 Examples:
 - `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
@@ -569,7 +594,7 @@ Examples:
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
-###### Figure 6
+###### Figure 7
 
 Select a particular student and display his / her particulars.
 
@@ -644,7 +669,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
-###### Figure 7
+###### Figure 8
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -663,7 +688,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
-###### Figure 8
+###### Figure 9
 
 ### Adding a session: `add session`
 
@@ -676,7 +701,7 @@ add session <SESSION>
 
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
-      entering `add session Tutorial1` will display an error message.
+      entering `add session Tutorial1` will display an error message inside the log box.
     - Note: whitespaces are not allowed in session names.
 
 Examples:
@@ -739,7 +764,7 @@ Examples:
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
-###### Figure 9
+###### Figure 10
 
 ### Marking selected students as present: `mark`
 
@@ -782,7 +807,7 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
-###### Figure 10
+###### Figure 11
 
 Format: 
 ```
@@ -795,7 +820,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
-###### Figure 11
+###### Figure 12
 
 ### Adding a task: `add task`
 
@@ -808,7 +833,7 @@ add task <TASK NAME>
 
 - Adding a task with the same task name is not allowed.
     - For example, if a task with name `OP1` already exists in CLIpboard,
-      entering `add task OP1` will display an error message.
+      entering `add task OP1` will display an error message inside the log box.
 
 Examples:
 - `add task OP3`
@@ -871,7 +896,7 @@ Examples:
 
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
-###### Figure 12
+###### Figure 13
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
