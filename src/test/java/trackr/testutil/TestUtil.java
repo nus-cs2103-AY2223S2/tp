@@ -19,6 +19,8 @@ import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -190,6 +192,16 @@ public class TestUtil {
 
         @Override
         public void sortFilteredOrderList(Comparator<Order> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ItemProfit getTotalProfits() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ItemSellingPrice getTotalSales() {
             throw new AssertionError("This method should not be called.");
         }
     }

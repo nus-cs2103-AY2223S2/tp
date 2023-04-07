@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -131,4 +133,12 @@ public interface Model {
      * Returns an unmodifiable view of the filtered Menu Item list
      */
     ObservableList<MenuItem> getFilteredMenu();
+
+    // ===================================================== Calculation ========================================
+
+    /** Returns cumulative profits */
+    ItemProfit getTotalProfits();
+
+    /** Returns cumulative sales/ revenue */
+    ItemSellingPrice getTotalSales();
 }

@@ -93,6 +93,7 @@ You can click on any of the links below to navigate to the respective sections f
 ### 1.1.1 Java
 
 Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)</ins> or above installed.
+Java is the language that your computer uses to understand Trackr.
 
 <div markdown="block" class="alert alert-tip">
 
@@ -130,7 +131,7 @@ An example is shown below.
 
 ## 1.2 Installation
 
-**Step 1.** Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
+**Step 1.** Download the latest `trackr.jar` file from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
 
 **Step 2.** Copy the file to the folder where you will use Trackr.
 
@@ -209,7 +210,7 @@ You can try the following commands to add a task:
 * `tab t/TASKS`
 * `add_task n/Buy eggs d/12/12/2040`
 
-**Step 2:** Observe the changes made to the Task list, with the command success message shown inside the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
+**Step 2:** Observe the changes made to the Task list. Look at the message displayed inside the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span> to see the results of your command.
 
 <div markdown="block" class="alert alert-tip">
 
@@ -233,7 +234,8 @@ If there is an error with the command, the input would turn **<span style="color
 
 Command result screen shows the success message for your command that executed successfully.
 
-Otherwise, it would show an error message with hints on what needs to be fixed in the command that you have entered.
+Otherwise, it would show an error message with hints on what was missing / invalid in the command that you have entered.
+Refer to the error message or look back at this User Guide for more information on how to correct your command input. 
 
 **<span style="background-color:rgba(252.4, 248.4, 124.1, 1)">Tabs</span>**
 
@@ -241,7 +243,7 @@ We provide multiple tabs for you to use. This includes the home page, with the d
 
 You can navigate between them by clicking on the tab itself, or input the command `tab t/` followed with the respective tab name.
 
-For more information, you can go [here](#281-switching-tabs-tab).
+For more information about the `tab` command, you can go [here](#281-switching-tabs-tab).
 
 ### 1.4.1 Home Page
 
@@ -409,12 +411,12 @@ Menu Item Card consists of the following components:
 Duplicate data are not allowed. Hence, adding of duplicate data or editing of an existing data such that it matches
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
-| Any two    | are considered to be duplicated if                                          | 
-|------------|-----------------------------------------------------------------------------| 
-| Suppliers  | they have the same phone numbers                                            |
-| Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
-| Tasks      | they have the same task names (case-insensitive) and deadlines.             |
-| Menu items | they have the same item names (with matching cases).                        |
+| Any two     | are considered to be duplicates if                                          |
+|-------------|-----------------------------------------------------------------------------| 
+| Suppliers   | they have the same phone numbers                                            |
+| Orders      | all the parameters (excluding `STATUS`) are the same (with matching cases). |
+| Tasks       | they have the same task names (case-insensitive) and deadlines.             |
+| Menu items  | they have the same item names (with matching cases).                        |
 
 ## 2.1 Add
 
@@ -470,7 +472,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `D` or `d` for `Delivered`
 * A status must be provided.
 
-* All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu.<br>
+* All `ORDER_ITEM` **must** match (case-sensitive) a menu item in the menu. (e.g. `choclate` and `Chocolate` are considered different items).<br>
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
   You can find out how to add a menu item [here](#214-adding-a-menu-item-add_item)
 
@@ -556,10 +558,15 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
      :heavy_check_mark: `5.1` or `5.03`<br>
      :x: `5.034`
-  
-* The item can have a positive or negative profit margin (Profit Margin = Price - Cost). Specifically:
+
+* The item can have a positive or negative profit (Profit = Price - Cost). Specifically:
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
+* Note that profit calculated is only accurate when price and cost each have at most 16 digits.
+  * For example: 9283212222332323 and 92832122223323.55 are both 16 digits.
+* You cannot add an item if there is another item that has the same name in the menu. The item name is case-sensitive.
+  * For example, chocolate and Chocolate are considered as different item.
+
 
 
 </div>
@@ -655,11 +662,14 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
 
 :information_source: **Information**
 
+* If a menu item is no longer your menu (i.e. you have deleted the menu item), the order details cannot be edited.
+
 * Statuses available for setting are
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
-* When editing the order name, it must be an existing item in the menu.
+* When editing the order name, the input for order name is case-sensitive.
+  * For example, if menu item you want edit order name to "chocolate", you should input `edit_o 1 on/chocolate` and not `edit_o 1 on/ChOcolAte`
 
 </div>
 
@@ -736,6 +746,9 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 * The item can have a positive or negative profit margin (Profit Margin = Price - Cost). Specifically:
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
+* Note that profit calculated is only accurate when price and cost each have at most 16 digits.
+  * For example: 9283212222332323 and 92832122223323.55 are both 16 digits.
+
 
 </div>
 
