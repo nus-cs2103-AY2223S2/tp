@@ -299,10 +299,13 @@ Only the following values are allowed:
 
 * `ALL` - all groups of the requirement set must be present to pass.
   * **Example**: a vaccination requirement of `G1, G2, G3` will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
+  * Displayed as a blue tag (<span class="tag tag-all">ALL</span>).
 * `ANY` - at least one group within the requirement set must be present to pass.
   * **Example**: a vaccination requirement of `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
+  * Displayed as a green tag (<span class="tag tag-any">ANY</span>).
 * `NONE` - none of the groups within the requirement set must be present to pass.
-  * **Example** a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
+  * **Example**: a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
+  * Displayed as a red tag (<span class="tag tag-none">NONE</span>).
 
 ## Components
 
