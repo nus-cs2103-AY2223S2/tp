@@ -1038,6 +1038,26 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding an application
+
+Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+
+1. Adding an application to sprINT
+
+    1. Prerequisites: sprINT's main window is launched and opened.
+
+    2. Test case: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+        Expected: A new application is added to sprINT. Details of the newly added application shown in the status message.
+
+    3. Test case: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+       Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
+   `INDEX` parameter. Error details shown in the status message.
+   
+   4. Test case: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
+        Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
+   from the command. `Company Email` is a compulsory input parameter for the add application command.
+
+
 ### Finding an application
 
 1. Finding an application while all applications are being shown.
@@ -1159,6 +1179,37 @@ in the **default order**, meaning the order in which they were added. (i.e., mor
    
    2. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
+
+
+### Deleting all applications
+Before each test scenario, execute `list` beforehand and take note of the **original full list of applications**. If your original list is empty, 
+please add dummy applications by executing the `add-app` command.
+
+1. Clearing all applications 
+   1. Prerequisites: There is **at least 1** application present in sprINT.
+   2. Test case: `clear` <br>
+      Expected: All applications in sprINT will be deleted. 
+   3. Test case: `clear [keyword]`, where keyword can be any combination of characters. <br>
+      Expected: All applications in sprINT will be deleted. By default, only the first expression in the input is recognised
+   as the command. In this case, it is `clear`.
+   4. Test case: `clear1234`. <br>
+      Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
+   Error message `Unknown command` will be displayed in the status message.
+
+
+### Exiting sprINT
+Before each test scenario, ensure that sprINT application is launched and opened on your device.
+
+1. Exiting sprINT
+    1. Prerequisites: sprINT's main window is launched and opened.
+   2. Test case: `exit` <br>
+      Expected: The sprINT application will close.
+   3. Test case: `exit [keyword]`, where keyword can be any combination of characters. <br>
+      Expected: The sprINT application will close. By default, only the first expression in the input is recognised as the command. In this case,
+   it is `exit`.
+   4. Test case: `exit1234`. <br>
+      Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
+    Error message `Unknown command` will be displayed in the status message.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
