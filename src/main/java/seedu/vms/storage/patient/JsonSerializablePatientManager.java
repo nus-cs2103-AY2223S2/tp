@@ -61,8 +61,9 @@ public class JsonSerializablePatientManager {
             try {
                 patientManager.add(patientData);
             } catch (LimitExceededException limitEx) {
-                // TODO: better message
                 throw new IllegalValueException("ID limit reached");
+            } catch (IllegalArgumentException illArgEx) {
+                throw new IllegalValueException(illArgEx.getMessage());
             }
         }
         return patientManager;
