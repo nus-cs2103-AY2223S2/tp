@@ -207,8 +207,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getProjectsContent() {
-        return addressBook.getProjectsContent();
+    public int noProjectSize() {
+        return addressBook.noProjectSize();
+    }
+
+    @Override
+    public int noOverdueProjects() {
+        return addressBook.noOverdueProjects();
+    }
+
+    @Override
+    public int noDoneProjects() {
+        return addressBook.noDoneProjects();
+    }
+
+    @Override
+    public int noNotDoneProjects() {
+        return addressBook.noNotDoneProjects();
     }
 
     @Override
