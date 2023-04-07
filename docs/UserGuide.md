@@ -333,7 +333,7 @@ Examples:
 * `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
 * `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find`
 command.
-* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+* `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
 
 * `list` followed by `delete 2 3` deletes the second and third cases in DengueHotspotTracker.
 
