@@ -18,7 +18,7 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 -------------------------------------
 - If you are running _Ez-Schedule_ for the first time, please refer to our [Quick Start](#quick-start) guide.
 - If you are learning how to use _Ez-Schedule_, please refer to our [Commands](#commands) section for a detailed guide.
-- If you are interested in contributing to this project, please check out our [Developer Guide](https://ay2223s2-cs2103-w17-3.github.io/tp/DeveloperGuide.html).
+- If you are interested in contributing to this project, please check out our [Developer Guide](DeveloperGuide.md).
 - If you are an experienced user, you may find the [Command Summary](#command-summary) helpful as it provides a summarized table of all
   the available commands.
 
