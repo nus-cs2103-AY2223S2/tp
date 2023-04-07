@@ -550,6 +550,8 @@ Want to find people with certain qualities? Use find command to find people that
 - At least one of the optional fields must be provided.
 - All constraints are case-insensitive.
 
+<div style="page-break-after: always;"></div>
+
 `find [OPTIONAL/PARAMETER]...`<br>
 **Acceptable Parameters used as Constraints**
 * n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
