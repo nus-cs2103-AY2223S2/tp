@@ -544,6 +544,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Planned Enhancement
 1. Upgrade the View Display into a ScrollPane to accommodate more parcels being added.
 2. Wrapping the text in View Display to allow for more extreme inputs.
+3. Ability to remove individual parcel from a delivery.
+4. Ability to edit individual parcel from a delivery.
+5. Ability to unmark a parcel status.
 
 ### Glossary
 
