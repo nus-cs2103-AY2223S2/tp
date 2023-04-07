@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
@@ -34,7 +35,9 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS, originalTask, newTask);
         Model expectedModel = model.copy();
-        expectedModel.getCurrentSelection().getSelectedGroup().setTask(originalTask, newTask);
+
+        Group selectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
+        selectedGroup.setTask(selectedGroup.getUnmodifiableTaskList().get(INDEX_FIRST.getZeroBased()), newTask);
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
 
