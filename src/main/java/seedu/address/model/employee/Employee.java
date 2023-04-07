@@ -126,19 +126,6 @@ public class Employee {
     }
 
     /**
-     * Returns true if both employees have the same employee ID.
-     * This defines a weaker notion of equality between two employees.
-     */
-    public boolean isSameEmployeeID(Employee otherEmployee) {
-        if (otherEmployee == this) {
-            return true;
-        }
-
-        return otherEmployee != null
-                && otherEmployee.getEmployeeId().equals(getEmployeeId());
-    }
-
-    /**
      * Returns true if both employees have the same name, phone and email.
      */
     public boolean isSameEmployee(Employee otherEmployee) {
@@ -172,13 +159,18 @@ public class Employee {
                 && otherEmployee.getEmail().equals(getEmail())
                 && otherEmployee.getAddress().equals(getAddress())
                 && otherEmployee.getDepartment().equals(getDepartment())
+                && otherEmployee.getPayroll().equals(getPayroll())
+                && otherEmployee.getLeaveCounter().equals(getLeaveCounter())
+                && otherEmployee.getDateOfBirth().equals(getDateOfBirth())
+                && otherEmployee.getDateOfJoining().equals(getDateOfJoining())
                 && otherEmployee.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, employeeId, phone, email, address, department, tags);
+        return Objects.hash(name, employeeId, phone, email, address, department, payroll, leaveCounter,
+                dateOfBirth, dateOfJoining, tags);
     }
 
     @Override
@@ -194,7 +186,17 @@ public class Employee {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Department: ")
-                .append(getDepartment());
+                .append(getDepartment())
+                .append("; Salary: ")
+                .append(getPayroll().getSalary())
+                .append("; Day of payment: ")
+                .append(getPayroll().getDayOfPayment())
+                .append("; Leave count: ")
+                .append(getLeaveCount())
+                .append("; Date of Birth: ")
+                .append(getDateOfBirth())
+                .append("; Date of Joining: ")
+                .append(getDateOfJoining());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
