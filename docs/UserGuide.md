@@ -57,7 +57,7 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
 4. Open the `medimeet.jar` file by double clicking on it. If a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
     * If you are familiar with terminals and command lines, you can choose to open the file from a command line instead. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medimeet.jar` command to run the application.<br>
-   ![Ui](images/updated_UI.jpg)
+   ![Ui](images/UI.png)
 
 5. Maximize the app for the best user experience with viewing appointments.
 
