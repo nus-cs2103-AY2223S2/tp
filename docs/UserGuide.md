@@ -10,9 +10,11 @@ title: User Guide
 
 ## **Introduction**
 
+<img src="images/MyLibLogo.png">
+
 MyLib is a desktop bookmarking application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, its general bookmarking features is more than capable of handling any other bookmarking tasks you might have. This not only includes other types of novels, but also blogs, articles, reddit posts, Youtube videos and anything else that you want to track!
 
-With MyLib, you have the ability to easily organise all your bookmarks in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
+With MyLib, you have the ability to throw all your bookmarks onto a **single platform**, and organise them in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
 
 MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
