@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
@@ -38,11 +37,8 @@ public class AddCommand extends Command {
             PREFIX_MODULE.asOptional().asRepeatable().setExamples("CS2103T")
     ));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
-            + ARGUMENT_PREFIXES.stream()
-                    .map(Prefix::toString)
-                    .collect(Collectors.joining(" "))
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
             + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";

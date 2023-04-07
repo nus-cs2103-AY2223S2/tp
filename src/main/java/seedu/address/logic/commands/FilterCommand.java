@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
@@ -40,11 +39,8 @@ public class FilterCommand extends Command {
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain ANY of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: \n"
-            + ARGUMENT_PREFIXES.stream()
-                    .map(Prefix::toString)
-                    .collect(Collectors.joining(" "))
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
             + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     private final ContainsKeywordsPredicate predicate;

@@ -22,6 +22,12 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    protected static String getParameterUsage(List<Prefix> argumentPrefixes) {
+        return "Parameters:\n" + argumentPrefixes.stream()
+                .map(Prefix::toString)
+                .collect(Collectors.joining(" "));
+    }
+
     protected static String getExampleUsage(String commandWord, List<Prefix> argumentPrefixes) {
         return "Example:\n" + commandWord + " " + argumentPrefixes.stream()
                 .map(Prefix::toExampleString)

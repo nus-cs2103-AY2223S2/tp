@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -32,11 +31,8 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: "
-            + ARGUMENT_PREFIXES.stream()
-                    .map(Prefix::toString)
-                    .collect(Collectors.joining(" "))
+            + "Existing remark will be overwritten by the input."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
             + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
