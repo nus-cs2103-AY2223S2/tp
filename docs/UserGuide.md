@@ -630,6 +630,11 @@ Format: "mark m/INDEX..." or "unmark m/INDEX..."
 * The index must be a positive integer 1, 2, 3...
 
 ### Showing pending meetings : `pending`
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tip**<br>
+To view all meetings, use `findm` with no parameters.
+</div>
 
 Shows meetings that are not marked as done and are in the future i.e not over yet.
 
