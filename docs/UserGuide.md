@@ -616,8 +616,13 @@ Examples:
 * `listm` followed by `delm 2` deletes the 2nd meeting.
 
 ### Marking Meetings as done or undone : `mark` or `unmark`
+<div markdown="block" class="alert alert-info">
 
-Marks the specified meeting as either done or undone. Meetings marked as done will have green colored titles.
+**:information_source: Note**<br>
+Meetings marked as done will have green colored titles.
+</div>
+
+Marks the specified meeting as either done or undone. 
 ![img.png](images/markasdone.png)
 Format: "mark m/INDEX..." or "unmark m/INDEX..."
 
