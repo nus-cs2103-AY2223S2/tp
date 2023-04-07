@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Credits: AddressBook - Level 3's codebase, which inspired the design for the `Department` class.
 
 * **New Feature**: `adep`, `edep`, `aetd`, `refd` and `ldep` commands
-  * What it does: 
+  * What it does:
     * `adep` - Adds a department. [[PR#84]]
     * `edep` - Edits a department (only `name` field for v1.4). [[PR#92]]
     * `aetd` - Adds an employee to a department. [[PR#105]]
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
   * Remove lingering portions of AB3 in UG and README [[PR#51]] [[PR#42]]
   * Set up template headers in UG [[PR#37]]
 
-* **Code Quality and Bug Fixing**: 
+* **Code Quality and Bug Fixing**:
   * Fixed bugs in the department tests [[PR#153]]
 
 * **Miscellaneous PRs**

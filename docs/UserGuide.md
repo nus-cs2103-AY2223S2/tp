@@ -4,7 +4,7 @@ title: User Guide
 ---
 # 1. Table of contents:
 
-    
+
 1. [Introduction](#introduction)
     1. [What is SudoHR?](#11-what-is-sudohr)
     2. [Features](#13-features)
@@ -35,7 +35,7 @@ Things to remember when using SudoHR so you don't get confused.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
 Important things to remember when using SudoHR that may cause problems.
-</div> 
+</div>
 
 ## 1.3 Features
 
@@ -61,20 +61,20 @@ and 10,000 tags!
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `sudohr.jar`.
+2. Download the latest `sudohr.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your application.
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sudohr.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sudohr.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/UiPreview.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ Our app interface consists of 5 main components:
 5. Department section
 
 ### 3.1.1 Command line
-The command line box located at the top of the application window serves to receive your typed inputs. 
+The command line box located at the top of the application window serves to receive your typed inputs.
 
 To start typing a command, move your cursor over to the command line and click it.
 
@@ -115,7 +115,7 @@ The leftmost panel is the Departments section. Here you can view the status of t
 company. The main data displayed is the number of employees available.
 
 ### 3.1.5 Leaves
-The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have 
+The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have
 applied for leave. Each leave date would contain the number of employees who applied leaves on that day.
 
 
@@ -129,7 +129,7 @@ applied for leave. Each leave date would contain the number of employees who app
 
 ### 3.2.1. Employee
 
-Employees can be added to SudoHR to better 
+Employees can be added to SudoHR to better
 track their data, involvement in the company, as well as easy retrieval of information.
 
 An employee possesses the following attributes:
@@ -143,8 +143,8 @@ An employee possesses the following attributes:
 Employees are identified by their IDs. An employee's ID is a unique identification number assigned by the company.
 So, no two employees should share the same ID.
 
-Similarly, email address and phone number are fields that are not intended for sharing. 
-SudoHR enforces uniqueness for these two fields as well. 
+Similarly, email address and phone number are fields that are not intended for sharing.
+SudoHR enforces uniqueness for these two fields as well.
 
 You cannot add an employee that share any of the following fields with a different employee in SudoHR:
 1. ID
@@ -165,7 +165,7 @@ department of the same name.
 
 ### 3.2.3. Leave
 
-[//]: # 
+[//]: #
 A leave represents a day on which an employee would be absent from the company. It is not possible for the employee to take more than 1 leave in a day.
 
 The following attributes are stored for each leave:
@@ -446,10 +446,10 @@ List all employees present in the given department on a given date. The departme
 department and the leave window will display only the given date.
 
 Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
-* If the date is not specified, employees present on the current date of inputting 
+* If the date is not specified, employees present on the current date of inputting
 the command will be shown for the given department.
-* The given date must not be before the current date of inputting the command and must be within one year 
-of the current date of inputting the command. 
+* The given date must not be before the current date of inputting the command and must be within one year
+of the current date of inputting the command.
 
 Examples:
 * `ldhc n/Human Resources`
@@ -610,8 +610,8 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **Add employee to department**                           | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
 | **Remove employee from department**                      | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
 | **List an employee's department**                        | `led eid/EMPLOYEE_ID`                                                             |
-| **List all employees in a department**                   | `leid n/DEPARTMENT_NAME`                                                          |  
-| **List department headcount**                            | `ldhc n/DEPARTMENT_NAME [d/DATE]`                                                 |  
+| **List all employees in a department**                   | `leid n/DEPARTMENT_NAME`                                                          |
+| **List department headcount**                            | `ldhc n/DEPARTMENT_NAME [d/DATE]`                                                 |
 | **Add employee to leave**                                | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
 | **Add employee to range of leaves**                      | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
 | **Remove an employee from leave**                        | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
