@@ -45,29 +45,11 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         doctors.addAll(source.getDoctorList().stream()
-                .map(JsonSerializableAddressBook::convertToJsonAdaptedDoctor).collect(Collectors.toList()));
+                .map(JsonAdaptedDoctor::new)
+                .collect(Collectors.toList()));
         unassignedPatients.addAll(source.getUnassignedPatientList().stream()
-                .map(JsonSerializableAddressBook::convertToJsonAdaptedPatient).collect(Collectors.toList()));
-    }
-
-    /**
-     * Converts a given {@code Doctor} into a JsonAdaptedDoctor.
-     *
-     * @param doctor a doctor object.
-     * @return a JsonAdaptedDoctor.
-     */
-    private static JsonAdaptedDoctor convertToJsonAdaptedDoctor(Doctor doctor) {
-        return new JsonAdaptedDoctor(doctor);
-    }
-
-    /**
-     * Converts a given {@code Patient} into a JsonAdaptedPatient.
-     *
-     * @param patient a patient object.
-     * @return a JsonAdaptedPatient.
-     */
-    private static JsonAdaptedPatient convertToJsonAdaptedPatient(Patient patient) {
-        return new JsonAdaptedPatient(patient);
+                .map(JsonAdaptedPatient::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -77,6 +59,21 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        loadDoctorsAndTheirAssignedPatients(addressBook);
+        loadAssignmentOfPatientsToDoctors(addressBook);
+        loadUnassignedPatients(addressBook);
+        return addressBook;
+    }
+
+    /**
+     * Load the doctors and their assigned patients into the address book.
+     *
+     * @param addressBook the address book to load
+     * @throws IllegalValueException when doctor or patients have illegal values
+     * as attributes
+     */
+    private void loadDoctorsAndTheirAssignedPatients(AddressBook addressBook)
+            throws IllegalValueException {
         for (JsonAdaptedDoctor jsonAdaptedDoctor : doctors) {
             Doctor doctor = jsonAdaptedDoctor.toModelType();
             if (addressBook.hasDoctor(doctor)) {
@@ -85,27 +82,42 @@ class JsonSerializableAddressBook {
             addressBook.addDoctor(doctor);
 
             for (Patient patient : doctor.getPatients()) {
+                // Do not perform a check for duplicate patients here
+                // as the patients are bound to be stored multiple
+                // times under the different doctors they are assigned to.
                 if (!addressBook.hasPatient(patient)) {
                     addressBook.addPatient(patient);
                 }
             }
         }
+    }
 
-        // Assign patients to doctors
+    /**
+     * Load the assignment of patients to their respective doctors into the address book.
+     *
+     * @param addressBook the address book to load
+     */
+    private void loadAssignmentOfPatientsToDoctors(AddressBook addressBook) {
         ObservableList<Patient> addressBookPatientList = addressBook.getPatientList();
         ObservableList<Doctor> addressBookDoctorList = addressBook.getDoctorList();
         for (Patient patient : addressBookPatientList) {
             for (Doctor doctor : addressBookDoctorList) {
-                // Assign doctor to patient
-                // This is done here as doctorsAssigned is not stored
-                // within each patient json object
                 if (doctor.hasPatient(patient)) {
                     patient.assignDoctor(doctor);
                 }
             }
         }
+    }
 
-        // Add unassigned patients
+    /**
+     * Load the unassigned patients into the address book.
+     *
+     * @param addressBook the address book to load
+     * @throws IllegalValueException when the patients have illegal values
+     * as attributes
+     */
+    private void loadUnassignedPatients(AddressBook addressBook)
+            throws IllegalValueException {
         for (JsonAdaptedPatient jsonAdaptedPatient : unassignedPatients) {
             Patient patient = jsonAdaptedPatient.toModelType();
             if (addressBook.hasPatient(patient)) {
@@ -113,8 +125,6 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPatient(patient);
         }
-
-        return addressBook;
     }
 
 }
