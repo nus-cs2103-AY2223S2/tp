@@ -12,19 +12,30 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import vimification.model.task.Task;
 
-
+/**
+ * Implementation of both {@link LogicTaskList} and {@link UiTaskList}, used to manage the task list
+ * and control which task should be displayed to the user.
+ */
 public class TaskList implements LogicTaskList, UiTaskList {
 
     private final ObservableList<Task> allTasks;
     private final FilteredList<Task> filteredTasks;
     private final SortedList<Task> sortedTasks;
 
+    /**
+     * Creates a new {@code TaskList} instance, with the specified tasks as its content.
+     *
+     * @param tasks the initial content of this instance
+     */
     public TaskList(Collection<? extends Task> tasks) {
         this.allTasks = FXCollections.observableArrayList(tasks);
         this.filteredTasks = new FilteredList<>(allTasks);
         this.sortedTasks = new SortedList<>(filteredTasks);
     }
 
+    /**
+     * Creates a new, empty {@code TaskList}.
+     */
     public TaskList() {
         this(List.of());
     }
@@ -102,5 +113,11 @@ public class TaskList implements LogicTaskList, UiTaskList {
     @Override
     public ObservableList<Task> getUiSource() {
         return sortedTasks;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskList [allTasks=" + allTasks + ", filteredTasks=" + filteredTasks
+                + ", sortedTasks=" + sortedTasks + "]";
     }
 }

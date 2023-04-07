@@ -148,6 +148,12 @@ public class Task {
         return Collections.unmodifiableSet(labels);
     }
 
+    /**
+     * Adds a new label to this task.
+     *
+     * @param label the new label to be added
+     * @throws IllegalArgumentException if the label already exists
+     */
     public void addLabel(String label) {
         Objects.requireNonNull(label);
         StringUtil.requireNonEmpty(label);
@@ -157,6 +163,12 @@ public class Task {
         }
     }
 
+    /**
+     * Removes a label from this task.
+     *
+     * @param label the label to be removed
+     * @throws IllegalArgumentException if the label does not exist
+     */
     public void removeLabel(String label) {
         Objects.requireNonNull(label);
         StringUtil.requireNonEmpty(label);
@@ -166,32 +178,66 @@ public class Task {
         }
     }
 
-    public boolean containsLabel(String label) {
-        return labels.contains(label.toLowerCase());
-    }
-
     ///////////////
     // UTILITIES //
     ///////////////
 
+    /**
+     * Checks whether this task contains the specified label.
+     *
+     * @param label the label to check
+     * @return true if this task contains the label, otherwise false
+     */
+    public boolean containsLabel(String label) {
+        return labels.contains(label.toLowerCase());
+    }
+
+    /**
+     * Checks whether the title of this task contains the specified keyword.
+     *
+     * @param keyword the keyword to check
+     * @return true if the title of this task contains the specified keyword, otherwise false
+     */
     public boolean containsKeyword(String keyword) {
         return title.contains(keyword);
     }
 
+    /**
+     * Checks whether the deadline of this task is before the specified date.
+     *
+     * @param date the date to check
+     * @return true of the deadline of this task is before the specified date
+     */
     public boolean deadlineIsBefore(LocalDateTime date) {
-        return deadline != null && !deadline.isAfter(date);
-    }
-
-    public boolean deadlineIsAfter(LocalDateTime date) {
         return deadline != null && !deadline.isBefore(date);
     }
 
+    /**
+     * Checks whether the deadline of this task is after the specified date.
+     *
+     * @param date the date to check
+     * @return true of the deadline of this task is after the specified date
+     */
+    public boolean deadlineIsAfter(LocalDateTime date) {
+        return deadline != null && !deadline.isAfter(date);
+    }
+
+    /**
+     * Returns a mutable copy of this task.
+     *
+     * @return a mutable copy of this task
+     */
     public Task clone() {
         Task clonedTask = new Task(title, deadline, status, priority);
         clonedTask.labels.addAll(labels);
         return clonedTask;
     }
 
+    /**
+     * Returns a simple string representation of this task.
+     *
+     * @return a simple string representation of this task
+     */
     public String display() {
         StringBuilder sb = new StringBuilder();
         sb.append(title);

@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import vimification.common.core.GuiSettings;
 
 /**
- * Represents User's preferences.
+ * Represents the user's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
@@ -23,7 +23,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public UserPrefs() {}
 
     /**
-     * Creates a {@code UserPrefs} with the values in {@code userPrefs}.
+     * Creates a new {@code UserPrefs} with the values in the other {@code userPrefs}. This is a
+     * copy constructor.
+     *
+     * @param userPrefs the other {@code UserPrefs}.
      */
     public UserPrefs(UserPrefs userPrefs) {
         resetData(userPrefs);
@@ -39,6 +42,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setMacroMapFilePath(newUserPrefs.macroMapFilePath);
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -48,6 +52,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getTaskListFilePath() {
         return taskListFilePath;
     }
@@ -57,6 +62,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.taskListFilePath = taskListFilePath;
     }
 
+    @Override
     public Path getMacroMapFilePath() {
         return macroMapFilePath;
     }

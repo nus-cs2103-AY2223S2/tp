@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import vimification.common.core.GuiSettings;
 
 /**
- * Unmodifiable view of user prefs.
+ * Unmodifiable view of the user prefs.
  */
 public interface ReadOnlyUserPrefs {
 
