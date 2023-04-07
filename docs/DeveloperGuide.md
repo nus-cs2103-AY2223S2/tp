@@ -190,6 +190,18 @@ This section describes some noteworthy details on how certain features are imple
 <!-- Yu Fei -->
 ![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
 
+The `show` command was outlined with existing commands which take in indexes. It is similar to both the `delete` and `edit` commands, accessing the displayed list in  the `Model` component.
+
+The `ShowCommandParser` class parses the user input and returns a `ShowCommand` object. The `ShowCommand` object then accesses the `Model` component to get the opening at the specified index from the openings list.
+
+An `Index` is tracked by the model component and updated on every `ShowCommand` execution. A `CommandResult` object is then returned to the `LogicManager`.
+
+The `MainWindow` class then receives the `CommandResult` object and calls the handler `handleShow`. The method gets the opening at the specified index from the `LogicManager` which in turn accesses the `ModelManager`.
+
+A new `OpeningDetailsPanel` is created and displayed to the user. The `OpeningDetailsPanel` is a `UiPart` which is a `JavaFX` component. The `OpeningDetailsPanel` is created with the retrieved opening.
+
+A simplified sequence was employed for mouse clicks. The `OpeningListPanel` class handles the mouse click event and calls the logic component to set the selected opening. The `MainWindow` class then calls the `handleShow` method to recreate the `OpeningDetailsPanel` with the selected opening.
+
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
 ### Filter by status feature
@@ -585,3 +597,9 @@ This table summarises the difficulty level and effectiveness of each feature on 
 A large part of the project was spent on refactoring the codebase and ensuring practical design. Many features were remade after testing and discussion concluded that the current implementation was not ideal. We also invested significant time into improving the UI, which was not a requirement of the project.
 
 ## **Appendix: Planned Enhancements**
+
+### **Enhancement 1: Optional Contact Field**
+
+1. The current email field for each opening is not optional. This is not ideal as some openings do not require an email address and users may find it inconvenient to have to enter a dummy email address. An email address might also not be the most appropriate contact information for some openings.
+
+2. We propose to replace the email field with an optional contact field. This field can be used to store any contact information, e.g. phone number, email address, LinkedIn profile link, career portal link. This will allow users to store any contact information they wish to have for each opening.
