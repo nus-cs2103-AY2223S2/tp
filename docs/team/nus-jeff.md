@@ -61,5 +61,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#75](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/75), [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76), [\#82](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/82), [\#127](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/127), [\#128](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/128), [\#196](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/196)
-  * Reported bugs and suggestions for other teams in the class (examples: `to be added soon`)
+  * Reported bugs and suggestions for other teams in the class (examples: [\#94](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/94), [\#99](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/99), [\#108](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/108), [\#112](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/112), [\#123](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/123), [\#131](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/131), [\#134](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/134), [\#135](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/135), [\#136](https://github.com/AY2223S2-CS2103-F11-4/tp/issues/136))
 
