@@ -58,6 +58,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Meiji&"; // '&' not allowed in names
     public static final String INVALID_UNIT_DESC = " " + PREFIX_UNIT + "C@rton"; // '@' not allowed in phones
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-1"; // value < 0
+    public static final String INVALID_QUANTITY_STRING = " " + PREFIX_QUANTITY + "s"; // value not integer
     public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "13112024"; // date not formatted
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "dairy*"; // '*' not allowed in tags
     public static final String VALID_FIRST_INDEX_ID = "1";

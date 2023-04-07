@@ -1,0 +1,20 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User executes `delbytag` command;
+if () then ([else])
+    :Error: Invalid Command;
+    stop;
+([Valid command]) elseif () then ([else])
+    :Error: Invalid Tag Name;
+    stop;
+([Valid tag name]) elseif () then ([else])
+    :Error: Tag Does Not Exist;
+    stop;
+else ([Tag exist])
+endif
+    :delbytag command executes successfully;
+stop
+
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+'all logic entities
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WifeParser" as WifeParser LOGIC_COLOR
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR
+participant ":DeleteTagCommand" as DeleteTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+'model entity
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deltag n/tagname")
+activate LogicManager
+
+LogicManager -> WifeParser : parseCommand("n/tagname")
+activate WifeParser
+
+create DeleteTagCommandParser
+WifeParser -> DeleteTagCommandParser
+activate DeleteTagCommandParser
+
+DeleteTagCommandParser --> WifeParser
+deactivate DeleteTagCommandParser
+
+WifeParser -> DeleteTagCommandParser :parse("n/tagname")
+activate DeleteTagCommandParser
+
+create DeleteTagCommand
+DeleteTagCommandParser -> DeleteTagCommand : DeleteTagCommand(tag)
+activate DeleteTagCommand
+
+DeleteTagCommand --> DeleteTagCommandParser
+deactivate DeleteTagCommand
+
+DeleteTagCommandParser --> WifeParser
+deactivate DeleteTagCommandParser
+
+DeleteTagCommandParser -[hidden]-> WifeParser
+destroy DeleteTagCommandParser
+
+WifeParser --> LogicManager
+deactivate WifeParser
+
+LogicManager -> DeleteTagCommand : execute(model)
+activate DeleteTagCommand
+
+DeleteTagCommand -> Model : deleteTag(toDelete)
+activate Model
+
+Model --> DeleteTagCommand
+deactivate Model
+
+create CommandResult
+DeleteTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTagCommand
+deactivate CommandResult
+
+DeleteTagCommand --> LogicManager
+deactivate DeleteTagCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
