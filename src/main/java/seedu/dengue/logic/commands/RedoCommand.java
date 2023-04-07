@@ -26,6 +26,9 @@ public class RedoCommand extends UndoRedoCommand {
     public RedoCommand(int numberOfRedos) {
         this.numberOfRedos = numberOfRedos;
     }
+    public RedoCommand() {
+        this(1);
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

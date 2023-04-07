@@ -27,6 +27,10 @@ public class UndoCommand extends UndoRedoCommand {
         this.numberOfUndos = numberOfUndos;
     }
 
+    public UndoCommand() {
+        this(1);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
