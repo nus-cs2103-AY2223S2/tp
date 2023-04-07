@@ -50,7 +50,6 @@ public class EditRecurringEventCommandTest {
                 + editedPerson.getName() + "\n" + editCommand.MESSAGE_SUCCESS, expectedEvent + " for "
                 + editedPerson.getName());
 
-
         assertEquals(expectedMessage, editCommand.execute(model).getFeedbackToUser());
 
     }
