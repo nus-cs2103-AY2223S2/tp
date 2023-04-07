@@ -96,7 +96,7 @@ As seen from the class diagram above, `MainWindow` has composition type relation
   * 1 each for patients, vaccinations and appointments
 * `ResultDisplay` - responsible for displaying messages to the user.
 
-The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called.
+The classes mentioned above are only initialized when `fillInnerParts()` method of `MainWindow` is called. The object diagram below show the state after `fillInnerParts()` has been called. Generics have been omitted for clarity.
 
 ![State of MainWindow](images/UiObjectDiagram.png)
 
