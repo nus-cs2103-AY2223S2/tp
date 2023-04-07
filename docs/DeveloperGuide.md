@@ -87,14 +87,13 @@ Keyboard keys are indicated using rounded buttons.
 ## **Setting Up and Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
-set up the InternBuddy project in your personal computer.
+set up the InternBuddy project in your personal computer. After launching InternBuddy, you would see a GUI.
+Figure 1 illustrates the main parts
+of InternBuddy's GUI and Table 1 explains their functions. We will be referencing
+these different parts throughout this developer guide.
 
 [//]: # (@@author eugenetangkj - reused with modifications)
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
-
-After launching InternBuddy, you would see a GUI. Figure 1 illustrates the main parts
-of InternBuddy's GUI and Table 1 explains their functions. We will be referencing
-these different parts throughout this developer guide.
 
 <p align="center">
   <img src="images/gui-markup.png" width="700" />
@@ -802,6 +801,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Computing undergraduate who wants to share my internship details with others             | copy the details of an internship                                | send the details to other people.                                                                   |
 | `*`      | Computing undergraduate who is slow in learning                                          | go through a step-by-step in-app tutorial                        | learn how to use InternBuddy in a guided and self-paced environment.                                |
 | `*`      | analytical Computing undergraduate                                                       | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
+| `*`      | Computing undergraduate who is new to internships                                        | receive tips                                                     | use the tips to improve my experience during the internship application process.                    |
 | `*`      | Computing undergraduate who is planning to track internship applications in the long run | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
 | `*`      | Computing undergraduate who is experienced in using InternBuddy                          | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
 
@@ -846,6 +846,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from Step 1.
 
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: Edit an internship**
 
@@ -1549,6 +1551,8 @@ Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of
 </p>
 
 <p style="text-align: center;">Figure 19: Adding the tag 'javascript T/react'</p>
+
+<div style="page-break-after: always;"></div>
 
 Moreover, commands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
 
