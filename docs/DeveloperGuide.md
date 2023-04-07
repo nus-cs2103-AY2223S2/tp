@@ -350,15 +350,27 @@ will sort both views.
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
 
-The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
-
-Given below is an example usage of how CompanyCommand is being used in the following steps.
+Given below is an example usage of how CompanyCommand and its dependencies is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book.
+   current role book from the data files.
 
 2. The user can choose to use the `Company Command` to filter companies.
-    - The user executes `company <keyword>` command to filter roles with the given company.
+    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
+
+3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
+input. This then creates an instance of the `CompanyCommandParser` to parse the keyword. 
+
+4. Invoking the parse method 
+of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
+`CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
+If any of the inputs formats are invalid, a `ParseException` will be thrown.
+
+4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()` 
+to filter the roles based on the `predicate`, which in this case is the keyword.
+
+5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult` 
+is returned.
 
 The following sequence diagram shows how the `company` command works:
 
@@ -378,7 +390,7 @@ The following sequence diagram shows how the `company` command works:
 
 #### Limitations:
 
-`keyword` used to filter the roles in the Company Command must contain at least one non-space character and filtering
+The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and filtering
 is not case-sensitive.
 
 E.g.: `company Google` is equivalent to `company google`
