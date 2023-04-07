@@ -35,6 +35,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.TaskList;
+import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,9 +121,12 @@ public class EditCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         TaskList updatedTasks = personToEdit.getTasks();
+        // lead status is not updated when a person is edited, by design
+        LeadStatus unchangedLeadStatus = personToEdit.getStatus();
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updateCompany, updatedLocation,
-                updatedOccupation, updatedJobTitle, updatedAddress, updatedRemark, updatedTags, updatedTasks);
+                updatedOccupation, updatedJobTitle, updatedAddress, updatedRemark, updatedTags, updatedTasks,
+                unchangedLeadStatus);
     }
 
     @Override
