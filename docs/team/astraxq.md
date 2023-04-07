@@ -25,6 +25,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * Updated AboutUs page and README page.
+    * Updated UG for Export and Import.
+    * Added Use Cases in DG.
 
 * **Contributions to team-based tasks**:
     * Conceptualized the ideas and came up with v1.1 UI design.
