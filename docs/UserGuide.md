@@ -34,12 +34,8 @@ Now it's time to **CONQUER** the semester!
 - [Command Manual](#command-manual)
   - [Nav](#nav)
   - [List](#list)
-  - [Add a Module](#add-a-module)
-  - [Add a Lecture](#add-a-lecture)
-  - [Add a Video](#add-a-video)
-  - [Edit a Module](#edit-a-module)
-  - [Edit a Lecture](#edit-a-lecture)
-  - [Edit a Video](#edit-a-video)
+  - [Add](#add)
+  - [Edit](#edit)
   - [Delete Module](#delete-module)
   - [Delete Lecture](#delete-lecture)
   - [Delete Video](#delete-video)
@@ -419,7 +415,7 @@ Examples:
 
 - `add Week 1 /mod CS2040S /tags Intro, Important`
 
-### Add a Video
+#### Add a Video
 
 > `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -450,7 +446,9 @@ Examples:
 ![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
 
-### Edit a Module
+### Edit
+
+#### Edit a Module
 
 > `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
@@ -471,7 +469,9 @@ Examples:
 
 - `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation-injection) for more information).
 
 #### Edit a Lecture
 
@@ -494,8 +494,6 @@ Edit the details of a lecture.
 Examples:
 
 - `edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important`
-
-:information_source: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
 #### Edit a Video
 
@@ -527,6 +525,10 @@ Edit the details of a video.
 Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
+
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
 
 ### Delete Module
 
