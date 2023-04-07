@@ -27,9 +27,9 @@ public class JsonAdaptedPersonTest {
     private static final JsonAdaptedBook VALID_BOOK =
         new JsonAdaptedBook("A Game of Thrones", "George RR Martin", "9780553103540",
             "01/04/2023", "15/04/2023", true);
-    //private static final JsonAdaptedBook INVALID_BOOK =
-    //    new JsonAdaptedBook("A Game of Thrones", "George RR Martin", "9780553103540",
-    //        "01/04/2023", "15/04/2023", false);
+    private static final JsonAdaptedBook INVALID_BOOK =
+        new JsonAdaptedBook("A Game of Thrones", "George RR Martin", "9780553103540",
+            "01/04/2023", "15/04/2023", false);
     private static final List<JsonAdaptedBook> VALID_BOOKS = List.of(VALID_BOOK);
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -90,31 +90,12 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    //@Test
-    //public void toModelType_invalidBooks_throwsIllegalValueException() {
-    //    List<JsonAdaptedBook> invalidBooks = new ArrayList<>(VALID_BOOKS);
-    //    invalidBooks.add(INVALID_BOOK);
-    //    JsonAdaptedPerson person =
-    //            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, invalidBooks,
-    //                    VALID_TAGS);
-    //    String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-    //    assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    //}
-
-    @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_BOOKS,
-                VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
     @Test
     public void toModelType_invalidBooks_throwsIllegalValueException() {
         List<JsonAdaptedBook> invalidBooks = new ArrayList<>(VALID_BOOKS);
         invalidBooks.add(INVALID_BOOK);
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidBooks,
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, invalidBooks,
                         VALID_TAGS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }

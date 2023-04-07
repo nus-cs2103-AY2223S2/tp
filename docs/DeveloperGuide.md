@@ -177,7 +177,6 @@ Each person in the `persons` array will contain these fields:
 * `name`: Represents the name of the person.
 * `phone`: Represents the phone number of the person.
 * `email`: Represents the email of the person.
-* `address`: Represents the address of the person.
 * `books`: Represents the set of books that the person has borrowed, will be an empty set if the person has not borrowed any.
 * `tagged`: Represents the tags assigned to the person, will be an empty set if the person has no tags assigned.
 
