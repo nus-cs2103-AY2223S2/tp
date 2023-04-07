@@ -26,6 +26,7 @@ Given below are my contributions to the project.
   * Justification: Appointments that are settled for should be removed from the application to make it neater.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=pangrwa&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+<!--
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
@@ -51,3 +52,4 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+-->
