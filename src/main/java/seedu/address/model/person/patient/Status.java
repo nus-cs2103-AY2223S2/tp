@@ -5,12 +5,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents a Patient's hospitalization status in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class Status {
+
+    private static final Logger logger = LogsCenter.getLogger(Status.class);
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status should be one of the following: Inpatient, Outpatient, Observation, Emergency Department,"
@@ -61,7 +66,13 @@ public class Status {
      * @return a valid Status string.
      */
     public static String getDummyValidStatus(int i) {
-        assert (i < possibleStatuses.size());
+        if (i >= possibleStatuses.size()) {
+            logger.warning(String.format("Received an invalid index of %d," +
+                                    "when number of statuses available is %d",
+                    i, possibleStatuses.size()));
+            logger.info("Retrieving default valid status instead");
+            return getDummyValidStatus();
+        }
         return possibleStatuses.get(i);
     }
 
