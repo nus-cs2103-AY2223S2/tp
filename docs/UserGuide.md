@@ -145,7 +145,7 @@ Here is the breakdown of an individual **bin card**.
 Item | Description
 --------|------------------
 **id** | Index in the overview list.
-**Overview Category** | Overview category being currently displayed.  <br> :bulb: The default overview category is by location.
+**Overview Category** | Overview category currently being displayed.  <br> :bulb: The default overview category is by location.
 **Bin Name** | Bin that cases belong to in the chosen category.
 **Count** | The number of cases on the displayed list belonging to the bin.
 
