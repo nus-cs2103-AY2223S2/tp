@@ -18,7 +18,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ExpressLibrary.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar expressLibrary.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar expressLibrary.jar` command to run the application (note: double-clicking to open the jar file may lead to issues with saved data).<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -26,7 +26,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
    Some example commands you can try:
 
    * `listPerson` : Lists all contacts.
-   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com a/ 313, Jurong East Street 32`:
+   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com`:
    Adds a contact named `Bob Tan` to records
    * `deletePerson 3` : Deletes the 3rd user shown in the current list.
    * `clear` : Clears all persons and books in the ExpressLibrary.
@@ -66,7 +66,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 Adds a person to the ExpressLibrary.
 
-Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -76,7 +76,7 @@ A person can have any number of tags. (including 0)
 
 Examples:
 
-* `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32`
+* `addPerson n/Bob Tan p/91112222 e/btan@mail.com`
 
 #### Deleting a person : `deletePerson`
 
@@ -98,7 +98,7 @@ Examples:
 
 Edits an existing person in the ExpressLibrary.
 
-Format: `editPerson PERSON_INDEX {[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…}​`
+Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
@@ -337,9 +337,9 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 
 Action | Format, Examples
 --------|------------------
-**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `addPerson n/James Ho p/92340121 e/jamesho@example.com t/staff`
 **DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`
-**EditPerson** | `editPerson INDEX {[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…}​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
+**EditPerson** | `editPerson INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
 

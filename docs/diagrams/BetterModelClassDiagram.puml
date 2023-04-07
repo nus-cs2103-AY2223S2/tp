@@ -20,7 +20,6 @@ Person -> Book
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
 
 Book *--> Title
 Book *--> Author
