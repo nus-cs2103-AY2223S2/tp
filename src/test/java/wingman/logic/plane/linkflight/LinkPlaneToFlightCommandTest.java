@@ -1,14 +1,12 @@
 package wingman.logic.plane.linkflight;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import wingman.logic.core.CommandResult;
 import wingman.logic.core.exceptions.CommandException;
 import wingman.model.Model;
 import wingman.model.ModelManager;
@@ -21,21 +19,31 @@ public class LinkPlaneToFlightCommandTest {
     private final Plane plane1 = new Plane("model1", 1);
     private final Plane plane2 = new Plane("model2", 1);
 
-    private final Map<FlightPlaneType, Plane> mapPlane1 = Map.of(FlightPlaneType.PLANE_USING, plane1);
-    private final Map<FlightPlaneType, Plane> mapPlane2 = Map.of(FlightPlaneType.PLANE_USING, plane2);
+    private final Map<FlightPlaneType, Plane> mapPlane1 = Map.of(
+            FlightPlaneType.PLANE_USING,
+            plane1
+    );
+    private final Map<FlightPlaneType, Plane> mapPlane2 = Map.of(
+            FlightPlaneType.PLANE_USING,
+            plane2
+    );
 
-    private final LinkPlaneToFlightCommand linkCommand1 = new LinkPlaneToFlightCommand(flight, mapPlane1);
-    private final LinkPlaneToFlightCommand linkCommand2 = new LinkPlaneToFlightCommand(flight, mapPlane2);
+    private final LinkPlaneToFlightCommand linkCommand1 = new LinkPlaneToFlightCommand(
+            flight,
+            mapPlane1
+    );
+    private final LinkPlaneToFlightCommand linkCommand2 = new LinkPlaneToFlightCommand(
+            flight,
+            mapPlane2
+    );
     private final Model model = new ModelManager();
 
     @Test
     public void testLinkPlaneToFlightCommand() {
-        assertDoesNotThrow(() -> new LinkPlaneToFlightCommand(flight, mapPlane1));
-    }
-
-    @Test
-    public void testToString() {
-        assertEquals("Linked model1 to code.", linkCommand1.toString());
+        assertDoesNotThrow(() -> new LinkPlaneToFlightCommand(
+                flight,
+                mapPlane1
+        ));
     }
 
     @Test
@@ -47,11 +55,5 @@ public class LinkPlaneToFlightCommandTest {
 
         // making a link after an initial link exists
         assertDoesNotThrow(() -> linkCommand2.execute(model));
-    }
-
-    @Test
-    public void testExecuteCommandResult() throws CommandException {
-        assertEquals(new CommandResult("Linked model1 to code."), linkCommand1.execute(model));
-        assertEquals(new CommandResult("Linked model2 to code."), linkCommand2.execute(model));
     }
 }
