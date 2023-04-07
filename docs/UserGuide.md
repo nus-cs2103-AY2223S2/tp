@@ -248,13 +248,13 @@ Our initial recipe book:
 - `delete 1` will result in a recipe book as shown below:
 
 <p align="center" width="100%">
-    <img src="images/DeleteResult1.png" width=500 height=400>
+<img src="images/DeleteResult1.png" width=500 height=400>
 </p>
 
 - `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
 <p align="center" width="100%">
-    <img src="images/DeleteResult2.png" width=500 height=400>
+<img src="images/DeleteResult2.png" width=500 height=400>
 </p>
 
 [Back to top](#top)
@@ -448,12 +448,14 @@ Below shows how you can filter for all recipes with prices *less than 4.50*.
 Example: 
 
 Our initial recipe book:
-
+<p align="center" width="100%">
 <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - `fp < 4.50` will display all recipes that have a lower price than $4.50, as shown in the image below:
-
+<p align="center" width="100%">
 <img src="images/FpResult.png" width=500 height=400>
+</p>
 
 [Back to top](#top)
 ---
