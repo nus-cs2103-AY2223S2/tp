@@ -54,6 +54,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withEducation("P3")
             .withRemark("Needs help with algebra.")
+            .withTelegram(null)
             .withModules()
             .withTags()
             .build();
@@ -64,6 +65,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withEducation("P4")
             .withRemark("Needs help with compo.")
+            .withTelegram("@danielm")
             .withModules()
             .withTags("friends")
             .build();
@@ -74,6 +76,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withEducation("P5")
             .withRemark("Needs more time on limits")
+            .withTelegram("@ellomayor")
             .withModules()
             .withTags()
             .build();
@@ -84,6 +87,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withEducation("P6")
             .withRemark("Is good at algebra")
+            .withTelegram("@theorge")
             .withModules()
             .withTags()
             .build();
@@ -94,6 +98,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withEducation("Sec 2")
             .withRemark("Is bad at argumentative essays")
+            .withTelegram("@georgia")
             .withModules()
             .withTags()
             .build();
