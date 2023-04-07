@@ -25,7 +25,7 @@ Now it's time to **CONQUER** the semester!
 - [Quick Start Guide](#quick-start-guide)
   - [Prerequisite](#prerequisite)
   - [Installation and Setup](#installation-and-setup)
-  - [Getting Started](#getting-started)
+  - [User Interface and Getting Started](#user-interface-and-getting-started)
   - [A Brief Guide to Navigation](#a-brief-guide-to-navigation)
   - [Tutorials and Examples](#tutorials-and-examples)
 - [Command Syntax](#command-syntax)
