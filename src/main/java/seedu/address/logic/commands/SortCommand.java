@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -22,16 +23,17 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         try {
             model.sortPersonList(attribute);
-            return new CommandResult(
-                    String.format(
-                            Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, attribute));
         } catch (RuntimeException e) {
-            return new CommandResult(e.getMessage());
+            System.out.println(e.getMessage());
+            throw new CommandException(e.getMessage());
         }
+
+        return new CommandResult(String.format(Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, attribute));
     }
 
     @Override

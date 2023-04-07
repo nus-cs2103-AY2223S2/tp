@@ -185,7 +185,7 @@ public class Person {
         case "status":
             return status.getStatusName().getLabel();
         default:
-            throw new IllegalValueException("Attribute does not exists!");
+            throw new IllegalValueException("Attribute does not exist!");
         }
     }
 
