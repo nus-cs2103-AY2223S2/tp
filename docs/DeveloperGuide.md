@@ -113,7 +113,7 @@ files that are in the `src/main/resources/view` folder. For example, the layout 
 is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-executes user commands using the `Logic` component. listens for changes to `Model` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+executes user commands using the `Logic` component. listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
 
 ### 2.3 Logic component
 
