@@ -95,7 +95,19 @@ If you need to switch to a new device, you can also export and import your previ
 
 ## User interface layout
 
-![Layout](images/Layout.png)
+There are two options to display a student's scores (__score list__ and __score chart__) by clicking the *Text* and *Chart* buttons (referred as Switch Display Button below) respectively.
+
+[Back to top](#table-of-contents)
+
+### Layout with score list
+
+![Layout with Score List](images/Layout.png)
+
+[Back to top](#table-of-contents)
+
+### Layout with score chart
+
+![Layout with Score Chart](images/Layout2.png)
 
 [Back to top](#table-of-contents)
 
@@ -139,6 +151,8 @@ To achieve the best performance, we have set a few restrictions regarding the us
   e.g. if the command specifies such as `help`, `HELP`, `Help`..., it will be interpreted as `help`.
 
 </div>
+
+[Back to top](#table-of-contents)
 
 ### Managing student contact
 
