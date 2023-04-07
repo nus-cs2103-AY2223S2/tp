@@ -23,7 +23,7 @@ My code contributions can be found on:
     * Uses `SwingUtilities.invokeLater()` to wrap the clipboard code in a `Runnable` object, ensures the clipboard operation to be safe to run from a test or other non-GUI context.
 
 * **Enhancements to existing features**:
-  * Update help information for the help box opened by command `copy` and click on the Help button [#59](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/59)
+  * Update help information for the help box opened by command `help` and click on the Help button [#59](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/59)
   * Update Load Data feature to fit for InternBuddy [#59](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/59)
 
 **Project Management**
