@@ -400,7 +400,7 @@ Our initial recipe book:
 [Back to top](#top)
 
 ---
-#### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
+#### Get list of groceries: `groceries RECIPE_NUMBER, ...`
 
 Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes.
 
@@ -465,7 +465,7 @@ Our initial recipe book:
 [Back to top](#top)
 
 ---
-#### Add a recipe to the favorites: `star RECIPE_NUMBER`
+#### Add recipe to favorites: `star RECIPE_NUMBER`
 
 This command adds the recipe at the specified *recipe number* into your favorites, which include all recipes 
 you like the most!
@@ -501,7 +501,7 @@ Our initial recipe book:
 [Back to top](#top)
 
 ---
-#### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
+#### Remove recipe from favorites: `unstar RECIPE_NUMBER`
 
 This command removes the recipe at the specified *recipe number* from your favorites.
 
@@ -537,9 +537,9 @@ Our initial recipe book:
 
 ---
 
-#### List all recipes in the favorites : `favorites`
+#### List recipes in favorites : `favorites`
 
-This command lists out all the recipes that you have added to your favorites (All recipes with a star).
+This command lists out all the recipes that you have added to your favorites (*all recipes with a star*).
 
 Format: `favorites`
 
@@ -557,7 +557,7 @@ Our initial recipe book:
 
 ---
 
-#### Provide link to the user guide : `help`
+#### Provide link to user guide : `help`
 
 This command generates a link to our user guide.
 
@@ -576,7 +576,7 @@ Format: `help`
 
 CookHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to top](#top)
+---
 
 ### Editing the data file
 
@@ -586,6 +586,7 @@ update data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CookHub will discard all data and start with an empty data file at the next run.
 </div>
+
 ---
 
 ### Archiving data files `[coming in v2.0]`
@@ -615,9 +616,20 @@ Format meanings:
 
 | Action                   | Format                  | Examples  |
 |--------------------------|-------------------------|-----------|
-| Delete Recipe            | delete RECIPE_NUMBER    | delete 1  |
-| Sort Recipes by price    | sort ORDER              | sort asc  |
-| Filter Recipes by price | filter COMPARATOR PRICE | fp < 4.20 |
+| Add Recipe            | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`    | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
+| Edit Recipe            | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`    | `edit 1 t/Corndog`  |
+| Delete Recipe            | `delete RECIPE_NUMBER`   | `delete 1`  |
+| List Recipe            | `list`   | `list`  |
+| Clear Recipe            | `clear`   | `clear`  |
+| Find Recipe            | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
+| Search Recipe with limited ingredients           | `only INGREDIENT...`   | `only eggs flour`  |
+| Sort Recipes by price    | `sort ORDER`             | `sort asc`  |
+| Get list of groceries | `groceries RECIPE_NUMBER, ...` | `groceries 1, 3, 4` |
+| Filter Recipes by price | `filter COMPARATOR PRICE` | `fp < 4.20` |
+| Add Recipe to favorites | `star RECIPE_NUMBER` | `star 1` |
+| Remove Recipe from favorites | `unstar RECIPE_NUMBER` | `unstar 1` |
+| List Recipes in favorites | `favorites` | `favorites` |
+| Provide link to User Guide | `help` | `help` |
 
 [Back to top](#top)
 
@@ -632,4 +644,3 @@ Format meanings:
 | Terminal                           | A text-based interface for the computer. |                    
 
 [Back to top](#top)
-
