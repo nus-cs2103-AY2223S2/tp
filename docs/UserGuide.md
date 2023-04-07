@@ -7,7 +7,9 @@ title: User Guide
 
 CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
 
-CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps. CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
+CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps. 
+
+CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
 
 ![image](./images/Ui.png)
 ###### Figure 1
@@ -37,20 +39,21 @@ CLIpboard is designed to work efficiently through typing keyword commands and al
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
-4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-<br>e.g. your `clipboard.jar` is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
-<br>A GUI similar to the above, under `Introduction`, should appear in a few seconds. Note how the app contains some sample data.
-5. You will start on the `Course page` (Refer to [<i>Figure 2</i>](#figure-2) below for the Navigation Guide).
-6. Type the command in the command box and press Enter to execute it.
-<br>e.g. typing `help` and pressing Enter will open the help window.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
+<br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
+<br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds. 
+<br><i>Note how the app contains some sample data.</i></br>
+5. You will start on the `Course page` (Refer to [<i>Figure 2</i>](#navigation-guide) below for the Navigation Guide).
+6. Type your command in the command box ((Refer to [<i>Figure 1</i>](#introduction) above for the Visual Guide) and press Enter/Return to execute it.
+<br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
     <br>Some example commands you can try:
-   1. `select 1` : Selects the first course displayed (`eg. CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
-   2. `select 1` : Selects the first group displayed (`eg. T15`) on the `Group Page`. You will be redirected to the `Student Page`.
+   1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
+   2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
    3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list at `Student Page`.
-   4. `delete student 3` : Deletes the 3rd student (`eg. Lim Kim Choo`) shown in the student list on the `Student Page`.
-   5. `undo` : Returns to the state before the previous `delete student` command you entered. The student deleted (`eg. Lim Kim Choo`) should be back on the list. 
+   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list on the `Student Page`.
+   5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list. 
    6. `exit` : Exits the app.
-6. Refer to the commands list below for a detailed description for each command.
+6. Refer to the [commands list](#commands) below for a detailed description for each command.
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -60,7 +63,7 @@ Moving between pages is easy with our navigation tools.
 Simply use a combination of `select`, `back`, `session`, and `task` commands.
 If you need more information on how to use these commands, just refer to our handy navigation guide below.
 
-![image](./images/navigation.png)
+![image](./images/navigation.png 'Navigation Image')
 ###### Figure 2
 
 --------------------------------------------------------------------------------------------------------------
@@ -146,7 +149,7 @@ List of commands:
 </div>
 
 ## General Commands
-Before navigating through pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
+Before navigating through the different pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
 
 
 ### Displaying the home page (Course Page): `home`
@@ -534,17 +537,13 @@ Format:
 find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
-- You can find students using either name or student ID for the keyword(s).
+- You can find students using either `name` or `student ID` for the keyword(s).
 - Keywords are separated by spaces.
-- Student IDs of invalid format will not return any students
-    - For example, `find student A1234` will not return the student with student ID A1234567X.
-    
 
 Examples:
-- `find student John` returns John.
-- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`. 
-
-- `find student A1234567X` returns the student whose student ID is A1234567X.
+- `find student John` returns `John`.
+- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`.
+- `find student A123` returns students whose student ID contains `A123`, such as `A123` and `A1234567X`.
 
 [Back to list of commands](#commands)
 
@@ -870,7 +869,7 @@ Examples:
 
 
 
-## Grades Page
+## Grades Page Commands
 ![images](./images/UiGradesPage.png)
 ###### Figure 12
 
