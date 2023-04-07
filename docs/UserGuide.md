@@ -100,6 +100,13 @@ should be able to see the list being updated as such:
 <em>Alice found not slacking;)</em>
 </p><br/>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may notice that there are progress bars of different **colors** within each task. 
+* The <span style="color:green">**green**</span> colored taskbar indicates that the task is done, and before the deadline.
+* The <span style="color:red">**red**</span> colored taskbar indicates that the task is undone, and that the deadline has passed.
+* The <span style="color:blue">**blue**</span> colored taskbar indicates that the task is undone, **but** the deadline has not passed.
+</div>
+
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 
 us. You can simply access the help menu using a simple command: `help` to refresh your memory or even 
 learn more about new features. 
