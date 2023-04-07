@@ -14,11 +14,11 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-Package Model{
+package Model{
 Class HiddenModel #FFFFFF
 }
 
-Package Storage{}
+package Storage{}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
