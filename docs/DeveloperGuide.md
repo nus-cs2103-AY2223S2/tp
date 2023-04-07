@@ -1049,3 +1049,20 @@ In pseudocode, the check becomes
    integer
 1. Ensure that the year is within [1800, current year + 10]
 
+**6. Insufficient contraints for project's accepted date and deadline**
+
+*This issue is similar to the one above.* Currently, the range of valid dates for
+a project's accepted date and deadline are from 1st January -9999 to 31st
+December 9999. However, this is not intuitive from a user's perspective. As
+such, we plan to add the following validations:
+
+1. Fix 1800 as a lower bound for both accepted date and deadline, for the same
+   reason as above.
+1. Fix up to 10 years into the future as the upper bound for a project's
+   accepted date, for the same reasons as above.
+
+Note that we do not plan to fix an upper bound for a project's deadline, as it
+is hard to make reasonable assumptions about what a user's deadlines might look
+like. Furthermore, some users may wish to use 31st December 9999 to represent a
+project with "a deadline so far into the future it is not worth considering".
+
