@@ -1,7 +1,6 @@
 package trackr.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.commons.Tag;
