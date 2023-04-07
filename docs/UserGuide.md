@@ -56,7 +56,7 @@ If this is not your first time using VMS, do **<u>NOT</u>** attempt to execute a
 
 Before diving into VMS, first initialize the data of the vaccinations that your clinic supports.
 
-* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clears-all-vaccination-data) command.
+* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clear-all-vaccination-data) command.
 * See [`add`](#add---add-a-vaccination) on how you can add a vaccination.
 
 ##### Normal usage
@@ -67,7 +67,7 @@ After initializing the vaccination data of your clinic, you are ready to go! All
 2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
 3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
 4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
-5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---displays-the-detail-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
 
 ##### Example scenario
 
@@ -462,7 +462,7 @@ Output:
 
 ![Patient Add Detail Card](images/patient/ug/PatientAddDetailCard.png)
 
-#### `detail` - Displays the detail of a patient
+#### `detail` - View details of a patient
 
 ##### Syntax
 
@@ -664,7 +664,7 @@ Output:
 
 * <code><var>PATIENT_ID</var></code> must exist in the system.
 
-#### `clear` - Clear Patients
+#### `clear` - Clear all patient data
 
 Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
 
@@ -776,7 +776,7 @@ For example, to add the same vaccination as in the <a href="#vaccination-add-exa
 5. `vaccination edit ABC VAX --h NONE::ABC`
 
 <span id="vax-filter-no-reset-usage">**Using `find` to improve efficiency**</span><br>
-If the name of the vaccination is long, one can use the vaccination's [`find`](#find---finds-a-vaccination) to filter down to that vaccination and then use indexing to refer to that vaccination while editing. This step can be done before adding or editing the vaccination. So to perform the same action as before one can execute the following sequence of commands:
+If the name of the vaccination is long, one can use the vaccination's [`find`](#find---locate-vaccinations) to filter down to that vaccination and then use indexing to refer to that vaccination while editing. This step can be done before adding or editing the vaccination. So to perform the same action as before one can execute the following sequence of commands:
 
 1. `vaccination find ABC VAX`
 2. `vaccination add ABC VAX`
@@ -810,7 +810,7 @@ Output:
 
 * The name of the vaccination being added must not exist in the system.
 
-#### `detail` - Displays the detail of a vaccination
+#### `detail` - View details of a vaccination
 
 ##### Syntax
 
@@ -840,7 +840,7 @@ Output:
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 
-#### `list` - Lists all vaccination
+#### `list` - List all vaccination
 
 Clears previously set filters and list all vaccinations in the list view.
 
@@ -850,7 +850,7 @@ Clears previously set filters and list all vaccinations in the list view.
 vaccination list
 </pre>
 
-#### `find` - Finds a vaccination
+#### `find` - Locate vaccinations
 
 Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
 
@@ -870,7 +870,7 @@ However, the following will not:
 
 The filters applied by the last `find` command will not be resetting by vaccination's `add` or `edit` commands. Vaccinations added or edited by might not show up on the vaccination list panel. This is intended to allow for a more efficient `edit`. See <a href="#vax-filter-no-reset-usage">here</a> on how one can utilize this feature.
 
-To reset the filters applied, use the vaccination's [`list`](#list---lists-all-vaccination) command.
+To reset the filters applied, use the vaccination's [`list`](#list---list-all-vaccination) command.
 </div>
 
 ##### Syntax
@@ -968,7 +968,7 @@ Output:
 * <code><var>VACCINATION</var></code> must exist in the system.
 * <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
 
-#### `delete` - Deletes a vaccination
+#### `delete` - Delete a vaccination
 
 Deletion of a vaccination may cause appointments to be come invalid as the vaccination will no longer exist in the system. `VMS` will check for this and prevent such deletions from happening. However, an additional `--force true` argument will force the change to happen which will delete all invalid appointments after the change.
 
@@ -985,7 +985,7 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 
 ##### Example
 
-Examples follow after vaccination [`clear`](#clear---clears-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
+Examples follow after vaccination [`clear`](#clear---clear-all-vaccination-data) and then [`add`](#add---add-a-vaccination) command examples.
 
 ```text
 vaccination delete 1
@@ -1013,7 +1013,7 @@ vaccination: ABC VAX deleted
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 
-#### `clear` - Clears all vaccination data
+#### `clear` - Clear all vaccination data
 
 Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
 
@@ -1086,7 +1086,7 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 appointment list
 </pre>
 
-#### `find` - Find all matching appointments
+#### `find` - Locate appointments
 
 List all the appointments that matches the predicates provided.
 
@@ -1157,7 +1157,7 @@ appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfi
 * <code><var>END_TIME</var></code> must be after the given starting time.
 * <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
-#### `mark` - Marks an appointment as completed
+#### `mark` - Mark an appointment as completed
 
 Marks an existing appointment as completed.
 
@@ -1180,7 +1180,7 @@ appointment mark 1
 * The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should not already be done.
 
-#### `unmark` - Changes an appointment's status to not done
+#### `unmark` - Unmark a completed appointment
 
 Changes the completion status to not done.
 
@@ -1521,6 +1521,6 @@ A work around this is to **edit the data files directly**.
 
 ### I added a vaccination but it does not appear in the the vaccination list panel
 
-The filters applied from your last [`find`](#find---finds-a-vaccination) command are most likely still active. Use vaccination's [`list`](#list---lists-all-vaccination) command to clear the filters.
+The filters applied from your last [`find`](#find---locate-vaccinations) command are most likely still active. Use vaccination's [`list`](#list---list-all-vaccination) command to clear the filters.
 
 This feature is intended to increase the efficiency of vaccination's [`edit`](#edit---edit-a-vaccination). Specifically the referring to vaccinations by indexes. You can learn more about this <a href="#vax-filter-no-reset-usage">here</a>.
