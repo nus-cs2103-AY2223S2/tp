@@ -96,7 +96,6 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
 
     @Override
     public boolean isUpPressedBefore() {
-        System.out.println(index);
         return index != -1;
     }
 
