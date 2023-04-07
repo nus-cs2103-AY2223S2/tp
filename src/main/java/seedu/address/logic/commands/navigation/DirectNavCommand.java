@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -34,21 +35,28 @@ public class DirectNavCommand extends NavCommand {
         requireNonNull(model);
 
         NavigationContext navContext = model.getCurrentNavContext();
+
         ModuleCode targetModuleCode = moduleCode.orElseGet(navContext::getModuleCode);
         LectureName targetLectureName = lectureName.orElse(null);
 
-        if (targetModuleCode == null || !model.hasModule(targetModuleCode)) {
-            throw new CommandException("The module code provided is invalid!");
+        boolean hasModuleTarget = targetModuleCode != null;
+        boolean hasLectureTarget = targetLectureName != null;
+
+        if (!hasModuleTarget && hasLectureTarget) {
+            throw new CommandException(NavCommand.MESSAGE_NAV_INVALID);
+        } else if (hasModuleTarget && !model.hasModule(targetModuleCode)) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, targetModuleCode));
+        } else if (hasLectureTarget && !model.hasLecture(targetModuleCode, targetLectureName)) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, targetLectureName, targetModuleCode));
         }
 
-        if (targetLectureName == null) {
-            model.navigateTo(targetModuleCode);
-            listAtModule(targetModuleCode, model);
-        } else if (model.hasLecture(targetModuleCode, targetLectureName)) {
+        if (hasLectureTarget) {
             model.navigateTo(targetModuleCode, targetLectureName);
             listAtLecture(targetModuleCode, targetLectureName, model);
         } else {
-            throw new CommandException("The lecture name provided is invalid!");
+            model.navigateTo(targetModuleCode);
+            listAtModule(targetModuleCode, model);
         }
 
         return getSuccessfulCommandResult(model.getCurrentNavContext(), model);

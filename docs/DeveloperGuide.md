@@ -3,6 +3,23 @@ layout: page
 title: Developer Guide
 ---
 
+![Logo](images/LogoWordmark.png)
+
+## **Le Tracker** Development ~
+
+Welcome to the Developer's Guide for **Le Tracker**!
+
+This guide is intended to provide developers with a comprehensive overview of the **Le Tracker** system, as well as a detailed breakdown of the design pattern and features implementation required to build and customize the application.
+
+Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
+
+<!-- prettier-ignore -->
+:information_source: **Le Tracker** GUI is built with *JavaFX* so you are highly recommended to develop in **Java**.
+
+---
+
+<!-- TODO: Add this after everything is finalised  -->
+
 - Table of Contents
   {:toc}
 
@@ -16,15 +33,15 @@ title: Developer Guide
 
 ## Setting up, getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -32,7 +49,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -54,13 +71,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="733" />
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
+- defines its *API* in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -128,7 +145,9 @@ How the parsing works:
 The `Model` component,
 
 - stores the tracker data i.e., all `Module` objects which are contained in a `UniqueModuleList` object, along with the `Lecture` objects contained in the `UniqueLectureList` objects of said `Module` objects, as well as the `Video` objects contained in the `UniqueVideoList` objects of said `Lecture` objects.
-- <!-- TODO: Update this @leeshaowee -->stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate *filteredModules* list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate *filteredLectures* list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate *filteredVideos* list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -732,9 +751,9 @@ The following is a description of the code execution flow:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                       |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      | <!-- TODO: Verify by hingen -->    |
+| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --- |
+| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              |                                    |     |
+| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      |
 | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                           | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
@@ -745,10 +764,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                             | <!-- TODO: Verify by joytqt -->    |
 | `* * *`  | user             | mark videos that I have watched                                                    | track which videos I have watched                                                                                     | <!-- TODO: Verify by joytqt -->    |
 | `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           | <!-- TODO: Verify by shaowee -->   |
-| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 | <!-- TODO: Verify by shaowee -->   |
+| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     |                                    |
+| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          |                                    |
+| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           |                                    |
+| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 |                                    |
 | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                        | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
@@ -768,10 +787,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     | <!-- TODO: Verify by joytqt -->    |
 | `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                      | <!-- TODO: Verify by joytqt -->    |
 | `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                        | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         | <!-- TODO: Verify by shaowee -->   |
-| `*`      | unmotivated user | feel rewarded for making progress in watching lectures videos                      | be motivated to keep up or catch up                                                                                   | <!-- TODO: Verify by shaowee -->   |
-| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      | <!-- TODO: Verify by shaowee -->   |
-| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   | <!-- TODO: Verify by shaowee -->   |
+| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         |                                    |
+| `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                 |                                    |
+| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      |                                    |
+| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   |                                    |
 
 ### Use cases
 
@@ -1234,7 +1253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list lectures of a specific module
 2. Le Tracker shows a list of lectures of the specified module
-3. User requests to delete a specific lecture in the list, while citing the correct _module code_
+3. User requests to delete a specific lecture in the list, while citing the correct *module code*
 4. Le Tracker deletes the lecture
 
    Use case ends.
@@ -1269,7 +1288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list lecture videos of a specific lecture of a specific module
 2. Le Tracker shows a list of lecture videos of such specifications
-3. User requests to delete a specific video in the list, while citing the correct _module code_ and \_lecture id
+3. User requests to delete a specific video in the list, while citing the correct *module code* and \_lecture id
 4. Le Tracker deletes the lecture video
 
    Use case ends.
@@ -1788,7 +1807,7 @@ Scalability:
 
 Compatibility:
 
-- The app should work on any _mainstream OS_ as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
+- The app should work on any *mainstream OS* as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
 
 Maintainability:
 
@@ -1806,8 +1825,12 @@ Maintainability:
 
 Given below are instructions to test the app manually.
 
-**Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more _exploratory_ testing.
+:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
+
+Prerequisites:
+
+- Ensure your [data](../data/leTracker.json) is up-to-date with the [original test data](../src/test/data/JsonSerializableTrackerTest/typicalTracker.json)
+- Each test case assumes that you start from the root context
 
 ### Launch and shutdown
 
@@ -1824,7 +1847,8 @@ testers are expected to do more _exploratory_ testing.
    1. Re-launch the app by double-clicking the jar file.
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+<!--
+TODO: to be removed
 
 ### Deleting a person
 
@@ -1849,4 +1873,80 @@ testers are expected to do more _exploratory_ testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }_ -->
+
+### List Modules
+
+| Test Case  | Expected Result                                          |
+| ---------- | -------------------------------------------------------- |
+| `list`     | List should show modules with code [`CS2040S`, `ST2334`] |
+| `list /r`  | Same as previous                                         |
+| `list foo` | Same as previous                                         |
+
+### List Lectures of a Module
+
+| Test Case                     | Expected Result                                                          |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| 1.`nav CS2040S`<br/> 2.`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| `list /mod CS2040S`           | Same as previous                                                         |
+
+### List Videos of a Lecture
+
+| Test Case                                        | Expected Result                             |
+| ------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`list` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`list /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`list`    | Same as previous                            |
+| `list /mod CS2040S /lec Week 1`                  | Same as previous                            |
+
+### Find Modules
+
+| Test Case    | Expected Result                                |
+| ------------ | ---------------------------------------------- |
+| `find cs`    | List should show modules with code [`CS2040S`] |
+| `find cs /r` | Same as previous                               |
+| `find foo`   | An empty list is shown                         |
+
+### Find Modules by Tag
+
+| Test Case             | Expected Result                                          |
+| --------------------- | -------------------------------------------------------- |
+| `find intro /byTag`   | List should show modules with code [`CS2040S`, `ST2334`] |
+| `find prob /r /byTag` | List should show modules with code [`ST2334`]            |
+| `find foo /byTag`     | An empty list is shown                                   |
+
+### Find Lectures of a Module
+
+| Test Case                            | Expected Result                                |
+| ------------------------------------ | ---------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find week 1` | List should show lectures with name [`Week 1`] |
+| `find week 1 /mod CS2040S`           | Same as previous                               |
+| `find wk /mod CS2040S`               | An empty list is shown                         |
+
+### Find Lectures of a Module by Tag
+
+| Test Case                                | Expected Result                                          |
+| ---------------------------------------- | -------------------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
+| `find arr /mod CS2040S /byTag`           | Same as previous                                         |
+| `find arry /mod CS2040S /byTag`          | An empty list is shown                                   |
+
+### Find Videos of a Lecture
+
+| Test Case                                              | Expected Result                             |
+| ------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`find vid 3` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`find vid 3 /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find vid 3`    | Same as previous                            |
+| `find vid 3 /mod CS2040S /lec Week 1`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find`          | Invalid command                             |
+
+### Find Videos of a Lecture by Tag
+
+| Test Case                                                    | Expected Result                             |
+| ------------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 2`<br/>3.`find math /byTag` | List should show videos with name [`Vid 2`] |
+| 1.`nav CS2040S`<br/> 2.`find math /lec Week 2 /byTag`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
+| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |

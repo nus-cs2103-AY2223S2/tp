@@ -183,9 +183,17 @@ public class ArgumentTokenizer {
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
-        value = value.split(" " + Prefix.VALIDATION_REGEX + WHITESPACE_OR_STRING_END_REGEX)[0];
+        value = removeArgumentsFromValue(value);
 
         return value.trim();
+    }
+
+    /**
+     * Returns a substring of {@code value} containing all characters up to the first character of a valid prefix.
+     */
+    private static String removeArgumentsFromValue(String value) {
+        String[] substrs = value.split(" " + Prefix.VALIDATION_REGEX + WHITESPACE_OR_STRING_END_REGEX);
+        return substrs.length == 0 ? "" : substrs[0];
     }
 
     /**
