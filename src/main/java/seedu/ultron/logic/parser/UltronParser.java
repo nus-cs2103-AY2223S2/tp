@@ -76,7 +76,7 @@ public class UltronParser {
 
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
-        
+
         case ShowCommand.COMMAND_WORD:
             return new ShowCommandParser().parse(arguments);
 
