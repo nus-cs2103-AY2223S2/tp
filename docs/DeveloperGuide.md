@@ -2152,7 +2152,7 @@ Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleT
 
 Command executed: `tag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will  be added.
+Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
 
 #### **_Scenario 4_**
 
