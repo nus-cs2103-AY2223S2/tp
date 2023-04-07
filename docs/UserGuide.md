@@ -59,6 +59,52 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
+## **Command format**
+
+<div markdown="block" class="alert alert-info">
+
+* All command formats given in this user guide come in the form of `command-word additional-details`.
+Example: `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+
+* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+
+* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+
+* Additional details with * after them can be used multiple times, including zero times.
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]*` 
+
+`[tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.`
+
+* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
+Example:  `delete-client <index>`
+
+* All command-words are case-insensitive.
+
+</div>
+
+### **Prefixes**
+
+| Prefix      | Short form | Description                                        |
+|-------------|------------|----------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                             |
+| `email/`    | `e/`       | Valid email address                                |
+| `phone/`    | `p/`       | Valid phone number                                 |
+| `deadline/` | `d/`       | Valid deadline for project                         |
+| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
+| `tag/`      | `t/`       | Alphanumeric tag                                   |
+| `client/`   | `c/`       | Keywords to search for client to link to a project |
+| `option/`   | `o/`       | Valid option to sort projects with                 |
+| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
+| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
+| `status/`   | `st/`      | Valid status for finding projects                  |
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
+
 ## Command summary
 
 | Action                        | Alias | Format, Examples                                                                                                                                                      |
@@ -81,69 +127,9 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 | **Sorting all Project**       | `sp`  | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Syntax**
-
-`[ACTION VERB] [options]`
-
-`<Required argument> [optional argument]`
-
-An asterisk `*` after any argument indicates that it can be entered a variable number of times. E.g. `[tag/TAG]*`
-
-All commands are case-insensitive.
-
-## **Prefixes**
-
-| Prefix      | Short form | Description                                        |
-|-------------|------------|----------------------------------------------------|
-| `name/`     | `n/`       | Name of client/project                             |
-| `email/`    | `e/`       | Valid email address                                |
-| `phone/`    | `p/`       | Valid phone number                                 |
-| `deadline/` | `d/`       | Valid deadline for project                         |
-| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
-| `tag/`      | `t/`       | Alphanumeric tag                                   |
-| `client/`   | `c/`       | Keywords to search for client to link to a project |
-| `option/`   | `o/`       | Valid option to sort projects with                 |
-| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
-| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
-| `status/`   | `st/`      | Valid status for finding projects                  |
-
-<br>
-
---------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
 ## **Features**
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add-client name/NAME`, `NAME` is a parameter which can be used as `add-client name/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as [help](#viewing-help-help), [list-client](#list-all-clients-list-client), [list-project](#listing-all-projects--list-project), [list-tag](#listing-all-tags--list-tag), [exit](#exiting-the-program--exit), [clear-client](#clearing-the-client-list--clear-client), [clear-project](#clear) and [sort-client](#sorting-all-clients--sort-client)) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Extraneous parameters for commands that take in only one parameter (such as [delete-client](#deleting-a-client--delete-client)) will be ignored.<br>
-  e.g. if the command specifices `delete-client 1 abc` it will be interpreted as `delete-client 1`.
-
-* Most commands and parameters have shorter aliases that can be used the same way, such as [list-project](#listing-all-projects--list-project) having the alias `lp` and `name/` having the alias `n/`.<br>
-  e.g. specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
-
-</div>
 
 [<small>Back to top</small>](#table-of-contents)
 

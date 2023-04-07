@@ -20,8 +20,6 @@ import arb.model.Model;
 public class ListProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
-
-    public static final String MESSAGE_PROJECTS_CONTENT = "%s";
     private static final String MAIN_COMMAND_WORD = "list-project";
     private static final String ALIAS_COMMAND_WORD = "lp";
     private static final Set<String> COMMAND_WORDS =
@@ -32,13 +30,28 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        String message = String.format(MESSAGE_PROJECTS_CONTENT, model.getProjectsContent());
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + message, ListType.PROJECT);
+        String formattedMessage = getMessageProjectsContent(model);
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + formattedMessage, ListType.PROJECT);
     }
 
     /** Get all valid command words as an unmodifiable set. */
     public static Set<String> getCommandWords() {
         return Collections.unmodifiableSet(COMMAND_WORDS);
+    }
+
+    /**
+     * Returns message of contents of the project list.
+     */
+    public static String getMessageProjectsContent(Model model) {
+        int projectSize = model.noProjectSize();
+        int overdueProjects = model.noOverdueProjects();
+        int doneProjects = model.noDoneProjects();
+        int notDoneProjects = model.noNotDoneProjects();
+        String formattedMessage = "Total number of Projects: " + projectSize + "\n"
+                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
+                + "Total number of Projects DONE: " + doneProjects + "\n"
+                + "Total number of Projects NOT DONE: " + notDoneProjects;
+        return formattedMessage;
     }
 
 }
