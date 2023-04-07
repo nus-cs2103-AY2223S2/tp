@@ -8,10 +8,10 @@ import seedu.quickcontacts.model.Model;
  */
 public class ShowNotDoneCommand extends Command {
     public static final String COMMAND_WORD = "pending";
-    public static final String MESSAGE = "Showing all un-done or not over meetings! To view all meetings again, enter "
+    public static final String MESSAGE = "Showing all un-done and not over meetings! To view all meetings again, enter "
             + "'findm'";
     public static final String MESSAGE_USAGE = "No parameters required";
-    public static final String COMMAND_DESCRIPTION = "Shows all un-done or pending meetings";
+    public static final String COMMAND_DESCRIPTION = "Shows all un-done and not-over meetings";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
