@@ -560,6 +560,10 @@ Output:
 
 Updates the Patient using it's PATIENT_ID. It will update the attributes of the specified patient to the attributes provided. If any of the optional arguments are omitted, the values will not be updated.
 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not re-check if the edited patient is still able to take the vaccinations of the active appointments that they have been scheduled if any. As such if the patient is updated such that they are now ineligible to take the vaccination of their upcoming appointment, no warning or error messages will show and the state of all appointment will remain.
+</div>
+
 ##### Syntax
 
 <pre>
@@ -903,6 +907,10 @@ Output:
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
 are omitted, they will be set to what they were before.
 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not re-check the eligibility of patients with active appointments of the edited vaccination. As such, if a vaccination is edited such that a patient with an active appointment is now unable to take that vaccination, no warning or error messages will be shown and the state of all appointments will remain.
+</div>
+
 ##### Syntax
 
 <pre>
@@ -1175,6 +1183,10 @@ appointment mark 1
 #### `unmark` - Changes an appointment's status to not done
 
 Changes the completion status to not done.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **WARNING**: VMS does not check if the patient is still eligible to take the vaccination of the unmarked appointment. Thus, no warming messages or error messages will show if the patient is unable to take the vaccination of the unmarked appointment.
+</div>
 
 ##### Syntax
 
