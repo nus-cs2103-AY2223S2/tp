@@ -16,7 +16,7 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 1. Download the latest `wheregottime.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WhereGotTime.
+1. Copy the file to an **empty** folder that you want to use as the _home folder_ for your WhereGotTime. (e.g.: A new folder in your `Desktop`)
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wheregottime.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -116,6 +116,7 @@ Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GRO
 * Groups can only be added if it has been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
     specifying any tags/groups after it.
+* Adding duplicate groups/tags to a `Person` would not result in multiple groups/tags created.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -307,8 +308,8 @@ Export a person's details from the address book.
 
 Format: `export [INDEX_OF_PERSON]`
 
-* Exports a person's details with the specified `INDEX`
-* All details except groups and tags are exported.
+* Exports a person's details with the specified `INDEX_OF_PERSON`
+* All details *except groups and tags* are exported.
 * Export data is saved in the data/export.json
 * Exporting a person will overwrite any existing export.json file
 
