@@ -18,6 +18,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [How to use this guide](#how-to-use-this-guide)
   - [Legends](#legends)
 - [Quick Start](#quick-start)
+- [Introduction to GoodMatch](#introduction-to-goodmatch)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help--help)
   - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
@@ -236,6 +237,7 @@ Adds a listing to the listing book.
 
 - A listing can have any number of applicants (including 0)
 - A listing can have any number of platforms (including 0)
+- Duplicated listings with the same titles are not allowed
 
 📚 **Examples:**
 
@@ -263,6 +265,12 @@ Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
 
+If a listing with the same title exists, the following error message will be displayed.
+
+```ignorelang
+This listing already exists in the listing book
+```
+
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ---
@@ -281,6 +289,7 @@ Edits the details of a job listing.
   `edit 1 t/TITLE d/DESCRIPTION`
 
   then only the title and the description of listing 1 will be edited (the applicants will remain unchanged)
+- Editing the title to an already existing title is not allowed since it leads to duplicated listings.
 - For platforms and applicants, editing using the `p/` and `a/` flags will replace the whole list with the new list. E.g. if the command entered is:
 
   `edit 1 p/LinkedIn p/Indeed a/`
@@ -325,6 +334,12 @@ Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 
 ```ignorelang
 The listing index provided exceeded the number of listings shown!
+```
+
+If there is an attempt to edit the title to an existing title, the following error message will be shown.
+
+```ignorelang
+A listing with the given title already exists!
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
