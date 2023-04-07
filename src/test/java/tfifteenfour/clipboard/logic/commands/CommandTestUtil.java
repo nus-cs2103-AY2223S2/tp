@@ -115,27 +115,33 @@ public class CommandTestUtil {
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         Roster expectedRoster = actualModel.getRoster().copy();
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
+        List<Student> expectedFilteredList = new ArrayList<>(
+                actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
 
         assertThrows(CommandException.class,
                 expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedRoster, actualModel.getRoster());
-        assertEquals(expectedFilteredList, actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
+        assertEquals(expectedFilteredList,
+                actualModel.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
+        assertTrue(targetIndex.getZeroBased() <
+                model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
 
-        Student student = model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().get(targetIndex.getZeroBased());
+        Student student = model.getCurrentSelection().getSelectedGroup()
+                .getUnmodifiableFilteredStudentList().get(targetIndex.getZeroBased());
         final String studentId = student.getStudentId().toString();
         String[] tempSidArray = new String[1];
         tempSidArray[0] = studentId;
-        model.getCurrentSelection().getSelectedGroup().updateFilteredStudents(new StudentParticularsContainsPredicate(tempSidArray));
+        model.getCurrentSelection().getSelectedGroup().updateFilteredStudents(
+                new StudentParticularsContainsPredicate(tempSidArray));
 
-        assertEquals(1, model.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList().size());
+        assertEquals(1, model.getCurrentSelection().getSelectedGroup()
+                .getUnmodifiableFilteredStudentList().size());
     }
 
 }

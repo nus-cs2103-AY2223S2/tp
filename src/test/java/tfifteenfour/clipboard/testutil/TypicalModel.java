@@ -16,30 +16,29 @@ import tfifteenfour.clipboard.model.util.SampleDataUtil;
  */
 public class TypicalModel {
 
-        private Model typicalModel;
+    private Model typicalModel;
 
 
-        public TypicalModel() {
-                Path sampleFilePath = Paths.get("src", "test", "data", "sampleRoster.json");
-                ReadOnlyRoster sampleRoster = SampleDataUtil.getSampleRoster(sampleFilePath, null);
-                Model initModel = new ModelManager(sampleRoster, new UserPrefs());
-                Roster typicalRoster = initModel.getRoster();
+    public TypicalModel() {
+        Path sampleFilePath = Paths.get("src", "test", "data", "sampleRoster.json");
+        ReadOnlyRoster sampleRoster = SampleDataUtil.getSampleRoster(sampleFilePath, null);
+        Model initModel = new ModelManager(sampleRoster, new UserPrefs());
+        Roster typicalRoster = initModel.getRoster();
 
-                CurrentSelection typicalCurrentSelection = new CurrentSelection();
+        CurrentSelection typicalCurrentSelection = new CurrentSelection();
 
-                typicalCurrentSelection.selectCourse(typicalRoster.getUnmodifiableCourseList().get(0));
-                typicalCurrentSelection.selectGroup(typicalCurrentSelection.getSelectedCourse().getUnmodifiableGroupList().get(0));
-                typicalCurrentSelection.selectStudent(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredStudentList().get(0));
-                typicalCurrentSelection.selectSession(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredSessionList().get(0));
-                typicalCurrentSelection.selectTask(typicalCurrentSelection.getSelectedGroup().getUnmodifiableTaskList().get(0));
+        typicalCurrentSelection.selectCourse(typicalRoster.getUnmodifiableCourseList().get(0));
+        typicalCurrentSelection.selectGroup(typicalCurrentSelection.getSelectedCourse().getUnmodifiableGroupList().get(0));
+        typicalCurrentSelection.selectStudent(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredStudentList().get(0));
+        typicalCurrentSelection.selectSession(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredSessionList().get(0));
+        typicalCurrentSelection.selectTask(typicalCurrentSelection.getSelectedGroup().getUnmodifiableTaskList().get(0));
 
-                this.typicalModel = new ModelManager(typicalRoster, new UserPrefs(), typicalCurrentSelection);
-        }
+        this.typicalModel = new ModelManager(typicalRoster, new UserPrefs(), typicalCurrentSelection);
+    }
 
-        public Model getTypicalModel() {
-                return this.typicalModel;
-        }
-
+    public Model getTypicalModel() {
+        return this.typicalModel;
+    }
 
 
 }

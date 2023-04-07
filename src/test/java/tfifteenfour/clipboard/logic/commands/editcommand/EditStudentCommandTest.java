@@ -44,9 +44,13 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedStudent = new StudentBuilder(model.getCurrentSelection().getSelectedStudent()).withStudentId("A1397522R").build();
+        Student editedStudent = new StudentBuilder(model.getCurrentSelection().getSelectedStudent())
+                .withStudentId("A1397522R")
+                .build();
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).withStudentId("A1397522R").build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent)
+                .withStudentId("A1397522R")
+                .build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
@@ -77,7 +81,9 @@ public class EditStudentCommandTest {
         Model expectedModel = model.copy();
 
         Group expectedSelectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
-        expectedSelectedGroup.setStudent(expectedSelectedGroup.getUnmodifiableFilteredStudentList().get(indexLastStudent.getZeroBased()), editedStudent);
+        expectedSelectedGroup.setStudent(
+                expectedSelectedGroup.getUnmodifiableFilteredStudentList().get(indexLastStudent.getZeroBased()),
+                editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
@@ -85,7 +91,8 @@ public class EditStudentCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST, new EditStudentDescriptor());
-        Student editedStudent = actualSelectedGroup.getUnmodifiableFilteredStudentList().get(INDEX_FIRST.getZeroBased());
+        Student editedStudent = actualSelectedGroup
+                .getUnmodifiableFilteredStudentList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
@@ -112,7 +119,8 @@ public class EditStudentCommandTest {
         showStudentAtIndex(expectedModel, INDEX_FIRST);
 
         Group expectedSelectedGroup = expectedModel.getCurrentSelection().getSelectedGroup();
-        expectedSelectedGroup.setStudent(expectedSelectedGroup.getUnmodifiableFilteredStudentList().get(0), editedStudent);
+        expectedSelectedGroup.setStudent(expectedSelectedGroup
+                .getUnmodifiableFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
