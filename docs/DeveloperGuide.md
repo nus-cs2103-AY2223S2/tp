@@ -33,7 +33,7 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 
 ### Objectives of the Developer Guide
 This developer guide aims to provide developers with insights into the implementation of InternBuddy and to explain the
-design considerations behind its features. It utilizes Unified Modeling Language (UML) diagrams created using
+design considerations behind its features. It utilises Unified Modeling Language (UML) diagrams created using
 [PlantUML](https://plantuml.com/) for a visual explanation of the implementation.
 
 Apart from shedding light on InternBuddy's internal details, this developer guide also provides
@@ -92,7 +92,7 @@ set up the InternBuddy project in your personal computer.
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
 After setting up and launching InternBuddy, you would see a GUI. Figure 1 illustrates the main parts
-of InternBuddy's GUI and Table 1 explains the function for each part. We would be referencing
+of InternBuddy's GUI and Table 1 explains the function for each part. We will be referencing
 the different parts of the GUI throughout this developer guide.
 
 <p align="center">
@@ -351,8 +351,8 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
 This section describes some noteworthy details on how certain features are implemented.
 
 <div markdown="span" class="alert alert-primary">:information_source: **Info:** Due to a limitation of PlantUML, the lifeline
-for objects in sequence diagrams would always reach the end of the diagrams. However, it is worthy to note that for objects
-with destroy markers (X), their lifelines would have ended at the markers.
+for objects in sequence diagrams would always reach the end of the diagrams. However, it is worthy to note that objects
+with destroy markers (X) would have been destroyed at the markers.
 
 </div>
 
@@ -382,7 +382,7 @@ The following gives a more detailed explanation of the `add` command.
    - `c/` followed by the comment for the entry [Optional]
    - `t/` followed by tags for the entry [Optional]
 3. If any of the compulsory fields is missing or any of the fields entered by the user
-   does not meet the field requirements, a `ParserException` will be thrown.
+   does not meet the field requirements, a `ParseException` will be thrown.
 4. An `Internship` will be created from the parsed user's input.
 5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
    contains the `Internship` created in Step 4.
@@ -390,20 +390,22 @@ The following gives a more detailed explanation of the `add` command.
 7. Else if there is no duplicate `Internship`, the `Internship` created will be added into
    the `Model` component.
 8. The currently selected `Internship` in the `Model` component will be updated to become
-   this new `Internship` such that the right UI panel displays the information for this new
-   `Internship`.
+   this new `Internship` such that the [View Panel](#setting-up-and-getting-started) displays the information for
+   this new `Internship`.
 
 <div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
 - Whether to make all fields in the `add` command compulsory
+
 1. **Alternative 1 (chosen): Make only essential fields compulsory**
     * Pros: More user-centric as not all users want to enter the optional information,
             which is not exactly critical in tracking internships.
-    * Cons: More work is to be done in code implementation. For example, the absence of optional
+    * Cons: More work needs to be done in code implementation. For example, the absence of optional
             fields should not cause a `ParseException`, and there is a need to include a
             default value of `NA` for input without any `Comment`.
+
 2. **Alternative 2: Make all fields compulsory**
     * Pros: Easier to implement as there is no need to differentiate between compulsory
             and optional fields during command parsing, and it is easier to compare between
@@ -411,11 +413,13 @@ The following gives a more detailed explanation of the `add` command.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
             are forced to input something for the `Add` command to work.
 
+<br/>
+
 - Whether to update the [View Panel](#setting-up-getting-started) according to the `add` command
 
 1. **Alternative 1 (chosen): Update the [View Panel](#setting-up-getting-started) whenever a new `Internship` is added**
     * Pros: Better visual indication that the `add` command has been successfully executed.
-      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
+      If the user has  a lot of `Internship` entries, when a new `Internship` is added,
       the new entry will be placed at the bottom of the [List Panel](#setting-up-getting-started),
       which is not visible  if the user's scroll position is at the top of the
       [List Panel](#setting-up-getting-started). Therefore, updating
@@ -1701,6 +1705,10 @@ Table 3 provides the glossary for the terms used in this developer guide.
   the [SE-EDU initiative](https://se-education.org).
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
-* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
+* GUI testing was implemented with references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp). We utilised code from these projects to set
+  up GUI testing, then added our own test cases to test the UI components that we created ourselves.
+* The feature of Navigating Through Past Commands was primarily adapted from  [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp),
+  but we added code modifications and test coverage.
+* The sections on explaining the formatting standards and GUI interface used in the User and Developer Guides are
+  inspired by [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
