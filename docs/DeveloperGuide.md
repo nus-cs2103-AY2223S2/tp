@@ -33,7 +33,7 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 
 ## Setting up, getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 ---
 
@@ -41,7 +41,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -49,7 +49,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -71,13 +71,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="733" />
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
+- defines its *API* in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -145,9 +145,9 @@ How the parsing works:
 The `Model` component,
 
 - stores the tracker data i.e., all `Module` objects which are contained in a `UniqueModuleList` object, along with the `Lecture` objects contained in the `UniqueLectureList` objects of said `Module` objects, as well as the `Video` objects contained in the `UniqueVideoList` objects of said `Lecture` objects.
-- stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filteredModules_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate _filteredLectures_ list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate _filteredVideos_ list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate *filteredModules* list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate *filteredLectures* list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate *filteredVideos* list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -1253,7 +1253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list lectures of a specific module
 2. Le Tracker shows a list of lectures of the specified module
-3. User requests to delete a specific lecture in the list, while citing the correct _module code_
+3. User requests to delete a specific lecture in the list, while citing the correct *module code*
 4. Le Tracker deletes the lecture
 
    Use case ends.
@@ -1288,7 +1288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list lecture videos of a specific lecture of a specific module
 2. Le Tracker shows a list of lecture videos of such specifications
-3. User requests to delete a specific video in the list, while citing the correct _module code_ and \_lecture id
+3. User requests to delete a specific video in the list, while citing the correct *module code* and \_lecture id
 4. Le Tracker deletes the lecture video
 
    Use case ends.
@@ -1807,7 +1807,7 @@ Scalability:
 
 Compatibility:
 
-- The app should work on any _mainstream OS_ as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
+- The app should work on any *mainstream OS* as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
 
 Maintainability:
 
@@ -1825,12 +1825,12 @@ Maintainability:
 
 Given below are instructions to test the app manually.
 
-:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
+:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 Prerequisites:
 
 - Ensure your [data](../data/leTracker.json) is up-to-date with the [original test data](../src/test/data/JsonSerializableTrackerTest/typicalTracker.json)
-- Each test cases assumes that you start from the root context
+- Each test case assumes that you start from the root context
 
 ### Launch and shutdown
 
@@ -1846,8 +1846,6 @@ Prerequisites:
 
    1. Re-launch the app by double-clicking the jar file.
       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 <!--
 TODO: to be removed
