@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSONS_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INPUT_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.ArrayList;
@@ -262,7 +263,7 @@ public class ParserUtil {
             }
             return indexes;
         } catch (NumberFormatException e) {
-            throw new ParseException("One or more index values are not positive integers.");
+            throw new ParseException(MESSAGE_INVALID_INPUT_INDEX);
         }
     }
 }
