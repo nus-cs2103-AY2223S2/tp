@@ -25,7 +25,7 @@ public class FishUtil {
      * Returns an add command string for adding the {@code fish}.
      */
     public static String getAddCommand(Fish fish) {
-        return FishCommand.COMMAND_WORD + " " + FishAddCommand.COMMAND_WORD + " " + getFishDetails(fish);
+        return FishCommand.COMMAND_WORD + " " + FishAddCommand.FISH_COMMAND_WORD + " " + getFishDetails(fish);
     }
 
     /**
@@ -56,7 +56,7 @@ public class FishUtil {
         descriptor.getSpecies().ifPresent(species -> sb.append(PREFIX_SPECIES).append(species.species).append(" "));
         descriptor.getFeedingInterval().ifPresent(feedingInterval -> sb.append(PREFIX_FEEDING_INTERVAL)
                 .append(feedingInterval.value).append(" "));
-        descriptor.getTank().ifPresent(tank -> sb.append(PREFIX_TANK).append(tank.getTankName().fullTankName)
+        descriptor.getTankIndex().ifPresent(tankInd -> sb.append(PREFIX_TANK).append(tankInd)
                 .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

@@ -403,6 +403,11 @@ public class ModelManager implements Model {
         return filteredTanks.get(index.getZeroBased());
     }
 
+    @Override
+    public Index getTankIndex(Tank tank) {
+        return Index.fromZeroBased(filteredTanks.indexOf(tank));
+    }
+
     //=========== Feeding reminders =============================================================
     @Override
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {

@@ -211,4 +211,6 @@ public interface Model {
     ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels();
 
     void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate);
+
+    Index getTankIndex(Tank tank);
 }

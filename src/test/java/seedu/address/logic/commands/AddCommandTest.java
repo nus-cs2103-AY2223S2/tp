@@ -325,6 +325,11 @@ public class AddCommandTest {
         public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
 
         }
+
+        @Override
+        public Index getTankIndex(Tank tank) {
+            return null;
+        }
     }
 
     /**
