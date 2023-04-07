@@ -64,16 +64,16 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 <div markdown="block" class="alert alert-info">
 
 * All command formats given in this user guide come in the form of `command-word additional-details`.
-Example: `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+Example: `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
 
 * Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
 
 * Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…` 
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
 
 * Additional details with * after them can be used multiple times, including zero times.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]*` 
+Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]*`
 
 `[tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.`
 

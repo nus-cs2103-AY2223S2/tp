@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zrei.md)]
 
 * Role: Team Lead
-* Responsibilities: `to be added`
+* Responsibilities: Testing
 
 ### Rishi Chousalkar
 

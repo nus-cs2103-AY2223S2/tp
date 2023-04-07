@@ -16,7 +16,10 @@ Given below are my contributions to the project.
     * Made decisions regarding what features to implement and what direction to go in
   * Reviewed PRs for team members, [providing suggestions](https://github.com/AY2223S2-CS2103T-T14-1/tp/pull/172) and [possible solutions](https://github.com/AY2223S2-CS2103T-T14-1/tp/pull/171)
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zrei&breakdown=true)
+  * Contributed majority of the test code
+
 
 * **Enhancements implemented**:
   * Ability to sort the client / project list
@@ -30,6 +33,7 @@ Given below are my contributions to the project.
   * Enhanced the existing find feature
     * Allowed more parameters to be used in the find feature, such as tags and linked clients (for projects)
     * This involved creating more predicate classes and the creation of a CombinedPredicate class that tests either a client or a project against all specified predicates
+
 
 * **Documentation**:
   * Contributions to [User Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/UserGuide.html)
