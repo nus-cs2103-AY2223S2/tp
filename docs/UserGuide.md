@@ -424,6 +424,8 @@ Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
 
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
 
 ### Edit a Module
