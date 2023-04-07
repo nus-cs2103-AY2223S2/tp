@@ -161,7 +161,6 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
 
     @Override
     public String toString() {
-        // TODO: refine later
         return dataMap.asUnmodifiableObservableMap().toString();
     }
 
