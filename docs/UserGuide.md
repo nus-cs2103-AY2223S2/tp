@@ -183,22 +183,6 @@ Prefixes are delimiters to differentiate between different types of input.
 There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 </div>
 
-| Prefix | Placeholder                |
-|--------|----------------------------|
-| id/    | ID                         |
-| eid/   | EMPLOYEE_ID                |
-| n/     | NAME <br/> DEPARTMENT_NAME |
-| p/     | PHONE_NUMBER               |
-| e/     | EMAIL                      |
-| a/     | ADDRESS                    |
-| t/     | TAG                        |
-| d/     | DATE                       |
-| s/     | START_DATE                 |
-| e/     | END_DATE                   |
-
-
-### 3.2.5. Placeholders
-
 
 ![table1](images/table1.png)
 ![table2](images/table2.png)
@@ -398,11 +382,10 @@ Examples:
 * `refd eid/1 n/Software Engineering`
 * `refd eid/100 n/Sales`
 
-### 7.2.8. List an employee's departments: `led`
-
+### 7.2.8. List an employee's departments: `leid`
 List all departments and employee is in.
 
-Format: `led eid/EMPLOYEE_ID`
+Format: `leid eid/EMPLOYEE_ID`
 
 Examples:
 * `leid eid/100`
