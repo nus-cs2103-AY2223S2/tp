@@ -288,8 +288,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Forces the command box to submit the command.
-     *
-     * @see CommandBox#handleCommandEntered()
      */
     public void forceCommandBoxSubmit() {
         commandBox.handleInputSubmit();
