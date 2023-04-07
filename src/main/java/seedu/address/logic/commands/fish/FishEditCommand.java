@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -83,8 +82,6 @@ public class FishEditCommand extends FishCommand {
 
         Fish fishToEdit = lastShownList.get(index.getZeroBased());
         Fish editedFish = createEditedFish(fishToEdit, editFishDescriptor, model);
-        //editedFish's tank attribute is only an index
-        //        editedFish.setTank(tank);
 
         if (!fishToEdit.isSameFish(editedFish) && model.hasFish(editedFish)) {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
@@ -99,7 +96,6 @@ public class FishEditCommand extends FishCommand {
             fishToEdit.getTank().getFishList().setFish(fishToEdit, editedFish);
         }
 
-        model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
         return new CommandResult(String.format(MESSAGE_EDIT_FISH_SUCCESS, editedFish));
     }
 

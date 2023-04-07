@@ -170,7 +170,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyReadingLevels> readFullReadingLevels(Path filePath)
-            throws DataConversionException, IOException {
+            throws DataConversionException {
         logger.fine("Attempting to read data from file: " + filePath);
         return fullReadingLevelsStorage.readFullReadingLevels(filePath);
     }

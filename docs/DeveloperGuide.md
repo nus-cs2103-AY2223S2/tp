@@ -540,7 +540,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -548,33 +548,63 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
 
 ### Deleting a fish
 
 1. Deleting a fish while all fish are being shown
 
-   1. Prerequisites: List all fish using the `list` command. Multiple fish in the list.
+   1. Prerequisites: List all fish using the `list fishes` command. Multiple fish in the list.
 
    1. Test case: `fish delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First fish is deleted from the list. Details of the deleted fish shown in the status message. 
 
    1. Test case: `fish delete 0`<br>
-      Expected: No fish is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No fish is deleted. Error details shown in the status message. Fish panels remains the same.
 
    1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+   
 
-1. _{ more test cases …​ }_
+### Readings graph feature
+
+1. Checking that graphs of each tank can display readings correctly
+   1. Prerequisites: The tanks are the default sample tanks, "freshwater tank" and "saltwater tank"
+   2. Test case: paste the following test values into `readings.json`: <br>
+```json
+{
+  "readingLevels" : [ {
+    "tankName" : "freshwater tank",
+    "commaSeperatedValuesAmmonia" : "0.2,0.3,0.0",
+    "commaSeperatedDatesAmmonia" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+    "commaSeperatedValuesPH" : "7.1,6.8,7.0",
+    "commaSeperatedDatesPH" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+    "commaSeperatedValuesTemp" : "26.0,25.0,26.2",
+    "commaSeperatedDatesTemp" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02"
+  }, {
+    "tankName" : "saltwater tank",
+    "commaSeperatedValuesAmmonia" : "",
+    "commaSeperatedDatesAmmonia" : "",
+    "commaSeperatedValuesPH" : "",
+    "commaSeperatedDatesPH" : "",
+    "commaSeperatedValuesTemp" : "",
+    "commaSeperatedDatesTemp" : ""
+  } ]
+}
+```
+Expected: <br>
+![expectedReadingFromSample](images/expectedReadingFromSample.png)
+
+:exclamation: Warning: If you want to test with more of your own values, you should ensure all 3 types of 
+readings come as a set e.g. if any readings were to be made, it would be all 3 and they are made at the same time
+as the app ensures this
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Missing data files are automatically created. If data files are corrupted, delete all data files
+   so new ones will be created, containing our sample data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -585,4 +615,24 @@ testers are expected to do more *exploratory* testing.
    
     1. [-MAX_INT....0]: Index must be a positive non-zero integer
     2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
+   
+2. The current parameter parsing does not check for nonsensical or invalid values. We plan do execute sanity checks to 
+    protect the user from receiving unintentional results for the following parameters:
+   1. Last fed dates: Check for invalid dates like 30th February and reject them
+   2. Feeding interval: While it makes sense that a feeding interval can be 0 days and 25 hours, it 
+   makes our `fish sort by/fi` less intuitive as ours sorts by days then hours. `0d25h` will appear before `1d0h`
+   . We can automatically convert feeding intervals such that hours is less than 24 in future iterations
+   3. Readings: Ammonia levels, temperatures and pH can accept amy numerical value that may be far out of the boundaries
+   of our GUI graph axes. In future iterations, we will check that they are realistic values, which are
+   values bounded by the axes of our respective graphs.
+
+3. Alphanumeric fields may be truncated if they are too long as we do not limit their length. They
+may also become truncated if the user's app window size is too small. A side effect of this can be for example,
+fish with long names, which are supposed to be distinct, will appear as the same after truncation.
+We will limit the length of such parameters in future enhancements to avoid this. 
     
+4. Logging messages on the terminal are not optimized for Fish Ahoy! We plan to improve this by simple changes from 
+   "Addressbook" to "Fish Ahoy", as well as fixing the fxml versions in fxml files. Furthermore, we can add more useful 
+   logging messages related to Fish Ahoy commands such as information on newly added commands, so the user may gain more 
+   information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
+   

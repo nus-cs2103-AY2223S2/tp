@@ -225,8 +225,6 @@ public class ModelManager implements Model {
     @Override
     public void addFish(Fish fish) {
         addressBook.addFish(fish);
-        updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
-
     }
 
     @Override
