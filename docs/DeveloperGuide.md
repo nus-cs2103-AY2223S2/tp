@@ -8,8 +8,8 @@ title: Developer Guide
 ConnectUS is a **contact management system** that enables <u>NUS School of Computing (SoC)</u> students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
 ConnectUS focuses on:
-- **Efficiency**: Optimized for use via a Command Line Interface (CLI), **easily view and edit contacts** with the **contact management system**.
-- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
+- **Efficiency**: Optimized for use via a <u>Command Line Interface (CLI)</u>, **easily view and edit contacts** with the **contact management system**.
+- **User-friendliness**: With the benefits of having a <u>Graphical User Interface (GUI)</u>, **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
 This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the <u>architecture</u> of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
@@ -156,7 +156,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+**Main components of the <u>architecture</u>**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -295,7 +295,7 @@ This section describes some noteworthy details on how certain features are imple
 
 **Overview:**
 
-The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as `Module`, `CCA`, `Major`, and `Remark` fields.
+The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u>`Module`</u>, <u>`CCA`</u>, <u>`Major`</u> and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
@@ -558,9 +558,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the `ConnectUS.jar` file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the `ConnectUS.jar` file Expected: Shows the <u>GUI</u> with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -622,15 +622,15 @@ testers are expected to do more *exploratory* testing.
 
 **Target user profile**:
 
-* NUS School of Computing (SoC) students
-* especially those with many CCAs, modules or Team Projects
+* <u>NUS School of Computing (SoC)</u> students
+* especially those with many <u>CCAs</u>, <u>modules</u> or Team Projects
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using <u>CLI</u> apps
 
-**Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends information, saving time and effort as users can access this information at their fingertips.
+**Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
 
 <div style="page-break-after: always"></div>
 
@@ -682,7 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## 8.3 Use cases
 
-(For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
+(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a contact**
 
@@ -804,7 +804,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## 8.4 Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any <u>_mainstream OS_</u> as long as it has <u>Java `11`</u> or above installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be for a single user i.e. (not a multi-user product).
@@ -812,7 +812,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. Should have its data be in a human editable text file.
 7. Should not use a Database Management System (DBMS) to store data.
 8. Should not depend on a remote server.
-9. Should not cause have its GUI cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
+9. Should not cause have its <u>GUI</u> cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
@@ -839,6 +839,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **Command:**
 > Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
+> 
+> **ConnectUS.jar:**
+> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
 > 
 > **CS2103T:**
 > The module code for a Software Engineering module in the National University of Singapore.
