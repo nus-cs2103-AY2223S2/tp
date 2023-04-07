@@ -183,22 +183,6 @@ Prefixes are delimiters to differentiate between different types of input.
 There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 </div>
 
-| Prefix | Placeholder                |
-|--------|----------------------------|
-| id/    | ID                         |
-| eid/   | EMPLOYEE_ID                |
-| n/     | NAME <br/> DEPARTMENT_NAME |
-| p/     | PHONE_NUMBER               |
-| e/     | EMAIL                      |
-| a/     | ADDRESS                    |
-| t/     | TAG                        |
-| d/     | DATE                       |
-| s/     | START_DATE                 |
-| e/     | END_DATE                   |
-
-
-### 3.2.5. Placeholders
-
 
 List placeholders in the command
 | Placeholder             | Corresponding Prefix | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -218,8 +202,7 @@ List placeholders in the command
 | **END_DATE**            | e/                   | START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the END_DATE cannot be earlier than the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br/> |
 
 
-
-(Talk about their constraints, type, format, etc)
+[//]: # (Talk about their constraints, type, format, etc)
 
 ## 3.3. Command Format
 
@@ -413,11 +396,11 @@ Examples:
 * `refd eid/1 n/Software Engineering`
 * `refd eid/100 n/Sales`
 
-### 7.2.8. List an employee's departments: `led`
+### 7.2.8. List an employee's departments: `leid`
 
-List all departments an employee is in.
+List all departments and employee is in.
 
-Format: `led eid/EMPLOYEE_ID`
+Format: `leid eid/EMPLOYEE_ID`
 
 Examples:
 * `leid eid/100`
