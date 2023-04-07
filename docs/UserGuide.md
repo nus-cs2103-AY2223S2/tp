@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with efficiently managing clients and project information**. It is optimized for use via keyboard commands that you can enter quickly and easily while displaying your data in an appealing and well-organised visual format so you can always find what you need. If you can type fast, ArB can get your client and project management tasks done faster than other applications that only use the mouse.
 
 ## **Table of Contents**
 {:toc}
@@ -13,11 +13,12 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 * [Command Syntax](#syntax)
 * [Prefixes](#prefixes)
 * [Features](#features)
-* [General Features](#general-features)
-* [Client Commands](#client-commands)
-* [Project Commands](#project-commands)
-* [Tag Commands](#tag-commands)
+  * [Client Commands](#client-commands)
+  * [Project Commands](#project-commands)
+  * [Tag Commands](#tag-commands)
+  * [General Commands](#general-commands)
 * [FAQ](#faq)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
@@ -26,13 +27,17 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 1. Download the latest `arb.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to a new folder you want to use as the _home folder_ for your ArB
+1. Copy the file into a new folder. For example, you can create a new folder in your desktop folder called `ArB` and place the file there.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. The app may contain some sample data if being opened for the first time.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal ([Windows](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/), [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Terminal%20for%20me-,Open%20Terminal,%2C%20then%20double%2Dclick%20Terminal), [Linux](https://www.makeuseof.com/how-to-open-terminal-in-linux/#:~:text=Use%20Keyboard%20Shortcuts%20to%20Open%20the%20Linux%20Terminal&text=If%20you%20are%20a%20fan,to%20fire%20up%20the%20terminal)).<br>
+   Use the [`cd` command](https://www.ibm.com/docs/en/aix/7.1?topic=c-cd-command) to navigate to the folder you placed the jar file in. Following the previous example, you can type `cd Desktop/ArB` into the command terminal.<br>
+   Then use the `java -jar arb.jar` command to run the application.<br>
+   A window similar to the below should appear in a few seconds. The app will contain some sample data if being opened for the first time.<br>
+   ![Ui](images/Ui.png)<br>
+   Below is the same window annotated to show what each part is for.<br>
+   ![Annotated Ui](images/UiAnnotated.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list-client` : Lists all clients.
@@ -142,34 +147,6 @@ All commands are case-insensitive.
 
 [<small>Back to top</small>](#table-of-contents)
 
-## General features
-
-### Viewing help
-#### Format: `help`
-
-Shows a message explaining how to access the help page (this guide).
-
-![help message](images/helpMessage.png)
-
-### Exiting the program
-#### Format: `exit`
-
-Exits the program.
-
-### Saving the data
-
-ArB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-ArB's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
-</div>
-
-[<small>Back to top</small>](#table-of-contents)
-
 ## Client commands
 
 The available client-related commands are:
@@ -270,6 +247,12 @@ Note:
 * The matching with supplied names and tags are case-insensitive.
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid names and tags will be ignored
+
+<div markdown="block" class="alert alert-info">
+
+Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+
+</div>
 
 Examples:
 * `find-client name/bob tag/friend` will find any client whose name contains the word `bob` and is tagged with `friend`.
@@ -425,6 +408,12 @@ Note:
 * Invalid project names, tags and linked client names will be ignored
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
 
+<div markdown="block" class="alert alert-info">
+
+Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+
+</div>
+
 Examples:
 * `find-project name/sculpture client/alice tag/personal start/yesterday end/tomorrow price/500 status/done` will find any project whose name contains `sculpture`, is linked to a client whose name contains `alice`, is tagged `personal`, has a price of $500, is done and has a deadline that falls between yesterday and tomorrow.
 
@@ -451,9 +440,23 @@ Examples:
 
 ### Linking a Project to a Client
 
-This is only applicable if the client parameter has been specified when [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
+This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
 
-ArB will display a list of clients that match the provided keywords. Entering an index specifies the client in the list to link to a project. Entering `0` will cancel the linking operation, but the previously added or edited project will remain.
+ArB will display a list of clients that match the 
+keywords you provided in your command.<br>
+For example, if `add-project name/oil painting client/alice` was entered, you might see something similar to the window below.
+
+![LinkingExample](images/LinkingExample.png)
+ 
+To choose a client in the displayed list to link to the project, you can enter an index.<br>
+Following from the previous example, if `1` was entered, the project `oil painting` will be linked to the client `Alice Zheng`, as shown in the image below.
+
+![LinkSuccessful](images/LinkSuccessful.png)
+
+Entering `0` will cancel the linking operation, but the previously added or edited project will remain.<br>
+Following from the previous example, if `0` was entered, the project `oil painting` will still be created, but it will not be linked to any client, as shown in the image below.
+
+![LinkingCancelled](images/LinkingCancelled.png)
 
 Examples:
 * `1` links the 1st client in the shown list of clients
@@ -468,10 +471,46 @@ Short form: `lt`
 
 Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
+## General commands
+
+### Viewing help
+#### Format: `help`
+
+Shows a message explaining how to access the help page (this guide).
+
+![help message](images/helpMessage.png)
+
+### Exiting the program
+#### Format: `exit`
+
+Exits the program.
+
+### Saving the data
+
+ArB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+ArB's data is saved as a [JSON file](https://docs.fileformat.com/web/json/) named `arb.json`, found in a folder named `data`, as shown in the image below.
+
+![DataFileLocation](images/DataFileLocation.png)
+
+Advanced users are welcome to update data directly by editing the JSON file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous artistic addressbook home folder.
+**A**: [Install](#quick-start) the app in the other computer and overwrite the empty JSON file it creates with the JSON file that contains your previous data.
+
+**Q**: I can't seem to find what I want using the `find commands`. What can I do?<br>
+**A**: Here are some tips for when you can’t find what you’re looking for:
+* If too many results are shown, you can provide more parameters to narrow down the search scope.
+* If what you’re looking for is not among the results shown, you can provide fewer parameters to broaden the search scope. 
+
