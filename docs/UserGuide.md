@@ -371,7 +371,7 @@ Format: `list`
 
 **:bulb: Tip:**<br>
 
-As `list` resets all active filters and sort orderings, one of the most common uses of the `list` command to reset the display lists to display all the properties and buyers in `DengueHotspotTracker`.
+As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in `DengueHotspotTracker`.
 Some places where you might want to make use of the `list` are when:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
 * [`overview`](#changing-the-overview-type--overview) to show to overview
