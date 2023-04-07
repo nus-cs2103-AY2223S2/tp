@@ -14,17 +14,9 @@ Class UserPrefs
 
 Class UniqueClientList
 Class Client
-Class Email
-Class Name
-Class Phone
-Class Tag
 
 Class UniqueProjectList
 Class Project
-Class Title 
-Class Deadline
-Class Price
-Class Status 
 
 class UniqueTagMappingList
 class TagMapping
@@ -38,33 +30,22 @@ AddressBook .up.|> ReadOnlyAddressBook
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueClientList
 AddressBook *--> "1" UniqueProjectList
 AddressBook *--> "1" UniqueTagMappingList
 UniqueClientList --> "~* all" Client
-Client *--> Name
-Client *--> Phone
-Client *--> Email
-Client *--> "*" Tag
-Client *--> UniqueProjectList
 UniqueProjectList --> "*~* all" Project 
-Project *--> Title
-Project *--> Deadline
-Project *--> Price
-Project *--> Status
-Project *--> "*" Tag
-Project --> "0..1 linked" Client
-UniqueTagMappingList --> "~* all unique" TagMapping
-TagMapping *--> Tag
+UniqueTagMappingList --> "~* all" TagMapping
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Email
+ModelManager -left-> "1" AddressBook
+ModelManager -right-> "1" UserPrefs
 
-ModelManager -->"~* filtered and sorted" Client
-ModelManager -->"~* filtered and sorted" Project
+ModelManager -->"~* filtered" Client
+ModelManager -->"~* sorted" Client
+ModelManager -->"~* filtered" Project
+ModelManager -->"~* sorted" Project
 ModelManager -->"~* all" TagMapping
 @enduml

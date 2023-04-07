@@ -11,12 +11,8 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class ClientListPanel
-Class ClientCard
-Class ProjectListPanel
-Class ProjectCard
-Class TagMappingListPanel
-Class TagMappingCard
+Class XYZListPanel
+Class XYZCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -36,38 +32,27 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" ClientListPanel
-MainWindow *-down-> "1" ProjectListPanel
-MainWindow *-down-> "1" TagMappingListPanel
+MainWindow *-down-> XYZListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-
-ClientListPanel -down-> "*" ClientCard
-ProjectListPanel -down-> "*" ProjectCard
-TagMappingListPanel -down-> "*" TagMappingCard
+XYZListPanel -down-> "*" XYZCard
+note right of XYZListPanel: XYZListPanel = ClientListPanel, \nProjectListPanel, etc
+note right of XYZCard: XYZCard = ClientCard, \nProjectCard, etc
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-ClientListPanel --|> UiPart
-ClientCard --|> UiPart
-ProjectListPanel --|> UiPart
-ProjectCard --|> UiPart
-TagMappingListPanel --|> UiPart
-TagMappingCard --|> UiPart
+XYZListPanel --|> UiPart
+XYZCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-ClientCard ..> Model
-ProjectCard ..> Model
-TagMappingCard ..> Model
+XYZCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-ClientListPanel -[hidden]left- ProjectListPanel
-ProjectListPanel -[hidden]left- TagMappingListPanel
-TagMappingListPanel -[hidden]left- HelpWindow
+XYZListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

@@ -30,6 +30,7 @@ import arb.logic.commands.project.DeleteProjectCommand;
 import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.logic.commands.project.FindProjectCommand;
+import arb.logic.commands.project.LinkProjectToClientCommand;
 import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
@@ -238,6 +239,13 @@ public class AddressBookParserTest {
                     commandWord + " " + INDEX_FIRST.getOneBased());
             assertEquals(new UnmarkProjectCommand(INDEX_FIRST), command);
         }
+    }
+
+    @Test
+    public void parseIndex() throws Exception {
+        LinkProjectToClientCommand command = (LinkProjectToClientCommand) parser.parseIndex(
+                    Integer.toString(INDEX_FIRST.getOneBased()));
+        assertEquals(new LinkProjectToClientCommand(INDEX_FIRST), command);
     }
 
     @Test
