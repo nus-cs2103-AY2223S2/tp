@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to add jobs with empty delivery date and/or slot
     * What it does: Allows users to add jobs without specifying its delivery date and slot (making delivery date and slot optional), making the `add_job` command much shorter.
     * Justification: This features improves the product as the `add_job` command is quite long (with compulsory delivery date and slot), and users may want to add jobs without specifying its delivery date and timeslot. Thus, the app should allow delivery date and timeslot to be optional.
-    * Highlight: This feature is directly linked with job list and with the existing command/functions, thus it required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands, including importing the old data and add_job command.
+    * Highlight: This feature is directly linked with job list and with the existing command/functions, thus it required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands, including methods on how to import/read the existing data and add_job command.
     * Credits: N.A.
 
 
@@ -51,7 +51,7 @@ Given below are my contributions to the project.
         * Added documentation for Job Detail (UI) in Main Window (PR #254)
         * Update UG summary timetable (PR #198)
         * Added examples for commands in UG (PR #198)
-        * Re-format, touch up, fix minor bugs and finalize UG (PR #260)
+        * Re-format, touch up, fix minor bugs and finalize UG (PR #200, #205, #260)
       
     * Developer Guide:
         * Added implementation details for Timetable functions (PR #128)
