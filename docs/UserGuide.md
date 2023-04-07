@@ -62,51 +62,6 @@ TeachMeSenpai has been designed to work for all Operating Systems/computers!
 
 ---
 
-## Guide to TeachMeSenpai's GUI
-
-TeachMeSenpai has several important components as part of its display. Here is a quick walk-through each component.
-
-<p align=center>
-  <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
-</p>
-
-<h3 style="color:Gray"><b>Menu bar</b></h3>
-* Clicking `FILE` will give you the option to exit the app
-* Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
-
-<h3 style="color:MediumSeaGreen"><b>Command line</b></h3>
-* This is where you will be typing all the commands for TeachMeSenpai! To learn more about the commands TeachMeSenpai has, head over
-to [Features](#features).
-
-<h3 style="color:DodgerBlue"><b>Feedback Box</b></h3>
-* This is where TeachMeSenpai will provide you with feedback for your commands! Whether they were successfully done or not.
-You will see more examples of the feedback TeachMeSenpai provides in the [Features](#features) section.
-
-<h3 style="color:gold"><b>Result Box</b></h3>
-* This is where the results for commands like [`show`](#showing-a-students-remark-show) and [`edit`](#editing-a-student-edit) will show up!
-* This section is scrollable when necessary.
-
-<h3 style="color:red"><b>Student List</b></h3>
-* This is where you can view all your student entries and their details!
-* This section is scrollable as well.
-
-### Adjusting the size of TeachMeSenpai
-
-If the app is too small for your liking, you may resize it by dragging the sides of the window with your cursor! The red lines in the image below are moveable
-so feel free to adjust the app however you like!
-
-<p align=center>
-  <img alt="Resizing guide" src="images/user-guide/resize-window.jpg" />
-</p>
-
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Hover your mouse over the red lines indicated by the image on your app under you see an arrow cursor, this will allow
-you to adjust the size of the window
-</div>
-
-[↑ Back to top](#table-of-contents)
-
----
-
 ## Guide on using Features
 
 ## Parameter descriptions
@@ -225,6 +180,11 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 > Format: `list`
 
+<p align=center>
+    <img alt="list before and after" src="images/user-guide/list_remark_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>list</code> command</i>
+</p>
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -247,7 +207,6 @@ Adds a student to the list, along with their education level and any student-spe
 
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
-
 <div markdown="block" class="alert alert-info">
 
 :bulb: **Note:**
@@ -267,16 +226,9 @@ Examples:
 
 **Using the following input** `add n/Shao Hong edu/Bachelors y2 r/Good in german m/CS2101`
 <p align=center>
-    <img alt="add before" src="images/user-guide/add_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>add</code> command</i>
+    <img alt="add before and after" src="images/user-guide/add_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>add</code> command with student's details</i>
 </p>
-
-<p align=center>
-    <img alt="add after" src="images/user-guide/add_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>add</code> command</i>
-</p>
-
-
 
 [↑ Back to top](#table-of-contents)
 
@@ -352,15 +304,10 @@ Examples:
 - `edit 1 n/Lao Hong`
 - `edit 3 a/ p/` _(removes student's address & phone number)_
 
-**Using the following input** `edit 4 n/Lao Hong`
+**Using the following input** `edit 1 edu/Sec 1`
 <p align=center>
-    <img alt="edit before" src="images/user-guide/edit_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>edit</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="edit after" src="images/user-guide/edit_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>edit</code> command</i>
+    <img alt="edit before and after" src="images/user-guide/edit_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>edit 1 edu/Sec 1</code> command</i>
 </p>
 
 <div markdown="block" class="alert alert-info"> :bulb: **Note:** After using `edit`, the edited student will show up in the [result box](#guide-to-teachmesenpais-gui) to help you view all the
@@ -375,7 +322,7 @@ edited student's details.
 
 Edits a student's remarks.
 
-> Format: `remark INDEX`
+> Format: `remark INDEX [REMARK]`
 > - The index refers to the index number shown in the displayed student list.
 > - The index **must be a positive integer** 1, 2, 3, ...
 
@@ -430,13 +377,8 @@ Examples:
 
 **Using the following input** `show 4`:
 <p align=center>
-    <img alt="show before" src="images/user-guide/show_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>show</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="show after" src="images/user-guide/show_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>show</code> command</i>
+    <img alt="show before" src="images/user-guide/show_remark_before_and_after.png" />
+    <br><i><b>Above:</b> Before and after entering <code>show 1</code> command</i>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Tip:** After typing a long remark with `remark`, use `show` to view the full remark in the [result box](#guide-to-teachmesenpais-gui)
