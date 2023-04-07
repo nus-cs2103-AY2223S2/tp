@@ -166,37 +166,6 @@ Classes used by multiple components are in the `expresslibrary.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### Implementation
-
-Data in ExpressLibrary is saved in `[JAR file location]/data/expresslibrary.json`, consisting of an array of `persons` and `books`.
-
-Each person in the `persons` array will contain these fields:
-
-* `name`: Represents the name of the person.
-* `phone`: Represents the phone number of the person.
-* `email`: Represents the email of the person.
-* `books`: Represents the set of books that the person has borrowed, will be an empty set if the person has not borrowed any.
-* `tagged`: Represents the tags assigned to the person, will be an empty set if the person has no tags assigned.
-
-<div markdown="span" class="alert alert-warning">
-
- :warning: **Note:** If editing the file manually, note that `books` in **each person** must be present in the main `books` array. Otherwise, the data file will be invalid.
-</div>
-
-Each book in the `books` array will contain these fields:
-
-* `title`: Represents the title of the book.
-* `author`: Represents the author of the book.
-* `isbn`: Represents the ISBN of the book.
-* `borrowDate`: Represents the date in the form `dd/mm/yyyy` when the book was borrowed by a person, will be an empty string if not borrowed.
-* `dueDate`: Represents the date in the form `dd/mm/yyyy` when the book has to be returned by a person, will be an empty string if not borrowed.
-* `isBorrowed`: Represents whether the book is borrowed. True if borrowed and false if not.
-
-<div markdown="span" class="alert alert-warning">
-
- :warning: **Note:** If editing the file manually, note that borrowDate and dueDate has to be included if isBorrowed is true and vice versa. Otherwise, the data file will be invalid.
-</div>
-
 ### Borrow/return feature
 
 #### Implementation
