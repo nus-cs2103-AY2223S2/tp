@@ -174,7 +174,8 @@ The rake symbol (in the Check validity of command action above) is used to show 
 ### Implementation of Main Mode Features
 
 List of decks and list of cards are stored separately in `UniqueDeckList` and `UniqueCardList`. Although a card belongs to a deck, it is not stored within a deck. Each card indicates a deck that it belongs to itself.
-A deck stores its name and a Boolean value of whether it is selected or not.
+
+Commands in the Main Mode that are implemented for when a deck is not selected behave similarly as the example below: 
 
 #### addDeck Feature
 
@@ -192,6 +193,10 @@ Step 2. The user executes `addDeck Math` command to add a new deck. The `addDeck
 Step 3. A new deck is now added on the list and able to execute further functionalities.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** In case of a duplicate deck name, an exception will be thrown and the newly created deck will not be saved in the `MasterDeck`. However, naming a deck is case-sensitive. For example, user cannot create two Math decks but it is allowed to create Math deck and math deck. 
+
+The following activity diagram summarizes what happens when a user executes addDeck command:
+
+![AddDeckActivityDiagram](images/AddDeckActivityDiagram.png)
 
 The following sequence diagram shows how the addDeck operation works:
 

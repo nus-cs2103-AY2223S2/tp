@@ -3,7 +3,7 @@
 start
 :User executes addDeck command;
 
-:addDeck in Model is called;
+:Call addDeck in Model;
 
 if () then ([Deck name already exists])
     :Throw DuplicateDeckException;
