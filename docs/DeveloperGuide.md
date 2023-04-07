@@ -159,12 +159,98 @@ The attributes of an Employee are:
 * `Address`: The address of the employee.
 * `Tags`: The tags assigned to the employee.
 
+#### 4.1.1 Adding an employee
+
+The `add` command adds a new employee, with the specified fields, into SudoHR.
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
+2. The parser will parse the argument and instantiate several fields: id, name, phone, email, address, and tags, respective with the prefixes.
+3. An `Employee` object is constructed and handed over to the `AddCommand`.
+4. The command is executed. It first checks if there exists an employee with the same id field as specified, followed by phone number, and lastly email address.
+5. If none of the fields are duplicated, the model adds the department to SudoHR.
+
+After that, the command result is returned.
+
+#### Feature considerations
+
+
+#### 4.1.1 Adding an employee
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
+#### 4.1.2 Editing an employee
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
+#### 4.1.3 Deleting an employee
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
+#### 4.1.4 Listing all employees
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
+#### 4.1.5 Finding an employee by ID
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
+#### 4.1.6 Finding an employee by keyword
+
+Activity Diagram:
+
+Sequence Diagram:
+
+#### Flow
+
+#### Feature considerations
+
+
 
 ### 4.2. Department-related features
 
 ![DepartmentModelClassDiagram](./images/commands/department/DepartmentModelClassDiagram.png)
 
-The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHr.
+The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHR.
 
 The attributes of a department are:
 * `DepartmentName`: The name of the department, which is also the unique identifier for a department.
@@ -428,9 +514,11 @@ Sequence Diagram:
 8. SudoHr will show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
-We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation.
+We intentionally limited the range of days to be added to one week. This is to avoid excessively large ranges that are likely to be an error or typo rather than intended, such as taking leaves over multiple years. Hence, we decided that 1 week would be the most appropriate duration as it is the typical length of leave taken when people go on vacation.
 
-We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this to keep the behavior consistant with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
+Should an employee indeed have more than 1 week of leave applied, the leave will be registered as different commands.
+
+We also decided guarding against adding the range of leaves dates if even one of the days have already been indicated as leave. This is to be consistent with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands and hence, is likely of minimal inconvenience to the user.
 
 #### 4.3.4. Listing all employees taking leave on a specific day
 
@@ -445,18 +533,24 @@ The `leol` command lists employees taking leave on a specific date.
 ### 4.4. Design considerations:
 
 #### 4.4.1. Employee
-An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
+An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity), such as an employee id, email address, and phone number.
 
-An employee is identified by his ID field, and this field is used to get an employee object.
+An employee is uniquely identified by his ID field. This field can be used by internal operations without any concern of duplicates and display of the unique employee with the given id.
 
 However, there are other fields to guard against duplication, specifically email and phone number fields.
-For instance, two employees should not share email field or phone number as those two fields are known to be unique.
+For instance, two employees should not share email field or phone number as those two fields are understood to be unique.
+
+Under this design, SudoHR supports having several employees with the same name fields, without running the risk of retrieving or using the wrong employee's details.
 
 ##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
 each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
 where employee objects are separately created for department's and leave's employee lists.
 Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+
+Further, we need to ensure the UI correctly refreshes for any changes made to an employee. 
+For instance, if an employee has been deleted, he/she should be removed from their department and the department count should drop. The same can be said for leaves. 
+This consistency is crucial to avoid confusing the user, especially since several of our commands are intertwined.
 
 #### 4.4.2. Departments
 
@@ -1129,4 +1223,9 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Enhancements
+1. Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
+2. Currently, SudoHR only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
+3. Currently, SudoHR only accepts alphanumeric characters for its name field. We intend to extend the valid characters to commonly used special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
