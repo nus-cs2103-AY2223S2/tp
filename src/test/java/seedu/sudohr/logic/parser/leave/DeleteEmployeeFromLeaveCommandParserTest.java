@@ -1,6 +1,7 @@
 package seedu.sudohr.logic.parser.leave;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.sudohr.logic.commands.CommandTestUtil.DATE_DESC_LEAVE_TYPE_1;
 import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EID_DESC;
@@ -50,6 +51,6 @@ public class DeleteEmployeeFromLeaveCommandParserTest {
         assertParseFailure(parser, INVALID_EID_DESC + DATE_DESC_LEAVE_TYPE_1,
                 Id.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, EID_DESC_AMY + INVALID_LEAVE_DATE_DESC,
-                LeaveDate.MESSAGE_CONSTRAINTS);
+                MESSAGE_INVALID_DATE_FORMAT);
     }
 }

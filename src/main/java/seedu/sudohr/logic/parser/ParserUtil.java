@@ -163,7 +163,7 @@ public class ParserUtil {
         try {
             leaveDate = LocalDate.parse(trimmedDate);
         } catch (DateTimeParseException e) {
-            throw new ParseException(LeaveDate.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
 
         return new LeaveDate(leaveDate);
@@ -205,7 +205,7 @@ public class ParserUtil {
             startDay = LocalDate.parse(trimmedStartDate);
             endDay = LocalDate.parse(trimmedEndDate);
         } catch (DateTimeParseException e) {
-            throw new ParseException(LeaveDate.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
 
         if (startDay.isAfter(endDay)) {

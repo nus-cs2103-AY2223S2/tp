@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
@@ -75,7 +76,7 @@ public class JsonAdaptedLeave {
         try {
             leaveDate = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(LeaveDate.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_FORMAT);
         }
 
         final LeaveDate currentDate = new LeaveDate(leaveDate);
