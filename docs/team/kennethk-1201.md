@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * What it does: Represents a department in a company. It is identified by its `DepartmentName`,
   and contains a unique list of employees. I created a large bulk of the methods in the class and
   did the corresponding test cases.
-  * Justification: This class is required to handle all the logic related to departments.
+  * Justification: This class is reqgit uired to handle all the logic related to departments.
   * Highlights: The internal employee list within a `Department` object re-used the
   `UniquePersonList` class (which was renamed to the `UniqueEmployeeList` class), following the
   Separation of Concerns principle.
