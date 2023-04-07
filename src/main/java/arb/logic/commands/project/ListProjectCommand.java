@@ -20,8 +20,6 @@ import arb.model.Model;
 public class ListProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
-
-    public static final String MESSAGE_PROJECTS_CONTENT = "%s";
     private static final String MAIN_COMMAND_WORD = "list-project";
     private static final String ALIAS_COMMAND_WORD = "lp";
     private static final Set<String> COMMAND_WORDS =
@@ -33,8 +31,7 @@ public class ListProjectCommand extends Command {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         String formattedMessage = getMessageProjectsContent(model);
-        String message = String.format(MESSAGE_PROJECTS_CONTENT, formattedMessage);
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + message, ListType.PROJECT);
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + formattedMessage, ListType.PROJECT);
     }
 
     /** Get all valid command words as an unmodifiable set. */

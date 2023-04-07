@@ -27,8 +27,7 @@ public class ListProjectCommandTest {
         int doneProjects = expectedModel.noDoneProjects();
         int notDoneProjects = expectedModel.noNotDoneProjects();
         String formattedMessage = ListProjectCommand.getMessageProjectsContent(expectedModel);
-        expectedModelProjectsMessage = String.format(ListProjectCommand.MESSAGE_PROJECTS_CONTENT,
-                formattedMessage);
+        expectedModelProjectsMessage = formattedMessage;
     }
 
     @Test
