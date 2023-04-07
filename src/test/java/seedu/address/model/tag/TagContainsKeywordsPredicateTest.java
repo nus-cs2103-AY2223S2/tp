@@ -44,19 +44,19 @@ public class TagContainsKeywordsPredicateTest {
         // Multiple keywords
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("friends", "owesMoney"));
         assertTrue(predicate.test(new seedu.address.testutil.StudentBuilder()
-                .withTags("friends").withTags("owesMoney").build()));
+                .withTags("friends", "owesMoney").build()));
 
 
         // Only one matching keyword
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("friends", "JC"));
         assertTrue(predicate.test(new seedu.address.testutil.StudentBuilder()
-                .withTags("male").withTags("friends").build()));
+                .withTags("friends", "primary").build()));
 
 
         // Mixed-case keywords
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("FriEnds", "JC"));
         assertTrue(predicate.test(new seedu.address.testutil.StudentBuilder()
-                .withTags("friends").withTags("jc").build()));
+                .withTags("friends", "jc").build()));
     }
 
     @Test
