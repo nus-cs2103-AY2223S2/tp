@@ -33,11 +33,6 @@ public class AddPointsCommandParserTest {
         // no parameters
         assertParseFailure(parser, AddPointsCommand.COMMAND_WORD, expectedMessage);
 
-        // weird test failure, not sure what is going on, will fix in future
-        // no index
-        //assertParseFailure(parser, AddPointsCommand.COMMAND_WORD + " " + PREFIX_POINTS
-        //        + modifier + nonEmptyPoints, expectedMessage);
-
         // no points
         assertParseFailure(parser, AddPointsCommand.COMMAND_WORD + " 1", expectedMessage);
     }
