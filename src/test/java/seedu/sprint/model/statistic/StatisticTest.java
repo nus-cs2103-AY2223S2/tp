@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.testutil.TypicalApplications;
 
+
 public class StatisticTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
