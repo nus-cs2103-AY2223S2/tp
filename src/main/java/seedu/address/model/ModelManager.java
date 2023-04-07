@@ -368,7 +368,8 @@ public class ModelManager implements Model {
 
         return eduMate.equals(other.eduMate)
                 && userPrefs.equals(other.userPrefs)
-                && observablePersons.equals(other.observablePersons);
+                && observablePersons.equals(other.observablePersons)
+                && eduMateHistory.equals(other.eduMateHistory);
     }
 
     @Override

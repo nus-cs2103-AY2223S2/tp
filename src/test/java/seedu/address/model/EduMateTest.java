@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -179,7 +180,8 @@ public class EduMateTest {
     }
 
     @Test
-    public void resetRecommendations() {
+    public void reset() {
+        // reset recommendations
         if (!eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR)) {
             eduMate.addRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR);
         }
@@ -187,13 +189,23 @@ public class EduMateTest {
         eduMate.resetRecommendations();
 
         assertFalse(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
+
+        // reset persons
+        eduMate.resetPersons();
+        assertEquals(eduMate.getPersonList(), new ArrayList<>());
+
+        // reset meet ups
+        eduMate.resetMeetUps();
+        assertEquals(eduMate.getMeetUpList(), new ArrayList<>());
     }
+
 
     /**
      * A stub ReadOnlyEduMate whose persons list or user can violate interface constraints.
      */
     private static class EduMateStub implements ReadOnlyEduMate {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<MeetUp> meets = FXCollections.observableArrayList();
         private User user;
         private final ObservableList<Recommendation> recommendations = FXCollections.observableArrayList();
 
@@ -225,7 +237,7 @@ public class EduMateTest {
 
         @Override
         public ObservableList<MeetUp> getMeetUpList() {
-            return null;
+            return meets;
         }
 
         @Override

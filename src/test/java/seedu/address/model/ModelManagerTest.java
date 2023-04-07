@@ -34,6 +34,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new EduMate(), new EduMate(modelManager.getEduMate()));
+        assertEquals(new EduMateHistory(), modelManager.getEduMateHistory());
     }
 
     @Test
@@ -190,7 +191,7 @@ public class ModelManagerTest {
         assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertNotEquals(5, modelManager);
+        assertFalse(modelManager.equals(5));
 
         // different eduMate -> returns false
         assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs, eduMateHistory));

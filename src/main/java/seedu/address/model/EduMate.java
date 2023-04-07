@@ -230,9 +230,12 @@ public class EduMate implements ReadOnlyEduMate {
                 + persons.equals(otherEduMate.persons));
         logger.info("User equality: "
                 + user.equals(otherEduMate.user));
+        logger.info("Meets equality: "
+                + meets.equals(otherEduMate.meets));
 
         return persons.equals(otherEduMate.persons)
-                && user.equals(otherEduMate.user);
+                && user.equals(otherEduMate.user)
+                && meets.equals(otherEduMate.meets);
     }
 
     @Override

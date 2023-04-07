@@ -3,12 +3,16 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Wraps past commands entered by user.
  */
 public class EduMateHistory implements ReadOnlyEduMateHistory {
 
+    private static final Logger logger = LogsCenter.getLogger(EduMateHistory.class);
     private ArrayList<String> eduMateHistory;
     private int index = -1;
     private final int minIndex = -1;
@@ -92,6 +96,7 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
 
     @Override
     public boolean isUpPressedBefore() {
+        System.out.println(index);
         return index != -1;
     }
 
@@ -102,6 +107,23 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
     @Override
     public ArrayList<String> getHistory() {
         return eduMateHistory;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof EduMateHistory)) {
+            return false;
+        }
+
+        EduMateHistory otherEduMateHistory = (EduMateHistory) other;
+        logger.info("History equality: "
+                + eduMateHistory.equals(otherEduMateHistory.eduMateHistory));
+        return eduMateHistory.equals(otherEduMateHistory.eduMateHistory);
+
     }
 
 }
