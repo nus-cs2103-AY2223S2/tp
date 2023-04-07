@@ -90,6 +90,8 @@ forgetting about a client!
 
 * Index must be a positive number
 
+* Meetings displayed when app is opened initially are those meetings for the current day, and user input of 'listMeeting' is required to list all meetings stored in FAid
+
 </div>
 
 ### Viewing help : `help`
@@ -187,7 +189,7 @@ Required Information:
 
 Example:
 
-* `e` adds a meeting on 30th March 2020
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020
   from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
 
 ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
@@ -241,23 +243,23 @@ Notes:
 
 ### Find meeting : `meetingFind`
 
-Gets meetings from the address book
+Finds meetings from the address book based on the date of meeting or person index but not both
 
-Format: `meetingFind DATE `
+Format: `meetingFind DATE or CLIENT_INDEX `
 
 Required Information:
 
 * Date (dd/mm/yyyy)
+* Index of a client already in address book
 
 Examples:
 * `meetingFind 11/03/2023` Lists out all meetings that start on 9th November 2022 at 11.30
+* `meetingFind 5` Lists out all meetings with client of index 5 in the address book
 
 
-* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
+### List meeting : `listMeeting`
 
-### List meeting : `meetingList`
-
-Lists all meetings scheduled for the day from address book
+Lists all meetings scheduled in FAid
 
 ### List by region : `listRegion`
 
