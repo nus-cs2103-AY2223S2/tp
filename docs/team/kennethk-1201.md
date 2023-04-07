@@ -4,7 +4,7 @@ title: Kenneth Kiang's Project Portfolio
 
 ### Project: SudoHR
 
-{% include ppp-summary.md %}
+{% include ppp-summary.html %}
 
 Given below are my contributions to the project.
 

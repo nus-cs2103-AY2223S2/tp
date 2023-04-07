@@ -304,7 +304,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.1.5. Find employees by ID: `feid`
+### 7.1.5. Find employee by ID: `feid`
 
 Finds the employee who has the given ID.
 
