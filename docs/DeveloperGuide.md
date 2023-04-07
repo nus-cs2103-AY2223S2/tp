@@ -1482,7 +1482,7 @@ have been finalised.
 
 ### Make prefixes for commands case-insensitive
 **Problem:**
-Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
+Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
    and tag `javascript T/react`.
   Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
