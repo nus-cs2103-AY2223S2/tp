@@ -155,9 +155,14 @@ The responsibilities of `Model` component,
   * `VaxTypeManager`
   * `AppointmentManager`
   * `KeywordManager`
-* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable `ObservableMap<K, V>` where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this is a `String`).
-* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. `IdData<Patient>`).
-* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable 
+`ObservableMap<K, V>`, where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the 
+key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this 
+is a `String`).
+* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. 
+`IdData<Patient>`).
+* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a 
+`ReadOnlyUserPref` object.
 
 ### Patient component
 
