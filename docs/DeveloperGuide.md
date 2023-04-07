@@ -14,7 +14,7 @@ The target readers of this Developer Guide are developers who are familiar with 
 
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
