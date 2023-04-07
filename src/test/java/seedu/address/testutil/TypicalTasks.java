@@ -20,6 +20,9 @@ public class TypicalTasks {
     public static final Task VALID_COMPLETE_TASK = new TaskBuilder()
             .withName(VALID_TASK_NAME_1)
             .withStatus(TaskStatus.COMPLETE).build();
+    public static final Task VALID_INPROGRESS_TASK = new TaskBuilder()
+            .withName(VALID_TASK_NAME_1)
+            .withStatus(TaskStatus.INPROGRESS).build();
     public static final Task VALID_TASK_3 = new TaskBuilder()
             .withName(VALID_TASK_NAME_1).build();
 

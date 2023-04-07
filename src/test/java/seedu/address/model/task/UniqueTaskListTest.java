@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalTasks.VALID_COMPLETE_TASK;
+import static seedu.address.testutil.TypicalTasks.VALID_INPROGRESS_TASK;
+import static seedu.address.testutil.TypicalTasks.VALID_LATE_TASK;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
 
@@ -85,6 +88,63 @@ public class UniqueTaskListTest {
         uniqueTaskList.add(VALID_TASK_1);
         uniqueTaskList.remove(VALID_TASK_1);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
+    }
+
+    @Test
+    public void markTaskAsComplete_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.markTaskAsComplete(null));
+    }
+
+    @Test
+    public void markTaskAsComplete_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.markTaskAsComplete(VALID_TASK_1));
+    }
+
+    @Test
+    public void markTaskAsComplete_existingTask_marksTaskAsComplete() {
+        uniqueTaskList.add(VALID_TASK_1);
+        uniqueTaskList.markTaskAsComplete(VALID_TASK_1);
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(VALID_COMPLETE_TASK);
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
+    }
+
+    @Test
+    public void markTaskAsLate_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.markTaskAsLate(null));
+    }
+
+    @Test
+    public void markTaskAsLate_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.markTaskAsLate(VALID_TASK_1));
+    }
+
+    @Test
+    public void markTaskAsLate_existingTask_marksTaskAsLate() {
+        uniqueTaskList.add(VALID_TASK_1);
+        uniqueTaskList.markTaskAsLate(VALID_TASK_1);
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(VALID_LATE_TASK);
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
+    }
+
+    @Test
+    public void markTaskAsInProgress_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.markTaskAsInProgress(null));
+    }
+
+    @Test
+    public void markTaskAsInProgress_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.markTaskAsInProgress(VALID_TASK_1));
+    }
+
+    @Test
+    public void markTaskAsInProgress_existingTask_marksTaskAsInProgress() {
+        uniqueTaskList.add(VALID_TASK_1);
+        uniqueTaskList.markTaskAsInProgress(VALID_TASK_1);
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(VALID_INPROGRESS_TASK);
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
