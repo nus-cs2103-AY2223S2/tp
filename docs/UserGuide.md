@@ -369,7 +369,7 @@ Examples:
 
 Edits an existing project in SOCket.
 
-Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeting]`
+Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
 
 * Edits the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed project list.
