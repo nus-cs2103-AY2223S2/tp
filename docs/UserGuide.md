@@ -670,7 +670,7 @@ E.g:
 
 #### Find Modules
 
-> `find {keywords}`
+> `find {keywords} [/byTag]`
 
 Find all modules whose code starts with any of the keyword(s).
 
@@ -683,21 +683,17 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 (refer to [Navigation](#navigation) for more information)
 
-#### Find Modules By Tag
-
-> `find {keywords} /byTag`
-
-Find all modules whose tag list contains any tag that starts with any of the keyword(s)
+:exclamation: If `/byTag` is specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
 
 Examples:
 
 Assuming a Module `CS2040S` has tags `["heavy", 'math']`,
 
-- `find heav /byTag` will show module `CS2040S` from the module list.
+- `find heav /byTag` will show module `CS2040S` in the list.
 
 #### Find Lectures in a Module
 
-> `find {keywords} /mod {module_code}`
+> `find {keywords} /mod {module_code} [/byTag]`
 
 Find all lectures in a specified module whose name starts with any of the keyword(s)
 
@@ -705,27 +701,16 @@ Find all lectures in a specified module whose name starts with any of the keywor
   - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
+:exclamation: If `/byTag` is specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
+
 Examples:
 
 - `find week 1, week 2 /mod CS2040S`
-
-#### Find Lectures in a Module By Tag
-
-> `find {keywords} /mod {module_code} /byTag`
-
-Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-
-Examples:
-
 - `find intro, array /mod CS2040S /byTag`
 
 #### Find Videos in a Lecture
 
-> `find {keywords} /mod {module_code} /lec {lecture_name}`
+> `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`
 
 Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s)
 
@@ -737,26 +722,11 @@ Find all videos in a specified lecture in a specified module whose name starts w
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
+:exclamation: If `/byTag` is specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
+
 Examples:
 
 - `find vid1, vid2 /mod CS2040S /lec Week 2`
-
-#### Find Videos in a Lecture By Tag
-
-> `find {keywords} /mod {module_code} /lec {lecture_name} /byTag`
-
-Find all videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
-
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
-  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
-  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-
-Examples:
-
 - `find content /mod CS2040S /lec Week 2 /byTag`
 
 ### Clear all Modules
