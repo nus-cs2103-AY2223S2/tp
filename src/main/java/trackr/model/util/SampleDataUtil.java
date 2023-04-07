@@ -135,17 +135,17 @@ public class SampleDataUtil {
         return new Order[] {
             new Order(cookie,
                     new OrderDeadline("01/01/2024"),
-                    new OrderStatus(), new OrderQuantity("12"),
+                    new OrderStatus(), new OrderQuantity("2"),
                     amy),
             new Order(cupcake,
                     new OrderDeadline("03/03/2024"),
                     new OrderStatus("I"),
-                    new OrderQuantity("5"),
+                    new OrderQuantity("10"),
                     bob),
             new Order(bread,
                     new OrderDeadline("02/01/2024"),
                     new OrderStatus("D"),
-                    new OrderQuantity("2"),
+                    new OrderQuantity("100"),
                     charlie)
         };
     }
