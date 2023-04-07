@@ -358,11 +358,11 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `UserProfilePanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. 
+The `UI` component uses the JavaFx UI framework.
 
 To start making changes to the UI:
 
-- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder. 
+- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - The controller classes of these UI parts can be found in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui)folder.
 - The stylesheets for these UI parts can be found in `Extensions.css` and `MainWindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - For example, the layout of `UserProfilePanel` is specified in [`UserProfilePanel.fxml`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.fxml), with controller class at [`UserProfilePanel.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/UserProfilePanel.java) and stylesheet at [`UserProfilePanel.css`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.css).
@@ -453,7 +453,7 @@ A group tag represents the relationship between the user and the person. For exa
 
 #### **Module Tag**
 
-A module tag represents a module that the person is currently taking. There are two options for creating a module tag: 
+A module tag represents a module that the person is currently taking. There are two options for creating a module tag:
 
 * The user can tag a person with just the module code (`CFG1002`). This is typically used for modules that don't have lessons. In other words, this format simply informs EduMate that the person is taking the module, so that the `sort` and `find` commands can use this information.
 * The user can tag a person with the module code and a lesson information (`CS2103T MON 8 10`). This will create a lesson on Monday from 8AM to 10AM, and informs EduMate that the person is busy during this time period. This is used by the `meet` command to recommend meet up timings.
@@ -553,7 +553,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 :information_source: **What are commitments used for:** <br>
 
 * They tell us when the person is unavailable, so that we do not recommend inappropriate timings.
-* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up. 
+* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up.
 
 </div>
 
@@ -592,7 +592,7 @@ The `SampleDataUtil` class deals with reading and parsing persons data from a fi
 
 * Each row of data corresponds to a single person, and their fields are separated by the `|`, also known as the "pipe" character.
 * The attributes are: `NAME|PHONE|EMAIL|ADDRESS|TELEGRAM_HANDLE|GROUP_TAGS|MODULE_TAGS`.
-* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
+* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments.
 
 </div>
 
@@ -757,7 +757,7 @@ The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing 
 
 <img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution 
+    <b>Figure 4.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
 </div>
 <br>
 
@@ -787,7 +787,7 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 <img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution 
+    <b>Figure 4.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
 </div>
 <br>
 
@@ -817,7 +817,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
-- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name).
 - If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
 
     The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
@@ -832,14 +832,14 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
+    <b>Figure 4.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
 </div>
 
 #### **Find Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The `find` command allows users to search for their contacts with partial information. 
+The `find` command allows users to search for their contacts with partial information.
 
 For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
@@ -878,7 +878,7 @@ In summary, the activity diagram is as such:
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SortCommandParser.java)
 
-The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. 
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties.
 
 For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
 
@@ -954,7 +954,7 @@ The `save` command allows users to save a copy of EduMate. This information is s
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Saving the Json file:**<br>
-We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file. 
+We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file.
 
 </div>
 
@@ -1042,7 +1042,7 @@ The [`TimingRecommender`](#timing-recommender) will check if the timing is a sui
 #### **Sample Command**
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SampleCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SampleCommandParser.java)
 
-The `sample` command repopulates the EduMate with a fresh set of contacts. Note that this calls the same function as that called in [Sample Data Util](#sample-data-util). 
+The `sample` command repopulates the EduMate with a fresh set of contacts. Note that this calls the same function as that called in [Sample Data Util](#sample-data-util).
 
 <div markdown="block" class="alert alert-info">
 
@@ -1209,7 +1209,7 @@ Positive and negative test cases were mainly used to test parsers.
 ---
 
 ## **Measuring Coverage of Integration Tests**
-We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests. 
+We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests.
 
 ### **Create Code Coverage Report**
 Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
@@ -1229,7 +1229,7 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 
 :bulb: Use `alert-primary` to show tips for the developer
 
-</div>  
+</div>
 
 <div markdown="span" class="alert alert-success">
 
@@ -1278,7 +1278,7 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 ## **Planned Enhancements**
 
 1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime.
-2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature. 
+2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.
 3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.
 4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.
 5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
@@ -1326,7 +1326,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 | student   | get suggestions for when to eat with my friends                    | easily find a time to grab a meal.                                               |
 | student   | get suggestions for where to study with my friends                 | work on assignments with my friends.                                             |
 | student   | get suggestions for when to study with my friends                  | work on assignments with my friends.                                             |
-| student   | see a list view of suggested meet up locations and timings         | compare them easily.                                                             | 
+| student   | see a list view of suggested meet up locations and timings         | compare them easily.                                                             |
 | student   | schedule meetings with my contacts                                 | meet up with my contacts without having to manually coordinate with each person. |
 | student   | backup and restore my data                                         | save my contact information and avoid losing them.                               |
 | student   | keep track of my meet ups                                          | remember who I am supposed to meet.                                              |
@@ -1443,7 +1443,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to add a person to the contact list with missing fields.
 2. EduMate creates a new person with default values and assigns an index to them.
 3. EduMate shows the list of contacts with the newly added person.
-4. EduMate shows the added person's information in the profile panel. 
+4. EduMate shows the added person's information in the profile panel.
 
    Use case ends.
 
@@ -1457,15 +1457,15 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 2a. The email field is missing.
     * 2a1. EduMate assigns an email based on the name.
-  
+
   Use case resumes from step 2.
 * 2b. The telegram handle field is missing.
     * 2b1. EduMate assigns a telegram handle based on the name.
-  
+
   Use case resumes from step 2.
 * 2c. The station field is missing.
     * 2c1. EduMate assigns a default station "Kent Ridge" to the person.
-  
+
   Use case resumes from step 2.
 * 2d. The phone field is missing.
     * 2d1. EduMate assigns a default phone number "00000000" to the person.
@@ -1513,9 +1513,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 **MSS**
 
-1. User requests to <u>view a contact's information by name (UC09)</u>. 
-2. User requests to edit a person's details with new information. 
-3. EduMate edits the person's information. 
+1. User requests to <u>view a contact's information by name (UC09)</u>.
+2. User requests to edit a person's details with new information.
+3. EduMate edits the person's information.
 4. EduMate shows the edited person's information in the profile panel.
 
    Use case ends.
@@ -1537,7 +1537,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to delete a person from the contact list. 
-3. EduMate deletes the person from the contact list. 
+3. EduMate deletes the person from the contact list.
 4. EduMate shows the user's information in the profile panel.
 
    Use case ends.
@@ -1554,7 +1554,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to add a basic module tag to a contact. 
 3. EduMate tags the module to the contact. 
-4. EduMate displays a list of successfully added modules. 
+4. EduMate displays a list of successfully added modules.
 5. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
@@ -1581,7 +1581,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 2. User requests to add a non-basic module tag to a contact. 
 3. EduMate assigns lessons to the contact. 
 4. EduMate tags the module to the contact. 
-5. EduMate displays a list of successfully added modules. 
+5. EduMate displays a list of successfully added modules.
 6. EduMate displays the tagged person's information in the profile panel.
 
 **Extensions**
@@ -1601,12 +1601,12 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 4a. The module does not exist in the contact's module set.
     * 4a1. EduMate adds the module and lesson to the contact's module set.
     * 4a2. EduMate displays the added lesson in the feedback message.
-    
+
   Use case resumes at step 6.
 * 4b. The module exists in the contact's module set but the lesson does not.
     * 4b1. EduMate adds the module and lesson to the contact's module set.
     * 4b2. EduMate displays the added lesson in the feedback message.
-  
+
   Use case resumes at step 6.
 * 4c. The module and lesson exist in the contact's module set.
     * 4c1. EduMate throws an error message.
@@ -1619,7 +1619,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 2. User requests to remove a module tag from a contact. 
 3. EduMate untags the module from the contact. 
 4. EduMate removes the associated lessons from the contact. 
-5. EduMate displays a list of successfully removed module tags. 
+5. EduMate displays a list of successfully removed module tags.
 6. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
@@ -1639,7 +1639,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 3b. The module and lesson exists in EduMate.
     * 3b1. EduMate removes that lesson.
     * 3b2. EduMate removes the module from the module set if there are no more lessons.
-  
+
   Use case resumes at step 5.
 * 3c. The module exists in EduMate, but the lesson does not.
     * 3c1. EduMate does not remove the module.
@@ -1658,7 +1658,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to add a group tag to a contact. 
 3. EduMate tags the group to the contact. 
-4. EduMate displays a list of successfully added groups. 
+4. EduMate displays a list of successfully added groups.
 5. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
@@ -1683,7 +1683,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to remove a group tag from a contact. 
 3. EduMate untags the group from the contact. 
-4. EduMate displays a list of successfully removed groups. 
+4. EduMate displays a list of successfully removed groups.
 5. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
@@ -1698,7 +1698,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. The group does not exist in the group set.
     * 3a1. EduMate does not display the group in the feedback message.
-  
+
   Use case resumes at step 5.
 
 **Use case: UC18 - Find contacts based on search criteria**
@@ -1797,7 +1797,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. There are no available timings to meet up.
     * 3a1. EduMate shows an empty list.
-  
+
   Use case ends.
 
 **Use case: UC23 - Recommend places and times to eat**
@@ -2098,7 +2098,7 @@ Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
 
 Command executed: `delete 4`
 
-Expected Output in the PersonList: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
+Expected Output in the Person List: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
 
 #### **_Scenario 2_**
 
@@ -2106,7 +2106,7 @@ Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate
 
 Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
-Expected Output in the PersonList: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
+Expected Output in the Person List: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
 
 #### **_Scenario 3_**
 
@@ -2127,7 +2127,7 @@ Expected Output in the Command Response Box: Cannot delete your own profile!
 
 ### **Add a tag to a person**
 
-The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
+The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a
 `tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
 
 #### **_Scenario 1_**
@@ -2136,7 +2136,7 @@ Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleT
 
 Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
+Expected Output in the Person List: CS1234 `ModuleTag` will appear for `Person` with `ContactIndex 1`.
 
 #### **_Scenario 2_**
 
@@ -2144,7 +2144,7 @@ Context: `Person` with `ContactIndex 1` exists and does not have CS1234 `ModuleT
 
 Command executed: `tag 1 m/CS1234`
 
-Expected Output in the PersonList: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
+Expected Output in the Person List: 'Person' with `ContactIndex 1` will still be tagged, but will not appear in Profile Panel.
 
 #### **_Scenario 3_**
 
@@ -2152,7 +2152,7 @@ Context: `Person` with `ContactIndex 2` exists and does not have CS2345 `ModuleT
 
 Command executed: `tag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
+Expected Output in the Person List: `Person` with `ContactIndex 2` will have CS2345 `ModuleTag` shown and `Lesson` will be added.
 
 #### **_Scenario 4_**
 
@@ -2160,7 +2160,7 @@ Context: `Person` with `ContactIndex 2` exists and has CS2345 `ModuleTag`. `User
 
 Context executed: `tag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: Lesson added.
+Expected Output in the Person List: Lesson added.
 
 #### **_Scenario 5_**
 
@@ -2168,7 +2168,7 @@ Context: `Person` with `ContactIndex 3` exists and does not have `Friend` as a `
 
 Command executed: `tag 3 g/Friend`
 
-Expected Output in the PersonList: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
+Expected Output in the Person List: Friend `GroupTag` will appear on the Person Card containing profile of `Person` with `ContactIndex 3`.
 
 
 ### **Remove a tag from a person**
@@ -2179,7 +2179,7 @@ Context: `Person` with `ContactIndex 1` exists and has `CS1234` as `ModuleTag`. 
 
 Command executed: `untag 1 m/CS1234`
 
-Expected Output in the PersonList: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
+Expected Output in the Person List: CS1234 `ModuleTag` disappears from Person Card of `Person` with `ContactIndex 1`.
 
 #### **_Scenario 2_**
 
@@ -2187,7 +2187,7 @@ Context: `Person` with `ContactIndex 2` exists and has CS2345 as `ModuleTag` wit
 
 Command executed: `untag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
+Expected Output in the Person List: CS2345 12PM - 1PM `Lesson` on Monday is dropped. Moreover, the CS2345 `ModuleTag` is also removed from the Person Card of `Person` with `ContactIndex 2`.
 
 #### **_Scenario 3_**
 
@@ -2195,7 +2195,7 @@ Context: `Person` with `ContactIndex 3` exists and has Enemy as `GroupTag`.
 
 Command executed: `untag 3 g/Enemy`
 
-Expected Output in the PersonList: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
+Expected Output in the Person List: `Person` with `ContactIndex 3` will have Enemy `GroupTag` removed from its Person Card.
 
 ### **Filter persons by keywords**
 
