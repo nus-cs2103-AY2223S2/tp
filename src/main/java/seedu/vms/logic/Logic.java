@@ -107,7 +107,7 @@ public interface Logic {
     /**
      * Sets the action that should be performed if a help command is received.
      *
-     * @param closeAction - a {@code Runnable} that defines the show help
+     * @param showHelpAction - a {@code Runnable} that defines the show help
      *      action.
      */
     void setShowHelpAction(Runnable showHelpAction);
