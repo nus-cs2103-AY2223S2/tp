@@ -52,12 +52,12 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
-<h2 id="acknowledgements">Acknowledgements</h2>
+<h3 id="acknowledgements">Acknowledgements</h3>
 
 * This project is based on the AddressBook Level 3 (AB3) project created by the SE-EDU initiative.
 * Libraries used: JavaFX, JUnit5
 
-<h2 id="setting-up-getting-started">Setting Up, Getting Started</h2>
+<h3 id="setting-up-getting-started">Setting Up, Getting Started</h3>
 
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
@@ -71,7 +71,7 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
-<h2 id="architecture">Architecture</h2>
+<h3 id="architecture">Architecture</h3>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -97,7 +97,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-<h2 id="interacting-components">How the Architecture Components Interact With Each</h2>
+<h3 id="interacting-components">How the Architecture Components Interact With Each</h3>
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
 the command `delete 1`.
@@ -117,7 +117,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 <img src="images/ComponentManagers.png" width="300" />
 
-<h2 id="ui-component">UI Component</h2>
+<h3 id="ui-component">UI Component</h3>
 
 The **API** of this component is specified in 
 [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
@@ -140,7 +140,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
-<h2 id="logic-component">Logic Component</h2>
+<h3 id="logic-component">Logic Component</h3>
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
 
@@ -169,7 +169,7 @@ How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-<h2 id="model-component">Model Component</h2>
+<h3 id="model-component">Model Component</h3>
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -186,7 +186,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
-<h2 id="storage-component">Storage Component</h2>
+<h3 id="storage-component">Storage Component</h3>
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -198,7 +198,7 @@ The `Storage` component,
   functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-<h2 id="common-classes">Common Classes</h2>
+<h3 id="common-classes">Common Classes</h3>
 
 Classes used by multiple components are in the `ezschedule.commons` package.
 
@@ -206,25 +206,25 @@ Classes used by multiple components are in the `ezschedule.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 This section describes some noteworthy details on how certain features are implemented.
 
-<h2 id="add-command">Add Command</h2>
+<h3 id="add-command">Add Command</h3>
 
-<h2 id="recur-command">Recur Command</h2>
+<h3 id="recur-command">Recur Command</h3>
 
-<h2 id="edit-command">Edit Command</h2>
+<h3 id="edit-command">Edit Command</h3>
 
-<h2 id="delete-command">Delete Command</h2>
+<h3 id="delete-command">Delete Command</h3>
 
-<h2 id="find-command">Find Command</h2>
+<h3 id="find-command">Find Command</h3>
 
-<h2 id="next-command">Next Command</h2>
+<h3 id="next-command">Next Command</h3>
 
-<h2 id="undo-command">Undo Command</h2>
+<h3 id="undo-command">Undo Command</h3>
 
-<h2 id="list-command">List Command</h2>
+<h3 id="list-command">List Command</h3>
 
-<h2 id="help-command">Help Command</h2>
+<h3 id="help-command">Help Command</h3>
 
-<h2 id="exit-command">Exit Command</h2>
+<h3 id="exit-command">Exit Command</h3>
 
 <h2 id="documentation">Documentation, Logging, Testing, Configuration, Dev-Ops</h2>
 --------------------------------------------------------------------------------------------------------------------
@@ -446,8 +446,6 @@ testers are expected to do more *exploratory* testing.
 <h3 id="undo-test">Undo a Command</h3>
 
 <h2 id="glossary">Glossary</h2>
-
-### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
