@@ -26,7 +26,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_EDUCATION = "#P6";
+    private static final String INVALID_ADDRESS = "   ";
+    private static final String INVALID_EDUCATION = "#Year 1";
     private static final String INVALID_MODULE = "#CS2030S";
     private static final String INVALID_TELEGRAM = "@____";
     private static final String INVALID_TAG = "#friend";
@@ -91,25 +92,80 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-    /* Invalid Test, null email allowed
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_REMARK, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    public void toModelType_nullEmail_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
+                VALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        Person expectedPerson = new PersonBuilder(BENSON).withEmail(null).build();
+        assertEquals(expectedPerson, person.toModelType());
     }
-     */
 
-    /* Invalid Test, null address allowed
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_REMARK, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+    public void toModelType_invalidAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
+                VALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-    */
+
+    @Test
+    public void toModelType_nullAddress_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
+                VALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        Person expectedPerson = new PersonBuilder(BENSON).withAddress(null).build();
+        assertEquals(expectedPerson, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidEducation_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                INVALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        String expectedMessage = Education.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullEducation_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                null, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        Person expectedPerson = new PersonBuilder(BENSON).withEducation(null).build();
+        assertEquals(expectedPerson, person.toModelType());
+    }
+
+    // No test for invalid remark, because remark is never invalid.
+
+    @Test
+    public void toModelType_nullRemark_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_EDUCATION, null, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        Person expectedPerson = new PersonBuilder(BENSON).withRemark(null).build();
+        assertEquals(expectedPerson, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidTelegram_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_EDUCATION, VALID_REMARK, INVALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
+        String expectedMessage = Telegram.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTelegram_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_EDUCATION, VALID_REMARK, null, VALID_MODULES, VALID_TAGS);
+        Person expectedPerson = new PersonBuilder(BENSON).withTelegram(null).build();
+        assertEquals(expectedPerson, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidModules_throwsIllegalValueException() {
+        List<JsonAdaptedModule> invalidModules = new ArrayList<>(VALID_MODULES);
+        invalidModules.add(new JsonAdaptedModule(INVALID_MODULE));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, invalidModules, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
