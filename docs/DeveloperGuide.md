@@ -1020,3 +1020,32 @@ to this:
  }
  ```
 
+**5. Insufficient constraints on year of birth**
+
+Currently, a client's year of birth is permitted to be any year from 0000 to
+9999 inclusive. However, this may not make sense from a usage perspective, and
+additional validation would be useful to guard against typos. As such, we plan
+to adopt the following fixes:
+
+1. Fix 1800 as a lower bound. Since Mycelium's target users are software
+   developers, 1800 is a very reasonable lower bound, after accounting for the
+   age of modern computing as well as the average human lifespan.
+1. Allow years up to 10 years into the future. Why do we allow this? Consider
+   the following (rare) use case: a family member is expecting a child, and has
+   enlisted your help to set up a self-hosted photo storage system in
+   preparation for keeping memories of his/her childhood.
+   <br>
+   As this is not a wholly improbable use case, we plan to set the upper bound
+   to ten years from whenever the present time is. It also does not cause
+   problems for other use cases.
+
+The validation for this is simple, and goes into the `isValidYearOfBirth`
+method of the [`YearOfBirth`
+class](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/YearOfBirth.java).
+In pseudocode, the check becomes
+
+1. Ensure exactly four digits are specified (same as before)
+1. Get current year as an integer; also convert the four digits into a base 10
+   integer
+1. Ensure that the year is within [1800, current year + 10]
+
