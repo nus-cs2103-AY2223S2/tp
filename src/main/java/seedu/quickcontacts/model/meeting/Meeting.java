@@ -57,6 +57,7 @@ public class Meeting {
         this.location = location;
         this.description = description;
         this.isCompleted = isCompleted;
+
     }
 
     public Title getTitle() {

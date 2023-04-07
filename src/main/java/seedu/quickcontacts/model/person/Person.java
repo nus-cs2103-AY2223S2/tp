@@ -1,6 +1,12 @@
 package seedu.quickcontacts.model.person;
 
 import static seedu.quickcontacts.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.quickcontacts.logic.parser.EditMeetingParser;
+import seedu.quickcontacts.model.Model;
+
+import seedu.quickcontacts.logic.commands.Command;
+import seedu.quickcontacts.logic.parser.exceptions.ParseException;
+import seedu.quickcontacts.logic.commands.exceptions.CommandException;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -117,6 +123,20 @@ public class Person {
         }
         return otherPerson.getName().equals(getName())
                 && otherPerson.getTags().equals(getTags());
+    }
+
+    public void tellMeetingNameChanged(Name newName, Model model) {
+
+        String arguments = "1 m/test";
+        try{ 
+            Command command = new EditMeetingParser().parse(arguments);
+            command.execute(model);
+        } catch (ParseException e) {
+            System.out.println("nope");
+        } catch (CommandException e) {
+
+        }
+
     }
 
     @Override

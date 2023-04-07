@@ -43,7 +43,7 @@ public class EditMeetingsCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATETIME + "14/02/23"
+            + PREFIX_DATETIME + "14/02/2023 "
             + PREFIX_LOCATION + "Stoa Poikile";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
