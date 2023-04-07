@@ -1,32 +1,34 @@
 package wingman.logic.flight.linklocation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import wingman.commons.fp.Lazy;
 import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.CommandException;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 @ExtendWith(MockitoExtension.class)
 public class FlightLocationLinkCommandFactoryTest {
 
+    @Mock
+    private Model model;
     private FlightLocationLinkCommandFactory<LinkFlightToLocationCommand> linkFactory;
     private FlightLocationLinkCommandFactory<UnlinkFlightToLocationCommand> unlinkFactory;
     private Lazy<Model> modelLazy;
 
-    @Mock
-    Model model;
+
 
     @BeforeEach
     public void setUp() {

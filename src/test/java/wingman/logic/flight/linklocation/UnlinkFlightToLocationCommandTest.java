@@ -24,16 +24,16 @@ import wingman.model.location.Location;
 @ExtendWith(MockitoExtension.class)
 public class UnlinkFlightToLocationCommandTest {
     @Mock
-    Flight flight;
+    private Flight flight;
 
     @Mock
-    Location location1;
+    private Location location1;
 
     @Mock
-    Location location2;
+    private Location location2;
 
     @Mock
-    Model model;
+    private Model model;
 
     @Test
     void execute_validState_doesNotThrow() throws LinkException {
