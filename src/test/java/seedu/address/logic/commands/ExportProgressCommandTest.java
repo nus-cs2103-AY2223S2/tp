@@ -48,7 +48,7 @@ class ExportProgressCommandTest {
 
         String studentName = studentToExport.getName().fullName;
         String defaultDir = Paths.get("data").toAbsolutePath().toString();
-        String defaultPath = Paths.get(studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
+        String defaultPath = Paths.get("data", studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
         String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                 studentName + "'s Progress Report.pdf");
 
