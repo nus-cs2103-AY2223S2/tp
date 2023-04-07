@@ -51,6 +51,35 @@ public class UndoRedoCommandTest {
     }
 
     @Test
+    public void execute_setAddAndDeleteOperations_success() throws CommandException {
+        UndoCommand undo = new UndoCommand();
+        RedoCommand redo = new RedoCommand();
+
+        Person bobby = new PersonBuilder().withName("Bobby").build();
+        Person timmy = new PersonBuilder().withName("Tim").build();
+
+        ModelManager expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+        ModelManager finalModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+        model.addPerson(bobby);
+        finalModel.addPerson(bobby);
+
+        assertCommandSuccess(undo, model, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedModel);
+        assertCommandSuccess(redo, model, String.format(RedoCommand.MESSAGE_SUCCESS, 1), finalModel);
+        model.setPerson(bobby, timmy);
+
+        finalModel.setPerson(bobby, timmy);
+
+        ModelManager expectedModelSecond = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+        expectedModelSecond.addPerson(bobby);
+        assertCommandSuccess(undo, model, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedModelSecond);
+        assertCommandSuccess(redo, model, String.format(RedoCommand.MESSAGE_SUCCESS, 1), finalModel);
+
+        model.deletePerson(timmy);
+        assertCommandSuccess(undo, model, String.format(UndoCommand.MESSAGE_SUCCESS, 1), finalModel);
+
+    }
+
+    @Test
     public void execute_undoAndRedo_success() throws CommandException {
         RedoCommand redoOnce = new RedoCommand();
         RedoCommand redoMany = new RedoCommand(20);
@@ -86,6 +115,38 @@ public class UndoRedoCommandTest {
         assertCommandSuccess(redoOnce, model, String.format(RedoCommand.MESSAGE_SUCCESS, 1), thirdModel);
         assertCommandSuccess(redoMany, model, String.format(RedoCommand.MESSAGE_SUCCESS, 1), fourthModel);
         assertThrows(CommandException.class, () -> redoOnce.execute(model));
+
+    }
+
+    @Test
+    public void execute_moreThanTenSaves_undoTenTimes() {
+        ModelManager firstModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+        for (int i = 0; i < 25; i++) {
+            model.addPerson(new PersonBuilder().buildRandom());
+        }
+
+        UndoCommand undoNine = new UndoCommand(9);
+        assertCommandSuccess(undoNine, model, String.format(UndoCommand.MESSAGE_SUCCESS, 9), model);
+
+        for (int i = 0; i < 25; i++) {
+            model.addPerson(new PersonBuilder().buildRandom());
+        }
+
+        UndoCommand undoMany = new UndoCommand(25);
+        assertCommandSuccess(undoMany, model, String.format(UndoCommand.MESSAGE_SUCCESS, 9), model);
+    }
+
+    @Test
+    public void executeRedo_undoThenAddOperation_redoThrowsCommandException() {
+        ModelManager expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
+        model.addPerson(new PersonBuilder().withName("BENSONNY").build());
+
+        UndoCommand undo = new UndoCommand();
+        assertCommandSuccess(undo, model, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedModel);
+
+        model.addPerson(new PersonBuilder().withName("AMISHA").build());
+        RedoCommand redo = new RedoCommand();
+        assertThrows(CommandException.class, () -> model.redo());
 
     }
 }
