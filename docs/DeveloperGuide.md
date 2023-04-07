@@ -25,6 +25,7 @@ You can click on the respective links below to read up on the relevant sections.
     * [EditXYZCommand](#edit-command)
     * [FindXYZCommand](#findxyzcommand)
     * [ListXYZCommand](#listxyzcommand)
+    * [SortXYZCommand](#sortxyzcommand)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
       * [Design considerations:](#design-considerations)
@@ -409,6 +410,19 @@ The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by
 This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
 The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
 <br><br>
+### ListXYZCommand
+
+The `list` command retrieves all the `XYZ` objects from the `XYZList` and lists them all in the internal `FilteredXYZList`.
+
+The `FilteredXYZList` is then updated to have all `XYZ` objects, afterwhich it will then to shown to the user.
+
+The following activity diagram summarizes what happens when the user executes the `list` command.
+
+<p align="center">
+  <img src="images/ListCommandActivityDiagram.svg">
+  <br>Figure 21: List Command Activity Diagram
+</p><br>
+
 ### SortXYZCommand
 
 The `sort` command is only available for sorting of orders and tasks.
@@ -435,18 +449,6 @@ It simply extends Command as there are only two sort commands (one for orders an
 Although abstracting out an abstract class would ease implementation for future sort commands, it is currently makes implementation.
 Thus, it was implemented as mentioned.
 <br><br>
-### ListXYZCommand
-
-The `list` command retrieves all the `XYZ` objects from the `XYZList` and lists them all in the internal `FilteredXYZList`.
-
-The `FilteredXYZList` is then updated to have all `XYZ` objects, afterwhich it will then to shown to the user.
-
-The following activity diagram summarizes what happens when the user executes the `list` command.
-
-<p align="center">
-  <img src="images/ListCommandActivityDiagram.svg">
-  <br>Figure 21: List Command Activity Diagram
-</p>
 
 
 -------------------------------------------------------------------------------------------------------------------- 
