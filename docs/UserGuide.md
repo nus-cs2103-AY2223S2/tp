@@ -250,7 +250,7 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 
-Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
 
 </div>
 
@@ -410,7 +410,7 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 
-Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
 
 </div>
 
