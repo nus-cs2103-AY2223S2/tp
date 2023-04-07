@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a structure that stores relevant information for the execution of
+ * {@link InsertCommand}.
+ */
 public class InsertRequest {
 
     private LocalDateTime insertedDeadline = null;

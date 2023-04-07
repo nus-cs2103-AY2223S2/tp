@@ -24,6 +24,12 @@ public class EditCommand extends UndoableLogicCommand {
     private Task oldTask = null;
     private int actualIndex = 0;
 
+    /**
+     * Create a new {@code EditCommand} instance.
+     *
+     * @param targetIndex index of the task to be modified
+     * @param request a structure that contains the relevant information for this command
+     */
     public EditCommand(Index targetIndex, EditRequest request) {
         this.targetIndex = targetIndex;
         this.request = request;

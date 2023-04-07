@@ -2,6 +2,7 @@ package vimification.internal.command.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import vimification.internal.command.CommandException;
@@ -9,12 +10,20 @@ import vimification.internal.command.CommandResult;
 import vimification.model.task.Task;
 import vimification.ui.MainScreen;
 
+/**
+ * Filters the displayed list using some conditions.
+ */
 public class FilterCommand extends UiCommand {
 
     private static final String SUCCESS_MESSAGE = "Here are your search results:";
 
     private final FilterRequest request;
 
+    /**
+     * Creates a new {@code FilterCommand} instance.
+     *
+     * @param request a structure that contains the relevant information for this command
+     */
     public FilterCommand(FilterRequest request) {
         this.request = request;
     }
@@ -56,5 +65,17 @@ public class FilterCommand extends UiCommand {
         }
         mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
         return new CommandResult(SUCCESS_MESSAGE);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+        FilterCommand otherCommand = (FilterCommand) other;
+        return Objects.equals(request, otherCommand.request);
     }
 }

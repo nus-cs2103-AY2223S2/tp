@@ -1,7 +1,5 @@
 package vimification.common.util;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -41,26 +39,46 @@ public class StringUtil {
     // }
 
     /**
-     * Returns a detailed message of the t, including the stack trace.
+     * Returns a detailed message of the {@link Throwable}, including the stack trace.
+     *
+     * @param t the {@code Throwable} to get the information from
+     * @return a string contains the message and the stack trace information
      */
     public static String getDetails(Throwable t) {
-        requireNonNull(t);
         StringWriter sw = new StringWriter();
         t.printStackTrace(new PrintWriter(sw));
         return t.getMessage() + "\n" + sw.toString();
     }
 
-    public static String requireNonEmpty(String s) {
-        if (s.isEmpty()) {
+    /**
+     * Checks that the specified string is not empty. This method is designed primarily for doing
+     * parameter validation in methods and constructors.
+     *
+     * @param str the string to check for emptiness
+     * @return {@code str} if not empty
+     * @throws IllegalArgumentException if {@code str} is empty
+     */
+    public static String requireNonEmpty(String str) {
+        if (str.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        return s;
+        return str;
     }
 
-    public static String requireNonEmpty(String s, String message) {
-        if (s.isEmpty()) {
-            throw new IllegalArgumentException(message);
+    /**
+     * Checks that the specified string is not empty and throws a customized
+     * {@link IllegalArgumentException} if it is. This method is designed primarily for doing
+     * parameter validation in methods and constructors with multiple parameters.
+     *
+     * @param str the string to check for emptiness
+     * @param msg detail message to be used in the event that {@code str} is empty
+     * @return {@code str} if not empty
+     * @throws IllegalArgumentException if {@code str} is empty
+     */
+    public static String requireNonEmpty(String str, String msg) {
+        if (str.isEmpty()) {
+            throw new IllegalArgumentException(msg);
         }
-        return s;
+        return str;
     }
 }

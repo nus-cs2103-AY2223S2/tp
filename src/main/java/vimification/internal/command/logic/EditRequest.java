@@ -9,6 +9,9 @@ import vimification.internal.parser.Pair;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 
+/**
+ * Represents a structure that stores relevant information for the execution of {@link EditCommand}.
+ */
 public class EditRequest {
 
     private String editedTitle = null;
@@ -17,6 +20,9 @@ public class EditRequest {
     private Priority editedPriority = null;
     private Status editedStatus = null;
 
+    /**
+     * Creates a new {@code EditRequest} instance with default values.
+     */
     public EditRequest() {}
 
     public String getEditedTitle() {
@@ -65,6 +71,7 @@ public class EditRequest {
                 editedStatus);
     }
 
+    @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;

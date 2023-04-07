@@ -7,10 +7,31 @@ import java.util.Set;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 
+/**
+ * Represents a structure that stores relevant information for the execution of
+ * {@link FilterCommand}.
+ */
 public class FilterRequest {
 
+    /**
+     * Different modes to handle the predicates.
+     */
     public enum Mode {
-        DEFAULT, AND, OR
+
+        /**
+         * Only 1 predicate is allowed.
+         */
+        DEFAULT,
+
+        /**
+         * Combines the predicates using AND operator.
+         */
+        AND,
+
+        /**
+         * Combines the predicates using OR operator.
+         */
+        OR
     }
 
     private Status searchedStatus = null;
@@ -21,6 +42,9 @@ public class FilterRequest {
     private LocalDateTime searchedDeadlineAfter;
     private Mode mode = Mode.DEFAULT;
 
+    /**
+     * Creates a {@code FilterRequest} with default values.
+     */
     public FilterRequest() {}
 
     public Status getSearchedStatus() {

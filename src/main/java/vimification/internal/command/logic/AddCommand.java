@@ -21,6 +21,8 @@ public class AddCommand extends UndoableLogicCommand {
 
     /**
      * Creates an {@code AddCommand} to add the specified {@code Task}.
+     *
+     * @param addedTask the task to be added
      */
     public AddCommand(Task addedTask) {
         this.addedTask = addedTask;

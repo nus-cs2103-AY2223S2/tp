@@ -8,6 +8,9 @@ import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
+/**
+ * Insert new field(s) into a task identified using its display index.
+ */
 public class InsertCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "i";
@@ -22,6 +25,12 @@ public class InsertCommand extends UndoableLogicCommand {
     private Task oldTask = null;
     private int actualIndex = 0;
 
+    /**
+     * Creates a new {@code InsertCommand} instance.
+     *
+     * @param targetIndex index of the task to be modified
+     * @param request a structure that contains the relevant information for this command
+     */
     public InsertCommand(Index targetIndex, InsertRequest request) {
         this.targetIndex = targetIndex;
         this.request = request;

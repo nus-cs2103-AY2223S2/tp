@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents a structure to store relevant information for the execution of
+ * Represents a structure that stores relevant information for the execution of
  * {@link DeleteFieldsCommand}.
  */
 public class DeleteFieldsRequest {
