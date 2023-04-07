@@ -85,7 +85,7 @@ If you need to switch to a new device, you can also export and import your previ
 
    * `exit` : Exits the app.
 
-6. Recommended minimum screen size: 740 x 700.
+6. Recommended minimum screen size: 740x700.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -114,11 +114,80 @@ There are two options to display a student's scores (__score list__ and __score 
 --------------------------------------------------------------------------------------------------------------------
 
 ## User input restrictions
-To achieve the best performance, we have set a few restrictions regarding the user input.
+To achieve the best performance, we have set **restrictions** for your command input.<br><br>
+Here is the **summary** for input restrictions. You are advised to skim through all the restrictions to avoid command input mistakes.
 
-* Phone number must have at least 3 digits and no more than 15 digits.
-* A tag should not have more than 20 letters.
-   
+[Back to top](#table-of-contents)
+
+### Student contact
+
+#### Name
+A **name** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+#### Phone/Contact number
+* A **phone/contact number** must have at least **3 digits** and no more than **15 digits**.
+
+[Back to top](#table-of-contents)
+
+#### Email
+An **email** should be of the format `local-part@domain` and adheres to the following constraints:
+1. The **local-part** should only contain **alphanumeric characters** and **these special characters**, excluding the parentheses, (+_.-). <br>
+    The **local-part** may not start or end with any special characters.
+2. This is followed by a **'@'** and then a domain name. The domain name is made up of domain labels separated by periods.
+   The **domain name** must:
+    - end with a domain label at least **2 characters** long
+    - have each domain label start and end with **alphanumeric** characters
+    - have each domain label consist of alphanumeric characters, separated only by **hyphens**, if any.
+
+[Back to top](#table-of-contents)
+
+#### Address
+No restrictions.
+
+[Back to top](#table-of-contents)
+
+#### Tags
+A **tag** can only contain **alphanumeric** characters and should not contain more than **20 characters**.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Task
+
+#### Name/Title
+A **name** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Score
+
+#### Label
+A **label** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+### Value
+A **value** can be any integer or a number with one decimal place from **0 to 100 (inclusive)**.
+
+[Back to top](#table-of-contents)
+
+#### Date
+The format of a **date** must be in **`yyyy-MM-DD`**, and must not be in the future.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### General fields
+
+#### Index
+An index must be a **positive integer** 1, 2, 3, ... (one-based index).
+
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -291,7 +360,7 @@ Format: `list`
 
 Adds a task to a specific student.
 
-Format: `addtask INDEX t/TASK_NAME`
+Format: `addtask INDEX t/TASK_TITLE`
 
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
