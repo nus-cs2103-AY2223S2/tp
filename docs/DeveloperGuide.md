@@ -699,6 +699,21 @@ The following is a description of the code execution flow:
 
 - The user need to save storage space after finished studying a module. The UI will also be less packed
 
+### Clear feature
+
+The `clear` feature supports clearing the entire tracker of all modules, lectures and videos
+
+The feature utilises the following classes:
+- `ClearCommand` - executable command to clear modules, lectures and videos in the tracker
+
+The following is a description of the code execution flow:
+1. `TrackerParser#parseCommand` parses based on the command word `clear` to identify that the Clear feature is being called.
+2. `ClearCommand#execute(Model)` calls `Model#clearTracker` to clear the tracker
+
+**Reasons for such implementation**
+
+- This implementation allows for adherence to basic Object Oriented Programming principles
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
