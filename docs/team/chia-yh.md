@@ -48,7 +48,7 @@ Given below are my contributions to the project.
   * Set up and helped maintain the [issue tracker](https://github.com/AY2223S2-CS2103T-T12-4/tp/issues)
   * Set up GitHub Projects to manage [User Stories](https://github.com/orgs/AY2223S2-CS2103T-T12-4/projects/2)
   * Updated [README.md](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/README.md) to match project [\#43](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/43)
-  * Updated [index.md](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/docs/index.md) to match project [#174](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/174) 
+  * Updated [index.md](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/docs/index.md) to match project [#174](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/174)
   * Set up milestones for [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5), [v1.3](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/3), [v1.3b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/6), [v1.4](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/4)
   * Closed milestones [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5), [v1.3](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/3), [v1.3b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/6)
 
@@ -56,7 +56,7 @@ Given below are my contributions to the project.
   * Updated `Person` class with new fields utilising newly added classes, modify behavior to allow fields to be empty [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76)
   * Updated `edit` command to allow `Language` instances to be added cumulatively, instead of being replaced by new instances [\#82](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/82)
   * Converted link in `HelpWindow` shown by `help` command into a Hyperlink to allow users to more easily access the user guide [\#103](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/103)
-  * Refactored code to remove references to `AB-3` [\#116](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/116) 
+  * Refactored code to remove references to `AB-3` [\#116](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/116)
   * Updated `VALIDATION_REGEX`, `equals` in `Name` to enhance duplicate detection for `Person` instances [\#146](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/146)
   * Updated `VALIDATION_REGEX` in `Tag` to limit length [\#147](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/147)
 

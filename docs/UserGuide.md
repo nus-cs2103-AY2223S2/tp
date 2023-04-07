@@ -312,7 +312,7 @@ Format: `sort [CATEGORY]`
 This command will sort the and display the full contact list.
 </div>
 
-Examples: 
+Examples:
 * `sort` Sort contacts by **Name**.
 <br/><br/>
   <p align="center"><img src="images/SortByName.png" width="600"/></p>
@@ -657,7 +657,7 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 ## Command summary
 
 | Action          | Format, Examples                                                                                                                                                                            |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
 | **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                               |
 | **Delete**      | `delete INDEX`                                                                                                                                                                              |
@@ -669,11 +669,11 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 | **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                    |
 | **Clear Projects** | `clearpj`                                                                                                                                                                                   |
 | **Delete Project** | `deletepj INDEX`                                                                                                                                                                            |
-| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                       |    
+| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                       |
 | **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                            |
 | **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                  |
 | **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                   |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                              | 
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                              |
 | **View**        | `view INDEX`                                                                                                                                                                                |
 | **Undo**        | `undo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>Z</kbd>                                                                                                 |
 | **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                               |
