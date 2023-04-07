@@ -35,8 +35,8 @@ Given below are my contributions to the project.
 
 * **Contributions to the User Guide**
   * Update documentation for `listevent`. ([#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30))
-  * Added examples for `findevent`.
-  * Improve explanation of naming restrictions.
+  * Added examples for `findevent`. ([#116](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/116))
+  * Improve explanation of naming restrictions. ([#116](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/116))
 
 * **Contributions to team-based tasks**
   * Update team information and images. ([#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10))
