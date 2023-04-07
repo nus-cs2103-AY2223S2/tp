@@ -33,11 +33,7 @@ Now it's time to **CONQUER** the semester!
 - [Navigation](#navigation)
 - [Command Manual](#command-manual)
   - [Nav](#nav)
-- [List](#list)
-  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
-  - [List Modules](#list-modules)
-  - [List Lectures of Modules](#list-lectures-of-modules)
-  - [List Videos of Lectures](#list-videos-of-lectures)
+  - [List](#list)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -54,13 +50,7 @@ Now it's time to **CONQUER** the semester!
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-- [Find](#find)
-  - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
-  - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
-  - [Find Lectures in a Module](#find-lectures-in-a-module)
-  - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
-  - [Find Videos in a Lecture](#find-videos-in-a-lecture)
-  - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
+  - [Find](#find)
   - [Clear all Modules](#clear-all-modules)
   - [Exit the App](#exit-the-app)
   - [Export Data](#export-data)
@@ -300,6 +290,10 @@ Navigates directly to the specified module or lecture context
 > `navb`
 
 Navigates backwards to the a parent context unless already at root context
+
+### List
+
+> Items are listed in an alphabetical order sorted by `module_code` for `Module`, `lecture_name` for `Lecture` and `video_name` for `Video`.
 
 #### List Modules
 
@@ -691,14 +685,13 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 #### Find Modules By Tag
 
-> `find {keywords} [/byTag]`
+> `find {keywords} /byTag`
 
 Find all modules whose tag list contains any tag that starts with any of the keyword(s)
 
-**Assumption:**\
-Module `CS2040S` has tags `["heavy", 'math']`
-
 Examples:
+
+Assuming a Module `CS2040S` has tags `["heavy", 'math']`,
 
 - `find heav /byTag` will show module `CS2040S` from the module list.
 
@@ -718,7 +711,7 @@ Examples:
 
 #### Find Lectures in a Module By Tag
 
-> `find {keywords} /mod {module_code} [/byTag]`
+> `find {keywords} /mod {module_code} /byTag`
 
 Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
@@ -750,7 +743,7 @@ Examples:
 
 #### Find Videos in a Lecture By Tag
 
-> find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]
+> `find {keywords} /mod {module_code} /lec {lecture_name} /byTag`
 
 Find all videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
 
