@@ -282,7 +282,7 @@ public class DeleteCommandTest {
                 new StartDate(Optional.of(new Date(VALID_DATE_DANIEL))),
                 new EndDate(Optional.of(new Date(VALID_DATE_GEORGE))));
 
-        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate predicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(predicate);
 
@@ -315,7 +315,7 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
-        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(deletePredicate);
 
@@ -336,7 +336,7 @@ public class DeleteCommandTest {
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
                 new EndDate(Optional.empty()));
 
-        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate predicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(predicate);
 
@@ -368,7 +368,7 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
-        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(deletePredicate);
 
@@ -388,7 +388,7 @@ public class DeleteCommandTest {
                 new StartDate(Optional.empty()),
                 new EndDate(Optional.of(new Date(VALID_DATE_FIONA))));
 
-        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate predicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(predicate);
 
@@ -420,7 +420,7 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
-        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(deletePredicate);
 
@@ -440,7 +440,7 @@ public class DeleteCommandTest {
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
                 new EndDate(Optional.of(new Date(VALID_DATE_ALICE))));
 
-        DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate predicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(predicate);
 
@@ -472,7 +472,7 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
-        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(Optional.empty(), dateRange);
+        DeleteDatePredicate deletePredicate = new DeleteDatePredicate(dateRange);
 
         DeleteCommand deleteCommand = new DeleteCommand(deletePredicate);
 
