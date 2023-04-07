@@ -213,9 +213,9 @@ Commands are what you will work with in SudoHR, let's learn what a command is ma
 ![CommandFormat](images/commandFormat.png)
 
 It consists of:
-1. Command - Decides what your command will do and the arguments that it will accept.
-2. Prefixes - They indicate what type of input to enter.
-3. Placeholders - The actual data you input for the command.
+1. Command - The name of the command
+2. Prefixes - The identifiers for the various input values, different commands require different prefixes
+3. Placeholders - The actual input values for the command.
 
 [//]: # (## 6.4. Trying your first command)
 
