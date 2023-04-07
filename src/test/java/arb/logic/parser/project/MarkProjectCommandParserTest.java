@@ -26,6 +26,11 @@ public class MarkProjectCommandParserTest {
     }
 
     @Test
+    public void parse_validFirstArg_returnsLinkClientToProjectCommand() {
+        assertParseSuccess(parser, "1 a", new MarkProjectCommand(INDEX_FIRST));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkProjectCommand.MESSAGE_USAGE));

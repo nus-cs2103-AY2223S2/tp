@@ -55,7 +55,7 @@ public class AddressBookTest {
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
 
-        AddressBookStub newData = new AddressBookStub(newClients, Arrays.asList(), Arrays.asList());
+        AddressBookStub newData = new AddressBookStub(newClients, Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));
     }
@@ -67,7 +67,7 @@ public class AddressBookTest {
                 .build();
         List<Project> newProjects = Arrays.asList(SKY_PAINTING, editedSkyPainting);
 
-        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects, Arrays.asList());
+        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), newProjects, Collections.emptyList());
 
         assertThrows(DuplicateProjectException.class, () -> addressBook.resetData(newData));
     }

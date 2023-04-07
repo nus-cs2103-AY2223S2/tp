@@ -41,8 +41,6 @@ import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND;
 import static arb.testutil.TypicalIndexes.INDEX_THIRD;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import arb.commons.core.index.Index;
@@ -52,6 +50,7 @@ import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Title;
 import arb.testutil.EditProjectDescriptorBuilder;
+import arb.testutil.PredicateUtil;
 
 public class EditProjectCommandParserTest {
 
@@ -121,7 +120,7 @@ public class EditProjectCommandParserTest {
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .withPrice(VALID_PRICE_SKY_PAINTING)
                 .withTags(VALID_TAG_PAINTING)
-                .withLinkedClientNameKeywords(Arrays.asList(VALID_CLIENT_NAME_ALICE))
+                .withClientNamePredicate(PredicateUtil.getNameContainsKeywordsPredicate(VALID_CLIENT_NAME_ALICE))
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
@@ -201,16 +200,14 @@ public class EditProjectCommandParserTest {
 
         // client, using main prefix
         userInput = targetIndex.getOneBased() + CLIENT_DESC_ALICE;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays
-                .asList(VALID_CLIENT_NAME_ALICE)).build();
+        descriptor = new EditProjectDescriptorBuilder()
+                .withClientNamePredicate(PredicateUtil.getNameContainsKeywordsPredicate(VALID_CLIENT_NAME_ALICE))
+                .build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // client, using alias prefix
         userInput = targetIndex.getOneBased() + CLIENT_DESC_ALIAS_ALICE;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays
-                .asList(VALID_CLIENT_NAME_ALICE)).build();
-        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags, using main prefix
@@ -297,7 +294,7 @@ public class EditProjectCommandParserTest {
 
         // empty client, main prefix
         userInput = targetIndex.getOneBased() + EMPTY_CLIENT;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays.asList()).build();
+        descriptor = new EditProjectDescriptorBuilder().withClientNamePredicate(null).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

@@ -142,15 +142,13 @@ public class ModelManager implements Model {
     @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
-        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        updateSortedClientList(CLIENT_NO_COMPARATOR);
+        resetFilteredAndSortedClientList();
     }
 
     @Override
     public void addProject(Project project) {
         addressBook.addProject(project);
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        updateSortedProjectList(PROJECT_NO_COMPARATOR);
+        resetFilteredAndSortedProjectList();
     }
 
     @Override
@@ -165,6 +163,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
+    }
+
+    @Override
+    public int numberOfClientsMatchingPredicate(Predicate<Client> predicate) {
+        return addressBook.numberOfClientsMatchingPredicate(predicate);
     }
 
     @Override
@@ -208,6 +211,17 @@ public class ModelManager implements Model {
         return addressBook.getProjectsContent();
     }
 
+    @Override
+    public void resetFilteredAndSortedClientList() {
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        updateSortedClientList(CLIENT_NO_COMPARATOR);
+    }
+
+    @Override
+    public void resetFilteredAndSortedProjectList() {
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        updateSortedProjectList(PROJECT_NO_COMPARATOR);
+    }
 
     //=========== Filtered Client List Accessors ============================================================
 

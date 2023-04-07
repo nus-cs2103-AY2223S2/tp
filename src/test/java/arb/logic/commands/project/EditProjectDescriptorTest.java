@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.testutil.EditProjectDescriptorBuilder;
+import arb.testutil.PredicateUtil;
 
 public class EditProjectDescriptorTest {
 
@@ -52,6 +53,12 @@ public class EditProjectDescriptorTest {
         // different tags -> returns false
         editedOilPainting = new EditProjectDescriptorBuilder(DESC_OIL_PAINTING)
                 .withTags(VALID_TAG_POTTERY).build();
+        assertFalse(DESC_OIL_PAINTING.equals(editedOilPainting));
+
+        // different client name predicate -> returns false
+        editedOilPainting = new EditProjectDescriptorBuilder(DESC_OIL_PAINTING)
+                .withClientNamePredicate(PredicateUtil.getNameContainsKeywordsPredicate("not"))
+                .build();
         assertFalse(DESC_OIL_PAINTING.equals(editedOilPainting));
     }
 }

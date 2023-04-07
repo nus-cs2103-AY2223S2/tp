@@ -22,8 +22,10 @@ import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.testutil.EditProjectDescriptorBuilder;
+import arb.testutil.PredicateUtil;
 import arb.testutil.ProjectBuilder;
 
 public class EditProjectCommandTest {
@@ -157,6 +159,34 @@ public class EditProjectCommandTest {
         Index validIndex = INDEX_FIRST;
         assertCommandFailure(new EditProjectCommand(validIndex, DESC_SKY_PAINTING),
                         ListType.CLIENT, model, Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
+    @Test
+    public void execute_linkedClientNotFoundInAddressbook_throwsCommandException() {
+        Project project = new ProjectBuilder().build();
+        NameContainsKeywordsPredicate predicate = PredicateUtil.getNameContainsKeywordsPredicate("not");
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project)
+                .withClientNamePredicate(predicate).build();
+        assertCommandFailure(new EditProjectCommand(INDEX_FIRST, descriptor), ListType.PROJECT,
+                model, String.format(Messages.MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS,
+                predicate.keywordsToString()));
+    }
+
+    @Test
+    public void executeSuccess_editProjectWithLinkedClientKeywords() {
+        Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        NameContainsKeywordsPredicate predicate = PredicateUtil.getNameContainsKeywordsPredicate("Kurz");
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(firstProject)
+                .withClientNamePredicate(predicate).build();
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setProjectToLink(firstProject);
+        expectedModel.updateFilteredClientList(predicate);
+
+        assertCommandSuccess(new EditProjectCommand(INDEX_FIRST, descriptor), ListType.PROJECT,
+                ListType.CLIENT, true, model,
+                String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, firstProject)
+                + "\n" + LinkProjectToClientCommand.MESSAGE_USAGE,
+                expectedModel);
     }
 
     @Test

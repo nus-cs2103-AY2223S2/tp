@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
@@ -251,6 +252,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void unlinkClientFromProject(Project project) {
         clients.unlinkClientFromProject(project);
         projects.unlinkProjectFromClient(project);
+    }
+
+    /**
+     * Returns the number of clients in the addressbook that fulfill {@code predicate}.
+     */
+    public int numberOfClientsMatchingPredicate(Predicate<Client> predicate) {
+        return clients.numberOfClientsMatchingPredicate(predicate);
     }
 
     /**

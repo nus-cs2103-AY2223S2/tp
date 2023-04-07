@@ -2,10 +2,9 @@ package arb.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import arb.logic.commands.Command;
@@ -31,11 +30,9 @@ public class ListTagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, ListType.TAG);
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
-    }
 }

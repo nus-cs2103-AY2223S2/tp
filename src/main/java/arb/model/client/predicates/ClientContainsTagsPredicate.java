@@ -12,10 +12,10 @@ import arb.model.tag.Tag;
 /**
  * Tests that a {@code Client}'s contains any of the tags given.
  */
-public class ClientContainsTagPredicate implements Predicate<Client> {
+public class ClientContainsTagsPredicate implements Predicate<Client> {
     private final Set<Tag> tags;
 
-    public ClientContainsTagPredicate(List<String> keywords) {
+    public ClientContainsTagsPredicate(List<String> keywords) {
         this.tags = keywords.stream().map(s -> new Tag(s.toLowerCase())).collect(Collectors.toSet());
     }
 
@@ -28,8 +28,8 @@ public class ClientContainsTagPredicate implements Predicate<Client> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ClientContainsTagPredicate // instanceof handles nulls
-                && tags.equals(((ClientContainsTagPredicate) other).tags)); // state check
+                || (other instanceof ClientContainsTagsPredicate // instanceof handles nulls
+                && tags.equals(((ClientContainsTagsPredicate) other).tags)); // state check
     }
 
     @Override

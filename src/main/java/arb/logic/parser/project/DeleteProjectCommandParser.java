@@ -1,6 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.util.StringUtil.getFirstArgument;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.DeleteProjectCommand;
@@ -20,8 +21,7 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
      */
     public DeleteProjectCommand parse(String args) throws ParseException {
         try {
-            String[] wordsInArgs = args.trim().split(" ");
-            Index index = ParserUtil.parseIndex(wordsInArgs[0]);
+            Index index = ParserUtil.parseIndex(getFirstArgument(args));
             return new DeleteProjectCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

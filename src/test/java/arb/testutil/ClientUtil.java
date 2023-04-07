@@ -23,7 +23,7 @@ public class ClientUtil {
      * Returns an add client command string for adding the {@code client}.
      */
     public static String getAddClientCommand(Client client, String commandWord) {
-        assert AddClientCommand.isCommandWord(commandWord);
+        assert AddClientCommand.getCommandWords().contains(commandWord);
         return commandWord + " " + getClientDetails(client);
     }
 
@@ -31,7 +31,7 @@ public class ClientUtil {
      * Returns a find client command string to find a client.
      */
     public static String getFindClientCommand(List<String> tags, List<String> names, String commandWord) {
-        assert FindClientCommand.isCommandWord(commandWord);
+        assert FindClientCommand.getCommandWords().contains(commandWord);
         StringBuilder sb = new StringBuilder();
         sb.append(commandWord + " ");
         tags.stream().forEach(

@@ -242,4 +242,11 @@ public class UniqueClientListTest {
         uniqueClientList.resetProjectLinkings();
         assertEquals(uniqueClientList, expectedClientList);
     }
+
+    @Test
+    public void numberOfClientsMatchingPredicate() {
+        uniqueClientList.add(ALICE);
+        uniqueClientList.add(BOB);
+        assertEquals(1, uniqueClientList.numberOfClientsMatchingPredicate(c -> c.getName().equals(ALICE.getName())));
+    }
 }
