@@ -2080,7 +2080,7 @@ Context: There exists a `Person` with `ContactIndex 3` in `EduMate`.
 
 Command executed: `edit 3 n/Henry`
 
-Expected Output in the Person List: The Person Card with `ContactIndex 3` contains the name Henry.
+Expected Output in the Person List: The Person Card with `ContactIndex 3` contains the name "Henry".
 
 #### **_Scenario 2_**
 
