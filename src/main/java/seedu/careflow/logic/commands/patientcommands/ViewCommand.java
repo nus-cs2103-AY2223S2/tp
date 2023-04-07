@@ -28,7 +28,7 @@ public class ViewCommand extends Command {
             + PREFIX_INDEX + " INDEX (must be a positive integer)\n"
             + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD + " -i 1";
 
-    public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "Viewd patient: %1$s";
+    public static final String MESSAGE_VIEW_PATIENT_SUCCESS = "Viewed patient: %1$s";
 
     private Index targetIndex;
 
