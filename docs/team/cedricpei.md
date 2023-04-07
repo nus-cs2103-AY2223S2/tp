@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * What it does: allows the user to choose the GUI theme he/she prefers at a specific time.
     * Justification: This feature increases the accessibility of the product because a user may not want to face strong screen light at night and don't want to look at a dark screen in the daytime.
     * Highlights: The implementation of this feature requires the combined knowledge of JavaFX, CSS and fine arts. 
-    * Credit: Adapted `Theme` class from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java)
+    * Credit: Adapted `Theme` class from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
 
 
 
