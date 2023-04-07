@@ -4,8 +4,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.PatternSyntaxException;
-
 public class ModuleTest {
 
     @Test

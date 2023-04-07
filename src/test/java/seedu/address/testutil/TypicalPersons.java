@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +55,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withEducation("P3")
             .withRemark("Needs help with algebra.")
+            .withTelegram(null)
             .withModules()
             .withTags()
             .build();
@@ -63,6 +66,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withEducation("P4")
             .withRemark("Needs help with compo.")
+            .withTelegram("@danielm")
             .withModules()
             .withTags("friends")
             .build();
@@ -73,6 +77,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withEducation("P5")
             .withRemark("Needs more time on limits")
+            .withTelegram("@ellomayor")
             .withModules()
             .withTags()
             .build();
@@ -83,6 +88,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withEducation("P6")
             .withRemark("Is good at algebra")
+            .withTelegram("@theorge")
             .withModules()
             .withTags()
             .build();
@@ -93,6 +99,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withEducation("Sec 2")
             .withRemark("Is bad at argumentative essays")
+            .withTelegram("@georgia")
             .withModules()
             .withTags()
             .build();
@@ -125,8 +132,9 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
-            .withRemark(VALID_EDUCATION_AMY)
+            .withEducation(VALID_EDUCATION_AMY)
             .withRemark(null)
+            .withTelegram(VALID_TELEGRAM_AMY)
             .withModules()
             .withTags(VALID_TAG_FRIEND)
             .build();
@@ -135,8 +143,9 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
-            .withRemark(VALID_EDUCATION_BOB)
+            .withEducation(VALID_EDUCATION_BOB)
             .withRemark(null)
+            .withTelegram(VALID_TELEGRAM_BOB)
             .withModules()
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();

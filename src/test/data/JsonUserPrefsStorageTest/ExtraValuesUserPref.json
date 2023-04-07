@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "teachmesenpai.json"
+  "addressBookFilePath" : "my-custom-data-path.json"
 }

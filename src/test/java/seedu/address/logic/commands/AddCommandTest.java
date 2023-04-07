@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.tag.Tag.isValidTagName;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -68,8 +67,6 @@ public class AddCommandTest {
 
         // different types -> returns false
         assertFalse(addAliceCommand.equals(1));
-
-        assertFalse(isValidTagName("hello"));
 
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
@@ -183,12 +180,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void undoAddressBook() {
+        public String undoAddressBook() {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void redoAddressBook() {
+        public String redoAddressBook() {
             throw new AssertionError("This method should not be called");
         }
 
@@ -209,16 +206,6 @@ public class AddCommandTest {
 
         @Override
         public void setDefaultShowPerson() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public String getLastExecutedCommand() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public String getLatestModifyingCommand() {
             throw new AssertionError("This method should not be called");
         }
     }
@@ -262,6 +249,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void commitAddressBook(String lastExecutedCommand) {
+            return;
         }
     }
 

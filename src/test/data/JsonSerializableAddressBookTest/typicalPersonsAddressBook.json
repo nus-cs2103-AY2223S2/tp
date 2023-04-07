@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "education" : "P1",
     "remark" : "She hates bob.",
+    "telegram": "@alice123",
     "modules" : [ "CS2101" ],
     "tagged" : [ "friends" ]
   }, {
@@ -16,6 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "education" : "P2",
     "remark" : "He can't take beer!",
+    "telegram": "@bensonboy",
     "modules" : [ "CS2103T", "CS2030" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -34,6 +36,7 @@
     "address" : "10th street",
     "education" : "P4",
     "remark" : "Needs help with compo.",
+    "telegram": "@danielm",
     "modules" : [ ],
     "tagged" : [ "friends" ]
   }, {
@@ -43,6 +46,7 @@
     "address" : "michegan ave",
     "education" : "P5",
     "remark" : "Needs more time on limits",
+    "telegram": "@ellomayor",
     "modules" : [ ],
     "tagged" : [ ]
   }, {
@@ -52,6 +56,7 @@
     "address" : "little tokyo",
     "education" : "P6",
     "remark" : "Is good at algebra",
+    "telegram": "@theorge",
     "modules" : [ ],
     "tagged" : [ ]
   }, {
@@ -61,6 +66,7 @@
     "address" : "4th street",
     "education" : "Sec 2",
     "remark" : "Is bad at argumentative essays",
+    "telegram": "@georgia",
     "modules" : [ ],
     "tagged" : [ ]
   } ]
