@@ -1292,9 +1292,9 @@ Having written more than **12,000 of LOC cumulatively, coupled with appropriate,
 
 In this section, we will detail some of the hurdles that we faced through the iterations of our tP.
 ### 8.1 Design Challenges
-* Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some of the big design changes were:
-   - Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
-   - Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
+Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some of the big design changes were:
+* Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
+* Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
 * next pt
 * next pt
 ### 8.2 Technical Challenges
