@@ -258,9 +258,8 @@ This command is helpful if you have made any mistakes when creating the event.
 - The `INDEX` must be below 1,000,000.
 - `[]` are optional parameters.
 - At least one of the optional fields must be provided.
-- Edits will replace existing values, edits are not cumulative.
 - Tags can be removed by typing `t/` without specifying any tags after it.
-- Existing tags will also be removed when editing editing tags, it will be necessary to input all the existing tags during the edit.
+- Existing tags will be removed when editing tags, it will be necessary to input all the existing tags during the edit.
 - Do note that `edit` is only for editing the event details, not the contact details.
 - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
@@ -446,7 +445,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-### Saving data: <a id = "saving-data"></a>
+### Save data: <a id = "save-data"></a>
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
@@ -485,7 +484,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |          [Unmark an Event](#unmark-event)          |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
 |     [View Total Revenue](#view-total-revenue)      |                                   `revenue`                                   |                                                       `revenue`                                                       |
 |   [View Upcoming Events](#view-upcoming-events)    |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
-|            [Saving data](#saving-data)             |                                      NIL                                      |                                                          NIL                                                          |
+|              [Save data](#save-data)               |                                      NIL                                      |                                                          NIL                                                          |
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
