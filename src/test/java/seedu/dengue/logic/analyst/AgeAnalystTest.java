@@ -10,63 +10,59 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.model.person.Person;
 import seedu.dengue.testutil.PersonBuilder;
+import seedu.dengue.testutil.PersonListBuilder;
 
 public class AgeAnalystTest {
     private static final PersonBuilder PERSON_BUILDER = new PersonBuilder();
-    private static final List<Person> EMPTY_PERSON_LIST = new ArrayList<>();
-    private static final List<Person> SINGLE_PERSON_LIST = List.of(PERSON_BUILDER.build());
-    private static final String[] VALID_AGES = {"3", "14", "159", "26", "53", "58", "97", "93", "23", "84"};
+    private static final List<String> VALID_AGES = List.of("3", "14", "159", "26", "53", "58", "97", "93", "23", "84");
+    private static final PersonListBuilder LIST_BUILDER = new PersonListBuilder().withAges(VALID_AGES);
 
     private AgeAnalyst analyst;
 
-    private List<Person> makePersonList() {
-        PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
-        List<Person> personList = new ArrayList<>();
-
-        for (String age : VALID_AGES) {
-            personList.add(tempBuilder.withAge(age).build());
-        }
-
-        return personList;
+    private void setAnalyst() {
+        analyst = new AgeAnalyst(LIST_BUILDER.build());
     }
 
-    private void setAnalystWith(List<Person> personList) {
-        analyst = new AgeAnalyst(personList);
+    private void setEmptyAnalyst() {
+        analyst = new AgeAnalyst(LIST_BUILDER.buildEmpty());
+    }
+
+    private void setSingleAnalyst() {
+        analyst = new AgeAnalyst(LIST_BUILDER.buildSingle());
     }
 
     @Test
     public void getTotal_emptyList_zero() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(0, analyst.getTotal());
     }
 
     @Test
     public void getTotal_singleList_one() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertEquals(1, analyst.getTotal());
     }
 
     @Test
     public void getTotal_normalList_correct() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
-        assertEquals(VALID_AGES.length, analyst.getTotal());
+        assertEquals(VALID_AGES.size(), analyst.getTotal());
     }
 
     @Test
     public void getSortedBins_emptyList_empty() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertEquals(new ArrayList<>(), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
         DataBin bin = new DataBin("20 - 29");
         bin.addPerson(PERSON_BUILDER.build());
 
@@ -75,14 +71,14 @@ public class AgeAnalystTest {
 
     @Test
     public void getSortedBins_singleList_false() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         assertNotEquals(List.of(new DataBin("10 - 19")), analyst.getSortedBins());
     }
 
     @Test
     public void getSortedBins_normalList_true() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin0 = new DataBin("0 - 9");
         bin0.addPerson(PERSON_BUILDER.build());
@@ -115,7 +111,7 @@ public class AgeAnalystTest {
 
     @Test
     public void getSortedBins_normalList_falseBecauseUnsorted() {
-        setAnalystWith(makePersonList());
+        setAnalyst();
 
         DataBin bin0 = new DataBin("0 - 9");
         bin0.addPerson(PERSON_BUILDER.build());
@@ -148,14 +144,14 @@ public class AgeAnalystTest {
 
     @Test
     public void equals_emptyList_trueWithSelf() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         assertTrue(analyst.equals(analyst));
     }
 
     @Test
     public void equals_emptyList_true() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         AgeAnalyst otherAnalyst = new AgeAnalyst(List.of());
 
@@ -164,7 +160,7 @@ public class AgeAnalystTest {
 
     @Test
     public void equals_emptyList_false() {
-        setAnalystWith(EMPTY_PERSON_LIST);
+        setEmptyAnalyst();
 
         AgeAnalyst otherAnalyst = new AgeAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -173,7 +169,7 @@ public class AgeAnalystTest {
 
     @Test
     public void equals_singleList_true() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         AgeAnalyst otherAnalyst = new AgeAnalyst(List.of(PERSON_BUILDER.build()));
 
@@ -182,7 +178,7 @@ public class AgeAnalystTest {
 
     @Test
     public void equals_singleList_trueWithOtherName() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         AgeAnalyst otherAnalyst = new AgeAnalyst(List.of(tempBuilder.withName("different name").build()));
@@ -192,7 +188,7 @@ public class AgeAnalystTest {
 
     @Test
     public void equals_singleList_falseWithOtherAge() {
-        setAnalystWith(SINGLE_PERSON_LIST);
+        setSingleAnalyst();
 
         PersonBuilder tempBuilder = new PersonBuilder(PERSON_BUILDER.build());
         AgeAnalyst otherAnalyst = new AgeAnalyst(List.of(tempBuilder.withAge("33").build()));
