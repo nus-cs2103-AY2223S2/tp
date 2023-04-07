@@ -781,8 +781,7 @@ _Details coming soon ..._
    ![mac_pwd](images/user-guide/mac_pwd.png)
    <div style="page-break-after: always;"></div>
 5. Next,
-   * paste `cd yourHomeFolderPath`
-   * as well as `java -jar codoc.jar` 
+   * paste `cd yourHomeFolderPath` as well as `java -jar codoc.jar` 
    * and save it as a `.command` file
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
 6. Place the newly created `.command` file into your *home folder*.
