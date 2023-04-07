@@ -42,7 +42,7 @@ public class EditDoctorCommandTest {
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder(editedDoctor).build();
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(EditDoctorCommand.getMessageSuccess(), editedDoctor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
@@ -64,7 +64,7 @@ public class EditDoctorCommandTest {
                 .withTags(VALID_TAG_HUSBAND).build();
         EditDoctorCommand editCommand = new EditDoctorCommand(indexLastDoctor, descriptor);
 
-        String expectedMessage = String.format(EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(EditDoctorCommand.getMessageSuccess(), editedDoctor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(lastDoctor, editedDoctor);
@@ -77,7 +77,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_FIRST_PERSON, new EditDoctorDescriptor());
         Doctor editedDoctor = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(EditDoctorCommand.getMessageSuccess(), editedDoctor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -93,7 +93,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_FIRST_PERSON,
                 new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(EditDoctorCommand.getMessageSuccess(), editedDoctor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
@@ -107,7 +107,7 @@ public class EditDoctorCommandTest {
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder(firstDoctor).build();
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
+        assertCommandFailure(editCommand, model, EditDoctorCommand.getMessageDuplicate());
     }
 
     @Test
@@ -119,7 +119,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editCommand = new EditDoctorCommand(INDEX_FIRST_PERSON,
                 new EditDoctorDescriptorBuilder(doctorInList).build());
 
-        assertCommandFailure(editCommand, model, EditDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
+        assertCommandFailure(editCommand, model, EditDoctorCommand.getMessageDuplicate());
     }
 
     @Test

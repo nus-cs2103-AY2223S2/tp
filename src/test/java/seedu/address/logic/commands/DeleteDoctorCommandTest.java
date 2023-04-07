@@ -31,7 +31,7 @@ public class DeleteDoctorCommandTest {
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
+        String expectedMessage = String.format(DeleteDoctorCommand.getMessageSuccess(), doctorToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteDoctor(doctorToDelete);
@@ -54,7 +54,7 @@ public class DeleteDoctorCommandTest {
         Doctor doctorToDelete = model.getFilteredDoctorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteDoctorCommand deleteDoctorCommand = new DeleteDoctorCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteDoctorCommand.MESSAGE_DELETE_DOCTOR_SUCCESS, doctorToDelete);
+        String expectedMessage = String.format(DeleteDoctorCommand.getMessageSuccess(), doctorToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteDoctor(doctorToDelete);

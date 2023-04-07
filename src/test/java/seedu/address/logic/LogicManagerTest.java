@@ -50,7 +50,7 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listDoctorCommand = ListDoctorCommand.COMMAND_WORD;
-        assertCommandSuccess(listDoctorCommand, ListDoctorCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listDoctorCommand, ListDoctorCommand.getMessageSuccess(), model);
     }
 
     @Test

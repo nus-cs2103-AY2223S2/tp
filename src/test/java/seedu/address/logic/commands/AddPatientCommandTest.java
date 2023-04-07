@@ -35,7 +35,7 @@ public class AddPatientCommandTest {
 
         CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient),
+        assertEquals(String.format(AddPatientCommand.getMessageSuccess(), validPatient),
                 commandResult.getCliFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
@@ -46,7 +46,7 @@ public class AddPatientCommandTest {
         AddPatientCommand addPatientCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new AddPatientCommandTest.ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT, () ->
+        assertThrows(CommandException.class, AddPatientCommand.getMessageDuplicatePatient(), () ->
                 addPatientCommand.execute(modelStub));
     }
 

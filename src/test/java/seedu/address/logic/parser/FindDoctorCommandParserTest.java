@@ -18,7 +18,7 @@ import seedu.address.model.person.doctor.DoctorFilter;
 public class FindDoctorCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindDoctorCommand.MESSAGE_USAGE);
+            FindDoctorCommand.getCommandUsage());
 
     private FindDoctorCommandParser parser = new FindDoctorCommandParser();
 
