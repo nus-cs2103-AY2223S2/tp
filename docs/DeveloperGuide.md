@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Bookmark Customer 
+
+The commands `markc` and `unmarkc` are responsible for bookmarking or un-bookmarking a customer respectively. 
+Parsing of the user input is done by the `LogicManager` and `AddressBookParser` (as explained in the section of [Logic component](#logic-component)).
+
+Using `markc` command as an example, the parsing process will create a `MarkCustomerCommand` object.
+The `MarkCustomerCommand` is then executed, and its process is described in the following sequence diagram.
+
+![Sequence diagram for bookmarking a customer](images/MarkCustomerSequenceDiagram.png)
+ 
+1. The list of filtered customers is retrieved from the `Model`, and the index is used to find the customer that needs to be bookmarked.
+2. A new `Customer` object is created with it's `Marked` attribute to reflect that it is bookmarked.
+3. `Model` is called again to replace the original customer to the newly created customer.
+
+The sequence for `unmarkc` command is similar as the above.
+
+### Future Enhancements
+
+Instead of using commands to manipulate the bookmark-ed status of a customer, LoyaltyLift can allow users to use the mouse to select the bookmark icon to swap between bookmarked and not bookmarked.
+As we wanted to ensure that LoyaltyLift is optimised as a CLI application, we prioritised the implementation of `markc` and `unmarkc` over the ability to select on the graphical user interface.
+However, certain users may find it more convenient to select the icon or prefer the flexibility of doing both depending on the situation.
 
 ### Add/Deduct reward points feature
 
@@ -377,6 +398,64 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Design Tweaks**
+
+### Enabling Customers with Duplicate Names to be Created
+
+#### Current Situation / Problem
+
+It is a common occurrence for 2 customers to have the same full name. 
+However, an attempt to create a 2nd customer with the same name will fail as the user will face an error.
+
+The error occurs because LoyaltyLift does not allow 2 customers with the same name to exist. 
+In [`Customer.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/customer/Customer.java), `Customer::isSameCustomer` is responsible for determining if 2 customers have the same identity, and it returns true if they have the same name.
+
+
+#### Possible Tweaks
+
+Ideally, a customer can be uniquely identified by a government-issued identification number (e.g. NRIC for Singaporeans). 
+However, this information is most likely unavailable to the small business owner; hence is not a feasible solution.
+
+Therefore, we propose 3 possible tweaks or solutions.
+
+1. **Use phone number to uniquely identify a customer**
+
+   Instead of using the customer's name, their phone number is a better unique identifier. 
+   With this solution, `Customer::isSameCustomer` will return true if 2 customers' phone numbers are equal. 
+   
+   **Pros**: There is a much lower probability of conflicts in the customer's phone number. One of the few possible occurrences is when a customer changes phone number, and another customer obtains that customer's previous phone number.
+
+   **Cons**: However, a customer may not want to be contacted through phone but through email instead. Hence, the business owner will not be able to create a customer in this situation.
+
+2. **Combining multiple attributes to uniquely identify a customer**
+
+   Building upon the idea of using phone number as a unique identifier, we can instead use a combination of attributes as a unique identifier.
+   Combining the customer's name, phone number and home address is possible. 
+   With this combination, `Customer::isSameCustomer` will return true if 2 customers' names, phone numbers and home addresses are all equal.
+
+   **Pros**: More robustly uniquely identify a customer in the absence of government-issued identification number.
+
+   **Cons**: It is more error-prone as a customer's information, such as his phone number and address can change over time. More attributes must be updated compared to just using a single attribute as a unique identifier.
+
+3. **Use a hidden identification number**
+
+   Instead of using the customer's name, a customer can be uniquely identified with a hidden, randomly generated unique identifier.
+   On creating every customer object, LoyaltyLift will allocate a new unique identifier number to the customer.
+   `Customer::isSameCustomer` will return true if 2 customers' hidden unique identifier are the same.
+
+   **Pros**: This tweak removes the dependency on the customer's personal information. Randomly generated unique identifier are quick to generate and have a very low chance of generating the same unique identifier.
+
+   **Cons**: Duplicated customers may be created in the application. Without any dependency, this increases the possibility for a single real customer to exist as 2 customers in LoyaltyLift. If the business owner is not careful or is unaware that the customer already exists in LoyaltyLift, he may accidentally create the same customer again. With a unique identifier such as the phone number or customer's name, the user will face an error when adding a 2nd customer with the same personal information. This indicates that the business owner may be making a mistake because the customer already exists in LoyaltyLift. 
+
+#### Extra Remarks
+
+While the above solutions are mostly feasible, we can also explore the idea of giving the flexibility to the business owner to decide the unique identifier.
+Using a phone number as the default unique identifier, most business owners may be satisfied and only face a few issues. This is because business owners can request that all customers share their phone numbers.
+
+However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
+More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
 
 --------------------------------------------------------------------------------------------------------------------
 
