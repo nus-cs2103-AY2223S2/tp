@@ -24,7 +24,7 @@ AddressBookParser -> AddMeetingCommandParser : parse("1 30-03-2020 23:30 23:40")
 activate AddMeetingCommandParser
 
 create AddMeetingCommand
-AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(index, string)
+AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(index, meeting)
 activate AddMeetingCommand
 
 AddMeetingCommand --> AddMeetingCommandParser
@@ -39,7 +39,19 @@ deactivate AddressBookParser
 LogicManager -> AddMeetingCommand : execute(model)
 activate AddMeetingCommand
 
-AddMeetingCommand -> Model : getMeetings()
+AddMeetingCommand -> Model : addMeeting(personToEdit, meeting)
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+AddMeetingCommand -> Model : updateFilteredMeetingList()
 activate Model
 
 Model --> AddMeetingCommand

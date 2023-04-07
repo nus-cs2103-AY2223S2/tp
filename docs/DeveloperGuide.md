@@ -154,9 +154,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 1. Add Meeting Feature
+### 1. Meeting Feature
 
-#### 1.1 Implementation
+Every `Person` has a list that can hold `Meeting` objects. `Meeting` encapsulates a meeting for the client by the user.
+Each `Person` have at least more than one `Meeting`, as long as the period of meeting does not clash the period of existing
+meetings scheduled for that `Person`.
+
+### 2. Add Meeting Feature
+
+#### 2.1 Implementation
 
 The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `AddMeetingCommandParser#parse()` is called, which returns an `AddMeetingCommand` object.
@@ -164,6 +170,7 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 - Checks that the command contains `AddMeetingCommand.COMMAND_WORD`
 - `AddMeetingCommand` - Represents add meeting command executed by FAid
 
+  - Takes in a `String` as the description of the meeting to be added
   - Takes in an `Index` object to assign a meeting to a person at the specified index.
   - Takes in a `Meeting` object to assign to the specified person.
   - `AddMeetingCommand#execute()` ensures that the index specified is valid and does not add meeting if it clashes with existing meetings scheduled
@@ -174,9 +181,22 @@ The following sequence diagram illustrates the description for adding meeting:
 
 ![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
 
-### 2. Remove Meeting Feature
+#### 2.2 Design Consideration
 
-#### 2.1 Implementation
+**Aspect: meetingAdd format:**
+
+- **Alternative 1**: ` INDEX md/ [DESC] mdt/ [DATE] [START TIME] [END TIME]` command format
+  - Pros: Shorter command for user to type
+  - Cons: Harder to implement to address for cases where meeting goes past midnight (signifiying a new day).
+
+- **Alternative 2(current choice)**: `INDEX md/ [DESC] ms/ [START DATE & TIME] me/ [END DATE & TIME]` command format 
+  
+  - Pros: Simpler to implement; can account for meetings that go past midnight
+  - Cons: Longer command for user to type
+
+### 3. Remove Meeting Feature
+
+#### 3.1 Implementation
 
 The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `RemoveMeetingCommandParser#parse()` is called, which returns an `RemoveMeetingCommand` object.
@@ -193,7 +213,7 @@ for the specified person. The following sequence diagram illustrates the descrip
 
 ![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
 
-### 3. Region
+### 4. Region Feature
 
 Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
 When an `Address` object is created, the `Region` class processes the address and allocates a `Regions` Enum to the `Address` object.
@@ -201,7 +221,9 @@ Internally, the `Region` class has a list of all major town names in Singapore, 
 
 ![RegionSequenceDiagram](images/RegionSequenceDiagram.png)
 
-### 4. Update Meeting Feature
+### 5. Update Meeting Feature
+
+#### 5.1 Implementation
 
 The update meeting feature is handled by the following classes:
 * `UpdateMeetingCommandParser` - Checks that the command is in the right format, then
@@ -223,7 +245,9 @@ sequence diagram:
 
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
 
-### 5. Find Meeting Feature
+### 6. Find Meeting Feature
+
+#### 6.1 Implementation
 
 The find meeting feature is handled by the following classes:
 * `FindMeetingCommandParser` - Checks that the command is in the right format, then
@@ -242,18 +266,18 @@ sequence diagram:
 
 ![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 
-### 6. Policy Tag Feature
+### 7. Policy Tag Feature
 
-#### 6.1 Implementation
+#### 7.1 Implementation
 
 Every `Person` contains a `PolicyTag`, which represents financial policies adopted by the user's clients and prosepctive clients.
 Every time a new `Person` is created, it contains a list of `PolicyTag` objects, which can be empty or non-empty. A new `PolicyTag` object
 is created with the use of `add` command when a new `Person` is added or `edit` command when a new policy needs to be added
 under an existing `Person`.
 
-### 7. Find Policy Feature
+### 8. Find Policy Feature
 
-#### 7.1 Implementation
+#### 8.1 Implementation
 
 The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
