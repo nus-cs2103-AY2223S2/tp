@@ -44,7 +44,6 @@ public class CompleteWindow extends UiPart<Stage> {
         this.logic = logic;
     }
 
-
     /**
      * Show complete window.
      */

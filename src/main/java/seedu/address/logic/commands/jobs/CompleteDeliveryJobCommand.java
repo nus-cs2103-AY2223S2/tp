@@ -34,6 +34,8 @@ public class CompleteDeliveryJobCommand extends DeliveryJobCommand {
      * @param setDelivered
      */
     public CompleteDeliveryJobCommand(String jobId, Boolean setDelivered) {
+        requireNonNull(jobId);
+        requireNonNull(setDelivered);
         this.jobId = jobId;
         this.setDelivered = setDelivered;
     }

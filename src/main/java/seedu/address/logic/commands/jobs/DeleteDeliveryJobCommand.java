@@ -31,7 +31,12 @@ public class DeleteDeliveryJobCommand extends DeliveryJobCommand {
 
     private final String jobId;
 
+    /**
+     * Constructs a DeleteDeliveryJobCommand
+     * @param jobId of which job needs to be deleted
+     */
     public DeleteDeliveryJobCommand(String jobId) {
+        requireNonNull(jobId);
         this.jobId = jobId;
     }
 
