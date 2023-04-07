@@ -60,14 +60,21 @@ DeleteFieldCommand -> Model : getFilteredInternshipList()
 activate Model
 
 Model --> DeleteFieldCommand
+deactivate Model
+
+destroy InternshipContainsKeywordPredicate
 
 loop internship in internshipsToDelete
     DeleteFieldCommand -> Model: deleteInternship(internship)
+    activate Model
     Model --> DeleteFieldCommand
+    deactivate Model
 
 opt internship is selected
     DeleteFieldCommand -> Model: updateSelectedInternship(null)
+    activate Model
     Model --> DeleteFieldCommand
+    deactivate Model
 end
 end
 
@@ -85,7 +92,7 @@ deactivate DeleteFieldCommand
 DeleteFieldCommand -[hidden]-> LogicManager
 destroy DeleteFieldCommand
 
-destroy InternshipContainsKeywordPredicate
+
 
 [<--LogicManager : cr
 deactivate LogicManager

@@ -30,7 +30,7 @@ InternBuddyParser -> DeleteIndexCommandParser : parse("1 2")
 activate DeleteIndexCommandParser
 
 create DeleteIndexCommand
-DeleteIndexCommandParser -> DeleteIndexCommand : DeleteIndexCommand(p)
+DeleteIndexCommandParser -> DeleteIndexCommand : DeleteIndexCommand(indexes)
 activate DeleteIndexCommand
 
 DeleteIndexCommand --> DeleteIndexCommandParser
@@ -52,17 +52,20 @@ DeleteIndexCommand -> Model : getFilteredInternshipList()
 activate Model
 
 Model --> DeleteIndexCommand
+deactivate Model
 
 loop internship in internshipsToDelete
     DeleteIndexCommand -> Model: deleteInternship(internship)
+    activate Model
     Model --> DeleteIndexCommand
+    deactivate Model
 opt internship is selected
     DeleteIndexCommand -> Model: updateSelectedInternship(null)
+    activate Model
     Model --> DeleteIndexCommand
+    deactivate Model
 end
 end
-
-deactivate Model
 
 create CommandResult
 DeleteIndexCommand -> CommandResult
