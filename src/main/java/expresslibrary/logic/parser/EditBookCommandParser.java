@@ -60,8 +60,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 LocalDate borrowDate = DateUtil.parseDate(dateString);
                 editBookDescriptor.setBorrowDate(borrowDate);
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_INVALID_DATE));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE));
             }
         }
         if (argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
@@ -70,8 +69,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 LocalDate dueDate = DateUtil.parseDate(dateString);
                 editBookDescriptor.setDueDate(dueDate);
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_INVALID_DATE));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE));
             }
         }
         if (!editBookDescriptor.isAnyFieldEdited()) {
