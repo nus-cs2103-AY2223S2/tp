@@ -23,10 +23,10 @@ public class DeleteBackupCommand extends Command {
     public static final String COMMAND_WORD = "deletebackup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes a backup from a specified slot\n "
-        + "Parameters: INDEX (backup must exist in that index)\n "
-        + "Example: " + COMMAND_WORD
-        + " 3";
+                                                   + ": Deletes a backup from a specified slot\n "
+                                                   + "Parameters: INDEX (backup must exist in that index)\n "
+                                                   + "Example: " + COMMAND_WORD
+                                                   + " 3";
 
     public static final String MESSAGE_SUCCESS = "Backup deleted from: index %1$d";
     public static final String DELETE_ERROR = "Error deleting file!";
@@ -41,9 +41,9 @@ public class DeleteBackupCommand extends Command {
     public DeleteBackupCommand(Index index) {
         requireAllNonNull(index);
         this.index = index;
-        this.backupLocation = Path.of("data/backup/addressbookBackup"
-            + index.getOneBased()
-            + ".json");
+        this.backupLocation = Path.of("data/backup/hospirecordBackup"
+                                          + index.getOneBased()
+                                          + ".json");
     }
 
     @Override

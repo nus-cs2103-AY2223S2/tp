@@ -65,9 +65,9 @@ public class Backup {
      * @param index Index of backup
      */
     public String getBackupLocation(Index index) {
-        return "data/backup/addressbookBackup"
-                + index.getOneBased()
-                + ".json";
+        return "data/backup/hospirecordBackup"
+                   + index.getOneBased()
+                   + ".json";
     }
 
     /**
@@ -102,8 +102,8 @@ public class Backup {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Backup // instanceof handles nulls
-                && this.index.equals(((Backup) other).index)) // state check
-                && Objects.equals(this.backupLocation, ((Backup) other).backupLocation);
+                   || (other instanceof Backup // instanceof handles nulls
+                           && this.index.equals(((Backup) other).index)) // state check
+                          && Objects.equals(this.backupLocation, ((Backup) other).backupLocation);
     }
 }
