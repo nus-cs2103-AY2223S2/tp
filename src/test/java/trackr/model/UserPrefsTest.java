@@ -6,6 +6,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,13 @@ public class UserPrefsTest {
         UserPrefs userPrefsDiffGui = new UserPrefs();
         userPrefsDiffGui.setGuiSettings(guiSettings);
         assertFalse(userPrefs.equals(userPrefsDiffGui));
+    }
+
+    @Test
+    public void hashCode_success() {
+        UserPrefs userPrefs = new UserPrefs();
+        int hashCode = Objects.hash(userPrefs.getGuiSettings(), userPrefs.getTrackrFilePath());
+        assertTrue(userPrefs.hashCode() == hashCode);
     }
 
 }
