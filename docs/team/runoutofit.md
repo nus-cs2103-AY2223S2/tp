@@ -16,13 +16,18 @@ Given below are my contributions to the project.
     * to be added soon
 
 * **Enhancements implemented**:
-    * to be added soon
+    * Delete Appointment command:
+      * implemented a `delete_appt` command.
+    * View patient card:
+      * implemented a `view` command to allow user to view a patient card.
 
 * **Documentation**:
     * User Guide:
-        * to be added soon
+        * update quick start section of the user guide.
+        * add `view` command into the user guide.
+        * fix the bugs found in the user guide during the practical exam dry run.
     * Developer Guide:
-        * to be added soon
+        * add and update `delete_appt` command.
 
 * **Contributions to team-based tasks**:
     * to be added soon
