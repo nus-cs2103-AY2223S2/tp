@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -29,7 +30,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-import javafx.stage.Stage;
 
 public class AddCommandTest {
 
