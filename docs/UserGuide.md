@@ -571,15 +571,15 @@ Want to find people with certain qualities? Use find command to find people that
     > <code>CS2090</code>, <code>CS3230</code> in <code>AY2223S2</code> </div>
 * s/SKILLS
   * e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`
-  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add as many skills as you want separated by a space.</div>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/ACADEMIC_YEAR MODULES you can add as many skills as you want separated by a space.</div>
 
 <div style="page-break-after: always;"></div>
 
 
 **Examples:**
-- execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
-- execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
-- Finally, execute `list` to get back every contact in Codoc
+- execute `find y/2` to find all person from year 2. <br> ![UiFind_02](images/UiFind_02_2.png)
+- execute `find m/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03_02.png)
+- Finally, execute `list` to get back the unfiltered list.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
