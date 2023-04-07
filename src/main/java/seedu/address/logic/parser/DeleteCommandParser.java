@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSONS_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
@@ -38,4 +37,3 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 }
- //+ '\n' + DeleteCommand.MESSAGE_USAGE
