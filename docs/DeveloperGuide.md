@@ -22,7 +22,7 @@ title: Developer Guide
     - [View patient particulars feature](#view-patient-particulars-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
     - [Find patients feature](#filter-patient-record-by-attribute)
-    - [Light/dark theme](#light--dark-theme)
+    - [Light/dark theme](#lightdark-theme)
     - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -261,7 +261,7 @@ Steps of its execution are as follows:
 
 ### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
@@ -281,14 +281,14 @@ initial address book state, and the `currentStatePointer` pointing to that singl
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
+Step 2. The user executes `delete i/T1234567A` command to delete the person with NRIC T1234567A. The `delete` command
 calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
+Step 3. The user executes `add i/T1234567A …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
 , causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -331,7 +331,7 @@ Thus, the `addressBookStateList` remains unchanged.
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
 pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+purged. Reason: It no longer makes sense to redo the `add i/T1234567A …​` command. This is the behavior that most modern
 desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -499,7 +499,7 @@ The following sequence diagram shows how the delete command works:
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
-### Light / Dark Theme
+### Light/dark Theme
 
 #### Implementation
 
