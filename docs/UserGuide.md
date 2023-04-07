@@ -41,7 +41,7 @@ If you need to switch to a new device, you can also export and import your previ
    <br>
    The initial GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
    
-   <img width="1440" alt="Screenshot 2023-03-30 at 12 51 28 PM" src="https://user-images.githubusercontent.com/97392685/228732862-ca3893da-f637-468c-9a9b-5f4e4a38a9cf.png">
+    ![InitialUi](images/InitialUi.png)
    
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
