@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature**: `addpj` command [\#165](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/165)
   * What it does: Allows users to add projects into SOCket
   * Justification: Users can track project details, meeting date and due date in SOCket at the same time
-  * Highlights: Project encapsulates all details which includes things like repository host name and members for easy management.
+  * Highlights: Users can now add projects and manage them in SOCket along with their contacts.
   * Credits: *{-}*
 
 * **New Feature**: `assign` command [\#175](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/175)
@@ -61,8 +61,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): `to be added soon`
-  * Contributed to team discussions (examples: `to be added soon`)
   * Reported bugs and suggestions for other teams in the class (examples: `to be added soon`)
 
-* **Tools**:
-  * `to be added soon`
