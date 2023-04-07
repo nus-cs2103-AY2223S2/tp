@@ -25,7 +25,7 @@
                <Insets bottom="5.0" top="5.0" />
             </HBox.margin>
          </HBox>
-        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress" promptText="Hello there! Type &quot;help&quot; for a list of commands. :)" HBox.hgrow="ALWAYS">
+        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress" promptText="Feeling a bit lost? Type &quot;help&quot; to open the Help Window. :)" HBox.hgrow="ALWAYS">
             <font>
                <Font name="Roboto" size="12.0" />
             </font>
