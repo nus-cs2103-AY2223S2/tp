@@ -59,16 +59,19 @@ public class EditCategoryCommand implements EditCommand {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_DISPLAYED_INDEX);
         }
-
         UserDefinedCategory categoryToEdit = (UserDefinedCategory) lastShownList.get(targetIndex.getZeroBased());
+
         if (newCategoryName != null) {
-            categoryToEdit.setCategoryName(newCategoryName.replaceAll("\\s+", " "));
-            if (newCategoryName.strip().isEmpty()) {
+
+            if (newCategoryName.isBlank()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_NAME);
             }
-            if (model.hasCategory(categoryToEdit)) {
-                throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
+            for (Category category : lastShownList) {
+                if (category.getCategoryName().equals(newCategoryName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
+                }
             }
+            categoryToEdit.setCategoryName(newCategoryName.replaceAll("\\s+", " "));
         }
         if (newSummary != null) {
             categoryToEdit.setDescription(newSummary.replaceAll("\\s+", " "));

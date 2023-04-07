@@ -41,7 +41,7 @@ public class JsonAdaptedCategoryTest {
     public void toModelType_miscellaneousCategory_returnsCategory() throws Exception {
         JsonAdaptedCategory category = new JsonAdaptedCategory(
             new MiscellaneousCategory());
-        assertEquals("Miscellaneous", category.toModelType().getCategoryName());
+        assertEquals("Misc", category.toModelType().getCategoryName());
         assertEquals("Placeholder Description", category.toModelType().getSummary());
     }
 }

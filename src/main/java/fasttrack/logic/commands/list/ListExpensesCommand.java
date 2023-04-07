@@ -77,4 +77,9 @@ public class ListExpensesCommand implements ListCommand {
                 && categoryPredicate.equals(((ListExpensesCommand) other).categoryPredicate)
                 && timespanPredicate.equals(((ListExpensesCommand) other).timespanPredicate)); // state check
     }
+
+    @Override
+    public String toString() {
+        return COMMAND_WORD + " " + categoryPredicate + " " + timespanPredicate;
+    }
 }

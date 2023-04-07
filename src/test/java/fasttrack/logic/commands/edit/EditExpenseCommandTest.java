@@ -1,4 +1,4 @@
-package fasttrack.logic.commands;
+package fasttrack.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,50 +8,51 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.commons.core.index.Index;
-import fasttrack.commons.stubs.ModelStub;
-import fasttrack.logic.commands.edit.EditExpenseCommand;
 import fasttrack.logic.commands.exceptions.CommandException;
+import fasttrack.model.Model;
+import fasttrack.model.ModelManager;
 import fasttrack.model.category.Category;
 import fasttrack.model.category.UserDefinedCategory;
 import fasttrack.model.expense.Expense;
 
 public class EditExpenseCommandTest {
 
-    private ModelStub model = new ModelStub();
-    private Category standardCategory = new UserDefinedCategory("test", "test");
-
-    private Expense standardExpense = new Expense("NewExpenseName", "4.00", LocalDate.now(),
-            standardCategory);
-
-    private Expense toEdit = new Expense("testExpense", "4.00", LocalDate.now(),
-            new UserDefinedCategory("toBeReplaced", "randomSummary"));
+    private Model model;
+    private Category category = new UserDefinedCategory("test", "test");
+    private Category newCategory = new UserDefinedCategory("newCat", "test2");
+    private LocalDate date = LocalDate.now();
+    private Expense expense = new Expense("expense", "4.00", date,
+            category);
 
 
     @Test
     public void execute_validInput_success() throws CommandException {
-        model.addCategory(standardCategory);
-        model.addExpense(toEdit);
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
         EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
                 "NewExpenseName", null, null,
-                standardCategory.getCategoryName());
+                category.getCategoryName());
         editExpenseCommand.execute(model);
-        assertEquals(toEdit, standardExpense);
+        assertEquals("NewExpenseName", model.getFilteredExpenseList().get(0).getName());
     }
 
     @Test
     public void execute_invalidIndexInput() throws CommandException {
-        model.addCategory(standardCategory);
-        model.addExpense(toEdit);
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
         EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(2),
                 "NewExpenseName", null, null,
-                standardCategory.getCategoryName());
+                category.getCategoryName());
         assertThrows(CommandException.class, () -> editExpenseCommand.execute(model));
     }
 
     @Test
     public void execute_invalidCategoryInput() throws CommandException {
-        model.addCategory(standardCategory);
-        model.addExpense(toEdit);
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
         EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
                 null, null, null,
                 "Nonexistent");
@@ -60,8 +61,9 @@ public class EditExpenseCommandTest {
 
     @Test
     public void execute_invalidInputAll() throws CommandException {
-        model.addCategory(standardCategory);
-        model.addExpense(toEdit);
+        model = new ModelManager();
+        model.addCategory(category);
+        model.addExpense(expense);
         EditExpenseCommand editExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
                 null, null, null,
                 null);

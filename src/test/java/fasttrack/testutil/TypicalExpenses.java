@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fasttrack.model.Budget;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.expense.Expense;
 
@@ -47,6 +48,7 @@ public class TypicalExpenses {
         for (Expense expense : getTypicalExpenses()) {
             et.addExpense(expense);
         }
+        et.setBudget(new Budget(1000));
         return et;
     }
 

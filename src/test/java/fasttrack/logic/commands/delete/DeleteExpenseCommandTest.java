@@ -1,4 +1,4 @@
-package fasttrack.logic.commands;
+package fasttrack.logic.commands.delete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.commons.core.index.Index;
-import fasttrack.commons.stubs.ModelStub;
-import fasttrack.logic.commands.delete.DeleteExpenseCommand;
 import fasttrack.logic.commands.exceptions.CommandException;
+import fasttrack.model.Model;
+import fasttrack.model.ModelManager;
 import fasttrack.model.category.MiscellaneousCategory;
 import fasttrack.model.expense.Expense;
 
@@ -24,19 +24,19 @@ public class DeleteExpenseCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws CommandException {
-        ModelStub model = new ModelStub();
+        Model model = new ModelManager();
         model.addExpense(expenseToDelete);
         model.addExpense(expenseToDelete2);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(firstExpenseIdx);
         deleteExpenseCommand.execute(model);
-        ModelStub expectedModel = new ModelStub();
+        Model expectedModel = new ModelManager();
         expectedModel.addExpense(expenseToDelete2);
         assertEquals(expectedModel.getFilteredExpenseList(), model.getFilteredExpenseList());
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_failure() throws CommandException {
-        ModelStub model = new ModelStub();
+        Model model = new ModelManager();
         model.addExpense(expenseToDelete);
         model.addExpense(expenseToDelete2);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(

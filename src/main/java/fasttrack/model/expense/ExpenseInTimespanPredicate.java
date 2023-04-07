@@ -33,7 +33,7 @@ public class ExpenseInTimespanPredicate implements Predicate<Expense> {
 
     @Override
     public boolean test(Expense expense) {
-        return expense.getDate().isAfter(this.earliestDate) || expense.getDate().isEqual(this.earliestDate);
+        return expense.getDate().isAfter(earliestDate) || expense.getDate().isEqual(earliestDate);
     }
 
     /**
@@ -48,8 +48,7 @@ public class ExpenseInTimespanPredicate implements Predicate<Expense> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpenseInTimespanPredicate // instanceof handles nulls
-                && earliestDate.isEqual(((ExpenseInTimespanPredicate) other).earliestDate)
-                && timespan.equals((((ExpenseInTimespanPredicate) other).timespan))); // state check
+                && earliestDate.equals(((ExpenseInTimespanPredicate) other).earliestDate)); // state check
     }
 
 }

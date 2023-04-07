@@ -14,7 +14,7 @@ public class MiscellaneousCategoryTest {
 
     @Test
     public void getCategoryNameTest() {
-        assertEquals("Miscellaneous", miscellaneousCategory.getCategoryName());
+        assertEquals("Misc", miscellaneousCategory.getCategoryName());
     }
 
     @Test

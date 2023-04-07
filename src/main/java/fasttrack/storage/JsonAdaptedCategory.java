@@ -44,12 +44,12 @@ class JsonAdaptedCategory {
     public Category toModelType() throws IllegalValueException {
 
         if (categoryName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Category"));
         }
 
         final String modelCategoryName = categoryName;
         if (summary == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Summary"));
         }
 
         final String modelDescription = summary;

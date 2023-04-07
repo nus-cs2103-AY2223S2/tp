@@ -103,7 +103,6 @@ public class Expense {
     public static boolean isValidName(String name) {
         return name.matches(VALIDATION_REGEX);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -112,20 +111,11 @@ public class Expense {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Expense expense = (Expense) o;
-        if (!expense.amount.equals(o)) {
-            return false;
-        }
-        if (!Objects.equals(name.toLowerCase()
-                .replaceAll("\\s+", " ").trim(),
-                expense.name.toLowerCase().replaceAll("\\s+", " ").trim())) {
-            return false;
-        }
-        if (!Objects.equals(date, expense.date)) {
-            return false;
-        }
-        return Objects.equals(category, expense.category);
+        return Objects.equals(name, expense.name)
+                && Objects.equals(amount, expense.amount)
+                && Objects.equals(date, expense.date)
+                && Objects.equals(category, expense.category);
     }
 
     @Override

@@ -51,6 +51,6 @@ public class CategorySummaryCommand implements GeneralCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CategorySummaryCommand // instanceof handles nulls
-                && targetIndex.equals(((CategorySummaryCommand) other).targetIndex));
+                && targetIndex.equals(((CategorySummaryCommand) other).targetIndex)); // state check
     }
 }

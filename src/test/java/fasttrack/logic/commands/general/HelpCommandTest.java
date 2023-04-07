@@ -1,11 +1,11 @@
-package fasttrack.logic.commands;
+package fasttrack.logic.commands.general;
 
 import static fasttrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fasttrack.logic.commands.general.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import fasttrack.logic.commands.general.HelpCommand;
+import fasttrack.logic.commands.CommandResult;
 import fasttrack.model.Model;
 import fasttrack.model.ModelManager;
 import fasttrack.ui.ScreenType;
@@ -16,7 +16,8 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, ScreenType.EXPENSE_SCREEN);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+                ScreenType.EXPENSE_SCREEN);
         assertCommandSuccess(new HelpCommand(), dataModel, expectedCommandResult, expectedDataModel);
     }
 }

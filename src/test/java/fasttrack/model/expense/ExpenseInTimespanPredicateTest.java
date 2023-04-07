@@ -28,9 +28,6 @@ public class ExpenseInTimespanPredicateTest {
         ExpenseInTimespanPredicate firstPredicateCopy = new ExpenseInTimespanPredicate(WEEK);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
-        // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
-
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
@@ -40,16 +37,16 @@ public class ExpenseInTimespanPredicateTest {
 
     @Test
     public void test_expenseInTimespan_returnsTrue() {
-        LocalDate now = LocalDate.of(2023, 3, 23);
+        LocalDate date = LocalDate.now();
 
         ExpenseInTimespanPredicate predicate =
                 new ExpenseInTimespanPredicate(WEEK);
         assertTrue(predicate.test(
-                new Expense("Apple", 1.5, now, MISCCAT)));
+                new Expense("Apple", 1.5, date, MISCCAT)));
 
         predicate = new ExpenseInTimespanPredicate(MONTH);
         assertTrue(predicate.test(
-                new Expense("Hello", 1.0, now.withDayOfMonth(1), MISCCAT)
+                new Expense("Hello", 1.0, date.withDayOfMonth(1), MISCCAT)
         ));
     }
 

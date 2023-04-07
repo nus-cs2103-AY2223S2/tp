@@ -58,24 +58,26 @@ public class CommandResult {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
-            return false;
-        }
-
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+        return other == this // short circuit if same object
+                || (other instanceof CommandResult // instanceof handles nulls
+                && feedbackToUser.equals(((CommandResult) other).feedbackToUser)
+                && showHelp == ((CommandResult) other).showHelp
+                && exit == ((CommandResult) other).exit);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
+    }
+
+    @Override
+    public String toString() {
+        return "CommandResult{"
+                + "feedbackToUser='" + feedbackToUser + '\''
+                + ", showHelp=" + showHelp
+                + ", exit=" + exit
+                + ", screenType=" + screenType
+                + '}';
     }
 
 }

@@ -16,12 +16,13 @@ public abstract class Category {
     /**
      * Constructor for Category class.
      * @param categoryName Name of the category
-     * @param summary Short description of the category
+     * @param summary      Short description of the category
      */
     public Category(String categoryName, String summary) {
         this.categoryName = categoryName;
         this.summary = summary;
     }
+
     /**
      * Returns true if a given string is a valid category name.
      */
@@ -32,13 +33,14 @@ public abstract class Category {
     public String getCategoryName() {
         return this.categoryName;
     };
+
     public String getSummary() {
         return this.summary;
     };
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) {
+        if (other == this) {
             return true;
         }
 
@@ -46,13 +48,8 @@ public abstract class Category {
             return false;
         }
 
-        Category otherTypecasted = (Category) other;
-        // Remove extra whitespace between words and trim
-        otherTypecasted.categoryName = otherTypecasted.categoryName.toLowerCase()
-                .replaceAll("\\s+", " ").trim();
-        String thisCategoryName = this.categoryName.toLowerCase()
-                .replaceAll("\\s+", " ").trim();
-        return otherTypecasted.categoryName.equals(thisCategoryName);
+        Category otherCategory = (Category) other;
+        return otherCategory.getCategoryName().strip().toLowerCase().equals(getCategoryName().strip().toLowerCase());
     }
 
     @Override
