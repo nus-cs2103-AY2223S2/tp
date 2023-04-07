@@ -66,8 +66,7 @@ public class OrderStatus extends Status {
         //this status has a higher sorting priority than the other status
 
         //this status is not done or in progress and the other status is done
-        if (toJsonString().equalsIgnoreCase("N")
-                || toJsonString().equalsIgnoreCase("I")
+        if ((toJsonString().equalsIgnoreCase("N") || toJsonString().equalsIgnoreCase("I"))
                 && other.toJsonString().equalsIgnoreCase("D")) {
             return -1;
         }
