@@ -99,7 +99,7 @@ They are: Simple Tasks, Deadlines, and Events. As their name suggests, a simple 
     * Alert window
     * Subsection
 
-This is what a task look like in Clock-Work.
+This is what a task looks like in Clock-Work.
 
 ![Sample Task](images/SampleTask.png)
 
@@ -349,39 +349,38 @@ Examples:
 
 `schedule` displays a planned daily schedule according to the tasks currently stored.
 
-#### 3.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
 Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-longdate-and-a-shortdate)
 
-#### 3.9.2 Generating a New Plan
-When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
-As much as possible, tasks allocated to a day should not exceed the intended `E/EFFORT` level indicated by users.
-However, if the need arises (as specified below), the algorithm allows the effort required for a particular day to exceed the user preferred `E/EFFORT` level.
+<details>
+<summary>How are my plans generated?</summary>
+When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
+Tasks allocated to a day should not exceed the intended `E/EFFORT` level indicated.
+However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
 
-The algorithm allocates tasks as such:
+Task book allocates tasks as such:
 1. Allocate all events to the day(s) it is supposed to be happening.
 
-2. Allocate all deadlines to the first free day before it is due (exclusive of due date). Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).
+2. Allocate all deadlines to the first [free day](#q11-what-is-a-free-day) before it is due (exclusive of due date). Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).
 
 3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
-
+</details>
+<br>
 <details>
 
 <summary>Need more help?</summary>
 
 Displaying Daily Plans
-
 <br>
-
-Daily Plans can be viewed by entering `schedule D/SHORTDATE` or `schedule D/SHORTDATE E/EFFORT`, with the former showing an old plan, and the latter showing a newly generated plan.
-As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an `E/EFFORT` flag if they do not remember when they last generated their plan.
+Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.
+As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.
 If no tasks are shown, it means that there are no tasks planned for that day.
 An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
-
 </details>
-<br>
 
+<br>
 :warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
+<br>
 :warning: Select an effort estimate that you can realistically complete in a day. Having abnormally high desired effort levels in comparison to effort per task (eg. desired workload of 10000 and each task has effort 1) may result in undesired behaviour where all tasks are allocated to the same day.
 
 
@@ -447,7 +446,7 @@ TaskBook data are saved in the hard disk automatically after any command that ch
 TaskBook data are saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, taskBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, taskBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### 4.3 Archiving data files `[coming in v2.0]`
@@ -489,27 +488,179 @@ _Details coming soon ..._
 ### Q10 Why does two different tags have the same tag color?
 **A**: Clock-Work randomly assigns 1 of 20 available colors to tags. As the number of tags users use increases, the chances of multiple tags being allocated the same colour increases. More colors will be added in future iterations.
 
+### Q11 What is a free day?
+**A**: The sum of allocated effort in a free day does not exceed the user preferred workload.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. Command summary
-
-| Action       | Format, Examples                                                                                                      |
-|--------------|-----------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**    | `clear`                                                                                                               |
-| **Delete**   | `delete INDEX [INDEX]…​ `<br> e.g., `delete 3`                                                                        |
-| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                    |
-| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                    |
-| **List**     | `list`                                                                                                                |
-| **Help**     | `help`                                                                                                                |
-| **Stats**    | `stats`                                                                                                               |
-| **sort**     | `sort`                                                                                                                |
-| **alert**    | `alert [ALERT_WINDOW]`                                                                                                |
-| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                     |
+<table>
+    <thead>
+        <tr>
+            <th>Command</th>
+            <th>Inputs</th>
+            <th>Examples</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><b>Add</b></td>
+            <td>n/TASKNAME</td>
+            <td rowspan=4>add n/Read Book d/Lord of The Flies t/Reading t/Literature E/10</td>
+        </tr>
+        <tr>
+            <td>[d/DESCRIPTION]</td>
+        </tr>
+        <tr>
+            <td>[t/TAG]...</td>
+        </tr>
+        <tr>
+            <td>[E/EFFORT]</td>
+        </tr>
+        <tr>
+            <td>[D/DEADLINE]</td>
+            <td>add n/CS2103T v1.4 D/2023-04-10 1200</td>
+        </tr>
+        <tr>
+            <td>[F/FROM] [T/TO]</td>
+            <td>add n/Sleep v1.4 F/2023-04-08 2300 T/2023-04-09 0800</td>
+        </tr>
+        <tr>
+            <td rowspan=8><b>Edit</b></td>
+            <td>INDEX</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>[n/TASKNAME]</td>
+            <td>edit 1 n/Read Newspaper</td>
+        </tr>
+        <tr>
+            <td>[d/DESCRIPTION]</td>
+            <td>edit 1 d/Read Newspaper</td>
+        </tr>
+        <tr>
+            <td>[t/TAGS]</td>
+            <td>edit 1 t/</td>
+        </tr>
+        <tr>
+            <td>[E/EFFORT]</td>
+            <td>edit 1 E/7</td>
+        </tr>
+        <tr>
+            <td>[D/DEADLINE]</td>
+            <td>edit 1 D/2023-04-25 1200</td>
+        </tr>
+        <tr>
+            <td>[F/FROM]</td>
+            <td>edit 2 F/2023-03-10 1900</td>
+        </tr>
+        <tr>
+            <td>[T/TO]</td>
+            <td>edit 2 T/2023-03-10 2100</td>
+        </tr>
+        <tr>
+            <td><b>Delete</b></td>
+            <td>INDEX[ES]</td>
+            <td>delete 1 2</td>
+        </tr>
+        <tr>
+            <td><b>List</b></td>
+            <td>-</td>
+            <td>list</td>
+        </tr>
+        <tr>
+            <td><b>Sort</b></td>
+            <td>-</td>
+            <td>sort</td>
+        </tr>
+        <tr>
+            <td rowspan=8><b>Find</b></td>
+            <td>[n/TASKNAME]</td>
+            <td>find n/read</td>
+        </tr>
+        <tr>
+            <td>[d/DESCRIPTION]</td>
+            <td>find d/Straits Times</td>
+        </tr>
+        <tr>
+            <td>[t/TAGS]</td>
+            <td>find t/Books</td>
+        </tr>
+        <tr>
+            <td>[E/EFFORT]</td>
+            <td>find E/15</td>
+        </tr>
+        <tr>
+            <td>[D/DEADLINE]</td>
+            <td>find D/2023-12-25</td>
+        </tr>
+        <tr>
+            <td>[F/FROM]</td>
+            <td>find F/2023-05-12</td>
+        </tr>
+        <tr>
+            <td>[T/TO]</td>
+            <td>find T/2023-05-13</td>
+        </tr>
+        <tr>
+            <td>[all/] [n/TASKNAME]...</td>
+            <td>find all/ n/read n/book</td>
+        </tr>
+        <tr>
+            <td><b>Stats</b></td>
+            <td>-</td>
+            <td>stats</td>
+        </tr>
+        <tr>
+            <td><b>Alert</b></td>
+            <td>HOURS</td>
+            <td>alert 50</td>
+        </tr>
+        <tr>
+            <td rowspan=2><b>Schedule</b></td>
+            <td>D/DATE</td>
+            <td>schedule D/2023-04-04</td>
+        </tr>
+        <tr>
+            <td>[E/EFFORT]</td>
+            <td>schedule D/2023-04-04 E/10</td>
+        </tr>
+        <tr>
+            <td rowspan=3><b>Subsection</b></td>
+            <td>INDEX</td>
+            <td rowspan=3>subsection 1 n/page 1-5 d/finance</td>
+        </tr>
+        <tr>
+            <td>n/SUBSECTION_NAME</td>
+        </tr>
+        <tr>
+            <td>[d/DESCRIPTION]</td>
+        </tr>
+        <tr>
+            <td><b>Remove-Subsection</b></td>
+            <td>TASK_INDEX I/SUBSECTION_INDEX</td>
+            <td>remove-subsection 1 I/1</td>
+        </tr>
+        <tr>
+            <td><b>Help</b></td>
+            <td>-</td>
+            <td>help</td>
+        </tr>
+        <tr>
+            <td><b>Clear</b></td>
+            <td>-</td>
+            <td>clear</td>
+        </tr>
+        <tr>
+            <td><b>Exit</b></td>
+            <td>-</td>
+            <td>exit</td>
+        </tr>
+    </tbody>
+</table>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
-2. Free day: Allocating a task to this day will not result in overloading.
+2. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
 3. Long date: Date in the format YYYY-MM-DD HHMM
 4. Short date: Date in the format YYYY-MM-DD
-3. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
+3. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.

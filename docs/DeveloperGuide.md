@@ -55,7 +55,7 @@ If you would like to contact the development team, we can be contacted at our [A
 ### 1.1 **Acknowledgements**
 
 * This project is built from the AddressBook-Level3 project created by the SE-EDU initiative.
-* Tag's color code examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
+* Tag's color code examples courtesy of [Sasha Trubetskoy](https://sashamaps.net/docs/resources/20-colors/).
 
 ### 1.2 **Setting up, getting started**
 
@@ -66,7 +66,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## 2. **Design**
 
 **This section provides an overview of the classes used within Clock-Work. The general interactions between components, and the internal structure of a component is explained here.
-A good understanding of the content in this section is useful in understanding how the individual features are implements in [section 3 - Implementation](#3-implementation)**
+A good understanding of the content in this section is useful in understanding how the individual features are implements in [3 - Implementation](#3-implementation)**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -122,7 +122,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -158,7 +158,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
@@ -188,7 +188,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both task book data, user preference data, and planner data in json format, and read them back into corresponding objects.
+* can save task book, user preference, and planner data in json format, and read them back into corresponding objects.
 * inherits from `TaskBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -206,7 +206,7 @@ Classes used by multiple components are in the `seedu.task.commons` package.
 
 ### 3.1 Add Feature
 
-The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the multiple prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
+The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
 Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
 
 You can find the specific implementation in the `AddCommandParser` class and the `AddCommand` class
