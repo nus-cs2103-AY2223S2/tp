@@ -1093,6 +1093,48 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
        Expected: No contact is edited. An error message is shown as an invalid command was given.
 
+### Finding contacts
+1. Finding contacts while all contacts are being shown.
+
+    1. Test case: `find n/alex`<br>
+       Expected: Contacts with name that contains `alex` is shown.
+
+    1. Test case: `find l/Java` <br>
+       Expected: Contacts with language that contains `Java` is shown.
+
+    1. Test case: `find n/alex t/neighbours`<br>
+       Expected: Contacts with name `alex` or tag `neighbours` is shown.
+
+    1. Test case: `find l/`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find n/next n/alex`<br>
+       Expected: Same list of contacts as *find test case 1i* is shown as only the value of the last occurrence of a prefix is used.<br>
+
+2. Listing contacts while some contacts are being shown.
+    1. Prerequisites: Filter the contact list with `find` or `list` command.
+
+    1. Test case: `find n/alex`<br>
+       Expected: All contacts with name that contains `alex` in SOCket (including those not shown before executing `find n/alex`) is shown.
+
+    1. Test case: `find l/Java` <br>
+       Expected: All contacts with language that contains `Java` in SOCket (including those not shown before executing `find l/Java`) is shown.
+
+    1. Test case: `find n/alex t/neighbours`<br>
+       Expected: All contacts with name `alex` or tag `neighbours` in SOCket (including those not shown before executing `find n/alex t/neighbours`) is shown.
+
+    1. Test case: `find l/`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find n/next n/alex`<br>
+       Expected: Same list of contacts as *find test case 2ii* is shown as only the value of the last occurrence of a prefix is used.<br>
+
 ### Listing contacts
 1. Listing contacts while all contacts are being shown.
    1. Prerequisites: At least one contact in the list.
@@ -1113,7 +1155,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
    
 2. Listing contacts while some contacts are being shown. 
-   1. Prerequisites: Filter the contact list with `find` or `list [l/LANGUAGE] [t/TAG]`. At least one contact in the list. 
+   1. Prerequisites: Filter the contact list with `find` or `list` command. At least one contact in the list. 
    
    1. Test case: `list`<br>
       Expected: All contacts from the unfiltered list is shown.
@@ -1193,7 +1235,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a project
 
-1. _{ more test cases …​ }_
+1. Adding a project to the project list.
+    1. Prerequisites: No project in the list named `Project 1`, `Project 2`, `Project 3` or `Project 4`.
+
+    1. Test case: `addpj n/Project 1 h/project-1 r/ProjectOne d/29/04/22-0900 m/24/03/22-1400`<br>
+       Expected: Project with the project name `Project 1`, repo host `project-1`, repo name `ProjectOne`, deadline `29/04/22-0900` & meeting `24/03/22-1400` is added to the project list.
+
+    1. Test case: `addpj n/Project 2 h/project-1 r/ProjectOne d/29/04/22-0900 m/24/03/22-1400`<br>
+       Expected: Project with the project name `Project 2`, repo host `project-1`, repo name `ProjectOne`, deadline `29/04/22-0900` & meeting `24/03/22-1400` is added to the project list.
+
+    1. Test case: `addpj n/Project 3 h/project-1 r/ProjectOne d/29/04/22-0900`<br>
+       Expected: Project with the project name `Project 1`, repo host `project-1`, repo name `ProjectOne` & deadline `29/04/22-0900` is added to the project list.
+
+    1. Test case: `addpj n/Project 4 h/project-4 r/ProjectThree`<br>
+       Expected:  No project is added to the project list as deadline value is missing.
 
 ### Editing a project
 
@@ -1268,7 +1323,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Assigning a contact to a project
 
-1. _{ more test cases …​ }_
+1.  Assigning a person contact to a project while all contacts & projects are being shown.
+    1. Prerequisites: At least one contacts & exactly two project in their shown list.
+
+    1. Test case: `assign 1 1`<br>
+       Expected: First contact in the contact list is assigned to the first project in the project list.
+
+    1. Test case: `assign 1 3`<br>
+       Expected: First contact in the contact list is not assigned to any project in the project list. An error message is shown as the index provided for the project list is invalid.
+
+    1. Test case: `assign a 1`<br>
+       Expected: An error message is shown as the given syntax is invalid.
+
+    1. Test case: `assign 1 b`<br>
+       Expected: An error message is shown as the given syntax is invalid.
 
 ### Unassigning a contact to a project
 
