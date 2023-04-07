@@ -152,7 +152,7 @@ you can use the `next` command to change the number of upcoming events shown.
 
 
 <h3 id="calendar">Calendar</h3>
-![calendar.png](images/calendar.png)
+![calendar-gui.png](images/calendar-gui.png)
 
 This component gives you a comprehensive summary of all the events that you have for a particular month.
 
@@ -225,6 +225,14 @@ Parameters:
 
 <div markdown="span" class="alert alert-warning">
 :warning: **Warning:** Adding of events that overlaps in time is not allowed.
+</div>
+
+![add-command-result.png](images%2Fadd-command-result.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+If an event is added successfully, a message similar to the one above will be displayed.  
+You should also be able to see the event added to both the Events List Panel and the Calendar.
 </div>
 
 
