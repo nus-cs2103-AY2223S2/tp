@@ -129,10 +129,14 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation:
 Caution: </div> 
 
-* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
-  e.g. Emily and Emily 2 are acceptable names.
-* We allow `PHONE_NUMBER` and `CONTACT_PARENT` to be the same as not all student have their own phone.
+* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+<div markdown="span" class="alert alert-primary">
 
+:bulb: Tips:<br>
+* A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
+* If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
+* A student can have any number of tags (including 0)
+</div>
 
 ### 3. Viewing student contacts as a list: `list`
 
@@ -153,8 +157,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 * We allow you to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
-* You are not allowed to change the name to be the same as any existing student in the list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* You are not allowed to change the name of a student to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -190,9 +193,9 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student (if the student exist) in the student list.
-* `find Betsy` followed by `delete 1` deletes the 1st student (if the student exist) in the results of the `find` command.
-* `filter female` followed by `delete 3` deletes the 3rd student (if the student exist) in the results of the `filter` command.
+* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.
+* `find Betsy` followed by `delete 1` deletes the 1st student (if the student exists) in the results of the `find` command.
+* `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
 
 ### 7. Checking a student: `check`
@@ -279,7 +282,7 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The given `VALUE_OF_SCORE` can be **any number from 0 to 100**.
 * The given `VALUE_OF_SCORE` can either be **an integer or a number with one decimal place**
-* Different exams can have the same `Label`.
+* Exams on different dates can have the same `Label`.
 * No two exams can have the same `Date`.
 
 <div markdown="block" class="alert alert-info">
@@ -347,7 +350,7 @@ Examples:
 * `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
 
 Addition:
-* The avatar will change if the student has "gender" tag. 
+* The avatar will change if the student has a "gender" tag. 
 * The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 
 

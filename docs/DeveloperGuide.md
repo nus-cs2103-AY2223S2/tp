@@ -590,7 +590,7 @@ of the student's scores. In future implementation, a student's performance will 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix Planned Enhancements**
+## **Appendix: Planned Enhancements**
 ### Solutions purposed for known feature flaws
 <div>
 
