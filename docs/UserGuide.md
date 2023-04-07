@@ -124,7 +124,7 @@ Item | Description
 **overview** | Provides an overview of the total number of cases and cases per category.
 
 <div style="page-break-after: always;"></div>
-Here is the breakdown of an individual *person card*.
+Here is the breakdown of an individual **person card**.
 
 ![PersonCardUi](images/PersonCardUi.png)
 
