@@ -49,7 +49,6 @@ public class DateOfBirth {
      * Returns true if a given string is a valid date of birth.
      */
     public static boolean isValidDate(String dateString) {
-        System.out.println(dateString);
 
         if (!dateString.matches(VALIDATION_REGEX)) {
             return false;
