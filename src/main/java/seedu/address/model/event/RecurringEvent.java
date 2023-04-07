@@ -18,10 +18,12 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             "The end time should not be earlier than the start time";
     public static final String MESSAGE_CONSTRAINTS_DAYOFWEEK =
             "The day of the week should be either MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY";
+    public static final String MESSAGE_CONSTRAINTS_CLASH =
+            "Events cannot have conflicts with other events";
 
-    private DayOfWeek dayOfWeek;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private final DayOfWeek dayOfWeek;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
     /**
      * Constructor for Recurring events
@@ -140,7 +142,8 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             }
 
             if (!(isEventBefore || isEventAfter)) {
-                throw new EventConflictException("Isolated Event List:\n" + index + " " + ie);
+                throw new EventConflictException(MESSAGE_CONSTRAINTS_CLASH
+                        + "\nIsolated Event List:\n" + index + " " + ie);
             }
 
         }

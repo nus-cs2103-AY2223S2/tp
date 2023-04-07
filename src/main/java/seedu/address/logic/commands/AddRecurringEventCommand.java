@@ -50,13 +50,6 @@ public class AddRecurringEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        try {
-            eventToAdd.checkPeriod();
-        } catch (EventConflictException e) {
-            throw new CommandException(e.getMessage());
-        }
-
-
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -65,14 +58,19 @@ public class AddRecurringEventCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        try {
+            eventToAdd.checkPeriod();
+            eventToAdd.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
+        } catch (EventConflictException e) {
+            throw new CommandException(e.getMessage());
+        }
+
         RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
         RecurringEvent checkForEventClash = recurringEventList.checkClashingRecurringEvent(eventToAdd);
 
         if (checkForEventClash != null) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
-
-        eventToAdd.listConflictedEventWithIsolated(personToEdit.getIsolatedEventList());
 
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

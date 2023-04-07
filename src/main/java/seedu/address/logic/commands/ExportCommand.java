@@ -11,7 +11,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -71,8 +73,8 @@ public class ExportCommand extends Command {
         Address exportAddress = personToExport.getAddress();
         Set<Tag> exportTags = new HashSet<>();
         Set<Group> exportGroups = new HashSet<>();
-        Set<IsolatedEvent> exportIsolatedEvents = personToExport.getIsolatedEventList().getSet();
-        Set<RecurringEvent> exportRecurringEvents = personToExport.getRecurringEventList().getSet();
+        IsolatedEventList exportIsolatedEvents = personToExport.getIsolatedEventList();
+        RecurringEventList exportRecurringEvents = personToExport.getRecurringEventList();
 
         return new Person(exportName, exportPhone, exportEmail, exportAddress, exportTags, exportGroups,
                 exportIsolatedEvents, exportRecurringEvents);

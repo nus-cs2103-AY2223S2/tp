@@ -99,8 +99,8 @@ public class ImportCommand extends Command {
                 importData.getAddress(),
                 existingData.getTags(), // Do not replace tags
                 existingData.getGroups(), // Do not replace groups
-                importData.getIsolatedEventList().getSet(),
-                importData.getRecurringEventList().getSet());
+                importData.getIsolatedEventList(),
+                importData.getRecurringEventList());
     }
     private static Person createNewImportPerson(Person importData) {
         return new Person(importData.getName(),
@@ -109,7 +109,7 @@ public class ImportCommand extends Command {
                 importData.getAddress(),
                 new HashSet<>(),
                 new HashSet<>(),
-                importData.getIsolatedEventList().getSet(),
-                importData.getRecurringEventList().getSet());
+                importData.getIsolatedEventList(),
+                importData.getRecurringEventList());
     }
 }
