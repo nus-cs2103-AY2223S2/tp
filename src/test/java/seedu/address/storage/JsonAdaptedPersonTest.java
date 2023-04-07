@@ -13,11 +13,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Education;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Telegram;
+import seedu.address.testutil.PersonBuilder;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -32,7 +35,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getOptionalPhone().map(Phone::toString).orElse("");
     private static final String VALID_EMAIL = BENSON.getOptionalEmail().map(Email::toString).orElse("");
     private static final String VALID_ADDRESS = BENSON.getOptionalAddress().map(Address::toString).orElse("");
-    private static final String VALID_EDUCATION = BENSON.getOptionalEducation().get().toString();
+    private static final String VALID_EDUCATION = BENSON.getOptionalEducation().map(Education::toString).orElse("");
     private static final String VALID_REMARK = BENSON.getOptionalRemark().map(Remark::toString).orElse("");
     private static final List<JsonAdaptedModule> VALID_MODULES = BENSON.getModules().stream()
             .map(JsonAdaptedModule::new)
@@ -73,11 +76,11 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
+    public void toModelType_nullPhone_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
                 VALID_EDUCATION, VALID_REMARK, VALID_TELEGRAM, VALID_MODULES, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        Person expectedPerson = new PersonBuilder(BENSON).withPhone(null).build();
+        assertEquals(expectedPerson, person.toModelType());
     }
 
     @Test
