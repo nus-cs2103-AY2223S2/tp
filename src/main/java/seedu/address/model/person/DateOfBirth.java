@@ -63,12 +63,15 @@ public class DateOfBirth {
         return isValidInputs(day, month, year);
     }
 
+    /**
+     * Returns true if given day, month and year are valid
+     */
     public static boolean isValidInputs(int day, int month, int year) {
         if (!isValidMonth(month)) {
             return false;
         }
 
-        if (month == 2 && (day > 28 && !isLeapYear(year))){
+        if (month == 2 && (day > 28 && !isLeapYear(year))) {
             return false;
         } else if (month == 2 && (day > 29 && isLeapYear(year))) {
             return false;
@@ -85,6 +88,9 @@ public class DateOfBirth {
         return true;
     }
 
+    /**
+     * Returns true if given month is valid
+     */
     public static boolean isValidMonth(int month) {
         return !(month < 1 || month > 12);
     }
