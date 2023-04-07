@@ -2,8 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+* Table of contents
   {:toc}
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
 
