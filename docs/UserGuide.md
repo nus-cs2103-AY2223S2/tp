@@ -835,8 +835,11 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 * For `STATUS`:
   * Search is case-insensitive.
-  * Search `D` or `d` for `Delivered`, `I` or `i` for `In Progress` and `N` or `n` for `Not delivered`.
-    (e.g. `find_o s/D` will return orders marked as `Delivered`).<br>
+  * Search 
+    * `D` or `d` for `Delivered`
+    * `I` or `i` for `In Progress`
+    * `N` or `n` for `Not delivered`.
+    * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
 * For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
   * Search is case-sensitive (e.g. The search for orders with customer name `Amy` will match with `Amy` but not with `AMY`).
@@ -903,8 +906,10 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 * For `STATUS`:
   * Search is case-insensitive.
-  * Search `D` or `d` for `Done` and `N` or `n` for `Not delivered`.
-    (e.g. `find_o s/D` will return tasks marked as `Done`).<br>
+  * Search
+    * `D` or `d` for `Done`
+    * `N` or `n` for `Not delivered`. 
+    * e.g. `find_o s/D` will return tasks marked as `Done`.<br>
 
 </div>
 
@@ -1489,7 +1494,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: **Caution:**<br>
+:warning: **Caution:**<br><br>
 
 It is advised to make your changes through our application and not through editing the data file directly.
 
