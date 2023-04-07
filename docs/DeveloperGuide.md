@@ -2038,8 +2038,14 @@ TODO: to be removed
 | `export hello.json`                                      |                A hello.json file should appear in {JAR_file_location}/data                 |
 | 1. `export hi.json` <br/> 2. `export hi.json`            | `File already exist. If you want to overwrite this file, insert /overwrite in the command` |
 | 1. `export ha.json` <br/> 2. `export ha.json /overwrite` |                             `All modules archived to ha.json`                              |
-| 1. `export letracker.json /overwrite`                    |               `Cannot export to the current working directory of Le Tracker`               |
+| `export letracker.json /overwrite`                       |               `Cannot export to the current working directory of Le Tracker`               |
 
 ### Import Modules from a File
 
+| Test Case                                                                             |                                                  Expected Result                                                  |
+|:--------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|
+| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
+| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
+| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
+|
 
