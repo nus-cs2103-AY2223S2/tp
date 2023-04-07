@@ -20,6 +20,7 @@ public class JsonAdaptedDoctorTest {
     private static final String INVALID_YOE_STRING = "test";
     private static final String INVALID_YOE_NEGATIVE = "-1";
     private static final String INVALID_YOE_DECIMAL = "2.5";
+    private static final String INVALID_YOE_TOO_HIGH = "100";
 
     private static final String VALID_NAME = ALICE.getName().toString();
     private static final String VALID_PHONE = ALICE.getPhone().toString();
@@ -42,7 +43,8 @@ public class JsonAdaptedDoctorTest {
     @Test
     public void toModelType_invalidSpecialty_throwsIllegalValueException() {
         JsonAdaptedDoctor doctor = new JsonAdaptedDoctor(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_SPECIALTY, VALID_YOE, VALID_TAGS, VALID_PATIENTS);
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_SPECIALTY,
+                VALID_YOE, VALID_TAGS, VALID_PATIENTS);
         String expectedMessage = Specialty.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, doctor::toModelType);
     }
@@ -50,7 +52,8 @@ public class JsonAdaptedDoctorTest {
     @Test
     public void toModelType_emptySpecialty_throwsIllegalValueException() {
         JsonAdaptedDoctor doctor = new JsonAdaptedDoctor(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, EMPTY_SPECIALTY, VALID_YOE, VALID_TAGS, VALID_PATIENTS);
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, EMPTY_SPECIALTY,
+                VALID_YOE, VALID_TAGS, VALID_PATIENTS);
         String expectedMessage = Specialty.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, doctor::toModelType);
     }
@@ -92,11 +95,21 @@ public class JsonAdaptedDoctorTest {
     }
 
     @Test
+    public void toModelType_invalidYoeTooHigh_throwsIllegalValueException() {
+        JsonAdaptedDoctor doctor = new JsonAdaptedDoctor(
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_SPECIALTY,
+                INVALID_YOE_TOO_HIGH, VALID_TAGS, VALID_PATIENTS);
+        String expectedMessage = Yoe.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, doctor::toModelType);
+    }
+
+    @Test
     public void toModelType_nullYoe_throwsIllegalValueException() {
         JsonAdaptedDoctor doctor = new JsonAdaptedDoctor(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_SPECIALTY,
                 null, VALID_TAGS, VALID_PATIENTS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Yoe.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Yoe.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, doctor::toModelType);
     }
 
