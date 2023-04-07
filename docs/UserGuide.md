@@ -135,7 +135,7 @@ Item | Description
 **Age** | Age of the person who got dengue.
 **Postal** | Postal code of the person who got dengue.
 **Date** | Date that the person got dengue.
-**Variant** | Dengue Variant person got (DENV1, DENV2 etc.).
+**Variant** | Dengue variant of the case (DENV1, DENV2, DENV3, or DENV4).
 
 <div style="page-break-after: always;"></div>
 Here is the breakdown of an individual **bin card**.
