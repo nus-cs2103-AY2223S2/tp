@@ -260,6 +260,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * relatively more tech-savvy than the average population, able to perform complex tasks on digital platforms
 * prefers typing to mouse interactions
 * need to be able to easily aggregate and analyze students' statistics
+* need to keep track of tasks needed to do during each lesson and time allocation for each
 * is reasonably comfortable using CLI apps
 * can type fast
 
@@ -272,28 +273,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …         | I want to …                                           | So that I can…                                                                                              |
-|----------|----------------|-------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `* * *`  | TA             | manage my classes in a separate, distinct system      | avoid being confused with the various command names that may overlap with that of non-class-related commands |
-| `* * *`  | TA             | group students by class                               | track participation/assignment statuses by students' own classes                                             |
-| `* * *`  | TA             | add students to a class list                          | expand the class list if needed (e.g. new student joins)                                                     |
-| `* * *`  | TA             | delete students from a class list                     | remove students who are no longer part of the class (e.g. dropped class)                                     |
-| `* * *`  | TA             | allocate assignments to students by class             | track the statuses of assignments assigned to each class                                                     |
-| `* * *`  | careless TA    | remove assignments allocated to a class               | remove incorrect assignment entries                                                                          |
-| `* * *`  | responsible TA | track students' participation statuses                | award participation marks to students fairly and accurately                                                  |
-| `* * *`  | forgetful TA   | track valid reasons for a student's absence           | record attendance for those with valid reasons                                                               |
-| `* * *`  | forgetful TA   | track student assignment submissions/scores/deadlines | grade assignments easily                                                                                     |
-| `* * *`  | user           | have CSV files storing my data                        | make backups to guard against data loss                                                                      |
-| `* * *`  | user           | load in CSV files to restore data                     | avoid having to do manual data entry when using the app from scratch                                         |
-| `* * *`  | user           | exit the app gracefully                               | avoid data corruption                                                                                        |
-| `* *`    | TA             | assign individual assignment grades to students       | track the specific grade each student has obtained for each assignment                                       |
-| `* *`    | forgetful TA   | track questions asked by students                     | answer them on time                                                                                          |
-| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson           | complete the lessons on time without missing out on any content                                              |
-| `* *`    | forgetful TA   | be reminded to take attendance before class ends      | award attendance marks correctly                                                                             |
-| `* *`    | TA             | group students quickly and fairly                     | reduce time wasted due to group formation                                                                    |
-| `* *`    | TA             | search students by keywords                           | lessen the mental load required to find a student                                                            |
-| `* *`    | TA             | list all students in a class                          | see an overview of the students in a class at a glance                                                       |
-| `*`      | head TA        | manage all other TAs                                  | track whether each TA has done their job correctly                                                           |
+| Priority | As a …         | I want to …                                             | So that I can…                                                                                               |
+|----------|----------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `* * *`  | TA             | manage my classes in a separate, distinct system        | avoid being confused with the various command names that may overlap with that of non-class-related commands |
+| `* * *`  | TA             | group students by class                                 | track participation/assignment statuses by students' own classes                                             |
+| `* * *`  | TA             | add students to a class list                            | expand the class list if needed (e.g. new student joins)                                                     |
+| `* * *`  | TA             | delete students from a class list                       | remove students who are no longer part of the class (e.g. dropped class)                                     |
+| `* * *`  | TA             | allocate assignments to students by class               | track the statuses of assignments assigned to each class                                                     |
+| `* * *`  | careless TA    | remove assignments allocated to a class                 | remove incorrect assignment entries                                                                          |
+| `* * *`  | responsible TA | track students' participation statuses                  | award participation marks to students fairly and accurately                                                  |
+| `* * *`  | forgetful TA   | track valid reasons for a student's absence             | record attendance for those with valid reasons                                                               |
+| `* * *`  | forgetful TA   | track student assignment submissions/scores/deadlines   | grade assignments easily                                                                                     |
+| `* * *`  | stressed TA    | manage time for different tasks during class conducting | complete all tasks during each lesson on time                                                                |
+| `* * *`  | user           | have CSV files storing my data                          | make backups to guard against data loss                                                                      |
+| `* * *`  | user           | load in CSV files to restore data                       | avoid having to do manual data entry when using the app from scratch                                         |
+| `* * *`  | user           | exit the app gracefully                                 | avoid data corruption                                                                                        |
+| `* *`    | TA             | assign individual assignment grades to students         | track the specific grade each student has obtained for each assignment                                       |
+| `* *`    | forgetful TA   | track questions asked by students                       | answer them on time                                                                                          |
+| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson             | complete the lessons on time without missing out on any content                                              |
+| `* *`    | forgetful TA   | be reminded to take attendance before class ends        | award attendance marks correctly                                                                             |
+| `* *`    | TA             | group students quickly and fairly                       | reduce time wasted due to group formation                                                                    |
+| `* *`    | TA             | search students by keywords                             | lessen the mental load required to find a student                                                            |
+| `* *`    | TA             | list all students in a class                            | see an overview of the students in a class at a glance                                                       |
+| `*`      | head TA        | manage all other TAs                                    | track whether each TA has done their job correctly                                                           |
 
 *{More to be added}*
 
@@ -494,9 +496,9 @@ Below is the main success scenario of students-related commands.
   * 2a1. TAA shows an error message.
     Use case ends.
 
-## **Adding Alarm**
+## **Alarm-Related Commands**
 
-Below is the main success scenario of adding alarm.
+Below is the main success scenarios of adding, deleting and listing alarms.
 
 **add alarm**
 1.  User requests to add an alarm with specified time and comment.
@@ -509,8 +511,39 @@ Below is the main success scenario of adding alarm.
     * 2a1. TAA shows an error message.
       Use case ends.
 
+Below is the sequence diagram for adding an assignment.
 
-*{More to be added}*
+<img src="/images/AddAlarmSequeceDiagram.PNG" />
+
+**delete alarm**
+1.  User requests to delete a scheduled alarm with specified index.
+2.  TAA deletes the alarm with the specified index, the alarm will no longer ring.
+    Use case ends.
+
+**Extensions**
+* 2a. User does not provide sufficient arguments
+    * 2a1. TAA shows an error message.
+      Use case ends.
+* 2b. User does not provide a valid index
+    * 2a1. TAA shows an error message.
+      Use case ends.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="/images/DeleteAlarmSequenceDiagram.png" />
+
+**list alarm**
+1.  User requests to list all scheduled alarms.
+2. TAA shows all scheduled alarms on the command window.
+
+**Extensions**
+* 2a. There is no alarms scheduled.
+    * 2a1. TAA shows an error message.
+      Use case ends.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="/images/ListAlarmsSequenceDiagram.png" />
 
 ### Non-functional requirements
 

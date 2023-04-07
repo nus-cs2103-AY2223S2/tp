@@ -9,10 +9,16 @@ title: User Guide
 
 ## **Introduction**
 ### About this application
-Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities,
+optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
-With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
-You can even view grade statistics without the use of a dedicated data analysis application!
+TAA provides a one-stop solution that meets the following teaching needs of a TA in just one single application:
+1. You can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
+2. You can even view grade statistics without the use of a dedicated data analysis application!
+3. You can schedule alarms that help you manage your time during class. Gone are the days of you unknowingly spending
+   too much time on a single question during tutorial or forgetting to mark students' attendance at the end of class.
+4. You can save the troubles of manually importing and exporting data into and out of the TAA application, thanks to our
+   CSV parser!
 
 ![TAA logo](./images/TAA_logo.jpg)
 
@@ -420,18 +426,18 @@ Format: `list_asgn`
 
 ### Class List
 For class lists, you can call the following commands:
-- Create class list: `create`
+- Create class list: `create_class`
 - View class statistics: `class_stats`
 - (Random) Groupings: `rand_grp`
 - Adding a student: `add`
 - Deleting a student: `delete`
-- Listing all students: `list`
+- Listing all students in a class: `list`
 - Find student: `find`
 
 #### Create a class list: `create_class`
 Creates a class list to store the information about a group of students.
 
-Format: `create_class`
+Format: `create_class LIST_NAME`
 - The argument `LIST_NAME` should be the name of the new class list
 
 Examples:
@@ -548,6 +554,7 @@ Examples:
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
 ### Alarm
+![Alarm Window](images/alarm_warning.png)
 For Alarm, you can call the following commands:
 - Schedule an alarm: `add_alarm`
 - Remove a scheduled alarm: `delete_alarm`
@@ -574,6 +581,7 @@ Examples:
 - delete_alarm 1
 
 #### List all scheduled alarms : `list_alarms`
+![Alarm List](images/list_alarms_screenshot.png)
 List all alarms scheduled, arranged in the order of creation, containing time left and comment of each alarm.
 
 Examples:
@@ -659,7 +667,7 @@ Consequently, such operations will not be allowed to execute, and an error messa
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
-|           Term           |                                                                               Explanation                                                                                | 
+|           Term           |                                                                               Explanation                                                                                |
 |:------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |       Desktop App        |                           A software program that runs on a computer's desktop or laptop operating system, rather than through a web browser.                            |
 |  Command Line Interface  |            A way of interacting with a computer program by typing in text commands instead of using a graphical user interface (GUI) with buttons and menus.             |
