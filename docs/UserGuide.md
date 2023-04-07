@@ -262,7 +262,8 @@ Food items are being sorted by their expiry dates.
 
 ### View full name of food item : `view`
 
-Displays the full name of the food item.
+Displays the full name of the food item. This is useful when the food item name is too long to be displayed in the
+food list.
 
 Format: `view INDEX`
 
