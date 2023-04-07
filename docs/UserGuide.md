@@ -3,16 +3,17 @@ layout: page
 title: User Guide
 toc: true
 ---
-Are you an _avid chef_ with the desire to **store**, **access** and **share** your recipes easily?
+Are you an _avid chef_ with too many delicious recipes to handle? Or ever just have
+the desire to **store**, **access** and **share** your recipes easily? 
 
-***RIZZ***ipe is a **command-based recipe database** that was designed for chefs to manage their recipes!
+***RIZZ***ipe is a **command-based recipe database** that is designed just for chefs _LIKE YOU_ to manage recipes at the touch of a finger!
 
 RIZZipe stars 3 main features:
 1. Versatile **tagging** and powerful **searching** function
 2. Recipe sharing
 3. Search function for ingredient substitutions
 
-Make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
 
 ## Using this Guide
 * If you want to run RIZZipe for the first time, check out our handy [Quick Start guide](#Quick-Start).
@@ -33,16 +34,16 @@ of all the commands and keyboard shortcuts available.
 ## Quick Start
 Let's get you _rizzed_ up in the fastest way possible!
 
-1. Ensure you have Java `11` or above installed in you computer.
-2. Download the latest `recipebook.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
+1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in you computer.
+2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
-   recipebook.jar` command to run the application.
-5. A GUI similar to the below should appear in a few seconds. Note that our experienced _Rizzers_ have crafted
+4. Open a [command terminal](#Glossary), [`cd`](#Glossary) into the folder you put the jar file in, and input the `java -jar
+   rizzipe.jar` command to run the application.
+5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
 some sample recipes for you already.
 ![UI QuickStart](images/UiQuickStart.png)
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
-7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
+7. Type commands within the [command line interface (CLI)](#Glossary) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
 8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
 the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
 
@@ -67,7 +68,7 @@ the [Features](#features) Section, or take a look at the [Keyboard Shortcuts sum
 * Parameters can be in any order
   i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Excess parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * :bulb: Important tip: For increased readability, we have included an optional multi-line command format for commands that may require multiple inputs (add, edit). After each input,
@@ -140,7 +141,7 @@ Format:
 ### Listing all recipes: `list`
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
-simply want to pick a recipe at random? Just run the `list` command.
+simply want to pick a recipe at random? Just run the `list` command!
 
 Format:
 `list`
@@ -275,7 +276,7 @@ Format:
 ### Asking for assistance: `help`
 
 Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
-`help` will save you from your woes.
+`help` will save you from your woes!
 
 Format:
 `help`
@@ -285,7 +286,8 @@ Format:
 
 ### Exiting the program: `exit`
 
-Exits the program and closes the window.
+Done with cooking for the day?
+Running `exit` exits the program and closes the window!
 
 Format:
 `exit`
@@ -300,7 +302,7 @@ Format:
 
 Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`
+Recipe data are saved as a [JSON file](#Glossary) `[JAR file location]/data/recipebook.json`
 
 For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory where the app is stored, and specifying `userPrefsFilePath` in `preferences.json` with the desired file path.
 
@@ -336,6 +338,13 @@ JSON file to be exported and select the desired location for it to be saved!
 ![ExportDataWindow](images/ExportWindow.jpg)
 
 ---
+## Glossary 
+* Command terminal: A terminal is a text input and output environment. It is a program that acts as a wrapper and allows us to enter commands that the computer processes. Open your terminal by:
+  * Searching and opening `Command Prompt` on Windows
+  * Searching and opening `Terminal` on Mac
+* `cd`: Command to change directory
+* Command Line Interface (CLI): A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* JSON: JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects
 
 ## FAQ
 
