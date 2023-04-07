@@ -70,6 +70,3 @@ Given below are my contributions to the project.
     * Contributed to the user stories in the Developer Guide
     * Add the UML diagram for Model
     * Add Apendix: Planned Enhancements [\#216] (https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/216)
-
-
-
