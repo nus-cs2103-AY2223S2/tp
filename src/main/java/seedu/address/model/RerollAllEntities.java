@@ -3,9 +3,14 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 
 /**
  * Wrap all data at the entity level.
@@ -13,9 +18,20 @@ import seedu.address.model.entity.Entity;
  */
 public class RerollAllEntities implements ReadOnlyEntities {
 
+    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character;
+    private final Predicate<Entity> isMob = entity -> entity instanceof Mob;
+    private final Predicate<Entity> isItem = entity -> entity instanceof Item;
+
     private final UniqueEntityList entities;
+    private final ObservableList<Entity> characters;
+    private final ObservableList<Entity> items;
+    private final ObservableList<Entity> mobs;
+
     {
         entities = new UniqueEntityList();
+        characters = new FilteredList<>(getEntityList(), isCharacter);
+        items = new FilteredList<>(getEntityList(), isItem);
+        mobs = new FilteredList<>(getEntityList(), isMob);
     }
 
     // List level operations ==============================
@@ -51,6 +67,18 @@ public class RerollAllEntities implements ReadOnlyEntities {
         entities.remove(entity);
     }
 
+    ObservableList<Entity> getCharacters() {
+        return characters;
+    }
+
+    ObservableList<Entity> getItems() {
+        return items;
+    }
+
+    ObservableList<Entity> getMobs() {
+        return mobs;
+    }
+
     @Override
     public ObservableList<Entity> getEntityList() {
         return entities.asUnmodifiableObservableList();
@@ -61,10 +89,22 @@ public class RerollAllEntities implements ReadOnlyEntities {
         return entities.asUnmodifiableObservableList().size() + " entities";
     }
 
+    /**
+     * Returns true if the relative ordering within each classification is the same.
+     */
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof RerollAllEntities
-                && entities.equals(((RerollAllEntities) other).entities));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RerollAllEntities)) {
+            return false;
+        }
+
+        RerollAllEntities otherReroll = (RerollAllEntities) other;
+        return otherReroll.items.equals(this.items)
+                && otherReroll.characters.equals(this.characters)
+                && otherReroll.mobs.equals(this.mobs);
     }
 }

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.Reroll;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.entity.exceptions.DuplicateEntityException;
 import seedu.address.testutil.TypicalEntities;
 
 class JsonSerializableRerollTest {
@@ -40,6 +40,6 @@ class JsonSerializableRerollTest {
     public void toModelType_duplicateEntityFile_throwsIllegalValueException() throws Exception {
         JsonSerializableReroll dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ENTITY_FILE,
                 JsonSerializableReroll.class).get();
-        assertThrows(DuplicatePersonException.class, dataFromFile::toModelType);
+        assertThrows(DuplicateEntityException.class, dataFromFile::toModelType);
     }
 }

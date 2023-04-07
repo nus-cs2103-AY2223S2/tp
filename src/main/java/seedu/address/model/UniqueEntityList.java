@@ -48,7 +48,6 @@ public class UniqueEntityList implements Iterable<Entity> {
             throw new DuplicateEntityException();
         }
         internalList.add(toAdd);
-        orderEntities();
     }
 
     /**
@@ -80,7 +79,6 @@ public class UniqueEntityList implements Iterable<Entity> {
         if (!internalList.remove(toRemove)) {
             throw new EntityNotFoundException();
         }
-        orderEntities();
     }
 
     /**
@@ -94,12 +92,6 @@ public class UniqueEntityList implements Iterable<Entity> {
         }
 
         internalList.setAll(entities);
-        orderEntities();
-    }
-
-    private void orderEntities() {
-        Comparator<Entity> comparator = Comparator.comparing(x -> x.getClass().getSimpleName());
-        internalList.sort(comparator);
     }
 
     /**
