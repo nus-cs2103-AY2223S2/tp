@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -77,15 +78,23 @@ public class EditIsolatedEventCommand extends Command {
 
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
+        IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
 
-        editedIsolatedEvent.checkDateTime();
-        personToEdit.getIsolatedEventList().checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
-        IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
+        try {
+            editedIsolatedEvent.checkDateTime();
+            editedIsolatedEvent.checkConflictsRecurringEventList(
+                    personToEdit.getRecurringEventList());
+            isolatedEventList.checkClashingIsolatedEvent(editedIsolatedEvent.getStartDate(),
+                    editedIsolatedEvent.getEndDate());
+        } catch (EventConflictException e) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, e.getMessage()));
+        }
 
-        model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
+        isolatedEventList.edit(originalEvent, editedIsolatedEvent);
+        model.setPerson(personToEdit, personToEdit);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " for " + personToEdit.getName()
-                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
+                + " from " + originalEvent + " for " + personToEdit.getName());
     }
 
     /**

@@ -87,32 +87,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Add the isolated event into the person's isolated event list.
-     * @param person in which the event is being added to.
-     * @param event that is going to be added to the person.
-     */
-    public void addIsolatedEvent(Person person, IsolatedEvent event) {
-        person.addIsolatedEvent(event);
-        persons.setPerson(person, person);
-    }
-
-    /**
-     * Deletes the given {@code IsolatedEvent} from the given {@code Person}'s {@code IsolatedEventList}.
-     * @param person The {@code Person} to delete the given {@code IsolatedEvent} from.
-     * @param event The given {@code IsolatedEvent} to delete.
-     */
-    public void deleteIsolatedEvent(Person person, IsolatedEvent event) {
-        person.getIsolatedEventList().deleteIsolatedEvent(event);
-        persons.setPerson(person, person);
-    }
-
-    public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
-        requireNonNull(editedEvent);
-        person.getIsolatedEventList().edit(originalEvent, editedEvent);
-        persons.setPerson(person, person);
-    }
-
-    /**
      * Add the recurring event into the person's isolated event list
      * @param person in which the event is being added to
      * @param event that is going to be added to the person
