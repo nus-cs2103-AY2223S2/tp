@@ -73,8 +73,6 @@ public class Task implements Relationship<Task> {
         this.id = id;
         this.deadline = deadline;
         this.createDateTime = new Datetime(LocalDateTime.now().toString());
-
-
     }
 
     /**
@@ -88,7 +86,6 @@ public class Task implements Relationship<Task> {
         this.id = id;
         this.createDateTime = createDateTime;
         this.deadline = deadline;
-
     }
 
     public Id getId() {

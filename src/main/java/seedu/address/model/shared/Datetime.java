@@ -100,6 +100,7 @@ public class Datetime {
         }
     }
 
+
     /**
      * Returns the stored timestamp as an Optional.
      *
@@ -108,6 +109,7 @@ public class Datetime {
     public Optional<Long> getTimestamp() {
         return Optional.ofNullable(timestamp);
     }
+
 
     /**
      * Checks if the given LocalDateTime object represents a past date and time.
@@ -120,5 +122,16 @@ public class Datetime {
     public static boolean isPastDateTime(LocalDateTime dateTime, ZoneId zoneId) {
         LocalDateTime currentDate = LocalDateTime.now(zoneId);
         return dateTime.isBefore(currentDate);
+    }
+
+    /**
+     * Checks is given LocalDateTime represents a past date and time
+     *
+     * @param input String input representing a date and time
+     * @return true if the date time represented by the String input is in the past
+     */
+    public static boolean isPastDateTime(String input) {
+        LocalDateTime dateTime = validateInput(input);
+        return dateTime.isBefore(LocalDateTime.now());
     }
 }

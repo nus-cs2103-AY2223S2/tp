@@ -49,7 +49,7 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} represents a non-zero unsigned integer
+     * Returns true if {@code s} represents a non-zero unsigned integer.
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
@@ -57,12 +57,36 @@ public class StringUtil {
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
         requireNonNull(s);
-
         try {
             int value = Integer.parseInt(s);
             return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * The String s passed in is guaranteed to only be either a positive or negative index.
+     * Returns true if value can be converted to an integer and is greater than 0.
+     */
+    public static boolean isConvertibleToInteger(String s) {
+        String regexNumeric = "-?\\d+";
+        assert s.matches(regexNumeric);
+
+        try {
+            int value = Integer.parseInt(s);
+            return value > 0;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if {@code s} only contains positive or negative numerical digits.
+     * Will return false for any other non-null string input.
+     */
+    public static boolean isNumeric(String s) {
+        String regexNumeric = "-?\\d+";
+        return s.matches(regexNumeric);
     }
 }

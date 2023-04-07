@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DEADLINE_NOT_IN_FUTURE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -45,6 +46,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         } else {
             deadline = new Datetime();
         }
+
         Task task = new Task(title, content, status, deadline);
         return new AddTaskCommand(task);
     }
