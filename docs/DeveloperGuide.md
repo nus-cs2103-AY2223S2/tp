@@ -115,6 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -124,21 +125,25 @@ The `Model` component,
 
 * stores the master deck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
 * stores the currently 'selected' `Card` objects (e.g., results of a selecting a deck) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the currently 'selected' `Deck` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Deck>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Deck` objects (e.g., results of a deck search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Deck>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores an optional `Review` object, which handles the cards being reviewed by the user. Refer to the [review component](#Review) below for more details. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 Each `Card` object,
-* stores one `Question`, one `Answer`, one 'Deck' which the `Card` object references from the `Deck` list, and one optional `Tag`.
+* stores one `Question`, one `Answer`, one `Deck` which the `Card` object references from the `Deck` list, and one optional difficulty `Tag`.
+* belongs to the `Deck` it references.
 
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `MasterDeck`, which `Card` references. This allows `MasterDeck` to only require one `Tag` object per unique tag, instead of each `Card` needing their own `Tag` objects.<br>)
+##### Review 
 
-[//]: # ()
-[//]: # (<img src="images/BetterModelClassDiagram.png" width="450" />)
+<img src="images/SimplifiedReviewClassDiagram.png" width="450" />
 
-[//]: # ()
-[//]: # (</div>)
-
+The `Review`
+* stores a `Deck` currently being reviewed.
+* stores a `UniqueCardList` instance which stores all the `Card` instances belonging to the `Deck` being reviewed.
+* stores the 'current' `Card` object (the current card being displayed in the review) in a separate filtered list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be ‘observed’.
+  * The UI can be bound to this list so that the UI automatically updates when the `Card` in the list changes.
+  * The list is always filtered to contain one `Card` at any time.
 
 ### Storage component
 
