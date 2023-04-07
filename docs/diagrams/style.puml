@@ -40,8 +40,8 @@ skinparam Shadowing false
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
-    BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
+    BorderColor black
+    StereotypeFontColor #000000
     FontName Arial
 }
 

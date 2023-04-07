@@ -25,8 +25,8 @@ package Ui UI_COLOR_T1 {
     Class MainWindow UI_COLOR {
         ~fillInnerParts()
     }
-    Class ListViewPanel UI_COLOR
-    Class DetailedView UI_COLOR
+    Class ListViewPanel<T extends Comparable<T>> UI_COLOR
+    Class DetailedView<T> UI_COLOR
     Class HelpWindow UI_COLOR
     Class CommandBox UI_COLOR
     Class ResultDisplay UI_COLOR
