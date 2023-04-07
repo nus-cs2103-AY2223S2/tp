@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.HMHero;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyHMHero;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ApplicationDateTime;
@@ -51,7 +51,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyHMHero getSampleAddressBook() {
         HMHero sampleAb = new HMHero();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
