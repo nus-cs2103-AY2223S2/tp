@@ -285,7 +285,6 @@ In Table 5, internships A and B are considered as duplicate internships, because
 `COMPANY_NAME`, `ROLE`, `STATUS` and `DATE`. Note how the capitalisation differences in `COMPANY_NAME`
 and `ROLE` do not affect the comparison.
 
-<div style="page-break-after: always;"></div>
 
 | `Field`        | Internship A      | Internship B      |
 |----------------|-------------------|-------------------|
