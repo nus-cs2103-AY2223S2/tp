@@ -37,6 +37,13 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 
 #### Contributions to the UG
 Here are my contributions to the UG.
+- Sections
+  - Added parameters section in the [glossary](../UserGuide.md#glossary) for ease of reference
+  - Added section on [features provided by Docedex](../UserGuide.md#features) and associated sub-sections
+  - Aided in development of [command summary](../UserGuide.md#command-summary).
+  - Created a [tutorial section](../UserGuide.md#docedex-tutorial--for-new-users-) for new users to get started with Docedex
+  - Created a [FAQ section](../UserGuide.md#faq) to address common user queries
+  - Created a [quick start](../UserGuide.md#quick-start) section to help users get started with Docedex
 
 
 
