@@ -138,9 +138,7 @@ public class ModelManager implements Model {
         return !this.prevListingBookStates.isEmpty();
     }
 
-    /**
-     * Saves the current listing book state into prevListingBookStats.
-     */
+    @Override
     public void commitListingBook() {
         ListingBook currState = new ListingBook();
         currState.setListings(listingBook.getListingList());

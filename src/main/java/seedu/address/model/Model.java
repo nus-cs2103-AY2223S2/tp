@@ -104,4 +104,9 @@ public interface Model {
      * @return false if there are no previous states to undo into.
      */
     boolean hasPreviousState();
+
+    /**
+     * Saves the current listing book state into prevListingBookStats.
+     */
+    void commitListingBook();
 }
