@@ -5,16 +5,17 @@ title: User Guide
 
 # Table of Contents
 - [Quick Start](#quick-start)
-- [About TrAcker and User Guide](#about-tracker)
+- [About TrAcker](#about-tracker)
+- [User Guide Notations](#userguide-notations)
 - [Event Features](#event-features)
-    - [Adding Tutorial](#add-tutorial)
-    - [Adding Lab](#add-lab)
-    - [Adding Consultation](#add-consultation)
+    - [Add Tutorial](#add-tutorial)
+    - [Add Lab](#add-lab)
+    - [Add Consultation](#add-consultation)
     - [Edit An Event](#edit-event)
-    - [Delete Event](#delete-events--delete-events)
+    - [Delete Event](#delete-event)
 - [Student Features](#student-features)
-    - [Adding Student](#adding-student--add-student)
-    - [Deleting Student](#deleting-student--delete-student)
+    - [Add Student](#adding-student)
+    - [Delete Student](#deleting-student)
     - [Add Student to Event](#add-student-to-event)
     - [Delete Student from Event](#delete-student-from-event)
 - [Note Features](#note-features)
@@ -27,8 +28,7 @@ title: User Guide
 - [Help Features](#help-features)
 - [Application Features](#application-features)
     - [Exit from TrAcker](#exit)
-    - [Switch Tabs](#switch-tabs)
-- [Populated TrAcker](#populated-tracker)
+    - [Navigate Tabs](#switch-tabs)
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -69,6 +69,8 @@ Let's clear a little confusion that might arise:
 
 ----------------------------------------------------------------------
 
+<div id='userguide-notations'></div>
+
 ## User Guide Notations
 
 <div markdown="block" class="alert alert-info">
@@ -98,7 +100,7 @@ Let's clear a little confusion that might arise:
 
 <div id='add-tutorial'></div>
 
-### Adding tutorial: `touch`
+### Add tutorial: `touch`
 
 Adds a tutorial to the TA’s schedule.
 <b> Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) </b> and no modification of duration is allowed.
@@ -130,7 +132,7 @@ Examples:
 
 <div id='add-lab'></div>
 
-### Adding lab: `vim`
+### Add lab: `vim`
 
 Adds a lab to the TA’s schedule. 
 <b> Lab is assumed to be 2 hour long (adhering to CS2040 Lab timing) </b> and no modification of duration is allowed
@@ -158,7 +160,7 @@ Examples:
 
 <div id='add-consultation'></div>
 
-### Adding consultation: `mkdir`
+### Add consultation: `mkdir`
 
 Adds a consultation to the TA’s schedule.
 <b> Consultation is assumed to be 1 hour long (adhering to CS2040 consultation timing) </b> and no modification of duration is allowed
@@ -184,6 +186,8 @@ Examples:
 * `mkdir Consultation/reviewGraphs`
 * `mkdir Consultation/reviewDijsktra -date 01/01/2032 16:00`
 
+<div id='edit-event'></div>
+
 ### Edit an event: `editEvent`
 
 Edits an event current in the TA’s schedule.
@@ -197,9 +201,11 @@ Format: `editEvent EVENT_INDEX EVENT_TYPE/NEW_EVENT_NAME [-date dd/MM/yyyy HH:mm
 
 Examples:
 
-* `editEvent 1 Tutorial/BellmanFord -date 10/10/2050 10:00`
 * `editEvent 1 Lab/VisuAlgo`
+* `editEvent 1 Tutorial/BellmanFord -date 10/10/2050 10:00`
 * `editEvent 1 Consultation/ConsultEmily -date 10/10/2040 16:00`
+
+<div id='delete-event'></div>
 
 ### Delete event: `delete`
 
@@ -220,7 +226,9 @@ Examples:
 --------------------------------------------------------------------
 ## Student Features
 
-### Adding student: `add`
+<div id='adding-student'></div>
+
+### Add student: `add`
 
 Adds a student to the student list.
 
@@ -237,7 +245,9 @@ Examples:
 
 * `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`
 
-### Deleting student: `rm`
+<div id='deleting-student'></div>
+
+### Delete student: `rm`
 
 :exclamation: You will not be able to undo the deletion
 
@@ -352,7 +362,7 @@ Format: `deleteNote type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX`
 
 Examples:
 
-* `deleteNote type/Tutorial name/Tut1 index/3`
+* `deleteNote type/Tutorial name/Tut1 index/1`
 * `deleteNote type/Lab name/Lab1 index/1`
 
 <div id='edit-note-in-event'></div>
@@ -368,7 +378,7 @@ Format:
 Examples:
 
 
-* `editNote content/Bring apple pencil type/Tutorial name/Tut1 index/3`
+* `editNote content/Bring apple pencil type/Tutorial name/Tut1 index/1`
 * `editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1`
 
 --------------------------------------------------------------------
@@ -450,7 +460,7 @@ Should you want to take a look at the User Guide in the repository, you can clic
 Then, you can click on "copy url" and paste it in your browser
 
 help url visual.
-![Ui](images/HelpUrl.png)
+![Ui](images/helpUrl.png)
 
 --------------------------------------------------------------------
 
@@ -470,7 +480,7 @@ Examples:
 
 <div id='switch-tabs'></div>
 
-### Navigate tabs: `cd_`
+### Navigate tabs: `cd`
 
 Navigates to the event or student tab
 
@@ -501,19 +511,19 @@ Examples:
       <td>
          <ul>
             <li><code>touch Tutorial/makeUpTutorial</code>
-            <li><code>touch Tutorial/examReview -date 01/01/2040 16:00</code>
+            <li><code>touch Tutorial/examReview -date 01/01/2030 16:00</code>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Add Lab</strong>
       </td>
-      <td><code>vim Lab/[NAME] -date [dd/MM/yyyy HH:mm]</code>
+      <td><code>vim Lab/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
             <li><code>vim Lab/pancakeSort</code>
-            <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2030 16:00</code>
+            <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2031 16:00</code>
             </li>
          </ul>
       </td>
@@ -521,12 +531,12 @@ Examples:
    <tr>
       <td><strong>Add Consultation</strong>
       </td>
-      <td><code>mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]</code>
+      <td><code>mkdir Consultation/NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
-            <li><code>mkdir Consultation/reviewConnectedComponents</code>
-            <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2030 16:00</code>
+            <li><code>mkdir Consultation/reviewGraphs</code>
+            <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2032 16:00</code>
             </li>
          </ul>
       </td>
@@ -534,12 +544,13 @@ Examples:
    <tr>
       <td><strong>Edit event</strong>
       </td>
-      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_FILEPATH]</code>
+      <td><code>editEvent EVENT_INDEX EVENT_TYPE/NEW_EVENT_NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
-            <li><code>editEvent 2 Lab/VisuAlgo -file C:\Users\student.pdf</code>
-            <li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00</code>
+            <li><code>editEvent 1 Lab/VisuAlgo</code>
+            <li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2050 10:00</code>
+            <li><code>editEvent 1 Consultation/ConsultEmily -date 10/10/2040 16:00</code>
             </li>
          </ul>
       </td>
@@ -547,7 +558,7 @@ Examples:
    <tr>
       <td><strong>Delete Event</strong>
       </td>
-      <td><code>delete [EVENT_TYPE]/[INDEX]</code>
+      <td><code>delete EVENT_TYPE/EVENT_INDEX</code>
       </td>
       <td>
          <ul>
@@ -560,12 +571,12 @@ Examples:
       <td><strong>Add Student</strong>
       </td>
       <td>
-         <code>add n/[NAME] telegram/[PHONE_NUMBER_OR_TELEGRAM_HANDLE e/[NUS_EMAIL] score/[SCORE]</code>
+         <code>add n/NAME telegram/TELEGRAM_HANDLE e/NUS_EMAIL score/SCORE a/ADDRESS</code>
          </li>
       </td>
       <td>
          <ul>
-            <li><code>add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code></li>
+            <li><code>add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25</code></li>
          </ul>
       </td>
    </tr>
@@ -573,7 +584,7 @@ Examples:
       <td><strong>Delete Student</strong>
       </td>
       <td>
-         <code>rm [INDEX]</code>
+         <code>rm STUDENT_INDEX</code>
          </li>
       </td>
       <td>
@@ -586,12 +597,12 @@ Examples:
       <td><strong>Edit Student</strong>
       </td>
       <td>
-         <code>edit INDEX n/[NAME] telegram/[PHONE] e/[EMAIL] a/[ADDRESS] score/[SCORE]</code>
+         <code>edit INDEX [n/NAME] [telegram/TELEGRAM_HANDLE] [e/EMAIL] [a/ADDRESS] [score/SCORE]</code>
          </li>
       </td>
       <td>
          <ul>
-            <li><code>edit 1 p/91234567 e/e1234567@u.nus.edu</code></li>
+            <li><code>edit 1 telegram/91234567 e/e0000000@u.nus.edu</code></li>
             <li><code>edit 2 score/100</code></li>
          </ul>
       </td>
@@ -600,71 +611,98 @@ Examples:
       <td><strong>Add Student To Event</strong>
       </td>
       <td>
-         <code>addStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]</code>
+         <code>addStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX</code>
          </li>
       </td>
       <td>
          <ul>
-            <li><code>addStudent 1 Tutorial/tut1</code>
-            <li><code>addStudent 4 Lab/mock_lab_session</code></li>
+            <li><code>addStudent 1 Tutorial/1</code>
+            <li><code>addStudent 4 Lab/1</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Delete Student From Event</strong>
       </td>
-      <td><code>deleteStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]</code>
+      <td><code>deleteStudent STUDENT_INDEX EVENT_TYPE/EVENT_INDEX</code>
       </td>
       <td>
          <ul>
-            <li><code>deleteStudent 1 Tutorial/tut1</code>
-            <li><code>deleteStudent 4 Lab/mock_lab_session</code></li>
+            <li><code>deleteStudent 1 Tutorial/1</code>
+            <li><code>deleteStudent 1 Lab/1</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>addNote content/[CONTENT] type/[EVENT_TYPE] name/[EVENT_NAME]</code>
+      <td><code>addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME</code>
       </td>
       <td>
          <ul>
-            <li><code>addNote content/Bring pen type/Tutorial name/Tut1</code>
-            <li><code>addNote content/Bring goggles type/Lab name/Lab1</code></li>
-            <li><code>addNote content/Prepare questions type/Consultation name/Consult1</code></li>
+            <li><code>addNote content/Bring pen type/Tutorial name/examReview</code>
+            <li><code>addNote content/Bring laptop type/Lab name/VisuAlgo</code></li>
+            <li><code>addNote content/ Prepare questions type/Consultation name/consultEmily</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
-      <td><code>deleteNote type/[EVENT_TYPE] name/[EVENT_NAME/INDEX] index/[NOTE_INDEX]</code>
+      <td><code>deleteNote type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX</code>
       </td>
       <td>
          <ul>
-            <li><code>deleteNote type/Tutorial name/Tut1 index/3</code>
+            <li><code>deleteNote type/Tutorial name/Tut1 index/1</code>
             <li><code>deleteNote type/Lab name/Lab1 index/1</code></li>
-            <li><code>deleteNote type/Recur name/Consult1 index/0</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>editNote content/[NEW_NOTE] type/[EVENT_TYPE] name/[EVENT_NAME/INDEX] index/[NOTE_INDEX]</code>
+      <td><code>editNote content/NEW_CONTENT type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX</code>
       </td>
       <td>
          <ul>
-            <li><code>editNote content/Bring apple pencil type/Tutorial name/Tut1 index/3</code>
+            <li><code>editNote content/Bring apple pencil type/Tutorial name/Tut1 index/1</code>
             <li><code>editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1</code></li>
-            <li><code>editNote content/Prepare practice questions type/Consultation name/Consult1 index/0</code></li>
+         </ul>
+      </td>
+   </tr>
+      <td><strong>Sort Students</strong>
+      </td>
+      <td><code>sort-student GROUP METRIC SORTING_ORDER</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>sort-student lab name reverse</code>
+            <li><code>sort-student tutorial performance nonreverse</code>
+            <li><code>sort-student consultation email nonreverse</code>
+            <li><code>sort-student all remark nonreverse</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Filter Students</strong>
+      </td>
+      <td><code>filter METRIC THRESHOLD</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>filter performance 60</code>
+            <li><code>filter performance 50</code>
+            <li><code>filter urgency 20</code>
+            <li><code>filter urgency 90</code>
+            </li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Help</strong>
       </td>
-      <td><code>help [TYPE]</code>
+      <td><code>help [TYPE] [EVENT_TYPE]</code>
       </td>
       <td>
          <ul>
@@ -680,39 +718,10 @@ Examples:
       </td>
    </tr>
    <tr>
-      <td><strong>Sort Students</strong>
-      </td>
-      <td><code>sort-student [GROUP] [METRIC] [SORTING_ORDER]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>sort-student lab name reverse</code>
-            <li><code>sort-student tutorial performance nonreverse</code>
-            <li><code>sort-student consultation email nonreverse</code>
-            <li><code>sort-student all remark nonreverse</code>
-            </li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Filter Students</strong>
-      </td>
-      <td><code>filter [TYPE] [METRIC] [THRESHOLD]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>filter lab performance 60</code>
-            <li><code>filter tutorial performance 50</code>
-            <li><code>filter consultation urgency 20</code>
-            <li><code>filter all urgency 90</code>
-            </li>
-         </ul>
-      </td>
-   </tr>
    <tr>
       <td><strong>Navigate Tabs</strong>
       </td>
-      <td><code>cd_[TAB_TYPE]</code>
+      <td><code>cd_TAB_TYPE</code>
       </td>
       <td>
          <ul>
