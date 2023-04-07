@@ -5,6 +5,9 @@ import vimification.internal.parser.ApplicativeParser;
 import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 
+/**
+ * The parser that can parses and creates new {@link RefreshCommand}.
+ */
 public class RefreshCommandParser implements CommandParser<RefreshCommand> {
 
     private static final ApplicativeParser<RefreshCommand> COMMAND_PARSER =

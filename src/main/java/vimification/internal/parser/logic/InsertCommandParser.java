@@ -9,20 +9,23 @@ import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 import vimification.internal.parser.Pair;
 
+/**
+ * The parser that can parses and creates new {@link InsertCommand}.
+ */
 public class InsertCommandParser implements CommandParser<InsertCommand> {
 
-    private static ApplicativeParser<InsertCommand> COMMAND_PARSER =
+    private static final ApplicativeParser<InsertCommand> COMMAND_PARSER =
             CommandParserUtil.ONE_BASED_INDEX_PARSER
                     .flatMap(InsertCommandParser::parseArguments)
                     .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
-    private static ApplicativeParser<ApplicativeParser<InsertCommand>> INTERNAL_PARSER =
+    private static final ApplicativeParser<ApplicativeParser<InsertCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("i") // insert
                     .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 
-    private static InsertCommandParser INSTANCE = new InsertCommandParser();
+    private static final InsertCommandParser INSTANCE = new InsertCommandParser();
 
     private static ApplicativeParser<InsertCommand> parseArguments(Index index) {
         InsertRequest request = new InsertRequest();

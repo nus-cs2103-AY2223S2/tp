@@ -21,6 +21,9 @@ import vimification.internal.parser.ui.RefreshCommandParser;
 import vimification.internal.parser.ui.SortCommandParser;
 import vimification.model.MacroMap;
 
+/**
+ * The application's parser, used to parses user input and creates different commands.
+ */
 public class VimificationParser {
 
     private static final Logger LOGGER = LogsCenter.getLogger(VimificationParser.class);
@@ -78,8 +81,8 @@ public class VimificationParser {
     /**
      * Parses the user input and return its corresponding command.
      *
-     * @param userInput
-     * @return
+     * @param input the user input
+     * @return the command represented by the user input
      */
     public Command parse(String input) {
         LOGGER.info("Original input: " + input);

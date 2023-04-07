@@ -6,14 +6,28 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Responsible for keeping track of all macros registed during the runtime of the application.
+ * <p>
+ * Each macro string will be mapped to a command string. The macro will be replaced by the
+ * corresponding command string when the user input is being parsed.
+ */
 public class MacroMap {
 
     private Map<String, String> macros;
 
+    /**
+     * Creates a new, empty {@code MacroMap}.
+     */
     public MacroMap() {
         this.macros = new HashMap<>();
     }
 
+    /**
+     * Creates a new {@code MacroMap} with the given mappings.
+     *
+     * @param macros the mappings between macros and command strings
+     */
     public MacroMap(Map<String, String> macros) {
         this.macros = new HashMap<>(macros);
     }

@@ -13,6 +13,9 @@ import vimification.internal.parser.LiteralArgumentFlag;
 import vimification.internal.parser.Pair;
 import vimification.internal.parser.ParserException;
 
+/**
+ * The parser that can parses and creates new {@link FilterCommand}.
+ */
 public class FilterCommandParser implements CommandParser<FilterCommand> {
 
     private static final ApplicativeParser<ApplicativeParser<FilterCommand>> INTERNAL_PARSER =

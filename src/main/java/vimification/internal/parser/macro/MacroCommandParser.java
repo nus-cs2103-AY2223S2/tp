@@ -11,6 +11,9 @@ import vimification.internal.parser.ComposedArgumentFlag;
 import vimification.internal.parser.LiteralArgumentFlag;
 import vimification.internal.parser.ParserException;
 
+/**
+ * The parser that can parses and creates new {@link MacroCommand}.
+ */
 public class MacroCommandParser implements CommandParser<MacroCommand> {
 
     private static final ApplicativeParser<MacroCommand> ADD_ARG_PARSER =

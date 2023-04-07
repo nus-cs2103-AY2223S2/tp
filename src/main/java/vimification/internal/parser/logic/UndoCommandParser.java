@@ -5,6 +5,9 @@ import vimification.internal.parser.ApplicativeParser;
 import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 
+/**
+ * The parser that can parses and creates new {@link UndoCommand}.
+ */
 public class UndoCommandParser implements CommandParser<UndoCommand> {
 
     private static final ApplicativeParser<UndoCommand> COMMAND_PARSER =

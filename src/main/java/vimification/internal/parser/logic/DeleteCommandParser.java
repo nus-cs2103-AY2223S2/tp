@@ -11,6 +11,9 @@ import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 import vimification.internal.parser.Pair;
 
+/**
+ * The parser that can parses and creates new {@link DeleteCommand}.
+ */
 public class DeleteCommandParser implements CommandParser<DeleteCommand> {
 
     private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER =

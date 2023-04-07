@@ -13,6 +13,11 @@ import vimification.common.core.Index;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 
+/**
+ * Common utilities for parsing different commands.
+ * <p>
+ * The utilities is provided using static methods.
+ */
 public class CommandParserUtil {
 
     //////////////////////
@@ -164,16 +169,29 @@ public class CommandParserUtil {
     public static final ApplicativeParser<Void> END_OF_COMMAND_PARSER =
             ApplicativeParser
                     .skipWhitespaces()
-                    .dropNext(ApplicativeParser.choice(
-                            ApplicativeParser.eof(),
-                            ApplicativeParser.untilEof().consume(remaining -> {
-                                throw new ParserException("Syntax error: " + remaining);
-                            })));
+                    .dropNext(ApplicativeParser.eof());
+
+    // ApplicativeParser.eof(),
+    // ApplicativeParser.untilEof().consume(remaining -> {
+    // throw new ParserException("Syntax error: " + remaining);
+    // })));
+
+    /**
+     * Provides utilities with static fields and methods. Instance of this class cannot be
+     * initialized.
+     */
+    private CommandParserUtil() {}
 
     ///////////////
     // UTILITIES //
     ///////////////
 
+    /**
+     * Creates a parser that parses a {@link LiteralArgumentFlag}.
+     *
+     * @param flag the literal flag
+     * @return a parser that parses the flag
+     */
     public static ApplicativeParser<LiteralArgumentFlag> parseFlag(LiteralArgumentFlag flag) {
         return ApplicativeParser.choice(
                 flag.getForms()
@@ -182,17 +200,32 @@ public class CommandParserUtil {
                 .constMap(flag);
     }
 
+    /**
+     * Creates a parser that parses a {@link ComposedArgumentFlag}.
+     *
+     * @param flag the composed flag
+     * @return a parser that parses the flag
+     */
     public static ApplicativeParser<ComposedArgumentFlag> parseFlag(ComposedArgumentFlag flag) {
         return ApplicativeParser.choice(
                 flag.getFlags()
                         .stream()
                         .map(CommandParserUtil::parseFlag))
-                .map(actualFlag -> flag.cloneWith(actualFlag));
+                .map(flag::cloneWith);
     }
 
-    private static <T> Optional<T> optionallyParse(Supplier<T> parser) {
+    /**
+     * Runs a supplier, and returns an {@code Optional} contains the result if no exception occured.
+     * Otherwise, returns an empty {@code Optional}.
+     *
+     * @param <T> type of the object returned by the supplier
+     * @param supplier the supplier that will creates the object
+     * @return an {@code Optional} contains the result if succeeds, otherwise an empty
+     *         {@code Optional}.
+     */
+    private static <T> Optional<T> optionallyParse(Supplier<T> supplier) {
         try {
-            return Optional.of(parser.get());
+            return Optional.of(supplier.get());
         } catch (RuntimeException ex) {
             return Optional.empty();
         }
@@ -244,10 +277,4 @@ public class CommandParserUtil {
     public static Optional<Integer> parseInt(String input) {
         return optionallyParse(() -> Integer.parseInt(input));
     }
-
-    /**
-     * Provides utilities with static fields and methods. Instance of this class cannot be
-     * initialized.
-     */
-    private CommandParserUtil() {}
 }

@@ -8,6 +8,9 @@ import vimification.internal.parser.CommandParserUtil;
 import vimification.internal.parser.Pair;
 import vimification.model.task.Task;
 
+/**
+ * The parser can parses and creates new {@link AddCommand}.
+ */
 public class AddCommandParser implements CommandParser<AddCommand> {
 
     private static final ApplicativeParser<AddCommand> COMMAND_PARSER =

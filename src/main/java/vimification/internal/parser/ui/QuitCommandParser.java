@@ -5,6 +5,9 @@ import vimification.internal.parser.ApplicativeParser;
 import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 
+/**
+ * The parser that can parses and creates new {@link QuitCommand}.
+ */
 public class QuitCommandParser implements CommandParser<QuitCommand> {
 
     private static final ApplicativeParser<QuitCommand> COMMAND_PARSER =

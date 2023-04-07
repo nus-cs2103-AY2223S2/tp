@@ -5,6 +5,9 @@ import vimification.internal.parser.ApplicativeParser;
 import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 
+/**
+ * The parser that can parses and creates new {@link HelpCommand}.
+ */
 public class HelpCommandParser implements CommandParser<HelpCommand> {
 
     private static final ApplicativeParser<HelpCommand> COMMAND_PARSER =

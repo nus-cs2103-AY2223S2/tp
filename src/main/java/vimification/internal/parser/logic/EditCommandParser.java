@@ -9,6 +9,9 @@ import vimification.internal.parser.CommandParser;
 import vimification.internal.parser.CommandParserUtil;
 import vimification.internal.parser.Pair;
 
+/**
+ * The parser that can parses and creates new {@link EditCommand}.
+ */
 public class EditCommandParser implements CommandParser<EditCommand> {
 
     private static final ApplicativeParser<EditCommand> COMMAND_PARSER =

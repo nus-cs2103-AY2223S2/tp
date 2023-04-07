@@ -13,6 +13,9 @@ import vimification.internal.parser.LiteralArgumentFlag;
 import vimification.internal.parser.Pair;
 import vimification.internal.parser.ParserException;
 
+/**
+ * The parser that can parses and creates new {@link SortCommand}.
+ */
 public class SortCommandParser implements CommandParser<SortCommand> {
 
     private static final ApplicativeParser<ApplicativeParser<SortCommand>> INTERNAL_PARSER =
