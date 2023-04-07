@@ -92,7 +92,7 @@ public class MenuItem extends Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, itemPrice, itemCost, itemProfit);
+        return Objects.hash(itemName, itemPrice, itemCost);
     }
 
     @Override
