@@ -2,21 +2,14 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.CliSyntax;
 import seedu.internship.model.Model;
-import seedu.internship.model.internship.Company;
-import seedu.internship.model.internship.Internship;
-import seedu.internship.model.internship.Position;
-import seedu.internship.model.internship.Status;
+import seedu.internship.model.internship.*;
 import seedu.internship.model.tag.Tag;
 
 /**
@@ -28,7 +21,9 @@ public class FindCommand extends Command {
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
             + "Parameters: [" + CliSyntax.PREFIX_POSITION + "POSITION] "
             + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY]"
-            + "[" + CliSyntax.PREFIX_STATUS + "STATUS]\n"
+            + "[" + CliSyntax.PREFIX_STATUS + "STATUS]"
+            + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION]"
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " p/ Software Engineer" + " c/ Grab";
 
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";
@@ -55,6 +50,7 @@ public class FindCommand extends Command {
         Predicate<Internship> filterPos = unused -> true;
         Predicate<Internship> filterCom = unused -> true;
         Predicate<Internship> filterStat = unused -> true;
+        Predicate<Internship> filterDesc = unused -> true;
         Predicate<Internship> filterTags = unused -> true;
         if (filterInternshipDescriptor.getPosition().isPresent()) {
             filterPos = x -> x.getPosition().positionName.toLowerCase().contains(filterInternshipDescriptor
@@ -68,6 +64,11 @@ public class FindCommand extends Command {
             filterStat = x -> x.getStatus().equals(filterInternshipDescriptor.getStatus().get());
         }
 
+        if (filterInternshipDescriptor.getDescription().isPresent()) {
+            filterDesc = x -> x.getDescription().descriptionMessage.toLowerCase().contains(filterInternshipDescriptor.
+                    getDescription().get().descriptionMessage.toLowerCase());
+        }
+
         if (filterInternshipDescriptor.getTags().isPresent()) {
             filterStat = x -> filterInternshipDescriptor.getTags().get().isEmpty()
                     ? x.getTags().isEmpty()
@@ -76,9 +77,10 @@ public class FindCommand extends Command {
         Predicate<Internship> finalFilterPos = filterPos;
         Predicate<Internship> finalFilterCom = filterCom;
         Predicate<Internship> finalFilterStat = filterStat;
+        Predicate<Internship> finalFilterDesc = filterDesc;
         Predicate<Internship> finalFilterTags = filterTags;
         Predicate<Internship> filter = x -> finalFilterPos.test(x) && finalFilterCom.test(x) && finalFilterStat.test(x)
-                && finalFilterTags.test(x);
+                && finalFilterDesc.test(x) && finalFilterTags.test(x);
         model.updateFilteredInternshipList(filter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()),
                 ResultType.FIND);
@@ -108,9 +110,22 @@ public class FindCommand extends Command {
         private Position position;
         private Company company;
         private Status status;
+        private Description description;
         private Set<Tag> tags;
 
         public FilterInternshipDescriptor() {
+        }
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public FilterInternshipDescriptor(FilterInternshipDescriptor toCopy) {
+            setPosition(toCopy.position);
+            setCompany(toCopy.company);
+            setStatus(toCopy.status);
+            setDescription(toCopy.description);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -142,6 +157,14 @@ public class FindCommand extends Command {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         /**
