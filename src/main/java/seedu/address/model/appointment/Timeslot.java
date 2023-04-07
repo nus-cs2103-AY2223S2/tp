@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -20,7 +21,7 @@ public class Timeslot {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String TIMESLOT_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2},\\d{8} \\d{2}:\\d{2}";
+    public static final String TIMESLOT_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2},\\s?\\d{8} \\d{2}:\\d{2}";
     public static final String DATETIME_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2}";
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyy HH:mm");
     private static final DateTimeFormatter displayFormat = DateTimeFormatter.ofPattern("dd MMM HH:mm");
@@ -37,7 +38,9 @@ public class Timeslot {
     public Timeslot(String timeslot) throws IllegalArgumentException {
         requireNonNull(timeslot);
         checkArgument(isValidTimeslot(timeslot), MESSAGE_CONSTRAINTS);
-        String[] dateTimes = splitIntoStartAndEnd(timeslot);
+        // strip any leading/trailing spaces from each datetime string
+        String[] dateTimes = Arrays.stream(splitIntoStartAndEnd(timeslot))
+                .map(String::strip).toArray(String[]::new);
         this.timeslotString = timeslot;
         this.startingDateTime = LocalDateTime.parse(dateTimes[0], dateTimeFormatter);
         this.endingDateTime = LocalDateTime.parse(dateTimes[1], dateTimeFormatter);
