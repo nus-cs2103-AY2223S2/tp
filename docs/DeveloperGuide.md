@@ -1040,3 +1040,18 @@ is hard to make reasonable assumptions about what a user's deadlines might look
 like. Furthermore, some users may wish to use 31st December 9999 to represent a
 project with "a deadline so far into the future it is not worth considering".
 
+**7. No upper bound on a mobile number's length**
+
+Currently, the only validation done for mobile numbers is that they must be at
+least 3 digits. However, realistically there is a limit on how long a mobile
+number can be, and thus it would be good to add an upper bound.
+
+We have decided on 35 characters as the inclusive upper bound, based on [this
+suggestion](https://stackoverflow.com/questions/723587/whats-the-longest-possible-worldwide-phone-number-i-should-consider-in-sql-varc#comment40058364_4729239).
+This allows us to comfortably store a prefix, suffix, and the mobile number
+itself with a little room to spare for future-proofing.
+
+The validation is currently done using this regexp string: `\\d{3,}` via
+`String#matches`. As long as there is a match, the number is considered valid.
+We can simply update the regexp to `\\d{3,35}` to enforce this upper bound.
+
