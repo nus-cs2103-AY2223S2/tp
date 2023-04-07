@@ -92,6 +92,7 @@ Other components interact with a given component through its interface rather th
 The following sections will give more details on each component.
 
 <div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/Ui.java)
