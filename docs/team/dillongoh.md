@@ -46,6 +46,7 @@ Given below are my contributions to the project.
         * Added Use Cases UC03, UC04, UC12 [\#59](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/59)
         * Added implementation details of the `sort` and `sortpj` command [\#160](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/160)
         * Added Use Cases UC19, UC21 [\#171](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/171)
+        * Added manual testing for `sort`, `sortpj`, `unassign` [\#266](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/266)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#61](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/61) [\#94](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/94)
