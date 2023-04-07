@@ -63,7 +63,7 @@ Look through the visual guide before you get started. It will provide you with a
 of the basic elements and features of the product's interface, making it easier for you to navigate and use the 
 product effectively.
 
-![image](./images/visualguide.png)
+![image](./images/VisualGuide.png)
 ###### Figure 2
 
 1. Clickable File and Help Tabs
