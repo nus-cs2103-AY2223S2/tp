@@ -4,9 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage as StoragePackage{
+package Storage {
 
-package "UserPrefs Storage" #F4F6F6{
+package "UserPrefs Storage" #F4F6F6 {
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
@@ -14,7 +14,7 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "Scheduler Storage" #F4F6F6{
+package "Scheduler Storage" #F4F6F6 {
 Class "<<interface>>\nSchedulerStorage" as SchedulerStorage
 Class JsonSchedulerStorage
 Class JsonSerializableScheduler
