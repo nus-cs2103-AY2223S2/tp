@@ -741,15 +741,10 @@ System repeats Step 1-2 until valid details are entered.
 
 ### Planned Enhancement
 
-1. Currently, when attempting to retrieve image and is unsuccessful, the default image is displayed.
-   We plan to include and display an “error image” instead of default image to better express to user that the retrieval
-   was unsuccessful.
-   With this error image, the `delete-image` command on this contact will change it to default image.
-   Currently, it only shows a success message as the image is already the default image.<br>
-   (Ways that retrieval can be unsuccessful erroneous editing of Image field in `addressbook.json` or removing/changing
-   images saved in `/profile_pictures` to invalid images or to a non-matching file name)
-2. Currently, there is no restrictions regarding image size for the `add-image` command. We plan to impose a minimum
-   image size restriction to prevent images that are too small. 
+1. Currently, when attempting to retrieve image and is unsuccessful, the default image is displayed. We plan to include and display an “error image” instead of default image to better express to user that the retrieval was unsuccessful. With this error image, the `delete-image` command on this contact will change it to default image. Currently, it only shows a success message as the image is already the default image.<br>Ways that retrieval can be unsuccessful:
+    * Erroneous editing of Image field in `addressbook.json`
+    * Removing/changing images saved in `/profile_pictures` to invalid images or to a non-matching file name
+2. Currently, there are no restrictions regarding image size for the `add-image` command. We plan to impose a minimum image size restriction to prevent images that are too small. 
 3. Currently, imported contacts from the `import` command are not filled up with real data. We plan to use external resources to find these data to fill up the imported contacts with. We also plan to include even more relevant contacts, as only 2 contacts are imported for each faculty as of now. 
 4. Currently, the `import` command only allows importing contacts from 2 faculties. Again, we plan to include more faculties in the list of faculties available for import by using external resources to retrieve more data about contacts from different faculties.
 

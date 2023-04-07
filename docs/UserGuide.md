@@ -193,20 +193,20 @@ Examples:
 
 How to get Image Path?
 
+> **Note**: Steps to get path may differ depending on your operating system and its version
+
 * MacOS:
-    1. Right-click on the image file
-    2. Once the menu appear, hold the OPTION key (⌥) <br> The "copy" option should become "copy [file_name] as Pathname"
-    3. The path should be copied once you select the option
+1. Right-click on the image file
+2. Once the menu appear, hold the OPTION key (⌥) <br> The "copy" option should become "copy [file_name] as Pathname"
+3. The path should be copied once you select the option
 
 * Windows:
-    1. Right-click on the image file
-    2. Select "copy as path" option
-    3. The path should be copied once you select the option
-  > **Note:** That for Windows copied path may have quotation marks, please remove them before using in BookFace.<br>
-  > For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas
-  > `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
-
-> **Note**: Steps to get path may differ depending on your operating system and its version
+1. Right-click on the image file
+2. Select "copy as path" option
+3. The path should be copied once you select the option
+> **Note:** That for Windows copied path may have quotation marks, please remove them before using in BookFace.<br>
+> For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas
+> `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
 
 Common User Errors
 
@@ -259,6 +259,12 @@ Example:
 Closes the window and exits the program.
 
 Format: `exit`
+
+[Back to top](#top)
+
+### Editing the data file
+
+It is *possible* but **not recommended** for users to manually edit any of the JSON files created by BookFace, as there is a large chance that the changes render the format of the JSON files invalid, and the application to stop working as intended. In situations where an edit to the JSON file causes the application to stop working, the user should either undo any of the changes made, or delete the JSON file entirely which will prompt BookFace to create a fresh copy. Note that the latter will erase any data that the user previously had. The developers of BookFace will not be liable for any significant loss of data as a result of tampering with the JSON files.
 
 [Back to top](#top)
 
