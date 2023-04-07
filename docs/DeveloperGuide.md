@@ -773,15 +773,17 @@ The execution process of `list_note` can be demonstrated by the activity diagram
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                  | So that I can…​                                                        |
-| -------- |--------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new internship application entry                        |                                                                        |
-| `* * *`  | internship applicant                       | note down the contact details of the company I am applying to | conveninently contact the company for queries or setting up interviews |
-| `* * *`  | internship applicant                       | delete my submission                                          | remove wrong entries or application that I no longer need              |
-| `* * *`  | internship applicant                       | view a list of my internship applications submitted           | prevent repeated applications to the same company                      |
-| `* *`    | internship applicant                       | delete all my applications                                    | start fresh                                                            |
-| `* * *` | internship applicant                       | note down the status of my application                        | identify which stage of the application I am in                        |
+| Priority | As a …​                                    | I want to …​                                                                   | So that I can…​                                                                           |
+| -------- |--------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                         | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                       | add a new internship application entry                                         |                                                                                           |
+| `* * *`  | internship applicant                       | manage the contact details of the company I am applying to                     | conveninently contact the company for queries or setting up interviews                    |
+| `* * *`  | internship applicant                       | note down links to the the documents submmited to the company I am applying to | conveninently retrieve the version of the resume or cover letter submitted to the company |
+| `* * *`  | internship applicant                       | archive my internship application entry                                        | view a list of ongoing internship applications which do not get cluttered over time       |
+| `* * *`  | internship applicant                       | delete my submission                                                           | remove wrong entries or application that I no longer need                                 |
+| `* * *`  | internship applicant                       | view a list of my internship applications submitted                            | prevent repeated applications to the same company                                         |
+| `* *`    | internship applicant                       | delete all my applications                                                     | start fresh                                                                               |
+| `* * *` | internship applicant                       | update the status of my application as it progresses                           | identify which stage of the application I am in                                           |
 
 *{More to be added}*
 
@@ -805,15 +807,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-
 **Use case: UC02 Add contact details of a company to an internship application**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index.
+3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index and details of the contact.
 4.  InternEase adds the contact details of the company to the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided contact is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of a valid contact.
+    * 3b2. User enters a new contact.
+
+      Steps 3b1 to 3b2 are repeated until a valid contact is provided. Use case resumes at step 4.
+
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC03 Edit contact details of the company for an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to edit the contact details of the company for the specific internship application in the list by specifying its respective index and details of the updated contact.
+4.  InternEase edits the contact details of the company for the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided contact is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of a valid contact.
+    * 3b2. User enters a new contact.
+        
+      Steps 3b1 to 3b2 are repeated until a valid contact is provided. Use case resumes at step 4.
+  
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC04 Delete contact details of the company for an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to delete the contact details of the company for the specific internship application in the list by specifying its respective index.
+4.  InternEase delete the contact details of the company for the internship application and displays a success message.
 
     Use case ends.
 
@@ -837,8 +912,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
 
+**Use case: UC05 Add links for documents submitted to the company for an internship application**
 
-**Use case: UC03 Revert a recent deleted internship application entry**
+Similar to `UC02 Add contact details of a company to an internship application` except that the documents link submitted to a company for an internship application is added.
+
+**Use case: UC06 Edit links for documents submitted to the company for an internship application**
+
+**MSS**
+
+Similar to `UC03 Edit contact details of the company for an internship application` except that the documents link submitted to a company for an internship application is edited.
+
+**Use case: UC07 Delete contact details of the company for an internship application**
+
+Similar to `UC04 Delete contact details of the company for an internship application` except that the documents link submitted to a company for an internship application is deleted.
+
+**Use case: UC08 Revert a recent deleted internship application entry**
 
 **MSS**
 
@@ -857,7 +945,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC04 Revert all deleted internship application entries in current session**
+**Use case: UC09 Revert all deleted internship application entries in current session**
 
 **MSS**
 
@@ -876,7 +964,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
   
 
-**Use case: UC05 Delete an internship application entry**
+**Use case: UC10 Delete an internship application entry**
 
 **MSS**
 
@@ -911,7 +999,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
-**Use case: UC06 Find an application by its field**
+**Use case: UC11 Find an application by its field**
 
 **MSS**
 
@@ -926,7 +1014,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 Clear all internship application entries**
+**Use case: UC12 Clear all internship application entries**
 
 **MSS**
 
@@ -935,13 +1023,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC08 Edit the status of an internship application**
+**Use case: UC13 Edit the status of an internship application**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to edit the application status of a specific internship application in the list by specifying its respective index.
+3.  User requests to edit the application status of a specific internship application in the list by specifying its respective index and the updated status.
 4.  InternEase updates the application status of the internship application and displays a success message.
 
     Use case ends.
@@ -961,25 +1049,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
 
-* 3b. The command format is invalid.
-    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    * 3b2. User enters a new command.
+* 3b. The provided status is invalid.
 
-      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the possible statuses.
+    * 3b2. User enters a new internship application status.
+
+      Steps 3b1 to 3a2 are repeated until a valid status is provided. Use case resumes at step 4.
+
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
       
-**Use case: UC09 Help**
+**Use case: UC14 Help**
 
 **MSS**
 
 1. User requests for help.
 2. InternEase shows a list of available commands to the user.
 
-**Use case: UC10 List**
+**Use case: UC15 List**
 
 **MSS**
 
 1.  User requests to view the list of internship applications.
-2.  InternEase shows all the internship applications as a list with their indexes specified.
+2.  InternEase shows all the ongoing internship applications as a list with their indexes specified.
 
     Use case ends.
 
@@ -989,7 +1084,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 Clear relevant internship application entries by keyword**
+**Use case: UC16 Clear relevant internship application entries by keyword**
 
 **MSS**
 
@@ -1013,76 +1108,122 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 2a1 to 2a2 are repeated until a valid attribute is provided. Use case resumes at step 4.
 
-**Use case: UC12 Add a todo task entry**
+**Use case: UC17 Archive an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to archive a specific internship application in the list by specifying its respective index.
+4.  InternEase archives the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+* 3c. The specified internship application is already archived.
+
+    * 3a1. InternEase shows an error message.
+
+      Use case ends.
+
+**Use case: UC18 Unarchive an internship application**
+
+Similar to `UC17 Archive an internship application` except that the internship application is unarchived.
+
+**Use case: UC19 List archived internship applications**
+
+Similar to `UC15 List` except that only archived internship applications are shown.
+
+**Use case: UC20 Add a todo task entry**
 
 **MSS**
 
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
-**Use case: UC13 List todo**
+**Use case: UC21 List todo**
 
 **MSS**
 
-Similar to `UC10 List`except todo tasks are listed instead of internship applications.
+Similar to `UC15 List`except todo tasks are listed instead of internship applications.
 
-**Use case: UC14 Edit the note content of a todo task**
-
-**MSS**
-
-Similar to `UC08 Edit the status of an internship application`except the note content of a todo task is edited.
-
-**Use case: UC15 Edit the deadline of a todo task**
-
-**MSS**
-Similar to `UC14 Edit the note content of a todo task` except the deadline is edited.
-
-**Use case: UC16 Delete a todo task entry**
+**Use case: UC22 Edit the note content of a todo task**
 
 **MSS**
 
-Similar to `UC05 Delete an internship application entry` except the specified todo task is deleted.
+Similar to `UC13 Edit the status of an internship application`except the note content of a todo task is edited.
 
-**Use case: UC17 Clear all todo task entries**
+**Use case: UC23 Edit the deadline of a todo task**
+
+**MSS**
+Similar to `UC19 Edit the note content of a todo task` except the deadline is edited.
+
+**Use case: UC24 Delete a todo task entry**
 
 **MSS**
 
-Similar to `UC07 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
+Similar to `UC10 Delete an internship application entry` except the specified todo task is deleted.
+ 
+**Use case: UC25 Clear all todo task entries**
 
-**Use case: UC18 Add a note**
+**MSS**
+
+Similar to `UC12 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
+
+**Use case: UC26 Add a note**
 
 **MSS**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
-**Use case: UC19 List note**
+**Use case: UC27 List note**
 
 **MSS**
 
-Similar to `UC10 List`except note entries are listed instead of internship applications.
+Similar to `UC15 List`except note entries are listed instead of internship applications.
 
-**Use case: UC20 Delete a note entry**
-
-**MSS**
-
-Similar to `UC05 Delete an internship application entry` except the specified note entry is deleted.
-
-**Use case: UC21 Clear all note entries**
+**Use case: UC28 Delete a note entry**
 
 **MSS**
 
-Similar to `UC07 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
+Similar to `UC10 Delete an internship application entry` except the specified note entry is deleted.
 
-**Use case: UC22 List task**
-
-**MSS**
-
-Similar to `UC10 List` except todo task entries and note entries are listed instead of internship applications.
-
-**Use case: UC23 Find a task by its field**
+**Use case: UC29 Clear all note entries**
 
 **MSS**
 
-Similar to `UC06 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+Similar to `UC12 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
+
+**Use case: UC30 List task**
+
+**MSS**
+
+Similar to `UC15 List` except todo task entries and note entries are listed instead of internship applications.
+
+**Use case: UC31 Find a task by its field**
+
+**MSS**
+
+Similar to `UC11 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
 ### Non-Functional Requirements
 
