@@ -137,8 +137,11 @@ showing all the upcoming lessons.
 
 ![Starting Display Window](images/Lessons.jpg)
 
-:bulb: **Tip:** If you want to see the index of the lessons in the list,
+:bulb: **Tip:** Lesson Lists do not have indexes to avoid confusion with the indexes of the lessons in the original list.
+If you want to see the index of the lessons in the list,
 you can use the `view-lessons` command to view the list of lessons.
+
+:bulb: **Tip:** This page only shows the most basic information of the lessons. If you want to see more details of the lessons, you can use the `view-lessons` command to view the list of lessons.
 
 #### Exams Page
 
@@ -150,8 +153,11 @@ showing all the upcoming exams.
 
 ![Starting Display Window](images/Exams.jpg)
 
-:bulb: **Tip:** If you want to see the index of the exams in the list,
+:bulb: **Tip:** Exam Lists do not have indexes to avoid confusion with the indexes of the exams in the original list.
+If you want to see the index of the exams in the list,
 you can use the `view-exams` command to view the list of exams.
+
+:bulb: **Tip:** This page only shows the most basic information of the exams. If you want to see more details of the exams, you can use the `view-exams` command to view the list of exams.
 
 ## Commands
 
@@ -166,17 +172,17 @@ you can use the `view-exams` command to view the list of exams.
 * Unless otherwise specified, the order of prefixes doesn't matter.<br>
   e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable unless stated otherwise in a particular command.
 * Parameters can be in any order.
-  * TutorPro allows you to execute commands on students in the entire student list, instead of just the displayed list. 
-    For example: 
-    - currently, the displaying list only shows one student, `Bernice Yu`.
+* TutorPro allows you to execute commands on students in the entire student list, instead of just the displayed list. 
+  For example: 
+  - currently, the displaying list only shows one student, `Bernice Yu`.
     
-      ![Entire List](images/entireList1.jpg)
-    - However, you can still execute commands to `John Doe` even though he is not displayed in the list.
+    ![Entire List](images/entireList1.jpg)
+  - However, you can still execute commands to `John Doe` even though he is not displayed in the list.
     
-      ![Entire List](images/entireList2.jpg)
-    - This is because `John Doe` is in the original student list, and the command will be executed on the original student list.
+    ![Entire List](images/entireList2.jpg)
+  - This is because `John Doe` is in the original student list, and the command will be executed on the original student list.
       
-    - ![Entire List](images/entireList3.jpg)
+  - ![Entire List](images/entireList3.jpg)
     
 ### Search by Name Mechanism
 
