@@ -51,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "9. Viewing a person's detail: view\n"
             + "Format: view INDEX\n\n";
     public static final String HELP_MESSAGE_PROJECT = "\n1. Adding a project: addpj\n"
-            + "Format: addpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
+            + "Format: addpj n/PROJECT NAME h/REPO HOST r/REPO NAME d/DEADLINE [m/MEETING]\n\n"
             + "2. Editing a project: editpj\n"
             + "Format: editpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
             + "3. Deleting a project: deletepj\n"
@@ -63,7 +63,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "6. Sorting projects (by other fields): sortpj\n"
             + "Format: sortpj [CATEGORY]\n\n"
             + "7. Assign a person to a project: assign\n"
-            + "Format: assign INDEX n/name\n\n"
+            + "Format: assign CONTACT_INDEX PROJECT_INDEX\n\n"
             + "8. Unassign a person from a project: unassign\n"
             + "Format: unassign INDEX n/name\n\n";
 
