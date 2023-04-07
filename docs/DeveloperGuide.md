@@ -52,6 +52,7 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
   - [5.5 Improve UI](#55-improve-ui)
   - [5.6 Improve Tag Deletion Command](#56-improve-tag-deletion-command)
   - [5.7 Improve Consistency of Command Feedback](#57-improve-consistency-of-command-feedback)
+  - [5.8 Removing of Optional Information Fields](#58-removing-of-optional-information-fields)
 - [6. Documentation, Testing, and Other Guides ](#6-documentation-testing-and-other-guides)
 - [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
   - [7.1 Launch and Shutdown](#71-launch-and-shutdown)
@@ -479,7 +480,7 @@ Currently, executing certain commands may return inconsistent feedback. For exam
 
 We plan to address this constraint in the next iteration of this product (V1.5).
 
-## 5.8 Removing of Information Fields
+## 5.8 Removing of Optional Information Fields
 
 Currently, users are unable to edit an optional field back to `null`/remove an optional information field from a contact.
 
