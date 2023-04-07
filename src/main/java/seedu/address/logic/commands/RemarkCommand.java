@@ -25,8 +25,8 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            INDEX_PLACEHOLDER,
-            REMARK_PLACEHOLDER.asOptional()
+            INDEX_PLACEHOLDER.setExamples("1"),
+            REMARK_PLACEHOLDER.asOptional().setExamples("Likes to swim.")
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -37,7 +37,7 @@ public class RemarkCommand extends Command {
             + ARGUMENT_PREFIXES.stream()
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
-            + "\nExample: " + COMMAND_WORD + " 1 Likes to swim.";
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";

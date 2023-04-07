@@ -28,14 +28,14 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            PREFIX_NAME.asOptional().asRepeatable(),
+            PREFIX_NAME.asOptional().asRepeatable().setExamples("alice", "tan"),
             PREFIX_PHONE.asOptional().asRepeatable(),
             PREFIX_EMAIL.asOptional().asRepeatable(),
             PREFIX_ADDRESS.asOptional().asRepeatable(),
             PREFIX_EDUCATION.asOptional().asRepeatable(),
             PREFIX_TELEGRAM.asOptional().asRepeatable(),
             PREFIX_REMARK.asOptional().asRepeatable(),
-            PREFIX_TAG.asOptional().asRepeatable(),
+            PREFIX_TAG.asOptional().asRepeatable().setExamples("hasSubmitted"),
             PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
@@ -45,7 +45,7 @@ public class FilterCommand extends Command {
             + ARGUMENT_PREFIXES.stream()
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
-            + "Example: " + COMMAND_WORD + " n/alice n/tan t/hasSubmitted";
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     private final ContainsKeywordsPredicate predicate;
 
