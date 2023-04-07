@@ -69,8 +69,7 @@ class JsonSerializableAddressBook {
      * Load the doctors and their assigned patients into the address book.
      *
      * @param addressBook the address book to load
-     * @throws IllegalValueException when doctor or patients have illegal values
-     * as attributes
+     * @throws IllegalValueException when doctor or patients have illegal values as attributes
      */
     private void loadDoctorsAndTheirAssignedPatients(AddressBook addressBook)
             throws IllegalValueException {
@@ -113,8 +112,7 @@ class JsonSerializableAddressBook {
      * Load the unassigned patients into the address book.
      *
      * @param addressBook the address book to load
-     * @throws IllegalValueException when the patients have illegal values
-     * as attributes
+     * @throws IllegalValueException when the patients have illegal values as attributes
      */
     private void loadUnassignedPatients(AddressBook addressBook)
             throws IllegalValueException {

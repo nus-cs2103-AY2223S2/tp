@@ -15,14 +15,14 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class Status {
 
-    private static final Logger logger = LogsCenter.getLogger(Status.class);
-
     public static final String MESSAGE_CONSTRAINTS =
             "Status should be one of the following: Inpatient, Outpatient, Observation, Emergency Department,"
                     + " Intensive Care Unit, Transitional Care";
 
     public static final String VALIDATION_REGEX = "(?i)^(Inpatient|Outpatient|Observation|Emergency Department"
             + "|Intensive Care Unit|Transitional Care)$";
+
+    private static final Logger logger = LogsCenter.getLogger(Status.class);
 
     private static final ArrayList<String> possibleStatuses = new ArrayList<>(
             List.of("Inpatient", "Outpatient", "Observation", "Emergency Department",
@@ -67,8 +67,8 @@ public class Status {
      */
     public static String getDummyValidStatus(int i) {
         if (i >= possibleStatuses.size()) {
-            logger.warning(String.format("Received an invalid index of %d," +
-                                    "when number of statuses available is %d",
+            logger.warning(String.format("Received an invalid index of %d,"
+                                    + "when number of statuses available is %d",
                     i, possibleStatuses.size()));
             logger.info("Retrieving default valid status instead");
             return getDummyValidStatus();
