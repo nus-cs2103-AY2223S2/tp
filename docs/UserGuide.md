@@ -102,7 +102,7 @@ _Ez-Schedule_ is composed of the following components, which are numbered for ea
 ![gui.png](images/gui.png)
 
 <h3 id="command-box">Command Box</h3>
-![command-box-gui.png](images/command-box-gui.png)
+![command-box.png](images/command-box.png)
 
 This component enables you to type the command in the command box and execute it by pressing Enter.  
 For example, typing `help` and pressing Enter will open the help window.
