@@ -83,7 +83,7 @@ public class DataBin implements Comparable<DataBin> {
 
     @Override
     public String toString() {
-        return String.format("Bin '%s': %s",
+        return String.format("Bin '%s': %d",
                 getName(), getSize());
     }
 

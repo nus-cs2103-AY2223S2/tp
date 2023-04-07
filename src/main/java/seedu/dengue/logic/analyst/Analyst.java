@@ -58,7 +58,7 @@ public abstract class Analyst {
         }
 
         Analyst other = (Analyst) obj;
-        return getBins().equals(other.getBins())
-                && getTotal() == other.getTotal();
+        return getTotal() == other.getTotal()
+                && getBins().equals(other.getBins());
     }
 }
