@@ -28,13 +28,13 @@ Given below are my contributions to the project.
   * Highlights: The new child classes can now check a list of keyword if any of it matches the value of the address, email, phone & profile field of a person
   * Credits: *{-}*
 
-* **New Feature**: Child classes of `Predicate<Person>` class that checks if a given person's tag/language field matches any of the keywords given [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
+* **New Feature**: Child classes of `Predicate<Person>` class for tag/language field [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
   * What it does: Checks if a given person's tag/language field matches any of the keywords given
   * Justification: The newest implementation of `find` command works on all field but there is only a child class of `Predicate<Person>` class for name field. Moreover, tag & language fields can contain more than 1 value unlike the other fields in person.
   * Highlights: The new child classes can now check on all values of tag/language if a list of keyword contains any matches
   * Credits: *{-}*
 
-* **New Feature**: Child class of `Predicate<Person>` class that checks if a given person's field matches the keywords given for that respective field [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
+* **New Feature**: Child class of `Predicate<Person>` class for person [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100)
   * What it does: Checks if a given person's field matches any of the keywords given for that respective field
   * Justification: The `updateFilteredPersonList` for `ModelManager` class only accepts 1 `Predicate<Person>` class, however the newest implementation of `find` command works on all field, we cannot give the method multiple predicates to filter.
   * Highlights: Predicates for all fields of a person is being encapsulated by just 1 person predicate class, can be passed into `updateFilteredPersonList` without heavily modifying all other existing codes. As long as one of the field predicate returns `true`, it will return `true`
