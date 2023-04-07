@@ -243,9 +243,10 @@ Example:
 
 [Back to top](#top)
 
-### Quick Import for admin contacts: `import`
+### Quick Import for faculty contacts: `import`
 
-Import administrative contacts for relevant faculties.
+Import staff contacts for relevant faculties.
+> **Note**: 'staff' can refer to any person in the teaching, administrative or management teams in the faculty
 
 Format: `import [faculty]`
 
@@ -254,8 +255,8 @@ Format: `import [faculty]`
 
 Example:
 
-* `import soc` adds all important administrative contacts for School of Computing
-* `import chs` adds all important administrative contacts for College of Humanities and Sciences
+* `import soc` adds all important contacts of staff for School of Computing
+* `import chs` adds all important contacts of staff for College of Humanities and Sciences
 
 [Back to top](#top)
 
