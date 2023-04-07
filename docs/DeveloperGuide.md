@@ -975,6 +975,8 @@ _{Explain here how the data archiving feature will be implemented}_
 1. CoDoc does not check for duplicate `GitHub` usernames or `LinkedIn` profile URLs, so the user can add 2 or more contacts with the same `GitHub` usernames and/or `LinkedIn` profile URLs. We plan to make it such that CoDoc checks for this, on top of email, so each person can be uniquely identified by their `GitHub` username and `LinkedIn` profile URL as well. 
 2. CoDoc's usage messages might display attributes in orders that are not consistent, e.g. `add` command uses "...n/NAME e/EMAIL c/COURSE y/YEAR [g/GITHUB] [l/LINKEDIN] [s/SKILL] [m/MOD]..." but `edit` command uses "...[n/NAME] [g/GITHUB] [e/EMAIL] [c/COURSE] [y/YEAR] [l/LINKEDIN]
    [s+/SKILL] [s-/SKILL] [m+/MOD] [m-/MOD]...". We plan to standardize these inconsistencies by making all usage messages to follow this order: _Name_, _Email_, _Year_, _Course_, _GitHub_, _LinkedIn_, _Modules_, _Skills_. This should ensure consistency between commands and with the User Guide.
+3. There can be cases where a person's name contains a `.` or a `/`, especially some Western or Malay names. However, as these are extreme features, we left them out as they do not hinder the original usage of the function. Hence, it is a nice-to-have feature that we will fix in the future by altering the regex for `Name`. Users can, in the meantime, work around this by entering an alternative name instead.
+4. 
 
 [Scroll back to top](#table-of-contents)
 
