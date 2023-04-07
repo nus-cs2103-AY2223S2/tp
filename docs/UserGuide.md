@@ -33,7 +33,7 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
    Use the [`cd` command](https://www.ibm.com/docs/en/aix/7.1?topic=c-cd-command) to navigate to the folder you placed the jar file in. Following the previous example, you can type `cd Desktop/ArB` into the command terminal.<br>
    Then use the `java -jar arb.jar` command to run the application.<br>
    A window similar to the below should appear in a few seconds. The app will contain some sample data if being opened for the first time.<br>
-   ![Ui](images/Ui.png)<br>
+   ![Ui](images/Ui.png)<br><br>
    Below is the same window annotated to show what each part is for.<br>
    ![Annotated Ui](images/UiAnnotated.png)
 
@@ -250,7 +250,7 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 
-Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
 
 </div>
 
@@ -410,7 +410,7 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 
-Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
+:information_source: Can't find what you're looking for? You can find some tips in the [FAQ](#faq)!
 
 </div>
 
