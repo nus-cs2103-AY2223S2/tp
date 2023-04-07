@@ -374,7 +374,7 @@ Format: `list`
 As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in `DengueHotspotTracker`.
 Some places where you might want to make use of the `list` are when:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
-* [`overview`](#changing-the-overview-type--overview) to show to overview
+* [`overview`](#changing-the-overview-type--overview), which shows an overview of the cases in the current list view
 * [`find`](#finding-cases-by-prefixes-find) which filters the current list view
 
 You may wish to use `list` **before** any of these commands in order to process the *full* list of data within `DengueHotspotTracker`.
