@@ -893,7 +893,6 @@ Export all modules progress to a JSON-format file.
 Examples: 
 
 - `export hello.json`
-
 - `export /../../haha.json /overwrite`
 
 ### Import Data
@@ -923,11 +922,8 @@ Import modules progress from a JSON-format file to the current tracker.
 Examples:
 
 - `import hello.json`
-
 - `import /../../haha.json /overwrite`
-
 - `import hehe.json /mod CS2040, MA2401`
-
 - `import hihi.json /mod EG2310 /overwrite`
 
 
