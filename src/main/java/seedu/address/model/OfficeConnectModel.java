@@ -303,7 +303,7 @@ public class OfficeConnectModel {
         }
     }
 
-    public Model getPersonModelManger() {
+    public Model getPersonModelManager() {
         return personModelManger;
     }
 

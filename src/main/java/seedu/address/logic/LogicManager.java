@@ -12,7 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
@@ -53,10 +52,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(officeConnectModel.getPersonModelManger(), officeConnectModel);
+        commandResult = command.execute(officeConnectModel.getPersonModelManager(), officeConnectModel);
 
         try {
-            storage.saveAddressBook(officeConnectModel.getPersonModelManger().getAddressBook());
+            storage.saveAddressBook(officeConnectModel.getPersonModelManager().getAddressBook());
             storage.saveTaskBook(officeConnectModel.getTaskModelManager().getReadOnlyRepository());
             storage.savePersonTaskBook(officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository());
 
@@ -74,7 +73,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return officeConnectModel.getPersonModelManger().getFilteredPersonList();
+        return officeConnectModel.getPersonModelManager().getFilteredPersonList();
     }
     @Override
     public OfficeConnectModel getOfficeConnectModel() {
@@ -83,16 +82,16 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return officeConnectModel.getPersonModelManger().getAddressBookFilePath();
+        return officeConnectModel.getPersonModelManager().getAddressBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return officeConnectModel.getPersonModelManger().getGuiSettings();
+        return officeConnectModel.getPersonModelManager().getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        officeConnectModel.getPersonModelManger().setGuiSettings(guiSettings);
+        officeConnectModel.getPersonModelManager().setGuiSettings(guiSettings);
     }
 }
