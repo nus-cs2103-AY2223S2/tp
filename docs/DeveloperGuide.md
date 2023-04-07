@@ -613,7 +613,7 @@ added to `Module` objects, `Lecture` objects, or `Video` objects, only the new t
 The feature utilises the following classes:
 
 - `TagCommandParser` – Creates the appropriate `TagCommand` object based on the user's input
-- `TagCommand` – Handles adding `Tag` objects to a `Module` object, a `Lecture` object, or a `Video` object based on 
+- `TagCommand` – Handles adding `Tag` objects to a `Module`/`Lecture`/`Video` object based on 
   the user's input
 
 **Execution**
@@ -668,7 +668,7 @@ videos, a `CommandException` will be thrown. Duplicated tags in the command, if 
 The feature utilises the following classes:
 
 - `UntagCommandParser` – Creates the appropriate `UntagCommand` object based on the user's input
-- `UntagCommand` – Handles removing `Tag` objects from a `Module` object, a `Lecture` object, or a `Video` object
+- `UntagCommand` – Handles removing `Tag` objects from a `Module`/`Lecture`/`Video` object
   based on the user's input
 
 **Execution**
@@ -708,17 +708,32 @@ The following is a description of the code execution flow:
 ### Import archived data feature
 
 The `import` command supports:
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object
+- Importing all `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting 
+  current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
+- Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object
+- Importing specific `Module` objects from a valid Le Tracker data file into the current `Tracker` object, overwriting
+  current `Module` objects with imported `Module` objects if these modules exist in the current `Tracker` object
+
+The `import` behaviour is dependent on the arguments provided by the user.
 
 **Notable Classes**
 
 The feature utilises the following classes:
-- `ImportCommandParser`
-- `ImportCommand`
+- `ImportCommandParser` - Creates the appropriate `ImportCommand` object based on the user's input
+- `ImportCommand` - Creates the appropriate `CommandResult` object containing the file path for import and the set 
+  of `ModuleCode` objects that references the `Module` objects to import
+- `Archive` - Handles importing `Module` objects from the file path in `CommandResult` to the current `Tracker` object
 
-**Reasons for such implementation**
+**Execution**
 
-- The user need to retrieved data when the user wants to review the concepts taught in a module,
-  lecture, or video
+Below is an activity diagram that showcase the events that occurs when an `import` command is executed.
+
+TODO: ADD ACTIVITY DIAGRAM
+
+The following is a description of the code execution flow:
+
+1. 
 
 ### Exporting data feature
 
@@ -734,9 +749,9 @@ The `export` behaviour is dependent on the arguments provided by the user.
 
 The feature utilises the following classes:
 - `ExportCommandParser` – Creates the appropriate `ExportCommand` object based on the user's input
-- `ExportCommand` - ` Create the appropriate `CommandResult` object based on the user's input to 
-- `Archive` - Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
-  the specified file path
+- `ExportCommand` – Creates the appropriate `CommandResult` object containing the file path for export
+- `Archive` – Handles saving the `Tracker` object and the `Module`, `Lecture`, and `Video` objects it contains to
+  the specified file path in `CommandResult`
 
 **Execution**
 
@@ -751,8 +766,9 @@ The following is a description of the code execution flow:
    `/overwrite` flag. A `ParseException` will be thrown if the file path is empty, and the command will not be executed
 2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
 3. `LogicManager` calls the `Command#execute(Model)` method of the `ExportCommand` object returned by
-   `ExportCommandParser#parse(String)`. An appropriate `CommandResult` object is then returned to the caller. A 
-   `CommandException` will be thrown if the file path provided in the user's input is invalid. 
+   `ExportCommandParser#parse(String)`. An appropriate `CommandResult` object containing a `Path` object with the 
+   saving file path is then returned to the caller. A `CommandException` will be thrown if the file path provided in 
+   the user's input is invalid. 
 4. From the `CommandResult` object, `LogicManager` then calls the `Archive#exportToArchive(Path, ReadOnlyTracker, 
    boolean, Path)`. A `CommandException` will be thrown if the file at the specified file path does not have write 
    permission, or if the user is trying to export to an existing file without the `/overwrite` flag.
