@@ -770,11 +770,11 @@ _Details coming soon ..._
    * <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd> (to open textEdit)
    * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> (to toggle textEdit to plain text)
    * Your window should look like the image below
-   ![mac_plain_text](images/user-guide/mac_plain_text.png)
+   ![mac_plain_text](images/user-guide/mac_plain_text_small.png)
 3. Right-click on your home folder and navigate to `New Terminal at Folder`. This will open a terminal window.
    ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
 4. Then, 
-    * type `pwd` > <kbd>Enter</kbd>
+    * type `pwd` > <kbd>Enter</kbd>ma
     * copy the output which is yourHomeFolderPath
     * **leave this window open too**
    ![mac_pwd](images/user-guide/mac_pwd.png)
