@@ -84,29 +84,4 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
-    /**
-     * Returns the file from a JFileChooser that includes the extension from the file filter.
-     * @param fileChooser The JFileChoose used.
-     * @return The file with the given extension.
-     */
-    public static File getSelectedFileWithExtension(JFileChooser fileChooser) {
-        File file = fileChooser.getSelectedFile();
-        if (file == null) {
-            return null;
-        }
-
-        FileFilter fileFilter = fileChooser.getFileFilter();
-        if (fileFilter instanceof FileNameExtensionFilter) {
-            String[] extensions = ((FileNameExtensionFilter) fileFilter).getExtensions();
-            String fileName = file.getName().toLowerCase();
-            for (String ext : extensions) {
-                if (fileName.endsWith('.' + ext.toLowerCase())) {
-                    return file;
-                }
-            }
-            file = new File(file.toString() + '.' + extensions[0]);
-        }
-        return file;
-    }
-
 }

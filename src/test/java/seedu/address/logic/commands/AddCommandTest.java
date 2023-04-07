@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -236,6 +237,16 @@ public class AddCommandTest {
 
         @Override
         public InputHistory getInputHistory() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Stage getPrimaryStage() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setPrimaryStage(Stage primaryStage) {
             throw new AssertionError("This method should not be called");
         }
 
