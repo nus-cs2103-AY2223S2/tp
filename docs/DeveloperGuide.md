@@ -579,7 +579,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### **Test Case 1: Launch and shutdown**
+### Test Case 1: Launch and shutdown
 
 Description: Verify that the app launches and closes properly, and saves the user's preferences.
 Preconditions: User has a computer environment that has Java 11 installed, and can run a Java JAR app from a Terminal. User should also have a display. Also, the User needs to be running Ubuntu, Windows or MacOS as their Operating System.
@@ -589,23 +589,25 @@ Test Steps:
 1. Initial launch
     1. Download the jar file and copy into an empty folder.
     2. Double-click the jar file.<br/>
-    **Expected:** Shows the GUI with a set of sample recipes. The window size may not be optimum.<br/>
-    **Actual:** The GUI is indeed shown with a set of sample recipes
+    **Expected Result:** Shows the GUI with a set of sample recipes. The window size may not be optimum.<br/>
+    **Actual Result:** The GUI is indeed shown with a set of sample recipes
 
 2. Saving window preferences
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
     2. Re-launch the app by double-clicking the jar file.<br>
-    **Expected:** The most recent window size and location is retained.<br/>
-    **Actual:** The window size is indeed retained.
+    **Expected Result:** The most recent window size and location is retained.<br/>
+    **Actual Result:** The window size is indeed retained.
 
 3. Shutdown
    1. When the app is open, type `exit` into the command bar and press "enter".<br>
-   **Expected:** The app closes<br/>
-   **Actual:** The app indeed closes
+   **Expected Result:** The app closes<br/>
+   **Actual Result:** The app indeed closes
+
+**Status:** `Accepted`
 
 <div style="page-break-after: always;"></div>
 
-### **Test Case 2: Recipe Card View Popup Opens**
+### Test Case 2: Recipe Card View Popup Opens
 
 Description: Verify recipe pop up card appears when prompted.  
 Preconditions: User is on the default MainWindow page.  
@@ -614,11 +616,11 @@ Test Steps:
    1. Click on a Recipe Card once.
    2. Press 'P' on the keyboard.  
 
-Expected Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.  
-Actual Result: A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.   
-Status: `Accepted`
+**Expected Result:** A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.<br/>  
+**Actual Result:** A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.<br/>
+**Status:** `Accepted`
 
-### **Test Case 3: Add Recipe Form Opens**
+### Test Case 3: Add Recipe Form Opens
 
 Description: Verify add form opens properly when prompted.
 Preconditions: User is on the default Main Window page.  
@@ -626,13 +628,13 @@ Test Steps:
 
    1. Type `addf` in the command box and enter.
 
-Expected Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right. 
-Actual Result: A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.  
-Status: `Accepted`
+**Expected Result:** A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.<br/>
+**Actual Result:** A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.<br/>
+**Status:** `Accepted`
 
 <div style="page-break-after: always;"></div>
 
-### **Test Case 4: Add Recipe Form Saves Recipe**
+### Test Case 4: Add Recipe Form Saves Recipe
 
 Description: Verify add form saves the newly added recipe properly.  
 Preconditions: User is on the add recipe form.  
@@ -643,11 +645,11 @@ Test Steps:
    3. Scroll to the bottom of the recipe list and click on the newly added recipe.
    4. Press the 'P' key to view its details.
 
-Expected Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
-Actual Result: The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
-Status: `Accepted`
+**Expected Result:** The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.<br/>** 
+**Actual Result:** The newly saved recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.<br/>** 
+**Status:** `Accepted`
 
-### **Test Case 5: Edit Form Opens**
+### Test Case 5: Edit Form Opens
 
 Description: Verify edit form displays correctly when prompted.
 Preconditions: User is on the default Main Window page.
@@ -656,13 +658,13 @@ Test Steps:
    1. Hover over or click a recipe card.
    2. Press the 'F' key on the keyboard.
 
-Expected Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.
-Actual Result: A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.
-Status: `Accepted`
+**Expected Result:** A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.<br/>
+**Actual Result:** A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.<br/>
+**Status:** `Accepted`
 
 <div style="page-break-after: always;"></div>
 
-### **Test Case 6: Edit Form Saves Recipe**
+### Test Case 6: Edit Form Saves Recipe
 
 Description: Verify edit form saves the edited recipe properly.
 Preconditions: User is on edit recipe form.
@@ -673,11 +675,11 @@ Test Steps:
    3. Scroll to the bottom of the recipe list and click on the edited recipe.
    4. Press the 'P' key to view its details.
 
-Expected Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.
-Actual Result: The recipe has been edited, with the new recipe details in congruence with the edits made for each field.  
-Status: `Accepted`
+**Expected Result:** The recipe has been edited, with the new recipe details in congruence with the edits made for each field.<br/>
+**Actual Result:** The recipe has been edited, with the new recipe details in congruence with the edits made for each field.<br/>  
+**Status:** `Accepted`
 
-### **Test Case 7: Saving data**
+### Test Case 7: Saving data
 
 #WIP
 1. Dealing with missing/corrupted data files
