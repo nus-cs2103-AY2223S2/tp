@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.entity.Stats;
 
-
-
 class JsonAdaptedStatsTest {
     private static final int VALID_INT = 3;
     private static final int VALID_STRENGTH = -4;

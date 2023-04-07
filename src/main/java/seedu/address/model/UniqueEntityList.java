@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class UniqueEntityList implements Iterable<Entity> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        orderEntities();
     }
 
     /**
@@ -78,6 +80,7 @@ public class UniqueEntityList implements Iterable<Entity> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        orderEntities();
     }
 
     /**
@@ -91,6 +94,12 @@ public class UniqueEntityList implements Iterable<Entity> {
         }
 
         internalList.setAll(entities);
+        orderEntities();
+    }
+
+    private void orderEntities() {
+        Comparator<Entity> comparator = Comparator.comparing(x -> x.getClass().getSimpleName());
+        internalList.sort(comparator);
     }
 
     /**
