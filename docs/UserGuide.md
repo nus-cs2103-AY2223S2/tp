@@ -807,15 +807,15 @@ _Details coming soon ..._
 <br>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
+
+---
 <div style="page-break-after: always;"></div>
 
 ### How to Open CoDoc for Windows
 
-Batch file method for Windows users:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
     ![open_new_file](images/user-guide/open_new_file.png)
-    <div style="page-break-after: always;"></div>
 
 2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
 
