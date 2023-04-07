@@ -24,7 +24,7 @@ public abstract class Command {
 
     protected static String getParameterUsage(List<Prefix> argumentPrefixes) {
         return "Parameters:\n" + argumentPrefixes.stream()
-                .map(Prefix::toString)
+                .map(Prefix::toPlaceholderString)
                 .collect(Collectors.joining(" "));
     }
 

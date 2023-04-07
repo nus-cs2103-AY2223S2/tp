@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.tag.Tag.isValidTagName;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -68,8 +67,6 @@ public class AddCommandTest {
 
         // different types -> returns false
         assertFalse(addAliceCommand.equals(1));
-
-        assertFalse(isValidTagName("hello"));
 
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
@@ -252,6 +249,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void commitAddressBook(String lastExecutedCommand) {
+            return;
         }
     }
 

@@ -66,10 +66,7 @@ public class Prefix {
 
     @Override
     public String toString() {
-        String output = getPrefix() + getPlaceholderText();
-        output = isOptional() ? String.format("[%s]", output) : output;
-        output = isRepeatable() ? output + "..." : output;
-        return output;
+        return getPrefix();
     }
 
     /**
@@ -120,6 +117,14 @@ public class Prefix {
             : getExamples().stream()
                     .map(example -> getPrefix() + example)
                     .collect(Collectors.joining(" "));
+    }
+
+    /** Returns the prefix with it's a placeholder text as the value. (eg. n/NAME, p/PHONE) */
+    public String toPlaceholderString() {
+        String output = getPrefix() + getPlaceholderText();
+        output = isOptional() ? String.format("[%s]", output) : output;
+        output = isRepeatable() ? output + "..." : output;
+        return output;
     }
 
     @Override
