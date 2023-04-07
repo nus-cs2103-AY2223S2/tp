@@ -937,6 +937,7 @@ with (ENTER).
 
 ## Appendix: Planned Enhancements
 1. **Issue: Lost all data after modifying data file** <br>
+
    We plan to utilise checksum on JSON file to prevent manual tampering of data and display explicit exceptions 
    when the JSON file is corrupted or tampered with.
    * A checksum could be generated in `checksum.txt` in the same directory as the JSON file.
@@ -950,6 +951,7 @@ with (ENTER).
    * Possible checksum algorithms are MD5, SHA-1, SHA-256, SHA-512.
    
 2. **Issue: Long strings are cut off** <br>
+
    We are considering two alternatives: limiting the number of characters for a field 
     or wrapping text to fix the issue
 * First solution: Limit the number of characters for a field. This will make 
@@ -959,7 +961,6 @@ can fix approximately 170 characters at regular font size. As around 40% width
 of the screen size is used by a panel such as entity panel, around 68 characters 
 can fit in the full screen size. To make up for the field name such as 'Name: ', 
 we put 60 as the maximum capacity for number of characters for a field. 
-
 * Second solution: Wrap the text around using `TextFlow` and `Text` in 
 JavaFX, even if the word needs to be broken. For this approach, the 
 number of characters that can be fit onto a line will still be needed. 
@@ -981,3 +982,4 @@ will then be compared with the current one. If there are any changes in the stat
 count, the pie chart will be refreshed. Else, the current pie chart will be kept. 
 * This will make sure that only changes related to project status will trigger 
 the refreshing of pie chart. 
+
