@@ -7,11 +7,11 @@ skinparam classBackgroundColor STORAGE_COLOR
 package Storage{
 
 package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage_
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as Storage_
 Class StorageManager
 
 package "RecipeBook Storage" #F4F6F6{
@@ -28,16 +28,16 @@ Class JsonAdaptedRecipe
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storage_
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
+StorageManager .up.|> Storage_
+StorageManager -up-> "1" UserPrefsStorage_
 StorageManager -up-> "1" RecipeBookStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> RecipeBookStorage
+Storage_ -left-|> UserPrefsStorage_
+Storage_ -right-|> RecipeBookStorage
 
-JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonUserPrefsStorage .up.|> UserPrefsStorage_
 JsonRecipeBookStorage .up.|> RecipeBookStorage
 JsonRecipeBookStorage ..> JsonSerializableRecipeBook
 JsonSerializableRecipeBook -> "*" JsonAdaptedRecipe
