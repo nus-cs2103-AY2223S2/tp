@@ -305,7 +305,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 
-  
+  ![result for 'feid eid/7'](images/UiFindCommand.png)
 
 
 
