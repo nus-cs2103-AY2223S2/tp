@@ -7,12 +7,13 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.DeepCopy;
 import seedu.address.model.tag.Tag;
 
 /**
  * A technician is a special type of staff, in which they handle the works on the vehicle.
  */
-public class Technician extends Staff {
+public class Technician extends Staff implements DeepCopy<Technician> {
     private final Set<Integer> serviceIds = new HashSet<>();
     private final Set<Integer> appointmentIds = new HashSet<>();
     /**
@@ -91,5 +92,11 @@ public class Technician extends Staff {
     @Override
     public int hashCode() {
         return Objects.hash(this.getId());
+    }
+
+    @Override
+    public Technician copy() {
+        return new Technician(this.getId(), this.getName(), this.getPhone(), this.getEmail(),
+                this.getAddress(), this.getTags(), this.serviceIds, this.appointmentIds);
     }
 }

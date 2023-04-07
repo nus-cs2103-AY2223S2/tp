@@ -5,10 +5,12 @@ import java.util.Queue;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import seedu.address.model.DeepCopy;
+
 /**
  * Unique ID generation
  */
-public class IdGenerator {
+public class IdGenerator implements DeepCopy<IdGenerator> {
     private final SortedSet<Integer> usedCustomerIds = new TreeSet<>();
     private final Queue<Integer> unusedCustomerIds = new PriorityQueue<>();
     private final SortedSet<Integer> usedVehicleIds = new TreeSet<>();
@@ -20,7 +22,11 @@ public class IdGenerator {
     private final SortedSet<Integer> usedStaffIds = new TreeSet<>();
     private final Queue<Integer> unusedStaffIds = new PriorityQueue<>();
 
-    private IdGenerator() {
+    public IdGenerator() {
+    }
+
+    public IdGenerator(IdGenerator other) {
+        this.resetData(other);
     }
 
     private int generateId(SortedSet<Integer> used, Queue<Integer> unused) {
@@ -108,5 +114,29 @@ public class IdGenerator {
         unusedServiceIds.clear();
         usedStaffIds.clear();
         unusedStaffIds.clear();
+    }
+
+    /**
+     * Resets the ID generator to the state of the other ID generator
+     *
+     * @param other the other ID generator
+     */
+    public void resetData(IdGenerator other) {
+        reset();
+        usedCustomerIds.addAll(other.usedCustomerIds);
+        unusedCustomerIds.addAll(other.unusedCustomerIds);
+        usedVehicleIds.addAll(other.usedVehicleIds);
+        unusedVehicleIds.addAll(other.unusedVehicleIds);
+        usedServiceIds.addAll(other.usedServiceIds);
+        unusedServiceIds.addAll(other.unusedServiceIds);
+        usedAppointmentIds.addAll(other.usedAppointmentIds);
+        unusedAppointmentIds.addAll(other.unusedAppointmentIds);
+        usedStaffIds.addAll(other.usedStaffIds);
+        unusedStaffIds.addAll(other.unusedStaffIds);
+    }
+
+    @Override
+    public IdGenerator copy() {
+        return new IdGenerator(this);
     }
 }

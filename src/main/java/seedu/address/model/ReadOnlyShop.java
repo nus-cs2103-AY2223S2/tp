@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.service.Service;
@@ -13,6 +14,7 @@ import seedu.address.model.service.appointment.Appointment;
  * Unmodifiable view of an address book
  */
 public interface ReadOnlyShop {
+    IdGenerator getIdGeneratorCopy();
 
     ObservableList<Appointment> getAppointmentList();
 

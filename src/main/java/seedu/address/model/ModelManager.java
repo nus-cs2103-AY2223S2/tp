@@ -232,11 +232,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setShop(ReadOnlyShop shop) {
-        this.shop.resetData(shop);
-    }
-
-    @Override
     public Path getShopFilePath() {
         return userPrefs.getShopFilePath();
     }

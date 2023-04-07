@@ -34,7 +34,7 @@ public abstract class RedoableCommand extends Command {
     protected final void undo(Model model) {
         requireAllNonNull(model, this.previousShop);
 
-        model.setShop(this.previousShop);
+//        model.setShop(this.previousShop);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
     }

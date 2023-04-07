@@ -83,13 +83,14 @@ class JsonSerializableShop {
      */
     public Shop toModelType() throws IllegalValueException {
         Shop shop = new Shop();
+        IdGenerator idGenerator = new IdGenerator();
         List<Customer> customerList = new ArrayList<>();
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
             Customer customer = jsonAdaptedCustomer.toModelType();
             if (shop.hasCustomer(customer.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
-            IdGenerator.setCustomerIdUsed(customer.getId());
+            idGenerator.setCustomerIdUsed(customer.getId());
             customerList.add(customer);
         }
 
@@ -99,7 +100,7 @@ class JsonSerializableShop {
             if (shop.hasVehicle(vehicle.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VEHICLE);
             }
-            IdGenerator.setVehicleIdUsed(vehicle.getId());
+            idGenerator.setVehicleIdUsed(vehicle.getId());
             vehicleList.add(vehicle);
         }
 
@@ -109,7 +110,7 @@ class JsonSerializableShop {
             if (shop.hasService(service.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICE);
             }
-            IdGenerator.setServiceIdUsed(service.getId());
+            idGenerator.setServiceIdUsed(service.getId());
             serviceList.add(service);
         }
 
@@ -128,7 +129,7 @@ class JsonSerializableShop {
             if (shop.hasAppointment(appointment.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
-            IdGenerator.setAppointmentIdUsed(appointment.getId());
+            idGenerator.setAppointmentIdUsed(appointment.getId());
             appointmentList.add(appointment);
         }
 
@@ -138,10 +139,11 @@ class JsonSerializableShop {
             if (shop.hasTechnician(technician.getId())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TECHNICIAN);
             }
-            IdGenerator.setStaffIdUsed(technician.getId());
+            idGenerator.setStaffIdUsed(technician.getId());
             technicianList.add(technician);
         }
         shop.initializeData(
+            idGenerator,
             FXCollections.observableArrayList(customerList),
             FXCollections.observableArrayList(vehicleList),
             FXCollections.observableMap(partMap),

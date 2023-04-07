@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.DeepCopy;
 import seedu.address.model.Findable;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.tag.Tag;
@@ -16,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person extends Entity implements Findable, DeepCopy<Person> {
+public class Person extends Entity implements Findable {
 
     // Identity fields
     private final Name name;
@@ -130,11 +129,5 @@ public class Person extends Entity implements Findable, DeepCopy<Person> {
             || this.getPhone().toString().toLowerCase().contains(keyword)
             || this.getAddress().toString().toLowerCase().contains(keyword)
             || this.getTags().stream().anyMatch(s -> s.toString().toLowerCase().contains(keyword));
-    }
-
-    @Override
-    public Person copy() {
-        return new Person(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags());
     }
 }

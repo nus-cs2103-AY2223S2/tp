@@ -1,7 +1,5 @@
 package seedu.address.model.entity.shop;
 
-import static java.util.Objects.requireNonNull;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -10,13 +8,16 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.Stack;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.idgen.IdGenerator;
+import seedu.address.model.DeepCopy;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Customer;
@@ -34,6 +35,8 @@ import seedu.address.model.entity.shop.exception.InsufficientPartException;
 import seedu.address.model.entity.shop.exception.InvalidDateException;
 import seedu.address.model.entity.shop.exception.InvalidQuantityException;
 import seedu.address.model.entity.shop.exception.NoFieldEditedException;
+import seedu.address.model.entity.shop.exception.NoNextStateException;
+import seedu.address.model.entity.shop.exception.NoPrevStateException;
 import seedu.address.model.entity.shop.exception.PartNotFoundException;
 import seedu.address.model.entity.shop.exception.ServiceNotFoundException;
 import seedu.address.model.entity.shop.exception.TechnicianNotFoundException;
@@ -48,7 +51,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A Shop is an entity that usually buy sells things.
  */
-public class Shop implements ReadOnlyShop {
+public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     public static final String MSG_RUNTIME_ERROR =
             "Relationships in shop broken, bug in one of the modification methods";
     // TODO : Add regex for String inputs
@@ -57,6 +60,9 @@ public class Shop implements ReadOnlyShop {
     //    private static final String VEHICLE_MODEL_REGEX = "[a-zA-Z0-9 _]+";
     //    private static final String VEHICLE_PLATE_NUMBER_REGEX = "[a-zA-Z0-9]+";
     //    private static final String
+    private final IdGenerator idGenerator = new IdGenerator();
+    private final Stack<Shop> undoStack = new Stack<>();
+    private final Stack<Shop> redoStack = new Stack<>();
     private final ObservableList<Customer> customers = FXCollections.observableArrayList();
     private final ObservableList<Vehicle> vehicles = FXCollections.observableArrayList();
     private final ObservableList<Technician> technicians = FXCollections.observableArrayList();
@@ -72,12 +78,30 @@ public class Shop implements ReadOnlyShop {
     public Shop() {
     }
 
+    public Shop(Shop other) {
+        this.idGenerator.resetData(other.idGenerator);
+        this.customers.setAll(DeepCopy.copyCollection(other.customers.stream()).collect(Collectors.toList()));
+        this.vehicles.setAll(DeepCopy.copyCollection(other.vehicles.stream()).collect(Collectors.toList()));
+        this.technicians.setAll(DeepCopy.copyCollection(other.technicians.stream()).collect(Collectors.toList()));
+        this.services.setAll(DeepCopy.copyCollection(other.services.stream()).collect(Collectors.toList()));
+        this.appointments.setAll(DeepCopy.copyCollection(other.appointments.stream()).collect(Collectors.toList()));
+        this.parts.clear();
+        this.parts.putAll(other.parts);
+    }
+
     /**
      * Creates a Shop using the data in the {@code toBeCopied}
      */
     public Shop(ReadOnlyShop toBeCopied) {
         this();
-        resetData(toBeCopied);
+        this.idGenerator.resetData(toBeCopied.getIdGeneratorCopy());
+        this.customers.setAll(toBeCopied.getCustomerList());
+        this.vehicles.setAll(toBeCopied.getVehicleList());
+        this.technicians.setAll(toBeCopied.getTechnicianList());
+        this.services.setAll(toBeCopied.getServiceList());
+        this.appointments.setAll(toBeCopied.getAppointmentList());
+        this.parts.clear();
+        toBeCopied.getPartMap().forEach(e -> this.parts.put(e.getKey(), e.getValue()));
     }
 
     // Getters =========================================================================================================
@@ -110,6 +134,11 @@ public class Shop implements ReadOnlyShop {
      */
     public ObservableList<Technician> getTechnicianList() {
         return FXCollections.unmodifiableObservableList(this.technicians);
+    }
+
+    @Override
+    public IdGenerator getIdGeneratorCopy() {
+        return new IdGenerator(this.idGenerator);
     }
 
     /**
@@ -325,7 +354,9 @@ public class Shop implements ReadOnlyShop {
             logger.info("Duplicate phone " + phone);
             throw new DuplicatePhoneNumberException(phone);
         }
-        Customer toAdd = new Customer(IdGenerator.generateCustomerId(), name, phone, email, address, tags);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
+        Customer toAdd = new Customer(this.idGenerator.generateCustomerId(), name, phone, email, address, tags);
         this.customers.add(toAdd);
         logger.info(toAdd + " added");
         return toAdd.getId();
@@ -362,7 +393,9 @@ public class Shop implements ReadOnlyShop {
             logger.info("Duplicate plate number " + plateNumber);
             throw new DuplicatePlateNumberException(plateNumber);
         }
-        Vehicle toAdd = new Vehicle(IdGenerator.generateVehicleId(), ownerId, plateNumber, color, brand, type);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
+        Vehicle toAdd = new Vehicle(this.idGenerator.generateVehicleId(), ownerId, plateNumber, color, brand, type);
         this.getCustomer(ownerId).addVehicle(toAdd.getId());
         this.vehicles.add(toAdd);
         logger.info(toAdd + " added");
@@ -383,7 +416,7 @@ public class Shop implements ReadOnlyShop {
      * @throws InvalidDateException     if the date is invalid
      */
     public int addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
-                           Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
+                          Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
             throws VehicleNotFoundException, EmptyInputException, InvalidDateException {
         if (description.isBlank()) {
             logger.info("Empty input for service description");
@@ -395,10 +428,13 @@ public class Shop implements ReadOnlyShop {
             logger.info("Invalid date for service estimated finish date before entry date");
             throw new InvalidDateException(estimatedFinishDate, entryDate);
         }
+        Vehicle vehicle = this.getVehicle(vehicleId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         ServiceStatus serviceStatus = maybeServiceStatus.orElse(ServiceStatus.TO_REPAIR);
-        Service toAdd = new Service(IdGenerator.generateServiceId(), vehicleId, entryDate, new HashMap<>(),
+        Service toAdd = new Service(this.idGenerator.generateServiceId(), vehicleId, entryDate, new HashMap<>(),
                 description, estimatedFinishDate, serviceStatus);
-        this.getVehicle(vehicleId).addService(toAdd);
+        vehicle.addService(toAdd);
         this.services.add(toAdd);
         logger.info(toAdd + " added");
         return toAdd.getId();
@@ -426,7 +462,9 @@ public class Shop implements ReadOnlyShop {
             logger.info("Duplicate phone " + phone);
             throw new DuplicatePhoneNumberException(phone);
         }
-        Technician toAdd = new Technician(IdGenerator.generateStaffId(), name, phone, email, address, tags);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
+        Technician toAdd = new Technician(this.idGenerator.generateStaffId(), name, phone, email, address, tags);
         this.technicians.add(toAdd);
         logger.info(toAdd + " added");
         return toAdd.getId();
@@ -444,6 +482,8 @@ public class Shop implements ReadOnlyShop {
             throws TechnicianNotFoundException, ServiceNotFoundException {
         Technician technician = this.getTechnician(techId);
         Service service = this.getService(serviceId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         technician.addServiceId(serviceId);
         service.assignTechnician(techId);
     }
@@ -460,6 +500,8 @@ public class Shop implements ReadOnlyShop {
             throws TechnicianNotFoundException, AppointmentNotFoundException {
         Technician technician = this.getTechnician(techId);
         Appointment appointment = this.getAppointment(appointmentId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         technician.addAppointmentId(appointmentId);
         appointment.addTechnician(techId);
     }
@@ -474,7 +516,9 @@ public class Shop implements ReadOnlyShop {
      */
     public int addAppointment(int customerId, LocalDateTime timeDate) throws CustomerNotFoundException {
         Customer customer = this.getCustomer(customerId);
-        Appointment toAdd = new Appointment(IdGenerator.generateAppointmentId(), customerId, timeDate);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
+        Appointment toAdd = new Appointment(this.idGenerator.generateAppointmentId(), customerId, timeDate);
         customer.addAppointment(toAdd);
         this.appointments.add(toAdd);
         logger.info(toAdd + " added");
@@ -497,6 +541,8 @@ public class Shop implements ReadOnlyShop {
         if (qty <= 0) {
             throw new InvalidQuantityException(qty);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         if (!this.hasPart(part)) {
             this.parts.put(part, qty);
         }
@@ -532,6 +578,8 @@ public class Shop implements ReadOnlyShop {
             throw new InsufficientPartException(partName, this.getPartQty(partName));
         }
         Service service = this.getService(serviceId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         this.parts.put(partName, this.parts.get(partName) - qty);
         service.addPart(partName, qty);
     }
@@ -551,13 +599,17 @@ public class Shop implements ReadOnlyShop {
         try {
             for (int i : toRemove.getVehicleIds()) {
                 this.removeVehicle(i);
+                this.undoStack.pop();
             }
             for (int i : toRemove.getAppointmentIds()) {
                 this.removeAppointment(i);
+                this.undoStack.pop();
             }
+            this.undoStack.push(this.copy());
+            this.redoStack.clear();
             this.customers.removeIf(c -> c.getId() == customerId);
             logger.info(String.format("Customer %d removed", customerId));
-            IdGenerator.setCustomerIdUnused(customerId);
+            this.idGenerator.setCustomerIdUnused(customerId);
         } catch (VehicleNotFoundException | AppointmentNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -575,11 +627,14 @@ public class Shop implements ReadOnlyShop {
         try {
             for (int i : toRemove.getServiceIds()) {
                 this.removeService(i);
+                this.undoStack.pop();
             }
+            this.undoStack.push(this.copy());
+            this.redoStack.clear();
             this.getCustomer(toRemove.getOwnerId()).removeVehicle(toRemove);
             this.vehicles.removeIf(v -> v.getId() == vehicleId);
             logger.info(String.format("Vehicle %d removed", vehicleId));
-            IdGenerator.setVehicleIdUnused(vehicleId);
+            this.idGenerator.setVehicleIdUnused(vehicleId);
         } catch (ServiceNotFoundException | CustomerNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -595,13 +650,15 @@ public class Shop implements ReadOnlyShop {
     public void removeAppointment(int appointmentId) throws AppointmentNotFoundException {
         Appointment toRemove = this.getAppointment(appointmentId);
         try {
+            this.undoStack.push(this.copy());
+            this.redoStack.clear();
             this.getCustomer(toRemove.getCustomerId()).removeAppointment(toRemove);
             for (int i : toRemove.getStaffIds()) {
                 this.getTechnician(i).removeAppointmentIds(x -> x == i);
             }
             this.appointments.removeIf(a -> a.getId() == appointmentId);
             logger.info(String.format("Appointment %d removed", appointmentId));
-            IdGenerator.setAppointmentIdUnused(appointmentId);
+            this.idGenerator.setAppointmentIdUnused(appointmentId);
         } catch (CustomerNotFoundException | TechnicianNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -617,6 +674,8 @@ public class Shop implements ReadOnlyShop {
     public void removeService(int serviceId) throws ServiceNotFoundException {
         Service toRemove = this.getService(serviceId);
         try {
+            this.undoStack.push(this.copy());
+            this.redoStack.clear();
             for (var entry : toRemove.getRequiredParts().entrySet()) {
                 String partName = entry.getKey();
                 int qty = entry.getValue();
@@ -632,7 +691,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.services.removeIf(s -> s.getId() == serviceId);
             logger.info(String.format("Service %d removed", serviceId));
-            IdGenerator.setServiceIdUnused(serviceId);
+            this.idGenerator.setServiceIdUnused(serviceId);
         } catch (VehicleNotFoundException | TechnicianNotFoundException ex) {
             logger.severe(ex.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -648,6 +707,8 @@ public class Shop implements ReadOnlyShop {
     public void removeTechnician(int techId) throws TechnicianNotFoundException {
         Technician toRemove = this.getTechnician(techId);
         try {
+            this.undoStack.push(this.copy());
+            this.redoStack.clear();
             for (int i : toRemove.getServiceIds()) {
                 this.getService(i).removeTechnician(toRemove);
             }
@@ -656,7 +717,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.technicians.removeIf(t -> t.getId() == techId);
             logger.info("Technician %d removed");
-            IdGenerator.setStaffIdUnused(techId);
+            this.idGenerator.setStaffIdUnused(techId);
         } catch (ServiceNotFoundException | AppointmentNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -684,6 +745,8 @@ public class Shop implements ReadOnlyShop {
         if (this.getPartQty(name) < quantity) {
             throw new InsufficientPartException(name, quantity);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         int newQty = this.getPartQty(name) - quantity;
         this.parts.put(name, newQty);
         logger.info(String.format("%s x %d removed", name, quantity));
@@ -703,6 +766,8 @@ public class Shop implements ReadOnlyShop {
         if (!this.parts.containsKey(name)) {
             throw new PartNotFoundException(name);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         this.parts.remove(name);
         logger.info(String.format("%s deleted", name));
     }
@@ -736,6 +801,8 @@ public class Shop implements ReadOnlyShop {
         if (qty < qtyToRemove) {
             throw new InsufficientPartException(partName, qtyToRemove);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         if (qty == qtyToRemove) {
             service.getRequiredParts().remove(partName);
         }
@@ -760,6 +827,8 @@ public class Shop implements ReadOnlyShop {
             throws TechnicianNotFoundException, ServiceNotFoundException {
         Service service = this.getService(serviceId);
         Technician technician = this.getTechnician(techId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         service.removeTechnician(technician);
         logger.info(String.format("Technician %d unassigned from service %d", techId, serviceId));
     }
@@ -776,6 +845,8 @@ public class Shop implements ReadOnlyShop {
             throws TechnicianNotFoundException, AppointmentNotFoundException {
         Appointment appointment = this.getAppointment(appointmentId);
         Technician technician = this.getTechnician(techId);
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         appointment.removeTechnician(techId);
         logger.info(String.format("Technician %d unassigned from appointment %d", techId, appointmentId));
     }
@@ -821,6 +892,8 @@ public class Shop implements ReadOnlyShop {
         if (this.phoneExists(newPhone) && !newPhone.equals(customer.getPhone())) {
             throw new DuplicatePhoneNumberException(newPhone);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         Customer editedCustomer = new Customer(customerId, newName, newPhone, newEmail, newAddress, newTags,
                 new HashSet<>(customer.getVehicleIds()), new HashSet<>(customer.getAppointmentIds()));
         int index = this.customers.indexOf(customer);
@@ -876,6 +949,8 @@ public class Shop implements ReadOnlyShop {
         if (newBrand.isBlank()) {
             throw new EmptyInputException("Brand cannot be blank");
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         Vehicle editedVehicle = new Vehicle(vehicleId,
                 newOwnerId, newPlateNumber, newColor, newBrand, newType, vehicle.getServiceIdsSet());
         if (newOwnerId != vehicle.getOwnerId()) {
@@ -931,6 +1006,8 @@ public class Shop implements ReadOnlyShop {
         if (newEstimatedFinishDate.isBefore(newEntryDate)) {
             throw new InvalidDateException(newEstimatedFinishDate, newEntryDate);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
 
         Service editedService = new Service(serviceId,
                 newVehicleId, newEntryDate, service.getRequiredParts(),
@@ -967,7 +1044,8 @@ public class Shop implements ReadOnlyShop {
         Appointment appointment = this.getAppointment(appointmentId);
         int newCustomerId = customerId.orElse(appointment.getCustomerId());
         LocalDateTime newTimeDate = timeDate.orElse(appointment.getTimeDate());
-
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         Appointment editedAppointment = new Appointment(appointmentId,
                 newCustomerId, newTimeDate, new HashSet<>(appointment.getStaffIds()));
 
@@ -1021,6 +1099,8 @@ public class Shop implements ReadOnlyShop {
         if (this.phoneExists(newPhone)) {
             throw new DuplicatePhoneNumberException(newPhone);
         }
+        this.undoStack.push(this.copy());
+        this.redoStack.clear();
         Technician editedTechnician = new Technician(technicianId, newName, newPhone, newEmail, newAddress, newTags,
                 new HashSet<>(technician.getServiceIds()), new HashSet<>(technician.getAppointmentIds()));
         int index = this.technicians.indexOf(technician);
@@ -1030,62 +1110,60 @@ public class Shop implements ReadOnlyShop {
 
     // =================================================================================================================
 
-    // Additional helper methods  ======================================================================================
+    // Undo/Redo ======================================================================================================
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Reverts the {@code shop} to its previous state.
+     * @throws NoPrevStateException if there is no previous state to revert to
      */
-    public void resetData(ReadOnlyShop newData) {
-        requireNonNull(newData);
-
-        this.customers.clear();
-        this.customers.addAll(newData.getCustomerList());
-
-        this.vehicles.clear();
-        this.vehicles.addAll(newData.getVehicleList());
-
-        this.parts.clear();
-        newData.getPartMap().forEach(entry -> this.parts.put(entry.getKey(), entry.getValue()));
-
-        this.services.clear();
-        this.services.addAll(newData.getServiceList());
-
-        this.technicians.clear();
-        this.technicians.addAll(newData.getTechnicianList());
-
-        this.appointments.clear();
-        this.appointments.addAll(newData.getAppointmentList());
-
-        logger.info("Shop data reset");
+    public void revert() throws NoPrevStateException {
+        if (this.undoStack.isEmpty()) {
+            throw new NoPrevStateException();
+        }
+        this.redoStack.push(this.copy());
+        this.copyFrom(this.undoStack.pop());
+        logger.info("Reverted to previous state");
     }
+
+    /**
+     * Reverts the {@code shop} to its next undone state.
+     * @throws NoNextStateException if there is no next state to revert to
+     */
+    public void redo() throws NoNextStateException {
+        if (this.redoStack.isEmpty()) {
+            throw new NoNextStateException();
+        }
+        this.undoStack.push(this.copy());
+        this.copyFrom(this.redoStack.pop());
+        logger.info("Redone to next state");
+    }
+
+    // =================================================================================================================
+
+    // Additional helper methods  ======================================================================================
+
 
     /**
      * Replaces the existing data of this {@code shop} with {@code newData}.
      * This should only be called when loading data from file
      */
-    public void initializeData(ObservableList<Customer> customers,
+    public void initializeData(IdGenerator idGenerator,
+                               ObservableList<Customer> customers,
                                ObservableList<Vehicle> vehicles,
                                ObservableMap<String, Integer> parts,
                                ObservableList<Service> services,
                                ObservableList<Technician> technicians,
                                ObservableList<Appointment> appointments) {
-        this.customers.clear();
-        this.customers.addAll(customers);
 
-        this.vehicles.clear();
-        this.vehicles.addAll(vehicles);
+        this.idGenerator.resetData(idGenerator);
+        this.customers.setAll(customers);
+        this.vehicles.setAll(vehicles);
+        this.services.setAll(services);
+        this.technicians.setAll(technicians);
+        this.appointments.setAll(appointments);
 
         this.parts.clear();
         this.parts.putAll(parts);
-
-        this.services.clear();
-        this.services.addAll(services);
-
-        this.technicians.clear();
-        this.technicians.addAll(technicians);
-
-        this.appointments.clear();
-        this.appointments.addAll(appointments);
 
         logger.info("Shop data overridden");
     }
@@ -1095,6 +1173,17 @@ public class Shop implements ReadOnlyShop {
      */
     private static boolean allEmpty(Optional<?>... optionals) {
         return Arrays.stream(optionals).allMatch(Optional::isEmpty);
+    }
+
+    @Override
+    public Shop copy() {
+        return new Shop(this);
+    }
+
+    private void copyFrom(Shop other) {
+        initializeData(other.idGenerator, other.customers, other.vehicles, other.parts, other.services,
+                other.technicians,
+                other.appointments);
     }
 
     // --------------------------------------------------

@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.DeepCopy;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
@@ -14,7 +15,7 @@ import seedu.address.model.tag.Tag;
 /**
  * The Customer class represents a Customer.
  */
-public class Customer extends Person {
+public class Customer extends Person implements DeepCopy<Customer> {
 
     private final int id;
     private final Set<Integer> vehicleIds = new HashSet<>();
