@@ -713,7 +713,6 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
-<div style="page-break-after: always;"></div>
 
 ## Upcoming Features
 
@@ -721,14 +720,17 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 _Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
+_Details coming soon ..._
 
+### Support for staff `[coming in v2.0]`
+_Details coming soon ..._
+
+### Automated year updates `[coming in v2.0]`
 _Details coming soon ..._
 
 <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
-
-<br>
 
 ---
 
