@@ -13,7 +13,7 @@ title: User Guide
 
 SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
 
-Each operation in SOCket can be simply done in 1 line without a need to move your mouse, allowing you to get your contact management tasks done faster than traditional GUI apps.
+With the use of the CLI (Command Line Interface), you can manage contacts in SOCket without needing to move your mouse, allowing you to get your contact management tasks done faster than traditional GUI (Graphical User Interface) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
