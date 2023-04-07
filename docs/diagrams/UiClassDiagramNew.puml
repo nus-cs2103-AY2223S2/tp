@@ -37,6 +37,7 @@ MainWindow *-down-> "1" TaskListPanel
 PersonListPanel -down-> "*" PersonCard
 TaskListPanel -down-> "*" TaskCard
 
+MainWindow -left-|> UiPart
 UiComponents --|> UiPart
 PersonListPanel --|> UiPart
 TaskListPanel --|> UiPart
@@ -48,5 +49,4 @@ TaskCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-MainWindow -[hidden]-|> UiPart
 @enduml
