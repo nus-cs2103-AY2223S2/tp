@@ -21,14 +21,14 @@ public class FindDecksCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindDecksCommand() {
         // no leading and trailing whitespaces
-        FindDecksCommand expectedFindCommand =
-                new FindDecksCommand(Arrays.asList("What's", "gravity"));
-        assertParseSuccess(parser, "What's gravity", expectedFindCommand);
+        FindDecksCommand expectedFindDecksCommand =
+                new FindDecksCommand(Arrays.asList("science", "programming"));
+        assertParseSuccess(parser, "science programming", expectedFindDecksCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n What's \n \t gravity  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n science \n \t programming  \t", expectedFindDecksCommand);
     }
 
 }
