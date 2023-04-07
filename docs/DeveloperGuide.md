@@ -275,7 +275,7 @@ The feature utilises the following classes:
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
-![DeleteCommandClassDiagram](images/delete/deleteCommandClass.png)
+![DeleteCommandClassDiagram](images/delete/deleteCommandClassDiagram.png)
 
 The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
 
@@ -322,6 +322,9 @@ The following is a description of the code execution flow
 **Possible further implementation**
 
 - encapsulate conditional checks in each delete command execution
+- capture the essence of DeleteMultipleModulesCommand in DeleteModuleCommand
+- capture the essence of DeleteMultipleLecturesCommand in DeleteLectureCommand
+- capture the essence of DeleteMultipleVideosCommand in DeleteVideoCommand
 
 ### Mark / UnMark video feature
 
