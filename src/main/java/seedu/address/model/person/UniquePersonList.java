@@ -150,13 +150,24 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person identified by NRIC as the given argument.
+     * Returns true if the list contains an equivalent doctor identified by NRIC as the given argument.
      * @param toCheck
      * @return true if contains, false otherwise
      */
     public boolean containsDrByNric(Nric toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(person -> person instanceof Doctor
+                && person.isSamePersonByNric(toCheck));
+    }
+
+    /**
+     * Returns true if the list contains an equivalent patient identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsPatientByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person instanceof Patient
                 && person.isSamePersonByNric(toCheck));
     }
 
