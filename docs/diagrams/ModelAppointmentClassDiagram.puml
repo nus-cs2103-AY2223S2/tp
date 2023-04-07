@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Appointment\n <<Rectangle>>{
+Class Appointment
+
+Class Index
+Class LocalDateTime
+Class GroupName
+Class Boolean
+}
+
+AppointmentManager -> "~* all" Appointment
+ModelManager -> "~* filtered" Appointment
+ModelManager -[hidden]down-> AppointmentManager
+
+Appointment *--> Index
+Appointment *-right-> "startTime" LocalDateTime
+Appointment *-right-> "endTime" LocalDateTime
+Appointment *--> GroupName
+Appointment *--> Boolean
+
+Index -[hidden]right-> GroupName
+GroupName -[hidden]right-> Boolean
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package VaxType\n <<Rectangle>>{
+Class VaxType
+
+Class GroupName
+Class Age
+Class Requirement
+}
+
+VaxTypeManager -> "~* all" VaxType
+ModelManager -> "~* filtered" VaxType
+ModelManager -[hidden]down-> VaxTypeManager
+
+VaxType *---> "name" GroupName
+VaxType *---> "~* groups" GroupName
+VaxType *---> "~* ingredients" GroupName
+VaxType *-right-> "minAge" Age
+VaxType *-right-> "maxAge" Age
+VaxType *--> "~* historyReqs" Requirement
+
+@enduml

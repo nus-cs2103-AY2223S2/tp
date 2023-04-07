@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Patient\n <<Rectangle>>{
+Class Patient
+
+Class Name
+Class Phone
+Class Dob
+Class BloodType
+Class GroupName
+}
+
+PatientManager -> "~* all" Patient
+ModelManager -> "~* filtered" Patient
+ModelManager -[hidden]down-> PatientManager
+
+Patient *--> Name
+Patient *--> Phone
+Patient *--> Dob
+Patient *--> BloodType
+Patient *-right-> "~* allergies" GroupName
+Patient *-right-> "~* vaccines" GroupName
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Dob
+Dob -[hidden]right-> BloodType
+@enduml
