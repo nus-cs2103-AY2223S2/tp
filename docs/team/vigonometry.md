@@ -72,6 +72,8 @@ Here are my contributions to team-based tasks
   - Led project management and bug triaging for v1.4
   - Reviewed pull requests from other team members
   - Provided links to relevant development resources through communication channels
+  - Co-led code-cleanup in v1.4 through PR reviews and discussions
+  - Improved test coverage by 7%
 - Meeting related:
   - Creation of meeting agenda
   - Scribing of meetings
