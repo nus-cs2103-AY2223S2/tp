@@ -2044,7 +2044,7 @@ Context: There is a contact named "Edward" in `EduMate`
 
 Command executed: `add n/Edward`
 
-Expected Output in the Command Response Box: `This person already exists in the address book`
+Expected Output in the Command Response Box: `This person already exists in the address book`.
 
 ### **View a person**
 
