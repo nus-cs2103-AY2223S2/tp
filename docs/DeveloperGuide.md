@@ -4,15 +4,18 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 {{ site.data.techtrack.about.summary }}
 
 ### Technologies
-The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user interface. 
+
+The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user
+interface.
 Gradle serves as the project management and build tool. JUnit is utilized for conducting software testing.
 
 ### Features
@@ -26,6 +29,7 @@ Gradle serves as the project management and build tool. JUnit is utilized for co
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 Third-party software used in this project:
+
 * [Gradle](https://gradle.org/)
 * [CheckStyle](https://checkstyle.sourceforge.io/)
 * [Codecov](https://codecov.io/)
@@ -125,7 +129,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -162,7 +167,8 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -188,7 +194,8 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -270,12 +277,12 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ### Salary and Deadline Command Feature
 
-The Salary Command feature is designed to enable the user to sort the roles based on the salaries in either ascending
+The `salary` command feature is designed to enable the user to sort the roles based on the salaries in either ascending
 or descending order.
 
 When the user launches the application for the first time, the RoleBook is initialized with the current role book from
-the storage and loads it. The user can then choose to use the salary command by executing either the `salary asc`
-command to sort the salaries in ascending order or `salary desc` command to sort the salaries in descending order.
+the storage and loads it. The user can then choose to use it by executing either the `salary asc` command to sort
+the salaries in ascending order or `salary desc` command to sort the salaries in descending order.
 
 The format accepted by the `salary` command is `salary ORDER` where `ORDER` have to be either `asc` or `desc`.
 
@@ -284,27 +291,27 @@ input. This then creates an instance of the `SalaryCommandParser` to parse the `
 If any of the inputs formats are invalid, a `ParseException` will be thrown.
 
 The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
-as `Model#displaySortedSalaryList()` to sort the roles based on salary of the given `ORDER`.
+as `Model#displaySortedSalaryList()` to sort the roles based on the salary of the given `ORDER`.
 
-The Deadline Command implementation is similar to Salary Command by replacing `deadline` with `salary` in the command
-to achieve the sorting of roles based on the given deadline.
+The `deadline` command implementation is similar to `salary` command by replacing `deadline` with `salary` in the
+command line to achieve the sorting of roles based on the deadline of the given `ORDER`.
 
 E.g.: Executing `deadline asc` will sort the roles from the earliest deadline to the latest deadline and vice versa for
 `deadline desc`.
 
 The following sequence diagram shows how the `salary` command works:
 
-<img src="images/SalaryCommandSequenceDiagram.png" width="800" />
+![Salary Command Sequence Diagram](images/SalaryCommandSequenceDiagram.png)
 
 The following sequence diagram shows how the `deadline` command works:
 
-<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
+![Deadline Command Sequence Diagram](images/DeadlineCommandSequenceDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How Salary Command executes:**
+**Aspect: How `salary` and `deadline` Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc.
+* **Alternative 1 (current choice):** Sort `salary` or `deadline` of the roles in asc/desc.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
@@ -314,53 +321,10 @@ The following sequence diagram shows how the `deadline` command works:
 
 #### Limitations:
 
-The sorting algorithm for salary and deadline will sort based on the order given. This will sort the current and old
+The sorting algorithm for `salary` and `deadline` will sort based on the order given. This will sort the current and old
 view of the roles.
 
 E.g.: filtering the roles based on name, tag and applying this command `salary asc/desc` or `deadline asc/desc`
-will sort both views.
-
-
-### Deadline Command Feature
-
-The Deadline Command feature is designed to enable the user to sort the roles based on the deadline in either ascending
-or descending order.
-
-When the user launches the application for the first time, the RoleBook is initialized with the current role book from
-the storage and loads it. The user can then choose to use the deadline command by executing either the `deadline asc`
-command to sort the deadlines in ascending order or `deadline desc` command to sort the deadlines in descending order.
-
-The format accepted by the `deadline` command is `deadline ORDER` where `ORDER` have to be either `asc` or `desc`.
-
-When `deadline ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `DeadlineCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
-
-The `DeadlineCommandParser` then creates a `DeadlineCommand` which will use operations in the `Model` interface
-as `Model#displaySortedDeadlineList()` to sort the roles based on deadline of the given `ORDER`.
-
-The following sequence diagram shows how the `deadline` command works:
-
-<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
-
-#### Design considerations:
-
-**Aspect: How Deadline Command executes:**
-
-* **Alternative 1 (current choice):** Sort the deadline of the roles in asc/desc.
-    * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
-
-* **Alternative 2:** One sort command with the given attribute.
-    * Pros: Easy CLI for the user to use.
-    * Cons: Can be harder to implement and debug if more attributes are being sorted.
-
-#### Limitations:
-
-The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
-the roles. 
-
-E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
 will sort both views.
 
 ### Company Command Feature
@@ -389,7 +353,7 @@ The following sequence diagram shows how the `company` command works:
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-  
+
 * **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
@@ -420,7 +384,6 @@ The following sequence diagram shows how the `tag` command works:
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the tag field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-
 
 ### Name Command Feature
 
@@ -478,14 +441,16 @@ The following sequence diagram shows how the `view` command works:
   appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node of `ResultDisplay`
-based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom display).
-To do so, we can change 
-[`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
-to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` method
-in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
-output as per normal. However, if the object `T` is a `Role`, we can render a custom display instead.
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children node
+  of `ResultDisplay`
+  based on the `CommandResult` given (in this case, the `view` command should make `ResultDisplay` render a custom
+  display).
+  To do so, we can change
+  [`CommandResult.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/logic/commands/CommandResult.java)
+  to be a generic class that stores an object `T`. Then, we can modify the `executeCommand` method
+  in [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+  to show different displays based on the object `T`. For instance, if the object `T` is a `String`, we render the
+  output as per normal. However, if the object `T` is a `Role`, we can render a custom display instead.
     * Pros: Provides an easy and extendable way to create custom views
     * Cons: Need to refactor some UI code and `CommandResult.java` class
 
@@ -766,38 +731,40 @@ feature flaws, therefore the team will not be addressing these flaws for now.
    We have thought of one approach to this fix:
 
 * Letting the website format be `[any char].[any char]`
-  * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
-  * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
+    * Pros: Can cover a wide variety of domain types like `nus.edu.sg`, `iras.gov.sg`
+    * Cons: Could let the user input invalid websites like `hello.world`, `dasdasda.dsadasda`
 
 ### Changing command parameter for salary
 
 1. Unnecessarily complicated (or hard-to-type) command formats can be considered a `type.FeatureFlaw` as it is expected
-that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special 
-characters such as `$/` in the format when it is possible to avoid them.
-Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
+   that the input formats will be optimized to get things done fast. Some examples include: using hard-to-type special
+   characters such as `$/` in the format when it is possible to avoid them.
+   Changing the prefix of our `salary` attribute from `$/` to `s/` would be more ideal for the user.
 
 ### Displaying very long description and numbers
 
 1. Refer to Issue #200. The numbers and description are appended with "..." at the end if they are longer than the
-screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we 
-would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
+   screen size. We believe that the `view` command is a way for users to view truncated texts for now. In the future, we
+   would either implement character limits to the attributes of a `role` or text wrapping in the `RoleCard` of the UI.
 2. This also affects the `view` command,
-as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
-is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal 
-for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox` object,
-and setting proper widths for each property.
+   as [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)
+   is not written to handle extremely long texts. Although the attributes of each role would be visible, it is not ideal
+   for the user. This can be fixed through proper encapsulation of the `Name` and `Company` properties in a `HBox`
+   object,
+   and setting proper widths for each property.
 
 ### Display error messages when storage data is incorrectly modified
 
-1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed. 
-Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage data 
-is incorrectly modified. This could be done through editing the `initModelManager` function in the 
-[`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
-file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the 
-[`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
-class and subsequently, the 
-[`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
-class to render the message on startup.
+1. Refer to Issue #216. Whenever the storage data is incorrectly modified, there is no error messages displayed.
+   Instead, all existing data is deleted and there is no roles listed. Error messages should be displayed when storage
+   data
+   is incorrectly modified. This could be done through editing the `initModelManager` function in the
+   [`MainApp.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/MainApp.java)
+   file. Then, we add a variable to `MainApp.java` to keep track of the message. This could then be passed to the
+   [`UiManager.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/UiManager.java)
+   class and subsequently, the
+   [`MainWindow.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/MainWindow.java)
+   class to render the message on startup.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -816,12 +783,15 @@ class to render the message on startup.
 ## Effort
 
 ### Morphing of AB3 to TechTrack
+
 Ideas:
+
 1. what attributes we added, why we need them
 2. what new functions we added
 3. refactoring we did
 
 ### Revamping of UI
+
 1. aesthetic and arrangement of UI
 2. New UI functionalities
 3. Help window
