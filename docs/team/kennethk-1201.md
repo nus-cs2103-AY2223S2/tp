@@ -4,9 +4,7 @@ title: Kenneth Kiang's Project Portfolio
 
 ### Project: SudoHR
 
-SudoHR is a desktop application meant to help small Singaporean companies consolidate
-data regarding their employees, departments and leaves. It is optimised for HR personnel
-who type quickly.
+{% include ppp-summary.md %}
 
 Given below are my contributions to the project.
 
