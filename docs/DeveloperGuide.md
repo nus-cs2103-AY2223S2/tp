@@ -286,8 +286,8 @@ method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 #### Implementation
 The displaying of the "OVERDUE" status is facilitated by the isOverdue method
 in the Project class. The isOverdue method returns a boolean after using the
-compareTo method in the Deadline class which checks the current date 
-against the deadline date of the project, i.e. check if a project's deadline 
+compareTo method in the Deadline class which checks the current date
+against the deadline date of the project, i.e. check if a project's deadline
 is past the current date.
 
 The Overdue status is highlighted in the UI when any project is past its deadline.

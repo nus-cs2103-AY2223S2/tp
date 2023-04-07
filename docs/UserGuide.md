@@ -42,7 +42,7 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 
    * `list-client` : Lists all clients.
 
-   * `list-project`: Lists all projects. 
+   * `list-project`: Lists all projects.
 
    * `add-client name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the ArB.
 
@@ -173,7 +173,7 @@ Short form: `ac <n/NAME> [e/EMAIL] [p/PHONE] [t/TAG]*`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client, along with any number of tags to be added.
 
-Only the name of the client is compulsory. 
+Only the name of the client is compulsory.
 
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
@@ -199,7 +199,7 @@ Fields that can be changed:
 * Phone number
 * Tags
 
-Note: 
+Note:
 * Using an empty `tag/` flag removes all tags of the client. This cannot be used with any non-empty `tag/` flags e.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one field to edit must be provided.
 
@@ -243,7 +243,7 @@ Short form: `fc [n/NAME] [t/TAG]*`
 
 Finds a client based on the details provided. Details that can be supplied are the names and tags.
 
-Note: 
+Note:
 * The matching with supplied names and tags are case-insensitive.
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid names and tags will be ignored
@@ -295,7 +295,7 @@ Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
-Only the name of the project is compulsory. 
+Only the name of the project is compulsory.
 
 Deadlines can either be in natural language, such as `tomorrow` or in recognisable formats like `3pm 2023-03-03`.
 
@@ -303,7 +303,7 @@ Prices must be in a recognisable price format, such as `3.08` or `5`.
 
 Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
-Note: 
+Note:
 * Each tag to be added needs a separate `tag/TAG` flag.
 * Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
 * Invalid client name keywords will be ignored.
@@ -402,7 +402,7 @@ Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CL
 
 Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, price, tags, the client the project is linked to, and the status of the project.
 
-Note: 
+Note:
 * The matching with supplied names and tags are case-insensitive.
 * Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid project names, tags and linked client names will be ignored
@@ -430,7 +430,7 @@ Sorts all projects that exist in the ArB. Projects can be sorted via the given o
 Note:
 * Option matching is case-insensitive
 
-Examples: 
+Examples:
 * `sort-project option/name`
 * `sort-project option/n`
 * `sort-project option/deadline`
@@ -442,12 +442,12 @@ Examples:
 
 This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
 
-ArB will display a list of clients that match the 
+ArB will display a list of clients that match the
 keywords you provided in your command.<br>
 For example, if `add-project name/oil painting client/alice` was entered, you might see something similar to the window below.
 
 ![LinkingExample](images/LinkingExample.png)
- 
+
 To choose a client in the displayed list to link to the project, you can enter an index.<br>
 Following from the previous example, if `1` was entered, the project `oil painting` will be linked to the client `Alice Zheng`, as shown in the image below.
 
@@ -512,5 +512,5 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 **Q**: I can't seem to find what I want using the `find commands`. What can I do?<br>
 **A**: Here are some tips for when you can’t find what you’re looking for:
 * If too many results are shown, you can provide more parameters to narrow down the search scope.
-* If what you’re looking for is not among the results shown, you can provide fewer parameters to broaden the search scope. 
+* If what you’re looking for is not among the results shown, you can provide fewer parameters to broaden the search scope.
 
