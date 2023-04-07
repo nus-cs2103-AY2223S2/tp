@@ -10,29 +10,29 @@ title: User Guide
 *  **[User input restrictions](#user-input-restrictions)**
 *  **[Features](#features)**
    *  **[Managing student contact](#managing-student-contact)**
-      *  **[Adding a student: `add`](#1-adding-a-student-add)**
-      *  **[Deleting a student: `delete`](#2-deleting-a-student-delete)**
-      *  **[Editing a student: `edit`](#3-editing-a-student-edit)**
-      *  **[Checking a student: `check`](#4-checking-a-student-check)**
-      *  **[Finding a student: `find`](#5-finding-a-student-find)**
-      *  **[Filtering students: `filter`](#6-filtering-students-filter)**
-      *  **[Listing all students: `list`](#7-listing-all-students-list)**
+      *  [Adding a student: `add`](#1-adding-a-student-add)
+      *  [Deleting a student: `delete`](#2-deleting-a-student-delete)
+      *  [Editing a student: `edit`](#3-editing-a-student-edit)
+      *  [Checking a student: `check`](#4-checking-a-student-check)
+      *  [Finding a student: `find`](#5-finding-a-student-find)
+      *  [Filtering students: `filter`](#6-filtering-students-filter)
+      *  [Listing all students: `list`](#7-listing-all-students-list)
    *  **[Managing task list of a student](#managing-task-list-of-a-student)**
-      *  **[Adding a task for a student: `addtask`](#1-adding-a-task-for-a-student-addtask)**
-      *  **[Deleting a task of a student: `deletetask`](#2-deleting-a-task-of-a-student-deletetask)**
-      *  **[Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`](#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)**
+      *  [Adding a task for a student: `addtask`](#1-adding-a-task-for-a-student-addtask)
+      *  [Deleting a task of a student: `deletetask`](#2-deleting-a-task-of-a-student-deletetask)
+      *  [Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`](#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)
    *  **[Managing score list of a student](#managing-score-list-of-a-student)**
-      *  **[Adding a score for a student: `addscore`](#1-adding-a-score-for-a-student-addscore)**
-      *  **[Deleting a score of a student: `deletescore`](#2-deleting-a-score-of-a-student-deletescore)**
-      *  **[Switching between score tabs: `switch`](#3-switching-between-score-tabs-switch)**
+      *  [Adding a score for a student: `addscore`](#1-adding-a-score-for-a-student-addscore)
+      *  [Deleting a score of a student: `deletescore`](#2-deleting-a-score-of-a-student-deletescore)
+      *  [Switching between score tabs: `switch`](#3-switching-between-score-tabs-switch)
    *  **[Managing the data of the students](#managing-the-data-of-the-students)**
-       *  **[Exporting the data of the students: `export`](#1-exporting-the-data-of-the-students-export)**
-       *  **[Importing the data of the students: `import`](#2-importing-the-data-of-the-students-import)**
-       *  **[Exporting the progress of a student: `exportp`](#3-exporting-the-progress-of-a-student-exportp)**
+       *  [Exporting the data of the students: `export`](#1-exporting-the-data-of-the-students-export)
+       *  [Importing the data of the students: `import`](#2-importing-the-data-of-the-students-import)
+       *  [Exporting the progress of a student: `exportp`](#3-exporting-the-progress-of-a-student-exportp)
    *  **[General commands](#general-commands)**
-       *  **[Viewing help: `help`](#1-viewing-help-help)**
-       *  **[Clearing all entries: `clear`](#2-clearing-all-entries-clear)**
-       *  **[Exiting the program: `exit`](#3-exiting-the-program-exit)**
+       *  [Viewing help: `help`](#1-viewing-help-help)
+       *  [Clearing all entries: `clear`](#2-clearing-all-entries-clear)
+       *  [Exiting the program: `exit`](#3-exiting-the-program-exit)
 *  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
