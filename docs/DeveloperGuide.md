@@ -5,13 +5,13 @@ title: Developer Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is a **contact management system** that enables NUS School of Computing (SoC) students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
+ConnectUS is a **contact management system** that enables <u>NUS School of Computing (SoC)</u> students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
 ConnectUS focuses on:
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), **easily view and edit contacts** with the **contact management system**.
 - **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
-This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the architecture of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
+This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the <u>architecture</u> of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
 You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
@@ -75,7 +75,7 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
 ## 1.1 Acknowledgements
 
-ConnectUS is a brownfield software project based on [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org), as part of the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s2.github.io/website/index.html) by SoC at the National University of Singapore (NUS).
+ConnectUS is a <u>brownfield</u> software project based on [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org), as part of the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s2.github.io/website/index.html) by SoC at the National University of Singapore (NUS).
 
 This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info. 
 
@@ -236,7 +236,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a <u>placeholder</u> for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 <div style="page-break-after: always"></div>
@@ -302,7 +302,7 @@ The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w1
 **Feature Details:**
 
 1. The user specifies a name for the `Person` to be added. The user can optionally specify the `Phone`, `Email`, `Address`, `Birthday`, `Social Media`, and tags such as `Module`, `CCA`, `Major`, and `Remark` fields.
-2. If the person name is not provided, or if invalid command arguments are provided, the user will be prompted to re-enter the command correctly via an error message. 
+2. If the person name is not provided, or if invalid command parameters are provided, the user will be prompted to re-enter the command correctly via an error message. 
 3. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 4. If step 3 completes without exceptions, the new `Person` will be successfully added and stored inside the contact list.
 
@@ -686,7 +686,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Add a contact**
 
-**MSS**
+**<u>Main Success Scenario (MSS)</u>**
 
 1. User requests to add a contact by giving name and some contact information.
 2. ConnectUS adds a new contact with given information.
@@ -822,6 +822,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 # 9. Glossary
 
+### A
+> **Architecture:**
+> The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
+
+### B
+> **Brownfield:**
+> Brownfield software development refers to the development and deployment of a new software system in the presence of existing or legacy software systems. Brownfield application development usually happens when developing or improving upon an existing application.
+
 ### C
 > **CCA:**
 > Co-curricular activities that students participate in.
@@ -831,21 +839,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **Command:**
 > Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
->
-> **ConnectUS.jar:**
-> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
 > 
 > **CS2103T:**
-> The module code for a Software Engineering module in the National Unviersity of Singapore.
+> The module code for a Software Engineering module in the National University of Singapore.
 
 ### F
 > **Format:**
 > In this Developer Guide, the format of a command is the correct input usage of a command.
 
 ### G
-> **GitHub:**
-> A web-based version control and collaboration platform for software developers.
->
 > **Graphical User Interface (GUI):**
 > A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
 
@@ -857,10 +859,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **JSON:**
 > Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
+> 
+> **JUnit 5:**
+> JUnit 5 is a unit testing framework for the Java programming language, and is important in the development of test-driven development.
 
 ### M
 > **Mainstream OS:**
 > Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
+> 
+> **MSS:**
+> Short for Main Success Scenario. It describes the most straightforward system-user interaction for a given use case, assuming that no errors occur.
 > 
 > **Major:**
 > Majors are the main programmes that students take at the National University of Singapore.
@@ -879,6 +887,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### S
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
+
+### U
+> **Use Case:**
+> A use case describes the interaction between the system and the user for a specific functionality of the system.
+> 
+> **User Story:**
+> User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new feature. It is typically of the format: "As a [user type], I can [function] so that [benefit]."
 
 [↑ Back to top](#table-of-contents)
 
