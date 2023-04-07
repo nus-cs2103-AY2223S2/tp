@@ -25,7 +25,10 @@ import seedu.address.model.tag.Tag;
  */
 public class EditModuleCommand extends EditCommand {
 
+    /** The message for when a {@code Module} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited module: %s";
+
+    /** The error message for when a duplicate {@code Module} is detected. */
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker.";
 
     private final ModuleCode moduleCode;

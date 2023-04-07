@@ -27,7 +27,10 @@ import seedu.address.model.video.Video;
  */
 public class EditLectureCommand extends EditCommand {
 
+    /** The message for when a {@code Lecture} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited lecture of module %s: %s";
+
+    /** The error message for when a duplicate {@code Lecture} is detected. */
     public static final String MESSAGE_DUPLICATE_LECTURE = "This lecture already exists in %s.";
 
     private final ModuleCode moduleCode;

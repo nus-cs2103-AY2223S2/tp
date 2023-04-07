@@ -28,7 +28,10 @@ import seedu.address.model.video.VideoTimestamp;
  */
 public class EditVideoCommand extends EditCommand {
 
+    /** The message for when a {@code Video} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited video of lecture %s of module %s: %s";
+
+    /** The error message for when a duplicate {@code Video} is detected. */
     public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s.";
 
     private final ModuleCode moduleCode;
