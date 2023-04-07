@@ -28,8 +28,8 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
   
 
 * **Contributions to the UG**:
-  * Added documentation for the features `Creating an event`, `Deleting an event`, `Editing and event`, `group remove`, `group list`, `group find` and `export`.
-  * Added details for `Command summary`, `About document` and `Quick Start`.
+  * Added documentation for the features `Creating an event`, `Deleting an event`and `Editing an event`.
+  * Added details for `Command summary`.
 
 
 * **Contributions to the DG**:
