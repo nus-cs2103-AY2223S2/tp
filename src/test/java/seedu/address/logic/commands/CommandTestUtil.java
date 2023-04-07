@@ -96,27 +96,42 @@ public class CommandTestUtil {
     public static final String INVALID_EDIT_LECTURE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_LECTURE_NAME;
     public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
-    public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2103 = new EditModuleDescriptorBuilder()
-            .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).withTags(VALID_TAG_CONTENT).build();
-    public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2040S = new EditModuleDescriptorBuilder()
-            .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040)
-            .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
-
-    public static final EditLectureDescriptor EDIT_LECTURE_DESC_L1 = new EditLectureDescriptorBuilder()
-            .withName(VALID_LECTURE_NAME_L1).withTags(VALID_TAG_CONTENT).build();
-    public static final EditLectureDescriptor EDIT_LECTURE_DESC_L2 = new EditLectureDescriptorBuilder()
-            .withName(VALID_LECTURE_NAME_L2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
-
-    public static final EditVideoDescriptor EDIT_VIDEO_DESC_V1 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V1).withWatched(false).withTimestamp(VALID_VIDEO_TIMESTAMP_1)
-            .withTags(VALID_TAG_CONTENT).build();
-    public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V2).withWatched(true).withTimestamp(VALID_VIDEO_TIMESTAMP_2)
-            .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String VALID_ARCHIVE_FILE_NAME = "TestFile.json";
+
+    public static EditModuleDescriptor getEditModuleDescriptorCs2103() {
+        return new EditModuleDescriptorBuilder()
+                .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).withTags(VALID_TAG_CONTENT).build();
+    }
+
+    public static EditModuleDescriptor getEditModuleDescriptorCs2040s() {
+        return new EditModuleDescriptorBuilder()
+                .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040)
+                .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
+    }
+
+    public static EditLectureDescriptor getEditLectureDescriptorL1() {
+        return new EditLectureDescriptorBuilder()
+                .withName(VALID_LECTURE_NAME_L1).withTags(VALID_TAG_CONTENT).build();
+    }
+
+    public static EditLectureDescriptor getEditLectureDescriptorL2() {
+        return new EditLectureDescriptorBuilder()
+                .withName(VALID_LECTURE_NAME_L2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
+    }
+
+    public static EditVideoDescriptor getEditVideoDescriptorV1() {
+        return new EditVideoDescriptorBuilder()
+                .withName(VALID_VIDEO_NAME_V1).withWatched(false).withTimestamp(VALID_VIDEO_TIMESTAMP_1)
+                .withTags(VALID_TAG_CONTENT).build();
+    }
+
+    public static EditVideoDescriptor getEditVideoDescriptorV2() {
+        return new EditVideoDescriptorBuilder()
+                .withName(VALID_VIDEO_NAME_V2).withWatched(true).withTimestamp(VALID_VIDEO_TIMESTAMP_2)
+                .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

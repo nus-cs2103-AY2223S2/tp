@@ -82,7 +82,7 @@ public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
     }
 
     @Override
-    public boolean isSameLecture(Lecture other) {
+    public boolean isSameLecture(ReadOnlyLecture other) {
         if (other == this) {
             return true;
         }
