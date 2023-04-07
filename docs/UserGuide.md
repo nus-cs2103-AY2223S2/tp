@@ -282,6 +282,7 @@ Format: `addtask INDEX t/TASK_NAME`
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* A task can have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
 * A task with the same name as a task already in the task list cannot be added to the task list.
 * The name of a task is case-insensitive. e.g. `do homework` is the same as `Do Homework`
 
@@ -348,6 +349,7 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 * Adds the given score to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* A score can have alphanumeric or numeric labels, however, special characters (e.g. `à`, `_`) are not allowed.
 * The given `VALUE_OF_SCORE` can be **any number from 0 to 100**.
 * The given `VALUE_OF_SCORE` can either be **an integer or a number with one decimal place**
 * Exams on different dates can have the same `Label`.
