@@ -60,6 +60,8 @@ public class JsonAdaptedAppointment {
 
         if (patientId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PATIENT ID"));
+        } else if (patientId < 1) {
+            throw new IllegalValueException("Invalid PATIENT ID");
         }
         AppointmentBuilder builder = AppointmentBuilder.of(Index.fromOneBased(patientId));
 
@@ -83,7 +85,11 @@ public class JsonAdaptedAppointment {
         }
         builder = builder.setStatus(isCompleted);
 
-        return builder.create(new AppointmentManager());
+        try {
+            return builder.create(new AppointmentManager());
+        } catch (IllegalArgumentException illArgEx) {
+            throw new IllegalValueException(illArgEx.getMessage());
+        }
     }
 
 
