@@ -26,7 +26,6 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 </p>
 
 [//]: # (@@author eugenetangkj - reused with modifications)
-
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
 
@@ -89,7 +88,10 @@ Keyboard keys are indicated using rounded buttons.
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
-After setting up and launching InternBuddy, you would see a GUI. Figures 1 illustrates the main parts
+[//]: # (@@author eugenetangkj - reused with modifications)
+[//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
+
+After setting up and launching InternBuddy, you would see a GUI. Figure 1 illustrates the main parts
 of InternBuddy's GUI and Table 1 explains the function for each part. We would be referencing
 the different parts of the GUI throughout this developer guide.
 
@@ -530,6 +532,13 @@ The following gives a more detailed explanation of the `view` command.
 [//]: # (@@author DerrickSaltFish)
 ### Copy an Internship to Clipboard - `copy`
 ### Implementation
+Figure 15 shows how the `copy` command works.
+
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+<p style="text-align: center;">Figure 15: Sequence diagram for the copy command</p>
+<br/>
+
 
 The following gives a more detailed explanation of the `copy` command.
 
@@ -544,18 +553,18 @@ The following gives a more detailed explanation of the `copy` command.
 6. If the `Index` is invalid, a `CommandException` will be thrown.
 7. Else if the `Index` is valid, the `Internship` which belongs to that `Index` will be
    retrieved by accessing the filtered `Internship` list.
-8. Following which, `CopyCommand#execute(Model model)` method is called which eventually calls the `Model#copyInternship(Internship target)` method, put the `toString()` representation of the `Internship` object onto the clipboard.
+8. Following which, `CopyCommand#execute(Model model)` method is called which eventually calls the `Model#copyInternship(Internship target)` method. This copies the `toString()` representation of the `Internship` object onto the clipboard.
 
-####Design Considerations
+#### Design Considerations
 
 - How to run the clipboard operation
 
 1. **Alternative 1: Run the clipboard code directly.**
-   * OK if the testing framework is already running on the event dispatch thread (such as JUnit Swing or FEST-Swing). But
-     not for the case for this project.
+   * Will work if the testing framework is already running on the event dispatch thread (such as JUnit Swing or FEST-Swing). However, this is
+     not the case for this project.
 
-2. **Alternative 2: (chosen): use the SwingUtilities.invokeLater() method to wrap the clipboard code in a Runnable object**
-   * Ensure that the clipboard operation is safe to run from a test or other non-GUI context.
+2. **Alternative 2: (chosen): Use the** `SwingUtilities.invokeLater()` **method to wrap the clipboard code in a Runnable object**
+   * Ensures that the clipboard operation is safe to run from a test or a non-GUI context.
 
 
 <div style="page-break-after: always;"></div>
@@ -1515,48 +1524,48 @@ have been finalised.
 #### Problem
 Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
-   and tag `javascript T/react`.
+   and tag `javascript T/react` (refer to Figure 19).
   Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
 
 ![CaseSensitiveAddExample](images/dg-case-sensitive-prefix-add-example.png)
 
-<p style="text-align: center;">Figure XX: Adding the tag 'javascript T/react'</p>
+<p style="text-align: center;">Figure 19: Adding the tag 'javascript T/react'</p>
 
 Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
 
 We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
 
-To illustrate this side-effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
+To illustrate this side-effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react` (refer to Figure 20). Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt` (refer to Figure 21). Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
 
 ![CaseSensitiveFindBeforeExample](images/dg-case-sensitive-find-before.png)
 
-<p style="text-align: center;">Figure XX: Find the tags "javascript" and "react" </p>
+<p style="text-align: center;">Figure 20: Find the tags "javascript" and "react" </p>
 
 ![CaseSensitiveFindAfterExample](images/dg-case-sensitive-find-after.png)
 
-<p style="text-align: center;">Figure XX: Result of the find command in figure XX </p>
+<p style="text-align: center;">Figure 21: Result of the find command in figure 20 </p>
 
 There could be another conflicting meaning of the command. In this case, instead of trying to find entries with either the tag `javascript` or `react`, the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
 #### Proposed Design Tweak
 Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
-message is displayed in the Result Display.
+message is displayed in the Result Display. Do refer to Figures 22 and 23 for an illustrated example.
 
 
 ![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
 
-<p style="text-align: center;">Figure XX: Adding a new entry with case-insenstive prefix</p>
+<p style="text-align: center;">Figure 22: Adding a new entry with case-insenstive prefix</p>
 
 ![CaseInsensitiveAddAfterExample](images/dg-case-insensitive-add-after.png)
 
-<p style="text-align: center;">Figure XX: Result of the add command in figure XX</p>
+<p style="text-align: center;">Figure 23: Result of the add command in figure XX</p>
 
 
-A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
+A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown in Figure 24. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
 
 ![CaseInsensitiveFixSnippet](images/dg-case-insensitive-prefix-fix.png)
 
-<p style="text-align: center;">Figure XX: The parser checks for both lowercase prefix and uppercase prefix</p>
+<p style="text-align: center;">Figure 24: The parser checks for both lowercase prefix and uppercase prefix</p>
 
 This would address the above problem. For example, `find t/javascript t/react` should have the same result as `find T/javascript T/react`. This would remove the confusion as substrings such as `T/` cannot be entered in any of the fields. 
 
@@ -1570,28 +1579,28 @@ However, the current implementation of the parsing of these indexes does not tak
 When trying to parse these integers, it recognises that they are either too large or too small and treats them as not an integer.
 As a result, InternBuddy is unable to differentiate between internship index inputs that aren't integers and are integer overflows. 
 
-Thus, an invalid command format error message is displayed when these integer overflows are inputted (Fig. XX), instead of an index out of range error message when the integer is too large or an invalid index error message when the integer is too small.
+Thus, an invalid command format error message is displayed when these integer overflows are inputted (refer to Figure 25), instead of an index out of range error message when the integer is too large or an invalid index error message when the integer is too small.
 
 <p align="center">
-  <img src="images/dg-int-overflow-problem.png" width="1000" />
+  <img src="images/dg-int-overflow-problem.png" width="800" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Invalid command format error message is returned even though internship index is an integer</p>
+   <p style="text-align: center;">Figure 25: Invalid command format error message is returned even though internship index is an integer</p>
 
 <br/>
 
 #### Proposed Design Tweak
 We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
 
-* When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (Fig. XX).
-   * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (Fig. XX).
-   * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (Fig. XX).
+* When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (refer to Figure 26).
+   * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (refer to Figure 27).
+   * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (refer to Figure 28).
 
 <p align="center">
   <img src="images/dg-int-overflow-solution.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Checking of input added when InternBuddy recognises that it isn't an integer.</p>
+   <p style="text-align: center;">Figure 26: Checking of input added when InternBuddy recognises that it isn't an integer.</p>
 
 <br/>
 
@@ -1599,7 +1608,7 @@ We plan to display the invalid index and out of range index error messages even 
   <img src="images/dg-negative-int-overflow-solved.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Invalid index error message displayed when there is negative integer overflow.</p>
+   <p style="text-align: center;">Figure 27: Invalid index error message displayed when there is negative integer overflow.</p>
 
 <br/>
 
@@ -1607,7 +1616,7 @@ We plan to display the invalid index and out of range index error messages even 
   <img src="images/dg-positive-int-overflow-solved.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Out of range index error message displayed when there is positive integer overflow.</p>
+   <p style="text-align: center;">Figure 28: Out of range index error message displayed when there is positive integer overflow.</p>
 
 <br/>
 
