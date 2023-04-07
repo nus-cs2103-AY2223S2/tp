@@ -393,7 +393,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Add a Lecture
 
@@ -444,7 +444,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Edit
 
@@ -471,7 +471,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation-injection) for more information).
+When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Edit a Lecture
 
@@ -528,7 +528,7 @@ Examples:
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
-When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation](#navigation-injection) for more information).
+When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Delete Module
 
