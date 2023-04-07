@@ -223,7 +223,7 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-![add-command-result.png](images%2Fadd-command-result.png)
+![add-command-result.png](images/add-command-result.png)
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
@@ -300,7 +300,7 @@ Deletes the event(s) in the scheduler.
 
 Example: `delete 1` or `delete 1 4 5`
 
-![delete-command-result.png](images%2Fdelete-command-result.png)
+![delete-command-result.png](images/delete-command-result.png)
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
