@@ -46,13 +46,15 @@ public class TypicalCards {
             .withTag("Untagged")
             .withDeck("Geography").build();
 
+    public static final Card FRACTION = new CardBuilder().withQuestion("What is a fraction")
+            .withAnswer("A part of a whole expressed as a ratio of two numbers")
+            .withTag("Untagged")
+            .withDeck("Math").build();
+
     // Manually added
     public static final Card SMOG = new CardBuilder().withQuestion("What is smog")
             .withAnswer("A mixture of smoke and fog, caused by pollutants in the atmosphere")
             .withDeck("Geography").build();
-    public static final Card FRACTION = new CardBuilder().withQuestion("What is a fraction")
-            .withAnswer("A part of a whole expressed as a ratio of two numbers")
-            .withDeck("Math").build();
 
     // Manually added - Card's details found in {@code CommandTestUtil}
     public static final Card GRAVITY = new CardBuilder().withQuestion(VALID_QUESTION_GRAVITY)
@@ -79,6 +81,7 @@ public class TypicalCards {
     }
 
     public static List<Card> getTypicalCards() {
-        return new ArrayList<>(Arrays.asList(LOOP, VARIABLE, ATOM, LIFE, PRESIDENT, INDEPENDENCE, EARTHQUAKE));
+        return new ArrayList<>(Arrays.asList(LOOP, VARIABLE, ATOM, LIFE, PRESIDENT,
+                INDEPENDENCE, EARTHQUAKE, FRACTION));
     }
 }

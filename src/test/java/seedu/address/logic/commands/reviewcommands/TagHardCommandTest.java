@@ -2,7 +2,7 @@ package seedu.address.logic.commands.reviewcommands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.reviewcommands.TagEasyCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.reviewcommands.TagHardCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH;
 
@@ -17,10 +17,10 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for TagEasyCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for TagHardCommand.
  * Fifth deck chosen (math) as one card, prevent random shuffling.
  */
-public class TagEasyCommandTest {
+public class TagHardCommandTest {
 
     private Model model;
 
@@ -37,21 +37,21 @@ public class TagEasyCommandTest {
         Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
         expectedModel.selectDeck(INDEX_FIFTH);
         expectedModel.reviewDeck(INDEX_FIFTH, List.of(new Tag.TagName[]{Tag.TagName.UNTAGGED}));
-        expectedModel.tagCurrentCardInReview(new Tag(Tag.TagName.EASY));
-        assertCommandSuccess(new TagEasyCommand(), model, expectedMessage, expectedModel);
+        expectedModel.tagCurrentCardInReview(new Tag(Tag.TagName.HARD));
+        assertCommandSuccess(new TagHardCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        TagEasyCommand tagEasyCommand = new TagEasyCommand();
+        TagHardCommand tagHardCommand = new TagHardCommand();
 
         // same object -> returns true
-        assertTrue(tagEasyCommand.equals(tagEasyCommand));
+        assertTrue(tagHardCommand.equals(tagHardCommand));
 
         // different types -> returns false
-        assertTrue(!tagEasyCommand.equals(1));
+        assertTrue(!tagHardCommand.equals(1));
 
         // null -> returns false
-        assertTrue(!tagEasyCommand.equals(null));
+        assertTrue(!tagHardCommand.equals(null));
     }
 }
