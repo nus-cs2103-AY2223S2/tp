@@ -15,6 +15,7 @@ Ultron is an application to help students track their internship applications as
   * Adapted parser to fit new model
   * Keydate sorting
   * UI improvements
+  * [PRs](https://github.com/AY2223S2-CS2103T-F12-4/tp/pulls?q=is%3Apr+author%3ALanreath+)
 
 * **Documentation**:
   * User Guide:
@@ -28,4 +29,4 @@ Ultron is an application to help students track their internship applications as
   * To be added soon
 
 * **Review/mentoring contributions**:
-  * Reviewed, approved and merged most implementation PRs
+  * Reviewed, approved and merged [most implementation PRs](https://github.com/AY2223S2-CS2103T-F12-4/tp/pulls?q=is%3Apr+reviewed-by%3Alanreath)
