@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
   * Price feature of project
-    * Accepts integer and floating point numbers of two decimals 
+    * Accepts integer and floating point numbers of two decimals
     * Relevant tests implemented
   * Mark and unmark feature of project
     * Determines if project is done or not done
