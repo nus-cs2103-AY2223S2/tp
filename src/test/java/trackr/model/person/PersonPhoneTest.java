@@ -1,5 +1,6 @@
 package trackr.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
@@ -50,4 +51,11 @@ public class PersonPhoneTest {
         assertFalse(personPhone.equals(differentPersonPhone)); //different phone
         assertFalse(personPhone.equals(1)); //different type
     }
+
+    @Test
+    public void hashCode_success() {
+        String phone = "123";
+        assertEquals(phone.hashCode(), new PersonPhone(phone).hashCode());
+    }
+
 }

@@ -42,6 +42,13 @@ public class PersonPersonNameContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_null_returnsFalse() {
+        PersonNameContainsKeywordsPredicate predicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertFalse(predicate.test(null));
+    }
+
+    @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         PersonNameContainsKeywordsPredicate predicate =
