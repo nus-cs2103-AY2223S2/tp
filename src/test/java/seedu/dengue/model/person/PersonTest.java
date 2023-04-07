@@ -63,7 +63,14 @@ public class PersonTest {
                 .build();
         assertTrue(ALICE.isSamePerson(duplicateAlice));
     }
-
+    @Test
+    public void getCopy() {
+        for (int i = 0; i < 5; i++) {
+            Person person = new PersonBuilder().buildRandom();
+            assertTrue(person.isSamePerson(person.getCopy()));
+            assertFalse(person == person.getCopy());
+        }
+    }
     @Test
     public void equals() {
         // same values -> returns true
@@ -102,4 +109,6 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+
 }
