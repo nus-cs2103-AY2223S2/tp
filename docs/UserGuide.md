@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Introducing **MediConnect** - the hospital management application designed to  **streamline patient management, 
-doctor coordination, and hospital billing.** As a centralised platform, **MediConnect** offers healthcare 
-professionals and administrative staff an efficient solution to manage administrative matters in local clinics. 
+Introducing **MediConnect** - the hospital management application designed to  **streamline patient management,
+doctor coordination, and hospital billing.** As a centralised platform, **MediConnect** offers healthcare
+professionals and administrative staff an efficient solution to manage administrative matters in local clinics.
 The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
@@ -167,7 +167,7 @@ Format: `appointment ic/NRIC d/DATE dric/NRIC`
 * Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z. 
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
 
 ![Appointment](images/Appointment.png)
 
@@ -284,7 +284,7 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary 
+## Command summary
 
 | Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

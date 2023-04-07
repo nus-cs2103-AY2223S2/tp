@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
@@ -25,10 +23,10 @@ class UnprescribeCommandTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> new UnprescribeCommand(new Nric(VALID_NRIC_AMY), null));
-        assertThrows(NullPointerException.class,
-                () -> new UnprescribeCommand(null, new Medication(VALID_MEDICATION_AMY)));
+        assertThrows(NullPointerException.class, () -> new UnprescribeCommand(
+                new Nric(VALID_NRIC_AMY), null));
+        assertThrows(NullPointerException.class, () -> new UnprescribeCommand(
+                null, new Medication(VALID_MEDICATION_AMY)));
     }
 
     @Test
