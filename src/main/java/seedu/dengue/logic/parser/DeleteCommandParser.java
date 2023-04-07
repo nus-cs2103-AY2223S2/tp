@@ -36,7 +36,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE,
                         PREFIX_STARTDATE, PREFIX_ENDDATE);
 
-        if (hasIndexAndDate(argMultimap)) {
+        if (hasIndexAndDate(argMultimap) | hasMixedDates(argMultimap)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
@@ -60,22 +60,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     private DeleteCommand parseDate(ArgumentMultimap argMultimap) throws ParseException {
         try {
-            if (hasMixedDates(argMultimap)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeleteCommand.MESSAGE_USAGE));
-            }
-            if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-                String date = argMultimap.getValue(PREFIX_DATE).get();
-                return new DeleteCommand(new Date(date));
+            Optional<Date> date = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
+            Optional<Date> startDate = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
+            Optional<Date> endDate = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
+
+            if (date.isPresent()) {
+                return new DeleteCommand(date.get());
             } else {
-                StartDate startDate = new StartDate(ParserUtil.parseOptionalDate(argMultimap
-                        .getValue(PREFIX_STARTDATE)));
-                EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argMultimap
-                        .getValue(PREFIX_ENDDATE)));
-                if (!(startDate.isValidStartDate(endDate) && endDate.isValidEndDate(startDate))) {
+                StartDate start = new StartDate(startDate);
+                EndDate end = new EndDate(endDate);
+                if (!(start.isValidStartDate(end) && end.isValidEndDate(start))) {
                     throw new ParseException(MESSAGE_INVALID_RANGE);
                 }
-                Range<Date> range = ContinuousData.generateRange(startDate, endDate);
+                Range<Date> range = ContinuousData.generateRange(start, end);
                 return new DeleteCommand(range);
             }
         } catch (ParseException pe) {
@@ -84,7 +81,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private static boolean hasIndexAndDate(ArgumentMultimap argMultimap) {
+    private static boolean hasIndexAndDate(ArgumentMultimap argMultimap) throws ParseException {
 
         boolean indexBeforeDate = !argMultimap.getPreamble().isEmpty() & !noDateProvided(argMultimap);
 
@@ -130,10 +127,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * Returns true if none of the prefixes for STARTDATE, ENDDATE or DATE has a non-empty value
      * in the given {@code ArgumentMultimap}.
      */
-    private static boolean noDateProvided(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_DATE).isEmpty()
-                & argumentMultimap.getValue(PREFIX_STARTDATE).isEmpty()
-                & argumentMultimap.getValue(PREFIX_ENDDATE).isEmpty();
+    private static boolean noDateProvided(ArgumentMultimap argumentMultimap) throws ParseException {
+        return ParserUtil.parseOptionalDate(argumentMultimap.getValue(PREFIX_DATE)).isEmpty()
+            & ParserUtil.parseOptionalDate(argumentMultimap.getValue(PREFIX_STARTDATE)).isEmpty()
+            & ParserUtil.parseOptionalDate(argumentMultimap.getValue(PREFIX_ENDDATE)).isEmpty();
     }
 
 }

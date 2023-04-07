@@ -50,7 +50,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_STARTAGE, PREFIX_ENDAGE);
         if (!isValidFormat(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddCommand.MESSAGE_USAGE));
+                    FindCommand.MESSAGE_USAGE));
         }
 
         Optional<Name> name = ParserUtil.parseOptionalName(argMultimap.getValue(PREFIX_NAME));
@@ -115,10 +115,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         return argumentMultimap.getValue(PREFIX_AGE).isPresent()
                 & (argumentMultimap.getValue(PREFIX_STARTAGE).isPresent()
                 | argumentMultimap.getValue(PREFIX_ENDAGE).isPresent());
-    }
-
-    private static boolean isValuePresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getValue(prefix).isPresent();
     }
 
     /**

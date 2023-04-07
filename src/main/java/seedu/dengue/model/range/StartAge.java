@@ -53,4 +53,11 @@ public class StartAge implements Start<Age> {
     public Age get() {
         return age.get();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StartAge // instanceof handles nulls
+                && age.equals(((StartAge) other).age));
+    }
 }

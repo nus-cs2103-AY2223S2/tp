@@ -42,4 +42,12 @@ public class Range<T> {
         return end;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Range // instanceof handles nulls
+                && start.equals(((Range<T>) other).start)
+                && end.equals(((Range<T>) other).end));
+    }
+
 }

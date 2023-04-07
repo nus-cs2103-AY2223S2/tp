@@ -2,11 +2,19 @@ package seedu.dengue.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_ALICE;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_DANIEL;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_FIONA;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_GEORGE;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dengue.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.dengue.testutil.TypicalPersons.ALICE;
+import static seedu.dengue.testutil.TypicalPersons.DANIEL;
+import static seedu.dengue.testutil.TypicalPersons.FIONA;
+import static seedu.dengue.testutil.TypicalPersons.GEORGE;
 import static seedu.dengue.testutil.TypicalPersons.getTypicalDengueHotspotTracker;
 
 import java.util.HashSet;
@@ -195,6 +203,261 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(List.of(INDEX_FIRST_PERSON, outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    // delete-by-date tests
+
+    @Test
+    public void execute_validDateUnfilteredList_success() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Date dateToDelete = personToDelete.getDate();
+        DeleteCommand deleteCommand = new DeleteCommand(dateToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 1, dateToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validDateFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Date dateToDelete = personToDelete.getDate();
+        DeleteCommand deleteCommand = new DeleteCommand(dateToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 1, dateToDelete);
+
+        Model expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validDateNoMatchUnfilteredList_success() {
+        Date dateToDelete = new Date("9999-12-31");
+        DeleteCommand deleteCommand = new DeleteCommand(dateToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 0, dateToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validDateNoMatchFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Date dateToDelete = new Date("9999-12-31");
+        DeleteCommand deleteCommand = new DeleteCommand(dateToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_DATE_SUCCESS, 0, dateToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    // delete-by-range tests
+
+    @Test
+    public void execute_completeRangeUnfilteredList_success() {
+
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_DANIEL))),
+                new EndDate(Optional.of(new Date(VALID_DATE_GEORGE))));
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 2,
+                dateRange.getStart(), dateRange.getEnd());
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(DANIEL);
+        expectedModel.deletePerson(GEORGE);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_completeRangeFilteredList_success() {
+
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> emptyName = Optional.empty();
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_DANIEL))),
+                new EndDate(Optional.of(new Date(VALID_DATE_GEORGE))));
+        Range<Age> emptyAgeRange = ContinuousData.generateRange(new StartAge(emptyAge), new EndAge(emptyAge));
+        FindPredicate predicate = new FindPredicate(
+                emptyName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, emptyAgeRange);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 2,
+                dateRange.getStart(), dateRange.getEnd());
+
+        expectedModel.deletePerson(DANIEL);
+        expectedModel.deletePerson(GEORGE);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_partialRangeStartGivenUnfilteredList_success() {
+
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
+                new EndDate(Optional.empty()));
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(ALICE);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_partialRangeStartGivenFilteredList_success() {
+
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> emptyName = Optional.empty();
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
+                new EndDate(Optional.empty()));
+        Range<Age> emptyAgeRange = ContinuousData.generateRange(new StartAge(emptyAge), new EndAge(emptyAge));
+        FindPredicate predicate = new FindPredicate(
+                emptyName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, emptyAgeRange);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        expectedModel.deletePerson(ALICE);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_partialRangeEndGivenUnfilteredList_success() {
+
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.empty()),
+                new EndDate(Optional.of(new Date(VALID_DATE_FIONA))));
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(FIONA);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_partialRangeEndGivenFilteredList_success() {
+
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> emptyName = Optional.empty();
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.empty()),
+                new EndDate(Optional.of(new Date(VALID_DATE_FIONA))));
+        Range<Age> emptyAgeRange = ContinuousData.generateRange(new StartAge(emptyAge), new EndAge(emptyAge));
+        FindPredicate predicate = new FindPredicate(
+                emptyName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, emptyAgeRange);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        expectedModel.deletePerson(FIONA);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_completeRangeSameDatesUnfilteredList_success() {
+
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
+                new EndDate(Optional.of(new Date(VALID_DATE_ALICE))));
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        expectedModel.deletePerson(ALICE);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_partialRangeSameDatesFilteredList_success() {
+
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> emptyName = Optional.empty();
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        Range<Date> dateRange = ContinuousData.generateRange(
+                new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
+                new EndDate(Optional.of(new Date(VALID_DATE_ALICE))));
+        Range<Age> emptyAgeRange = ContinuousData.generateRange(new StartAge(emptyAge), new EndAge(emptyAge));
+        FindPredicate predicate = new FindPredicate(
+                emptyName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, emptyAgeRange);
+
+        ModelManager expectedModel = new ModelManager(model.getDengueHotspotTracker(), new UserPrefs());
+        model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+
+        DeleteCommand deleteCommand = new DeleteCommand(dateRange);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RANGE_SUCCESS, 1,
+                dateRange.getStart(), dateRange.getEnd());
+
+        expectedModel.deletePerson(ALICE);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     // miscellaneous tests
