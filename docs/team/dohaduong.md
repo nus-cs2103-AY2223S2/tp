@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to view timetable of specific week
   * What it does: Displays timetable of the week specified by users using command `timetable` or `timetable_date`. Alternatively, users can simply click on Timetable button.
   * Justification: This feature is implemented to help users to structure their plans in the day - they can view what needs to be done more easily. It is linked with the delivery job list in the app.
-  * Highlight: This feature was challenging at first to implement as I have to decide on the design, GUI and how to display the timetable myself - JavaFX did not have any integrated timetable format. Moreover, as this enhancement is directly linked with job list, it could affect existing commands and commands to be added in the future. It requires me to change the existing commands and sort the job list, thus the implementation too was chalenging.
+  * Highlight: This feature was challenging at first to implement as I have to decide on the design, GUI and how to display the timetable myself - JavaFX did not have any integrated timetable format. Moreover, as this enhancement is directly linked with job list, it could affect existing commands and commands to be added in the future. It requires me to change the existing commands and sort the job list, thus the implementation too was challenging.
   * Credits: N.A.
 
 * **New Feature**: Added the ability to view list of completed jobs and jobs with invalid date and/or slot
@@ -51,16 +51,17 @@ Given below are my contributions to the project.
         * Added documentation for Job Detail (UI) in Main Window (PR #254)
         * Update UG summary timetable (PR #198)
         * Added examples for commands in UG (PR #198)
+        * Re-format, touch up, fix minor bugs and finalize UG (PR #260)
       
     * Developer Guide:
         * Added implementation details for Timetable functions (PR #128)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): #180, #156 
-    * Identified bugs in commands
+    * Identified bugs in commands and brought up discussion among the group in weekly meeting
     * Contributed to forum discussions (examples: #24)
 
 * **Tools**:
-    * to be added soon
+   * N.A.
 
 
