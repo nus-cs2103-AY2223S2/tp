@@ -977,6 +977,7 @@ _{Explain here how the data archiving feature will be implemented}_
    [s+/SKILL] [s-/SKILL] [m+/MOD] [m-/MOD]...". We plan to standardize these inconsistencies by making all usage messages to follow this order: _Name_, _Email_, _Year_, _Course_, _GitHub_, _LinkedIn_, _Modules_, _Skills_. This should ensure consistency between commands and with the User Guide.
 3. There can be cases where a person's name contains a `.` or a `/`, especially some Western or Malay names. However, as these are extreme features, we left them out as they do not hinder the original usage of the function. Hence, it is a nice-to-have feature that we will fix in the future by altering the regex for `Name`. Users can, in the meantime, work around this by entering an alternative name instead.
 4. When using the copy buttons to copy `GitHub` username or `LinkedIn` profile URL, it would be good to implement a message that appears in the result display, informing the user that an empty `String` was copied or that nothing was copied. This will be added in the future as it is not a bug and does not affect usage of the copy button.
+5. `find c/-1` will generate an empty list with no contacts. However, it will good to include a validity check as `-1` is an invalid input for `course` and should be showing an error message instead. We will implement this validity check in the future as it does not return a wrong list of filtered people.
 
 [Scroll back to top](#table-of-contents)
 
