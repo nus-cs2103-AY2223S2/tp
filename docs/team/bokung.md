@@ -13,7 +13,7 @@ Given below are my contributions to the project.
     * Having additional information about a client's physical region can be very helpful if our user wishes to physically meet with the client and want to minimise time spent travelling.
 * **New UI**: Added an additional meeting panel to the UI and changed the color theme
     * Implemented the backend for the new meeting panel to communicate with the addressbook data
-    * Improved overall color theme
+    * Changed FAid from a dark theme to a light blue theme
 
 * **Code Constributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=W12-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=bokung&tabRepo=AY2223S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
