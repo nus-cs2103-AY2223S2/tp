@@ -183,11 +183,6 @@ class GroupCreateCommandTest {
         }
 
         @Override
-        public ObservableList<String> getFilteredTimeSlotList() {
-            return null;
-        }
-
-        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }

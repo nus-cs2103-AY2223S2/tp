@@ -19,25 +19,25 @@
         <Insets left="15.0" right="15.0" />
       </padding>
       <children>
-        <VBox alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT" minWidth="182.0" HBox.hgrow="ALWAYS">
           <children>
-            <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="17.0" prefWidth="269.0">
-              <Label fx:id="id" styleClass="cell_big_label" />
-              <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <HBox alignment="CENTER_LEFT" minWidth="182.0" prefWidth="269.0">
+              <Label fx:id="id" styleClass="cell_big_label" wrapText="true"/>
+              <Label fx:id="name" styleClass="cell_big_label" text="\$first"  wrapText="true"/>
             </HBox>
-            <FlowPane fx:id="tags" prefHeight="0.0" prefWidth="229.0" prefWrapLength="300.0" />
+            <FlowPane fx:id="tags" prefHeight="0.0" prefWidth="229.0" prefWrapLength="300.0" minWidth="182.0"/>
             <FlowPane fx:id="groups" prefWrapLength="300.0" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" maxWidth="182.0"/>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" maxWidth="182.0"/>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" maxWidth="182.0"/>
           </children>
         </VBox>
-        <VBox maxWidth="1.7976931348623157E308"  prefWidth="182.0" HBox.hgrow="ALWAYS">
+        <VBox maxWidth="1.7976931348623157E308"  prefWidth="182.0" minWidth="182.0" HBox.hgrow="ALWAYS">
           <children>
             <Label fx:id="isolatedEventList" text="\$isolatedEventList" textOverrun="CLIP" wrapText="true"/>
           </children>
         </VBox>
-        <VBox maxWidth="1.7976931348623157E308" prefWidth="182.0" HBox.hgrow="ALWAYS">
+        <VBox maxWidth="1.7976931348623157E308" prefWidth="182.0" minWidth="182.0" HBox.hgrow="ALWAYS">
           <children>
             <Label fx:id="recurringEventList" text="\$recurringEventList" textOverrun="CLIP" wrapText="true"/>
           </children>

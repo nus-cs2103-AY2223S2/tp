@@ -11,7 +11,7 @@
 <HBox id="cardPane" fx:id="cardPane" prefWidth="728.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="0.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10.0" />
     </columnConstraints>
     <HBox prefWidth="1416.0">
         <padding>
@@ -20,7 +20,7 @@
         <children>
             <VBox alignment="CENTER_LEFT">
                 <children>
-                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="17.0" prefWidth="269.0">
+                    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="17.0" prefWidth="269.0" >
                         <Label fx:id="timeSlotText" styleClass="cell_big_label" />
                     </HBox>
                 </children>

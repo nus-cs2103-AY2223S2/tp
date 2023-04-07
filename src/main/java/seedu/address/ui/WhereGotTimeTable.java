@@ -12,9 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
-import seedu.address.model.timeslot.ScheduleDay;
-import seedu.address.model.timeslot.ScheduleWeek;
-import seedu.address.model.timeslot.Status;
+import seedu.address.model.time.ScheduleDay;
+import seedu.address.model.time.ScheduleWeek;
+import seedu.address.model.time.Status;
 
 /**
  * An UI component that displays information of the FreeTimeSlot
@@ -116,6 +116,15 @@ public class WhereGotTimeTable extends UiPart<Region> {
 
         day.setCellValueFactory(new PropertyValueFactory<>("day"));
 
+        day.setReorderable(false);
+        day.setResizable(false);
+        day.setSortable(false);
+        for (int i = 0; i < allColumns.size(); i++) {
+            allColumns.get(i).setReorderable(false);
+            allColumns.get(i).setResizable(false);
+            allColumns.get(i).setSortable(false);
+        }
+
         updateTable(scheduleWeek.getInternalList());
 
     }
@@ -137,12 +146,12 @@ public class WhereGotTimeTable extends UiPart<Region> {
                             setStyle("-fx-text-fill:black;");
                         } else if (item.equals(Status.FREE)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: #71A89D;" + "-fx-text-fill:black;");
+                            setStyle("-fx-background-color: #C1E1C1;" + "-fx-text-fill:black;");
                         } else if (item.equals(Status.BUSY)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: transparent;" + "-fx-text-fill:black;");
+                            setStyle("-fx-background-color: #D88C9A;" + "-fx-text-fill:black;");
                         } else {
-                            setStyle("-fx-background-color: grey;" + "-fx-text-fill:black;");
+                            setStyle("-fx-background-color: transparent;");
                         }
                     }
                 };
@@ -165,6 +174,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
         }
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
+        table.getColumns().forEach(column -> column.setMinWidth(50));
 
         table.setItems(newData);
     }

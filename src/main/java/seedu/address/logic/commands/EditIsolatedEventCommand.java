@@ -79,14 +79,14 @@ public class EditIsolatedEventCommand extends Command {
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
         editedIsolatedEvent.checkDateTime();
-        personToEdit.getIsolatedEventList().isOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
+        personToEdit.getIsolatedEventList().checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
         IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
 
 
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " from " + originalEvent + " for " + personToEdit.getName());
+                + " for " + personToEdit.getName()
+                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 
     /**

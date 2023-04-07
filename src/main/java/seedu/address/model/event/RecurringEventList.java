@@ -8,7 +8,8 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.timeslot.TimeMask;
+import seedu.address.model.person.Person;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -136,6 +137,42 @@ public class RecurringEventList {
     }
 
     /**
+     * Checks if the newly edited recurring event clashes with any preexisting recurring events
+     * @param person that the recurring event below
+     * @param newlyEditedRecurringEvent the new event to replace the original event
+     * @param original recurring event to be replaced
+     * @throws EventConflictException
+     */
+    public static void checkForClashesInRecurringEvent(Person person, RecurringEvent newlyEditedRecurringEvent,
+                                                       RecurringEvent original) throws EventConflictException {
+        RecurringEventList recurringEventList = person.getRecurringEventList();
+
+        for (int i = 0; i < recurringEventList.getSize(); i++) {
+
+            RecurringEvent curRecurringEvent = recurringEventList.getRecurringEvent(i);
+
+            if (curRecurringEvent.equals(original)) {
+                continue;
+            }
+
+            if (curRecurringEvent.getDayOfWeek().equals(newlyEditedRecurringEvent.getDayOfWeek())) {
+                boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent
+                        .getStartTime())
+                        && !curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getStartTime());
+
+                boolean isEventBack = curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getEndTime())
+                        && !curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getEndTime());
+
+                if (!isEventInFront && !isEventBack) {
+                    throw new EventConflictException(curRecurringEvent.toString());
+                }
+            }
+
+        }
+
+    }
+
+    /**
      * Add all the recurring events into the person's recurring event list and update the recurring event list's time
      * mask.
      * @param recurringEvents
@@ -198,7 +235,7 @@ public class RecurringEventList {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder("");
+        StringBuilder output = new StringBuilder("Recurring Events\n");
         int count = 1;
         for (RecurringEvent re : recurringEvents) {
             output.append(count).append(". ").append(re.toString()).append("\n");
