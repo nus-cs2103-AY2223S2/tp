@@ -477,6 +477,14 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 
 Currently, executing certain commands may return inconsistent feedback. For example, if there is an index overflow, the feedback returned is "Invalid command format!", when it should be "The person index provided is invalid", as is when an invalid index is provided to command parsers.
 
+We plan to address this constraint in the next iteration of this product (V1.5).
+
+## 5.8 Removing of Information Fields
+
+Currently, users are unable to edit an optional field back to `null`/remove an optional information field from a contact.
+
+We plan to address this constraint in the next iteration of this product (V1.5).
+
 [↑ Back to top of section](#5-planned-enhancements)
 
 ---
