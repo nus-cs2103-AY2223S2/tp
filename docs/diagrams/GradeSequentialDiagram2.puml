@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":StudentGradeCommand" as StudentGradeCommand LOGIC_COLOR
+participant "editedStudent:Student" as editedStudent LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+create StudentGradeCommand
+activate StudentGradeCommand
+[-> StudentGradeCommand
+
+
+create editedStudent
+StudentGradeCommand -> editedStudent
+activate editedStudent
+editedStudent --> StudentGradeCommand : editedStudent
+deactivate editedStudent
+
+StudentGradeCommand --> Model : setStudent
+activate Model
+Model --> StudentGradeCommand
+deactivate Model
+
+StudentGradeCommand --> Model: updateFilteredStudentList
+activate Model
+Model --> StudentGradeCommand
+deactivate Model
+
+<-- StudentGradeCommand  : commandResult
+deactivate StudentGradeCommand
+
+@enduml
