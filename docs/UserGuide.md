@@ -231,11 +231,8 @@ For example, you can navigate to the **lecture context** - lecture Week 1 of the
   ![RootContext](images/RootContext.png)
 
   1. Navigate to the module context from the root context.
-
   - `nav CS2040S`
-
   2. Navigate to the lecture context from the module context.
-
   - `nav Week 1`
 
 - Navigating **directly** from any **context**
@@ -249,20 +246,15 @@ After navigating to a lecture or module context, the navigation system will **in
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-1. ![LectureContext](images/LectureContext.png)
-   Add "Video 2" to the lecture Week 1 of module CS2040S.
-
-- `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-
-2. ![LectureContext](images/LectureContext.png)
-   List the videos of lecture Week 1 of module CS2040S.
-
-- `list` -> `list /mod CS2040S /lec Week 1`
-
-3. ![LectureContext](images/LectureContext.png)
-   Add "Video 1" to lecture Week 1 of module CS2040S.
-
-- `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
+  1. ![LectureContext](images/LectureContext.png)
+    Add "Video 2" to the lecture Week 1 of module CS2040S.
+    - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+  2. ![LectureContext](images/LectureContext.png)
+    List the videos of lecture Week 1 of module CS2040S.
+    - `list` -> `list /mod CS2040S /lec Week 1`
+  3. ![LectureContext](images/LectureContext.png)
+    Add "Video 1" to lecture Week 1 of module CS2040S.
+    - `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
