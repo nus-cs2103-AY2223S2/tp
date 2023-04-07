@@ -599,20 +599,21 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 
 ### 7. Deleting a person : `delete`
 
-Want to remove a contact? Delete them at the specified INDEX with the delete command! 
+Want to remove a contact? Delete it at the specified INDEX with the delete command! 
 
 `delete <INDEX>`<br>
 
-**Example:** `delete 1` will delete the current person at index 1.<br>
+**Example:** `delete 1` will delete the current person at index 1<br>
 
 <div markdown="span" class="alert alert-info">
 :information_source: <b>Note:</b> INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.
 </div>
 
-
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 8. Clearing all entries : `clear`
+
+Want a fresh start? Use the clear command!
 
 `clear`
 
