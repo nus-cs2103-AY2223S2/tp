@@ -1,9 +1,13 @@
 package trackr.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.order.DeleteOrderCommand;
 import trackr.logic.parser.order.DeleteOrderCommandParser;
 
 /**
@@ -14,15 +18,17 @@ import trackr.logic.parser.order.DeleteOrderCommandParser;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DeleteOrderCommandParserTest {
+
     private DeleteOrderCommandParser parser = new DeleteOrderCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteTaskCommand() {
-        assertTrue(parser.equals(parser));
+    public void parse_validArgs_returnsDeleteOrderCommand() {
+        assertParseSuccess(parser, "1", new DeleteOrderCommand(INDEX_FIRST_OBJECT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertTrue(parser.equals(parser));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE));
     }
 }
