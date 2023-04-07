@@ -42,7 +42,7 @@ title: User Guide
 3. Copy the file to the folder you want to use as the home folder for your TrAcker.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -51,19 +51,19 @@ title: User Guide
 
 ## About TrAcker
 
-TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
+TrAcker is a **desktop app for CS2040 Teaching Assistants (TAs) to centralise the CS2040 tasks involving them.
 It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI).
 If you can type fast, TrAcker will aid the task management for CS2040 TAs. Commands are similar to vim / terminal commands rather than intuitive commands since
-CS2040 TAs are familiar with it
+CS2040 TAs are familiar with it.
 
 Let's clear a little confusion that might arise:
 - Why are students not allowed to be added together with the creation of an event?
   - This is because the app is meant for an attendance taking for a CS2040 TA who plans ahead. So, if a student can be added with an event,
-   it defeats the purpose of it being an attendance taking application
+   it defeats the purpose of it being an attendance taking application.
 - Why are overlapping event date and time not allowed to be added?
   - It is because TrAcker also functions as a schedule application for the CS2040 TA. So, if overlapping events
-    can be added, the TA will be unsure if they are actually free during that period
-- Tutorials duration is fixed at 1 hour.
+    can be added, the TA will be unsure if they are actually free during that period.
+- Tutorial duration is fixed at 1 hour.
 - Lab duration is fixed at 2 hours.
 - Consultation duration is fixed at 1 hour.
 
@@ -85,13 +85,13 @@ Let's clear a little confusion that might arise:
   * If a parameter is expected only once in a command, but you specified it multiple times, TrAcker takes only the last occurrence of the parameter only, <b> other than `rm` and `delete` commands </b>.
     * e.g. if you specify `telegram/IAmGeorge telegram/IAmNotGeorge`, only `telegram/IAmNotGeorge` will be taken.
     * e.g. if you specify `addStudent 1 Tutorial/1 Tutorial/2`, TrAcker add the student whose index is 1 to Tutorial whose index is 2.
+    * e.g. if you specify `rm 1 rm 2`, TrAcker will throw an error.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `:wq`, and `clear`) are ignored by the parser.
   * e.g. if you specify `help 123`, the parser interprets it as `help`.
   * e.g. if you specify `:wq help`, the parser interprets it as `:wq`.
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly, especially for date field.
   * e.g. if you specify `touch Tutorial/firstTutorial -date 10/10/2025 10:00 2025`, the parser interprets it as adding a tutorial with date 10/10/2025 10:00 2025, which is not a valid date. Hence, TrAcker throws an error.
-* Visual images for successful commands have been shown for each feature. Not all commands have visual images to avoid clutter.
-* All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
+* Visual images for successful commands have been shown for each feature. Not all commands have visual images to avoid clutter, and the visual images might not be the exact same as what you have.
 </div>
 
 --------------------------------------------------------------------
@@ -103,7 +103,7 @@ Let's clear a little confusion that might arise:
 ### Add tutorial: `touch`
 
 Adds a tutorial to the TA’s schedule.
-<b> Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) </b> and no modification of duration is allowed.
+<b> Tutorial is assumed to be 1 hour long (adhering to CS2040 tutorial timing) </b> and no modification of duration is allowed.
 
 - Name need not be unique.
 - Cannot have clashes in the time with any other events.
@@ -111,6 +111,7 @@ Adds a tutorial to the TA’s schedule.
 - Tutorial name cannot have consultation or lab in it.
 - Tutorial name cannot be just tutorial.
 - Date is optional. Date will assume the current time if not specified.
+- Name has a maximum of 20 characters.
 
 Format: `touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]`
 
@@ -119,6 +120,7 @@ Format: `touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]`
 date format: dd/MM/yyyy HH:mm
 ```
 :information_source: Maximum start year is 2099.
+
 :information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
 
 
@@ -135,7 +137,7 @@ Examples:
 ### Add lab: `vim`
 
 Adds a lab to the TA’s schedule. 
-<b> Lab is assumed to be 2 hour long (adhering to CS2040 Lab timing) </b> and no modification of duration is allowed
+<b> Lab is assumed to be 2 hour long (adhering to CS2040 lab timing) </b> and no modification of duration is allowed
 
 - Name need not be unique.
 - Cannot have clashes in the time with any other events.
@@ -143,6 +145,7 @@ Adds a lab to the TA’s schedule.
 - Lab name cannot have tutorial or consultation in it.
 - Lab name cannot be just lab.
 - Date is optional. Date will assume the current time if not specified.
+- Name has a maximum of 20 characters.
 
 Format: `vim Lab/NAME [-date dd/MM/yyyy HH:mm]`
 
@@ -151,6 +154,7 @@ Format: `vim Lab/NAME [-date dd/MM/yyyy HH:mm]`
 date format: dd/MM/yyyy HH:mm
 ```
 :information_source: Maximum start year is 2099.
+
 :information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
 
 Examples:
@@ -171,6 +175,7 @@ Adds a consultation to the TA’s schedule.
 - Consultation name cannot have tutorial or lab in it.
 - Consultation name cannot be just consultation.
 - Date is optional. Date will assume the current time if not specified.
+- Name has a maximum of 20 characters.
 
 Format: `mkdir Consultation/NAME [-date dd/MM/yyyy HH:mm]`
 
@@ -179,6 +184,7 @@ Format: `mkdir Consultation/NAME [-date dd/MM/yyyy HH:mm]`
 date format: dd/MM/yyyy HH:mm
 ```
 :information_source: Maximum start year is 2099.
+
 :information_source: TrAcker does not allow you to create events with historical dates. Due to an internal clock being used, accuracy of the TrAcker current time will be about 1 min off from the actual current time.
 
 Examples:
@@ -194,10 +200,14 @@ Edits an event current in the TA’s schedule.
 
 - Name need not be unique.
 - Cannot have clashes in the time with any other events.
-- Event index starts from 1.
-- Event index must exist.
+- The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
+- The index input is 1-based.
+- Valid index must be provided.
+- EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
+- Event type input must be valid and the first letter must be capitalized.
+- Name has a maximum of 20 characters.
 
-Format: `editEvent EVENT_INDEX EVENT_TYPE/NEW_EVENT_NAME [-date dd/MM/yyyy HH:mm]`
+Format: `editEvent EVENT_INDEX EVENT_TYPE/EVENT_NAME [-date dd/MM/yyyy HH:mm]`
 
 Examples:
 
@@ -213,9 +223,12 @@ Examples:
 
 Deletes valid indexed events from TA's schedule.
 
-- Index starts from 1.
+- The index input is 1-based.
 - Valid index must be provided.
+- The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
 - As mentioned in the User Guide Notations, `delete` event parameters cannot be stacked. i.e. delete Tutorial/1 Tutorial/2 is an invalid command.
+- EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
+- Event type input must be valid and the first letter must be capitalized.
 
 Format: `delete EVENT_TYPE/EVENT_INDEX`
 
@@ -236,14 +249,15 @@ Adds a student to the student list.
 - Duplicate telegram handle is not allowed since each student has a
   unique telegram handle.
 - Duplicate names, scores and addresses are allowed.
-- Nus email must be e followed by 7 digits.
-- Telegram handle must be minimum 5 characters and maximum 32 characters.
+- Nus email must be e followed by 7 digits for the local name and have the domain name @u.nus.edu only.
+- Telegram handle must be minimum 5 characters and maximum 32 characters. It can only contain alphanumeric characters and underscores.
+- Name has a maximum of 70 characters.
 
 Format: `add n/NAME telegram/TELEGRAM_HANDLE e/NUS_EMAIL score/SCORE a/ADDRESS`
 
 Examples:
 
-* `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`
+* `add n/Bellman telegram/IamBellmanFord e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`
 
 <div id='deleting-student'></div>
 
@@ -253,8 +267,9 @@ Examples:
 
 Removes a student from the student list.
 
-- Index starts from 1.
+- The index input is 1-based.
 - Valid index must be provided.
+- The STUDENT_INDEX input refers to the index of the student in the student list.
 - As mentioned in the User Guide Notations, `rm` event parameters cannot be stacked. i.e. rm 1 rm 2 is an invalid command.
 
 Format: `rm STUDENT_INDEX`
@@ -269,12 +284,14 @@ Examples:
 
 Edits a student from the student list.
 
-- Index starts from 1.
+- The index input is 1-based.
 - Valid index must be provided.
+- The STUDENT_INDEX input refers to the index of the student in the student list.
 - NAME, PHONE, EMAIL, ADDRESS, SCORE are optional.
 - At least one of the optional fields must be invoked.
+- Name has a maximum of 70 characters.
 
-Format: `edit INDEX [n/NAME] [telegram/TELEGRAM_HANDLE] [e/EMAIL] [a/ADDRESS] [score/SCORE]`
+Format: `edit STUDENT_INDEX [n/NAME] [telegram/TELEGRAM_HANDLE] [e/EMAIL] [a/ADDRESS] [score/SCORE]`
 
 Examples:
 
@@ -337,7 +354,7 @@ There can be an unlimited amount of notes to be created for each event or studen
 
 Each addition increases note index by one.
 
-<b> You need to double-click the event to expand and view notes! </b>
+:information_source: <b> You need to double-click the event to expand and view notes! </b>
 
 Format: `addNote content/CONTENT type/EVENT_TYPE name/EVENT_NAME`
 
@@ -354,7 +371,7 @@ Examples:
 
 ### Delete note from event: `deleteNote`
 
-:exclamation: You will not be able to undo the deletion
+:exclamation: You will not be able to undo the deletion.
 
 Delete notes for events, or for students in the classes this TA is in charge of.
 
@@ -385,7 +402,7 @@ Examples:
 
 <div id='sort-students'></div>
 
-## Sort / Filter features*
+## Sort / Filter features
 
 ### Sort students in recurring events: `sort-student`
 
@@ -409,7 +426,7 @@ Examples:
 `sort-student all name reverse` visual.
 ![Ui](images/SortSuccess.png)
 
-* `sort-student consulation name reverse` visual.
+`sort-student consulation name reverse` visual.
 ![Ui](images/SortConsultationSuccess.png)
 
 <div id='filter-students'></div>
@@ -457,7 +474,7 @@ Examples:
 ![Ui](images/HelpSuccess.png)
 
 Should you want to take a look at the User Guide in the repository, you can click on the "help" menu.
-Then, you can click on "copy url" and paste it in your browser
+Then, you can click on "copy url" and paste it in your browser.
 
 help url visual.
 ![Ui](images/helpUrl.png)
@@ -470,7 +487,7 @@ help url visual.
 
 ### Exit from application: `:wq`
 
-Exits from TrAcker
+Exits from TrAcker.
 
 Format: `:wq`
 
@@ -482,7 +499,7 @@ Examples:
 
 ### Navigate tabs: `cd`
 
-Navigates to the event or student tab
+Navigates to the event or student tab.
 
 Format: `cd_TAB_TYPE`
 
@@ -544,7 +561,7 @@ Examples:
    <tr>
       <td><strong>Edit event</strong>
       </td>
-      <td><code>editEvent EVENT_INDEX EVENT_TYPE/NEW_EVENT_NAME [-date dd/MM/yyyy HH:mm]</code>
+      <td><code>editEvent EVENT_INDEX EVENT_TYPE/EVENT_NAME [-date dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
@@ -597,7 +614,7 @@ Examples:
       <td><strong>Edit Student</strong>
       </td>
       <td>
-         <code>edit INDEX [n/NAME] [telegram/TELEGRAM_HANDLE] [e/EMAIL] [a/ADDRESS] [score/SCORE]</code>
+         <code>edit STUDENT_INDEX [n/NAME] [telegram/TELEGRAM_HANDLE] [e/EMAIL] [a/ADDRESS] [score/SCORE]</code>
          </li>
       </td>
       <td>
