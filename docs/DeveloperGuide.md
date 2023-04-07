@@ -466,7 +466,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![StatsCommandActivityDiagram](images/StatsCommandActivityDiagram.png)
 
-#### 3.8.1 Design Considerations
+#### 3.8.1 Design Consideration
 
 What type of information should be displayed by `stats`
 
@@ -591,11 +591,11 @@ After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling 
 
 <img src="images/EventAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * Events are allocated to the date they are scheduled to happen, regardless of time.
 * Effort for event is added every day the event is scheduled to happen
-
-**Allocation Example**
+<br>
+<b>Allocation Example</b>
 * Event A is allocated every day from 5 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.
 * Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).
 * Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
@@ -612,13 +612,13 @@ After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduli
 
 <img src="images/DeadlineAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * Overdue deadlines still in the TaskBook is not considered in the algorithm
 * Deadlines are allocated to one of the days before the deadline
 * If there are multiple free days, Deadline will be added to the earliest free day
 * If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort)
 
-**Allocation Example**
+<b>Allocation Example</b>
 * Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023. Thus, it is allocated to 30 May 2023 even though this means that the workload for 30 May is greater than the desired workload.
 * Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
 * Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
@@ -635,13 +635,13 @@ After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a sched
 
 <img src="images/SimpleTaskAllocation.png">
 
-**Some Rules**
+<b>Some Rules</b>
 * SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
 * If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.
 * SimpleTasks are allocated in descending order of effort.
 * SimpleTasks are assumed to be non-time-sensitive
 
-**Allocation Example**
+<b>Allocation Example</b>
 * Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.
 * Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
 * Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
@@ -675,6 +675,23 @@ Step 3. The sequence diagram below shows how the sort operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
+
+#### 3.11.3 Design Consideration
+
+#### Option 1: Combine Schedule and Plan into a Single Command
+Allow users to generate a new plan by adding a parameter to the schedule command.
+
+Pros: Faster for users to create a plan and see generated plan.
+Cons: More features attached to a single command may confuse new users.
+
+#### Option 2: Separate Schedule and Plan
+Users will have to use a separate command to generate a plan, before using `schedule` to view daily schedule.
+
+Pros: Clearer separation of features may be easier for new users to understand.
+Cons: Slower in regular usage as two commands are needed for feature to work, instead of one.
+
+#### Eventual Decision
+In the long run, users should be familiar with the usage scenarios of the commands, so the efficiency benefits of a chained command outweighs the costs of command complexity.
 
 ### 3.12 Tag color codes
 
