@@ -4,7 +4,7 @@ title: User Guide
 ---
 # 1. Table of contents:
 
-
+{:toc}
 1. [Introduction](#introduction)
     1. [What is SudoHR?](#11-what-is-sudohr)
     2. [Features](#13-features)
@@ -304,7 +304,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.1.5. Find employees by ID: `feid`
+### 7.1.5. Find employee by ID: `feid`
 
 Finds the employee who has the given ID.
 
