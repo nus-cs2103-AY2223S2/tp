@@ -5,7 +5,7 @@ title: Linus Tan's Project Portfolio Page
 
 ### Project: CoDoc
 
-CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about (To be added) kLoC.
+CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 9 kLoC.
 
 Given below are my contributions to the project.
 
@@ -63,13 +63,3 @@ Given below are my contributions to the project.
   * Opened and assigned issues to teammates and me. [Issues opened by me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Alinustws), [Issues assigned to me](https://github.com/AY2223S2-CS2103T-F12-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Alinustws)
   * Merged teammates' PRs.
   * Reported bugs for other teams. [PE-D](https://github.com/linustws/ped/issues)
-
-* **Tools**:
-    * Java
-    * JavaFX
-    * SceneBuilder
-    * Jackson
-    * Junit5
-    * Figma
-    * CATcher
-
