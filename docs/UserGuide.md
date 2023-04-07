@@ -74,6 +74,12 @@ to help you get a feel for the application. Feel free to delete them later.
 
 <img src="images/OnStartupScreenshot.png" />
 
+You may resize the window to your liking. At this point, we recommend that you
+jump over to the [UI Overview](#ui-overview) or [Command
+Summary](#command-summary) sections to get an overview of the commands which
+are the bread and butter of Mycelium. Alternatively, you may continue reading
+the guide for a guided tour of how Mycelium is intended to be used.
+
 <div markdown="span" class="alert alert-danger">
 :warning: As you perform commands in Mycelium, you will notice that a
 new data file `mycelium.json` is created in `data/` directory as the default.
@@ -81,12 +87,6 @@ Corruption or tampering with it may lead to the data file becoming unreadable
 or containing invalid values. This will result in the the file being ignored
 and Mycelium will start as an empty application with no projects and clients.
 </div>
-
-You may resize the window to your liking. At this point, we recommend that you
-jump over to the [UI Overview](#ui-overview) or [Command
-Summary](#command-summary) sections to get an overview of the commands which
-are the bread and butter of Mycelium. Alternatively, you may continue reading
-the guide for a guided tour of how Mycelium is intended to be used.
 
 ## Glossary
 
@@ -105,7 +105,7 @@ This screenshot below highlights the four main components in Mycelium's window.
 
 <img src="images/UiOverview.png" />
 
-1. **Command box:** box for text input. Can be for either running commands or
+1. **Command box:** Box for text input. Can be for either running commands or
    fuzzy searching (more on this later).
 1. **Output box:** After a command is entered, the result from that command
    will be displayed here. Note that the box is scrollable, and for large
@@ -259,11 +259,14 @@ You should see the following output if the client is created successfully.
 ```
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
+
 <div markdown="span" class="alert alert-info">
 :information_source: **A note on names:** There may be times when you only have access to a client's username and not their real name.
 To accommodate this, Mycelium accepts all types of names (except for the extreme inputs mentioned earlier).
 For instance, names like "Alice Baker s/o Bob Baker" are valid names. In fact, unique names like "X Æ A-12" are also recognized as valid names in Mycelium.
+</div>
 
+<div markdown="span" class="alert alert-info">
 :information_source: An error message will be shown with an attempt to create a
 client with an existing email in Mycelium.
 </div>
@@ -331,7 +334,7 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 
 ## Managing Projects
 
-This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allow you to manage your projects.
+This section of the user guide explains how to _create_, _delete_, and _update_ a project through commands.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -457,9 +460,9 @@ undo deletions.
 
 ### Updating a project: `up`
 
-Updating a project allows users to partially update the target project using optional arguments.
-The user must specify the project name, and each argument, if specified,
-will be used to partially update the project. The output will confirm the update's success.
+Updating a project allows you to partially update the target project using
+optional arguments. You must specify the project name, and each additional
+argument, if specified, will be used to partially update the project.
 
 **Compulsory Arguments**
 
@@ -502,12 +505,12 @@ project](#creating-a-project-p) for more details on what each argument means.
 
 **Example**
 
-Suppose we have a project named *Mycelium Desktop*, and wish to update
+Suppose you have a project named *Mycelium Desktop*, and wish to update
 
 1. its name to *Mycelium Mobile*; and
 1. its status to `in_progress`.
 
-The following command will do the trick.
+You may use the following command:
 
 ```bash
 up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
@@ -534,9 +537,10 @@ Otherwise, an error will be displayed and no changes are made to the data.
 
 <div markdown="span" class="alert alert-danger">
 :warning: It is not possible to "unset" an optional field. For example,
-Mycelium allows projects to have deadlines. Suppose that you have a project,
-which currently has a deadline. Then it is not possible to use the `up` command
-to unset the deadline.
+Mycelium allows projects to optionally have deadlines.
+<br>
+Suppose that you have a project which currently has a deadline. Then it is not
+possible to use the `up` command to unset or remove the deadline.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -572,7 +576,7 @@ The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
-This shortcut allows you to quickly switch between the tabs of panel that is currently in focus.
+This shortcut allows you to quickly switch between the tabs of the panel that is currently in focus.
 If the left Entity panel is in focus, then the tabs will be the Projects tab and Clients tab.
 If the right Statistics panel is in focus, then the tabs will be the Overdue and Due soon tabs.
 
@@ -623,10 +627,9 @@ trying to find a project whose name you only remember partial bits of, or how
 it sounds in your head.
 
 Mycelium supports fuzzy finding for both projects and clients. For projects,
-the query is matched against the project's name, while for clients, the query
-is matched against the client's email. Furthermore, the search is
-*interactive*, so UI automatically updates as you type your query into the
-command box.
+the query is matched against the project's name, and for clients, the query is
+matched against the client's name. Furthermore, the search is *interactive*, so
+the UI automatically updates as you type your query into the command box.
 
 Please take note of these details for fuzzy search:
 
@@ -677,16 +680,11 @@ imagine having tens or hundreds of projects and clients; fuzzy search would be
 quite a quality-of-life feature!
 </div>
 
-<div markdown="span" class="alert alert-success">
-:bulb: Still confused about **search mode**? You may check out the [section
-below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
-</div>
-
 ### Fuzzy searching clients
 
-This works exactly the same as fuzzy searching projects, described above.
-The only difference to note is that the query is matched against the clients'
-emails, and not their names.
+Fuzzy searching for clients works exactly the same as fuzzy searching projects.
+Just remember that the query is matched against the clients' names only, and
+not their emails.
 
 ### Extracing client and project info
 
@@ -702,12 +700,13 @@ type in `dp -pn ` as shown below
 
 Instead of typing the full project name, you can press (CTRL+F) to enter
 **search mode** and search for the project you want to delete. Once you see the
-desired project, use (CTRL+J) or (CTRL+K) to navigate to it. You will know it
-is selected when the project's box is coloured blue, as shown below.
+desired project, use (CTRL+J) or (CTRL+K) to navigate to it to select it. You
+will know it is selected when the project's box is coloured blue instead of
+purple, as shown below.
 
 ![step2](images/SearchAndSelectStep2.png)
 
-You can then press (ENTER) to switch back to **command mode** and append the project name to the command box. The project's name will be highlighted (this is not shown in the screenshot below due to limitations of the screenshot program).
+You can then press (ENTER) to switch back to **command mode** and append the project's name to the command box. The newly appended project's name will be highlighted in the command box (this is not shown in the screenshot below due to limitations of the screenshot program).
 
 ![step3](images/SearchAndSelectStep3.png)
 
@@ -726,6 +725,12 @@ might wish to note:
 * Each fuzzy query will be applied to both clients and project. That is, when
   you query for something, say, "coc", this query is applied to both the Clients
   tab and the Projects tab, regardless of which tab is currently being displayed.
+* Mycelium's implementation of fuzzy search differs from that in IDEs or fzf in
+  how it matches queries which are "too long". To illustrate, suppose you have
+  two projects named *foo* and *bar*. If you attempt a fuzzy query for
+  "ooooooooo", Mycelium will still try to find and rank partial match(es)
+  matching at least one character, which, in this case, is just the *foo*
+  project. The behaviour of fzf and most IDEs is to list no results.
 * You might experience some input lag while in **search mode**. This is expected to
   improve as we refine the implementation.
 
@@ -735,7 +740,7 @@ The table below summarizes the layout of all the commands in Mycelium. You may
 read the statement `q -a foo [-b bar]` like so:
 
 * `q` is the command,
-* `-a foo` indicates a compulsory argument,
+* `-a foo` indicates a compulsory argument, and
 * `[-b bar]` indicates an optional argument.
 
 
@@ -747,3 +752,4 @@ Action | Format | Example
 [**Create a project**](#creating-a-project-p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
 [**Delete a project**](#deleting-a-project-dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
 [**Update an existing project**](#updating-a-project-up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
+
