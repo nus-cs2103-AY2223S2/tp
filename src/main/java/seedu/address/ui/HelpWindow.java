@@ -46,7 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXAMPLE = "Example:   "
             + "add n/John Doe p/98765432 e/johnd@example.com i/4000 a/John street, block 123, #01-01\n\n";
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t17-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = AB3_NAME + OPTIONS + EXAMPLE
         + "For more information, get more help from the online user guide.";
 
