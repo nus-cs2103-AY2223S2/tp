@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_LISTED_OVERVIEW;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
@@ -82,9 +83,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(List<Predicate<Person>> sharedFilterList,
             List<Predicate<Elderly>> elderlyOnlyFilterList, List<Predicate<Volunteer>> volunteerOnlyFilterList) {
-        requireNonNull(sharedFilterList);
-        requireNonNull(elderlyOnlyFilterList);
-        requireNonNull(volunteerOnlyFilterList);
+        requireAllNonNull(sharedFilterList, elderlyOnlyFilterList, volunteerOnlyFilterList);
         this.sharedFilterList = sharedFilterList;
         this.elderlyOnlyFilterList = elderlyOnlyFilterList;
         this.volunteerOnlyFilterList = volunteerOnlyFilterList;
