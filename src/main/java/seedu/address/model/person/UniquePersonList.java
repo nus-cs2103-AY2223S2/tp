@@ -153,6 +153,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Refreshes the internal meeting list, should be called when any meetings are modified
+     * Sorts the meeting list in order from the most soon to the latest meetings
      */
     public void refreshInternalMeetingList() {
         // Converts the internalList into a stream, maps every person inside it to it's meeting list,

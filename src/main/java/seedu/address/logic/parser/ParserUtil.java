@@ -202,9 +202,11 @@ public class ParserUtil {
         int startMinute = Integer.parseInt(time[1]);
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
-
     /**
-     * converts date in String form to LocalDate object
+     * Parses a {@code String} into a {@code LocalDate}
+     *
+     * @param date String of meeting start
+     * @return meeting date parsed to LocalDate
      */
     public static LocalDate parseDate(String date) {
         String[] input = date.split(" ");

@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW;
 
 import static seedu.address.logic.commands.CommandTestUtil.*;
+
 import static seedu.address.testutil.TypicalPersons.*;
 
 import java.time.LocalDate;
@@ -14,11 +13,13 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.MeetingStartDatePredicate;
+import seedu.address.model.person.MeetingWithPersonPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindMeetingCommandTest {
@@ -26,6 +27,7 @@ public class FindMeetingCommandTest {
     private static class Hi {
 
     }
+
     private final FindMeetingCommand standardCommand = new FindMeetingCommand(VALID_MEETING_START_DATE_AMY);
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -72,5 +74,12 @@ public class FindMeetingCommandTest {
         assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void invalidPersonIndexTest() {
+        int sampleIndex = 15;
+        FindMeetingCommand sampleFindMeetingCommand = new FindMeetingCommand(Index.fromZeroBased(sampleIndex));
+
+        assertThrows(CommandException.class, () -> sampleFindMeetingCommand.execute(model));
+    }
 }
 

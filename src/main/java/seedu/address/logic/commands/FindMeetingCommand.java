@@ -14,23 +14,24 @@ import seedu.address.model.person.MeetingStartDatePredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Finds meetings with matching start date and time
+ * Finds meetings with matching start date
  */
 public class FindMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingFind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings with "
 
-            + "the specified date (case-insensitive)  and displays them as a list with index numbers.\n"
+            + "the specified date (case-insensitive) or person index and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "23/03/2023";
+            + "Example: " + COMMAND_WORD + "23-03-2023"
+            + "Example: " + COMMAND_WORD + "5";
 
 
     private LocalDate meetingStart;
     private Index personIndex;
     /**
-     * Finds meeting with specified start date and time
-     * @param meetingStart start date and time
+     * Finds meeting with specified start date
+     * @param meetingStart start date
      */
     public FindMeetingCommand(LocalDate meetingStart) {
         requireNonNull(meetingStart);
