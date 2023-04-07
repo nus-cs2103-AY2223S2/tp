@@ -523,8 +523,35 @@ The following gives a more detailed explanation of the `view` command.
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author DerrickSaltFish)
 ### Copy an Internship to Clipboard - `copy`
-[TODO by Chuhao]
+### Implementation
+
+The following gives a more detailed explanation of the `copy` command.
+
+1. When the user enters a `copy` command, the `CopyCommandParser` parses the user's input.
+2. It checks for the following:
+   - The `INDEX` entered by the user must be able to be converted into a numeric index.
+3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
+   be thrown.
+4. An `Index` will be created from the user's input if Step 2 passes.
+5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
+   of `Internship` entries in the filtered `Internship` list of the `Model` component.
+6. If the `Index` is invalid, a `CommandException` will be thrown.
+7. Else if the `Index` is valid, the `Internship` which belongs to that `Index` will be
+   retrieved by accessing the filtered `Internship` list.
+8. Following which, `CopyCommand#execute(Model model)` method is called which eventually calls the `Model#copyInternship(Internship target)` method, put the `toString()` representation of the `Internship` object onto the clipboard.
+
+####Design Considerations
+
+- How to run the clipboard operation
+
+1. **Alternative 1: Run the clipboard code directly.**
+   * OK if the testing framework is already running on the event dispatch thread (such as JUnit Swing or FEST-Swing). But
+     not for the case for this project.
+
+2. **Alternative 2: (chosen): use the SwingUtilities.invokeLater() method to wrap the clipboard code in a Runnable object**
+   * Ensure that the clipboard operation is safe to run from a test or other non-GUI context.
 
 
 <div style="page-break-after: always;"></div>
