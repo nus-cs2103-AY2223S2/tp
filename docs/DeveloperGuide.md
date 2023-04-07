@@ -3,6 +3,20 @@ layout: page
 title: Developer Guide
 ---
 
+![Logo](images/LogoWordmark.png)
+
+## **Le Tracker** Development ~
+
+Welcome to the Developer's Guide for **Le Tracker**!
+
+This guide is intended to provide developers with a comprehensive overview of the **Le Tracker** system, as well as a detailed breakdown of the design pattern and features implementation required to build and customize the application.
+
+Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
+
+> :information_source: **Le Tracker** GUI is built with _JavaFX_ so you are highly recommended to develop in **Java**.
+
+---
+
 - Table of Contents
   {:toc}
 
@@ -20,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -734,8 +748,8 @@ The following is a description of the code execution flow:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                       |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              |                                    | |
+| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | --- |
+| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              |                                    |     |
 | `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      |
 | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                           | <!-- TODO: Verify by hingen -->    |
@@ -747,10 +761,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                             | <!-- TODO: Verify by joytqt -->    |
 | `* * *`  | user             | mark videos that I have watched                                                    | track which videos I have watched                                                                                     | <!-- TODO: Verify by joytqt -->    |
 | `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     |   |
-| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          |   |
-| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           |   |
-| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 |  |
+| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     |                                    |
+| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          |                                    |
+| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           |                                    |
+| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 |                                    |
 | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                        | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
@@ -770,10 +784,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     | <!-- TODO: Verify by joytqt -->    |
 | `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                      | <!-- TODO: Verify by joytqt -->    |
 | `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                        | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         |  |
-| `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                      | be motivated to keep up or catch up with the syllabus                                                                                   |    |
-| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      |    |
-| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   |  |
+| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         |                                    |
+| `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                 |                                    |
+| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      |                                    |
+| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   |                                    |
 
 ### Use cases
 
