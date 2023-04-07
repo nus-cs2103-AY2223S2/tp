@@ -17,17 +17,17 @@ import seedu.address.model.tag.Tag;
  */
 public class EditModuleDescriptorBuilder {
 
-    private EditModuleDescriptor descriptor;
+    private final EditModuleDescriptor descriptor;
 
     /**
-     * Creates a {@code EditModuleDescriptorBuilder}.
+     * Constructs an {@code EditModuleDescriptorBuilder}.
      */
     public EditModuleDescriptorBuilder() {
         descriptor = new EditModuleDescriptor();
     }
 
     /**
-     * Creates a {@code EditModuleDescriptorBuilder} with the data of {@code descriptor}.
+     * Constructs an {@code EditModuleDescriptorBuilder} with the data of {@code descriptor}.
      *
      * @param descriptor The {@code EditModuleDescriptor} containing the data to copy.
      */
@@ -38,9 +38,9 @@ public class EditModuleDescriptorBuilder {
     }
 
     /**
-     * Creates a {@code EditModuleDescriptorBuilder} with fields containing the {@code module} details.
+     * Constructs an {@code EditModuleDescriptorBuilder} with fields containing the details of {@code module}.
      *
-     * @param module The module.
+     * @param module The module whose details will be used.
      */
     public EditModuleDescriptorBuilder(Module module) {
         requireNonNull(module);
