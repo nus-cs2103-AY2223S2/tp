@@ -22,7 +22,7 @@ You can click on the respective links below to read up on the relevant sections.
   * [**Implementation**](#implementation)
     * [AddXYZCommand](#addxyzcommand)
     * [DeleteXYZCommand](#deletexyzcommand)
-    * [EditXYZfeature](#edit-feature)
+    * [EditXYZCommand](#edit-command)
     * [FindXYZCommand](#findxyzcommand)
     * [ListXYZCommand](#listxyzcommand)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
@@ -358,7 +358,7 @@ The following activity diagram summarizes what happens when the user executes th
 The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class - `DeleteItemCommand`.
 This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
 <br><br>
-### EditXYZfeature
+### EditXYZCommand
 
 The `edit` command edits item `XYZ` from the internal `XYZList`.
 
