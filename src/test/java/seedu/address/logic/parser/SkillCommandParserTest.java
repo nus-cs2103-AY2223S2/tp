@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import java.util.function.Predicate;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.SkillCommand;
@@ -26,17 +28,18 @@ public class SkillCommandParserTest {
     private SkillCommandParser parser = new SkillCommandParser();
 
     @Test
-    public void parse_validArg_returnSkillCommand() throws ParseException {
+    public void parse_validArg_returnSkillCommand() {
         Person amy = new PersonBuilder()
                 .withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY)
                 .withNotes(VALID_NOTE_FRIEND)
                 .build();
+        Predicate<Person> predicate = x -> true;
 
-        NoteContainsKeywordsPredicate predicate = new NoteContainsKeywordsPredicate("friends");
+        predicate = predicate.and(new NoteContainsKeywordsPredicate(amy.getNotes().toString()));
+
+//        NoteContainsKeywordsPredicate predicate = new NoteContainsKeywordsPredicate(amy.getNotes().toString());
         SkillCommand expectedSkillCommand = new SkillCommand(predicate);
-        Command command = parser.parse("friends");
-
 
         assertParseSuccess(parser, "friends", expectedSkillCommand);
         //assertParseSuccess(parser, " \n friends \n \t ", expectedSkillCommand);
