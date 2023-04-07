@@ -24,6 +24,8 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Model component](#model-component)
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
+- [Implementation]()
+  - [Add feature]()
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -228,6 +230,64 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
 
+## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
+
+### Add feature
+
+The `add` command creates a new `Listing` in GoodMatch's Job Listing Management System.
+
+<div markdown="span" class="alert alert-info">
+  :information_source: **Note:** Command format: <br/>
+  `add t/TITLE d/DESCRIPTION [p/PLATFORM]... [a/APPLICANT]...`
+</div>
+
+What happens when a user use the `add` command.
+1. When a user tries to run an add command, the system executes several steps to add a new listing to the application. 
+2. The first step is to check if all the compulsory prefixes are present in the command and if the preamble is empty. 
+3. If the check passes, the system creates a new listing with attributes based on the prefixes. 
+4. The system then checks if the listing already exists in the model. 
+5. If the listing exists, the system throws a command exception for duplicate listing. 
+6. If the listing does not exist, the system adds the listing to the model and displays a success message to the user, indicating that the add command was executed successfully. 
+7. However, if the check for compulsory prefixes fails or the preamble is non-empty, the system throws a parse error for invalid command format. 
+8. By following these steps, users can successfully add new listings to the application while avoiding duplicate listings and incorrect command formats.
+
+Please refer to the activity diagram below to see what happens when the user enters an add command.
+
+<p>
+  <img src="images/AddCommandActivityDiagram.png" />
+  <em>Activity Diagram for the `add` command</em>
+</p>
+
+#### Feature Implementation Details
+
+1. The user will be specifying the details of the `Listing` in the add command.
+2. There are a few details that a user can specify:
+   1. `t/TITLE`: The job title of the listing (Compulsory).
+   2. `d/DESCRIPTION`: The job description of the listing (Compulsory).
+   3. `a/APPLICANT`: The applicants that applied using that job listing (Not compulsory, can input multiple).
+   4. `p/PLATFORM`: The platforms that the job listing is posted on (Not compulsory, can input multiple).
+3. The check for whether a `Listing` is in a `model` or not is done using the `JobTitle` of the `Listing` only.
+4. A preamble is the substring between the command word and the first prefix.
+   1. For example, `add something t/title d/description`.
+      1. The command word is `add`.
+      2. The preamble is `something`.
+      3. The first prefix is `t/`.
+
+#### Design considerations
+
+* The `add` command is implemented using the [Logic](#logic-component) and [Model](#model-component) components as shown in the [Design](#design) section above.
+* The `add` and `delete` command share almost identical UML Sequence Diagrams.
+* One advantage of using this design is that it is very scalable and new commands can be added easily.
+  * Add a case into the switch case statement for the new command.
+  * Add a `XYZCommandParser` class into `src/main/java/seedu/address/logic/parser` to parse arguments (if any).
+  * Add a `XYZCommand` class into `src/main/java/seedu/address/logic/commands` to execute the parsed command from the step above.
+  * Return the command result from the `XYZCommand` mentioned in the step above.
+* However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
+
+---
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -256,46 +316,32 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| No. | Priority | As a …​ | I want to …​ | So that… |
-| --- | --- | --- | --- | --- |
-| 1 | * * * | Recruiter who receives thousands of applications each day.  | store all information about my applicants | I don't lose track of any applicants. |
-| 2 | * * * | Recruiter | post a new job posting | I can start attracting applicants. |
-| 3 | * * * | Recruiter | list out information regarding a job offer | I can confirm the information |
-| 4 | * * * | Recruiter | update job listings | it reflects the most updated information |
-| 5 | * * * | Recruiter | view all job listings |  |
-| 6 | * * * | Recruiter | delete outdated job listing | the information is accurate |
-| 7 | * * | Recruiter | sort job listings by expiry date | finding most urgent job listing can be easy |
-| 8 | * * * | Recruiter | view all applicants |  |
-| 9 | * * * | Recruiter | view applicants for each job listing | I know who has applied for each job |
-| 10 | * * * | Recruiter | add applicants to job listing |  |
-| 11 | * * * | Recruiter | remove disqualified applicant | the database stays clean |
-| 12 | * * * | Recruiter | view applicant details | I can make sure it’s updated |
-| 13 | * * * | Recruiter | update applicant status | it’s easy for me to track the progress of each applicant |
-| 14 | * * * | Recruiter | update applicant details | each applicant’s info is updated |
-| 15 | * * * | Recruiter | auto-remove job listings from view if they are expired | viewing job listings won't be cluttered |
-| 16 | * * * | Recruiter | auto-remove job listings from view if vacancy fulfilled | the current list of jobs are all still available |
-| 17 | * * * | Recruiter | search job listings by title |  |
-| 18 | * * * | Recruiter | prevent applicants from applying to the same job more than once | the list of applicants is not cluttered |
-| 19 | * * | Recruiter | add tag indicating relevant hiring department to the job listing |  |
-| 20 | * * | Recruiter | view the tag attached to the job listing | it's easy to find types of job listings |
-| 21 | * * | Recruiter | change the tag attached to the job listing | update the tag to reflect the most updated information |
-| 22 | * * | Recruiter from a particular department | filter the job listings according to the tag | easily find jobs |
-| 23 | * * * | Recruiter | search for applicants in each job listing |  |
-| 24 | * * | Recruiter | sort job listings by the number of applicants |  |
-| 25 | * * * | Recruiter | update the status of applicants | it's easy for us to know how to contact the applicant |
-| 26 | * * * | Recruiter | filter status of applicants | easily find the types of applicants I’m looking for |
-| 27 | * * * | Recruiter | sort the applicant by status |  |
-| 28 | * * | Recruiter | add notes about applicants | it’s easy to remember details about each applicant |
-| 29 | * * | Recruiter | get help with how to use the program | I know what commands I have available |
-| 30 | * * * | Recruiter | come back to the program and continue from where I left off | I won't lose my progress  |
-
-*{More to be added}*
+| No. | Priority | As a …​ | I want to …​                                                | So that…                                                                 |
+|-----| --- | --- |-------------------------------------------------------------|--------------------------------------------------------------------------|
+| 1   | * * * | Recruiter who receives thousands of applications each day.  | store all information about my applicants                   | I don't lose track of any applicants.                                    |
+| 2   | * * * | Recruiter | post a new job posting                                      | I can start attracting applicants.                                       |
+| 3   | * * * | Recruiter | update job listings                                         | it reflects the most updated information                                 |
+| 4   | * * * | Recruiter | view all job listings                                       |                                                                          |
+| 5   | * * * | Recruiter | delete outdated job listing                                 | the information is accurate                                              |
+| 6   | * * | Recruiter | sort job listings by expiry date                            | finding most urgent job listing can be easy                              |
+| 7   | * * * | Recruiter | view applicants for each job listing                        | I know who has applied for each job                                      |
+| 8   | * * * | Recruiter | add applicants to job listing                               |                                                                          |
+| 9   | * * * | Recruiter | remove disqualified applicant                               | the database stays clean                                                 |
+| 10  | * * * | Recruiter | edit applicant details                                      | each applicant’s info is updated                                         |
+| 11  | * * * | Recruiter | find job listings by title                                  |                                                                          |
+| 12  | * * | Recruiter | sort job listings by the number of applicants               |                                                                          |
+| 13  | * * | Recruiter | get help with how to use the program                        | I know what commands I have available                                    |
+| 14  | * * * | Recruiter | come back to the program and continue from where I left off | I won't lose my progress                                                 |
+| 15  | * * * | Recruiter | view platforms for each job listing                         | I can easily keep track of which platforms I have posted the job listing |
+| 16  | * * * | Recruiter | add platforms to job listing                                |                                                                          |
+| 17  | * * * | Recruiter | remove platforms where the listing is expired               | the database stays clean                                                 |
+| 18  | * * * | Recruiter | use the app with the help of autocomplete                   | I can type very fast                                                     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ListingBook` and the **Actor** is the `Recruiter` unless specified otherwise)
+(For all use cases below, the **System** is the `GoodMatch` and the **Actor** is the `Recruiter` unless specified otherwise)
 
-**Use case: Delete a Listing**
+****Use case: Delete a Listing**
 
 **MSS**
 
@@ -314,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 - 3a. The given index is invalid.
     - 3a1. ListingBook shows an error message.
-    - Use case resumes at step 2.
+    - Use case resumes at step 2.**
 
 
 
@@ -433,7 +479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
     Use case ends.
 
-### **Use case: Undo**
+**Use case: Undo**
 
 **MSS**
 1. Recruiter requests for an undo.
@@ -473,7 +519,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. Recruiter requests to delete an applicant from a job listing.
 2. ListingBook remove the existing applicant from the job listing.
 3. ListingBook displays the job listings with the applicant removed from the specified listing.
-Use case ends.
+
+    Use case ends.
 
 **Extensions**
 
@@ -512,6 +559,110 @@ Use case ends.
     - 1c2. User enters new request.
     - Steps 1c1-1c2 are repeated until the data entered are correct.
     - Use case resumes from step 2.
+
+**Use Case: View Listings**
+
+**MSS**
+
+1. Recruiter requests to view all job listings.
+2. GoodMatch shows a list of all job listings.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The ListingBook is empty.
+
+  Use case ends.
+
+
+**Use Case: Add Applicant to Job Listing**
+
+**MSS**
+
+1. Recruiter requests to add an applicant to a specific job listing.
+2. GoodMatch adds the applicant to the job listing in the ListingBook.
+3. GoodMatch displays the new ListingBook with the added applicant in the previously specified listing.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+  - 2a1. GoodMatch shows an error message
+
+  Use case ends.
+
+
+- 2b. The given index is invalid.
+    - 2b1. GoodMatch shows an error message.
+
+    Use case ends.
+
+
+**Use Case: Add Platform to Job Listing**w
+
+**MSS**
+
+1. Recruiter requests to add a platform to a specific job listing.
+2. GoodMatch adds the platform to the job listing in the ListingBook.
+3. GoodMatch displays the new ListingBook with the added platform in the previously specified listing.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 2b. The given index is invalid.
+  - 2b1. GoodMatch shows an error message.
+  
+  Use case ends.
+
+
+**Use Case: Delete Platform from Job Listing**
+
+**MSS**
+
+1. Recruiter requests to delete a platform from a specific job listing.
+2. GoodMatch deletes the selected platform from the job listing in the ListingBook.
+3. GoodMatch displays the new ListingBook with the platform removed from the previously specified listing.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 2b. The given index is invalid.
+  - 2b1. GoodMatch shows an error message.
+  
+    Use case ends.
+
+
+**Use Case: Autocomplete**
+
+**MSS**
+
+1. User types a partial command in the console.
+2. GoodMatch builds a list of suggestions based on partial command.
+3. GoodMatch prompts recruiter to press TAB to cycle through suggestions.
+4. Recruiter presses TAB.
+5. GoodMatch goes through the generated suggestions and auto-completes the command.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. There are no possible completions for the partial command.
+  - 3a1. GoodMatch does not prompt recruiter to press TAB to cycle through suggestions.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
