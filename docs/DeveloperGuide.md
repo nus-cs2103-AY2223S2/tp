@@ -238,12 +238,12 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 
-Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
+Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1 2")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-index 1 2` Command](images/DeleteIndexSequenceDiagram.png)
 
 
-<p style="text-align: center;">Figure 7: Sequence diagram for the delete command </p>
+<p style="text-align: center;">Figure 7: Sequence diagram for the delete-index command </p>
 <br/>
 
 
@@ -251,7 +251,7 @@ Figure 7 below illustrates the interactions within the `Logic` component for the
 
 
 <div markdown="span" class="alert alert-primary">:information_source: **Info:** The lifeline for
-`DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a
+`DeleteIndexCommandParser` and `DeleteIndexCommand` should end at the destroy marker (X) but due to a
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -648,7 +648,7 @@ The following gives a more detailed explanation of the `upcoming` command.
 #### Implementation
 Figure 18 shows how the `delete-field` command works.
 
-![DeleteFieldSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteFieldSequenceDiagram](images/DeleteFieldSequenceDiagram.png)
 <p style="text-align: center;">Figure 18: Sequence diagram for the delete-field command</p>
 <br/>
 
@@ -665,50 +665,35 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 #### Design Considerations
 
-- Whether to use an AND relationship or an OR relationship for predicate matching
+**Aspect**: Whether to use an AND relationship or an OR relationship betweeen different fields. For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name as Google AND role as Software Engineer, or delete internships that have company name as Google OR role as Software Engineer?
 
 1. **Alternative 1 (current choice):**  Use an AND relationship
-    * Pros:
-        * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
-    * Cons:
-        * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
+    * Pros: More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company AND role.
+    * Cons: If users want to delete internships based on an OR relationships, they need to call `delete-field` multiple times.
 
 2. **Alternative 2:** Use an OR relationship
-    * Pros:
-        * The current `delete` command takes in no arguments.
-    * Cons:
-        * Less fine-grained control over `delete`.
+    * Pros: Much easier for the user to reason about which internships will be deleted.
+    * Cons: Less fine-grained control over `delete`. For example, there is no way to delete internships that have company name as Google AND role as Software Engineer
 
 
-- Whether to add this enhancement to `clear` or `delete` command
+**Aspect**: Whether to add this enhancement to `clear` or `delete` command, or to create a new command entirely.
 
-1. **Alternative 1 (current choice):** Enhance the `delete` command
-    * Pros:
-        * Combine all delete features into one keyword.
-    * Cons:
-        * Delete now has 2 formats, and this may be a source of confusion.
-2. **Alternative 2:**  Enhance the `clear` command
-    * Pros:
-        * The current `clear` command takes in no arguments, so it is much easier to implement.
-    * Cons:
-        * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
-
-- Whether to merge both formats
-
-1. **Alternative 1 (current choice):** Separate both formats
-    * Pros:
-        * Combine all delete features into one keyword, which may be easier to remember.
-    * Cons:
-        * Delete now has 2 formats, and this may be a source of confusion for beginners.
-
-2. **Alternative 2:**  Combine both formats
-    * Pros:
-        * Offers extreme fine-grained control over what to delete for expert users.
-    * Cons:
-        * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case
-      is to mass delete internships that are no longer required.
-        * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
+1. **Alternative 1 (current choice):** Split the `delete` command into `delete-index` and `delete-field`. `delete-index` will delete only indexes, while `delete-field` will only delete by field.
+    * Pros: Both commands now share the same prefix `delete`, so it is easier to remember.
+    * Cons: Delete now has 2 formats, and this may be a source of confusion.
+2. **Alternative 2:** Enhance the `delete` command only. For example, `delete 1 2 n/Google` will delete any of the first 2 entries if they have the company name as 'Google'.
+    * Pros: Combine all delete features into one keyword, so it is much easier to remember.
+    * Cons: 
+      * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case is to mass delete internships that are no longer required.
+      * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
+      
+3. **Alternative 3:**  Enhance the `clear` command
+    * Pros: The current `clear` command takes in no arguments, so it is much easier to implement.
+    * Cons: May be confusing to the user, since there will be no clear distinction between `delete` and `clear`.
+
+
+
 
 
 
@@ -967,6 +952,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. InternBuddy detects that one or more fields given are invalid.
     * 1b1. InternBuddy prompts the user for a `delete-index` command of the correct format.
+
+      Use case resumes from Step 1.
+
+* 1c. InternBuddy detects that one or more of the given indexes are out of range.
+    * 1c1. InternBuddy informs the user that the index is out of range.
 
       Use case resumes from Step 1.
 
@@ -1414,17 +1404,17 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
    optional field must be specified.
 
-5. `delete s/Applied s/Interviewing`
+5. `delete-field s/Applied s/Interviewing`
 
    **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
    is not a valid value for the `STATUS` field.
 
-6. `delete n/Google n/Meta s/Assessment s/Applied`
+6. `delete-field n/Google n/Meta s/Assessment s/Applied`
 
    **Expected**: Only the internship with company name `Google` and status `Applied` is deleted,
    because all the other internships do not have a matching field for both `CompanyName` and `Status`.
 
-7. `find s/Assessment s/Interview t/Android`
+7. `delete-field s/Assessment s/Interview t/Android`
 
    **Expected**: Only the internship with status `Assessment` and tag `Android` is deleted, because
    all the other internships do not have a matching field for both `Status` and `Tag`.
@@ -1511,11 +1501,61 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 <div style="page-break-after: always;"></div>
 
-## **Appendix C: Proposed Design Tweaks for Feature Flaws**
+## **Appendix C: Planned Enhancements**
 While we strive to make InternBuddy a perfect product for you, there are nevertheless areas of improvement.
 Hence, we are constantly striving to make InternBuddy better. This appendix documents some of the areas
 that our team is currently working on, and we would release them in the future once their functionalities
 have been finalised.
+
+### Make prefixes for commands case-insensitive
+**Problem:**
+Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
+   `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
+   and tag `javascript T/react`.
+  Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
+
+![CaseSensitiveAddExample](images/dg-case-sensitive-prefix-add-example.png)
+
+<p style="text-align: center;">Figure XX: Adding the tag 'javascript T/react'</p>
+
+Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
+
+We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
+
+To illustrate this side-effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react`. Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt`. Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
+
+![CaseSensitiveFindBeforeExample](images/dg-case-sensitive-find-before.png)
+
+<p style="text-align: center;">Figure XX: Find the tags "javascript" and "react" </p>
+
+![CaseSensitiveFindAfterExample](images/dg-case-sensitive-find-after.png)
+
+<p style="text-align: center;">Figure XX: Result of the find command in figure XX </p>
+
+There could be another conflicting meaning of the command. In this case, instead of trying to find entries with either the tag `javascript` or `react`, the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
+
+**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
+   message is displayed in the Result Display.
+
+
+![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
+
+<p style="text-align: center;">Figure XX: Adding a new entry with case-insenstive prefix</p>
+
+![CaseInsensitiveAddAfterExample](images/dg-case-insensitive-add-after.png)
+
+<p style="text-align: center;">Figure XX: Result of the add command in figure XX</p>
+
+
+A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
+
+![CaseInsensitiveFixSnippet](images/dg-case-insensitive-prefix-fix.png)
+
+<p style="text-align: center;">Figure XX: The parser checks for both lowercase prefix and uppercase prefix</p>
+
+This would address the above problem. For example, `find t/javascript t/react` should have the same result as `find T/javascript T/react`. This would remove the confusion as substrings such as `T/` cannot be entered in any of the fields. 
+
+<br/>
 
 ### Integer overflow causes wrong error message
 **Problem:**
