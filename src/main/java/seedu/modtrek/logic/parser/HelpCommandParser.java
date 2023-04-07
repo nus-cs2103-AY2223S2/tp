@@ -45,7 +45,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         case "SORT":
             return new HelpCommand(SortCommand.MESSAGE_USAGE);
         default:
-            return new HelpCommand("");
+            return new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE);
         }
     }
 }
