@@ -36,9 +36,6 @@ public interface MultipleEventsParser {
      * @throws ParseException if any module code in string is of invalid format
      */
     public static ModuleCode[] parseModuleCodes(String preamble) throws ParseException {
-        if (!(preamble.contains(",")) && !(ModuleCode.isValidCode(preamble))) {
-            throw new ParseException("");
-        }
         String[] moduleCodeStrings = preamble.split(",");
         int numOfModuleCodes = moduleCodeStrings.length;
         ModuleCode[] moduleCodes = new ModuleCode[numOfModuleCodes];
