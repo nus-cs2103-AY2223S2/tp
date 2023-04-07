@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setTaaData(new TaaData(new ClassList("no name"), AssignmentList.INSTANCE));
+        model.setTaaData(new TaaData(new ClassList("no name"), AssignmentList.INSTANCE.getAssignments()));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

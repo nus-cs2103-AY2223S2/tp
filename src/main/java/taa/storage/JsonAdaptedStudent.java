@@ -23,15 +23,13 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
-
     private final String pp;
-
     private final String attendance;
     private final ArrayList<String> submissionStrArr = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given student details.
+     * Constructs a {@link JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("attendance") String attendance,
@@ -40,16 +38,13 @@ class JsonAdaptedStudent {
         this.name = name;
         this.pp = pp;
         this.attendance = attendance;
-        if (submissionStrArr != null) {
-            this.submissionStrArr.addAll(submissionStrArr);
-        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code Student} into this class for Jackson use.
+     * Converts a given {@link Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
@@ -62,7 +57,7 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@link Student} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
@@ -82,16 +77,13 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
         if (!Attendance.isValidPpStorageString(pp)) {
-            throw new IllegalValueException("Invalid participatoin string in Json file");
+            throw new IllegalValueException("Invalid participation value \""+pp+"\" in JSON file");
         }
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
         }
         if (!Attendance.isValidAttendanceStorageString(attendance)) {
-            throw new IllegalValueException("Invalid attendance string in Json file");
-        }
-        if (submissionStrArr == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Submissions"));
+            throw new IllegalValueException("Invalid attendance value \"" + attendance + "\" in JSON file");
         }
         final Name modelName = new Name(name);
 

@@ -1,15 +1,16 @@
 package taa.model.assignment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.Consumer;
 
 import javafx.collections.transformation.FilteredList;
 import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
-import taa.model.ReadOnlyAssignmentList;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.InvalidGradeException;
@@ -20,15 +21,20 @@ import taa.model.student.Student;
  * List of assignments. This is the singleton class that the model uses to do all things related to assignments and
  * submissions.
  */
-public class AssignmentList implements ReadOnlyAssignmentList {
+public class AssignmentList{
     public static final AssignmentList INSTANCE = new AssignmentList();
     private final ArrayList<Assignment> assignments = new ArrayList<>();
     private final HashMap<String, Assignment> assignmentMap = new HashMap<>();
+    private final Consumer<Assignment> addAsgnToRecords = asgn->{
+        assignments.add(asgn);
+        assignmentMap.put(asgn.getName(),asgn);
+    };
 
     private AssignmentList() {
     }
 
     /**
+     * For all submission strings, check whether they are length 5 and contains the correct input format.
      * @param moreAsngNameTests Function that returns error msg if err occurs or null if no error
      */
     private static void testStuSubmitStorageStrs(
@@ -73,8 +79,8 @@ public class AssignmentList implements ReadOnlyAssignmentList {
         final HashMap<String, Integer> assignmentCount = new HashMap<>();
         final ParseException.Consumer<String> incAsgnCnt = assignmentName ->
                 assignmentCount.put(assignmentName, assignmentCount.getOrDefault(assignmentName, 0) + 1);
-        // Step 1. Gets all submission strings, check whether they are length 5 and contains the correct input format.
-        // Step 2. adds it to the assignmentCount.
+
+        // Step 2. Adds it to the assignmentCount.
         for (Student stu : sl) {
             testStuSubmitStorageStrs(stu.getSubmissionStorageStrings(), incAsgnCnt);
         }
@@ -120,8 +126,7 @@ public class AssignmentList implements ReadOnlyAssignmentList {
             throw new DuplicateAssignmentException(assignmentName);
         } else {
             Assignment a = new Assignment(assignmentName, sl, totalMarks);
-            assignments.add(a);
-            assignmentMap.put(assignmentName, a);
+            addAsgnToRecords.accept(a);
         }
     }
 
@@ -221,7 +226,7 @@ public class AssignmentList implements ReadOnlyAssignmentList {
      *
      * @param sl the student list
      */
-    public void initFromStorage(FilteredList<Student> sl) {
+    public void initFromStorage(FilteredList<Student> sl, Assignment[] asgnArr) {
         if (sl.isEmpty()) {
             return;
         }
@@ -242,13 +247,7 @@ public class AssignmentList implements ReadOnlyAssignmentList {
         assignmentMap.clear();
 
         // Step 1: populate the assignment list and hashmap with empty assignments.
-        Student firstStudent = sl.get(0);
-        for (String submissionString : firstStudent.getSubmissionStorageStrings()) {
-            String[] words = submissionString.split(",");
-            Assignment a = new Assignment(words[0], Integer.parseInt(words[4]));
-            assignments.add(a);
-            assignmentMap.put(words[0], a);
-        }
+        Arrays.stream(asgnArr).forEach(addAsgnToRecords);
 
         // Step 2: populate each assignment with each student submission.
         for (Student stu : sl) {
@@ -268,8 +267,8 @@ public class AssignmentList implements ReadOnlyAssignmentList {
         return this.assignmentMap.containsKey(name);
     }
 
-    @Override
-    public Assignment[] get() {
+
+    public Assignment[] getAssignments() {
         return assignments.toArray(new Assignment[0]);
     }
 }

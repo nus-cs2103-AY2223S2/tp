@@ -10,6 +10,7 @@ import taa.model.ClassList;
 import taa.model.ReadOnlyStudentList;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
+import taa.model.assignment.Assignment;
 import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
@@ -46,7 +47,7 @@ public class SampleDataUtil {
         UniqueClassLists classLists = new UniqueClassLists();
         classLists.add(sampleAb);
         Tutor tutor = new Tutor(new Name("James"), new HashSet<>(), classLists);
-        return new TaaData(tutor, AssignmentList.INSTANCE);
+        return new TaaData(tutor, new Assignment[0]);
     }
 
     /**

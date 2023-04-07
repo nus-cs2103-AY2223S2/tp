@@ -8,7 +8,6 @@ import javafx.util.Pair;
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
 import taa.model.assignment.AssignmentList;
-import taa.model.ReadOnlyAssignmentList;
 import taa.model.ReadOnlyStudentList;
 
 /**

@@ -64,7 +64,6 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-        model.initAssignmentsFromStorage();
 
         logic = new LogicManager(model, storage);
 
@@ -87,10 +86,10 @@ public class MainApp extends Application {
             initialData = taaDataOptional.orElseGet(SampleDataUtil::getSampleTaaData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClassList");
-            initialData = new TaaData(new ClassList(), AssignmentList.INSTANCE);
+            initialData = new TaaData();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ClassList");
-            initialData = new TaaData(new ClassList(), AssignmentList.INSTANCE);
+            initialData = new TaaData();
         }
 
         return new ModelManager(initialData, userPrefs);

@@ -9,6 +9,7 @@ import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.alarm.Alarm;
+import taa.model.assignment.Assignment;
 import taa.model.assignment.exceptions.AssignmentException;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
@@ -146,7 +147,7 @@ public interface Model {
 
     void deleteStudentSubmission(Student studentToDelete);
 
-    void initAssignmentsFromStorage();
+    void initAssignmentsFromStorage(Assignment[] asgnArr);
 
     void addStudentAssignment(Student toAdd);
 

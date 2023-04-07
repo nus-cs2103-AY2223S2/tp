@@ -21,6 +21,7 @@ import taa.model.Model;
 import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.alarm.Alarm;
+import taa.model.assignment.Assignment;
 import taa.model.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.storage.TaaData;
@@ -221,7 +222,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void initAssignmentsFromStorage() {
+        public void initAssignmentsFromStorage(Assignment[] asgnArr) {
         }
 
         @Override
@@ -292,7 +293,7 @@ public class AddStudentCommandTest {
 
         @Override
         public TaaData getTaaData() {
-            return new TaaData(new ClassList(), AssignmentList.INSTANCE);
+            return new TaaData();
         }
 
     }

@@ -45,6 +45,7 @@ import taa.commons.util.CollectionUtil;
 import taa.logic.commands.enums.ChartType;
 import taa.model.alarm.Alarm;
 import taa.model.alarm.AlarmList;
+import taa.model.assignment.Assignment;
 import taa.model.assignment.AssignmentList;
 import taa.model.assignment.exceptions.AssignmentException;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
@@ -92,15 +93,15 @@ public class ModelManager implements Model {
         this.activeClassListPredicate = null;
         this.alarmList = new AlarmList();
 
-
         for (Student student : this.classList.getUniqueStudentList()) {
             addStudentToTaggedClasses(student);
         }
 
+        initAssignmentsFromStorage(taaData.asgnArr);
     }
 
     public ModelManager() {
-        this(new TaaData(new ClassList(),AssignmentList.INSTANCE), new UserPrefs());
+        this(new TaaData(), new UserPrefs());
     }
 
     @Override
@@ -143,7 +144,7 @@ public class ModelManager implements Model {
 
     @Override
     public TaaData getTaaData() {
-        return new TaaData(classList, assignmentList);
+        return new TaaData(classList, assignmentList.getAssignments());
     }
 
     @Override
@@ -523,8 +524,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void initAssignmentsFromStorage() {
-        assignmentList.initFromStorage(filteredStudents);
+    public void initAssignmentsFromStorage(Assignment[] asgnArr) {
+        assignmentList.initFromStorage(filteredStudents,asgnArr);
         for (Student stu : filteredStudents) {
             updateStudent(stu);
         }
