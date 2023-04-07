@@ -45,4 +45,9 @@ public class BackNavCommand extends Command {
             break;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof BackNavCommand);
+    }
 }
