@@ -769,6 +769,9 @@ Parameters:
 > :information_source: Additional information: Can't seem to see your newly added tasks? Ensure you are not limiting
 > your tasks to a specific tank with the `list tasks` command!
 
+> :exclamation: Warning: Within the same tank (two tasks that both do not have a tank attached are considered to be in the same tank)
+>, you cannot have tasks with the same name!
+
 Example:
 * You have 'Clean tank' with no priority in your task panel. `task add d/Feed fish p/high` will display the
 following tasks in your task panel:
@@ -818,6 +821,9 @@ Parameters:
 
 > :exclamation: Warning: Feeding reminders are automated and managed by *Fish Ahoy!* so you cannot
 > edit a feeding reminder
+
+> :exclamation: Warning: As mentioned, you cannot have 2 tasks of the same name, with the same tank as they are duplicates. You cannot edit
+> a task's tank if it will cause a duplicate task!
 
 Example:
 * You have a task with description 'Clean tank' of index 1, and it is attached to 'freshwater tank'. `task edit 1 d/clean tank again` will change the task to have the following details:
@@ -886,7 +892,9 @@ App data are saved as a JSON file `[JAR file location]/data/fishahoy.json`. Adva
 > :bulb: Tip: If you have a set of ammonia, pH and temperature readings you want to input in bulk,
 you might want to insert it directly in the `readings.json` file!
 
-> :exclamation: Warning: If your changes to the data file makes its format invalid, *Fish Ahoy!* will discard all data and start with an empty data file at the next run
+> :exclamation: Warning: If your changes to the data file makes its format invalid, *Fish Ahoy!* will discard all data and start with an empty data file at the next run.
+> This will result in a completely empty interface. Delete your `data` folder, containing `addressbook.json` and so on
+> to revert back to the default *Fish Ahoy!*
 
 ## Help
 ### Viewing help : `help`
