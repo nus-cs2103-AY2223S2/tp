@@ -287,7 +287,7 @@ Removes tags `Basketball` and `Varsity` from the athlete at index 4.
 
 Finds athletes in the contact list who have any of the specified tags.
 
-Format: `show TAGNAME [MORE_TAGS]…​`
+Format: `show TAG_NAME [MORE_TAGS]…​`
 
 * Filters the contact list to only contain athletes having one or more of the specified tag(s).
 * At least one tag name **must be provided.**
@@ -466,7 +466,7 @@ If your changes to the data file makes its format invalid, SportSync will discar
 | **Sort Athletes**               | `sort ATTRIBUTE`<br> e.g. `sort 1`                                                                                                          |
 | **Add Tags to Athlete**         | `add-tag INDEX t/TAG [MORE_TAGS]…​` <br> e.g. `add-tag 2 t/Private t/New`                                                                   |
 | **Remove Tags from Athlete**    | `remove-tag INDEX t/TAG [MORE_TAGS]…​` <br> e.g. `remove-tag 2 t/Private`                                                                   |
-| **Show Athletes with Tags**     | `show TAGNAME [MORE_TAGS]…​`<br> e.g. `show Hall Varsity`                                                                                   |
+| **Show Athletes with Tags**     | `show TAG_NAME [MORE_TAGS]…​`<br> e.g. `show Hall Varsity`                                                                                  |
 | **Create Session**              | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g. `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`                |
 | **Delete Session**              | `delete-session INDEX`<br> e.g. `delete-session 3`                                                                                          |
 | **Edit Session**                | `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`<br> e.g. `session-edit 2 n/Hall`                                                     |

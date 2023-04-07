@@ -16,7 +16,7 @@ public class ShowCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds athletes in the contact list who have any of the specified tags.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: TAG_NAME [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " Varsity Hall";
 
     public static final String MESSAGE_SHOW_GROUP_SUCCESS = "Found all athletes that belong to "
