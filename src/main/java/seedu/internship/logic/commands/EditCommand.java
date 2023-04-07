@@ -142,7 +142,7 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the internship with. Each non-empty field value will replace the
-     * corresponding field value of the intenrship.
+     * corresponding field value of the internship.
      */
     public static class EditInternshipDescriptor {
         private Position position;

@@ -19,7 +19,7 @@ import seedu.internship.model.event.Event;
 public class FindEventResultsPage extends Page {
 
     private static final String FXML = "FindEventResultsPage.fxml";
-    private static final String PAGE_TITLE = "Event clashes";
+    private static final String PAGE_TITLE = "Results";
     private static final String MESSAGE_FOUND_EVENTS = "Here are the events we found.";
     private static final String MESSAGE_NO_EVENTS = "No events found :<";
 

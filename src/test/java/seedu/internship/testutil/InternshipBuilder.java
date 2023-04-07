@@ -17,16 +17,21 @@ import seedu.internship.model.util.SampleDataUtil;
  */
 public class InternshipBuilder {
     public static final String DEFAULT_POSITION = "Architect";
+    public static final String POSITION_FOR_FINDTEST = "Software Engineer";
     public static final String DEFAULT_COMPANY = "ABC";
+    public static final String COMPANY_FOR_FINDTEST = "Apple";
     public static final Integer DEFAULT_STATUS = 1;
     public static final String DEFAULT_DESCRIPTION = "The is a dummy internship. Interview date on DDMMYYYY.";
 
     // private Id id;
     private Position position;
+    private Position positionForFindTest;
     private Company company;
+    private Company companyForFindTest;
     private Status status;
     private Description description;
     private Set<Tag> tags;
+    private Set<Tag> tagsForFindTest;
 
     /**
      * Creates a {@code InternshipBuilder} with the default details.
@@ -34,10 +39,15 @@ public class InternshipBuilder {
     public InternshipBuilder() {
         // id = new Id(DEFAULT_ID);
         position = new Position(DEFAULT_POSITION);
+        positionForFindTest = new Position(POSITION_FOR_FINDTEST);
         company = new Company(DEFAULT_COMPANY);
+        companyForFindTest = new Company(COMPANY_FOR_FINDTEST);
         status = new Status(DEFAULT_STATUS);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
+        tagsForFindTest = new HashSet<>();
+        tagsForFindTest.add(new Tag("priority"));
+        tagsForFindTest.add(new Tag("fun"));
     }
 
     /**
@@ -95,6 +105,10 @@ public class InternshipBuilder {
 
     public Internship build() {
         return new Internship(position, company, status, description, tags);
+    }
+
+    public Internship buildForFind() {
+        return new Internship(positionForFindTest, companyForFindTest, status, description, tagsForFindTest);
     }
 
 }

@@ -30,7 +30,7 @@ public class HomeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEventList(PREDICATE_EVENT_REMINDER);
         ObservableList<Event> events = model.getFilteredEventList();
-
+        model.updateSelectedInternship(null);
         return new CommandResult(SHOWING_HOME_MESSAGE, ResultType.HOME, events);
     }
 }

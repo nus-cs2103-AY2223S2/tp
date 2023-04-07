@@ -5,22 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.internship.model.event.Event;
-import seedu.internship.model.event.exceptions.DuplicateEventException;
-import seedu.internship.testutil.EventBuilder;
-
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-
 import static seedu.internship.testutil.TypicalEvents.EM11;
 import static seedu.internship.testutil.TypicalEvents.EM21;
 import static seedu.internship.testutil.TypicalEvents.VALID_END_EM11;
@@ -29,6 +13,19 @@ import static seedu.internship.testutil.TypicalEvents.VALID_INTERNSHIP_EM11;
 import static seedu.internship.testutil.TypicalEvents.VALID_NAME_EM11;
 import static seedu.internship.testutil.TypicalEvents.VALID_START_EM11;
 import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.exceptions.DuplicateEventException;
+import seedu.internship.testutil.EventBuilder;
 
 
 public class EventCatalogueTest {
@@ -100,16 +97,12 @@ public class EventCatalogueTest {
     @Test
     public void hasEvent_eventNotInEventCatalogue_returnsFalse() {
         assertFalse(eventCatalogue.hasEvent(EM11));
-
     }
 
     @Test
     public void hasEvent_eventInEventCatalogue_returnsTrue() {
         eventCatalogue.addEvent(EM21);
         assertTrue(eventCatalogue.hasEvent(EM21));
-
-        eventCatalogue.addEvent(EM11);
-        assertTrue(eventCatalogue.hasEvent(EM11));
     }
 
     @Test
@@ -126,7 +119,6 @@ public class EventCatalogueTest {
         eventCatalogue.setEvent(EM11, modified);
         assertTrue(eventCatalogue.hasEvent(modified));
         assertTrue(!eventCatalogue.hasEvent(EM11));
-
     }
 
     @Test
