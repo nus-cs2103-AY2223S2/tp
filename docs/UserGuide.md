@@ -29,6 +29,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 **MATHUTORING** is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **MATHUTORING** can get your contact management tasks done faster than traditional GUI apps.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -43,7 +45,7 @@ If you need to switch to a new device, you can also export and import your previ
    <br>
    The initial GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
    
-   <img width="1440" alt="Screenshot 2023-03-30 at 12 51 28 PM" src="https://user-images.githubusercontent.com/97392685/228732862-ca3893da-f637-468c-9a9b-5f4e4a38a9cf.png">
+    ![InitialUi](images/InitialUi.png)
    
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -62,6 +64,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 7. Refer to the [Features](#features) below for details of each command.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## User input restrictions
@@ -69,6 +73,8 @@ To achieve the best performance, we have set a few restrictions regarding the us
 
 * Phone number must have at least 3 digits and no more than 15 digits.
 * A tag should not have more than 20 letters.
+   
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -477,6 +483,8 @@ MATHUTORING data are saved as a JSON file `[JAR file location]/data/mathutoring.
 If your changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## GUI display restrictions
@@ -491,6 +499,8 @@ We have set up a few GUI display restrictions in order to avoid the GUI being af
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MATHUTORING home folder.
+
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -517,3 +527,5 @@ We have set up a few GUI display restrictions in order to avoid the GUI being af
 | **Help**           | `help`                                                                                                                                                                                        |
 | **Switch**         | `switch`                                                                                                                                                                                      |
 | **Exit**           | `exit`                                                                                                                                                                                        |
+
+[Back to top](#table-of-contents)
