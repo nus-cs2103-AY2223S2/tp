@@ -268,7 +268,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <h2 id="summary"></h2>
-## Short-form commands
+## Short-form commands ##
 
 To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
 
