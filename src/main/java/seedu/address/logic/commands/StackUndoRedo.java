@@ -26,7 +26,7 @@ public class StackUndoRedo {
      */
     public void push(Command command) {
         if (!(command instanceof UndoCommand) && !(command instanceof RedoCommand)) {
-            redoStack = new Stack<>();
+            redoStack = new Stack();
         }
 
         if (!(command instanceof RedoableCommand)) {
@@ -34,32 +34,6 @@ public class StackUndoRedo {
         }
 
         undoStack.add((RedoableCommand) command);
-    }
-
-    /**
-     * Push a command that would be executed when undoing
-     *
-     * @param command the command to be pushed
-     */
-    public void pushUndo(RedoableCommand command) {
-        undoStack.add(command);
-    }
-
-    /**
-     * Push a command that would be executed when redoing
-     *
-     * @param command the command to be pushed
-     */
-    public void pushRedo(RedoableCommand command) {
-        redoStack.add(command);
-    }
-
-    /**
-     * Clears the undo and redo stacks.
-     */
-    public void clear() {
-        undoStack.clear();
-        redoStack.clear();
     }
 
     /**
