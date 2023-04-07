@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     * GUI Change ([\#34](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/34), [\#48](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/48), [\#50](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/50), [\#136](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/136), [\#209](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/209))
 
 
-* **Code contributed**: [https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cedric&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cedric&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 
 * **Project management**:
