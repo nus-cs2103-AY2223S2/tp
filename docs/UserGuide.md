@@ -274,25 +274,15 @@ Format: `exit`
 
 | Action           | Format, Examples                                                                                                                                                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Add**          | `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
-| **
-Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                           |
-| **
-Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
-| **
-Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                        |
-| **
-List**         | `list`                                                                                                                                                                                                                        |
-| **
-Help**         | `help`                                                                                                                                                                                                                        |
-| **
-Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                          |
-| **
-Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |                                                                                                                       |
-| **
-Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                       |
-| **
-Exit**         | `exit`                                                                                                                                                                                                                        |
+| **Add**          | `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                           |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                        |
+| **List**         | `list`                                                                                                                                                                                                                        |
+| **Help**         | `help`                                                                                                                                                                                                                        |
+| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                          |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                       |
+| **Exit**         | `exit`                                                                                                                                                                                                                        |
 
 [Back to top](#top)
