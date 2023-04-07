@@ -128,7 +128,7 @@ public class AddEmployeeToLeaveFromToCommandTest {
 
         assertThrows(CommandException.class,
                 AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
-                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
+                        new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
 
         assertFalse(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(
                 new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)))).hasEmployee(TypicalEmployees.ALICE));
@@ -400,6 +400,11 @@ public class AddEmployeeToLeaveFromToCommandTest {
         public Leave getLeave(LeaveDate date) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void refresh() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -490,6 +495,10 @@ public class AddEmployeeToLeaveFromToCommandTest {
 
         @Override
         public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
+        }
+
+        @Override
+        public void refresh() {
         }
 
         @Override

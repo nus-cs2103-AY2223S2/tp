@@ -7,26 +7,26 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressBook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +67,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressBook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +84,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Employee`, `Department` or `Leave` object residing in the `Model`.
 
-### Logic component
+### 3.3. Logic component
 
 **API** : [`Logic.java`](./images/LogicClassDiagram.png)
 
@@ -113,7 +113,7 @@ How the parsing works:
 * When called upon to parse a user command, the `SudoHRParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SudoHRParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4. Model component
 **API** : [`Model.java`](./images/ModelClassDiagram.png)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Storage component
+### 3.5. Storage component
 
 **API** : [`Storage.java`](./images/StorageClassDiagram.png)
 
@@ -137,17 +137,17 @@ The `Storage` component,
 * inherits from both `SudoHRStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Employee-related features
+### 4.1. Employee-related features
 
 The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
 
@@ -160,7 +160,7 @@ The attributes of an Employee are:
 * `Tags`: The tags assigned to the employee.
 
 
-### Department-related features
+### 4.2. Department-related features
 
 ![DepartmentModelClassDiagram](./images/commands/department/DepartmentModelClassDiagram.png)
 
@@ -172,7 +172,7 @@ The attributes of a department are:
 
 The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
 
-#### Adding a department
+#### 4.2.1. Adding a department
 
 The `adep` command adds a new `Department` in SudoHr.
 
@@ -203,7 +203,7 @@ is meant for use by a single company.
 
 If duplicate arguments are present in the same command, the last instance of the duplicated argument is taken in by the parser.
 
-#### Editing a department
+#### 4.2.2. Editing a department
 
 The `edep` command edits the department-level details of an existing `Department` in SudoHr. Currently, you can only
 edit the department name field as it is the only existing department-level detail.
@@ -239,7 +239,7 @@ when more department-level details are added (e.g. creation date, director, work
 It is also important to check if the name of the newly edited department clashes with any existing departments in
 SudoHR, as the name is the unique identifier for a department.
 
-#### Deleting a department
+#### 4.2.3. Deleting a department
 
 The `deldep` command deletes an existing `Department` in SudoHR.
 
@@ -261,7 +261,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Listing all departments
+#### 4.2.4. Listing all departments
 
 The `listdep` command lists all the departments in SudoHR.
 
@@ -273,7 +273,7 @@ Upon execution, it updates the `filteredDepartmentList` in SudoHR.
 
 After that, the command result is returned.
 
-#### Adding an employee to a department
+#### 4.2.5. Adding an employee to a department
 
 The `aetd` command adds an existing `Employee` to an existing `Department` in SudoHR.
 
@@ -306,7 +306,7 @@ reused in `Leaves` as well.
 It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
 `UniqueEmployeeList` having such checks internally already.
 
-#### Removing an employee from a department
+#### 4.2.6. Removing an employee from a department
 
 The `refd` command removes an `Employee` from an existing `Department` in SudoHR.
 
@@ -329,7 +329,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Listing an employee's departments
+#### 4.2.7. Listing an employee's departments
 
 The `led` command
 
@@ -355,7 +355,7 @@ that employee with ID 100 is in.
 After that, the command result is returned.
 
 
-### Leave-related features
+### 4.3. Leave-related features
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
@@ -363,50 +363,88 @@ The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-#### Adding an employee's leave on a specific day
+#### 4.3.1. Adding an employee's leave
+The `aetd` command adds an employee's leave on a specific day:
 
-##### AddEmployeeToLeave Command
-The AddEmployeeToLeave Command makes use of the following classes:
+Activity Diagram:
+![AddEmployeeToLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
-* `AddEmployeeToLeaveCommand` - Adds the leave of an `Employee` to `SudoHr` on a specific day
-* `AddEmployeeToLeaveCommandParser` - Parses the argument provided by the user
-* `LeaveContainsEmployeePredicate` - Tests that an `Employee` has a `Leave` on the specific date
+Sequence Diagram:
 
-`LeaveContainsEmployeePredicate` iterates through all employees and check if they are in the `Leave` object on a specific day.
+![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/leave/AddEmployeeToLeave.png)
 
-Given below is an example of a usage scenario and what each class does at each step.
+##### Flow
 
-Step 1: The user types and enters the command `addEmployeeToLeave eid/1 g/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+1. The user enters the command `aetl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
+3. The `Id` and `LeaveDate` are passed down to the command.
+4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
+5. If the employee already exists in `Leave`, an error message will be displayed.
+6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
+7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
-Step 2: The command will be parsed by the `SudoHr#parseCommand()` which returns a `AddEmployeeToLeaveCommandParser`.
+##### Feature considerations
+We decided to throw an exception when the employee has already taken leave on the same day as the input date, since the user may have accidently provided a wrong date and hence the exception would be more suitable as it would be more noticeable than the success message.
 
-Step 3: AddEmployeeToLeaveCommandParser will parse the employee id and date using the parse(args) method, which trims the keywords entered by the user.
+#### 4.3.2. Deleting an employee's leave
+The `defl` command delete an employee's leave on a specific day:
 
-Step 4: AddEmployeeToLeaveCommandParser then creates a AddEmployeeToLeaveCommand by the date and eid to its constructor.
+Activity Diagram:
+![RemoveEmployeeFromLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
-Step 5: The AddEmployeeToLeaveCommand will then be executed using `execute(model)` method.
+Sequence Diagram:
 
-Step 6: The command then execute the model's `getEmployee(eid)` command to get the employee with the corresponding eid
+![RemoveEmployeeFromLeaveCommand Sequence Diagram](./images/commands/leave/DeleteEmployeeFromLeave.png)
 
-Step 7. The command execute the model's `addEmployeetoLeave(eid,date)` command to add the employee to the leave on the specific day.
+##### Flow
 
-Step 8: The `updateFilteredEmployeeList(predicate)` method will be called and the list of employees will be filtered according to the `LeaveContainsEmployeePredicate`. This list will include all employees having a leave on that day.
+1. The user types and enters the command `defl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+2. The parser would initialise a new `Id` and `LeaveDate` constructed from the input of argument `eid/` and `d/` respectively
+3. The `Id` and `LeaveDate` are passed down to the newly created command.
+4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Employee` does not exist, an error message will be displayed.
+5. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
+6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
+7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
-Step 9: A `CommandResult` will be returned.
+#### 4.3.3. Adding an employee's leave in a range
+The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive.
 
-Step 10: The list of employees taking leave on the specific day will then be displayed to the user.
+Activity Diagram:
+![AddEmployeeLeaveFromTo Activity Diagram](./images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
+
+Sequence Diagram:
+
+![AddEmployeeLeaveFromTo Sequence Diagram](./images/commands/leave/AddEmployeeToLeaveFromTo.png)
+
+##### Flow
+
+1. The user types and enters the command `aelr eid/1 s/2022-03-04 e/2022-03-06` where 1 is the employee id, 2022-03-04 is the start date and 2022-03-06 is the end date.
+2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown.
+3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
+4. The `Id` and list of `LeaveDate` are passed down to the newly created command.
+5. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
+6. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown.
+7. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
+8. SudoHr will show all the days on which the employee has successfully taken leave.
+
+##### Feature considerations
+We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation.
+
+We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this to keep the behavior consistant with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
+
+#### 4.3.4. Listing all employees taking leave on a specific day
+
+The `leol` command lists employees taking leave on a specific date.
+
+1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
+2. The parser would initialise a `LeaveDate` object constructed from the input argument.
+3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
+4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
 
-Given below is an example of how `AddEmployeeToLeaveCommand` works
+### 4.4. Design considerations:
 
-![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/department/ListDepartmentSequenceDiagram.png)
-
-
-#### Cascading employee updates to department and event
-
-#### Design considerations:
-
-##### Employee
+#### 4.4.1. Employee
 An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
 
 An employee is identified by his ID field, and this field is used to get an employee object.
@@ -414,20 +452,23 @@ An employee is identified by his ID field, and this field is used to get an empl
 However, there are other fields to guard against duplication, specifically email and phone number fields.
 For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
-##### Departments
-
-##### Leaves
-
 ##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
 each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
 where employee objects are separately created for department's and leave's employee lists.
 Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
 
+#### 4.4.2. Departments
+
+[//]: # (To be done by Kenneth)
+
+#### 4.4.3. Leaves
+
+[//]: # (To be done by Jer En)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -437,16 +478,16 @@ Hence, any modification to an employee after SudoHR is initialized from storage 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. **Appendix: Requirements**
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**: HR in company who has a need to manage a significant number of employees
 
 **Value proposition**: data management for employees faster than a typical mouse/GUI driven app
 
 
-### User stories
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -476,7 +517,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 6.3. Use cases
 
 (For all use cases below, the **System** is  `SudoHR` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -807,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 6.4. Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
@@ -816,14 +857,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -832,13 +873,14 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample employees.
+   The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -846,25 +888,240 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
+### 7.2. Employee commands
 
-1. _{ more test cases …​ }_
+#### 7.2.1. Adding an employee
 
-### Deleting an employee
+1. Test case: `add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/friends t/owesMoney` <br>
+   Expected: New employee is added. Details of the added employee is shown in the result display.
+2. Test case: `add n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/friends t/owesMoney` (incorrect format) <br>
+   Expected: No employee is added. Result display shows correct command format and command constraints.
+3. Other incorrect `add` commands to try: `add 777`, `add id/0`, `...` (incorrect email format, incorrect phone format, duplicate employee ID, etc) <br>
+   Expected: Shows specific error message in result display.
 
-1. Deleting an employee while all employees are being shown
+#### 7.2.2. Listing all employees
 
-   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+1. Test case: `list` <br>
+   Expected: Lists all employees in employee window.
+2. Test case: `list x` (where x is any string) <br>
+   Expected: Lists all employees in employee window.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### 7.2.3. Editing an employee
 
-   1. Test case: `delete 0`<br>
-      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `edit eid/1 p/9999999` (employee must exist) <br>
+   Expected: Employee with ID 1 is edited. Details of the edited employee is shown in the result display.
+2. Test case: `edit 1 p/88888888` (incorrect format) <br>
+   Expected: No employee is edited. Result display shows correct command format and command constraints.
+3. Other incorrect `edit` commands to try: `edit id/0`, `...` (incorrect email format, incorrect phone format, duplicate employee ID, etc) <br>
+   Expected: Shows specific error message in result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### 7.2.4. Find employees by name
 
-1. _{ more test cases …​ }_
+1. Test case: `find Alex` <br>
+   Expected: Employees with Alex in their name will be displayed in the employee window. Number of employees found is shown in the result display.
+2. Test case: `find` (incorrect format) <br>
+   Expected: No employee is found. Result display shows correct command format and command constraints.
+
+#### 7.2.5. Find employees by ID
+
+1. Test case: `feid eid/1` <br>
+   Expected: Employee with ID 1 is shown in the employee window.
+2. Test case: `feid 1` (incorrect format) <br>
+   Expected: No employee is found. Result display shows correct command format and command constraints.
+3. Other incorrect `feid` commands to try: `feid eid/x` (where x is a non-positive integer)
+   Expected: Shows specific error message in result display.
+
+#### 7.2.6. Deleting an employee
+
+1. Test case: `del eid/1`<br>
+   Expected: Employee with ID 1 is deleted from the list. Details of the deleted employee shown in the result display.
+2. Test case: `del 1`<br>
+   Expected: No employee is deleted. Result display shows correct command format and command constraints.
+3. Other incorrect `del` commands to try: `del eid/x` (where x is a non-positive integer), `del eid/y` (where y is a non-existent employee ID), `...`<br>
+   Expected: Shows specific error message in result display.
+
+### 7.3. Department commands
+
+#### 7.3.1. Adding a department
+
+1. Test case: `adep n/Human Resources` <br>
+   Expected: New department is added. Details of the added department is shown in the result display.
+2. Test case: `adep Human Resources` (incorrect format) <br>
+   Expected: No department is added. Result display shows correct command format and command constraints.
+3. Other incorrect `adep` commands to try: `adep`, `adep n/***_`, `...` (incorrect name format, duplicate name, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.2 Editing a department
+
+1. Test case: `edep Human Resources n/HR` (department must exist) <br>
+   Expected: Human Resources department is edited. Details of the edited department is shown in the result display.
+2. Test case: `edep n/88888888` (department not specified) <br>
+   Expected: No department is edited. Result display shows correct command format and command constraints.
+3. Other incorrect `edep` commands to try: `edep`, `edep HR n/**_`,`...` (incorrect name format, duplicate name, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.3. Find departments by name
+
+1. Test case: `fdep Engineering` <br>
+   Expected: Departments with Engineering in their name will be displayed in the department window. Number of departments found is shown in the result display.
+2. Test case: `fdep` (incorrect format) <br>
+   Expected: No department is found. Result display shows correct command format and command constraints.
+
+#### 7.3.4. Deleting a department
+
+1. Test case: `ddep n/HR`<br>
+   Expected: Department named HR is deleted from the list. Details of the deleted department is shown in the result display.
+2. Test case: `ddep HR`<br>
+   Expected: No department is deleted. Result display shows correct command format and command constraints.
+3. Other incorrect `ddep` commands to try: `ddep n/x` (where x contains non-alphanumeric characters), `...` (non-existent department, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.5. Listing all departments
+
+1. Test case: `ldep` <br>
+   Expected: Lists all employees in employee window.
+2. Test case: `ldep x` (where x is any string) <br>
+   Expected: Lists all employees in employee window.
+
+#### 7.3.6. Add employee to a department
+
+1. Test case: `aetd eid/1 n/HR` <br>
+   Expected: Lists all employees in the HR department in employee window. Shows only HR department in department window.
+2. Test case: `aetd 1 n/HR` (incorrect command format) <br>
+   Expected: No employee added to department. Result display shows correct command format and command constraints.
+3. Other incorrect `aetd` commands to try: `aetd`, `...` (non-existent department/employee, duplicate employee, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.7. Remove employee from a department
+
+1. Test case: `refd eid/1 n/HR` <br>
+   Expected: Lists all employees in the HR department in employee window. Shows only HR department in department window.
+2. Test case: `refd 1 n/HR` (incorrect command format) <br>
+   Expected: No employee removed from department. Result display shows correct command format and command constraints.
+3. Other incorrect `refd` commands to try: `retd`, `...` (non-existent department/employee, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.8. Listing an employee's departments
+
+1. Test case: `led eid/1` <br>
+   Expected: Lists all departments that employee with ID 1 is in, inside the department window.
+2. Test case: `led 1` (incorrect command format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+3. Other incorrect `led` commands to try: `led`, `...` (non-existent employee, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.9. Listing all employees in a department
+
+1. Test case: `leid n/HR` <br>
+   Expected: Lists all employee in the HR department, inside the employee window.
+2. Test case: `leid HR` (incorrect command format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+3. Other incorrect `leid` commands to try: `leid`, `...` (non-existent department, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.3.10. List department headcount on a specific day
+
+1. Test case: `ldhc n/HR d/2023-04-01` <br>
+   Expected:
+   1. Lists all employees from HR department who are present on the given day, inside the employee window.
+   2. Shows the given department in the department window.
+   3. Shows the given leave in the leave window.
+2. Test case: `ldhc n/HR` <br>
+   Expected:
+   1. Lists all employees from HR department who are present today, inside the employee window.
+   2. Shows the given department in the department window.
+   3. Shows the given leave in the leave window.
+3. Test case: `ldhc HR` (incorrect command format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+4. Other incorrect `ldhc` commands to try: `ldhc`, `...` (non-existent department, etc) <br>
+   Expected: Shows specific error message in result display.
+
+### 7.4 Leave commands
+
+#### 7.4.1. Adding a leave
+
+1. Test case: `aetl eid/1 d/2023-12-31` <br>
+   Expected: 
+   1. Lists all employees taking leave on that date in the employee window. 
+   2. Shows only the given leave date in the leave window.
+2. Test case: `aetl 1 d/2023-12-31` (incorrect command format) <br>
+   Expected: No leave taken. Result display shows correct command format and command constraints.
+3. Other incorrect `aetl` commands to try: `aetl`, `...` (non-existent employee, employee already taken leave on that date, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.4.2. Adding all leaves with a range of dates
+
+1. Test case: `aelr eid/1 s/2023-12-25 e/2023-12-30` <br>
+   Expected: Shows all the leaves taken in the leave window.
+2. Test case: `aelr 1 s/2023-12-25 e/2023-12-30` (incorrect command format) <br>
+   Expected: No leave taken. Result display shows correct command format and command constraints.
+3. Other incorrect `aelr` commands to try: `aelr`, `...` (non-existent employee, employee already taken leave on that date, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.4.3. Deleting a leave taken by an employee
+
+1. Test case: `defl eid/1 d/2023-12-31` <br>
+   Expected:
+    1. Lists all employees taking leave on that date in the employee window.
+    2. Shows only the given leave date in the leave window.
+2. Test case: `defl 1 d/2023-12-31` (incorrect command format) <br>
+   Expected: No leave deleted. Result display shows correct command format and command constraints.
+3. Other incorrect `defl` commands to try: `defl`, `...` (non-existent employee, employee did not take leave on that date, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.4.4. Listing all employees on leave for a given date
+
+1. Test case: `leol 2023-12-25` <br>
+   Expected: Lists all employee taking leave on Christmas, inside the employee window.
+2. Test case: `leol Christmas` (incorrect date format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+3. Other incorrect `leol` commands to try: `leol` <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+
+#### 7.4.5. Listing all leaves
+
+1. Test case: `llve` <br>
+   Expected: Lists all leaves taken in the leave window.
+2. Test case: `llve x` (where x is any string) <br>
+   Expected: Lists all employees in employee window.
+
+#### 7.4.6. Listing an employee's leaves
+
+1. Test case: `llbe eid/1` <br>
+   Expected: Lists all leaves taken by employee with ID 1, inside the leave window.
+2. Test case: `llbe 1` (incorrect command format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+3. Other incorrect `llbe` commands to try: `llbe`, `...` (non-existent employee, etc) <br>
+   Expected: Shows specific error message in result display.
+
+### 7.5 General commands
+
+#### 7.5.1. Viewing help
+
+1. Test case: `help` <br>
+   Expected: Shows help window containing list of commands and UG link.
+
+#### 7.5.2. Refresh all lists
+
+1. Test case: `sa` <br>
+   Expected: Lists all employees, departments and leaves in their respective windows.
+2. Test case: `sa x` (where x is any string) <br>
+   Expected: Lists all employees, departments and leaves in their respective windows.
+
+#### 7.5.3. Clearing all entries
+
+1. Test case: `clear` <br>
+   Expected: Should clear all entries in SudoHR.
+2. Test case: `clear x` (where x is any string) <br>
+   Expected: Should clear all entries in SudoHR.
+
+#### 7.5.4. Exiting the application
+
+1. Test case: `exit` <br>
+   Expected: Should exit SudoHR.
+2. Test case: `exit x` (where x is any string) <br>
+   Expected: Should exit SudoHR.
 
 ### Saving data
 

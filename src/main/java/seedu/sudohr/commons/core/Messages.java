@@ -8,7 +8,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Dates should only be of the form YYYY-MM-DD";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "The date input is invalid";
 
     public static final String MESSAGE_EMPLOYEE_FOUND = "Employee found!";
     public static final String MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND = "Employee to delete from SudoHR is not found!";
