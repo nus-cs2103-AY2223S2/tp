@@ -49,8 +49,9 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#61](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/61) [\#94](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/94)
-  [\#130](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/130)
+  [\#130](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/130) [\#172](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/172) [\#179](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/179)
     * Assisted team members with debugging
+    * Carried out testing and reported bugs for other teams: [\#132](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/132) [\#153](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/153) [\#158](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/158)
 
 * **Tools**:
     * Sourcetree
