@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModTrekParser" as ModTrekParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":DegreeProgression" as DegreeProgression MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view progress")
+activate LogicManager
+
+LogicManager -> ModTrekParser : parseCommand("view progress")
+activate ModTrekParser
+
+create ViewCommandParser
+ModTrekParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> ModTrekParser
+deactivate ViewCommandParser
+
+ModTrekParser -> ViewCommandParser : parse("progress")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> ModTrekParser
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> ModTrekParser
+destroy ViewCommandParser
+
+ModTrekParser --> LogicManager
+deactivate ModTrekParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> Model : getDegreeProgression()
+activate Model
+
+Model --> ViewCommand
+deactivate Model
+
+ViewCommand -> DegreeProgression : getProgressionData()
+activate DegreeProgression
+
+DegreeProgression --> ViewCommand : details
+deactivate DegreeProgression
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+note left
+Invalid details will throw
+a CommandException
+end note
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -237,7 +237,7 @@ For instance, you may want to delete a planned module which you have decided not
 1 module to be deleted must be specified.
 </div>
 
-**Example:** 
+**Example:**
 * `delete /m CS2100 /m CS2040S`
 * `delete /m MA1521`
 * `delete all`
@@ -263,7 +263,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 :exclamation: **Caution:** Past data will be overridden and not be saved
 </div>
 
-**Example:** 
+**Example:**
 * `edit ES2660 /m CS2101 /g B+ /t MS`
 * `edit CS2107 /y y3s1`
 
@@ -366,6 +366,8 @@ Toggles between the display of degree progress or module list. You may either vi
 :bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.<br>
 
 :bulb: **Interpreting data:** You may find that the total MCs for the modules you have included does not match the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
+
+For more detailed information on the calculations, please refer to this [section](DeveloperGuide.md#generation-of-degree-progression-data) in our developer guide.
 </div>
 
 [Back to Table of Contents](#toc)
@@ -390,7 +392,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application! 
+:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application!
 </div>
 
 <div markdown="span" class="alert alert-warning">
