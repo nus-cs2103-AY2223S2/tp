@@ -15,16 +15,29 @@ Given below are my contributions to the project.
 **Features implemented**
 
 * **New Feature**: `import`
-* What it does:
-* Justification:
+* What it does: Import staff contacts for relevant faculties. 'staff' can refer to any person in the teaching, administrative or management teams in the faculty.
+* Justification: As the target audience for the application is NUS students, it would be of great help if they were able to import the default contacts for their respective faculties, to help them get familiar with these contacts.
 
 **Contributions to the UG**
 
 The following are the list of sections that have been contributed to the UG:
 
+- Command Summary
+- Features
+  - Exit the program: `exit` 
+  - Quick Import for faculty contacts: `import`
+
 **Contributions to the DG**
 
 The following are the list of sections that have been contributed to the DG:
+
+- Architecture
+- Use Cases
+- Planned Enhancements
+  - Enhancement 3 - Filling import feature with real data
+  - Enhancement 4 - Having more options for faculties for import feature
+- Implementation
+  - Import feature
 
 **Contributions to team-based tasks**
 
@@ -46,5 +59,13 @@ Participated in the Practical Exam Dry Run and performed bug testing on the [E-L
 
 The diagrams contributed to the DG are reproduced below.
 
+<div style="text-align: center">
+    <img src="../images/ImportSequenceDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem;"><i>Figure 1: Import sequence diagram</i></p>
+</div>
 
+<div style="text-align: center">
+    <img src="../images/ImportActivityDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem;"><i>Figure 2: Import Activity diagram</i></p>
+</div>
 

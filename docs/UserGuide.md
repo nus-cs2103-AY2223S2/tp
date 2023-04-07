@@ -243,7 +243,7 @@ Example:
 
 [Back to top](#top)
 
-### Quick Import for admin contacts: `import`
+### Quick Import for faculty contacts: `import`
 
 Import staff contacts for relevant faculties.
 > **Note**: 'staff' can refer to any person in the teaching, administrative or management teams in the faculty
