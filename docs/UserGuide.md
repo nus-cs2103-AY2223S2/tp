@@ -804,6 +804,8 @@ _Details coming soon ..._
    :exclamation: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
    </div>
 
+<br>
+
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 <div style="page-break-after: always;"></div>
 
@@ -813,6 +815,7 @@ Batch file method for Windows users:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
     ![open_new_file](images/user-guide/open_new_file.png)
+    <div style="page-break-after: always;"></div>
 
 2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
 
@@ -823,6 +826,7 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     
     ![open_rename](images/user-guide/open_rename.png)
 
+    <div style="page-break-after: always;"></div>
     <div class="span" class="alert alert-info">
     :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file.
     </div>
