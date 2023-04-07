@@ -51,7 +51,7 @@ Given below are my contributions to the project.
       Enhances the overall user experience and satisfaction with the application.
 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=SFCoding123&zR=AY2223S2-CS2103T-W11-4%2Ftp%5Bmaster%5D&zACS=252.11904274902844&zS=2023-02-17&zFS=&zU=2023-04-03&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shenchenzizoe&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=shenchenzizoe&tabRepo=AY2223S2-CS2103T-W11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
     * Assist task management and team communication
