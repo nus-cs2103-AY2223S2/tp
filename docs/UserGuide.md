@@ -660,6 +660,8 @@ Want to quit? Use exit command to exit the program!
 :exclamation: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 </div>
 
+<br>
+
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
@@ -708,6 +710,7 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 
 **A:** We understand that the current list of courses available is limited. We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
 
+<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
