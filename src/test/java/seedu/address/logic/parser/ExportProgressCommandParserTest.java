@@ -47,24 +47,24 @@ class ExportProgressCommandParserTest {
     @Test
     public void parse_multiplePrefix_success() {
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " " + System.getProperty("user.home")
-                + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                        + " " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
                 new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
 
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " "
-                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                        + " " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
                 new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
 
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " ???????????????????????????????????????????"
-                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                        + " " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
                 new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
 
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " %%%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$"
-                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                        + " " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
                 new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
 
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " %%%%%%%%%%%%%%%%%%%%%%%%%%%%$$$$$$$$$$$$$$$"
                         + " " + PREFIX_FILEPATH + " ???????????????????????????????????????????"
-                        + " " +  PREFIX_FILEPATH + " " + System.getProperty("user.home"),
+                        + " " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
                 new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
     }
 
