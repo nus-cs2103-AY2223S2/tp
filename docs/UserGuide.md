@@ -142,10 +142,9 @@ In essence, this command edits the description of the first recipe in **CookHub*
     - *QUANTITY*, *PRICE_PER_UNIT* must be numeric
   - e.g. *INGREDIENT* can be `White wine vinegar, 2, tbsp, 0.10`
   - e.g. *INGREDIENT* can be `Large egg, 4, unit, 0.80`
-
-* Ellipsis `...` attached directly behind a certain flag or parameter indicates that you can input multiple instances of that item.
-
+  
 [Back to top](#top)
+
 </div>
 
 ---
@@ -180,7 +179,7 @@ multiple `i/` command flags are allowed. A recipe similar to the image shown bel
 
 <img src="images/AddError.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
 
 ---
 #### Edit a recipe: `edit RECIPE_NUMBER`
@@ -212,7 +211,8 @@ Example:
 
 <img src="images/EditError.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 ### Delete a recipe : `delete RECIPE_NUMBER`
 This command deletes the recipe at the specified *recipe number* from your recipe book.
@@ -243,7 +243,8 @@ Our initial recipe book:
 
 <img src="images/DeleteResult2.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### List recipe : `list`
 
@@ -255,7 +256,8 @@ Example: `list` will list all the recipes similar to the image shown below:
 
 <img src="images/ListResult.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Clear recipe : `clear`
 
@@ -267,7 +269,8 @@ Example: `clear` will clear all recipes similar to the image shown below:
 
 <img src="images/ClearResult.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 ### Advanced commands
 
@@ -312,7 +315,8 @@ shown below:
 
 <img src="images/FindError2.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Search recipe with limited ingredients: `only`
 
@@ -341,7 +345,8 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 
 <img src="images/OnlyError.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Sort recipe by cost: `sort ORDER`
 
@@ -366,7 +371,8 @@ Our initial recipe book:
 
 <img src="images/SortResult.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
 
@@ -391,7 +397,8 @@ Our initial recipe book:
 
 <img src="images/GroceriesResult.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 
 #### Filter recipe by price: `fp COMPARATOR PRICE`
@@ -421,7 +428,8 @@ Our initial recipe book:
 
 <img src="images/FpResult.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
@@ -452,7 +460,8 @@ Our initial recipe book:
 
 <img src="images/StarResult2.png" width=500 height=400>
 
-[Back to top](#top)
+  [Back to top](#top)
+
 ---
 #### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
@@ -482,8 +491,8 @@ Our initial recipe book:
 
 <img src="images/UnstarResult2.png" width=500 height=400>
 
-[Back to top](#top)
----
+  [Back to top](#top)
+
 #### List all recipes in the favorites : `favorites`
 
 This command lists out all the recipes that you have added to your favorites.
@@ -501,6 +510,7 @@ Our initial recipe book:
 <img src="images/FavoritesResult.png" width=500 height=400>
 
 [Back to top](#top)
+
 ---
 #### Provide link to the user guide : `help`
 
@@ -520,7 +530,7 @@ Format: `help`
 
 CookHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to top](#top)
+  [Back to top](#top)
 
 ### Editing the data file
 
