@@ -68,9 +68,6 @@ MainWindow -left-> Logic
 Calendar -[hidden]left- ShowNextPanel
 ShowNextPanel -[hidden]left- EventListPanel
 EventListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 CalendarBox -[hidden]left- EventCard
 EventCard -[hidden]left- ShowNextCard
