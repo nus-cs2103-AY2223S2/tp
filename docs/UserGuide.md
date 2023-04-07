@@ -28,6 +28,12 @@ Otherwise, _Ez-Schedule_ may not run as expected.
 - [Table of Contents](#table-of-contents)
 - [Icons Used](#icons-used)
 - [Quick Start](#quick-start)
+- [Graphical User Interface](#gui)
+    - [Command Box](#command-box)
+    - [Response Box](#response-box)
+    - [Events Panel](#events-panel)
+    - [Upcoming Events Panel](#upcoming-events-panel)
+    - [Calendar](#calendar)
 - [Summary](#summary)
   - [Prefix Summary](#prefix-summary)
   - [Command Summary](#command-summary)
@@ -42,12 +48,6 @@ Otherwise, _Ez-Schedule_ may not run as expected.
     - [List All Events](#list) : `list`
     - [View Help](#help) : `help`
     - [Exit Application](#exit) : `exit`
-- [Graphical User Interface](#gui)
-    - [Command Box](#command-box)
-    - [Response Box](#response-box)
-    - [Events Panel](#events-panel)
-    - [Upcoming Events Panel](#upcoming-events-panel)
-    - [Calendar](#calendar)
 - [Limitations](#limitations)
 - [FAQ](#faq)
 
@@ -82,6 +82,103 @@ This section serves to introduce the icons used throughout this guide.
 3. Copy the file to the folder you want to use as the *home folder* for your _Ez-Schedule_.
 4. Open a command line terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h2 id="gui">Graphical User Interface</h2>
+-------------------------------
+This section serves to introduce the GUI components in _Ez-Schedule_.
+
+_Ez-Schedule_ is composed of the following components, which are numbered for easy reference:
+
+1. [Command Box](#command-box)
+2. [Response Box](#response-box)
+3. [Events Panel](#events-panel)
+4. [Upcoming Events Panel](#upcoming-events-panel)
+5. [Calendar](#calendar)
+
+![gui.png](images/gui.png)
+
+<h3 id="command-box">Command Box</h3>
+![command-box-gui.png](images/command-box-gui.png)
+
+This component enables you to type the command in the command box and execute it by pressing Enter.  
+For example, typing `help` and pressing Enter will open the help window.
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="response-box">Response Box</h3>
+![response-box-gui.png](images/response-box-gui.png)
+
+This component displays the feedback of the command you entered into the command box.
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="events-panel">Events Panel</h3>
+![events-panel.png](images/events-panel.png)
+
+This component displays all the events that you have.  
+You can use commands like `list` and `find` to view the events in your scheduler.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Events that have past is marked with a completed label and check mark.   
+Events are displayed in chronological order.  
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
+![upcoming-events-gui.png](images/upcoming-events-gui.png)
+
+This component displays both ongoing (if you have not started on them yet) and upcoming events that you have.
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:**
+While the default is one upcoming event, 
+you can use the `next` command to change the number of upcoming events shown.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h3 id="calendar">Calendar</h3>
+![calendar.png](images/calendar.png)
+
+This component gives you a comprehensive summary of all the events that you have for a particular month.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+Newly added events will appear in their corresponding calendar boxes.  
+The find command will highlight the calendar boxes corresponding to the events that match your search criteria.
+</div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:**
+Clicking on the `now` button will take you directly back to the current date.  
+Clicking on any calendar date box that has events will display those events in the event list.
+</div>
+
+
+[[Back to top](#table-of-contents)]
+
+
+<h2 id="limitations">Limitations</h2>
+-------------------------------------
+- Currently, we only support same-day events.
+  Events which stretches across multiple days are not supported.
+- `undo` can only undo the most recent valid command.
+- Data files are not allowed to be modified directly.
+  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
 
 [[Back to top](#table-of-contents)]
@@ -298,103 +395,6 @@ Format: `exit`
 Exits the application.
 
 Example: `exit`
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h2 id="gui">Graphical User Interface</h2>
--------------------------------
-This section serves to introduce the GUI components in _Ez-Schedule_.  
-
-_Ez-Schedule_ is composed of the following components, which are numbered for easy reference:
-
-1. [Command Box](#command-box)
-2. [Response Box](#response-box)
-3. [Events Panel](#events-panel)
-4. [Upcoming Events Panel](#upcoming-events-panel)
-5. [Calendar](#calendar)
-
-![gui.png](images/gui.png)
-
-<h3 id="command-box">Command Box</h3>
-![command-box-gui.png](images/command-box-gui.png)
-
-This component enables you to type the command in the command box and execute it by pressing Enter.  
-For example, typing `help` and pressing Enter will open the help window.
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h3 id="response-box">Response Box</h3>
-![response-box-gui.png](images/response-box-gui.png)
-
-This component displays the feedback of the command you entered into the command box.
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h3 id="events-panel">Events Panel</h3>
-![events-panel.png](images/events-panel.png)
-
-This component displays all the events that you have.  
-You can use commands like `list` and `find` to view the events in your scheduler.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-Events that have past is marked with a completed label and check mark.   
-Events are displayed in chronological order.  
-</div>
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h3 id="upcoming-events-panel">Upcoming Events Panel</h3>
-![upcoming-events-gui.png](images/upcoming-events-gui.png)
-
-This component displays both ongoing (if you have not started on them yet) and upcoming events that you have.
-
-<div markdown="span" class="alert alert-success">
-:bulb: **Tip:**
-While the default is one upcoming event, 
-you can use the `next` command to change the number of upcoming events shown.
-</div>
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h3 id="calendar">Calendar</h3>
-![calendar.png](images/calendar.png)
-
-This component gives you a comprehensive summary of all the events that you have for a particular month.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:**
-Newly added events will appear in their corresponding calendar boxes.  
-The find command will highlight the calendar boxes corresponding to the events that match your search criteria.
-</div>
-
-<div markdown="span" class="alert alert-success">
-:bulb: **Tip:**
-Clicking on the `now` button will take you directly back to the current date.  
-Clicking on any calendar date box that has events will display those events in the event list.
-</div>
-
-
-[[Back to top](#table-of-contents)]
-
-
-<h2 id="limitations">Limitations</h2>
--------------------------------------
-- Currently, we only support same-day events.
-  Events which stretches across multiple days are not supported.
-- `undo` can only undo the most recent valid command.
-- Data files are not allowed to be modified directly.
-  Integrity of data files are not verified, hence modified data files might introduce bugs into the program.
 
 
 [[Back to top](#table-of-contents)]
