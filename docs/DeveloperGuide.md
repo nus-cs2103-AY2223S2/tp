@@ -629,7 +629,7 @@ TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
-1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module,
+1. `TagCommandParser#parse()` takes in the user input and determine whether the user wanted to tag a module,
    a lecture, or a video based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
@@ -643,11 +643,19 @@ The following is a description of the code execution flow:
 
 3. A set of `Tag` objects to add is then determined from the user's input. Afterwards, The command creates an
    appropriate `TagCommand` object and returns it to the caller.
-4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by
-   `TagCommandParser#parse(String)`. During the execution, a `CommandException` will be thrown if no tags were
+4. `LogicManager` calls the `Command#execute()` method of the `TagCommand` object returned by
+   `TagCommandParser#parse()`. During the execution, a `CommandException` will be thrown if no tags were
    provided, or if the tracker doesn't contain the specified `Module` object, `Lecture` object, or `Video` object.
 5. If no exceptions are thrown, the command succeeds in adding `Tag` objects to the `Module` object, `Lecture` object,
    or `Video` object.
+
+**Notes for `TagCommandParser#parse()`**
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included.
+
+**Notes for `TagCommand#execute()`**
+- A `CommandException` will be thrown for the following scenarios:
+    - The user did not specify any tags to add.
+    - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
 
 ### Untag module, lecture, and video feature
 
@@ -684,11 +692,11 @@ TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
-1. `UntagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to untag a module,
-   a lecture, or a video based on the appropriate prefixes included in the user's input.
+1. `UntagCommandParser#parse()` takes in the user input and determine whether the user wants to remove `Tag` 
+   objects a `Module`, `Lecture`, or `Video` object based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
-   A `ParseException` will be thrown, and the command will not be executed.
+
 
    | Intent        | has `/mod` prefix | has `/lec` prefix | has `/tags` prefix |
    |:-------------:|:-----------------:|:-----------------:|:------------------:|
@@ -696,14 +704,22 @@ The following is a description of the code execution flow:
    | Untag Lecture |        Yes        |        No         |        Yes         |
    | Untag Video   |        Yes        |        Yes        |        Yes         |
 
-3. A set of tags to remove is then determined from the user's input. Afterwards, the command creates an
+3. A set of `Tag` objects to remove is then determined from the user's input. Afterwards, the command creates an
    appropriate `UntagCommand` object and returns it to the caller.
-4. `LogicManager` calls the `Command#execute(Model)` method of the `UntagCommand` object returned by
-   `UntagCommandParser#parse(String)`. During the execution, a `CommandException` will be thrown if no tags were
-   provided, if the tracker doesn't contain the specified `Module` object, `Lecture` object, or `Video` object, or if there are tags from the
-   user input that do not correspond with existing `Tag` objects in the `Module` object, `Lecture` object, or `Video` object.
-5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the `Module` object, 
-   `Lecture` object, or `Video` object.
+4. `LogicManager` calls the `Command#execute()` method of the `UntagCommand` object returned by
+   `UntagCommandParser#parse()`. 
+5. If no exceptions are thrown, the command succeeds in removing the `Tag` objects from the 
+   `Module`/`Lecture`/`Video` object. 
+
+**Notes for `UntagCommandParser#parse()`**
+- A `ParseException` will be thrown if the appropriate prefixes according to the above table aren't included. 
+
+**Notes for `UntagCommand#execute()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The user did not specify any tags to remove. 
+  - The current `Tracker` object does not contain the specified `Module`/`Lecture`/`Video` object.
+  - The specified tags do not correspond with existing `Tag` objects in the `Module`/`Lecture`/`Video` object.
+
 
 ### Import archived data feature
 
@@ -733,7 +749,33 @@ TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
-1. 
+1. `ImportCommandParser#parse()` takes in the user input and determine the file path that the user wants to
+   import from, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the
+   `/overwrite` flag. 
+2. The command creates an appropriate `ImportCommand` object and returns it to the caller.
+3. `LogicManager` calls `Command#execute()` method of the `ImportCommand` object. An appropriate `CommandResult` object containing a `Path` object with the
+   importing file path and a set of `ModuleCode` objects to reference the `Module` objects to import is then 
+   returned to the caller.
+4. `LogicManager` calls the `Archive#importFromArchive()` method. The `Archive` object then checks whether the 
+   modules in user's input exist in the current Tracker, and in the specified file path.
+5. If no exceptions are thrown, the command succeeds in importing `Module` objects from the specified file path to the 
+   current `Tracker` object.
+
+**Notes for `ImportCommandParser#parse()`**
+- A `ParseException` will be thrown for the following scenarios:
+  - The user specified `/mod` without providing any module code
+  - The importing file path is not specified in user's input
+
+**Notes for `ImportCommand#execute()`**
+- A `CommandException` will be thrown if the specified file path is invalid.
+
+**Notes for `Archive#importFromArchive()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The file doesn't exist in the specified file path.
+  - The file doesn't have read permission
+  - The file isn't a valid Le Tracker data file
+  - The user is importing modules that doesn't exist in the saving file
+  - The user is importing modules that exists in the current `Tracker` object without the `/overwrite` flag
 
 ### Exporting data feature
 
@@ -761,19 +803,28 @@ TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
-1. `ExportCommandParser#parse(String)` takes in the user input and determine the file path that the user wants to 
+1. `ExportCommandParser#parse()` takes in the user input and determine the file path that the user wants to 
    export to, as well as whether the user wants to overwrite the data in the file path, if it exists, based on the 
-   `/overwrite` flag. A `ParseException` will be thrown if the file path is empty, and the command will not be executed
+   `/overwrite` flag.
 2. The command creates an appropriate `ExportCommand` object and returns it to the caller.
-3. `LogicManager` calls the `Command#execute(Model)` method of the `ExportCommand` object returned by
-   `ExportCommandParser#parse(String)`. An appropriate `CommandResult` object containing a `Path` object with the 
-   saving file path is then returned to the caller. A `CommandException` will be thrown if the file path provided in 
-   the user's input is invalid. 
-4. From the `CommandResult` object, `LogicManager` then calls the `Archive#exportToArchive(Path, ReadOnlyTracker, 
-   boolean, Path)`. A `CommandException` will be thrown if the file at the specified file path does not have write 
-   permission, or if the user is trying to export to an existing file without the `/overwrite` flag.
+3. `LogicManager` calls the `Command#execute()` method of the `ExportCommand`. An appropriate `CommandResult` object containing a `Path` object with the 
+   saving file path is then returned to the caller. 
+4. `LogicManager` calls the `Archive#exportToArchive()` method.
 5. If no exceptions are thrown, the command succeeds in saving the `Tracker` object and the `Module`, `Lecture`, and 
-   `Video` objects it contains to the specified file.
+   `Video` objects it contains to the specified file path.
+
+**Notes for `ExportCommandParser#parse()`**
+- A `ParseException` will be thrown if the saving file path is not specified in user's input.
+
+**Notes for `ExportCommand#execute()`**
+- A `CommandException` will be thrown if the specified file path is invalid.
+
+**Notes for `Archive#exportToArchive()`**
+- A `CommandException` will be thrown for the following scenarios:
+  - The file at the specified file path does not have write permission.
+  - The user is trying to export to the current working tracker path.
+  - The user is trying to export to an existing file without the `/overwrite` flag.
+
 
 ## Documentation, logging, testing, configuration, dev-ops
 
