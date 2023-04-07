@@ -7,7 +7,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":DeadlineCommandParser" as DeadlineCommandParser LOGIC_COLOR
-participant "s:DeadlineCommand" as DeadlineCommand LOGIC_COLOR
+participant "d:DeadlineCommand" as DeadlineCommand LOGIC_COLOR
 participant "o:Order" as Order LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -37,7 +37,7 @@ create DeadlineCommand
 DeadlineCommandParser -> DeadlineCommand
 activate DeadlineCommand
 
-DeadlineCommand --> DeadlineCommandParser : s
+DeadlineCommand --> DeadlineCommandParser : d
 deactivate DeadlineCommand
 
 create Order
@@ -48,13 +48,13 @@ Order --> DeadlineCommand : o
 deactivate Order
 
 
-DeadlineCommandParser --> RoleBookParser : s
+DeadlineCommandParser --> RoleBookParser : d
 deactivate DeadlineCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeadlineCommandParser -[hidden]-> RoleBookParser
 destroy DeadlineCommandParser
 
-RoleBookParser --> LogicManager : s
+RoleBookParser --> LogicManager : d
 deactivate RoleBookParser
 
 
