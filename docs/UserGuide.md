@@ -115,7 +115,7 @@ Fields are the information following the slash in a command, to provide appropri
 * For more information on each specific field, refer to the [Fields](#fields) section
 
 #### Preamble
-Preamble is a special piece of information specified for certain commands that are entered without prefixes
+Preamble is a special piece of information specified for certain commands that are entered without prefixes.
 * They need to be specified right after the [command](#command) word and before any other [Fields](#field).
   * For example, `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A`
   * On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.
@@ -212,12 +212,12 @@ Adds a volunteer to FriendlyLink.
 
 Format: `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [re/REGION] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​`
 
-* Every volunteer must have a unique [NRIC section](#nric).
+* Every volunteer must have a unique [NRIC](#nric).
 * `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the [dates](#available-dates) that the volunteer is available.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 
-A volunteer can have any number of [tags](#tags), [medical qualifications](#medical-qualification) and available dates. 
+A volunteer can have any number of [tags](#tags), [medical qualifications](#medical-qualification) and [available dates](#available-dates). 
 
 </div>
 
@@ -245,7 +245,7 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
    
 **:information_source: Info**<br>
 If the elderly and volunteer to be paired:
-  * has clashes in availability [dates](#date); or
+  * has clashes in [availability dates](#available-dates); or
   * lives in different [regions](#region)
 
 The pair will be successfully added but a warning will be given.
@@ -276,7 +276,7 @@ then a simple "_No pairs were formed._" message will be displayed.
 
 **:information_source: How are the volunteers and elderly paired?**<br>
 
-* The volunteers and elderly are paired in a _greedy_ manner: We essentially match each unpaired volunteer
+* The volunteers and elderly are paired in a _greedy_ manner: FriendlyLink essentially matches each unpaired volunteer
 with the first unpaired elderly that is compatible with it. 
 * Furthermore, the pairs will be **one-to-one** i.e. every unpaired volunteer will be paired with at most
 one unpaired elderly, and vice versa.
@@ -305,7 +305,7 @@ Format: `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS]
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
-When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of [tags](#tags) or [available dates](#available-dates) will overwrite previous ones and instead of being cumulative.
+When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of [tags](#tags) or [available dates](#available-dates) will overwrite previous ones instead of being cumulative.
 
 </div>
 
@@ -360,7 +360,7 @@ Format: `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
-When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags, medical qualifications or available dates will overwrite previous ones instead of being cumulative. 
+When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of [tags](#tags), [medical qualifications](#medical-qualification) or [available dates](#available-dates) will overwrite previous ones instead of being cumulative. 
 
 </div>
 
@@ -370,7 +370,7 @@ You can remove all the person's tags by typing `t/` without specifying any tags 
 Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
-* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
+* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored (since volunteers do not have a risk level).
 * `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
@@ -440,7 +440,7 @@ Examples:
 Unpairs an elderly from its assigned volunteer.
 This deletes the pair while still keeping the elderly and volunteer in FriendlyLink.
 
-Format `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
+Format: `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 * After deletion, the pair is removed from the list of pairs in the window.
 
@@ -488,11 +488,8 @@ Examples:
 #### Listing persons: `list`
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
-* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps the administrator to easily view all the elderly, volunteer and pairs in the database,
-and is also useful to revert the views after `find` command.
-* If `PAIRED` or `UNPAIRED` keyword is specified, it allows the administrator to quickly view
-the persons who are paired or not paired, therefore helps the decision-making.
-
+* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps you to easily see all the elderly, volunteer and pairs in the database, especially if you want to revert to the full list after filtering the list with the `find` command.
+* If `PAIRED` or `UNPAIRED` keyword is specified, it allows you to quickly view the persons who are paired or not paired, therefore helps the decision-making.
 
 Format: `list <[PAIRED \ UNPAIRED]>`
 
@@ -555,7 +552,7 @@ Shows the statistics of FriendlyLink.
 This shows the total number of elderly, volunteers and pairs. It also shows the maximum number of elderly paired to each volunteer and vice versa.
 This command can be entered after the [find](#finding-records) command to show statistics on a subset of data (E.g. Find statistics of people in a particular region)
 
-Format `stats`
+Format: `stats`
 
 * The summary is shown below.
   <img src="images/userGuide/stats.png" width="800" />
@@ -594,14 +591,12 @@ Format: `exit`
 
 ### Saving the data
 
-FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
+FriendlyLink data are saved in the hard disk automatically after every command. There is no need to
 save manually.
-
-[Back to top](#table-of-contents)
 
 ### Editing the data file
 
-FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
+FriendlyLink data are saved in the [JSON](#glossary) files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
@@ -631,16 +626,16 @@ The home address of a person.
 
 ### NRIC
 NRIC is a unique identifier given to all Singaporeans.
-* NRIC is case-insensitive
+* NRIC is case-insensitive.
 * The structure of the NRIC should be `@XXXXXXX#`, where:
     * `@` is a letter that can be "S", "T", "F", "G", "M"
     * `XXXXXXX` is a 7-digit serial number
     * `#` is a letter from A to Z
-* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
+* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC).
 
 ### Index
 Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-* An index must be a positive integer (E.g. 1, 2, 3, …​)
+* An index must be a positive integer (E.g. 1, 2, 3, …​).
 
 ### Phone number
 The phone number of a person.
@@ -725,7 +720,7 @@ A tag is a generic description for a group of people.
 ## Coming Soon
 
 The following features are planned for the coming update
-* Edit and add pair by index 
+* Edit and add pair by index
 * Delete elderly, volunteers and pairs by index
 * View in-depth pair details (without hovering mouse over them)
 * Warning message appears when typing commands
@@ -782,6 +777,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
 | Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
+| JSON                  | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                         |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
