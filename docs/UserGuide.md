@@ -548,23 +548,28 @@ Want to find people with certain qualities? Use find command to find people that
 - All constraints applied are shown in *Result Display*.
 - To remove all constraints, use `list`. 
 - At least one of the optional fields must be provided.
-- All constraints are case-insensitive.
+- All constraints are case-**in**sensitive.
 
 <div style="page-break-after: always;"></div>
 
-`find [OPTIONAL/PARAMETER]...`<br>
+`find [OPTIONAL/PARAMETER]...`
+
 **Acceptable Parameters used as Constraints**
-* n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
-* y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
-* c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
-    * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a></div>
-* m/MODULES (e.g. `find m/CS2103` will load all persons with `CS2103` including `CS2103T` and `CS2103R`)
-  * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all persons with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
-  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
-  * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all persons that have taken
-    * `CS1101`, `CS1231` regardless of academic year
-    * `CS2040` in `AY2223S1`
-    * `CS2090`, `CS3230` in `AY2223S2`
+* n/NAME
+  * e.g. `find n/Jo`: load all person whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
+* y/YEAR
+  * e.g. `find y/2`: load all person who are in `year 2`
+* c/COURSE
+  * e.g. `find c/Computer`: load all person enrolled in `Computer Engineering` and `Computer Science`
+  * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a></div>
+* m/MODULES
+  * e.g. `find m/CS2103`: load all person with `CS2103` including `CS2103T` and `CS2103R`
+    * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all persons with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
+    * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
+    * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all persons that have taken
+      * `CS1101`, `CS1231` regardless of academic year
+      * `CS2040` in `AY2223S1`
+      * `CS2090`, `CS3230` in `AY2223S2`
 * s/SKILLS (e.g. `find s/java` will load all persons that contains `java` in their skill list such as `java` and `javascript`)
     * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
  
