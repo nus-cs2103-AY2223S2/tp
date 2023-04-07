@@ -116,7 +116,7 @@ public class ParserUtil {
         try {
             result = new Timeslot(trimmedTimeslot);
         } catch (IllegalArgumentException iae) {
-            throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
+            throw new ParseException(iae.getMessage());
         }
         return result;
     }
