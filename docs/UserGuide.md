@@ -33,6 +33,7 @@ You can click on any of the links below to navigate to the respective sections f
     * [1.4.1 Home Page](#141-home-page)
     * [1.4.2 Data Tab](#142-data-tab)
 * [2 Commands](#2-commands)
+  * [2.0 Checking for duplicates](#20-checking-for-duplicates)
   * [2.1 Add](#21-add)
     * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-add_supplier)
     * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-add_order)
@@ -208,7 +209,7 @@ You can try the following commands to add a task:
 * `tab t/TASKS`
 * `add_task n/Buy eggs d/12/12/2040`
 
-**Step 2:** Observe the changes made to the Order list, with the command success message shown inside the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
+**Step 2:** Observe the changes made to the Task list, with the command success message shown inside the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
 
 <div markdown="block" class="alert alert-tip">
 
@@ -403,19 +404,29 @@ Menu Item Card consists of the following components:
 
 </div><br>
 
+## 2.0 Checking for duplicates
+
+Duplicate data are not allowed. Hence, adding of duplicate data or editing of an existing data such that it matches
+with another existing data in the data list will not be successful. Here's how we check for duplicates:
+
+| Any two    | are considered to be duplicated if                                          | 
+|------------|-----------------------------------------------------------------------------| 
+| Suppliers  | they have the same phone numbers                                            |
+| Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
+| Tasks      | they have the same task names (case-insensitive) and deadlines.             |
+| Menu items | they have the same item names (with matching cases).                        |
+
 ## 2.1 Add
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil2: Adding of duplicate data is not allowed. Refer to the section below to see how duplicates are checked for.
+:pencil2: Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
 
 :information_source: **Information**
-
-* Adding of duplicate suppliers is not allowed. Two suppliers are considered duplicated if they have the same phone numbers.
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -463,8 +474,6 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
   You can find out how to add a menu item [here](#214-adding-a-menu-item-add_item)
 
-* Adding of duplicate orders is not allowed. Two orders are considered to be duplicates only if all the parameters (excluding `STATUS`) are the same (with matching cases).
-
 </div>
 
 <div markdown="block" class="alert alert-example">
@@ -509,7 +518,6 @@ Syntax: `add_task n/TASK_NAME d/DEADLINE [s/STATUS]`
   * `N` or `n` for `Not Done`
   * `D` or `d` for `Done`
 * If no status is provided, it is **defaulted** to `Not Done`.
-* Adding of duplicate orders are not allowed. Two orders are considered to be duplicates if they have the same task names (case-insensitive) and deadlines.
 
 </div>
 
@@ -553,7 +561,6 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
 
-* Adding of duplicate menu items is not allowed. Two menu items are considered to be duplicates if they have the same item names (with matching cases).
 
 </div>
 
@@ -589,7 +596,7 @@ Editing of an information in a specific list. Below are the specific edit comman
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * All existing values will be replaced with the new values given.
 * At least one of the fields (e.g. `n/NAME`) must be specified.
-* Duplicate data are not allowed, so editing of a data such that it matches with an existing data is not allowed. Check [Add section](#21-add) to see how duplicates are checked for.
+* Editing of a data such that it matches with another existing data is not allowed. Check [this table](#20-checking-for-duplicates) to see how duplicates are checked for.
 
 </div>
 
