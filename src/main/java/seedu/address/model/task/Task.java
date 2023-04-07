@@ -26,7 +26,7 @@ public class Task implements Relationship<Task> {
     private final Content content;
     private final Status status;
 
-    private List<Person> peoples = new ArrayList<>();
+    private final List<Person> persons = new ArrayList<>();
 
     private final Datetime createDateTime;
     private final Datetime deadline;
@@ -63,7 +63,7 @@ public class Task implements Relationship<Task> {
 
 
     /**
-     * ID must be specific when loading from local storage
+     * Every field must be present and not null.
      */
     public Task(Title title, Content content, Status status, Datetime deadline, Id id) {
         requireAllNonNull(title, content, status);
@@ -76,7 +76,7 @@ public class Task implements Relationship<Task> {
     }
 
     /**
-     * ID must be specific when loading from local storage
+     * Every field must be present and not null.
      */
     public Task(Title title, Content content, Status status, Datetime createDateTime, Datetime deadline, Id id) {
         requireAllNonNull(title, content, status);
@@ -87,6 +87,35 @@ public class Task implements Relationship<Task> {
         this.createDateTime = createDateTime;
         this.deadline = deadline;
     }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Content content, Status status, Datetime createDateTime, Datetime deadline, Id id,
+                List<Person> persons) {
+        requireAllNonNull(title, content, status);
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.id = id;
+        this.createDateTime = createDateTime;
+        this.deadline = deadline;
+        this.persons.addAll(persons);
+
+    }
+
+    /**
+     * Returns a new Task object with the specified set of people added to the original set of people.
+     *
+     * @param task    the Task object to be updated
+     * @param persons the Set of Person objects to be added to the Task object
+     * @return a new Task object with the updated set of people
+     */
+    public static Task ofUpdatePeoples(Task task, List<Person> persons) {
+        return new Task(task.getTitle(), task.getContent(), task.getStatus(),
+            task.getCreateDateTime(), task.getDeadline(), task.getId(), persons);
+    }
+
 
     public Id getId() {
         return id;
@@ -116,14 +145,10 @@ public class Task implements Relationship<Task> {
         return deadline;
     }
 
-    public void setPeoples(List<Person> peoples) {
-        this.peoples = peoples;
-    }
 
-    public List<Person> getPeoples() {
-        return peoples;
+    public List<Person> getPersons() {
+        return persons;
     }
-
 
 
     /**
@@ -158,7 +183,8 @@ public class Task implements Relationship<Task> {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
             && otherTask.getContent().equals(getContent())
-            && otherTask.getStatus().equals(getStatus());
+            && otherTask.getStatus().equals(getStatus())
+            && otherTask.getPersons().equals(getPersons());
     }
 
     @Override

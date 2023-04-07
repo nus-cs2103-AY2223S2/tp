@@ -7,12 +7,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.shared.Datetime;
+import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
@@ -40,14 +42,18 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_CONTENT).get());
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Datetime deadline;
+        Datetime createdDate = new Datetime(LocalDateTime.now().toString());
+        Id id = new Id();
+
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             deadline = ParserUtil.parseDateTime(Objects.requireNonNull(argMultimap
                 .getValue(PREFIX_TASK_DEADLINE).get()));
+
         } else {
             deadline = new Datetime();
         }
 
-        Task task = new Task(title, content, status, deadline);
+        Task task = new Task(title, content, status, createdDate, deadline, id);
         return new AddTaskCommand(task);
     }
 

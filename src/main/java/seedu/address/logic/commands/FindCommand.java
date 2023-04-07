@@ -26,7 +26,9 @@ import seedu.address.model.task.Task;
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "findp";
-    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <PERSON_NAME>\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds persons whose names contain any "
+            + "of the given keywords. "
+            + "Parameters: KEYWORD [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " John Cena";
 
     public static final String MESSAGE_PERSON_FOUND = "%1$s person found.";

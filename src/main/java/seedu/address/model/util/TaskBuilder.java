@@ -1,8 +1,11 @@
 package seedu.address.model.util;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.Repository;
+import seedu.address.model.person.Person;
 import seedu.address.model.shared.Datetime;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
@@ -27,6 +30,7 @@ public class TaskBuilder {
     private Status status;
     private Datetime deadline;
     private Datetime createTime;
+    private List<Person> persons = new ArrayList<>();
 
     private Id id;
 
@@ -52,6 +56,7 @@ public class TaskBuilder {
         id = taskToCopy.getId();
         deadline = taskToCopy.getDeadline();
         createTime = taskToCopy.getCreateDateTime();
+        persons = taskToCopy.getPersons();
     }
 
     private Task buildRandomTask() {
@@ -155,7 +160,7 @@ public class TaskBuilder {
      * @return Task containing specified {@code Title, @code Content, @code Status}
      */
     public Task build() {
-        return new Task(title, content, status, createTime, deadline, id);
+        return new Task(title, content, status, createTime, deadline, id, persons);
     }
 
 

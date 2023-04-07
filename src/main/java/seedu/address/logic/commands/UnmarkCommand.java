@@ -16,6 +16,7 @@ import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.TaskBuilder;
 
 /**
  * Unmarks a marked task as uncompleted.
@@ -53,12 +54,12 @@ public class UnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TASK_ALREADY_NOT_DONE);
         }
 
-        Task unmarkedTask = createUnmarkedTask(taskToUnmark);
-        officeConnectModel.setTaskModelManagerItem(taskToUnmark, unmarkedTask, model);
+        Task unmarkedTask = new TaskBuilder(taskToUnmark).withStatus(false).build();
+        officeConnectModel.setTask(taskToUnmark, unmarkedTask);
 
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
     }
-
+    @Deprecated
     private static Task createUnmarkedTask(Task taskToUnmark) {
         assert taskToUnmark != null;
 

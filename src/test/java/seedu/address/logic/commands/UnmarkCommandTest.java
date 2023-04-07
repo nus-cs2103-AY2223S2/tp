@@ -30,10 +30,10 @@ public class UnmarkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
     private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
 
     @Test
     public void execute_validIndexList_success() {
@@ -43,7 +43,7 @@ public class UnmarkCommandTest {
         Task unmarkedTask = new TaskBuilder(task).withStatus(false).build();
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
 
-        expectedOfficeConnectModel.setTaskModelManagerItem(task, unmarkedTask, model);
+        expectedOfficeConnectModel.setTask(task, unmarkedTask);
 
 
         assertTaskCommandSuccess(command, officeConnectModel, expectedMessage, expectedOfficeConnectModel);

@@ -16,6 +16,7 @@ import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.TaskBuilder;
 
 /**
  * Marks a task as completed.
@@ -54,12 +55,13 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TASK_ALREADY_DONE);
         }
 
-        Task markedTask = createMarkedTask(taskToMark);
-        officeConnectModel.setTaskModelManagerItem(taskToMark, markedTask, model);
+        Task markedTask = new TaskBuilder(taskToMark).withStatus(true).build();
+        officeConnectModel.setTask(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }
 
+    @Deprecated
     private static Task createMarkedTask(Task taskToMark) {
         assert taskToMark != null;
 

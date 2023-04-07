@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.InvalidDeadlineException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.shared.Datetime;
 import seedu.address.model.task.Task;
 
 /**
@@ -43,7 +45,11 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireNonNull(model);
-
+        if (toAdd.getDeadline().getTimestamp().isPresent()) {
+            if (Datetime.isPastDateTime(toAdd.getDeadline(), toAdd.getCreateDateTime())) {
+                throw new InvalidDeadlineException();
+            }
+        }
         if (officeConnectModel.hasTaskModelManagerItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }

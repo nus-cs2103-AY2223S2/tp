@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static seedu.address.logic.commands.UnassignCommand.MESSAGE_NON_EXIST_ASSIGNMENT;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,6 +20,7 @@ public class OfficeConnectModel {
     public static final Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     private final RepositoryModelManager<Task> taskModelManager;
     private final RepositoryModelManager<AssignTask> assignTaskModelManager;
+    private final Model personModelManger;
 
     /**
      * Initializes a OfficeConnectModel empty data.
@@ -26,15 +28,34 @@ public class OfficeConnectModel {
     public OfficeConnectModel() {
         taskModelManager = new RepositoryModelManager<>(new Repository<Task>());
         assignTaskModelManager = new RepositoryModelManager<>(new Repository<AssignTask>());
+        personModelManger = new ModelManager();
     }
+
     /**
      * Initializes a OfficeConnectModel given data.
      */
     public OfficeConnectModel(RepositoryModelManager<Task> taskModelManager,
-                              RepositoryModelManager<AssignTask> assignTaskModelManager) {
+                              RepositoryModelManager<AssignTask> assignTaskModelManager, Model personModelManger) {
         this.taskModelManager = taskModelManager;
         this.assignTaskModelManager = assignTaskModelManager;
+        this.personModelManger = personModelManger;
+        init();
     }
+
+    /**
+     * Initializes a OfficeConnectModel given old AddressBook model.
+     */
+    public OfficeConnectModel(Model model) {
+        taskModelManager = new RepositoryModelManager<>(new Repository<Task>());
+        assignTaskModelManager = new RepositoryModelManager<>(new Repository<AssignTask>());
+        personModelManger = model;
+    }
+
+    private void init() {
+        updateTaskToPersonsMapping();
+        updatePersonToTasksMapping();
+    }
+
 
     public RepositoryModelManager<Task> getTaskModelManager() {
         return taskModelManager;
@@ -44,10 +65,38 @@ public class OfficeConnectModel {
         return assignTaskModelManager;
     }
 
-    public void setTaskPeoples(ObservableList<Person> peoples) {
-        for (Task t : taskModelManager.getReadOnlyRepository().getData()) {
-            List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(t.getId()));
-            t.setPeoples(peoples.filtered(p -> assignTasks.stream().anyMatch(a ->a.getPersonId().equals(p.getId()))));
+    private void updateTaskToPersonsMapping() {
+        for (Task task : taskModelManager.getReadOnlyRepository().getData()) {
+            setTaskToPersons(task);
+        }
+    }
+
+    private void setTaskToPersons(Task task) {
+        if (!taskModelManager.hasItem(task)) {
+            return;
+        }
+
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+        List<Person> persons = personModelManger.getAddressBook().getPersonList()
+            .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
+        taskModelManager.setItem(task, Task.ofUpdatePeoples(task, persons));
+    }
+
+    private void setPersonToTasks(Person person) {
+        if (!personModelManger.hasPerson(person)) {
+            return;
+        }
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+
+        List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
+            .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
+        personModelManger.setPerson(person, Person.ofUpdateTasks(person, tasks));
+
+    }
+
+    private void updatePersonToTasksMapping() {
+        for (Person person : personModelManger.getAddressBook().getPersonList()) {
+            setPersonToTasks(person);
         }
     }
 
@@ -81,12 +130,17 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Adds assignment to assigntask model manager.
+     * Adds a new item to the AssignTaskModelManager and updates the mappings between Persons and Tasks.
      *
-     * @param assignTask assignment to be added
+     * @param assignTask the AssignTask to be added to the AssignTaskModelManager
+     * @param person the Person associated with the AssignTask
+     * @param task the Task associated with the AssignTask
      */
-    public void addAssignTaskModelManagerItem(AssignTask assignTask) {
+    public void addAssignTaskModelManagerItem(AssignTask assignTask, Person person, Task task) {
         assignTaskModelManager.addItem(assignTask);
+        setPersonToTasks(person);
+        setTaskToPersons(task);
+
     }
 
     /**
@@ -107,20 +161,56 @@ public class OfficeConnectModel {
      *
      * @param target     target task to be edited
      * @param editedTask edited task
-     * @param model      person list
      */
-    public void setTaskModelManagerItem(Task target, Task editedTask, Model model) {
+    public void setTask(Task target, Task editedTask) {
         taskModelManager.setItem(target, editedTask);
-        focusTask(target, model);
+        updatePersonsOnTaskChanged(editedTask);
     }
+
+    private void updatePersonsOnTaskChanged(Task task) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+
+        List<Person> persons = personModelManger.getAddressBook().getPersonList()
+            .filtered(person -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(person.getId())));
+
+        for (Person person : persons) {
+            setPersonToTasks(person);
+        }
+
+    }
+
+    private void updateTaskOnPersonChanged(Person person) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+
+        List<Task> tasks = taskModelManager.getReadOnlyRepository().getData()
+            .filtered(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId())));
+
+        for (Task task : tasks) {
+            setTaskToPersons(task);
+        }
+
+    }
+
 
     /**
      * Deletes task from task model manager.
      *
      * @param task task to be deleted
      */
-    public void deleteTaskModelManagerItem(Task task) {
+    public void deleteTask(Task task) throws CommandException {
         taskModelManager.deleteItem(task);
+        List<Person> personList = getPersonList(task);
+        for (Person person : personList) {
+            deleteAssignment(person, task);
+        }
+
+    }
+
+    //@@author cyiting
+    private List<Person> getPersonList(Task task) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getTaskId().equals(task.getId()));
+        return new ArrayList<>(getAddressBook().getPersonList()
+            .filtered(p -> assignTasks.stream().anyMatch(a -> a.getPersonId().equals(p.getId()))));
     }
 
     public ReadOnlyRepository<Task> getTaskModelManagerReadOnlyRepository() {
@@ -130,11 +220,11 @@ public class OfficeConnectModel {
     /**
      * Focus onto a specific task.
      */
-    public void focusTask(Task taskToFocus, Model model) {
+    public void focusTask(Task taskToFocus) {
         updateTaskModelManagerFilteredItemList(task -> task.getId().equals(taskToFocus.getId()));
-        List<AssignTask> assignTasks = getAssignTaskModelManager()
-            .filter(assign -> assign.getTaskId().equals(taskToFocus.getId()));
-        model.updateFilteredPersonList(person -> assignTasks.stream()
+        List<AssignTask> assignTasks = new ArrayList<>(getAssignTaskModelManager()
+            .filter(assign -> assign.getTaskId().equals(taskToFocus.getId())));
+        personModelManger.updateFilteredPersonList(person -> assignTasks.stream()
             .anyMatch(assign -> assign.getPersonId().equals(person.getId())));
     }
 
@@ -143,6 +233,7 @@ public class OfficeConnectModel {
      *
      * @param assignTask assignment to be deleted
      */
+    @Deprecated
     public void deleteAssignTaskModelManagerItem(AssignTask assignTask) {
         assignTaskModelManager.deleteItem(assignTask);
     }
@@ -161,12 +252,11 @@ public class OfficeConnectModel {
     /**
      * Delete the task assignment from a person
      *
-     * @param person       assigned to the task
-     * @param taskFilterId base on the current task filter list
+     * @param person person to unassign
+     * @param task   task to unassign
      * @return task that has been deleted
      */
-    public Task deleteAssignment(Person person, int taskFilterId) throws CommandException {
-        Task task = taskModelManager.getFilterItem(taskFilterId);
+    public Task deleteAssignment(Person person, Task task) throws CommandException {
         AssignTask toDelete = new AssignTask(person, task);
 
         if (!assignTaskModelManager.hasItem(toDelete)) {
@@ -174,10 +264,54 @@ public class OfficeConnectModel {
         }
         assignTaskModelManager.deleteItem(toDelete);
 
-        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
-
-        taskModelManager.updateFilteredItemList(t -> assignTasks.stream()
-            .anyMatch(a -> a.getTaskId().equals(t.getId())));
+        setTaskToPersons(task);
+        setPersonToTasks(person);
         return task;
+    }
+
+    public boolean hasPerson(Person toAdd) {
+        return personModelManger.hasPerson(toAdd);
+    }
+
+
+    public void addPerson(Person toAdd) {
+        personModelManger.addPerson(toAdd);
+    }
+
+    public List<Person> getFilteredPersonList() {
+        return personModelManger.getFilteredPersonList();
+    }
+
+    public ReadOnlyAddressBook getAddressBook() {
+        return personModelManger.getAddressBook();
+    }
+
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        personModelManger.updateFilteredPersonList(predicate);
+    }
+
+    /**
+     * Delete the person from personModelManger
+     *
+     * @param personToDelete person to remove
+     */
+    public void deletePerson(Person personToDelete) throws CommandException {
+        personModelManger.deletePerson(personToDelete);
+        List<Task> taskList = getTaskList(personToDelete);
+        for (Task task : taskList) {
+            deleteAssignment(personToDelete, task);
+        }
+    }
+
+    //@@author cyiting
+    private List<Task> getTaskList(Person person) {
+        List<AssignTask> assignTasks = assignTaskModelManager.filter(a -> a.getPersonId().equals(person.getId()));
+        return new ArrayList<>(getTaskModelManager()
+            .filterItemList(task -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(task.getId()))));
+    }
+
+    public void setPerson(Person personToEdit, Person editedPerson) {
+        personModelManger.setPerson(personToEdit, editedPerson);
+        updateTaskOnPersonChanged(editedPerson);
     }
 }
