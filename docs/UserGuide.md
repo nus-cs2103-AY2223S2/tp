@@ -1498,6 +1498,17 @@ On top of the type restrictions of the parameters, if these restrictions are vio
 }
 ```
 
+## Planned features
+
+1. Delete and edit specific elements in list like attributes such as patient's **allergies** or vaccination's **history requirements**.
+2. Auto add vaccination to the patient's vaccination records when marking appointments as complete.
+3. Validations and warning to check if the patient can still take the vaccination on these scenarios:
+   1. Unmarking a previously marked appointment.
+   2. Changing the requirements of a vaccination while there are still patients with appointments for that vaccination.
+   3. Changing the patients records while that patient still has upcoming appointments.
+4. Command to clear all marked appointments.
+5. Command to clear all appointments.
+
 ## FAQ
 
 ### How do I delete/edit a specific element in list like attributes?
@@ -1506,7 +1517,7 @@ At the moment, VMS does not offer a quick CLI way to delete/edit specific elemen
 
 A work around this is to **edit the data files directly**.
 
-### I added a vaccination but it does not appear in the the vaccination list panel.
+### I added a vaccination but it does not appear in the the vaccination list panel
 
 The filters applied from your last [`find`](#find---finds-a-vaccination) command are most likely still active. Use vaccination's [`list`](#list---lists-all-vaccination) command to clear the filters.
 
