@@ -16,7 +16,7 @@ Class TaskCard
 Class UiComponents
 }
 
-package "Model And OfficeConnectModel" as Model <<Rectangle>> {
+package "OfficeConnectModel" as Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
 
