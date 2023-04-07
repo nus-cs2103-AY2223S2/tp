@@ -115,8 +115,10 @@ class JsonAdaptedPerson {
         for (JsonAdaptedIsolatedEvent isolatedEvent : isolatedEvents) {
             IsolatedEvent modelIsolatedEvent = isolatedEvent.toModelType();
             try {
+                modelIsolatedEvent.checkDateTime();
                 modelIsolatedEventList.checkClashingIsolatedEvent(modelIsolatedEvent.getStartDate(),
                         modelIsolatedEvent.getEndDate());
+                modelIsolatedEvent.checkConflictsRecurringEventList(modelRecurringEventList);
                 modelIsolatedEventList.insert(isolatedEvent.toModelType());
             } catch (EventConflictException e) {
                 throw new IllegalValueException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
