@@ -42,15 +42,15 @@ CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard ca
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
 <br>e.g. your `clipboard.jar` is stored in the `user/app/task/` directory. You run `cd user/app/task/`, then `java -jar clipboard.jar`.
 <br>A GUI similar to [<i>Figure 1</i>](#introduction) should appear in a few seconds. 
-<br><i>Note how the app contains some sample data.</i></br>
+<br><i>Note how the app contains some sample data.</i>
 5. You will start on the `Course page` (Refer to [<i>Figure 2</i>](#navigation-guide) below for the Navigation Guide).
-6. Type your command in the command box ((Refer to [<i>Figure 1</i>](#introduction) above for the Visual Guide) and press Enter/Return to execute it.
+6. Type your command in the command box (Refer to [<i>Figure 1</i>](#introduction) above for the Visual Guide) and press Enter/Return to execute it.
 <br>e.g. typing `help` and pressing the Enter/Return key will open the help window.
     <br>Some example commands you can try:
    1. `select 1` : Selects the first course displayed (eg. `CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
    2. `select 1` : Selects the first group displayed (eg. `T15`) on the `Group Page`. You will be redirected to the `Student Page`.
-   3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list at `Student Page`.
-   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list on the `Student Page`.
+   3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list on the `Student Page`.
+   4. `delete student 3` : Deletes the 3rd student (eg. `Lim Kim Choo`) shown in the student list.
    5. `undo` : Returns to the state before the previous `delete student` command you entered. The deleted student (eg. `Lim Kim Choo`) should be back on the list. 
    6. `exit` : Exits the app.
 6. Refer to the [commands list](#commands) below for a detailed description for each command.
@@ -593,7 +593,7 @@ remark <INDEX> [<REMARK>]
 ```
 
 - Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
-- If there is already an existing remark, this command will replace current remark with `<REMARK>`
+- If there is already an existing remark, this command will replace current remark with `<REMARK>`.
 
 Format for deleting a remark:
 ```
@@ -680,8 +680,8 @@ add session <SESSION>
     - Note: whitespaces are not allowed in session names.
 
 Examples:
-- `add session Tutorial1`
-- `add session Tutorial2`
+- `add session Tutorial4`
+- `add session Lab3`
 
 [Back to list of commands](#commands)
 
@@ -811,8 +811,8 @@ add task <TASK NAME>
       entering `add task OP1` will display an error message.
 
 Examples:
-- `add task OP1`
-- `add task Critical Reflection 1`
+- `add task OP3`
+- `add task Critical Reflection 3`
 
 [Back to list of commands](#commands)
 
