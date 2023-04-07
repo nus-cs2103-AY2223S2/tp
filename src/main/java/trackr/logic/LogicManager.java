@@ -103,20 +103,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ItemProfit getTotalProfits() {
-        ObservableList<Order> allOrders = model.getFilteredOrderList();
-        Double total = allOrders.stream()
-                        .map(x -> x.getTotalProfit().getValue())
-                        .reduce(0.0, (subTotal, element) -> subTotal + element);
-        return new ItemProfit(total);
+        return model.getTotalProfits();
     }
 
     @Override
     public ItemSellingPrice getTotalSales() {
-        ObservableList<Order> allOrders = model.getFilteredOrderList();
-        Double total = allOrders.stream()
-                        .map(x -> x.getTotalRevenue().getValue())
-                        .reduce(0.0, (subTotal, element) -> subTotal + element);
-        return new ItemSellingPrice(total);
+        return model.getTotalSales();
     }
 
     @Override
