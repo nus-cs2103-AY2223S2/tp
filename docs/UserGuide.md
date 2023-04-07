@@ -74,7 +74,7 @@ Formatting | Meaning
 
 ## Quick Start
 
-1. Ensure you have Java `11` installed in your Computer.
+1. Ensure you have Java `11` installed on your Computer.
 
 2. Download the latest `dht.jar` from [here](https://github.com/AY2223S2-CS2103-W17-2/tp/releases).
 
