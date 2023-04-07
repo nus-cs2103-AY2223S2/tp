@@ -10,7 +10,7 @@ MedInfo aims to solve the problem of slow, multiple step process of documenting 
 Given below are my contributions to the project.
 
 - **New Feature**
-    - to be added soon
+    - Added discharge date-time field to patient
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true)
 
@@ -18,10 +18,15 @@ Given below are my contributions to the project.
     - to be added soon
 
 - **Enhancements to existing features**:
-    - to be added soon
+    - Fixed Storage test errors
+    - Updated json files for test cases
+    - Refactored Person to Patient throughout the code
 
 - **Documentation**:
-    - to be added soon
+    - Organised features by Patient, Ward and Utility in the User Guide
+    - Updated the editward and addward command features in the User Guide
+    - Added use case for find command in the Developer Guide
+    - Updated the product scope of the Developer Guide
 
 - **Community**:
     - to be added soon
