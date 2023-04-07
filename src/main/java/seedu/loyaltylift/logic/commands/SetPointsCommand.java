@@ -1,5 +1,6 @@
 package seedu.loyaltylift.logic.commands;
 
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
@@ -7,7 +8,6 @@ import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import java.util.List;
 import java.util.Set;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -62,7 +62,7 @@ public class SetPointsCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());

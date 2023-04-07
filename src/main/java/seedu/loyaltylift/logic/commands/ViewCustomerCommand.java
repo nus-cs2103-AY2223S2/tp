@@ -1,10 +1,10 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -35,7 +35,7 @@ public class ViewCustomerCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
 

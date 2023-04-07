@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
@@ -13,7 +14,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
@@ -64,7 +64,8 @@ public class UnmarkCustomerCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(unmarkCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(unmarkCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, UnmarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -102,7 +103,8 @@ public class UnmarkCustomerCommandTest {
 
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(unmarkCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(unmarkCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, UnmarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test

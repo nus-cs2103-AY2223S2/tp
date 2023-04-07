@@ -8,7 +8,6 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
 
@@ -28,7 +27,6 @@ public class AddPointsCommandParserTest {
     @Test
     public void parse_missingCompulsoryField_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPointsCommand.MESSAGE_USAGE);
-        String expectedMissingIndex = Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 
         // no parameters
         assertParseFailure(parser, AddPointsCommand.COMMAND_WORD, expectedMessage);
