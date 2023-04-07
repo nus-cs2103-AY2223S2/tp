@@ -253,7 +253,7 @@ The pair will be successfully added but a warning will be given.
 
 Examples:
 * `pair eic/s6414118Z vic/S1262951f` pairs up the elderly with NRIC S6414118Z with the volunteer with NRIC S1262951F.
-  <img src="images/userGuide/pair.png" width="800" />
+  <img src="images/userGuide/pair.png" width="1000" />
 * `pair eic/s1135243A vic/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 #### Auto pairing of volunteers and elderly: `auto_pair`
@@ -369,37 +369,18 @@ You can remove all the person's tags by typing `t/` without specifying any tags 
 </div>
 Examples:
 
-* `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
-* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored (since volunteers do not have a risk level).
 * `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 0.5rem">
+    **Before editing:**
 
-<div>
-   
-<img src="images/userGuide/editBefore.png"/>
+    <img src="images/userGuide/editBefore.png" width="1000" />
 
-<div class="img-caption">
+    **After editing:**
 
-Before the `edit` command
+    <img src="images/userGuide/editAfter.png" width="1000" />
 
-</div>
-
-</div>
-
-<div>
-
-<img src="images/userGuide/editAfter.png"/>
-
-<div class="img-caption">
-
-After the `edit` command
-
-</div>
-
-</div>
-
-</div>
+* `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
+* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored (since volunteers do not have a risk level).
 
 [Back to top](#table-of-contents)
 
@@ -448,9 +429,13 @@ Examples
 * `unpair eic/s6414118Z vic/S1262951f` unpairs the elderly with NRIC S6414118Z with the volunteer with NRIC S1262951F.
   
   **Before unpairing:**
-  <img src="images/userGuide/pair.png" width="800" />
+
+  <img src="images/userGuide/pair.png" width="1000" />
+  
   **After unpairing:**
-  <img src="images/userGuide/unpair.png" width="800" />
+
+  <img src="images/userGuide/unpair.png" width="1000" />
+
 * `unpair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 [Back to top](#table-of-contents)
@@ -518,7 +503,7 @@ Examples:
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
 This feature helps to facilitate user input, therefore achieve better efficiency and input accuracy.
 
-<img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
+<img src="images/CommandRecommendations.png" alt="Command Recommendation Example" width="1000">
 
 For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
 No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues
@@ -555,7 +540,7 @@ This command can be entered after the [find](#finding-records) command to show s
 Format: `stats`
 
 * The summary is shown below.
-  <img src="images/userGuide/stats.png" width="800" />
+  <img src="images/userGuide/stats.png" width="1000" />
 
 Examples
 * `stats` Display summary statistics on every person and pair.
@@ -565,7 +550,7 @@ Examples
   stats
   ```
   Display summary statistics for all persons (and associated pairs) living in the north.
-  <img src="images/userGuide/findStats.png" width="800" />
+  <img src="images/userGuide/findStats.png" width="1000" />
 
 [Back to top](#table-of-contents)
 
