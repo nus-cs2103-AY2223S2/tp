@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="450.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Clashes found: ">
+         <padding>
+            <Insets left="2.0" />
+         </padding></Label>
+      <ListView fx:id="clashList" prefHeight="200.0" prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin></ListView>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>

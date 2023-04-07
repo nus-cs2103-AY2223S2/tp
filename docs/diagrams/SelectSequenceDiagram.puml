@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipCatalogueParser" as InternshipCatalogueParser LOGIC_COLOR
+participant "s:SelectCommandParser" as SelectCommandParser LOGIC_COLOR
+participant "s:SelectCommand" as SelectCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternshipCatalogue" as InternshipCatalogue MODEL_COLOR
+end box
+[-> LogicManager : execute("select 2")
+activate LogicManager
+
+LogicManager -> InternshipCatalogueParser : parseCommand("select 2")
+activate InternshipCatalogueParser
+
+create SelectCommandParser
+InternshipCatalogueParser -> SelectCommandParser :
+activate SelectCommandParser
+
+SelectCommandParser --> InternshipCatalogueParser
+deactivate SelectCommandParser
+
+InternshipCatalogueParser -> SelectCommandParser : parse("2")
+activate SelectCommandParser
+
+
+create SelectCommand
+SelectCommandParser -> SelectCommand : SelectCommand()
+activate SelectCommand
+
+SelectCommand --> SelectCommandParser
+deactivate SelectCommand
+
+SelectCommandParser --> InternshipCatalogueParser : s
+deactivate SelectCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectCommandParser -[hidden]-> InternshipCatalogueParser
+destroy SelectCommandParser
+
+InternshipCatalogueParser --> LogicManager : s
+deactivate InternshipCatalogueParser
+
+LogicManager -> SelectCommand : execute()
+activate SelectCommand
+
+SelectCommand --> Model : getFilteredInternshipList()
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+SelectCommand -> Model : updateSelectedInternship()
+activate Model
+
+Model -> InternshipCatalogue : updateCurrent()
+activate InternshipCatalogue
+
+InternshipCatalogue --> Model :
+deactivate InternshipCatalogue
+
+Model --> SelectCommand
+deactivate Model
+
+SelectCommand --> Model : updateFilteredEventList()
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+SelectCommand --> Model : getFilteredEventList
+activate Model
+
+Model --> SelectCommand
+deactivate Model
+
+create CommandResult
+SelectCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SelectCommand
+deactivate CommandResult
+
+SelectCommand --> LogicManager : result
+deactivate SelectCommand
+SelectCommand -[hidden]-> LogicManager : result
+destroy SelectCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

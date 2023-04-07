@@ -14,14 +14,20 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "InternshipCatalogue Storage" #F4F6F6{
+Class "<<interface>>\nInternshipCatalogueStorage" as InternshipCatalogueStorage
+Class JsonInternshipCatalogueStorage
+Class JsonSerializableInternshipCatalogue
+Class JsonAdaptedInternship
 Class JsonAdaptedTag
 }
 
+package "EventCatalogue Storage" #F4F6F6{
+Class "<<interface>>\nEventCatalogueStorage" as EventCatalogueStorage
+Class JsonEventCatalogueStorage
+Class JsonSerializableEventCatalogue
+Class JsonAdaptedEvent
+Class JsonAdaptedInternship
 }
 
 Class HiddenOutside #FFFFFF
@@ -29,15 +35,23 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" InternshipCatalogueStorage
+StorageManager -up-> "1" EventCatalogueStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -|> UserPrefsStorage
+Storage -|> EventCatalogueStorage
+Storage -|> InternshipCatalogueStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonInternshipCatalogueStorage .up.|> InternshipCatalogueStorage
+JsonInternshipCatalogueStorage ..> JsonSerializableInternshipCatalogue
+JsonSerializableInternshipCatalogue --> "*" JsonAdaptedInternship
+JsonAdaptedInternship --> "*" JsonAdaptedTag
+
+JsonEventCatalogueStorage .up.|> EventCatalogueStorage
+JsonEventCatalogueStorage ..> JsonSerializableEventCatalogue
+JsonSerializableEventCatalogue ..> "*" JsonAdaptedEvent
+JsonAdaptedEvent ..> "1" JsonAdaptedInternship
+
 
 @enduml
