@@ -129,7 +129,6 @@ public class ModelManager implements Model {
 
     @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
-        // TODO: Avoid creating a new parser everytime
         return vmsParser.parseCommand(userCommand);
     }
 
