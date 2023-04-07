@@ -129,6 +129,7 @@ Parameters refer to the upper-cased words used to represent required user inputs
 <div style="page-break-after: always;"></div>
 
 ## **Graphical User Interface**<br>
+This section provides a quick rundown of the various components of MyLib's user interface.
 
    <img width="680" src="images/annotated-UI.png">
 
@@ -227,7 +228,7 @@ Format: `genre`
 
 ### Adding a bookmark
 
-To add a bookmark you will need to use the `add` command to create a bookmark with the data that is provided by you.
+To create a new bookmark and add it to your bookmark library you will need to use the `add` command.
 
 The format for the `add` command is as follows:
 
@@ -248,20 +249,17 @@ The format for the `add` command is as follows:
 
 </div>
 
-The table below explains each of the items that you can include in the `add` command.
-
-This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is going to track. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/>  <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** non-English characters and certain symbols may not display correctly in the application.
-</div><br>
+The `add` command accepts the following items as user input:
 
 | Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------:|:---------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                        |
 |  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   <div markdown="span" class="alert alert-warning">❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.</div>                                                                                                                                                                                                                                                                |
-|  `p/`  | PROGRESS  | PROGRESS is the current reading progress for the bookmark and it is tracked using the three markers Volume, Chapter and Page.<br/> If any of the markers do not apply, they can be replaced with "~" to remove tracking for that progress marker.<br/><br/>**Restrictions:**<br/>3 positive integers or "~" with space between [Vol] [Chap] [Page] |
-|  `g/`  |   GENRE   | GENRE is used to categorize the genre for each bookmark. It is selected from a fixed list included in the application.<br/> Should none of the default GENREs apply, "Others" can be used to categorize the bookmark.<br/><br/>**Restrictions:**<br/>Must be one from pre-defined genre list :information_source: Case sensitive                   |
-|  `u/`  |    URL    | URL is used to store the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
-|  `r/`  |  RATING   | Rating is the rating given each content.<br/><br/>**Restrictions:**<br/>Must be an integer from 0 to 5                                                                                                                                                                                                                                             |
-|  `t/`  |    TAG    | TAGs are used to personalize and classify bookmarks stored on MyLib. <br/><br/>**Restrictions:**<br/>Must only contains Alphabets and Numbers no spaces are allowed                                                                                                                                                                                |
+|  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/> PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a number (without any additional symbols such as +/-) or `~`.<br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
+|  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres. Only genres in that list can be used as the genre of a bookmark. To find out more about this list, go [here](#genres)                   |
+|  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
+|  `r/`  |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                             |
+|  `t/`  |    TAG    | This is a tag that you want to attach to the bookmark. <br/><br/>**Restrictions:**<br/>Must be an existing tag in your tag list. For more information, go [here](#).                                                                                                                                                                                |
 
 Examples:
 * `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
