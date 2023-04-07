@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import vimification.model.MacroMap;
 
 /**
- * Represents a storage for {@link vimification.model.MacroMap}.
+ * Represents a storage for {@link MacroMap}.
  */
 public interface MacroMapStorage {
 

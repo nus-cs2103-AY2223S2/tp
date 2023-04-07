@@ -7,7 +7,7 @@ import vimification.common.exceptions.DataConversionException;
 import vimification.model.TaskList;
 
 /**
- * Represents a storage for {@link vimification.model.TaskList}.
+ * Represents a storage for {@link TaskList}.
  */
 public interface TaskListStorage {
 

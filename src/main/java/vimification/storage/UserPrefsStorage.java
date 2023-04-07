@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import vimification.model.UserPrefs;
 
 /**
- * Represents a storage for {@link vimification.model.UserPrefs}.
+ * Represents a storage for {@link UserPrefs}.
  */
 public interface UserPrefsStorage {
 

@@ -18,8 +18,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and
-     * {@code UserPrefStorage}.
+     * Creates a new {@code StorageManager}.
      */
     public StorageManager(
             TaskListStorage taskListStorage,

@@ -18,14 +18,24 @@ public class JsonAdaptedTaskList {
 
     private final List<JsonAdaptedTask> tasks;
 
+    /**
+     * The constructor used by Jackson.
+     *
+     * @param tasks a list of tasks
+     */
     @JsonCreator
-    public JsonAdaptedTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> taskList) {
-        if (taskList == null) {
-            taskList = List.of();
+    public JsonAdaptedTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+        if (tasks == null) {
+            tasks = List.of();
         }
-        this.tasks = taskList;
+        this.tasks = tasks;
     }
 
+    /**
+     * Converts a given {@code TaskList} for Jackson use.
+     *
+     * @param source the given {@code TaskList}
+     */
     public JsonAdaptedTaskList(TaskList source) {
         tasks = source.getLogicSource()
                 .stream()
@@ -33,6 +43,12 @@ public class JsonAdaptedTaskList {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts this instance into an actual {@code TaskList}.
+     *
+     * @return a {@code TaskList}, as a result of the conversion
+     * @throws DataConversionException if there is any error occured during the conversion
+     */
     public TaskList toModelType() throws DataConversionException {
         List<Task> modelTasks = new ArrayList<>();
         for (JsonAdaptedTask task : tasks) {

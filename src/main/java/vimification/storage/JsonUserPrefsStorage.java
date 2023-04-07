@@ -7,12 +7,17 @@ import vimification.common.util.JsonUtil;
 import vimification.model.UserPrefs;
 
 /**
- * A class to access {@link vimification.model.UserPrefs} stored in the hard disk as a json file.
+ * A class to access {@link UserPrefs} stored in the hard disk as a json file.
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     private Path filePath;
 
+    /**
+     * Creates a new instance with the specified path.
+     *
+     * @param filePath the path to the data file
+     */
     public JsonUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
     }

@@ -6,10 +6,18 @@ import java.nio.file.Path;
 import vimification.common.util.JsonUtil;
 import vimification.model.MacroMap;
 
+/**
+ * One implementation of {@link MacroMapStorage}, using JSON as serialization format.
+ */
 public class JsonMacroMapStorage implements MacroMapStorage {
 
     private Path filePath;
 
+    /**
+     * Creates a new instance with the specified path.
+     *
+     * @param filePath the path to the data file
+     */
     public JsonMacroMapStorage(Path filePath) {
         this.filePath = filePath;
     }
