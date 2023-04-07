@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -133,6 +135,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withEducation(VALID_EDUCATION_AMY)
             .withRemark(null)
+            .withTelegram(VALID_TELEGRAM_AMY)
             .withModules()
             .withTags(VALID_TAG_FRIEND)
             .build();
@@ -143,6 +146,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withEducation(VALID_EDUCATION_BOB)
             .withRemark(null)
+            .withTelegram(VALID_TELEGRAM_BOB)
             .withModules()
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
