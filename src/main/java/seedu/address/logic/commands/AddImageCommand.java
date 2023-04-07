@@ -30,7 +30,7 @@ public class AddImageCommand extends Command {
             + "Existing image will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ADD_IMAGE + "[IMAGE_PATH]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADD_IMAGE + "/pictures/johndoe.png";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADD_IMAGE + "/Users/user/pictures/johndoe.png";
     public static final String MESSAGE_SUCCESS = "Image Added";
     private final String stringPath;
     private final Index index;
