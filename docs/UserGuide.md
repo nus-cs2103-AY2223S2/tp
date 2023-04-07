@@ -707,8 +707,8 @@ the data of your previous QuickContacts home folder.
 | **Edit a meeting**           | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                          |
 | **List all meetings**        | `findm`                                                                                                                                                               |
-| **Mark meeting as done**     | `mark m/INDEX`                                                                                  <br/>                                                                 |
-| **Mark meeting as not done** | `unmark m/INDEX`                                                                    <br/>                                                                             |
+| **Mark meeting as done**     | `mark [m/INDEX]...`                                                                                  <br/>                                                            |
+| **Mark meeting as not done** | `unmark [m/INDEX]...`                                                                    <br/>                                                                        |
 | **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                      |
 | **Export a contact**         | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
 | **Export a meeting**         | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
