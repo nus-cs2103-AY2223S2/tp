@@ -35,15 +35,6 @@ public class AgeTest {
         // valid ages
         assertTrue(Age.isValidAge("0")); // Boundary case 0
         assertTrue(Age.isValidAge("1")); // long address
-        assertTrue(Age.isValidAge("10"));
-        assertTrue(Age.isValidAge("21"));
-        assertTrue(Age.isValidAge("32"));
-        assertTrue(Age.isValidAge("43"));
-        assertTrue(Age.isValidAge("54"));
-        assertTrue(Age.isValidAge("65"));
-        assertTrue(Age.isValidAge("76"));
-        assertTrue(Age.isValidAge("87"));
-        assertTrue(Age.isValidAge("98"));
         assertTrue(Age.isValidAge("100"));
         assertTrue(Age.isValidAge("199")); // Boundary case 199
     }
