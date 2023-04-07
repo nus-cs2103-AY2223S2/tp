@@ -27,11 +27,25 @@ public class DeleteDatePredicate extends PredicateUtil<Person> {
         this.range = range;
     }
 
+    /**
+     * A class that represents the predicate used to filter the case list.
+     * @param date (Optional) Date input passed in by user.
+     */
+
     public DeleteDatePredicate(Optional<Date> date) {
         this.date = date;
         this.range = ContinuousData.generateRange(
                 new StartDate(Optional.empty()),
                 new EndDate(Optional.empty()));
+    }
+
+    /**
+     * A class that represents the predicate used to filter the case list.
+     * @param range Range containing (Optional) Date inputs passed in by user.
+     */
+    public DeleteDatePredicate(Range<Date> range) {
+        this.date = Optional.empty();
+        this.range = range;
     }
 
     @Override

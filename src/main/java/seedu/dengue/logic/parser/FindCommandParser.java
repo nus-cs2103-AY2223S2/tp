@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.dengue.logic.commands.AddCommand;
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
