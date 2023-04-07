@@ -3,8 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.doctor.Doctor;
@@ -17,6 +20,8 @@ import seedu.address.model.person.patient.UniquePatientList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
+
+    private static final Logger logger = LogsCenter.getLogger(AddressBook.class);
 
     private final UniquePersonList persons;
     private final UniqueDoctorList doctors;
@@ -122,6 +127,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param doctor
      */
     public void addDoctor(Doctor doctor) {
+        if (doctor == null) {
+            logger.warning("Trying to add null into doctors in AddressBook");
+        }
         doctors.add(doctor);
     }
 
@@ -131,6 +139,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param patient
      */
     public void addPatient(Patient patient) {
+        if (patient == null) {
+            logger.warning("Trying to add null into patients in AddressBook");
+        }
         patients.add(patient);
     }
 
@@ -188,7 +199,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeDoctor(Doctor key) {
         doctors.remove(key);
-        patients.forEach((patient -> patient.removeDoctorIfAssigned(key)));
+        key.getPatients()
+                .forEach((patient -> patient.removeDoctorIfAssigned(key)));
     }
 
     /**
@@ -197,7 +209,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePatient(Patient key) {
         patients.remove(key);
-        doctors.forEach((doctor -> doctor.removePatientIfAssigned(key)));
+        key.getDoctors()
+                .forEach((doctor -> doctor.removePatientIfAssigned(key)));
     }
 
     //// util methods
@@ -227,14 +240,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Patient> getUnassignedPatientList() {
         UniquePatientList unassignedPatients = new UniquePatientList();
         for (Patient patient : patients) {
-            boolean unassigned = true;
-            for (Doctor doctor : doctors) {
-                if (doctor.hasPatient(patient)) {
-                    unassigned = false;
-                    break;
-                }
-            }
-            if (unassigned) {
+            if (!patient.hasDoctors()) {
                 unassignedPatients.add(patient);
             }
         }
@@ -253,6 +259,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return doctors.hashCode();
+        return Objects.hash(doctors, patients);
     }
 }

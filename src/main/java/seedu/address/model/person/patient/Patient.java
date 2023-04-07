@@ -77,9 +77,19 @@ public class Patient extends Person {
      * Returns true if patient contains supplied doctor.
      *
      * @param doctor a doctor.
+     * @return true if patient contains supplied doctor, and false otherwise.
      */
     public boolean hasDoctor(Doctor doctor) {
         return doctors.contains(doctor);
+    }
+
+    /**
+     * Returns true if patient is assigned to any doctor
+     *
+     * @return true if patient is assigned to any doctor, and false otherwise.
+     */
+    public boolean hasDoctors() {
+        return doctors.size() > 0;
     }
 
     /**

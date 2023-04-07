@@ -43,6 +43,7 @@ public class TypicalPatients {
             .withDiagnosis("Asthma")
             .withStatus(Status.getDummyValidStatus(0))
             .withRemark("Compliant")
+            // .withDoctors(DANIEL)
             .build();
 
     public static final Patient YANNIE = new PatientBuilder()
