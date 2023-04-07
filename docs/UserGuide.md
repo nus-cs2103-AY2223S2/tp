@@ -228,7 +228,7 @@ Parameters:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 If an event is added successfully, a message similar to the one above will be displayed in the `Response Box`.  
-The event will be added to the `Events List Panel` and `Calendar`.
+The `Events List Panel` and `Calendar` will both be updated to include the new event.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -281,7 +281,7 @@ Parameters:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 If an event is edited successfully, a message similar to the one above will be displayed in the `Response Box`.  
-Any changes made to the event will be reflected in both the Events `List Panel` and `Calendar`.
+Any changes made to the event will be reflected in both the `Events List Panel` and `Calendar`.
 </div>
 
 <div markdown="span" class="alert alert-warning">
