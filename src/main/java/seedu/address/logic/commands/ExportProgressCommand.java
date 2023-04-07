@@ -59,15 +59,15 @@ public class ExportProgressCommand extends Command {
         String fileName = studentName + "'s Progress Report.pdf";
 
         if (this.filePath.equals("")) {
-            this.filePath = "";
+            this.filePath = "data";
         }
         try {
             model.exportProgress(studentToExport, String.valueOf(Paths.get(this.filePath, fileName)));
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
         }
-        if (this.filePath.equals("")) {
-            this.filePath = Paths.get("").toAbsolutePath().toString();
+        if (this.filePath.equals("data")) {
+            this.filePath = Paths.get("data").toAbsolutePath().toString();
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToExport.getName().fullName,
                 this.filePath, fileName));
