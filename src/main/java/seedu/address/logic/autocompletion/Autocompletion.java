@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddPlatformCommand;
 import seedu.address.logic.commands.DeleteApplicantCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeletePlatformCommand;
+import seedu.address.logic.commands.EditApplicantCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -37,6 +38,7 @@ public class Autocompletion {
             DeleteCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             AddApplicantCommand.COMMAND_WORD,
+            EditApplicantCommand.COMMAND_WORD,
             DeleteApplicantCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
@@ -61,6 +63,9 @@ public class Autocompletion {
                     + PREFIX_DESCRIPTION + "DESCRIPTION "
                     + PREFIX_APPLICANT + "APPLICANT"
                     + PREFIX_PLATFORM + "PLATFORM");
+            put(EditApplicantCommand.COMMAND_WORD, "INDEX "
+                            + PREFIX_APPLICANT_WITH_ID + "OLD_APPLICANT#ID "
+                            + PREFIX_APPLICANT + "NEW_APPLICANT");
             put(FindCommand.COMMAND_WORD, "QUERY");
             put(AddPlatformCommand.COMMAND_WORD, "INDEX " + PREFIX_PLATFORM + "PLATFORM");
             put(DeletePlatformCommand.COMMAND_WORD, "INDEX " + PREFIX_PLATFORM + "PLATFORM");
