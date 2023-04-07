@@ -17,19 +17,20 @@ Disclaimer: This application is currently geared towards NUS Computer Science St
 1. [How To Use This Guide](#how-to)
 2. [Quick Start](#quick-start)
 3. [GUI Overview](#gui-overview)
-4. [Features](#features)<br>
-   4.1 [Add a module:](#add-module) `add`<br>
-   4.2 [Delete module(s):](#delete-module) `delete`<br>
-   4.3 [Edit a module:](#edit-module) `edit`<br>
-   4.4 [Tag a module:](#tag-module) `tag`<br>
-   4.5 [Find module(s) by keyword(s):](#find-module) `find`<br>
-   4.6 [Sort all modules:](#sort-module) `sort`<br>
-   4.7 [Toggle between module list and degree progress:](#change-view) `view`<br>
-   4.8 [Exit the program:](#exit-app) `exit`<br>
-   4.9 [Save the data](#save-data)<br>
-   4.10 [Edit the data file](#edit-data)
-5. [Frequently Asked Questions (FAQ)](#faq)
-6. [Command Summary](#command-summary)
+4. [Short Tutorial](#short-tutorial)
+5. [Features](#features)<br>
+   5.1 [Add a module:](#add-module) `add`<br>
+   5.2 [Delete module(s):](#delete-module) `delete`<br>
+   5.3 [Edit a module:](#edit-module) `edit`<br>
+   5.4 [Tag a module:](#tag-module) `tag`<br>
+   5.5 [Find module(s) by keyword(s):](#find-module) `find`<br>
+   5.6 [Sort all modules:](#sort-module) `sort`<br>
+   5.7 [Toggle between module list and degree progress:](#change-view) `view`<br>
+   5.8 [Exit the program:](#exit-app) `exit`<br>
+   5.9 [Save the data](#save-data)<br>
+   5.10 [Edit the data file](#edit-data)
+6. [Frequently Asked Questions (FAQ)](#faq)
+7. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -139,7 +140,26 @@ belonging to a sub category are shown (sorted by year-sem by default). In the mo
 
 <div style="page-break-after: always;"></div>
 
-## 4. Features <a name="features"></a>
+## 4. Short Tutorial <a name="tutorial"></a>
+
+Excited to try **MODTrek** out? Here is a sequence of basic commands to help you start tracking your modules:
+
+1. `add /m CS1101S /c 4 /y Y1S1`: Adds the module CS1101S to the list. The Results Section should display the Module List, with a Module Card created for CS1101S, placed within a Module Group categorised as Y1S1 (sorted by year-sem by default).
+2. `add /m CS1231S /c 4 /y Y1S1`: Adds the module CS1231S to the list. A Module Card should be created for CS1231S and reside beside CS1101S.
+3. `edit /m CS1101S /g A /t CSF`: Edits the module CS1101S to record the grade as "A" and the tag as "Computer Science Foundation". Feel free to input the appropriate grade to suit the one you attained.
+4. `add /m MA1521 /c 4 /y Y1S1`: Adds the module MA1521 to the list. A Module Card should be created for MA1521 and reside beside CS1231S.
+5. `delete /m MA1521`: Deletes the module MA1521 from the list. The Module Card for MA1521 should no longer exist.
+6. `exit`: Exits **MODTrek**. Don't worry, your data is saved automatically for you, so the next time you start up **MODTrek**, your data should be successfully restored.
+
+Congratulations, the tutorial has come to an end! Do continue exploring the functions within **MODTrek**. For the complete list of commands, you may refer to the [Command Summary](#command-summary) section. For more details about each command, you may refer to the next section on [Features](#features).
+
+[Back to Table of Contents](#toc)
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## 5. Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -160,9 +180,10 @@ E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 
 ### MODTrek supports the following features:
 
-#### 4.1 Add a module : `add` <a name="add-module"></a>
+#### 5.1 Add a module : `add` <a name="add-module"></a>
 
 Adds a module to the module list in **MODTrek**. This will kick start your **MODTrek** journey.
+For instance, you may choose to add completed or planned modules.
 
 **Syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
@@ -170,8 +191,8 @@ Additional details:
 * `<code>` refers to the module code. Format of module code should be <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
 * `<credits>` refers to the module's modular credits
 * `<year-semester>` refers to the year and semester the module is taken. We only support years from 0 to 5 and semesters s1, s2, st1 and st2.
-* `<grade>` refers to the grade obtained for the module. Range from A+ to U excluding W grade.
-* `<tag>` refers to the requirement the modules fulfils. This includes:
+* `<grade>` refers to the grade obtained for the module. Ranges from A+ to U, excluding the W, CS, CU grade.
+* `<tag>` refers to the requirement that the module fulfils. This includes:
    * `ULR` University Level Requirements
    * `CSF` Computer Science Foundations
    * `CSBD` Computer Science Breadth & Depth
@@ -181,24 +202,30 @@ Additional details:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** A module can have more than 1 tags (including 0).
+:bulb: **Tip:** A module can have more than 1 tag (satisfying 2 or more degree requirements).
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** To add a planned module, simply omit the grade. Then it won't be counted to your degree progression!
 </div>
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** You cannot add 2 modules with the same module code into **MODTrek**. Modules must have distinct module codes.
-If there are reasons you need to add a module with the same module code (e.g. retaken module, MOOCs) refer to this [faq](#faq3) for suggested fixes.
+If there are reasons you need to add a module with the same module code (e.g. retaken module, MOOCs) refer to this [faq](#faq3) for suggested workaround.
 </div>
 
 **Example:** 
-* `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`
-* `add /m GESS1025 /c 4 /y y1s2`
+* `add /m CS2103T /c 4 /y y2s2 /g A /t CSF` (counted as a completed module)
+* `add /m GESS1025 /c 4 /y y1s2 /t ULR` (counted as a planned module)
 
 [Back to Table of Contents](#toc)
 
-#### 4.2 Delete module(s) : `delete` <a name="delete-module"></a>
+#### 5.2 Delete module(s) : `delete` <a name="delete-module"></a>
 
-Deletes the specified module(s) from the module list. You can also choose to delete all the modules from the module list.
+Deletes the specified module(s) from the module list. You may also choose to delete all the modules from the module list.
+For instance, you may want to delete a planned module which you have decided not to take.
 
 **Syntax:**
 * _To delete specific modules:_ `delete /m <code1> (/m <code2>...)`
@@ -206,7 +233,7 @@ Deletes the specified module(s) from the module list. You can also choose to del
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can use the same instance of the delete command to delete more than 1 module at a time but at least
+:bulb: **Tip:** You may use the same instance of the delete command to delete more than 1 module at a time but at least
 1 module to be deleted must be specified.
 </div>
 
@@ -217,9 +244,10 @@ Deletes the specified module(s) from the module list. You can also choose to del
 
 [Back to Table of Contents](#toc)
 
-#### 4.3 Edit a module : `edit` <a name="edit-module"></a>
+#### 5.3 Edit a module : `edit` <a name="edit-module"></a>
 
-Edits an existing module in the module list. Use this command to rectify any mistakes or add in any details you have omitted.
+Edits an existing module in the module list. You may use this command to rectify any mistakes or add in any details you have omitted.
+For instance, you may want to add in the grade for a module you have just completed.
 
 **Syntax:** `edit <existing code> <toEdit>...`
 
@@ -241,9 +269,10 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 [Back to Table of Contents](#toc)
 
-#### 4.4 Tag a module : `tag` <a name="tag-module"></a>
+#### 5.4 Tag a module : `tag` <a name="tag-module"></a>
 
-Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.<br>
+Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module may or may not fulfil.
+For instance, after completing a planned module, you may want to include a tag for the module. <br>
 Refer to [Add a module](#add-module) for the tags that you can use.
 
 **Syntax:**
@@ -256,15 +285,16 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 [Back to Table of Contents](#toc)
 
-#### 4.5 Find module(s) by keyword(s) : `find` <a name="find-module"></a>
+#### 5.5 Find module(s) by keyword(s) : `find` <a name="find-module"></a>
 
-Displays specific module(s) and their details previously logged by the user which satisfies the keyword(s) queried.
-Use this command to find modules that match the keywords are interested in without needing to manually scroll through the list of modules.
+Displays specific module(s) and their details previously logged by the user satisfying the keyword(s) queried.
+You may use this command to find modules that match the keywords you are interested in without needing to manually scroll through the list of modules.
+For instance, you may want to find out the core modules which you obtained a good grade (A+, A, A-) for, so that you can choose your strongest area to potentially specialise in.
 
 **Syntax:** `find <keyword>...` or `find <module-code>`
 
-Specify one or more parameters in `<keywords>` that you want to find your modules by. This parameter can be from the following category:
-* `/m <code prefix>`
+Specify one or more parameters in `<keyword>...` that you want to find your modules by. This parameter can be from the following category:
+* `/m <code-prefix>`
 * `/c <credit>`
 * `/y <year-semester>`
 * `/g <grade>`
@@ -293,15 +323,16 @@ Using more keywords from the same category will return you all the modules that 
 
 [Back to Table of Contents](#toc)
 
-#### 4.6 Sort all modules : `sort` <a name="sort-module"></a>
+#### 5.6 Sort all modules : `sort` <a name="sort-module"></a>
 
-Sort the modules according to the category indicated by the user. Use this command if you want to know what modules are
-in each level of the category you are interested in.
+Sorts the modules according to the category indicated by the user. You may use this command if you want to view the modules
+for each level of the category that you are interested in.
+For instance, you may want to sort the modules by grade to have a clearer view of all the modules in terms of how well you fared for each.
 
 **Syntax:** `sort <category>`
 
 Categories that modules can be sorted by are:
-* `/m` to sort by module code
+* `/m` to sort by module code prefix
 * `/c` to sort by credit
 * `/y` to sort by year-semester
 * `/g` to sort by grade
@@ -319,9 +350,9 @@ category to sort by when **MODTrek** is in the module list screen.
 
 [Back to Table of Contents](#toc)
 
-#### 4.7 Toggle screens : `view` <a name="change-view"></a>
+#### 5.7 Toggle screens : `view` <a name="change-view"></a>
 
-Toggles between the display of degree progress or module list.
+Toggles between the display of degree progress or module list. You may either view your degree progression or list of modules recorded.
 
 **Syntax:**
 * _To view degree progression:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
@@ -332,28 +363,28 @@ Toggles between the display of degree progress or module list.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.
+:bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.<br>
 
-:bulb: **Interpreting data:** You might find that the total MC you have included may not match with the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
+:bulb: **Interpreting data:** You may find that the total MCs for the modules you have included does not match the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
 </div>
 
 [Back to Table of Contents](#toc)
 
-#### 4.8 Exit MODTrek : `exit` <a name="exit-app"></a>
+#### 5.8 Exit MODTrek : `exit` <a name="exit-app"></a>
 
-Exits the program. Alternatively you can exit the program by clicking the top-right X button to close the window.
+Exits the program. Alternatively, you may exit the program by clicking the top-right X button to close the window.
 
 **Syntax:** `exit`
 
 [Back to Table of Contents](#toc)
 
-#### 4.9 Save MODTrek data <a name="save-data"></a>
+#### 5.9 Save MODTrek data <a name="save-data"></a>
 
-Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
+Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
 
 [Back to Table of Contents](#toc)
 
-#### 4.10 Edit MODTrek data <a name="edit-data"></a>
+#### 5.10 Edit MODTrek data <a name="edit-data"></a>
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
 
@@ -373,7 +404,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div style="page-break-after: always;"></div>
 
-## 5. Frequently Asked Questions (FAQ) <a name="faq"></a>
+## 6. Frequently Asked Questions (FAQ) <a name="faq"></a>
 
 **Q**: Why is it that I can add in modules not offered in NUS?<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
@@ -384,8 +415,8 @@ are provided only by NUS.
 **A**: We used these terms to specifically cater to our target audience, who are CS students matriculated in AY 21/22.
 
 **Q**: Why is it that I cannot add a module I intend to retake in upcoming semester?<br> <a name="faq3"></a>
-**A**: Unfortunately as per our add command, we do no allow 2 modules with the same module code to be present in our app
-as of now. We understand that the NUS curriculum is **very** flexible so application tries to accomodate as any different curriculums as possible.
+**A**: Unfortunately as per our add command, we do not allow 2 modules with the same module code to be present in our app
+as of now. We understand that the NUS curriculum is **very** flexible so the application tries to accommodate as many curriculums as possible.
 Any deviations from these constraints for any reason (eg. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
 For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
 
@@ -393,30 +424,35 @@ For example, one may use dummy module codes like TEST1001 to include these modul
 **A**: We do not think adding "W" grade will be of any value. It is equivalent to deleting the module from the
 record since credits will no longer count towards degree progression.
 
+**Q**: Why are "CS", "CU" grades not allowed?<br>
+**A**: We do not think adding "CS", "CU" grades will be of any value. They function similarly to "S" and "U" grades respectively, 
+where "CS" and "S" count towards MCs completed, while "CU" and "U" do not count towards MCs completed. All of them do not affect the CAP as well.
+Hence, you may record "CS" and "CU" grades as "S" and "U" respectively.
+
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## 6. Command Summary <a name="command-summary"></a>
+## 7. Command Summary <a name="command-summary"></a>
 
-| Action   | Format, Examples                                                                                                                                                      |
-|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                                        |
-| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                            |
-| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                              |
-| **Tag**  | `tag /m <code> include /t <tag1> (/t <tag2>...)` or `tag /m <code> remove /t <tag1> (/t <tag2>...)` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
-| **Find** | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find /g A+`                                                                           |
-| **Sort** | `sort <category>`<br> e.g. `sort /m`                                                                                                                                  |
-| **View** | `view progress` or `view modules`                                                                                                                                     |
-| **Exit** | `exit`                                                                                                                                                                |
+| Action   | Format, Examples                                                                                                                                                         |
+|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                                           |
+| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                               |
+| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                 |
+| **Tag**  | `tag <code> include /t <tag1> (/t <tag2>...)` or `tag <code> remove /t <tag1> (/t <tag2>...)` <br> e.g., `tag CS2030S include /t CSF`, `tag ES2660 remove /t ULR /t ITP` |
+| **Find** | `find <code>` or `find (/m <code-prefix>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g. `find CS1101S`, `find /g A+`                                       |
+| **Sort** | `sort <category>`, where category = "/m" or "/c" or "/y" or "/g" or "/t" <br> e.g. `sort /m`                                                                             |
+| **View** | `view progress` or `view modules`                                                                                                                                        |
+| **Exit** | `exit`                                                                                                                                                                   |
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** Parameters encapsulated in between brackets `()` are optional.
 
-For `edit`, at least one optional parameter has to be specified.
+For `edit`, at least one optional parameter has to be specified. For `find`, if not finding a single module, at least one optional parameter has to be specified.
 </div>
 
 [Back to Table of Contents](#toc)
