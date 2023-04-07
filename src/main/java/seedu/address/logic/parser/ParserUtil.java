@@ -15,14 +15,15 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.score.Date;
 import seedu.address.model.score.Label;
 import seedu.address.model.score.ScoreValue;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -182,6 +183,21 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String taskName} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static Name parseTaskName(String taskName) throws ParseException {
+        requireNonNull(taskName);
+        String trimmedName = taskName.trim();
+        if (!Task.isValidTaskName(trimmedName)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
+    }
+
     //=========== Score ================================================================================
     /**
      * Parses a {@code String label} into an {@code Label}.
@@ -225,7 +241,6 @@ public class ParserUtil {
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-
         if (!Date.isFutureDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_INVALID_DATE);
         }

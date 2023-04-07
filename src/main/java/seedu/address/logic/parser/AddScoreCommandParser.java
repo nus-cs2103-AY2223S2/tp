@@ -32,10 +32,10 @@ public class AddScoreCommandParser implements Parser<AddScoreCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SCORE_LABEL, PREFIX_SCORE_VALUE, PREFIX_SCORE_DATE);
 
-        Index index;
+        Index studentIndex;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScoreCommand.MESSAGE_USAGE));
         }
@@ -49,7 +49,7 @@ public class AddScoreCommandParser implements Parser<AddScoreCommand> {
         Date date = ParserUtil.parseScoreDate(argMultimap.getValue(PREFIX_SCORE_DATE).get());
 
         Score score = new Score(label, value, date);
-        return new AddScoreCommand(index, score);
+        return new AddScoreCommand(studentIndex, score);
     }
 
     /**

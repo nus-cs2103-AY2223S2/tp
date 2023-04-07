@@ -5,10 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.student.Name;
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the mathutoring.
  * Guarantees: immutable; fields are validated; details are present and not null;
  */
 public class Task implements Comparable<Task> {

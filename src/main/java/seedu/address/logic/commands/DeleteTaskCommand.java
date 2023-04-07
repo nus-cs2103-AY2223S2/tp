@@ -9,11 +9,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 
+
 /**
- * Deletes a task identified by its displayed index from a specified person's task list.
+ * Deletes a task identified by its displayed index from a specified student's task list.
  */
 public class DeleteTaskCommand extends Command {
 
@@ -21,7 +22,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the task list of the "
-            + "person specified.\n"
+            + "student specified.\n"
             + "Parameters: INDEX_OF_STUDENT INDEX_OF_TASK (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2 3";
 
@@ -32,7 +33,7 @@ public class DeleteTaskCommand extends Command {
 
     /**
      * Creates an DeleteTaskCommand to delete the specified task from
-     * a specified person
+     * a specified student
      */
     public DeleteTaskCommand(Index studentIndex, Index taskIndex) {
         requireAllNonNull(studentIndex, taskIndex);
@@ -43,24 +44,24 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToDeleteTask = lastShownList.get(studentIndex.getZeroBased());
-        List<Task> personTaskList = personToDeleteTask.getFilteredTaskList();
+        Student studentToDeleteTask = lastShownList.get(studentIndex.getZeroBased());
+        List<Task> studentTaskList = studentToDeleteTask.getFilteredTaskList();
 
-        if (taskIndex.getZeroBased() >= personTaskList.size()) {
+        if (taskIndex.getZeroBased() >= studentTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = personTaskList.get(taskIndex.getZeroBased());
-        personToDeleteTask.removeTask(taskToDelete);
+        Task taskToDelete = studentTaskList.get(taskIndex.getZeroBased());
+        studentToDeleteTask.removeTask(taskToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
-                personToDeleteTask.getName(), taskToDelete.getName()));
+                studentToDeleteTask.getName(), taskToDelete.getName()));
     }
 
     @Override

@@ -10,12 +10,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.MathutoringParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
+
+
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final MathutoringParser mathutoringParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        mathutoringParser = new MathutoringParser();
     }
 
     @Override
@@ -42,11 +44,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = mathutoringParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMathutoring(model.getMathutoring());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,34 +57,33 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyMathutoring getMathutoring() {
+        return model.getMathutoring();
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException {
-        model.setAddressBook(addressBook);
+    public void setMathutoring(ReadOnlyMathutoring mathutoring) throws CommandException {
+        model.setMathutoring(mathutoring);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMathutoring(model.getMathutoring());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }
 
     @Override
-    public void storeAddressBook(Path filePath) throws IOException {
-        storage.saveAddressBook(model.getAddressBook(), filePath);
+    public void storeMathutoring(Path filePath) throws IOException {
+        storage.saveMathutoring(model.getMathutoring(), filePath);
+    }
+
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getMathutoringFilePath() {
+        return model.getMathutoringFilePath();
     }
 
     @Override
@@ -96,12 +97,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Person findCheckedPerson() {
-        return model.findSelectedPerson();
+    public Student findCheckedStudent() {
+        return model.findSelectedStudent();
     }
 
     @Override
-    public void exportProgress(Person target, String completePath) throws IOException {
+    public void exportProgress(Student target, String completePath) throws IOException {
         model.exportProgress(target, completePath);
     }
 }

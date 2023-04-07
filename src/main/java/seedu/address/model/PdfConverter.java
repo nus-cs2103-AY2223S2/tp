@@ -18,11 +18,11 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import javafx.collections.ObservableList;
 import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
-import seedu.address.model.score.ScoreList;
+import seedu.address.model.score.UniqueScoreList;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Converts student's progress (tasks and scores) to pdf format
@@ -65,11 +65,7 @@ public class PdfConverter {
 
     private PDPageContentStream contentStream;
 
-    /**
-     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code AddressBook}.
-     */
-    public PDDocument exportProgress(Person key) throws IOException {
-        requireAllNonNull(key);
+    public void setup() throws IOException {
         this.document = new PDDocument();
         this.page = new PDPage();
         this.document.addPage(page);
@@ -77,7 +73,13 @@ public class PdfConverter {
         this.x = this.xInit;
         this.y = this.yInit;
         this.curColor = black;
+    }
 
+    /**
+     * Create contents of the pdf file
+     * @param key student to be exported
+     */
+    public void createContents(Student key) throws IOException {
         String docTitle = key.getName().fullName + "'s Progress Report";
         String dateCreated = "Date created: " + LocalDate.now();
         String taskList = "Task List";
@@ -104,7 +106,15 @@ public class PdfConverter {
         this.y -= 2 * textHeight(fontBold, 18, 0);
 
         createScoreTable(key.getScoreList());
+    }
 
+    /**
+     * Exports {@code key}'s task and score list in the form of a PDF file from this {@code Mathutoring}.
+     */
+    public PDDocument exportProgress(Student key) throws IOException {
+        requireAllNonNull(key);
+        setup();
+        createContents(key);
         this.contentStream.close();
         return this.document;
     }
@@ -113,7 +123,7 @@ public class PdfConverter {
      * Creates table for task list.
      * @param tasks Task list of the student
      */
-    public void createTaskTable(TaskList tasks) throws IOException {
+    public void createTaskTable(UniqueTaskList tasks) throws IOException {
         if (tasks.size() == 0) {
             wrapText("No task found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -132,7 +142,7 @@ public class PdfConverter {
      * Creates table for score list.
      * @param scores Score list of the student
      */
-    public void createScoreTable(ScoreList scores) throws IOException {
+    public void createScoreTable(UniqueScoreList scores) throws IOException {
         if (scores.size() == 0) {
             wrapText("No score history found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -177,12 +187,10 @@ public class PdfConverter {
             float wrapCur;
             if (i != 0 && i != headers.size() - 1) {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 4 * this.margin
-                        - textLength(maxContentWidthString.get(i + 1), fontBold,
-                        fontTableHeaderSize);
+                        - textLength(maxContentWidthString.get(i + 1), fontBold, fontTableHeaderSize);
             } else {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 2 * this.margin;
             }
-            logger.info(String.valueOf(wrapCur));
             this.x += this.margin;
             this.y -= this.margin;
             wrapText(headers.get(i), wrapCur, font, fontSize, maxContentWidthString);
@@ -230,8 +238,8 @@ public class PdfConverter {
      * @param font font of the text contents
      * @param fontSize font size of the text contents
      */
-    public void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
-                                           int fontSize)
+    public void createTableContentForTask(UniqueTaskList tasks, List<String> maxContentWidthString, PDFont font,
+                                          int fontSize)
             throws IOException {
         float yFinal = this.y;
         ObservableList<Task> sortedTaskList = tasks.getInternalList();
@@ -261,10 +269,10 @@ public class PdfConverter {
      * @param font font of the text contents
      * @param fontSize font size of the text contents
      */
-    public void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
-                                            int fontSize) throws IOException {
+    public void createTableContentForScore(UniqueScoreList scores, List<String> maxContentWidthString, PDFont font,
+                                           int fontSize) throws IOException {
         float yFinal = this.y;
-        ObservableList<Score> sortedScoreList = scores.getInternalList();
+        ObservableList<Score> sortedScoreList = scores.getSortedScoreList();
         for (int i = 0; i < scores.size(); i++) {
             Score currentScore = sortedScoreList.get(i);
             double value = currentScore.getValue().value;
@@ -298,10 +306,13 @@ public class PdfConverter {
      * @param y initial y-coordinate of the text
      * @throws IOException
      */
-    public void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
+    public void setUpContentStream(String curString, PDFont font, int fontSize, float x, float y, Color color)
+            throws IOException {
         this.contentStream.beginText();
         this.contentStream.setFont(font, fontSize);
         this.contentStream.moveTextPositionByAmount(x, y);
+        this.contentStream.setNonStrokingColor(color);
+        drawText(curString, font, fontSize);
     }
 
     /**
@@ -393,6 +404,50 @@ public class PdfConverter {
     }
 
     /**
+     * Write text to the pdf
+     * @param curString current string to be written
+     * @param font font of the text
+     * @param fontSize font size of the text
+     */
+    public void drawText(String curString, PDFont font, int fontSize) throws IOException {
+        this.contentStream.drawString(curString);
+        this.contentStream.endText();
+        this.x += textLength(curString, font, fontSize);
+    }
+
+    /**
+     * Change position to next line
+     * @param count determines whether the current string is the first line of the string
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param xPosition x coordinate of the text
+     */
+    public void handleNextLine(int count, PDFont font, int fontSize, float xPosition) {
+        if (count != 0) {
+            this.y -= textHeight(font, fontSize, this.margin / 2);
+        }
+        this.x = xPosition;
+    }
+
+    /**
+     * Handle next page for currently wrapped text
+     * @param count determines whether the current string is the first line of the string
+     * @param yPrev y coordinate of the previous line
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param xPosition x coordinate of the text
+     */
+    public void handleWrapNextPage(int count, float yPrev, List<String> maxContentWidthString, PDFont font,
+                                   int fontSize, float xPosition) throws IOException {
+        float yTemp = (count != 0) ? this.y - 2 * this.margin : yPrev - this.margin;
+        this.contentStream = handleNextPage(yTemp, maxContentWidthString, this.margin, font, fontSize);
+        this.x = xPosition;
+        this.y = yInit;
+        this.yInitTable = this.y + textHeight(font, fontSize, 0) / 2 + 2 * this.margin;
+    }
+
+    /**
      * Wraps the string given to fit in the specified wrap length.
      * @param text text string
      * @param wrap length wrap of the text
@@ -420,28 +475,13 @@ public class PdfConverter {
             }
             float yPrev = this.y;
             if (lengthUsed > wrap) {
-                if (count != 0) {
-                    this.y -= textHeight(font, fontSize, this.margin / 2);
-                }
-                this.x = xPosition;
+                handleNextLine(count, font, fontSize, xPosition);
                 lengthUsed = textLength(curString, font, fontSize);
             }
             if (this.y <= 90) {
-                float yTemp = yPrev - this.margin;
-                if (count != 0) {
-                    yTemp = this.y - 2 * this.margin;
-                }
-                contentStream = handleNextPage(yTemp, maxContentWidthString, margin, font,
-                        fontSize);
-                this.x = xPosition;
-                this.y = yInit;
-                this.yInitTable = this.y + textHeight(font, fontSize, 0) / 2 + 2 * this.margin;
+                handleWrapNextPage(count, yPrev, maxContentWidthString, font, fontSize, xPosition);
             }
-            setUpContentStream(font, fontSize, this.x, this.y);
-            this.contentStream.setNonStrokingColor(this.curColor);
-            this.contentStream.drawString(curString);
-            this.contentStream.endText();
-            this.x += textLength(curString, font, fontSize);
+            setUpContentStream(curString, font, fontSize, this.x, this.y, this.curColor);
             count += 1;
         }
         this.x = xPosition;

@@ -9,8 +9,11 @@ MATHUTORING is a desktop application used for private Math tuition teachers to m
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-    * to be added soon.
+* **New Feature**:
+    * Switch
+    * Check
+    * Filter
+    * Score list chart
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=carrieli1015&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -18,13 +21,14 @@ Given below are my contributions to the project.
     * to be added soon.
 
 * **Enhancements to existing features**:
-    * to be added soon. 
+    * UI integration
+    * Overall UI layout and responsive
 
 * **Documentation**:
     * Updated AboutUs page and README page.
 
 * **Contributions to team-based tasks**:
-    * Conceptualized the ideas and came up with v1.1 UI design. 
+    * Conceptualized the ideas and came up with v1.1 UI design.
     * Added several GitHub issues and helped manage the issues through adding labels and milestones.
 
 * **Contributions beyond the project team**:

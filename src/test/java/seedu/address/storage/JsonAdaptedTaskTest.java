@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
+import seedu.address.model.student.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 
@@ -24,7 +24,7 @@ class JsonAdaptedTaskTest {
     private static final String VALID_TASK_CREATION_DATE = VALID_TASK_1.getCreationDate().toString();
 
     @Test
-    public void toModelType_validPersonDetails_returnsTask() throws Exception {
+    public void toModelType_validStudentDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASK_1);
         assertEquals(VALID_TASK_1, task.toModelType());
     }
