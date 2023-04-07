@@ -228,6 +228,16 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void checkLeapYear_returnTrue() {
+        assertEquals(true, ParserUtil.isLeapYear(2024));
+    }
+
+    @Test
+    public void checkLeapYear_returnFalse() {
+        assertEquals(false, ParserUtil.isLeapYear(2100));
+    }
+
+    @Test
     public void validDateTime_leapYear() throws ParseException {
         LocalDateTime expectedDateTime = LocalDateTime.of(2024, 02, 29, 12, 00);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime("29/02/2024 12:00"));
