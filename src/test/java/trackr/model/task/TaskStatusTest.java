@@ -85,4 +85,20 @@ public class TaskStatusTest {
         assertFalse(done.equals(notDone)); //done vs not done
         assertFalse(done.equals("N")); //different types
     }
+
+    @Test
+    public void compare() {
+        TaskStatus done = new TaskStatus("D");
+        TaskStatus doneCopy = new TaskStatus("d");
+        TaskStatus notDone = new TaskStatus("N");
+
+        // same value -> 0
+        assertEquals(0, done.compare(done));
+        assertEquals(0, done.compare(doneCopy));
+
+        // higher priority
+        assertEquals(1, done.compare(notDone));
+        assertEquals(-1, notDone.compare(done));
+    }
+
 }
