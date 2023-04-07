@@ -2106,7 +2106,7 @@ Context: There exists a `Person` with `ContactIndex 1, 2, 3` and `4` in `EduMate
 
 Command executed: `delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
-Expected Output in the Person List: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
+Expected Output in the PersonList: Person Card containing `Person` with `ContactIndex 4` is removed. A new `Person` named James is created and assigned `ContactIndex 4` and appears on Person List.
 
 #### **_Scenario 3_**
 
