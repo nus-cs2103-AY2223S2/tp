@@ -113,12 +113,10 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/ui/Ui.java)
 
-{TODO update diagram}
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 ### Logic component
 
-{TODO update link}
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -579,8 +577,6 @@ The following sequence diagram shows how the `UiAction` that switches the tab to
 ![SwitchToProjectsUiAction sequence diagram](images/uiaction/SwitchToProjectsUiAction.png)
 
 Upon being executed, `UiAction` instance calls the appropriate method in `MainWindow` to perform the action from a successful command. In this case, the `UiAction` calls `MainWindow#selectProjectTab` to switch the tab to the Projects tab.
-
-### Parser
 
 --------------------------------------------------------------------------------------------------------------------
 
