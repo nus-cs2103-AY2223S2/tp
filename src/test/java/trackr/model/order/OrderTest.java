@@ -6,13 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
+import static trackr.testutil.TypicalCustomer.AMY;
 import static trackr.testutil.TypicalMenuItems.CUPCAKE_M;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
 import static trackr.testutil.TypicalOrders.CUPCAKE_O;
 
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import trackr.model.menu.MenuItem;
+import trackr.model.person.Customer;
+import trackr.testutil.CustomerBuilder;
 import trackr.testutil.MenuItemBuilder;
 import trackr.testutil.OrderBuilder;
 
@@ -202,6 +207,18 @@ public class OrderTest {
 
         assertEquals(0.0, totalRevenue - totalCost);
         assertNotEquals(50.0, totalRevenue - totalCost);
+    }
+
+    @Test
+    public void hashCode_success() {
+        OrderName orderName = new OrderName("Test");
+        OrderDeadline orderDeadline = new OrderDeadline("01/01/2023");
+        OrderStatus orderStatus = new OrderStatus("D");
+        OrderQuantity orderQuantity = new OrderQuantity("10");
+        Customer customer = new CustomerBuilder(AMY).build();
+
+        int hashCode = Objects.hash(customer, orderName, orderDeadline, orderStatus, orderQuantity);
+        assertEquals(hashCode, new Order(orderName, orderDeadline, orderStatus, orderQuantity, customer).hashCode());
     }
 
 }
