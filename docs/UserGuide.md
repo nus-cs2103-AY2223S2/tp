@@ -12,7 +12,7 @@ title: FastTrack User Guide
 1. Introduction to FastTrack
 2. [Why You Should Use FastTrack](#why-you-should-use-fasttrack)
 3. [Purpose of this guide](#purpose-of-this-guide)
-4. [Quick Start](#quick-start-and-installation)
+4. [Quick Start and Installation](#quick-start-and-installation)
 5. [How to understand this guide](#understanding-this-guide)
     1. Warnings
     2. Tooltips (Advice)
