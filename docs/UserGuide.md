@@ -710,8 +710,6 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 
 **A:** We understand that the current list of courses available is limited. We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
 
-<br>
-
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
