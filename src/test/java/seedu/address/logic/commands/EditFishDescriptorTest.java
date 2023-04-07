@@ -10,10 +10,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_BOB;
-import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 
 public class EditFishDescriptorTest {

@@ -7,10 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FISH;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -19,14 +15,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.fish.FishAddCommand;
 import seedu.address.logic.commands.fish.FishDeleteCommand;
-import seedu.address.logic.commands.fish.FishEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditFishDescriptorBuilder;
 import seedu.address.testutil.FishBuilder;
 import seedu.address.testutil.FishUtil;
-import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 
 public class AddressBookParserTest {
 
@@ -44,19 +36,19 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         FishDeleteCommand command = (FishDeleteCommand) parser.parseCommand(
-                FishDeleteCommand.COMMAND_WORD + " " + FishDeleteCommand.FISH_COMMAND_WORD+ " "
+                FishDeleteCommand.COMMAND_WORD + " " + FishDeleteCommand.FISH_COMMAND_WORD + " "
                         + INDEX_FIRST_FISH.getOneBased());
         assertEquals(new FishDeleteCommand(INDEX_FIRST_FISH), command);
     }
 
-//    @Test commented bc unable to test since EditFishDescriptor requires model
-//    public void parseCommand_edit() throws Exception {
-//        Fish fish = new FishBuilder().build();
-//        EditFishDescriptor descriptor = new EditFishDescriptorBuilder(fish).build();
-//        FishEditCommand command = (FishEditCommand) parser.parseCommand(FishEditCommand.COMMAND_WORD + " "
-//                + INDEX_FIRST_FISH.getOneBased() + " " + FishUtil.getEditFishDescriptorDetails(descriptor));
-//        assertEquals(new FishEditCommand(INDEX_FIRST_FISH, descriptor), command);
-//    }
+    //    @Test commented bc unable to test since EditFishDescriptor requires model
+    //    public void parseCommand_edit() throws Exception {
+    //        Fish fish = new FishBuilder().build();
+    //        EditFishDescriptor descriptor = new EditFishDescriptorBuilder(fish).build();
+    //        FishEditCommand command = (FishEditCommand) parser.parseCommand(FishEditCommand.COMMAND_WORD + " "
+    //                + INDEX_FIRST_FISH.getOneBased() + " " + FishUtil.getEditFishDescriptorDetails(descriptor));
+    //        assertEquals(new FishEditCommand(INDEX_FIRST_FISH, descriptor), command);
+    //    }
 
     @Test
     public void parseCommand_exit() throws Exception {

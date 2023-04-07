@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_FED_DATE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TANK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LAST_FED_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -47,7 +46,6 @@ import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tank.TankName;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 
 public class EditCommandParserTest {

@@ -12,9 +12,9 @@ import java.util.Set;
 
 import seedu.address.logic.commands.fish.FishAddCommand;
 import seedu.address.logic.commands.fish.FishCommand;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tag.Tag;
-import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 
 /**
  * A utility class for Fish.

@@ -64,7 +64,8 @@ public class AddCommandTest {
         FishAddCommand addCommand = new FishAddCommand(validFish, Index.fromOneBased(1));
         ModelStub modelStub = new ModelStubWithFish(validFish);
 
-        assertThrows(CommandException.class, FishAddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                FishAddCommand.MESSAGE_DUPLICATE_FISH, () -> addCommand.execute(modelStub));
     }
 
     @Test
