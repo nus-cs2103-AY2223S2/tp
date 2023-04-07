@@ -2,59 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-## **Overview**
-
-GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
-
----
-
-### Table of Contents
-
-- [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Purpose of this guide](#purpose-of-this-guide)
-  - [How to use this guide](#how-to-use-this-guide)
-  - [Legends](#legends)
-- [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)
-- [Design](#design)
-  - [Architecture](#architecture)
-  - [UI component](#ui-component)
-  - [Logic component](#logic-component)
-  - [Model component](#model-component)
-  - [Storage component](#storage-component)
-  - [Common classes](#common-classes)
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-- [Appendix: Requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [User stories](#user-stories)
-  - [Use cases](#use-cases)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a listing](#deleting-a-listing)
-  - [Saving data](#saving-data)
-
----
-
-### Purpose of this guide
-
-Welcome to the developer guide for GoodMatch. This guide will provide you with the information to work on GoodMatch by helping you understand how GoodMatch is designed. The guide also includes information on the requirements of GoodMatch as well as the instructions to manually test GoodMatch on your local machines.
-
-### How to use this guide
-
-To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
-
-Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
-
-### Legends
-
-💡 **Tip:** You can find additional tips about the developer guide here.
-
-ℹ️ **Notes**: You can find additional information about the command or feature here.
-
-❗ **Caution**: Be careful not to make this deadly mistake.
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,10 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<p>
-  <img src="images/ArchitectureDiagram.png" />
-  <em>Architecture Diagram for GoodMatch</em>
-</p>
+<img src="images/ArchitectureDiagram.png" width="280" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -108,10 +54,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<p>
-  <img src="images/ArchitectureSequenceDiagram.png" />
-  <em>Architecture Sequence Diagram for GoodMatch</em>
-</p>
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -120,113 +63,70 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<p>
-  <img src="images/ComponentManagers.png" />
-  <em>Sequence Diagram for the Managers in GoodMatch</em>
-</p>
+<img src="images/ComponentManagers.png" width="300" />
 
-### UI component
+The sections below give more details of each component.
+Details coming soon...
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+--------------------------------------------------------------------------------------------------------------------
 
-<p>
-  <img src="images/UiClassDiagram.png" />
-  <em>Structure of the UI Component</em>
-</p>
+## **Implementation**
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListingListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+This section describes some noteworthy details on how certain features are implemented.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+### Undo feature
 
-The `UI` component,
+#### Overview
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Listing` object residing in the `Model`.
+The undo mechanism utilises the `prevListingBookStates` field in `ModelManager`. Additionally, it implements the following operations:
 
-### Logic component
+* `Model#undo()` — Restores the previous listing book state from its history.
+* `Model#hasPreviousState()` — Checks if there are available listing book states in the history to undo into.
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Here's a (partial) class diagram of the `Logic` component:
+Step 1. The user launches the application for the first time. The `prevListingBookStates` will be initialized with an empty `ArrayList`.
 
-<p>
-  <img src="images/LogicClassDiagram.png" />
-  <em>Structure of the UI Component</em>
-</p>
+![UndoRedoState0](images/UndoState0.png)
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `ListingBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a Listing).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+Step 2. The user executes `delete 5` command to delete the 5th listing in the listing book. The `delete` command calls `Model#commitListingBook()`, causing the modified state of the listing book after the `delete 5` command executes to be saved in the `prevListingBookStates`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+![UndoRedoState1](images/UndoState1.png)
 
-<p>
-  <img src="images/DeleteSequenceDiagram.png" />
-  <em>Interactions Inside the Logic Component for the `delete 1` Command</em>
-</p>
+Step 3. The user executes `add t/Coder d/code​` to add a new listing. The `add` command also calls `Model#commitListingBook()`, causing another modified listing book state to be saved into the `prevListingBookStates`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![UndoRedoState2](images/UndoState2.png)
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<p>
-  <img src="images/ParserClasses.png" />
-  <em>Class diagram for the Parser classes</em>
-</p>
-
-How the parsing works:
-* When called upon to parse a user command, the `ListingBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ListingBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
-### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
-<p>
-  <img src="images/ModelClassDiagram.png" />
-  <em>Class diagram for the Model Component</em>
-</p>
-
-
-The `Model` component,
-
-* stores the address book data i.e., all `Listing` objects (which are contained in a `UniqueListingList` object).
-* stores the currently 'selected' `Listing` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Listing>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ListingBook`, which `Listing` references. This allows `ListingBook` to only require one `Tag` object per unique tag, instead of each `Listing` needing their own `Tag` objects.<br>
-
-<p>
-  <img src="images/BetterModelClassDiagram.png" />
-  <em>A better Class diagram for the Model Component</em>
-</p>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitListingBook()`, so the listing book state will not be saved into the `prevListingBookStates`.
 
 </div>
 
-### Storage component
+Step 4. The user now decides that adding the listing was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which restores the previous listing book state by setting as the `listingBook` and deleting it from `prevListingBookStates`.
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+![UndoRedoState3](images/UndoState3.png)
 
-<p>
-  <img src="images/StorageClassDiagram.png" />
-  <em>Class diagram for the Storage Component</em>
-</p>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `prevListingBookStates` is empty, then there are no previous ListingBook states to restore. The `undo` command uses `Model#hasPreviousState()` to check if undo is possible. If not, it will return an error to the user rather
+than attempting to perform the undo.
 
-The `Storage` component,
-* can save both listing book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `ListingBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+</div>
 
-### Common classes
+The following sequence diagram shows how the undo operation works:
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
----
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the listing book, such as `list`, will usually not call `Model#commitListingBook()` or `Model#undo()`. Thus, the `prevListingBookStates` remains unchanged.
+
+![UndoRedoState4](images/UndoState4.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -235,8 +135,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
----
+* 
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -291,9 +191,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 *{More to be added}*
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `ListingBook` and the **Actor** is the `Recruiter` unless specified otherwise)
+
+**Use case: Add a new job listing**
+
+**MSS**
+
+1. The recruiter requests to add a new job listing.
+2. ListingBook adds the job listing to the list of job listings.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The placeholders used are invalid.
+    - 2a1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2b. The new job title is invalid.
+    - 2b1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2c. The new job description is invalid.
+    - 2c1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2d. There is a duplicate listing in the listing book.
+    - 2d1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
 
 **Use case: Delete a Listing**
 
@@ -334,32 +262,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     Use case ends.
 
 
-**Use case: Add a new job listing**
-
-**MSS**
-
-1. The recruiter requests to add a new job listing.
-2. ListingBook adds the job listing to the list of job listings.
-
-    Use case ends.
-
-**Extensions**
-
-- 2a. The placeholders used are invalid.
-    - 2a1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2b. The new job title is invalid.
-    - 2b1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2c. The new job description is invalid.
-    - 2c1. ListingBook shows an error message.
-    - Use case resumes at step 1.
-
-- 2d. There is a duplicate listing in the listing book.
-    - 2d1. ListingBook shows an error message.
-    - Use case resumes at step 1.
 
 **Use case: Update a job listing**
 
