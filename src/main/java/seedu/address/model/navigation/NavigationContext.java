@@ -11,7 +11,7 @@ import seedu.address.model.module.ModuleCode;
  */
 public class NavigationContext {
 
-    private static final String ROOT_LEVEL_NAME = "/r";
+    public static final String ROOT_LEVEL_NAME = "/r";
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
@@ -152,11 +152,11 @@ public class NavigationContext {
 
         NavigationContext other = (NavigationContext) obj;
 
-        boolean moduleEquals = (moduleCode == null && other.moduleCode == null)
-                || (moduleCode.equals(other.moduleCode));
+        boolean moduleEquals =
+                moduleCode == other.moduleCode || (moduleCode != null && moduleCode.equals(other.moduleCode));
 
-        boolean lectureEquals = (lectureName == null && other.lectureName == null)
-                || (lectureName.equals(other.lectureName));
+        boolean lectureEquals =
+                lectureName == other.lectureName || (lectureName != null && lectureName.equals(other.lectureName));
 
         return moduleEquals && lectureEquals;
     }
