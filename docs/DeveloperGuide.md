@@ -50,7 +50,7 @@ The above _**Architecture Diagram**_ explains the high-level design of the App.
 
 Given below is a quick overview of the main components of the app, and how they interact with each other.
 
-<img class="diagram" src="images/ArchitectureDiagram.png" width="341px">
+<img class="diagram" src="images/ArchitectureDiagram.png" width="450px">
 
 <div style="page-break-after: always;"></div>
 #### Main components of the architecture
