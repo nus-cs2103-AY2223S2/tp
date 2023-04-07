@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Person {
+    Class Person
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+
+    Person *--> "1" Email
+    Person *--> "1" Name
+    Person *--> "1" Phone
+    Person *--> "*" Tag
+
+        Package Doctor {
+            Class Doctor
+            Class Specialty
+            Class Yoe
+
+            Doctor -up---|> Person.Person
+            Doctor *--> "1" Specialty
+            Doctor *--> "1" Yoe
+
+        }
+
+        Package Patient {
+            Class Diagnosis
+            Class Height
+            Class Remark
+            Class Status
+            Class Weight
+
+            Patient -up---|> Person.Person
+            Patient *--> "1" Diagnosis
+            Patient *--> "1" Height
+            Patient *--> "1" Status
+            Patient *--> "1" Weight
+            Patient *--> "0..1" Remark
+        }
+}
+@enduml

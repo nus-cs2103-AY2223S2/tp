@@ -15,7 +15,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## **Setting up, getting started**
 
-The set-up guide is still **_in progress_**
+Refer to the guide [_Setting up and getting started._](https://ay2223s2-cs2103t-f12-1.github.io/tp/SettingUp)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,51 +86,47 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="450" alt="LogicClassDiagram"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a doctor).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-doc 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `del-doc 1` Command](images/DeleteDoctorSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDoctorCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600" alt="ParserClasses"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddDoctorCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDoctorCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDoctorCommandParser`, `DeleteDoctorCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
+<img src="images/PersonPackageClassDiagram.png" alt="PersonPackageClassDiagram" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Doctor` and `Patient` objects (which are contained in a `UniqueDoctorList` and `UniquePatientList` object).
+* stores the currently 'selected' `Doctor` and `Patient` objects (e.g., results of a search query) as a separate _filteredDoctors_ and _filteredPatients_ list which is exposed to outsiders as an unmodifiable `ObservableList<Doctor>` and `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -211,7 +207,7 @@ The following sequence diagram illustrates how the add doctor operation works:
 ### What it does
 {: .no_toc}
 
-Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be 
+Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
 updated to the input values and all other values will remain the same. The doctor to be edited can be specified through
 the doctor's index.
 
@@ -223,7 +219,7 @@ Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
 the abstract `Command` class and implements the `execute()` method. The `EditDoctorDescriptor` is created with the arguments given
 by the user. A new `Doctor` object is created with the new arguments, with the attributes of the old `Doctor` object copied over
-if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`. 
+if the argument for that specific attribute is not provided by the user. `EditDoctorDescriptor` is then passed to `EditDoctorCommandParser`.
 The `EditDoctorCommand` is created using the `EditDoctorDescriptor`. Upon execution of `EditDoctorCommand`, a `Doctor` object is added to the model’s list of doctors if all the attributes provided are valid and a duplicate instance does not exist.
 
 The following activity diagram illustrates the user flow for editing a doctor:
@@ -404,7 +400,7 @@ Here are some characteristics of our target user profile: <br>
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage, 
+**Value proposition**: Perform quick lookup and assignment of appropriate doctors to each patient in triage,
 faster than a typical mouse/GUI driven app.
 
 ### Appendix C: User stories
@@ -413,37 +409,24 @@ In the table below, **_user_** refers to the triage admin staff.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                      | So that I can…​                                                                  |
-|----------|---------|-------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| `* * *`  | user    | add doctor contacts into my address book                          | store their contacts in case I need them in the future                           |
-| `* * *`  | user    | look up doctors by their name, specialty, department and position | assign patients to relevant doctors                                              |
-| `* * *`  | user    | sort doctors based on specialty                                   | assign patients to doctors according to nature of condition                      |
-| `* * *`  | user    | sort doctors based on years of experience                         | assign patients to doctors according to severity of condition                    |
-| `* * *`  | user    | sort doctors based on availability                                | assign patients to doctors currently present in the clinic                       |
-| `* * *`  | user    | edit the doctor contacts in Docedex                               | keep the doctor contacts up to date                                              |
-| `* * *`  | user    | delete doctors that have left the hospital or have retired        | ensure all doctor contacts reflect doctors in the hospital                       |
-| `* * *`  | user    | save my doctor contacts in my desktop                             | refer to doctor contacts in the future                                           |
-| `* * *`  | user    | load my contacts from a file when I boot up the application       | refer to doctor contacts created in the past                                     |
-| `* * *`  | user    | add patient contacts into my address book                         | store their contacts in case I need them in the future                           |
-| `* * *`  | user    | look up patients by their name                                    | view medical history of the patient including doctors that have treated them     |
-| `* * *`  | user    | tag patients with a priority (triage)                             | determine assignment priorities to doctors                                       |
-| `* * *`  | user    | sort patients according to their priority                         | tag patients according to severity of condition                                  |
-| `* * *`  | user    | detect duplicate entries                                          | either halt operation or update information.                                     |
-| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
-| `* *`    | user    | tag patients to the doctor                                        | keep track of patients treated by the doctor                                     |
-| `* *`    | user    | tag doctors to the patients                                       | keep track of doctors treating the patient                                       |
-| `* *`    | user    | exit the application through the CLI                              | terminate use of the application                                                 |
-| `* *`    | user    | access the help menu                                              | know how to use the commands within Docedex                                      |
-| `*`      | user    | add remarks for doctors                                           | store additional information on each doctor                                      |
-| `*`      | user    | star certain doctors as important                                 | perform quick retrieval of information pertaining to important doctors           |
-| `*`      | user    | see the history of doctors I viewed recently                      | re-access recently queried doctor contacts quickly                               |
-| `*`      | user    | retrieve the size of my contact book for doctors                  | verify the number of doctors in my clinic                                        |
-| `*`      | user    | archive doctors that are no longer working                        | retain information about such doctors without having them appear in my searches  |
-| `*`      | user    | classify patients by compliance                                   | keep track of non-compliant cases and warn doctors                               |
-| `*`      | user    | archive patients that have died or no longer visit this hospital. | retain information about such patients without having them appear in my searches |
-| `*`      | user    | self-destruct my address book                                     | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
-| `*`      | user    | create a new address book instance for a new clinic               | track doctors and patients across different clinics                              |
-
+| Priority | As a …​ | I want to …​                                                              | So that I can…​                                                                  |
+|----------|---------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | user    | add doctor/patient contacts into my address book                          | store their contacts in case I need them in the future                           |
+| `* * *`  | user    | look up doctors by their name, specialty and/or years of experience       | assign patients to relevant doctors                                              |
+| `* * *`  | user    | look up patients by their name,                                           | view which doctors treated found patients or verify their diagnosis              |
+| `* * *`  | user    | edit the doctor/patient contacts in Docedex                               | keep the doctor/patient contacts up to date                                      |
+| `* * *`  | user    | delete doctors/patients that have left the hospital, died or have retired | ensure all doctor/patient contacts are relevant                                  |
+| `* * *`  | user    | save my doctor/patient contacts in my desktop                             | refer to doctor/patient contacts in the future                                   |
+| `* * *`  | user    | load my contacts from a file when I boot up the application               | refer to doctor/patient contacts created in the past                             |
+| `* * *`  | user    | tag patients with a status                                                | determine assignment priorities to doctors                                       |
+| `* * *`  | user    | detect duplicate entries                                                  | either halt operation or update information.                                     |
+| `* *`    | user    | access the help menu                                                      | know how to use the commands within Docedex                                      |
+| `* *`    | user    | tag patients to the doctor                                                | keep track of patients treated by the doctor                                     |
+| `* *`    | user    | tag doctors to the patients                                               | keep track of doctors treating the patient                                       |
+| `* *`    | user    | exit the application through the CLI                                      | terminate use of the application                                                 |
+| `*`      | user    | see the history of doctors I viewed recently                              | re-access recently queried doctor contacts quickly                               |
+| `*`      | user    | self-destruct my address book                                             | protect clinic's information in the event of a cyber-attack (last-ditch effort). |
+ | `*`      | user    | select doctors/patients through the CLI                                   | minimize the use of a mouse/pointing device                                      |
 ### Appendix D: Use cases
 
 For all use cases below, we assume the following unless specified otherwise
@@ -452,8 +435,8 @@ For all use cases below, we assume the following unless specified otherwise
 - The following preconditions
   - The `user` has launched the `Docedex` application.
 
-Furthermore, a lot of use cases are similar when manipulating
-doctors and patients. Therefore, to keep the developer guide concise, the
+Furthermore, a lot of **use cases are similar when manipulating
+doctors and patients**. Therefore, to keep the developer guide concise, the
 use cases elaborated upon below are only detailed for doctors. Nonetheless, they
 can be extrapolated for patients too, without changes to the major details within
 the use case. Such associated pairs of use cases are listed in the table below.
@@ -599,6 +582,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
   * 1d1. Docedex alerts the user that the patient and doctor are already assigned to each other.<br>
     Use case ends.
 
+
 ### Appendix E: Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -647,19 +631,19 @@ Testers are encouraged to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-#### Deleting a person
+#### Deleting a doctor
 
-1. Deleting a person while all persons are being shown
+1. Deleting a doctor while all doctors are being shown
 
-  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all doctors using the `list-doc` command. Multiple doctors in the list.
 
-  1. Test case: `delete 1`<br>
-     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `del-doc 1`<br>
+     Expected: First doctor contact is deleted from the displayed doctors list. Details of the deleted contact shown in the status message.
 
-  1. Test case: `delete 0`<br>
-     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `del-doc 0`<br>
+     Expected: No doctor is deleted. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+  1. Other incorrect delete commands to try: `delete`, `del-doc x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
