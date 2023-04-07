@@ -73,6 +73,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 ![Layout](images/Layout.png)
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## User input restrictions
@@ -502,26 +504,26 @@ We have set up a few GUI display restrictions in order to avoid the GUI being af
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                              |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PARENT_PHONE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/11112222 t/friend t/primary` |
-| **Delete Student** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                           |
-| **Clear**          | `clear`                                                                                                                                                                                       |
-| **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
-| **Filter**         | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter friends colleagues`                                                                                                                        |
-| **List Students**  | `list`                                                                                                                                                                                        |
-| **Add Task**       | `addtask INDEX t/TITLE`<br> e.g `addtask 2 t/Homework Assignment 1`                                                                                                                           |
-| **Delete Task**    | `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deletetask 2 1`                                                                                                                          |
-| **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markcomplete`, `marklate` or `markinprogress`)<br> e.g. `markComplete 1 2`<br>                                   |
-| **Add Score**      | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                 |
-| **Delete Score**   | `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deletescore 3 4`                                                                                                                      |
-| **Import Data**    | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
-| **Export Data**    | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
-| **Export Progress** | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
-| **Help**           | `help`                                                                                                                                                                                        |
-| **Switch**         | `switch`                                                                                                                                                                                      |
-| **Exit**           | `exit`                                                                                                                                                                                        |
+| Action                                                                                   | Format, Examples                                                                                                                                                                              |
+|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add a Student**](#2-adding-a-students-contact-add)                                    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PARENT_PHONE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/11112222 t/friend t/primary` |
+| [**Delete a Student**](#6-deleting-a-student-delete)                                     | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                           |
+| [**Edit a Student**](#4-editing-a-student-edit)                                          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
+| [**Check a Student**](#7-checking-a-student-check)                                       | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
+| [**Find a Student**](#5-locating-students-by-name-find)                                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
+| [**Filter a Student**](#15-filtering-students-by-tag-filter)                             | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter friends colleagues`                                                                                                                        |
+| [**List Students**](#3-viewing-student-contacts-as-a-list-list)                          | `list`                                                                                                                                                                                        |
+| [**Add a Task**](#8-adding-a-task-for-a-student-addtask)                                 | `addtask INDEX t/TITLE`<br> e.g `addtask 2 t/Homework Assignment 1`                                                                                                                           |
+| [**Delete a Task**](#9-deleting-a-task-of-a-student-deletetask)                          | `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deletetask 2 1`                                                                                                                          |
+| [**Mark a Task**](#10-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)  | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markcomplete`, `marklate` or `markinprogress`)<br> e.g. `markComplete 1 2`<br>                                   |
+| [**Add a Score**](#11-adding-a-score-for-a-student-addscore)                             | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                 |
+| [**Delete a Score**](#12-deleting-a-score-of-a-student-deletescore)                      | `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deletescore 3 4`                                                                                                                      |
+| [**Switch Score Tab**](#16-switch-between-tabs-switch)                                   | `switch`                                                                                                                                                                                      |
+| [**Import Data**](#18-import-the-student-data-in-import)                                 | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
+| [**Export Data**](#17-export-the-student-data-out-export)                                | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
+| [**Export a Student's Progress**](#19-export-student-progress-out-as-a-pdf-file-exportp) | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
+| [**Help**](#1-viewing-help-help)                                                         | `help`                                                                                                                                                                                        |
+| [**Clear**](#13-clearing-all-entries-clear)                                              | `clear`                                                                                                                                                                                       |
+| [**Exit**](#14-exiting-the-program-exit)                                                 | `exit`                                                                                                                                                                                        |
 
 [Back to top](#table-of-contents)
