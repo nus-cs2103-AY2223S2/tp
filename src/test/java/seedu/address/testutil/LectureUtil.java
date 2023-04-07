@@ -4,11 +4,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
 
 /**
@@ -90,6 +93,18 @@ public class LectureUtil {
         descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
                 .append(" "));
         return sb.toString();
+    }
+
+    /**
+     * Returns a {@code Lecture} array containing all the elements of {@code readOnlyLectures} casted as
+     * {@code Lecture} objects.
+     *
+     * @param readOnlyLectures The list of elements to be casted.
+     * @return A {@code Lecture} array containing all the elements of {@code readOnlyLectures} casted as
+     *         {@code Lecture} objects.
+     */
+    public static Lecture[] convertToLectureArray(List<? extends ReadOnlyLecture> readOnlyLectures) {
+        return readOnlyLectures.stream().map(l -> (Lecture) l).toArray(Lecture[]::new);
     }
 
 }
