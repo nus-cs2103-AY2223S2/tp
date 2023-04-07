@@ -112,7 +112,7 @@ create other folders and files in this folder as well.)
    - A GUI similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 A command prompt is a text-based interface in which you can enter commands to interact with your computer. It's a way to
 give your computer specific instructions by typing commands into a text field rather than using a graphical user
 interface (GUI) with icons and menus!
