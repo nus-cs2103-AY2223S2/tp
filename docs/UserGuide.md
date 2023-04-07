@@ -10,8 +10,8 @@ the desire to **store**, **access** and **share** your recipes easily?
 
 RIZZipe stars 3 main features:
 1. Versatile **tagging** and powerful **searching** function
-2. Recipe sharing
-3. Search function for ingredient substitutions
+2. Recipe **sharing**
+3. Search function for **ingredient substitutions**
 
 Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
 
