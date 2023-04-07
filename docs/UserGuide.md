@@ -153,7 +153,7 @@ Edit food items in WIFE.
 
 Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]`
 
-* Index must be a valid integer that refers to an an item currently in the fridge
+* Index must be a valid integer that refers to an item currently in the fridge
 
 Example: <br/>
 `edit 1 n/Cauliflower q/20` returns
