@@ -289,6 +289,7 @@ the edit will override the existing tag
 Pet Card information indicates the amount of money owed to you for taking good care of their pets!
 
 Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
+
 ![](images/UG/amount.png)
 
 
@@ -323,7 +324,23 @@ Example given `changecost 1 0.1 0.5`
 Additional example:
 * `cc 2 1.0 1.5`
 
+### Marking a deadline as done : `mark`
 
+The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done. 
+
+Pets that are already marked will not be highlighted.
+
+Format: `mark INDEX`
+
+Example given `mark 1`
+
+<div markdown="block" class="alert alert-block alert-success">
+
+* :bulb: **Note:**
+
+You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+
+</div>
 
 ### Deletion
 
@@ -479,6 +496,11 @@ If you do not want the entry in the archive, you will need to manually delete th
 
 <br><br>
 
+**Q**: Why there are some pets highlighted even though the deadline is already passed?
+
+**A**: If you already done the task, run `mark` function to mark it as done and remove the highlight.
+
+<br><br>
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
 or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
 
