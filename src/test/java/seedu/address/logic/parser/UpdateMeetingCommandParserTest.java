@@ -33,8 +33,8 @@ public class UpdateMeetingCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateMeetingCommand.MESSAGE_USAGE);
-    
-    private static final String MESSAGE_MISSING_ARGUMENTS_FULL = 
+
+    private static final String MESSAGE_MISSING_ARGUMENTS_FULL =
         String.format(MESSAGE_MISSING_ARGUMENTS, UpdateMeetingCommand.MESSAGE_USAGE);
 
     private UpdateMeetingCommandParser parser = new UpdateMeetingCommandParser();
