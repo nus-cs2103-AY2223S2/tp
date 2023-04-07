@@ -40,4 +40,21 @@ public class UndoCommand extends UndoRedoCommand {
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, counts));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UndoCommand)) {
+            return false;
+        }
+
+        // state check
+        UndoCommand undo = (UndoCommand) other;
+        return this.numberOfUndos == undo.numberOfUndos;
+    }
 }
