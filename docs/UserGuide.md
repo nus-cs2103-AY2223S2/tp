@@ -18,7 +18,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ExpressLibrary.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar expressLibrary.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar expressLibrary.jar` command to run the application (note: double-clicking to open the jar file may lead to issues with saved data).<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
