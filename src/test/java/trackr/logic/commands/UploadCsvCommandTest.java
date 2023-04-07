@@ -109,7 +109,7 @@ public class UploadCsvCommandTest {
             List<String> commands = new ArrayList<String>();
             commands.add(c1);
             commands.add(c2);
-            return commands; 
-        }     
+            return commands;
+        }
     }
 }
