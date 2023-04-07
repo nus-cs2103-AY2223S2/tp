@@ -1,5 +1,6 @@
 ---
-layout: page title: Neo Ming Hao's Project Portfolio Page
+layout: page 
+title: Neo Ming Hao's Project Portfolio Page
 ---
 
 ### Project: Army Information Management System
