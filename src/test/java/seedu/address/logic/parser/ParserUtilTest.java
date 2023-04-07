@@ -223,6 +223,17 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void invalidDateTime_leapYear_throwError() {
+        assertThrows(ParseException.class, () -> parseDateTime("29/02/2025 12:00"));
+    }
+
+    @Test
+    public void validDateTime_leapYear() throws ParseException {
+        LocalDateTime expectedDateTime = LocalDateTime.of(2024, 02, 29, 12, 00);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime("29/02/2024 12:00"));
+    }
+
+    @Test
     public void parseDate_invalidDay_throwError() {
         assertThrows(ParseException.class, () -> parseDayOfWeek("INVALID"));
     }
