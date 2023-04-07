@@ -288,56 +288,6 @@ Examples:
 
 <hr style="border:2px solid gray">
 
-### Editing the details of the user : `edituser`
-
-Want to change one of your own details, perhaps something was out of date?
-
-Use this command to edit your details easily!
-
-**Syntax:**
-
-`edituser PREFIX/PARAMETER...`
-
-_Here are some important requirements for you to take note:_
-
-* At least one field must be provided.
-
-For the following fields, they are considered a `FieldGroup`.
-* Modules
-* Tags
-
-A `FieldGroup` can contain many parameters in that single field.
-When using edit, the command looks for each parameter in the `FieldGroup`:
-* If the parameter already exists in the `FieldGroup` it will be removed.
-* Otherwise, the parameter will be added into the `FieldGroup`.
-    * e.g. `edituser mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
-    * e.g. `edituser t/10x Coder t/Intern Friend`
-        * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
-        * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
-
-| Prefix | Name of Field                   | Optional? |
-|--------|---------------------------------|-----------|
-| n      | Name                            | Yes       |
-| e      | Email address                   | Yes       |
-| p      | Phone Number                    | Yes       |
-| a      | Address                         | Yes       |
-| m      | Major                           | Yes       |
-| mt     | Mods Taken                      | Yes       |
-| f      | Faculty                         | Yes       |
-| g      | Gender                          | Yes       |
-| r      | Race                            | Yes       |
-| t      | Tags                            | Yes       |
-| c      | Preferred Communication Channel | Yes       |
-
-
-More examples:
-*  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
-*  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
-
-[Back To Contents](#table-of-contents)
-
-<hr style="border:2px solid gray">
-
 ### Finding Particular Contacts: `find`
 
 Want to narrow down your displayed contacts to a certain few?
@@ -474,7 +424,6 @@ Use this command to exit the application!
 | **Clear**    | `clear`                                                                                                                                          |
 | **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
 | **Edit**     | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |
-| **EditUser** | `edituser [PREFIX/PARAMETERS]…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com`                                                          |
 | **Fav**      | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
 | **Unfav**    | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
 | **Find**     | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
@@ -684,6 +633,69 @@ _For more advanced users_
 | **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
+## User Features
+<hr style="border:2px solid gray">
+
+The user features are reflected under the 'Me' tab (tab 3).
+
+Here, you can edit personal information about yourself, the user, which can be used in future features such streamlined contact exchanging.
+
+### Editing the details of the user : `edituser`
+
+Want to change one of your own details, perhaps something was out of date?
+
+Use this command to edit your details easily!
+
+**Syntax:**
+
+`edituser PREFIX/PARAMETER...`
+
+_Here are some important requirements for you to take note:_
+
+* At least one field must be provided.
+
+For the following fields, they are considered a `FieldGroup`.
+* Modules
+* Tags
+
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
+    * e.g. `edituser mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
+    * e.g. `edituser t/10x Coder t/Intern Friend`
+        * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
+        * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
+
+| Prefix | Name of Field                   | Optional? |
+|--------|---------------------------------|-----------|
+| n      | Name                            | Yes       |
+| e      | Email address                   | Yes       |
+| p      | Phone Number                    | Yes       |
+| a      | Address                         | Yes       |
+| m      | Major                           | Yes       |
+| mt     | Mods Taken                      | Yes       |
+| f      | Faculty                         | Yes       |
+| g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
+| t      | Tags                            | Yes       |
+| c      | Preferred Communication Channel | Yes       |
+
+
+More examples:
+*  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
+*  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
+
+[Back To Contents](#table-of-contents)
+### User Command Summary
+
+| Action                     | Format, Examples                                                |
+|----------------------------|------------------------------------------------------------------|
+| **EditUser** | `edituser [PREFIX/PARAMETERS]…​`<br> e.g.,`edituser n/James Lee e/jameslee@example.com` |
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ## UI Features
 <hr style="border:2px solid gray">
 
