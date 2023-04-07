@@ -268,7 +268,7 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
 
-### \[Implemented\] Salary Command Feature
+### Salary and Deadline Command Feature
 
 The Salary Command feature is designed to enable the user to sort the roles based on the salaries in either ascending
 or descending order.
@@ -286,9 +286,19 @@ If any of the inputs formats are invalid, a `ParseException` will be thrown.
 The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
 as `Model#displaySortedSalaryList()` to sort the roles based on salary of the given `ORDER`.
 
+The Deadline Command implementation is similar to Salary Command by replacing `deadline` with `salary` in the command
+to achieve the sorting of roles based on the given deadline.
+
+E.g.: Executing `deadline asc` will sort the roles from the earliest deadline to the latest deadline and vice versa for
+`deadline desc`.
+
 The following sequence diagram shows how the `salary` command works:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
+
+The following sequence diagram shows how the `deadline` command works:
+
+<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
 #### Design considerations:
 
@@ -304,13 +314,14 @@ The following sequence diagram shows how the `salary` command works:
 
 #### Limitations:
 
-The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
-the roles. 
+The sorting algorithm for salary and deadline will sort based on the order given. This will sort the current and old
+view of the roles.
 
-E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc`
+E.g.: filtering the roles based on name, tag and applying this command `salary asc/desc` or `deadline asc/desc`
 will sort both views.
 
-### \[Implemented\] Deadline Command Feature
+
+### Deadline Command Feature
 
 The Deadline Command feature is designed to enable the user to sort the roles based on the deadline in either ascending
 or descending order.
@@ -352,7 +363,7 @@ the roles.
 E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
 will sort both views.
 
-### \[Implemented\] Company Command Feature
+### Company Command Feature
 
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
@@ -383,7 +394,7 @@ The following sequence diagram shows how the `company` command works:
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
-### \[Implemented\] Tag Command Feature
+### Tag Command Feature
 
 The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
 user can filter the job list by tag which shows all roles pertaining to a certain tag.
@@ -411,7 +422,7 @@ The following sequence diagram shows how the `tag` command works:
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
 
-### \[Implemented\] Name Command Feature
+### Name Command Feature
 
 The proposed NameCommand feature allows the user to filter names based on a given keyword. The idea is that the
 user can filter the job list by name which shows all roles pertaining to a certain name.
@@ -439,7 +450,7 @@ The following sequence diagram shows how the `name` command works:
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
-### \[Implemented\] View Command Feature
+### View Command Feature
 
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
