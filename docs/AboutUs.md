@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/stanleyneoh.md)]
 
 * Role: Developer
-* Responsibilities: Writing and testing the GUI for the Project Panel
+* Responsibilities: Writing and testing the classes for UiEvents, UiAction, and command box modes
 
 ### Sachin Kalinga
 
