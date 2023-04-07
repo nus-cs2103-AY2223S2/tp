@@ -300,14 +300,14 @@ Examples:
 
 Deletes the specified employee from SudoHR.
 
-Format: `delete eid/EMPLOYEE_ID`
+Format: `del eid/EMPLOYEE_ID`
 
 * Deletes the employee identified by its ID.
 * ID is the unique identifier for the employee. The employee must exist in SudoHR.
 * The delete command can be applied on any employee in SudoHR regardless of current list view.
 
 Examples:
-* `delete eid/777` Deletes the employee with employee ID 777.
+* `del eid/777` Deletes the employee with employee ID 777.
 
 ## 7.2. Department Commands
 
