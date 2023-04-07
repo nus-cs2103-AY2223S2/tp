@@ -11,30 +11,30 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 ### Table of Contents
 
 - [Overview](#overview)
-    - [Table of Contents](#table-of-contents)
-    - [Purpose of this guide](#purpose-of-this-guide)
-    - [How to use this guide](#how-to-use-this-guide)
-    - [Legends](#legends)
+- [Table of Contents](#table-of-contents)
+  - [Purpose of this guide](#purpose-of-this-guide)
+  - [How to use this guide](#how-to-use-this-guide)
+  - [Legends](#legends)
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-    - [Architecture](#architecture)
-    - [UI component](#ui-component)
-    - [Logic component](#logic-component)
-    - [Model component](#model-component)
-    - [Storage component](#storage-component)
-    - [Common classes](#common-classes)
+- [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-    - [Product scope](#product-scope)
-    - [User stories](#user-stories)
-    - [Use cases](#use-cases)
-    - [Non-Functional Requirements](#non-functional-requirements)
-    - [Glossary](#glossary)
+- [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    - [Launch and shutdown](#launch-and-shutdown)
-    - [Deleting a listing](#deleting-a-listing)
-    - [Saving data](#saving-data)
+- [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a listing](#deleting-a-listing)
+  - [Saving data](#saving-data)
 
 ---
 
@@ -146,6 +146,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Listing` object residing in the `Model`.
 
 ### Logic component
+
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -203,6 +204,8 @@ The `Model` component,
   <img src="images/BetterModelClassDiagram.png" />
   <em>A better Class diagram for the Model Component</em>
 </p>
+
+</div>
 
 ### Storage component
 
@@ -289,7 +292,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-* 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
