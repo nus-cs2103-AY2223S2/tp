@@ -6,7 +6,8 @@ title: Developer Guide
 <br>
 <img src="images/logo.png" width="200px"><br>
 
-ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+**MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
 
 ## Table of Contents <a name="toc"></a>
 
@@ -656,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find modules according to a certain set of filters (e.g. module code, year-semester etc).
-2.  ModTrek finds the modules satisfying the set of filters and displays them.
+2.  MODTrek finds the modules satisfying the set of filters and displays them.
 
     Use case ends.
 
@@ -681,7 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to tag a module with one or more degree requirement(s).
-2.  ModTrek tags the module and displays it.
+2.  MODTrek tags the module and displays it.
 
     Use case ends.
 
