@@ -5,28 +5,35 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## **Introduction**
 
-## **Acknowledgements**
+-------------------------------------------------------------------------------------------------------------------
+_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
+Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+_Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
---------------------------------------------------------------------------------------------------------------------
+### **Acknowledgements**
 
-## **Setting up, getting started**
+* This project is based on the AddressBook Level 3 (AB3) project created by the SE-EDU initiative.
+* Libraries used: JavaFX, JUnit5
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+### **Setting Up, Getting Started**
 
---------------------------------------------------------------------------------------------------------------------
+Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+--------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** 
+The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/docs/diagrams/) folder. 
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,9 +43,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java)
+**`Main`** has two classes called
+[`Main`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java).
- It is responsible for,
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,34 +59,36 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+### **How the Architecture Components Interact With Each**
 
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding 
+  API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
+through its interface rather than the concrete class(reason: to prevent outside component's being coupled to the 
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+### **UI Component**
 
-### UI component
+The **API** of this component is specified in 
+[`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
-
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-[//]: <> (TODO: UiClassDiagram.png need to be updated; "PersonListPanel"-->"EventListPanel")
+<img src="images/UiClassDiagram.png" width="1000"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, 
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
+the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. 
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
@@ -92,7 +102,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
-### Logic component
+### **Logic Component**
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
 
@@ -115,17 +125,17 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600" />
 
 How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### **Model Component**
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -138,14 +148,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Scheduler`, which `Event` references. This allows `Scheduler` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
-### Storage component
+### **Storage Component**
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -157,183 +160,53 @@ The `Storage` component,
   functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### **Common Classes**
 
 Classes used by multiple components are in the `ezschedule.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Implementation**
 
+--------------------------------------------------------------------------------------------------------------------
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort events feature
+### **Add Command**
 
-Sort all events in the scheduler in chronological order by entering `sort` as a command.
-A chronological order can help user to prioritise and focus on the more urgent events.
+### **Recur Command**
 
-#### How it is currently implemented
+### **Edit Command**
 
-A `SortCommand` was added to allow user to initiate the sorting of events.
-The sorting is handled by `FXCollections#sort()`.
-The method calls by `SortCommand` is similar to the other `XXXCommand`.
+### **Delete Command**
 
-#### Proposed enhancement
+### **Find Command**
 
-Remove `SortCommand`. Instead, automatically sort the events whenever an event is changed
-(for example: added, deleted, edited).
+### **Next Command**
 
-##### Pros over existing implementation
+### **Undo Command**
 
-- Provide convenience for user
-- Allow smoother implementation for showing the next arbitrary number of upcoming events
+### **List Command**
 
-##### Cons over existing implementation
+### **Help Command**
 
-- Repeated sorting of events whenever events are changed might introduce lag,
-  especially if there is a large number of events
-    - Possible to resolve via threads
-- Implementation may be complicated if completed/old events are still in the schedule
+### **Exit Command**
 
-After reviewing the following pros and cons, we have decided that the pros outweighs the cons,
-and shall implement the enhancement in the future.
-
-#### Alternatives Considered
-
-Implement our own insertion sort to use when adding events.\
-This ensures the chronological order of the events is always correct when adding.
-However, other ways of managing the chronological order is required in case of an event being edited.
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Scheduler` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current scheduler state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous scheduler state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone scheduler state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial scheduler state, and the `currentStatePointer` pointing to that single scheduler state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th event in the scheduler. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the scheduler after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted scheduler state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook()`, causing another modified scheduler state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the scheduler state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous scheduler state, and restores the scheduler to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Scheduler state, then there are no previous Scheduler states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the scheduler to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest scheduler state, then there are no undone Scheduler states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the scheduler, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all scheduler states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire scheduler.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Calendar view feature
-
-#### Proposed Implementation
-
-The proposed calendar view user interface implements the following operations:
-
-1. Provides an overview of all saved events in the scheduler to the user
-2. onClick() of calendar date (boxes) - List all the saved events the user have for that day
-
-The feature is going to be implemented by
-1. Creating the GUI of a calendar via JavaFX (Calendar.fxml and CalendarBox.fxml)
-2. When the program starts, it first fetches the existing events
-3. The calendar will next be "drawn" with the events for the current month
-4. The calendar includes button that allow users to go to either the next or previous month, each time the button is called, the calendar is "redrawn" with that particular month's events
-5. When a user were to click a date in the calendar (CalendarBox.fxml), it will list all existing events of that day to the user
-6. When a user were to add, edit or update an event, the calendar will be updated as well
-
-#### Design considerations:
-* **Alternative 1 (current choice):** Update the Calendar GUI whenever add/edit/delete an event.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Update the Calendar GUI on if the month of the event is what the Calendar is current showing
-  itself.
-    * Pros: Will have better performance (e.g. for `add event`, no need to update the GUI if it is not what I am currently showing, if I were to click next).
-    * Cons: Implementation will become much more complex.
-
-#### Additional Feature
-1. onDoubleClick() of a calendar date (boxes) - Shows a popup GUI of user schedule, similar to that of a timetable for either that day or week
-
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+## **Appendix**
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+### **Planned Enhancements**
 
-### Product scope
+### **Project Requirements**
+
+#### **Product Scope**
 
 **Target user profile**:
 
@@ -345,8 +218,7 @@ The feature is going to be implemented by
 
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
 
-
-### User stories
+#### **User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -367,7 +239,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+#### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -470,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+#### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
@@ -479,24 +351,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Event**: A task with a starting time and an ending time
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
+### **Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
-### Launch and shutdown
+#### **Launch and Shutdown**
 
 1. Initial launch
 
@@ -517,7 +381,13 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a event
+#### **Adding an Event**
+
+#### **Recurring an Event**
+
+#### **Editing an Event**
+
+#### **Deleting Events**
 
 1. Deleting a event while all events are shown
 
@@ -533,12 +403,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
-### Saving data
+#### **Finding Events**
 
-1. Dealing with missing/corrupted data files
+#### **Show Next Events**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### **Undo a Command**
 
-1. _{ more test cases …​ }_
+### **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Event**: A task with a starting time and an ending time
