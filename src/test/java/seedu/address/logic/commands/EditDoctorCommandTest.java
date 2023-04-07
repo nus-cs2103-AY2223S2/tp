@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DR_AMY;
@@ -12,6 +13,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_YOE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 import static seedu.address.testutil.TypicalDoctors.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -146,6 +153,47 @@ public class EditDoctorCommandTest {
                 new EditDoctorDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = EditDoctorCommand.COMMAND_WORD + " (short form: "
+                + EditDoctorCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Edits the details of the doctor identified "
+                + "by the index number used in the displayed doctors list. "
+                + "Existing values will be overwritten by the input values.\n"
+                + "Parameters: INDEX (must be a positive integer) "
+                + PREFIX_NAME + "NAME "
+                + PREFIX_PHONE + "PHONE "
+                + PREFIX_EMAIL + "EMAIL "
+                + PREFIX_SPECIALTY + "SPECIALTY "
+                + PREFIX_YOE + "YEARS OF EXPERIENCE "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "Example: " + EditDoctorCommand.COMMAND_WORD + " 1 "
+                + PREFIX_PHONE + "91234567 "
+                + PREFIX_EMAIL + "johndoe@example.com"
+                + PREFIX_SPECIALTY + "Family Medicine ";
+        assertEquals(EditDoctorCommand.getCommandUsage(), messageUsage);
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        Doctor editedDoctor = new DoctorBuilder().build();
+        String messageSuccess = "Edited Doctor: %1$s";
+        assertEquals(String.format(EditDoctorCommand.getMessageSuccess(), editedDoctor),
+                String.format(messageSuccess, editedDoctor));
+    }
+
+    @Test
+    public void execute_getMessageDuplicateSuccessful() {
+        String messageDuplicate = "This doctor already exists in the address book.";
+        assertEquals(EditDoctorCommand.getMessageDuplicate(), messageDuplicate);
+    }
+
+    @Test
+    public void execute_getMessageFailureSuccessful() {
+        String messageFailure = "At least one field to edit must be provided.";
+        assertEquals(EditDoctorCommand.getMessageFailure(), messageFailure);
     }
 
     @Test

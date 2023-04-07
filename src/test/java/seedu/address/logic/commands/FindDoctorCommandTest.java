@@ -5,6 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 import static seedu.address.testutil.TypicalDoctors.ALICE;
 import static seedu.address.testutil.TypicalDoctors.BENSON;
 import static seedu.address.testutil.TypicalDoctors.getTypicalAddressBook;
@@ -100,5 +106,31 @@ public class FindDoctorCommandTest {
         expectedModel.updateFilteredDoctorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(BENSON), model.getFilteredDoctorList());
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = FindDoctorCommand.COMMAND_WORD + " (short form: "
+                + FindDoctorCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Finds a doctor in the address book. "
+                + "Parameters: "
+                + "[" + PREFIX_NAME + "NAME] "
+                + "[" + PREFIX_PHONE + "PHONE] "
+                + "[" + PREFIX_EMAIL + "EMAIL] "
+                + "[" + PREFIX_SPECIALTY + "SPECIALITY] "
+                + "[" + PREFIX_YOE + "YEARS OF EXPERIENCE] "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "At least one of the parameters must be present. \n"
+                + "Only one of each parameter (excluding " + PREFIX_TAG + "TAG) may be present. \n"
+                + "Example: " + FindDoctorCommand.COMMAND_WORD + " "
+                + PREFIX_NAME + "John Doe";
+
+        assertEquals(messageUsage, FindDoctorCommand.getCommandUsage());
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        String messageSuccess = "%1$d doctor(s) listed!";
+        assertEquals(messageSuccess, FindDoctorCommand.getMessageSuccess());
     }
 }

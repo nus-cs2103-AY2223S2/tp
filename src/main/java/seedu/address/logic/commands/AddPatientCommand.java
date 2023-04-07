@@ -43,7 +43,7 @@ public class AddPatientCommand extends Command implements CommandInterface {
             + PREFIX_DIAGNOSIS + "Fever "
             + PREFIX_STATUS + "Outpatient "
             + PREFIX_REMARK + "No known allergies "
-            + PREFIX_TAG + "friends";
+            + PREFIX_TAG + "pendingReview";
 
 
 
