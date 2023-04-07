@@ -95,7 +95,7 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 * CLASSIFICATION can be the following: .<br>
   Item: `item`, Monster:`mob`, Character: `char`
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -134,7 +134,7 @@ A detailed view of a single entity which shows all fields.
 Examples:
 * `view char John Cena` shows a detailed view of the character named John Cena.
 
-Format: `view CLASSFICIATION NAME`
+Format: `view CLASSIFICIATION NAME`
 
 Detailed view may be left by entering the command: `back` or `b` while in detailed view.
 
@@ -292,7 +292,7 @@ Example: `make char John Cena` -> `m c John Cena`
 |---------------------|-------------------------|
 | **Make**                      | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`      |
 | **Clear**                     | `clear`                                                               |
-| **Delete**                    | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge`     |
+| **Delete**                    | `delete CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge`     |
 | **Enter Edit Mode**           | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`        |
 | **Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`                  |
 | **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`                 |
