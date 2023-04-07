@@ -17,14 +17,14 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Refactor UI (Pull requests [#58](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/58), [#78](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/78), [#178](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/178), [#228](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/228), [#247](https://github.com/AY2223S2-CS2103T-W14-2/tp/pull/247))
-    * Restructure UI to include new components such as the scheduled meet up pane, the meet recommendation pane, the user profile pane and the sidebar. 
-    * Modify help window's UI to include summary of command usage.
-    * Updated the UI colour scheme.
-    * Designed background for side panel with Figma.
+    * Restructure [UI](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) to include new components such as the [scheduled meet up pane](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/ScheduledMeetsListPanel.java), the [meet recommendation pane](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/MeetListPanel.java), the [user profile pane](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/UserProfilePanel.java) and the sidebar. 
+    * Modify [help window's UI](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/HelpWindow.fxml) to include summary of command usage.
+    * Updated the UI [colour scheme](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/MainWindow.css).
+    * Designed [background](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/images/background.png) for side panel with Figma.
     * Replaced menu bar with sidebar and replaced `File`,`Help` options with intuitive icon buttons.
-    * Modified UI to include various visual effects using JavaFX and CSS, such as animated scaling, button rotation, and color changes when hovering or clicking over different components, providing users with a more dynamic and engaging experience.
+    * Modified UI to include various [visual effects](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/Extensions.css) using JavaFX and CSS, such as animated scaling, button rotation, and color changes when hovering or clicking over different components, providing users with a more dynamic and engaging experience.
     * Credits: 
-      * Help window, scheduled meet up pane and meet recommendation pane were done in collaboration with [@seanfirefox](https://ay2223s2-cs2103t-w14-2.github.io/tp/team/seanfirefox.html).
+      * Help window, [scheduled meet up pane](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/ScheduledMeetsListPanel.java) and [meet recommendation pane](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/MeetListPanel.java) were done in collaboration with [@seanfirefox](https://ay2223s2-cs2103t-w14-2.github.io/tp/team/seanfirefox.html).
       * Certain images and icons used were sourced from [upklyak](https://www.freepik.com/free-vector/pensive-people-think-about-question-problem-vector-flat-set-curious-doubt-confused-puzzled-women-men-with-hand-head-chin-expression-people-making-decision-choice_23639641.htm) and [flaticon](https://www.flaticon.com).
 
 
