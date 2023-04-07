@@ -331,7 +331,7 @@ Format: `create tn/TEAM_NAME td/TEAM_DESC [t/TAG]...`
 
 **Example context**:
 
-You have decided to participate in NUS Hack&Roll hackathon. Let's create a team! Since your idea involves creating 
+You have decided to participate in NUS Hack&Roll hackathon. Let's create a team called "NUSMeets"! Since your idea involves creating 
 a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI 
 person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills 
 are required too.
@@ -439,7 +439,7 @@ Format: `edit INDEX [T/TEAM_NAME]...`
 **Example context**:
 
 You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to 
-reach out to him to form your team for Hack&Roll. You also decide to use "NUSMeets" as your team name for Hack&Roll.
+reach out to him to form your team for Hack&Roll.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:**
