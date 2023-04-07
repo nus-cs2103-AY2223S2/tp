@@ -1986,6 +1986,8 @@ Maintainability:
 - **Lecture Name**: Unique name identifier for each lecture
 - **Video Name**: Unique name identifier for each video
 - **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
+- **Tag**: a single word, alphanumeric label attached to a module, lecture, or video to give more info about said
+  module, lecture, or video
 
 ## Appendix: Instructions for manual testing
 
