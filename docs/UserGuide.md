@@ -26,10 +26,11 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-  - [Help](#viewing-help--help) `help`
-  - [Undo](#undoing-previous-command-undo) `undo`
-  - [Redo](#redoing-previous-undo-redo) `redo`
+  - [Help](#viewing-help--help): `help`
+  - [Undo](#undoing-previous-command-undo): `undo`
+  - [Redo](#redoing-previous-undo-redo): `redo`
   - [Add patient](#adding-a-patient-record-add): `add`
+  - [View patient particulars](#viewing-a-patient-detailed-particulars-view): `view`
   - [Edit patient](#editing-a-patient-record-edit): `edit`
   - [Delete patient](#deleting-a-patient-record-delete): `delete`
   - [List all patients](#listing-all-patients-list): `list`
@@ -413,16 +414,17 @@ Above is the execution result of the input `dark`.
 | **Undo**           | `undo`                                                                                                                                                                                                                          |
 | **Redo**           | `redo`                                                                                                                                                                                                                          |
 | **Add**            | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male ad/Alex d/NKDA |
-| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                              |
-| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                 |
-| **List**           | `list`                                                                                                                                                                                                                          |
-| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                     |
-| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                           |
-| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                               |
-| **View backups**   | `viewbackups`                                                                                                                                                                                                                   |
-| **Delete backups** | `deletebackup INDEX_NO` <br/> e.g. deletebackup 3                                                                                                                                                                               |
-| **Clear all**      | `clear`                                                                                                                                                                                                                         |
-| **Light**          | `light`                                                                                                                                                                                                                         |
-| **Dark**           | `dark`                                                                                                                                                                                                                          |
+| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                |
+| **View**           | `view i/NRIC` <br/> e.g. view i/T0012345A                                                                                                                                                                                         |
+| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                   |
+| **List**           | `list`                                                                                                                                                                                                                            |
+| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                       |
+| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                             |
+| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                 |
+| **View backups**   | `viewbackups`                                                                                                                                                                                                                     |
+| **Delete backups** | `deletebackup INDEX_NO` <br/> e.g. deletebackup 3                                                                                                                                                                                 |
+| **Clear all**      | `clear`                                                                                                                                                                                                                           |
+| **Light**          | `light`                                                                                                                                                                                                                           |
+| **Dark**           | `dark`                                                                                                                                                                                                                            |
 
 <sub>[return to table of contents](#table-of-contents)</sub>
