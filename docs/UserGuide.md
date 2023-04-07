@@ -130,7 +130,7 @@ Here is the breakdown of an individual **person card**.
 
 Item | Description
 --------|------------------
-**id** | Current Index of the person in the list.
+**id** | Current index of the person in the list.
 **Name** | Name of person who got dengue.
 **Age** | Age of the person who got dengue.
 **Postal** | Postal code of the person who got dengue.
