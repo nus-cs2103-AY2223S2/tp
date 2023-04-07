@@ -1,0 +1,28 @@
+@startuml
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+skinparam titleFontSize 25
+
+title Activity: Edit item XYZ\n
+
+start
+:Item XYZ at index (zero-based)
+retrieved from its FilteredXYZList;
+:Copy of the item XYZ is made and edited;
+
+if () then (
+[Edited item is considered to be the same as
+other items in the list or same as original item]
+)
+:Display duplicate item error message;
+stop
+
+else ([else]
+)
+:Item in XYZ List is edited;
+:FilteredXYZList is updated;
+:Changes made are saved to local data;
+:Edit Success Message is returned;
+stop
+
+@enduml
