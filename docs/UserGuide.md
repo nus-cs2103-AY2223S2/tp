@@ -74,7 +74,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
 
 <p align="center" width="100%">
-    <img src="images/annotated/GUI.svg" width="120%">
+    <img src="images/annotated/GUI.png" width="100%">
 </p>
 
 
@@ -488,16 +488,21 @@ Below shows how you can add the first recipe to your favourites.
 Examples:
 
 Our initial recipe book:
-
+<p align="center" width="100%">
 <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - `star 1` will star the first recipe, as shown in the image below:
 
+<p align="center" width="100%">
 <img src="images/StarResult1.png" width=500 height=400>
+</p>
 
 - `star 2` will star the second recipe, as shown in the image below:
 
+<p align="center" width="100%">
 <img src="images/StarResult2.png" width=500 height=400>
+</p>
 
   [Back to top](#top)
 
