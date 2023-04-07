@@ -40,7 +40,7 @@ Access this guide quickly through the `help` command or by clicking the **help**
 Welcome to Team Builder, we hope that this product will allow you 
 to manage your contacts to build fantastic teams for your events/competitions.
 
-This guide is designed to be followed narratively from top to bottom. If you are looking for a specific command, you can view the [table of commands here](#full-table-of-commands).
+This guide is designed for users with and without technical experience and is to be followed narratively from top to bottom. However, if you are an experienced user, feel free to skip the Example context. If you are looking for a specific command, you can view the [table of commands here](#full-table-of-commands).
 
 <div markdown="block" class="alert alert-info">
 :information_source: **What do the symbols and formatting mean?:**
@@ -53,14 +53,14 @@ This guide is designed to be followed narratively from top to bottom. If you are
 
 * `keyword s/` - are command/special character to be typed. **They are case-sensitive and strip excessive spaces.**
 
-* `UPPER_CASE` - are the parameters to be supplied by the user.<br/>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* `UPPER_CASE` - are the input fields to be supplied by the user.<br/>
+  e.g. in `add n/NAME`, `NAME` is an input field which can be used as `add n/John Doe`.
 
-* `[]` - are optional parameters that can be used or not used at all.<br/>
+* `[]` - are optional input fields.<br/>
   e.g. `[e/optional]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com` 
 
-* `[]...` - are parameters that can be used multiple times including zero times.<br/>
-  e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* `[]...` - are input fields that can be supplied any number of times including zero times.<br/>
+  e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/React`, `t/React t/AWS` etc.
 
 </div>
 
@@ -75,7 +75,7 @@ This guide is designed to be followed narratively from top to bottom. If you are
 5. [Extra Team Builder Features](#extra-team-builder-features)
 6. [FAQ](#faq)
 
-These 6 sections are the way in which we believe Team Builder can be used.
+Sections 3,4,5 contain descriptions and instructions for the main features of Team Builder.
 
 Below is the full table of contents, in case you are looking for something very specific.
 
@@ -148,7 +148,7 @@ Information on the Java version installed should appear in the command terminal.
 4. Copy the file to the folder you want to use as the _home folder_ for your TeamBuilder.
 
 5. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar teambuilder.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI (seen below) should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/ui_startup.png)<br>
     As you can see there are two main panels. The left panels shows your contacts, and the right panel shows the teams that you have in TeamBuilder.<br>
     
@@ -193,13 +193,13 @@ This includes:
 
 **:information_source: Notes about the command format:**<br>
 
-* Parameters can be in any order.<br>
+* Input fields can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* If extraneous input fields are supplied for commands that do not require them (such as `help`, `list`, `exit` and `clear`), the command will execute as per normal while ignoring the fields.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -211,6 +211,10 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]... 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0). Tags are especially useful for keeping track of skills and traits!
 A contact must have a name, other features are optional.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only add a team tag to a person if the team has been created beforehand!
 </div>
 
 **Example context**:
@@ -239,10 +243,6 @@ The order of persons added in the list may not be in chronological order.
 
 Format: `list`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list` is automatically called after every command except `sort` in the Graphical App. Hence, you don't need to keep typing `list` after each command!
-</div>
-
 **Example context**:
 
 Now that we have added **John**, we should be able to see him in the Team Builder.
@@ -251,7 +251,7 @@ Now that we have added **John**, we should be able to see him in the Team Builde
 
 `list`, `list 123`, `list ada adw v zklw`, etc.
 
-These are all acceptable as anything after `list` is discarded.
+If you have accidentally added extra input fields after `list`, the command would be accepted as anything after `list` is discarded.
 
 
 ### Updating a contact : `edit`
@@ -295,7 +295,7 @@ Format: `delete INDEX`
 
 **Example context**:
 
-You hear from your friends that **John** is actually a **snake** :snake: and we do not want a snake as a teammate.
+You hear from your friends that **John** is actually a **snake*** :snake: and we do not want a snake as a teammate.
 
 Let's delete him from our Team Builder.
 
@@ -310,6 +310,7 @@ Again, we see **John** is index 1 in our display.
 <img class="center" src="images/JohnDeleted.png" alt="John deleted" />
 
 <p class="caption"> John is no longer in your TeamBuilder contact list! </p>
+<p class="caption"> * snake refers to a backstabber. </p>
 
 <div style="page-break-after: always;"></div>
 
@@ -438,7 +439,12 @@ Format: `edit INDEX [T/TEAM_NAME]...`
 **Example context**:
 
 You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to 
-reach out to him to form your team for Hack&Roll. 
+reach out to him to form your team for Hack&Roll. You also decide to use "NUSMeets" as your team name for Hack&Roll.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+`edit` command is used here as adding a person to a team is equivalent to editing the team tags of a person.
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You can only add a person to the team if the team has been created beforehand!
@@ -503,7 +509,7 @@ Taking into account Alex's absence as well, You decide to not participate in it 
 
 **Result**:
 
-NUSMeets will be removed from the team panel.
+NUSMeets will be removed from the team list panel.
 
 
 ## Extra Team Builder Features
@@ -522,7 +528,7 @@ This includes:
 
 Format: `clear`
 
-Clears all entries from the Team Builder.
+Clears all entries from the Team Builder, instead of manually removing teams and persons.
 
 **What you can type**:
 
