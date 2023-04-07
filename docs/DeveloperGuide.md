@@ -1004,40 +1004,43 @@ with the `UiEvent` class as a single place to add new shortcuts.
 
 By supporting 2 type of entities, we would need to have commands related to each entity.
 We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
-project tab and the client tab to tab relevant to the command. To solve this problem,
+project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
 onto the response of a command execution.
 
 Another challenge was to enable easy and intuitive searching of projects and clients.
 We were inspired by the command-line fuzzy finder `fzf` which ranks the options according
 to how well it matches the query as the user searches. When the command box is in its 
-default command mode, it only executes when submitted while when the command box is in search mode,
+default command mode, it only executes commands when the input is submitted; when the command box is in search mode,
 it will read the input as the user types and rank the projects and clients based on how well 
 it matches said input. This was quite challenging as the behaviour of the command box of AB3 
 had to be drastically modified to support different modes. This was done with the addition
 of the `Mode` class which is a component attached to the command box that
-dictates the command box behaviour when input is changed or submitted. 
+dictates the command box behaviour when the user input is changed or submitted. 
 
-we decided to utilise a keyboard shortcut to allow the user to toggle between command mode
+We decided to utilise a keyboard shortcut to allow the user to toggle between command mode
 and search mode easily. This was done by leveraging off the existing `UiEvent`
 class that we have implemented earlier.
 
 We wanted the user to be able to get an overview of their projects. 
 To do this, we created another panel to display
-   * a pie chart to show the proportions of projects in each status, and
-   * a table to show which projects are overdued and which projects are due soon.
+
+* a pie chart to show the proportions of projects in each status, and
+* a table to show which projects are overdued and which projects are due soon.
+ 
 This was a challenge as it was adding complexity to the UI and required us to learn
 how to use the `PieChart` class. With another panel, we now also need an additional
-keyboard short cut to switch focus between the 2 main panels to ensure Mycelium
+keyboard shortcut to switch focus between the 2 main panels to ensure Mycelium
 remained keyboard-centric.
 
 Overall, the team project was moderately challenging. Navigating the codebase was difficult
 at first as there were many levels of abstractions and many classes to understand.
-By getting our hands dirty and trying to understand and starting with the easier features 
+We got our hands dirty by trying to understand and starting with the easier features 
 such as:
-   * Implementing the basic CRUD functionality of projects and clients,
-   * Adding tabs to the application, and
-   * Tweaking the parser to support the new commands.
+
+* Implementing the basic CRUD functionality of projects and clients,
+* Adding tabs to the application, and
+* Tweaking the parser to support the new commands.
 
 The process of adding small features allowed to get a better understanding of the codebase
 and gave us confidence in adding more advanced features. 
