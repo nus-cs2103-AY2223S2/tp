@@ -10,38 +10,29 @@ PowerCards enable university students to input a pool of information (question-a
 
 Given below are my contributions to the project.
 
-* **New Feature**:  (To be added)
-    * What it does: (To be added)
-    * Justification: (To be added)
-    * Highlights: (To be added)
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**:  Add and edit a deck in MasterDeck. (PR [#59](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/61), [#91](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/91))
+    * What it does: Allows users to add a new deck on the MasterDeck and edit its name, question, answer, or tag.
+    * Justification: Allowing to add a new deck is an essential feature and very first command from user. Editing a deck information allows users to manage their decks simply. 
+    * Highlights: Added basic feature of PowerCards based on the understanding of the code structure.
 
-* **New Feature**: (To be added)
 
-* **Code contributed**: (To be added)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=11-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=ruiyigan&tabRepo=AY2223S2-CS2103T-W11-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
     * (To be added)
 
 * **Enhancements to existing features**:
-    * (To be added)
-    * (To be added)
+    * Removed traces of AB3.
+    * Enhanced JavaDocs.
 
 * **Documentation**:
     * User Guide:
-        * (To be added)
-        * (To be added)
+        * Divided sections of different modes.
+        * Added basic formats and examples of commands
+        * Added command summary
     * Developer Guide:
-        * A(To be added)
+        * Added Main Mode features to explain how they work.
+        * Added activity and sequence diagrams for addDeck Command 
 
 * **Community**:
-    * (To be added)
-    * (To be added)
-    * (To be added)
-    * (To be added)
-
-* **Tools**:
-    * (To be added)
-    * (To be added)
-
-* _{you can add/remove categories in the list above}_
+    * Reviewed and approved PRs
