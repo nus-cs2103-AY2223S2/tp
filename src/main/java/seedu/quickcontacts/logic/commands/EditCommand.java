@@ -9,6 +9,7 @@ import static seedu.quickcontacts.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.quickcontacts.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -82,9 +83,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         //set person in meeting must happen first
-        model.tellMeetingNameChanged(personToEdit);
-        personToEdit.tellMeetingNameChanged(editedPerson.getName(), model);
+        HashMap<String, String> indexParticipants = model.indexAttendees(personToEdit, editedPerson);
+        personToEdit.tellMeetingNameChanged(editedPerson.getName(), indexParticipants, model);
         model.setPerson(personToEdit, editedPerson);
+        personToEdit.confirmNameChange(editedPerson.getName(), indexParticipants, model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

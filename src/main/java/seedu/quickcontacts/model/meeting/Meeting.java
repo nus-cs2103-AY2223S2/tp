@@ -68,6 +68,26 @@ public class Meeting {
         return dateTime;
     }
 
+    public boolean hasAttendee(Person attendee) {
+        return attendees.contains(attendee);
+    }
+
+    /**
+     * return subsistuted attendee in formatstring
+     */
+    public String formatAttendeesSubstituted(Person current, Person target) {
+        StringBuilder sb = new StringBuilder();
+        for (Person attendee : attendees) {
+            sb.append("p/");
+            if (attendee.getName().toString().equals(current.getName().toString())) {
+                sb.append(target.getName().toString()).append(" ");
+            } else {
+                sb.append(attendee.getName().toString()).append(" ");
+            }
+        }
+        return sb.toString().trim();
+    }
+
     /**
      * Returns an immutable attendee set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
