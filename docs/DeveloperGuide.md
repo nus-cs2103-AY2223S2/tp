@@ -6,7 +6,8 @@ title: Developer Guide
 <br>
 <img src="images/logo.png" width="200px"><br>
 
-ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+**MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
 
 ## Table of Contents <a name="toc"></a>
 
@@ -44,11 +45,12 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
    9. [Requesting for help](#requesting-for-help)
    10. [Exiting the program](#exiting-program)
    11. [Saving data](#saving-data)
+   
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements** <a name="acknowledgements"></a>
 
-* The skeleton implementation of the [doughnut chart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in the [Degree Progress Section](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
+* The skeleton implementation of [DoughnutChart](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/DoughnutChart.java) in [ProgressSection](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/progresssection/ProgressSection.java) is adapted from [this stackoverflow post](https://stackoverflow.com/questions/24121580/).
 
 [Back to Table of Contents](#toc)
 
@@ -513,7 +515,7 @@ The following activity diagram illustrates the workflow of the algorithm when `D
 **Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Single Responsibility Principle_ is not violated?**
 
 The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the _Single Responsibility Principle_, we have to find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
-- **Solution:** Pass the information to the `CommandResult` returned by executing `ViewProgressCommand` or `VieWModulesCommand`. Since `MainWindow` already has access to `CommandResult` and through it, can easily obtain the correct information regarding which screen to display.
+- **Solution:** Pass the information to the `CommandResult` returned by executing `ViewCommand`. Since `MainWindow` already has access to `CommandResult`, we can easily obtain the correct information regarding which screen to display through `CommandResult`.
 
 [Back to Table of Contents](#toc)
 
@@ -655,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find modules according to a certain set of filters (e.g. module code, year-semester etc).
-2.  ModTrek finds the modules satisfying the set of filters and displays them.
+2.  MODTrek finds the modules satisfying the set of filters and displays them.
 
     Use case ends.
 
@@ -680,7 +682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to tag a module with one or more degree requirement(s).
-2.  ModTrek tags the module and displays it.
+2.  MODTrek tags the module and displays it.
 
     Use case ends.
 
@@ -762,6 +764,7 @@ Use case ends.
 
       Use case ends.
 
+<br>
 
 #### Use case: Requesting for help
 
@@ -960,7 +963,7 @@ For more details regarding the usage, refer to [Sort modules](UserGuide.md#sort-
 
 ### Toggling between Degree Progress and Module List screens <a name="toggling-screens"></a>
 Command: `view`<br>
-For more details regarding the usage, refer to [Toggle between Degree Progress and Module List screens](UserGuide.md#change-view)
+For more details regarding the usage, refer to [Toggle between Degree Progress and Module List screens](UserGuide.md#change-view).
 
 1. Test case: `view modules`<br>
    Expected: The right panel of the GUI will be switched to the Module List Section, if it is not already active. All modules tracked by the app will be displayed. The way the modules are sorted will be unchanged. Modules are sorted according to year by default.
@@ -971,7 +974,7 @@ For more details regarding the usage, refer to [Toggle between Degree Progress a
 
 ### Requesting for help <a name="requesting-for-help"></a>
 Command: `help`<br>
-For more details regarding the usage, refer to <TO ADD LINK TO UG>.
+For more details regarding the usage, refer to (TO ADD LINK TO UG).
 
 1. Test case: `help`<br>
    Expected: A response message showing a list of help commands will be displayed on the command screen.
@@ -999,7 +1002,8 @@ For more details regarding the usage, refer to [Exit MODTrek](UserGuide.md#exit-
       * Make any other illogical or nonsensical change to the file.
 
    3. Re-open `modtrek.jar` again. Expected: MODTrek will start with a clean slate, with an empty module list. 
-
+   
+<br>
 
 2. Dealing with missing data files
    1. Test case: Delete the `data/degreeprogression.json` file.<br>
