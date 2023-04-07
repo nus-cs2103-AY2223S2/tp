@@ -43,7 +43,7 @@ public class UploadCsvCommandTest {
     }
 
     @Test
-    public void execute_uploadCsv_addsSupplierSuccess() throws Exception {
+    public void execute_uploadCsv_addsItemSuccess() throws Exception {
         model = new ModelStubWithItems();
         List<String> csvInput = SampleCommands.withOneCommand(SampleCommands.VALID_ADD_S);
         CommandResult commandResult = new UploadCsvCommand(csvInput).execute(model);
