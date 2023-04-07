@@ -713,6 +713,7 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Upcoming Features
 
