@@ -138,7 +138,7 @@ The Command Box is where you can type in your commands. To execute the command, 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export`, `exportRoutine` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export`, `exportRoutine`, `listRoutines`, `clearRoutines` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
