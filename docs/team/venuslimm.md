@@ -10,7 +10,7 @@ It provides a centralised platform for them to manage their work, contacts, and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added a `addevent` command that adds an event. ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
+* **New Feature**: Added an `addevent` command that adds an event. ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
   * What it does: 
     * Allows user to add an event with the given name, start date time, and end date time.
   * Justification:
@@ -64,8 +64,7 @@ Given below are my contributions to the project.
   * Added some user stories onto GitHub.
 
 * **Review/mentoring contributions**
-  * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112).
-  * Reviewed the following PRs: [#14](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/14), [#15](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/15), [#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30), [#34](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/34), [#40](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/40), [#41](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/41), [#42](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/42), [#49](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/49), [#54](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/54), [#60](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/60), [#65](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/65), [#67](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/67), [#72](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/72), [#75](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/75), [#87](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/87), [#116](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/116).
+  * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112), [#119](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/119).
 
 * **Contributions beyond the project team**
   * Reported 20 bugs for Team AY2223S2 CS2103T-W11-4: [PE-D Issues Link](https://github.com/venuslimm/ped/issues).
