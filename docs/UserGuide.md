@@ -17,11 +17,11 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 Let's get you _rizzed_ up in the fastest way possible!
 
 1. Ensure you have Java `11` or above installed in you computer.
-2. Download the latest `recipebook.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
+UG:2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
-   recipebook.jar` command to run the application.
-5. A GUI similar to the below should appear in a few seconds. Note that our experienced _Rizzers_ have crafted
+   rizzipe.jar` command to run the application.
+5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
 some sample recipes for you already.
 ![UI QuickStart](images/UiQuickStart.png)
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
@@ -94,14 +94,12 @@ before continuing to type!
 Come up with a new innovative recipe and want to store it for future reference,
 and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
 
-Add Format:
-
-
+Format: `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
 
 Example(s) of usage:
 * `add n/Honey Chicken Rice`
 ![AddCommandUI](images/AddCommandUI.png)
-* `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
+* `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300 g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
 butter s/Serve and enjoy.`
 
