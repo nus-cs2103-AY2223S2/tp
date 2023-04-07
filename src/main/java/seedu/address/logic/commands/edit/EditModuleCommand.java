@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -27,14 +25,17 @@ import seedu.address.model.tag.Tag;
  */
 public class EditModuleCommand extends EditCommand {
 
+    /** The message for when a {@code Module} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited module: %s";
+
+    /** The error message for when a duplicate {@code Module} is detected. */
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker.";
 
     private final ModuleCode moduleCode;
     private final EditModuleDescriptor editModuleDescriptor;
 
     /**
-     * Creates an {@code EditModuleCommand} to edit the details of a module in the tracker whose code is
+     * Contructs an {@code EditModuleCommand} to edit the details of a module in the tracker whose code is
      * {@code moduleCode}.
      *
      * @param moduleCode The code of the module to be edited.
@@ -51,20 +52,14 @@ public class EditModuleCommand extends EditCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
-        }
-
-        ReadOnlyModule moduleToEdit = model.getTracker().getModule(moduleCode);
+        ReadOnlyModule moduleToEdit = getModuleToEdit(model);
         Module editedModule = createEditedModule(moduleToEdit);
 
-        if (!moduleToEdit.isSameModule(editedModule) && model.hasModule(editedModule)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
-        }
+        validateModuleIsNotDuplicate(model, moduleToEdit, editedModule);
 
         model.setModule(moduleToEdit, editedModule);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedModule),
-                new ModuleEditInfo(moduleToEdit, editedModule));
+
+        return createSuccessResult(moduleToEdit, editedModule);
     }
 
     @Override
@@ -83,6 +78,16 @@ public class EditModuleCommand extends EditCommand {
                 && editModuleDescriptor.equals(otherCommand.editModuleDescriptor);
     }
 
+    private ReadOnlyModule getModuleToEdit(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+        }
+
+        return model.getModule(moduleCode);
+    }
+
     private Module createEditedModule(ReadOnlyModule moduleToEdit) {
         requireNonNull(moduleToEdit);
 
@@ -95,16 +100,41 @@ public class EditModuleCommand extends EditCommand {
         return new Module(updatedCode, updateName, updatedTags, lectures);
     }
 
+    private void validateModuleIsNotDuplicate(Model model, ReadOnlyModule moduleToEdit, ReadOnlyModule editedModule)
+            throws CommandException {
+
+        requireAllNonNull(model, moduleToEdit, editedModule);
+
+        if (!moduleToEdit.isSameModule(editedModule)
+                && model.hasModule(editedModule)) {
+
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
+    }
+
+    private CommandResult createSuccessResult(ReadOnlyModule moduleToEdit, ReadOnlyModule editedModule) {
+        requireAllNonNull(moduleToEdit, editedModule);
+
+        String message = String.format(MESSAGE_SUCCESS, editedModule);
+        ModuleEditInfo editInfo = new ModuleEditInfo(moduleToEdit, editedModule);
+
+        return new CommandResult(message, editInfo);
+    }
+
     /**
      * Stores the details to edit the module with.<p>
      * Each non-empty field value will replace the corresponding field value of the module.
      */
-    public static class EditModuleDescriptor {
+    public static class EditModuleDescriptor extends EditEntityDescriptor {
         private ModuleCode code;
         private ModuleName name;
-        private Set<Tag> tags;
 
-        public EditModuleDescriptor() {}
+        /**
+         * Constructs an {@code EditModuleDescriptor}.
+         */
+        public EditModuleDescriptor() {
+            super();
+        }
 
         /**
          * Copy constructor.
@@ -112,20 +142,12 @@ public class EditModuleCommand extends EditCommand {
          * @param toCopy The {@code EditModuleDescriptor} to copy.
          */
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
+            super(toCopy);
+
             requireNonNull(toCopy);
 
             setCode(toCopy.code);
             setName(toCopy.name);
-            setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         *
-         * @return True if at least one field is edited. Otherwise, false.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(code, name, tags);
         }
 
         public Optional<ModuleCode> getCode() {
@@ -144,26 +166,10 @@ public class EditModuleCommand extends EditCommand {
             this.name = name;
         }
 
-        /**
-         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
-         * {@code UnsupportedOperationException} if modification is attempted.<p>
-         *
-         * Else, returns an {@code Optional#empty()}.
-         *
-         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
-         *         {@code Optional#empty()}.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
-        }
-
-        /**
-         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
-         *
-         * @param newTags The new tags.
-         */
-        public void setTags(Set<Tag> newTags) {
-            this.tags = newTags == null ? null : new HashSet<>(newTags);
+        @Override
+        public boolean isAnyFieldEdited() {
+            return super.isAnyFieldEdited()
+                    || CollectionUtil.isAnyNonNull(code, name);
         }
 
         @Override
@@ -178,9 +184,9 @@ public class EditModuleCommand extends EditCommand {
 
             EditModuleDescriptor descriptor = (EditModuleDescriptor) other;
 
-            return getName().equals(descriptor.getName())
-                    && getCode().equals(descriptor.getCode())
-                    && getTags().equals(descriptor.getTags());
+            return super.equals(other)
+                    && getName().equals(descriptor.getName())
+                    && getCode().equals(descriptor.getCode());
         }
     }
 

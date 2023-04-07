@@ -65,5 +65,5 @@ public interface ReadOnlyLecture {
      * @param other The lecture to check if this lecture is the same with.
      * @return True if both lectures have the same name. Otherwise, false.
      */
-    public boolean isSameLecture(Lecture other);
+    public boolean isSameLecture(ReadOnlyLecture other);
 }
