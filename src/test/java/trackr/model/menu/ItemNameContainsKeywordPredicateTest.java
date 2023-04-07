@@ -75,5 +75,9 @@ public class ItemNameContainsKeywordPredicateTest {
         // Non-matching keyword
         predicate = new ItemNameContainsKeywordsPredicate(List.of("Vanilla"));
         assertFalse(predicate.test(new MenuItemBuilder().withItemName("Chocolate Cookie").build()));
+
+        // null
+        assertFalse(predicate.test(null));
     }
+
 }
