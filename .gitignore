@@ -23,3 +23,7 @@ docs/_site/
 
 # Bin files
 bin/
+
+# Local Gemfile
+docs/Gemfile
+docs/Gemfile.lock
