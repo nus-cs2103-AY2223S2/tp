@@ -37,7 +37,7 @@ AddressBook *--> "1" UniqueClientList
 AddressBook *--> "1" UniqueProjectList
 AddressBook *--> "1" UniqueTagMappingList
 UniqueClientList --> "~* all" Client
-UniqueProjectList --> "*~* all" Project 
+UniqueProjectList --> "*~* all" Project
 UniqueTagMappingList --> "~* all" TagMapping
 
 ModelManager -left-> "1" AddressBook
