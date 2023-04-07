@@ -42,7 +42,7 @@ This guide is not:
 
 ## How to use this guide
 
-Thank you for taking your time to learn how to use DengueHotspotTracker.
+Thank you for taking your time to learn how to use DengueHotspotTracker!
 
 Here are some tips on how to look through this guide more effectively and efficiently,
 so you can improve your knowledge on the use of DengueHotspotTracker.
