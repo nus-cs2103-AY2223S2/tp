@@ -14,22 +14,22 @@ import seedu.address.model.person.patient.Patient;
 public class CommandResult {
 
     /** Feedback to be shown to the user through CLI. */
-    private final String cliFeedbackToUser;
+    private String cliFeedbackToUser = "";
 
     /** Help information should be shown to the user. */
-    private final boolean shouldShowHelp;
+    private boolean shouldShowHelp = false;
 
     /** The application should exit. */
-    private final boolean shouldExit;
+    private boolean shouldExit = false;
 
     /** This command interacts directly with the GUI */
-    private final boolean hasGuiInteraction;
+    private boolean hasGuiInteraction = false;
 
     /** Doctor selected by user through command. This value can be null */
-    private final Doctor selectedDoctor;
+    private Doctor selectedDoctor = null;
 
     /** Patient selected by user through command. This value can be null */
-    private final Patient selectedPatient;
+    private Patient selectedPatient = null;
 
     /**
      * Constructs a {@code CommandResult} with all fields specified.
@@ -45,20 +45,13 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp,
-                         boolean shouldExit, boolean hasGuiInteraction) {
-        this(cliFeedbackToUser, shouldShowHelp, shouldExit,
-                hasGuiInteraction, null, null);
-    }
-
-    /**
      * Constructs a {@code CommandResult} with the specified arguments,
      * and {@code hasGuiInteraction} set to its default value.
      */
     public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp, boolean shouldExit) {
-        this(cliFeedbackToUser, shouldShowHelp, shouldExit, false);
+        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldExit = shouldExit;
     }
 
     /**
@@ -66,7 +59,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String cliFeedbackToUser) {
-        this(cliFeedbackToUser, false, false, false);
+        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
     }
 
     /**
@@ -74,8 +67,9 @@ public class CommandResult {
      */
     public CommandResult(String cliFeedbackToUser,
                          Doctor selectedDoctor) {
-        this(cliFeedbackToUser, false, false,
-                true, selectedDoctor, null);
+        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
+        this.selectedDoctor = requireNonNull(selectedDoctor);
+        this.hasGuiInteraction = true;
     }
 
     /**
@@ -83,8 +77,9 @@ public class CommandResult {
      */
     public CommandResult(String cliFeedbackToUser,
                          Patient selectedPatient) {
-        this(cliFeedbackToUser, false, false,
-                true, null, selectedPatient);
+        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
+        this.selectedPatient = requireNonNull(selectedPatient);
+        this.hasGuiInteraction = true;
     }
 
 
