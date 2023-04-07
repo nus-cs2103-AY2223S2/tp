@@ -356,7 +356,8 @@ Examples:
 
 ### 7.2.2. Editing a department: `edep`
 
-Edits an existing department.
+Edits an existing department, which can be useful when departments undergo 
+restructuring.
 
 Format: `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`
 
@@ -397,7 +398,7 @@ Examples:
 
 ### 7.2.5. Listing all departments: `ldep`
 
-Lists all existing departments.
+Refreshes the current panel view to display all existing departments.
 
 Format: `ldep`
 
@@ -435,7 +436,7 @@ Examples:
 
 ### 7.2.8. List an employee's departments: `leid`
 
-List all departments and employee is in.
+List all departments the given employee is in.
 
 Format: `leid eid/EMPLOYEE_ID`
 
@@ -474,7 +475,9 @@ Examples:
 
 ### 7.3.1. Adding a leave: `aetl`
 
-Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave window.
+Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on 
+the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave 
+window.
 
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
@@ -495,9 +498,11 @@ Examples:
 ![result for 'aetl eid/2 d/2023-03-05'](images/UiAddEmployeeToLeaveCommand.png)
 
 
-### 7.3.2. Adding all leaves in range : `aelr`
+### 7.3.2. Adding a range of leaves for an employee: `aelr`
 
-Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave window.
+Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start and end date. 
+The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their 
+information will be displayed on the leave window.
 
 Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
@@ -557,7 +562,7 @@ Examples:
 
 ### 7.3.5. Listing all leave dates: `llve`
 
-Displays all days where there are employees are on leave.
+Displays all leaves taken by employees.
 
 Format: `llve`
 
