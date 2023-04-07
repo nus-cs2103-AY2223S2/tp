@@ -4,12 +4,11 @@ start
 :User enters command;
 
 if (Checking validity of command in current application mode) then ([command is valid])
-    :Store changes in MasterDeckStorage;
-    :Save Command Result to Logic Manager;
+    :Execute command;
     :Display Command Result on Result Display;
 else ([else])
-    :Throws ParseException;
-    :Displays error message on Result Display;
+    :Throw ParseException;
+    :Display error message on Result Display;
 
 endif
 
