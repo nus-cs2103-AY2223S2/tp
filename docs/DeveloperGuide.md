@@ -401,11 +401,11 @@ public static String toCsvField(String str) {
    return str;
 }
 ```
-### \[Proposed\] Tag feature
+### Tag feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed Tag mechanism is facilitated by `ELister`. It extends `ELister` with an Tag , stored internally as an `Tag` and  Additionally, it implements the following operations:
+The Tag mechanism is facilitated by `ELister`. It extends `ELister` with an Tag , stored internally as an `Tag` and  Additionally, it implements the following operations:
 
 * `ELister#Tag()` — Adds a Tag to the person based on the index in the list.
 
