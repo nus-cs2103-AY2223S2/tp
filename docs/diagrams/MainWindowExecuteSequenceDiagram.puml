@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 20
+
+skinparam SequenceReferencebackgroundColor LightYellow
+
+BOX UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR_T1
+participant "s:StringDisplay" as StringDisplay UI_COLOR_T1
+participant "r:RoleDisplay" as RoleDisplay UI_COLOR_T1
+participant ":ResultDisplay" as ResultDisplay UI_COLOR_T1
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow
+activate MainWindow
+
+MainWindow -> LogicManager :  execute(commandText)
+activate LogicManager
+
+create CommandResult
+LogicManager -> CommandResult
+
+activate CommandResult
+return commandResult
+
+return commandResult
+
+alt output instanceof String
+    create StringDisplay
+    MainWindow -> StringDisplay
+    activate StringDisplay
+    return s
+    MainWindow -> ResultDisplay : place(s)
+    activate ResultDisplay
+    return
+
+else output instanceof Role
+    create RoleDisplay
+    MainWindow -> RoleDisplay
+    activate RoleDisplay
+    return r
+    MainWindow -> ResultDisplay : place(r)
+    activate ResultDisplay
+    return
+end
+return commandResult
+@enduml

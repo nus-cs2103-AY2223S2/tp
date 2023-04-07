@@ -450,6 +450,57 @@ The following sequence diagram shows how the `view` command works:
     * Pros: Provides an easy and extendable way to create custom views
     * Cons: Need to refactor some UI code and `CommandResult.java` class
 
+### UI Enhancement
+
+TechTrack's UI components are highlighted below:
+
+![UI Overlay](images/UICommandImages/UiEnhancement0.png)
+
+The main window comprises three key components: namely the Command Input Box located at the bottom half, 
+the Role List Box on the left half, and the Result Display Box on the right half. The Command Input Box provides users 
+with a text field to input their commands, and it remains unchanged every time it is rendered. The Role List Box displays 
+a list of roles, which may differ in number, but it is rendered using JavaFX's `ListView` component. Thus, executing a 
+command allows for straightforward updates to these two components.
+
+This is not the case for Result Display Box, as we might potentially need to render different types of displays
+based on the command given. Hence, the original Result Display box, which was simply a `TextArea` JavaFX object,
+was refactored to support custom displays.
+
+#### What was refactored
+
+The [`ResultDisplay`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/ResultDisplay.java) 
+component was changed from a `TextArea` object to a `VBox` object. Both of these are JavaFX `Node` objects. A method 
+named `place` was created, which takes in a JavaFX `node` object, clears all children nodes in the `ResultDisplay` and 
+places the new `node` in the `VBox`. This allows us to update the `ResultDisplay` to support custom displays based on 
+the command provided.
+
+As mentioned above in the [View Command Section](#view-command-feature), the `CommandResult` class was also updated to be generic.
+This allows `MainWindow.java` to get different types of output based on the object `T` of `CommandResult`. This diagram
+illustrates how the `MainWindow.java` file determines the type of display rendered:
+
+![Enhanced UI Sequence Diagram](images/MainWindowExecuteSequenceDiagram.png)
+
+#### Types of Displays
+
+| Class Name                                                                                                                                   | Description      | Commands Using This View   |
+|----------------------------------------------------------------------------------------------------------------------------------------------|------------------|----------------------------|
+| [`StringDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/StringDisplay.java) | Renders a String | All commands except `view` |
+| [`RoleDisplay.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/techtrack/ui/displays/RoleDisplay.java)     | Renders a Role   | Only the `view` command    |
+
+
+#### Possible Future Enhancements
+
+1. The render logic to determine which display to render is written in the `execute` method of `MainWindow.java`. 
+It could be abstracted out to a new class, named `DisplayManager` for instance, which handles which display to place
+under `ResultDisplay`.
+2. The current way of determining which display to render is not very extendible, since we're using the type `T` from `CommandResult`
+to determine that through consecutive `instanceof` statements. One enhancement we could make is (in addition to point 1), 
+using a common interface to implement the required operations through dynamic binding. One possible way to do 
+this is shown below in the form of a class diagram:
+
+![Enhanced UI Class Diagram](images/EnhancedUIClassDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
