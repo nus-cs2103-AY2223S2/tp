@@ -62,46 +62,11 @@ class JsonAdaptedPatient extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted doctor.
      */
     public Patient toModelType() throws IllegalValueException {
-        if (height == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
-        }
-        if (!Height.isValidHeight(height)) {
-            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
-        }
-        final Height modelHeight = new Height(height);
-
-        if (weight == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
-        }
-        if (!Weight.isValidWeight(weight)) {
-            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
-        }
-        final Weight modelWeight = new Weight(weight);
-
-        if (diagnosis == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Diagnosis.class.getSimpleName()));
-        }
-        if (!Diagnosis.isValidDiagnosis(diagnosis)) {
-            throw new IllegalValueException(Diagnosis.MESSAGE_CONSTRAINTS);
-        }
-        final Diagnosis modelDiagnosis = new Diagnosis(diagnosis);
-
-        if (status == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
-        }
-        final Status modelStatus = new Status(status);
-
-        if (!Remark.isValidRemark(remark)) {
-            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-        }
-        final Remark modelRemark = new Remark(remark);
+        final Height modelHeight = validateHeight();
+        final Weight modelWeight = validateWeight();
+        final Diagnosis modelDiagnosis = validateDiagnosis();
+        final Status modelStatus = validateStatus();
+        final Remark modelRemark = validateRemark();
 
         Person patientPerson = super.toModelType();
         return new Patient(patientPerson.getName(), patientPerson.getPhone(),
@@ -109,4 +74,88 @@ class JsonAdaptedPatient extends JsonAdaptedPerson {
                 modelDiagnosis, modelStatus, modelRemark, patientPerson.getTags());
     }
 
+    /**
+     * Validate the height supplied from storage.
+     *
+     * @return a valid height object.
+     * @throws IllegalValueException if height supplied is not valid.
+     */
+    private Height validateHeight() throws IllegalValueException {
+        if (height == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
+        }
+        if (!Height.isValidHeight(height)) {
+            throw new IllegalValueException(Height.MESSAGE_CONSTRAINTS);
+        }
+        return new Height(height);
+    }
+
+    /**
+     * Validate the weight supplied from storage.
+     *
+     * @return a valid weight object.
+     * @throws IllegalValueException if weight supplied is not valid.
+     */
+    private Weight validateWeight() throws IllegalValueException {
+        if (weight == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        return new Weight(weight);
+    }
+
+    /**
+     * Validate the diagnosis supplied from storage.
+     *
+     * @return a valid diagnosis object.
+     * @throws IllegalValueException if diagnosis supplied is not valid.
+     */
+    private Diagnosis validateDiagnosis() throws IllegalValueException {
+        if (diagnosis == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Diagnosis.class.getSimpleName()));
+        }
+        if (!Diagnosis.isValidDiagnosis(diagnosis)) {
+            throw new IllegalValueException(Diagnosis.MESSAGE_CONSTRAINTS);
+        }
+        return new Diagnosis(diagnosis);
+    }
+
+    /**
+     * Validate the status supplied from storage.
+     *
+     * @return a valid status object.
+     * @throws IllegalValueException if status supplied is not valid.
+     */
+    private Status validateStatus() throws IllegalValueException {
+        if (status == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(status);
+    }
+
+    /**
+     * Validate the remark supplied from storage.
+     *
+     * @return a valid remark object.
+     * @throws IllegalValueException if remark supplied is not valid.
+     */
+    private Remark validateRemark() throws IllegalValueException {
+        if (remark == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        if (!Remark.isValidRemark(remark)) {
+            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(remark);
+    }
 }

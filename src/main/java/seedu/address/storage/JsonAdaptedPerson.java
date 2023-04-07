@@ -60,37 +60,76 @@ public class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
+        final Name modelName = validateName();
+        final Phone modelPhone = validatePhone();
+        final Email modelEmail = validateEmail();
+        final Set<Tag> modelTags = validateTags();
 
+        return new Person(modelName, modelPhone, modelEmail, modelTags);
+    }
+
+    /**
+     * Validate the name supplied from storage.
+     *
+     * @return a valid name object.
+     * @throws IllegalValueException if name supplied is not valid.
+     */
+    private Name validateName() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        return new Name(name);
+    }
 
+    /**
+     * Validate the phone supplied from storage.
+     *
+     * @return a valid phone object.
+     * @throws IllegalValueException if phone supplied is not valid.
+     */
+    private Phone validatePhone() throws IllegalValueException {
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        return new Phone(phone);
+    }
 
+    /**
+     * Validate the email supplied from storage.
+     *
+     * @return a valid email object.
+     * @throws IllegalValueException if email supplied is not valid.
+     */
+    private Email validateEmail() throws IllegalValueException {
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        return new Email(email);
     }
 
+    /**
+     * Validate the tags supplied from storage.
+     *
+     * @return a valid set of tags
+     * @throws IllegalValueException if tags supplied are not valid.
+     */
+    private Set<Tag> validateTags() throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+        return new HashSet<>(personTags);
+    }
 }
