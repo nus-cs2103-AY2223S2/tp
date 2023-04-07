@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,12 +12,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -31,7 +33,7 @@ public interface Model {
 
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Technician> PREDICATE_SHOW_ALL_TECHNICIANS = unused -> true;
-    Predicate<PartMap> PREDICATE_SHOW_ALL_PARTS = unused -> true;
+    Predicate<Map.Entry<String, Integer>> PREDICATE_SHOW_ALL_PARTS = unused -> true;
     Predicate<Service> PREDICATE_SHOW_ALL_SERVICES = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     Predicate<Vehicle> PREDICATE_SHOW_ALL_VEHICLES = unused -> true;
@@ -77,19 +79,14 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setShop(ReadOnlyShop shop);
-
-    /**
      * Returns the AddressBook
      */
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns the Shop
+     * Exposes Shop api caller
      */
-    ReadOnlyShop getShop();
+    Shop getShop();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -120,9 +117,10 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Service> getFilteredServiceList();
+
     ObservableList<Appointment> getFilteredAppointmentList();
 
-    PartMap getPartMap();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -140,6 +138,8 @@ public interface Model {
      */
     ObservableList<Customer> getFilteredCustomerList();
 
+    void resetSelected();
+
     /**
      * Updates the filter of the filtered customer list to filter by the given
      * {@code predicate}.
@@ -148,24 +148,6 @@ public interface Model {
      */
     void updateFilteredCustomerList(Predicate<? super Customer> predicate);
 
-    /**
-     * Adds customer to the shop
-     *
-     * @param customer Customer to be added
-     */
-    void addCustomer(Customer customer);
-
-    /**
-     * Checks whether Shop already has customer
-     *
-     * @param customerId Customer ID to be checked
-     */
-    boolean hasCustomer(int customerId);
-
-    void deleteCustomer(Customer target);
-
-    void setCustomer(Customer target, Customer editedPerson);
-
     // ==== For Vehicles ==
 
     /**
@@ -173,141 +155,14 @@ public interface Model {
      */
     ObservableList<Vehicle> getFilteredVehicleList();
 
-    /**
-     * Adds vehicle to the shop
-     *
-     * @param vehicle Vehicle to be added
-     */
-    void addVehicle(int customerId, Vehicle vehicle);
-
-    /**
-     * Checks if shop already has vehicle using id
-     *
-     * @param vehicleId Vehicle ID to check against
-     */
-    boolean hasVehicle(int vehicleId);
-
-    /**
-     * Checks if shop already has vehicle using plate numbers
-     *
-     * @param vehicle Vehicle to check against
-     */
-    boolean hasVehicle(Vehicle vehicle);
-
-    void deleteVehicle(Vehicle target);
-
-    void setVehicle(Vehicle target, Vehicle editedVehicle);
-
-    // ==== For Services ==
-
-    /**
-     * Returns an unmodifiable view of the filtered service list
-     */
-    ObservableList<Service> getFilteredServiceList();
-
-    /**
-     * Adds service
-     *
-     * @param service Service to add
-     */
-    void addService(int vehicleId, Service service);
-
-    /**
-     * @param serviceId ID of service
-     * @return Whether service already in the system
-     */
-    boolean hasService(int serviceId);
-
-    void deleteAppointment(Appointment target);
-
-    void deleteService(Service service);
-
-    /**
-     * Adds appointment
-     *
-     * @param appointment Appointment to add
-     */
-    void addAppointment(Appointment appointment);
-
-    /**
-     * Checks if appointment in the system
-     *
-     * @param appointmentId ID of appointment
-     */
-    boolean hasAppointment(int appointmentId);
-
-    /**
-     * Adds part
-     *
-     * @param partName Name of the part to add
-     * @param quantity Quantity of the part to add
-     */
-    void addPart(String partName, int quantity);
-
-    /**
-     * Adds part to service
-     *
-     * @param serviceId ID of service
-     * @param partName  Name of part
-     * @param quantity  Quantity of part
-     * @throws NoSuchElementException If service not in system
-     */
-    void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
-
-    /**
-     * Assigns existing technician to existing service
-     *
-     * @param serviceId ID of service
-     * @param techId    ID of technician
-     * @throws NoSuchElementException If technician or service not in system
-     */
-    void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
-
-    /**
-     * Assigns existing technician to existing appointment
-     *
-     * @param techId ID of technician
-     * @param appointmentId ID of appointment
-     * @throws NoSuchElementException if technician ID or appointment ID does not exist
-     */
-    void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException;
-
-    /**
-     * Checks if part already exists
-     *
-     * @param partName Name of the part to check against
-     */
-    boolean hasPart(String partName);
-
     ObservableList<Technician> getFilteredTechnicianList();
 
-    /**
-     * Adds Technician
-     *
-     * @param technician Technician to be added
-     */
-    void addTechnician(Technician technician);
-
-    /**
-     * Checks if technician already in the model
-     *
-     * @param technicianId ID of technician to check against
-     */
-    boolean hasTechnician(int technicianId);
 
     void updateFilteredTechnicianList(Predicate<? super Technician> predicate);
 
     void updateFilteredVehicleList(Predicate<? super Vehicle> predicate);
 
     void updateFilteredServiceList(Predicate<? super Service> predicate);
-
-    void setAppointment(Appointment target, Appointment editedAppointment);
-
-    void updatePartsMap();
-
-    void deleteTechnician(Technician target);
-
-    void setTechnician(Technician target, Technician editedPerson);
 
     CustomerVehicleMap getCustomerVehicleMap();
 
@@ -319,10 +174,12 @@ public interface Model {
 
     TechnicianDataMap getTechnicianDataMap();
 
+    ObservableList<Map.Entry<String, Integer>> getFilteredPartMap();
+
     /**
      * Sets currently selected customer
      */
-    void selectCustomer(Customer customer);
+    void selectCustomer(Function<? super List<? extends Customer>, ? extends Customer> selector);
 
     /**
      * Returns currently selected customer
@@ -332,7 +189,7 @@ public interface Model {
     /**
      * Sets currently selected vehicle
      */
-    void selectVehicle(Vehicle vehicle);
+    void selectVehicle(Function<? super List<? extends Vehicle>, ? extends Vehicle> selector);
 
     /**
      * Returns currently selected vehicle
@@ -342,7 +199,7 @@ public interface Model {
     /**
      * Sets currently selected service
      */
-    void selectService(Service service);
+    void selectService(Function<? super List<? extends Service>, ? extends Service> selector);
 
     /**
      * Returns currently selected service
@@ -352,7 +209,7 @@ public interface Model {
     /**
      * Sets currently selected appointment
      */
-    void selectAppointment(Appointment appointment);
+    void selectAppointment(Function<? super List<? extends Appointment>, ? extends Appointment> selector);
 
     /**
      * Returns currently selected service
@@ -367,11 +224,12 @@ public interface Model {
     /**
      * Sets currently selected technician
      */
-    void selectTechnician(Technician technician);
+    void selectTechnician(Function<? super List<? extends Technician>, ? extends Technician> selector);
 
-    void setService(Service target, Service editedService);
 
     // Sort helper functions
+
+    void updateFilteredPartMap(Predicate<? super Map.Entry<String, Integer>> predicate);
 
     /**
      * Updates the comparator used to sort customers

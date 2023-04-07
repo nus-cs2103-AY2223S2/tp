@@ -16,12 +16,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.DeepCopy;
 import seedu.address.model.Findable;
 
 /**
  * The appointment class containing a meeting with a customer at a particular date.
  */
-public class Appointment implements Findable {
+public class Appointment implements Findable, DeepCopy<Appointment> {
+
     /**
      * Represents the status of the appointment date base on current date time
      */
@@ -200,4 +202,9 @@ public class Appointment implements Findable {
             return false;
         }
     }
+    @Override
+    public Appointment copy() {
+        return new Appointment(this.id, this.customerId, this.timeDate, this.staffIds);
+    }
+
 }

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Command that manages adding parts
  */
-public class AddPartCommand extends RedoableCommand {
+public class AddPartCommand extends Command {
 
     public static final String COMMAND_WORD = "addpart";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a part to the shop. "
@@ -21,9 +21,7 @@ public class AddPartCommand extends RedoableCommand {
             + PREFIX_PART_NAME + "Cylinder Head "
             + PREFIX_QUANTITY + "50";
 
-    public static final String MESSAGE_SUCCESS = "New part added: %1$s";
-    public static final String MESSAGE_INCREASE_PART_QUANTITY = "%s quantity increased";
-
+    public static final String MESSAGE_SUCCESS = "%s x %d added";
     private final String partName;
     private final int quantity;
 
@@ -46,15 +44,14 @@ public class AddPartCommand extends RedoableCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasPart(partName)) {
-            model.addPart(partName, quantity);
-            return new CommandResult(String.format(MESSAGE_INCREASE_PART_QUANTITY, partName));
+        try {
+            model.getShop().addPart(partName, quantity);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, partName, quantity), Tab.PARTS);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        model.addPart(partName, quantity);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, partName), Tab.PARTS);
     }
 
     @Override

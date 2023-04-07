@@ -2,14 +2,18 @@
 layout: page
 title: User Guide
 ---
+<div style="text-align:center;">
+<img src="images/LogoCoverVersion.png">
+</div>
 
-AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AutoM8 can get your auto repair shop management tasks done faster than traditional GUI apps.
+AutoM8 is a desktop application for auto repair shops that combines the efficiency of a Command Line Interface (CLI) with the user-friendliness of a Graphical User Interface (GUI) making it easy for users to manage tasks such as customer records, vehicle information, services, appointments, and inventory tracking. AutoM8 is a powerful tool that helps auto repair shops save time and increase productivity.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -20,7 +24,8 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar autom8.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-    [UI image to be added]
+
+   ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -58,6 +63,7 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 **:information_source: Notes command GUI behaviors:**<br>
 
 * Using entity specific commands (e.g. commandX, where command is a specific operation such as add, edit, etc and X is a specific entity such as customer, vehicle etc) will help you navigate to the respective tabs (e.g. A successful `addvehicle` command will navigate you to the Vehicles tab)
+* While clicking on individual items in the items list may cause the UI to show that it is highlighted, the current entity shown in the right panel (Details panel) will not reflect what you have selected*. Please use the respective `view` commands in order to view details of a specific entity.
 
 </div>
 
@@ -65,29 +71,21 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 
 ### Add
 
-### Adding a customer: `addcustomer`
+#### Adding a customer: `addcustomer`
 Adds a customer to the system and assigns a unique customer ID.
 
 Format: `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
 
 Example: `addcustomer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Adding a technician: `addtechnician`
+#### Adding a technician: `addtechnician`
 Adds a technician to the system and assigns a unique staff ID.
 
 Format: `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
 
 Example: `addtechnician n/Robert Low p/90253789 e/roblow@gmail.com a/25 Bedok East Rd, #08-20, SG405100 t/Leader`
 
-### Adding a technician to a specific service: `addservicetech`
-
-Assigns an existing technician to an existing service
-
-Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
-
-Example: `addservicetech s/1 t/3`
-
-### Adding a vehicle: `addvehicle`
+#### Adding a vehicle: `addvehicle`
 Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID. 
 
 Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID cl/COLOR t/TYPE`
@@ -96,14 +94,25 @@ Examples:
 * `addvehicle p/SBA1234A b/Toyota c/1 cl/red t/car`
 * `addvehicle p/SBG5678B b/Honda c/2 cl/blue t/motorbike`
 
-### Adding a vehicle part: `addpart`
+#### Adding a vehicle part: `addpart`
 Adds a vehicle part to the system.
 
 Format: `addpart n/NAME q/Quantity`
 
 Example: `addpart n/Cylinder Head q/50`
 
-### Adding a vehicle part to specific service: `addservicepart`
+#### Adding a service to a vehicle: `addservice`
+Adds a service to perform on the specified vehicle plate number.
+
+Format: `addservice v/VEHICLE_ID [l/SERIVCE LENGTH (days)] [s/STATUS] [d/DESCRIPTION]`
+
+Examples:
+* `addservice v/10 s/in progress d/Customer says abc`
+* `addservice v/10 t/standard l/10` \
+  Note: Adding service without specifying the type of service will default to “to repair” \
+  Note: Adding service without specifying the service length will default to 7 days
+
+#### Adding a vehicle part to specific service: `addservicepart`
 Adds a vehicle part to a specific service.
 
 Service and part must be registered in the system and part must have sufficient quanity,
@@ -112,25 +121,21 @@ Format: `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY`
 
 Example: `addservicepart s/2 n/Cylinder Head q/20`
 
-### Adding a service to a vehicle: `addservice`
-Adds a service to perform on the specified vehicle plate number.
+#### Adding a technician to a specific service: `addservicetech`
+Assigns an existing technician to an existing service
 
-Format: `addservice v/VEHICLE_ID [l/SERIVCE LENGTH (days)] [s/STATUS] [d/DESCRIPTION]`
+Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
 
-Examples:
-* `addservice v/10 s/in progress d/Customer says abc`
-* `addservice v/10 t/standard l/10` \
-Note: Adding service without specifying the type of service will default to “to repair” \
-Note: Adding service without specifying the service length will default to 7 days
+Example: `addservicetech s/1 t/3`
 
-### Adding a customer appointment: `addappointment`
+#### Adding a customer appointment: `addappointment`
 Adds a customer appointment to the system.
 
 Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 
 Example: `addappointment c/5 d/2023-03-05 t/14:00`
 
-### Adding a technician to an appointment: `addappointmenttech`
+#### Adding a technician to an appointment: `addappointmenttech`
 Adds an existing technician to an exiting appointment.
 
 Format: `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID`
@@ -140,7 +145,7 @@ Example: `addappointmenttech a/1 t/2`
 ---
 ### List/Sort
 
-### Listing all vehicles/customers/parts/appointments/services/technicians: `list`
+#### Listing all vehicles/customers/parts/appointments/services/technicians: `list`
 Shows all vehicles/customers/parts/appointments/services/technicians and helps navigate you to the respective tab.
 
 We also have a global `list` command. The "list" command helps to display all entities in their respective tabs while staying on the current tab. Just keep in mind that it doesn't switch tabs for you, so you'll need to do that manually by clicking or using the specific `listX` commands available to help you navigate to the respective tabs.
@@ -151,6 +156,7 @@ Format:
   
 
 Examples:
+* `list`
 * `listvehicles`
 * `listcustomers`
 * `listparts`
@@ -159,9 +165,8 @@ Examples:
 * `listservices`
 
 
-### Sorting displayed lists: `sort`
-Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param. \
-*Note: Command is context-sensitive (i.e. can only be used after list command)*
+#### Sorting displayed lists: `sort`
+Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param. 
 
 Format: `sort(vehicles/customers/parts/appointments/services) by/OBJECT_PARAMS [r/]`
 OBJECT_PARAMS are dependent on which object* and adding `r/` means to reverse the sort direction
@@ -173,22 +178,9 @@ Examples:
 * `sortappointments by/date status`
 
 ---
-### Find
-
-### Finding specific vehicles/customers/services/appointments/technicians: `find`
-
-Finds all entities whose attributes match the specified keywords (case-insensitive) or the given date, to filter and displays them in the relevant tab lists.
-
-Format: `find KEYWORD [MORE SPACE-SEPERATED KEYWORDS]`
-
-Examples:
-* `find alex alex@gmail.com`
-* `find toyota`
-* `find completed Oil`
----
 ### View
 
-### Viewing specific vehicles/customers/services/appointments/technicians: `view`
+#### Viewing specific vehicles/customers/services/appointments/technicians: `view`
 
 View a specific vehicle/customer/part/appointment/service detail. Id can be found by using the find or list command.
 
@@ -201,9 +193,23 @@ Examples:
 * `viewservice 77`
 
 ---
+### Find
+
+#### Finding specific vehicles/customers/services/appointments/technicians: `find`
+
+Finds all entities whose attributes match the specified keywords (case-insensitive) or the given date, to filter and displays them in the relevant tab lists.
+
+Format: `find KEYWORD [MORE SPACE-SEPERATED KEYWORDS]`
+
+Examples:
+* `find alex alex@gmail.com`
+* `find toyota`
+* `find completed Oil`
+
+---
 ### Edit
 
-### Editing a vehicle/customer/appointment : `edit`
+#### Editing a vehicle/customer/appointment : `edit`
 
 Updates the specified (Vehicle/Customer/Appointment) information
 
@@ -220,7 +226,7 @@ Examples:
 ---
 ### Delete
 
-### Deleting a vehicle/customer/appointment/service/technician : `delete`
+#### Deleting a vehicle/customer/appointment/service/technician : `delete`
 
 Deletes the specified vehicle/customer/part/appointment/service from the system and all its related records.
 * Deletes the vehicle/customer/part/appointment/service at the specified `ID`.
@@ -231,7 +237,7 @@ Format: `delete(vehicle/customer/appointment/service/technician) ID`
 
 Example: `deletecustomer 12` deletes the customer with id 12 and all their related records in the AutoM8 system.
 
-### Deleting a part : `delete`
+#### Deleting a part : `delete`
 
 Deletes the specified part from the system and all its related records.
 * Deletes the part with the specified `NAME`.
@@ -243,7 +249,7 @@ Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all the
 ---
 ### Actions
 
-### Undo a previously executed command: `undo`
+#### Undo a previously executed command: `undo`
 
 Undoes certain previously typed command
 
@@ -257,7 +263,7 @@ Example flow:
 
 `undo` will reverse the add command, causing the system to delete previously added customer.
 
-### Redo a previously executed command: `redo`
+#### Redo a previously executed command: `redo`
 
 Restores most recent command that was undone using undo. If you use a command that is not undo or redo, while in the midst of undoing, there will no longer be commands to redo.
 Format: `redo`
@@ -283,7 +289,7 @@ After deleting a customer at Index 3 and using `undo` to reverse the deletion of
 ### Others
 
 
-### Get number of appointments : `totalappointment`
+#### Get number of appointments : `totalappointment`
 
 Finds the number of appointments on the specified date.
 
@@ -293,23 +299,23 @@ Example: `totalappointment d/2023-02-03`
 
 * The `DATE` must follow a YYYY-MM-DD format. The range of allowable years is 0001 to 9999.
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Saving the data
+#### Saving the data
 
 AutoM8 data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 AutoM8 data are saved as a JSON file `[JAR file location]/data/autom8.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -322,30 +328,34 @@ If your changes to the data file makes its format invalid, AutoM8 will discard a
 
 ## FAQ
 
-to be updated
+**Q**: Question<br>
+**A**: Answer
+
+TO BE UPDATED
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action                                                  | Format, Examples                                                                                                                                                                |
-|---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Customer**                                        | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addcustomer n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`     |
-| **Add Technician**                                      | `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addtechnician n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Technician to Service**                           | `addservicetech `addservicetech s/SERVICE_ID t/TECHNICIAN_ID` <br> e.g., `addservicetech s/1 t/3`                                                                               |
-| **Add Vehicle**                                         | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                                  |
-| **Add Service**                                         | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `addservice v/10 t/standard s/in progress d/Customer says abc`                                    |
-| **Add Appointment**                                     | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`addappointment c/5 d/05/03/2023 t/5pm`                                                                                   |
-| **Add Part**                                            | `addpart n/PART_NAME q/PART_QUANTITY` <br> e.g. `addpart n/Cylinder Head q/50`                                                                                                  |
-| **Add Part to Service**                                 | `addservicepart s/SERVICE_ID n/PART_NAME q/QUANTITY` <br> e.g. `addservicepart s/2 n/Cylinder Head q/20`                                                                        |
-| **List all Vehicles/Customers/Parts/Appointments**      | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                                        |
-| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                                |
-| **Find specific Vehicle/Customer/Part/Appointment**     | `find(vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                               |
-| **View specific Vehicle/Customer/Part/Appointment**     | `view(vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                                    |
-| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit(vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                                          |
-| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
-| **Total appointment on a specified date**               | `TotalAppointment d/DATE`                                                                                                                                                       |
-| **Undo**                                                | `undo`                                                                                                                                                                          |
-| **Redo**                                                | `redo`                                                                                                                                                                          |
-| **Exit**                                                | `exit`                                                                                                                                                                          |
-| **Help**                                                | `help`                                                                                                                                                                          |
+| Action                                                                | Format, Examples                                                                                                                                                                |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Customer**                                                      | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addcustomer n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`     |
+| **Add Technician**                                                    | `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addtechnician n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Vehicle**                                                       | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                                  |
+| **Add Vehicle Part**                                                  | `addpart n/NAME q/Quantity` <br> e.g., `addpart n/Cylinder Head q/50`                                                                                                           |
+| **Add Service**                                                       | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `addservice v/10 t/standard s/in progress d/Customer says abc`                                    |
+| **Add Part to Service**                                               | `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY` <br> e.g., `addservicepart s/2 n/Cylinder Head q/20`                                                                       |
+| **Add Technician to Service**                                         | `addservicetech s/SERVICE_ID t/TECHNICIAN_ID` <br> e.g., `addservicetech s/1 t/3`                                                                                               |
+| **Add Customer Appointment**                                          | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`addappointment c/5 d/2023-03-05 t/14:00`                                                                                 |
+| **Add Technician to Appointment**                                     | `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID` <br> e.g., `addappointmenttech a/1 t/2`                                                                                   |
+| **List all Vehicles/Customers/Parts/Appointments**                    | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`, `list`                                                                                                |
+| **Sort Displayed List**                                               | `sort by/ENTITY_PARAM d/DIRECTION`<br> e.g., `listvehicles` then `sort by/brand d/asc`                                                                                          |
+| **View specific Vehicle/Customer/Service/Appointment/Technician**     | `view(vehicle/customer/service/appointment/technician) ID`<br> e.g., `viewappointment 56`                                                                                       |
+| **Find specific Vehicle/Customer/Service/Appointment/Technician**     | `find(vehicle/customer/service/appointment/technician) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                 |
+| **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                            |
+| **Delete a specific Vehicle/Customer/Service/Appointment/Technician** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
+| **Get total number appointment on a specified date**                  | `totalAppointment d/DATE` <br> e.g., `totalappointment d/2023-02-03`                                                                                                            |
+| **Undo**                                                              | `undo`                                                                                                                                                                          |
+| **Redo**                                                              | `redo`                                                                                                                                                                          |
+| **Exit**                                                              | `exit`                                                                                                                                                                          |
+| **Help**                                                              | `help`                                                                                                                                                                          |

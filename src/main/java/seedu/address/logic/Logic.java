@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -16,7 +17,6 @@ import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -84,7 +84,7 @@ public interface Logic {
     /**
      * @return parts
      */
-    PartMap getPartMap();
+    ObservableList<Map.Entry<String, Integer>> getPartMap();
 
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();

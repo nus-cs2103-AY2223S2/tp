@@ -5,7 +5,9 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+AutoM8 was developed as a team project for the CS2103 Software Engineering module.
+
+Feel free to check out at our individual project portfolios listed below, and if you have any queries, don't hesitate to reach out to us on GitHub.
 
 ## Project team
 
@@ -13,30 +15,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ginloy.png" width="200px">
 
-[[github](http://github.com/ginloy)] [[portfolio](team/ginloy.md)]
+[[GitHub](http://github.com/ginloy)]
+[[Portfolio](team/ginloy.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Logic, Parsers, Utils
 
 ### Kimberly Barcelon Pontanares
 
 <img src="images/kimberlybp.png" width="200px">
 
-[[github](http://github.com/kimberlybp)]
-[[portfolio](team/kimberlybp.md)]
+[[GitHub](http://github.com/kimberlybp)]
+[[Portfolio](team/kimberlybp.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI, Integration, Storage
 
 ### Julio Harjo
 
 <img src="images/junlee1991.png" width="200px">
 
-[[github](https://github.com/junlee1991)]
-[[portfolio](team/junlee1991.md)]
+[[GitHub](https://github.com/junlee1991)]
+[[Portfolio](team/junlee1991.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: DevOps, Additional Command Logic, Documentation
 
 ### Edwin Lim
 
@@ -46,4 +49,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/9fc70c892.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops
+* Responsibilities: Model, Basic Command Logic, Code Quality

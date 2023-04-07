@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.ServiceDataMap;
-import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
@@ -83,7 +82,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
         vehicleAssignedTo.getChildren().add(vehicleLabel);
 
         List<Technician> technicians = dataMap.getServiceTechnicians(service);
-        PartMap partsRequired = service.getRequiredParts();
+        Map<String, Integer> partsRequired = service.getRequiredParts();
 
         for (int i = 0; i < technicians.size(); i++) {
             Technician t = technicians.get(i);
@@ -92,7 +91,7 @@ public class ServiceDetailsPanel extends UiPart<Region> {
             serviceTechnicians.getChildren().add(tLabel);
         }
 
-        for (Map.Entry<String, Integer> entry : partsRequired.getEntrySet()) {
+        for (Map.Entry<String, Integer> entry : partsRequired.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
             Label pLabel = new Label(value + " " + key);

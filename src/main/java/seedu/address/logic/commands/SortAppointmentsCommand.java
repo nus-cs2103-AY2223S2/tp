@@ -36,6 +36,7 @@ public class SortAppointmentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateAppointmentComparator(cmp);
+        model.selectAppointment(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
     }
 }
