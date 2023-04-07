@@ -24,7 +24,7 @@ public class GuiSettingsTest {
     private static final double DEFAULT_WIDTH = 740;
 
     @Test
-    public void testDefaultConstructor() {
+    public void defaultConstructor_initialValues_setCorrectly() {
         GuiSettings settings = new GuiSettings();
         assertEquals(settings.getWindowHeight(), DEFAULT_HEIGHT);
         assertEquals(settings.getWindowWidth(), DEFAULT_WIDTH);
@@ -32,7 +32,7 @@ public class GuiSettingsTest {
     }
 
     @Test
-    public void testOverloadedConstructor() {
+    public void overloadedConstructor_validateParams_validatesProperly() {
         //Referential consistency for Runnable Lambdas passed to assert statements
         AtomicReference<GuiSettings> settings = new AtomicReference<>();
         //Validate valid values work
@@ -61,7 +61,7 @@ public class GuiSettingsTest {
     }
 
     @Test
-    public void testEquals() {
+    public void equals() {
         GuiSettings settingAlpha = new GuiSettings(10, 5, 0, 5);
         GuiSettings settingAlphaCopy = new GuiSettings(10, 5, 0, 5);
         GuiSettings settingAlphaDiff = new GuiSettings(10, 5, 1, 5);
@@ -72,7 +72,7 @@ public class GuiSettingsTest {
     }
 
     @Test
-    public void test_hashCode() {
+    public void hashCode_get_returnsCorrectHashCode() {
         double height = 100.0;
         double width = 50.0;
         int xCoordinate = 20;
@@ -82,7 +82,7 @@ public class GuiSettingsTest {
     }
 
     @Test
-    public void test_string() {
+    public void toString_get_returnsProperStringFormat() {
         double height = 100.0;
         double width = 50.0;
         int xCoordinate = 20;

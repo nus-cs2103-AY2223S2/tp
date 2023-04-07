@@ -21,12 +21,12 @@ public class MessagesTest {
             + "ingredient %s: \n%s";
 
     @Test
-    public void test_unknownCommand() {
+    public void unknownCommandMessage_get_matchesDefinedMessage() {
         assertEquals(MESSAGE_UNKNOWN_COMMAND, Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
-    public void test_invalidCommandFormat() {
+    public void invalidCommandMessage_get_matchesDefinedMessage() {
         String testMessage = "Aa{bC}/:;\\|`'";
         assertEquals(MESSAGE_INVALID_COMMAND_FORMAT, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         assertEquals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, testMessage),
@@ -34,17 +34,17 @@ public class MessagesTest {
     }
 
     @Test
-    public void test_emptyKeywordsFind() {
+    public void emptyKeywordsFindMessage_get_matchesDefinedMessage() {
         assertEquals(MESSAGE_EMPTY_KEYWORDS_FIND, Messages.MESSAGE_EMPTY_KEYWORDS_FIND);
     }
 
     @Test
-    public void test_invalidRecipeIndex() {
+    public void invalidRecipeIndexMessage_get_matchesDefinedMessage() {
         assertEquals(MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
-    public void test_recipesListedOverview() {
+    public void recipesListedOverviewMessage_get_matchesDefinedMessage() {
         Integer testNumber = 22;
         assertEquals(MESSAGE_RECIPES_LISTED_OVERVIEW, Messages.MESSAGE_RECIPES_LISTED_OVERVIEW);
         assertEquals(String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, testNumber),
@@ -52,12 +52,12 @@ public class MessagesTest {
     }
 
     @Test
-    public void test_noStoredSubs() {
+    public void noStoredSubsMessage_get_matchesDefinedMessage() {
         assertEquals(MESSAGE_NO_STORED_SUBS, Messages.MESSAGE_NO_STORED_SUBS);
     }
 
     @Test
-    public void test_displayStoredSubs() {
+    public void displayStoredSubsMessage_get_matchesDefinedMessage() {
         String firstIngredient = "smoked halibut";
         String subIngredient = "smoked salmon";
         assertEquals(MESSAGE_DISPLAY_STORED_SUBS, Messages.MESSAGE_DISPLAY_STORED_SUBS);

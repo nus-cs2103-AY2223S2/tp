@@ -19,25 +19,25 @@ public class ConfigTest {
         + "Preference file Location : %s", CONFIG_BASE_LEVEL, USER_PREFS_FILE_PATH_STRING);
 
     @Test
-    public void test_getLogLevel_initialInfo() {
+    public void getLogLevel_initialLevel_baseLevel() {
         Config defaultConfig = new Config();
         assertEquals(defaultConfig.getLogLevel(), CONFIG_BASE_LEVEL);
     }
 
     @Test
-    public void test_setLogLevel() {
+    public void setLogLevel_levelWarning_setSuccess() {
         Config defaultConfig = new Config();
         defaultConfig.setLogLevel(Level.WARNING);
         assertEquals(defaultConfig.getLogLevel(), Level.WARNING);
     }
 
     @Test
-    public void test_getUserPrefsPath() {
+    public void getUserPrefsPath_initialValue_matchesConfigInitialValue() {
         assertEquals(USER_PREFS_FILE_PATH, new Config().getUserPrefsFilePath());
     }
 
     @Test
-    public void test_setUserPrefsFilePath() {
+    public void setUserPrefsFilePath_setNewPathValue_setSuccess() {
         Path newPath = Paths.get("null path");
         Config defaultConfig = new Config();
         defaultConfig.setUserPrefsFilePath(newPath);
@@ -45,19 +45,19 @@ public class ConfigTest {
     }
 
     @Test
-    public void equalsMethod() {
+    public void equals() {
         Config defaultConfig = new Config();
         assertNotNull(defaultConfig);
         assertEquals(defaultConfig, defaultConfig);
     }
 
     @Test
-    public void test_hashCode() {
+    public void hashCode_initialValue_matchesInitialValuesHash() {
         assertEquals(Objects.hash(CONFIG_BASE_LEVEL, USER_PREFS_FILE_PATH), new Config().hashCode());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toString_value_matchesConfigStringValue() {
         assertEquals(DEFAULT_CONFIG_STRING, new Config().toString());
     }
 }

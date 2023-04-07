@@ -18,7 +18,7 @@ public class ImportCommand extends Command {
     public static final String NOT_JSON_FILE = "Selected file '%s' is not a JSON file.";
     public static final String INVALID_VALUES = "Selected JSON file '%s' contains invalid values";
     public static final String DUPLICATE_VALUES =
-            "Selected JSON file '%s' contains some duplicate recipes which have been ignored and imported successfully";
+            "The selected JSON file contains some duplicate recipes which have been ignored and imported successfully";
     public static final String SUCCESS_MESSAGE = "Selected JSON file imported successfully";
 
     private final ImportManager importManager;
