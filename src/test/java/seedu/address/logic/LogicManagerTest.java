@@ -19,6 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -90,6 +91,27 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_exportStorageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        Path testFolderAddressBook = Path.of("src", "test", "data", "JsonSerializableAddressBook");
+        Path testFolderUserPrefs = Path.of("src", "test", "data", "JsonUserPrefsStorageTest");
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(testFolderAddressBook.resolve("typicalPersonsAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(testFolderUserPrefs.resolve("TypicalUserPrefs.json"));
+        JsonExportStorage exportStorage =
+                new JsonExportIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionExport.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, exportStorage);
+        model.addPerson(AMY);
+        logic = new LogicManager(model, storage);
+        String exportCommand = ExportCommand.COMMAND_WORD + " 1";
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addPerson(AMY);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(exportCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
@@ -165,6 +187,21 @@ public class LogicManagerTest {
 
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the export method is called.
+     */
+    private static class JsonExportIoExceptionThrowingStub extends JsonExportStorage {
+
+        public JsonExportIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void exportPerson(Person personToExport, Path exportFilePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
