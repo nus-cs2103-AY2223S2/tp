@@ -59,9 +59,9 @@ public class EditRecurringEventCommandTest {
 
         Person editedPerson = new PersonBuilder().build();
 
+        editedPerson.getIsolatedEventList().insert(GYM_ISOLATED_EVENT);
         model.addPerson(editedPerson);
         model.addRecurringEvent(editedPerson, BIKING_RECURRING_EVENT);
-        model.addIsolatedEvent(editedPerson, GYM_ISOLATED_EVENT);
 
         EditRecurringEventCommand.EditEventDescriptor editEventDescriptor =
                 new EditEventDescriptorBuilder("Jogging", DayOfWeek.SATURDAY,

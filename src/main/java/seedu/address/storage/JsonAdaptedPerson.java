@@ -121,7 +121,7 @@ class JsonAdaptedPerson {
                 modelIsolatedEvent.checkConflictsRecurringEventList(modelRecurringEventList);
                 modelIsolatedEventList.insert(isolatedEvent.toModelType());
             } catch (EventConflictException e) {
-                throw new IllegalValueException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
+                throw new IllegalValueException(e.getMessage());
             }
         }
         for (JsonAdaptedRecurringEvent recurringEvent : recurringEvents) {

@@ -18,7 +18,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -53,7 +52,7 @@ public class AddIsolatedEventCommandTest {
 
         AddIsolatedEventCommand command = new AddIsolatedEventCommand(Index.fromOneBased(1), isolatedEvent);
 
-        assertThrows(EventConflictException.class, () ->command.execute(model));
+        assertThrows(CommandException.class, () ->command.execute(model));
 
     }
 }

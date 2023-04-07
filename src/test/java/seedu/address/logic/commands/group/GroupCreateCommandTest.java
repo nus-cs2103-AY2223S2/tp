@@ -22,7 +22,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
@@ -194,21 +193,6 @@ class GroupCreateCommandTest {
 
         @Override
         public void updateFilteredTimeSlotList(Group group, LocalDate date) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addIsolatedEvent(Person index, IsolatedEvent eventToAdd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent,
-                                     IsolatedEvent editedIsolatedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 

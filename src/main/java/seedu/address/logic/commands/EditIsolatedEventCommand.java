@@ -24,7 +24,7 @@ import seedu.address.model.person.Person;
  */
 public class EditIsolatedEventCommand extends Command {
     public static final String COMMAND_WORD = "ie_edit";
-    public static final String MESSAGE_SUCCESS = "Isolated event edited to: %1$s";
+    public static final String MESSAGE_SUCCESS = "Isolated event edited to: %1$s for %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
 
@@ -82,10 +82,9 @@ public class EditIsolatedEventCommand extends Command {
 
         try {
             editedIsolatedEvent.checkDateTime();
+            isolatedEventList.checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
             editedIsolatedEvent.checkConflictsRecurringEventList(
                     personToEdit.getRecurringEventList());
-            isolatedEventList.checkClashingIsolatedEvent(editedIsolatedEvent.getStartDate(),
-                    editedIsolatedEvent.getEndDate());
         } catch (EventConflictException e) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, e.getMessage()));
         }
@@ -93,8 +92,8 @@ public class EditIsolatedEventCommand extends Command {
         isolatedEventList.edit(originalEvent, editedIsolatedEvent);
         model.setPerson(personToEdit, personToEdit);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " from " + originalEvent + " for " + personToEdit.getName());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent, personToEdit.getName())
+                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 
     /**

@@ -9,14 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
-import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;

@@ -2,13 +2,11 @@ package seedu.address.model.util;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.IsolatedEventList;
-import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
@@ -28,7 +26,8 @@ public class SampleDataUtil {
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("Borrowed 10 dollars"),
                 getGroupSet("CS2103"),
-                    new IsolatedEventList(), new RecurringEventList()), // groups added here will need to be added to address book
+                    new IsolatedEventList(),
+                    new RecurringEventList()), // groups added here will need to be added to address book
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("Met at school event", "Friends with Bob"),

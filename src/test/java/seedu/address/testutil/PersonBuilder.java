@@ -128,6 +128,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person with the data entered into the {@code PersonBuilder}
+     * @return A {@code Person} that has the details stored in the {@code PersonBuilder}.
+     */
     public Person build() {
         IsolatedEventList isolatedEventList = new IsolatedEventList();
         RecurringEventList recurringEventList = new RecurringEventList();
