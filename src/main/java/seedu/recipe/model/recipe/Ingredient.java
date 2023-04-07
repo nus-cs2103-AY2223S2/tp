@@ -111,11 +111,9 @@ public class Ingredient {
      * Returns the ingredient string to be displayed by the UI.
      */
     public String toDisplayString() {
-
         return this.name + " | " + this.quantity + " " + this.unitOfMeasurement
-                + " | " + "$" + this.pricePerUnit + "/" + this.unitOfMeasurement;
+                + " | " + "$" + String.format("%.2f", this.pricePerUnit) + "/" + this.unitOfMeasurement;
     }
-
     @Override
     public String toString() {
         return this.name + "," + this.quantity
