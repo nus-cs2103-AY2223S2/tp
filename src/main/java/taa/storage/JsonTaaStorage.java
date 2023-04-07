@@ -12,7 +12,6 @@ import taa.commons.exceptions.DataConversionException;
 import taa.commons.exceptions.IllegalValueException;
 import taa.commons.util.FileUtil;
 import taa.commons.util.JsonUtil;
-import taa.model.ReadOnlyStudentList;
 
 /**
  * A class to access ClassList data stored as a json file on the hard disk.

@@ -1,6 +1,7 @@
 package taa.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taa.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taa.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -13,16 +14,16 @@ import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 import taa.testutil.TypicalIndexes;
 import taa.testutil.TypicalPersons;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteStudentCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteStudentCommand}.
  */
 public class DeleteStudentCommandTest {
 
-    private final Model model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+    private final Model model = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -67,7 +68,7 @@ public class DeleteStudentCommandTest {
 
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaaData().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaaData().studentList.getStudentList().size());
 
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
@@ -80,20 +81,20 @@ public class DeleteStudentCommandTest {
         DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(TypicalIndexes.INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different student -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**

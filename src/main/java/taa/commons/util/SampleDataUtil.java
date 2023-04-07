@@ -7,11 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import taa.model.ClassList;
-import taa.model.ReadOnlyStudentList;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
 import taa.model.assignment.Assignment;
-import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;

@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import taa.commons.core.LogsCenter;
 import taa.commons.exceptions.DataConversionException;
-import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 

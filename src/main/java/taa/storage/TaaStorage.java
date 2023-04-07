@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import javafx.util.Pair;
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
-import taa.model.assignment.AssignmentList;
 import taa.model.ReadOnlyStudentList;
+import taa.model.assignment.AssignmentList;
 
 /**
  * Represents a storage for {@link ClassList} and {@link AssignmentList}.`
@@ -21,10 +20,10 @@ public interface TaaStorage {
     Path getTaaDataFilePath();
 
     /**
-     * @return {@link ClassList} and {@link AssignmentList} data as a {@link Pair} of {@link ReadOnlyStudentList} and
-     * {@link ReadOnlyAssignmentList} or {@code Optional.empty()} if storage file is not found.
+     * @return {@link ClassList} and {@link AssignmentList} data as a {@link TaaData}} or {@code Optional.empty()} if
+     *         storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException             if there was any problem when reading from the storage.
      */
     Optional<TaaData> readTaaData() throws DataConversionException, IOException;
 
@@ -35,6 +34,7 @@ public interface TaaStorage {
 
     /**
      * Saves the given {@link ReadOnlyStudentList} to the storage.
+     *
      * @param taaData cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

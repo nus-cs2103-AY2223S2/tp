@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
@@ -27,14 +26,14 @@ public interface Model {
     Predicate<ClassList> PREDICATE_SHOW_ALL_CLASSES = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -56,13 +55,13 @@ public interface Model {
      */
     void setTaaDataFilePath(Path taaDataFilePath);
 
+    /** Returns the TAA data */
+    TaaData getTaaData();
+
     /**
      * Replaces TAA data with the data in {@code taaData}.
      */
     void setTaaData(TaaData taaData);
-
-    /** Returns the TAA data*/
-    TaaData getTaaData();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.
@@ -78,14 +77,12 @@ public interface Model {
     int getClassListSize();
 
     /**
-     * Deletes the given student.
-     * The student must exist in the student list.
+     * Deletes the given student. The student must exist in the student list.
      */
     void deleteStudent(Student target);
 
     /**
-     * Adds the given student.
-     * {@code student} must not already exist in the student list.
+     * Adds the given student. {@code student} must not already exist in the student list.
      */
     void addStudent(Student student);
 
@@ -93,15 +90,15 @@ public interface Model {
 
     /**
      * Updates the student list to propagate change to the rest of the model.
+     *
      * @param student The student to be refreshed.
      */
     void updateStudent(Student student);
 
     /**
-     * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the student list.
-     * The student identity of {@code editedStudent} must not be the same as
-     * another existing student in the student list.
+     * Replaces the given student {@code target} with {@code editedStudent}. {@code target} must exist in the student
+     * list. The student identity of {@code editedStudent} must not be the same as another existing student in the
+     * student list.
      */
     void setStudent(Student target, Student editedStudent);
 
@@ -122,8 +119,9 @@ public interface Model {
     void updateFilteredClassLists(Predicate<ClassList> predicate);
 
     /**
-     * Adds a student to all the class lists he/she is tagged with.
-     * Creates new class lists to add the student into, if required.
+     * Adds a student to all the class lists he/she is tagged with. Creates new class lists to add the student into, if
+     * required.
+     *
      * @param student The student to include in all of his/her tagged classes.
      */
     void addStudentToTaggedClasses(Student student);
@@ -132,6 +130,7 @@ public interface Model {
      * Checks if a given assignment already exists.
      */
     boolean hasAssignment(String assignmentName);
+
     void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException;
 
     void deleteAssignment(String assignmentName) throws AssignmentNotFoundException;
@@ -153,6 +152,7 @@ public interface Model {
 
     void displayChart(ChartType chartType, String... args)
             throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException;
+
     String listAlarms();
 
     void deleteAlarm(int index) throws CommandException;

@@ -18,11 +18,9 @@ import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
 import taa.model.Model;
-import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.alarm.Alarm;
 import taa.model.assignment.Assignment;
-import taa.model.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.storage.TaaData;
 import taa.testutil.Assert;
@@ -86,12 +84,12 @@ public class AddStudentCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,7 +114,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public TaaData getTaaData() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -126,22 +124,37 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public TaaData getTaaData() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateStudent(Student target) {
+        public boolean hasClassList(ClassList tocheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public int getClassListSize() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void deleteStudent(Student target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClassList(ClassList toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,6 +169,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public ObservableList<Student> getFilteredClassList() {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -167,14 +186,13 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public ObservableList<Student> getFilteredClassList() {
-            throw new AssertionError("This method should not be called.");
-
+        public void addStudentToTaggedClasses(Student student) {
+            requireNonNull(student);
         }
 
         @Override
-        public boolean hasClassList(ClassList tocheck) {
-            throw new AssertionError("This method should not be called.");
+        public boolean hasAssignment(String assignmentName) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -188,22 +206,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public String listAssignments() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addClassList(ClassList toAdd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addStudentToTaggedClasses(Student student) {
-            requireNonNull(student);
-        }
-
-        @Override
         public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String listAssignments() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,22 +237,12 @@ public class AddStudentCommandTest {
         public void addStudentAssignment(Student stu) {
         }
 
-        public String listAlarms() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public int getClassListSize() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public boolean hasAssignment(String assignmentName) {
-            throw new AssertionError("This method should not be called");
-        }
-
         @Override
         public void displayChart(ChartType chart, String... args) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        public String listAlarms() {
             throw new AssertionError("This method should not be called");
         }
 
@@ -280,12 +278,6 @@ public class AddStudentCommandTest {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return personsAdded.stream().anyMatch(student::isSameStudent);
-        }
-
-        @Override
         public void addStudent(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
@@ -294,6 +286,12 @@ public class AddStudentCommandTest {
         @Override
         public TaaData getTaaData() {
             return new TaaData();
+        }
+
+        @Override
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return personsAdded.stream().anyMatch(student::isSameStudent);
         }
 
     }

@@ -16,13 +16,10 @@ import taa.commons.util.SampleDataUtil;
 import taa.commons.util.StringUtil;
 import taa.logic.Logic;
 import taa.logic.LogicManager;
-import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
-import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
-import taa.model.assignment.AssignmentList;
 import taa.storage.JsonTaaStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.Storage;
@@ -70,10 +67,26 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
+    @Override
+    public void start(Stage primaryStage) {
+        logger.info("Starting ClassList " + MainApp.VERSION);
+        ui.start(primaryStage);
+    }
+
+    @Override
+    public void stop() {
+        logger.info("============================ [ Stopping Address Book ] =============================");
+        try {
+            storage.saveUserPrefs(model.getUserPrefs());
+        } catch (IOException e) {
+            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+        }
+    }
+
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s student list and {@code userPrefs}. <br>
-     * The data from the sample student list will be used instead if {@code storage}'s student list is not found,
-     * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student list and {@code userPrefs}. <br> The
+     * data from the sample student list will be used instead if {@code storage}'s student list is not found, or an
+     * empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<TaaData> taaDataOptional;
@@ -100,9 +113,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code Config} using the file at {@code configFilePath}. <br>
-     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
-     * if {@code configFilePath} is null.
+     * Returns a {@code Config} using the file at {@code configFilePath}. <br> The default file path {@code
+     * Config#DEFAULT_CONFIG_FILE} will be used instead if {@code configFilePath} is null.
      */
     protected Config initConfig(Path configFilePath) {
         Config initializedConfig;
@@ -136,9 +148,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
-     * or a new {@code UserPrefs} with default configuration if errors occur when
-     * reading from the file.
+     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path, or a new {@code UserPrefs}
+     * with default configuration if errors occur when reading from the file.
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
@@ -165,21 +176,5 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting ClassList " + MainApp.VERSION);
-        ui.start(primaryStage);
-    }
-
-    @Override
-    public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
-        try {
-            storage.saveUserPrefs(model.getUserPrefs());
-        } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
-        }
     }
 }

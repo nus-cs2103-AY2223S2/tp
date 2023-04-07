@@ -29,7 +29,7 @@ class JsonAdaptedStudent {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@link JsonAdaptedStudent} with the given student details.
+     * Constructs a {@link JsonAdaptedStudent} with the given student details. Called when reading from JSON.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("attendance") String attendance,
@@ -44,7 +44,7 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts a given {@link Student} into this class for Jackson use.
+     * Converts a given {@link Student} into this class for Jackson use. Called when saving to JSON.
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
@@ -77,7 +77,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
         if (!Attendance.isValidPpStorageString(pp)) {
-            throw new IllegalValueException("Invalid participation value \""+pp+"\" in JSON file");
+            throw new IllegalValueException("Invalid participation value \"" + pp + "\" in JSON file");
         }
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));

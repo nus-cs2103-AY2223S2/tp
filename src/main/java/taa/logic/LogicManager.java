@@ -14,7 +14,6 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.TaaParser;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
-import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 import taa.storage.Storage;
 import taa.storage.TaaData;

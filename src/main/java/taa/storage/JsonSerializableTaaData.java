@@ -3,7 +3,6 @@ package taa.storage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -61,10 +60,12 @@ class JsonSerializableTaaData {
             classList.addStudent(student);
         }
         final ArrayList<Assignment> asgns = new ArrayList<>(assignments.size());
-        for(JsonAdaptedAssignment jsonAssignment:assignments)
+        for (JsonAdaptedAssignment jsonAssignment : assignments) {
             asgns.add(jsonAssignment.toModelType());
-        if(asgns.stream().map(Assignment::getName).distinct().count()<assignments.size())
+        }
+        if (asgns.stream().map(Assignment::getName).distinct().count() < assignments.size()) {
             throw new IllegalValueException(MESSAGE_DUPLICATE_ASGN);
+        }
         return new TaaData(classList, asgns.toArray(new Assignment[0]));
     }
 

@@ -21,13 +21,13 @@ import taa.model.student.Student;
  * List of assignments. This is the singleton class that the model uses to do all things related to assignments and
  * submissions.
  */
-public class AssignmentList{
+public class AssignmentList {
     public static final AssignmentList INSTANCE = new AssignmentList();
     private final ArrayList<Assignment> assignments = new ArrayList<>();
     private final HashMap<String, Assignment> assignmentMap = new HashMap<>();
-    private final Consumer<Assignment> addAsgnToRecords = asgn->{
+    private final Consumer<Assignment> addAsgnToRecords = asgn -> {
         assignments.add(asgn);
-        assignmentMap.put(asgn.getName(),asgn);
+        assignmentMap.put(asgn.getName(), asgn);
     };
 
     private AssignmentList() {
@@ -35,6 +35,7 @@ public class AssignmentList{
 
     /**
      * For all submission strings, check whether they are length 5 and contains the correct input format.
+     *
      * @param moreAsngNameTests Function that returns error msg if err occurs or null if no error
      */
     private static void testStuSubmitStorageStrs(
@@ -227,9 +228,6 @@ public class AssignmentList{
      * @param sl the student list
      */
     public void initFromStorage(FilteredList<Student> sl, Assignment[] asgnArr) {
-        if (sl.isEmpty()) {
-            return;
-        }
         try {
             checkValidStorage(sl);
         } catch (ParseException e) {
@@ -238,7 +236,8 @@ public class AssignmentList{
                 stu.getSubmissionStorageStrings().clear();
             }
             System.out.println("Parsing of submission storage string error: " + e.getMessage());
-            // Calling logger here seems sus, what is a better design? also is this the best design to do the checking?
+            /* TODO Calling logger here seems sus, what is a better design?
+            Also is this the best design to do the checking? */
             return;
         }
 

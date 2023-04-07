@@ -7,6 +7,7 @@ import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
 
@@ -19,7 +20,7 @@ public class AddStudentCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+        model = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
     }
 
     @Test
@@ -35,7 +36,7 @@ public class AddStudentCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student studentInList = model.getTaaData().getStudentList().get(0);
+        Student studentInList = model.getTaaData().studentList.getStudentList().get(0);
         CommandTestUtil.assertCommandFailure(
                 new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }

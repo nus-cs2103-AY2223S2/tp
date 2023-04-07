@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import taa.commons.exceptions.DataConversionException;
-import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 
