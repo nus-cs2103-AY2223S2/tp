@@ -53,7 +53,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deleteCard 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -95,15 +95,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a  command, it uses the `MasterDeckParser` class (more precisely, a method within `MasterDeckParser` which depends on the current mode of the application) to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCardCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a card).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteCard 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteCard 1` Command](images/DeleteCardSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCardCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -111,8 +111,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `MasterDeckParser` class parse the command differently based on the current mode (MAIN, DECK, REVIEW) of the application and creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MasterDeckParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `MasterDeckParser` class parse the command differently based on the current mode (`MAIN_UNSELECTED`, `MAIN_SELECTED`, `REVIEW`) of the application and creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCardCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCardCommand`) which the `MasterDeckParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCardCommandParser`, `DeleteCardCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -522,3 +522,38 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+### Appendix: Planned Enhancement
+In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
+**1. Making the command box scrollable**
+- Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
+- Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
+- We plan to make content in the command box wrap and the command box itself scrollable.
+
+#### Figure 1.1 Current: Non Scrollable Command Box
+![Current Non Scrollable Command Box](images/current_command_box.png)
+
+#### Figure 1.2 Planned Enhancement: Scrollable Command Box
+![Scrollable Command Box](images/scrollable_command_box_enhancement.png)
+
+**2. Review by untagged cards**
+- Currently, a user can only review all cards or cards that are specifically tagged with a difficulty.
+- However, a user may want to review only untagged cards (which they have yet to review).
+- Hence, the `review` command should support a flag `-u` where untagged cards will be reviewed.
+
+**3. Enable removing of tags**
+- Currently, if a user intends to remove a tag from a card, they need to delete the card and create a new card without a tag.
+- Hence, it would be more convenient if the user is able to untag a card directly from the edit command.
+- Example: `editCard 2 t\` would untag card with displayed index 2.
+- Additionally, a user may want to clear all tags of a deck before sharing with others.
+- Hence, it would be more convenient if there is a `clearTags` command to untag all cards in a deck
+- Example: `clearTags`
+
+**4. Setting minimum width for components**
+- Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
+- Hence, we intend to fix it by setting a minimum width for each component.
+#### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
+- ![Unusable GUI](images/unusable_gui.png)
+
+#### Figure 4.2 Planned Enhancement: GUI with minimum width
+- ![GUI with min width](images/gui_min_width.png)
