@@ -281,8 +281,6 @@ a duplicate internship, InternBuddy will remind you that the internship already 
 2 internships are considered to be duplicates if they have matching `COMPANY_NAME`, `STATUS`, `ROLE` **and**
 `DATE`. The comparison is **case-insensitive**.
 
-<div style="page-break-after: always;"></div>
-
 In Table 5, internships A and B are considered as duplicate internships, because they have the same
 `COMPANY_NAME`, `ROLE`, `STATUS` and `DATE`. Note how the capitalisation differences in `COMPANY_NAME`
 and `ROLE` do not affect the comparison.
