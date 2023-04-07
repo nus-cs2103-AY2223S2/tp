@@ -50,8 +50,7 @@ public class LinkPlaneToFlightCommand implements Command {
         String result = planes.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
+                        "%s",
                         entry.getValue().getModel()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
