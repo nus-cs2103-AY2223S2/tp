@@ -1,0 +1,44 @@
+@startuml
+start
+:DegreeProgressionData.generate(UniqueModuleList) is executed;
+
+if () then ([module is multi-tagged])
+    :Adds to stack;
+
+else ([module is single-tagged])
+    if () then ([module is completed and gradeable])
+        :Counts the module under the requirement;
+        if () then ([module exercises SU option])
+        else ([else])
+            :Counts the module into CAP;
+        endif
+    else ([module is planned])
+        :Counts the module as planned;
+    endif
+endif
+
+if () then ([stack is not empty])
+    repeat
+        :Pop a multi-tagged module;
+        if () then ([module is completed and gradeable])
+            :Calculates total MCs to be mapped by module;
+            :Calculates duplicate MCs caused by module;
+            :Counts the module under the requirement;
+            if () then ([module exercises SU option])
+            else ([else])
+                :Counts the module into CAP;
+            endif
+        else ([module is planned])
+            :Counts the module as planned;
+        endif
+    repeat while () is ([stack not empty])
+    -> stack is empty;
+else ([else])
+endif
+
+:Expand the UE total based on duplicated MCs;
+:Calculates the CAP;
+:Calculates the meaningful credits;
+:Calculates the overall percentage;
+stop
+@enduml

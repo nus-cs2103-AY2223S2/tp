@@ -12,6 +12,7 @@ Class DegreeProgression
 Class ModelManager
 Class UserPrefs
 
+Class DegreeProgressionData
 Class UniqueModuleList
 Class Module
 Class Grade
@@ -19,6 +20,8 @@ Class SemYear
 Class Code
 Class Credit
 Class Tag
+Class Tags
+Class "<<Enumeration>>\nValidTag" as ValidTag
 
 }
 
@@ -35,12 +38,15 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 DegreeProgression *--> "1" UniqueModuleList
+DegreeProgression .down.> DegreeProgressionData
 UniqueModuleList --> "~* all" Module
 Module *--> Code
 Module *--> Credit
 Module *--> SemYear
 Module *--> Grade
-Module *--> "*" Tag
+Module *--> Tags
+Tags *--> "*" Tag
+Tag .left.> ValidTag
 
 Code -[hidden]right-> Credit
 Credit -[hidden]right-> Grade

@@ -42,8 +42,7 @@ that you can utilise **MODTrek** to its full potential.
 To get started, we have prepared a [Quick Start](#quick-start) section in this user guide to ensure that you will
 have a seamless setting up process.
 
-You can also familiarize yourself with the GUI in our [GUI Overview](#gui-overview) section where you will get a 
-quick breakdown of our GUI.
+You can also familiarize yourself with the GUI in our [GUI Overview](#gui-overview) section where you will get a quick breakdown of our GUI.
 
 Not sure what features **MODTrek** has or how to use them? Our [Features](#features) section provides an in depth
 explanation of **MODTrek** can do and how you can use them effectively. Alternatively, you can go to our [Command Summary](#command-summary)
@@ -92,9 +91,8 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download `modtrek.jar` [here](https://github.com/AY2223S2-CS2103T-T13-1/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for **MODTrek**.
-4. Lauch the app by double-clicking the file or by navigating to the file using your command terminal, and
-running `java -jar modtrek.jar` in your terminal. 
-5. A GUI similar to the one below should appear in a few seconds. 
+4. Lauch the app by double-clicking the file or by navigating to the file using your command terminal, and running `java -jar modtrek.jar` in your terminal.
+5. A GUI similar to the one below should appear in a few seconds.
 ![Ui QuickStart](images/Ui-quickstart2.png)
 <p align="center"><em>GUI of MODTrek</em><br></p>
 
@@ -115,9 +113,7 @@ The following is an annotated breakdown of **MODTrek's** GUI:
 1. **Command Input:** User inputs commands here.
 2. **Command Screen:** Relevant messages from the application will be displayed here. This includes success messages, error
 messages and resul
-3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
-to toggle between the module list in **MODTrek** or the user's degree progression. Using the `find` command when making 
-a query on the module list will navigate you to the module search screen.
+3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command to toggle between the module list in **MODTrek** or the user's degree progression. Using the `find` command when making a query on the module list will navigate you to the module search screen.
 
 The following is the annotated breakdown of the Results Section of **MODTrek's** GUI:
 ![UI subsection](images/Ui-subsections-detailed.png)
@@ -144,7 +140,7 @@ each sub category when sorted.
 
 * Words enclosed by `<>` are the parameters to be supplied by the user.<br>
 E.g. in `add /m <code>`, `<code>` is a parameter which can be replaced by `CS2030S` to give the command `add /m CS2030S`.
-  
+
 * Parameters encapsulated in between round brackets are optional.<br>
 E.g. in `delete /m <code1> (/m <code2>)` can be used as `delete /m CS1101S /m CS1231` or as `delete /m CS1101S`.
 
@@ -187,7 +183,7 @@ Additional details:
 If there are reasons you need to add a module with the same module code (e.g. retaken module, MOOCs) refer to this [faq](#faq3) for suggested fixes.
 </div>
 
-**Example:** 
+**Example:**
 * `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`
 * `add /m GESS1025 /c 4 /y y1s2`
 
@@ -207,7 +203,7 @@ Deletes the specified module(s) from the module list. You can also choose to del
 1 module to be deleted must be specified.
 </div>
 
-**Example:** 
+**Example:**
 * `delete /m CS2100 /m CS2040S`
 * `delete /m MA1521`
 * `delete all`
@@ -232,7 +228,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 :exclamation: **Caution:** Past data will be overridden and not be saved
 </div>
 
-**Example:** 
+**Example:**
 * `edit ES2660 /m CS2101 /g B+ /t MS`
 * `edit CS2107 /y y3s1`
 
@@ -332,6 +328,8 @@ Toggles between the display of degree progress or module list.
 :bulb: **Tip:** You can also click the different screen names at the bottom of the results panel to navigate between the different screens.
 
 :bulb: **Interpreting data:** You might find that the total MC you have included may not match with the MC total as shown. The MC total shown indicates the "meaningful" credits, which are those that are counted towards your degree progression, based on the degree requirements. Any credits beyond the limit by the requirement is not "meaningful", and therefore not counted into the total.
+
+For more detailed information on the calculations, please refer to this [section](DeveloperGuide.md#generation-of-degree-progression-data) in our developer guide.
 </div>
 
 [Back to Table of Contents](#toc)
@@ -356,7 +354,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application! 
+:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application!
 </div>
 
 <div markdown="span" class="alert alert-warning">
