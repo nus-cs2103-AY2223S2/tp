@@ -237,11 +237,11 @@ Our initial recipe book:
 
 - `delete 1` will result in a recipe book as shown below:
 
-<img src="images/DeleteResult1.png" width=500 height=400>
+<img src="images/DeleteResult.png" width=500 height=400>
 
 - `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
-<img src="images/DeleteResult2.png" width=500 height=400>
+<img src="images/DeleteError.png" width=500 height=400>
 
   [Back to top](#top)
 
