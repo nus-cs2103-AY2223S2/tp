@@ -1,0 +1,36 @@
+{
+  "mobs" : [ {
+    "name" : "The Rat",
+    "stats" : {
+      "strength" : 22,
+      "dexterity" : 11,
+      "intelligence" : 33
+    },
+    "inventory" : {
+      "items" : [ ]
+    },
+    "challengeRating" : 2.0,
+    "isLegendary" : false,
+    "tagged" : [ ]
+  } ],
+  "characters" : [ {
+    "name" : "Leeroy Jenkins",
+    "stats" : {
+      "strength" : 1,
+      "dexterity" : 1,
+      "intelligence" : 1
+    },
+    "inventory" : {
+      "items" : [ ]
+    },
+    "level" : 1,
+    "xp" : 0,
+    "tagged" : [ ]
+  } ],
+  "items" : [ {
+    "name" : "VALID NAME",
+    "cost" : -1,
+    "weight" : 0.0,
+    "tagged" : [ ]
+  } ]
+}

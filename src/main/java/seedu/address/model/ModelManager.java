@@ -48,7 +48,7 @@ public class ModelManager implements Model {
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredActive = new FilteredList<>(this.reroll.getAllList());
+        this.filteredActive = new FilteredList<>(this.reroll.getEntities().getEntityList());
     }
 
     /**
@@ -242,13 +242,13 @@ public class ModelManager implements Model {
         ObservableList<Entity> entities = null;
         switch (classification) {
         case "char":
-            entities = this.reroll.getCharList();
+            entities = this.reroll.getEntities().getCharList();
             break;
         case "mob":
-            entities = this.reroll.getMobList();
+            entities = this.reroll.getEntities().getMobList();
             break;
         case "item":
-            entities = this.reroll.getItemList();
+            entities = this.reroll.getEntities().getItemList();
             break;
         default:
             logger.info("What have you done");

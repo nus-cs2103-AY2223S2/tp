@@ -45,15 +45,15 @@ public class EntityBuilder {
         return this;
     }
 
-    public Entity buildChar() {
+    public Character buildChar() {
         return new Character(name);
     }
 
-    public Entity buildItem() {
+    public Item buildItem() {
         return new Item(name);
     }
 
-    public Entity buildMob() {
+    public Mob buildMob() {
         return new Mob(name);
     }
 

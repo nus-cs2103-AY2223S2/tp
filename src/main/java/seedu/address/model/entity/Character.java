@@ -128,5 +128,4 @@ public class Character extends Entity {
                 || (otherEntity instanceof Character
                 && otherEntity.getName().equals(getName()));
     }
-
 }

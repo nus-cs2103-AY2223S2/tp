@@ -40,11 +40,11 @@ public class JsonSerializableReroll {
      * Converts a given {@code ReadOnlyReroll} into this class for Jackson use.
      */
     public JsonSerializableReroll(ReadOnlyReroll source) {
-        mobs.addAll(source.getMobs().getEntityList().stream().map(x -> (Mob) x)
+        mobs.addAll(source.getEntities().getMobList().stream().map(x -> (Mob) x)
                 .map(JsonAdaptedMob::new).collect(Collectors.toList()));
-        characters.addAll(source.getCharacters().getEntityList().stream()
+        characters.addAll(source.getEntities().getCharList().stream()
                 .map(x -> (Character) x).map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
-        items.addAll(source.getItems().getEntityList().stream().map(x -> (Item) x)
+        items.addAll(source.getEntities().getItemList().stream().map(x -> (Item) x)
                 .map(JsonAdaptedItem::new).collect(Collectors.toList()));
     }
 

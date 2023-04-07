@@ -1,0 +1,28 @@
+{
+  "mobs" : [],
+  "characters" : [ {
+    "name" : "Leeroy Jenkins",
+    "stats" : {
+      "strength" : 1,
+      "dexterity" : 1,
+      "intelligence" : 1
+    },
+    "inventory" : {
+      "items" : [ ]
+    },
+    "level" : 1,
+    "xp" : 0,
+    "tagged" : [ ]
+  } ],
+  "items" : [ {
+    "name" : "Duplicate",
+    "cost" : 0,
+    "weight" : 0.0,
+    "tagged" : [ ]
+  } , {
+    "name" : "Duplicate",
+    "cost" : 3,
+    "weight" : 4.0,
+    "tagged" : [ ]
+  }]
+}

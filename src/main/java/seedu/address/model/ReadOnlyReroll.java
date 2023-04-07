@@ -7,21 +7,6 @@ import java.util.List;
  */
 public interface ReadOnlyReroll {
     /**
-     * Returns an unmodifiable view of all items.
-     */
-    ReadOnlyEntities getItems();
-
-    /**
-     * Returns an unmodifiable view of all characters.
-     */
-    ReadOnlyEntities getCharacters();
-
-    /**
-     * Returns an unmodifiable view of all mobs.
-     */
-    ReadOnlyEntities getMobs();
-
-    /**
      * Returns an unmodifiable view of all entities.
      */
     ReadOnlyEntities getEntities();

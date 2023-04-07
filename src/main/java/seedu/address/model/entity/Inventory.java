@@ -74,4 +74,11 @@ public class Inventory {
     public List<Item> getItems() {
         return Collections.unmodifiableList(items);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Inventory
+                && this.items.equals(((Inventory) other).items));
+    }
 }
