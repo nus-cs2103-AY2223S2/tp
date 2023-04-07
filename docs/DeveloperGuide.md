@@ -118,7 +118,7 @@ How the parsing works:
 
 <img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
-<img src="images/PersonPackageClassDiagram.png" width="450" alt="PersonPackageClassDiagram" />
+<img src="images/PersonPackageClassDiagram.png" alt="PersonPackageClassDiagram" />
 
 The `Model` component,
 

@@ -38,6 +38,7 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 #### Contributions to the UG
 Here are my contributions to the UG.
 - Sections
+  - Created the template for [User Guide](../UserGuide.md)
   - Added parameters section in the [glossary](../UserGuide.md#glossary) for ease of reference
   - Added section on [features provided by Docedex](../UserGuide.md#features) and associated sub-sections
   - Aided in development of [command summary](../UserGuide.md#command-summary).
