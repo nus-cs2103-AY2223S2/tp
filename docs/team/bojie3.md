@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 - **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bojie3&breakdown=true)
 - **New Features**
-  - **Attendance and Participation** 
+  - **Attendance and Participation**
     - **What it does**: Allows users to include attendance and participation points for their students.
       - This feature allows user to easily mark, unmark attendance and allocate participation points
       - User can view the overall attendance and average participation points easily in the GUI
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     - Updated the URL from AB3 to TAA's userGuide
     - Changed UI aspects of the help window
   - **Modified storage to store student's Attendance and Participation info** ([PR #85](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/130))
-    - Updated the JsonAdaptedStudent to include student information such Attendance and participation 
+    - Updated the JsonAdaptedStudent to include student information such Attendance and participation
     - Fixed failing test cases due to the modification of student class
 - **Bug Fixes**
   - Fixed bug where invalid attendace/participation value in JSON causes error in GUI startup ([PR #213](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/213))
@@ -42,4 +42,4 @@ Given below are my contributions to the project.
   - **Developer Guide**
     - Added MSS for the following commands
       - `markAtd/unmarkAtd` ([PR #117](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/117))
-      - `insertPP`  
+      - `insertPP`
