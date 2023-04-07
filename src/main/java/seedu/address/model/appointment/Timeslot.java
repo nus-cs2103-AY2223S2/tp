@@ -17,6 +17,8 @@ public class Timeslot {
         "The starting and ending LocalDateTime should follow the format ddMMyyyy HH:mm (day month year hour minutes),"
             + " and it should not be blank";
 
+    public static final String MESSAGE_START_AFTER_END =
+        "The starting time should be before the ending time";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -44,7 +46,7 @@ public class Timeslot {
         this.timeslotString = timeslot;
         this.startingDateTime = LocalDateTime.parse(dateTimes[0], dateTimeFormatter);
         this.endingDateTime = LocalDateTime.parse(dateTimes[1], dateTimeFormatter);
-        checkArgument(startingDateTime.isBefore(endingDateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(startingDateTime.isBefore(endingDateTime), MESSAGE_START_AFTER_END);
     }
 
     /**
