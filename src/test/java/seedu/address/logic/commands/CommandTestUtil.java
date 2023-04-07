@@ -177,7 +177,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Doctor selectedDoctor, Model expectedModel) {
         CommandResult expectedCommandResult =
-                new CommandResult(expectedMessage, true, selectedDoctor);
+                new CommandResult(expectedMessage, selectedDoctor);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -188,7 +188,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Patient selectedPatient, Model expectedModel) {
         CommandResult expectedCommandResult =
-                new CommandResult(expectedMessage, true, selectedPatient);
+                new CommandResult(expectedMessage, selectedPatient);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

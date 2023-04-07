@@ -1,19 +1,17 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays all information of a {@code Patient}.
  */
-public class EnlargedPatientInfoCard extends UiPart<Region> {
+public class EnlargedPatientInfoCard extends EnlargedInfoCard {
     private static final String FXML = "EnlargedPatientInfoCard.fxml";
 
     /**
@@ -24,9 +22,9 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private Optional<Patient> selectedPatientOptional;
+    private Patient selectedPatient;
 
-    @javafx.fxml.FXML
+    @FXML
     private VBox enlargedPatientInfoCard;
     @FXML
     private Label name;
@@ -44,16 +42,6 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label remark;
-    @FXML
-    private FlowPane tags;
-
-    /**
-     * Creates a {@code EnlargedPatientInfoCard} with the given {@code Optional< Patient >}.
-     */
-    public EnlargedPatientInfoCard(Optional<Patient> selectedPatientOptional) {
-        super(FXML);
-        updateSelectedPatientOptional(selectedPatientOptional);
-    }
 
     /**
      * Creates an empty {@code EnlargedPatientInfoCard}.
@@ -66,24 +54,24 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
     /**
      * Updates the selected patient stored in {@code EnlargedPatientInfoCard}.
      *
-     * @param selectedPatient the given {@code Optional< Patient >}
+     * @param selectedPatient the given {@code Patient}
      */
-    public void updateSelectedPatientOptional(Optional<Patient> selectedPatient) {
-        this.selectedPatientOptional = selectedPatient;
+    public void updateSelectedPatient(Patient selectedPatient) {
+        this.selectedPatient = selectedPatient;
         updateDisplay();
     }
 
     /**
      * Updates the information shown on the {@code EnlargedPatientInfoCard}
-     * with that of the stored {@code Optional< Patient >}.
+     * with that of the stored {@code Patient}.
      * If no patient is stored, then the {@code EnlargedPatientInfoCard} is cleared.
      */
     private void updateDisplay() {
-        if (selectedPatientOptional.isEmpty()) {
-            clearDisplay();
+        clearDisplay();
+        if (selectedPatient == null) {
             return;
         }
-        Patient selectedPatient = selectedPatientOptional.get();
+
         name.setText(selectedPatient.getName().toString());
         phone.setText(selectedPatient.getPhone().toString());
         email.setText(selectedPatient.getEmail().toString());
@@ -92,15 +80,9 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
         diagnosis.setText(selectedPatient.getDiagnosis().toString());
         status.setText(selectedPatient.getStatus().toString());
         remark.setText(selectedPatient.getRemark().toString());
-        tags.getChildren().clear();
         selectedPatient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setWrapText(true);
-                    tagLabel.setMaxWidth(150);
-                    tags.getChildren().add(tagLabel);
-                });
+                .sorted(Comparator.comparing(Tag::getTagName))
+                .forEach(this::addTagToFlowPane);
     }
 
     /**
@@ -115,7 +97,7 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
         diagnosis.setText("");
         status.setText("");
         remark.setText("");
-        tags.getChildren().clear();
+        this.clearTags();
     }
 
     @Override
@@ -132,6 +114,9 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
 
         // state check
         EnlargedPatientInfoCard card = (EnlargedPatientInfoCard) other;
-        return selectedPatientOptional.equals(card.selectedPatientOptional);
+        if (selectedPatient == null) {
+            return card.selectedPatient == null;
+        }
+        return selectedPatient.equals(card.selectedPatient);
     }
 }

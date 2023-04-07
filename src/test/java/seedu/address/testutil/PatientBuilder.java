@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -144,15 +143,6 @@ public class PatientBuilder {
      */
     public PatientBuilder withRemark(String remark) {
         this.remark = new Remark(remark);
-        return this;
-    }
-
-    /**
-     * Adds the list of {@code Doctor} to the doctor list
-     * of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withDoctors(Doctor ... doctors) {
-        this.doctors = SampleDataUtil.getDoctorSet(doctors);
         return this;
     }
 

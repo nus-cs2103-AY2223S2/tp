@@ -94,7 +94,7 @@ public class EditDoctorCommand extends Command {
         model.setDoctor(doctorToEdit, editedDoctor);
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor),
-                true, editedDoctor);
+                editedDoctor);
     }
 
     /**
