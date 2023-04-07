@@ -272,6 +272,7 @@ The feature utilises the following classes:
 - `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
 - `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
 - `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+- `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
@@ -333,20 +334,27 @@ The `mark` command supports:
 - Marking unmarked videos as watched
 - Marking marked videos as unwatched
 - Marking multiple videos in 1. and 2.
-  - E.g.: User wishes to mark a video "Vid 1" in lecture "Week 1" of module "CS2040S" as watched.\
-    Executing `mark Vid 1 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
+  - E.g.: User wishes to mark multile videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
+    Executing `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (CS2040S) does not exist in the Tracker
     2. the lecture (Week 1) does not exist in the module (CS2040S)
-    3. the video (Vid 1) does not exist in the lecture of the module (CS2040S > Week 1)
-    4. the video (CS2040S > Week 1 > Vid 1) has already been marked as watched
+    3. either of the videos (Vid 1, Vid 2) does not exist in the lecture of the module (CS2040S > Week 1)
+    4. either of the videos (Vid 1, Vid 2) has already been marked as watched
   - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.\
-    Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either on of the following conditions are true:
+    Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (ST2334) doese not exist in the Tracker
     2. the lecture (Topic 1) does not exist in the module (ST2334)
     3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
-    4. either of the videos (Vid 3, Vid 4, Lecture Summary) has already been marked as unwatched
+  - E.g.: User wishes to mark a single video "Vid 1" in lecture "Topic 4" of module "ST2334" as unwatched.\
+    Executing `unmark Vid 1 /mod ST2334 /lec Topic 4` would allow the user to do so, unless either one of the following conditions are true:
+    1. the module (ST2334) does not exist in the Tracker
+    2. the lecture (Topic 4) does not exist in the module (ST2334)
+    3. the video (Vid 1) is already unmarked
+    4. the video (Vid 1) does not exist in the lecture of the module (ST2334 > Topic 4)
 
 This feature's behaviour is dependent on the arguments provided by the user, as well as the state of Le Tracker.
+
+Note the difference between mark multiple and unmark multiple. As of current implementation, unmark multiple does not alert the user if video was already unmarked. However, unmark a single video does.
 
 **Implementation Details**
 
@@ -358,10 +366,11 @@ The feature utilises the following classes:
 - `MarkAsUnwatchedCommandParser`: parses arguments appropriately for `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` to be returned to be executed
 - `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
 - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
+- `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
 
-![MarkAsWatched](diagrams/MarkAsWatchedSequenceDiagram.png)
+![MarkAsWatched](images/mark/MarkAsWatchedSequenceDiagram.png)
 
 The following is a description of the code execution flow
 
@@ -369,10 +378,9 @@ The following is a description of the code execution flow
 
    | Parser                         | Has Multiple Videos | Command                          |
    | ------------------------------ | ------------------- | -------------------------------- |
-   | `MarkAsWatchedCommandParser`   | --                  | `MarkAsWatchedCommand`           |
+   | `MarkAsWatchedCommandParser`   | Yes / No              | `MarkAsWatchedCommand`           |
    | `MarkAsUnwatchedCommandParser` | Yes                 | `MarkAsUnwatchedCommand`         |
-   |                                | No                  | `MarkMultipleAsUnwatchedCommand` |
-   | ---                            | ---                 | ---                              |
+   | `MarkAsUnwatchedCommandParser` | No                  | `MarkMultipleAsUnwatchedCommand` |
 
 2. The argument values are then checked on as such:
 
@@ -409,6 +417,7 @@ The following is a description of the code execution flow
 
 **Possible further implementation**
 
+- Update command result of `MarkMultipleAsUnwatchedCommand` to catch when this command is called when the videos are already marked as unwatched, similar to `MarkAsUnwatchedCommand` and `MarkAsWatchedCommand`
 - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
 
 ### List module, lecture and video feature
