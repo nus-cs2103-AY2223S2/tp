@@ -86,7 +86,7 @@ product effectively.
 
 Moving between pages is easy with our navigation tools.
 Simply use a combination of `select`, `back`, `session`, and `task` commands.
-If you need more information on how to use these commands, just refer to our handy navigation guide below.
+If you need more information on how to use these commands, just refer to our handy navigation guide below (Figure 3).
 
 ![image](./images/navigation.png)
 ###### Figure 3
