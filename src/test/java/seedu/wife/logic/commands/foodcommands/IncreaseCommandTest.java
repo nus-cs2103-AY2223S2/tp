@@ -1,7 +1,6 @@
 package seedu.wife.logic.commands.foodcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_INCREASE;
-import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
@@ -9,14 +8,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.foodcommands.IncreaseCommand.IncreaseFoodDescriptor;
-import seedu.wife.logic.parser.exceptions.ParseException;
-import seedu.wife.logic.parser.foodcommandparser.IncreaseCommandParser;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.UserPrefs;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
-import seedu.wife.model.food.Quantity;
 import seedu.wife.testutil.FoodBuilder;
 import seedu.wife.testutil.IncreaseFoodDescriptorBuilder;
 
@@ -62,30 +58,11 @@ public class IncreaseCommandTest {
 
         Model expectedModel = new ModelManager(new Wife(model.getWife()), new UserPrefs());
         expectedModel.setFood(lastFood, increasedFood);
-        IncreaseCommandParser increaseCommandParser = new IncreaseCommandParser();
-
-        try {
-            IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2");
-            IncreaseFoodDescriptor descriptor = increaseCommand.increaseFoodDescriptor;
-            String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood)
-                    + " by "
-                    + descriptor.getQuantity();
-            assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
-        } catch (ParseException ignored) {
-            assert false;
-        }
+        IncreaseFoodDescriptor descriptor = new IncreaseFoodDescriptor();
+        IncreaseCommand increaseCommand = new IncreaseCommand(indexLastFood, descriptor);
+        String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood) + " by "
+                + descriptor.getQuantity();
+        assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_negativeQuantitySpecifiedUnfilteredList_failure() {
-        String failureMessage = Quantity.MESSAGE_CONSTRAINTS;
-        IncreaseCommandParser increaseCommandParser = new IncreaseCommandParser();
-        try {
-            IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2 q/0");
-            assertCommandFailure(increaseCommand, model, failureMessage);
-        } catch (ParseException ignored) {
-            assert true;
-        }
-
-    }
 }

@@ -41,10 +41,14 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CHOCOLATE = "CHOCOLATE";
     public static final String VALID_QUANTITY_INCREASE = "10";
     public static final String VALID_QUANTITY_DECREASE = "1";
+    public static final String INVALID_QUANTITY_DECREASE = "100";
+    public static final String VALID_QUANTITY_DEC_MEIJI = " " + PREFIX_QUANTITY + VALID_QUANTITY_DECREASE;
+    public static final String INVALID_QUANTITY_DEC_MEIJI = " " + PREFIX_QUANTITY + INVALID_QUANTITY_DECREASE;
     public static final String NAME_DESC_MEIJI = " " + PREFIX_NAME + VALID_NAME_MEIJI;
     public static final String UNIT_DESC_MEIJI = " " + PREFIX_UNIT + VALID_UNIT_MEIJI;
     public static final String QUANTITY_DESC_MEIJI = " " + PREFIX_QUANTITY + VALID_QUANTITY_MEIJI;
     public static final String EXPIRY_DATE_DESC_MEIJI = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_MEIJI;
+
     public static final String TAG_DESC_MEIJI = " " + PREFIX_TAG + VALID_TAG_DAIRY;
     public static final String NAME_DESC_CHOCOLATE = " " + PREFIX_NAME + VALID_NAME_CHOCOLATE;
     public static final String UNIT_DESC_CHOCOLATE = " " + PREFIX_UNIT + VALID_UNIT_CHOCOLATE;
@@ -54,6 +58,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Meiji&"; // '&' not allowed in names
     public static final String INVALID_UNIT_DESC = " " + PREFIX_UNIT + "C@rton"; // '@' not allowed in phones
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-1"; // value < 0
+    public static final String INVALID_QUANTITY_STRING = " " + PREFIX_QUANTITY + "s"; // value not integer
     public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "13112024"; // date not formatted
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "dairy*"; // '*' not allowed in tags
     public static final String VALID_FIRST_INDEX_ID = "1";
@@ -74,14 +79,12 @@ public class CommandTestUtil {
                 .withUnit(VALID_UNIT_MEIJI)
                 .withQuantity(VALID_QUANTITY_MEIJI)
                 .withExpiryDate(VALID_EXPIRY_DATE_MEIJI)
-                .withTags(VALID_TAG_DAIRY)
                 .build();
         DESC_CHOCOLATE = new EditFoodDescriptorBuilder()
                 .withName(VALID_NAME_CHOCOLATE)
                 .withUnit(VALID_UNIT_CHOCOLATE)
                 .withQuantity(VALID_QUANTITY_CHOCOLATE)
                 .withExpiryDate(VALID_EXPIRY_DATE_CHOCOLATE)
-                .withTags(VALID_TAG_CHOCOLATE)
                 .build();
     }
 

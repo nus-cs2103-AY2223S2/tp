@@ -42,24 +42,27 @@ stating the quantity they wish to increase/decrease by.
 
 * **Documentation**: *to be edited*
     * User Guide:
-        * Added documentation for the features `inc` and `dec` (Pull Request [[PR#175]])
+        * Added documentation for the features `inc` and `dec` [[PR#175]]
+        * Added table of contents and command summary [[PR#186]]
+        * Fixed UG issues from PE-D [[PR#280]]
 
       * Developer Guide:
         * Added documentation for non-functional requirements (NFR)
         * Added use case when user wants to view help
         * Added documentation for user stories
+        * Added implementation details and diagrams for features `inc` and `dec` [[PR#171]]
 
 <br/>
 
 -   **Testing**:
 
-    -   Added test for `IncreaseCommand` (Pull Request [[PR#160]]) 
-    -   Added test for `DecreaseCommand` (Pull Request [[PR#177]]) 
-    -   Edited test for `Find` (Pull Request [[PR#278]])
+    -   Added tests for `IncreaseCommand` and `IncreaseCommandParser` [[PR#160]] [[PR#290]]
+    -   Added tests for `DecreaseCommand` and `DecreaseCommandParser` [[PR#290]]  
+    -   Edited tests for `Find` [[PR#278]]
 
 <br/>
 
 * **Community**:
-    * PRs reviewed: [[#PR38]] [[#PR43]] [[#PR56]] [[#PR61]] [[#PR62]] [[#PR63]] [[#PR64]] [[#PR160]] [[#PR161]] [[#PR163]]
-      [[#PR164]] [[#PR166]] [[#PR168]] [[#PR171]] [[#PR172]] [[#PR174]] [[#PR180]] [[#PR188]] [[#PR279]] [[#PR282]] [[#PR283]]
-      [[#PR284]] [[#PR285]] [[#PR38]] [[#PR286]] 
+    * PRs reviewed: [[PR#38]] [[PR#43]] [[PR#56]] [[PR#61]] [[PR#62]] [[PR#63]] [[PR#64]] [[PR#160]] [[PR#161]] [[PR#163]]
+      [[PR#164]] [[PR#166]] [[PR#168]] [[PR#171]] [[PR#172]] [[PR#174]] [[PR#180]] [[PR#188]] [[PR#279]] [[PR#282]] [[PR#283]]
+      [[PR#284]] [[PR#285]] [[PR#38]] [[PR#286]] [[PR#292]]
