@@ -17,13 +17,14 @@ If you are a fast typist who is seeking a one-stop platform to systematically or
 then InternBuddy is the perfect buddy to accompany you during your internship hunt.
 
 
-InternBuddy runs
-using Java 11, and is available on the Windows, macOS and Linux operating systems.
+InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux operating systems.
 
 <br/>
 <p align="center">
   <img width="400" height="255" src="images/internbuddy-computer.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author eugenetangkj - reused with modifications)
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
@@ -91,9 +92,9 @@ set up the InternBuddy project in your personal computer.
 [//]: # (@@author eugenetangkj - reused with modifications)
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
-After setting up and launching InternBuddy, you would see a GUI. Figure 1 illustrates the main parts
-of InternBuddy's GUI and Table 1 explains the function for each part. We will be referencing
-the different parts of the GUI throughout this developer guide.
+After launching InternBuddy, you would see a GUI. Figure 1 illustrates the main parts
+of InternBuddy's GUI and Table 1 explains their functions. We will be referencing
+these different parts throughout this developer guide.
 
 <p align="center">
   <img src="images/gui-markup.png" width="700" />
@@ -717,10 +718,7 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 
 
-
-
-
-<div style="page-break-after: always;"></div>
+   
 
 ## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
@@ -731,6 +729,7 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 * [DevOps guide](DevOps.md)
 
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix A: Requirements**
 
@@ -954,8 +953,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 <br/>
-
-<div style="page-break-after: always;"></div>
 
 **Use Case: Get internships with upcoming events or deadlines**
 
@@ -1547,21 +1544,27 @@ Prefixes are case-sensitive, hence command arguments such as `T/` will be interp
 and tag `javascript T/react` (refer to Figure 19).
 Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
 
-![CaseSensitiveAddExample](images/dg-case-sensitive-prefix-add-example.png)
+<p align="center">
+  <img src="images/dg-case-sensitive-prefix-add-example.png" width="500" />
+</p>
 
 <p style="text-align: center;">Figure 19: Adding the tag 'javascript T/react'</p>
 
-Moreoever, commmands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
+Moreover, commands such as `find` and `delete-field` do not consider prefixes such as `c/`, although other commands such as `edit` and `add` do  use the prefix `c/`. In the case of `find` and `delete-field`, it is possible to add the substring `c/` to any of the fields, even though the user could have intended to enter `c/` as a command prefix.
 
 We originally intended for this design to allow maximum flexibility for the user. If the user had entered something wrongly, it is possible to just use the command `edit`. However, this design could have an unintentional side-effect.
 
-To illustrate this side-effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react` (refer to Figure 20). Tag matching is case-insensitive, so it also tries to find `Javascript` or `ReACt` (refer to Figure 21). Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `ReACt`.
+To illustrate this side effect, we use an example of the `find` command. `find t/javascript t/react` tries to find entries with either the tag `javascript` or `react` (refer to Figure 20). Tag matching is case-insensitive, so it also tries to find `Javascript` or `React` (refer to Figure 21). Similarly, `delete-field t/javascript t/react` tries to delete entries with either the tag `javascript` or `react` or `Javascript` or `React`.
 
-![CaseSensitiveFindBeforeExample](images/dg-case-sensitive-find-before.png)
+<p align="center">
+  <img src="images/dg-case-sensitive-find-before.png" width="500" />
+</p>
 
 <p style="text-align: center;">Figure 20: Find the tags "javascript" and "react" </p>
 
-![CaseSensitiveFindAfterExample](images/dg-case-sensitive-find-after.png)
+<p align="center">
+  <img src="images/dg-case-sensitive-find-after.png" width="500" />
+</p>
 
 <p style="text-align: center;">Figure 21: Result of the find command in figure 20 </p>
 
@@ -1574,16 +1577,21 @@ message is displayed in the Result Display. Do refer to Figures 22 and 23 for an
 
 ![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
 
-<p style="text-align: center;">Figure 22: Adding a new entry with case-insenstive prefix</p>
+<p style="text-align: center;">Figure 22: Adding a new entry with case-insensitive prefix</p>
 
 ![CaseInsensitiveAddAfterExample](images/dg-case-insensitive-add-after.png)
 
-<p style="text-align: center;">Figure 23: Result of the add command in figure XX</p>
+<p style="text-align: center;">Figure 23: Result of the add command in figure 22</p>
 
 
 A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown in Figure 24. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
 
-![CaseInsensitiveFixSnippet](images/dg-case-insensitive-prefix-fix.png)
+
+<p align="center">
+  <img src="images/dg-case-insensitive-prefix-fix.png" />
+</p>
+
+
 
 <p style="text-align: center;">Figure 24: The parser checks for both lowercase prefix and uppercase prefix</p>
 
@@ -1591,13 +1599,13 @@ This would address the above problem. For example, `find t/javascript t/react` s
 
 <br/>
 
-### Integer overflow causes wrong error message
+### Inaccurate Error Message for Integer Overflow
 #### Problem
 There are currently 4 types of commands that require internship indices: `edit`, `view` `copy` and `delete-index`.
 However, the current implementation of the parsing of these indices does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
 
 When trying to parse these integers, it recognises that they are either too large or too small and treats them as not an integer.
-As a result, InternBuddy is unable to differentiate between internship index inputs that aren't integers and are integer overflows. 
+As a result, InternBuddy is unable to differentiate between internship index inputs that are not integers and are integer overflows. 
 
 Thus, an invalid command format error message is displayed when these integer overflows are inputted (refer to Figure 25), instead of an index out of range error message when the integer is too large or an invalid index error message when the integer is too small.
 
@@ -1610,33 +1618,33 @@ Thus, an invalid command format error message is displayed when these integer ov
 <br/>
 
 #### Proposed Design Tweak
-We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
+We plan to display the invalid index and out of range index error messages even when there is a negative and positive integer overflow respectively.
 
 * When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (refer to Figure 26).
    * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (refer to Figure 27).
    * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (refer to Figure 28).
 
 <p align="center">
-  <img src="images/dg-int-overflow-solution.png" width="1000" />
+  <img src="images/dg-int-overflow-solution.png" width="600" />
 </p>
 
-   <p style="text-align: center;">Figure 26: Checking of input added when InternBuddy recognises that it isn't an integer.</p>
+   <p style="text-align: center;">Figure 26: Checking of input added when InternBuddy recognises that it isn't an integer</p>
 
 <br/>
 
 <p align="center">
-  <img src="images/dg-negative-int-overflow-solved.png" width="1000" />
+  <img src="images/dg-negative-int-overflow-solved.png" width="300" />
 </p>
 
-   <p style="text-align: center;">Figure 27: Invalid index error message displayed when there is negative integer overflow.</p>
+   <p style="text-align: center;">Figure 27: Invalid index error message displayed when there is negative integer overflow</p>
 
 <br/>
 
 <p align="center">
-  <img src="images/dg-positive-int-overflow-solved.png" width="1000" />
+  <img src="images/dg-positive-int-overflow-solved.png" width="300" />
 </p>
 
-   <p style="text-align: center;">Figure 28: Out of range index error message displayed when there is positive integer overflow.</p>
+   <p style="text-align: center;">Figure 28: Out of range index error message displayed when there is positive integer overflow</p>
 
 <br/>
 
@@ -1646,7 +1654,7 @@ We plan to display the invalid index and out of range index error messages even 
 InternBuddy is a brownfield project adapted from
 [AddressBook Level 3](https://github.com/se-edu/addressbook-level3). Our team morphed it from a contact 
 management application to an internship tracker that is designed for Computing undergraduates. Development
-took place over 4 sprints which spans a period of 2-3 months.
+took place over 4 sprints which spanned a period of 2-3 months.
 
 ### Difficulty Level
 For most of our team members, InternBuddy is the first brownfield project that we have undertaken. Dealing
@@ -1656,7 +1664,7 @@ to create a functional product at the end of our sprints, with a lower likelihoo
 
 ### Challenges
 There are several main challenges that we faced during the development phase.
-1. Understanding and Refactoring the Code Base
+1. **Understanding and Refactoring the Code Base**
 
    * [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) is a project with around 6k lines of
 code. Much effort was required in understanding how the different components (e.g. `Model` and `Logic`)
@@ -1665,7 +1673,7 @@ amount of code.
    * For example, `Person` had to be refactored into `Internship`, and classes like `Phone`
 and `Email` were no longer relevant, and we had to transform them into classes like `Role` and `Status`.
 
-2. Matching of Multiple Fields
+2. **Matching of Multiple Fields**
    * The original `find` command in [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) 
      does matching by only one field, `Name`.
    * We wanted to extend the functionality of the `find` command to enable matching by multiple fields.
@@ -1673,7 +1681,7 @@ and `Email` were no longer relevant, and we had to transform them into classes l
      that is both simple-to-understand and intuitive to use.
    * We eventually decided on using exact matching and a mix of both OR and AND relationships, as explained
      in the implementation for the [`find`](#find-internships---find) command.
-3. Responsive User Interface
+3. **Responsive User Interface**
    * It was challenging to set up the [View Panel](#setting-up-and-getting-started) to make it respond
      to both the `view` command and the user interactions with the [List Panel](#setting-up-and-getting-started),
      as programming the GUI is something new to many of us.
@@ -1683,8 +1691,7 @@ and `Email` were no longer relevant, and we had to transform them into classes l
     
 ### Achievements
 Our team is proud to have successfully morphed the project from a contact management application
-to an internship tracker that is designed for Computing undergraduates. InternBuddy offers a total of 13
-different features.
+to an internship tracker. InternBuddy offers a total of 13 different features.
 - 3 features that are unmodified from [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) (`list`, `clear`, `exit`).
 - 6 features that are modified from [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) (`add`, `edit`, `find`, `delete-index`, `delete-field`, `help`).
 - 1 feature that is adapted from [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp) (Navigating through Past Commands).
@@ -1694,6 +1701,7 @@ In the area of testing, our team has managed to increase code coverage to [79.55
 This is made possible with GUI testing, where we received help from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
 and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
 
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
@@ -1705,7 +1713,7 @@ Table 3 provides the glossary for the terms used in this developer guide.
 | Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                           |
 | Computing undergraduate        | A university undergraduate pursuing a Computing degree.                                                                                                                                                     |
 | Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                |
-| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                    |
+| Mainstream Operating Systems   | Include Windows, macOS, Linux and Unix.                                                                                                                                                                     |
 | Field                          | A part of the command where you have to supply a value for the command to be valid.                                                                                                                         |
 | Prefix                         | A short form for the name of a field. It indicates which field does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the field `COMPANY_NAME` since the `n/` prefix is used. |
 | Tech Stack                     | A set of technologies that an individual or company uses to create and/or maintain a software system or product.                                                                                            |
@@ -1726,5 +1734,5 @@ Table 3 provides the glossary for the terms used in this developer guide.
   up GUI testing, then added our own test cases to test the UI components that we created ourselves.
 * The feature of Navigating Through Past Commands was primarily adapted from  [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp),
   but we added code modifications and test coverage.
-* The sections on explaining the formatting standards and GUI interface used in the User and Developer Guides are
+* The sections on explaining the formatting standards and GUI interface in the User and Developer Guides are
   inspired by [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
