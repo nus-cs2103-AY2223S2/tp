@@ -12,7 +12,12 @@ title: Developer Guide
 
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
 It is optimized for typing where it allows you to complete internship management tasks much more efficiently
-via the keyboard as compared to using traditional [Graphical User Interface](#glossary) (GUI) applications. InternBuddy runs
+via the keyboard as compared to using traditional [Graphical User Interface](#glossary) (GUI) applications.
+If you are a fast typist who is seeking a one-stop platform to systematically organise your internship applications,
+then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+
+
+InternBuddy runs
 using Java 11, and is available on the Windows, macOS and Linux operating systems.
 
 <br/>
@@ -28,17 +33,16 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 ## **About the Developer Guide**
 
 ### Objectives of the Developer Guide
-This developer guide aims to provide developers with insights into the implementation details
-of InternBuddy and to explain the design considerations behind the different features. It
-utilises Unified Modeling Language (UML) diagrams created using [PlantUML](https://plantuml.com/)
-for a visual explanation of the implementations.
+This developer guide aims to provide developers with insights into the implementation of InternBuddy and to explain the
+design considerations behind its features. It utilizes Unified Modeling Language (UML) diagrams created using
+[PlantUML](https://plantuml.com/) for a visual explanation of the implementation.
 
-Apart from shedding light onto InternBuddy's  internal details, this developer guide also provides
-information on how one can test the features of InternBuddy, and showcases the user study component
-that we went through in the initial development phase for requirements gathering.
+Apart from shedding light on InternBuddy's internal details, this developer guide also provides
+information on how to conduct feature testing and showcases the user study component that we went through
+in the initial development phase for requirements gathering.
 
-Hopefully, interested developers would be able to easily set up the InternBuddy project and
-extends its functionality through this developer guide.
+Hopefully, this developer guide will enable you to easily set up the InternBuddy project and extend its
+functionality if you are interested in doing so.
 
 <div style="page-break-after: always;"></div>
 
@@ -80,7 +84,7 @@ Keyboard keys are indicated using rounded buttons.
 
 <div style="page-break-after: always;"></div>
 
-## **Setting Up, Getting Started**
+## **Setting Up and Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
@@ -1508,7 +1512,7 @@ that our team is currently working on, and we would release them in the future o
 have been finalised.
 
 ### Make prefixes for commands case-insensitive
-**Problem:**
+#### Problem
 Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
    and tag `javascript T/react`.
@@ -1534,8 +1538,9 @@ To illustrate this side-effect, we use an example of the `find` command. `find t
 
 There could be another conflicting meaning of the command. In this case, instead of trying to find entries with either the tag `javascript` or `react`, the user could have intended to find the tag `javascript T/react`. This could lead to some confusion.
 
-**Proposed Design Tweak**: Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
-   message is displayed in the Result Display.
+#### Proposed Design Tweak
+Make prefixes for all commands with prefixes (`add`, `edit`, `find`, `delete-field`) case-insensitive. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript t/react` should have the same result as `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react`, where `t/` and `T/` both refer to the tag field. The new internship entry will have company name `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, and the tags `javascript` and `react`. The View Panel displays the information for this new internship entry, and a success
+message is displayed in the Result Display.
 
 
 ![CaseInsensitiveAddBeforeExample](images/dg-case-insensitive-add-before.png)
@@ -1558,7 +1563,7 @@ This would address the above problem. For example, `find t/javascript t/react` s
 <br/>
 
 ### Integer overflow causes wrong error message
-**Problem:**
+#### Problem
 There are currently 4 types of commands that require internship indexes: `edit`, `view` `copy` and `delete-index`.
 However, the current implementation of the parsing of these indexes does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
 
@@ -1575,7 +1580,8 @@ Thus, an invalid command format error message is displayed when these integer ov
 
 <br/>
 
-**Proposed Design Tweak**: We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
+#### Proposed Design Tweak
+We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
 
 * When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (Fig. XX).
    * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (Fig. XX).
@@ -1606,6 +1612,59 @@ Thus, an invalid command format error message is displayed when these integer ov
 <br/>
 
 <div style="page-break-after: always;"></div>
+
+## **Appendix D: Effort**
+InternBuddy is a brownfield project adapted from
+[AddressBook Level 3](https://github.com/se-edu/addressbook-level3). Our team morphed it from a contact 
+management application to an internship tracker that is designed for Computing undergraduates. Development
+took place over 4 sprints which spans a period of 2-3 months.
+
+### Difficulty Level
+For most of our team members, InternBuddy is the first brownfield project that we have undertaken. Dealing
+with a large code base is no simple feat. Therefore, our team went with a more conservative approach of
+focusing our efforts on refactoring and enhancing existing features to suit our product. This enabled us
+to create a functional product at the end of our sprints, with a lower likelihood of encountering bugs.
+
+### Challenges
+There are several main challenges that we faced during the development phase.
+1. Understanding and Refactoring the Code Base
+
+   * [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) is a project with around 6k lines of
+code. Much effort was required in understanding how the different components (e.g. `Model` and `Logic`)
+interact with one another. As our team decided to morph the project, we had to refactor a significant
+amount of code.
+   * For example, `Person` had to be refactored into `Internship`, and classes like `Phone`
+and `Email` were no longer relevant, and we had to transform them into classes like `Role` and `Status`.
+
+2. Matching of Multiple Fields
+   * The original `find` command in [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) 
+     does matching by only one field, `Name`.
+   * We wanted to extend the functionality of the `find` command to enable matching by multiple fields.
+   * There were many possible options on how to implement it, and we struggled to find an implementation
+     that is both simple-to-understand and intuitive to use.
+   * We eventually decided on using exact matching and a mix of both OR and AND relationships, as explained
+     in the implementation for the [`find`](#find-internships---find) command.
+3. Responsive User Interface
+   * It was challenging to set up the [View Panel](#setting-up-and-getting-started) to make it respond
+     to both the `view` command and the user interactions with the [List Panel](#setting-up-and-getting-started),
+     as programming the GUI is something new to many of us.
+   * Furthermore, we had to ensure that the text wraps smoothly when the interface is resized. In other
+     words, the wrapping width had to scale with screen size. It took us time to learn how to do it in code,
+     and how to adjust our JavaFX components accordingly.
+    
+### Achievements
+Our team is proud to have successfully morphed the project from a contact management application
+to an internship tracker that is designed for Computing undergraduates. InternBuddy offers a total of 13
+different features.
+- 3 features that are unmodified from [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) (`list`, `clear`, `exit`).
+- 6 features that are modified from [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) (`add`, `edit`, `find`, `delete-index`, `delete-field`, `help`).
+- 1 feature that is adapted from [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp) (Navigating through Past Commands).
+- 3 new features implemented by our team (`view`, `copy`, `upcoming`)
+
+In the area of testing, our team has managed to increase code coverage to [79.55%](https://app.codecov.io/gh/AY2223S2-CS2103T-T14-3/tp).
+This is made possible with GUI testing, where we received help from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
+
 
 ## **Glossary**
 
