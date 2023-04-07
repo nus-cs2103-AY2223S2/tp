@@ -1,3 +1,7 @@
+// @@author ryanchua00-reused
+// Reused from AY2223S1-CS2103-F14-1 with minor modifications
+// https://github.com/AY2223S1-CS2103-F14-1/tp
+
 package seedu.address.ui;
 
 import java.io.IOException;
@@ -187,3 +191,5 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 }
+
+// @@author

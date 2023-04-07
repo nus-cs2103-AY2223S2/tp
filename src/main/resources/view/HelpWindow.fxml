@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- @@author ryanchua00-reused  -->
+<!-- Reused from AY2223S1-CS2103-F14-1 with minor modifications -->
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
@@ -48,4 +49,5 @@
       </stylesheets>
     </Scene>
   </scene>
+  <!-- @@author -->
 </fx:root>
