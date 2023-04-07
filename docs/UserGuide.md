@@ -41,7 +41,7 @@ This user guide will help you get up to speed in no time!
     * [Unmark an Event](#unmark-event)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
-    * [Saving data](#saving-data)
+    * [Save data](#save-data)
 <!-- 
     </details> -->
 - [FAQ](#faq)
