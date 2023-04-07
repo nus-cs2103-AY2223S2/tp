@@ -30,7 +30,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Jishnu
 
-<img src="images/jishnu28.jpg" width="200px">
+<img src="images/jishnu28.png" width="200px">
 
 [[github](https://github.com/jishnu28)]
 [[portfolio](team/jishnu28.md)]
