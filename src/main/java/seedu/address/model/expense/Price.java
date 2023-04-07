@@ -10,8 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Prices should only contain numbers, and should not be negative";
-    public static final String VALIDATION_REGEX = "^(0|[1-9]\\d*)(\\.\\d+)?$";
+            "Amounts should only contain numbers, and should not be negative or empty.";
+    public static final String VALIDATION_REGEX = "^(-0|[1-9]\\d*)(\\.\\d+)?$";
     private String value;
 
     /**

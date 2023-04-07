@@ -1,8 +1,122 @@
 {
-  "categories" : [ ],
-  "expenses" : [ ],
+  "categories" : [ {
+    "categoryName" : "food",
+    "summary" : "For food"
+  }, {
+    "categoryName" : "entertainment",
+    "summary" : "For entertainment"
+  }, {
+    "categoryName" : "transportation",
+    "summary" : "For bus, car, train"
+  }, {
+    "categoryName" : "shopping",
+    "summary" : ""
+  }, {
+    "categoryName" : "housing",
+    "summary" : ""
+  }, {
+    "categoryName" : "groceries",
+    "summary" : ""
+  } ],
+  "expenses" : [ {
+    "name" : "MRT fare",
+    "amount" : "45.8",
+    "date" : "2023-03-10",
+    "category" : {
+      "categoryName" : "transportation",
+      "summary" : "For bus, car, train"
+    }
+  }, {
+    "name" : "helloooo",
+    "amount" : "4.5",
+    "date" : "2000-05-15",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milkkkkkkk",
+    "amount" : "4.5",
+    "date" : "2000-05-15",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-15",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-08",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-01",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-24",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-17",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-10",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-03",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-03-27",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-03-20",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  } ],
   "budget" : {
-    "amount" : "$500.0"
+    "amount" : "1.0"
   },
   "recurringGenerators" : [ ]
 }
