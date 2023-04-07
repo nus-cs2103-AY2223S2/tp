@@ -19,27 +19,34 @@ With MyLib, you have the ability to throw all your bookmarks onto a **single pla
 MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 --------------------------------------------------------------------------------------------------------------------
-## **About User Guide**
-### Objectives of the User Guide
+## **About this User Guide**
 
-This User Guide provides an easy-to-understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
+### Target Audience
+This User Guide is mainly targeted towards new users who want to get started using MyLib to bookmark their content. It can also serve as a comprehensive reference and guide for current users of the application.
+
+### Objectives of this User Guide
+
+This User Guide provides an easy-to-understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to bookmark all your content.
 <div style="page-break-after: always;"></div>
 
 ### How to use the User Guide
 
-The user guide contains certain visuals to aid in conveying information more effectively
+This User Guide is split into multiple important sections:
+* The [Getting Started](#getting-started) section provides step-by-step instructions to download and get started with MyLib.
+* The [Key Definitions](#key-definitions) section provides a concise explanation of the various key terms used in this User Guide. It will explain what a bookmark is in the context of MyLib.
+* The [Graphical User Interface](#graphical-user-interface) section provides a quick rundown of the different components of MyLib's user interface.
+* The [Features](#features) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
+
+If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Features](#features) section or the [Command Summary](#command-summary) table.
+
+
+The user guide will contain certain visuals to aid in conveying information more effectively. These include:
 
 :information_source: **Info** - Useful supplementary information
 
 :bulb: **Tip** - Suggestions on how to enhance your experience
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
-
-### **Target Audience**
-This User Guide is mainly targeted at new users who want to get started on using MyLib to track and organize all
-their content. 
-
-It also serves as a quick refresher to current users of the application who might have forgotten certain commands or features.
 
 --------------------------------------------------------------------------------------------------------------------
 
