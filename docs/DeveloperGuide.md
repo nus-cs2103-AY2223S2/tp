@@ -1977,3 +1977,31 @@ TODO: to be removed
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
+
+### Tag a Module
+
+| Test Case                       |                   Expected Result                    |
+|:--------------------------------|:----------------------------------------------------:|
+| `tag CS2040S /tags fun, cool`   |    CS2040S should be tagged with [`fun`, `cool`]     |
+| `tag CS2040S /tags Heavy`       | There should be no change no current tags of CS2040S |
+| `tag CS2040S /tags cool, cool`  |   CS2040S should only be tagged with [`cool`] once   |
+| `tag CS2040S /tags @@`          |          `Tag(s) @@ should be alphanumeric`          |
+| `tag CS2040S`                   |                   Invalid command                    |
+
+### Tag a Lecture
+
+| Test Case                                                                           |               Expected Result                |
+|:------------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1. `tag Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav CS2040S`                 | Week 1 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool`                              |               Same as previous               |
+| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` <br/> 3. `nav /mod CS2040S`  |               Same as previous               |
+
+### Tag a Video
+
+| Test Case                                                                                                                               |               Expected Result               |
+|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------:|
+| 1. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` 3. `nav Week 1`                                                       |              Same as previous               |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                                                  |              Same as previous               |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 3. `nav /lec Week 1 /mod CS2040S` |              Same as previous               |
+
