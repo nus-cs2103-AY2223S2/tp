@@ -31,7 +31,6 @@ public class BillCommandParser implements Parser<BillCommand> {
 
         return new BillCommand(nric);
 
-
     }
 
 }

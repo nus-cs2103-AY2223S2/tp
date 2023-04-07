@@ -65,4 +65,22 @@ public class BillCommand extends Command {
         }
         return (Patient) personToEdit;
     }
+
+
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof BillCommand)) {
+            return false;
+        }
+
+        // state check
+        return ((BillCommand) other).nric.equals(nric);
+    }
 }

@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +25,6 @@ public class UnprescribeCommand extends Command {
 
     public static final String COMMAND_WORD = "unprescribe";
 
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes a prescription from a person identified by their NRIC.\n"
             + "Parameters: " + PREFIX_NRIC + "NRIC "
@@ -32,9 +33,9 @@ public class UnprescribeCommand extends Command {
             + PREFIX_NRIC + "S1234567A "
             + PREFIX_MEDICATION + "paracetamol ";
 
-    public static final String MESSAGE_DELETE_SUCCESS = "Prescription of patient deleted!: %1$s";
+    public static final String MESSAGE_DELETE_SUCCESS = "Prescription of patient deleted: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
-    public static final String MESSAGE_INVALID_PRESCRIPTION = "This patient is not prescribed to this medication.";
+    public static final String MESSAGE_INVALID_MEDICATION = "This patient is not prescribed to this medication.";
 
     private final Nric nric;
     private final Medication medication;
@@ -56,16 +57,15 @@ public class UnprescribeCommand extends Command {
 
         Patient patientToEdit = getPatientFromModel(model);
         Set<Prescription> patientPrescriptions = patientToEdit.getPrescriptions();
-        Prescription[] filteredPrescriptions = (Prescription[]) patientPrescriptions.stream()
+        List<Prescription> filteredPrescriptions = patientPrescriptions.stream()
                 .filter(p -> p.getMedication().equals(medication))
-                .toArray();
+                .collect(Collectors.toList());
 
-        assert filteredPrescriptions.length < 2 : "For each person, there should not be multiple prescriptions with"
-                + "the same medication!";
-        if (filteredPrescriptions.length == 0) {
-            throw new CommandException(MESSAGE_INVALID_PRESCRIPTION);
+
+        if (filteredPrescriptions.size() == 0) {
+            throw new CommandException(MESSAGE_INVALID_MEDICATION);
         }
-        patientPrescriptions.remove(filteredPrescriptions[0]);
+        patientPrescriptions.remove(filteredPrescriptions.get(0));
 
         Patient editedPerson = new Patient(
                 patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),

@@ -23,8 +23,6 @@ public class PrescribeCommand extends Command {
 
     public static final String COMMAND_WORD = "prescribe";
 
-    //@@author Jeffry Lum-reused
-    //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Attaches a medication (and its cost) to a person identified by their NRIC. If the medication is "
             + "already attached, this edits the cost instead.\n"

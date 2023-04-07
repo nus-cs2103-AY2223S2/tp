@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -81,6 +82,44 @@ public class PrescribeCommandTest {
 
         assertCommandSuccess(prescribeCommand, model, expectedMessage, expectedModel);
     }
+
+
+    @Test
+    public void execute_repeatPrescription_failure() {
+        /*
+        Prescription Parameter: [AMYMEDICATION, AMYCOST]
+        Original Prescriptions: [(AMYMEDICATION, AMYCOST)]
+        Expected Behaviour: Error
+         */
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        PrescribeCommand prescribeCommand = new PrescribeCommand(new Nric(VALID_NRIC_AMY),
+                new Prescription(new Medication(VALID_MEDICATION_AMY), new Cost(VALID_COST_AMY)));
+
+        String expectedMessage = PrescribeCommand.MESSAGE_IDENTICAL_PRESCRIPTION;
+
+        assertCommandFailure(prescribeCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_noValidPatient_failure() {
+        /*
+        Prescription Parameter: [AMYMEDICATION, AMYCOST]
+        Original Prescriptions: [(AMYMEDICATION, AMYCOST)]
+        Expected Behaviour: Error
+         */
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        String nooneNric = "T0000000T";
+
+        Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        PrescribeCommand prescribeCommand = new PrescribeCommand(new Nric(nooneNric),
+                new Prescription(new Medication(VALID_MEDICATION_AMY), new Cost(VALID_COST_AMY)));
+
+        String expectedMessage = PrescribeCommand.MESSAGE_INVALID_PERSON;
+
+        assertCommandFailure(prescribeCommand, model, expectedMessage);
+    }
+
     @Test
     public void equals() {
         Nric amyNric = new Nric(VALID_NRIC_AMY);
