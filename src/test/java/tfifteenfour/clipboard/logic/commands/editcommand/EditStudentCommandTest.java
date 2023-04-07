@@ -35,8 +35,8 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Student editedStudent = new StudentBuilder().build();
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        Student editedStudent = model.getCurrentSelection().getSelectedStudent();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).withStudentId("A1397522R").build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
