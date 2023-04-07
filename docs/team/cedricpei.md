@@ -15,6 +15,7 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
+
 * **New Feature**: Added the ability to switch between the dark ang light theme.
     [\#61](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/61)
     * What it does: allows the user to choose the GUI theme he/she prefers at a specific time.
@@ -22,13 +23,16 @@ Given below are my contributions to the project.
     * Highlights: The implementation of this feature requires the combined knowledge of JavaFX, CSS and fine arts. 
     * Credits:
 
+
 * **New Feature**: Added the ability to view a patient details.
     [\#106](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/106)
     * What it does: allows the user to see the detailed patient information other than the information on the small card.
     * Justification: This feature is an indispensable part of the product because the patient card in the list panel cannot contain detailed patient particulars.
     * Highlights: This enhancement is related to all commands which make modifications on the data. To implement the functionality, a view pane should also be built upon the original GUI.
   
+
 * **Code contributed**: [https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cedric&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17]()
+
 
 * **Project management**:
     * Set up team Google Drive folder.
@@ -36,12 +40,10 @@ Given below are my contributions to the project.
     * Published `v1.3` demo.
     * Reviewed and approved PRs for merging.
 
-* **Reviews Contribution**:
-  * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58)
-  * Reported a total of [12] (https://github.com/CedricPei/ped) bugs and issues for PE-D.
 
 * **Enhancements to existing features**:
     * GUI Change ([\#34](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/34), [\#48](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/48), [\#50](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/50), [\#136](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/136), [\#209](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/209))
+
 
 * **Documentation**:
     * User Guide:
@@ -50,5 +52,11 @@ Given below are my contributions to the project.
         * Added documentation for the feature `view`: [\#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131)
         * Added screenshots and captions for all features: [\#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131)
         * Corrected grammar mistakes and polished sentences: [\#64](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/64)
+
     * Developer Guide:
         * Added implementation details of the `dark` and `light` feature: [\#64](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/64)
+        * Integrated and added all user stories.
+
+* **Community**:
+    * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58)
+    * Reported a total of [12] (https://github.com/CedricPei/ped) bugs and issues for PE-D.
