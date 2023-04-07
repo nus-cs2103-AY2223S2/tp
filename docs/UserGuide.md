@@ -592,27 +592,29 @@ Examples:
 - `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
 - `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
 
-### Mark or Unmark Video
+### Mark Video
 
-> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
+> `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Format:
+Marks video(s) as **watched** in lecture of its specified module
 
-- `mark {video_name} /mod {module_name} /lec {lecture_index}`
-- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
+> `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Parameters:
+Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- `mark` marks `{video_name}` as watched
-- `unmark` marks `{video_name}` as unwatched
-- `{video_name}` can be names of multiple videos, separated by commas (",")
-- if `{video_name}` contains repeated names, the repeats will be ignored
 
-Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: The Names of Videos to be marked
+  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
+  - Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
+  - must exist in the Lecture of `lecture_name` in the Module of `module_code`
+- `module_code`: The Code of the Module containing the lecture that contains the videos
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - must exist in Le Tracker
+- `lecture_name`: The Name of the Lecture containing the videos
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - must exist in the Module of `module_code`
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
-- Video Names must be of valid format
-- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
+Examples:
 
 - `mark Vid 1 /mod CS2040 /lec Week 1`
 - `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
