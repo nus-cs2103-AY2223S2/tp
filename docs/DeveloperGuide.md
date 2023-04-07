@@ -753,13 +753,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2a. The list is empty in the database.
-    * 2a1. FitBook displays that there are no matches.
+* 1b. The format for the find command is wrong.
+    * 1b1. FitBook displays an error that the find format is wrong.
 
       Use case ends.
 
-* 3a. The find command has incorrect format.
-    * 3a1. FitBook displays an error that the find format is wrong.
+* 2a. The list is empty in the database.
+    * 2a1. FitBook displays that there are no matches.
 
       Use case ends.
 
@@ -796,7 +796,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC09 - Delete Routine**
+> **Use case: UC10 - Delete Routine**
 
 **MSS**
 
@@ -819,7 +819,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC10 - Delete Exercise**
+> **Use case: UC11 - Delete Exercise**
 
 **MSS**
 
@@ -848,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC11 - Find Routine**
+> **Use case: UC12 - Find Routine**
 
 **MSS**
 
@@ -951,6 +951,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2d. User request for changing exercise only has one field. (Changing exercise requires two fields)
     * 2d1. FitBook shows an error for incorrect format.
+
+      Use case ends.
+
+> **Use case: UC17 - Add weight**
+
+**MSS**
+
+1. User request to add weight to a client.
+2. FitBook adds weight to the specified client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
+
+      Use case ends.
+
+* 1b. The date specified is not in the correct format.
+    * 1b1. FitBook shows an error for invalid date format.
+
+      Use case ends.
+
+* 1c. The user adds a different weight to the same date and time of an existing weight in the database.
+    * 1c1. FitBook shows an error for duplicate weight.
+
+      Use case ends.
+
+> **Use case: UC18 - Plot weight history graph**
+
+**MSS**
+
+1. User request to plot weight history graph of a client.
+2. FitBook shows weight history graph of the specified client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
 
       Use case ends.
 
