@@ -28,6 +28,7 @@ Refer to the following section for how to **[set up and get started](#setting-up
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
