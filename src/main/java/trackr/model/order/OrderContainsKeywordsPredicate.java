@@ -18,7 +18,9 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     }
 
     /**
-     * Copy constructor
+     * Constructs a new {@code OrderContainsKeywordsPredicate} object with the same keywords of order details as the
+     * {@code OrderContainsKeywordsPredicate} object specified.
+     * @param toCopy The {@code OrderContainsKeywordsPredicate} object to copy the order name keywords from.
      */
     public OrderContainsKeywordsPredicate(OrderContainsKeywordsPredicate toCopy) {
         setOrderNameKeywords(toCopy.orderNameKeywords);
