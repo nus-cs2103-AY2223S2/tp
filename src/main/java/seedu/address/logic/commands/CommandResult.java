@@ -32,19 +32,6 @@ public class CommandResult {
     private Patient selectedPatient = null;
 
     /**
-     * Constructs a {@code CommandResult} with all fields specified.
-     */
-    public CommandResult(String cliFeedbackToUser, boolean shouldShowHelp, boolean shouldExit,
-                         boolean hasGuiInteraction, Doctor selectedDoctor, Patient selectedPatient) {
-        this.cliFeedbackToUser = requireNonNull(cliFeedbackToUser);
-        this.shouldShowHelp = shouldShowHelp;
-        this.shouldExit = shouldExit;
-        this.hasGuiInteraction = hasGuiInteraction;
-        this.selectedDoctor = selectedDoctor;
-        this.selectedPatient = selectedPatient;
-    }
-
-    /**
      * Constructs a {@code CommandResult} with the specified arguments,
      * and {@code hasGuiInteraction} set to its default value.
      */
