@@ -504,7 +504,7 @@ In order to counter known feature flaws from testing, the following are enhancem
 - Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
 - We plan to make content in the command box wrap and the command box itself scrollable.
 
-#### Figure 1.1 Current Non Scrollable Command Box
+#### Figure 1.1 Current: Non Scrollable Command Box
 ![Current Non Scrollable Command Box](images/current_command_box.png)
 
 #### Figure 1.2 Planned Enhancement: Scrollable Command Box
@@ -522,3 +522,12 @@ In order to counter known feature flaws from testing, the following are enhancem
 - Additionally, a user may want to clear all tags of a deck before sharing with others.
 - Hence, it would be more convenient if there is a `clearTags` command to untag all cards in a deck
 - Example: `clearTags`
+
+**4. Setting minimum width for components**
+- Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
+- Hence, we intend to fix it by setting a minimum width for each component.
+#### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
+- ![Unusable GUI](images/unusable_gui.png)
+
+#### Figure 4.2 Planned Enhancement: GUI with minimum width
+- ![GUI with min width](images/gui_min_width.png)
