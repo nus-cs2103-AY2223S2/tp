@@ -41,6 +41,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Adapted from [AB3](https://github.com/se-edu/addressbook-level3)
+* Adapted `Theme` from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java)
 
 --------------------------------------------------------------------------------------------------------------------
 
