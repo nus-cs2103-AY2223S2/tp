@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import javafx.collections.ObservableList;
@@ -13,6 +12,7 @@ import seedu.address.model.person.Mark;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
+import seedu.address.ui.SummaryWindow;
 
 /**
  * Wraps all data at the address-book level
@@ -166,7 +166,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     *
+     * Mark or unmark the person at index index.
      */
     public void markPerson(Index index, Mark mark) {
         requireAllNonNull(index, mark);
