@@ -383,11 +383,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
 | `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ArB` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -449,6 +447,43 @@ Use case ends.
 
 Use case ends.
 
+**Use case: Use case - Find Project**
+
+**MSS**:
+1. User enters command to find projects, including parameters such as name, deadline, tags or linked clients
+2. ArB lists all projects that match the provided parameters<br>
+   Use case ends.
+
+**Extension**:
+
+* 1a. ArB detects that none of the parameters provided are valid
+  * 1a1. ArB informs user that no valid parameters were provided<br>
+  Use case ends.
+
+**Use case: Use case - Find Client**
+
+**MSS**:
+1. User enters command to find clients, including parameters such as name or tags
+2. ArB lists all clients that match the provided parameters<br>
+   Use case ends.
+
+**Extension**:
+* 1a. ArB detects that none of the parameters provided are valid
+  * 1a1. ArB informs user that no valid parameters were provided<br>
+  Use case ends.
+
+**Use case: Use case - Link Project To Client**
+
+**MSS**:
+1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords
+2. ArB lists all clients that match the provided client name keywords
+3. User selects the client they want to link the project to
+4. ArB links the project to the selected client<br>
+   Use case ends.
+
+**Extension**:
+* 3a. User chooses to cancel the linking<br>
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -481,7 +516,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Clients**: A person who has commissioned the user
 * **Project**: A piece of (art)work to be completed
-* **Contact info**: Email, Phone Number, Social media
+* **Contact info**: Email, Phone Number
 * **Project status**: How close to completion a project is
 
 --------------------------------------------------------------------------------------------------------------------
@@ -499,9 +534,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br>
+      Expected: Shows the GUI with a set of sample clients and projects. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -510,28 +546,77 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Saving data
 
-### Deleting a person
+   1. Delete a client from the client list. Close the window.
 
-1. Deleting a person while all persons are being shown
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The client should remain deleted. 
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Deleting a client
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Deleting a client while all clients are being shown
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `delete-client 1`<br>
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete-client 0`<br>
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete-client`, `delete-client x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a client while only some clients are shown
+
+   1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
+
+   1. Test case: `delete-client 1`<br>
+      Expected: First client is deleted from the client list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete 0`<br>
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `delete x` where x is smaller than the entire client list size but is larger than the visible list size
+      Expected: Similar to previous
+
+   1. Other incorrect delete commands to try: `delete`<br>
+      Expected: Similar to previous.
+
+1. Deleting a client while the client list is not being shown
+
+   1. Prerequisites: Show a list other than the client list using either the `list-project` or `list-tag` commands. There should be multiple clients in the client list.
+
+   1. Test case: `delete-client 1`<br>
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-1. _{ more test cases …​ }_
+   1. Test case: delete the data file<br>
+      Delete the JSON file in the `data` folder that is found in the same folder the jar file before launching the app.<br>
+      Expected: Status message should state that a data file could not be found. The app should be filled with sample data.
+   
+   1. Test case: corrupt the data file<br>
+      Open the JSON file and delete the `name` attribute of a client before launching the app.<br>
+      Expected: Status message should state that the data file was not in the correct format. The app should start with no data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+### Difficulty Level
+
+### Challenges Faced
+
+### Effort Required
+
+### Achievements
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. {_some feature flaw and how we plan to fix it in future_}
