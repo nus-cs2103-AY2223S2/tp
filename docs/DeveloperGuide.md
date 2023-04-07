@@ -588,6 +588,68 @@ of the student's scores. In future implementation, a student's performance will 
 
 ## **Appendix: Instructions for manual testing**
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix Planned Enhancements**
+### Solutions purposed for known feature flaws
+<div>
+
+#### 1. Table being cut after resize the application window
+This problem might happen after user resize the application window, and cause the horizontal scroll bar to cover partial of the data.<br>
+**To see the entire table during PE:** try to enlarge the window size, or click on the table, scroll up and down.
+
+**Solution proposed:**<br>
+Although the entire table should be able to see by the user following the above suggestion given, it is still considered a hinder for user. <br>
+The main reason the table is cut is that we used JavaFX TableView. It is by default come with scrollbar and relatively hard to customize. <br>
+If we can resolve this feature flaw, we will use JavaFx label to construct the table with CSS instead of using the JavaFx TableView.
+
+</div>
+
+<div>
+
+#### 2. Name accept only number
+Currently, we accept student name to contain number. i.e. student name can be "1". After some research we find out that most countries in the world do not allow purely numeric name.<br>
+
+**Solution proposed:**<br>
+Only accept alphanumeric or just alphabets name
+Change the name regex to `[\\p{Alnum}]*[a-zA-Z][\\p{Alnum} ]*`
+
+</div>
+
+<div>
+
+#### 3. Window cannot reopen after it is minimized
+After help/export/import window is minimized, click help/export/import on the top menu will not automatically maximize the window again.
+
+**Solution proposed:**<br>
+
+</div>
+
+<div>
+
+#### 4. Do not allow any exam to have the same date
+The aim of the score list is to keep track of a student's recent performance trend (especially the chart). If the majority of the exams are conducted in the same date. It defeats our purpose of having the score records.<br>
+However, it is reasonable assumption that some exam can conduct in the same date.
+
+**Solution proposed:**<br>
+Allow at most five exams on the same date.
+
+</div>
+
+<div>
+
+#### 5. Do not allow any student to have the same name
+
+The reason why we do not allow any student to have the same name is to avoid potential confusion. Although user can still distinguish them by checking another personal information (e.g. their email, their address etc.), it will be more straight forward to see difference in name, i.e. Jason 1 and Jason 2. <br>
+Nevertheless, we should consider to allow student to have the same name.
+
+**Solution proposed:**<br>
+Instead of not allowing student to have the same name, we do not allow student to have the same name and the identical email at the same time.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Launch and shutdown
 
 ### Deleting a student
