@@ -163,8 +163,8 @@ Step 2. The `LogicManager` receives the command text from the user input and giv
 Step 3. The `AddImageCommandParser` retrieves the contact index as well as the image path and creates
 a `AddImageCommand`
 
-Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the "
-profile_pictures/" directory.
+Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the 
+`profile_pictures/` directory.
 Once that is successful, `AddImageCommand#execute` proceeds to call `ImageUtil#deleteImage` to remove the current image.
 Finally `AddImageCommand#execute` updates the model provided in the arguments.
 
