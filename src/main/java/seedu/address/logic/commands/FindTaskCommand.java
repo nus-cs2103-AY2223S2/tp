@@ -24,7 +24,8 @@ import seedu.address.model.task.TitleContainsKeywordsPredicate;
  */
 public class FindTaskCommand extends Command {
     public static final String COMMAND_WORD = "findt";
-    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <TASK_NAME>\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the task based on given keyword. "
+            + "Parameters: KEYWORD [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " CS2103 TP";
 
     public static final String MESSAGE_TASK_FOUND = "%1$s task found.";
