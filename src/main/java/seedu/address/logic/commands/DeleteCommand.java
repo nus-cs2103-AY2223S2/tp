@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -21,17 +20,14 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            INDEX_PLACEHOLDER,
-            INDEX_PLACEHOLDER.asOptional().asRepeatable()
+            INDEX_PLACEHOLDER.setExamples("1"),
+            INDEX_PLACEHOLDER.asOptional().asRepeatable().setExamples("3", "5")
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Delete the persons identified by the index numbers used in the displayed person list.\n"
-            + "Parameters: "
-            + ARGUMENT_PREFIXES.stream()
-                    .map(Prefix::toString)
-                    .collect(Collectors.joining(" "))
-            + "Example: " + COMMAND_WORD + " 1 2 3";
+            + ": Delete the persons identified by the index numbers used in the displayed person list."
+            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
+            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
