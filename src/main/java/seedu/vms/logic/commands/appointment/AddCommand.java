@@ -71,7 +71,7 @@ public class AddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Appointment}
      */
     public AddCommand(Index patientId, Retriever<String, VaxType> vaxTypeRetriever,
-            LocalDateTime startTime, LocalDateTime endTime) {
+                LocalDateTime startTime, LocalDateTime endTime) {
         this.patientId = requireNonNull(patientId);
         this.vaxTypeRetriever = requireNonNull(vaxTypeRetriever);
         this.startTime = requireNonNull(startTime);
