@@ -113,6 +113,7 @@ these different parts throughout this developer guide.
 <p style="text-align: center;">Table 1: Explanation of the different parts of InternBuddy's GUI</p>
 
 
+<br/>
 
 ## **Design**
 
@@ -1042,6 +1043,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: Get Help**
 
 **Main Success Scenario**
@@ -1575,14 +1578,14 @@ message is displayed in the Result Display. Do refer to Figures 22 and 23 for an
 
 
 <p align="center">
-  <img src="images/images/dg-case-insensitive-add-before.png" width="500" />
+  <img src="images/dg-case-insensitive-add-before.png" width="500" />
 </p>
 
 <p style="text-align: center;">Figure 22: Adding a new entry with case-insensitive prefix</p>
 
 
 <p align="center">
-  <img src="images/images/images/dg-case-insensitive-add-after.png" width="500" />
+  <img src="images/dg-case-insensitive-add-after.png" width="500" />
 </p>
 
 
