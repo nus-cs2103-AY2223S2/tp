@@ -4,43 +4,46 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.util.Pair;
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
+import taa.model.assignment.AssignmentList;
+import taa.model.ReadOnlyAssignmentList;
 import taa.model.ReadOnlyStudentList;
 
 /**
- * Represents a storage for {@link ClassList}.`
+ * Represents a storage for {@link ClassList} and {@link AssignmentList}.`
  */
 public interface TaaStorage {
 
     /**
-     * Returns the file path of the data file.
+     * @return the file path of the data file.
      */
     Path getTaaDataFilePath();
 
     /**
-     * Returns ClassList data as a {@link ReadOnlyStudentList}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * @return {@link ClassList} and {@link AssignmentList} data as a {@link Pair} of {@link ReadOnlyStudentList} and
+     * {@link ReadOnlyAssignmentList} or {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException, IOException;
+    Optional<TaaData> readTaaData() throws DataConversionException, IOException;
 
     /**
      * @see #getTaaDataFilePath()
      */
-    Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException, IOException;
+    Optional<TaaData> readTaaData(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyStudentList} to the storage.
-     * @param studentList cannot be null.
+     * @param taaData cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTaaData(ReadOnlyStudentList studentList) throws IOException;
+    void saveTaaData(TaaData taaData) throws IOException;
 
     /**
-     * @see #saveTaaData(ReadOnlyStudentList)
+     * @see #saveTaaData(TaaData)
      */
-    void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException;
+    void saveTaaData(TaaData taaData, Path filePath) throws IOException;
 
 }

@@ -10,10 +10,12 @@ import taa.model.ClassList;
 import taa.model.ReadOnlyStudentList;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
+import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
+import taa.storage.TaaData;
 
 /**
  * Contains utility methods for populating {@code ClassList} with sample data.
@@ -36,7 +38,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyStudentList getSampleTaaData() {
+    public static TaaData getSampleTaaData() {
         ClassList sampleAb = new ClassList("T01");
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
@@ -44,7 +46,7 @@ public class SampleDataUtil {
         UniqueClassLists classLists = new UniqueClassLists();
         classLists.add(sampleAb);
         Tutor tutor = new Tutor(new Name("James"), new HashSet<>(), classLists);
-        return tutor;
+        return new TaaData(tutor, AssignmentList.INSTANCE);
     }
 
     /**

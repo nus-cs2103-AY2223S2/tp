@@ -24,9 +24,9 @@ public interface Storage extends TaaStorage, UserPrefsStorage {
     Path getTaaDataFilePath();
 
     @Override
-    Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException, IOException;
+    Optional<TaaData> readTaaData() throws DataConversionException, IOException;
 
     @Override
-    void saveTaaData(ReadOnlyStudentList studentList) throws IOException;
+    void saveTaaData(TaaData taaData) throws IOException;
 
 }

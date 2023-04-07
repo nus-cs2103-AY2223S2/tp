@@ -54,25 +54,25 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException, IOException {
+    public Optional<TaaData> readTaaData() throws DataConversionException, IOException {
         return readTaaData(taaStorage.getTaaDataFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException, IOException {
+    public Optional<TaaData> readTaaData(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return taaStorage.readTaaData(filePath);
     }
 
     @Override
-    public void saveTaaData(ReadOnlyStudentList addressBook) throws IOException {
-        saveTaaData(addressBook, taaStorage.getTaaDataFilePath());
+    public void saveTaaData(TaaData taaData) throws IOException {
+        saveTaaData(taaData, taaStorage.getTaaDataFilePath());
     }
 
     @Override
-    public void saveTaaData(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
+    public void saveTaaData(TaaData taaData, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        taaStorage.saveTaaData(addressBook, filePath);
+        taaStorage.saveTaaData(taaData, filePath);
     }
 
 }

@@ -22,10 +22,12 @@ import taa.model.ModelManager;
 import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
+import taa.model.assignment.AssignmentList;
 import taa.storage.JsonTaaStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.Storage;
 import taa.storage.StorageManager;
+import taa.storage.TaaData;
 import taa.storage.TaaStorage;
 import taa.storage.UserPrefsStorage;
 import taa.ui.Ui;
@@ -75,20 +77,20 @@ public class MainApp extends Application {
      * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStudentList> addressBookOptional;
-        ReadOnlyStudentList initialData;
+        Optional<TaaData> taaDataOptional;
+        TaaData initialData;
         try {
-            addressBookOptional = storage.readTaaData();
-            if (!addressBookOptional.isPresent()) {
+            taaDataOptional = storage.readTaaData();
+            if (!taaDataOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ClassList");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaaData);
+            initialData = taaDataOptional.orElseGet(SampleDataUtil::getSampleTaaData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClassList");
-            initialData = new ClassList();
+            initialData = new TaaData(new ClassList(), AssignmentList.INSTANCE);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ClassList");
-            initialData = new ClassList();
+            initialData = new TaaData(new ClassList(), AssignmentList.INSTANCE);
         }
 
         return new ModelManager(initialData, userPrefs);

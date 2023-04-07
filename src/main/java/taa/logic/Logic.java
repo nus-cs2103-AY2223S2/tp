@@ -10,6 +10,7 @@ import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
 import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 
 /**
  * API of the Logic component
@@ -29,7 +30,7 @@ public interface Logic {
      *
      * @see Model#getTaaData()
      */
-    ReadOnlyStudentList getTaaData();
+    TaaData getTaaData();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();

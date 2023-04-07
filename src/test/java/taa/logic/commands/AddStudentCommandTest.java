@@ -21,7 +21,9 @@ import taa.model.Model;
 import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.alarm.Alarm;
+import taa.model.assignment.AssignmentList;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
 
@@ -118,12 +120,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setTaaData(ReadOnlyStudentList newData) {
+        public void setTaaData(TaaData newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyStudentList getTaaData() {
+        public TaaData getTaaData() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -289,8 +291,8 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public ReadOnlyStudentList getTaaData() {
-            return new ClassList();
+        public TaaData getTaaData() {
+            return new TaaData(new ClassList(), AssignmentList.INSTANCE);
         }
 
     }

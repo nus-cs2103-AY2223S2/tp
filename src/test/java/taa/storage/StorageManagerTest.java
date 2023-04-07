@@ -13,6 +13,7 @@ import taa.commons.core.GuiSettings;
 import taa.model.ClassList;
 import taa.model.ReadOnlyStudentList;
 import taa.model.UserPrefs;
+import taa.model.assignment.AssignmentList;
 import taa.testutil.TypicalPersons;
 
 public class StorageManagerTest {
@@ -55,8 +56,8 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonClassListStorageTest} class.
          */
         ClassList original = TypicalPersons.getTypicalTaaData();
-        storageManager.saveTaaData(original);
-        ReadOnlyStudentList retrieved = storageManager.readTaaData().get();
+        storageManager.saveTaaData(new TaaData(original, AssignmentList.INSTANCE));
+        ReadOnlyStudentList retrieved = storageManager.readTaaData().get().studentList;
         assertEquals(original, new ClassList(retrieved));
     }
 

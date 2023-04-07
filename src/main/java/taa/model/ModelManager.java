@@ -56,6 +56,7 @@ import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
+import taa.storage.TaaData;
 
 /**
  * Represents the in-memory model of the student listdata.
@@ -73,22 +74,24 @@ public class ModelManager implements Model {
     private final AssignmentList assignmentList = AssignmentList.INSTANCE;
     private Predicate<ClassList> activeClassListPredicate;
 
+
     /**
      * Initializes a ModelManager with the given classList and userPrefs.
      */
-    public ModelManager(ReadOnlyStudentList studentList, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(studentList, userPrefs);
+    public ModelManager(TaaData taaData, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(taaData,taaData.studentList, userPrefs);
 
-        logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student list: " + taaData.studentList + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.classList = new ClassList(studentList);
+        this.classList = new ClassList(taaData.studentList);
         UniqueClassLists temp = new UniqueClassLists(this.classList);
         this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
         this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
-        this.filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
+        this.filteredClassLists = new FilteredList<>(this.tutor.getClassList());
         this.activeClassListPredicate = null;
         this.alarmList = new AlarmList();
+
 
         for (Student student : this.classList.getUniqueStudentList()) {
             addStudentToTaggedClasses(student);
@@ -97,7 +100,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new ClassList(), new UserPrefs());
+        this(new TaaData(new ClassList(),AssignmentList.INSTANCE), new UserPrefs());
     }
 
     @Override
@@ -134,13 +137,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTaaData(ReadOnlyStudentList taaData) {
-        this.classList.resetData(taaData);
+    public void setTaaData(TaaData taaData) {
+        this.classList.resetData(taaData.studentList);
     }
 
     @Override
-    public ReadOnlyStudentList getTaaData() {
-        return classList;
+    public TaaData getTaaData() {
+        return new TaaData(classList, assignmentList);
     }
 
     @Override

@@ -9,6 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.ReadOnlyAssignmentList;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.InvalidGradeException;
@@ -19,7 +20,7 @@ import taa.model.student.Student;
  * List of assignments. This is the singleton class that the model uses to do all things related to assignments and
  * submissions.
  */
-public class AssignmentList {
+public class AssignmentList implements ReadOnlyAssignmentList {
     public static final AssignmentList INSTANCE = new AssignmentList();
     private final ArrayList<Assignment> assignments = new ArrayList<>();
     private final HashMap<String, Assignment> assignmentMap = new HashMap<>();
@@ -265,5 +266,10 @@ public class AssignmentList {
      */
     public boolean contains(String name) {
         return this.assignmentMap.containsKey(name);
+    }
+
+    @Override
+    public Assignment[] get() {
+        return assignments.toArray(new Assignment[0]);
     }
 }

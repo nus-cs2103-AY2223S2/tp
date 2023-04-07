@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import taa.commons.exceptions.IllegalValueException;
 import taa.model.ClassList;
 import taa.model.ReadOnlyStudentList;
+import taa.model.assignment.AssignmentList;
 import taa.model.student.Student;
 
 /**
@@ -24,7 +25,7 @@ class JsonSerializableTaaData {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons. Called when reading from JSON.
      */
     @JsonCreator
     public JsonSerializableTaaData(@JsonProperty("students") List<JsonAdaptedStudent> students) {
@@ -32,20 +33,20 @@ class JsonSerializableTaaData {
     }
 
     /**
-     * Converts a given {@code ReadOnlyStudentList} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyStudentList} into this class for Jackson use. Called when saving to JSON.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableTaaData(ReadOnlyStudentList source) {
-        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+    public JsonSerializableTaaData(TaaData source) {
+        students.addAll(source.studentList.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this TAA data into the model's {@code ClassList} object.
+     * Converts this TAA data into the model's {@link TaaData} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ClassList toModelType() throws IllegalValueException {
+    public TaaData toModelType() throws IllegalValueException {
         ClassList classList = new ClassList();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
@@ -54,7 +55,7 @@ class JsonSerializableTaaData {
             }
             classList.addStudent(student);
         }
-        return classList;
+        return new TaaData(classList, AssignmentList.INSTANCE);
     }
 
 }

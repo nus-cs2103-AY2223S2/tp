@@ -32,7 +32,7 @@ public class JsonTaaStorage implements TaaStorage {
     }
 
     @Override
-    public Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException {
+    public Optional<TaaData> readTaaData() throws DataConversionException {
         return readTaaData(filePath);
     }
 
@@ -42,7 +42,7 @@ public class JsonTaaStorage implements TaaStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException {
+    public Optional<TaaData> readTaaData(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTaaData> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,21 +60,21 @@ public class JsonTaaStorage implements TaaStorage {
     }
 
     @Override
-    public void saveTaaData(ReadOnlyStudentList studentList) throws IOException {
-        saveTaaData(studentList, filePath);
+    public void saveTaaData(TaaData taaData) throws IOException {
+        saveTaaData(taaData, filePath);
     }
 
     /**
-     * Similar to {@link #saveTaaData(ReadOnlyStudentList)}.
+     * Similar to {@link #saveTaaData(TaaData)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException {
-        requireNonNull(studentList);
+    public void saveTaaData(TaaData taaData, Path filePath) throws IOException {
+        requireNonNull(taaData);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaaData(studentList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaaData(taaData), filePath);
     }
 
 }

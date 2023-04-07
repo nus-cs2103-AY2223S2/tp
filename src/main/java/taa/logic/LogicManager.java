@@ -17,6 +17,7 @@ import taa.model.Model;
 import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 import taa.storage.Storage;
+import taa.storage.TaaData;
 
 /**
  * The main LogicManager of the app.
@@ -63,7 +64,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyStudentList getTaaData() {
+    public TaaData getTaaData() {
         return model.getTaaData();
     }
 

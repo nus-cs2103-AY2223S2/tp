@@ -24,6 +24,7 @@ import taa.model.student.Student;
 import taa.storage.JsonTaaStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.StorageManager;
+import taa.storage.TaaData;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
@@ -150,7 +151,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException {
+        public void saveTaaData(TaaData taaData, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

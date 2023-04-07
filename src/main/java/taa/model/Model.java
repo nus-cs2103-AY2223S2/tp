@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
@@ -14,6 +15,7 @@ import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.NoGradeVarianceException;
 import taa.model.assignment.exceptions.NoSubmissionsFoundException;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 
 /**
  * The API of the Model component.
@@ -56,10 +58,10 @@ public interface Model {
     /**
      * Replaces TAA data with the data in {@code taaData}.
      */
-    void setTaaData(ReadOnlyStudentList taaData);
+    void setTaaData(TaaData taaData);
 
     /** Returns the TAA data*/
-    ReadOnlyStudentList getTaaData();
+    TaaData getTaaData();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.

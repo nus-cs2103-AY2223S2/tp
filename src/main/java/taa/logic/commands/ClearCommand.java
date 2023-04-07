@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import taa.model.ClassList;
 import taa.model.Model;
+import taa.model.assignment.AssignmentList;
+import taa.storage.TaaData;
 
 /**
  * Clears the entire class list.
@@ -17,7 +19,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setTaaData(new ClassList("no name"));
+        model.setTaaData(new TaaData(new ClassList("no name"), AssignmentList.INSTANCE));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
