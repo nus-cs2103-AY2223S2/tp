@@ -41,8 +41,6 @@ public class RevertOrderStatusCommandTest {
         Order orderToRevert = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         RevertOrderStatusCommand revertOrderStatusCommand = new RevertOrderStatusCommand(INDEX_FIRST);
 
-        //How to create the expected order?
-        //Must I use the current date to build the order?
         Order revertedOrder = new OrderBuilder(orderToRevert).withInitialStatus(formattedDate).build();
         String expectedMessage = String.format(revertOrderStatusCommand.MESSAGE_REVERT_STATUS_SUCCESS,
                 orderToRevert, orderToRevert.getStatus().getLatestStatus());
