@@ -35,14 +35,14 @@ activate AddEventCommandParser
 create Event
 AddEventCommandParser -> Event
 activate Event
-Event --> AddEventCommandParser
+Event --> AddEventCommandParser : e
 deactivate Event
 
 create AddEventCommand
-AddEventCommandParser -> AddEventCommand
+AddEventCommandParser -> AddEventCommand : AddEventCommand(e)
 activate AddEventCommand
 
-AddEventCommand --> AddEventCommandParser
+AddEventCommand --> AddEventCommandParser : a
 deactivate AddEventCommand
 
 AddEventCommandParser --> AddressBookParser : a
