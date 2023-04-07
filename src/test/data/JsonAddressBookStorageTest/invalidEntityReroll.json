@@ -1,0 +1,10 @@
+{
+  "mobs" : [],
+  "characters" : [],
+  "items" : [ {
+    "name" : "INVALID N@ME",
+    "cost" : 0,
+    "weight" : 0.0,
+    "tagged" : [ ]
+  } ]
+}

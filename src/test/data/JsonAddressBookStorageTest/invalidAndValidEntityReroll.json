@@ -28,8 +28,8 @@
     "tagged" : [ ]
   } ],
   "items" : [ {
-    "name" : "INVALID N@ME",
-    "cost" : 0,
+    "name" : "VALID NAME",
+    "cost" : -1,
     "weight" : 0.0,
     "tagged" : [ ]
   } ]
