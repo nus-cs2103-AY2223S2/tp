@@ -9,10 +9,8 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Name of event should not be blank";
-
-    public final String name;
-
     public static final String VALIDATION_REGEX = "\\S.+";
+    public final String name;
 
     /**
      * Constructs a {@code Name}.

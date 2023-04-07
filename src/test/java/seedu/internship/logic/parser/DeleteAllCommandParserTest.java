@@ -1,10 +1,12 @@
 package seedu.internship.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.internship.logic.commands.DeleteAllCommand;
 
 import static seedu.internship.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.internship.logic.commands.DeleteAllCommand;
 
 public class DeleteAllCommandParserTest {
 

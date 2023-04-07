@@ -1,6 +1,9 @@
 package seedu.internship.testutil;
 
-import static seedu.internship.logic.parser.CliSyntax.*;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
 import seedu.internship.logic.commands.event.EventAddCommand;
 import seedu.internship.logic.commands.event.EventCommand;

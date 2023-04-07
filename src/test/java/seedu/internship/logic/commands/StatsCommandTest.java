@@ -19,13 +19,15 @@ public class StatsCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(),getTypicalEventCatalogue(), new UserPrefs());
-        expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(), new UserPrefs());
     }
     @Test
     public void execute_stats_success() {
-        Statistics expectedStatistics = new Statistics(expectedModel.getFilteredInternshipList(), expectedModel.getFilteredEventList());
-        CommandResult expectedCommandResult = new CommandResult(StatsCommand.SHOWING_STATS_MESSAGE, ResultType.STATS, expectedStatistics);
+        Statistics expectedStatistics = new Statistics(expectedModel.getFilteredInternshipList(),
+                expectedModel.getFilteredEventList());
+        CommandResult expectedCommandResult = new CommandResult(StatsCommand.SHOWING_STATS_MESSAGE,
+                ResultType.STATS, expectedStatistics);
         assertCommandSuccess(new StatsCommand(), model, expectedCommandResult, expectedModel);
     }
 }

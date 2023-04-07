@@ -58,9 +58,9 @@ public class EditCommandTest {
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
         ObservableList<Event> events = expectedModel.getFilteredEventList();
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
-                ResultType.SHOW_INFO, editedInternship, events);
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS,
+                        editedInternship), ResultType.SHOW_INFO, editedInternship, events);
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
@@ -134,9 +134,10 @@ public class EditCommandTest {
 
         expectedModel.updateFilteredEventList(new EventByInternship(expectedModel.getSelectedInternship()));
         ObservableList<Event> events = expectedModel.getFilteredEventList();
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
-                ResultType.SHOW_INFO, editedInternship, events);
+
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
+                        ResultType.SHOW_INFO, editedInternship, events);
 
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);

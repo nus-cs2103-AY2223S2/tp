@@ -17,7 +17,6 @@ import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.event.EventAddCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.commands.event.EventDeleteCommand;
-import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
@@ -65,8 +64,8 @@ public class InternshipCatalogueParserTest {
 
     @Test
     public void parseCommand_event_delete() throws Exception {
-        EventDeleteCommand command = (EventDeleteCommand) parser.parseCommand(EventCommand.COMMAND_WORD + " " +
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        EventDeleteCommand command = (EventDeleteCommand) parser.parseCommand(EventCommand.COMMAND_WORD + " "
+                + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
         assertEquals(new EventDeleteCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
