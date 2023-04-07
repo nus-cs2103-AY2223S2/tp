@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model {
+    Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+
+    Class "ModelManager" as ModelManager
+    Class "AddressBook" as AddressBook
+    Class "UserPrefs" as UserPrefs
+
+    Class "UniqueDoctorList" as UniqueDoctorList
+    Class "UniquePatientList" as UniquePatientList
+
+Package Person {
+    Package Doctor {
+        Class "Doctor" as Doctor
+    }
+    Package Patient {
+        Class "Patient" as Patient
+    }
+    Class "Person" as Person
+
+    Doctor.Doctor -down-|>Person
+    Patient.Patient -down-|> Person
+}
+
+
+    UniqueDoctorList ----> "~* all" Person.Doctor.Doctor
+    UniquePatientList -----> "~* all" Person.Patient.Patient
+
+    AddressBook *---> UniqueDoctorList
+    AddressBook *---> UniquePatientList
+
+    AddressBook .up.|> ReadOnlyAddressBook
+    ModelManager .up.|> Model
+    UserPrefs .up.|> ReadOnlyUserPrefs
+
+    ModelManager -> "1" AddressBook
+    UserPrefs "1" <- ModelManager
+
+    ModelManager ---> "~* filteredDoctors" Person.Doctor.Doctor
+    ModelManager ---> "~* filteredPatients" Person.Patient.Patient
+
+}
+@enduml

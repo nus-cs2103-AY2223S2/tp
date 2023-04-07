@@ -27,7 +27,7 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 Here is a summary of the enhancements I implemented.
 
 User Interface
-  - Modify User Interface to display information of doctors and patients 
+  - Modify User Interface to display information of doctors and patients
 
 Storage
   - Enable proper saving and loading of Doctor and Patient objects
@@ -65,7 +65,7 @@ Development
 - Led project management for milestone v1.3
 - Captured bugs within the application and alerting team members
 - Reviewed pull requests from team members
-- Provided links through Telegram to important information related to 
+- Provided links through Telegram to important information related to
 project development.
 
 #### Review/mentoring contributions
