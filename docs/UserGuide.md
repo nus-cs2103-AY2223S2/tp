@@ -157,14 +157,14 @@ Examples:
 
 Adds a tag to any given person stored in the address book.
 
-Format: `tag INDEX t/TAG`
+Format: `tag INDEX TAG`
 
 * Adds `TAG` to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `add_tag 2 banker` adds the tag “banker” to the 2nd person.
+* `list` followed by `tag 2 banker` adds the tag “banker” to the 2nd person.
 * `tag 1 billionaire` will add the tag "billionaire" to the 1st person (which is Alex in this example).![add tag example](images/tagExample.png)
 
 ### Deleting a tag : `delete_tag`
@@ -173,14 +173,14 @@ Deletes a tag on a person.
 
 Format: `delete_tag INDEX TAG`
 
-* Deletes `TAG` on the person at the specified `INDEX`.
+* Deletes `TAG` from the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The tag must be existed.
+* The tag must exist.
 
 Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag "teacher" from the 3rd person(only if there's a person with index 3 and carrying tag "teacher").
-* `delete_tg 1 t/billionaire` will delete the tag "billionair" from the 1st person (which is Alex in this example).![delete tag example](images/deleteTagExample.png)
+* `delete_tag 1 t/billionaire` will delete the tag "billionaire" from the 1st person (which is Alex in this example).![delete_tag example](images/deleteTagExample.png)
 
 ### Filter by fields : `filter`
 
