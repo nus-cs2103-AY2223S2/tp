@@ -33,7 +33,7 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
 
-    /*
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Patient editedPatient = new PatientBuilder().build();
@@ -46,7 +46,7 @@ public class EditCommandTest {
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {

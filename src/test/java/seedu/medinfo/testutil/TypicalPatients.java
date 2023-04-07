@@ -59,9 +59,9 @@ public class TypicalPatients {
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withNric("T2222222L")
-            .withStatus("GREEN").withWard(new WardName("C1")).withDischarge("22/02/2023 1540").build();
+            .withStatus("GREEN").withWard(new WardName("Class C")).withDischarge("22/02/2023 1540").build();
     public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withNric("S3333333L")
-            .withStatus("YELLOW").withWard(new WardName("B2")).withDischarge("25/02/2023 1400").build();
+            .withStatus("YELLOW").withWard(new WardName("Class B")).withDischarge("25/02/2023 1400").build();
 
     // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)

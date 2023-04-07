@@ -2,45 +2,61 @@
   "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatient#getTypicalAddressBook()",
   "patients" : [ {
     "name" : "Alex Smith",
-    "nric" : "S1334567A",
+    "nric" : "S1000007A",
     "status" : "GRAY",
-    "ward" : "A1",
+    "ward" : "Waiting Room",
     "discharge" : "12/02/2023 1400"
   }, {
     "name" : "Benson Tillman",
     "nric" : "S7654321F",
     "status" : "GRAY",
-    "ward" : "A2",
+    "ward" : "Waiting Room",
     "discharge" : "12/02/2023 1500"
   }, {
     "name" : "Carl Leigh",
     "nric" : "S2468024G",
-    "status" : "GRAY",
-    "ward" : "A3",
+    "status" : "GREEN",
+    "ward" : "Class A",
     "discharge" : "12/02/2023 1600"
   }, {
     "name" : "Daniel Wellington",
     "nric" : "S1244567A",
-    "status" : "GRAY",
-    "ward" : "A4",
+    "status" : "YELLOW",
+    "ward" : "Class B",
     "discharge" : "13/02/2023 1400"
   }, {
     "name" : "Elle Schmidt",
     "nric" : "S1235567A",
-    "status" : "GRAY",
-    "ward" : "A5",
+    "status" : "GREEN",
+    "ward" : "Class C",
     "discharge" : "13/02/2023 1500"
   }, {
     "name" : "Fiona Shrekt",
     "nric" : "S6969696B",
-    "status" : "GRAY",
-    "ward" : "A6",
+    "status" : "RED",
+    "ward" : "ICU",
     "discharge" : "13/02/2023 1600"
   }, {
     "name" : "George Townsend",
     "nric" : "S1224567A",
-    "status" : "GRAY",
-    "ward" : "A7",
+    "status" : "RED",
+    "ward" : "ICU",
     "discharge" : "14/02/2023 1400"
+  } ],
+  "wards" : [ {
+    "name" : "Waiting Room",
+    "capacity" : 10
+  }, {
+    "name" : "Class A",
+    "capacity" : 30
+  }, {
+    "name" : "Class B",
+    "capacity" : 30
+  }, {
+    "name" : "Class C",
+    "capacity" : 30
+  }, {
+    "name" : "ICU",
+    "capacity" : 40
   } ]
 }
