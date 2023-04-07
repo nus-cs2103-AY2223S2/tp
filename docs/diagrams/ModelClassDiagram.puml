@@ -31,7 +31,9 @@ Package "Model" as PackageModel <<Rectangle>> {
        Class Deck
     }
 
-    Class Review
+    Package "Review" as PackageReview <<Rectangle>> {
+        Class Review
+    }
 
 }
 
@@ -49,7 +51,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ModelManager -l-> "1" UserPrefs
 ModelManager -r-> "1" MasterDeck
-ModelManager -down-> "0..1" Review
+ModelManager ---> "0..1" Review
 
 MasterDeck *---> "1" UniqueDeckList
 MasterDeck *---> "1" UniqueCardList
