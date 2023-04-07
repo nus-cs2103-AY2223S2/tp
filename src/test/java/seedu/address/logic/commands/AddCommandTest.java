@@ -161,6 +161,11 @@ public class AddCommandTest {
         public boolean hasPreviousState() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitListingBook() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
