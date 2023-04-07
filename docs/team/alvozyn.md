@@ -19,7 +19,7 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
     * **Additional Feature**: Displaying of the Free Time Slot UI
       * What is does: Update the table according to to the free timeslot given
       * Justification: Allows user to easily locate the free slot based on colour instead of it just being in text
-      * Contribution: Set up the related models that are only use to display the free time slot
+      * Contribution: Set up the related models that are only used to display the free time slot
   
 
 * **Enhancements implemented**:
