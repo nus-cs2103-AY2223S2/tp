@@ -560,10 +560,10 @@ Want to find people with certain qualities? Use find command to find people that
 * y/YEAR
   * e.g. `find y/2`: load all person in `year 2`
 * c/COURSE
-  * e.g. `find c/Computer`: load all person enrolled in a course with `Computer` in the name such as `Computer Engineering` and `Computer Science`
+  * e.g. `find c/Computer`: load all person enrolled in a course with `Computer` in the name such as `Computer Engineering` and `Computer Science` <br>
   * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from <code>add</code> and <code>edit</code> which uses c/COURSE_INDEX. To find out why, refer to our <a href="#faq">faq</a>.</div>
 * m/ACADEMIC_YEAR MODULES
-  * e.g. `find m/AY2223S1 CS2103`: load all person with `AY2223S1 CS2103` in their module list including `AY2223S1 CS2103T` and `AY2223S1 CS2103R`
+  * e.g. `find m/AY2223S1 CS2103`: load all person with `AY2223S1 CS2103` in their module list including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` <br> <br>
   * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can omit ACADEMIC_YEAR as a constraint. E.g. <code>find m/CS2103</code> will load all person with <code>CS2103</code>,<code>CS2103T</code> and <code>CS2103R</code> regardless of ACADEMIC_YEAR in their module list</div>
   * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space. E.g. <code>find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230</code> will load all persons that have taken <br>
     > <code>CS1101</code>, <code>CS1231</code> regardless of academic year <br>
