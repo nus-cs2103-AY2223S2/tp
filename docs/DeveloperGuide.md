@@ -323,11 +323,11 @@ The following sequence diagram shows how the select operation works:
 
 ### Sort Feature
 
-There are three sorting features available. 
+There are three sorting features available.
 
 Their mechanisms are similar. So only take `SortByClientName` as an example
 
-The SortByClientName mechanism is facilitated by `SortByClientNameCommand` 
+The SortByClientName mechanism is facilitated by `SortByClientNameCommand`
 and `SortByClientNameCommandParser`.
 
 `SortByClientNameCommand` extends from `sortCommand` by overriding methods from its parent class.
@@ -341,7 +341,7 @@ The logic of this class follows the sequence.
 The logic of this class follows this sequence.
 
 1. Get the instruction index from the preamble of the input
-   
+
 The following sequence diagram shows how the sort operation works:
 ![SortCommand.png](images/SortCommand.png)
 
@@ -365,9 +365,9 @@ The logic of this class follows the sequence.
 
 ### Delete Policy feature
 
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given.
 
-These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature. 
+These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature.
 
 `DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class
 follows the sequence.
@@ -384,8 +384,8 @@ The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
 **Alternatives Considered**:
-- We are considering if we could receive the policies from the model instead of the client. 
-- We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from. 
+- We are considering if we could receive the policies from the model instead of the client.
+- We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from.
 
 ### Edit Policy feature
 

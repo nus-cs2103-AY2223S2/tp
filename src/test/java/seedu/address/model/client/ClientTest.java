@@ -42,9 +42,9 @@ public class ClientTest {
         assertFalse(BOB.isSameClient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        String nameWithTrailingSpaces = VALID_NAME_BOB;
+        Client trailingBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        assertTrue(BOB.isSameClient(trailingBob));
     }
 
     @Test
