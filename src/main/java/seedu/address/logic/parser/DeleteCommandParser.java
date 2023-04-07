@@ -63,6 +63,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 }
 
             } else {
+
+                // nothing supplied after `delete`
+                if (preamble.equals("")) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+
+                }
+
+                if (lectureNameOptional.isPresent()) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                }
+
                 ModuleCode[] moduleCodes = MultipleEventsParser.parseModuleCodes(preamble);
 
                 if (moduleCodes.length > 1) {
@@ -73,9 +86,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
 
         } catch (ParseException | IllegalArgumentException e) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
-                        + "\n" + DeleteCommand.MESSAGE_USAGE), e);
+            throw new ParseException(e.getMessage(), e);
         }
 
     }

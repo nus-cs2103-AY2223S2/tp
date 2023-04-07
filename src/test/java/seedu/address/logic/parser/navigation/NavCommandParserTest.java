@@ -58,7 +58,7 @@ public class NavCommandParserTest {
     }
 
     @Test
-    public void parse_navDirectToLec_success() throws ParseException {
+    public void parse_navDirectToLecWithLecAndMod_success() throws ParseException {
         Optional<ModuleCode> modOpt = Optional.of(modCode);
         Optional<LectureName> lecOpt = Optional.of(lecName);
         Command expectedCmd = new DirectNavCommand(modOpt, lecOpt);
@@ -67,14 +67,19 @@ public class NavCommandParserTest {
     }
 
     @Test
-    public void parse_navDirecttoLecWithInvalidLec_failure() throws ParseException {
-        assertParseFailure(parser, MODULE_CODE_DESC_2040 + " " + INVALID_LECTURE_NAME_DESC,
-                LectureName.MESSAGE_CONSTRAINTS);
+    public void parse_navDirectToLecWithOnlyLec_success() throws ParseException {
+        Optional<ModuleCode> modOpt = Optional.empty();
+        Optional<LectureName> lecOpt = Optional.of(lecName);
+        Command expectedCmd = new DirectNavCommand(modOpt, lecOpt);
+
+        assertParseSuccess(parser, LECTURE_NAME_DESC_L1, expectedCmd);
     }
 
+
     @Test
-    public void parse_navDirecttoLecWithMissingMod_failure() throws ParseException {
-        assertParseFailure(parser, LECTURE_NAME_DESC_L1, getInvalidCommandMessage());
+    public void parse_navDirectToLecWithInvalidLec_failure() throws ParseException {
+        assertParseFailure(parser, MODULE_CODE_DESC_2040 + " " + INVALID_LECTURE_NAME_DESC,
+                LectureName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

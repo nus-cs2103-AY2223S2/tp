@@ -15,7 +15,9 @@ import seedu.address.logic.commands.delete.DeleteMultipleLecturesCommand;
 import seedu.address.logic.commands.delete.DeleteMultipleModulesCommand;
 import seedu.address.logic.commands.delete.DeleteMultipleVideosCommand;
 import seedu.address.logic.commands.delete.DeleteVideoCommand;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.video.VideoName;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalVideos;
@@ -109,36 +111,29 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, "\n" + DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "name /lec lectureName", // specifies /lec without /mod
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, "\n" + DeleteCommand.MESSAGE_USAGE));
+        // does not specidy anything after command word
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+
+        // specifies /lec without /mod
+        assertParseFailure(parser, "name /lec lectureName",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidModuleCode_throwsParseException() {
-        String messageInvalidModuleCode = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ModuleCode.MESSAGE_CONSTRAINTS + "\n" + DeleteCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, "Week 1 /mod a", messageInvalidModuleCode);
-        assertParseFailure(parser, "Week 1, Week 2 /mod a", messageInvalidModuleCode);
-        assertParseFailure(parser, "Vid1, Vid2 /mod a /lec Some Lecture", messageInvalidModuleCode);
-        assertParseFailure(parser, "Vid1 /lec Some Lecture /mod a", messageInvalidModuleCode);
+        assertParseFailure(parser, "a", ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "CS123, a", ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "Week 1 /mod a", ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "Week 1, Week 2 /mod a", ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "Vid1, Vid2 /mod a /lec Some Lecture", ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "Vid1 /lec Some Lecture /mod a", ModuleCode.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_blankNameArgs_throwsParseException() {
-        String messageBlank = " names should only contain"
-                + " alphanumeric characters and spaces,"
-                + " and it should not be blank";
-        assertParseFailure(parser, " /mod CS2040S",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Lecture" + messageBlank + "\n" + DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "videoName /mod CS2040S /lec",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Lecture" + messageBlank + "\n" + DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " /mod CS2040S /lec lectureName",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Video" + messageBlank + "\n" + DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " /mod CS2040S", LectureName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "videoName /mod CS2040S /lec", LectureName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " /mod CS2040S /lec lectureName", VideoName.MESSAGE_CONSTRAINTS);
     }
 }
