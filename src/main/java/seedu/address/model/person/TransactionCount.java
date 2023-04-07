@@ -34,7 +34,7 @@ public class TransactionCount implements Comparable<TransactionCount> {
 
     public static boolean isValidTransactionCount(String test) {
         try {
-            return test.matches(VALIDATION_REGEX) && Long.parseLong(test) > 0
+            return test.matches(VALIDATION_REGEX) && Long.parseLong(test) >= 0
                     && Long.parseLong(test) <= Long.MAX_VALUE;
         } catch (Exception e) {
             return false;
