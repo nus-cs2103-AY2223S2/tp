@@ -176,9 +176,8 @@ are already familiar with the application!
 
 ## 5. Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on 
-[trying your first command](#54-trying-your-first-command). The special note is the 
-[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, 
-which covers essential knowledge to using HMHero's features.
+[trying your first command](#54-trying-your-first-command). Take note that  the
+[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections covers essential knowledge to using HMHero's features.
 
 
 ### 5.1 User Interface
@@ -186,14 +185,14 @@ When you launch HMHero, HMHero appears on your screen as a Graphical User Interf
 layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
-1. [Command Input Box](#command-input-box)
-2. [Command Output Box](#command-output-box)
-3. [Applicant List Box](#applicant-list-box)
+1. [Command Input Box](#command-input-box): Input command text field
+2. [Command Output Box](#command-output-box): Command result
+3. [Applicant List Box](#applicant-list-box): List of applicants 
 
 The following picture of the main window shows the three components, numbered accordingly:
 ![components.png](images%2Fcomponents.png)
 
-Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
+HMHero also has the Help Window. It is not part of the main GUI and is only
 shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
 The Help Window looks like the following:
@@ -220,7 +219,7 @@ The following are the attributes stored for each `Applicant`
 * Interview Date
 * Notes
 
-Applicants are unique by name and phone number and are Case Sensitive.
+Applicants are unique by name and phone number and are case sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
 
@@ -239,7 +238,7 @@ are optional.
 
 Feel free to make use of notes as you fit to highlight skill-sets of an applicant. Examples of such notes
 can include:
-* Highlight applicant's:
+
   * Technical proficiency, e.g. `Python`, `Java`, `Flask`
   * Soft Skills, e.g. `Project Management`, `Event Planning`
 
@@ -263,17 +262,7 @@ You may find the following image taken from the subsequent <a href="#53-command-
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
-| Action   | Corresponding Placeholder |
-|----------|---------------------------|
-| n/       | `NAME`                    |
-| p/       | `PHONE`                   |
-| e/       | `EMAIL`                   |
-| a/       | `ADDRESS`                 |
-| note/    | `NOTE`                    |
-| d/       | `INTERVIEW DATETIME`      |
-| applied/ | `APPLICATION DATETIME`    |
-
-Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
+Please refer to the [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
 [Back to Table of Contents](#table-of-contents)
@@ -281,7 +270,7 @@ and [Placeholders](#524-placeholders) are used together.
 ---
 
 #### 5.2.4 Placeholders
-Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
 Please refer to the subsequent [Command Format](#53-command-format) 
@@ -301,7 +290,6 @@ section to see how Flags and Placeholders are used together.
 ---
 
 ### 5.3 Command Format
-You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
 
 Here is an example:
