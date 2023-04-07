@@ -6,8 +6,9 @@ title: User Guide
 <br>
 <img src="images/logo.png" width="200px"><br>
 
-**MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
-This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
+Are you a university student struggling to manage your modules and your degree progression? Introducing to you, **MODTrek**, here to ease the process and your worries!<br><br>
+**MODTrek** is a desktop application for managing your modules and degree progression, optimised for use via a Command Line Interface (CLI). Equipped with an eye-catching Graphical User Interface (GUI), the app provides a convenient platform for you to easily access and update your modules within presses of a keyboard. Module and degree progression tracking have never been easier!<br><br>
+Disclaimer: This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. To other students, fret not! We plan to expand our application's scope in the coming years, so do keep a lookout!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,15 +19,15 @@ This application is currently geared towards NUS Computer Science Students of th
 3. [GUI Overview](#gui-overview)
 4. [Features](#features)<br>
    4.1 [Add a module:](#add-module) `add`<br>
-   4.2 [Remove a/all module:](#delete-module) `delete`<br>
-   4.3 [Change module details:](#edit-module) `edit`<br>
+   4.2 [Delete module(s):](#delete-module) `delete`<br>
+   4.3 [Edit a module:](#edit-module) `edit`<br>
    4.4 [Tag a module:](#tag-module) `tag`<br>
-   4.5 [Find modules by keyword:](#find-module) `find`<br>
+   4.5 [Find module(s) by keyword(s):](#find-module) `find`<br>
    4.6 [Sort all modules:](#sort-module) `sort`<br>
-   4.7 [Toggle between module lists and progress:](#change-view) `view`<br>
-   4.8 [Exiting the program:](#exit-app) `exit`<br>
-   4.9 [Saving the data](#save-data)<br>
-   4.10 [Editing the data file](#edit-data)
+   4.7 [Toggle between module list and degree progress:](#change-view) `view`<br>
+   4.8 [Exit the program:](#exit-app) `exit`<br>
+   4.9 [Save the data](#save-data)<br>
+   4.10 [Edit the data file](#edit-data)
 5. [Frequently Asked Questions (FAQ)](#faq)
 6. [Command Summary](#command-summary)
 
@@ -36,14 +37,15 @@ This application is currently geared towards NUS Computer Science Students of th
 
 ## 1. How to Use This Guide <a name="how-to"></a>
 
-Not sure how you can begin using **MODTrek**? This user guide will give you all the information you will need so
+Not sure how you may begin using **MODTrek**? This user guide will give you all the information you need so
 that you can utilise **MODTrek** to its full potential.
 
-To get started, we have prepared a [Quick Start](#quick-start) section in this user guide to ensure that you will
-have a seamless setting up process.
+To get started, we have prepared a [Quick Start](#quick-start) section in this user guide to offer you a seamless set-up process.
 
-You can also familiarize yourself with the GUI in our [GUI Overview](#gui-overview) section where you will get a 
+You may also familiarize yourself with the GUI in our [GUI Overview](#gui-overview) section where you will get a 
 quick breakdown of our GUI.
+
+Confused about how to get rolling within **MODTrek**? We have composed a [Short Tutorial](#short-tutorial) to help you kick-start your module tracking endeavour.
 
 Not sure what features **MODTrek** has or how to use them? Our [Features](#features) section provides an in depth
 explanation of **MODTrek** can do and how you can use them effectively. Alternatively, you can go to our [Command Summary](#command-summary)
@@ -89,16 +91,17 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 
 ## 2. Quick Start <a name="quick-start"></a>
 
-1. Ensure you have Java 11 or above installed in your Computer.
+1. Ensure that you have Java 11 or above installed in your Computer.
 2. Download `modtrek.jar` [here](https://github.com/AY2223S2-CS2103T-T13-1/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for **MODTrek**.
-4. Lauch the app by double-clicking the file or by navigating to the file using your command terminal, and
+4. Launch the app by double-clicking the file or by navigating to the folder containing the file using your command terminal, and
 running `java -jar modtrek.jar` in your terminal. 
 5. A GUI similar to the one below should appear in a few seconds. 
 ![Ui QuickStart](images/Ui-quickstart2.png)
 <p align="center"><em>GUI of MODTrek</em><br></p>
 
-6. Type commands within the CLI and press enter to execute it. For a list of executable commands, refer to the [Features](#features) section.
+6. Great! You are now within **MODTrek** and ready to track your modules. You may type commands within the CLI and press enter to execute them. For a list of executable commands, refer to the [Features](#features) section.
+We recommend you to follow our [Short Tutorial](#short-tutorial) to start off.
 
 [Back to Table of Contents](#toc)
 
@@ -112,10 +115,10 @@ The following is an annotated breakdown of **MODTrek's** GUI:
 ![UI Breakdown](images/Ui-breakdown.png)
 <p align="center"><em>Breakdown of GUI</em><br></p>
 
-1. **Command Input:** User inputs commands here.
+1. **Command Input:** This is where you input your commands. Press enter to execute them.
 2. **Command Screen:** Relevant messages from the application will be displayed here. This includes success messages, error
-messages and resul
-3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
+messages and results.
+3. **Results Section:** This panel shows your degree progression by default. This panel can be changed using the `view` command
 to toggle between the module list in **MODTrek** or the user's degree progression. Using the `find` command when making 
 a query on the module list will navigate you to the module search screen.
 
@@ -123,11 +126,11 @@ The following is the annotated breakdown of the Results Section of **MODTrek's**
 ![UI subsection](images/Ui-subsections-detailed.png)
 <p align="center"><em>Breakdown of Results Section</em><br></p>
 
-1. **Doughnut Chart:** This will be shown on the degree progress section. It shows the completion progress of the degree
-and individual sub requirements of the degree. Your total MCS completed and CAP are also displayed.
-2. **Module List:** This will be shown in both the module list section and module search section. It shows all the module in the list.
-3. **Module Group:** This will be shown in both the module list section and module search section. It shows the modules in
-each sub category when sorted.
+1. **Doughnut Chart:** This will be shown in the degree progress section. It shows your completion progress of the degree
+and individual sub requirements of the degree. Your total MCs completed and CAP are also displayed.
+2. **Module List:** This will be shown in both the module list section and module search section. In the module list section, all the modules in the list are shown. In the module search section, all the modules in the list are shown by default. If a filter is applied by the find command, only filtered modules are shown.
+3. **Module Group:** This will be shown in both the module list section and module search section. In the module list section, the modules in each group
+belonging to a sub category are shown (sorted by year-sem by default). In the module search section, all the relevant modules are shown as a single group.
 4. **Module Card:** This will be shown in both the module list section and module search section. Each module card shows the detail of each module.
 
 [Back to Table of Contents](#toc)
@@ -143,21 +146,21 @@ each sub category when sorted.
 :information_source: **Notes about command format:**<br>
 
 * Words enclosed by `<>` are the parameters to be supplied by the user.<br>
-E.g. in `add /m <code>`, `<code>` is a parameter which can be replaced by `CS2030S` to give the command `add /m CS2030S`.
+E.g. In `add /m <code>`, `<code>` is a parameter which can be replaced by `CS2030S` to give the command `add /m CS2030S`.
   
 * Parameters encapsulated in between round brackets are optional.<br>
-E.g. in `delete /m <code1> (/m <code2>)` can be used as `delete /m CS1101S /m CS1231` or as `delete /m CS1101S`.
+E.g. In `delete /m <code1> (/m <code2>...)`, one or more modules can be deleted. It can be used as `delete /m CS1101S` or as`delete /m CS1101S /m CS1231`.
 
 * Parameters with `...` after them can be used 1 or more times.<br>
-E.g. in `(/t <tag>...)` can be used as `/t ULR /t CSF`, `/t ULR`.
+E.g. In `(/t <tag>...)`, one or more tags can be provided. It can be used as `/t ULR`, `/t ULR /t CSF`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `delete all`) will be ignored.
-E.g. if the command specifies `exit 123`, it will be interpreted as `exit.`
+* Extraneous parameters for single-word commands that do not take in parameters (such as `exit`, `help`) will be ignored.
+E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 </div>
 
 ### MODTrek supports the following features:
 
-#### 4.1 Add a Module : `add` <a name="add-module"></a>
+#### 4.1 Add a module : `add` <a name="add-module"></a>
 
 Adds a module to the module list in **MODTrek**. This will kick start your **MODTrek** journey.
 
@@ -193,7 +196,7 @@ If there are reasons you need to add a module with the same module code (e.g. re
 
 [Back to Table of Contents](#toc)
 
-#### 4.2 Delete a Module : `delete` <a name="delete-module"></a>
+#### 4.2 Delete module(s) : `delete` <a name="delete-module"></a>
 
 Deletes the specified module(s) from the module list. You can also choose to delete all the modules from the module list.
 
@@ -214,7 +217,7 @@ Deletes the specified module(s) from the module list. You can also choose to del
 
 [Back to Table of Contents](#toc)
 
-#### 4.3 Edit a Module : `edit` <a name="edit-module"></a>
+#### 4.3 Edit a module : `edit` <a name="edit-module"></a>
 
 Edits an existing module in the module list. Use this command to rectify any mistakes or add in any details you have omitted.
 
@@ -238,7 +241,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 [Back to Table of Contents](#toc)
 
-#### 4.4 Tag a Module : `tag` <a name="tag-module"></a>
+#### 4.4 Tag a module : `tag` <a name="tag-module"></a>
 
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.<br>
 Refer to [Add a module](#add-module) for the tags that you can use.
@@ -253,7 +256,7 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 [Back to Table of Contents](#toc)
 
-#### 4.5 Find modules by keyword(s) : `find` <a name="find-module"></a>
+#### 4.5 Find module(s) by keyword(s) : `find` <a name="find-module"></a>
 
 Displays specific module(s) and their details previously logged by the user which satisfies the keyword(s) queried.
 Use this command to find modules that match the keywords are interested in without needing to manually scroll through the list of modules.
@@ -344,13 +347,13 @@ Exits the program. Alternatively you can exit the program by clicking the top-ri
 
 [Back to Table of Contents](#toc)
 
-#### 4.9 Saving MODTrek data <a name="save-data"></a>
+#### 4.9 Save MODTrek data <a name="save-data"></a>
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to Table of Contents](#toc)
 
-#### 4.10 Editing MODTrek data <a name="edit-data"></a>
+#### 4.10 Edit MODTrek data <a name="edit-data"></a>
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
 
