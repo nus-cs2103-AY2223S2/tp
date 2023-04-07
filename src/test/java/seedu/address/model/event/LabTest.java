@@ -178,7 +178,7 @@ public class LabTest {
     @Test
     public void lab_differentLab_notEquals() {
         Lab newLab = new Lab("lab6");
-        newLab.changeDate(LocalDateTime.now());
+        newLab.changeDate(LocalDateTime.of(2060, 10, 10, 10, 10));
         assertFalse(lab6.isSameLab(newLab));
     }
 
