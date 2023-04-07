@@ -49,6 +49,14 @@ class NonEmptyStringTest {
     }
 
     @Test
+    void isValid_unicodeZeroWidthChars_returnsFalse() {
+        assertFalse(NonEmptyString.isValid("\u200B"));
+        assertFalse(NonEmptyString.isValid("\u200C"));
+        assertFalse(NonEmptyString.isValid("\u200D"));
+        assertFalse(NonEmptyString.isValid("\uFEFF"));
+    }
+
+    @Test
     void equals_nonEmptyStrings_worksOk() {
         NonEmptyString s1 = NonEmptyString.of("foo");
         NonEmptyString s2 = NonEmptyString.of("foo");

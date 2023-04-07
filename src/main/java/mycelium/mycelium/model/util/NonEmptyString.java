@@ -33,14 +33,14 @@ public class NonEmptyString {
     }
 
     /**
-     * Convenience method to create a new NonEmptyString from the given value.
+     * Creates a new NonEmptyString from the given value.
      */
     public static NonEmptyString of(String value) {
         return new NonEmptyString(value);
     }
 
     /**
-     * Convenience method to create a new NonEmptyString from the given value. If the value is null or empty, returns
+     * Creates a new NonEmptyString from the given value. If the value is null or empty, returns
      * an empty Optional.
      */
     public static Optional<NonEmptyString> ofOptional(String value) {
@@ -48,7 +48,7 @@ public class NonEmptyString {
     }
 
     public static boolean isValid(String value) {
-        return value != null && !value.isEmpty();
+        return value != null && !value.replaceAll("\\p{Cf}", "").isEmpty();
     }
 
     @Override
