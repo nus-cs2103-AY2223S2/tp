@@ -21,7 +21,7 @@ Given below are my contributions to the project.
     * Modify help window's UI to include summary of command usage.
     * Updated the UI colour scheme.
     * Designed background for side panel with Figma.
-    * Replaced menu bar with sidebar and `File`,`Help` options replaced with intuitive icon buttons.
+    * Replaced menu bar with sidebar and replaced `File`,`Help` options with intuitive icon buttons.
     * Modified UI to include various visual effects using JavaFX and CSS, such as animated scaling, button rotation, and color changes when hovering or clicking over different components; providing users with a more dynamic and engaging experience.
     * Credits: 
       * Help window, scheduled meet up pane and meet recommendation pane were done in collaboration with [@seanfirefox](https://ay2223s2-cs2103t-w14-2.github.io/tp/team/seanfirefox.html).
