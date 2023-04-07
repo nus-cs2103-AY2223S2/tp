@@ -101,10 +101,10 @@ to keep track of tasks (i.e. `Task` objects) and the other used to keep track of
 ### 2.2 UI component
 
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
-![Structure of the UI Component](images/UiClassDiagram.png)
+[`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
+![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+The UI consists of a `MainWindow` that is made up of Ui parts that will be encapsulated here as `UiComponents`. Examples of its members are visual elements that you will see on screen e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `HelpWindow`, `QuickstartWindow`
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
