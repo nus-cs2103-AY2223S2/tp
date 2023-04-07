@@ -3,36 +3,73 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 Package \nModel <<Rectangle>>{
-Class "<<interface>>\nReadOnlyVms" as ReadOnlyVms
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nModel" as Model
 
-Class Vms
-Class ModelManager
-Class UserPrefs
+    Class ModelManager
+    Class UserPrefs
 
-Class PatientManager
-Class AppointmentManager
-Class VaxTypeManager
-Class KeywordManager
+    Class PatientManager
+    Class AppointmentManager
+    Class VaxTypeManager
+    Class KeywordManager
+
+    class Patient MODEL_COLOR {
+        -Name name
+        -Phone phone
+        -Dob dateOfBirth
+        -BloodType bloodType
+        -Set<GroupName> allergies
+        -Set<GroupName> vaccines
+    }
+
+    class Appointment MODEL_COLOR {
+        -Index patientId
+        -LocalDateTime startTime
+        -LocalDateTime endTime
+        -GroupName vaccine
+        -Boolean isCompleted
+    }
+
+    class VaxType MODEL_COLOR {
+        -GroupName name;
+        -HashSet<GroupName> groups;
+        -Age minAge;
+        -Age maxAge;
+        -HashSet<GroupName> ingredients;
+        -List<Requirement> historyReqs;
+    }
+
+    class Keyword MODEL_COLOR {
+        -String keyword
+        -String mainKeyword
+    }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside .down.> Model
-Model .left.> ReadOnlyVms
 Model .right.> ReadOnlyUserPrefs
 
 ModelManager .up.|> Model
-ModelManager -left-> "1" Vms
 ModelManager -right-> "1" UserPrefs
-Vms .up.|> ReadOnlyVms
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Vms *--> "1" PatientManager
-Vms *--> "1" AppointmentManager
-Vms *--> "1" VaxTypeManager
-Vms *--> "1" KeywordManager
+ModelManager *--> "1" PatientManager
+ModelManager *--> "1" AppointmentManager
+ModelManager *--> "1" VaxTypeManager
+ModelManager *--> "1" KeywordManager
+
+PatientManager *-down-> "0..1000" Patient
+AppointmentManager *-down-> "0..1000" Appointment
+VaxTypeManager *-down-> "0..30" VaxType
+KeywordManager *-down-> "0..*" Keyword
+
+show Patient fields
+show Appointment fields
+show VaxType fields
+show Keyword fields
 
 @enduml
