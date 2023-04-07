@@ -19,16 +19,12 @@ public class ShowRemarkCommandParser implements Parser<ShowRemarkCommand> {
      */
     public ShowRemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String[] splitArr = args.stripLeading().split("\\s+", 2);
-        assert splitArr.length >= 1 : "'splitArr' should have at least 1 element";
 
-        String indexStr = splitArr[0];
-        Index index;
-
-        if (splitArr.length > 1 || indexStr.isEmpty()) {
+        if (args.isBlank() || args.trim().contains(" ")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowRemarkCommand.MESSAGE_USAGE));
         }
 
+        Index index;
         try {
             index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
