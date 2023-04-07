@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":CompanyCommandParser" as CompanyCommandParser LOGIC_COLOR
-participant ":CompanyCommand" as CompanyCommand LOGIC_COLOR
+participant "c:CompanyCommand" as CompanyCommand LOGIC_COLOR
 participant ":CompanyContainsKeywordsPredicate" as CompanyContainsKeywordsPredicate LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -42,16 +42,16 @@ create CompanyCommand
 CompanyCommandParser -> CompanyCommand
 activate CompanyCommand
 
-CompanyCommand --> CompanyCommandParser
+CompanyCommand --> CompanyCommandParser : c
 deactivate CompanyCommand
 
-CompanyCommandParser --> RoleBookParser
+CompanyCommandParser --> RoleBookParser : c
 deactivate CompanyCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 CompanyCommandParser -[hidden]-> RoleBookParser
 destroy CompanyCommandParser
 
-RoleBookParser --> LogicManager
+RoleBookParser --> LogicManager : c
 deactivate RoleBookParser
 
 
@@ -72,7 +72,7 @@ activate CommandResult
 CommandResult --> CompanyCommand
 deactivate CommandResult
 
-CompanyCommand --> LogicManager
+CompanyCommand --> LogicManager : result
 deactivate CompanyCommand
 
 [<--LogicManager

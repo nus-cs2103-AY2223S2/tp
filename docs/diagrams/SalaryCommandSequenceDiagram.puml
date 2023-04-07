@@ -31,19 +31,19 @@ deactivate SalaryCommandParser
 RoleBookParser -> SalaryCommandParser : parse("asc")
 activate SalaryCommandParser
 
+create Order
+SalaryCommandParser -> Order
+activate Order
+
+Order --> SalaryCommandParser : o
+deactivate Order
+
 create SalaryCommand
 SalaryCommandParser -> SalaryCommand
 activate SalaryCommand
 
 SalaryCommand --> SalaryCommandParser : s
 deactivate SalaryCommand
-
-create Order
-SalaryCommand -> Order
-activate Order
-
-Order --> SalaryCommand : o
-deactivate Order
 
 
 SalaryCommandParser --> RoleBookParser : s

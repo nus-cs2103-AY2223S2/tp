@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
-participant ":TagCommand" as TagCommand LOGIC_COLOR
+participant "t:TagCommand" as TagCommand LOGIC_COLOR
 participant ":TagContainsKeywordsPredicate" as TagContainsKeywordsPredicate LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -31,28 +31,27 @@ deactivate TagCommandParser
 RoleBookParser -> TagCommandParser : parse("Tech")
 activate TagCommandParser
 
+create TagContainsKeywordsPredicate
+TagCommandParser -> TagContainsKeywordsPredicate
+activate TagContainsKeywordsPredicate
+
+TagContainsKeywordsPredicate --> TagCommandParser
+deactivate TagContainsKeywordsPredicate
+
 create TagCommand
 TagCommandParser -> TagCommand
 activate TagCommand
 
-TagCommand --> TagCommandParser
+TagCommand --> TagCommandParser : t
 deactivate TagCommand
 
-create TagContainsKeywordsPredicate
-TagCommand -> TagContainsKeywordsPredicate
-activate TagContainsKeywordsPredicate
-
-TagContainsKeywordsPredicate --> TagCommand
-deactivate TagContainsKeywordsPredicate
-
-
-TagCommandParser --> RoleBookParser
+TagCommandParser --> RoleBookParser : t
 deactivate TagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 TagCommandParser -[hidden]-> RoleBookParser
 destroy TagCommandParser
 
-RoleBookParser --> LogicManager
+RoleBookParser --> LogicManager : t
 deactivate RoleBookParser
 
 
@@ -60,7 +59,7 @@ LogicManager -> TagCommand : execute(model)
 activate TagCommand
 
 
-TagCommand -> Model : updateFilteredRoleList()
+TagCommand -> Model : updateFilteredRoleList(pred)
 activate Model
 
 Model --> TagCommand
@@ -73,7 +72,7 @@ activate CommandResult
 CommandResult --> TagCommand
 deactivate CommandResult
 
-TagCommand --> LogicManager
+TagCommand --> LogicManager : result
 deactivate TagCommand
 
 [<--LogicManager
