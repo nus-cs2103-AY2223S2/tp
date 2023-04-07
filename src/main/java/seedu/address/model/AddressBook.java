@@ -128,7 +128,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addDoctor(Doctor doctor) {
         if (doctor == null) {
-            logger.warning("Trying to add null into doctors in AddressBook");
+            logger.warning("Trying to add null into doctors in AddressBook is not allowed!");
+            return;
         }
         doctors.add(doctor);
     }
@@ -140,7 +141,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPatient(Patient patient) {
         if (patient == null) {
-            logger.warning("Trying to add null into patients in AddressBook");
+            logger.warning("Trying to add null into patients in AddressBook is not allowed!");
+            return;
         }
         patients.add(patient);
     }

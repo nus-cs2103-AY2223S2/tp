@@ -183,7 +183,7 @@ public class Patient extends Person {
         if (!doctors.isEmpty()) {
             builder.append("; Doctors: | ");
             doctors.forEach((Doctor doctor) -> {
-                builder.append(doctor.getName() + " | ");
+                builder.append(doctor.getName()).append(" | ");
             });
         }
         return builder.toString();
