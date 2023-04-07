@@ -1,9 +1,7 @@
 package trackr.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -45,7 +43,7 @@ public class UserPrefsTest {
         assertEquals(userPrefs, userPrefsCopy);
 
         // different file path -> returns false
-        Path diffPath = Paths.get("test" , "different", "path");
+        Path diffPath = Paths.get("test", "different", "path");
         UserPrefs userPrefsDiffPath = new UserPrefs();
         userPrefsDiffPath.setTrackrFilePath(diffPath);
         assertNotEquals(userPrefs, userPrefsDiffPath);
