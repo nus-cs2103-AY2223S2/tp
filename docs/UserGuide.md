@@ -323,7 +323,23 @@ Example given `changecost 1 0.1 0.5`
 Additional example:
 * `cc 2 1.0 1.5`
 
+### Marking a deadline as done : `mark`
 
+The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done. 
+
+Pets that are already marked will not be highlighted.
+
+Format: `mark INDEX`
+
+Example given `mark 1`
+
+<div markdown="block" class="alert alert-block alert-success">
+
+* :bulb: **Note:**
+
+You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+
+</div>
 
 ### Deletion
 
