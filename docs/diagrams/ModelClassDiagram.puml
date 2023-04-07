@@ -4,13 +4,19 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Package Model\nClasses <<Rectangle>>{
+together {
+    Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+    Class "<<interface>>\nModel" as Model
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nReadOnlyUserData" as ReadOnlyUserData
+}
 Class ModelManager
-Class UserPrefs
+together {
+    Class AddressBook
+    Class UserPrefs
+    Class UserData
+}
 
 Class UniquePersonList
 Class Person
@@ -26,12 +32,15 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+UserData .up.|> ReadOnlyUserData
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyAddressBook
+Model .down.> ReadOnlyUserData
+ModelManager -down-> "1" AddressBook
+ModelManager -down-> "1" UserPrefs
+ModelManager -down-> "1" UserData
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList

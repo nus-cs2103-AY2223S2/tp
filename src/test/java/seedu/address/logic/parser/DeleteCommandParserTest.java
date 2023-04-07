@@ -4,11 +4,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.DeleteByNameCommand;
+import seedu.address.logic.commands.DeleteMultipleIndexCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteSingleIndexCommand;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,12 +29,21 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteSingleIndexCommand() {
         assertParseSuccess(parser, "1", new DeleteSingleIndexCommand(INDEX_FIRST_PERSON));
+    }
+    @Test
+    public void parse_validArgs_returnsDeleteMultipleIndexCommand() {
+        assertParseSuccess(parser, "1,2,3", new DeleteMultipleIndexCommand(
+                List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, INDEX_THIRD_PERSON)));
+    }
+    @Test
+    public void parse_validArgs_returnsDeleteByNameCommand() {
+        assertParseSuccess(parser, "John Doe",
+                new DeleteByNameCommand(new NameContainsAllKeywordsPredicate(List.of("John", "Doe"))));
     }
     @Test
     public void parse_invalidArgs_returnsMessageUsage() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
-
