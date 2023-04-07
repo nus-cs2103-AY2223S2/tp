@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T_LEC;
+import static seedu.address.testutil.TypicalModules.CS3230;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Address;
+import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Resource;
 import seedu.address.model.module.TimeSlot;
@@ -23,14 +25,16 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TIMESLOT = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DEADLINE = "23rd Feb 2022";
 
-    private static final String VALID_NAME = CS2103T_LEC.getName().toString();
-    private static final String VALID_TYPE = CS2103T_LEC.getResource().toString();
-    private static final String VALID_TIMESLOT = CS2103T_LEC.getTimeSlot().toString();
-    private static final String VALID_ADDRESS = CS2103T_LEC.getAddress().toString();
 
+
+    private static final String VALID_NAME = CS3230.getName().toString();
+    private static final String VALID_TYPE = "Lecture";
+    private static final String VALID_TIMESLOT = "Tuesday 12:00 15:00";
+    private static final String VALID_ADDRESS = CS3230.getAddress().toString();
     private static final String VALID_REMARK = "Best module ever! I love computer science!";
-    private static final String VALID_DEADLINE = "20th Feb 10am";
+    private static final String VALID_DEADLINE = "120623 15:00";
 
     private static final String VALID_TEACHER = "Prof Damyth";
     private static final List<JsonAdaptedTag> VALID_TAGS = CS2103T_LEC.getTags().stream()
@@ -63,9 +67,9 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_invalidType_throwsIllegalValueException() {
         JsonAdaptedModule module =
-                new JsonAdaptedModule(VALID_NAME, INVALID_TYPE, VALID_TIMESLOT, VALID_ADDRESS, VALID_TAGS, VALID_REMARK,
-                        VALID_DEADLINE, VALID_TEACHER);
-        String expectedMessage = Resource.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedModule(VALID_NAME, VALID_TYPE, VALID_TIMESLOT, VALID_ADDRESS, VALID_TAGS, VALID_REMARK,
+                        INVALID_DEADLINE, VALID_TEACHER);
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 

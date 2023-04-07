@@ -14,8 +14,8 @@ import java.time.format.DateTimeFormatter;
  * Represents a Module's deadline.
  */
 public class Deadline implements Comparable<Deadline> {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be of format \"ddMMyy HH:mm\" (Example: 230223 18:00)";
+    public static final String MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT =
+            "Deadline should be of format 'ddMMyy HH:mm' (Example: 230223 18:00)";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Deadline is invalid, please enter a valid date/time.";
     public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}[:][0-9]{2}$";
@@ -29,33 +29,37 @@ public class Deadline implements Comparable<Deadline> {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        checkArgument(isValidFormat(trimmedDeadline), MESSAGE_CONSTRAINTS);
+        String trimmedDeadline = deadline.trim(); //remove trailing spaces
+        checkArgument(isValidFormat(trimmedDeadline), MESSAGE_CONSTRAINTS_INVALID_DATE_FORMAT);
         checkArgument(isValidDate(trimmedDeadline), MESSAGE_CONSTRAINTS_INVALID_DATE);
         value = convertStringToDate(trimmedDeadline);
     }
 
     /**
-     * Returns if a given string is a valid format.
+     * Checks if a deadline has a valid format.
+     * @param deadline a deadline string to check
+     * @return a boolean
      */
-    public static boolean isValidFormat(String test) {
-        if (test.equals(EMPTY_INPUT)) {
+    public static boolean isValidFormat(String deadline) {
+        if (deadline.equals(EMPTY_INPUT)) {
             return true;
         }
-        return test.matches(VALIDATION_REGEX);
+        return deadline.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns if a given string is a valid date.
+     * Checks if a deadline has a valid date.
+     * @param deadline a deadline string to check
+     * @return a boolean
      */
-    public static boolean isValidDate(String test) {
-        if (test.equals(EMPTY_INPUT)) {
+    public static boolean isValidDate(String deadline) {
+        if (deadline.equals(EMPTY_INPUT)) {
             return true;
         }
         try {
             DateFormat df = new SimpleDateFormat("ddMMyy HH:mm");
             df.setLenient(false);
-            df.parse(test);
+            df.parse(deadline);
             return true;
         } catch (ParseException e) {
             return false;
@@ -63,8 +67,9 @@ public class Deadline implements Comparable<Deadline> {
     }
 
     /**
-     * Returns the conversion of String to a LocalDateTime
-     * @return LocalDateTime instance
+     * Converts the deadline String to a LocalDateTime.
+     * @param deadline a deadline string
+     * @return a localdatetime instance
      */
     private LocalDateTime convertStringToDate(String deadline) {
         if (deadline.equals(EMPTY_INPUT)) {
@@ -83,18 +88,6 @@ public class Deadline implements Comparable<Deadline> {
         return dateTimeFormatter.format(value);
     }
 
-    /**
-     * Displays the Deadline in an appropriate format for the UI.
-     * @return a String to be displayed in UI.
-     */
-    public String displayInUI() {
-        if (value == null) {
-            return EMPTY_INPUT;
-        }
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
-        return dateTimeFormatter.format(value);
-    }
-
 
     @Override
     public boolean equals(Object other) {
@@ -110,7 +103,6 @@ public class Deadline implements Comparable<Deadline> {
         }
         return value.hashCode();
     }
-
 
     @Override
     public int compareTo(Deadline otherDeadline) {

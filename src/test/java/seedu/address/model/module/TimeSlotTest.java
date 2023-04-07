@@ -53,16 +53,8 @@ public class TimeSlotTest {
         assertFalse(TimeSlot.isValidTimeSlot("peterjack@example.c")); // top level domain has less than two chars
 
         // valid timeSlot
-        assertTrue(TimeSlot.isValidTimeSlot("PeterJack_1190@example.com")); // underscore in local part
-        assertTrue(TimeSlot.isValidTimeSlot("PeterJack.1190@example.com")); // period in local part
-        assertTrue(TimeSlot.isValidTimeSlot("PeterJack+1190@example.com")); // '+' symbol in local part
-        assertTrue(TimeSlot.isValidTimeSlot("PeterJack-1190@example.com")); // hyphen in local part
-        assertTrue(TimeSlot.isValidTimeSlot("a@bc")); // minimal
-        assertTrue(TimeSlot.isValidTimeSlot("test@localhost")); // alphabets only
-        assertTrue(TimeSlot.isValidTimeSlot("123@145")); // numeric local part and domain name
-        assertTrue(TimeSlot.isValidTimeSlot("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(TimeSlot.isValidTimeSlot("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(TimeSlot.isValidTimeSlot("if.you.dream.it_you.can.do.it@example.com")); // long local part
-        assertTrue(TimeSlot.isValidTimeSlot("e1234567@u.nus.edu")); // more than one period in domain
+        assertTrue(TimeSlot.isValidTimeSlot("Tuesday 12:00 15:00")); // underscore in local part
+        //TO ADD MORE
+
     }
 }

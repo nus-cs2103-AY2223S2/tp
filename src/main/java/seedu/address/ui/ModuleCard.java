@@ -53,16 +53,16 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
-        name.setText(module.getName().fullName);
-        resource.setText("Resource: " + module.getResource().value);
-        address.setText("Venue: " + module.getAddress().value);
-        timeSlot.setText("Time: " + module.getTimeSlot().toString());
-        remark.setText("Remark: " + module.getRemark().value);
+        name.setText(module.getName().toString());
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        deadline.setText("Deadline: " + module.getDeadline().displayInUI());
-        teacher.setText("Teacher: " + module.getTeacher().value);
+        address.setText("Venue: " + module.getAddress());
+        timeSlot.setText("Time: " + module.getTimeSlot());
+        remark.setText("Remark: " + module.getRemark());
+        deadline.setText("Deadline: " + module.getDeadline());
+        teacher.setText("Teacher: " + module.getTeacher());
+        resource.setText("Resource: " + module.getResource());
     }
 
     @Override
