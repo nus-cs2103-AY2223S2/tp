@@ -210,6 +210,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            if (summaryWindow.isShowing()) {
+                logic.execute("summary");
+                summaryWindow.update();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

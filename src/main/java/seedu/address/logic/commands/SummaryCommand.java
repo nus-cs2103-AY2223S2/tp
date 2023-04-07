@@ -17,8 +17,6 @@ public class SummaryCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_SUMMARY_MESSAGE = "Opened summary window.";
-    public static final String SUM_OF_POTENTIAL_EARNING_EXCEEDS_MAX =
-            "The sum of all potential earning you have has exceeded the maximum.";
 
     @Override
     public CommandResult execute(Model model) {

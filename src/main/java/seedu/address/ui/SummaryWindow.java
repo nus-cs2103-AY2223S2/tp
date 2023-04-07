@@ -112,6 +112,17 @@ public class SummaryWindow extends UiPart<Stage> {
     }
 
     /**
+     * Update the summary window.
+     */
+    public void update() {
+        logger.fine("Updating summary page of the application.");
+        countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
+        tagMessage.setText(TAG_MESSAGE + SummaryWindow.TAGS);
+        potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + SummaryWindow.POTENTIAL_EARNINGS);
+        companies.setText(COMPANIES_MESSAGE + SummaryWindow.COMPANIES);
+    }
+
+    /**
      * Returns true if the help window is currently being shown.
      */
     public boolean isShowing() {
