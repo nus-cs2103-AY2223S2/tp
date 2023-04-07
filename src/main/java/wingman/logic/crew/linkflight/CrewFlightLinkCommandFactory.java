@@ -24,29 +24,35 @@ import wingman.model.flight.Flight;
  */
 public class CrewFlightLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Flight, Crew, FlightCrewType> {
-    private static final String COMMAND_WORD = "linkflight";
+    private static final String LINK_COMMAND_WORD = "linkflight";
+    private static final String UNLINK_COMMAND_WORD = "unlinkflight";
     private static final String FLIGHT_PREFIX = "/fl";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
     private static final String FLIGHT_ATTENDANT_PREFIX = "/fa";
     private static final String TRAINEE_PREFIX = "/tr";
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered.\n"
+            "%s: No crew has been entered.\n"
                     + "Please enter at least 1 of the following:\n"
                     + "     /csd for the Cabin Service Director, "
                     + "/sfa for the Senior Flight Attendants,\n"
                     + "     /fa for the Flight Attendants, "
-                    + "/tr for the Trainees.";
+                    + "/tr for the Trainees. \nCommand format: %s";
+    private static final String COMMAND_FORMAT =
+            "%s /fl flight-index /csd crew-index /sfa crew-index /fa "
+                    + "crew-index /tr crew-index";
 
-    private CrewFlightLinkFunction<T> linkFunction;
+    private final CrewFlightLinkFunction<T> linkFunction;
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public CrewFlightLinkCommandFactory(
-            CrewFlightLinkFunction<T> linkFunction
+            CrewFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -56,12 +62,14 @@ public class CrewFlightLinkCommandFactory<T extends Command>
      */
     public CrewFlightLinkCommandFactory(
             Lazy<Model> modelLazy,
-            CrewFlightLinkFunction<T> linkFunction
+            CrewFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getCrewManager),
                 modelLazy.map(Model::getFlightManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -77,10 +85,12 @@ public class CrewFlightLinkCommandFactory<T extends Command>
     public CrewFlightLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
-            CrewFlightLinkFunction<T> linkFunction
+            CrewFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(flightManagerLazy, crewManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -89,7 +99,10 @@ public class CrewFlightLinkCommandFactory<T extends Command>
      * @return a new link crew command factory.
      */
     public static CrewFlightLinkCommandFactory<LinkCrewToFlightCommand> linkFactory() {
-        return new CrewFlightLinkCommandFactory<>(LinkCrewToFlightCommand::new);
+        return new CrewFlightLinkCommandFactory<>(
+                LinkCrewToFlightCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -98,12 +111,15 @@ public class CrewFlightLinkCommandFactory<T extends Command>
      * @return a new unlink crew command factory.
      */
     public static CrewFlightLinkCommandFactory<UnlinkCrewToFlightCommand> unlinkFactory() {
-        return new CrewFlightLinkCommandFactory<>(UnlinkCrewToFlightCommand::new);
+        return new CrewFlightLinkCommandFactory<>(
+                UnlinkCrewToFlightCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -129,32 +145,48 @@ public class CrewFlightLinkCommandFactory<T extends Command>
         Optional<String> traineeIdOptional =
                 param.getNamedValues(TRAINEE_PREFIX);
 
-        Flight flight = getSourceOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        Flight flight = getSourceOrThrow(
+                FLIGHT_PREFIX,
+                param.getNamedValues(FLIGHT_PREFIX)
+        );
 
         Map<FlightCrewType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addTarget(
+                CABIN_SERVICE_DIRECTOR_PREFIX,
                 cabinServiceDirectorIdOptional,
                 FlightCrewType.CABIN_SERVICE_DIRECTOR,
                 crews
         ) || addTarget(
+                SENIOR_FLIGHT_ATTENDANT_PREFIX,
                 seniorFlightAttendantIdOptional,
                 FlightCrewType.SENIOR_FLIGHT_ATTENDANT,
                 crews
         ) || addTarget(
+                FLIGHT_ATTENDANT_PREFIX,
                 flightAttendantIdOptional,
                 FlightCrewType.FLIGHT_ATTENDANT,
                 crews
         ) || addTarget(
+                TRAINEE_PREFIX,
                 traineeIdOptional,
                 FlightCrewType.TRAINEE,
                 crews
         );
 
         if (!hasFoundCrew) {
-            throw new ParseException(NO_CREW_MESSAGE);
+            throw ParseException.formatted(
+                    NO_CREW_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
         return linkFunction.apply(flight, crews);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(COMMAND_FORMAT, commandWord);
     }
 
     /**

@@ -24,35 +24,32 @@ import wingman.model.location.Location;
  */
 public class FlightLocationLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Flight, Location, FlightLocationType> {
-    public static final String COMMAND_WORD = "linklocation";
+    public static final String LINK_COMMAND_WORD = "linklocation";
+    public static final String UNLINK_COMMAND_WORD = "unlinklocation";
     public static final String FLIGHT_PREFIX = "/fl";
     public static final String LOCATION_DEPARTURE_PREFIX = "/from";
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
 
-    private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered.\n"
-                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered.\n"
+            "%s: No location has been entered.\n"
                     + "Please enter /from followed by the departure location ID "
-                    + " and /to followed by the arrival location ID.";
+                    + " and /to followed by the arrival location ID.\n"
+                    + "Command format: %s";
 
-    private static final String INVALID_INDEX_VALUE_MESSAGE =
-            "%s is an invalid value.\n"
-                    + "Please try using an integer instead.";
-    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
-            "Index %s is out of bounds.\n"
-                    + "Please enter a valid index.";
+    private static final String COMMAND_FORMAT =
+            "%s /fl flight-id /from location-id /to location-id";
 
     private final FlightLocationLinkFunction<T> linkFunction;
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public FlightLocationLinkCommandFactory(
-            FlightLocationLinkFunction<T> linkFunction
+            FlightLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -62,12 +59,14 @@ public class FlightLocationLinkCommandFactory<T extends Command>
      */
     public FlightLocationLinkCommandFactory(
             Lazy<Model> modelLazy,
-            FlightLocationLinkFunction<T> linkFunction
+            FlightLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getLocationManager),
                 modelLazy.map(Model::getFlightManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -81,10 +80,12 @@ public class FlightLocationLinkCommandFactory<T extends Command>
     public FlightLocationLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
-            FlightLocationLinkFunction<T> linkFunction
+            FlightLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(flightManagerLazy, locationManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -94,7 +95,7 @@ public class FlightLocationLinkCommandFactory<T extends Command>
      */
     public static FlightLocationLinkCommandFactory<LinkFlightToLocationCommand> linkFactory() {
         return new FlightLocationLinkCommandFactory<>(
-                LinkFlightToLocationCommand::new);
+                LinkFlightToLocationCommand::new, LINK_COMMAND_WORD);
     }
 
     /**
@@ -104,12 +105,12 @@ public class FlightLocationLinkCommandFactory<T extends Command>
      */
     public static FlightLocationLinkCommandFactory<UnlinkFlightToLocationCommand> unlinkFactory() {
         return new FlightLocationLinkCommandFactory<>(
-                UnlinkFlightToLocationCommand::new);
+                UnlinkFlightToLocationCommand::new, UNLINK_COMMAND_WORD);
     }
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return LINK_COMMAND_WORD;
     }
 
     @Override
@@ -130,25 +131,42 @@ public class FlightLocationLinkCommandFactory<T extends Command>
         Optional<String> locationArrivalIdOptional =
                 param.getNamedValues(LOCATION_ARRIVAL_PREFIX);
 
-        Flight flight = getSourceOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        Flight flight = getSourceOrThrow(
+                FLIGHT_PREFIX,
+                param.getNamedValues(FLIGHT_PREFIX)
+        );
 
         Map<FlightLocationType, Location> locationMap = new HashMap<>();
 
         boolean hasLocation = addTarget(
+                LOCATION_ARRIVAL_PREFIX,
                 locationDepartureIdOptional,
                 FlightLocationType.LOCATION_DEPARTURE,
                 locationMap
         ) || addTarget(
+                LOCATION_ARRIVAL_PREFIX,
                 locationArrivalIdOptional,
                 FlightLocationType.LOCATION_ARRIVAL,
                 locationMap
         );
 
         if (!hasLocation) {
-            throw new ParseException(NO_LOCATION_MESSAGE);
+            throw ParseException.formatted(
+                    NO_LOCATION_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
 
         return linkFunction.apply(flight, locationMap);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(
+                COMMAND_FORMAT,
+                commandWord
+        );
     }
 
     /**

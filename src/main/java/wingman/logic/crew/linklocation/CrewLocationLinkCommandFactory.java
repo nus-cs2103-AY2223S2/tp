@@ -27,20 +27,28 @@ import wingman.model.location.Location;
  */
 public class CrewLocationLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Location, Crew, CrewLocationType> {
-    private static final String COMMAND_WORD = "linklocation";
+    private static final String LINK_COMMAND_WORD = "linklocation";
+    private static final String UNLINK_COMMAND_WORD = "unlinklocation";
     private static final String LOCATION_PREFIX = "/lo";
     private static final String CREW_PREFIX = "/cr";
 
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered.\n"
-                    + "Please enter /cr followed by the crew ID.";
+            "%s: No crew has been entered.\n"
+                    + "Please enter /cr followed by the crew ID.\n"
+                    + "Command format: %s";
+    private static final String COMMAND_FORMAT =
+            "%s /lo location-index /cr crew-index";
     private final CrewLocationLinkFunction<T> linkFunction;
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
-    public CrewLocationLinkCommandFactory(CrewLocationLinkFunction<T> linkFunction) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+    public CrewLocationLinkCommandFactory(
+            CrewLocationLinkFunction<T> linkFunction,
+            String commandWord
+    ) {
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -50,12 +58,14 @@ public class CrewLocationLinkCommandFactory<T extends Command>
      */
     public CrewLocationLinkCommandFactory(
             Lazy<Model> modelLazy,
-            CrewLocationLinkFunction<T> linkFunction
+            CrewLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getCrewManager),
                 modelLazy.map(Model::getLocationManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -69,10 +79,12 @@ public class CrewLocationLinkCommandFactory<T extends Command>
     public CrewLocationLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy,
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
-            CrewLocationLinkFunction<T> linkFunction
+            CrewLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(locationManagerLazy, crewManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -81,7 +93,10 @@ public class CrewLocationLinkCommandFactory<T extends Command>
      * @return a new link command factory.
      */
     public static CrewLocationLinkCommandFactory<LinkCrewToLocationCommand> linkFactory() {
-        return new CrewLocationLinkCommandFactory<>(LinkCrewToLocationCommand::new);
+        return new CrewLocationLinkCommandFactory<>(
+                LinkCrewToLocationCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -91,13 +106,15 @@ public class CrewLocationLinkCommandFactory<T extends Command>
      */
     public static CrewLocationLinkCommandFactory<UnlinkCrewFromLocationCommand> unlinkFactory() {
         return new CrewLocationLinkCommandFactory<>(
-                UnlinkCrewFromLocationCommand::new);
+                UnlinkCrewFromLocationCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -116,19 +133,32 @@ public class CrewLocationLinkCommandFactory<T extends Command>
         Optional<String> crewIdOptional =
                 param.getNamedValues(CREW_PREFIX);
 
-        Location location = getSourceOrThrow(locationIdOptional);
+        Location location = getSourceOrThrow(
+                LOCATION_PREFIX,
+                locationIdOptional
+        );
         Map<CrewLocationType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addTarget(
+                CREW_PREFIX,
                 crewIdOptional,
                 CrewLocationType.LOCATION_USING,
                 crews
         );
 
         if (!hasFoundCrew) {
-            throw new ParseException(NO_CREW_MESSAGE);
+            throw ParseException.formatted(
+                    NO_CREW_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
         return linkFunction.apply(location, crews);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(COMMAND_FORMAT, commandWord);
     }
 
     /**

@@ -27,23 +27,31 @@ import wingman.model.pilot.Pilot;
  */
 public class PilotLocationLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Location, Pilot, PilotLocationType> {
-    private static final String COMMAND_WORD = "linklocation";
+    private static final String LINK_COMMAND_WORD = "linklocation";
+    private static final String UNLINK_COMMAND_WORD = "unlinklocation";
     private static final String LOCATION_PREFIX = "/lo";
     private static final String PILOT_PREFIX = "/pi";
 
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered.\n"
-                    + "Please enter /pi followed by the pilot ID.";
+            "%s: No pilot has been entered.\n"
+                    + "Please enter /pi followed by the pilot ID.\n"
+                    + "Command format: %s";
+
+    private static final String COMMAND_FORMAT =
+            "%s /lo location-index /pi pilot-index";
 
     private final PilotLocationLinkFunction<T> linkFunction;
+
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public PilotLocationLinkCommandFactory(
-            PilotLocationLinkFunction<T> linkFunction
+            PilotLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -53,12 +61,14 @@ public class PilotLocationLinkCommandFactory<T extends Command>
      */
     public PilotLocationLinkCommandFactory(
             Lazy<Model> modelLazy,
-            PilotLocationLinkFunction<T> linkFunction
+            PilotLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getLocationManager),
                 modelLazy.map(Model::getPilotManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -72,10 +82,12 @@ public class PilotLocationLinkCommandFactory<T extends Command>
     public PilotLocationLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
             Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
-            PilotLocationLinkFunction<T> linkFunction
+            PilotLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(locationManagerLazy, pilotManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -84,7 +96,10 @@ public class PilotLocationLinkCommandFactory<T extends Command>
      * @return the link command factory.
      */
     public static PilotLocationLinkCommandFactory<LinkPilotToLocationCommand> linkFactory() {
-        return new PilotLocationLinkCommandFactory<>(LinkPilotToLocationCommand::new);
+        return new PilotLocationLinkCommandFactory<>(
+                LinkPilotToLocationCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -94,12 +109,14 @@ public class PilotLocationLinkCommandFactory<T extends Command>
      */
     public static PilotLocationLinkCommandFactory<UnlinkPilotToLocationCommand> unlinkFactory() {
         return new PilotLocationLinkCommandFactory<>(
-                UnlinkPilotToLocationCommand::new);
+                UnlinkPilotToLocationCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -117,20 +134,33 @@ public class PilotLocationLinkCommandFactory<T extends Command>
         Optional<String> pilotIdOptional =
                 param.getNamedValues(PILOT_PREFIX);
 
-        Location location = getSourceOrThrow(locationIdOptional);
+        Location location = getSourceOrThrow(
+                LOCATION_PREFIX,
+                locationIdOptional
+        );
         Map<PilotLocationType, Pilot> pilot = new HashMap<>();
 
         boolean hasFoundPilot = addTarget(
+                PILOT_PREFIX,
                 pilotIdOptional,
                 PilotLocationType.LOCATION_USING,
                 pilot
         );
 
         if (!hasFoundPilot) {
-            throw new ParseException(NO_PILOT_MESSAGE);
+            throw ParseException.formatted(
+                    NO_PILOT_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
 
         return linkFunction.apply(location, pilot);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(COMMAND_FORMAT, commandWord);
     }
 
     /**

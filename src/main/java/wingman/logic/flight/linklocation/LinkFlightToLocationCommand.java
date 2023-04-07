@@ -44,11 +44,11 @@ public class LinkFlightToLocationCommand implements Command {
 
     @Override
     public String toString() {
-        String result = locations.entrySet()
+        String result = locations.values()
                                  .stream()
-                                 .map((entry) -> String.format(
+                                 .map(location -> String.format(
                                          "%s",
-                                         entry.getValue().toString()
+                                         location.toString()
                                  ))
                                  .collect(Collectors.joining(", "));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());

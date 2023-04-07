@@ -25,25 +25,31 @@ import wingman.model.pilot.Pilot;
  */
 public class PilotFlightLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Flight, Pilot, FlightPilotType> {
-    private static final String COMMAND_WORD = "linkflight";
+    private static final String LINK_COMMAND_WORD = "linkflight";
+    private static final String UNLINK_COMMAND_WORD = "unlinkflight";
     private static final String FLIGHT_PREFIX = "/fl";
     private static final String PILOT_FLYING_PREFIX = "/pf";
     private static final String PILOT_MONITORING_PREFIX = "/pm";
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered.\n"
+            "%s: No pilot has been entered.\n"
                     + "Please enter at least 1 of the following:\n"
-                    + "     /pm for the Pilot Monitoring, "
-                    + "/pf for the Pilot Flying.";
+                    + "\t/pm for the Pilot Monitoring, "
+                    + "/pf for the Pilot Flying.\n\tCommand format:%s";
+    private static final String COMMAND_FORMAT =
+            "%s /fl flight-index /pf pilot-index /pm pilot-index\n"
+                    + "\t/pf: Pilot Flying, /pm: Pilot Monitoring";
 
     private final PilotFlightLinkFunction<T> linkFunction;
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public PilotFlightLinkCommandFactory(
-            PilotFlightLinkFunction<T> linkFunction
+            PilotFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -53,12 +59,14 @@ public class PilotFlightLinkCommandFactory<T extends Command>
      */
     public PilotFlightLinkCommandFactory(
             Lazy<Model> modelLazy,
-            PilotFlightLinkFunction<T> linkFunction
+            PilotFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getFlightManager),
                 modelLazy.map(Model::getPilotManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -72,10 +80,12 @@ public class PilotFlightLinkCommandFactory<T extends Command>
     public PilotFlightLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
             Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
-            PilotFlightLinkFunction<T> linkFunction
+            PilotFlightLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(flightManagerLazy, pilotManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -84,7 +94,10 @@ public class PilotFlightLinkCommandFactory<T extends Command>
      * @return the new link command factory.
      */
     public static PilotFlightLinkCommandFactory<LinkPilotToFlightCommand> linkFactory() {
-        return new PilotFlightLinkCommandFactory<>(LinkPilotToFlightCommand::new);
+        return new PilotFlightLinkCommandFactory<>(
+                LinkPilotToFlightCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -93,12 +106,15 @@ public class PilotFlightLinkCommandFactory<T extends Command>
      * @return the new unlink command factory.
      */
     public static PilotFlightLinkCommandFactory<UnlinkPilotToFlightCommand> unlinkFactory() {
-        return new PilotFlightLinkCommandFactory<>(UnlinkPilotToFlightCommand::new);
+        return new PilotFlightLinkCommandFactory<>(
+                UnlinkPilotToFlightCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -118,25 +134,39 @@ public class PilotFlightLinkCommandFactory<T extends Command>
         Optional<String> pilotMonitoringIdOptional =
                 param.getNamedValues(PILOT_MONITORING_PREFIX);
 
-        Flight flight = getSourceOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        Flight flight = getSourceOrThrow(
+                FLIGHT_PREFIX,
+                param.getNamedValues(FLIGHT_PREFIX)
+        );
 
         Map<FlightPilotType, Pilot> pilots = new HashMap<>();
 
         boolean hasFoundPilot = addTarget(
+                PILOT_FLYING_PREFIX,
                 pilotFlyingIdOptional,
                 FlightPilotType.PILOT_FLYING,
                 pilots
         ) || addTarget(
+                PILOT_MONITORING_PREFIX,
                 pilotMonitoringIdOptional,
                 FlightPilotType.PILOT_MONITORING,
                 pilots
         );
 
         if (!hasFoundPilot) {
-            throw new ParseException(NO_PILOT_MESSAGE);
+            throw ParseException.formatted(
+                    NO_PILOT_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
 
         return linkFunction.apply(flight, pilots);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(COMMAND_FORMAT, commandWord);
     }
 
     /**

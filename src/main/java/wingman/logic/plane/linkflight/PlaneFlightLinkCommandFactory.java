@@ -114,10 +114,14 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
 
-        Flight flight = getSourceOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        Flight flight = getSourceOrThrow(
+                FLIGHT_PREFIX,
+                param.getNamedValues(FLIGHT_PREFIX)
+        );
         Map<FlightPlaneType, Plane> planes = new HashMap<>();
 
         boolean hasFoundPlane = addTarget(
+                PLANE_USING_PREFIX,
                 planeUsingIdOptional,
                 FlightPlaneType.PLANE_USING,
                 planes
@@ -128,6 +132,11 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
         }
 
         return linkFunction.apply(flight, planes);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return "(un)linkflight /fl flight-index /pl plane-index";
     }
 
     /**

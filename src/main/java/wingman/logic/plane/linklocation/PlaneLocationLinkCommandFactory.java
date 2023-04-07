@@ -27,23 +27,29 @@ import wingman.model.plane.Plane;
  */
 public class PlaneLocationLinkCommandFactory<T extends Command>
         extends LinkFactoryBase<T, Location, Plane, PlaneLocationType> {
-    private static final String COMMAND_WORD = "linklocation";
+    private static final String LINK_COMMAND_WORD = "linklocation";
+    private static final String UNLINK_COMMAND_WORD = "unlinklocation";
     private static final String LOCATION_PREFIX = "/lo";
     private static final String PLANE_PREFIX = "/pl";
 
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered.\n"
-                    + "Please enter /pl followed by the plane ID.";
+            "%s: No plane has been entered.\n"
+                    + "Please enter /pl followed by the plane ID.\n"
+                    + "Command format: %s";
+    private static final String COMMAND_FORMAT =
+            "%s /lo location-index /pl plane-index";
 
     private final PlaneLocationLinkFunction<T> linkFunction;
+    private final String commandWord;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public PlaneLocationLinkCommandFactory(
-            PlaneLocationLinkFunction<T> linkFunction
+            PlaneLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
-        this(GetUtil.getLazy(Model.class), linkFunction);
+        this(GetUtil.getLazy(Model.class), linkFunction, commandWord);
     }
 
     /**
@@ -53,12 +59,14 @@ public class PlaneLocationLinkCommandFactory<T extends Command>
      */
     public PlaneLocationLinkCommandFactory(
             Lazy<Model> modelLazy,
-            PlaneLocationLinkFunction<T> linkFunction
+            PlaneLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         this(
                 modelLazy.map(Model::getLocationManager),
                 modelLazy.map(Model::getPlaneManager),
-                linkFunction
+                linkFunction,
+                commandWord
         );
     }
 
@@ -72,10 +80,12 @@ public class PlaneLocationLinkCommandFactory<T extends Command>
     public PlaneLocationLinkCommandFactory(
             Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
             Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy,
-            PlaneLocationLinkFunction<T> linkFunction
+            PlaneLocationLinkFunction<T> linkFunction,
+            String commandWord
     ) {
         super(locationManagerLazy, planeManagerLazy);
         this.linkFunction = linkFunction;
+        this.commandWord = commandWord;
     }
 
     /**
@@ -85,7 +95,9 @@ public class PlaneLocationLinkCommandFactory<T extends Command>
      */
     public static PlaneLocationLinkCommandFactory<LinkPlaneToLocationCommand> linkFactory() {
         return new PlaneLocationLinkCommandFactory<>(
-                LinkPlaneToLocationCommand::new);
+                LinkPlaneToLocationCommand::new,
+                LINK_COMMAND_WORD
+        );
     }
 
     /**
@@ -95,12 +107,14 @@ public class PlaneLocationLinkCommandFactory<T extends Command>
      */
     public static PlaneLocationLinkCommandFactory<UnlinkPlaneToLocationCommand> unlinkFactory() {
         return new PlaneLocationLinkCommandFactory<>(
-                UnlinkPlaneToLocationCommand::new);
+                UnlinkPlaneToLocationCommand::new,
+                UNLINK_COMMAND_WORD
+        );
     }
 
     @Override
     public String getCommandWord() {
-        return COMMAND_WORD;
+        return commandWord;
     }
 
     @Override
@@ -119,20 +133,33 @@ public class PlaneLocationLinkCommandFactory<T extends Command>
         Optional<String> planeIdOptional =
                 param.getNamedValues(PLANE_PREFIX);
 
-        Location location = getSourceOrThrow(locationIdOptional);
+        Location location = getSourceOrThrow(
+                PLANE_PREFIX,
+                locationIdOptional
+        );
         Map<PlaneLocationType, Plane> plane = new HashMap<>();
 
         boolean hasFoundPlane = addTarget(
+                LOCATION_PREFIX,
                 planeIdOptional,
                 PlaneLocationType.LOCATION_USING,
                 plane
         );
 
         if (!hasFoundPlane) {
-            throw new ParseException(NO_PLANE_MESSAGE);
+            throw ParseException.formatted(
+                    NO_PLANE_MESSAGE,
+                    commandWord,
+                    getCommandFormatHint()
+            );
         }
 
         return linkFunction.apply(location, plane);
+    }
+
+    @Override
+    protected String getCommandFormatHint() {
+        return String.format(COMMAND_FORMAT, commandWord);
     }
 
     /**
