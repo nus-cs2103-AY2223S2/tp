@@ -5,7 +5,15 @@ title: Owen Yap's Project Portfolio Page
 
 ### Project: Docedex
 
-***Taking control of hospital administrative management is just a few keystrokes away!***
+
+Docedex is a **desktop application** built for **medical administrative assistants**
+to manage doctors and patients within clinics.
+
+Here's a **quick snapshot** of how Docedex can help you
+streamline your hospital management processes.
+- Store and edit information about your patients and doctors
+- Track the status of your patients and doctors
+- Assign patients to doctors upon triaging
 
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
