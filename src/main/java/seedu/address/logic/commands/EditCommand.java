@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyEntities;
 import seedu.address.model.entity.Entity;
 
 /**
@@ -36,26 +36,26 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ReadOnlyEntities rerollEntities;
+        ObservableList<Entity> entities;
         switch (toEditClassification) {
         case "c":
         case "char":
-            rerollEntities = model.getReroll().getCharacters();
+            entities = model.getReroll().getCharList();
             break;
         case "m":
         case "mob":
-            rerollEntities = model.getReroll().getMobs();
+            entities = model.getReroll().getMobList();
             break;
         case "i":
         case "item":
-            rerollEntities = model.getReroll().getItems();
+            entities = model.getReroll().getItemList();
             break;
         default:
             throw new CommandException("Invalid Classification!");
         }
-        for (Object entity : rerollEntities.getEntityList()) {
-            if (((Entity) entity).getName().fullName.equals(toEditName)) {
-                model.setCurrentSelectedEntity((Entity) entity);
+        for (Entity entity :entities) {
+            if (entity.getName().fullName.equals(toEditName)) {
+                model.setCurrentSelectedEntity(entity);
                 return new CommandResult(MESSAGE_SUCCESS, false, false, UiSwitchMode.VIEW);
             }
         }

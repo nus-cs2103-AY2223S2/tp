@@ -20,23 +20,13 @@ import seedu.address.model.entity.Template;
  */
 public class Reroll implements ReadOnlyReroll {
 
-    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character;
-    private final Predicate<Entity> isMob = entity -> entity instanceof Mob;
-    private final Predicate<Entity> isItem = entity -> entity instanceof Item;
-
     // Abstracting the entity list gives more flexibility for further functionality of Reroll.
     private final RerollAllEntities entities;
-    private final ReadOnlyEntities characters;
-    private final ReadOnlyEntities items;
-    private final ReadOnlyEntities mobs;
     private final Template templates;
 
     // Initializer
     {
         entities = new RerollAllEntities();
-        characters = new RerollCharacters(new FilteredList<>(entities.getEntityList(), isCharacter));
-        items = new RerollItems(new FilteredList<>(entities.getEntityList(), isItem));
-        mobs = new RerollMobs(new FilteredList<>(entities.getEntityList(), isMob));
         templates = Template.getPresetTemplates();
     }
 
@@ -64,21 +54,6 @@ public class Reroll implements ReadOnlyReroll {
     @Override
     public ReadOnlyEntities getEntities() {
         return entities;
-    }
-
-    @Override
-    public ReadOnlyEntities getItems() {
-        return items;
-    }
-
-    @Override
-    public ReadOnlyEntities getCharacters() {
-        return characters;
-    }
-
-    @Override
-    public ReadOnlyEntities getMobs() {
-        return mobs;
     }
 
     @Override
@@ -114,16 +89,19 @@ public class Reroll implements ReadOnlyReroll {
         return entities.getEntityList();
     }
 
-    public ObservableList<Entity> getCharList() {
-        return characters.getEntityList();
-    }
-
+    @Override
     public ObservableList<Entity> getItemList() {
-        return items.getEntityList();
+        return entities.getItems();
     }
 
+    @Override
+    public ObservableList<Entity> getCharList() {
+        return entities.getCharacters();
+    }
+
+    @Override
     public ObservableList<Entity> getMobList() {
-        return mobs.getEntityList();
+        return entities.getMobs();
     }
 
     public Character createFromTemplate(Name newEntity, Name templateName) throws NoSuchElementException {

@@ -238,8 +238,7 @@ public class EditModeParser {
         }
         final String actionWord = matcher.group("actionWord");
         final String itemName = matcher.group("name").trim();
-        final Optional<Entity> item = model.getReroll().getItems()
-                                                        .getEntityList()
+        final Optional<Entity> item = model.getReroll().getItemList()
                                                         .stream()
                                                         .filter(entity -> entity.getName().fullName.equals(itemName))
                                                         .findFirst();

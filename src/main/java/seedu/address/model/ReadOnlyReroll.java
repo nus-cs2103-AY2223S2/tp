@@ -1,5 +1,8 @@
 package seedu.address.model;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.entity.Entity;
+
 import java.util.List;
 
 /**
@@ -9,17 +12,17 @@ public interface ReadOnlyReroll {
     /**
      * Returns an unmodifiable view of all items.
      */
-    ReadOnlyEntities getItems();
+    ObservableList<Entity> getItemList();
 
     /**
      * Returns an unmodifiable view of all characters.
      */
-    ReadOnlyEntities getCharacters();
+    ObservableList<Entity> getCharList();
 
     /**
      * Returns an unmodifiable view of all mobs.
      */
-    ReadOnlyEntities getMobs();
+    ObservableList<Entity> getMobList();
 
     /**
      * Returns an unmodifiable view of all entities.
