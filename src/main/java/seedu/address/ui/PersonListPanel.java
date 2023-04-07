@@ -81,6 +81,8 @@ public class PersonListPanel extends UiPart<Region> {
                 Employee employee = personListView.getSelectionModel().getSelectedItem();
                 if (employee != null) {
                     setInformation(employee);
+                } else {
+                    setEmptyInformation();
                 }
             }
         });
@@ -117,6 +119,19 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    public void setEmptyInformation() {
+        name.setText("");
+        employeeId.setText("");
+        phone.setText("");
+        address.setText("");
+        email.setText("");
+        department.setText("");
+        salary.setText("");
+        dayOfPayment.setText("");
+        leaveCount.setText("");
+        dateOfBirth.setText("");
+        dateOfJoining.setText("");
+    }
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */

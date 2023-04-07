@@ -13,7 +13,7 @@ Here are my contributions to the project.
 - Updated implementation of `edit` command to use new EmployeeId class
 - Refactored `Person` class to `Employee` class to tailor the code base to our product. Also changed all instances of person into employee.
 - Refactored `AddressBook` class to `ExecutiveProDb` class to tailor the code base to our product.
-- Added 4 new fields for `Employee` class, `payroll`, `leaveCounter`, `dateOfBirth`, `dateOfJoining`. 
+- Added 4 new fields for `Employee` class, `payroll`, `leaveCounter`, `dateOfBirth`, `dateOfJoining`.
 - Updated implementation of `AddCommand`, `EditCommand` and ui components to view the new fields.
 - Created new classes `Payroll`, `LeaveCounter` for an employee.
 - Added new command `leave` to help employees take leave.
@@ -24,7 +24,7 @@ Here are my contributions to the project.
 - Updated the format for `edit` and `add` to include the new fields for employees.
 
 * **Contributions to the DG**:
-- Updated the explanation of the _Implementation_ of `edit`command and also the UML sequence diagram.
+- Updated the explanation of the _Implementation_ of `edit` command and also the UML sequence diagram.
 - Added NFR use cases.
 
 * **Contributions to team-based tasks**:
@@ -34,7 +34,6 @@ Here are my contributions to the project.
 
 * **Review/mentoring contributions**: [More coming Soon]
 - Pull Requests reviewed and merged:
-  [#226](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/226),
- 
+  [#226](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/226)
 
 **Contributions beyond the project team :**
