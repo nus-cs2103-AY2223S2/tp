@@ -118,7 +118,7 @@ Adds a student to the student list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: Tips:<br>
 * A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
@@ -131,9 +131,10 @@ Examples:
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
 <div markdown="span" class="alert alert-warning">:exclamation:
-Caution: </div> 
+Caution:<br>
 
 * In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+</div>
 
 ### 3. Viewing student contacts as a list: `list`
 
@@ -356,6 +357,7 @@ Addition:
 Switches between the score list and score chart tabs.
 
 Format: There we support using CLI or mouse.
+
 **CLI**<br> `switch`
 
 **Mouse**<br> click the tab.
@@ -368,6 +370,7 @@ The default exported position for CLI will be under the _home folder_ (the folde
 The exported file name is `data.json`.
 
 Format: There we support using CLI or mouse.
+
 **CLI**<br> `export [FILE_PATH]`
 
 **Mouse**<br> Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
@@ -398,7 +401,9 @@ Imports student data into the application. Users can import the file by dragging
 The imported file must be in `.json` format.
 
 Format: There we support using CLI or mouse.
+
 **CLI**<br> - `import FILE_PATH`
+
 **Mouse**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
 Examples:
