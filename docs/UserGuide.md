@@ -832,8 +832,6 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file. If so, in the prompt, press "Yes" to continue renaming the file.
     </div>
 
-    ![open_rename_warning](images/user-guide/open_rename_warning.PNG)
-
 4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
 
     ![open_done](images/user-guide/open_done.PNG)
