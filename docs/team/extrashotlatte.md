@@ -45,9 +45,14 @@ Given below are my contributions to the project.
       * Added logo to the user guide (Pull Request [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127)).
       * Added section on how to use the user guide
       (Pull Request [#127](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/127)).
+      * Enhanced first-time-user story (Pull Request [#142](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/142)).
+      * Added additional command guides and examples (Pull Request [#151](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/151)).
+      * Sorted UG and added callouts (Pull Request [#165](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/165), [#177](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/177), [#242](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/242)).
     * Developer Guide:
       * Added implementation details of the `linkcontact` feature
       (Pull Request [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137)).
+      * Added Activity Diagram for `linkcontact` feature
+        (Pull Request [#170](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/170)).
 
 * **Community**:
     * PRs reviewed and merged:
@@ -64,9 +69,14 @@ Given below are my contributions to the project.
       [#100](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/100),
       [#125](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/125),
       [#129](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/129),
-      [#141](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/141)
+      [#141](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/141),
+      [#167](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/167),
+      [#168](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/168),
+      [#169](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/169),
+      [#232](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/232),
+      [#241](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/241)
 
-    * PRs reviewed (with non trivial review comments):
+    * PRs reviewed (with non-trivial review comments):
       * [#31](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/31),
       [#35](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/35),
       [#104](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/104),
@@ -76,6 +86,10 @@ Given below are my contributions to the project.
 
     * Bugs found and raised:
       * [#90](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/90)
+
+    * Bugs fixed:
+      * [#225](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/225) UG Bug
+      * [#233](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/233) Wrong linkage of contact
 
     * Enhancement raised:
       * [#131](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/131)
