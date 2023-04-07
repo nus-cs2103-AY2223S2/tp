@@ -72,7 +72,7 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
-skinparam dpi 300
+skinparam dpi 200
 
 hide footbox
 hide members
