@@ -92,7 +92,7 @@ public class SampleDataUtil {
         new Person(new Name("Karen Ng"), new Phone("93284018"), new Email("karenng@example.com"),
             new HashSet<>(), getTagSet("researcher", "engineering"))
     };
-    
+
     public static ReadOnlyExpressLibrary getSampleExpressLibrary() {
         ExpressLibrary sampleEl = new ExpressLibrary();
         randomSampleBorrow();
@@ -118,21 +118,22 @@ public class SampleDataUtil {
      * Randomly borrows books for each person for sample purposes.
      */
     public static void randomSampleBorrow() {
-        final LocalDate TODAY = LocalDate.now();
-        borrowBooks(TODAY.minusDays(12), TODAY.plusDays(2), 0, 0);
-        borrowBooks(TODAY.minusDays(18), TODAY.minusDays(4), 0, 1);
-        borrowBooks(TODAY.minusDays(20), TODAY.minusDays(6), 1, 2, 3);
-        borrowBooks(TODAY.minusDays(11), TODAY.plusDays(3), 3, 4);
-        borrowBooks(TODAY.minusDays(2), TODAY.plusDays(12),2, 6, 7);
-        borrowBooks(TODAY, TODAY.plusDays(14), 3, 5);
-        borrowBooks(TODAY.minusDays(5), TODAY.plusDays(9), 4, 8);
-        borrowBooks(TODAY.minusDays(7), TODAY.plusDays(7), 19, 17, 18, 19);
+        final LocalDate today = LocalDate.now();
+        borrowBooks(today.minusDays(12), today.plusDays(2), 0, 0);
+        borrowBooks(today.minusDays(18), today.minusDays(4), 0, 1);
+        borrowBooks(today.minusDays(20), today.minusDays(6), 1, 2, 3);
+        borrowBooks(today.minusDays(11), today.plusDays(3), 3, 4);
+        borrowBooks(today.minusDays(2), today.plusDays(12), 2, 6, 7);
+        borrowBooks(today, today.plusDays(14), 3, 5);
+        borrowBooks(today.minusDays(5), today.plusDays(9), 4, 8);
+        borrowBooks(today.minusDays(7), today.plusDays(7), 19, 17, 18, 19);
     }
 
     /**
      * Helper method to borrow books for sample purposes.
      */
-    public static void borrowBooks(LocalDate borrowDate, LocalDate dueDate, Integer personIndex, Integer... bookIndexes) {
+    public static void borrowBooks(LocalDate borrowDate, LocalDate dueDate,
+        Integer personIndex, Integer... bookIndexes) {
         for (Integer bookIndex : bookIndexes) {
             sampleBooks[bookIndex].loanBookTo(samplePersons[personIndex], borrowDate, dueDate);
             samplePersons[personIndex].borrowBook(sampleBooks[bookIndex]);
