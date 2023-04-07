@@ -1022,7 +1022,7 @@ Similar to **UC03 Delete a contact**, except,
       3. `(01234) 012345` 
 
    We plan to update the `VALIDATION_REGEX` to allow other possible phone numbers including, but not limited to, those under "Invalid `Phone` fields" above, as well as limiting the length of a valid `Phone` field to follow the longest conventionally accepted phone number.
-1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, allowing users to add projects with deadlines that are already overdue. We plan on adding further checks when setting the `ProjectDeadline` field to prevent users from setting an overdue deadline, and show an error message highlighting the reason for the restriction: `The project deadline could not be set as it is already past the deadline.` 
+1. The current restrictions allow for adding a `Project` with an overdue `ProjectDeadline`, without any indication that the deadline has passed.  We plan on adding further checks when setting the `ProjectDeadline` field to notify users when setting an overdue deadline, showing an additional message: `The project deadline has already passed.` 
 1. _{possible UI Enhancements to handle interaction of overflowing text with Tags}_
 
 --------------------------------------------------------------------------------------------------------------------
