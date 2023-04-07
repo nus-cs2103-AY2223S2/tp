@@ -57,9 +57,11 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
 4. Open the `medimeet.jar` file by double clicking on it. If a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
     * If you are familiar with terminals and command lines, you can choose to open the file from a command line instead. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medimeet.jar` command to run the application.<br>
-   ![Ui](images/updated_UI.jpg)
+   ![Ui](images/UI.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Maximize the app for the best user experience with viewing appointments.
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list_patient` : Lists all patients.
@@ -72,7 +74,7 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 

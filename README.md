@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-W12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W12-4/tp/actions/workflows/gradle.yml)
 
-![Ui](docs/images/Ui_placeholder.png)
+![Ui](docs/images/Ui.png)
 
 ## Overview
 **MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. MediMeet enables doctors to effectively manage patient details and appointments, and saves costs by reducing the need for personal assistants or appointment managers.
