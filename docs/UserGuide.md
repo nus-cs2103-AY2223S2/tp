@@ -219,10 +219,10 @@ Examples:
 
 Sorts the events in the current event list based on the user's input.
 
-Format: `sortevent SORT_TYPE`
+Format: `sortevent SORT_KEY`
 
-* Sorts all the events in the current event list based on the specified `SORT_TYPE`.
-* `SORT_TYPE` must be one of these values:
+* Sorts all the events in the current event list based on the specified `SORT_KEY`.
+* `SORT_KEY` must be one of these values:
   * `a`: Sorts based on event names in ascending ASCII order.
   * `b`: Sorts based on event names in descending ASCII order.
   * `c`: Sorts based on start date times in ascending order.
@@ -352,7 +352,7 @@ Action | Format, Examples
 **List Event** | `listevent`
 **List Contact From Event** | `listevcontact`
 **Help** | `help`
-**Sort Event** | `sortevent SORT_TYPE` <br> e.g., `sortevent c`
+**Sort Event** | `sortevent SORT_KEY` <br> e.g., `sortevent c`
 
 
 
