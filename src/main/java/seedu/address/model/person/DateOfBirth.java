@@ -15,7 +15,8 @@ import java.util.Date;
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Please give your date in the format DD/MM/YYYY";
+            "Please give your date in the format DD/MM/YYYY"
+            + " and do only give valid date inputs.";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$";
 
@@ -28,7 +29,7 @@ public class DateOfBirth {
     /**
      * Constructs a {@code dateOfBirth}.
      *
-     * @param dateOfBirth A given gender.
+     * @param dateOfBirth A given date of birth.
      */
     public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
@@ -45,10 +46,56 @@ public class DateOfBirth {
     }
 
     /**
-     * Returns true if a given string is a valid gender.
+     * Returns true if a given string is a valid date of birth.
      */
-    public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidDate(String dateString) {
+
+        if (!dateString.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        String[] dateParts = dateString.split("/");
+        int day = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int year = Integer.parseInt(dateParts[2]);
+
+        return isValidInputs(day, month, year);
+    }
+
+    /**
+     * Returns true if given day, month and year are valid
+     */
+    public static boolean isValidInputs(int day, int month, int year) {
+        if (!isValidMonth(month)) {
+            return false;
+        }
+
+        if (month == 2 && (day > 28 && !isLeapYear(year))) {
+            return false;
+        } else if (month == 2 && (day > 29 && isLeapYear(year))) {
+            return false;
+        } else if (month == 4 && day > 30) {
+            return false;
+        } else if (month == 6 && day > 30) {
+            return false;
+        } else if (month == 9 && day > 30) {
+            return false;
+        } else if (month == 11 && day > 30) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns true if given month is valid
+     */
+    public static boolean isValidMonth(int month) {
+        return !(month < 1 || month > 12);
+    }
+
+    public static boolean isLeapYear(int year) {
+        return (year % 4 == 0);
     }
 
     @Override
