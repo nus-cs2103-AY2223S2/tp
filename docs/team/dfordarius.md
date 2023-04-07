@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added *Gender* class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit the Gender of the client.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
-    gender of his/her clients which makes it easier for the client to keep track.
+    gender of his/her clients which makes it easier to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 * **New Feature**: Added *export* functionality.
