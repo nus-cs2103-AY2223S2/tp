@@ -19,11 +19,11 @@ Todo: Add links
 4. [Implementation](#implementation)
     1. [Add Command](#add-command)
     2. [Edit Command](#edit-command)
-    3. [Salary Command](#implemented-salary-command-feature)
-    4. [Deadline Command](#implemented-deadline-command-feature)
-    5. [Company Command](#implemented-company-command-feature)
-    6. [Tag Command](#implemented-tag-command-feature)
-    7. [View Command](#implemented-view-command-feature)
+    3. [Salary Command](#salary-command-feature)
+    4. [Deadline Command](#deadline-command-feature)
+    5. [Company Command](#company-command-feature)
+    6. [Tag Command](#tag-command-feature)
+    7. [View Command](#view-command-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -269,7 +269,7 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
 
-### \[Implemented\] Salary Command Feature
+### Salary and Deadline Command Feature
 
 The Salary Command feature is designed to enable the user to sort the roles based on the salaries in either ascending
 or descending order.
@@ -287,9 +287,19 @@ If any of the inputs formats are invalid, a `ParseException` will be thrown.
 The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
 as `Model#displaySortedSalaryList()` to sort the roles based on salary of the given `ORDER`.
 
+The Deadline Command implementation is similar to Salary Command by replacing `deadline` with `salary` in the command
+to achieve the sorting of roles based on the given deadline.
+
+E.g.: Executing `deadline asc` will sort the roles from the earliest deadline to the latest deadline and vice versa for
+`deadline desc`.
+
 The following sequence diagram shows how the `salary` command works:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
+
+The following sequence diagram shows how the `deadline` command works:
+
+<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
 #### Design considerations:
 
@@ -305,55 +315,13 @@ The following sequence diagram shows how the `salary` command works:
 
 #### Limitations:
 
-The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of
-the roles. 
+The sorting algorithm for salary and deadline will sort based on the order given. This will sort the current and old
+view of the roles.
 
-E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc`
+E.g.: filtering the roles based on name, tag and applying this command `salary asc/desc` or `deadline asc/desc`
 will sort both views.
 
-### \[Implemented\] Deadline Command Feature
-
-The Deadline Command feature is designed to enable the user to sort the roles based on the deadline in either ascending
-or descending order.
-
-When the user launches the application for the first time, the RoleBook is initialized with the current role book from
-the storage and loads it. The user can then choose to use the deadline command by executing either the `deadline asc`
-command to sort the deadlines in ascending order or `deadline desc` command to sort the deadlines in descending order.
-
-The format accepted by the `deadline` command is `deadline ORDER` where `ORDER` have to be either `asc` or `desc`.
-
-When `deadline ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `DeadlineCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
-
-The `DeadlineCommandParser` then creates a `DeadlineCommand` which will use operations in the `Model` interface
-as `Model#displaySortedDeadlineList()` to sort the roles based on deadline of the given `ORDER`.
-
-The following sequence diagram shows how the `deadline` command works:
-
-<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
-
-#### Design considerations:
-
-**Aspect: How Deadline Command executes:**
-
-* **Alternative 1 (current choice):** Sort the deadline of the roles in asc/desc.
-    * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
-
-* **Alternative 2:** One sort command with the given attribute.
-    * Pros: Easy CLI for the user to use.
-    * Cons: Can be harder to implement and debug if more attributes are being sorted.
-
-#### Limitations:
-
-The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
-the roles. 
-
-E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc`
-will sort both views.
-
-### \[Implemented\] Company Command Feature
+### Company Command Feature
 
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
@@ -379,12 +347,12 @@ The following sequence diagram shows how the `company` command works:
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-  
+
 * **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
-### \[Implemented\] Tag Command Feature
+### Tag Command Feature
 
 The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
 user can filter the job list by tag which shows all roles pertaining to a certain tag.
@@ -411,8 +379,7 @@ The following sequence diagram shows how the `tag` command works:
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
-
-### \[Implemented\] Name Command Feature
+### Name Command Feature
 
 The proposed NameCommand feature allows the user to filter names based on a given keyword. The idea is that the
 user can filter the job list by name which shows all roles pertaining to a certain name.
@@ -440,7 +407,7 @@ The following sequence diagram shows how the `name` command works:
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
-### \[Implemented\] View Command Feature
+### View Command Feature
 
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
