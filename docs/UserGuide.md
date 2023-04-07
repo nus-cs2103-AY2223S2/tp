@@ -7,9 +7,10 @@ title: User Guide
 
 CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
 
-CLIpboard is optimized **for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It can get your student management tasks done faster than traditional GUI apps. CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
+CLIpboard is designed to work efficiently through typing keyword commands and also has a user-friendly interface with graphical elements. It can get your student management tasks done faster than traditional apps. CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
 
 ![image](./images/Ui.png)
+###### Figure 1
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -37,17 +38,18 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
 4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
-<br>e.g. your clipboard.jar is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
-<br>A GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
-
-5. Type the command in the command box and press Enter to execute it.
+<br>e.g. your `clipboard.jar` is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
+<br>A GUI similar to the above, under `Introduction`, should appear in a few seconds. Note how the app contains some sample data.
+5. You will start on the `Course page` (Refer to [<i>Figure 2</i>](#figure-2) below for the Navigation Guide).
+6. Type the command in the command box and press Enter to execute it.
 <br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
-    1. `select 1` : Selects the first item in the list displayed in the list panel.
-    2. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
-    3. `delete student 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
-    4. `undo` : Returns to the state before the last command you entered.
-    5. `exit` : Exits the app.
+   1. `select 1` : Selects the first course displayed (`eg. CS2103T`) on the `Course Page`. You will be redirected to the `Group Page`.
+   2. `select 1` : Selects the first group displayed (`eg. T15`) on the `Group Page`. You will be redirected to the `Student Page`.
+   3. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named `John Doe` with the particulars into the list at `Student Page`.
+   4. `delete student 3` : Deletes the 3rd student (`eg. Lim Kim Choo`) shown in the student list on the `Student Page`.
+   5. `undo` : Returns to the state before the previous `delete student` command you entered. The student deleted (`eg. Lim Kim Choo`) should be back on the list. 
+   6. `exit` : Exits the app.
 6. Refer to the commands list below for a detailed description for each command.
 
 --------------------------------------------------------------------------------------------------------------
@@ -59,6 +61,7 @@ Simply use a combination of `select`, `back`, `session`, and `task` commands.
 If you need more information on how to use these commands, just refer to our handy navigation guide below.
 
 ![image](./images/navigation.png)
+###### Figure 2
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -244,6 +247,7 @@ exit
 
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
+###### Figure 3
 
 
 ### Adding a course: `add course`
@@ -259,7 +263,7 @@ add course <COURSE>
     - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message.
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
-e.g. <code>CS2103T</code>, <code>cs2103t</code> are treated as different course.
+e.g. <code>CS2103T</code> and <code>cs2103t</code> are treated as different courses.
 </div>
 
 Examples:
@@ -325,6 +329,7 @@ Examples:
 
 ## Group Page Commands
 ![image](./images/UiGroupPage.png)
+###### Figure 4
 
 ### Adding a group: `add group`
 
@@ -341,7 +346,7 @@ add group <GROUP>
 
 <div markdown="block" class="alert alert-info">
 This command is case-sensitive.<br>
-e.g. <code>T15</code>, <code>t15</code> are treated as different group.
+e.g. <code>T15</code> and <code>t15</code> are treated as different groups.
 </div>
 
 Examples:
@@ -439,6 +444,7 @@ Examples:
 
 ## Students Page Commands
 ![image](./images/UiStudentPage.png)
+###### Figure 5
 
 
 ### Adding a student: `add student`
@@ -454,8 +460,8 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
     - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
 
 Examples:
-- `add student n/Han Wei Jiew p/98765432 e/hanwj@example.com sid/A6789012F`
-- `add student n/Siti Aisyah p/92624417 e/saisyah@example.com sid/A7890123G`
+- `add student n/Tan Wei Xuan p/81776544 e/twx@example.com sid/A6788796F`
+- `add student n/Amirul Bin Othman p/98884417 e/amirul@example.com sid/A1324356G`
 
 [Back to list of commands](#commands)
 
@@ -538,7 +544,7 @@ Examples:
 - `find student John` returns John.
 - `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`. 
 
-- `find A1234567X` returns the student whose student ID is A1234567X.
+- `find student A1234567X` returns the student whose student ID is A1234567X.
 
 [Back to list of commands](#commands)
 
@@ -564,6 +570,7 @@ Examples:
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
+###### Figure 6
 
 Select a particular student and display his / her particulars.
 
@@ -638,6 +645,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
+###### Figure 7
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -656,6 +664,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
+###### Figure 8
 
 ### Adding a session: `add session`
 
@@ -731,6 +740,7 @@ Examples:
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
+###### Figure 9
 
 ### Marking selected students as present: `mark`
 
@@ -773,6 +783,7 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
+###### Figure 10
 
 Format: 
 ```
@@ -785,6 +796,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
+###### Figure 11
 
 ### Adding a task: `add task`
 
@@ -858,8 +870,9 @@ Examples:
 
 
 
-## Grades Page Commands
+## Grades Page
 ![images](./images/UiGradesPage.png)
+###### Figure 12
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
