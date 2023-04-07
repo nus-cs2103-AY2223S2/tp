@@ -61,44 +61,52 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 
 ## **Command format**
 
-<div markdown="block" class="alert alert-info">
-
 * All command formats given in this user guide come in the form of `command-word additional-details`.
-Example: `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+Example: ![CommandWordAdditionalDetails](images/CommandWordAdditionalDetails.png)
 
 * Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+Example:  ![PrefixDetails](images/PrefixDetails.png)
 
 * Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]…`
+Example:  ![RequireOptional](images/RequireOptional.png)
 
 * Additional details with * after them can be used multiple times, including zero times.
-Example:  `add-client <name/NAME> [phone/PHONE] [email/EMAIL] [tag/TAG]*`
+Example:  ![moreThanOneTag](images/moreThanOneTag.png)
 
 `[tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.`
 
 * Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
-Example:  `delete-client <index>`
+Example: ![DeleteClientIndex](images/DeleteClientIndex.png)
 
 * All command-words are case-insensitive.
 
-</div>
+* Additional notes: -> change alias to short form!!!
+    * Additional details can be given in any order.
+    e.g. if the command specifies name/NAME phone/PHONE_NUMBER, phoannotne/PHONE_NUMBER name/NAME is also acceptable.
+    * If some detail is expected only once in the command but you specified it multiple times, only the last occurrence will be taken.
+    e.g. if you specify phone/12341234 phone/56785678, only phone/56785678 will be taken.
+    * Extraneous details for commands that do not take in any (such as help, list-client, list-project, list-tag, exit, clear-client, clear-project and sort-client) will be ignored.
+    e.g. if the command specifies help 123, it will be interpreted as help.
+    * Extraneous details for commands that take in only one (such as delete-client) will be ignored.
+    e.g. if the command specifies delete-client 1 abc it will be interpreted as delete-client 1.
+    * Most command words and prefixes have shorter aliases that can be used the same way, so that you can complete the same tasks faster once you’re used to the app. For example, list-project has the alias lp and name/ has the alias n/.
+    e.g. specifying list-project is the same as specifying lp and specifying add-project name/John Doe is the same as specifying add-project n/John Doe.
 
 ### **Prefixes**
 
 | Prefix      | Short form | Description                                        |
 |-------------|------------|----------------------------------------------------|
 | `name/`     | `n/`       | Name of client/project                             |
-| `email/`    | `e/`       | Valid email address                                |
-| `phone/`    | `p/`       | Valid phone number                                 |
-| `deadline/` | `d/`       | Valid deadline for project                         |
+| `email/`    | `e/`       | Email address                                      |
+| `phone/`    | `p/`       | Phone number                                       |
+| `deadline/` | `d/`       | Deadline for project ('DD-MM-YY' or 'tomorrow')    |
 | `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
 | `tag/`      | `t/`       | Alphanumeric tag                                   |
 | `client/`   | `c/`       | Keywords to search for client to link to a project |
-| `option/`   | `o/`       | Valid option to sort projects with                 |
-| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
-| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
-| `status/`   | `st/`      | Valid status for finding projects                  |
+| `option/`   | `o/`       | Option to sort projects with                       |
+| `start/`    | `s/`       | Start of timeframe for finding projects            |
+| `end/`      | `e/`       | End of timeframe for finding projects              |
+| `status/`   | `st/`      | Status for finding projects                        |
 
 <br>
 
@@ -130,6 +138,10 @@ Example:  `delete-client <index>`
 [<small>Back to top</small>](#table-of-contents)
 
 ## **Features**
+
+<div markdown="block" class="alert alert-info">
+
+</div>
 
 [<small>Back to top</small>](#table-of-contents)
 
