@@ -1,4 +1,4 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,7 +14,6 @@ import static trackr.testutil.TypicalSuppliers.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
 public class SupplierTest {

@@ -1,4 +1,5 @@
-package trackr.model.supplier;
+package trackr.model.person;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -10,7 +11,6 @@ import static trackr.testutil.TypicalCustomer.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.person.Customer;
 import trackr.testutil.CustomerBuilder;
 
 public class CustomerTest {
@@ -24,8 +24,8 @@ public class CustomerTest {
         assertFalse(AMY.isSameItem(null));
 
         Customer editedBob = new CustomerBuilder(BOB)
-                .withCustomerPhone(VALID_PHONE_AMY)
-                .build();
+                                     .withCustomerPhone(VALID_PHONE_AMY)
+                                     .build();
         assertTrue(AMY.isSameItem(editedBob));
 
         // different phone, all other attributes same -> returns false
