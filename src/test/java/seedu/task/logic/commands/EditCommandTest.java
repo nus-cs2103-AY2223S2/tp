@@ -28,8 +28,6 @@ import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
-import seedu.task.model.task.Deadline;
-import seedu.task.model.task.Event;
 import seedu.task.model.task.Task;
 import seedu.task.testutil.DeadlineBuilder;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
@@ -128,6 +126,58 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
     }
+
+    @Test
+    public void execute_deadlineOnSimpleTask_failure() {
+        Task editedDeadline = new DeadlineBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedDeadline).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DEADLINE_ON_TASK);
+    }
+
+    @Test
+    public void execute_deadlineOnEvent_failure() {
+        Task editedDeadline = new DeadlineBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedDeadline).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, eventModel, EditCommand.MESSAGE_DEADLINE_ON_EVENT);
+    }
+
+    @Test
+    public void execute_fromOnSimpleTask_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withFrom("2023-01-01 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_FROM_ON_TASK);
+    }
+
+    @Test
+    public void execute_fromOnDeadline_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withFrom("2023-01-01 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, deadlineModel, EditCommand.MESSAGE_FROM_ON_DEADLINE);
+    }
+
+    @Test
+    public void execute_toOnSimpleTask_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTo("2023-01-03 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_TO_ON_TASK);
+    }
+
+    @Test
+    public void execute_toOnDeadline_failure() {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTo("2023-01-03 1800").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
+
+        assertCommandFailure(editCommand, deadlineModel, EditCommand.MESSAGE_TO_ON_DEADLINE);
+    }
+
+
 
 
     @Test
