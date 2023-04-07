@@ -19,6 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
+import seedu.dengue.model.person.exceptions.PersonHasNullAttributesException;
 import seedu.dengue.testutil.TypicalPersons;
 
 public class CsvDengueHotspotTrackerStorageTest {
@@ -35,7 +36,7 @@ public class CsvDengueHotspotTrackerStorageTest {
         assertThrows(NullPointerException.class, () -> readDengueHotspotTracker(null));
     }
 
-    private java.util.Optional<ReadOnlyDengueHotspotTracker> readDengueHotspotTracker(String filePath)
+    private Optional<ReadOnlyDengueHotspotTracker> readDengueHotspotTracker(String filePath)
             throws Exception {
         return new CsvDengueHotspotStorage(Paths.get(filePath))
                 .readDengueHotspotTracker(addToTestDataPathIfNotNull(filePath));
@@ -66,9 +67,15 @@ public class CsvDengueHotspotTrackerStorageTest {
     }
 
     @Test
-    public void read_notJsonFormat_exceptionThrown() {
+    public void read_notCsvFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, ()
                 -> readDengueHotspotTracker("notCsvFormatDengueHotspotTracker.csv"));
+    }
+
+    @Test
+    public void read_notCorrectHeaders_exceptionThrown() {
+        assertThrows(PersonHasNullAttributesException.class, ()
+                -> readDengueHotspotTracker("notCorrectHeadersDengueHotspotTracker.csv"));
     }
 
     @Test
@@ -106,7 +113,6 @@ public class CsvDengueHotspotTrackerStorageTest {
         csvDengueHotspotStorage.saveDengueHotspotTracker(original); // file path not specified
         readBack = csvDengueHotspotStorage.readDengueHotspotTracker().get(); // file path not specified
         assertEquals(original, new DengueHotspotTracker(readBack));
-
     }
 
     @Test
