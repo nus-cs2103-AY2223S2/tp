@@ -423,12 +423,12 @@ Sequence Diagram:
 3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
 4. The `Id` and list of `LeaveDate` are passed down to the newly created command.
 5. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
-6. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown. 
+6. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown.
 7. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
 8. SudoHr will show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
-We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation. 
+We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation.
 
 We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this to keep the behavior consistant with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user.
 
