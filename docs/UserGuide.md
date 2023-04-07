@@ -74,7 +74,7 @@ Here is a short overview of the features and capabilities of **CookHub**:
 In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
 
 <p align="center" width="100%">
-    <img src="images/annotated/GUI.svg" width="100%">
+    <img src="images/annotated/GUI.svg" width="120%">
 </p>
 
 
