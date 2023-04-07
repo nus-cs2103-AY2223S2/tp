@@ -35,8 +35,8 @@
 
 !define USER_COLOR #000000
 
-!define ARCHI_USER_COLOR #701a75
-!define ARCHI_FS_COLOR #134e4a
+!define ARCHI_FS_COLOR #9a3412
+!define ARCHI_USER_COLOR #134e4a
 
 skinparam BackgroundColor #FFFFFFF
 
