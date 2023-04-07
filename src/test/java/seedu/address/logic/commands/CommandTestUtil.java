@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Reroll;
@@ -31,8 +30,6 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + "Sussy Baka&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + "sus*"; // '*' not allowed in tags
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
 
@@ -82,10 +79,10 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showEntityAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntityList().size());
+    public static void showEntityAtIndex(Model model, int targetIndex) {
+        assertTrue(targetIndex < model.getFilteredEntityList().size());
 
-        Entity entity = model.getFilteredEntityList().get(targetIndex.getZeroBased());
+        Entity entity = model.getFilteredEntityList().get(targetIndex);
         final String[] splitName = entity.getName().fullName.split("\\s+");
         model.updateFilteredEntityList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
