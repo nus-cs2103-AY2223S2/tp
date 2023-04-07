@@ -597,6 +597,7 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+
 ### 7. Deleting a person : `delete`
 
 Want to remove a contact? Delete it at the specified INDEX with the delete command! 
@@ -621,20 +622,20 @@ Want a fresh start? Use the clear command!
 :exclamation: <b>Caution:</b> Clears <b>all</b> entries from CoDoc.
 </div>
 
-![Clear](images/UiClear.png)
-
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### 9. Exiting the program : `exit`
 
-Want to quit? Use exit command to exit the program! <br>
-Equivalent to clicking the close button via the GUI. <br>
+Want to quit? Use exit command to exit the program!
 
-`exit`<br>
+`exit`
+<div class="span" class="alert alert-info">
+:information_source: <b>Note:</b> Equivalent to clicking the close button via the GUI.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
-
-<br>
 
 ---
 
@@ -661,9 +662,10 @@ Equivalent to clicking the close button via the GUI. <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-<br>
-
 ---
+
+<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
