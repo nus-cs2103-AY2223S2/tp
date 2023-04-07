@@ -46,8 +46,7 @@ public class MarkAsWatchedCommandParser implements Parser<MarkAsWatchedCommand> 
             return new MarkAsWatchedCommand(moduleCode, lectureName, videoNames);
 
         } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(pe.getMessage()));
         }
 
     }
