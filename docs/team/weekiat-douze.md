@@ -70,6 +70,7 @@ BookFace also has a contact import feature to help newer or exchange students to
   * Find tags worked incorrectly in certain cases (provided fix)
   
 **Contributions beyond project team**
+
 * Provided insight on a peer's problem in the course forum [#161](https://github.com/nus-cs2103-AY2223S2/forum/issues/161)
 * PE-D Bug Testing for [CookHub](https://github.com/AY2223S2-CS2103T-W09-1/tp) application
 
