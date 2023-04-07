@@ -36,6 +36,7 @@ public class SortTechniciansCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateTechnicianComparator(cmp);
+        model.selectTechnician(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.TECHNICIANS);
     }
 }

@@ -13,22 +13,16 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Redo success!";
-    public static final String MESSAGE_FAILURE = "No more commands to redo!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireAllNonNull(model, undoRedoStack);
-
-        if (!undoRedoStack.canRedo()) {
-            throw new CommandException(MESSAGE_FAILURE);
+        requireAllNonNull(model);
+        try {
+            model.getShop().redo();
+            model.resetSelected();
+            return new CommandResult(MESSAGE_SUCCESS, Tab.ALL);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-
-        undoRedoStack.popRedo().redo(model);
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    @Override
-    public void setData(seedu.address.logic.commands.StackUndoRedo undoRedoStack) {
-        this.undoRedoStack = undoRedoStack;
     }
 }

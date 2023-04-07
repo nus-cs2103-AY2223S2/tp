@@ -11,19 +11,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditAppointment object
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
@@ -31,8 +26,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             + "edit either";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditAppointment
+     * and returns an EditAppointment object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditAppointmentCommand parse(String args) throws ParseException {
@@ -46,53 +42,31 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE));
         }
 
-        EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
-
-        editAppointmentDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
-
+        int appointmentId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get());
+        Optional<Integer> customerId = Optional.empty();
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
-            editAppointmentDescriptor.setCustomerId(
-                    ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
-        }
+            customerId = Optional.of(ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
+        } // Invalid customer Id handled by EditAppointmentCommand
+
+        Optional<LocalDateTime> dateTime = Optional.empty();
         // If either is present, enforce that both must be present.
         if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME).isPresent()) {
             if (arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_TIME)) {
                 LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
                 LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-                LocalDateTime dateTime = date.atTime(time);
-                editAppointmentDescriptor.setTimeDate(dateTime);
+                dateTime = Optional.of(date.atTime(time));
             } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MISSING_DATE_OR_TIME,
                                 EditAppointmentCommand.MESSAGE_USAGE));
             }
-
         }
+        return new EditAppointmentCommand(appointmentId, customerId, dateTime);
 
         // Leaving this commented for reference if in future EditAppointmentCommandParser also handles setStaffIds
         // Set<Integer> staffIds
         //        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
-        if (!editAppointmentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditAppointmentCommand(editAppointmentDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
     /**

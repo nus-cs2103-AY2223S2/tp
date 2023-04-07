@@ -9,10 +9,8 @@ import seedu.address.model.Model;
 /**
  * Manages the adding of a technician to a specific service
  */
-public class AddTechnicianToServiceCommand extends RedoableCommand {
+public class AddTechnicianToServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservicetech";
-    public static final String MESSAGE_TECHNICIAN_NOT_FOUND = "Technician %d does not exist";
-    public static final String MESSAGE_SERVICE_NOT_FOUND = "Service %d does not exist";
     public static final String MESSAGE_SUCCESS_FORMAT = "Technician %d added to Service %d";
     public static final String COMMAND_USAGE =
         COMMAND_WORD + ": Assigns an existing technician to an existing service. "
@@ -39,15 +37,14 @@ public class AddTechnicianToServiceCommand extends RedoableCommand {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
-        if (!model.hasTechnician(this.techId)) {
-            throw new CommandException(String.format(MESSAGE_TECHNICIAN_NOT_FOUND, this.techId));
-        }
-        if (!model.hasService(this.serviceId)) {
-            throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, this.serviceId));
-        }
-        model.addTechnicianToService(this.serviceId, this.techId);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
+    public CommandResult execute(Model model) throws CommandException {
+        try {
+            model.getShop().addTechnicianToService(techId, serviceId);
+            model.selectService(lst -> lst.stream().filter(a -> a.getId() == serviceId).findFirst().get());
+            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
                 Tab.SERVICES);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 }

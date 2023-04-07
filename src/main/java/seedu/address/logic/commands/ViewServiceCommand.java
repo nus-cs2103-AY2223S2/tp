@@ -29,12 +29,13 @@ public class ViewServiceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasService(this.serviceId)) {
+        if (!model.getShop().hasService(this.serviceId)) {
             throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, this.serviceId));
         }
         model.updateFilteredServiceList(s -> s.getId() == this.serviceId);
         Service current = model.getFilteredServiceList().get(0);
-        model.selectService(current);
+        model.selectService(lst -> lst.stream().filter(s -> s.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
                 String.format(Messages.MESSAGE_SERVICE_VIEW_OVERVIEW, current.getId()),
                 Tab.SERVICES);

@@ -8,40 +8,51 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
-import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.VehicleType;
 
 /**
  * Adds a vehicle to the shop
  */
-public class AddVehicleCommand extends RedoableCommand {
+public class AddVehicleCommand extends Command {
     public static final String COMMAND_WORD = "addvehicle";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vehicle to the shop. "
-            + "Parameters: "
-            + PREFIX_PLATE_NUM + "PLATE NUMBER "
-            + PREFIX_BRAND + "VEHICLE BRAND "
-            + PREFIX_CUSTOMER_ID + "OWNER ID "
-            + PREFIX_VEHICLE_COLOR + "COLOR "
-            + PREFIX_VEHICLE_TYPE + "VEHICLE TYPE "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PLATE_NUM + "SBA1234A "
-            + PREFIX_BRAND + "Toyota "
-            + PREFIX_VEHICLE_COLOR + "red"
-            + PREFIX_CUSTOMER_ID + "1 "
-            + PREFIX_VEHICLE_TYPE + "4wd ";
+        + "Parameters: "
+        + PREFIX_PLATE_NUM + "PLATE NUMBER "
+        + PREFIX_BRAND + "VEHICLE BRAND "
+        + PREFIX_CUSTOMER_ID + "OWNER ID "
+        + PREFIX_VEHICLE_COLOR + "COLOR "
+        + PREFIX_VEHICLE_TYPE + "VEHICLE TYPE "
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_PLATE_NUM + "SBA1234A "
+        + PREFIX_BRAND + "Toyota "
+        + PREFIX_VEHICLE_COLOR + "red"
+        + PREFIX_CUSTOMER_ID + "1 "
+        + PREFIX_VEHICLE_TYPE + "4wd ";
 
-    public static final String MESSAGE_SUCCESS = "New vehicle added: %1$s";
-    public static final String MESSAGE_DUPLICATE_VEHICLE = "This vehicle is already registered";
-    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";
+    public static final String MESSAGE_SUCCESS = "New vehicle added";
 
-    private final Vehicle toAdd;
+    private final int ownerId;
+    private final String plateNum;
+    private final String color;
+    private final String brand;
+    private final VehicleType vehicleType;
 
     /**
      * Creates an AddCommand to add the specified {@code Vehicle}
+     *
+     * @param ownerId     ID of owner
+     * @param plateNum    plate number of vehicle
+     * @param color       color of vehicle
+     * @param brand       brand of vehicle
+     * @param vehicleType type of vehicle
      */
-    public AddVehicleCommand(Vehicle vehicle) {
-        this.toAdd = vehicle;
+    public AddVehicleCommand(int ownerId, String plateNum, String color, String brand, VehicleType vehicleType) {
+        this.ownerId = ownerId;
+        this.plateNum = plateNum;
+        this.color = color;
+        this.brand = brand;
+        this.vehicleType = vehicleType;
     }
 
     /**
@@ -52,24 +63,14 @@ public class AddVehicleCommand extends RedoableCommand {
      * @throws CommandException If error occurs during command execution
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasCustomer(toAdd.getOwnerId())) {
-            IdGenerator.setVehicleIdUnused(toAdd.getId());
-            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        try {
+            model.getShop().addVehicle(ownerId, plateNum, color, brand, vehicleType);
+            model.selectVehicle(lst -> lst.get(lst.size() - 1));
+            return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
         }
-        if (model.hasVehicle(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VEHICLE);
-        }
-
-        model.addVehicle(toAdd.getOwnerId(), toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.VEHICLES);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddVehicleCommand // instanceof handles nulls
-                && toAdd.equals(((AddVehicleCommand) other).toAdd));
     }
 }

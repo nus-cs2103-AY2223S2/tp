@@ -21,6 +21,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCustomerCommand;
+import seedu.address.logic.commands.DeletePartCommand;
 import seedu.address.logic.commands.DeleteServiceCommand;
 import seedu.address.logic.commands.DeleteTechnicianCommand;
 import seedu.address.logic.commands.DeleteVehicleCommand;
@@ -53,6 +54,7 @@ import seedu.address.logic.commands.TotalAppointmentCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
+import seedu.address.logic.commands.ViewPartCommand;
 import seedu.address.logic.commands.ViewServiceCommand;
 import seedu.address.logic.commands.ViewTechnicianCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
@@ -184,6 +186,9 @@ public class AddressBookParser {
         case ViewServiceCommand.COMMAND_WORD:
             return new ViewServiceCommandParser().parse(arguments.trim());
 
+        case ViewPartCommand.COMMAND_WORD:
+            return new ViewPartCommand(arguments.trim());
+
         // Delete
 
         case DeleteVehicleCommand.COMMAND_WORD:
@@ -200,6 +205,9 @@ public class AddressBookParser {
 
         case DeleteTechnicianCommand.COMMAND_WORD:
             return new DeleteTechnicianCommandParser().parse(arguments.trim());
+
+        case DeletePartCommand.COMMAND_WORD:
+            return new DeletePartCommandParser().parse(arguments.trim());
 
         case RemovePartFromServiceCommand.COMMAND_WORD:
             return new RemovePartFromServiceCommandParser().parse(arguments);

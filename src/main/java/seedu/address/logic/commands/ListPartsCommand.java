@@ -16,6 +16,7 @@ public class ListPartsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredPartMap(Model.PREDICATE_SHOW_ALL_PARTS);
         return new CommandResult(MESSAGE_SUCCESS, Tab.PARTS);
     }
 }

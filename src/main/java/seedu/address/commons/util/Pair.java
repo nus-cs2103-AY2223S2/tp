@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import java.util.Objects;
+
 /**
  * Pair of 2 objects
  *
@@ -14,9 +16,18 @@ public class Pair<T, U> {
      * @param first  First object
      * @param second Second object
      */
-    public Pair(T first, U second) {
+    private Pair(T first, U second) {
         this.first = first;
         this.second = second;
+    }
+
+    /**
+     * @param first  First object
+     * @param second Second object
+     * @return Pair of first and second object
+     */
+    public static <T, U> Pair<T, U> of(T first, U second) {
+        return new Pair<>(first, second);
     }
 
     /**
@@ -38,5 +49,24 @@ public class Pair<T, U> {
         return String.format("<%s, %s>",
                 this.first.toString(),
                 this.second.toString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pair)) {
+            return false;
+        }
+
+        Pair<?, ?> otherPair = (Pair<?, ?>) other;
+        return this.first.equals(otherPair.first) && this.second.equals(otherPair.second);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
     }
 }

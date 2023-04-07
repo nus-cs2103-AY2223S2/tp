@@ -36,6 +36,7 @@ public class SortVehiclesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateVehicleComparator(cmp);
+        model.selectVehicle(lst -> lst.isEmpty() ? null : lst.get(0));
         return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
     }
 }

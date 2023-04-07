@@ -7,13 +7,14 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.DeepCopy;
 import seedu.address.model.Findable;
 
 /**
  * The vehicle class is the superclass of all types of vehicle.
  * As a start, you may wish to consider VehicleType of creating other subclasses.
  */
-public class Vehicle implements Findable {
+public class Vehicle implements Findable, DeepCopy<Vehicle> {
     private int id;
     private int ownerId;
     private String plateNumber;
@@ -197,6 +198,10 @@ public class Vehicle implements Findable {
         this.serviceIds.add(service.getId());
     }
 
+    public void addService(int serviceId) {
+        this.serviceIds.add(serviceId);
+    }
+
     /**
      * This method removes a service that was added to this vehicle...
      *
@@ -260,5 +265,10 @@ public class Vehicle implements Findable {
             || this.color.toLowerCase().contains(keyword)
             || this.plateNumber.toLowerCase().contains(keyword)
             || this.type.toString().toLowerCase().contains(keyword);
+    }
+
+    @Override
+    public Vehicle copy() {
+        return new Vehicle(this.id, this.ownerId, this.plateNumber, this.color, this.brand, this.type, this.serviceIds);
     }
 }

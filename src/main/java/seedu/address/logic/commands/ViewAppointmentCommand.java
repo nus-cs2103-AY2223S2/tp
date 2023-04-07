@@ -10,7 +10,7 @@ import seedu.address.model.service.appointment.Appointment;
 /**
  * Finds and returns the appointment details of the provided id.
  */
-public class ViewAppointmentCommand extends RedoableCommand {
+public class ViewAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "viewappointment";
 
@@ -27,16 +27,17 @@ public class ViewAppointmentCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasAppointment(this.appointmentId)) {
+        if (!model.getShop().hasAppointment(this.appointmentId)) {
             throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND, this.appointmentId));
         }
         model.updateFilteredAppointmentList(a -> a.getId() == this.appointmentId);
         Appointment current = model.getFilteredAppointmentList().get(0);
-        model.selectAppointment(current);
+        model.selectAppointment(lst -> lst.stream().filter(a -> a.getId() == current.getId())
+                .findFirst().orElse(null));
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW));
+                String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW), Tab.APPOINTMENTS);
     }
 
     @Override
