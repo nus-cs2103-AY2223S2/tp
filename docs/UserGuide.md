@@ -318,6 +318,12 @@ Links a client contact to an event.
   Successfully linked! Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
   ````
 
+![LinkcontactBefore](images/LinkcontactBefore.png)
+Before linking 2nd event to contact with phone number 91234567
+
+![LinkcontactAfter](images/LinkcontactAfter.png)
+After linking 2nd event to contact with phone number 91234567
+
 ### List all Events: `list` <a id = "list-all-events"></a>
 
 Displays all events.
