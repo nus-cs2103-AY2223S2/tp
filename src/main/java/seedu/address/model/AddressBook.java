@@ -259,4 +259,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.getNameByNric(drNric);
     }
 
+    public Person retrievePersonByNric(Nric nric) {
+        return persons.retrievePersonByNric(nric);
+    }
+
 }

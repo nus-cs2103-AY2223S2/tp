@@ -178,4 +178,12 @@ public class UniquePersonList implements Iterable<Person> {
                 .findFirst();
         return optionalPerson.map(Person::getName).orElse(null);
     }
+
+    public Person retrievePersonByNric(Nric nric) {
+        requireNonNull(nric);
+        Optional<Person> optionalPerson = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .findFirst();
+        return optionalPerson.get();
+    }
 }
