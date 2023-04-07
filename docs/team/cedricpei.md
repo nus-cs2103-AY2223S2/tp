@@ -29,7 +29,16 @@ Given below are my contributions to the project.
     * What it does: allows the user to see the detailed patient information other than the information on the small card.
     * Justification: This feature is an indispensable part of the product because the patient card in the list panel cannot contain detailed patient particulars.
     * Highlights: This enhancement is related to all commands which make modifications on the data. To implement the functionality, a view pane should also be built upon the original GUI.
-  
+
+
+* **User Interface**:
+    * Styled application UI with Java FX.
+    * Touched up overall application layout.
+    * Edited colours and restyled UI components.
+    * Enabled event handler (double click) for View command.
+    * Added a `Theme` toggle on the top bar.
+    * GUI Change ([\#34](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/34), [\#48](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/48), [\#50](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/50), [\#136](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/136), [\#209](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/209))
+
 
 * **Code contributed**: [https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cedric&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17]()
 
@@ -39,11 +48,7 @@ Given below are my contributions to the project.
     * Organised and coordinated team meetings.
     * Published `v1.3` demo.
     * Reviewed and approved PRs for merging.
-
-
-* **Enhancements to existing features**:
-    * GUI Change ([\#34](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/34), [\#48](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/48), [\#50](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/50), [\#136](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/136), [\#209](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/209))
-
+    
 
 * **Documentation**:
     * User Guide:
@@ -56,6 +61,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details of the `dark` and `light` feature: [\#64](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/64)
         * Integrated and added all user stories.
+
 
 * **Community**:
     * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58)
