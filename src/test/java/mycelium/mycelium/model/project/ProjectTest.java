@@ -90,74 +90,74 @@ public class ProjectTest {
 
     @Test
     public void equals_sameReference_returnsTrue() {
-        assertTrue(BARD.equals(BARD));
+        assertEquals(BARD, BARD);
     }
 
     @Test
     public void equals_sameFields_returnsTrue() {
         Project project = new ProjectBuilder(BARD).build();
-        assertTrue(BARD.equals(project));
+        assertEquals(BARD, project);
     }
 
     @Test
     public void equals_differentName_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withName("Different Project").build();
         assertNotEquals(BARD.getName(), project.getName()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentCase_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withName("bard").build();
         assertNotEquals(BARD.getName(), project.getName()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentStatus_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withStatus(ProjectStatus.IN_PROGRESS).build();
         assertNotEquals(BARD.getStatus(), project.getStatus()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_null_returnsFalse() {
-        assertFalse(BARD.equals(null));
+        assertNotEquals(null, BARD);
     }
 
     @Test
     public void equals_sameNameDifferentClientEmail_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withClientEmail("chungus@chungus.org").build();
         assertNotEquals(BARD.getClientEmail(), project.getClientEmail()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentSource_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withSource("google").build();
         assertNotEquals(BARD.getSource(), project.getSource()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentDescription_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withDescription("Different description").build();
         assertNotEquals(BARD.getDescription(), project.getDescription()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentAcceptedOn_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withAcceptedOn(LocalDate.now()).build();
         assertNotEquals(BARD.getAcceptedOn(), project.getAcceptedOn()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
     public void equals_sameNameDifferentDeadline_returnsFalse() {
         Project project = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
         assertNotEquals(BARD.getDeadline(), project.getDeadline()); // sanity check
-        assertFalse(BARD.equals(project));
+        assertNotEquals(BARD, project);
     }
 
     @Test
@@ -209,6 +209,6 @@ public class ProjectTest {
     @Test
     public void compareToWithDeadline_sameProjectWithDeadlines_zeroReturned() {
         Project project = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
-        assertTrue(project.compareToWithDeadline(project) == 0);
+        assertEquals(0, project.compareToWithDeadline(project));
     }
 }
