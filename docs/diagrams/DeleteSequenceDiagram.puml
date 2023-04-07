@@ -49,8 +49,11 @@ deactivate AddressBookParser
 LogicManager -> DeleteCustomerCommand : execute()
 activate DeleteCustomerCommand
 
-DeleteCustomerCommand -> Model : deletePerson(1)
+DeleteCustomerCommand -> Model : removeCustomer(1)
 activate Model
+
+Model -> Model : removeVehicles()
+Model -> Model : removeAppointments()
 
 Model --> DeleteCustomerCommand
 deactivate Model
@@ -70,6 +73,10 @@ deactivate CommandResult
 
 DeleteCustomerCommand --> LogicManager : result
 deactivate DeleteCustomerCommand
+
+''Hidden arrow to position the destroy marker below the end of the activation bar.
+'DeleteCustomerCommand -[hidden]-> AddressBookParser
+'destroy DeleteCustomerCommand
 
 [<--LogicManager
 deactivate LogicManager
