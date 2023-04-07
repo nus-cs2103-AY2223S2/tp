@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with efficiently managing clients and project information**. It is optimized for use via keyboard commands that you can enter quickly and easily while displaying your data in an appealing and well-organised visual format so you can always find what you need. If you can type fast, ArB can get your client and project management tasks done faster than other applications that only use the mouse.
 
 ## **Table of Contents**
 {:toc}
@@ -18,6 +18,7 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 * [Project Commands](#project-commands)
 * [Tag Commands](#tag-commands)
 * [FAQ](#faq)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
@@ -26,13 +27,17 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 1. Download the latest `arb.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to a new folder you want to use as the _home folder_ for your ArB
+1. Copy the file into a new folder. For example, you can create a new folder in your desktop folder called `ArB` and place the file there.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. The app may contain some sample data if being opened for the first time.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal ([Windows](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/), [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Terminal%20for%20me-,Open%20Terminal,%2C%20then%20double%2Dclick%20Terminal), [Linux](https://www.makeuseof.com/how-to-open-terminal-in-linux/#:~:text=Use%20Keyboard%20Shortcuts%20to%20Open%20the%20Linux%20Terminal&text=If%20you%20are%20a%20fan,to%20fire%20up%20the%20terminal)).<br>
+   Use the [`cd` command](https://www.ibm.com/docs/en/aix/7.1?topic=c-cd-command) to navigate to the folder you placed the jar file in. Following the previous example, you can type `cd Desktop/ArB` into the command terminal.<br>
+   Then use the `java -jar arb.jar` command to run the application.<br>
+   A window similar to the below should appear in a few seconds. The app will contain some sample data if being opened for the first time.<br>
+   ![Ui](images/Ui.png)<br>
+   Below is the same window annotated to show what each part is for.<br>
+   ![Annotated Ui](images/UiAnnotated.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list-client` : Lists all clients.
