@@ -10,7 +10,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.autocompletion.Autocompletion;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,6 +31,7 @@ public class CommandBox extends UiPart<Region> {
     private HBox suggestionsBox;
 
     private List<String> suggestions;
+    private boolean tabPressed;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -40,17 +40,22 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.suggestions = new ArrayList<>();
+        this.tabPressed = false;
+
         suggestionsBox.setVisible(false);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, oldValue, newValue) -> {
-                handleInputUpdated();
-                setStyleToDefault();
+                if (!tabPressed) {
+                    handleInputUpdated();
+                    setStyleToDefault();
+                }
+                tabPressed = false;
             }
         );
 
         commandTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.TAB) {
-                event.consume();
+                tabPressed = true;
                 cycleSuggestions();
             }
         });
@@ -61,10 +66,6 @@ public class CommandBox extends UiPart<Region> {
      */
     private void handleInputUpdated() {
         String input = commandTextField.getText();
-
-        if (suggestions.contains(input) && !input.equalsIgnoreCase(AddCommand.COMMAND_WORD)) {
-            return;
-        }
 
         suggestions = new ArrayList<>();
         suggestions.add(input);
