@@ -47,7 +47,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
     private String parseRemarkInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         if (tokens.length < 2) {
-            throw new ParseException( String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RemarkCommand.MESSAGE_USAGE));
         }
 

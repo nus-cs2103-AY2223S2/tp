@@ -31,11 +31,11 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException, CommandException {
         String trimmedArgs = args.trim();
 
-        SortCategory category = SortCategory.fromString(trimmedArgs);
-
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to student page to sort students");
         }
+
+        SortCategory category = SortCategory.fromString(trimmedArgs);
 
         switch (category) {
         case SORT_BY_NAME:
@@ -43,7 +43,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         case SORT_BY_STUDENT_ID:
             return new SortCommand(new AlphaNumericSidComparator(), category.getCategory());
         default:
-            throw new ParseException("Unable to parse category for sorting");
+            throw new ParseException("Unable to parse category for sorting\n" + SortCommand.MESSAGE_USAGE);
         }
     }
 }
@@ -69,6 +69,6 @@ enum SortCategory {
             }
         }
 
-        throw new ParseException("Unrecognised category for sort: " + category);
+        throw new ParseException("Unable to parse category for sorting\n" + SortCommand.MESSAGE_USAGE);
     }
 }

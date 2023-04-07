@@ -1,7 +1,5 @@
 package tfifteenfour.clipboard.logic;
 
-import java.util.ArrayList;
-
 /**
  * A circular buffer implementation that supports adding, removing, and peeking
  * at elements in a circular manner.
@@ -9,10 +7,11 @@ import java.util.ArrayList;
  * @param <T> the type of elements stored in the buffer
  */
 public class CircularBuffer<T> {
-    private ArrayList<T> buffer;
+    private T[] buffer;
     private int maxSize;
     private int head;
     private int tail;
+    private int size;
 
     /**
      * Constructs a new circular buffer with the specified size.
@@ -20,7 +19,7 @@ public class CircularBuffer<T> {
      * @param size the size of the buffer
      */
     public CircularBuffer(int maxSize) {
-        this.buffer = new ArrayList<T>(maxSize);
+        this.buffer = (T[]) new Object[maxSize];
         this.maxSize = maxSize;
         this.head = 0;
         this.tail = 0;
@@ -33,28 +32,17 @@ public class CircularBuffer<T> {
      * @param item the item to add
      */
     public void add(T item) {
-        if (buffer.size() < maxSize) {
-            buffer.add(tail, item);
+        if (buffer.length < maxSize) {
+            buffer[tail] = item;
             tail = (tail + 1) % maxSize;
         } else {
-            buffer.set(head, item);
+            buffer[head] = item;
             head = (head + 1) % maxSize;
             tail = (tail + 1) % maxSize;
         }
-    }
-
-    /**
-     * Removes and returns the oldest element from the buffer.
-     *
-     * @return the oldest element, or null if the buffer is empty
-     */
-    public T remove() {
-        if (buffer.isEmpty()) {
-            return null;
+        if (this.size < maxSize) {
+            this.size += 1;
         }
-        T item = buffer.get(head);
-        head = (head + 1) % maxSize;
-        return item;
     }
 
     /**
@@ -63,11 +51,14 @@ public class CircularBuffer<T> {
      * @return the most recently added element, or null if the buffer is empty
      */
     public T removeLast() {
-        if (buffer.isEmpty()) {
+        if (this.size == 0) {
             return null;
         }
         tail = (tail - 1 + maxSize) % maxSize;
-        return buffer.remove(tail);
+        T removed = buffer[tail];
+        buffer[tail] = null;
+        this.size -= 1;
+        return removed;
     }
 
     /**
@@ -76,10 +67,10 @@ public class CircularBuffer<T> {
      * @return the most recently added element, or null if the buffer is empty
      */
     public T peekLast() {
-        if (buffer.isEmpty()) {
+        if (this.size == 0) {
             return null;
         }
-        return buffer.get((tail - 1 + maxSize) % maxSize);
+        return buffer[((tail - 1 + maxSize) % maxSize)];
     }
 
     /**
@@ -88,10 +79,10 @@ public class CircularBuffer<T> {
      * @return the oldest element, or null if the buffer is empty
      */
     public T peek() {
-        if (buffer.isEmpty()) {
+        if (this.size == 0) {
             return null;
         }
-        return buffer.get(head);
+        return buffer[head];
     }
 
     /**
@@ -100,7 +91,7 @@ public class CircularBuffer<T> {
      * @return true if the buffer is empty, false otherwise
      */
     public boolean isEmpty() {
-        return buffer.isEmpty();
+        return this.size == 0;
     }
 
     /**
@@ -109,6 +100,6 @@ public class CircularBuffer<T> {
      * @return the maximum number of elements in the buffer
      */
     public int size() {
-        return buffer.size();
+        return this.size;
     }
 }

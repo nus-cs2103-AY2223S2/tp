@@ -98,8 +98,7 @@ public class MainApp extends Application {
         } catch (IllegalArgumentException e) {
             logger.warning("Invalid data detected. " + MESSAGE_SAMPLE);
             initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             logger.warning("Problem while reading from the file. " + MESSAGE_SAMPLE);
             initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
 

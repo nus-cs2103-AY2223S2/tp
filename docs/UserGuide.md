@@ -117,6 +117,31 @@ List of commands:
 
 
 --------------------------------------------------------------------------------------------------------------
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` and angle brackets `<>` are the parameters to be supplied by the user.<br>
+  e.g. in `add course <COURSE>`, `COURSE` is a parameter which can be used as `add course CS2103T`.
+
+* Items in square brackets are optional.<br>
+  e.g `[n/<NAME>] [p/<PHONE_NUMBER>]` can be used as `n/John Doe p/88886886` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times.<br>
+  e.g. `mark <INDEX>…​` can be used as `mark 1`, `mark 1,2,3` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `back`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
+
 ## General Commands
 Before navigating through pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
 
@@ -136,7 +161,7 @@ home
 
 ### Displaying the previous page you were at: `back`
 
-Goes back to the page you were at.
+Goes back to the previous page you were at.
 
 Format:
 ```
@@ -149,7 +174,6 @@ back
 
 ### Undoing the last command you did: `undo`
 
-Deletes the change that your last command did.
 
 Format:
 ```
@@ -189,18 +213,25 @@ Scrolls through past commands in command box.
 
 Clears all entries in the list pane of the current page.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+After the <code>clear</code> command is executed, all entries in the current page will be deleted.
+</div>
+
 Format:
 ```
 clear
 ```
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Accidentally cleared your data? Don't worry, try <code>undo</code> command!
+</div>
+
 
 [Back to list of commands](#commands)
 
 
 
 ### Exiting the program: `exit`
-
-Exits the program.
 
 Format:
 ```
@@ -226,6 +257,10 @@ add course <COURSE>
 
 - Adding a course with the same module code is not allowed.
     - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message.
+<div markdown="block" class="alert alert-info">
+This command is case-sensitive.<br>
+e.g. <code>CS2103T</code>, <code>cs2103t</code> are treated as different course.
+</div>
 
 Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
@@ -261,7 +296,7 @@ Format:
 edit course <INDEX> <NEW COURSE NAME>
 ```
 
-- Edits course at index specified in `<INDEX>`.
+- Edits the module code of the course at index `<INDEX>`.
 
 
 Examples:
@@ -304,6 +339,11 @@ add group <GROUP>
     - For example, if a group with group name `T15` already exists in CLIpboard, 
   entering `add group T15` will display an error message.
 
+<div markdown="block" class="alert alert-info">
+This command is case-sensitive.<br>
+e.g. <code>T15</code>, <code>t15</code> are treated as different group.
+</div>
+
 Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
@@ -323,7 +363,7 @@ delete group <INDEX>
 
 
 Examples:
-- `delete group 1` will delete first group listed in the group list panel of CLIpboard.
+- `delete group 1` will delete the first group listed in the group list panel of CLIpboard.
 
 [Back to list of commands](#commands)
 
@@ -338,7 +378,7 @@ Format:
 edit group <INDEX> <NEW GROUP NAME>
 ```
 
-- Edits group at index specified in `<INDEX>`.
+- Edits the group name of the group at index specified in `<INDEX>`.
 
 
 Examples:
@@ -356,7 +396,7 @@ Format:
 ```
 select <INDEX>
 ```
-- Selects group at index specified in `<INDEX>` and displays list of students in that group.
+- Selects the group at index specified in `<INDEX>` and displays list of students in that group.
 
 Examples:
 - `select 1` will return a list of students from the first group.
@@ -372,7 +412,7 @@ Format:
 ```
 session <INDEX>
 ```
-- Selects group at index specified in `<INDEX>` and displays list of sessions in that group.
+- Selects the group at index specified in `<INDEX>` and displays list of sessions in that group.
 
 Examples:
 - `session 1` will return a list of sessions from the first group.
@@ -439,7 +479,7 @@ Examples:
 
 ### Editing a student: `edit student`
 
-Did your student change their phone number or you realised you mispelled their name? Do not worry, because you can easily change this with the edit command.
+Did your student change their phone number, or you realised you misspelled their name? Do not worry, because you can easily change this with the edit command.
 
 Format:
 ```
@@ -450,6 +490,10 @@ edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUM
 - At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
 - Fields entered following `edit <INDEX>` will replace the original fields.
 - Fields not entered will not replace the original fields.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Made a typo? Try <code>undo</code> command!
+</div>
 
 Examples:
 - `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
@@ -537,14 +581,13 @@ Examples:
 
 ### Adding or deleting a remark: `remark`
 
-Add or delete a remark to/from a student in the student roster.
-
-Format for adding a remark:
+Format for adding / editing a remark:
 ```
-remark <INDEX> [r/<REMARK]
+remark <INDEX> [<REMARK>]
 ```
 
 - Adds a remark to student in the student list whose index is specified in the `<INDEX>` field.
+- If there is already an existing remark, this command will replace current remark with `<REMARK>`
 
 Format for deleting a remark:
 ```
@@ -554,8 +597,13 @@ remark <INDEX>
 - Deletes a remark from a student in the student list whose index is specified in the `<INDEX>` field.
 
 Examples:
-- `remark 1 r/Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student listed in the student list.
+- `remark 1 Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student 
+listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Accidentally deleted a remark? Don't worry, Try using <code>undo</code> command!
+</div>
 
 [Back to list of commands](#commands)
 
@@ -563,21 +611,26 @@ Examples:
 
 ### Uploading a student's photo: `upload`
 
-Uploads a student's photo to be displayed on the student roster.
+Uploads a student's photo to be displayed in the student roster.
 
 Format:
 ```
 upload <LOCAL_FILE_PATH>
 ```
-- File path must be an absolute file path to the photo.
-- For student photo to be reflected to a specific student in CLIpboard, photo must be named after the said student's student ID (i.e. `<STUDENT_ID>.png`)
+- File path to the photo can be either absolute file path or relative file path.
+- For student photo to be displayed as the profile picture of a student in CLIpboard, photo must be named after the said 
+student's student ID (i.e. `<STUDENT_ID>.png`)
 - If a new photo with the same name as an existing photo in CLIpboard is uploaded, existing photo will be replaced.
+- Only images of file type `.png` can be uploaded
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Only images of file type .png is accepted
+Images not named correctly can still be uploaded (e.g. <code>Alex.png</code>), but only those named correctly 
+(e.g. <code>A0123456X.png</code>) will be displayed in the profile of corresponding student.
 </div>
 
 Examples:
-- `upload /Users/AlexYeoh/Desktop/A0123456X.png`
+- `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` will upload `A0123456X.png` to the CLIpboard data folder and the 
+photo will be displayed in the profile of student with student ID `A0123456X`
 
 [Back to list of commands](#commands)
 
@@ -823,5 +876,8 @@ Examples:
 - `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
 [Back to list of commands](#commands)
+
+## Glossary
+
 
 
