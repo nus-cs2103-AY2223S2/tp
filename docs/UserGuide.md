@@ -27,6 +27,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 **MATHUTORING** is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **MATHUTORING** can get your contact management tasks done faster than traditional GUI apps.
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -57,6 +59,8 @@ If you need to switch to a new device, you can also export and import your previ
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+   
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -431,12 +435,16 @@ MATHUTORING data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MATHUTORING home folder.
+
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -462,4 +470,5 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 | **Export Progress**   | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
 | **Help**           | `help`                                                                                                                                                                                        |
 
+[Back to top](#table-of-contents)
 
