@@ -26,9 +26,10 @@ Disclaimer: This application is currently geared towards NUS Computer Science St
    5.5 [Find module(s) by keyword(s):](#find-module) `find`<br>
    5.6 [Sort all modules:](#sort-module) `sort`<br>
    5.7 [Toggle between module list and degree progress:](#change-view) `view`<br>
-   5.8 [Exit the program:](#exit-app) `exit`<br>
-   5.9 [Save the data](#save-data)<br>
-   5.10 [Edit the data file](#edit-data)
+   5.8 [View help](#view-help) `help`<br>
+   5.9 [Exit the program:](#exit-app) `exit`<br>
+   5.10 [Save the data](#save-data)<br>
+   5.11 [Edit the data file](#edit-data)
 6. [Frequently Asked Questions (FAQ)](#faq)
 7. [Command Summary](#command-summary)
 
@@ -101,7 +102,7 @@ running `java -jar modtrek.jar` in your terminal.
 ![Ui QuickStart](images/Ui-quickstart2.png)
 <p align="center"><em>GUI of MODTrek</em><br></p>
 
-6. Great! You are now within **MODTrek** and ready to track your modules. You may type commands within the CLI and press enter to execute them. For a list of executable commands, refer to the [Features](#features) section.
+6. Great! You are now within **MODTrek** and ready to track your modules. You may type commands within the CLI and press enter to execute them. For a list of executable commands, refer to the [Command Summary](#command-summary) section.
 We recommend you to follow our [Short Tutorial](#short-tutorial) to start off.
 
 [Back to Table of Contents](#toc)
@@ -370,7 +371,29 @@ Toggles between the display of degree progress or module list. You may either vi
 
 [Back to Table of Contents](#toc)
 
-#### 5.8 Exit MODTrek : `exit` <a name="exit-app"></a>
+#### 5.8 View help : `help` <a name="view-help"></a>
+
+Displays a list of help commands or a summary of a specific command's usage and format.
+
+**Syntax**
+* _To display a list of help commands:_ `help`
+* _To display a summary of a specific command's usage and format:_ `help <command>`
+
+Specify exactly one parameter in `<command>`. This can be from one of the commands:
+* add
+* delete
+* edit
+* tag
+* find
+* sort
+* view
+* exit
+
+**Example**: `help add`
+
+[Back to Table of Contents](#toc)
+
+#### 5.9 Exit MODTrek : `exit` <a name="exit-app"></a>
 
 Exits the program. Alternatively, you may exit the program by clicking the top-right X button to close the window.
 
@@ -378,13 +401,13 @@ Exits the program. Alternatively, you may exit the program by clicking the top-r
 
 [Back to Table of Contents](#toc)
 
-#### 5.9 Save MODTrek data <a name="save-data"></a>
+#### 5.10 Save MODTrek data <a name="save-data"></a>
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
 
 [Back to Table of Contents](#toc)
 
-#### 5.10 Edit MODTrek data <a name="edit-data"></a>
+#### 5.11 Edit MODTrek data <a name="edit-data"></a>
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
 
@@ -437,16 +460,17 @@ Hence, you may record "CS" and "CU" grades as "S" and "U" respectively.
 
 ## 7. Command Summary <a name="command-summary"></a>
 
-| Action   | Format, Examples                                                                                                                                                         |
-|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                                           |
-| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                               |
-| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                 |
-| **Tag**  | `tag <code> include /t <tag1> (/t <tag2>...)` or `tag <code> remove /t <tag1> (/t <tag2>...)` <br> e.g., `tag CS2030S include /t CSF`, `tag ES2660 remove /t ULR /t ITP` |
-| **Find** | `find <code>` or `find (/m <code-prefix>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g. `find CS1101S`, `find /g A+`                                       |
-| **Sort** | `sort <category>`, where category = "/m" or "/c" or "/y" or "/g" or "/t" <br> e.g. `sort /m`                                                                             |
-| **View** | `view progress` or `view modules`                                                                                                                                        |
-| **Exit** | `exit`                                                                                                                                                                   |
+| Action     | Format, Examples                                                                                                                                                       |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g. `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                                          |
+| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                             |
+| **Edit**   | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g. `edit ES2660 /m CS2101`                                |
+| **Tag**    | `tag <code> include /t <tag1> (/t <tag2>...)` or `tag <code> remove /t <tag1> (/t <tag2>...)` <br> e.g. `tag CS2030S include /t CSF`, `tag ES2660 remove /t ULR /t ITP` |
+| **Find**   | `find <code>` or `find (/m <code-prefix>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g. `find CS1101S`, `find /g A+`                                     |
+| **Sort**   | `sort <category>`, where category = "/m" or "/c" or "/y" or "/g" or "/t" <br> e.g. `sort /m`                                                                           |
+| **View**   | `view progress` or `view modules`                                                                                                                                      |
+| **Help**   | `help` or `help <command>`<br> e.g. `help add`                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                 |
 
 <div markdown="span" class="alert alert-info">
 
