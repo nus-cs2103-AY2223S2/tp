@@ -5,21 +5,35 @@ title: Arkobrata Chaudhuri's Project Portfolio Page
 
 ### Project: MediMeet
 
-**MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. It helps them manage their own appointments and mitigates the need for a personal assistant or appointment manager, while also saving costs in the process.
+**MediMeet** is a patient appointment management system for individual practitioners and small clinics. With MediMeet, you can efficiently manage patient information and appointment information in one place, saving you both time and money. <br>
+MediMeet combines the visual appeal of a GUI (graphical user interface) with the speed and convenience of a command-line interface. Our easy-to-use commands make it easy to add, edit patient information, appointments and so much more! <br>
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Feature**:
+  * Add patient notes
+  * Add and edit appointments for patients
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=redHat-arko&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: to be added soon
-
-* **Enhancements implemented**: to be added soon
+* **Enhancements implemented**: 
+  * Add and edit patients
 
 * **Documentation**:
-    * User Guide: to be added soon
-    * Developer Guide: to be added soon
+    * User Guide: Added documentation for all commands implemented in MediMeet
+      * Add patient (`add_patient`)
+      * Edit patient (`edit_patient`)
+      * Find patient (`find_patient`)
+      * Find patient details (`find_patient_details`)
+      * Add notes to a patient (`remark_patient`)
+      * Delete patient (`delete_patient`)
+      * Add appointment (`add_appt`)
+      * Edit appointment (`edit_appt`)
+      * Find appointment (`find_appt`)
+      * Delete appointment (`delete_appt`)
+      
+    * Developer Guide: Added documentation for the following commands:
+      * Add notes to a patient (`remark_patient`)
 
 * **Contributions to team based tasks**:
     * PRs reviewed (with non-trivial review comments): to be added soon
