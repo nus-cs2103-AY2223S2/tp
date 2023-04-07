@@ -2098,7 +2098,7 @@ Context: There exists a `Person` with `ContactIndex 4` in `EduMate`.
 
 Command executed: `delete 4`
 
-Expected Output in the Person List: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
+Expected Output in the PersonList: Person Card containing profile of `Person` with `ContactIndex 4` is removed.
 
 #### **_Scenario 2_**
 
