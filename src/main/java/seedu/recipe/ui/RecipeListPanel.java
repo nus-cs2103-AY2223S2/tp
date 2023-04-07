@@ -35,12 +35,11 @@ public class RecipeListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Recipe recipe, boolean empty) {
             super.updateItem(recipe, empty);
-
             if (empty || recipe == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new RecipeCard(recipe, getIndex() + 1, commandExecutor).getRoot());
+                setGraphic(new RecipeCard(recipe, getIndex() + 1, commandExecutor, this.isSelected()).getRoot());
             }
         }
     }

@@ -79,12 +79,12 @@ public class RecipeCard extends UiPart<Region> {
      * @param recipe         the {@code Recipe} to display
      * @param displayedIndex the index of the {@code Recipe} in the list
      */
-    public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor) {
+    public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor, boolean isSelected) {
         super(FXML);
         borderContainer.minHeightProperty().bind(this.getRoot().heightProperty().multiply(0.8));
         this.recipe = recipe;
         this.commandExecutor = executor;
-
+        this.isRecipeSelected = isSelected;
         cardPane.setFocusTraversable(true);
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().recipeName);
@@ -112,9 +112,6 @@ public class RecipeCard extends UiPart<Region> {
 
         // Handle keypress events
         cardPane.setOnKeyPressed(event -> {
-            cardPane.requestFocus();
-            isRecipeSelected = true;
-            System.out.print("on key: " + isRecipeSelected);
             KeyCode input = event.getCode();
             ConfirmationDialog deleteConfirmation = new ConfirmationDialog();
             if (input == KeyCode.DELETE
@@ -144,20 +141,14 @@ public class RecipeCard extends UiPart<Region> {
 
         //Selector focus
         cardPane.setOnMouseEntered(event -> {
-            if (!isRecipeSelected) {
+            if (isRecipeSelected) {
                 cardPane.requestFocus();
-                isRecipeSelected = true;
-                System.out.print("on hover: " + isRecipeSelected);
             }
         });
 
         // Add a click listener to the cardPane node
         cardPane.setOnMouseClicked(event -> {
             cardPane.requestFocus();
-            isRecipeSelected = true;
-            System.out.print("on click: " + isRecipeSelected);
-            RecipePopup popup = new RecipePopup(recipe, displayedIndex);
-            popup.display();
         });
 
     }
