@@ -11,14 +11,14 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 ### Table of Contents
 
 - [Overview](#overview)
-- [Table of Contents](#table-of-contents)
+ - [Table of Contents](#table-of-contents)
   - [Purpose of this guide](#purpose-of-this-guide)
   - [How to use this guide](#how-to-use-this-guide)
   - [Legends](#legends)
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-- [Architecture](#architecture)
+ - [Architecture](#architecture)
   - [UI component](#ui-component)
   - [Logic component](#logic-component)
   - [Model component](#model-component)
@@ -26,13 +26,13 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Common classes](#common-classes)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-- [Product scope](#product-scope)
+ - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-- [Launch and shutdown](#launch-and-shutdown)
+ - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a listing](#deleting-a-listing)
   - [Saving data](#saving-data)
 
@@ -378,7 +378,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 - 2d. There is a duplicate listing in the listing book.
     - 2d1. ListingBook shows an error message.
     - Use case resumes at step 1.
-
 
 **Use case: Delete a Listing**
 
