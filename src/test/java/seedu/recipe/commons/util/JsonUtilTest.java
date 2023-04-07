@@ -51,7 +51,7 @@ public class JsonUtilTest {
     }
 
     @Test
-    public void test_readJsonFile() {
+    public void readJsonFile() {
         //Test read valid file
         try {
             Optional<JsonSerializableRecipeBook> serializableRecipeBook =

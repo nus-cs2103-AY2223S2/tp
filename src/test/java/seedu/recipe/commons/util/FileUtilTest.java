@@ -72,7 +72,7 @@ public class FileUtilTest {
     }
 
     @Test
-    public void testCreateIfMissing() {
+    public void createIfMissing() {
         //Create, and test that it is created.
         assertDoesNotThrow(() -> FileUtil.createIfMissing(TEST_NEW_FILE));
         assertTrue(FileUtil.isFileExists(TEST_NEW_FILE));
