@@ -85,11 +85,7 @@ public class JsonAdaptedAppointment {
         }
         builder = builder.setStatus(isCompleted);
 
-        try {
-            return builder.create(new AppointmentManager());
-        } catch (IllegalArgumentException illArgEx) {
-            throw new IllegalValueException(illArgEx.getMessage());
-        }
+        return builder.create(new AppointmentManager());
     }
 
 
