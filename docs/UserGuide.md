@@ -203,7 +203,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
-There are 2 important things that you should note:
+There are 3 important things that you should note:
 1. Most fields have associated [**prefixes**](#glossary). 
     * Prefixes are short character combinations that you can use to identify the field to which a value belongs.
       They are a convenient shorthand that allows you to refer a field without having to type out its
@@ -211,7 +211,14 @@ There are 2 important things that you should note:
     * For example, in `add n/Apple`, the value `Apple` is associated with the
    field `COMPANY_NAME` since the `n/` prefix is used.
     * Prefixes are **case-sensitive**. `n/` will work but `N/` will not work.
-2. There are **rules** that you must adhere to when replacing fields with values. 
+   
+
+2. When entering a command, please remember to use spaces to separate different fields of information. If you enter multiple fields without using space(s) to separate them, InternBuddy will interpret them as a single field.
+   * For example, `edit 1 r/SoftWare Engineer n/Visa` will result in two fields being interpreted (`r/` and `n/`). This is because there is a space between the end of the value associated with the `r/` field and the start of the `n/` field.
+   * Conversely, `edit 1 r/SoftWare Engineern/Visa` will result in only the `r/` field to be  being interpreted, even though the `n/` field is present.
+   
+
+3. There are **rules** that you must adhere to when replacing fields with values. 
    * Rules differ based on the fields.
    * If you do not adhere to these rules and enter invalid values, an error message will be
      displayed in the [Result Display](#exploring-the-graphical-user-interface) when you
