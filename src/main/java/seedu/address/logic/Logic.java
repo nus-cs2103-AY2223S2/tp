@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Filter;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyElister;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Elister.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getElister()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyElister getElister();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -38,9 +38,9 @@ public interface Logic {
     ObservableList<Filter> getApplyingFilterList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' E-Lister file path.
      */
-    Path getAddressBookFilePath();
+    Path getElisterFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

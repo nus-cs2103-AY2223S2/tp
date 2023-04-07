@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalElister;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +24,8 @@ public class UnfreezeCommandTest {
 
     @Test
     public void execute_predicateMatchesChanged_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalElister(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalElister(), new UserPrefs());
 
         FieldsMatchRegexPredicate tagPredicate = new FieldsMatchRegexPredicate(
                 new ArrayList<>(),
@@ -56,7 +56,7 @@ public class UnfreezeCommandTest {
 
     @Test
     public void execute_notFrozen_throwsException() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalElister(), new UserPrefs());
         UnfreezeCommand unfreezeCommand = new UnfreezeCommand();
         assertCommandFailure(unfreezeCommand, model, UnfreezeCommand.MESSAGE_FAILURE);
         try {

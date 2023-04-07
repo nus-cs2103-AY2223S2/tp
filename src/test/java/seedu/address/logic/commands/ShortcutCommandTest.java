@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalElister;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import seedu.address.model.UserPrefs;
 
 public class ShortcutCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalElister(), new UserPrefs());
 
     @Test
     public void execute_correctExecution_add() {

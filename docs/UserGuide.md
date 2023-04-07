@@ -315,7 +315,7 @@ E-Lister data is saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-E-Lister data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.

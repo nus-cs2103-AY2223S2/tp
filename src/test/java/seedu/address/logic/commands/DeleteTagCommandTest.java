@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalElister;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 
 public class DeleteTagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalElister(), new UserPrefs());
     private Tag tagToDelete = new Tag("friends");
 
     /*@Test
@@ -32,7 +32,7 @@ public class DeleteTagCommandTest {
 
         String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personToDeleteFrom);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getElister(), new UserPrefs());
         expectedModel.deleteTag(personToDeleteFrom, tagToDelete);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
@@ -52,8 +52,8 @@ public class DeleteTagCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of E-Lister list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getElister().getPersonList().size());
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
 

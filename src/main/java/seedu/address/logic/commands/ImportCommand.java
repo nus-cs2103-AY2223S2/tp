@@ -12,9 +12,9 @@ import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.CsvAddressBookStorage;
+import seedu.address.model.ReadOnlyElister;
+import seedu.address.storage.ElisterStorage;
+import seedu.address.storage.CsvElisterStorage;
 
 /**
  * Exports to a csv file at a location specified by the user.
@@ -77,9 +77,9 @@ public class ImportCommand extends Command {
             String errorMsg = String.format(ERROR_WHILE_IMPORTING, fileToImport);
 
             try {
-                AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToImport.toPath());
-                Optional<ReadOnlyAddressBook> newAddressBook = addressBookStorage.readAddressBook();
-                if (newAddressBook.isEmpty()) {
+                ElisterStorage elisterStorage = new CsvElisterStorage(fileToImport.toPath());
+                Optional<ReadOnlyElister> newElister = elisterStorage.readElister();
+                if (newElister.isEmpty()) {
                     showAlert(errorMsg, Alert.AlertType.ERROR);
                     return new CommandResult(errorMsg, false, false);
                 }
@@ -87,10 +87,10 @@ public class ImportCommand extends Command {
                 String feedback;
 
                 if (isResetEnabled) {
-                    model.setAddressBook(newAddressBook.get());
+                    model.setElister(newElister.get());
                     feedback = MESSAGE_RESET_FEEDBACK;
                 } else {
-                    feedback = model.addPersonsFromAddressBook(newAddressBook.get());
+                    feedback = model.addPersonsFromElister(newElister.get());
                 }
                 showAlert(successMsg + "\n" + feedback, Alert.AlertType.INFORMATION);
 

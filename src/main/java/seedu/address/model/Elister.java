@@ -10,10 +10,10 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the E-Lister level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBook> {
+public class Elister implements ReadOnlyElister, DeepCopyable<Elister> {
 
     private final UniquePersonList persons;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public Elister() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an Elister using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Elister(ReadOnlyElister toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Elister} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyElister newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -60,7 +60,7 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the E-Lister.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -68,8 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     }
 
     /**
-     * Adds a tag to the person in the address book
-     * Person must already exist in the address book
+     * Adds a tag to the person in the E-Lister
+     * Person must already exist in the E-Lister
      *
      * @param person the person to add the tag to
      * @param tag the tag added to the person
@@ -79,8 +79,8 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     }
 
     /**
-     * Deletes a tag from the person in the address book
-     * Person and the tag must already exist in the address book
+     * Deletes a tag from the person in the E-Lister
+     * Person and the tag must already exist in the E-Lister
      *
      * @param person the person to delete tag from
      * @param tag the tag to be deleted
@@ -90,8 +90,8 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the E-Lister.
+     * The person must not already exist in the E-Lister.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -99,8 +99,8 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the E-Lister.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the E-Lister.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -109,16 +109,16 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Elister}.
+     * {@code key} must exist in the E-Lister.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
     @Override
-    public AddressBook deepCopy() {
-        AddressBook copy = new AddressBook();
+    public Elister deepCopy() {
+        Elister copy = new Elister();
         for (Person p: persons.asUnmodifiableObservableList()) {
             copy.addPerson(p.deepCopy());
         }
@@ -141,8 +141,8 @@ public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBoo
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof Elister // instanceof handles nulls
+                && persons.equals(((Elister) other).persons));
     }
 
     @Override

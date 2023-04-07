@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's income in the address book.
+ * Represents a Person's income in the E-Lister.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Income {
