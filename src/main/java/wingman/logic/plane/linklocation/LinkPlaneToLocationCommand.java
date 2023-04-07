@@ -33,21 +33,25 @@ public class LinkPlaneToLocationCommand implements Command {
      * Creates a new link command.
      *
      * @param location the id of the location.
-     * @param plane the id of the plane.
+     * @param plane    the id of the plane.
      */
-    public LinkPlaneToLocationCommand(Location location, Map<PlaneLocationType, Plane> plane) {
+    public LinkPlaneToLocationCommand(
+            Location location,
+            Map<PlaneLocationType, Plane> plane
+    ) {
         this.location = location;
         this.plane = plane;
     }
 
     @Override
     public String toString() {
-        String result = plane.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = plane.values()
+                             .stream()
+                             .map(v -> String.format(
+                                     "%s",
+                                     v.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 
@@ -55,7 +59,9 @@ public class LinkPlaneToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PlaneLocationType, Plane> entry : plane.entrySet()) {
-                location.getPlaneLink().putRevolve(entry.getKey(), entry.getValue());
+                location
+                        .getPlaneLink()
+                        .putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

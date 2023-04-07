@@ -1,4 +1,4 @@
-package wingman.logic.pilot.unlinklocation;
+package wingman.logic.pilot.linklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,21 +38,25 @@ public class UnlinkPilotToLocationCommand implements Command {
      * Creates a new link command.
      *
      * @param location the id of the location.
-     * @param pilot the id of the pilot.
+     * @param pilot    the id of the pilot.
      */
-    public UnlinkPilotToLocationCommand(Location location, Map<PilotLocationType, Pilot> pilot) {
+    public UnlinkPilotToLocationCommand(
+            Location location,
+            Map<PilotLocationType, Pilot> pilot
+    ) {
         this.location = location;
         this.pilot = pilot;
     }
 
     @Override
     public String toString() {
-        String result = pilot.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = pilot.values()
+                             .stream()
+                             .map(v -> String.format(
+                                     "%s",
+                                     v.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 
@@ -60,7 +64,9 @@ public class UnlinkPilotToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PilotLocationType, Pilot> entry : pilot.entrySet()) {
-                location.getPilotLink().delete(entry.getKey(), entry.getValue());
+                location
+                        .getPilotLink()
+                        .delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

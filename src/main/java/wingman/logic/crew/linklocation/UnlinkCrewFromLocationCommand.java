@@ -1,4 +1,4 @@
-package wingman.logic.crew.unlinklocation;
+package wingman.logic.crew.linklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,11 +16,7 @@ import wingman.model.location.Location;
  * The command class that unlinks crews to
  * locations, where they reside.
  */
-public class UnlinkCrewToLocationCommand implements Command {
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with ID %s can't be found.";
-    private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with ID %s can't be found.";
+public class UnlinkCrewFromLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from %s.";
 
@@ -37,22 +33,26 @@ public class UnlinkCrewToLocationCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param crews the id of the crews.
+     * @param crews    the id of the crews.
      * @param location the id of the location.
      */
-    public UnlinkCrewToLocationCommand(Location location, Map<CrewLocationType, Crew> crews) {
+    public UnlinkCrewFromLocationCommand(
+            Location location,
+            Map<CrewLocationType, Crew> crews
+    ) {
         this.location = location;
         this.crews = crews;
     }
 
     @Override
     public String toString() {
-        String result = crews.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = crews.values()
+                             .stream()
+                             .map(crew -> String.format(
+                                     "%s",
+                                     crew.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 

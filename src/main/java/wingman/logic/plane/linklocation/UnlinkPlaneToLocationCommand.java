@@ -1,4 +1,4 @@
-package wingman.logic.plane.unlinklocation;
+package wingman.logic.plane.linklocation;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,10 +17,6 @@ import wingman.model.plane.Plane;
  * locations, where they reside.
  */
 public class UnlinkPlaneToLocationCommand implements Command {
-    private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "Plane with ID %s can't be found.";
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from %s.";
 
@@ -38,21 +34,25 @@ public class UnlinkPlaneToLocationCommand implements Command {
      * Creates a new link command.
      *
      * @param location the id of the location.
-     * @param plane the id of the plane.
+     * @param plane    the id of the plane.
      */
-    public UnlinkPlaneToLocationCommand(Location location, Map<PlaneLocationType, Plane> plane) {
+    public UnlinkPlaneToLocationCommand(
+            Location location,
+            Map<PlaneLocationType, Plane> plane
+    ) {
         this.location = location;
         this.plane = plane;
     }
 
     @Override
     public String toString() {
-        String result = plane.entrySet()
-                .stream()
-                .map((entry) -> String.format(
-                        "%s",
-                        entry.getValue().toString()))
-                .collect(Collectors.joining(","));
+        String result = plane.values()
+                             .stream()
+                             .map(v -> String.format(
+                                     "%s",
+                                     v.toString()
+                             ))
+                             .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
 
@@ -60,7 +60,9 @@ public class UnlinkPlaneToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<PlaneLocationType, Plane> entry : plane.entrySet()) {
-                location.getPlaneLink().delete(entry.getKey(), entry.getValue());
+                location
+                        .getPlaneLink()
+                        .delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
