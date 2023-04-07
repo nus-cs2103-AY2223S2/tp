@@ -383,7 +383,7 @@ The following gives a more detailed explanation of the `add` command.
    - `t/` followed by tags for the entry [Optional]
 3. If any of the compulsory fields is missing or any of the fields entered by the user
    does not meet the field requirements, a `ParseException` will be thrown.
-4. An `Internship` will be created from the parsed user's input.
+4. An `Internship` will be created from the parsed user's input if Step 3 passes.
 5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
    contains the `Internship` created in Step 4.
 6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
@@ -415,26 +415,28 @@ The following gives a more detailed explanation of the `add` command.
 
 <br/>
 
-- Whether to update the [View Panel](#setting-up-getting-started) according to the `add` command
+- Whether to update the [View Panel](#setting-up-and-getting-started) according to the `add` command
 
-1. **Alternative 1 (chosen): Update the [View Panel](#setting-up-getting-started) whenever a new `Internship` is added**
+1. **Alternative 1 (chosen): Update the [View Panel](#setting-up-and-getting-started) whenever a new** `Internship` **is added**
     * Pros: Better visual indication that the `add` command has been successfully executed.
       If the user has  a lot of `Internship` entries, when a new `Internship` is added,
-      the new entry will be placed at the bottom of the [List Panel](#setting-up-getting-started),
+      the new entry will be placed at the bottom of the [List Panel](#setting-up-and-getting-started),
       which is not visible  if the user's scroll position is at the top of the
-      [List Panel](#setting-up-getting-started). Therefore, updating
-      the [View Panel](#setting-up-getting-started) enhances visual indication to the user
+      [List Panel](#setting-up-and-getting-started). Therefore, updating
+      the [View Panel](#setting-up-and-getting-started) enhances visual indication to the user
       that the `Internship` has been successfully added.
     * Cons: An additional line of code is required in the `execute` method of `AddCommand`
       to update the selected `Internship` in the `Model` component in order to update
-      the [View Panel](#setting-up-getting-started).
+      the [View Panel](#setting-up-and-getting-started).
 
-2. **Alternative 2: Do not update the [View Panel](#setting-up-getting-started) when a new `Internship` is added**
+2. **Alternative 2: Do not update the [View Panel](#setting-up-and-getting-started) when a new** `Internship` **is added**
     * Pros: No additional code is required in the `execute` method of `AddCommand`.
     * Cons: When the user has a lot of `Internship` entries, the added entry in the
-      [List Panel](#setting-up-getting-started) may not be visible since it is added to the bottom.
-      Without scrolling, users have to rely on the [Result Display](#setting-up-getting-started) to
+      [List Panel](#setting-up-and-getting-started) may not be visible since it is added to the bottom.
+      Without scrolling, users have to rely on the [Result Display](#setting-up-and-getting-started) to
       determine if the `AddCommand` is successful.
+
+
 
 <div style="page-break-after: always;"></div>
 
@@ -454,8 +456,8 @@ Figure 13 shows how the `edit` command works.
 The following gives a more detailed explanation of the `edit` command.
 
 1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
-2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
-3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
+2. If the internship index specified is invalid, a `ParseException` will be thrown and the specified `Internship` will not be edited.
+3. If the company name, role, status, date, tag or comment fields are missing (at least one must be present) or invalid, a `ParseException` will be thrown and the specified `Internship` will not be edited.
 4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
 5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
 
@@ -465,18 +467,18 @@ The following gives a more detailed explanation of the `edit` command.
 
 - How `edit` executes
 
-1. **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
+1. **Alternative 1 (chosen): Edit command will create a new** `Internship` **to replace the existing** `Internship` **object.**
     * Pros:
-        * Maintains immutability of `Internship` class
+        * Maintains immutability of `Internship` class.
     * Cons:
-        * May be less efficient than alternative 2
+        * May be less efficient than Alternative 2.
 
-2. **Alternative 2:** Edit command will directly edit the `Internship` by modifying its attributes.
+2. **Alternative 2: Edit command will directly edit the** `Internship` **by modifying its attributes**.
     * Pros:
-        * Will use less memory (no new `internship` object will be created).
+        * Will use less memory (no new `Internship` object will be created).
         * Saves time since there is no need to create the new object.
     * Cons:
-        * Reduces the defensiveness of the code and class
+        * Reduces the defensiveness of the code and the class.
 
 <div style="page-break-after: always;"></div>
 
@@ -497,7 +499,7 @@ The following gives a more detailed explanation of the `view` command.
 1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
 2. It checks for the following:
    - The `INDEX` entered by the user must be able to be converted into a numeric index.
-3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
+3. If the user entered a value of `INDEX` that cannot be converted, a `ParseException` will
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
 5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
@@ -506,22 +508,22 @@ The following gives a more detailed explanation of the `view` command.
 7. Else if the `Index` is valid, the `Internship` which belongs to that `Index` will be
    retrieved by accessing the filtered `Internship` list.
 8. The currently selected `Internship` in the `Model` component will be updated to become
-   the `Internship` obtained from Step 7 such that the right UI panel displays the information
-   for this selected `Internship`.
+   the `Internship` obtained from Step 7 such that the [View Panel](#setting-up-and-getting-started) displays the
+   information for this selected `Internship`.
 
 
 #### Design Considerations
 
 - Whether to separate the checking of valid user input into 2 classes
 
-1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
+1. **Alternative 1: Allow** `ViewCommand` **to handle the checking of whether user input can be
    parsed into an index, and whether it is a valid index**
     * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
       user input can be isolated to the `ViewCommand` class.
-    * Cons: Breaks the abstraction where parsing of user input should be done by the `Parser`
-      classes instead of a `Command` class.
+    * Cons: Breaks the abstraction where parsing of user input should be done by a `Parser`
+      class instead of a `Command` class.
 
-2. **Alternative 2 (chosen): Allow `ViewCommandParser` to handle checking of whether user input
+2. **Alternative 2 (chosen): Allow** `ViewCommandParser` **to handle checking of whether user input
    can be parsed into an index, and `ViewCommand` to handle checking of whether it
    is a valid index**
     * Pros: Maintains the abstraction between the `Parser` and `Command` classes. Also, it
@@ -535,7 +537,7 @@ The following gives a more detailed explanation of the `view` command.
 
 [//]: # (@@author DerrickSaltFish)
 ### Copy an Internship to Clipboard - `copy`
-### Implementation
+#### Implementation
 Figure 15 shows how the `copy` command works.
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
@@ -549,7 +551,7 @@ The following gives a more detailed explanation of the `copy` command.
 1. When the user enters a `copy` command, the `CopyCommandParser` parses the user's input.
 2. It checks for the following:
    - The `INDEX` entered by the user must be able to be converted into a numeric index.
-3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
+3. If the user entered a value of `INDEX` that cannot be converted, a `ParseException` will
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
 5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
@@ -589,7 +591,7 @@ Figure 16 shows how the `find` command works.
 
 The following gives a more detailed explanation of the `find` command.
 
-1. If the name, role, status, date and tag fields are all missing or one of their values are invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
+1. If the name, role, status, date and tag fields are all missing or one of their values are invalid, a `ParseException` will be thrown and the `FindCommand` will not be executed.
 2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
 3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
 
@@ -597,25 +599,25 @@ The following gives a more detailed explanation of the `find` command.
 
 #### Design Considerations
 
-- Aspect: How `find` command uses user input
+- How `find` command uses user input
 
-1. **Alternative 1 (current choice):** Find internship by exact match of user input and `Internship` object's corresponding attributes
+1. **Alternative 1 (chosen): Find an internship by exact match of user input and the** `Internship` **object's corresponding attributes.**
     * Pros:
         * Instructions on how to use the find command will be clear and easily communicated to user.
     * Cons:
-        * Very restrictive for user (e.g. an internship with the company name `Google Ltd` will not turn up for the command `find n/Google`).
+        * Restrictive for the user (e.g. An internship with the company name `Google Ltd` will not turn up for the command `find n/Google`).
 
-2. **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
+2. **Alternative 2: Find an internship by match of user input and the substrings in the** `Internship` **object's attributes**.
     * Pros:
-        * Command is much more flexible (e.g. an internship with the company name `Google` will turn up for the find command `find n/goo`).
+        * Command is much more flexible (e.g. An internship with the company name `Google` will turn up for the find command `find n/goo`).
     * Cons:
-        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs `find n/goo inc` for an `Internship` with company name `Google Incorporated`).
+        * May be confusing for the user (e.g. The user assumes that the `find` command works for matching substrings of individual words. He inputs `find n/goo inc` for an `Internship` with company name `Google Incorporated`).
 
-3. **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
+3. **Alternative 3: Find an internship by match of any word of user input and any word of the** `Internship` **object's corresponding attributes.**
     * Pros:
         * Command is much more flexible.
     * Cons:
-        * Command becomes too flexible (e.g. a find command like `find n/google ltd` will return `Internship` objects that not just has the word `Google`, like "Google Ltd", in their company names but `ltd` as well, like `Apple Ltd`, `Meta Ltd` and more).
+        * Command becomes too flexible (e.g. A `find` command like `find n/google ltd` will return `Internship` objects that have either the word `google` or `ltd` in their company names. Internships with company names such as `Apple ltd` and `Meta Ltd` will be returned.
 
 
 
@@ -647,21 +649,23 @@ The following gives a more detailed explanation of the `upcoming` command.
 #### Design Considerations
 
 - Whether to include all possible statuses of an internship
-1. **Alternative 1 (chosen): The predicate for the `upcoming` command should limit to internships that have the status `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
+
+1. **Alternative 1 (chosen): The predicate for the** `upcoming` **command should be limited to internships that have the status** `NEW/ASSESSMENT/INTERVIEW/OFFERED`.
     * Pros: Makes more practical sense as these statuses have dates that are tied to an event or deadline:
       * `NEW` - Deadline of Application
       * `ASSESSMENT` - Date of Assessment
       * `INTERVIEW` - Date of Interview
       * `Offered` - Deadline of Offer Acceptance
     * Cons: If the instructions for using the command are not clearly explained in the user guide, users may have difficulty understanding the output that is generated.
-2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
+   
+2. **Alternative 2: Internships with any status would be accepted, even with statuses that are not tied to an upcoming event or deadline.**
     * Pros: May be more intuitive for users to understand.
-    * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
+    * Cons: This may cause users to forget the intended use case of the command, leading to confusion or misuse.
 
 <div style="page-break-after: always;"></div>
 
 [//]: # (@@author - potty10)
-### Delete Internship Entries - `delete-field`
+### Delete Internship Entries by Fields - `delete-field`
 #### Implementation
 Figure 18 shows how the `delete-field` command works.
 
@@ -682,30 +686,32 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 
 #### Design Considerations
 
-**Aspect**: Whether to use an AND relationship or an OR relationship betweeen different fields. For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name as Google AND role as Software Engineer, or delete internships that have company name as Google OR role as Software Engineer?
+- **Whether to use an AND relationship or an OR relationship between different fields**
+   * For example, should `delete-field n\Google r\Software Engineer` delete internships that have company name of Google AND role as Software Engineer, or delete internships that have company name of Google OR role of Software Engineer?
 
-1. **Alternative 1 (current choice):**  Use an AND relationship
+1. **Alternative 1 (chosen):  Use an AND relationship**
     * Pros: More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company AND role.
     * Cons: If users want to delete internships based on an OR relationships, they need to call `delete-field` multiple times.
 
-2. **Alternative 2:** Use an OR relationship
+2. **Alternative 2: Use an OR relationship**
     * Pros: Much easier for the user to reason about which internships will be deleted.
-    * Cons: Less fine-grained control over `delete`. For example, there is no way to delete internships that have company name as Google AND role as Software Engineer
+    * Cons: Less fine-grained control over `delete`. For example, there is no way to delete internships that have company name of Google AND role of Software Engineer
 
+<br/>
 
-**Aspect**: Whether to add this enhancement to `clear` or `delete` command, or to create a new command entirely.
+- **Whether to add this enhancement to the** `clear` **or** `delete` **command, or to create a new command entirely**
 
-1. **Alternative 1 (current choice):** Split the `delete` command into `delete-index` and `delete-field`. `delete-index` will delete only indexes, while `delete-field` will only delete by field.
+1. **Alternative 1 (chosen):** Split the `delete` command into `delete-index` and `delete-field`. `delete-index` will delete only indices, while `delete-field` will only delete by fields.
     * Pros: Both commands now share the same prefix `delete`, so it is easier to remember.
     * Cons: Delete now has 2 formats, and this may be a source of confusion.
-2. **Alternative 2:** Enhance the `delete` command only. For example, `delete 1 2 n/Google` will delete any of the first 2 entries if they have the company name as 'Google'.
-    * Pros: Combine all delete features into one keyword, so it is much easier to remember.
+2. **Alternative 2: Enhance the** `delete` **command only. For example,** `delete 1 2 n/Google` **will delete any of the first 2 entries if they have a company name of** `Google`.
+    * Pros: Combining all delete features into one command makes it easier to remember.
     * Cons: 
       * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case is to mass delete internships that are no longer required.
       * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
-      the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
+      the command should delete internships with (Index 1 OR 2) AND have a company name `Google`. Maintaining both AND and OR relationships can be confusing for the user.
       
-3. **Alternative 3:**  Enhance the `clear` command
+3. **Alternative 3: Enhance the** `clear` **command**.
     * Pros: The current `clear` command takes in no arguments, so it is much easier to implement.
     * Cons: May be confusing to the user, since there will be no clear distinction between `delete` and `clear`.
 
@@ -788,8 +794,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | forgetful Computing undergraduate                                                        | rely on auto-saving of data                                      | avoid the problem of forgetting to save my entries when I make changes to them.                     |
 | `* *`    | Computing undergraduate applying for technical roles                                     | tag each entry with its associated [tech stack](#glossary)       | identify the technical requirements associated with each application.                               |
 | `* *`    | Computing undergraduate applying for technical roles                                     | filter internship entries by tags                                | narrow down the search to internship applications with the tech stack that I would like to work on. |
-| `*`      | Computing undergraduate managing many concurrent internship applications                 | filter internship entries by date                                | identify the upcoming tasks or deadlines.                                                           |
-| `* *`    | Computing undergraduate with many internship applications                                | search an entry by name                                          | easily and swiftly locate the desired application entry.                                            |
+| `* *`    | Computing undergraduate managing many concurrent internship applications                 | filter internship entries by date                                | identify the upcoming tasks or deadlines.                                                           |
+| `* *`    | Computing undergraduate with many internship applications                                | search an entry by name                                          | easily and swiftly locate the desired entry.                                                        |
 | `* *`    | Computing undergraduate who is not extremely proficient with the command line interface  | have intuitive and simple-to-pick-up commands                    | use InternBuddy without much technical difficulties.                                                |
 | `* *`    | detail-oriented Computing undergraduate                                                  | add custom remarks to each entry                                 | have the flexibility of documenting miscellaneous but relevant information.                         |
 | `* *`    | Computing undergraduate managing many concurrent internship applications                 | obtain reminders                                                 | avoid forgetting about upcoming tasks or deadlines.                                                 |
@@ -853,7 +859,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. InternBuddy detects that one or more compulsory fields are missing.
+* 1a. InternBuddy detects that no fields are provided.
     * 1a1. InternBuddy prompts the user for an `edit` command of the correct format.
 
       Use case resumes from Step 1.
@@ -887,6 +893,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from Step 1.
 
+* 1c. InternBuddy detects that the index is out of range.
+    * 1c1. InternBuddy informs the user that the index is out of range.
+
+      Use case resumes from Step 1.
+
 <br/>
 
 **Use Case: Copy an internship to clipboard**
@@ -910,6 +921,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from Step 1.
 
+* 1c. InternBuddy detects that the index is out of range.
+   * 1c1. InternBuddy informs the user that the index is out of range.
+
+     Use case resumes from Step 1.
+
+
 <br/>
 
 
@@ -925,12 +942,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. InternBuddy detects that no field is given.
+* 1a. InternBuddy detects that no fields are provided.
     * 1a1. InternBuddy prompts the user for a `find` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 1b. InternBuddy detects that one or more field given are invalid.
+* 1b. InternBuddy detects that one or more fields given are invalid.
     * 1b1. InternBuddy prompts the user for a `find` command of the correct format.
 
       Use case resumes from Step 1.
@@ -951,7 +968,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-**Use Case: Delete internships by index**
+**Use Case: Delete internships by indices**
 
 **Main Success Scenario**
 
@@ -972,14 +989,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from Step 1.
 
-* 1c. InternBuddy detects that one or more of the given indexes are out of range.
+* 1c. InternBuddy detects that one or more of the given indices are out of range.
     * 1c1. InternBuddy informs the user that the index is out of range.
 
       Use case resumes from Step 1.
 
 * 2a. InternBuddy detects that the internship whose details are currently displayed in the
-  [View Panel](#setting-up-getting-started) has been deleted by this `delete-index` command.
-    * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
+  [View Panel](#setting-up-and-getting-started) has been deleted by this `delete-index` command.
+    * 2a1. InternBuddy resets the [View Panel](#setting-up-and-getting-started) to display the
      welcome message.
 
       Use case resumes from Step 2.
@@ -1009,8 +1026,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from Step 1.
 
 * 2a. InternBuddy detects that the internship whose details are currently displayed in the
-  [View Panel](#setting-up-getting-started) has been deleted by this `delete-field` command.
-    * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
+  [View Panel](#setting-up-and-getting-started) has been deleted by this `delete-field` command.
+    * 2a1. InternBuddy resets the [View Panel](#setting-up-and-getting-started) to display the
       welcome message.
 
       Use case resumes from Step 2.
@@ -1023,7 +1040,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Main Success Scenario**
 
 1.  User requests to clear all internship entries stored in InternBuddy.
-2.  InternBuddy deletes all internship entries. It resets the [View Panel](#setting-up-getting-started) to display the welcome
+2.  InternBuddy deletes all internship entries. It resets the [View Panel](#setting-up-and-getting-started) to display the welcome
     message and shows a success message.
 
     Use case ends.
@@ -1056,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. InternBuddy should work on any [_mainstream OS_](#glossary) as long as it has Java `11` or above installed.
+1. InternBuddy should work on any [mainstream operating systems](#glossary) as long as it has Java `11` or above installed.
 2. InternBuddy should be able to hold up to 500 internship entries without a noticeable sluggishness in performance for typical usage.
 3. InternBuddy should be able to respond to user input within 6 seconds.
 4. A Computing undergraduate with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -1093,7 +1110,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
     2. Re-launch the app by double-clicking the jar file.<br>
 
-   **Expected**: The most recent window size and location is retained.
+   **Expected**: The most recent window size and location are retained.
 
 ### List all Internships
 
@@ -1123,7 +1140,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 2. `add n/Mastercard r/Software Engineer s/New d/2023-03-01`
 
    **Expected**: A new internship entry is successfully added. The new internship entry will have company name
-   `Mastercard`, role `Software Engineer`, status `New` and deadline of application `2023-03-01`. The View Panel displays the information for this new internship entry, where the comment is shown as `NA`. A success message
+   `Mastercard`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`. The View Panel displays the information for this new internship entry, where the comment is shown as `NA`. A success message
    is displayed in the Result Display.
 
 3. `add n/Visa s/New d/2023-03-01`
@@ -1171,7 +1188,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 3. `edit 2 t/front-end`
 
    **Expected**: All previous tags for the second internship entry are removed, and a new tag
-   `front-end` is added. The View Panel displays the updated details fo the second internship
+   `front-end` is added. The View Panel displays the updated details of the second internship
    entry.
 
 4. `edit 2 c/`
@@ -1236,7 +1253,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
     2.  `view 3`
 
    **Expected**: An error message is displayed in the Result Display. This is because in the filtered
-   internship list, there are only 2 internship entries, implying that`3` is not a valid value for the
+   internship list, there are only 2 internship entries, implying that `3` is not a valid value for the
    `INDEX` field.
 
 4. `view -1`
@@ -1281,7 +1298,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
     2.  `copy 3`
 
    **Expected**: An error message is displayed in the Result Display. This is because in the filtered
-   internship list, there are only 2 internship entries, implying that`3` is not a valid value for the
+   internship list, there are only 2 internship entries, implying that `3` is not a valid value for the
    `INDEX` field.
 
 4. `copy -1`
@@ -1370,14 +1387,13 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    listed out and displayed in the List Panel.
 
 
-### Delete Internships by Index
+### Delete Internships by Indices
 Prerequisites: List all internships using the `list` command. Multiple internships are present in the list.
 
 1. `delete-index 1`
 
-   **Expected**: The first internship entry in the List Panel is deleted. If the right
-   UI panel was displaying the details of the deleted internship entry, it defaults to displaying
-   the welcome message.
+   **Expected**: The first internship entry in the List Panel is deleted. If the View Panel was displaying
+   the details of the deleted internship entry, it defaults to displaying the welcome message.
 
 2. `delete-index 1 2`
 
@@ -1524,12 +1540,12 @@ Hence, we are constantly striving to make InternBuddy better. This appendix docu
 that our team is currently working on, and we would release them in the future once their functionalities
 have been finalised.
 
-### Make prefixes for commands case-insensitive
+### Make Prefixes Case-Insensitive
 #### Problem
-Prefixes are case-sensitive, hence command arguments such as ` T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
-   `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
-   and tag `javascript T/react` (refer to Figure 19).
-  Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
+Prefixes are case-sensitive, hence command arguments such as `T/` will be interpreted as plain text. In InternBuddy, command prefixes are lowercase. For example, `add n/Visa r/Software Engineer s/New d/2023-03-01 t/javascript T/react` will add an internship entry with company name
+`Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, 
+and tag `javascript T/react` (refer to Figure 19).
+Therefore, it is possible to add substrings such as `T/`, `C/` or `R/` to any of the fields, even though the user could have intended to enter `t/`, `c/` or `r/`. 
 
 ![CaseSensitiveAddExample](images/dg-case-sensitive-prefix-add-example.png)
 
@@ -1577,8 +1593,8 @@ This would address the above problem. For example, `find t/javascript t/react` s
 
 ### Integer overflow causes wrong error message
 #### Problem
-There are currently 4 types of commands that require internship indexes: `edit`, `view` `copy` and `delete-index`.
-However, the current implementation of the parsing of these indexes does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
+There are currently 4 types of commands that require internship indices: `edit`, `view` `copy` and `delete-index`.
+However, the current implementation of the parsing of these indices does not take into account integer overflows, which is when the integer is too large or too small for InternBuddy to compute.
 
 When trying to parse these integers, it recognises that they are either too large or too small and treats them as not an integer.
 As a result, InternBuddy is unable to differentiate between internship index inputs that aren't integers and are integer overflows. 
