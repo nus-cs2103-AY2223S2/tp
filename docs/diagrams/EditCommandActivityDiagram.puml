@@ -1,37 +1,37 @@
 @startuml
-skinparam activityFontSize 30
-skinparam activityArrowFontSize 25
+skinparam activityFontSize 20
+skinparam activityArrowFontSize 18
+
+'@@author anonymous-reused
+'Reused from https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol
+sprite $rake <svg width="20" height="20" viewBox="0 0 20 20">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+'@@author
 
 start
-:User enters command to edit XYZ in XYZ List;
-:EditXYZCommandParser parses the user input;
+:User enters command
+to edit XYZ in XYZ List;
+:EditXYZCommandParser
+   parses the user input;
 if () then ([Invalid command format])
-  :ParseException is thrown;
-  :Invalid Command Format error message is shown;
+  :Display Invalid Command Format
+               error message;
   stop
 else ([else])
-:EditXYZCommandParser parses input;
+:Change one-based index
+   to zero-based index;
 :Check if index given is valid;
 
 if () then ([Index is out of bounds])
-    :CommandExeception is thrown;
-    :Invalid Item Index error message is shown;
+    :Display Invalid Item
+    Index error message;
     stop
 else ([else])
-:Item XYZ at given index retrieved from its filtered XYZ List;
-:Copy of the item XYZ is made and edited;
-
-if () then ([Edited item is the same as other items in the list
-or no actual change is made to item])
-:CommandException is thrown;
-:Duplicate Item error message is shown;
-stop
-
-else ([else])
-:Item in XYZ List is edited
-and Filtered XYZ List is updated;
-:Changes made are saved to local data;
-:Edit Success Message is shown;
+:Edit item XYZ <$rake>;
 stop
 
 @enduml
