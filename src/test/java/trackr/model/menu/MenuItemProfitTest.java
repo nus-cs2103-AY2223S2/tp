@@ -1,6 +1,8 @@
 package trackr.model.menu;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
@@ -9,19 +11,14 @@ import org.junit.jupiter.api.Test;
 public class MenuItemProfitTest {
 
     @Test
-    public void stringConstructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ItemPrice((String) null));
+    public void itemConstructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ItemProfit(new ItemSellingPrice("1"), null));
+        assertThrows(NullPointerException.class, () -> new ItemProfit(null, new ItemCost("1")));
     }
 
     @Test
     public void doubleConstructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ItemPrice((Double) null));
-    }
-
-    @Test
-    public void constructor_invalidStringItemPrice_throwsIllegalArgumentException() {
-        String invalidPrice = "";
-        assertThrows(IllegalArgumentException.class, () -> new ItemPrice(invalidPrice));
+        assertThrows(NullPointerException.class, () -> new ItemProfit(null));
     }
 
     @Test
@@ -44,7 +41,6 @@ public class MenuItemProfitTest {
         assertTrue(ItemProfit.isValidProfit("1.00")); // exactly 2 decimal places
         assertTrue(ItemProfit.isValidProfit("9999991232131321323.00")); //large number
 
-
     }
 
     @Test
@@ -58,18 +54,39 @@ public class MenuItemProfitTest {
         ItemProfit itemProfit = new ItemProfit(itemSellingPrice, itemCost);
         ItemProfit differentItemProfit = new ItemProfit(differentSellingPrice, differentItemCost);
 
-        assertTrue(itemProfit.equals(itemProfit)); // same object
-        assertTrue(differentItemProfit.equals(differentItemProfit)); // same object
+        assertEquals(itemProfit, itemProfit); // same object
 
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10.00"), new ItemCost("5.00"))));
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10"), new ItemCost("5.00"))));
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10.0"), new ItemCost("5.00"))));
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10.00"), new ItemCost("5"))));
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10"), new ItemCost("5.0"))));
-        assertTrue(itemProfit.equals(new ItemProfit(new ItemSellingPrice("10.0"), new ItemCost("5.0"))));
+        // same value -> true
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10.00"), new ItemCost("5.00")));
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10"), new ItemCost("5.00")));
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10.0"), new ItemCost("5.00")));
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10.00"), new ItemCost("5")));
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10"), new ItemCost("5.0")));
+        assertEquals(itemProfit, new ItemProfit(new ItemSellingPrice("10.0"), new ItemCost("5.0")));
 
-        assertFalse(itemProfit.equals(null));
-        assertFalse(itemProfit.equals(differentItemProfit));
-        assertFalse(itemProfit.equals(1));
+        assertEquals(itemProfit, new ItemProfit(5.00));
+        assertEquals(itemProfit, new ItemProfit(5.0));
+
+        // different type -> false
+        assertNotEquals(null, itemProfit);
+        assertNotEquals(1, itemProfit);
+
+        //different value -> false
+        assertNotEquals(itemProfit, differentItemProfit);
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals("Profit: $5.00",
+                new ItemProfit(new ItemSellingPrice("10.00"), new ItemCost("5.00")).toString());
+        assertEquals("Profit: $1.00", new ItemProfit(1.0).toString());
+    }
+
+    @Test
+    public void hashCode_success() {
+        Double val = 10.0;
+        int hashCode = Double.hashCode(val);
+        assertEquals(new ItemProfit(val).hashCode(), hashCode);
+    }
+
 }
