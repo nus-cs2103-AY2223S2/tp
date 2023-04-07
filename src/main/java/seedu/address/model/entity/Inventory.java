@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.entity.exceptions.EntityNotFoundException;
 
 /**
  * Represents an inventory, belonging to an Entity.
@@ -44,7 +44,7 @@ public class Inventory {
         if (items.contains(item)) {
             items.remove(item);
         } else {
-            throw new PersonNotFoundException();
+            throw new EntityNotFoundException();
         }
     }
 
@@ -56,7 +56,7 @@ public class Inventory {
             Item item = items.stream().filter(entity -> entity.getName().fullName.equals(itemName)).findFirst().get();
             deleteItem(item);
         } else {
-            throw new PersonNotFoundException();
+            throw new EntityNotFoundException();
         }
     }
 

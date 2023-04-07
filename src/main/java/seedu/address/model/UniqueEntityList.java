@@ -9,8 +9,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.entity.exceptions.DuplicateEntityException;
+import seedu.address.model.entity.exceptions.EntityNotFoundException;
 
 /**
  * A list of entities that enforces uniqueness between its elements and does not allow nulls.
@@ -44,7 +44,7 @@ public class UniqueEntityList implements Iterable<Entity> {
     public void add(Entity toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntityException();
         }
         internalList.add(toAdd);
     }
@@ -59,11 +59,11 @@ public class UniqueEntityList implements Iterable<Entity> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new EntityNotFoundException();
         }
 
         if (!target.isSameEntity(editedEntity) && contains(editedEntity)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntityException();
         }
 
         internalList.set(index, editedEntity);
@@ -76,7 +76,7 @@ public class UniqueEntityList implements Iterable<Entity> {
     public void remove(Entity toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new EntityNotFoundException();
         }
     }
 
@@ -87,7 +87,7 @@ public class UniqueEntityList implements Iterable<Entity> {
     public void setEntities(List<Entity> entities) {
         requireAllNonNull(entities);
         if (!entitiesAreUnique(entities)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntityException();
         }
 
         internalList.setAll(entities);
