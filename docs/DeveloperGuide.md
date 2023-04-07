@@ -13,9 +13,12 @@ This guide is intended to provide developers with a comprehensive overview of th
 
 Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
 
-> :information_source: **Le Tracker** GUI is built with _JavaFX_ so you are highly recommended to develop in **Java**.
+<!-- prettier-ignore -->
+:information_source: **Le Tracker** GUI is built with *JavaFX* so you are highly recommended to develop in **Java**.
 
 ---
+
+<!-- TODO: Add this after everything is finalised  -->
 
 - Table of Contents
   {:toc}
@@ -1822,8 +1825,12 @@ Maintainability:
 
 Given below are instructions to test the app manually.
 
-**Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more _exploratory_ testing.
+:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
+
+Prerequisites:
+
+- Ensure your [data](../data/leTracker.json) is up-to-date with the [original test data](../src/test/data/JsonSerializableTrackerTest/typicalTracker.json)
+- Each test cases assumes that you start from the root context
 
 ### Launch and shutdown
 
@@ -1841,6 +1848,9 @@ testers are expected to do more _exploratory_ testing.
       Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+<!--
+TODO: to be removed
 
 ### Deleting a person
 
@@ -1865,4 +1875,80 @@ testers are expected to do more _exploratory_ testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }_ -->
+
+### List Modules
+
+| Test Case  | Expected Result                                          |
+| ---------- | -------------------------------------------------------- |
+| `list`     | List should show modules with code [`CS2040S`, `ST2334`] |
+| `list /r`  | Same as previous                                         |
+| `list foo` | Same as previous                                         |
+
+### List Lectures of a Module
+
+| Test Case                     | Expected Result                                                          |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| 1.`nav CS2040S`<br/> 2.`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| `list /mod CS2040S`           | Same as previous                                                         |
+
+### List Videos of a Lecture
+
+| Test Case                                        | Expected Result                             |
+| ------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`list` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`list /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`list`    | Same as previous                            |
+| `list /mod CS2040S /lec Week 1`                  | Same as previous                            |
+
+### Find Modules
+
+| Test Case    | Expected Result                                |
+| ------------ | ---------------------------------------------- |
+| `find cs`    | List should show modules with code [`CS2040S`] |
+| `find cs /r` | Same as previous                               |
+| `find foo`   | An empty list is shown                         |
+
+### Find Modules by Tag
+
+| Test Case             | Expected Result                                          |
+| --------------------- | -------------------------------------------------------- |
+| `find intro /byTag`   | List should show modules with code [`CS2040S`, `ST2334`] |
+| `find prob /r /byTag` | List should show modules with code [`ST2334`]            |
+| `find foo /byTag`     | An empty list is shown                                   |
+
+### Find Lectures of a Module
+
+| Test Case                            | Expected Result                                |
+| ------------------------------------ | ---------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find week 1` | List should show lectures with name [`Week 1`] |
+| `find week 1 /mod CS2040S`           | Same as previous                               |
+| `find wk /mod CS2040S`               | An empty list is shown                         |
+
+### Find Lectures of a Module by Tag
+
+| Test Case                                | Expected Result                                          |
+| ---------------------------------------- | -------------------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
+| `find arr /mod CS2040S /byTag`           | Same as previous                                         |
+| `find arry /mod CS2040S /byTag`          | An empty list is shown                                   |
+
+### Find Videos of a Lecture
+
+| Test Case                                              | Expected Result                             |
+| ------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`find vid 3` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`find vid 3 /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find vid 3`    | Same as previous                            |
+| `find vid 3 /mod CS2040S /lec Week 1`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find`          | Invalid command                             |
+
+### Find Videos of a Lecture by Tag
+
+| Test Case                                                    | Expected Result                             |
+| ------------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 2`<br/>3.`find math /byTag` | List should show videos with name [`Vid 2`] |
+| 1.`nav CS2040S`<br/> 2.`find math /lec Week 2 /byTag`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
+| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
