@@ -3,12 +3,17 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW;
 
+
 import static seedu.address.logic.commands.CommandTestUtil.*;
 
 import static seedu.address.testutil.TypicalPersons.*;
 
-import java.time.LocalDate;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_START_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_START_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -67,7 +72,7 @@ public class FindMeetingCommandTest {
 
     @Test
     public void execute_multiplePersonFound() throws CommandException {
-        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW,7);
+        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 7);
         FindMeetingCommand cmd = new FindMeetingCommand(LocalDate.of(2023, 3, 25));
         MeetingStartDatePredicate p = new MeetingStartDatePredicate(LocalDate.of(2023, 3, 25));
         expectedModel.updateFilteredMeetingList(p);

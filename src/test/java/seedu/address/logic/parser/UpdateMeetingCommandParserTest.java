@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.M_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.M_DESC_BOB;
@@ -33,6 +34,9 @@ public class UpdateMeetingCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateMeetingCommand.MESSAGE_USAGE);
 
+    private static final String MESSAGE_MISSING_ARGUMENTS_FULL =
+        String.format(MESSAGE_MISSING_ARGUMENTS, UpdateMeetingCommand.MESSAGE_USAGE);
+
     private UpdateMeetingCommandParser parser = new UpdateMeetingCommandParser();
 
     @Test
@@ -47,7 +51,7 @@ public class UpdateMeetingCommandParserTest {
 
     @Test
     public void parse_missingIndexAndFields_failure() {
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_MISSING_ARGUMENTS_FULL);
     }
 
     @Test
