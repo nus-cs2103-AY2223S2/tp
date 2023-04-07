@@ -241,7 +241,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a doctor with the same identity as {@code doctor} by NRIC exists in the address book.
+     * Returns true if a doctor with the same identity as {@code person} by NRIC exists in the address book.
      */
     public boolean hasDrByNric(Nric nric) {
         return persons.containsDrByNric(nric);
@@ -254,6 +254,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Person getPersonByNric(Nric nric) {
         return persons.getPersonByNric(nric);
+    }
+    /**
+     * Returns true if a patient with the same identity as {@code person} by NRIC exists in the address book.
+     */
+    public boolean hasPatientByNric(Nric nric) {
+        return persons.containsPatientByNric(nric);
     }
 
 }
