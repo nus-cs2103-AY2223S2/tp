@@ -364,6 +364,9 @@ The Predicate classes works using an OR search, as long as a keyword matches any
 
 If no argument is provided, an empty list will be shown.
 
+The following sequence diagram shows how the `find` operation works:
+<p align="center"><img src="images/FindSequenceDiagram.png" /></p>
+
 <div style="page-break-after: always;"></div>
 
 #### Design considerations

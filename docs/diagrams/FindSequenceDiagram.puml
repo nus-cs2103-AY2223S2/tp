@@ -1,0 +1,130 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocketParser" as SocketParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "personPredicate:FindCommandPersonPredicate" as FindCommandPersonPredicate LOGIC_COLOR
+participant ":FindCommandNamePredicate" as FindCommandNamePredicate LOGIC_COLOR
+participant ":FindCommandProfilePredicate" as FindCommandProfilePredicate LOGIC_COLOR
+participant ":FindCommandPhonePredicate" as FindCommandPhonePredicate LOGIC_COLOR
+participant ":FindCommandEmailPredicate" as FindCommandEmailPredicate LOGIC_COLOR
+participant ":FindCommandAddressPredicate" as FindCommandAddressPredicate LOGIC_COLOR
+participant ":FindCommandLanguagePredicate" as FindCommandLanguagePredicate LOGIC_COLOR
+participant ":FindCommandTagPredicate" as FindCommandTagPredicate LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/alex t/friend")
+activate LogicManager
+
+LogicManager -> SocketParser : parseCommand("find n/alex t/friend")
+activate SocketParser
+
+create FindCommandParser
+SocketParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> SocketParser
+deactivate FindCommandParser
+
+SocketParser -> FindCommandParser : parse("n/alex t/friend")
+activate FindCommandParser
+
+create FindCommandPersonPredicate
+FindCommandParser-> FindCommandPersonPredicate : FindCommandPersonPredicate("alex", " ", " ", " ", " ", " ", "friend")
+activate FindCommandPersonPredicate
+
+create FindCommandNamePredicate
+FindCommandPersonPredicate-> FindCommandNamePredicate : FindCommandNamePredicate("alex")
+activate FindCommandNamePredicate
+
+FindCommandNamePredicate --> FindCommandPersonPredicate
+deactivate FindCommandNamePredicate
+
+create FindCommandProfilePredicate
+FindCommandPersonPredicate-> FindCommandProfilePredicate
+activate FindCommandProfilePredicate
+
+FindCommandProfilePredicate --> FindCommandPersonPredicate
+deactivate FindCommandProfilePredicate
+
+create FindCommandPhonePredicate
+FindCommandPersonPredicate-> FindCommandPhonePredicate
+activate FindCommandPhonePredicate
+
+FindCommandPhonePredicate --> FindCommandPersonPredicate
+deactivate FindCommandPhonePredicate
+
+create FindCommandEmailPredicate
+FindCommandPersonPredicate-> FindCommandEmailPredicate
+activate FindCommandEmailPredicate
+
+FindCommandEmailPredicate --> FindCommandPersonPredicate
+deactivate FindCommandEmailPredicate
+
+create FindCommandAddressPredicate
+FindCommandPersonPredicate-> FindCommandAddressPredicate
+activate FindCommandAddressPredicate
+
+FindCommandAddressPredicate --> FindCommandPersonPredicate
+deactivate FindCommandAddressPredicate
+
+create FindCommandLanguagePredicate
+FindCommandPersonPredicate-> FindCommandLanguagePredicate
+activate FindCommandLanguagePredicate
+
+FindCommandLanguagePredicate --> FindCommandPersonPredicate
+deactivate FindCommandLanguagePredicate
+
+create FindCommandTagPredicate
+FindCommandPersonPredicate-> FindCommandTagPredicate : FindCommandTagPredicate("friend")
+activate FindCommandTagPredicate
+
+FindCommandTagPredicate --> FindCommandPersonPredicate
+deactivate FindCommandTagPredicate
+
+FindCommandPersonPredicate --> FindCommandParser : personPredicate
+deactivate FindCommandPersonPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(personPredicate)
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> SocketParser : f
+deactivate FindCommandParser
+
+SocketParser --> LogicManager : f
+deactivate SocketParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPersonList(personPredicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
