@@ -55,10 +55,10 @@ Given below are my contributions to the project.
     
   * Developer Guide:
     * Refactored AB3's Developer Guide into ConnectUS Developer Guide.
-    * Added implementation details of the `add` command and the `edit` command into Developer Guide.
+    * Added implementation details of the `add` command, the `edit` command, and the `help` command into Developer Guide.
     * Added Planned Enhancements into Developer Guide.
-    * Added User Stories into Developer Guide.
-    * Added Use Cases into Developer Guide.
+    * Added some User Stories into Developer Guide.
+    * Added some Use Cases into Developer Guide.
     * Added Glossary into Developer Guide.
     * Added Non-Functional Requirements into Developer Guide.
 

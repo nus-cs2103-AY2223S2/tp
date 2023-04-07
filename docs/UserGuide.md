@@ -5,7 +5,7 @@ title: User Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising. 
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
 
 We're focused on:
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
@@ -116,7 +116,7 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 **Step 1:** Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
 
-**Step 2:** Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br> 
+**Step 2:** Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
 ![Latest](images/ConnectUSLatest.png)
 
 <div style="page-break-after: always"></div>
@@ -180,7 +180,7 @@ The contact list shows the contacts that exist within your ConnectUS with all th
 
 * There is a scroll bar beside the contact list container for you to scroll through your contact list.
 * The index beside the contact name is the contact's index. It is used for certain commands such as `delete`. More details on this can be found in [Features](#4-features).
-* The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes).
 * You can also find a condensed summary table of these information fields in the [Prefix Summary](#8-prefix-summary).
 
 <div style="page-break-after: always"></div>
@@ -199,7 +199,7 @@ Example: `n/NAME`
 
 In this case, `NAME` is the information field that you wish to input. The `n/` prefix must be used for ConnectUS to recognise that you intend on adding a `NAME` to a contact.
 
-* The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes).
 * You can also find a condensed summary of these information fields in the [Prefix Summary](#8-prefix-summary).
 
 <div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
@@ -212,7 +212,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 To use ConnectUS, type the [command](#321-command) along with its [parameters](#322-parameter), if required. You can leave the parameters empty if it is optional (i.e. if it is wrapped in square brackets like this: `help [COMMAND]`).
 
-* The detailed list of commands and their command formats can be found in [Features](#4-features). 
+* The detailed list of commands and their command formats can be found in [Features](#4-features).
 * You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
 
 <div style="page-break-after: always"></div>
@@ -382,14 +382,14 @@ Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do procee
 Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA[#CCA_POSITION]]…​ [maj/MAJOR]…​ [r/REMARK]…​`
 
 >Adds a contact to the ConnectUS app.
- 
-You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
+
+You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional.
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
 * A contact can have any number of <a href=#59-tags>tags</a>, i.e. <u>modules</u>, <u>CCAs</u>, and <u>remarks</u> (including 0)!
 
-* A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
+* A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
 
 </div>
 
@@ -445,7 +445,7 @@ The `edit` command:
 
 **Edit Example:**
 
-**Input in Command Box:** `edit 1 p/12345678 e/james@example.com` 
+**Input in Command Box:** `edit 1 p/12345678 e/james@example.com`
 
 **Before:**<br>![EditContactExampleBefore](images/EditContactExampleBefore.png)
 
@@ -482,7 +482,7 @@ The `add-t` command:
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_CODE`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
-* No duplicate tags are allowed. This means that if there is a pre-existing **tag type** with a certain tag name, the tag will not show up in the UI. 
+* No duplicate tags are allowed. This means that if there is a pre-existing **tag type** with a certain tag name, the tag will not show up in the UI.
   * e.g. If there is an existing **remark** tag for `classmates` for `PERSON_INDEX` 1, doing `add-t 1 r/classmates` _WILL NOT_ add an additional **remark** tag.
 
 <div style="page-break-after: always"></div>
@@ -591,7 +591,7 @@ Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD
 
 > For keywords without a specified field, finds all contacts whose information from any field contains the given keywords.<br>For keywords in a specified field, finds all contacts whose field contains given keyword.
 
-There are 2 methods in which you can search for a contact. 
+There are 2 methods in which you can search for a contact.
 
 **Method 1:**
 
@@ -663,7 +663,7 @@ Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
 
 You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
 
-For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled. 
+For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled.
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
@@ -717,8 +717,7 @@ Format: `upcoming-b`
 
 > Shows all contacts who have upcoming birthdays within the next 60 days.
 
-Never forget a birthday again! With `upcoming-b`, you can check which of your friends have their 
-birthdays in the next 60 days (approx. 2 months).
+Never forget a birthday again! With `upcoming-b`, you can check which of your friends have their birthdays in the next 60 days (approx. 2 months).
 
 **Upcoming Birthday Example:**
 
@@ -882,7 +881,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.9 Tags
 
-Tags are used to assign additional information to a contact. 
+Tags are used to assign additional information to a contact.
 
 There are four kinds of tags in ConnectUS. They are Module Tags, CCA Tags, Major Tags, and Remark Tags.
 
@@ -942,7 +941,7 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 
 **Why do we need remark tags if we already have other kinds of tags?**
 * Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
-* If a tag you want to add to a contact does not exist, you can use the remark tag. 
+* If a tag you want to add to a contact does not exist, you can use the remark tag.
 * The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
 <div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
@@ -1031,7 +1030,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 ### A
 > **Alphanumeric:**
-> English alphabet letters and numbers only. 
+> English alphabet letters and numbers only.
 
 ### C
 > **CCA:**

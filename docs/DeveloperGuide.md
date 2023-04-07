@@ -5,48 +5,150 @@ title: Developer Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
+ConnectUS is a **contact management system** that enables <u>NUS School of Computing (SoC)</u> students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
-We're focused on:
-- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
-- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
+ConnectUS focuses on:
+- **Efficiency**: Optimized for use via a <u>Command Line Interface (CLI)</u>, **easily view and edit contacts** with the **contact management system**.
+- **User-friendliness**: With the benefits of having a <u>Graphical User Interface (GUI)</u>, **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
-This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
+This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the <u>architecture</u> of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
-So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
+You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
 ---
 
 <div style="page-break-after: always"></div>
 
-* Table of Contents
-{:toc}
+# Table of Contents
 
---------------------------------------------------------------------------------------------------------------------
+- [1. Preface](#1-preface)
+  - [1.1 Acknowledgements](#11-acknowledgements)
+  - [1.2 Setting Up, Getting Started](#12-setting-up-getting-started)
+- [2. How to Use the Developer Guide](#2-how-to-use-the-developer-guide)
+  - [2.1 Notation](#21-notation)
+  - [2.2 Navigation](#22-navigation)
+- [3. Design](#3-design)
+  - [3.1 Architecture](#31-architecture)
+  - [3.2 UI Component](#32-ui-component)
+  - [3.3 Logic Component](#33-logic-component)
+  - [3.4 Model Component](#34-model-component)
+  - [3.5 Storage Component](#35-storage-component)
+  - [3.6 Common Classes](#36-common-classes)
+- [4. Implementation](#4-implementation)
+  - [4.1 Add Command](#41-add-command)
+  - [4.2 Edit Command](#42-edit-command)
+  - [4.3 Delete Command](#43-delete-command)
+  - [4.4 Help Command](#44-help-command)
+  - [4.5 Adding Additional Tags Command](#45-adding-additional-tags-command)
+  - [4.6 Deleting Individual Tags Command](#46-deleting-individual-tags-command)
+  - [4.7 Search Command](#47-search-command)
+  - [4.8 Upcoming Birthdays Command](#48-upcoming-birthdays-command)
+  - [4.9 Open Command](#49-open-command)
+- [5. Planned Enhancements](#5-planned-enhancements)
+  - [5.1 Improve Edit Command](#51-improve-edit-command)
+  - [5.2 Better Information Field Validation](#52-better-information-field-validation)
+  - [5.3 More Language Support](#53-more-language-support)
+  - [5.4 More Social Media Support](#54-more-social-media-support)
+  - [5.5 Improve UI](#55-improve-ui)
+  - [5.6 Improve Tag Deletion Command](#56-improve-tag-deletion-command)
+  - [5.7 Improve Consistency of Command Feedback](#57-improve-consistency-of-command-feedback)
+  - [5.8 Removing of Optional Information Fields](#58-removing-of-optional-information-fields)
+- [6. Documentation, Testing, and Other Guides ](#6-documentation-testing-and-other-guides)
+- [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
+  - [7.1 Launch and Shutdown](#71-launch-and-shutdown)
+  - [7.2 Adding a Person](#72-adding-a-person)
+  - [7.3 Deleting a Person](#73-deleting-a-person)
+  - [7.4 Saving Data](#74-saving-data)
+- [8. Requirements](#8-requirements)
+  - [8.1 Product Scope](#81-product-scope)
+  - [8.2 User Stories](#82-user-stories)
+  - [8.3 Use Cases](#83-use-cases)
+  - [8.4 Non-Functional Requirements](#84-non-functional-requirements)
+- [9. Glossary](#9-glossary)
 
-# **Acknowledgements**
+---
 
-- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-- This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+<div style="page-break-after: always"></div>
 
-- Libraries used in this project: [Jackson](https://github.com/FasterXML/jackson) for Storage, [JavaFX](https://openjfx.io/) for UI,  [JUnit5](https://github.com/junit-team/junit5) for Testing.
+# 1. Preface
 
---------------------------------------------------------------------------------------------------------------------
 
-# **Setting up, getting started**
+## 1.1 Acknowledgements
+
+ConnectUS is a <u>brownfield</u> software project based on [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org), as part of the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s2.github.io/website/index.html) by SoC at the National University of Singapore (NUS).
+
+This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info. 
+
+Java libraries used in this project: 
+* [Jackson](https://github.com/FasterXML/jackson) for Storage,
+* [JavaFX](https://openjfx.io/) for UI,
+* [JUnit5](https://github.com/junit-team/junit5) for Testing.
+
+---
+
+## 1.2 Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-# **Design**
+<div style="page-break-after: always"></div>
 
-<div markdown="span" class="alert alert-primary">
+# 2. How to Use the Developer Guide
+
+Thank you for your interest in ConnectUS! We aim to provide you with all the information necessary to understand, maintain, upgrade, and evolve ConnectUS.
+
+While you do not need to read the Developer Guide in a sequential order, we recommend going through the [Design](#3-design) section to get a high-level overview of ConnectUS before looking for information that concerns you.
+
+## 2.1 Notation
+
+Some special notations are used throughout this guide:
+
+- [Links in blue](#21-notation) will help you navigate through this document, or take you to places on the Internet.
+- **Bolded words** are phrases that you should pay attention to.
+- <u>Underlined words</u> can be found in the [Glossary](#9-glossary).
+
+## 2.2 Navigation
+
+The Developer Guide has six main sections:
+
+1. [Design](#3-design)
+2. [Implementation](#4-implementation)
+3. [Planned Enhancements](#5-planned-enhancements)
+4. [Documentation, Testing, and Other Guides](#6-documentation-testing-and-other-guides)
+5. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
+6. [Requirements](#8-requirements)
+
+- If you are a **developer**, the first four sections will be most applicable to you. [Design](#3-design) gives you a high-level overview of how ConnectUS is structured, and information on the key components of ConnectUS. [Implementation](#4-implementation) addresses how the features in ConnectUS are implemented. [Planned Enhancements](#5-planned-enhancements) provides insights on known bugs and issues in the latest release of ConnectUS, and plans we have to address and fix these issues. Finally, [Documentation, Testing, and Other Guides](#6-documentation-testing-and-other-guides) provides guides on creating documentation, logging, testing, configuring, and DevOps for ConnectUS.
+
+- If you are a **tester**, the [Instructions for Manual Testing](#7-instructions-for-manual-testing) will provide you with a guide for testing. It covers how to launch and shut down the application, as well as how to test some commands in ConnectUS.
+
+- If you are in the **marketing or product team**, or are interested in knowing why ConnectUS was created, the [Requirements](#8-requirements) section addresses our [Product Scope](#81-product-scope), [User Stories](#82-user-stories), [Use Cases](#83-use-cases), and [Non-Functional Requirements (NFRs)](#84-non-functional-requirements).
+
+- Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 3. Design
+
+This section will provide you with a high-level overview of how ConnectUS is structured, as well as information on the key components of ConnectUS.
+
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-## Architecture
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
+
+</div>
+
+<div style="page-break-after: always"></div>
+
+## 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -54,20 +156,20 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+**Main components of the <u>architecture</u>**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -87,15 +189,17 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-## UI component
+<div style="page-break-after: always"></div>
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+## 3.2 UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -104,9 +208,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-## Logic component
+<div style="page-break-after: always"></div>
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+## 3.3 Logic component
+
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -122,7 +228,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -130,11 +236,13 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a <u>placeholder</u> for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+<div style="page-break-after: always"></div>
+
+## 3.4 Model component
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -146,16 +254,17 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+<div style="page-break-after: always"></div>
 
-## Storage component
+## 3.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/gremmyz/tp/blob/branch-dont-break/src/main/java/seedu/connectus/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -164,20 +273,42 @@ The `Storage` component,
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-## Common classes
+<div style="page-break-after: always"></div>
+
+## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+**API** : [`Commons.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/src/main/java/seedu/connectus/commons)
 
-# **Implementation**
+---
+
+<div style="page-break-after: always"></div>
+
+# 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Add Command
-The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
+<div style="page-break-after: always"></div>
+
+## 4.1 Add Command
+
+**Overview:**
+
+The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u>`Module`</u>, <u>`CCA`</u>, <u>`Major`</u> and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
+
+**Feature Details:**
+
+1. The user specifies a name for the `Person` to be added. The user can optionally specify the `Phone`, `Email`, `Address`, `Birthday`, `Social Media`, and tags such as `Module`, `CCA`, `Major`, and `Remark` fields.
+2. If the person name is not provided, or if invalid command parameters are provided, the user will be prompted to re-enter the command correctly via an error message. 
+3. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+4. If step 3 completes without exceptions, the new `Person` will be successfully added and stored inside the contact list.
+
+The following activity diagram shows the logic of adding a `Person` into the contact list.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
 
 The sequence of the `add` command is as follows:
 
@@ -196,14 +327,34 @@ The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+The following sequence diagram provides details on how the `informationFields` are being parsed:
 
-![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
+![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
-## Edit Command
-The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
+---
+
+<div style="page-break-after: always"></div>
+
+## 4.2 Edit Command
+
+**Overview:**
+
+The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and `Birthday` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
+
+**Feature Details:**
+
+1. The user specifies a person index that represents a `Person` to be edited.
+2. If a negative or zero index is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+3. At least one field to be edited must be provided. If no field is provided, an error is thrown. The user is prompted to re-enter the command correctly.
+4. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
+5. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
+6. If step 6 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+
+The following activity diagram shows the logic of editing an existing `Person` in the contact list.
+
+![EditCommandActivityDiagram](images/EditCommandActivityDiagram.png)
 
 The sequence of the `edit` command is as follows:
 
@@ -218,28 +369,91 @@ The sequence of the `edit` command is as follows:
 The following sequence diagram shows how `edit` works:
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+The following sequence diagram provides details on how the `informationFields` are being parsed by `ParserUtil`:
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
-## [To Add] Delete Command
+<div style="page-break-after: always"></div>
 
-## [To Add] Help Command
+## 4.3 Delete Command
 
-## [To Add] Adding Additional Tags
+**Overview:**
 
-## [To Add] Deleting Individual Tags
+**Feature Details:**
 
-# Planned Enhancements
+<div style="page-break-after: always"></div>
+
+## 4.4 Help Command
+
+**Overview:**
+
+The `help` command provides the user with instructions on how to access the User Guide, or how to use a specified command.
+
+**Feature Details:**
+
+1. The user specifies a command that they need help with using `help` followed by the word needed to execute a particular command available in ConnectUS.
+2. If a command is not specified, the help window with the URL to access the ConnectUS User Guide will be shown, as well as a general feedback message to denote successful execution of the command.
+3. If a command is specified, the provided command is cross-referenced with all available commands in ConnectUS. If the command specified by the user does not exist, an error is thrown. A `help` feedback message with instructions on accessing `help` command with the User Guide will be shown.
+4. The command usage instructions will be shown in the command feedback box. There will also be a message to denote successful execution of the `help` command.
+
+The following activity diagram shows the logic of the `help` command.
+
+![HelpCommandActivityDiagram](images/HelpCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
+
+## 4.5 Adding Additional Tags Command
+
+**Overview:**
+
+**Feature Details:**
+
+<div style="page-break-after: always"></div>
+
+## 4.6 Deleting Individual Tags Command
+
+**Overview:**
+
+**Feature Details:**
+
+<div style="page-break-after: always"></div>
+
+## 4.7 Search Command
+
+**Overview:**
+
+**Feature Details:**
+
+<div style="page-break-after: always"></div>
+
+## 4.8 Upcoming Birthdays Command
+
+**Overview:**
+
+**Feature Details:**
+
+<div style="page-break-after: always"></div>
+
+## 4.9 Open Command
+
+**Overview:**
+
+**Feature Details:**
+
+<div style="page-break-after: always"></div>
+
+# 5. Planned Enhancements
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
 
-## Improve Edit Command
+<div style="page-break-after: always"></div>
+
+## 5.1 Improve Edit Command
 
 Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
 
 The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
 
-## Better Information Field Validation
+## 5.2 Better Information Field Validation
 
 Currently, certain information fields can hold values that would be considered invalid in real life. Some other information fields cannot hold values that would be considered valid in real life.
 
@@ -264,14 +478,15 @@ However, such an address would be considered invalid in real life, as it would a
 
 However, such an Instagram username would be considered valid in real life.
 
+<div style="page-break-after: always"></div>
 
-## More Language Support
+## 5.3 More Language Support
 
 Currently, English is the only language that is supported by our application.
 
 As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
 
-## More Social Media Support
+## 5.4 More Social Media Support
 
 Currently, only Instagram, Telegram and WhatsApp are supported.
 
@@ -279,16 +494,44 @@ As we are aware that some students studying in NUS SoC may have other forms of s
 
 We plan to address and fix all the current constraints mentioned above in the next iteration of this product (V1.5).
 
+## 5.5 Improve UI
 
-[↑ Back to top of section](#planned-enhancements)
+There are some known issues with the current UI.
+
+For example, our testers have noted that:
+* The feedback box is too small, and is unable to show the full feedback message without long scrolling.
+* The scroll bar sometimes jumps and changes in size randomly.
+* There is an amount of space on the right side of the contact card that is not being utilized.
+
+We plan to address and improve our UI in V1.6.
+
+## 5.6 Improve Tag Deletion Command
+
+Currently, the `delete-t` command can only delete tags one at a time. This may be inefficient if a users wants to delete multiple tags of differing tag types, especially if said user has contacts with many assigned tags.
+
+We plan to address this constraint in the next iteration of this product (V1.5).
+
+<div style="page-break-after: always"></div>
+
+## 5.7 Improve Consistency of Command Feedback
+
+Currently, executing certain commands may return inconsistent feedback. For example, if there is an index overflow, the feedback returned is "Invalid command format!", when it should be "The person index provided is invalid", as is when an invalid index is provided to command parsers.
+
+We plan to address this constraint in the next iteration of this product (V1.5).
+
+## 5.8 Removing of Optional Information Fields
+
+Currently, users are unable to edit an optional field back to `null`/remove an optional information field from a contact.
+
+We plan to address this constraint in the next iteration of this product (V1.5).
+
+[↑ Back to top of section](#5-planned-enhancements)
 
 ---
 
 <div style="page-break-after: always"></div>
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
+# 6. Documentation, Testing, and Other Guides
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -296,26 +539,103 @@ We plan to address and fix all the current constraints mentioned above in the ne
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Requirements**
+<div style="page-break-after: always"></div>
 
-### Product scope
+# 7. Instructions for Manual Testing
+
+Given below are instructions to test the app manually.
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+<div style="page-break-after: always"></div>
+
+## 7.1 Launch and shutdown
+
+1. Initial launch
+
+    1. Download the `ConnectUS.jar` file and copy into an empty folder
+
+    1. Double-click the `ConnectUS.jar` file Expected: Shows the <u>GUI</u> with a set of sample contacts. The window size may not be optimum.
+
+2. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+3. _{ more test cases …​ }_
+
+<div style="page-break-after: always"></div>
+
+## 7.2 Adding a person:
+1. Adding a `Person` with just name and email
+    1. Prerequisites: None
+    2. Test case: `add n/JohnDoe e/email@example.com`<br>
+       Expected: a new `Person` named JohnDoe with given email is  created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
+    3. Test case: `add n/ e/email@example.com`<br>
+       Expected: No `Person` is created. Error details shown in status message.
+    4. _{ more test cases …​ }_
+
+<div style="page-break-after: always"></div>
+
+
+## 7.3 Deleting a person:
+
+1. Deleting a `Person` while all persons are being shown
+
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+<div style="page-break-after: always"></div>
+
+## 7.4 Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 8. Requirements
+
+## 8.1 Product scope
 
 **Target user profile**:
 
-* NUS School of Computing (SoC) students
-* especially those with many CCAs, modules or Team Projects
+* <u>NUS School of Computing (SoC)</u> students
+* especially those with many <u>CCAs</u>, <u>modules</u> or Team Projects
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using <u>CLI</u> apps
 
-**Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends information, saving time and effort as users can access this information at their fingertips.
+**Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
+
+<div style="page-break-after: always"></div>
 
 
-### User stories
+## 8.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -330,13 +650,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user with many different CCAs                | add CCA post tags to a person                                           | remember which post they hold in the CCA                                                  |
 | `* * *`  | user                                         | add a new contact without adding their email                            | add people when I don't know their email id                                               |
 | `* * *`  | user                                         | add a new contact without adding their phone number                     | add people when I don't know their phone number                                           |
-| `* * *`  | user                                         | add a new contact without adding their telegram                         | add people when I don't know their telegram                                               |
+| `* * *`  | user                                         | add a new contact without adding their Telegram                         | add people when I don't know their telegram                                               |
 | `* * *`  | user                                         | add a new contact without adding any tags                               | add people who don't have a common CCA or module with me                                  |
-| `* * *`  | student                                      | easily add my friends' telegram information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | student                                      | easily add my friends' Telegram information to the app                  | quickly connect with them on the platform                                                 |
+| `* * *`  | student                                      | easily add my friends' Instagram information to the app                 | quickly connect with them on the platform                                                 |
+| `* * *`  | student                                      | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
 | `* * *`  | user                                         | add a birthday for my contacts                                          | remember them                                                                             |
-| `* *`    | user                                         | hide private contact details                                            | minimize chance of someone else seeing them by accident                                   |
-| `* *`    | user                                         | open whatsapp directly from the CLI                                     | message someone without having to find them on whatsapp                                   |
-| `* *`    | user                                         | open telegram directly from the CLI                                     | message someone without having to find them on telegram                                   |
+| `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
+| `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
+| `* *`    | user                                         | open WhatsApp directly from the CLI                                     | message someone without having to find them on WhatsApp                                   |
 | `* *`    | student with many CCAs                       | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
 | `* *`    | student with many CCAs                       | find the friends of a specific CCA                                      | find their contact easily                                                                 |
 | `* *`    | exco of a CCA who is also part of other CCAs | find the contacts of the CCA members (of which I am an exco of)         | find their contact easily to contact them regarding CCA events/other needs                |
@@ -347,22 +669,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student TA                                   | find the contact details of the students I am TA-ing                    | so that I can easily inform them about important information related to the module/class  |
 | `* *`    | student                                      | receive notifications when my friends change their telegram information | stay up to date with their latest details                                                 |
 | `* *`    | student                                      | search for my friends' telegram information within the app              | don't have to manually go through my contacts list every time I want to reach out to them |
-| `* *`    | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
 | `* *`    | user                                         | view a list of upcoming birthdays for my contacts                       | plan ahead for their birthday                                                             |
 | `*`      | user with friends from different years       | add year tags to a person                                               | remember which year they are in                                                           |
+| `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
 | `*`      | user with many persons saved in the app      | sort persons by name                                                    | locate a person easily                                                                    |
-| `*`      | user                                         | send short messages on telegram directly from the app                   | message someone without having to juggle between apps                                     |
-| `*`      | user                                         | send short messages on whatsapp directly from the app                   | message someone without having to juggle between apps                                     |
+| `*`      | user                                         | send short messages on Telegram directly from the app                   | message someone without having to juggle between apps                                     |
+| `*`      | user                                         | send short messages on WhatsApp directly from the app                   | message someone without having to juggle between apps                                     |
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
 
-### Use cases
+<div style="page-break-after: always"></div>
 
-(For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
+## 8.3 Use cases
+
+(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a contact**
 
-**MSS**
+**<u>Main Success Scenario (MSS)</u>**
 
 1. User requests to add a contact by giving name and some contact information.
 2. ConnectUS adds a new contact with given information.
@@ -476,9 +800,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+<div style="page-break-after: always"></div>
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+## 8.4 Non-Functional Requirements
+
+1. Should work on any <u>_mainstream OS_</u> as long as it has <u>Java `11`</u> or above installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be for a single user i.e. (not a multi-user product).
@@ -486,81 +812,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. Should have its data be in a human editable text file.
 7. Should not use a Database Management System (DBMS) to store data.
 8. Should not depend on a remote server.
-9. Should not cause have its GUI cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
+9. Should not cause have its <u>GUI</u> cause any resolution-related inconveniences to the user for standard screen resolutions (1920x1080 and higher), and resolutions of 1280x720 and higher.
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
-### Glossary
+---
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: A command line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
-* **GUI**: A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicators.
-* **JavaFX**: A Java library used for creating and delivering desktop applications.
-* **NUS**: National University of Singapore.
-* **SoC**: School of Computing, a computing school in NUS.
-* **CS2103T**: The module code for a Software Engineering module in NUS.
-* **CCA**: Co-curricular activities that students participate in.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+<div style="page-break-after: always"></div>
 
---------------------------------------------------------------------------------------------------------------------
+# 9. Glossary
 
-## **Appendix: Instructions for manual testing**
+### A
+> **Architecture:**
+> The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
 
-Given below are instructions to test the app manually.
+### B
+> **Brownfield:**
+> Brownfield software development refers to the development and deployment of a new software system in the presence of existing or legacy software systems. Brownfield application development usually happens when developing or improving upon an existing application.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+### C
+> **CCA:**
+> Co-curricular activities that students participate in.
+>
+> **Command Line Interface (CLI):**
+> A text-based user interface used to run programs.
+>
+> **Command:**
+> Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
+> 
+> **ConnectUS.jar:**
+> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
+> 
+> **CS2103T:**
+> The module code for a Software Engineering module in the National University of Singapore.
 
-</div>
+### F
+> **Format:**
+> In this Developer Guide, the format of a command is the correct input usage of a command.
 
-### Launch and shutdown
+### G
+> **Graphical User Interface (GUI):**
+> A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
 
-1. Initial launch
+### J
+>**Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
+>
+> **JavaFX:**
+> A Java library used for creating and delivering desktop applications.
+>
+> **JSON:**
+> Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
+> 
+> **JUnit 5:**
+> JUnit 5 is a unit testing framework for the Java programming language, and is important in the development of test-driven development.
 
-   1. Download the jar file and copy into an empty folder
+### M
+> **Mainstream OS:**
+> Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
+> 
+> **MSS:**
+> Short for Main Success Scenario. It describes the most straightforward system-user interaction for a given use case, assuming that no errors occur.
+> 
+> **Major:**
+> Majors are the main programmes that students take at the National University of Singapore.
+>
+> **Module:**
+> Modules are courses that students take at the National University of Singapore.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### N
+> **NUS:**
+> Short for the National University of Singapore.
 
-1. Saving window preferences
+### P
+> **Parameter:**
+> Parameters are user inputs that ConnectUS requires to perform certain commands.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### S
+> **School of Computing:**
+> Also known as SoC. A computing school in the National University of Singapore.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### U
+> **Use Case:**
+> A use case describes the interaction between the system and the user for a specific functionality of the system.
+> 
+> **User Story:**
+> User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new feature. It is typically of the format: "As a [user type], I can [function] so that [benefit]."
 
-1. _{ more test cases …​ }_
-
-### Adding a contact:
-1. Adding a contact with just name and email
-    1. Prerequisites: None
-   2. Test case: `add n/JohnDoe e/email@example.com`<br>
-   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
-   3. Test case: `add n/ e/email@example.com`<br>
-   Expected: No contact is created. Error details shown in status message.
-   4. _{ more test cases …​ }_
+[↑ Back to top](#table-of-contents)
 
 
-### Deleting a contact
-
-1. Deleting a contact while all persons are being shown
-
-   1. Prerequisites: List all contact using the `list` command. Multiple contacts in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

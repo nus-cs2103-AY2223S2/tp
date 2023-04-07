@@ -14,12 +14,6 @@ AddCommandParser->ParserUtil:parseName(name)
 activate AddCommandParser
 activate ParserUtil
 return name
-AddCommandParser->ParserUtil:parseTags(tags)
-activate ParserUtil
-return tags
-AddCommandParser->ParserUtil:parseModules(modules)
-activate ParserUtil
-return modules
 opt ifPhonePrefixPresent
     AddCommandParser->ParserUtil:parsePhone(phone)
     activate ParserUtil
@@ -39,6 +33,26 @@ opt ifBirthdayPrefixPresent
     AddCommandParser->ParserUtil:parseBirthday(birthday)
     activate ParserUtil
     return birthday
+end
+opt ifRemarkPrefixPresent
+    AddCommandParser->ParserUtil:parseRemark(remarkList)
+    activate ParserUtil
+    return remarkList
+end
+opt ifModulePrefixPresent
+    AddCommandParser->ParserUtil:parseModules(moduleList)
+    activate ParserUtil
+    return moduleList
+end
+opt ifCcaPrefixPresent
+    AddCommandParser->ParserUtil:parseCcas(ccaList)
+    activate ParserUtil
+    return ccaList
+end
+opt ifMajorPrefixPresent
+    AddCommandParser->ParserUtil:parseMajor(majorList)
+    activate ParserUtil
+    return majorList
 end
 AddCommandParser->ParserUtil:parseSocialMedia(socialMedia)
 activate ParserUtil

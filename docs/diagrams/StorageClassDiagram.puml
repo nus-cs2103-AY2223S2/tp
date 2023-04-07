@@ -19,10 +19,15 @@ Class "<<interface>>\nConnectUsStorage" as ConnectUsStorage
 Class JsonConnectUsStorage
 Class JsonSerializableConnectUs
 Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdaptedModule
+Class JsonAdaptedCca
+Class JsonAdaptedMajor
+Class JsonAdaptedRemark
 Class JsonAdaptedAddress
 Class JsonAdaptedEmail
 Class JsonAdaptedPhone
+Class JsonAdaptedBirthday
+Class JsonAdaptedSocialMedia
 }
 
 }
@@ -41,9 +46,23 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonConnectUsStorage .up.|> ConnectUsStorage
 JsonConnectUsStorage ..> JsonSerializableConnectUs
 JsonSerializableConnectUs --> "*" JsonAdaptedPerson
+
+JsonAdaptedBirthday -[hidden]up-> JsonAdaptedPhone
+JsonAdaptedSocialMedia -[hidden]up-> JsonAdaptedEmail
+
 JsonAdaptedPerson --> "0..1" JsonAdaptedAddress
 JsonAdaptedPerson --> "0..1" JsonAdaptedEmail
 JsonAdaptedPerson --> "0..1" JsonAdaptedPhone
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "0..1" JsonAdaptedBirthday
+JsonAdaptedPerson --> "0..1" JsonAdaptedSocialMedia
+
+
+JsonAdaptedMajor -[hidden]up-> JsonAdaptedModule
+JsonAdaptedRemark -[hidden]up-> JsonAdaptedCca
+
+JsonAdaptedPerson --> "*" JsonAdaptedModule
+JsonAdaptedPerson --> "*" JsonAdaptedCca
+JsonAdaptedPerson --> "0..2" JsonAdaptedMajor
+JsonAdaptedPerson --> "*" JsonAdaptedRemark
 
 @enduml

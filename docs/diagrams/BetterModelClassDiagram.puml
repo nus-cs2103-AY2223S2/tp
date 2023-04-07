@@ -9,10 +9,16 @@ ConnectUs *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
-UniqueTagList -right-> "*" Tag
+UniqueTagList -right-> "*" Remark
+UniqueTagList -right-> "*" Major
+UniqueTagList -right-> "*" CCA
+UniqueTagList -right-> "*" Module
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+Person -up-> "*" Module
+Person -up-> "*" CCA
+Person -up-> "*" Major
+Person -up-> "*" Remark
 
 Person *--> Name
 Person *--> Phone

@@ -45,10 +45,4 @@ end
 EditCommandParser->ParserUtil:parseSocialMedia(socialMedia)
 activate ParserUtil
 return socialMedia
-EditCommandParser->ParserUtil:parseTagsForEdit(tags)
-activate ParserUtil
-return tags
-EditCommandParser->ParserUtil:parseModulesForEdit(modules)
-activate ParserUtil
-return modules
 @enduml
