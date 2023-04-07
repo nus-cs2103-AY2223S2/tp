@@ -37,7 +37,7 @@ This User Guide is split into multiple important sections:
 * The [Graphical User Interface](#graphical-user-interface) section provides a quick rundown of the different components of MyLib's user interface.
 * The [Features](#features) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
 
-If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Features](#features) section or the [Command Summary](#command-summary) table.
+If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Features](#features) section or the [Command Summary](#command-summary) table. The [Features](#features) section will provide a detailed explanation of each feature. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
 
 
 The user guide will contain certain visuals to aid in conveying information more effectively. These include:
