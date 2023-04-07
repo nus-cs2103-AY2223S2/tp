@@ -161,25 +161,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Validity of commands based on Application's Mode
+### Command Validity Based on Application Mode
 The activity diagram below illustrates what happens when a user enters a command.
 
 ![CommandValidityActivityDiagram](images/CommandValidityActivityDiagram.png)
-- As seen in the activity diagram, a user's command validity is not only affected by the **user's input**, but also the **current application mode**.
-- Our application has a total of three modes (which implementation will be discussed later in detail) namely `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, and `REVIEW_MODE`. 
-- Hence, certain commands are exclusive to certain mode(s) only.
-The `LogicManager` class checks the current mode of the user and disables as well as enables certain commands for the user.
 
-- #### When a user is in `MAIN_UNSELECTED_MODE`
-    - This mode primarily handles **deck-related** commands like `AddDeckCommand` and `FindDecksCommand`.
-    - No deck is selected in this mode and hence, card-related commands and review-related commands are disabled.
-- #### When a user is in `MAIN_SELECTED_MODE`
-    - This mode primarily handles **card-related** commands like `AddCardCommand` and `FindCardsCommand`.
-    - A deck is selected in this mode and hence, deck-related commands like `AddDeckCommand` are disabled.
-    - Review-related commands are disabled too as there is no ongoing review.
-- #### When a user is in `REVIEW_MODE`
-  - This mode primarily handles **review-related** commands like `FlipCardCommand` and `NextCardCommand`.
-  - A review is ongoing and hence, deck-related and card-related commands are disabled.
+It's important to note that the validity of a user's command is not solely determined by the user's input, but also by the **current mode of the application**.
+<br>
+Our application has three modes: `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, and `REVIEW_MODE`, each with its own set of exclusive commands. 
+To enforce this, the `LogicManager` class checks the current mode of the user and **enables/disables** certain commands as necessary.
+
+- #### When the user is in `MAIN_UNSELECTED_MODE`:
+    - This mode primarily handles **deck-related** commands, such as `AddDeckCommand` and `FindDecksCommand`.
+    - No deck is selected in this mode, so card-related and review-related commands are disabled.
+- #### When the user is in `MAIN_SELECTED_MODE`:
+    - This mode primarily handles **card-related** commands, such as `AddCardCommand` and `FindCardsCommand`.
+    - A deck is selected in this mode, so deck-related commands, such as `AddDeckCommand`, are disabled.
+    - Review-related commands are also disabled, as there is no ongoing review.
+- #### When the user is in `REVIEW_MODE`:
+    - This mode primarily handles **review-related** commands, such as `FlipCardCommand` and `NextCardCommand`.
+    - A review is ongoing in this mode, so deck-related and card-related commands are disabled.
 
 ### Implementation of Main Mode Features
 
