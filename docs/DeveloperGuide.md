@@ -2,17 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-## **NeoBook**
-NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized. 
-The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently. 
-
-This Developer Guide aims to provide technical documentation for developers who want to contribute to NeoBook's development. 
-The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details. 
-
-The target readers of this Developer Guide are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
-
-
----
+## Table Of Contents
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -20,6 +10,17 @@ The target readers of this Developer Guide are developers who are familiar with 
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+--------------------------------------------------------------------------------------------------------------------
+## **NeoBook**
+### Introduction
+NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized.
+The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently.
+### Purpose
+This Developer Guide aims to provide technical documentation for developers who want to contribute to NeoBook's development.
+The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details.
+### Target Audience
+The target readers of this Developer Guide are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
 
 --------------------------------------------------------------------------------------------------------------------
 
