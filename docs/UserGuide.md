@@ -22,7 +22,7 @@ title: User Guide
 
 ## INTRODUCTION <a name="introduction"></a>
 
-Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+It is hard for private tutor such as yourself to keep track of the students' information and their progress. Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 
@@ -185,18 +185,19 @@ Examples:
 
 ### Adding a new lesson <a name="learn"></a>
 
-Add a lesson taught to a student.
+You can add a lesson taught to a student.
 
 Format: ```learn [INDEX] [l/LESSON]```
 
-Examples:
+Example:
 
 * ```learn 1 l/Rational number```
 ![learn.png](images/learnExample.PNG)
+  * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
 ### Removing a lesson <a name="unlearn"></a>
 
-Remove a lesson taught to a student.
+You can remove a lesson taught to a student.
 
 Format: ```unlearn [INDEX] [l/LESSON]```
 
@@ -204,6 +205,21 @@ Examples:
 
 * ```unlearn 1 l/Rational number```
   ![unlearn.png](images/unlearnExample.PNG)
+  * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
+
+
+### Marking/Unmarking attendance
+Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
+they were absent. If a date is not specified, the current date is used.\
+If the tutee was already absent or present, the command will have no effect.
+
+Format: `mark/unmark <index> [date...]`
+
+### Querying attendance
+Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
+Otherwise, the command will return if the tutee was present on the given date.
+
+Format: `query <index> [date]`
 
 ### Saving locally <a name="save"></a>
 
@@ -230,20 +246,6 @@ Format: `clear`
 Exit the program.
 
 Format: ```exit```
-
-### Marking/Unmarking attendance
-Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
-they were absent. If a date is not specified, the current date is used.\
-If the tutee was already absent or present, the command will have no effect.
-
-Format: `mark/unmark <index> [date...]`
-
-### Querying attendance
-Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
-Otherwise, the command will return if the tutee was present on the given date.
-
-Format: `query <index> [date]`
-
 
 --------------------------------------------------------------------------------------------------------------------
 
