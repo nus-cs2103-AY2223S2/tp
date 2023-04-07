@@ -17,11 +17,10 @@ import seedu.address.model.person.Photo;
  */
 public abstract class Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10. "
-            + "Also, an event name cannot be just the name of the event alone. For example, tutorial cannot be "
-            + "just tutorial, or just Tutorial etc. "
-            + "Lastly, the event name cannot contain the other type of event. So, tutorial's name cannot have the"
-            + " word consultation or lab in it.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "1. An event name cannot be just the event itself. e.g. Tutorial name cannot be just tutorial \n"
+            + "2. An event name cannot contain other event names. "
+            + "e.g. Tutorial name cannot contain lab or consultation";
     private String name;
     private LocalDateTime eventDate;
     private final List<Person> students;
