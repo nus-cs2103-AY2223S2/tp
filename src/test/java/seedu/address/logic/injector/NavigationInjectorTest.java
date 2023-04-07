@@ -3,6 +3,7 @@ package seedu.address.logic.injector;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.model.Model;
 import seedu.address.model.navigation.NavigationContext;
@@ -28,17 +30,45 @@ public class NavigationInjectorTest {
     private final NavigationInjector injector = new NavigationInjector();
 
     @Test
-    public void inject_noArgPresent_lectureContext() {
+    public void inject_blankInput_noChange() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String command = TEST_COMMAND_NAME;
-        String injectedCommand = injector.inject(command, model);
+        String injectedInput = injector.inject("", model);
+        assertEquals("", injectedInput);
+    }
 
-        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
-        assertTrue(matcher.matches());
-        assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
+    @Test
+    public void inject_inputWithWhitelistCommandWord_noChange() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
+        String input = NavigationInjector.WHITELIST[0];
+        String injectedInput = injector.inject(input, model);
+        assertEquals(input, injectedInput);
+    }
 
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
+    @Test
+    public void inject_inputWithWhitelistCommandWordAndArg_noChange() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
+        String input = NavigationInjector.WHITELIST[0] + LECTURE_NAME_DESC_L1;
+        String injectedInput = injector.inject(input, model);
+        assertEquals(input, injectedInput);
+    }
+
+    @Test
+    public void inject_fromRootContextWithNoArg_success() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.ROOT);
+        String input = TEST_COMMAND_NAME;
+
+        String injectedInput = injector.inject(input, model);
+
+        assertPrefixesNotPresentInInjectedInput(injectedInput, PREFIX_MODULE, PREFIX_LECTURE);
+    }
+
+    @Test
+    public void inject_fromLecContextWithNoArg_success() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
+        String input = TEST_COMMAND_NAME;
+        String injectedInput = injector.inject(input, model);
+
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
 
         String expectedModCode = TypicalModules.getCs2040s().getCode().toString();
         String expectedLecCode = TypicalLectures.getCs2040sWeek1().getName().toString();
@@ -47,76 +77,88 @@ public class NavigationInjectorTest {
     }
 
     @Test
-    public void inject_noArgPresent_rootContext() {
-        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.ROOT);
-        String command = TEST_COMMAND_NAME;
-        String injectedCommand = injector.inject(command, model);
-
-        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
-        assertTrue(matcher.matches());
-        assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
-
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
-
-        assertFalse(argumentMultimap.getValue(PREFIX_MODULE).isPresent());
-        assertFalse(argumentMultimap.getValue(PREFIX_LECTURE).isPresent());
-    }
-
-
-    @Test
-    public void inject_modPresent_lecContext() {
+    public void inject_fromLecContextWithModArg_success() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
         String modCode = TypicalModules.getCs2040s().getCode().toString();
-        String command = TEST_COMMAND_NAME + " " + PREFIX_MODULE + " " + modCode;
-        String injectedCommand = injector.inject(command, model);
+        String input = String.join(" ", TEST_COMMAND_NAME, PREFIX_MODULE.toString(), modCode);
 
-        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
-        assertTrue(matcher.matches());
-        assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
+        String injectedInput = injector.inject(input, model);
 
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
 
         assertEquals(modCode, argumentMultimap.getValue(PREFIX_MODULE).get());
         assertFalse(argumentMultimap.getValue(PREFIX_LECTURE).isPresent());
     }
 
     @Test
-    public void inject_lecPresent_lecContext() {
+    public void inject_fromLecContextWithLecArg_success() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
         String lecName = TypicalLectures.getCs2040sWeek1().getName().toString();
         String modCode = TypicalModules.getCs2040s().getCode().toString();
-        String command = TEST_COMMAND_NAME + " " + PREFIX_LECTURE + " " + lecName;
-        String injectedCommand = injector.inject(command, model);
+        String input = String.join(" ", TEST_COMMAND_NAME, PREFIX_LECTURE.toString(), lecName);
 
-        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
-        assertTrue(matcher.matches());
-        assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
+        String injectedInput = injector.inject(input, model);
 
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
 
-        assertEquals(modCode, argumentMultimap.getValue(PREFIX_MODULE).get());
-        assertEquals(lecName, argumentMultimap.getValue(PREFIX_LECTURE).get());
+        assertPrefixMatchInInjectedInput(argumentMultimap, PREFIX_MODULE, modCode);
+        assertPrefixMatchInInjectedInput(argumentMultimap, PREFIX_LECTURE, lecName);
     }
 
     @Test
-    public void inject_rootContext_lecContext() {
+    public void inject_fromLecContextWithRootArg_success() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String command = TEST_COMMAND_NAME + " " + PREFIX_ROOT;
-        String injectedCommand = injector.inject(command, model);
+        String input = String.join(" ", TEST_COMMAND_NAME, PREFIX_ROOT.toString());
+        String injectedInput = injector.inject(input, model);
 
-        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
+        assertPrefixesNotPresentInInjectedInput(injectedInput, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_ROOT);
+    }
+
+    @Test
+    public void inject_fromLecContextWithRootArgAndLecArg_success() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
+        String lecName = TypicalLectures.getCs2040sWeek1().getName().toString();
+        String modCode = TypicalModules.getCs2040s().getCode().toString();
+        String input = String.join(" ", TEST_COMMAND_NAME, PREFIX_ROOT.toString(), PREFIX_LECTURE.toString(), lecName);
+
+        String injectedInput = injector.inject(input, model);
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
+
+        assertPrefixMatchInInjectedInput(argumentMultimap, PREFIX_MODULE, modCode);
+        assertPrefixMatchInInjectedInput(argumentMultimap, PREFIX_LECTURE, lecName);
+    }
+
+    @Test
+    public void inject_fromLecContextWithRootArgAndModArg_success() {
+        final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
+        String modCode = TypicalModules.getCs2040s().getCode().toString();
+        String input = String.join(" ", TEST_COMMAND_NAME, PREFIX_ROOT.toString(), PREFIX_MODULE.toString(), modCode);
+
+        String injectedInput = injector.inject(input, model);
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
+
+        assertPrefixMatchInInjectedInput(argumentMultimap, PREFIX_MODULE, modCode);
+        assertPrefixesNotPresentInInjectedInput(injectedInput, PREFIX_LECTURE);
+    }
+
+
+    private ArgumentMultimap tokenizeNavCommandInput(String injectedInput) {
+        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedInput.trim());
         assertTrue(matcher.matches());
         assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
+        return ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
+    }
 
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
+    private void assertPrefixMatchInInjectedInput(ArgumentMultimap argMultimap, Prefix prefix, String expected) {
+        assertEquals(expected, argMultimap.getValue(prefix).get());
+    }
 
-        assertFalse(argumentMultimap.getValue(PREFIX_MODULE).isPresent());
-        assertFalse(argumentMultimap.getValue(PREFIX_LECTURE).isPresent());
-        assertFalse(argumentMultimap.getValue(PREFIX_ROOT).isPresent());
+    private void assertPrefixesNotPresentInInjectedInput(String injectedInput, Prefix... prefixes) {
+        ArgumentMultimap argumentMultimap = tokenizeNavCommandInput(injectedInput);
+
+        for (var prefix : prefixes) {
+            assertFalse(argumentMultimap.getValue(prefix).isPresent());
+        }
     }
 
 
