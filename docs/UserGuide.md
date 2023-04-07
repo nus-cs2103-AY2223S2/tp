@@ -282,8 +282,8 @@ Search for a contact based on matching KEYWORD to any attribute of a Person reco
 
 Format: `findall KEYWORD`
 
-\*Does not for parse through `TAG` and `STATUS` attributes as they have their own seperate commands for searching
-\*Does not parse through tasklist and transactions (For future extensions)
+\*`TAG` and `STATUS` attributes as they have their own seperate commands for searching.
+\*Does not parse through tasklist and transactions (For future extensions).
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
@@ -310,7 +310,7 @@ Examples:
 
 ### Adding a transaction: `addtxn`
 
-Adds a transaction record to the contact list.
+Adds a transaction record to the transaction list.
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 
@@ -402,7 +402,7 @@ SalesPunch contact data is saved in the hard disk automatically after any comman
 SalesPunch data are saved as a JSON file `[JAR file location]/data/salespunch.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SalesPunch will discard all data and start with an empty data file at the next run.
 </div>
 
 ---
@@ -410,7 +410,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SalesPunch home folder.
 
 ---
 
@@ -419,7 +419,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | Action         | Format, Examples                                                                                                                                                                                                                                                                          |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- | --- |
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                            |
+| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [status]` <br> e.g., `sort name`                                                                                                                                            |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                       |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                                   |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |     |
