@@ -27,7 +27,7 @@ connections_ and _accomplishing your goals_!
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigating CoDoc](#navigating-codoc)
-  - [CoDoc Tutorial: Your first steps](#codoc-tutorial--your-first-steps)
+  - [CoDoc Tutorial: Your first steps](#codoc-tutorial-your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
     - [Editing a person's modules](#3-editing-a-persons-details)
@@ -771,6 +771,7 @@ _Details coming soon ..._
    * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> (to toggle textEdit to plain text)
    * Your window should look like the image below
    ![mac_plain_text](images/user-guide/mac_plain_text_small.png)
+   <div style="page-break-after: always;"></div>
 3. Right-click on your home folder and navigate to `New Terminal at Folder`. This will open a terminal window.
    ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
 4. Then, 
@@ -778,6 +779,7 @@ _Details coming soon ..._
     * copy the output which is yourHomeFolderPath
     * **leave this window open too**
    ![mac_pwd](images/user-guide/mac_pwd.png)
+   <div style="page-break-after: always;"></div>
 5. Next,
    * paste `cd yourHomeFolderPath`
    * as well as `java -jar codoc.jar` 
@@ -785,12 +787,15 @@ _Details coming soon ..._
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
 6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
+    <div style="page-break-after: always;"></div>
+
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
 
    <div class="span" class="alert alert-info">
    :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command</code> file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
+   
 8. You can now double-click on your `.command` file to open CoDoc.
 
    <div class="span" class="alert alert-success">
@@ -801,6 +806,7 @@ _Details coming soon ..._
    </div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
+<div style="page-break-after: always;"></div>
 
 ### How to Open CoDoc for Windows
 
