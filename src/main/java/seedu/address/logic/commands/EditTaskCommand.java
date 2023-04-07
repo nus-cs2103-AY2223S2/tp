@@ -42,7 +42,7 @@ public class EditTaskCommand extends Command {
         + PREFIX_TITLE + "Complete Project X "
         + PREFIX_CONTENT + "Do the UML diagram "
         + PREFIX_STATUS + "false "
-        + PREFIX_TASK_CREATEDATE + "CREATEDATE "
+        + PREFIX_TASK_CREATEDATE + "CREATEDDATE "
         + PREFIX_TASK_DEADLINE + "DEADLINE ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task edited: %1$s";
