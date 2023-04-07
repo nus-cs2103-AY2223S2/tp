@@ -35,6 +35,9 @@
 
 !define USER_COLOR #000000
 
+!define ARCHI_USER_COLOR #701a75
+!define ARCHI_FS_COLOR #134e4a
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
@@ -72,7 +75,7 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
-skinparam dpi 200
+skinparam dpi 300
 
 hide footbox
 hide members
