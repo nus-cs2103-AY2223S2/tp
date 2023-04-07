@@ -577,9 +577,9 @@ Want to find people with certain qualities? Use find command to find people that
 
 
 **Examples:**
-- execute `find y/2` to find all person from year 2. <br> ![UiFind_02](images/UiFind_02_2.png)
-- execute `find m/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03_02.png)
-- Finally, execute `list` to get back the unfiltered list.
+- `find y/2` to find all person from year 2 <br> ![UiFind_02](images/UiFind_02_2.png)
+- `find m/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints** <br> ![UiFind_03](images/UiFind_03_02.png)
+- Finally, use `list` to get back the unfiltered list
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
