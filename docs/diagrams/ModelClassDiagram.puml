@@ -51,11 +51,11 @@ ModelManager -l-> "1" UserPrefs
 ModelManager -r-> "1" MasterDeck
 ModelManager -down-> "0..1" Review
 
-MasterDeck *--> "1" UniqueDeckList
+MasterDeck *---> "1" UniqueDeckList
 MasterDeck *---> "1" UniqueCardList
 
 UniqueCardList o--> "~* all" Card
-UniqueDeckList o-l-> "~* all" Deck
+UniqueDeckList o--> "~* all" Deck
 
 Card *--> "1" Question
 Card *--> "1" Answer
