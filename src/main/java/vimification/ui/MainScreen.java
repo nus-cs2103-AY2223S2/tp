@@ -103,6 +103,7 @@ public class MainScreen extends UiPart<VBox> {
     public void initializeTaskTabPanel() {
         taskTabPanel = new TaskTabPanel(this, logic);
         loadLeftComponent(taskTabPanel);
+        taskTabPanel.requestFocus();
     }
 
     private void intializeCommandInput() {
@@ -126,21 +127,12 @@ public class MainScreen extends UiPart<VBox> {
         }
 
         switch (event.getText()) {
-        case "i":
-            // loadTaskCreationPanelComponent();
-            break;
         case "j":
         case "k":
             taskTabPanel.requestFocus();
             break;
         }
     }
-
-    // private void loadTaskCreationPanelComponent() {
-    // taskCreationPanel = new TaskCreationPanel(this.getRoot());
-    // loadRightComponent(taskCreationPanel);
-    // taskCreationPanel.requestFocus();
-    // }
 
     private void loadCommandInputComponent() {
         loadBottomComponent(commandInput);
