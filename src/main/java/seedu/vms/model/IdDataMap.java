@@ -1,7 +1,6 @@
 package seedu.vms.model;
 
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import javafx.collections.FXCollections;
@@ -52,6 +51,7 @@ public class IdDataMap<T> {
      * Adds the value to the map.
      *
      * @param value - the value to add.
+     * @return the data added.
      * @throws LimitExceededException if the number of data has reached its
      *      limit.
      */
@@ -68,6 +68,9 @@ public class IdDataMap<T> {
      * data's ID, that ID associated value is replaced with the given.
      *
      * @param data - the data to add.
+     * @return the data added.
+     * @throws LimitExceededException if the ID limit has been reached.
+     * @throws IllegalArgumentException if the given ID of the data is invalid.
      */
     public IdData<T> add(IdData<T> data) throws LimitExceededException {
         Objects.requireNonNull(data);
@@ -91,7 +94,8 @@ public class IdDataMap<T> {
      *
      * @param id - the id to set.
      * @param value - the value to set.
-     * @throws NoSuchElementException if the ID is not present.
+     * @return the {@code ValueChange} that describes the change that
+     *      has occurred.
      */
     public ValueChange<IdData<T>> set(int id, T value) {
         IdData<T> newValue = new IdData<>(id, value);
@@ -104,6 +108,8 @@ public class IdDataMap<T> {
      * Removes the data associated to the specified ID.
      *
      * @param id - the ID of the data to remove.
+     * @return the {@code ValueChange} that describes the change that
+     *      has occurred.
      */
     public ValueChange<IdData<T>> remove(int id) {
         IdData<T> removedData = internalMap.remove(id);
@@ -115,7 +121,7 @@ public class IdDataMap<T> {
      * Resets the ID count.
      */
     public void resetIdCount() {
-        nextId = 0;
+        nextId = STARTING_INDEX;
     }
 
 
@@ -135,6 +141,10 @@ public class IdDataMap<T> {
      * Clears and sets the stored data to the given collection of datas.
      *
      * @param datas - the collection of data to set to.
+     * @throws LimitExceededException if there exists a data whose ID is over
+     *      the limit of this {@code IdDataMap}.
+     * @throws IllegalArgumentException if there exists a data whose ID is
+     *      invalid.
      */
     public void setDatas(Collection<IdData<T>> datas) {
         internalMap.clear();
@@ -148,9 +158,11 @@ public class IdDataMap<T> {
     /**
      * Clears and sets the stored value to the given collection of values.
      *
-     * <p>The ID is reseted as well.
+     * <p>The ID will be reset as well.
      *
      * @param values - the collection of values to set to.
+     * @throws LimitExceededException if the limit has been reached. The first
+     *      few values before the limit is reached will still be added.
      */
     public void setValues(Collection<T> values) {
         internalMap.clear();
@@ -161,6 +173,10 @@ public class IdDataMap<T> {
     }
 
 
+    /**
+     * Returns the data mapped to the specified ID or {@code null} if there are
+     * no mappings.
+     */
     public IdData<T> get(int id) {
         return internalMap.get(id);
     }
