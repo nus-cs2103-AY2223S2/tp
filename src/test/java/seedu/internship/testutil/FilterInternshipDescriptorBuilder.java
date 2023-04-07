@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.internship.logic.commands.FindCommand.FilterInternshipDescriptor;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
