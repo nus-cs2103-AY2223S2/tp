@@ -123,8 +123,6 @@ public final class ApplicativeParser<T> {
     /**
      * Lifts a binary function to work on parsers.
      *
-     * @see #lift(Function, ApplicativeParser, ApplicativeParser)
-     *
      * @param <T> the type of the first parser result
      * @param <U> the type of the second parser result
      * @param <V> the type of the resultant parser result
@@ -133,6 +131,8 @@ public final class ApplicativeParser<T> {
      * @param right the second parser
      * @return a new parser, that first runs the first parser, then the second parser, and finally
      *         combines the result of these parsers using the binary function
+     *
+     * @see #lift(Function, ApplicativeParser, ApplicativeParser)
      */
     public static <T, U, V> ApplicativeParser<V> lift(
             BiFunction<? super T, ? super U, ? extends V> combiner,
@@ -292,10 +292,10 @@ public final class ApplicativeParser<T> {
      * Returns a parser that consumes characters that satisfy the specified predicate, and joins
      * them into a string.
      *
-     * @see #munchN(CharPredicate, int)
-     *
      * @param predicate the predicate to test the character
      * @return a parser that consumes characters and joins them into a string
+     *
+     * @see #munchN(CharPredicate, int)
      */
     public static ApplicativeParser<String> munch(CharPredicate predicate) {
         return munchN(predicate, 0);
@@ -305,10 +305,10 @@ public final class ApplicativeParser<T> {
      * Returns a parser that consumes one or more characters that satisfy the specified predicate
      * and joins them into a string.
      *
-     * @see #munchN(CharPredicate, int)
-     *
      * @param predicate the predicate to test the character
      * @return a parser that consumes one or more characters and joins them into a string
+     *
+     * @see #munchN(CharPredicate, int)
      */
     public static ApplicativeParser<String> munch1(CharPredicate predicate) {
         return munchN(predicate, 1);
@@ -338,10 +338,10 @@ public final class ApplicativeParser<T> {
     /**
      * Returns a parser that consumes and discards characters that satisfy the specified predicate.
      *
-     * @see #discardN(CharPredicate, int)
-     *
      * @param predicate the predicate to test the character
      * @return a parser that consumes and discards characters
+     *
+     * @see #discardN(CharPredicate, int)
      */
     public static ApplicativeParser<Void> discard(CharPredicate predicate) {
         return discardN(predicate, 0);
@@ -351,10 +351,10 @@ public final class ApplicativeParser<T> {
      * Returns a parser that consumes and discards one or more characters that satisfy the specified
      * predicate.
      *
-     * @see #discardN(CharPredicate, int)
-     *
      * @param predicate the predicate to test the character
      * @return a parser that consumes and discards one or more characters
+     *
+     * @see #discardN(CharPredicate, int)
      */
     public static ApplicativeParser<Void> discard1(CharPredicate predicate) {
         return discardN(predicate, 1);
@@ -453,7 +453,6 @@ public final class ApplicativeParser<T> {
     }
 
     /**
-     *
      * Runs this parser, then uses the given function to create another parser from the result of
      * this parser and run that parser.
      * <p>
