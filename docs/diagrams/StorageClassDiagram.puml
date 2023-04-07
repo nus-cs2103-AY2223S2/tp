@@ -20,7 +20,6 @@ Class JsonMasterDeckStorage
 Class JsonSerializableMasterDeck
 Class JsonAdaptedCard
 Class JsonAdaptedDeck
-Class JsonAdaptedTag
 }
 
 }
@@ -40,6 +39,5 @@ JsonMasterDeckStorage .up.|> MasterDeckStorage
 JsonMasterDeckStorage ..> JsonSerializableMasterDeck
 JsonSerializableMasterDeck --> "*" JsonAdaptedCard
 JsonSerializableMasterDeck --> "*" JsonAdaptedDeck
-JsonAdaptedCard --> "*" JsonAdaptedTag
 
 @enduml
