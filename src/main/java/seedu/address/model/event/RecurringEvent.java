@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.event.exceptions.EventConflictException;
 
 /**
@@ -198,11 +197,10 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
 
     /**
      * Checks if the start time and the end time of the event is valid for recurring event.
-     * @throws CommandException if start time is after the end time.
      */
-    public void checkPeriod() throws CommandException {
+    public void checkPeriod() throws EventConflictException {
         if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
-            throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
+            throw new EventConflictException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
         }
     }
 

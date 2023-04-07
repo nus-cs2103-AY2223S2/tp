@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -49,7 +50,12 @@ public class AddRecurringEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        eventToAdd.checkPeriod();
+        try {
+            eventToAdd.checkPeriod();
+        } catch (EventConflictException e) {
+            throw new CommandException(e.getMessage());
+        }
+
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
