@@ -55,8 +55,8 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 - [6. Documentation, Testing, and Other Guides ](#6-documentation-testing-and-other-guides)
 - [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
   - [7.1 Launch and Shutdown](#71-launch-and-shutdown)
-  - [7.2 Adding a Contact](#72-adding-a-contact)
-  - [7.3 Deleting a Contact](#73-deleting-a-contact)
+  - [7.2 Adding a Person](#72-adding-a-person)
+  - [7.3 Deleting a Person](#73-deleting-a-person)
   - [7.4 Saving Data](#74-saving-data)
 - [8. Requirements](#8-requirements)
   - [8.1 Product Scope](#81-product-scope)
@@ -97,7 +97,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 Thank you for your interest in ConnectUS! We aim to provide you with all the information necessary to understand, maintain, upgrade, and evolve ConnectUS.
 
-While you do not need to read the Developer Guide in a sequential order, we recommend going through the [Design] section to get a high-level overview of ConnectUS before looking for information that concerns you.
+While you do not need to read the Developer Guide in a sequential order, we recommend going through the [Design](#3-design) section to get a high-level overview of ConnectUS before looking for information that concerns you.
 
 ## 2.1 Notation
 
@@ -134,10 +134,18 @@ The Developer Guide has six main sections:
 
 This section will provide you with a high-level overview of how ConnectUS is structured, as well as information on the key components of ConnectUS.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+In this Developer Guide, contacts that users add to the [ConnectUS contact list](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#313-contact-list) will be referred to as `Person`.
+
+</div>
+
+<div style="page-break-after: always"></div>
 
 ## 3.1 Architecture
 
@@ -180,15 +188,17 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always"></div>
+
 ## 3.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -197,9 +207,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always"></div>
+
 ## 3.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -215,7 +227,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -226,8 +238,10 @@ How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always"></div>
+
 ## 3.4 Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -239,16 +253,17 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+<div style="page-break-after: always"></div>
 
 ## 3.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/gremmyz/tp/blob/branch-dont-break/src/main/java/seedu/connectus/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -257,18 +272,26 @@ The `Storage` component,
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+<div style="page-break-after: always"></div>
+
 ## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
+**API** : [`Commons.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/src/main/java/seedu/connectus/commons)
+
 ---
 
-# 4. Implementation**
+<div style="page-break-after: always"></div>
+
+# 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<div style="page-break-after: always"></div>
+
 ## 4.1 Add Command
-The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
+The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as `Module`, `CCA`, `Major`, and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
@@ -285,16 +308,24 @@ If duplicate parameters are entered (e.g. `add n/Jason p/91234567 p/12345678`, w
 
 The `AddCommandParser` creates the corresponding `Person` object, which is then taken as an input by the `AddCommand` object that it creates and returns. `Logic Manager` then runs `AddCommand`, which then adds the `Person` to the model.
 
+The following activity diagram shows the logic of representing a `Person` in the contact list.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
 The following sequence diagram shows how `add` works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+The following sequence diagram provides details on how the `informationFields` are being parsed:
 
-![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
+![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
+
+---
+
+<div style="page-break-after: always"></div>
 
 ## 4.2 Edit Command
-The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
+The `edit` command is used to change the information of an existing `Person` in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
 
@@ -314,23 +345,41 @@ The following sequence diagram shows how `edit` works:
 The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 ## 4.3 Delete Command
+
+<div style="page-break-after: always"></div>
 
 ## 4.4 Help Command
 
+<div style="page-break-after: always"></div>
+
 ## 4.5 Adding Additional Tags Command
+
+<div style="page-break-after: always"></div>
 
 ## 4.6 Deleting Individual Tags Command
 
+<div style="page-break-after: always"></div>
+
 ## 4.7 Search Command
+
+<div style="page-break-after: always"></div>
 
 ## 4.8 Upcoming Birthdays Command
 
+<div style="page-break-after: always"></div>
+
 ## 4.9 Open Command
+
+<div style="page-break-after: always"></div>
 
 # 5. Planned Enhancements
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
+
+<div style="page-break-after: always"></div>
 
 ## 5.1 Improve Edit Command
 
@@ -363,6 +412,7 @@ However, such an address would be considered invalid in real life, as it would a
 
 However, such an Instagram username would be considered valid in real life.
 
+<div style="page-break-after: always"></div>
 
 ## 5.3 More Language Support
 
@@ -395,18 +445,17 @@ Currently, the `delete-t` command can only delete tags one at a time. This may b
 
 We plan to address this constraint in the next iteration of this product (V1.5).
 
+<div style="page-break-after: always"></div>
+
 ## 5.7 Improve Consistency of Command Feedback
 
-Currently, 
-
+Currently, executing certain commands may return inconsistent feedback. For example, if there is an index overflow, the feedback returned is "Invalid command format!", when it should be "The person index provided is invalid", as is when an invalid index is provided to command parsers.
 
 [↑ Back to top of section](#5-planned-enhancements)
 
 ---
 
 <div style="page-break-after: always"></div>
-
-
 
 # 6. Documentation, Testing, and Other Guides
 
@@ -424,10 +473,12 @@ Currently,
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="block" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+<div style="page-break-after: always"></div>
 
 ## 7.1 Launch and shutdown
 
@@ -437,33 +488,37 @@ testers are expected to do more *exploratory* testing.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-## 7.2 Adding a contact:
-1. Adding a contact with just name and email
+<div style="page-break-after: always"></div>
+
+## 7.2 Adding a person:
+1. Adding a `Person` with just name and email
     1. Prerequisites: None
     2. Test case: `add n/JohnDoe e/email@example.com`<br>
-       Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
+       Expected: a new `Person` named JohnDoe with given email is  created. Details of the new `Person` shown in the status message. `Person` is visible in contact list.
     3. Test case: `add n/ e/email@example.com`<br>
-       Expected: No contact is created. Error details shown in status message.
+       Expected: No `Person` is created. Error details shown in status message.
     4. _{ more test cases …​ }_
 
+<div style="page-break-after: always"></div>
 
-## 7.3 Deleting a contact
 
-1. Deleting a contact while all persons are being shown
+## 7.3 Deleting a person:
 
-    1. Prerequisites: List all contact using the `list` command. Multiple contacts in the list.
+1. Deleting a `Person` while all persons are being shown
+
+    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First `Person` is deleted from the list. Details of the deleted `Person` shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -471,7 +526,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+<div style="page-break-after: always"></div>
 
 ## 7.4 Saving data
 
@@ -500,6 +557,8 @@ testers are expected to do more *exploratory* testing.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends information, saving time and effort as users can access this information at their fingertips.
+
+<div style="page-break-after: always"></div>
 
 
 ## 8.2 User stories
@@ -542,6 +601,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                         | send short messages on whatsapp directly from the app                   | message someone without having to juggle between apps                                     |
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
+
+<div style="page-break-after: always"></div>
 
 ## 8.3 Use cases
 
@@ -662,6 +723,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 *{More to be added}*
+
+<div style="page-break-after: always"></div>
 
 ## 8.4 Non-Functional Requirements
 

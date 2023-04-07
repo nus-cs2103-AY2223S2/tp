@@ -1,0 +1,16 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters new command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Person name is provided and arguments are valid]) elseif () then ([else])
+  :Error: Person already exists;
+  stop
+ else ([Person does not exist in Contact List])
+endif
+  :new command successfully executes.;
+stop
+
+@enduml

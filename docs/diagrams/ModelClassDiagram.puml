@@ -18,7 +18,12 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Birthday
+Class SocialMedia
+Class Module
+Class CCA
+Class Major
+Class Remark
 
 }
 
@@ -40,12 +45,22 @@ Person *--> Name
 Person *--> "0..1" Phone
 Person *--> "0..1" Email
 Person *--> "0..1" Address
-Person *--> "*" Tag
+Person *--> "0..1" Birthday
+Person *--> "0..1" SocialMedia
+Person *--> "*" Module
+Person *--> "*" CCA
+Person *--> "0..2" Major
+Person *--> "*" Remark
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
-Email -[hidden]right-> Tag
+Email -[hidden]right-> Birthday
+Birthday -[hidden]right-> SocialMedia
+SocialMedia -[hidden]right-> Module
+Module -[hidden]right-> CCA
+CCA -[hidden]right-> Major
+Major -[hidden]right-> Remark
 
 ModelManager -->"~* filtered" Person
 @enduml
