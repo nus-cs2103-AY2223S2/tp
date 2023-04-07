@@ -34,7 +34,7 @@ public class AddOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
             + "Parameters: "
             + PREFIX_ORDERNAME + "ORDER NAME "
-            + PREFIX_ORDERQUANTITY + "ORDER QUANTITY"
+            + PREFIX_ORDERQUANTITY + "ORDER QUANTITY "
             + PREFIX_DEADLINE + "DEADLINE "
             + "[" + PREFIX_STATUS + "STATUS] "
             + PREFIX_NAME + "CUSTOMER'S NAME "
