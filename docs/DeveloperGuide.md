@@ -158,6 +158,8 @@ The `Storage` component,
 
 ### Common classes
 
+Classes used by multiple components are in the `seedu.address.commons` package.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
@@ -589,6 +591,12 @@ of the student's scores. In future implementation, a student's performance will 
 
 ## **Appendix: Instructions for manual testing**
 
+### Launch and shutdown
+
+### Deleting a student
+
+### Saving data
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
@@ -650,12 +658,3 @@ Nevertheless, we should consider to allow student to have the same name.
 
 * Instead of not allowing students to have the same name, we do not allow any students to have both the same name and the 
 same email.
-
-
---------------------------------------------------------------------------------------------------------------------
-
-### Launch and shutdown
-
-### Deleting a student
-
-### Saving data
