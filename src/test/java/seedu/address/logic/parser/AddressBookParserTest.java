@@ -25,11 +25,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
@@ -78,12 +80,22 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        String keywords = "n/foo n/bar n/baz";
+        String keywords = " n/foo n/bar n/baz";
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(keywords, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_MODULE, PREFIX_TAG);
         assertEquals(new FindCommand(new FullMatchKeywordsPredicate(argMultimap)), command);
+    }
+
+    @Test
+    public void parseCommand_fi() throws Exception {
+        String keywords = " n/foo n/bar n/baz";
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + keywords);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(keywords, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_MODULE, PREFIX_TAG);
+        assertEquals(new FilterCommand(new ContainsKeywordsPredicate(argMultimap)), command);
     }
 
     @Test
@@ -102,7 +114,7 @@ public class AddressBookParserTest {
     public void parseCommand_remark() throws Exception {
         final String remark = "Some remark.";
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + remark);
         assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(remark)), command);
     }
 

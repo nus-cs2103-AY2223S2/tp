@@ -132,15 +132,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = telegram == null ? null : new Telegram(telegram);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, education, remark, telegram, modules, tags);
     }
 
-    /**
-     * Sets the {@code Telegram} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withTelegram(String s) {
-        this.telegram = telegram == null ? null : new Telegram(s);
-        return this;
-    }
+
 }
