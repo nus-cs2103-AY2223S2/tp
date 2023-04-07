@@ -267,8 +267,6 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reroll home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-<h2 id="summary"></h2>
-
 ## Short-form commands 
 
 To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
@@ -293,6 +291,8 @@ To aid expert users, commonly used commands and fields have short-form variants 
 Example: `make char John Cena` -> `m c John Cena`
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="summary"></h2>
+
 ## Command summary
 
 | Action                        | Format, Examples                                                    |
