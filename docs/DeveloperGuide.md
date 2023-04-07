@@ -567,21 +567,21 @@ testers are expected to do more *exploratory* testing.
       <br>**Expected:** The most recent window size and location is retained.
    
 3. **Shutdown**
-   1. When the app is open, type `exit` into the command bar and press "enter".
+   1. When the app is open, type `exit` into the command bar and press the "enter" key.
       <br>**Expected:** The app closes.
 
 ### Navigation
 1. **Viewing recipes** <br> _(Preconditions: User is on the default MainWindow page.)_
    1. Click on a Recipe Card once.
-   2. Press "P" on the keyboard.
+   2. Press the "P" key.
     <br>**Expected:** A modal showing containing the name, duration, portion, ingredients, steps, and tags fields of the recipe appears.  
 
 2. **Edit form** <br> _(Preconditions: User is on the default Main Window page.)_
     1. Click on a recipe card to select it.
-    2. Press the "F" key on the keyboard.
+    2. Press the "F" key.
        <br>**Expected:** A form modal appears, containing text input fields for name, duration, portion, ingredients, steps, and tags, prepopulated accurate to the recipe data, as well as a `Cancel` and `Save` button on the bottom right.
     3. Edit any of the fields in the form, using the format provided in the user guide as reference.
-    4. Click "Save" at the bottom of the form to save and exit the form.
+    4. Click `Save` at the bottom of the form to save and exit the form.
     5. Scroll to the bottom of the recipe list and click on the edited recipe.
     6. Press the "P" key to view its details.
        <br>**Expected:** The recipe has been edited, with the new recipe details reflecting the edits made for each field.
@@ -591,9 +591,21 @@ testers are expected to do more *exploratory* testing.
    1. Type `addf` in the command box and enter.
     <br>**Expected:** A form modal appears, containing empty text input fields for name, duration, portion, ingredients, steps, and tags, as well as a `Cancel` and `Save` button on the bottom right.
    2. Fill up the form with a sample recipe given in the user guide.
-   3. Click "Save" at the bottom of the form to save and exit the form.
+   3. Click `Save` at the bottom of the form to save and exit the form.
    4. Scroll to the bottom of the recipe list and click on the newly added recipe.
    5. Press the "P" key to view its details.
     <br>**Expected:** The newly-added recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
 
+### Importing and exporting data
+1. **Importing data** <br> _(Preconditions: User is on the default Main Window page.)_
+   1. Press "F3", or click `File > Import`.
+      <br>**Expected:** A file picker window appears, allowing the user to only select JSON files.
+   2. Within the file picker window, navigate to a valid RIZZipe data file, select it, and press `Open`.
+      <br>**Expected:** The file picker window closes, and all the recipes in the data file have been added to the recipe list.
 
+2. **Exporting data** <br> _(Preconditions: User is on the default Main Window page.)_
+   1. Press "F4", or click `File > Export`.
+      <br>**Expected:** A file picker window appears, allowing the user to only save as JSON files.
+   2. Within the file picker window, navigate to a valid folder and enter a valid file name.
+   3. Press `Save`.
+      <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.
