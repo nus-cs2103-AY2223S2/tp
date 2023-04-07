@@ -12,8 +12,6 @@ public class Name {
     public static final String VALIDATION_REGEX = "\\S.+";
     public final String name;
 
-
-
     /**
      * Constructs a {@code Name}.
      *
