@@ -1,5 +1,6 @@
 package trackr.model.task;
 
+import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.UniqueItemList;
 
@@ -17,6 +18,6 @@ import trackr.model.item.UniqueItemList;
 public class UniqueTaskList extends UniqueItemList<Task> {
 
     public UniqueTaskList() {
-        super("Task");
+        super(ModelEnum.TASK);
     }
 }

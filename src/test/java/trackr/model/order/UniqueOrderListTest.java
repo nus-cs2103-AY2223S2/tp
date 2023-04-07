@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.order.exceptions.DuplicateOrderException;
-import trackr.model.order.exceptions.OrderNotFoundException;
+import trackr.model.item.exceptions.DuplicateItemException;
+import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.OrderBuilder;
 
 public class UniqueOrderListTest {
@@ -54,29 +54,30 @@ public class UniqueOrderListTest {
     @Test
     public void add_duplicateOrder_throwsDuplicateOrderException() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
-        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.add(CHOCOLATE_COOKIES_O));
+        assertThrows(DuplicateItemException.class, () -> uniqueOrderList.add(CHOCOLATE_COOKIES_O));
     }
 
     @Test
     public void setOrder_nullTargetOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(null, CHOCOLATE_COOKIES_O));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setItem(null, CHOCOLATE_COOKIES_O));
     }
 
     @Test
     public void setOrder_nullEditedOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, null));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, null));
     }
 
     @Test
     public void setOrder_targetOrderNotInList_throwsOrderNotFoundException() {
-        assertThrows(OrderNotFoundException.class, () ->
-                uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, CHOCOLATE_COOKIES_O));
+        assertThrows(ItemNotFoundException.class, () ->
+                                                          uniqueOrderList.setItem(CHOCOLATE_COOKIES_O,
+                                                                  CHOCOLATE_COOKIES_O));
     }
 
     @Test
     public void setOrder_editedOrderIsSameOrder_success() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
-        uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, CHOCOLATE_COOKIES_O);
+        uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, CHOCOLATE_COOKIES_O);
 
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
         expectedUniqueOrderList.add(CHOCOLATE_COOKIES_O);
@@ -88,8 +89,8 @@ public class UniqueOrderListTest {
     public void setOrder_editedOrderHasSameIdentity_success() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
         Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES_O)
-                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
-        uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, editedOrder); //change task status
+                                    .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
+        uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, editedOrder); //change task status
 
         UniqueOrderList expectedUniqueTaskList = new UniqueOrderList();
         expectedUniqueTaskList.add(editedOrder);
@@ -100,7 +101,7 @@ public class UniqueOrderListTest {
     @Test
     public void setOrder_editedOrderHasDifferentIdentity_success() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
-        uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, CUPCAKE_O);
+        uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, CUPCAKE_O);
 
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
         expectedUniqueOrderList.add(CUPCAKE_O);
@@ -112,7 +113,7 @@ public class UniqueOrderListTest {
     public void setOrder_editedOrderHasNonUniqueIdentity_throwsDuplicateOrderException() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
         uniqueOrderList.add(CUPCAKE_O);
-        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.setOrder(CHOCOLATE_COOKIES_O, CUPCAKE_O));
+        assertThrows(DuplicateItemException.class, () -> uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, CUPCAKE_O));
     }
 
     @Test
@@ -122,7 +123,7 @@ public class UniqueOrderListTest {
 
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
-        assertThrows(OrderNotFoundException.class, () -> uniqueOrderList.remove(CHOCOLATE_COOKIES_O));
+        assertThrows(ItemNotFoundException.class, () -> uniqueOrderList.remove(CHOCOLATE_COOKIES_O));
     }
 
     @Test
@@ -137,7 +138,7 @@ public class UniqueOrderListTest {
 
     @Test
     public void setOrders_nullUniqueOrderList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrders((UniqueOrderList) null));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setItems((UniqueOrderList) null));
     }
 
     @Test
@@ -147,21 +148,21 @@ public class UniqueOrderListTest {
         UniqueOrderList expectedUniqueTaskList = new UniqueOrderList();
         expectedUniqueTaskList.add(CUPCAKE_O);
 
-        uniqueOrderList.setOrders(expectedUniqueTaskList);
+        uniqueOrderList.setItems(expectedUniqueTaskList);
 
         assertEquals(expectedUniqueTaskList, uniqueOrderList);
     }
 
     @Test
     public void setOrders_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrders((List<Order>) null));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setItems((List<Order>) null));
     }
 
     @Test
     public void setOrders_list_replacesOwnListWithProvidedList() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
         List<Order> orderList = Collections.singletonList(CUPCAKE_O);
-        uniqueOrderList.setOrders(orderList);
+        uniqueOrderList.setItems(orderList);
 
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
         expectedUniqueOrderList.add(CUPCAKE_O);
@@ -172,13 +173,13 @@ public class UniqueOrderListTest {
     @Test
     public void setOrders_listWithDuplicateOrders_throwsDuplicateTaskException() {
         List<Order> listWithDuplicateOrders = Arrays.asList(CHOCOLATE_COOKIES_O, CHOCOLATE_COOKIES_O);
-        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.setOrders(listWithDuplicateOrders));
+        assertThrows(DuplicateItemException.class, () -> uniqueOrderList.setItems(listWithDuplicateOrders));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueOrderList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                        uniqueOrderList.asUnmodifiableObservableList().remove(0));
     }
 
 }

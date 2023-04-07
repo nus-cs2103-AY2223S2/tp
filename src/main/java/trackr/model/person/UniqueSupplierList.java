@@ -1,5 +1,6 @@
 package trackr.model.person;
 
+import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.UniqueItemList;
 
@@ -17,6 +18,6 @@ import trackr.model.item.UniqueItemList;
 public class UniqueSupplierList extends UniqueItemList<Supplier> {
 
     public UniqueSupplierList() {
-        super("Supplier");
+        super(ModelEnum.SUPPLIER);
     }
 }
