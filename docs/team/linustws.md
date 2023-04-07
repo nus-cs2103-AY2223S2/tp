@@ -15,8 +15,8 @@ Given below are my contributions to the project.
   * Justification: Enhances the search ability of users, so they can find contacts based on their year and course, on top of other attributes, enabling them to reach out to them for collaboration quicker and more effectively. This would be useful, especially when the user has many contacts.
   * Highlights: 
     * Made finding to find by logical AND, both across different prefixes and within the same prefix. This follows the typical convention that websites use for their filters, e.g. Shopee and YouTube.
-    * Made it such that finding uses _contains_ instead of _containsWord_ as it is more commonly used, e.g. <kbd>Cmd-F</kbd>/<kbd>Ctrl-F</kbd> also uses _contains_.
-    * Made `find` command case-insensitive to allow users to search faster without having to press the <kbd>Caps Lock</kbd> key.
+    * Made it such that finding uses _contains_ instead of _containsWord_ as it is more commonly used, e.g. `Cmd-F`/`Ctrl-F` also uses _contains_.
+    * Made `find` command case-insensitive to allow users to search faster without having to press the `Caps Lock` key.
 * **New Feature**: Implemented clicking of tabs and PersonCard. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
   * What it does: Allows users to click on the PersonCard in the PersonListPanel to view the details on the right info panel and allows users to change tabs by clicking.
   * Justification: Adds convenience for users on top of the `view` command.
