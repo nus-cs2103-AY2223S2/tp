@@ -58,7 +58,6 @@ Salespeople managing client contacts who prefer a CLI
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar salespunch.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-    <!-- TODO: Need to update the picture here -->
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -106,6 +105,8 @@ Salespeople managing client contacts who prefer a CLI
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   <br>
+
+ - Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
 
 </div>
 
@@ -313,14 +314,12 @@ Adds a transaction record to the contact list.
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 
-
 Format for ts/STATUS
 
-| Type        | Formats (Case-sensitive) | Meaning                                                                                                                                                      |
-| ----------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| OPEN | `Open` or `O`     | Incomplete transaction                                        |
-| CLOSED     | `Closed` or `C`         | Completed transaction            |
-
+| Type   | Formats (Case-sensitive) | Meaning                |
+| ------ | ------------------------ | ---------------------- |
+| OPEN   | `Open` or `O`            | Incomplete transaction |
+| CLOSED | `Closed` or `C`          | Completed transaction  |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 All fields must be provided, and transaction status should be either 'Open' or 'Closed'.
@@ -416,7 +415,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ---
 
 ## Command summary
-
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                          |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- | --- |

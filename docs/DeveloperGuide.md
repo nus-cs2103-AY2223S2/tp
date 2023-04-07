@@ -16,7 +16,7 @@ title: Developer Guide
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
-  - [Find by Tag Feature](#find-by-tag-feature)
+  - [FindTag Feature](#findtag-feature)
     - [About](#about)
     - [Implementation](#implementation-1)
   - [Sort feature](#sort-feature)
@@ -199,17 +199,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find by Tag Feature
+### FindTag Feature
 
 #### About
 
-The find tag feature allows the sales person to find contacts in the address book based on the tag/s associated with a contact.
+The `FindTag` feature allows the sales person to find contacts in the address book based on the tag/s associated with a contact.
 
 #### Implementation
 
-In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to process parameters of Set of Tags
+The implementation for FindTag is similar to the other find functions implemented. The key difference between the other find functions differs in the implementation of the method to suit the manipulation of the argument and keywords in `StringUtil.java` to suit the use case.
 
-The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `getFilteredList()` based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil`
+In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to compare the keyword to the `Set<Tag>` that are assigned to a Person.
+
+The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `model.updateFilteredPersonList()`  based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil` to update the model view and the GUI to display the contact list that fulfills the predicate. Finally it returns a `CommandResult` for feedback to user on the amount of contacts that are returned.
 
 Reminder to add diagram pictures
 

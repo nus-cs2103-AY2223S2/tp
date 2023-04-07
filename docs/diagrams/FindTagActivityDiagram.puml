@@ -1,0 +1,7 @@
+@startuml
+start
+:User executes findtag command;
+:Filters SalesPunch by keyword:tag;
+:Output filtered results to message box;
+stop
+@enduml
