@@ -984,7 +984,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile** 🧑:
 
-There is no platform for students of Computing to easily identify people of similar interest and skills to aid them in
+There is no platform for students of NUS to easily identify people of similar interest and skills to aid them in
 their study and career. The product aims to help students organize and easily identify potential study/project/career
 partners that they have encountered over the course of their study and provide necessary contact information for
 networking opportunities.
@@ -994,7 +994,7 @@ Following are characteristics of people who can benefit from our product:
 * has difficulties tracking peers met over the course of study
 * has a need to manage a significant number of contacts
 * wants to find project partners of similar background
-* prefers a full desktop application over other data management
+* prefers a full desktop application over other data management tools
 * able to type fast
 * comfortable with CLI (command-line interface)
 
