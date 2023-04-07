@@ -223,7 +223,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -265,14 +265,10 @@ The `advance` command advances an `Person` in HMHero, which advances the `status
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `advance n/NAME p/PHONE [d/INTERVIEWDATETIME]` <br>
 Refer to [Glossary](#glossary) for more information on Command format and applicant status.
 </div>
-
-The activity diagram is as such:
-
-![Advance activity diagram](diagrams/AdvanceActivityDiagram.puml)
 
 Here is the activity diagram showing the process of the `advance` command:
 ![Advance activity diagram](images/AdvanceActivityDiagram.png)
@@ -306,18 +302,13 @@ The `reject` command rejects a `Person` in HMHero, which changes the `status` of
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `reject n/NAME p/PHONE` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 Here is the activity diagram showing the process of the `reject` command:
-![RejectApplicantActivityDiagram](images/RejectApplicantActivityDiagram.png)
 
-The activity diagram is as such:
-[Add in later]()
-
-Here is the activity diagram showing the process of the `reject` command:
-[Add in later]()
+![Reject activity Diagram](images/RejectApplicantActivityDiagram.png)
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
@@ -345,14 +336,14 @@ Fields have to be denoted by flags. Allowed fields for filtering are `name` and 
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `find [n/NAME] [p/PHONE]` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `find [n/NAME] [p/PHONE]` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -368,8 +359,8 @@ The sequence diagram for `find n/John` in HMHero is as such:
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Note:<strong>
-The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML<strong>, the lifeline reaches the end of the diagram.
+:information_source: <strong>Note:</strong>
+The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML</strong>, the lifeline reaches the end of the diagram.
 Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
 
@@ -394,16 +385,13 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
-The activity diagram is as such:
-[add in later]()
-
 Here is the activity diagram showing the process of the `edit` command:
-[EditApplicantActivityDiagram]()
+![EditApplicantActivityDiagram]()
 
 
 ##### Feature Details
