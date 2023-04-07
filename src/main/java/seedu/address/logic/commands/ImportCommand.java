@@ -103,6 +103,11 @@ public class ImportCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, true, false);
     }
 
+    /**
+     * Displays an alert to inform user of an error or success while importing.
+     * @param message Message to be displayed.
+     * @param alertType To indicate if it is an error or just an info message.
+     */
     public void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType, message);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
