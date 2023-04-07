@@ -764,6 +764,7 @@ Use case ends.
 
       Use case ends.
 
+<br>
 
 #### Use case: Requesting for help
 
