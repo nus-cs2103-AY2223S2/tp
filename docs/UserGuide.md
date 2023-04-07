@@ -326,6 +326,9 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ExpressLibrary home folder.
 
+**Q**: Why can't I set due date to be in the past using the `borrow` command? What if the book was not borrowed today?<br>
+**A**: Please use the `editBook` command after `borrow` if you would like to edit dates without the current date checks. `borrow` is intended to be used as if the person was borrowing the book on that day.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
