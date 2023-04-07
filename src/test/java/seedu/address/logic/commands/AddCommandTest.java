@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -28,6 +29,7 @@ import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddCommandTest {
 
@@ -236,6 +238,16 @@ public class AddCommandTest {
 
         @Override
         public InputHistory getInputHistory() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Stage getPrimaryStage() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setPrimaryStage(Stage primaryStage) {
             throw new AssertionError("This method should not be called");
         }
 

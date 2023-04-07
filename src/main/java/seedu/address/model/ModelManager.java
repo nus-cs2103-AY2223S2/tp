@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
@@ -39,6 +40,8 @@ public class ModelManager implements Model {
 
     private Predicate<? super Person> frozenPredicate = null;
     private boolean isFrozen = false;
+
+    private Stage primaryStage;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -298,6 +301,17 @@ public class ModelManager implements Model {
             return frozenPredicate;
         }
         return filteredPersons.getPredicate();
+    }
+
+    @Override
+    public Stage getPrimaryStage() {
+        return this.primaryStage;
+    }
+
+    @Override
+    public void setPrimaryStage(Stage primaryStage) {
+        requireNonNull(primaryStage);
+        this.primaryStage = primaryStage;
     }
 
     @Override

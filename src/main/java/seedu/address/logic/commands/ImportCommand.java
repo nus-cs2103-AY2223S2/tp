@@ -1,16 +1,16 @@
 package seedu.address.logic.commands;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-import seedu.address.commons.util.FileUtil;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.storage.AddressBookStorage;
@@ -30,9 +30,19 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Imported data from file";
 
+    public static final String MESSAGE_FILECHOOSER_CLOSED = "FileChooser closed";
+
+    public static final String MESSAGE_RESET_FEEDBACK = "Data has been reset to imported data.";
+
+    public static final String ERROR_FILE_NOT_FOUND = "The file you have chosen does not exist:  %s";
+
+    public static final String ERROR_WHILE_IMPORTING = "Error while importing from: %s";
+
+    public static final String SUCCESS_IMPORT = "Importing from: %s";
+
     public static final String FILE_DESCRIPTION = "CSV Files";
 
-    public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
+    public static final String FILE_EXTENSION = "*.csv";
 
     private boolean isResetEnabled;
 
@@ -42,37 +52,35 @@ public class ImportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        JFrame parentComponent = new JFrame();
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(FILE_DESCRIPTION, FILE_EXTENSIONS);
-        fileChooser.setFileFilter(filter);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter(FILE_DESCRIPTION, FILE_EXTENSION)
+        );
 
         boolean isValidFile = false;
 
         while (!isValidFile) {
-            int returnVal = fileChooser.showOpenDialog(parentComponent);
+            File fileToImport = fileChooser.showOpenDialog(model.getPrimaryStage());
 
-            if (returnVal != JFileChooser.APPROVE_OPTION) {
-                return new CommandResult("FileChooser closed", false, false);
+            if (fileToImport == null) {
+                return new CommandResult(MESSAGE_FILECHOOSER_CLOSED, false, false);
             }
 
-            File fileToImport = FileUtil.getSelectedFileWithExtension(fileChooser);
             if (!fileToImport.exists()) {
-                JOptionPane.showMessageDialog(null, "The file you have chosen does not exist:  "
-                        + fileToImport);
+                showAlert(String.format(ERROR_FILE_NOT_FOUND, fileToImport), Alert.AlertType.ERROR);
                 isValidFile = false;
                 continue;
             }
 
             isValidFile = true;
-            String successMsg = "Importing from:  " + fileToImport;
-            String errorMsg = "Error while importing from: " + fileToImport;
+            String successMsg = String.format(SUCCESS_IMPORT, fileToImport);
+            String errorMsg = String.format(ERROR_WHILE_IMPORTING, fileToImport);
 
             try {
                 AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToImport.toPath());
                 Optional<ReadOnlyAddressBook> newAddressBook = addressBookStorage.readAddressBook();
                 if (newAddressBook.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, errorMsg);
+                    showAlert(errorMsg, Alert.AlertType.ERROR);
                     return new CommandResult(errorMsg, false, false);
                 }
 
@@ -80,18 +88,30 @@ public class ImportCommand extends Command {
 
                 if (isResetEnabled) {
                     model.setAddressBook(newAddressBook.get());
-                    feedback = "Data has been reset to imported data.";
+                    feedback = MESSAGE_RESET_FEEDBACK;
                 } else {
                     feedback = model.addPersonsFromAddressBook(newAddressBook.get());
                 }
-                JOptionPane.showMessageDialog(null, successMsg + "\n" + feedback);
+                showAlert(successMsg + "\n" + feedback, Alert.AlertType.INFORMATION);
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, errorMsg + "\n" + e);
+            } catch (DataConversionException | IOException e) {
+                showAlert(errorMsg + "\n" + e, Alert.AlertType.ERROR);
+                return new CommandResult(errorMsg + "\n" + e, false, false);
             }
         }
 
         return new CommandResult(MESSAGE_SUCCESS, true, false);
+    }
+
+    /**
+     * Displays an alert to inform user of an error or success while importing.
+     * @param message Message to be displayed.
+     * @param alertType To indicate if it is an error or just an info message.
+     */
+    public void showAlert(String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType, message);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.show();
     }
 
     @Override
