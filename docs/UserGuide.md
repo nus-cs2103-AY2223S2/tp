@@ -601,14 +601,11 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 
 Want to remove a contact from Codoc? Delete them at the specified INDEX with the delete command! 
 
+`delete <INDEX>`<br>
+
 INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.<br>
 
 E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
-
-`delete <INDEX>`<br>
-
-* `delete 6` deletes Betsy Crowe who was at index 6
-![Delete Betsy](images/UiDelete.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
