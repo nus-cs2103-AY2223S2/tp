@@ -231,29 +231,14 @@ These operations are exposed in the  `FitBookModel` interface as `FitBookModel#g
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
-FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly.
 
 ![FindState0](images/FindState0.png)
 
 Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
-FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
-modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
-`currentStatePointer` is shifted to the newly inserted FitBook state.
-
-![FindState1](images/FindState1.png)
-
-Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
-`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
-`fitBookStateList`.
-
-![FindState2](images/FindState2.png)
-
-![FindState3](images/FindState3.png)
-
-Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
-the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
-
-![FindState3](images/FindState4.png)
+FitBook. The `find` command calls `FindCommandParser`, causing the command to be parsed and checked for any errors 
+before executing the command and calling FindCommand:execute()) to execute the command to find the relevant people
+in the FitBook list of clients.
 
 The following sequence diagram shows how the find operation works:
 
@@ -262,10 +247,6 @@ The following sequence diagram shows how the find operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -772,13 +753,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2a. The list is empty in the database.
-    * 2a1. FitBook displays that there are no matches.
+* 1b. The format for the find command is wrong.
+    * 1b1. FitBook displays an error that the find format is wrong.
 
       Use case ends.
 
-* 3a. The find command has incorrect format.
-    * 3a1. FitBook displays an error that the find format is wrong.
+* 2a. The list is empty in the database.
+    * 2a1. FitBook displays that there are no matches.
 
       Use case ends.
 
@@ -815,7 +796,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC09 - Delete Routine**
+> **Use case: UC10 - Delete Routine**
 
 **MSS**
 
@@ -838,7 +819,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC10 - Delete Exercise**
+> **Use case: UC11 - Delete Exercise**
 
 **MSS**
 
@@ -867,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC11 - Find Routine**
+> **Use case: UC12 - Find Routine**
 
 **MSS**
 
@@ -970,6 +951,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2d. User request for changing exercise only has one field. (Changing exercise requires two fields)
     * 2d1. FitBook shows an error for incorrect format.
+
+      Use case ends.
+
+> **Use case: UC17 - Add weight**
+
+**MSS**
+
+1. User request to add weight to a client.
+2. FitBook adds weight to the specified client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
+
+      Use case ends.
+
+* 1b. The date specified is not in the correct format.
+    * 1b1. FitBook shows an error for invalid date format.
+
+      Use case ends.
+
+* 1c. The user adds a different weight to the same date and time of an existing weight in the database.
+    * 1c1. FitBook shows an error for duplicate weight.
+
+      Use case ends.
+
+> **Use case: UC18 - Plot weight history graph**
+
+**MSS**
+
+1. User request to plot weight history graph of a client.
+2. FitBook shows weight history graph of the specified client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
 
       Use case ends.
 
