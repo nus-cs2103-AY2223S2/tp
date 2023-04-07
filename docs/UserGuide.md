@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+<a id="top"></a>
 OfficeConnect is a task management tool designed specifically for managerial role personnels based in Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
@@ -101,6 +102,9 @@ If you find yourself forgetting some commands over time, there's no need to worr
 us. You can simply access the help menu using a simple command: `help` to refresh your memory or even 
 learn more about new features. 
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
+<p align="center">
+<em>Help sent</em>
+</p><br/>
 
 ----------------------------------------------------------------
 
@@ -110,7 +114,7 @@ learn more about new features.
 
 **:information_source: Notes about the command format:** <br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [[Prefix]((#12-prefixes-used-in-commands))] section to recap the meaning of these parameters and how they should be used!<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. Refer to the [[Prefix](#12-prefixes-used-in-commands)] section to recap the meaning of these parameters and how they should be used!<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
 * Parameters in square brackets are optional, while those not in square brackets are compulsory.<br>
@@ -241,6 +245,9 @@ Examples:
 * `findp John` returns `john` and `John Doe`.
 * `findp alice` returns `alice pauline`.<br>
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
+<p align="center">
+<em>Find Alice's assigned tasks</em>
+</p><br/>
 
 ### 3.3 Task Commands
 
@@ -498,6 +505,7 @@ Sets the overall theme of OfficeConnect to dark mode.
 
 ### 3.8 Archiving data files `[coming in v1.5]`
 
+_Details coming soon ..._
 
 ### 3.9 Clearing data files `[coming in v1.5]`
 
@@ -514,32 +522,34 @@ _Details coming soon ..._
 
 ## 5. Command summary
 
-| Action                      | Format, Examples                                                                                                                                                             |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Person**              | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 tag/friend tag/colleague` |
-| **Add Task**                | `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]` <br> e.g., `addt t/Draft proposal c/Complete proposal by 1st March st/false dl/2024-01-03 23:02:03`                         |
-| **Assign**                  | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                       |
-| **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
-| **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
-| **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| **Edit Tasks**              | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                       |
-| **Exit**                    | `exit`                                                                                                                                                                       |
-| **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
-| **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
-| **Find Task**               | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |
-| **Help**                    | `help`                                                                                                                                                                       |
-| **List All**                | `listall`                                                                                                                                                                    |
-| **List Persons**            | `listp`                                                                                                                                                                      |
-| **List Tasks**              | `listt`                                                                                                                                                                      |
-| **Mark Task**               | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                              |
-| **Quick Start**             | `quickstart`                                                                                                                                                                 |
-| **Unassign**                | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                                  |
-| **Unmark Task**             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                         |
-| **View Assigned All**       | `viewassignedall`                                                                                                                                                            |
-| **View Assigned Persons**   | `viewassignedp`                                                                                                                                                              |
-| **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                              |
-| **View Person**             | `pi INDEX`<br/> e.g. `pi 2`                                                                                                                                                  |
-| **View Task**               | `ti INDEX`<br/> e.g. `ti 2`                                                                                                                                                  |
-| **View Unassigned All**     | `viewunassignedall`                                                                                                                                                          |
-| **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                            |
-| **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                            |
+| Action                                                                   | Format, Examples                                                                                                                                                             |
+|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Add Person](#321-adding-a-person--addp)                                 | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 tag/friend tag/colleague` |
+| [Add Task](#331-adding-a-task--addt)                                     | `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]` <br> e.g., `addt t/Draft proposal c/Complete proposal by 1st March st/false dl/2024-01-03 23:02:03`                         |
+| [Assign](#341-assigning-a-task-to-a-person--assign)                      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                       |
+| [Delete Person](#322-deleting-a-person--deletep)                         | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
+| [Delete Task](#332-deleting-a-task--deletet)                             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
+| [Edit Person](#323-editing-a-person--editp)                              | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
+| [Edit Tasks](#333-editing-a-task--editt)                                 | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                                       |
+| [Exit](#371-exiting-the-program--exit)                                   | `exit`                                                                                                                                                                       |
+| [Filter Person](#368-filter-persons--filterp)                            | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
+| [Find Person](#325-locating-persons-by-name--findp)                      | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
+| [Find Task](#335-locating-a-specific-task--findt)                        | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |
+| [Help](#312-viewing-help--help)                                          | `help`                                                                                                                                                                       |
+| [List All](#361-list-all-persons-and-tasks--listall)                     | `listall`                                                                                                                                                                    |
+| [List Persons](#324-listing-all-persons--listp)                          | `listp`                                                                                                                                                                      |
+| [List Tasks](#334-listing-the-tasks--listt)                              | `listt`                                                                                                                                                                      |
+| [Mark Task](#343-marking-a-task-as-completed--mark)                      | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                              |
+| [Quick Start](#311-quickstart-guide--quickstart)                         | `quickstart`                                                                                                                                                                 |
+| [Unassign](#342-remove-a-task-assignment-from-a-person--unassign)        | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                                  |
+| [Unmark Task](#344-unmarking-a-task--unmark)                             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                         |
+| [View Assigned All](#366-view-assigned-person-and-task--viewassignedall) | `viewassignedall`                                                                                                                                                            |
+| [View Assigned Persons](#362-view-assigned-persons--viewassignedp)       | `viewassignedp`                                                                                                                                                              |
+| [View Assigned Tasks](#363-view-assigned-tasks--viewassignedt)           | `viewassignedt`                                                                                                                                                              |
+| [View Person](#369-viewing-a-person--pi)                                 | `pi INDEX`<br/> e.g. `pi 2`                                                                                                                                                  |
+| [View Task](#3610-viewing-a-task--ti)                                    | `ti INDEX`<br/> e.g. `ti 2`                                                                                                                                                  |
+| [View Unassigned All](#367-view-unassigned--viewunassignedall)           | `viewunassignedall`                                                                                                                                                          |
+| [View Unassigned Persons](#364-view-unassigned-persons--viewunassignedp) | `viewunassignedp`                                                                                                                                                            |
+| [View Unassigned Tasks](#365-view-unassigned-tasks--viewunassignedt)     | `viewunassignedt`                                                                                                                                                            |
+
+<a href="#top">Back to top</a>
