@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testfx.api.FxToolkit;
 
 /**
- * Properly sets up and tears down a JavaFx stage for our testing purposes.
+ * Properly sets up and tears down a JavaFx stage for our testing purposes. Referenced from AB4.
  */
 public class StageExtension implements BeforeEachCallback, AfterEachCallback {
     @Override

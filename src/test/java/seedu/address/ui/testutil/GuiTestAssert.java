@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.recommendation.Recommendation;
 
 /**
- * A set of assertion methods useful for writing GUI tests.
+ * A set of assertion methods useful for writing GUI tests. Referenced from AB4
  */
 public class GuiTestAssert {
     /**

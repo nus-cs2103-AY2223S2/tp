@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import seedu.address.ui.UiPart;
 
 /**
- * Provides an isolated stage to test an individual {@code UiPart}.
+ * Provides an isolated stage to test an individual {@code UiPart}. Referenced from AB4.
  */
 public class UiPartExtension extends StageExtension {
     private static final String[] CSS_FILES = {"view/DarkTheme.css", "view/Extensions.css"};
