@@ -9,7 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.CustomerDataMap;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
@@ -47,13 +47,13 @@ public class CustomerDetailsPanel extends UiPart<Region> {
     /**
      * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
      */
-    public CustomerDetailsPanel(Customer customer, CustomerVehicleMap dataMap) {
+    public CustomerDetailsPanel(Customer customer, CustomerDataMap dataMap) {
         super(FXML);
         this.customer = customer;
         update(customer, dataMap);
     }
 
-    private void update(Customer customer, CustomerVehicleMap dataMap) {
+    private void update(Customer customer, CustomerDataMap dataMap) {
         if (customer == null) {
             parentContainer.getChildren().clear();
             parentContainer.getChildren().add(new EmptyDetailsPanelPlaceholder("Customer").getRoot());

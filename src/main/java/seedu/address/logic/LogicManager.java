@@ -19,7 +19,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.CustomerDataMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -127,7 +127,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CustomerVehicleMap getCustomerVehicleMap() {
+    public CustomerDataMap getCustomerVehicleMap() {
         return model.getShop().getCustomerDataMap();
     }
 

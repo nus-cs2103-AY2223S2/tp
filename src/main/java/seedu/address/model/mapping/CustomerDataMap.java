@@ -15,7 +15,7 @@ import seedu.address.model.service.appointment.UniqueAppointmentList;
 /**
  * Represents a mapping between customers with their associated vehicles and appointments.
  */
-public class CustomerVehicleMap {
+public class CustomerDataMap {
     private final Map<Integer, Customer> idToCustomerMap = new HashMap<>();
     private final Map<Integer, Vehicle> idToVehicleMap = new HashMap<>();
     private final Map<Integer, Appointment> idToAppointmentMap = new HashMap<>();

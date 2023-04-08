@@ -43,7 +43,7 @@ import seedu.address.model.entity.shop.exception.ServiceNotFoundException;
 import seedu.address.model.entity.shop.exception.TechnicianNotFoundException;
 import seedu.address.model.entity.shop.exception.VehicleNotFoundException;
 import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.CustomerDataMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -74,7 +74,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     // Mapped
-    private final CustomerVehicleMap customerDataMap = new CustomerVehicleMap();
+    private final CustomerDataMap customerDataMap = new CustomerDataMap();
     private final VehicleDataMap vehicleDataMap = new VehicleDataMap();
     private final ServiceDataMap serviceDataMap = new ServiceDataMap();
     private final AppointmentDataMap appointmentDataMap = new AppointmentDataMap();
@@ -159,7 +159,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         return FXCollections.unmodifiableObservableList(this.technicians);
     }
 
-    public CustomerVehicleMap getCustomerDataMap() {
+    public CustomerDataMap getCustomerDataMap() {
         return this.customerDataMap;
     }
 
