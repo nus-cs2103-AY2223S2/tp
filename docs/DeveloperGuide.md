@@ -352,8 +352,7 @@ user to filter the job list by company which shows all roles pertaining to a cer
 
 Given below is an example usage of how CompanyCommand and its dependencies is being used in the following steps.
 
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book from the data files.
+1. The user launches TechTrack, and initializes its role book from preexisting data files.
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
