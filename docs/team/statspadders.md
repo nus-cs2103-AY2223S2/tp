@@ -10,11 +10,12 @@ assistants in the modules they are taking.
 
 Given below are my contributions to the project.
 
-* **Code contributed**:
-    * To be added soon
+* **Enhancements to existing features**: Add Command
+    * What it does: Allow users to create a new field MODULE_TAGS
+    * remove the mandatory requirement of some fields. Keeping the field NAME as the primary requirement.
 
-* **Enhancements to existing features**:
-    * To be added soon
+* **Code contributed**:
+    * [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=statspadders&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Documentation**:
     * User Guide:
