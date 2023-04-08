@@ -96,6 +96,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code nusmods} into a {@code Set<NusMod>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModules(String ... modules) {
+        this.modules = new Modules(SampleDataUtil.getNusModSet(modules));
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {

@@ -124,4 +124,13 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a module set containing the list of strings given.
+     */
+    public static Set<NusMod> getNusModSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(NusMod::new)
+                .collect(Collectors.toSet());
+    }
+
 }
