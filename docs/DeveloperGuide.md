@@ -610,7 +610,7 @@ _{More to be added}_
 
     Use case resumes at step 1.
 
-- 1c. User tries to edit the department into a department that already exists.
+- 1c. User tries to edit the department name into another name that is used by an existing department.
 
   - 1c1. SudoHr shows an error message.
 
