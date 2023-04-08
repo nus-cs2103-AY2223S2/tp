@@ -33,12 +33,12 @@ public class EditIsolatedEventCommand extends Command {
             + "by the index number used in the last person listing.\n "
             + "Parameters: "
             + "[index number of the person], "
-            + "[index number of the event] in the event list"
-            + PREFIX_ISOEVENT + "EVENT_NAME"
-            + PREFIX_STARTDATETIME + "START_DATE"
+            + "[index number of the event] in the event list "
+            + PREFIX_ISOEVENT + "EVENT_NAME "
+            + PREFIX_STARTDATETIME + "START_DATE "
             + PREFIX_ENDDATETIME + "END_DATE"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " f/09/03/2023 14:00" + " t/09/03/2023 18:00";
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " f/09/03/2023 14:00" + " t/09/03/2023 18:00";
 
     private final Index personIndex;
     private final Index eventIndex;

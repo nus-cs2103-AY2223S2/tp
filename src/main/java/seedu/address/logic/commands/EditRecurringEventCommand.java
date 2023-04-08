@@ -34,13 +34,13 @@ public class EditRecurringEventCommand extends Command {
             + "by the index number used in the person listing.\n "
             + "Parameters: "
             + "[index number of the person], "
-            + "[index number of the event] in the event list"
-            + PREFIX_RECURRINGEVENT + "EVENT_NAME"
-            + PREFIX_DAYOFWEEK + "DAY_OF_WEEK"
-            + PREFIX_STARTDATETIME + "START_TIME"
-            + PREFIX_ENDDATETIME + "END_TIME"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
-            + "Example: " + COMMAND_WORD + " 1" + " 1" + " f/14:00" + " t/18:00";
+            + "[index number of the event] in the event list "
+            + PREFIX_RECURRINGEVENT + "EVENT_NAME "
+            + PREFIX_DAYOFWEEK + "DAY_OF_WEEK "
+            + PREFIX_STARTDATETIME + "START_TIME "
+            + PREFIX_ENDDATETIME + "END_TIME "
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " ie/biking"
+            + "\nExample: " + COMMAND_WORD + " 1" + " 1" + " f/14:00" + " t/18:00";
 
     private final Index personIndex;
     private final Index eventIndex;
@@ -106,8 +106,7 @@ public class EditRecurringEventCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static RecurringEvent createEditedRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
-                                                             EditEventDescriptor
-                                                                     eventDescriptor) {
+                                                             EditEventDescriptor eventDescriptor) {
         assert personToEdit != null;
 
         String updatedEventName = eventDescriptor.getEventName().orElse(originalEvent.getEventName());
@@ -115,8 +114,14 @@ public class EditRecurringEventCommand extends Command {
         LocalTime startTime = eventDescriptor.getStartTime().orElse(originalEvent.getStartTime());
         LocalTime endTime = eventDescriptor.getEndTime().orElse(originalEvent.getEndTime());
 
-        return new RecurringEvent(updatedEventName, dayOfWeek, startTime, endTime);
+        RecurringEvent newlyEditedRecurringEvent =
+                new RecurringEvent(updatedEventName, dayOfWeek, startTime, endTime);
+
+
+        return newlyEditedRecurringEvent;
     }
+
+
 
     /**
      * Stores the details to edit the event with. Each non-empty field value will replace the

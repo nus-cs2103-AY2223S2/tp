@@ -206,6 +206,25 @@ with a `Group`.
       standardise the same for groups as well.
     * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
 
+**Aspect: Creating new group through add command**
+* **Alternative 1:** Create a new `Group` using the existing add command.
+    * Pros:
+      * Lesser commands for users to use
+      * Easier to implement
+    * Cons:
+      * More bug-prone due to having multiple parameters to check including group
+
+* **[Current implementation] Alternative 2:** Create a new `Group` using a new command 'group_create'.
+    * Pros:
+      * Dedicated command for creating a group
+      * Less bug-prone as the only input is one group instead of having multiple information such as name, email etc.
+    * Cons:
+      * Users need to create a group first before adding a person to it.
+
+* **Justification**
+    * As the add command is relatively lengthy, having more input parameters would result in users creating a wrong group.
+    * Having a dedicated command for creating groups is less bug-prone as it only has to check for the validity of one group
+
 ### \[Developed\] Group delete
 
 The group delete feature allows users to delete a group and remove persons from that group.
@@ -469,6 +488,80 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
+### \[Developed\] Export
+
+The export feature allows users to export a person's details to a json file. Groups and tags are not exported.
+
+This is implemented using the `ExportCommand`, `ExportCommandParser` and
+`UniquePersonList` and `Storage` classes.
+
+The `ExportCommand` receives an `Index` of a `Person` to be exported from the `UniquePersonList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+<img src="images/ExportCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/ExportCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the export `COMMAND_WORD`, the `AddressBookParser` creates a `ExportCommandParser`
+   to parse the user input.
+3. If `ExportCommandParser` parse the command successfully, it creates a `ExportCommand` and initialise it
+   with an `Index`.
+4. The `ExportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ExportCommand` instance which obtains the person from the 
+   `UniquePersonList`.
+6. Execution of `ExportCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+7. `LogicManager` then passes the person obtained from `ExportCommand` to the method `exportPerson()` of `Storage`
+8. `Storage` then creates a json file of the person to be exported in data/export.json
+
+#### Design consideration
+
+**Aspect: Exporting multiple persons**
+* **Alternative 1:** Export multiple `Person` in one user command.
+    * Pros:
+        * Users can export multiple persons at once instead of exporting each person one at a time.
+    * Cons:
+        * More bug-prone due to multiple index given by user
+
+* **[Current implementation] Alternative 2:** Only allow one person to be exported in one user command.
+    * Pros:
+        * Easy to implement.
+        * Less bug-prone as only one index has to be checked for validity
+    * Cons:
+        * Users have to export one person at a time.
+
+* **Justification**
+    * Purpose of exporting is to export one's details and send to their friends instead of exporting multiple persons' details 
+    * Exporting multiple persons' details increase the length of the command which leads to more error 
+
+**Aspect: Exporting all details**
+* **Alternative 1:** Export all details of a `Person`.
+    * Pros:
+        * Users can export all details of a `Person` including `Groups` and `Tags`
+        * Easier to implement
+    * Cons:
+        * Exporting groups and tags is not used in import
+
+* **[Current implementation] Alternative 2:** Export all details of a `Person` except `Group` and `Tag`
+    * Pros:
+        * Less bug prone as lesser details are exported.
+        * Do not have to recreate a new UniqueGroupList for exported `Person`.
+    * Cons:
+        * Harder to implement
+
+* **Justification**
+    * As import does not import `Group` and `Tag`. Exporting all details of a `Person` is not required.
+    * Different users may have different `Tag` or `Group` for their contact. Hence `Group` and `Tag` is not exported/imported.
+
+
 ### \[Proposed\] Undo/redo feature
 
 
@@ -597,22 +690,22 @@ timetables one by one. WGT then helps students to easily find FTS within their f
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I can …​                                                       | So that I can…​                                                       |
-|----------|----------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the App                |
-| `* * *`  | user     | add a new friend                                               | store their events                                                    |
-| `* * *`  | user     | delete a friend                                                | remove entries that I no longer need                                  |
-| `* * `   | user     | find a person by name                                          | locate details of friend without having to go through the entire list |
-| `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
-| `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
-| `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
-| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better |
-
-| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
-
-| `* *`    | user | be able to categorize my contact lists                         | easily find someone |
-| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
-| `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
+| Priority | As a …​                        | I can …​                                                       | So that I can…​                                                       |
+|----------|--------------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user                       | see usage instructions                                         | refer to instructions when I forget how to use the App                |
+| `* * *`  | user                           | add a new friend                                               | store their events                                                    |
+| `* * *`  | user                           | delete a friend                                                | remove entries that I no longer need                                  |
+| `* * `   | user                           | find a person by name                                          | locate details of friend without having to go through the entire list |
+| `* * *`  | user                           | store my timetable                                             | keep track of my timetable                                            |
+| `* * *`  | user                           | store my friends' timetable                                    | keep track of my friends' timetable                                   |
+| `* * *`  | student                        | find a FTS within my group of friends                          | know when my friends are free                                         |
+| `* *`    | student with many friends      | be able to have multiple groups                                | manage my groups better                                               |
+| `* *`    | forgetful student              | be notified about upcoming meetings i have with my friends     | make sure I wouldn't miss a meeting                                   |
+| `* *`    | user                           | be able to categorize my contact lists                         | easily find someone                                                   |
+| `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | remember my tasks                                                     |
+| `*`      | user                           | easily find out the venue and time of my upcoming lessons      | make my life more convenient                                          |
+| `* * *`  | student                        | find a FTS within my group of friends                          | know when my friends are free                                         |
+| `* *`    | student with many friends      | be able to have multiple groups                                | manage my groups better                                               |
 
 ### Use cases
 
@@ -631,7 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -641,7 +734,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: UC02 - Add an event**
+**Use Case: UC02 - Add an isolated event**
 
 **MSS**
 
@@ -654,17 +747,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
+
+    Use case ends.
+  
+* 3a. The given index of the person is invalid
+  * 3a1. WGT shows an error message.
+  
+    Use case resumes at step 2.
+* 3b. User enters the wrong name or date format
+  * 3b1. WGT shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. The starting time is later than the ending time of the isolated event
+    * 3c1. WGT shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3d. The Isolated event period clashes with an existing isolated event or a recurring event
+  * 3d1. WGT shows an error message.
+
+    Use case resumes at step 2.
+  
+**Use Case: UC03 - Add a recurring event**
+
+Similar to UC02
+
+**Use Case: UC04 - Editing isolated event**
+
+**MSS**
+
+1. User requests to list persons
+2. WGT shows a list of persons
+3. User requests to edit an event to a specific isolated event that belong to the person in the list
+4. WGT edits the specified isolated event belonging to the person
 
     Use case ends.
 
-* 3a. The given index is invalid
+**Extensions**
+* 2a. The Person list is empty.
+
+    Use case ends.
+
+* 3a. The given index of the person is invalid
 
   * 3a1. WGT shows an error message.
 
     Use case resumes at step 2.
+  
+* 3b. The given index of the isolated event is invalid
 
-**Use Case: UC03 - Find FTS**
+  * 3b1. WGT shows an error message.
+    
+    Use case resumes at step 2.
+* 3c. User enters the wrong name or date format 
+  * 3c1. WGT shows an error message.
+  
+      Use case resumes at step 2.
+* 3d. User newly edited isolated event clashes with an existing Isolated or Recurring events
+  * 3d1. WGT shows an error message.
+
+    Use case resumes at step 2.
+
+**Use Case: UC04 - Editing recurring event**
+
+Similar to UC03
+
+**Use Case: UC05 - Find FTS**
 
 **MSS**
 
@@ -677,7 +827,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -687,7 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use Case: UC04 - Make Group**
+**Use Case: UC06 - Make Group**
 
 **MSS**
 
@@ -698,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The Person list is empty.
 
   Use case ends.
 
@@ -726,7 +876,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Domain rules: The system should ideally be an NUS student.
 8.  Notes about project scope: The product is not required to handle people with the same full name
 
-*{More to be added}*
 
 ### Glossary
 
@@ -753,7 +902,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+    Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -761,8 +911,50 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
 
-1. _{ more test cases …​ }_
+### Editing a person
+
+1. Editing a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+
+   2. Test case: `edit 1 n/Bob`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new name.
+
+   3. Test case: `edit 1 p/98765432`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new phone number.
+
+   4. Test case: `edit 1 n/Tom p/92223333`
+   Expected: First contact is edited from the visible list. List is updated to show edited contact with new name and phone number.
+
+   5. Test case: `edit 1 g/`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with no groups.
+   
+   6. Test case: `edit 1 g/CS103`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new group.
+   
+   7. Test case: `edit ``m/ g/CS2101`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new group and existing group.
+   
+   8. Test case: `edit 1 t/`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with no tags.
+   
+   9. Test case: `edit 1 t/Borrowed my pen`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag.
+   
+   10. Test case: `edit 1 m/ t/Saw at school today`
+      Expected: First contact is edited from the visible list. List is updated to show edited contact with new tag and existing tag.
+   
+   11. Test case: `edit 1 g/Somegroup`
+      Expected: No contact is edited. Error details shown in the status message. The group(s) provided does not exist
+   
+   12. Test case: `edit 0 n/Bob`
+      Expected: No contact is edited. Error details shown in the status message.
+
+   13. Test case : `edit 1`
+      Expected: No contact is edited. Error details shown in the status message. At least one field to edit must be provided.
+      
 
 ### Deleting a person
 
@@ -779,7 +971,67 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a group
+
+1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
+
+2. Test case: `group_create g/CS2100`
+   Expected: Group created with name 'CS2100'.
+
+3. Test case: `group_create g/Best friends`
+   Expected: Group not created. Status message indicates that group name can only be alphanumeric
+
+4. Test case: `group_create g/CS2103`
+   Expected: Group not created. Status message indicates that group already exists.
+      
+### Deleting a group
+
+1. Deleting a group while all groups are being shown
+
+   1. Prerequisities: List all groups using `group_list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+
+   2. Test case: `group_delete 1`
+      Expected: Group named CS2103 deleted and all persons removed from that group
+   
+   3. Test case: `group_create g/Best friends`
+      Expected: Group not deleted. Status message indicates invalid command format
+
+### Finding a group
+
+1. Prerequisities: The preloaded data for groups are not modified. (No groups are removed or added)
+
+2. Test case: `group_find CS2103`
+   Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
+
+3. Test case: `group_find Bestfriends`
+   Expected: Group and person list will not display anytrhing
+   
+   
+### Export a person
+
+1. Export a person while all persons are being shown
+   1. Prerequisities: List all persons using the `list` command. The preloaded data for groups are not modified. (No groups are removed or added)
+   
+   2. Test case: `export 1`
+      Expected: First person in the personList is exported and details of the person are shown in the status message
+   
+   3. Test case: `export 2`
+      Expected: Second person in the personList is exported and details of the person are shown in the status message
+   
+   4. Test case: `export 99`
+      Expected: No person is exported. Status message indicated person index provided is invalid
+
+2. Export a person while person list is filtered
+
+   1. Prerequisities: List one person using the `find` command (e.g `find Bernice`). The preloaded data for groups are not modified. (No groups are removed or added)
+   
+   2. Test case: `export 1`
+      Expected: First person in the personList is exported and details of the person are shown in the status message
+   
+   3. Test case: `export 2`
+      Expected: No person is exported. Status message indicated person index provided is invalid
+
+
 
 ### Saving data
 
@@ -787,4 +1039,11 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+
+
+## **Appendix: Planned Enhancements**
+
+### 1. Group case-sensitive
+* Feature flaw: Users can add groups containing the same letters/numbers but different capitalisation. For example 'CS2103' and 'cs2103' are two different groups
+* Future plan: As we are planning to integrate with NUSMODS in the future. All groups would follow the same naming convention as NUS modules where they are capitalised. So we plan to make all group names capitalised in the future.
+

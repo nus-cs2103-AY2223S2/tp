@@ -16,7 +16,7 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 1. Download the latest `wheregottime.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WhereGotTime.
+1. Copy the file to an **empty** folder that you want to use as the _home folder_ for your WhereGotTime. (e.g.: A new folder in your `Desktop`)
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wheregottime.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -41,6 +41,8 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 ## Features
 
+**WARNING: Directly editing the saved json file which cause the app to malfunction**
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -51,17 +53,19 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times (Even not at all).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is specified multiple times when it is only expected once, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+   
+* For commands that require index, the index is based on the current person/group list shown.
 
 </div>
 
@@ -78,10 +82,13 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
+
+* A person can only be added to an **existing** group
+* Tags can only contain alphanumeric and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and groups (including 0)
 </div>
 
 Examples:
@@ -109,12 +116,13 @@ Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GRO
 * Groups can only be added if it has been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
     specifying any tags/groups after it.
+* Adding duplicate groups/tags to a `Person` would not result in multiple groups/tags created.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/ g/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags and groups.
-*  `edit 3 m/ t/Borrowed $10` Edit the tags of the 2nd person to be `Borrowed $10` plus the existing tag of that person.
-*  `edit 3 m/ g/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups of that person.
+*  `edit 3 m/ t/Borrowed 10 dollars` Edit the tags of the 3rd person to be `Borrowed 10 dollars` plus the existing tag of that person.
+*  `edit 3 m/ g/CS2103T` Edit the groups of the 3rd person to be `CS2103T` plus the existing groups of that person.
 
 ### Locating persons by name: `find`
 
@@ -155,7 +163,11 @@ Create a group in the address book.
 Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
+* The group name cannot be empty and must be alphanumeric!
+* **NOTE: The group name cannot contain spaces**
 * The group name cannot be empty
+* Only one group can be created
+* If more than one group is specified, only the last occurrence of a group will be taken
 
 Examples:
 * `group_create g/CS2103T`
@@ -202,6 +214,9 @@ Examples:
 ### Creating an event:
 Creates either an isolated or weekly recurring event.
 
+Note that only **hourly** events can be created.
+For example, `17:00` is a valid timing and `17:30` is an invalid timing
+
 #### 1) Isolated event: `event_create`
 Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
@@ -212,18 +227,18 @@ Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
 
 Examples:
-* `event_create 1 ie/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00`
+* `event_create 1 ie/CS2101 Presentation f/02/02/2025 16:00 t/28/02/2025 18:00`
 
 #### 2) Weekly Recurring Event `event_create_recur`
 Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
 * `INDEX` refers to the index of the person whose recurring event list will be added with the given recurring event
 * Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which stands for Recurring event
-* The flag `d` represents the day of the week
+* The flag `d/` represents the day of the week
 * The remaining flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
 * The format of `START_TIME` and `END_TIME` would be in `HH:mm`
-* `EVENT_NAME`, `DAY_OF_WEEK`, `START_DATE` and `END_DATE` cannot be left empty
+* `EVENT_NAME`, `DAY_OF_WEEK`, `START_TIME` and `END_TIME` cannot be left empty
 
 Examples:
 * `event_create_recur 1 re/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00`
@@ -234,7 +249,7 @@ Delete either an isolated or a weekly recurring event
 
 Deletes an existing isolated event from person's isolated event list in the address book.
 
-Format: `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
+Format: `ie_delete INDEX_OF_PERSON INDEX_OF_EVENT`
 
 * Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
 * Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
@@ -245,7 +260,7 @@ Examples:
 #### 2) Delete recurring event: `re_delete`
 Deletes a recurring event from a person's recurring event list in the address book.
 
-Format: `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
+Format: `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`
 
 * Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
 * Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
@@ -259,10 +274,10 @@ Edit the attributes of either an isolated event or a weekly recurring event
 
 Edit an existing isolated event from person's isolated event list in the address book.
 
-Format: `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`
+Format: `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`
 
 * Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* The fields after `ie_edit` cannot be empty and must consist of at least one attribute to be edited on
+* At least one attribute from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
 * `START_DATE` and `END_DATE` must be in the format of `dd/MM/yyyy HH:mm`
@@ -274,10 +289,10 @@ Examples:
 #### 2) Edit a recurring event: `re_edit`
 Edit an existing recurring event from person's recurring event list in the address book.
 
-Format: `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+Format: `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`
 
 * Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* The fields after `re_edit` cannot be empty and must consist of at least one attribute to be edited on
+* At least one attribute from recurring event must be included. The attributes are `[re/NAME]`, `[d/DAY_OF_WEEK]`, `[f/START_TIME]` and `[t/END_TIME]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
 * `DAY_OF_WEEK` must be either `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday`
@@ -288,7 +303,60 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-### List all events: `event list`  [coming soon]
+### Export a person: `export`
+Export a person's details from the address book. 
+
+Format: `export [INDEX_OF_PERSON]`
+
+* Exports a person's details with the specified `INDEX_OF_PERSON`
+* All details *except groups and tags* are exported.
+* Export data is saved in the data/export.json
+* Exporting a person will overwrite any existing export.json file
+
+Examples:
+* `export 1`
+* `export 2`
+
+### Find free time slots: `free`
+
+Displays the time slots in a week when all members of the specified group are free (no events).
+
+Format: `free GROUP_INDEX [START_DATE]`
+
+* Finds unoccupied time slots within members of the group at the specified `GROUP_INDEX`. The index refers to the index number
+  shown in the displayed group list. The index *must be a positive* 1, 2, 3 ...
+* The `START_DATE` field is optional. The time slots will be shown for the week ahead, starting from that date. If it is
+  not provided, then the current date will be used.
+* `START_DATE` must be of the format: `dd/MM/yyyy`
+* Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
+
+
+### Importing data : `import`
+Import one person into your address book to update their details and events.
+
+Format: `import`
+
+* Stored data must be in a file called `export.json` and the file must be placed in the folder `data` which is in the same location as the JAR file.
+* Stored data can only contain 1 person.
+* The imported person will not have any tags or groups.
+   * This is because groups and tags are dependent on how the user wants to assign them. Therefore, merging or overwriting groups/tags when importing is not appropriate.
+* If the imported person is already an entry in your address book with the same name (case-sensitive), their phone number, address, email as well as their event lists will be updated to the imported data.
+* If the imported person is not yet an entry in your address book, a new entry will be created with the imported person's details (excluding tags and groups).
+
+
+### Export a person: `export`
+Export a person's details from the address book. 
+
+Format: `export [INDEX_OF_PERSON]`
+
+* Exports a person's details with the specified `INDEX`
+* All details except groups and tags are exported (Reason mentioned in `Import` section)
+* Export data is saved in the data/export.json
+* Exporting a person will overwrite any existing export.json file
+
+Examples:
+* `export 1`
+* `export 2`
 
 ### Clearing all entries : `clear`
 
@@ -313,10 +381,6 @@ WhereGotTime data are saved as a JSON file `[JAR file location]/data/wheregottim
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the app will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -343,9 +407,10 @@ _Details coming soon ..._
 | **Group list**             | `group_list`                                                                                                                                                                |
 | **Group find**             | `group_find KEYWORD [MORE_KEYWORDS]` <br> e.g., `group_find CS2103 CS2101`                                                                                                  |
 | **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
-| **Isolated Event delete**  | `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
-| **Isolated Event update**  | `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`                                                                                                |
+| **Isolated Event delete**  | `ie_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
+| **Isolated Event update**  | `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`                                                                                              |
 | **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
-| **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
-| **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
-| **Event list**             | [coming soon]                                                                                                                                                               |
+| **Recurring Event delete** | `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
+| **Recurring Event update** | `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`                                                                              |
+| **Export person**          | `export [INDEX_OF_PERSON]`                                                                                                                                                  |                                                                                                                                                     |
+| **Free**                   | `free GROUP_INDEX [START_DATE]`                                                                                                                                             |
