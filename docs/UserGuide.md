@@ -127,9 +127,7 @@ Example(s) of usage:
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
 butter s/Serve and enjoy.`
 
-<div markdown="block" class="add-info">
-
-**:information_source: Notes about the add command:**<br>
+<div markdown="block" class="alert alert-info">
 
 * :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 
