@@ -68,6 +68,7 @@ public class ClearCommand extends Command {
             throw new CommandException(errMessage);
         }
 
+        model.resetPatientIds();
         return new CommandMessage(MESSAGE_SUCCESS);
     }
 }
