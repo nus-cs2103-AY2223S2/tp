@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/unwilledtangent.png" width="200px">
 
 [[github](https://github.com/UnwilledTangent)]
-[[portfolio](team/UnwilledTangent.md)]
+[[portfolio](team/unwilledtangent.md)]
 
 * Role: Software Developer
 * Responsibilities: UI
