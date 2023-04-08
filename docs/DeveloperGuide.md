@@ -771,7 +771,7 @@ file path to the current `Tracker` object
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
-![ImportSequenceDiagram](images/ImportSequenceDiagramRef.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
 
 
 The following is a description of the code execution flow:
