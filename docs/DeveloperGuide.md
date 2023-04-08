@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 ## **About TeachMeSenpai**
 
-TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a **Graphical User Interface (GUI)**.
+TeachMeSenpai **is a student managing application** specially customised for **teaching assistants (TA) in NUS** who have a lot of students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a **Graphical User Interface (GUI)**.
 
 This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai. This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
 
@@ -136,10 +136,11 @@ The `Model` component,
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores every modified version of the address book in `VersionedAddressBook`.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="block" class="alert alert-info">
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` and `Module` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, and one `Module` object per unique module instead of each `Person` needing their own `Tag` and `Module` objects.
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 </div>
@@ -183,7 +184,8 @@ The `Student` object is composed of attributes:
 * `Email`: The email address of the student.
 * `Address`: The address of the student.
 * `Education`: The education level of the student.
-* `Module`: The modules the tutor is teaching the student.
+* `Telegram`: The telegram handle of the student.
+* `Module`: The modules the TA is teaching the student.
 * `Remark`: Remarks/notes the tutor has about the student.
 * `Tags`: Qualities a student has.
 
@@ -199,11 +201,12 @@ The `add` command has the following fields:
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
 * Prefix `edu/` followed by the student's education level.
+* Prefix `tele/` followed by the student's telegram handle.
 * Prefix `m/` followed by the module name.
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
-Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.:
+Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Year 1` is run.:
 
 ![add_sequence](images/AddSequenceDiagram.png)
 
@@ -213,7 +216,7 @@ Here is a sequence diagram showing the interactions between components when `add
 #### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, a new `Student` entry is created and stored in the `AddressBook`.
+3. If the input passes the validation check, a new `Student` entry is created and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 
@@ -221,9 +224,10 @@ The implementation of the attributes of a `Student` is very similar to that of a
 
 Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
-2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate module names that are more than one word long as in real life.
+2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
 3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
+4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
 When adding a student entry, these were the alternatives considered.
 * **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes optional.
@@ -894,17 +898,20 @@ The current version of TeachMeSenpai certainly has its flaws and here are some o
 
 #### Add/Edit
 **Feature flaw 1** : STUDENT_NAME is currently case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for student names is to check for case-insensitivity in `add` and `edit` in order to disallow duplicate names.
+
 **Feature flaw 2** : STUDENT_NAME allows alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, STUDENT_NAME will be enhanced to allow alphabets, and symbols only.
+
 **Feature flaw 3** : Duplicate TELEGRAM and PHONE are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
 However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
+
 **Feature flaw 4** : The current `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
 
 #### Autocomplete
-**Feature flaw 1** : Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
+**Feature flaw** : Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
 leads users to believe that their input (without `n/STUDENT_NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/STUDENT_NAME`.
 
 #### Find/Filter
-**Feature flaw 1** : Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
+**Feature flaw** : Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
 
 Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
 
@@ -914,10 +921,10 @@ Let's say argument-less `find`/`filter` is allowed, the possible behaviours coul
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
 #### Ui
-**Feature flaw 1** : At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
+**Feature flaw** : At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
 
 #### Error handling
-**Feature flaw 1** : The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
+**Feature flaw** : The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
 
 [↑ Back to top](#table-of-contents)
 
