@@ -15,9 +15,9 @@ UniqueRoleList -right-> Role
 Role -up-> "*" Tag
 
 Role *--> Name
-Role *--> Phone
+Role *--> Contact
+Role *--> Company
 Role *--> Email
-Role *--> Address
 Role *--> Salary
 Role *--> Website
 Role *--> Deadline

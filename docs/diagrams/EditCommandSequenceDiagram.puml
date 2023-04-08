@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+skinparam SequenceReferencebackgroundColor LightYellow
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":EditRoleDescriptor" as EditRoleDescriptor MODEL_COLOR
+participant ":Role" as Role MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> RoleBookParser : parseCommand(userInput)
+activate RoleBookParser
+
+create EditCommandParser
+RoleBookParser -> EditCommandParser++
+activate EditCommandParser
+return
+
+
+create EditRoleDescriptor
+EditCommandParser -> EditRoleDescriptor++
+return e
+
+create EditCommand
+EditCommandParser -> EditCommand++
+
+return
+return editCommand
+destroy EditCommandParser
+return editCommand
+
+LogicManager->EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredRoleList()
+activate Model
+return
+
+create Role
+EditCommand -> Role++
+return editedRole
+
+EditCommand -> Model : setRole(currRole, editedRole)
+activate Model
+return
+
+EditCommand -> Model : updateFilteredRoleList(PREDICATE_SHOW_ALL_ROLES)
+activate Model
+return
+
+create CommandResult
+EditCommand ->CommandResult++
+return
+
+return commandResult
+return
+
+@enduml
