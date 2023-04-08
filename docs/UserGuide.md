@@ -262,7 +262,11 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.
+* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.<br>
+    Before `delete 2` is executed, the student `Bernice Yu` is shown in the Student List.
+    ![Delete a student (before)](images/Delete%20a%20student%20(before).png)
+    After `delete 2` is executed, the student `Bernice Yu` is deleted from the Student List.
+    ![Delete a student (after)](images/Delete%20a%20student%20(after).png)
 * `find Betsy` followed by `delete 1` deletes the 1st student (if the student exists) in the results of the `find` command.
 * `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
