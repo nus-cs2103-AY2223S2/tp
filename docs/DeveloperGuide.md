@@ -69,20 +69,94 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/Ui.java) and uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+![UI Packages](images/UiPageComponents.png)
+
+*Figure 1: Packages in the UI component*
+
+As CLIpboard is a multi-page application, it is made up of different UI components corresponding to each page. The UI classes relevant to each page are classified in their own individual packages as shown in Figure 1.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The UI also consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `HelpWindow`, and `StatusBarFooter`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+These parts also remain visible as the user navigates through the different pages in the GUI.
 
-The `UI` component,
+#### Initialising the UI
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
+![Homepage](images/UiHomePage.png)
+
+*Figure 2: CLIpboard landing page*
+
+The `UiManager` is a controller class containing the `start` method which initialises the UI in the following sequence:
+
+1. Instantiate a new `MainWindow` object.
+2. `show` the `MainWindow` object.
+3. Populate the UI window using the the `fillInnerParts` method of `MainWindow`.
+
+The `MainWindow#fillInnerParts` method will populate the UI by:
+1. Populating the `courseListPanel` in the Left Pane.
+2. Populating the `pageTab`
+3. Populating the `commandBox`
+4. Populating the `resultDisplay`
+5. Populating the `statusBarFooter`
+
+As shown in Figure 2, users will be shown the Course Page upon launching tha application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
+
+#### Navigating through pages
+
+![Navigation Guide](images/navigation.png)
+
+*Figure 3: CLIpboard navigation guide*
+
+As shown in Figure 3, users can navigate through the application using a combination of `select`, `task`, `session`, and `back` commands.
+When a command such as `select` is called, the left pane or the right pane, or both, will be refreshed in `MainWindow`.
+
+
+![Select Sequence Diagram](images/SelectSequenceDiagram.png)
+
+*Figure 4: Sequence Diagram for `select`*
+
+
+The Sequence Diagram in Figure 3 illustrates the interactions between the `UI` component, `Logic` component and `Model` component when `select 1` is called in the Course Page.
+The `UI` first interacts with the `Logic` component to retrieve the current selected `PageType`, which is the Group Page. 
+The `UI` then self-invokes a `showGroupPane` method that creates a `GroupListPanel`.  
+The `GroupListPanel` takes in an `ObservableList<Group>` obtained from the `getUnmodifiableFilteredGroupList()` method.
+
+
+In `GroupListPanel`, each `Group` in the `ObservableList<Group>` will be mapped into a `GroupListViewCell`. Any changes made to a `Group` (say, via an `edit group` command)
+will be immediately reflected in the GUI.
+
+As a result, the corresponding Group Page showing a list of groups in the selected course will be shown in the GUI.
+
+The above sequence is similar across each page navigation sequence.
+
+#### Design Considerations
+
+![Student Page](images/UiStudentPageDesign.png)
+*Figure 5: Screenshot of Student Page*
+
+In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
+The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students.
+Since we are on the student page, a list of students is shown.
+
+##### Alternative considerations
+- Student List Card
+
+![StudentListCard](images/UiStudentListCard.png)
+
+*Figure 6: A student list card.*
+
+Instead of `StudentId`, we initially considered displaying the `Course` and `Group` the student belongs to in their individual student cards.
+However, this information is already displayed in the navigation bar (shown in Figure 5, above the `StudentListPanel` in "CS2103T > T15").
+Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
+
+Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
+As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 5) when the user enters a `select` command on the Student Page.
+
+   
 
 ### Logic component
 
