@@ -3,24 +3,30 @@ layout: page
 title: Nicholas Halim's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: MedInfo
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
-
-Given below are my contributions to the project.
+MedInfo is a desktop application for private hospital administrative staff. It helps manage your patients, their status, discharge and ward, and your wards.
 
 
 * **New Feature**:
+  * All of Ward Class implementation
+  * Split Screen 
+  * Status Bar Footer
 
 * [**Code contributed**](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=daytona65&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=false&zFR=false)
 
 * **Project management**:
     * Managed the review and merging of my  team's PRs
+    * Drove the implementation of new features for my team
+    * Helped assign and delegate some tasks to team members
+    * Ensured team vision was aligned
+  
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Updated the GUI and added split screens (Pull requests [\#33](), [\#34]())
 
+
+// Not done below
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `delete` and `find` [\#72]()

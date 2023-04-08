@@ -5,5 +5,21 @@
     "status" : "LIME",
     "ward" : "@#$",
     "discharge" : "12/32/1232 1687"
+  } ],
+  "wards" : [ {
+    "name" : "Waiting Room",
+    "capacity" : 10
+  }, {
+    "name" : "Class A",
+    "capacity" : 30
+  }, {
+    "name" : "Class B",
+    "capacity" : 30
+  }, {
+    "name" : "Class C",
+    "capacity" : 30
+  }, {
+    "name" : "ICU",
+    "capacity" : 40
   } ]
 }

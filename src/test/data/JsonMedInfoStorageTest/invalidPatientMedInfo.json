@@ -3,7 +3,23 @@
     "name": "Patient with invalid nric",
     "nric": "X1234567A",
     "status": "GRAY",
-    "ward" : "A1",
+    "ward" : "Class A",
     "discharge" : "24/01/2023 1800"
+  } ],
+  "wards" : [ {
+    "name" : "Waiting Room",
+    "capacity" : 10
+  }, {
+    "name" : "Class A",
+    "capacity" : 30
+  }, {
+    "name" : "Class B",
+    "capacity" : 30
+  }, {
+    "name" : "Class C",
+    "capacity" : 30
+  }, {
+    "name" : "ICU",
+    "capacity" : 40
   } ]
 }
