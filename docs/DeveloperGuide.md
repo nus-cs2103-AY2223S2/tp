@@ -70,7 +70,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+The following sections give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
