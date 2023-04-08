@@ -92,6 +92,8 @@ forgetting about a client!
 
 * Meetings displayed when app is opened initially are those meetings for the current day, and user input of 'listMeeting' is required to list all meetings stored in FAid
 
+* ARG1|ARG2 in format means only one ARG1 or ARG2 must be a part of the user input but not both
+
 </div>
 
 ### Viewing help : `help`
@@ -256,7 +258,7 @@ Notes:
 
 Finds meetings from the address book based on the date of meeting or person index but not both
 
-Format: `meetingFind DATE or CLIENT_INDEX `
+Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 

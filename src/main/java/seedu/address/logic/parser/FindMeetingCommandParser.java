@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
+import java.time.LocalDate;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-
-import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindMeetingCommand;
@@ -21,7 +20,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
     public FindMeetingCommand parse(String userInput) throws ParseException {
         if (userInput.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_MISSING_ARGUMENTS, FindMeetingCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_MISSING_ARGUMENTS, FindMeetingCommand.MESSAGE_USAGE)
             );
         } else if (userInput.contains("-")) {
             LocalDate meetingStart = ParserUtil.parseDate(userInput);
