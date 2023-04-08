@@ -9,19 +9,19 @@ for the clients. The user interacts with it using a CLI, and it has a GUI create
 It is written in Java. <br>
 Given below are my contributions to the project.
 
-* **New Feature**: Added *Weight* class to client and enhanced **Add** and **Edit** Command.
+* **New Class**: Added *Weight* class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit his/her weight.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
     weight of his/her clients which makes it easier for the client to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Added *Goal* class to client and enhanced **Add** and **Edit** Command.
+* **New Class**: Added *Goal* class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit the goal of the client. (Optional attribute)
   * Justification: This feature improves the product significantly because a user may want set goals of his client
     so that he can personalize exercises to be able to meet their goals.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Added *Gender* class to client and enhanced **Add** and **Edit** Command.
+* **New Class**: Added *Gender* class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit the Gender of the client.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
     gender of his/her clients which makes it easier to keep track.
@@ -79,15 +79,11 @@ Given below are my contributions to the project.
   * Managed and created labels to organise issues and pull requests.
   * Authored 38 issues, including User Stories.
   * Reviewed 11 pull requests to ensure quality and consistency across the code base.
-  * Refactored entire code-base to suit FitBook.
+  * Refactored entire code-base to suit naming conventions for FitBook.
   * Handled miscellaneous administrative tasks including:
     * Setting up project website.
     * Enabling assertions in `build.gradle`.
     * `v1.3(final)`(1 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
   * User Guide:
@@ -98,5 +94,5 @@ Given below are my contributions to the project.
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
     * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`,
 * **Community**:
-   * PRs reviewed: [\#162](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/162), [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117), [\#110](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/110), [\#110](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/110), [\#105](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/105), [\#110](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/110), [\#99](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/99), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#84](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/84), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#82](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/82), [\#77](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/77), [\#74](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/74), [\#57](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/57)
+   * PRs reviewed: [\#162](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/162), [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117), [\#105](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/105), [\#99](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/99), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#84](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/84), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#82](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/82), [\#77](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/77), [\#74](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/74), [\#57](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/57)
    * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/dfordarius/ped))
