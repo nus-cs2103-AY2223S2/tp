@@ -54,17 +54,15 @@ deactivate AddCommandParser
 
 AddFormCommand -> Model : addRecipe(recipeToAdd)
 activate Model
-
-Model -> AddFormCommand : result
 deactivate Model
 
-AddFormCommand --> RecipeBookParser : a
+AddFormCommand --> RecipeBookParser : result
 deactivate AddFormCommand
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddFormCommand -[hidden]-> RecipeBookParser
 
-RecipeBookParser --> LogicManager : a
+RecipeBookParser --> LogicManager : result
 deactivate RecipeBookParser
 
 
