@@ -238,8 +238,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Timetable feature
-#### Proposed Implementation
+### Timetable feature
+#### Implementation
 
 Given below is an example usage scenario and how the timetable mechanism behaves at each step.
 
@@ -295,8 +295,8 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory.
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Statistics feature
-#### Proposed Implementation
+### Statistics feature
+#### Implementation
 
 Given below is an example usage scenario and how the statistics mechanism behaves at each step.
 
@@ -330,8 +330,8 @@ The following sequence diagram shows how the statistics operation works:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Delivery Job System
-#### Proposed Implementation
+### Delivery Job System
+#### Implementation
 
 Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
 
@@ -631,7 +631,7 @@ Use case resumes from step 5
 
 <b>Extensions:</b>
 * 2a. date and time of reminder is not provide.
-    * 2a1. System will promopt user again.
+    * 2a1. System will prompt user again.
     Use case resumes from step 1.
 </pre>
 </details>
@@ -738,3 +738,40 @@ has been activated.
    1. Prerequisites: Assign a job to an appropriate timetable slot.
    2. Test case: Once current time is 20 minutes before the next timetable slot (e.g. 10:40 to 10:59), a notification would pop up for the number of jobs assigned to the next timetable slot.
 
+### Timetable
+
+1. Display timetable for specific week containing a specific date from Main Window
+    1. Prerequisites: None.
+    2. Command: `timetable` (Show timetable of current week - LocalDate.now()) or `timetable date date/YYYY-mm-DD`. The date should not be left empty. Alternative, for `timetable` command, user can use GUI mode instead: Menu bar > Timetable > Scheduled jobs.
+    3. The output box in the window should show a message confirming that Timetable window is opened for the specific week containing the input date.
+    4. The system should open Timetable for the specific week, showing job list in respective day and slot (if there are any jobs for that day - else, the column for the day will be empty).
+
+2. Display list of unscheduled jobs (i.e. jobs with invalid date and slot)
+    1. Prerequisites: None.
+    2. Command: `timetable_unscheduled` or GUI mode: Menu bar > Timetable > Unscheduled jobs.
+    3. The output box in the Main window should show a message confirming that Unscheduled job is opened for the specific week.
+    4. The system should open the Unscheduled Window, showing list of unscheduled jobs and total number of unscheduled jobs.
+
+3. Display list of completed jobs 
+    1. Prerequisites: None.
+    2. Command: `timetable_completed` or GUI mode: Menu bar > Timetable > Completed jobs.
+    3. The output box in the Main window should show a message confirming that Completed job is opened for the specific week.
+    4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
+
+4. Display timetable for specific week containing a specific date from Timetable Window
+    1. Prerequisites: None.
+    2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
+    3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
+    4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
+
+
+
+### Appendix: Effort
+As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on how to display each and every window that we have. This was quite challenging as we had to learn and design the structures of the windows and components so that it follows a good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we tried to include commands for users to switch to different windows. 
+
+Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to work with and update the code base to support different entity types - for example, `Delivery Job` and `Reminder`. With the extensions that we planned to do, we also had to update the Parser to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
+
+For Timetable Window, as it is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly. Moreover, the implementation was also challenging as it required changes to the existing commands. We also had to decide on the design of the Timetable Window, and learn to use the `ListView` class in our timetable.
+
+
+Overall, the Team Project for us was quite challenging, as it requires us to learn to work as a team and help each other. We had to divide the work among ourselves so that everyone can get a grasp of and understand the code base. Understanding and updating the code base was quite tough at first, due to high levels of abstraction and the amount of classes that AB3 has. We tried to break it down into small tasks and understand it little by little each week. We learnt to work as a team and contributed, reviewed and help to debug each other's work through weekly meetings and constant updates. Distributing the work and assigning small task to each member helped us gain more confidence throughout the project. 
