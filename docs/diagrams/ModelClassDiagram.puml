@@ -16,6 +16,7 @@ together {
     Class AddressBook
     Class UserPrefs
     Class UserData
+    Class UndoManager
 }
 
 Class UniquePersonList
@@ -41,6 +42,7 @@ Model .down.> ReadOnlyUserData
 ModelManager -down-> "1" AddressBook
 ModelManager -down-> "1" UserPrefs
 ModelManager -down-> "1" UserData
+ModelManager-down-> "1" UndoManager
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -55,5 +57,5 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> "~* filtered" Person
 @enduml
