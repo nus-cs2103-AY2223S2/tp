@@ -33,7 +33,7 @@ public class ExpenseTest {
 
     @Test
     public void toStringTest() {
-        assertEquals("Expense{name='test', amount=1.0, date=null, category='Miscellaneous'}", expense.toString());
+        assertEquals("Name: test, Amount: $1.0, Date: null, Category: Miscellaneous", expense.toString());
     }
 
     @Test
