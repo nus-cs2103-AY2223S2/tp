@@ -75,9 +75,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-<div style="page-break-after: always;"></div>
-
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the partial *Class Diagram* below.
 
 <p align="center">
 
@@ -91,11 +89,11 @@ The following sections give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java). The partial Class Diagram below showcases the main classes that reside in UI.
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java). The partial *Class Diagram* below showcases the main classes that reside in UI.
 
 <p align="center">
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="500" />
 
  </p>
  
@@ -116,19 +114,19 @@ Different types of information are rendered by different components, each of whi
 
 <p align="center">
 
-![Subclasses of Page abstract class](images/PageClasses.png)
+<img src="images/PageClasses.png" width="400" />
 
  </p>
  
 <div style="page-break-after: always;"></div>
 
-The generation of a `Page` is as such: 
+**How is a `Page` generated** 
 
 When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The Sequence Diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
 
 <p align="center">
 
-![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
+ <img src="images/PageSequenceDiagram.png" width="600" />
 
  </p>
  
