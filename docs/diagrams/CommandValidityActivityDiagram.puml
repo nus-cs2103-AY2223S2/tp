@@ -2,8 +2,8 @@
 
 start
 :User enters command;
-
-if (Checking validity of command in current application mode) then ([command is valid])
+:Check validity of command in current application mode;
+if () then ([command is valid])
     :Execute command;
     :Display Command Result on Result Display;
 else ([else])
