@@ -18,10 +18,55 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 
 ---
 
-<!-- TODO: Add this after everything is finalised  -->
-
-- Table of Contents
-  {:toc}
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add module, lecture, and video feature](#add-module-lecture-and-video-feature)
+  - [Edit module, lecture, and video feature](#edit-module-lecture-and-video-feature)
+  - [Delete module, lecture, and video feature](#delete-module-lecture-and-video-feature)
+  - [Mark / UnMark video feature](#mark--unmark-video-feature)
+  - [List module, lecture and video feature](#list-module-lecture-and-video-feature)
+  - [Find module, lecture and video feature](#find-module-lecture-and-video-feature)
+  - [Navigation feature](#navigation-feature)
+  - [Tag module, lecture, and video feature](#tag-module-lecture-and-video-feature)
+  - [Untag module, lecture, and video feature](#untag-module-lecture-and-video-feature)
+  - [Import archived data feature](#import-archived-data-feature)
+  - [Exporting data feature](#exporting-data-feature)
+  - [Clear feature](#clear-feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [List Modules](#list-modules)
+  - [List Lectures of a Module](#list-lectures-of-a-module)
+  - [List Videos of a Lecture](#list-videos-of-a-lecture)
+  - [Find Modules](#find-modules)
+  - [Find Modules by Tag](#find-modules-by-tag)
+  - [Find Lectures of a Module](#find-lectures-of-a-module)
+  - [Find Lectures of a Module by Tag](#find-lectures-of-a-module-by-tag)
+  - [Find Videos of a Lecture](#find-videos-of-a-lecture)
+  - [Find Videos of a Lecture by Tag](#find-videos-of-a-lecture-by-tag)
+  - [Tag a Module](#tag-a-module)
+  - [Tag a Lecture](#tag-a-lecture)
+  - [Tag a Video](#tag-a-video)
+  - [Untag a Module](#untag-a-module)
+  - [Untag a Lecture](#untag-a-lecture)
+  - [Untag a Video](#untag-a-video)
+  - [Export All Modules to a File](#export-all-modules-to-a-file)
+  - [Import Modules from a File](#import-modules-from-a-file)
 
 ---
 
@@ -170,7 +215,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -2251,7 +2296,7 @@ TODO: to be removed
 
 | Test Case                                                                                                                             |                 Expected Result                 |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
-| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] | 
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] |
 | 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
 | 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
 | 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
@@ -2272,5 +2317,3 @@ TODO: to be removed
 | 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
 | 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
 | 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
-
-
