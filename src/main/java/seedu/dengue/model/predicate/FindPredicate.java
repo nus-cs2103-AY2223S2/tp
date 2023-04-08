@@ -1,5 +1,7 @@
 package seedu.dengue.model.predicate;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 import java.util.Set;
 
@@ -37,6 +39,13 @@ public class FindPredicate extends PredicateUtil<Person> {
 
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
                          Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
+        requireNonNull(name);
+        requireNonNull(subPostal);
+        requireNonNull(age);
+        requireNonNull(date);
+        requireNonNull(variants);
+        requireNonNull(dateRange);
+        requireNonNull(ageRange);
         this.name = name;
         this.subPostal = subPostal;
         this.age = age;

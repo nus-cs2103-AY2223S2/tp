@@ -1,7 +1,8 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dengue.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -11,7 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.predicate.FindPredicate;
+import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.ContinuousData;
+import seedu.dengue.model.person.Date;
+import seedu.dengue.model.person.Name;
+import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.range.EndAge;
 import seedu.dengue.model.range.EndDate;
 import seedu.dengue.model.range.Range;
@@ -35,11 +40,19 @@ public class FindPredicateTest {
     public FindPredicateTest() throws ParseException {
     }
 
-
     @BeforeEach
     public void setUp() {
         this.testName = Optional.of(new Name("ALICE"));
     }
+
+    //test null
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()
+                -> new FindPredicate(null, null, null, null, null, null, null));
+    }
+
+    //test keywords
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
 
@@ -60,15 +73,16 @@ public class FindPredicateTest {
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, emptyAgeRange);
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
+
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
 
-        // Similar name (superstring)
+        // similar name (superstring)
         FindPredicate predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, emptyAgeRange);
         assertFalse(predicate.test(new PersonBuilder().withName("Alicia").build()));
 
-        // Non-matching keyword
+        // non-matching keyword
         testName = Optional.of(new Name("Carol"));
         predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, emptyAgeRange);
@@ -78,8 +92,8 @@ public class FindPredicateTest {
     @Test
     public void test_datesWithinRange_returnsTrue() throws ParseException {
         // Date falls within range
-        StartDate start = new StartDate(Optional.<Date>of(new Date("2000-01-01")));
-        EndDate end = new EndDate(Optional.<Date>of(new Date("2009-01-01")));
+        StartDate start = new StartDate(Optional.of(new Date("2000-01-01")));
+        EndDate end = new EndDate(Optional.of(new Date("2009-01-01")));
         Range<Date> testRange = ContinuousData.generateRange(start, end);
         FindPredicate predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, testRange, emptyAgeRange);
@@ -98,8 +112,8 @@ public class FindPredicateTest {
 
     @Test
     public void test_datesOutsideRange_returnsFalse() throws ParseException {
-        StartDate start = new StartDate(Optional.<Date>of(new Date("2000-01-01")));
-        EndDate end = new EndDate(Optional.<Date>of(new Date("2009-01-01")));
+        StartDate start = new StartDate(Optional.of(new Date("2000-01-01")));
+        EndDate end = new EndDate(Optional.of(new Date("2009-01-01")));
         Range<Date> testRange = ContinuousData.generateRange(start, end);
         FindPredicate predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, testRange, emptyAgeRange);
@@ -115,8 +129,8 @@ public class FindPredicateTest {
     @Test
     public void test_agesWithinRange_returnsTrue() throws ParseException {
         // ages fall within range
-        StartAge start = new StartAge(Optional.<Age>of(new Age("2")));
-        EndAge end = new EndAge(Optional.<Age>of(new Age("99")));
+        StartAge start = new StartAge(Optional.of(new Age("2")));
+        EndAge end = new EndAge(Optional.of(new Age("99")));
         Range<Age> testRange = ContinuousData.generateRange(start, end);
         FindPredicate predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, testRange);
@@ -135,8 +149,8 @@ public class FindPredicateTest {
 
     @Test
     public void test_agesOutsideRange_returnsFalse() throws ParseException {
-        StartAge start = new StartAge(Optional.<Age>of(new Age("2")));
-        EndAge end = new EndAge(Optional.<Age>of(new Age("99")));
+        StartAge start = new StartAge(Optional.of(new Age("2")));
+        EndAge end = new EndAge(Optional.of(new Age("99")));
         Range<Age> testRange = ContinuousData.generateRange(start, end);
         FindPredicate predicate = new FindPredicate(
                 testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, emptyDateRange, testRange);
@@ -150,10 +164,10 @@ public class FindPredicateTest {
 
     @Test
     public void test_onesidedRangesForDateAndAge_returnsTrue() throws ParseException {
-        StartAge startAge = new StartAge(Optional.<Age>of(new Age("50")));
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
         EndAge endAge = new EndAge(Optional.empty());
         StartDate startDate = new StartDate(Optional.empty());
-        EndDate endDate = new EndDate(Optional.<Date>of(new Date("2009-01-01")));
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
 
         Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
         Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
@@ -163,11 +177,115 @@ public class FindPredicateTest {
 
         assertTrue(predicate.test(
                 new PersonBuilder().withName(
-                        testName.get().toString())
+                                testName.get().toString())
                         .withAge("199")
                         .withDate("1992-01-01")
                         .build()));
 
     }
 
+    @Test
+    public void test_oneSidedRangesForDateAndAge_returnsFalse() throws ParseException {
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
+        EndAge endAge = new EndAge(Optional.empty());
+        StartDate startDate = new StartDate(Optional.empty());
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
+
+        Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
+        Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
+
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, ageRange);
+
+        assertFalse(predicate.test(
+                new PersonBuilder().withName(
+                                testName.get().toString())
+                        .withAge("0")
+                        .withDate("2010-01-01")
+                        .build()));
+    }
+
+    @Test
+    public void test_oneSidedRangesForDateTwoSidedRangesForAge_returnsFalse() throws ParseException {
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
+        EndAge endAge = new EndAge(Optional.of(new Age("100")));
+        StartDate startDate = new StartDate(Optional.empty());
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
+
+        Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
+        Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
+
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, ageRange);
+
+        assertFalse(predicate.test(
+                new PersonBuilder().withName(
+                                testName.get().toString())
+                        .withAge("75")
+                        .withDate("2010-01-01")
+                        .build()));
+    }
+
+    @Test
+    public void test_oneSidedRangesForDateTwoSidedRangesForAge_returnsTrue() throws ParseException {
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
+        EndAge endAge = new EndAge(Optional.of(new Age("100")));
+        StartDate startDate = new StartDate(Optional.empty());
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
+
+        Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
+        Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
+
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, ageRange);
+
+        assertTrue(predicate.test(
+                new PersonBuilder().withName(
+                                testName.get().toString())
+                        .withAge("75")
+                        .withDate("2008-01-01")
+                        .build()));
+    }
+
+    @Test
+    public void test_twoSidedRangesForDateOneSidedRangesForAge_returnsFalse() throws ParseException {
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
+        EndAge endAge = new EndAge(Optional.empty());
+        StartDate startDate = new StartDate(Optional.of(new Date("2000-01-01")));
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
+
+        Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
+        Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
+
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, ageRange);
+
+        assertFalse(predicate.test(
+                new PersonBuilder().withName(
+                                testName.get().toString())
+                        .withAge("0")
+                        .withDate("2008-01-01")
+                        .build()));
+    }
+
+    @Test
+    public void test_twoSidedRangesForDateOneSidedRangesForAge_returnsTrue() throws ParseException {
+        StartAge startAge = new StartAge(Optional.of(new Age("50")));
+        EndAge endAge = new EndAge(Optional.empty());
+        StartDate startDate = new StartDate(Optional.of(new Date("2000-01-01")));
+        EndDate endDate = new EndDate(Optional.of(new Date("2009-01-01")));
+
+        Range<Age> ageRange = ContinuousData.generateRange(startAge, endAge);
+        Range<Date> dateRange = ContinuousData.generateRange(startDate, endDate);
+
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants, dateRange, ageRange);
+
+        assertTrue(predicate.test(
+                new PersonBuilder().withName(
+                                testName.get().toString())
+                        .withAge("75")
+                        .withDate("2008-01-01")
+                        .build()));
+    }
 }
