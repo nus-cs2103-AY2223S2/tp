@@ -771,7 +771,7 @@ Expected Output Command Output Box : Salaries sorted in asc.
 
 ### Sort all roles by deadline
 
-Similar to the manual testing of [sort all roles by salary section](#Sort all roles by salary).
+Similar to the manual testing of [sort all roles by salary section](#sort-all-roles-by-salary).
 
 ### View the information of a Role
 
