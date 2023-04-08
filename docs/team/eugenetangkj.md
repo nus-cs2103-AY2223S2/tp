@@ -66,7 +66,7 @@ My code contributions can be found on
   [\#102](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/102),
   [\#109](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/109),
   [\#204](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/204)
-  * Documented the explanation for the different parts in InternBuddy's GUI, accompanied by a graphic.
+  * Documented the explanation for the different parts in InternBuddy's GUI.
   * Wrote up the command information, explaining the format and constraints of commands and
     fields in InternBuddy.
   * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands.
@@ -82,7 +82,6 @@ My code contributions can be found on
   * Defined product scope by identifying InternBuddy's target audience and value proposition, as well as drafted user stories.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
 
-  
 ### Others
 - Provided non-trivial PR reviews for
   [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
