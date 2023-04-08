@@ -12,13 +12,13 @@ import seedu.address.model.tank.Tank;
 public class PH extends Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "PH should be a number, and it should not be blank";
+            "PH should be a number (max 1 d.p) between 0 and 14, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX_VALUE = "^-?\\d+(\\.\\d+)?$";
+    public static final String VALIDATION_REGEX_VALUE = "^-?\\d+(?:\\.\\d{1})?$";
 
     public static final String VALIDATION_REGEX_DATE =
             "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4} (?:[01]\\d|2[0-3]):[0-5]\\d$";
@@ -45,8 +45,11 @@ public class PH extends Reading {
      * @return true if valid
      */
     public static boolean isValidPH(String value, String date) {
-        return value.matches(VALIDATION_REGEX_VALUE)
-                && date.matches(VALIDATION_REGEX_DATE);
+        if (value.matches(VALIDATION_REGEX_VALUE) && date.matches(VALIDATION_REGEX_DATE)) {
+            double valueDouble = Double.parseDouble(value);
+            return (valueDouble >= 0 && valueDouble <= 14);
+        }
+        return false;
     }
 
     public double getValue() {
