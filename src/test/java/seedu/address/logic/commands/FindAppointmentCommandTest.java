@@ -22,7 +22,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.AppointmentHasOverlapPredicate;
 import seedu.address.model.appointment.TimeInTimeslotPredicate;
-import seedu.address.testutil.FxTest;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
