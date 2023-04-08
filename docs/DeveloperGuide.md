@@ -233,20 +233,20 @@ This section describes some noteworthy details on how certain features are imple
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                               | So that I can…​                                                         |
-|----------|------------------|--------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user         | see usage instructions                     | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user             | easily save events after closing the app   | generate it again when I start the app                                  |
-| `* * *`  | user             | add a event's schedule into the app       | see their schedules                                                     |
-| `* * *`  | user             | delete an event from the app               | remove events that are no longer scheduled                              |
-| `* *`    | forgetful user   | find my next event                         | see the upcoming event without having to check every events myself      |
-| `* *`    | user             | undo accidental deletions                  | easily restore accidents in scheduling                                  |
-| `* *`    | teacher          | find a free timeslot in my schedule        | schedule a timeslot for student consultations                           |
-| `* *`    | user             | find an event by name                      | locate details of events without having to go through the entire list   |
-| `* *`    | user             | edit my schedule                           | make last minute changes to events                                      |
-| `* *`    | user             | be able to schedule many events            | schedule as many events as I want                                       |
-| `* *`    | user             | be able to have more than one scheduler    | generate different schedules for differnt events                        |
-| `*`      | unmotivated user | have motivational quotes                   | feel motivated in my day                                                |
+| Priority | As a …            | I want to …                               | So that I can…                                                        |
+|----------|-------------------|-------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new user          | see usage instructions                    | refer to instructions when I forget how to use the App                |
+| `* * *`  | user              | easily save events after closing the app  | generate it again when I start the app                                |
+| `* * *`  | user              | add a event's schedule into the app       | see their schedules                                                   |
+| `* * *`  | user              | delete an event from the app              | remove events that are no longer scheduled                            |
+| `* *`    | forgetful user    | find my next event                        | see the upcoming event without having to check every events myself    |
+| `* *`    | user              | undo accidental deletions                 | easily restore accidents in scheduling                                |
+| `* *`    | teacher           | find a free timeslot in my schedule       | schedule a timeslot for student consultations                         |
+| `* *`    | user              | find an event by name                     | locate details of events without having to go through the entire list |
+| `* *`    | user              | edit my schedule                          | make last minute changes to events                                    |
+| `* *`    | user              | be able to schedule many events           | schedule as many events as I want                                     |
+| `* *`    | user              | be able to have more than one scheduler   | generate different schedules for differnt events                      |
+| `*`      | unmotivated user  | have motivational quotes                  | feel motivated in my day                                              |
 
 *{More to be added}*
 
