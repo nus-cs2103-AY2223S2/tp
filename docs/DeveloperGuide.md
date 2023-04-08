@@ -758,7 +758,18 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. _{ more test cases …​ }_
 
-1. _{ more test cases …​ }_
+## **Appendix: Effort**
+
+
+## **Appendix: Planned enhancements**
+
+1. For commands that take an index in the preamble, the current error message when integers of 0 or less is `Invalid command format!` followed by the usage message of the command, which is too general. We plan to change the error message to reference the incorrect index instead: `The provided index should be greater than 0`.
+2. For commands that take prefixes, providing an invalid prefix after a valid one results in an error message regarding the constraints of the valid prefix, which could be confusing. We plan to change the error message to point out the invalid prefix and show the command usage.
+3. Inputs in the app currently have inconsistent character handling for languages other than English. We plan to unify this handling behaviour throughout the app.
+4. The user is currently able to fill nonsensical information into certain fields (e.g., `Psychology` as Major with `Computing` as Faculty, or `McSpicy` as Gender). We plan to use readily available information to build a series of checks that would warn the user for such discrepancies.
+5. The `Tags` and `Favourite` fields for the user currently exist but are not reflected in the `Me` tab as we felt it to be irrelevant from the perspective of the user. However, they can be useful with the introduction of contact import and export features, hence we plan to build a section for the user to customise such information when they export their `Me` page for others to import as a contact.
+6. Events happening on the same day are currently ordered by their index. We plan to adopt a chronological order instead as it is more intuitive to the user.
+7. The command line currently requires users to know the command formats exactly, which steepens the learning curve and may slow down some users. We plan to add fuzzy command recognition and autocomplete features for a better user experience.
