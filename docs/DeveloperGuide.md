@@ -254,9 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
 <details open markdown="block">
-<summary>
-<strong>Use case: Add an event</strong>
-</summary>
+<summary>**Use case: Add an event**</summary>
 
 **MSS**
 1. User requests to add an event
@@ -267,7 +265,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The event already exist.
     * 1a1. System shows an error message.  
       Use case ends.
-
 * 2a. The given event format invalid.
     * 2a1. System shows an error message.  
       Use case ends.
@@ -275,9 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details open markdown="block">
-<summary>
-<strong>Use case: Delete an event</strong>
-</summary>
+<summary>**Use case: Delete an event**</summary>
 
 **MSS**
 1.  User requests to list events
@@ -287,19 +282,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
 * 1a. The list is empty.
   Use case ends.
-
 * 2a. The given index is invalid.
     * 2a1. System shows an error message.  
       Use case resumes at step 2.
+
 </details>
 
 <details open markdown="block">
-<summary markdown="span">
-**Use case: Undo a delete**
-</summary>
+<summary>**Use case: Undo a delete**</summary>
 
 **MSS**
 1. User requests to undo the recent delete
@@ -310,7 +302,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. New event added duplicate of recent deleted event.
     * 1a1. System shows an error message.  
       Use case ends.
-
 * 2a. The list is empty.  
   Use case ends.
 
