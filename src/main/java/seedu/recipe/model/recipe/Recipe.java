@@ -21,8 +21,7 @@ public class Recipe {
     // Message constraints for recipe and validation regex will
     // only be used for the find command at the moment
     public static final String MESSAGE_CONSTRAINTS =
-            "A recipe should only contain alphanumeric characters, "
-                    + "spaces, and these punctuation marks `,.!?`, and it should not be blank";
+            "A recipe should only be a word or sentence.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum} ,.!?]*";
 

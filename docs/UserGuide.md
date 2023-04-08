@@ -68,13 +68,15 @@ Here is a short overview of the features and capabilities of **CookHub**:
 
 6. Refer to the [Features](#features) below for details of each command.
 
+[Back to top](#top)
+
 <hr style="border:2px solid gray">
 
 ## Understanding the Graphical User Interface (GUI)
 In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
 
 <p align="center" width="100%">
-    <img src="images/annotated/GUI.svg" width="120%">
+    <img src="images/annotated/GUI.png" width="100%">
 </p>
 
 
@@ -87,6 +89,7 @@ In order to make the most out of your experience in CookHub, let us understand t
 | Recipe Details Panel  | A panel that displays information on the recipe that is clicked in `Recipe List Panel`.                                         |
 | Recipe List Panel     | A panel that displays a list of all saved recipes. <br/>Click on each recipe to view its details in the `Recipe Details Panel`. |
 
+[Back to top](#top)
 
 <hr style="border:2px solid gray">
 
@@ -112,6 +115,10 @@ edit 1 d/Disgusting
 This command has a similar format to the above `add` command, except that the `edit` is followed by a number. The number `1` signifies that 
 you want to edit the first recipe in **CookHub**. Similarly to the `add` command, the `d/` flag signifies that the *description* of the recipe should be 'Disgusting'.
 In essence, this command edits the description of the first recipe in **CookHub** to 'Disgusting'.
+
+[Back to top](#top)
+
+<hr style="border:2px solid gray">
 
 ## Features
 
@@ -142,12 +149,12 @@ In essence, this command edits the description of the first recipe in **CookHub*
     - *QUANTITY*, *PRICE_PER_UNIT* must be numeric
   - e.g. *INGREDIENT* can be `White wine vinegar, 2, tbsp, 0.10`
   - e.g. *INGREDIENT* can be `Large egg, 4, unit, 0.80`
-  
-[Back to top](#top)
 
 </div>
 
----
+[Back to top](#top)
+
+<hr style="border:2px solid gray">
 
 ### Beginners' commands
 
@@ -156,7 +163,11 @@ In essence, this command edits the description of the first recipe in **CookHub*
 This command adds a recipe to your recipe book.
 
 Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`<br>
-:bulb: Reminder: A recipe can have one or more ingredients, and one or more steps. A recipe can also have zero or more tags.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- A recipe can have one or more ingredients, and one or more steps. <br/>
+- A recipe can also have zero or more tags.
+</div>
 
 Below shows how you can add an *Orange juice* recipe.
 <p align="center" width="100%">
@@ -183,7 +194,7 @@ multiple `i/` command flags are allowed. A recipe similar to the image shown bel
     <img src="images/AddError.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 #### Edit a recipe: `edit RECIPE_NUMBER`
@@ -191,7 +202,9 @@ This command edits a recipe in your recipe book.
 
 Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`
 
-:warning: CAUTION: At least one of the command flags need to be present
+<div markdown="span" class="alert alert-warning">:warning: **WARNING:** <br/>
+- At least one of the command flags need to be present.
+</div>
 
 - The *RECIPE_NUMBER* should refer to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
@@ -220,7 +233,7 @@ Example:
     <img src="images/EditError.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 #### Delete a recipe : `delete RECIPE_NUMBER`
@@ -258,6 +271,7 @@ Our initial recipe book:
 <img src="images/DeleteError.png" width=500 height=400>
 </p>
 
+[Back to top](#top)
 
 ---
 #### List recipe : `list`
@@ -271,7 +285,7 @@ Example: `list` will list all the recipes similar to the image shown below:
     <img src="images/ListResult.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 #### Clear recipe : `clear`
@@ -286,7 +300,8 @@ Example: `clear` will clear all recipes similar to the image shown below:
     <img src="images/ClearResult.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+
+[Back to top](#top)
 
 ---
 ### Advanced commands
@@ -297,7 +312,9 @@ This command finds the recipes in your recipe book according to what you are loo
 
 Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
-:warning: WARNING: Only one command flag can be present!
+<div markdown="span" class="alert alert-warning">:warning: **WARNING:** <br/>
+- Only one command flag can be present!
+</div>
 
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
@@ -305,7 +322,10 @@ Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 - the flag `i/` seaches only through the recipe's ingredient names
 - the flag `tag/` searches only through the recipe's tags
 
-:exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity, unit of measurement, or price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
+<div markdown="span" class="alert alert-warning">:exclamation: **Constraint:** <br/>
+- *find i/INGREDIENT* should only be used to find the name of the ingredients, and not its quantity, unit of measurement, or price per unit. e.g. *find i/lemons* is OK, but *find i/30g* should not be used!
+</div>
+
 
 Below shows how you can find for eggs in your recipe book with CookHub.
 <p align="center" width="100%">
@@ -340,7 +360,7 @@ shown below:
     <img src="images/FindError2.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 #### Search recipe with limited ingredients: `only`
@@ -348,7 +368,10 @@ shown below:
 This command searches for recipes that can be made with only those ingredients.
 
 Format: `only INGREDIENT...`
-:bulb: Reminder: One or more ingredients can be provided
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- One or more ingredients can be provided. e.g. *only egg cheese*
+</div>
 
 Examples:
 
@@ -378,7 +401,7 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 <img src="images/OnlyError.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 #### Sort recipe by cost: `sort ORDER`
@@ -389,6 +412,10 @@ Format: `sort ORDER`
 - *ORDER* can only be `asc` or `desc`.
 - `asc` is used for ascending order, and `desc` is used for descending order
 - The price of a recipe is determined by cost of all ingredients required.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Constraint:** <br/>
+- You can only sort recipes in ascending or descending order of price.
+</div>
 
 Below shows how you can sort your recipe book in ascending order.
 <p align="center" width="100%">
@@ -408,16 +435,20 @@ Our initial recipe book:
     <img src="images/SortResult.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
-#### Get a list of groceries: `groceries RECIPE_NUMBER, ...`
+#### Get list of groceries: `groceries RECIPE_NUMBER, ...`
 
 Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes.
 
 Format: `groceries RECIPE_NUMBER, ...`
 - If two or more recipes share ingredients, their quantities will be automatically added together.
 - The `indices` have to be separated by a comma (`,`).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- The ellipses means you can input multiple recipe numbers! 
+</div>
 
 Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
 <p align="center" width="100%">
@@ -434,7 +465,7 @@ Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will 
     <img src="images/GroceriesResult.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
 
@@ -449,6 +480,10 @@ Format: `fp COMPARATOR PRICE`
 - `>` is used to represent "more than"
 - *PRICE* can take on any positive real number
 - The price of a recipe is determined by cost of all ingredients required.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- The only comparators are < or >. If you really want to search for recipes that are exactly a certain price, e.g. $4.44, you can use *fp > 4.43* and look at the first few results!
+</div>
 
 Below shows how you can filter for all recipes with prices *less than 4.50*.
 <p align="center" width="100%">
@@ -467,10 +502,10 @@ Our initial recipe book:
 <img src="images/FpResult.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
-#### Add a recipe to the favorites: `star RECIPE_NUMBER`
+#### Add recipe to favorites: `star RECIPE_NUMBER`
 
 This command adds the recipe at the specified *recipe number* into your favorites, which include all recipes 
 you like the most!
@@ -480,6 +515,10 @@ Format: `star RECIPE_NUMBER`
 - The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- Make sure to refresh the recipe list by either clicking on the recipe in the left panel or calling the *list* command to see the star added to the recipe!
+</div>
+
 Below shows how you can add the first recipe to your favourites.
 <p align="center" width="100%">
     <img src="images/annotated/starCommand.svg" width="100%">
@@ -488,21 +527,26 @@ Below shows how you can add the first recipe to your favourites.
 Examples:
 
 Our initial recipe book:
-
+<p align="center" width="100%">
 <img src="images/AddResult2.png" width=500 height=400>
+</p>
 
 - `star 1` will star the first recipe, as shown in the image below:
 
+<p align="center" width="100%">
 <img src="images/StarResult1.png" width=500 height=400>
+</p>
 
 - `star 2` will star the second recipe, as shown in the image below:
 
+<p align="center" width="100%">
 <img src="images/StarResult2.png" width=500 height=400>
+</p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
 ---
-#### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
+#### Remove recipe from favorites: `unstar RECIPE_NUMBER`
 
 This command removes the recipe at the specified *recipe number* from your favorites.
 
@@ -510,6 +554,10 @@ Format: `unstar RECIPE_NUMBER`
 
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- Make sure to refresh the recipe list by either clicking on the recipe in the left panel or calling the *list* command to see the star removed from the recipe!
+</div>
 
 Below shows you can remove the first recipe from your favourites.
 <p align="center" width="100%">
@@ -535,11 +583,13 @@ Our initial recipe book:
     <img src="images/UnstarResult2.png" width=500 height=400>
 </p>
 
-  [Back to top](#top)
+[Back to top](#top)
 
-#### List all recipes in the favorites : `favorites`
+---
 
-This command lists out all the recipes that you have added to your favorites.
+#### List recipes in favorites : `favorites`
+
+This command lists out all the recipes that you have added to your favorites (*all recipes with a star*).
 
 Format: `favorites`
 
@@ -560,7 +610,8 @@ Our initial recipe book:
 [Back to top](#top)
 
 ---
-#### Provide link to the user guide : `help`
+
+#### Provide link to user guide : `help`
 
 This command generates a link to our user guide.
 
@@ -572,13 +623,14 @@ This command generates a link to our user guide.
 Format: `help`
 
 [Back to top](#top)
+
 <hr style="border:2px solid gray">
 
 ### Saving the data
 
 CookHub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-  [Back to top](#top)
+---
 
 ### Editing the data file
 
@@ -589,13 +641,14 @@ update data directly by editing that data file.
 If your changes to the data file makes its format invalid, CookHub will discard all data and start with an empty data file at the next run.
 </div>
 
-[Back to top](#top)
+---
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 [Back to top](#top)
+
 <hr style="border:2px solid gray">
 
 ## FAQ
@@ -604,6 +657,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CookHub home folder.
 
 [Back to top](#top)
+
 <hr style="border:2px solid gray">
 
 ## Command summary
@@ -616,11 +670,23 @@ Format meanings:
 
 | Action                   | Format                  | Examples  |
 |--------------------------|-------------------------|-----------|
-| Delete Recipe            | delete RECIPE_NUMBER    | delete 1  |
-| Sort Recipes by price    | sort ORDER              | sort asc  |
-|  Filter Recipes by price | filter COMPARATOR PRICE | fp < 4.20 |
+| Add Recipe            | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`    | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
+| Edit Recipe            | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`    | `edit 1 t/Corndog`  |
+| Delete Recipe            | `delete RECIPE_NUMBER`   | `delete 1`  |
+| List Recipe            | `list`   | `list`  |
+| Clear Recipe            | `clear`   | `clear`  |
+| Find Recipe            | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
+| Search Recipe with limited ingredients           | `only INGREDIENT...`   | `only eggs flour`  |
+| Sort Recipes by price    | `sort ORDER`             | `sort asc`  |
+| Get list of groceries | `groceries RECIPE_NUMBER, ...` | `groceries 1, 3, 4` |
+| Filter Recipes by price | `filter COMPARATOR PRICE` | `fp < 4.20` |
+| Add Recipe to favorites | `star RECIPE_NUMBER` | `star 1` |
+| Remove Recipe from favorites | `unstar RECIPE_NUMBER` | `unstar 1` |
+| List Recipes in favorites | `favorites` | `favorites` |
+| Provide link to User Guide | `help` | `help` |
 
 [Back to top](#top)
+
 <hr style="border:2px solid gray">
 
 ## Glossary
@@ -638,5 +704,5 @@ Format meanings:
 
 
 
-[Back to top](#top)
 
+[Back to top](#top)
