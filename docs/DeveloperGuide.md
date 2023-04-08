@@ -548,6 +548,7 @@ _{More to be added}_
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
+- **Attribute**: A person's association. Examples include name, gender, phone number, email, company, location, occupation, job title, address, and status.
 - **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
 - **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Client. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
 
