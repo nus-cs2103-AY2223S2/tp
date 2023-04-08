@@ -326,6 +326,20 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Planned Enhancements
+
+**Mitigating the effects of malicious savefile edit**
+
+* Issue 1: An malicious user is able to modify the save file 
+  * Proposed solution: encrypting the save file and storing hash
+  
+
+* Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
+  * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
+  * Effects: Command `Deletecustomer` will delete the vehicle with id 5
+  * Proposed solution: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
+  * Note: This is applicable for all entries that have some form of mapping.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
