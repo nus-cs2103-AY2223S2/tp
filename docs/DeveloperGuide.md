@@ -216,7 +216,7 @@ Users now have the ability to find clients and projects using a greater number o
 
 When parsing find commands, the parser parses each possible parameter one-by-one. For example, users can find clients by name or by tags, so the `FindClientCommandParser` parses provided names and tags individually into a `NameContainsKeywordsPredicate` and `ClientContainsTagsPredicate` that are then combined into a `CombinedPredicate` object, as shown in the sequence diagram below where the arguments `name/Alice tag/friends` is parsed.
 
-<img src="images/FindSequenceDiagram.png" width="600" />
+<img src="images/FindSequenceDiagram.png" width="800" height="300" />
 
 The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
 
