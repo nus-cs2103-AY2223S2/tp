@@ -41,11 +41,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `find`, `addWeight` and `graph` [\#106](), [\#151]()
+        * Added documentation for the features `find`, `addWeight` and `graph` [\#106](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/106), [\#151](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/151)
     * Developer Guide:
-        * Added implementation details of the `find` feature.
-        * Added Use cases for `find`, `addWeight` and `graph`.
+        * Added implementation details of the `find` feature. [\#130](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/130)
+        * Added Use cases for `find`, `addWeight` and `graph`. [\#201](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/201/files)
 
 * **Community**:
-    * PRs reviewed: [\#102](), [\#134](), [\#136]()
+    * PRs reviewed: [\#102](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/102), [\#134](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/134), [\#136](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/136)
     * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/kalarisng/ped))
