@@ -84,8 +84,8 @@ public class AppointmentTest {
 
     @Test
     public void isValidDuration() {
-        // startTime == endTime -> returns false
-        assertFalse(Appointment.isValidDuration(LocalDateTime.now(), LocalDateTime.now()));
+        // startTime == endTime -> returns true
+        assertTrue(Appointment.isValidDuration(LocalDateTime.now(), LocalDateTime.now()));
 
         // startTime is after endTime -> returns false
         assertFalse(Appointment.isValidDuration(LocalDateTime.now().plusHours(1), LocalDateTime.now()));
