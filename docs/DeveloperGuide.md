@@ -906,21 +906,27 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 The current version of TeachMeSenpai certainly has its flaws and here are some of our plans for future enhancements to improve TeachMeSenpai further for TAs.
 
 ### Add/Edit
-**Feature flaw 1** : STUDENT_NAME is currently case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for student names is to check for case-insensitivity in `add` and `edit` in order to disallow duplicate names.
+#### Feature flaw 1
+STUDENT_NAME is currently case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for student names is to check for case-insensitivity in `add` and `edit` in order to disallow duplicate names.
 
-**Feature flaw 2** : STUDENT_NAME allows alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, STUDENT_NAME will be enhanced to allow alphabets, and symbols only.
+#### Feature flaw 2
+STUDENT_NAME allows alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, STUDENT_NAME will be enhanced to allow alphabets, and symbols only.
 
-**Feature flaw 3** : Duplicate TELEGRAM and PHONE are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
+#### Feature flaw 3
+Duplicate TELEGRAM and PHONE are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
 However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
 
-**Feature flaw 4** : The current `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
+#### Feature flaw 4
+The current `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
 
 ### Autocomplete
-**Feature flaw** : Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
+#### Feature flaw
+Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
 leads users to believe that their input (without `n/STUDENT_NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/STUDENT_NAME`.
 
 ### Find/Filter
-**Feature flaw** : Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
+#### Feature flaw
+Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
 
 Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
 
@@ -930,10 +936,12 @@ Let's say argument-less `find`/`filter` is allowed, the possible behaviours coul
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
 ### Ui
-**Feature flaw** : At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
+#### Feature flaw
+At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
 
 ### Error handling
-**Feature flaw** : The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
+#### Feature flaw
+The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
 
 [↑ Back to top](#table-of-contents)
 
