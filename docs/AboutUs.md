@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Pan Zai Ming
@@ -54,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/unwilledtangent.png" width="200px">
 
 [[github](https://github.com/UnwilledTangent)]
-[[portfolio](team/UnwilledTangent.md)]
+[[portfolio](team/unwilledtangent.md)]
 
 * Role: Software Developer
 * Responsibilities: UI

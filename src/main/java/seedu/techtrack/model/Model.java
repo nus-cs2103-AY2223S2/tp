@@ -36,44 +36,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' role book file path.
      */
     Path getRoleBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' role book file path.
      */
     void setRoleBookFilePath(Path roleBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code roleBook}.
+     * Replaces role book data with the data in {@code roleBook}.
      */
-    void setRoleBook(ReadOnlyRoleBook addressBook);
+    void setRoleBook(ReadOnlyRoleBook roleBook);
 
-    /** Returns the AddressBook */
+    /** Returns the RoleBook */
     ReadOnlyRoleBook getRoleBook();
 
     /**
-     * Returns true if a role with the same identity as {@code role} exists in the address book.
+     * Returns true if a role with the same identity as {@code role} exists in the role book.
      */
     boolean hasRole(Role role);
 
     /**
      * Deletes the given role.
-     * The role must exist in the address book.
+     * The role must exist in the role book.
      */
     void deleteRole(Role target);
 
     /**
      * Adds the given role.
-     * {@code role} must not already exist in the address book.
+     * {@code role} must not already exist in the role book.
      */
     void addRole(Role role);
 
     /**
      * Replaces the given role {@code target} with {@code editedRole}.
-     * {@code target} must exist in the address book.
-     * The role identity of {@code editedRole} must not be the same as another existing role in the address book.
+     * {@code target} must exist in the role book.
+     * The role identity of {@code editedRole} must not be the same as another existing role in the role book.
      */
     void setRole(Role target, Role editedRole);
 

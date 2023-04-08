@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -571,18 +570,23 @@ illustrates how the `MainWindow.java` file determines the type of display render
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…. | I want to …                                | So that I can…                                                              |
-|----------|--------|--------------------------------------------|-----------------------------------------------------------------------------|
-| ***      | user   | add contacts for companies                 | save these contacts to the corresponding role and send my application.      |
-| ***      | user   | add a job/internship to the program        | save all jobs/internship that im interested in applying for.                |
-| ***      | user   | view all the internships that I have added | view all the jobs/internship that I'm interested in.                        |
-| ***      | user   | delete company internship                  | Remove jobs/internship that might not interest me anymore.                  |
-| ***      | user   | Save data                                  | view my jobs/internship opportunities even after the application is closed. |
-| **       | user   | find by tags                               | filter by certain skills or notes of the job                                |
-| **       | user   | sort by salary                             | know which jobs/internship has a higher starting salary.                    |
-| **       | user   | sort by deadline                           | know which jobs/internship has upcoming deadlines.                          |
-| **       | user   | find companies                             | find relevant companies and their respective roles.                         |
-| **       | user   | use the UI with ease                       | quickly perform certain app operations                                      |
+| Priority | As a… | I want to…                           | So that I can…                                                        |
+|----------|-------|--------------------------------------|-----------------------------------------------------------------------|
+| ***      | user  | add contacts for roles               | save these contacts to the corresponding role and send my application |
+| ***      | user  | add salary for roles                 | compare the salaries of my roles                                      |
+| ***      | user  | add website for roles                | visit the websites of the companies for more information              |
+| ***      | user  | add deadline for roles               | understand when I need to apply the roles                             |
+| ***      | user  | add job description for roles        | find out more about the role before applying for the role             |
+| ***      | user  | add experience                       | convince my employer about my merits                                  |
+| ***      | user  | add a role to the program            | save all roles that I'm interested in applying for                    |
+| ***      | user  | view all the roles that I have added | view all the roles that I'm interested in                             |
+| ***      | user  | delete company role                  | remove roles that might not interest me anymore                       |
+| ***      | user  | save data                            | view my roles opportunities even after the application is closed      |
+| **       | user  | find by tags                         | filter by certain skills or notes of the role                         |
+| **       | user  | find by roles                        | find relevant companies and their respective roles                    |
+| **       | user  | sort by salary                       | know which roles have a higher starting salary                        |
+| **       | user  | sort by deadline                     | know which roles have the most urgent deadlines                       |
+| **       | user  | use the UI with ease                 | perform operations easier                                             |
 
 ### Use cases
 
@@ -746,31 +750,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-### Sort all roles by salary
-
-Prerequisite: There are roles stored in RoleBook with different salaries.
-
-Format: `salary asc`
-
-Expected Output in the Role List Box : Roles are sorted in ascending order starting from the highest salary.
-
-Expected Output Command Output Box : Salaries sorted in asc.
-
-### Sort all roles by deadline
-
-Similar to the manual testing of [sort all roles by salary section](#Sort all roles by salary).
-
-### View the information of a Role
-
-Prerequisite: There is at least 1 role shown in the Role List Box
-
-`view 1`
-
-Expected Output in the Role List Box : Still showing the same list as before.
-
-Expected Output Command Output Box : Details of first role in Role List Box shown. Displayed information includes the
-name, company, salary, deadline, experience, job description, email, contact and website of the role.
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
@@ -860,6 +839,29 @@ testers are expected to do more *exploratory* testing.
    
 1. Other incorrect delete commands to try: `name /n`, `name x`, `...`<br>
    Expected: Similar to previous.
+
+### Sort roles by salary
+
+1. Sorting role by salary.
+2. Prerequisite: There are roles stored in RoleBook with different salaries.
+3. Test case: `salary asc` <br>
+   Expected: Roles are sorted in ascending order starting from the highest salary.
+4. Test case: `salary desc` <br>
+   Expected: Roles are sorted in descending order starting from the lowest salary.
+
+### Sort roles by deadline
+
+Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary).
+
+### View the information of a Role
+
+1. Viewing information of role
+2. Prerequisite: There is at least 1 role shown in the Role List Box
+3. Test Case: `view 1` <br>
+   Expected: Still showing the same role list as before. Details of first role is shown and display information 
+   that includes the name, company, salary, deadline, experience, job description, email, contact and website 
+   of the role.
+
 
 ### Saving data
 

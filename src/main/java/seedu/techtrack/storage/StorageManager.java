@@ -12,7 +12,7 @@ import seedu.techtrack.model.ReadOnlyUserPrefs;
 import seedu.techtrack.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of RoleBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveRoleBook(ReadOnlyRoleBook addressBook) throws IOException {
-        saveRoleBook(addressBook, roleBookStorage.getRoleBookFilePath());
+    public void saveRoleBook(ReadOnlyRoleBook roleBook) throws IOException {
+        saveRoleBook(roleBook, roleBookStorage.getRoleBookFilePath());
     }
 
     @Override
-    public void saveRoleBook(ReadOnlyRoleBook addressBook, Path filePath) throws IOException {
+    public void saveRoleBook(ReadOnlyRoleBook roleBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        roleBookStorage.saveRoleBook(addressBook, filePath);
+        roleBookStorage.saveRoleBook(roleBook, filePath);
     }
 
 }

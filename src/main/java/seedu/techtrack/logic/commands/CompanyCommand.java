@@ -7,7 +7,7 @@ import seedu.techtrack.model.Model;
 import seedu.techtrack.model.role.CompanyContainsKeywordsPredicate;
 
 /**
- * Finds and lists all Companies in address book whose name contains any of the argument keywords.
+ * Finds and lists all Companies in role book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class CompanyCommand extends Command {

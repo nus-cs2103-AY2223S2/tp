@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Role> getFilteredRoleList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' role book file path.
      */
     Path getRoleBookFilePath();
 

@@ -38,7 +38,7 @@ import seedu.techtrack.model.util.tag.Tag;
 
 
 /**
- * Edits the details of an existing role in the company book.
+ * Edits the details of an existing role in the role book.
  */
 public class EditCommand extends Command {
 
