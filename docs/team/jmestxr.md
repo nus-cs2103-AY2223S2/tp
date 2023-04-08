@@ -56,7 +56,7 @@ Given below are my contributions to the project.
   * Suggestions on implementation and improvement of features (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/65), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/66), [3](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/46), [4](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/88))
   * Bug catching (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/117))
 
-* **Contributions beyond the project team:**g
+* **Contributions beyond the project team:**
   * Contributed to forum discussions (Examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/95#issuecomment-1408448245), [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/198#issuecomment-1434092528))
   * Contributed to [PE-D bug catching](https://github.com/jmestxr/ped/issues)
 
