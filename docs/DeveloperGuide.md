@@ -631,7 +631,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC5 - find a employees with keyword in name**
+**Use case: UC5 - Find employees with keyword in name**
 
 **MSS:**
 
