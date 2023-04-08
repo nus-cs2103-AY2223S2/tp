@@ -2,14 +2,12 @@
 layout: page
 title: Lai Hui Qi's Project Portfolio Page
 ---
-
 ### Project: InternEase
 
-InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. It offers optimized **combination of a Command Line Interface (CLI) and Graphical User Interface (GUI)**. InternEase is a good choice for you who wants to concentrate on your internship preparation by helping to manage your internship applications' data.
+InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. InternEase is a good choice for you who wants to concentrate on your internship preparation by helping to manage your internship applications' data.
 
 * **Summary of Contributions**:
 Given below are my contributions to the project.
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=laihuiqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * Credits: Some code reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
@@ -45,13 +43,11 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
   * Enhanced `clear`, `delete` and `exit` features according to the InternEase model, added `CacheList` method to `clear` and `delete`.
   * Enhanced GUI interface for `MainWindow`, `Result Dialog` and `task package` related GUI parts. [\#128](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/128), [\#162](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/162).
-  * Implemented or enhance test cases for `Ui class`, `Command class` and `Parser class` related to all assigned features stated above, increased test coverage of all mentioned classes to at least 80%.[\#272](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/272).
-
-
+  * Enhanced test cases for `Ui class`, `Command class` and `Parser class` related to all assigned features, increased test coverage of all mentioned classes to at least 80%.[\#272](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/272).
+  
 * **Documentation**:
   * User Guide:
-    * Updated documentation for the main features `clear`, `delete`, `exit`, `clear_by`, `revert`, `revert_all` and all side features in `task package` [\#47](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/47), [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161).
-    
+    * Updated documentation for main features `clear`, `delete`, `exit`, `clear_by`, `revert`, `revert_all` and side features in `task package` [\#47](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/47), [\#161](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/161).
   * Developer Guide:
     * Added use cases, implementation details and UML diagrams for all features stated above and `Ui component`. [\#52](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/52), [\#274](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/274).
 
