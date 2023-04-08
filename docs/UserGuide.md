@@ -916,7 +916,7 @@ Import data from a specified file path to the current tracker.
   specified in `{module_1}[, {module_2}[, {module_3}[, ...]]]`
   - If specified, `{module_1}[, {module_2}[, {module_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`{module_1}[, {module_2}[, {module_3}[, ...]]] `</span> : The modules to import from 
+- <span style="color:#e46c0a">`module_1, module_2, module_3}, ...`</span> : The modules to import from 
   `file_path`
   - If `/overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker
   - Must belong to existing modules in the file specified in `file_path`
