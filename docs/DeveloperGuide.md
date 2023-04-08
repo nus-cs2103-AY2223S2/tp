@@ -269,12 +269,15 @@ Users have the ability to mark a certain project as DONE.
 
 #### Implementation
 
+<img src="images/MarkProjectSequenceDiagram.png" width="600" />
 
 ### Unmarking projects
 
 Users have the ability to mark a certain project as NOT DONE/OVERDUE.
 
 #### Implementation
+
+<img src="images/UnmarkProjectSequenceDiagram.png" width="600" />
 
 ### Listing Clients
 
