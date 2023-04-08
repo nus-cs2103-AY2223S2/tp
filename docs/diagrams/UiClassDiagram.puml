@@ -12,10 +12,16 @@ Class UiManager
 Class NotifcationManager
 
 Class MainWindow
+Class AddDeliveryJobWindow
 Class HelpWindow
+Class CompleteWindow
+Class UnscheduleWindow
+Class TimetableWindow
+Class ReminderListWindow
+Class StatisticsWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class DeliveryJobListPanel
+Class AddressBookDialog
 Class StatusBarFooter
 Class CommandBox
 
@@ -45,32 +51,38 @@ UiManager *-right-> "1" NotifcationManager
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" AddDeliveryJobWindow
+MainWindow *-down-> "1" CompleteWindow
+MainWindow *-down-> "1" UnscheduleWindow
+MainWindow *-down-> "1" TimetableWindow
+MainWindow *-down-> "1" ReminderListWindow
+MainWindow *-down-> "1" StatisticsWindow
+MainWindow *-down-> "1" DeliveryJobListPanel
+MainWindow *-down-> "1" AddressBookDialog
 MainWindow --> "0..1" HelpWindow
 
-MainWindow *-down->  "1" ReminderListWindow
-MainWindow *-down->  "1" TimeTableWindow
-MainWindow *-down->  "1" StatisticsWindow
-MainWindow *-down->  "1" UnscheduleWindow
-MainWindow *-down->  "1" CompleteWindow
-MainWindow *-down->  "1" AddressBookWindow
-MainWindow *-down->  "1" AddDeliveryJobWindow
-
-PersonListPanel -down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+DeliveryJobListPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+AddDeliveryJobWindow --|> UiPart
+CompleteWindow --|> UiPart
+UnscheduleWindow --|> UiPart
+TimetableWindow --|> UiPart
+ReminderListWindow --|> UiPart
+StatisticsWindow --|> UiPart
+DeliveryJobListPanel --|> UiPart
+AddressBookDialog --|> UiPart
 
-PersonCard ..> Model
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+DeliveryJobListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
