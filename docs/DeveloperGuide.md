@@ -121,8 +121,8 @@ When a command such as `select` is called, the left pane or the right pane, or b
 
 
 The Sequence Diagram in Figure 3 illustrates the interactions between the `UI` component, `Logic` component and `Model` component when `select 1` is called in the Course Page.
-The `UI` first interacts with the `Logic` component to retrieve the current selected `PageType`, which is the Group Page. 
-The `UI` then self-invokes a `showGroupPane` method that creates a `GroupListPanel`.  
+The `UI` first interacts with the `Logic` component to retrieve the current selected `PageType`, which is the Group Page.
+The `UI` then self-invokes a `showGroupPane` method that creates a `GroupListPanel`.
 The `GroupListPanel` takes in an `ObservableList<Group>` obtained from the `getUnmodifiableFilteredGroupList()` method.
 
 
@@ -143,11 +143,11 @@ The above sequence is similar across each page navigation sequence.
 
 In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectfully.
 The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
-However, the current page shown in Figure 5 is still treated as an Attendance Page, hence only commands applicable to the Attendance Page is accepted. 
+However, the current page shown in Figure 5 is still treated as an Attendance Page, hence only commands applicable to the Attendance Page is accepted.
 This also applies to the Grades Page, when the `GradesListPanel` is displayed alongside the `SessionListPanel`.
 
 Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
-After marking a student's attendance with the `mark` command, the student card will be changed to green. 
+After marking a student's attendance with the `mark` command, the student card will be changed to green.
 This change occurs immediately after the command execution by generating a new `AttendanceListPanel` when a `mark` command is called.
 Figure 6 shows the Sequence Diagram when a `mark` command is executed.
 
@@ -168,7 +168,7 @@ Based on the flag, either a new `PresentAttendanceListCard` (with a green backgr
 
 In Figure 7, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
 The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
-Since we are on the student page, a list of students is shown. 
+Since we are on the student page, a list of students is shown.
 Unlike the Attendance and Grades Page, even though both Left and Right Panes are populated, the page shown in Figure 7 is still the Student Page, hence commands which are applicable to the Student Page are accepted here.
 
 
@@ -184,9 +184,8 @@ However, this information is already displayed in the navigation bar (shown in F
 Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
 
 Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
-As such, we have implemented a separate `StudentViewCard` that will be shown in the Right Pane (as shown in Figure 7) when the user enters a `select` command on the Student Page.
+As such, we have implemented a separate `StudentViewCard` that will be shown on the Right Pane (as shown in Figure 7) when the user enters a `select` command on the Student Page.
 
-   
 
 ### Logic component
 
