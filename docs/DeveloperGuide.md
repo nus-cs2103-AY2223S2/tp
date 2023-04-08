@@ -511,9 +511,9 @@ Below is the main success scenarios of adding, deleting and listing alarms.
     * 2a1. TAA shows an error message.
       Use case ends.
 
-Below is the sequence diagram for adding an assignment.
+Below is the sequence diagram for adding an alarm.
 
-<img src="/images/AddAlarmSequeceDiagram.PNG" />
+<img src="images/AddAlarmSequeceDiagram.png" />
 
 **delete alarm**
 1.  User requests to delete a scheduled alarm with specified index.
@@ -528,9 +528,9 @@ Below is the sequence diagram for adding an assignment.
     * 2a1. TAA shows an error message.
       Use case ends.
 
-Below is the sequence diagram for adding an assignment.
+Below is the sequence diagram for deleting an alarm.
 
-<img src="/images/DeleteAlarmSequenceDiagram.png" />
+<img src="images/DeleteAlarmSequenceDiagram.png" />
 
 **list alarm**
 1.  User requests to list all scheduled alarms.
@@ -541,9 +541,9 @@ Below is the sequence diagram for adding an assignment.
     * 2a1. TAA shows an error message.
       Use case ends.
 
-Below is the sequence diagram for adding an assignment.
+Below is the sequence diagram for listing the alarms.
 
-<img src="/images/ListAlarmsSequenceDiagram.png" />
+<img src="images/ListAlarmsSequenceDiagram.png" />
 
 ### Non-functional requirements
 
