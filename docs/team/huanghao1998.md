@@ -9,29 +9,29 @@ SOCket is a desktop address book application used for teaching Software Engineer
 
 Given below are my contributions to the project.
 
-* **New Feature**: `remove` command
+* **New Feature**: `remove` command [\#88](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/88)
     * What it does: Allows users to remove specific field value based on the input command.
-    * Justification: Users are able to remove any field value of the contact information.
+    * Justification: Users are able to remove any field value of the contact information without excess typing.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
-* **New Feature**: `view` command
+* **New Feature**: `view` command [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108)
   * What it does: Allows users to view a specific contact detail.
   * Justification: Users are able to view detailed information of a contact by `view` command or click on the contact card.
   * Highlights: `to be added soon`
   * Credits: *{`to be added soon`}*
 
-* **New Feature**: `clearpj` command
+* **New Feature**: `clearpj` command [\#154](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/154)
     * What it does: Allows users to clear off all the project in the project list
     * Justification: Users are able to clear all projects in a single command.
     * Highlights: `to be added soon`
     * Credits: *{`to be added soon`}*
 
-* **New Feature**: Added keyboard shortcut
-  * What it does: Allows users to perform `undo`, `redo` and `exit` command
-  * Justification: `to be added soon`
+* **New Feature**: Added keyboard shortcut [\#203](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/203)
+  * What it does: Allows users to perform `undo`, `redo` and `exit` command using keyboard shortcut
+  * Justification: Users are able to do undo/redo/exit similar to other commonly used applications.
   * Highlights: `to be added soon`
-  * Credits: *{`to be added soon`}*
+  * Credits: *{This feature idea was adopted from `HELP` keyboard shortcut of AddressBook-Level3}*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&breakdown=true)
 
@@ -39,10 +39,10 @@ Given below are my contributions to the project.
     * Create issues when things are needed to be refined
 
 * **Enhancements to existing features**:
-    * Updated `clear` command to allow users to remove group of contacts associated with the given tag(s).
-    * Updated the restriction on the number of tags associated to each contact to prevent misuse of the feature.
-    * Improved the UI in `HelpWindow` by categorising commands into different subgroups so that users can look for the command guide easily. 
-    * Improved the UI and UX in `MainWindow`
+    * Updated `clear` command to allow users to remove group of contacts associated with the given tag(s) [\#127](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/127)
+    * Updated the restriction on the number of tags associated to each contact to prevent misuse of the feature [\#172](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/172)
+    * Improved the UI in `HelpWindow` by categorising commands into different subgroups so that users can look for the command guide easily [\#190](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/190)
+    * Improved the UI and UX in `MainWindow` [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108), [\#117](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/117), [\#128](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/128), [\#162](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/162)
       * Reallocated the result display and command box from the top of the application to the bottom as it allows for a more natural and intuitive user flow, with the display panel at the top.
       * Seperated the contact display into 2 components, contact list panel and contact detail panel, using split panel. Contact list displays minimal information while contact detail panel displays all the information related to the contact.
       * Improved the contact list by allowing users to click on the card and displays contact detail of the contact in contact detail panel.
