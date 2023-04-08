@@ -53,7 +53,6 @@ public class TaskDetailPanel extends UiPart<VBox> {
     }
 
     private void setup() {
-
         title.setText(task.getTitle());
 
         if (task.getDeadline() != null) {

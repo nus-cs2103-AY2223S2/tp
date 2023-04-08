@@ -142,7 +142,7 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Clears the right component.
      */
-    protected void clearRightComponent() {
+    public void clearRightComponent() {
         rightComponent.getChildren().clear();
     }
 

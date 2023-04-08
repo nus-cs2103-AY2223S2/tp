@@ -64,6 +64,7 @@ public class FilterCommand extends UiCommand {
             throw new CommandException("Should not reach here!");
         }
         mainScreen.getTaskListPanel().searchForTask(predicate);
+        mainScreen.getTaskListPanel().loadTaskDetailPanel();
         return new CommandResult(SUCCESS_MESSAGE);
     }
 
