@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_HISTORY;
+import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 
 import org.junit.jupiter.api.Test;
 
