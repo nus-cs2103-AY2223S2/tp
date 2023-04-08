@@ -143,7 +143,8 @@ The above sequence is similar across each page navigation sequence.
 
 In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectfully.
 The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
-This scenario is similar for two other navigation sequences, namely the navigation from Task Page to Grades Page and when the user selects a student in the Student Page.
+However, the current page shown in Figure 5 is still treated as an Attendance Page, hence only commands applicable to the Attendance Page is accepted. 
+This also applies to the Grades Page, when the `GradesListPanel` is displayed alongside the `SessionListPanel`.
 
 Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
 After marking a student's attendance with the `mark` command, the student card will be changed to green. 
@@ -168,6 +169,7 @@ Based on the flag, either a new `PresentAttendanceListCard` (with a green backgr
 In Figure 7, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
 The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
 Since we are on the student page, a list of students is shown. 
+Unlike the Attendance and Grades Page, even though both Left and Right Panes are populated, the page shown in Figure 7 is still the Student Page, hence commands which are applicable to the Student Page are accepted here.
 
 
 ##### Alternative considerations
