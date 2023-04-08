@@ -115,7 +115,8 @@ For a bookmark in MyLib, everything except for title and genre is optional.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **Graphical User Interface**<br>
+
+## Graphical User Interface<br>
 This section provides a quick rundown of the various components of MyLib's user interface.
 
    <img width="680" src="images/annotated-UI.png">
