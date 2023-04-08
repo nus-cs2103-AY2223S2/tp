@@ -835,7 +835,7 @@ testers are expected to do more *exploratory* testing. </div>
    Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
    
 ### Editing a Role
-1. Editing a existing role.
+1. Editing an existing role.
 
 1. Prerequisities: `view 1` and index 1 of the list exists.
 
