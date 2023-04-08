@@ -6,7 +6,7 @@ import seedu.address.commons.core.GuiSettings;
 
 /**
  * Represents a Person's photo in the address book.
- * Guarantees: immutable; is always valid
+ * Guarantees: immutable; is always valid.
  */
 public class Photo {
 
@@ -30,8 +30,9 @@ public class Photo {
     }
 
     /**
-     * Accepts photo that is not empty
-     * @param photoFilePath String of filepath
+     * Accepts photo that is not empty.
+     *
+     * @param photoFilePath String of filepath.
      */
     public Photo(String photoFilePath) {
         requireNonNull(photoFilePath);
@@ -41,7 +42,7 @@ public class Photo {
     }
 
     /**
-     * Sets the necessary dimensions of the Image and the circle that crops that image
+     * Sets the necessary dimensions of the Image and the circle that crops that image.
      */
     void setDefaultDimensions(GuiSettings guiSettings) {
         this.height = guiSettings.getImageViewHeight();
@@ -58,40 +59,45 @@ public class Photo {
     //No setters to customise profile picture dimensions in this iteration
 
     /**
-     * Gets the height of the Image
-     * @return height
+     * Gets the height of the Image.
+     *
+     * @return height.
      */
     public int getHeight() {
         return this.height;
     }
 
     /**
-     * Gets the width of the Image
-     * @return width
+     * Gets the width of the Image.
+     *
+     * @return width.
      */
     public int getWidth() {
         return this.width;
     }
 
     /**
-     * Gets the X coordinate of the circle that crops the image
-     * @return circleX
+     * Gets the X coordinate of the circle that crops the image.
+     *
+     * @return circleX.
      */
     public int getCircleX() {
         return this.circleX;
     }
 
     /**
-     * Gets the Y coordinate of the circle that crops the image
-     * @return circleY
+     * Gets the Y coordinate of the circle that crops the image.
+     *
+     * @return circleY.
      */
     public int getCircleY() {
         return this.circleY;
     }
 
     /**
-     * Gets the radius of the circle that crops the image
-     * @return radius
+     * Gets the radius of the circle that crops the image.
+     *
+     * @return radius.
      */
     public int getCircleRadius() {
         return this.radius;

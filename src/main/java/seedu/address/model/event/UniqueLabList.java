@@ -70,6 +70,7 @@ public class UniqueLabList implements Iterable<Lab> {
 
     /**
      * Gets the number of labs.
+     *
      * @return the number of labs.
      */
     public int size() {
