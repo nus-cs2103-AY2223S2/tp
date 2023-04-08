@@ -256,6 +256,33 @@ method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 The OVERDUE status is shown for existing projects in the list that are overdue, and
 if a user adds a project with a deadline with a data that has already past.
 
+### Marking projects
+
+Users have the ability to mark a certain project as DONE.
+
+#### Implementation
+
+
+### Unmarking projects
+
+Users have the ability to mark a certain project as NOT DONE/OVERDUE.
+
+#### Implementation
+
+### Listing Clients
+
+Users have the ability to list all their clients.
+
+#### Implementation
+
+
+### Listing Projects
+
+Users have the ability to list all their projects. A summary of how many overdue, done, and not done projects is also displayed.
+
+#### Implementation
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
