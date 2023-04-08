@@ -443,11 +443,10 @@ Add a lecture to a module.
 
 #### Add a Video
 
-> `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
+> `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch]`
 
 Add a video to a lecture.
 
-- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
 - [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
@@ -458,6 +457,7 @@ Add a video to a lecture.
   - Defaults to `00:00:00` if the `/timestamp` argument is not specified
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the video
   - Repeated tags (if any) will be ignored
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
 
 <details open>
 <summary>Example</summary>
