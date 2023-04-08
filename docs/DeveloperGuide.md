@@ -23,10 +23,13 @@ Refer to the guide [_Setting up and getting started._](https://ay2223s2-cs2103t-
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
+[diagrams](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
+to learn how to create and edit diagrams.
 </div>
 
-### **Architecture**
+### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,7 +39,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called
+[`Main`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and
+[`MainApp`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,24 +75,98 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of multiple smaller components. Some notable examples are
+`CommandBox`, `ResultDisplay` and `ContactDisplay`. All these, including the `MainWindow`,
+inherit from the abstract `UiPart` class which captures the commonalities between classes that
+represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching
+`.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/##view/MainWindow.fxml)
 
-The `UI` component,
-
+The `UI` component does the following
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Doctor` or `Patient` object residing in the `Model`.
+
+#### Main Window
+{: .no_toc}
+
+The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
+function is to listen to user input through the `CommandBox`, initiate the execution of the command,
+and display the result through the `ResultDisplay` and/or `ContactDisplay`.
+
+Here is a table containing a brief description of the purpose of the smaller components within `MainWindow`.
+
+| **Name of component** | **Description**                                                                                                                                                                            |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CommandBox`          | Allows users to enter Docedex commands.                                                                                                                                                    |
+| `ResultDisplay`       | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands. |
+| `ContactDisplay`      | Contains components that provide visual feedback upon manipulation of doctors and patients.<br/><br/>More details about these components can be found [here](#contact-display).            |
+| `HelpWindow`          | Displays a help window containing a link to the User Guide.                                                                                                                                |
+| `StatusBarFooter`     | Shows the location of the Docedex storage.                                                                                                                                                 |
+
+
+The implementations of `CommandBox`, `ResultDisplay`, `StatusBarFooter`, and `HelpWindow` are relatively
+straightforward. Therefore, this guide will not dive deeper into how these components are implemented.
+
+You may refer to their implementations here
+* [Classes](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui)
+* [FXML](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/view)
+
+#### Contact Display
+
+The `ContactDisplay` houses all the components that provide visual feedback after the manipulation
+of doctors and patients within Docedex.
+
+Here is a table containing a brief description of the purpose of the smaller components within `ContactDisplay`.
+
+| **Name of component**       | **Description**                                                                                                                                                                                                                                                               |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **DoctorListPanel**         | Shows a list of **DoctorCard**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
+| **DoctorCard**              | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                          |
+| **PatientListPanel**        | Shows a list of **PatientCard**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
+| **PatientCard**             | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                         |
+| **EnlargedDoctorInfoCard**  | Displays all information about a selected doctor.                                                                                                                                                                                                                             |
+| **EnlargedPatientInfoCard** | Displays all information about a selected patient.                                                                                                                                                                                                                            |
+
+Here is a class diagram of how these components come together within the `ContactDisplay`.
+
+![Structure of the Contact Display](images/ContactDisplayClassDiagram.png)
+
+How the `ContactDisplay` works:
+1. Upon a user command through the `CommandBox`, the `setFeedbackToUser(CommandResult commandResult)` method
+  takes in the result of the command entered. The `CommandResult` contains information on whether the command
+  requires an update to the GUI. If such an update is required, `ContactDisplay` will proceed to update
+  all relevant components. 
+2. Upon a mouse click on a `DoctorCard` or `PatientCard`, the following sequence of actions is similar to
+  that described above. However, instead of `setFeedbackToUser(CommandResult commandResult)` being called,
+  either `setFeedbackUponSelectingDoctor(Doctor doctor)` or `setFeedbackUponSelectingPatient(Patient patient)`
+  is called respectively.
+
+To illustrate how these interactions work, let's say that the user selects a doctor through the `sd` command.
+The Sequence Diagram below illustrates the interactions within the `ContactDisplay` component upon such a command.
+
+![Sequence Diagram of the Contact Display Upon Command](images/ContactDisplaySequenceDiagram.png)
+
+Upon a user command, we see from the diagram that the `setFeedbackToUser(CommandResult commandResult)` method
+accomplished the following:
+- Update filtered patients list in `LogicManager` to show the patients assigned to the selected doctor.
+- Select the requested doctor within the `DoctorListPanel`. (This is a purely cosmetic selection, to provide
+visual feedback to the user)
+- Update the `EnlargedDoctorInfoCard` to display the information of the selected doctor.
+- Place the updated `EnlargedDoctorInfoCard` onto the placeholder `StackPane` which resides on the right-most
+column of the `ContactDisplay`. For more information on this specific step, click [here](#enlarged-info-card-feature).
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +194,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddDoctorCommandParser`, `DeleteDoctorCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
@@ -131,7 +211,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
