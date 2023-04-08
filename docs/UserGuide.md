@@ -333,14 +333,15 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
-### Adding a person to favorites : `favorite`
+## Adding a person to favorites : `favorite`
 
 Favorites the specified person from AIMS.
 
 Format: `favorite INDEX`
 
-- Favorites the person at the specified `INDEX`.
-- Running this command on a person who is already in the favorite list will remove him from the favorite list.
+- Toggles favorite for the person at the specified `INDEX`.
+- If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
+- If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
@@ -348,6 +349,8 @@ Example:
 
 - `favorite 3` will pin the third person in the favorites panel.
   ![result for `favorite 3`](images/favorite3.png)
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
 
 ### Exiting the program : `exit`
 
