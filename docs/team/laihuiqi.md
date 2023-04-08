@@ -4,7 +4,7 @@ title: Lai Hui Qi's Project Portfolio Page
 ---
 ### Project: InternEase
 
-InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. InternEase is a good choice for you to concentrate on your internship preparation as it helps to manage your internship applications' data.
+InternEase is a **powerful and innovative desktop app designed to streamline the internship application process** for **Computer Science undergraduates**. It is a good choice for you to concentrate on your internship preparation as it helps to manage your internship applications' data.
 
 Given below are my contributions to the project. <br/>
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=laihuiqi&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) <br/>
