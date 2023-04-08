@@ -87,11 +87,24 @@ public class EventBuilder {
      * Sets the {@code Internship} of the {@code Event} that we are building.
      */
     public EventBuilder withInternship(Internship intern) {
-        this.internship = new InternshipBuilder(intern).build();
+        if (intern == null) {
+            // THis is important to test event commands
+            this.internship = Internship.EMPTY_INTERNSHIP;
+        } else {
+            this.internship = new InternshipBuilder(intern).build();
+        }
         return this;
     }
 
+    /**
+     * Builds the Event
+     * @return Event Object
+     */
     public Event build() {
+        if (this.internship == null) {
+            // This is important to test event commands
+            return new Event(this.name, this.start, this.end, description);
+        }
         return new Event(this.name, this.start, this.end, description, this.internship);
     }
 }

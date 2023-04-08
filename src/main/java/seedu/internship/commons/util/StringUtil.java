@@ -65,6 +65,7 @@ public class StringUtil {
         }
     }
 
+
     /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>

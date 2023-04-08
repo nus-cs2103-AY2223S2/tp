@@ -5,10 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.internship.testutil.Assert.assertThrows;
+import static seedu.internship.testutil.TypicalInternships.ML1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,8 @@ import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipByPositionCompanyPredicate;
 import seedu.internship.testutil.EditInternshipDescriptorBuilder;
+import seedu.internship.testutil.FilterInternshipDescriptorBuilder;
+import seedu.internship.testutil.InternshipBuilder;
 
 
 /**
@@ -86,6 +93,35 @@ public class CommandTestUtil {
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "5";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp and fun"; // spaces not allowed in tags
 
+    public static final String VALID_NAME_EM11 = "Interview";
+    public static final String VALID_START_EM11 = "04/04/2023 1500";
+    public static final String VALID_END_EM11 = "04/04/2023 1800";
+    public static final String VALID_EVENT_DESCRIPTION_EM11 = "This is the first Event for ML1.";
+    public static final Internship VALID_INTERNSHIP_EM11 = new InternshipBuilder(ML1).build();
+
+    public static final String VALID_NAME_EM12 = "HR Meeting";
+    public static final String VALID_START_EM12 = "05/04/2023 1500";
+    public static final String VALID_END_EM12 = "05/04/2023 1800";
+    public static final String VALID_EVENT_DESCRIPTION_EM12 = "This is the second Event for ML1.";
+    public static final Internship VALID_INTERNSHIP_EM12 = new InternshipBuilder(ML1).build();
+
+    public static final String VALID_NAME_EMD1 = "Take Home Project";
+    public static final String VALID_START_EMD1 = "06/04/2023 1500";
+    public static final String VALID_END_EMD1 = "06/04/2023 1500";
+    public static final String VALID_EVENT_DESCRIPTION_EMD1 = "This is the first Deadline for ML1.";
+    public static final Internship VALID_INTERNSHIP_EMD1 = new InternshipBuilder(ML1).build();
+
+    public static final String NAME_DESC_EM11 = " " + PREFIX_EVENT_NAME + VALID_NAME_EM11;
+    public static final String START_DESC_EM11 = " " + PREFIX_EVENT_START + VALID_START_EM11;
+    public static final String END_DESC_EM11 = " " + PREFIX_EVENT_END + VALID_END_EM11;
+    public static final String EVENT_DESCRIPTION_DESC_EM11 = " "
+            + PREFIX_EVENT_DESCRIPTION
+            + VALID_EVENT_DESCRIPTION_EM11;
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_EVENT_NAME + "";
+    public static final String INVALID_START_DESC = " " + PREFIX_EVENT_START + "invalid start";
+    public static final String INVALID_END_DESC = " " + PREFIX_EVENT_END + "invalid end";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -100,6 +136,19 @@ public class CommandTestUtil {
                 .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
                 .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
     }
+
+    public static final FindCommand.FilterInternshipDescriptor FDESC_ML1;
+    public static final FindCommand.FilterInternshipDescriptor FDESC_SE1;
+
+    static {
+        FDESC_ML1 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1)
+                .withCompany(VALID_COMPANY_ML1).withStatus(VALID_STATUS_ML1).withDescription(VALID_DESCRIPTION_ML1)
+                .withTags(VALID_TAG_IMPORTANT).build();
+        FDESC_SE1 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_SE1)
+                .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
+                .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
+    }
+
 
     /**
      * Executes the given {@code command}, confirms that <br>

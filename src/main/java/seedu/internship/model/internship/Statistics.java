@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 
+
 /**
  * Calculates Statistics based on current Internship List and Event List.
  */
@@ -13,28 +14,40 @@ public class Statistics {
 
     public static final Statistics EMPTY_STATISTICS = new Statistics();
 
-    private Datapoint totalInternships;
-    private Datapoint numInterested;
-    private Datapoint numApplied;
-    private Datapoint numOffered;
-    private Datapoint numRejected;
+    public static final String TOTAL_INTERNSHIPS_NAME = "Total Internships";
+    public static final String NUM_INTERESTED_NAME = "Interested";
+    public static final String NUM_APPLIED_NAME = "Applied";
+    public static final String NUM_OFFERED_NAME = "Offered";
+    public static final String NUM_REJECTED_NAME = "Rejected";
+    public static final String NUM_EVENTS_NAME = "Total Events";
+
+    private final Datapoint totalInternships;
+    private final Datapoint numInterested;
+    private final Datapoint numApplied;
+    private final Datapoint numOffered;
+    private final Datapoint numRejected;
+    private final Datapoint numEvents;
     private final ObservableList<Datapoint> allDatapoints;
 
+    /**
+     * Private constructor that initialises all Datapoint fields to value .
+     */
     private Statistics() {
-        this.allDatapoints = FXCollections.observableArrayList();
-        totalInternships = new Datapoint("Total Internships", 0);
-        numInterested = new Datapoint("Interested", 0);
-        numApplied = new Datapoint("Applied", 0);
-        numOffered = new Datapoint("Offered", 0);
-        numRejected = new Datapoint("Rejected", 0);
-        allDatapoints.addAll(totalInternships, numInterested, numApplied, numOffered, numRejected);
+        allDatapoints = FXCollections.observableArrayList();
+        totalInternships = new Datapoint(TOTAL_INTERNSHIPS_NAME);
+        numInterested = new Datapoint(NUM_INTERESTED_NAME);
+        numApplied = new Datapoint(NUM_APPLIED_NAME);
+        numOffered = new Datapoint(NUM_OFFERED_NAME);
+        numRejected = new Datapoint(NUM_REJECTED_NAME);
+        numEvents = new Datapoint(NUM_EVENTS_NAME);
+        allDatapoints.addAll(totalInternships, numInterested, numApplied, numOffered, numRejected, numEvents);
     }
 
     /**
-     * Creates Statistics based on current internships and events
-     *
-     * @param internships Current List of Internships
-     * @param events Current List of Events
+     * Constructs a Statistics instance, populating the Datapoint fields based on the data from the internship and
+     * event list given.
+     * @param internships List of internships.
+     * @param events List of events.
      */
     public Statistics(ObservableList<Internship> internships, ObservableList<Event> events) {
         this();
@@ -42,6 +55,30 @@ public class Statistics {
         parseEventList(events);
     }
 
+    /**
+     * Constructs a Statistics instance, populating the Datapoint fields directly with given integer values.
+     * @param totalInternships Integer value to pass to totalInternships Datapoint.
+     * @param numInterested Integer value to pass to numInterested Datapoint.
+     * @param numApplied Integer value to pass to numApplied Datapoint.
+     * @param numOffered Integer value to pass to numOffered Datapoint.
+     * @param numRejected Integer value to pass to numRejected Datapoint.
+     * @param numEvents Integer value to pass to numEvents Datapoint.
+     */
+    public Statistics(int totalInternships, int numInterested, int numApplied, int numOffered, int numRejected,
+                      int numEvents) {
+        this();
+        this.totalInternships.incrementValue(totalInternships);
+        this.numInterested.incrementValue(numInterested);
+        this.numApplied.incrementValue(numApplied);
+        this.numOffered.incrementValue(numOffered);
+        this.numRejected.incrementValue(numRejected);
+        this.numEvents.incrementValue(numEvents);
+    }
+
+    /**
+     * Extracts internship related data and passes the values to internship related Datapoints.
+     * @param internships Internship list with data to parse.
+     */
     private void parseInternshipList(ObservableList<Internship> internships) {
         for (Internship internship : internships) {
             switch (internship.getStatusId()) {
@@ -64,8 +101,12 @@ public class Statistics {
         }
     }
 
+    /**
+     * Extract event related data and passes the values to event related Datapoints.
+     * @param events Event list with data to parse.
+     */
     private void parseEventList(ObservableList<Event> events) {
-        allDatapoints.add(new Datapoint("Total Events", events.size()));
+        numEvents.incrementValue(events.size());
     }
 
     public Datapoint getTotalInternships() {
@@ -105,10 +146,12 @@ public class Statistics {
 
         Statistics otherStatistics = (Statistics) other;
 
-        return totalInternships == otherStatistics.totalInternships
-                && numApplied == otherStatistics.numApplied
-                && numOffered == otherStatistics.numOffered
-                && numRejected == otherStatistics.numRejected;
+        return allDatapoints.equals(otherStatistics.allDatapoints)
+                && totalInternships.equals(otherStatistics.totalInternships)
+                && numApplied.equals(otherStatistics.numApplied)
+                && numOffered.equals(otherStatistics.numOffered)
+                && numRejected.equals(otherStatistics.numRejected)
+                && numEvents.equals(otherStatistics.numEvents);
     }
 
     @Override

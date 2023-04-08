@@ -1,6 +1,7 @@
 package seedu.internship.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
@@ -10,7 +11,6 @@ import java.util.function.Predicate;
 
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.CommandResult;
-import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
@@ -48,6 +48,9 @@ public class EventFindCommand extends EventCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!filterEventDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE));
+        }
         requireNonNull(model);
         Predicate<Event> filterName = unused -> true;
         Predicate<Event> filterStart = unused -> true;
@@ -80,7 +83,7 @@ public class EventFindCommand extends EventCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof EventFindCommand)) {
             return false;
         }
 
@@ -139,12 +142,12 @@ public class EventFindCommand extends EventCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof FindCommand.FilterInternshipDescriptor)) {
+            if (!(other instanceof EventFindCommand.FilterEventDescriptor)) {
                 return false;
             }
 
             // state check
-            FilterEventDescriptor f = (FilterEventDescriptor) other;
+            FilterEventDescriptor f = (EventFindCommand.FilterEventDescriptor) other;
 
             return getName().equals(f.getName())
                     && getStart().equals(f.getStart())
