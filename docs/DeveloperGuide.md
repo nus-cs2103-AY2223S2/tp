@@ -29,7 +29,6 @@ title: Developer Guide
   - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed Implementation](#proposed-implementation)
     - [Design considerations:](#design-considerations)
-  - [\[Proposed\] Data archiving](#proposed-data-archiving)
   - [Add transaction feature](#add-transaction-feature)
     - [Proposed Implementation](#proposed-implementation-1)
     - [Design considerations:](#design-considerations-1)
@@ -245,25 +244,59 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
-### Lead Status feature
+### Status Feature: Abstract Class - `Status`
+
+During the development of transactions and implementing `TxnStatus`, the realisation of it sharing similar characteristics
+to `LeadStatus` gave rose to the abstract parent class `Status`. These characteristics are:
+
+- Contains a timestamp representing the creation of the existing status
+- Has methods allowing the viewer of the status to see how long it has been since the timestamp
+- Has a set of pre-defined status types
+
+The `Status` class was created to encapsulate the similarities between statuses. If new object types that require a
+status feature are introduced, the abstract `Status` class can be used (for example, implementing the done status of a Task).
+
+The following diagram shows the structure of the implementation of Statuses, as of v1.3.
+
+![](images/StatusDiagram.png)
+
+#### Lead Status feature
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
-`LocalDateTime` timestamp.
+`Instant` timestamp. Each person existing in the contact list must have a status.
 
 Because we would like to limit the types of statuses a contact should have, for consistency's sake, each
 type of lead status is represented by an enum in `LeadStatusName`. `LeadStatusName` also contains mappings for
 abbreviations of each status type.
 
-![](images/PersonLeadStatusDiagram.png)
+![](images/LeadStatusDiagram.png)
 
 The default lead status of a new contact added is `UNCONTACTED`, and the timestamp is the time of adding the contact.
 The user is able to change the lead status of a contact to any other lead status. The timestamp is updated to the
-`LocalDateTime.now()` of when the command is executed. If the lead status to change to is the same as the preexisting
-one, the command returns and does not alter the previous lead status (and timestamp).
+`Instant.now()` of when the command is executed, which takes place in the creation of a lead status.
+
+#### The `status` Command
+
+The updating of the status is similar to the implementation of edit. The main difference lies in StatusCommand having an 
+additional check, to verify if the LeadStatusName of the new status would be the same as the previous. If it is the same,
+an error is thrown, the user is alerted. No creation of new LeadStatus will take place and the timestamp does not change.
+
+If the lead status to change to is the same as the preexisting one, the command returns and does not alter the previous lead status nor its timestamp.
+This also means that a lead status should not be updated when any other attributes are updated (via `edit`).
 
 ![](images/StatusSequenceDiagram.png)
-(to update seq diagram to reflect timestamp implementation)
+
+#### Transaction Statuses
+
+Transactions have also been implemented with a `TxnStatus status`. Transaction statuses have a different set of 
+names, and also defined in a similar fashion as `LeadStatus`. Both types of statuses have similar characteristics,
+in terms of existing compulsorily in their container class `Transaction` and `Person`.
+
+The default status for a Transaction is `OPEN`. This represents an incomplete transaction process.
+
+![](images/TxnStatusDiagram.png)
+
 
 ### Tasks Feature
 
@@ -361,10 +394,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Add transaction feature
 
 #### Proposed Implementation
@@ -421,24 +450,26 @@ Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new tran
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                                | So that I can…​                                          |
-| ------ |---------------------------|-------------------------------------------------------------|----------------------------------------------------------|
-| `* * *` | new user                  | see usage instructions                                      | refer to instructions when I forget how to use the App   |
+| Priority | As a …​                   | I want to …​                                                                                   | So that I can…​                                                          |
+|----------|---------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | new user                  | see usage instructions                                                                         | refer to instructions when I forget how to use the App                   |
 | `* * *` | salesperson               | add a new client                                            | keep track of all my clients                             |
 | `* * *` | salesperson               | view all my clients                                         | have access to each and every client                     |
-| `* * *` | salesperson               | delete a client                                             | remove leads that have fallen cold, or are false entries |
-| `* * *` | forgetful salesperson     | filter my contacts by lead status                           | prioritise what to follow up on                          |
+| `* * *`  | salesperson               | delete a client                                                                                | remove leads that have fallen cold, or are false entries                 |
+| `* * *`  | forgetful salesperson     | filter my contacts by lead status                                                              | prioritise what to follow up on                                          |
 | `* *`  | salesperson               | update client information                                   | keep my clients' informations up to date                 |
-| `* *`  | salesperson               | have a keyword search                                       | find lead based on a company or persons name             |
-| `* *`  | forgetful salesperson     | associate my contacts with the day of first creation        | determine the next time I should contact them            |
-| `* *`  | frantic salesperson       | be warned when I make certain actions in my application     | won’t jeopardise my work through carelessness            |
-| `*`    | cross product salesperson | sort persons by their attributes such as gender or industry | perform targeted sales strategy                          |
-| `*`    | new user                  | import my current database                                  |                                                          |
-| `*`    | salesperson               | record down all transactions with clients                   |                                                          |
+| `* *`    | forgetful salesperson     | see the timestamp of the contact's lead status                                                 | prioritise customers who I have not followed up with                     |
+| `* *`    | salesperson               | have a keyword search                                                                          | find lead based on a company or persons name                             |
+| `* *`    | forgetful salesperson     | associate my contacts with the day of first creation                                           | determine the next time I should contact them                            |
+| `* *`    | frantic salesperson       | be warned when I make certain actions in my application                                        | won’t jeopardise my work through carelessness                            |
+| `*`    | cross-product salesperson | sort persons by their attributes such as gender or industry | perform targeted sales strategy                          |
+| `*`      | new user                  | import my current database                                                                     |                                                                          |
+| `*`      | salesperson               | record down all transactions with clients                                                      |                                                                          |
+| `*`      | salesperson               | search through transactions based on an existing contact's name, while also seeing the contact | conveniently refer to persons' and transactions' info on the same screen |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `SalesPunch` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `SalesPunch` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a person**
 
@@ -535,23 +566,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-_{More to be added}_
+**Use case: Update the lead status of a person**
+
+**MSS**
+
+1. User requests to list persons
+2. SalesPunch shows a list of persons
+3. User requests to update the lead status of a specific person in the list
+4. SalesPunch checks the current lead status of the person
+5. SalesPunch creates a new lead status for the person and stores the timestamp
+6. SalesPunch displays the new lead status and time since the timestamp of the person
+
+    Use case ends.
+
+**Extensions**
+- 2a. The list is empty.  
+    Use case ends.
+- 3a. The given index is invalid.
+    - 3a1. SalesPunch shows an error message.
+      Use case resumes at step 2. 
+- 4a. SalesPunch finds that the lead status to be updated is the same as the current one.
+  - 4a1. SalesPunch alerts the user that the lead status is the same.  
+    Use case resumes at step 2
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ with JDK `11` installed.
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user should be able to work with 20 tasks per client without having noticeable sluggishness in performance for typical usage.
-5.  If a user wishes to use the email templating feature, a default mail app on their system is required.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
+<<<<<<< HEAD
 - **Client**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Client is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc. Also referred to as a Lead.
 - **Attribute**: A person's association. Examples include name, gender, phone number, email, company, location, occupation, job title, address, and status.
 - **Lead**: A potential person or entity with sales opportunities. Often used interchangeably with Client.
 - **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Client. Refer to the Implementation > Lead Status for more information concerning Lead Statuses.
+=======
+- **Contact**: A person or entity registered in the application, that serves as the primary entity that the user interacts with. A Contact is associated with a number of attributes, such as Lead Status, time created, Company, and Email etc.
+- **Lead Status**: The current state of a Lead in the sales funnel. A Lead Status often changes based on actions that the user does with a Contact. Lead Statuses are associated with a time they were last updated.  Refer to the Implementation > Lead Status for more information concerning Lead Statuses. 
+>>>>>>> 4b306f4dc9e3147656aa397e5c23200ff9767407
 
 ---
 
