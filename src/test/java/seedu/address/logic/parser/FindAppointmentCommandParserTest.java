@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindDetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.TimeInTimeslotPredicate;
-import seedu.address.model.patient.DetailsContainKeywordsPredicate;
 
 public class FindAppointmentCommandParserTest {
 
