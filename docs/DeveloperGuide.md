@@ -232,7 +232,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images\LogicClassDiagram.png" width="550"/>
+![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ConnectUsParser` class to parse the user command.
@@ -251,7 +251,7 @@ The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but 
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a <u>placeholder</u> for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
@@ -262,8 +262,7 @@ How the parsing works:
 ## 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![Model Class Diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -286,7 +285,7 @@ An alternative (arguably, a more OOP) model is given below. It has a `Tag` list 
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Storage Class Diagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
