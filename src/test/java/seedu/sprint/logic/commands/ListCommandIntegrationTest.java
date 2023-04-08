@@ -22,10 +22,10 @@ import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.AlphabeticalComparator;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.model.application.ApplicationHasTaskPredicate;
 import seedu.sprint.model.application.DeadlineComparator;
 import seedu.sprint.model.application.DefaultComparator;
-import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with other commands like Sort and Find) for ListCommand.
