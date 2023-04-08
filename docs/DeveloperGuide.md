@@ -166,6 +166,36 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add and Delete Elderly and Volunteer
+
+In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
+
+The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
+Each prefix is followed by the information of one attribute.
+Some prefixes, such as `availableDates`, `tags`, are optional.
+
+* This grants greater flexibility of user input, as the user can key in the attributes in any order.
+* The unspecified optional fields will return `null` value.
+* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
+* When the `add` command format is invalid, or the user tries to add a duplicated person,
+  the add operation will be aborted.
+
+The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
+
+* Allows for filtering to display a subset of Elderly or Volunteers in UI.
+* Allows for easy retrieval of information for pairing.
+
+The `delete_elderly` and `delete_volunteer` commands make use of `NRIC`
+attribute of Elderly and Volunteer.
+FriendlyLink retrieves the target person uniquely identified by its NRIC,
+and removes it from the database.
+
+* Allows more efficient deletion compare to index-based deletion.
+* The user don't need to check the index of the target person before deletion.
+
+If the deleted Elderly or Volunteer has existing pairing, the associated
+pairs will be automatically removed as well.
+
 ### Command Recommendation and Autocompletion
 
 Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting 
@@ -210,36 +240,6 @@ Aspect: How recommendation executes:
 - Alternative 2: Using a `Trie` for word search
   - Pros: Will use less memory (Only required to store unique prefixes).
   - Cons: Relatively harder to implement, and might introduce bugs.
-
-### Add and Delete Elderly and Volunteer
-
-In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
-
-The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
-Each prefix is followed by the information of one attribute.
-Some prefixes, such as `availableDates`, `tags`, are optional.
-
-* This grants greater flexibility of user input, as the user can key in the attributes in any order.
-* The unspecified optional fields will return `null` value.
-* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
-* When the `add` command format is invalid, or the user tries to add a duplicated person,
-  the add operation will be aborted.
-
-The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
-
-* Allows for filtering to display a subset of Elderly or Volunteers in UI.
-* Allows for easy retrieval of information for pairing.
-
-The `delete_elderly` and `delete_volunteer` commands make use of `NRIC`
-attribute of Elderly and Volunteer.
-FriendlyLink retrieves the target person uniquely identified by its NRIC,
-and removes it from the database.
-
-* Allows more efficient deletion compare to index-based deletion.
-* The user don't need to check the index of the target person before deletion.
-
-If the deleted Elderly or Volunteer has existing pairing, the associated
-pairs will be automatically removed as well.
 
 ### Edit by index & NRIC
 
@@ -885,14 +885,12 @@ In the interest of transparency and keeping our users informed, we have identifi
 of our product that we recognise as feature flaws. We appreciate your patience as
 we are actively working to find the best solution to address these feature flaws.
 
-1. Depending on whether or not any record is present in the section,
-on the UI display, the width of the Elderly, Volunteer and Pair section may vary slighly.
-2. When users provide a birth date for an Elderly or Volunteer profile, only the person's current age is 
-displayed in the app. To view the specific birth date, users must refer to the respective JSON file. 
+1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
+2. When users provide a birth date for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birth date, users must refer to the respective JSON file. 
 3. In order to give users maximum flexibility in adding tags, we do not impose any limits on the number of tags or the character limit for each tag.
    However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience.
-4. When there are too many tags or sections of available dates, the current display arrangement may cause the Elderly's 
-medical risk tag to be squeezed to the far right, resulting in reduced visibility.
-5. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
+4. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
 be the most optimal in terms of time efficiency or number of pairings.
+5. Allow users to enter hours into the available dates fields to provide greater flexibility in specifying availability period.
+6. A command to view pairing details, instead of hovering over the pair item, and reading from the popover card.
 
