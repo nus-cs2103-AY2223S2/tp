@@ -583,141 +583,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is the TechTrack and the Actor is the user, unless specified otherwise)
 
-**Use case: UC1 - Running TechTrack <br>**
-**Actor: User <br>**
-**MSS:**
+**Use case: Add a job**
+
+**MSS**
 
 1. User opens the program
-2. TechTrack shows the list of roles and the list of available commands.<br>
-   Step 2 is repeated until another command is entered.
-   Use case ends.
+2. TechTrack shows the list of jobs.
+3. User enters "add" with the required parameters to add a job.
+4. TechTrack adds a job to its list.
 
-**Extensions**
-
-* 1a. Invalid data detected in the json file.
-    * 1a1. TechTrack clears that role.
-
-      Use case resumes at step 2.
-
-**Use case: UC2 - Add a role <br>**
-**Actor: User <br>**
-**MSS:**
-
-1. TechTrack is running (UC1).
-2. User enters "add" with the required parameters to add a role.
-3. TechTrack displays success message and the resulting list of roles.<br>
 Use case ends.
 
 **Extensions**
 
-* 2a. Duplicate role detected.
-    * 2a1. TechTrack outputs error message for duplicate roles.
+* 3a. Job is valid.
+    * 3a1. TechTrack resumes.
+
+      Use case resumes at step 3b.
+* 3b. Save job.
+    * 3b1. Job is auto-saved.
+
+      Use case resumes at step 4.
+* 3c. Duplicate job detected.
+    * 3c1. TechTrack outputs error for duplicate jobs.
 
       Use case ends.
-* 2b. Invalid data detected.
-    * 2b1. TechTrack outputs error message for invalid data.
+* 3d. Invalid data detected.
+    * 3d1. TechTrack outputs error for invalid data.
 
       Use case ends.
 
-**Use case: UC3 - Edit a role <br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+**Use case: Edit a job**
 
-1. TechTrack is running (UC1).
-2. User enters "edit" followed by an index to edit the role.
-3. TechTrack updates the corresponding role and displays the new role list.<br>
+**MSS**
+
+1. User opens the program
+2. TechTrack shows the list of jobs.
+3. User enters "edit" followed by an index to edit the job.
+4. TechTrack updates the corresponding job and saves the new job list.
+
 Use case ends.
 
 **Extensions**
 
-* 2a. Index does not exist.
-    * 2a1. TechTrack outputs an error message for invalid index.
+* 3a. Index does not exist.
+    * 3a1. TechTrack outputs an error message for invalid index.
 
       Use case ends.
 
-* 2b. Invalid data detected.
-    * 2b1. TechTrack outputs an error message for invalid data.
+* 3b. Invalid data detected.
+    * 3b1. TechTrack outputs an error for invalid data.
 
       Use case ends.
 
-**Use case: UC4 - View a role<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+**Use case: View a job**
+**MSS**
 
-1. TechTrack is running (UC1).
-2. User enters the “view {index}” command.
-3. UI displays more specific details on the roles saved based on the index.<br>
+1. User opens the application.
+2. TechTrack shows the list of jobs.
+3. User enters the “view {index}” command.
+4. UI displays more specific details on the jobs saved based on the index.
+
 Use case ends.
 
 **Extensions:**
 
-* 2a. Index entered is invalid.
-    * 2a1. TechTrack outputs error message.
+* 2a. List is empty.
+  Use case ends.
+
+* 3a. Index entered is invalid.
+    * 2a1. TechTrack outputs error.
 
       Use case ends.
 
-**Use case: UC5 - Delete a role<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+**Use case: Delete a job**
 
-1. TechTrack is running (UC1).
-2. User enters the “delete {role ID}” to delete the roles.
-3. UI will respond with the selected roles being deleted.<br>
+**MSS**
+
+1. User opens the application.
+2. TechTrack shows the list of jobs.
+3. UI display the list of jobs with its index.
+4. User enters the “delete {job ID}” to delete the jobs.
+5. UI will respond with the selected jobs being deleted.
+
 Use case ends.
 
 **Extensions**
 
-* 2a. The given index is invalid.
-    * 2a1. TechTrack shows an error message.
+* 3a. The displayed list is empty.
+
+  Use case ends.
+
+* 4a. The given index is invalid.
+    * 4a1. TechTrack shows an error message.
 
       Use case ends.
 
-**Use case: UC6 - Sorting a role by salary<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+* 4a. The given index is valid.
+    * 4a1. joblist is saved to the data file.
 
-1. TechTrack is running (UC1)
-2. User enters the “salary {asc/desc}"
-3. UI display the list of roles sorted by salaries in either ascending or descending order.<br>
+      Use case resumes at step 5.
+
+**Use case: Sort jobs by salary**
+
+**MSS**
+
+1. User opens the application
+2. TechTrack shows the list of jobs.
+3. User enters the “salary {asc/desc}"
+4. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
+
 Use case ends.
 
 **Extensions**
-* 3a. The given second command is invalid e.g "ascending".
-    * 3a1. TechTrack shows an error message.
+
+* 3a. The list is empty.
+  Use case ends.
+* 3b. The given second command is invalid e.g "ascending".
+    * 3b1. TechTrack shows an error message.
 
       Use case ends.
 
-**Use case: UC7 - Sorting a role by deadline<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+**Use case: Sort jobs by deadline**
+
+**MSS**
 
 * MSS is similar to sorting salaries. Replace `salary` in the previous MSS with `deadline` for the MSS of the deadline
   command.
 
-**Use case: UC8 - Finding a role by Company name<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+**Use case: find jobs by company**
 
-1. TechTrack is running (UC1).
-2. User enters the "company {keyword}" command.
-3. UI display the list of roles with companies that contains the keyword.<br>
+**MSS**
+
+1. User opens the application
+2. TechTrack shows the list of jobs.
+3. User enters the "company {keyword}" command
+4. UI display the list of jobs with companies that contains the keyword.
+
 Use case ends.
 
 **Extensions**
-* 2a. the keyword entered is empty.
-    * 2a1. TechTrack shows an error message.<br>
-    Use case ends.
 
-**Use case: UC9 - Finding a role by Tags<br>**
-**Actor: User <br>**
-**Preconditions: At least 1 role is added in TechTrack <br>**
-**MSS:**
+* 3a. The list is empty.
+  Use case ends.
+
+**Use case: find jobs by their tags**
+
+**MSS**
+
 * MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag
   command.
 
@@ -761,7 +774,35 @@ testers are expected to do more *exploratory* testing.
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Adding a Role
+1. Adding a Role to role book.
+
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, tags, salary, deadline, experience required are shown. The rest of roles in the list remains.
+   
+1. Test case: `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is not added, Error details shown in the status message. Missing compulsory field.
+   
+1. Test case: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+   
+   Expected: Role is added to the bottom of the list, on the left side. Role name, company, salary, deadline, experience required are shown. The rest of roles in the list remains. Optional field not required to be inputted.
+   
+### Editing a Role
+1. Editing a existing role.
+
+1. Prerequisities: `view 1` and index 1 of the list exists.
+
+1. Test case: `edit 1 n/Software Developer`
+   Expected: Name appearing on the list changes to `Software Developer`, `view 1` shows name to be `Software Developer`.
+   
+1. Test case: `edit 0`<br>
+   Expected: No role is edited. Error details shown in the status message. Status bar remains the same.
+   
+1. Test case: `edit 1`<br>
+   Expected: No role is edited. Error details shown in the status message, asking user to input at least one field. Status bar remains the same.
 
 ### Deleting a Role
 
