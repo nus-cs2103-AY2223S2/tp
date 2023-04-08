@@ -27,7 +27,7 @@ Given below are my contributions to the project.
     they like and will need to indicate which ones are their favourites.
   
 * **Enhancements to existing features**: Updated the ability to add tags to each recipe and delete them as 
-  necessary. (Pull request [#131](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/131), [#135](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/135))
+  necessary. (Pull requests [#131](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/131), [#135](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/135))
   * What it does: allows user to add one or more tags to each recipe and allows the user to remove them.
   * Justification: This feature enables users to find recipes with tag names using the `find tag/` 
     function and easily categorize a recipe for easy and convenient viewing.
@@ -49,18 +49,18 @@ Given below are my contributions to the project.
       * Added documentation for the `add`, `edit` and `delete` commands. (Pull request [#144](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/144))
       * Created annotated images of command formats for clearer presentation. (Pull request [#235](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/235))
       * Created annotated GUI images for clearer presentation. (Pull request [#243](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/243))
-      * Cleaned up and standardised presentation and format of images [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250)
+      * Cleaned up and standardised presentation and format of images (Pull request [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250))
 
     * Developer Guide:
-      * Updated architecture diagrams to reflect project design. (Pull request [#118](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/118), [#112](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/112/files))
-      * Updated Use Cases (Pull request [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250)
+      * Updated architecture diagrams to reflect project design. (Pull requests [#118](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/118), [#112](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/112/files))
+      * Updated Use Cases (Pull request [#250](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/250))
       * Updated Instructions for Manual Testing (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
-      * Updated Non-Functional Requirements [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257)
-      * Added Appendix: Effort [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257)
-      * Enhanced Appendix: Planned Enhancements [#259](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/259)
+      * Updated Non-Functional Requirements (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
+      * Added Appendix: Effort (Pull request [#257](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/257))
+      * Enhanced Appendix: Planned Enhancements (Pull request [#259](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/259))
       
 * **Community**:
-    * Pull Requests reviewed: 12 [(GitHub)](https://github.com/AY2223S2-CS2103T-W09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    * Pull Requests reviewed: 12 [(GitHub)](https://github.com/AY2223S2-CS2103T-W09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Abernicetoh)
     * Pull Request reviewed with non-trivial comments: [#218](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/218)
     * Found 16 bugs in team [CS2103T-W10-4](https://github.com/AY2223S2-CS2103T-W10-4/tp/issues?q=is%3Aissue+is%3Aopen+C)'s product during PE-D.
 
