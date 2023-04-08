@@ -7,8 +7,20 @@ title: User Guide
 
 1. [Introduction](#introduction)
     1. [What is SudoHR?](#11-what-is-sudohr)
-    2. [Features](#13-features)
+    1. [Features](#13-features)
 2. [Quick start](#2-quick-start)
+3. [Quick Reference Guide](#3-quick-reference-guide)
+    1. [Layout](#31-layout)
+    2. [Key Definitions](#32-key-definitions)
+    3. [Command format](#33-command-format)
+4. [Commands](#4-commands)
+    1. [Employee commands](#41-employee-commands)
+    2. [Department commands](#42-department-commands)
+    3. [Leave commands](#43-leave-commands)
+    4. [General commands](#44-general-commands)
+    5. [Data storage](#45-data-storage)
+    6. [Command summary](#46-command-summary)
+5. [FAQs](#5-faq)
 ---
 
 
@@ -225,13 +237,13 @@ It consists of:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. Commands
+# 4. Commands
 
-## 5.1. Employee Commands
+## 4.1. Employee Commands
 
 
 
-### 5.1.1. Adding an employee: `add`
+### 4.1.1. Adding an employee: `add`
 
 To add and store an employee to the application, we can use the add command, 
 which takes in as input values an employee ID, name, phone number, email, 
@@ -253,7 +265,7 @@ Examples:
 ![result for 'add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern'](images/UiAddEmployeeCommand.png)
 
 
-### 7.1.2. Listing all employees : `list`
+### 4.1.2. Listing all employees : `list`
 
 Shows a list of all employees in SudoHR.
 
@@ -262,7 +274,7 @@ Format: `list`
 
 ![result for 'list'](images/UiListCommand.png)
 
-### 7.1.3. Editing an employee : `edit`
+### 4.1.3. Editing an employee : `edit`
 
 Edits an existing employee in SudoHR.
 
@@ -287,7 +299,7 @@ Examples:
 
 
 
-### 7.1.4. Find employees by name: `find`
+### 4.1.4. Find employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
 
@@ -309,7 +321,7 @@ Examples:
 
 
 
-### 7.1.5. Find employees by ID: `feid`
+### 4.1.5. Find employees by ID: `feid`
 
 Finds the employee who has the given ID.
 
@@ -321,7 +333,7 @@ Examples:
 
   ![result for 'feid eid/7'](images/findTheMythDaMithByEid.png)
 
-### 7.1.6. Deleting an employee : `del`
+### 4.1.6. Deleting an employee : `del`
 
 Deletes the specified employee from SudoHR.
 
@@ -334,9 +346,9 @@ Format: `del eid/EMPLOYEE_ID`
 Examples:
 * `del eid/777` Deletes the employee with employee ID 777.
 
-## 7.2. Department Commands
+## 4.2. Department Commands
 
-### 7.2.1. Adding a department: `adep`
+### 4.2.1. Adding a department: `adep`
 
 Adds a department by name.
 
@@ -354,7 +366,7 @@ Examples:
 
 ![result for 'adep n/Marketing'](images/UiAddDepartmentCommand.png)
 
-### 7.2.2. Editing a department: `edep`
+### 4.2.2. Editing a department: `edep`
 
 Edits an existing department, which can be useful when departments undergo 
 restructuring.
@@ -368,7 +380,7 @@ Examples:
 
 ![result for 'edep Marketing n/Sales'](images/UiEditDepartmentCommand.png)
 
-### 7.2.3. Find departments by name: `fdep`
+### 4.2.3. Find departments by name: `fdep`
 
 Finds departments whose names contain any of the given keywords. Displays the departments found in the department
 window.
@@ -386,7 +398,7 @@ Examples:
 * `fdep Engineering` returns `Engineering` and `Software Engineering`
 * `fdep software engineering` returns `Software Development`, `Data Engineering`<br>
 
-### 7.2.4. Deleting a department: `ddep`
+### 4.2.4. Deleting a department: `ddep`
 
 Deletes an existing department.
 
@@ -396,13 +408,13 @@ Examples:
 * `ddep n/Software Engineering`
 * `ddep n/Sales`
 
-### 7.2.5. Listing all departments: `ldep`
+### 4.2.5. Listing all departments: `ldep`
 
 Refreshes the current panel view to display all existing departments.
 
 Format: `ldep`
 
-### 7.2.6. Add employee to a department: `aetd`
+### 4.2.6. Add employee to a department: `aetd`
 
 Adds an employee to a department using his ID. Displays the department that the employee was added to, and also
 displays all employees in that department.
@@ -420,7 +432,7 @@ Examples:
 
 ![result for 'aetd eid/1 n/Sales'](images/UiAddEmployeeToDepartmentCommand.png)
 
-### 7.2.7. Remove employee from a department: `refd`
+### 4.2.7. Remove employee from a department: `refd`
 
 Removes an employee from a department using his ID. Displays the department that the employee was removed from, and also
 displays all employees in that department.
@@ -434,7 +446,7 @@ Examples:
 
 ![result for 'refd eid/1 n/Sales'](images/UiRemoveEmployeeFromDepartmentCommand.png)
 
-### 7.2.8. List an employee's departments: `leid`
+### 4.2.8. List an employee's departments: `leid`
 
 List all departments the given employee is in.
 
@@ -443,7 +455,7 @@ Format: `leid eid/EMPLOYEE_ID`
 Examples:
 * `leid eid/100`
 
-### 7.2.9. List all employees in a department: `leid`
+### 4.2.9. List all employees in a department: `leid`
 
 List all employees in a department.
 
@@ -453,7 +465,7 @@ Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
 
-### 7.2.10 List department headcount: `ldhc`
+### 4.2.10 List department headcount: `ldhc`
 
 List all employees present in the given department on a given date. The department window will display only the given
 department and the leave window will display only the given date.
@@ -471,9 +483,9 @@ Examples:
 
 ![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
 
-## 7.3. Leave Commands
+## 4.3. Leave Commands
 
-### 7.3.1. Adding a leave: `aetl`
+### 4.3.1. Adding a leave: `aetl`
 
 Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on 
 the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave 
@@ -498,7 +510,7 @@ Examples:
 ![result for 'aetl eid/2 d/2023-03-05'](images/UiAddEmployeeToLeaveCommand.png)
 
 
-### 7.3.2. Adding a range of leaves for an employee: `aelr`
+### 4.3.2. Adding a range of leaves for an employee: `aelr`
 
 Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start and end date. 
 The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their 
@@ -526,7 +538,7 @@ Examples:
 ![result for 'aelr eid/2 s/2023-04-10 e/2023-04-12'](images/UiAddEmployeeToLeaveRangeCommand.png)
 
 
-### 7.3.3. Deleting a leave: `defl`
+### 4.3.3. Deleting a leave: `defl`
 Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave window.
 
 Format: `defl eid/EMPLOYEE_ID d/DATE`
@@ -538,7 +550,7 @@ The employee must have taken leave on the specific date provided</div>
 The input start and end dates must be of the form YYYY-MM-DD
 </div>
 
-### 7.3.4. Listing all employees on leave for a given date: `leol`
+### 4.3.4. Listing all employees on leave for a given date: `leol`
 
 Lists all employees that are on leave on a given date.
 
@@ -560,14 +572,14 @@ Examples:
 ![result for 'leol 2023-04-11'](images/UiListEmployeeOnLeaveCommand.png)
 
 
-### 7.3.5. Listing all leave dates: `llve`
+### 4.3.5. Listing all leave dates: `llve`
 
 Displays all leaves taken by employees.
 
 Format: `llve`
 
 
-### 7.3.6. Listing all leaves taken by an employee: `llbe`
+### 4.3.6. Listing all leaves taken by an employee: `llbe`
 
 Lists all the leave date(s) of an employee.
 
@@ -576,9 +588,9 @@ Format: `llbe eid/EMPLOYEE_ID`
 Examples:
 * `llbe eid/1`
 
-## 7.4. General Commands
+## 4.4. General Commands
 
-### 7.4.1. Viewing help : `help`
+### 4.4.1. Viewing help : `help`
 
 Shows a message explaining how to access the help page for SudoHR.
 
@@ -586,7 +598,7 @@ Shows a message explaining how to access the help page for SudoHR.
 
 Format: `help`
 
-### 7.4.1. Refresh all lists : `sa`
+### 4.4.1. Refresh all lists : `sa`
 
 Shows all employees, departments and leaves in SudoHR.
 
@@ -596,25 +608,25 @@ You can use this command to refresh SudoHR if your filters get too complicated!
 
 Format: `sa`
 
-### 7.4.2. Clearing all entries : `clear`
+### 4.4.2. Clearing all entries : `clear`
 
 Clears all entries from SudoHR.
 
 Format: `clear`
 
-### 7.4.3. Exiting the program : `exit`
+### 4.4.3. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-## 7.5. Data Storage
+## 4.5. Data Storage
 
-### 7.5.1. Saving the data
+### 4.5.1. Saving the data
 
 SudoHR data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 7.5.2 Editing the data file
+### 4.5.2 Editing the data file
 
 SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -622,7 +634,7 @@ SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Adv
 If your changes to the data file makes its format invalid, SudoHR will discard all data and start with an empty data file at the next run.
 </div>
 
-## 7.6. Command summary
+## 4.6. Command summary
 
 | Action                                                   | Format                                                                            |
 |----------------------------------------------------------|-----------------------------------------------------------------------------------|
@@ -656,10 +668,14 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SudoHR home folder.
+**A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
+
+**Q**: There seems to be many commands and prefixes to remember! Is there an easy way to remember them?<br>
+**A**: We understand how the short form command names may be difficult to remember, but don't worry. We have thus created a command summary here in the user guide for you in [section 4.6](#46-command-summary)! <br>
+This list is also available on the app, which can be accessed with the `help` function or by clicking the help tab on the top right corner of the window.
 
 [//]: # (Please add anything you think might be helpful)
 
