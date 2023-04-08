@@ -7,7 +7,7 @@ title: Developer Guide
 {: .no_toc}
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -301,7 +301,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### Add Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the
@@ -616,7 +615,8 @@ Note to users and developers: This problem exists if you select a doctor and the
 - Potential issue: No visual feedback that the patients list is reflecting the newly added doctor's assigned
   patients/confusion that all patient's have been deleted.
 
-Note to users and developers: This problem exists if you add a patient using `add-ptn` too
+Note to users and developers: This problem exists if you add a patient using `add-ptn` too.
+
 **Solution:** The title of the patients list will be updated to display "XXX's Patients" on affected doctor commands.
 The same fix will be done for the displayed doctors list on affected patient commands.
 Note: XXX is the name of the newly added doctor/patient
@@ -631,7 +631,7 @@ Note: XXX is the name of the newly added doctor/patient
 - Why did it happen: Implementation of feature freeze prior to resolution
 - Potential issue: User assumes that all fields are compulsory
 
-- **Solution:** Update the `MESSAGE_USAGE` field
+**Solution:** Update the `MESSAGE_USAGE` field
   in [`EditDoctorCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/commands/EditDoctorCommand.java), [`EditPatientCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditPatientCommand.java)
   and associated
   tests ([`EditDoctorCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditDoctorCommandTest.java), [`EditPatientCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditPatientCommandTest.java))
