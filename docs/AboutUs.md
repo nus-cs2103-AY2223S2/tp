@@ -16,7 +16,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 [[portfolio](team/vigonometry.md)]
 
 * Role: QA Testing, Product Development, Documentation
-* Responsibilities: 
+* Responsibilities:
   * Implementation of themes and CRUD commands.
   * Ensure adherence to code quality and test coverage.
   * Ensure quality of various documents.

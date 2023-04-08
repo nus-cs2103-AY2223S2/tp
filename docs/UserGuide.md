@@ -81,13 +81,13 @@ The information below specifies parameter description, constraints and usage thr
 
 #### Common Parameters
 
-| Parameter         | Description                        | Constraints                                                                     | Valid Examples                    | Invalid Examples    |
-|-------------------|------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|---------------------|
-| n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち |
-| e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2    |
-| p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1               |
-| t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                 |
-| INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649      |
+| Parameter         | Description                        | Constraints                                                                     | Valid Examples                    | Invalid Examples                             |
+|-------------------|------------------------------------|---------------------------------------------------------------------------------|-----------------------------------|----------------------------------------------|
+| n/                | Name of the doctor/patient         | Alphanumeric characters (a to z, A to Z, 0 to 9)                                | Will Hunting, Elizabeth 2         | 成龍,  潔 いさぎ 世 よ 一 いち, Ganesh s/o Ravichandran |
+| e/                | Email of the doctor/patient        | Email prefix: Alphanumeric characters (a to z, A to Z, 0 to 9), @, Email Domain | whunting@gmail.com, eliz2@mit.edu | whunting@, eliz2                             |
+| p/                | Phone number of the doctor/patient | Positive integer with 3 or more digits                                          | 999, 94565625                     | 0, -1                                        |
+| t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                                          |
+| INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649                               |
 
 <sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
 
@@ -253,7 +253,12 @@ This is a tutorial for **first-time** Docedex users.
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
     - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
+If no patients appear in the patients list, it is because none have been assigned to the doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -325,7 +330,13 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
+If no patients appear in the patients list, it is because none have been assigned to the doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -349,7 +360,12 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
+If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -379,7 +395,7 @@ Related: [Selecting doctors or patients through commands](#selecting-doctors-or-
 
 ```edit-ptn [INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the patient at the specified `INDEX`. 
+- What it does: Edits the patient at the specified `INDEX`.
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command overwrites existing data within Docedex, proceed with caution.
 </div>
@@ -441,7 +457,12 @@ Examples:
 - Note to user:
     - The index refers to the index number shown in the displayed patient list.
 
-Related: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+<div markdown="span" class="alert alert-heading">
+Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
+If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
