@@ -315,11 +315,11 @@ User may choose between the two formats for the FindCommand which function diffe
 
 The following sequence diagram shows how the `find` command works:
 
-![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
+<img src="images/FindSequenceDiagram.png" width="1750" height="598">
 
 The following activity diagram shows what happens when a user executes a `find` command:
 
-![Activity diagram of find command](images/FindActivityDiagram.png)
+<img src="images/FindActivityDiagram.png" width="1375" height="504">
 
 [Back to Table of Contents](#toc)
 
