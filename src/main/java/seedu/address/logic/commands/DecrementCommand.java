@@ -30,6 +30,9 @@ public class DecrementCommand extends Command {
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count decremented";
 
+    public static final String MESSAGE_MISSING_DECREMENT_VALUE = "A value to decrement by " +
+            "(integer >=0) needs to be present";
+
     public static final String MESSAGE_FINAL_COUNT_NEGATIVE = "Final transaction count cannot be negative";
 
     private final EditPersonDescriptor editPersonDescriptor;

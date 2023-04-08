@@ -30,7 +30,7 @@ public class IncrementCommand extends Command {
 
     public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count incremented";
 
-    public static final String MESSAGE_MISSING_INCREMENT_VALUE = "A value to increment " +
+    public static final String MESSAGE_MISSING_INCREMENT_VALUE = "A value to increment by" +
             "(integer >=0) needs to be present";
 
     private final EditPersonDescriptor editPersonDescriptor;
@@ -62,8 +62,14 @@ public class IncrementCommand extends Command {
         long currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getLongValue();
         long incrementCount = editPersonDescriptor.getTransactionCount().get().getLongValue();
         long finalAmount = currentCount + incrementCount;
+        if (!TransactionCount.isValidTransactionCount(Long.toString(finalAmount))) {
+            throw new CommandException(TransactionCount.POTENTIAL_OVERFLOW_MESSAGE + "\n"
+                    + TransactionCount.MESSAGE_CONSTRAINTS);
+        }
 
-        editPersonDescriptor.setTransactionCount(new TransactionCount(String.valueOf(finalAmount)));
+
+        TransactionCount result = new TransactionCount(String.valueOf(finalAmount));
+        editPersonDescriptor.setTransactionCount(result);
 
         Person editedPerson = EditCommand.createEditedPerson(personToEdit, editPersonDescriptor);
 
