@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":ImportCommandParser" as ImportCommandParser LOGIC_COLOR
+participant "c:ImportCommand" as ImportCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant ":Archive" as Archive LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(\n"import hello.json /mod CS2040S")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand(\n"import hello.json /mod CS2040S")
+activate TrackerParser
+
+create ImportCommandParser
+TrackerParser -> ImportCommandParser
+activate ImportCommandParser
+
+ImportCommandParser --> TrackerParser
+deactivate ImportCommandParser
+
+TrackerParser -> ImportCommandParser : parse(\n"hello.json /mod CS2040S")
+activate ImportCommandParser
+
+create ImportCommand
+ImportCommandParser -> ImportCommand : file path,\n module code
+activate ImportCommand
+
+ImportCommand --> ImportCommandParser : c
+deactivate ImportCommand
+
+ImportCommandParser --> TrackerParser : c
+destroy ImportCommandParser
+
+TrackerParser --> LogicManager : c
+deactivate TrackerParser
+
+LogicManager -> ImportCommand : execute(model)
+activate ImportCommand
+
+create CommandResult
+ImportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ImportCommand : r
+deactivate CommandResult
+
+ImportCommand --> LogicManager : r
+deactivate ImportCommand
+
+LogicManager -> CommandResult : !getPath().isEmpty()
+activate CommandResult
+
+CommandResult --> LogicManager : true
+deactivate CommandResult
+
+
+LogicManager -> Archive : importFromArchive(path, module code)
+activate Archive
+
+ref over Archive
+    Import module from file path
+end ref
+
+Archive -> CommandResult
+activate CommandResult
+
+CommandResult --> Archive
+deactivate CommandResult
+
+Archive --> LogicManager
+deactivate Archive
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

@@ -766,9 +766,13 @@ The feature utilises the following classes:
 
 **Execution**
 
-Below is an activity diagram that showcase the events that occurs when an `import` command is executed.
+The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
+file path to the current `Tracker` object
 
-TODO: ADD ACTIVITY DIAGRAM
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+![ImportSequenceDiagram](images/ImportSequenceDiagramRef.png)
+
 
 The following is a description of the code execution flow:
 

@@ -29,7 +29,7 @@ deactivate UntagCommandParser
 TrackerParser -> UntagCommandParser : parse(\n"CS2040S /tags fun")
 activate UntagCommandParser
 
-UntagCommandParser -> UntagCommandParser : isUntaggingMod(present prefix: "/tags")
+UntagCommandParser -> UntagCommandParser : isUntaggingMod(\npresent prefix: "/tags")
 activate UntagCommandParser
 
 UntagCommandParser --> UntagCommandParser : true

@@ -29,7 +29,7 @@ deactivate TagCommandParser
 TrackerParser -> TagCommandParser : parse(\n"CS2040S /tags fun")
 activate TagCommandParser
 
-TagCommandParser -> TagCommandParser : isTaggingMod(present prefix: "/tags")
+TagCommandParser -> TagCommandParser : isTaggingMod(\npresent prefix: "/tags")
 activate TagCommandParser
 
 TagCommandParser --> TagCommandParser : true
@@ -77,7 +77,7 @@ CommandResult --> TagCommand : r
 deactivate CommandResult
 
 TagCommand --> LogicManager : r
-deactivate CommandResult
+deactivate TagCommand
 
 LogicManager -->[
 deactivate LogicManager
