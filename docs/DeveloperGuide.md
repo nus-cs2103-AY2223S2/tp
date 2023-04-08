@@ -22,7 +22,6 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/)
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-* All icons used are taken from [flaticon](https://www.flaticon.com/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -654,36 +653,36 @@ _{more aspects and alternatives to be added}_
 - `MED` _(nice to have)_
 - _`Low`_ _(unlikely to have)_
 
-|  Priority  | As a …​ | I want to …​                                                                                                   | So that I can…​                                                             |
-|:----------:|---------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| **`HIGH`** | tutor   | open the app                                                                                                   | begin using the app                                                         |
-| **`HIGH`** | tutor   | close the app                                                                                                  | leave the app                                                               |
-| **`HIGH`** | tutor   | add a student's name                                                                                           | track a student's progress by their name                                    |
-| **`HIGH`** | tutor   | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
-| **`HIGH`** | tutor   | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
-| **`HIGH`** | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
-| **`HIGH`** | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
-| **`HIGH`** | tutor   | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                 | keep track of what modules I'm teaching the student                         |
-| **`HIGH`** | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
-| **`HIGH`** | tutor   | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
-| **`HIGH`** | tutor   | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
-| **`HIGH`** | tutor   | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
-| **`HIGH`** | tutor   | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
-| **`HIGH`** | tutor   | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
-| **`HIGH`** | tutor   | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
-| **`HIGH`** | tutor   | find my students by searching their names                                                                      | quickly view that student's details                                         |
-| **`HIGH`** | tutor   | edit a student's name                                                                                          | correct a student's name                                                    |
-| **`HIGH`** | tutor   | edit the modules I'm teaching a particular student                                                             | update or correct a student's records                                       |
-| **`HIGH`** | tutor   | edit a student's education level                                                                               | update or correct a student's records                                       |
-| **`HIGH`** | tutor   | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
-| **`HIGH`** | tutor   | be able to ask for help                                                                                        | learn how to use the app                                                    |
-|   `MED`    | tutor   | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
-|   `MED`    | tutor   | filter my students by modules                                                                                  | view all the student's I'm teaching a particular module to                  |
-|   `MED`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
-|   `MED`    | tutor   | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
-|   `MED`    | tutor   | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
-|   `MED`    | tutor   | sort my students by their names                                                                                | view my students in a systematic manner                                     |
-|   `MED`    | tutor   | sort my students by their education level                                                                      | view my students according to their education level                         |
+| Priority   | As a …​   | I want to …​                                                                                                    | So that I can…​                                                              |
+|:----------:|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **`HIGH`** | tutor    | open the app                                                                                                   | begin using the app                                                         |
+| **`HIGH`** | tutor    | close the app                                                                                                  | leave the app                                                               |
+| **`HIGH`** | tutor    | add a student's name                                                                                           | track a student's progress by their name                                    |
+| **`HIGH`** | tutor    | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
+| **`HIGH`** | tutor    | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
+| **`HIGH`** | tutor    | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
+| **`HIGH`** | tutor    | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
+| **`HIGH`** | tutor    | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                | keep track of what modules I'm teaching the student                        |
+| **`HIGH`** | tutor    | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
+| **`HIGH`** | tutor    | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
+| **`HIGH`** | tutor    | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
+| **`HIGH`** | tutor    | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
+| **`HIGH`** | tutor    | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
+| **`HIGH`** | tutor    | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
+| **`HIGH`** | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
+| **`HIGH`** | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
+| **`HIGH`** | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
+| **`HIGH`** | tutor    | edit the modules I'm teaching a particular student                                                            | update or correct a student's records                                       |
+| **`HIGH`** | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
+| **`HIGH`** | tutor    | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| **`HIGH`** | tutor    | be able to ask for help                                                                                        | learn how to use the app                                                    |
+|   `MED`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
+|   `MED`    | tutor    | filter my students by modules                                                                                 | view all the student's I'm teaching a particular module to                 |
+|   `MED`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
+|   `MED`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
+|   `MED`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
+|   `MED`    | tutor    | sort my students by their names                                                                                | view my students in a systematic manner                                     |
+|   `MED`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         |
 
 [↑ Back to top](#table-of-contents)
 
@@ -875,6 +874,9 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 6. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 7. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
+
+*{More to be added}*
+
 [↑ Back to top](#table-of-contents)
 
 ### Glossary
@@ -887,39 +889,6 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 [↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Planned enhancements**
-
-The current version of TeachMeSenpai certainly has its flaws and here are some of our plans for future enhancements to improve TeachMeSenpai further for TAs.
-
-#### Add/Edit
-**Feature flaw 1** : STUDENT_NAME is currently case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for student names is to check for case-insensitivity in `add` and `edit` in order to disallow duplicate names.
-**Feature flaw 2** : STUDENT_NAME allows alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, STUDENT_NAME will be enhanced to allow alphabets, and symbols only.
-**Feature flaw 3** : Duplicate TELEGRAM and PHONE are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
-However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
-**Feature flaw 4** : The current `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
-
-#### Autocomplete
-**Feature flaw 1** : Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
-leads users to believe that their input (without `n/STUDENT_NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/STUDENT_NAME`.
-
-#### Find/Filter
-**Feature flaw 1** : Currently, we don't explicitly handle such cases, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
-
-Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
-
-* to list all persons _(which is the purpose of `list`)_
-* to list no person _(which is not useful)_
-
-Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
-
-#### Ui
-**Feature flaw 1** : At the moment, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
-
-#### Error handling
-**Feature flaw 1** : The current error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
-
-[↑ Back to top](#table-of-contents)
 
 ## **Appendix: Instructions for manual testing**
 

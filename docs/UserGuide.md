@@ -156,7 +156,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 - Items with `...` after them can be used multiple times including zero times. \\
   _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
 
-- Parameters can be in any order. \\
+- Parameters can be specified in any order. \\
   _(eg. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable)_
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \\
@@ -233,7 +233,7 @@ Shows a list of all students. This is useful for displaying the full list after 
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`\\
+> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`
 >
 > - STUDENT_NAME: [Alphanumeric](#glossary) word(s).
 > - ADDRESS: The student's address.
@@ -243,7 +243,7 @@ Adds a student to the list, along with their education level and any student-spe
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - REMARK: Can be sentences or even paragraphs.
 > - TAG: A detail about a student (limited to one word long).
-> - MODULE: The module code the student is taking (can be multiple words). \\
+> - MODULE: The module code the student is taking (can be multiple words).
 
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
@@ -260,10 +260,12 @@ a future enhancement that will only allow unique names (case-sensitive), phone n
 
 Examples:
 
-- `add n/Shaun a/123 NUS Street r/Good in Japanese t/submitted`
+- `add n/Shaun a/123 NUS Street r/Good in Japanese t/submitted m/CS2103T`
 - `add n/Shao Hong edu/Bachelors y2 r/Good in German m/CS2101`
-- `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/Kent Ridge PGPR tele/wenlisan r/Very hardworking :)`
+- `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/Kent Ridge PGPR tele/@wenlisan r/Very hardworking :)`
 
+
+**Using the following input** `add n/Shao Hong edu/Bachelors y2 r/Good in german m/CS2101`
 <p align=center>
     <img alt="add before" src="images/user-guide/add_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>add</code> command</i>
@@ -282,7 +284,7 @@ Examples:
 
 ### Delete a student: `delete`
 
-Deletes the specified student(s) from the student list.
+Deletes the student(s) at the specified index(es) from the student list.
 
 > Format: `delete INDEX [INDEX]...`
 
@@ -298,7 +300,9 @@ none of the students will be deleted.
 Examples:
 
 - `list` followed by `delete 2` deletes the 2nd student in the student list.
+- `delete 1 4` deletes the 1st and 4th student in the student list.
 
+**Using the following input** `delete 1 4`
 <p align=center>
     <img alt="delete before" src="images/user-guide/delete_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
@@ -308,8 +312,6 @@ Examples:
     <img alt="delete after" src="images/user-guide/delete_after.jpg" />
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
-
-- `delete 1 4` deletes the 1st and 4th student in the student list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
 <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
@@ -334,7 +336,7 @@ Edits a student's information _(all information except remarks)_. To remove a st
 > - EDUCATION LEVEL: [Alphanumeric](#glossary) word(s)
 > - TELEGRAM: A valid telegram handle must start with `@` and follows Telegram's username specifications
 > - TAG: A detail about a student (limited to one word long).
-> - MODULE: The module code the student is taking (can be multiple words). \\
+> - MODULE: The module code the student is taking (can be multiple words).
 
 For more details and examples on the parameters, please refer to the [Parameter descriptions](#parameter-descriptions)!
 
@@ -350,6 +352,7 @@ Examples:
 - `edit 1 n/Lao Hong`
 - `edit 3 a/ p/` _(removes student's address & phone number)_
 
+**Using the following input** `edit 4 n/Lao Hong`
 <p align=center>
     <img alt="edit before" src="images/user-guide/edit_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>edit</code> command</i>
@@ -389,6 +392,7 @@ Examples:
 
 - `remark 2`
 
+**Using the following input** `remark 2`:
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
@@ -422,8 +426,9 @@ Displays all the details, including the full remark of a specified student. This
 
 Examples:
 
-- `show 2`
+- `show 4`
 
+**Using the following input** `show 4`:
 <p align=center>
     <img alt="show before" src="images/user-guide/show_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>show</code> command</i>
@@ -447,12 +452,20 @@ Finds students based on a keyword in the parameter that you want.
 
 The `find` and `filter` commands allow you to match keywords or partial keywords with the entries, for example:
 
+<h4 style="color:Orange">Find</h4>
+
 `find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
 
-The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
+The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`
 
 > Format: \\
-> `find PREFIX... KEYWORDS...` \\
+> `find PREFIX... KEYWORDS...`
+
+<h4 style="color:Orange">Filter</h4>
+
+`filter` will also show you those who match with **at least one** of the criteria.
+
+> Format: \\
 > `filter PREFIX... KEYWORDS...`
 
 * `PREFIX` refers to the type of details such as name, address, email and so on.
@@ -469,7 +482,10 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 
 For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** 
+
+* Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
+* Using `filter` without any `PREFIX`s will result in an empty list!
 </div>
 
 Examples:
@@ -493,6 +509,7 @@ Examples:
 <div markdown="block" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
+**Using the following input** `filter n/a m/CS2103T` :
 <p align=center>
     <img alt="filter before" src="images/user-guide/filter_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
@@ -503,7 +520,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>filter</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
+<div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that only match some criteria like `Roy Balakrishnan`, who only matches `n/a`
 are shown too.
 </div>
 
