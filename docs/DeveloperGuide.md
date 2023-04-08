@@ -11,7 +11,7 @@ title: Developer Guide
 
 * [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
 * [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
-* [JavaFX](https://openjfx.io/), because project is based on it.
+* [JavaFX](https://openjfx.io/), because this project is based on it.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -975,7 +975,7 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix**
 
 Given below are instructions to test the app manually.
 
@@ -1023,7 +1023,7 @@ testers are expected to do more *exploratory* testing.
    ii. Test case: `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
        Expected: Student is added to the list and list gets updated with the new student details.
 
-   iii. Test case: `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
+   iii. Test case (Repeat the same command as ii): `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100 a/311, Clementi Ave 2, #02-25`<br>
        Expected: No student is added since student details (particularly nus email and telegram handle) already exists. Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
@@ -1043,6 +1043,8 @@ testers are expected to do more *exploratory* testing.
    ii. To simulate a corrupted data file: Close TrAkcer, type random characters in addressbook.json that makes the json file invalid. Relaunch TrAcker.
    
    iii. Expected behaviour: Empty student list in student tab and empty events in event tab. TrAcker only expects valid json file and data, and is not responsible for json file manipulations that render the json file data invalid.
+
+Given below are our planned enhancements.
 
 ### Planned Enhancements
 

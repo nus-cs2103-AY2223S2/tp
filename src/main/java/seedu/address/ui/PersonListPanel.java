@@ -8,12 +8,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -53,11 +55,15 @@ public class PersonListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Restricts mouse events from user.
+     * Populates table with necessary student details.
      */
     public PersonListPanel(ObservableList<Person> persons) {
         super(FXML);
 
-        table.setMouseTransparent(true);
+        table.addEventFilter(MouseEvent.MOUSE_DRAGGED, MouseEvent::consume);
+        table.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseEvent::consume);
+        table.setSelectionModel(null);
 
         initCellValue();
 
@@ -232,6 +238,7 @@ public class PersonListPanel extends UiPart<Region> {
         remark.setSortable(false);
         telegram.setSortable(false);
         index.setSortable(false);
+        address.setSortable(false);
     }
 
     /**

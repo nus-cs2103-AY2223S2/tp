@@ -11,11 +11,11 @@ public class Phone {
 
     public static final String NULL_PHONE = "NO_PHONE";
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handle should only contain numbers, letters, _ and it should be at"
-                    + "least 5 characters long and at most 32 characters long."
-                    + "No whitespaces allowed between characters";
+            "Telegram handle must be at least 5-characters long and maximum 32-character long, "
+            + "and may consist only of a-z, A-Z, 0–9, and underscores. "
+            + "No whitespaces allowed between characters";
     //public static final String VALIDATION_REGEX = "\\d{3,}";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{5,32}$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]{5,32}$";
 
     public final String value;
 
