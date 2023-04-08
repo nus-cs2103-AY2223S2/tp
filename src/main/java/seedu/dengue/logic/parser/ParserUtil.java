@@ -13,11 +13,17 @@ import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.commons.util.StringUtil;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.predicate.PredicateUtil;
+import seedu.dengue.model.range.EndAge;
+import seedu.dengue.model.range.EndDate;
+import seedu.dengue.model.range.Range;
+import seedu.dengue.model.range.StartAge;
+import seedu.dengue.model.range.StartDate;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -212,4 +218,49 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code Optional<String> start} and {@code Optional<String> end} into an {@code Range<Date>}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param start the start.
+     * @param end the end.
+     * @return a range of the start date to end date.
+     * @throws ParseException if the dates are not valid and the date range is not valid.
+     */
+    public static Range<Date> parseDateRange(Optional<String> start, Optional<String> end) throws ParseException {
+        Optional<Date> optionalStartDate = parseOptionalDate(start);
+        Optional<Date> optionalEndDate = parseOptionalDate(end);
+        if (optionalStartDate.isPresent() && optionalEndDate.isPresent()) {
+            Date startDate = optionalStartDate.get();
+            Date endDate = optionalEndDate.get();
+            if (!PredicateUtil.isDateRangeValid(startDate, endDate)) {
+                throw new ParseException(Range.MESSAGE_INVALID_RANGE);
+            }
+        }
+        StartDate startDate = new StartDate(optionalStartDate);
+        EndDate endDate = new EndDate(optionalEndDate);
+        return ContinuousData.generateRange(startDate, endDate);
+    }
+
+    /**
+     * Parses a {@code Optional<String> start} and {@code Optional<String> end} into an {@code Range<Age>}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param start the start.
+     * @param end the end.
+     * @return a range of the start age to end age.
+     * @throws ParseException if the ages are not valid and the age range is not valid.
+     */
+    public static Range<Age> parseAgeRange(Optional<String> start, Optional<String> end) throws ParseException {
+        Optional<Age> optionalStartAge = parseOptionalAge(start);
+        Optional<Age> optionalEndAge = parseOptionalAge(end);
+        if (optionalStartAge.isPresent() && optionalEndAge.isPresent()) {
+            Age startAge = optionalStartAge.get();
+            Age endAge = optionalEndAge.get();
+            if (!PredicateUtil.isAgeRangeValid(startAge, endAge)) {
+                throw new ParseException(Range.MESSAGE_INVALID_RANGE);
+            }
+        }
+        StartAge startAge = new StartAge(optionalStartAge);
+        EndAge endAge = new EndAge(optionalEndAge);
+        return ContinuousData.generateRange(startAge, endAge);
+    }
 }

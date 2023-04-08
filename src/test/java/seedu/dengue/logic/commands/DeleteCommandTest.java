@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dengue.commons.core.Messages;
 import seedu.dengue.commons.core.index.Index;
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
@@ -76,7 +77,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -92,7 +93,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_throwsCommandException() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
@@ -147,7 +148,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validMultiIndexFilteredListNoDuplicate_success() {
+    public void execute_validMultiIndexFilteredListNoDuplicate_success() throws ParseException {
 
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> testName = Optional.of(new Name("Meier"));
@@ -177,7 +178,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validMultiIndexFilteredListWithDuplicates_success() {
+    public void execute_validMultiIndexFilteredListWithDuplicates_success() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -194,7 +195,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidMultiIndexFilteredList_throwsCommandException() {
+    public void execute_invalidMultiIndexFilteredList_throwsCommandException() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
@@ -209,7 +210,7 @@ public class DeleteCommandTest {
     // delete-by-date tests
 
     @Test
-    public void execute_validDateUnfilteredList_success() {
+    public void execute_validDateUnfilteredList_success() throws ParseException {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Date dateToDelete = personToDelete.getDate();
         DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.of(dateToDelete));
@@ -225,7 +226,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validDateFilteredList_success() {
+    public void execute_validDateFilteredList_success() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -244,7 +245,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validDateNoMatchUnfilteredList_success() {
+    public void execute_validDateNoMatchUnfilteredList_success() throws ParseException {
         Date dateToDelete = new Date("9999-12-31");
         DeleteDatePredicate predicate = new DeleteDatePredicate(Optional.of(dateToDelete));
 
@@ -258,7 +259,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validDateNoMatchFilteredList_success() {
+    public void execute_validDateNoMatchFilteredList_success() throws ParseException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Date dateToDelete = new Date("9999-12-31");
@@ -277,7 +278,7 @@ public class DeleteCommandTest {
     // delete-by-range tests
 
     @Test
-    public void execute_completeRangeUnfilteredList_success() {
+    public void execute_completeRangeUnfilteredList_success() throws ParseException {
 
         Range<Date> dateRange = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_DANIEL))),
@@ -298,7 +299,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_completeRangeFilteredList_success() {
+    public void execute_completeRangeFilteredList_success() throws ParseException {
 
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> emptyName = Optional.empty();
@@ -331,7 +332,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_partialRangeStartGivenUnfilteredList_success() {
+    public void execute_partialRangeStartGivenUnfilteredList_success() throws ParseException {
 
         Range<Date> dateRange = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
@@ -351,7 +352,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_partialRangeStartGivenFilteredList_success() {
+    public void execute_partialRangeStartGivenFilteredList_success() throws ParseException {
 
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> emptyName = Optional.empty();
@@ -383,7 +384,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_partialRangeEndGivenUnfilteredList_success() {
+    public void execute_partialRangeEndGivenUnfilteredList_success() throws ParseException {
 
         Range<Date> dateRange = ContinuousData.generateRange(
                 new StartDate(Optional.empty()),
@@ -403,7 +404,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_partialRangeEndGivenFilteredList_success() {
+    public void execute_partialRangeEndGivenFilteredList_success() throws ParseException {
 
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> emptyName = Optional.empty();
@@ -435,7 +436,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_completeRangeSameDatesUnfilteredList_success() {
+    public void execute_completeRangeSameDatesUnfilteredList_success() throws ParseException {
 
         Range<Date> dateRange = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date(VALID_DATE_ALICE))),
@@ -455,7 +456,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_partialRangeSameDatesFilteredList_success() {
+    public void execute_partialRangeSameDatesFilteredList_success() throws ParseException {
 
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> emptyName = Optional.empty();
