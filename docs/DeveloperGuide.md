@@ -36,7 +36,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <p align="center">
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="200" />
 
  </p> 
  
@@ -66,7 +66,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <p align="center">
 
-<img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram-0.png" width="400" />
 
  </p> 
  
@@ -79,7 +79,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <p align="center">
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png" width="250" />
 
 </p> 
  
