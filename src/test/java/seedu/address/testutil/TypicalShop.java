@@ -54,8 +54,8 @@ import seedu.address.model.tag.Tag;
  */
 
 public class TypicalShop {
-    private static final IdGenerator idGenerator = new IdGenerator();
-    public static Person[] getSamplePersons() {
+    private final IdGenerator idGenerator = new IdGenerator();
+    public Person[] getSamplePersons() {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -78,7 +78,7 @@ public class TypicalShop {
         };
     }
 
-    public static Customer[] getSampleCustomers() {
+    public Customer[] getSampleCustomers() {
         return new Customer[]{
             new Customer(idGenerator.generateCustomerId(), new Name("Alex Yeoh"), new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
@@ -103,7 +103,7 @@ public class TypicalShop {
         };
     }
 
-    public static Technician[] getSampleTechnicians() {
+    public Technician[] getSampleTechnicians() {
         return new Technician[]{
             new Technician(idGenerator.generateStaffId(), new Name("James Tan"), new Phone("89764362"),
                     new Email("jamestan@example.com"), new Address("Blk 586 Bedok Street 23, #08-46"),
@@ -117,7 +117,7 @@ public class TypicalShop {
         };
     }
 
-    public static Appointment[] getSampleAppointments() {
+    public Appointment[] getSampleAppointments() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
 
         return new Appointment[] {
@@ -136,7 +136,7 @@ public class TypicalShop {
         };
     }
 
-    public static Vehicle[] getSampleVehicles() {
+    public Vehicle[] getSampleVehicles() {
         return new Vehicle[] {
             new Vehicle(idGenerator.generateVehicleId(), 1, "SKA1234A", "Red", "Toyota Corolla",
                     VehicleType.CAR, getIntegerSet(1, 5)),
@@ -153,7 +153,7 @@ public class TypicalShop {
         };
     }
 
-    public static Map<String, Integer> getSampleParts() {
+    public Map<String, Integer> getSampleParts() {
         Map<String, Integer> map = new CaseInsensitiveHashMap<>();
         map.put("Frame", 50);
         map.put("Bolt", 1000);
@@ -171,7 +171,7 @@ public class TypicalShop {
     }
 
     // NOTE: Ensure Parts added to Services match with the parts added to getSampleParts*
-    public static Service[] getSampleServices() {
+    public Service[] getSampleServices() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Map<String, Integer> samplePartsA = new CaseInsensitiveHashMap<>();
         samplePartsA.put("Wheels", 4);
@@ -214,7 +214,7 @@ public class TypicalShop {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
@@ -222,7 +222,7 @@ public class TypicalShop {
         return sampleAb;
     }
 
-    public static ReadOnlyShop getTypicalShop() {
+    public ReadOnlyShop getTypicalShop() {
         Shop sampleSh = new Shop();
         sampleSh.initializeData(
                 idGenerator,
@@ -235,14 +235,14 @@ public class TypicalShop {
         return sampleSh;
     }
 
-    public static Model getTypicalModel() {
+    public Model getTypicalModel() {
         return new ModelManager(getSampleAddressBook(), new UserPrefs(), getTypicalShop());
     }
 
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
@@ -251,7 +251,7 @@ public class TypicalShop {
     /**
      * Returns a integer set containing the list of integers given.
      */
-    public static Set<Integer> getIntegerSet(Integer... integers) {
+    public Set<Integer> getIntegerSet(Integer... integers) {
         return Arrays.stream(integers)
                 .collect(Collectors.toSet());
     }
