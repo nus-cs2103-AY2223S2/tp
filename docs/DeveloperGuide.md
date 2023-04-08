@@ -760,7 +760,7 @@ has been activated.
     4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
 
 4. Display timetable for specific week containing a specific date from Timetable Window
-    1. Prerequisites: None.
+    1. Prerequisites: Opened Timetable window using `timetable` command from Main Window. Timetable of current week is shown in current Timetable Window.
     2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
     3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
     4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
