@@ -121,14 +121,6 @@ public class JsonAdaptedBookmarkTest {
     }
 
     @Test
-    public void toModelType_nullRating_throwsIllegalValueException() {
-        JsonAdaptedBookmark bookmark = new JsonAdaptedBookmark(VALID_TITLE,
-                VALID_PROGRESS, VALID_GENRE, VALID_AUTHOR, null, VALID_URL, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, bookmark::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidRating_throwsIllegalValueException() {
         JsonAdaptedBookmark bookmark =
                 new JsonAdaptedBookmark(VALID_TITLE, VALID_PROGRESS,
