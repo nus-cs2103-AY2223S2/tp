@@ -223,9 +223,7 @@ This is a tutorial for **first-time** Docedex users.
 8. Let us try **undoing the assignment of the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
    ![UnassignPtn](images/UnassignPtn.png)
 9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
-   ![FindDocTut](images/FindDocTut.png)
 10. Let us try **finding a patient** with the name Patrick. Enter `find-ptn n/Patrick` in the command box.
-    ![FindPtnTut](images/FindPtnTut.png)
 11. Let us try **deleting a doctor** from Docedex. Enter the command `del-doc 1` in the command box. This removes the first displayed doctor in the doctors' list.
 12. Let us try **deleting a patient** from Docedex. Enter the command `del-ptn 1` in the command box. This removes the first displayed patient in the patients' list.
 13. Let us try **listing all doctors**. Enter the command `list-doc` in the command box. This lists all the doctors within Docedex.
