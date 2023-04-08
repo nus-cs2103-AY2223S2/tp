@@ -1,20 +1,19 @@
 ---
 layout: page
-title: HMHero User Guide
+title: User Guide
 ---
 
 ## Table of Contents
 
-
-1. [About HMHero](#1-about-hmhero)
-2. [Features](#2-features)
+* [About HMHero](#1-about-hmhero)
+* [Features](#2-features)
    * [Applicant Management System](#21-applicant-management-system)
    * [Hiring Process Analytics](#22-hiring-process-analytics)
-3. [How to use this User Guide](#3-how-to-use-this-user-guide)
+* [How to use this User Guide](#3-how-to-use-this-user-guide)
    * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
    * [Purpose of User Guide](#32-purpose-of-user-guide)
-4. [Installation](#4-installation)
-5. [Quick Start](#5-quick-start)
+* [Installation](#4-installation)
+* [Quick Start](#5-quick-start)
    * [User Interface](#51-user-interface)
    * [Key Definitions](#52-key-definitions)
      * [Applicant](#521-applicant)
@@ -23,7 +22,7 @@ title: HMHero User Guide
      * [Placeholders](#524-placeholders)
    * [Command Format](#53-command-format)
    * [Trying your First Command](#54-trying-your-first-command)
-6. [Commands](#6-commands)
+* [Commands](#6-commands)
    * [Applicant Commands](#61-applicant-commands)
      * [Create a new applicant `add`](#611-create-a-new-applicant-add)
      * [Search for an applicant `find`](#612-search-for-an-applicant-find)
@@ -38,14 +37,14 @@ title: HMHero User Guide
    * [General Commands](#63-general-commands)
      * [Receive help during usage `help`](#631-receive-help-during-usage-help)
      * [Exit HMHero `exit`](#632-exit-hmhero-exit)
-7. [Command summary](#7-command-summary)
+* [Command summary](#7-command-summary)
    * [Applicant Commands](#71-applicant-commands)
    * [Statistics Commands](#72-statistics-commands)
    * [General Commands](#73-general-commands)
-8. [Troubleshooting](#8-troubleshooting)
-9. [FAQ](#9-faq)
-10. [Acknowledgements](#10-acknowledgements)
-11. [Glossary](#11-glossary)
+* [Troubleshooting](#8-troubleshooting)
+* [FAQ](#9-faq)
+* [Acknowledgements](#10-acknowledgements)
+* [Glossary](#11-glossary)
 
 ---
 

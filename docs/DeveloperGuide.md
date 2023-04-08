@@ -2,12 +2,49 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
+
+* [About HMHero](#about-hmhero)
+* [How to use this Developer Guide](#how-to-use-this-developer-guide)
+    * [Icons and Hyperlinks](#31-icons-and-hyperlinks)
+    * [Purpose of User Guide](#32-purpose-of-user-guide)
+3. [Installation](#4-installation)
+4. [Quick Start](#5-quick-start)
+    * [User Interface](#51-user-interface)
+    * [Key Definitions](#52-key-definitions)
+        * [Applicant](#521-applicant)
+        * [Notes](#522-notes)
+        * [Flags](#523-flags)
+        * [Placeholders](#524-placeholders)
+    * [Command Format](#53-command-format)
+    * [Trying your First Command](#54-trying-your-first-command)
+5. [Commands](#6-commands)
+    * [Applicant Commands](#61-applicant-commands)
+        * [Create a new applicant `add`](#611-create-a-new-applicant-add)
+        * [Search for an applicant `find`](#612-search-for-an-applicant-find)
+        * [List all applicants `list`](#613-list-all-applicants-list)
+        * [Delete an applicant `delete`](#614-delete-an-applicant-delete)
+        * [Advance an applicant `advance`](#615-advance-an-applicant-advance)
+        * [Reject an applicant `reject`](#616-reject-an-applicant-reject)
+        * [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
+        * [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
+        * [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
+    * [Statistic Commands](#62-statistics-commands)
+    * [General Commands](#63-general-commands)
+        * [Receive help during usage `help`](#631-receive-help-during-usage-help)
+        * [Exit HMHero `exit`](#632-exit-hmhero-exit)
+6. [Command summary](#7-command-summary)
+    * [Applicant Commands](#71-applicant-commands)
+    * [Statistics Commands](#72-statistics-commands)
+    * [General Commands](#73-general-commands)
+7. [Troubleshooting](#8-troubleshooting)
+8. [FAQ](#9-faq)
+9. [Acknowledgements](#10-acknowledgements)
+10. [Glossary](#11-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction to HMHero**
+## **About HMHero**
 
 HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers,
 and recruiters who want to streamline the recruitment process and make it more efficient,
@@ -26,6 +63,27 @@ This guide is intended to assist developers in maintaining, upgrading or evolvin
 
 In this Developer Guide, `Person` is used in place of Applicant. Take note that when mentioning `Person`, we are
 always talking about an Applicant in HMHero.
+
+#### Icons and Hyperlinks
+
+You may come across colored boxes containing text that will aid you in better understanding how to use each feature.
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+Highlight and display information you should pay attention to. </div>
+
+
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+Highlight tips which you might find useful. </div>
+
+
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
+Highlight dangers and things to look out for. </div>
+
+
+Other than the icons mentioned above, you maye also come across <a href> Phrases coloured in blue </a> are hyperlinks
+that will bring you to another part of this documentation that is relevant to the phrase.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
