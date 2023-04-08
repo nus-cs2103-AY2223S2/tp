@@ -300,9 +300,9 @@ Examples:
 ### Homework Commands
 #### Assign Homework to a Student
 
-Create a homework assignment with a deadline for a student
+Create a homework assignment with a deadline for multiple students.
 
-Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`
+Format: `new-homework [name/STUDENT_NAME]... [homework/HOMEWORK_NAME] [deadline/DEADLINE]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor.
 * The `DEADLINE` must be in the format given in the support date and time formats' appendix.
@@ -311,7 +311,7 @@ Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEA
 Examples:
 * `new-homework name/John homework/listening comprehension ex1 deadline/2023-05-30 2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
 * `new-homework name/Donald homework/english essay deadline/2023-05-14 2359` adds the assignment `English Essay` to the student named `Donald`. The deadline is 14 May 2023 at 23:59.
-* `new-homework name/Kai Ze homework/math ex1 deadline/2023-05-23 2359` adds the assignment `math ex1` to the student named `Kai Ze`. The deadline is 23 May 2023 at 23:59.
+* `new-homework name/Kai Ze name/Muhammad homework/math ex1 deadline/2023-05-23 2359` adds the assignment `math ex1` to the student named `Kai Ze` and `Muhammad`. The deadline is 23 May 2023 at 23:59.
 
 ![New Homework](images/new-homework.jpg)
 
@@ -322,8 +322,10 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX,
-and DEADLINE should all only appear at most once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME should appear at least once and should not be empty.
+
+:exclamation: **Caution:** HOMEWORK_INDEX
+and DEADLINE should all only appear exactly once and should not be empty.
 
 :exclamation: **Caution:** A student can have multiple homework with the same name,
 even if they have different deadlines.
@@ -376,7 +378,7 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear exactly once and should not be empty.
 
 #### Mark the Homework of a Student as Done
 
@@ -398,7 +400,7 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear exactly once and should not be empty.
 
 #### Unmark Homework of a Student as Undone
 
@@ -462,7 +464,7 @@ even if they have different deadlines.
 
 Creates a new lesson for a given student, with a lesson title and time.
 
-Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
+Format: `new-lesson [name/STUDENT_NAME]... [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor.
 * The `START_TIME` and `END_TIME` must be in the format given in the support date and time formats' appendix.
@@ -484,7 +486,9 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
 For example, `john` will match `John Doe` and `john doe`. You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
-:exclamation: **Caution:** STUDENT_NAME, LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME should appear at least once and should not be empty.
+
+:exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once and should not be empty.
 
 :exclamation: **Caution:** A student can have multiple lessons with the same lesson title, even if they have different start and end times.
 
