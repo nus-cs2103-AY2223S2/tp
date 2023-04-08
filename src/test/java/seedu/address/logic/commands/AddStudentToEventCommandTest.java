@@ -27,7 +27,7 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 
 class AddStudentToEventCommandTest {
-    private static final String WRONG_TYPE = "tutoria";
+    private static final String WRONG_TYPE = "tutorial";
     private Model model;
     private Index first = INDEX_FIRST_PERSON;
     private Index second = INDEX_SECOND_PERSON;
