@@ -41,7 +41,11 @@ public class CommandInput extends UiPart<HBox> {
 
         if (isEscEvent || isTextFieldEmpty()) {
             mainScreen.clearBottomComponent();
+<<<<<<< HEAD
             returnFocusToTaskListPanel();
+=======
+            returnFocusToTaskTabPanel();
+>>>>>>> upstream/master
         }
 
         if (isEnterEvent) {
