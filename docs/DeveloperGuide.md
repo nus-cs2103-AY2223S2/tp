@@ -213,14 +213,11 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Appendix A:**Planned Enhancements**
-
-### Appendix B:**Project Requirements**
+### **Appendix A: Project Requirements**
 
 #### **Product Scope**
 
 **Target user profile**:
-
 * has a need to manage a significant number of events
 * prefer desktop apps over other types
 * prefers visual representation of output
@@ -228,6 +225,7 @@ This section describes some noteworthy details on how certain features are imple
 * can type fast
 
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
+
 
 #### **User Stories**
 
@@ -249,6 +247,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | unmotivated user  | have motivational quotes                  | feel motivated in my day                                              |
 
 *{More to be added}*
+
 
 #### **Use Cases**
 
@@ -362,9 +361,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+### **Appendix B: Planned Enhancements**
+
 <div style="page-break-after: always;"></div>
 
-### Appendix C:**Instructions for Manual Testing**
+### **Appendix C: Instructions for Manual Testing**
 
 Presented below are a series of instructions, organized in **Context, Action, Result (CAR)** format, 
 that can be followed to perform manual testing of the application.
@@ -624,5 +625,8 @@ testers are expected to do more *exploratory* testing.
 **Result:**
 * The Response Box will display the message "Action undone: delete"
 * The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
+
+
+### **Appendix D: Effort**
 
 
