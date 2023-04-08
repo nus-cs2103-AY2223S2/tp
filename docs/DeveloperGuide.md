@@ -657,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                      | easily add my friends' WhatsApp information to the app                  | quickly connect with them on the platform                                                 |
 | `* * *`  | user                                         | add a birthday for my contacts                                          | remember them                                                                             |
 | `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
-| `* *`    | user                                         | open Instagram directly from the CLI                                    | message someone without having to find them on Instagram                                  |
+| `* *`    | user                                         | open Telegram directly from the CLI                                     | message someone without having to find them on Telegram                                   |
 | `* *`    | user                                         | open WhatsApp directly from the CLI                                     | message someone without having to find them on WhatsApp                                   |
 | `* *`    | student with many CCAs                       | find the exco of a specific CCA                                         | submit a proposal for an event to them                                                    |
 | `* *`    | student with many CCAs                       | find the friends of a specific CCA                                      | find their contact easily                                                                 |
@@ -673,7 +673,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with friends from different years       | add year tags to a person                                               | remember which year they are in                                                           |
 | `*`      | user                                         | receive notifications for my friends' birthday                          | prepare for it and wish them                                                              |
 | `*`      | user with many persons saved in the app      | sort persons by name                                                    | locate a person easily                                                                    |
-| `*`      | user                                         | send short messages on Telegram directly from the app                   | message someone without having to juggle between apps                                     |
 | `*`      | user                                         | send short messages on WhatsApp directly from the app                   | message someone without having to juggle between apps                                     |
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
@@ -797,6 +796,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. There is an error in the request
   * 1a1. ConnectUS displays error message
   Use case ends
+
+**Use case: Open a contact's Instagram homepage**
+
+**MSS**
+
+1.  User requests to list persons
+2.  ConnectUS shows a list of persons
+3.  User requests to open the Instagram homepage of a specific person in the list
+4.  ConnectUS opens the desired Instagram homepage
+
+    Use case ends
+
+**Extensions**
+
+* 3a. The person has no Instagram record.
+  * 3a1. ConnectUS displays error message.
+  Use case ends.
+  
+**Use case: Open a contact's WhatsApp with prefilled message**
+
+**MSS**
+
+1. User requests to list persons
+2. ConnectUS shows a list of persons
+3. User requests to open the WhatsApp page of a specific person in the list with provided message
+4. ConnectUS launches desired WhatsApp with message prefilled
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The person has no WhatsApp record.
+  * 3a1. ConnectUS displays error message.
+  Use case ends.
+
+* 4a. WhatsApp is launched but it does not fill the message.
+  Use case resumes from step 3.
 
 *{More to be added}*
 
