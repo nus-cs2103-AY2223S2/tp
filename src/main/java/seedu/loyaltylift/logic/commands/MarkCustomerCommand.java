@@ -34,6 +34,8 @@ public class MarkCustomerCommand extends Command {
 
     public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Bookmarked Customer: %1$s";
 
+    public static final String MESSAGE_CUSTOMER_ALREADY_MARKED = "This customer is already marked!";
+
     private final Index index;
 
     /**
@@ -53,6 +55,11 @@ public class MarkCustomerCommand extends Command {
         }
 
         Customer customerToMark = lastShownList.get(index.getZeroBased());
+
+        if (customerToMark.getMarked().value) {
+            throw new CommandException(MESSAGE_CUSTOMER_ALREADY_MARKED);
+        }
+
         Customer markedCustomer = createMarkedCustomer(customerToMark);
         model.setCustomer(customerToMark, markedCustomer);
         return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer));
