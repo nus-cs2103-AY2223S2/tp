@@ -34,7 +34,6 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEducation("P1")
             .withRemark("She hates bob.")
-            .withTelegram("@alice123")
             .withModules("CS2101")
             .withTags("friends")
             .build();

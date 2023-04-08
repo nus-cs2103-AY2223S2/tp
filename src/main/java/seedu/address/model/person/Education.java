@@ -18,7 +18,7 @@ public class Education {
     /**
      * Constructs a {@code Education}.
      *
-     * @param education A valid tag name.
+     * @param value A valid tag name.
      */
     public Education(String education) {
         requireNonNull(education);

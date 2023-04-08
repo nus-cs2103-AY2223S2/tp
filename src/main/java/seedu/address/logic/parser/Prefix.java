@@ -1,9 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
@@ -13,25 +9,13 @@ public class Prefix {
     private final String placeholderText;
     private final boolean isOptionalPrefix;
     private final boolean isRepeatablePrefix;
-    private final List<String> examples;
 
     private Prefix(String prefix, String placeholderText, boolean isOptionalPrefix,
-            boolean isRepeatablePrefix, List<String> examples) {
+            boolean isRepeatablePrefix) {
         this.prefix = prefix;
         this.placeholderText = placeholderText;
         this.isOptionalPrefix = isOptionalPrefix;
         this.isRepeatablePrefix = isRepeatablePrefix;
-        this.examples = List.copyOf(examples);
-    }
-
-    /**
-     * Constructs a {@code Prefix} with given prefix and placeholder text.
-     * @param prefix Prefix value.
-     * @param placeholderText Placeholder text describing the expected data for the prefix.
-     */
-    public Prefix(String prefix, String placeholderText) {
-        //Solution below adapted from https://github.com/AY2223S1-CS2103T-T12-2/tp
-        this(prefix, placeholderText, false, false, List.of());
     }
 
     /**
@@ -39,8 +23,21 @@ public class Prefix {
      * @param prefix Prefix value.
      */
     public Prefix(String prefix) {
-        this(prefix, "");
+        this(prefix, "", false, false);
     }
+
+    //@@author EvitanRelta-reused
+    // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+    // with minor modifications.
+    /**
+     * Constructs a {@code Prefix} with given prefix and placeholder text.
+     * @param prefix Prefix value.
+     * @param placeholderText Placeholder text describing the expected data for the prefix.
+     */
+    public Prefix(String prefix, String placeholderText) {
+        this(prefix, placeholderText, false, false);
+    }
+    //@@author
 
     /**
      * Returns true if this {@code Prefix} is just a placeholder for
@@ -57,11 +54,6 @@ public class Prefix {
 
     public String getPrefix() {
         return prefix;
-    }
-
-    /** Returns the example values that this {@code Prefix} can take. */
-    public List<String> getExamples() {
-        return examples;
     }
 
     @Override
@@ -87,36 +79,14 @@ public class Prefix {
      * Returns a copy of this {@code Prefix}, but as an optional prefix.
      */
     public Prefix asOptional() {
-        return new Prefix(getPrefix(), getPlaceholderText(), true, isRepeatable(), getExamples());
+        return new Prefix(getPrefix(), getPlaceholderText(), true, isRepeatable());
     }
 
     /**
      * Returns a copy of this {@code Prefix}, but as an optional prefix.
      */
     public Prefix asRepeatable() {
-        return new Prefix(getPrefix(), getPlaceholderText(), isOptional(), true, getExamples());
-    }
-
-    /**
-     * Returns a copy of this {@code Prefix}, but set the stored example values
-     * to {@code exampleValues}. The examples won't be accounted for in {@code Prefix::equals}.
-     * @param exampleValues Example values that the prefix can take.
-     */
-    public Prefix setExamples(List<String> exampleValues) {
-        return new Prefix(getPrefix(), getPlaceholderText(), isOptional(), isRepeatable(), exampleValues);
-    }
-
-    public Prefix setExamples(String... exampleValues) {
-        return this.setExamples(Arrays.asList(exampleValues));
-    }
-
-    /** Returns the example usage of this {@code Prefix}. */
-    public String toExampleString() {
-        return getExamples().isEmpty()
-            ? ""
-            : getExamples().stream()
-                    .map(example -> getPrefix() + example)
-                    .collect(Collectors.joining(" "));
+        return new Prefix(getPrefix(), getPlaceholderText(), isOptional(), true);
     }
 
     /** Returns the prefix with it's a placeholder text as the value. (eg. n/NAME, p/PHONE) */

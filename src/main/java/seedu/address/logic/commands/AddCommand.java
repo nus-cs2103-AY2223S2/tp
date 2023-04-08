@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
@@ -26,20 +27,33 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            PREFIX_NAME.setExamples("John Doe"),
-            PREFIX_PHONE.asOptional().setExamples("98765432"),
-            PREFIX_EMAIL.asOptional().setExamples("johnd@example.com"),
-            PREFIX_ADDRESS.asOptional().setExamples("311, Clementi Ave 2, #02-25"),
-            PREFIX_EDUCATION.asOptional().setExamples("Year 1"),
-            PREFIX_TELEGRAM.asOptional().setExamples("@johndtele"),
-            PREFIX_REMARK.asOptional().setExamples("Have submitted tutorial worksheet for Week 10"),
-            PREFIX_TAG.asOptional().asRepeatable().setExamples("Tut1", "hasSubmitted"),
-            PREFIX_MODULE.asOptional().asRepeatable().setExamples("CS2103T")
+            PREFIX_NAME,
+            PREFIX_PHONE.asOptional(),
+            PREFIX_EMAIL.asOptional(),
+            PREFIX_ADDRESS.asOptional(),
+            PREFIX_EDUCATION.asOptional(),
+            PREFIX_TELEGRAM.asOptional(),
+            PREFIX_REMARK.asOptional(),
+            PREFIX_TAG.asOptional().asRepeatable(),
+            PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book."
-            + "\n" + getParameterUsage(ARGUMENT_PREFIXES)
-            + "\n" + getExampleUsage(COMMAND_WORD, ARGUMENT_PREFIXES);
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " "
+            + PREFIX_NAME.getPrefix() + "John Doe "
+            + PREFIX_PHONE.getPrefix() + "98765432 "
+            + PREFIX_EMAIL.getPrefix() + "johnd@example.com "
+            + PREFIX_ADDRESS.getPrefix() + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EDUCATION.getPrefix() + "P6 "
+            + PREFIX_REMARK.getPrefix() + "Needs help with algebra "
+            + PREFIX_TAG.getPrefix() + "friends "
+            + PREFIX_TAG.getPrefix() + "owesMoney "
+            + PREFIX_MODULE.getPrefix() + "CS2103T "
+            + PREFIX_TELEGRAM.getPrefix() + "@johndtele";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
