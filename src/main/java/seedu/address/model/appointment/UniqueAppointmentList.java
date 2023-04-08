@@ -104,6 +104,17 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns true if {@code appointments} contains any appointment with a clashing timeslot.
+     */
+    public boolean hasOverlap(Appointment appointment) {
+        boolean anyOverlap = false;
+        for (Appointment appt : this) {
+            anyOverlap = anyOverlap || appointment.hasOverlap(appt.getTimeslot());
+        }
+        return anyOverlap;
+    }
+
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();

@@ -45,7 +45,9 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the patient list.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+        "This appointment already exists in the appointment list.";
+    public static final String MESSAGE_OVERLAPPING_TIMESLOT = "That timeslot is occupied.";
     public static final String MESSAGE_PATIENT_DOES_NOT_EXIST =
         "The specified patient does not exist in the patient list.";
 
@@ -82,6 +84,8 @@ public class EditAppointmentCommand extends Command {
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        } else if (model.hasOverlap(editedAppointment)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_TIMESLOT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);

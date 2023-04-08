@@ -16,14 +16,12 @@ Class UserPrefs
 
 Class UniqueAppointmentList
 Class Appointment
-Class AppointmentId
 Class Timeslot
 Class Description
 Class AppointmentTag
 
 Class UniquePatientList
 Class Patient
-Class PatientId
 Class Address
 Class Email
 Class Name
@@ -50,14 +48,12 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AppointmentList *--> "1" UniqueAppointmentList
 UniqueAppointmentList --> "~* all" Appointment
-Appointment *--> AppointmentId
 Appointment *--> Timeslot
 Appointment *--> Description
 Appointment *--> "*" AppointmentTag
 
 AddressBook *--> "1" UniquePatientList
 UniquePatientList --> "~* all" Patient
-Patient *--> PatientId
 Patient *--> Name
 Patient *--> Phone
 Patient *--> Email
@@ -65,11 +61,9 @@ Patient *--> Address
 Patient *--> Remark
 Patient *--> "*" PatientTag
 
-AppointmentId -[hidden]right-> Timeslot
 Timeslot -[hidden]right-> Description
 Description -[hidden]right-> AppointmentTag
-AppointmentTag -[hidden]right-> PatientId
-PatientId -[hidden]right-> Name
+AppointmentTag -[hidden]right-> Name
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email

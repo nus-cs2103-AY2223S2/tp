@@ -14,6 +14,9 @@ public class TypicalAppointments {
     public static final Appointment FIRST_APPOINTMENT = new AppointmentBuilder()
             .withPatientName("Alex Yeoh").withTimeslot("19032023 08:00,19032023 09:00")
             .withDescription("First appointment").withDoctor("Xiao Lu").build();
+    public static final Appointment SECOND_APPOINTMENT = new AppointmentBuilder()
+        .withPatientName("Charles Darwin").withTimeslot("20032023 08:00,20032023 09:00")
+        .withDescription("Second appointment").withDoctor("Xiao Lu").build();
     public static final Appointment IMPORTANT_APPOINTMENT = new AppointmentBuilder()
             .withPatientName("Bernice Yu").withTimeslot("26032023 11:00,26032023 13:00")
             .withDescription("This is important!").withDoctor("Sidharth Rajesh").build();
@@ -38,6 +41,6 @@ public class TypicalAppointments {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(FIRST_APPOINTMENT));
+        return new ArrayList<>(Arrays.asList(FIRST_APPOINTMENT, SECOND_APPOINTMENT, IMPORTANT_APPOINTMENT));
     }
 }

@@ -49,6 +49,14 @@ public class AppointmentList implements ReadOnlyAppointmentList {
         return appointments.contains(appointment);
     }
 
+    /**
+     * Returns true if an appointment with a clashing timeslot as {@code appointment} exists in the appointment list.
+     */
+    public boolean hasOverlap(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.hasOverlap(appointment);
+    }
+
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
     }
