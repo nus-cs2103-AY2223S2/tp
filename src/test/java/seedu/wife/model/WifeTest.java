@@ -22,7 +22,6 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.exceptions.DuplicateFoodException;
 import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.FoodBuilder;
-//import seedu.wife.testutil.WifeBuilder;
 
 public class WifeTest {
 
