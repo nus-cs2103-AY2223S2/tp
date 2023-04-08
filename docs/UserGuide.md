@@ -273,17 +273,41 @@ in year 2023 is the same as `01012023`.
 
 ## Features
 
+Here, you may find all the details about every feature that QuickContacts provide to empower you to
+make full use of the power of QuickContacts.
+
+### Autocomplete inputs
+
+Simply hit the `TAB` key on your keyboard when you are entering a certain command to have QuickContacts autocomplete the
+next nearest command word similar to the one you are typing!
+
+Examples:
+
+* `a` -> `add` after hitting `TAB` (since `add` is the next most similar command word)
+* `ex` -> `export` after hitting `TAB`
+
+Autocompletion also works for the next possible prefix for a given command! This way, you will never have to memorise
+any prefix nor syntax for commands.
+
+Examples:
+
+* `add` -> `add n/` after hitting `TAB` (since `n/` is the next prefix for `add`)
+* `add n/Bobby` -> `add n/Bobby p/` after hitting `TAB` (since `p/` is the next prefix for `add` after `n/`)
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Prefix autocomplete behaviour defers from commands to enhance user experience. For example:<br>
+* `edit 1 n/` -> `edit 1 p/` after hitting `TAB` (if you did not input anything for the prefix `n/`, it would be probable
+that you do not want to edit that field)
+
+</div>
+
 ### Theme toggling
 
 Toggles the theme from dark to light or vice versa.
 
 ![toggle theme](images/toggleTheme.png)
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
 
 ## Person-Related Commands
 
