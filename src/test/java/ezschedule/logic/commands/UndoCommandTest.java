@@ -2,7 +2,6 @@ package ezschedule.logic.commands;
 
 import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +11,7 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 import ezschedule.commons.core.index.Index;
+import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
@@ -32,12 +32,23 @@ public class UndoCommandTest {
         model.addEvent(validEvent);
         model.addRecentEvent(validEvent);
         model.addRecentCommand(prevCommand);
-        CommandResult commandResult = new UndoCommand().execute(model);
-        assertEquals(String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS, prevCommand.commandWord()),
-                commandResult.getFeedbackToUser());
+        assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
+                prevCommand.commandWord()), expectedModel);
     }
     @Test
     public void execute_undoEditCommand_successful() {
+        List<Event> lastShownList = model.getFilteredEventList();
+        Index targetIndex = Index.initIndex(new Random().nextInt(lastShownList.size()));
+        Command editCommand = new EditCommand(targetIndex, new EditEventDescriptor());
+        Event eventToEdit = lastShownList.get(targetIndex.getZeroBased());
+        Event editedEvent = new EventBuilder(EventBuilder.EDIT_EVENT_NAME, EventBuilder.EDIT_EVENT_DATE,
+                EventBuilder.EDIT_EVENT_START_TIME, EventBuilder.EDIT_EVENT_END_TIME).build();
+        model.addRecentCommand(editCommand);
+        model.addRecentEvent(eventToEdit);
+        model.addRecentEvent(editedEvent);
+        model.setEvent(eventToEdit, editedEvent);
+        assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
+                editCommand.commandWord()), expectedModel);
     }
     @Test
     public void execute_undoDeleteCommand_successful() throws CommandException {
@@ -50,10 +61,9 @@ public class UndoCommandTest {
         model.deleteEvent(eventToDelete);
         model.addRecentEvent(eventToDelete);
         model.addRecentCommand(deleteCommand);
-        CommandResult commandResult = new UndoCommand().execute(model);
-        assertEquals(String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS, deleteCommand.commandWord()),
-                commandResult.getFeedbackToUser());
-        assertCommandSuccess(new UndoCommand(), model, deleteCommand.commandWord(), expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
+                        deleteCommand.commandWord()),
+                expectedModel);
     }
     @Test
     public void execute_undoRecurCommand_successful() throws CommandException {
@@ -75,6 +85,8 @@ public class UndoCommandTest {
         default:
             break;
         }
-        assertCommandSuccess(new UndoCommand(), model, recurCommand.commandWord(), expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
+                        recurCommand.commandWord()),
+                expectedModel);
     }
 }

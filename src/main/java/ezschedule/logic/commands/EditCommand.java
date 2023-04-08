@@ -96,14 +96,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         } else if (editedEvent.getEndTime().isBefore(editedEvent.getStartTime())) {
             throw new CommandException(MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
+        } else {
+            model.clearRecent();
+            model.addRecentCommand(this);
+            model.setEvent(eventToEdit, editedEvent);
+            model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+            model.addRecentEvent(eventToEdit);
+            model.addRecentEvent(editedEvent);
         }
-
-        model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
-        model.clearRecent();
-        model.addRecentCommand(this);
-        model.addRecentEvent(eventToEdit);
-        model.addRecentEvent(editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
