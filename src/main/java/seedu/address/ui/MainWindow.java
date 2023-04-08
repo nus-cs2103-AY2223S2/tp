@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -36,8 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
     private static final ObservableList<String> EMPTY_TITLE = FXCollections.observableArrayList("");
-    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword: ";
-    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword: ";
+    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword(s): ";
+    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword(s): ";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -223,6 +224,8 @@ public class MainWindow extends UiPart<Stage> {
         Node closeButton = alert.getDialogPane().lookupButton(ButtonType.CLOSE);
         closeButton.managedProperty().bind(closeButton.visibleProperty());
         closeButton.setVisible(false);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("/images/powercardslogo.png"));
 
         /* Checks user's answer */
         Optional<ButtonType> answer = alert.showAndWait();

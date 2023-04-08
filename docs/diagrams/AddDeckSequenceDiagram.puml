@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MasterDeckParser" as MasterDeckParser LOGIC_COLOR
+participant "u:AddDeckCommand" as AddDeckCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":MasterDeck" as MasterDeck MODEL_COLOR
+end box
+[-> LogicManager : execute(addDeck Math)
+activate LogicManager
+
+LogicManager -> MasterDeckParser : parseCommand(addDeck Math)
+activate MasterDeckParser
+
+create AddDeckCommand
+MasterDeckParser -> AddDeckCommand
+activate AddDeckCommand
+
+AddDeckCommand --> MasterDeckParser
+deactivate AddDeckCommand
+
+MasterDeckParser --> LogicManager : u
+deactivate MasterDeckParser
+
+LogicManager -> AddDeckCommand : execute()
+activate AddDeckCommand
+
+AddDeckCommand -> Model : addDeck(Math)
+activate Model
+
+Model -> MasterDeck : addDeck(Math)
+activate MasterDeck
+
+MasterDeck --> Model :
+deactivate MasterDeck
+
+Model --> AddDeckCommand
+deactivate Model
+
+AddDeckCommand --> LogicManager : result
+deactivate AddDeckCommand
+AddDeckCommand -[hidden]-> LogicManager : result
+destroy AddDeckCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

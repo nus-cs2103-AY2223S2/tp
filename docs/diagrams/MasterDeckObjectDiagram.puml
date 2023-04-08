@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T2
+skinparam ObjectBackgroundColor MODEL_COLOR_T1
+
+object "<u>:UniqueDeckList</u>" as DeckList
+
+object "<u>chemistry:Deck</u>" as Deck1
+object "<u>physics:Deck</u>" as Deck2
+
+DeckList -d-> Deck1
+DeckList -d-> Deck2
+
+
+object "<u>carbon:Card</u>" as Card1 #E41F36
+object "<u>oxygen:Card</u>" as Card2 #E41F36
+
+
+Card1 -u-> Deck1
+Card2 -u-> Deck1
+
+object "<u>gravity:Card</u>" as Card3 #E41F36
+object "<u>acceleration:Card</u>" as Card4 #E41F36
+
+Card3 -u-> Deck2
+Card4 -u-> Deck2
+
+object "<u>:UniqueCardList</u>" as CardList #E41F36
+
+CardList -u-> Card1
+CardList -u-> Card2
+CardList -u-> Card3
+CardList -u-> Card4
+
+
+@enduml

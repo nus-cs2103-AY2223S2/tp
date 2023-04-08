@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User executes addDeck command;
+
+:Call hasDeck from ModelManager;
+
+if () then ([Deck name already exists])
+    :Throw DuplicateDeckException;
+else ([else])
+    :Add the deck to the MasterDeck;
+    :Store changes in MasterDeckStorage;
+    :Display newly added deck on the list;
+
+endif
+
+stop
+@enduml

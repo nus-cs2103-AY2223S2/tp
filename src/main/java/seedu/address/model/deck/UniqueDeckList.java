@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.deck.exceptions.DeckNotFoundException;
+import seedu.address.model.deck.exceptions.DuplicateDeckException;
 
 //TODO Deck exceptions
 
@@ -43,7 +45,7 @@ public class UniqueDeckList implements Iterable<Deck> {
     public void add(Deck toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            //throw new DuplicateCardException();
+            throw new DuplicateDeckException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +60,11 @@ public class UniqueDeckList implements Iterable<Deck> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            //throw new CardNotFoundException();
+            throw new DeckNotFoundException();
         }
 
         if (!target.isSameDeck(editedDeck) && contains(editedDeck)) {
-            //throw new DuplicateCardException();
+            throw new DuplicateDeckException();
         }
 
         internalList.set(index, editedDeck);
@@ -75,7 +77,7 @@ public class UniqueDeckList implements Iterable<Deck> {
     public void remove(Deck toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            //throw new CardNotFoundException();
+            throw new DeckNotFoundException();
         }
     }
 
@@ -91,7 +93,7 @@ public class UniqueDeckList implements Iterable<Deck> {
     public void setDecks(List<Deck> decks) {
         requireAllNonNull(decks);
         if (!decksAreUnique(decks)) {
-            //throw new DuplicateCardException();
+            throw new DuplicateDeckException();
         }
 
         internalList.setAll(decks);
