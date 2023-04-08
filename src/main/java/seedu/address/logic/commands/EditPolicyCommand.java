@@ -36,7 +36,7 @@ public class EditPolicyCommand extends Command {
             + ": Edits the policy from the client identified by the index number used in the display list and"
             + " the policy identified by the index number used in the displayed policy list associated to the client.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_POLICY_INDEX + "POLICY INDEX"
+            + PREFIX_POLICY_INDEX + "POLICY INDEX "
             + "[" + PREFIX_POLICY_NAME + "POLICY NAME] "
             + "[" + PREFIX_POLICY_START_DATE + "START DATE] "
             + "[" + PREFIX_POLICY_PREMIUM + "PREMIUM] "
