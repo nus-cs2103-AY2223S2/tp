@@ -580,4 +580,4 @@ Given below are the current known feature flaws and the plans the team have for 
 2. The MediConnect currently does not accept name with symbols. We plan to implement that in the next version
 3. Currently, prescriptions do not indicate the doctor that prescribe the medication. We realise this is an important feature to have and plan to implement it in the next version.
 4. The find command currently does not update the display box after filtering the person. We plan to change this in the next version to automatically display the user information after finding the person in the next version.
-5. Currently MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
+5. Currently, MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
