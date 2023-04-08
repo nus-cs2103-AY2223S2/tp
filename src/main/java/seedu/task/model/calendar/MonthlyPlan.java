@@ -1,7 +1,5 @@
 package seedu.task.model.calendar;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
