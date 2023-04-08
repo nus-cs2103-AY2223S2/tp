@@ -175,10 +175,10 @@ Format: `remove INDEX [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGU
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 You can use the remove command to just remove specific tags/language and keep the rest unedited.
+</div>
 
 <div markdown="span" class="alert alert-primary"> :exclamation: Warning:
 If no keyword is provided, `remove` will still **execute successfully** on an empty field.
-
 </div>
 
 Examples:
