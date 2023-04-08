@@ -245,15 +245,15 @@ can be used by the player characters.
 
 The definitive list of the different values each entity has:
 
-| Character  | Mob              | Item   |
-|----------------------|------------------|--------|
-| Name                 | Name             | Name   | 
-| Strength             | Strength         | Cost   |
-| Dexterity            | Dexterity        | Weight | 
-| Intelligence         | Intelligence     | Tags   |
-| Level                | Challenge Rating |        |
-| XP                   | Legendary        |        |
-| Tags                 | Tags             |        |
+| Character    | Mob              | Item   |
+|--------------|------------------|--------|
+| Name         | Name             | Name   | 
+| Strength     | Strength         | Cost   |
+| Dexterity    | Dexterity        | Weight | 
+| Intelligence | Intelligence     | Tags   |
+| Level        | Challenge Rating |        |
+| XP           | Legendary        |        |
+| Tags         | Tags             |        |
 
 ## Templates
 
