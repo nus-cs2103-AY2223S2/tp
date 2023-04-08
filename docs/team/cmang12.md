@@ -18,13 +18,13 @@ Given below are my contributions to the project.
 * **New Feature**: `editpj` command to edit existing projects
     * What it does: Edits fields of existing projects in `SOCket`
     * Justification: Users are able to correct any mistake of any fields in a `Project`
-    * Highlights: `JUnit` tests to test command functionality 
-    * Credits: {-} 
+    * Highlights: `JUnit` tests to test command functionality
+    * Credits: {-}
 
 * **New Feature**: `removepj` command to remove fields of existing projects
     * What it does: Removes field descriptions of existing projects in `SOCket`
     * Justification: Users are able to easily empty fields of existing projects in `SOCket`
-    * Highlights: `JUnit` tests to test command functionality 
+    * Highlights: `JUnit` tests to test command functionality
     * Credits: {-}
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cmang12&breakdown=true)

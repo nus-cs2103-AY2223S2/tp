@@ -139,6 +139,10 @@ How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+Shown below is the activity diagram for how SOCket parses a user input:
+
+<p align="center"><img src="images/UserInputActivityDiagram.png" width="800" /></p>
+
 <div style="page-break-after: always;"></div>
 
 ### Model component
@@ -274,25 +278,25 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### List Feature 
+### List Feature
 
 #### Implementation
 
-The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
-The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
-`ListCommand` extends `Command` and implements the following operation: 
-* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields. 
+The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket.
+The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes.
+`ListCommand` extends `Command` and implements the following operation:
+* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields.
 
-The `ListCommandParser` class is used to parse and verify the user input to create the list command. 
-Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person. 
+The `ListCommandParser` class is used to parse and verify the user input to create the list command.
+Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person.
 
-The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate. 
-Otherwise, this list of Predicate classes include: 
+The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate.
+Otherwise, this list of Predicate classes include:
 * `ListCommandLanguagePredicate`
 * `ListCommandTagPredicate`
 
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
-The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
+The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person.
 
 <div style="page-break-after: always;"></div>
 
@@ -301,10 +305,10 @@ The following sequence diagram shows how the `list` operation works:
 
 #### Design considerations
 
-**Aspect: Filtering by other fields** 
+**Aspect: Filtering by other fields**
 
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
-  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
+  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches
   * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields only.
 
 <div style="page-break-after: always;"></div>
@@ -313,18 +317,18 @@ The following sequence diagram shows how the `list` operation works:
 
 #### Implementation
 
-The sort feature allows users to sort the list of persons and projects in the application. 
-The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
+The sort feature allows users to sort the list of persons and projects in the application.
+The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes.
 They extend `Command` and implements the following operations:
 * `SortCommand#execute()` — Sorts the list of persons in the application.
 * `SortProjectCommand#execute()` — Sorts the list of projects in the application.
 
-The `SortCommandParser` and `SortProjectCommandParser` classes are used to parse the user input and create the respective commands. 
+The `SortCommandParser` and `SortProjectCommandParser` classes are used to parse the user input and create the respective commands.
 The respective classes verify that the user input is valid and create the commands accordingly.
 If no argument is provided, Persons will be sorted by name and Projects will be sorted by deadline by default.
 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
-The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. 
+The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user.
 If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
 The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
@@ -359,6 +363,10 @@ This Predicate class will return True as long as any of the Predicate classes in
 The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from find command.
 
 If no argument is provided, an empty list will be shown.
+
+The following sequence diagram shows how the `find` operation works:
+<p align="center"><img src="images/FindSequenceDiagram.png" /></p>
+<p align="center"><img src="images/PersonPredicateSequenceDiagram.png" /></p>
 
 <div style="page-break-after: always;"></div>
 
@@ -641,14 +649,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given category is invalid.
 
-  * 3a1. SOCket shows an error message. 
-  
+  * 3a1. SOCket shows an error message.
+
     Use case resumes from step 2.
-  
+
 * 3b. No category is given.
 
   * 3b1. SOCket sorts the list by name and displays the sorted list.
-    
+
      Use case ends.
 
 **Use case: UC05 Find contact(s)**
@@ -664,8 +672,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No contact matches any of the given keywords in their respective fields.
 
-    * 1a1. SOCket shows an empty list of contacts. 
-      
+    * 1a1. SOCket shows an empty list of contacts.
+
       Use case ends.
 
 * 1b. No keywords are given for all fields.
@@ -1105,6 +1113,48 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
        Expected: No contact is edited. An error message is shown as an invalid command was given.
 
+### Finding contacts
+1. Finding contacts while all contacts are being shown.
+
+    1. Test case: `find n/alex`<br>
+       Expected: Contacts with name that contains `alex` is shown.
+
+    1. Test case: `find l/Java` <br>
+       Expected: Contacts with language that contains `Java` is shown.
+
+    1. Test case: `find n/alex t/neighbours`<br>
+       Expected: Contacts with name `alex` or tag `neighbours` is shown.
+
+    1. Test case: `find l/`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find n/next n/alex`<br>
+       Expected: Same list of contacts as *find test case 1i* is shown as only the value of the last occurrence of a prefix is used.<br>
+
+2. Listing contacts while some contacts are being shown.
+    1. Prerequisites: Filter the contact list with `find` or `list` command.
+
+    1. Test case: `find n/alex`<br>
+       Expected: All contacts with name that contains `alex` in SOCket (including those not shown before executing `find n/alex`) is shown.
+
+    1. Test case: `find l/Java` <br>
+       Expected: All contacts with language that contains `Java` in SOCket (including those not shown before executing `find l/Java`) is shown.
+
+    1. Test case: `find n/alex t/neighbours`<br>
+       Expected: All contacts with name `alex` or tag `neighbours` in SOCket (including those not shown before executing `find n/alex t/neighbours`) is shown.
+
+    1. Test case: `find l/`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find`<br>
+       Expected: An empty contact list is shown.
+
+    1. Test case: `find n/next n/alex`<br>
+       Expected: Same list of contacts as *find test case 2ii* is shown as only the value of the last occurrence of a prefix is used.<br>
+
 ### Listing contacts
 1. Listing contacts while all contacts are being shown.
    1. Prerequisites: At least one contact in the list.
@@ -1125,7 +1175,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
    
 2. Listing contacts while some contacts are being shown. 
-   1. Prerequisites: Filter the contact list with `find` or `list [l/LANGUAGE] [t/TAG]`. At least one contact in the list. 
+   1. Prerequisites: Filter the contact list with `find` or `list` command. At least one contact in the list. 
    
    1. Test case: `list`<br>
       Expected: All contacts from the unfiltered list is shown.
@@ -1216,7 +1266,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a project
 
-1. _{ more test cases …​ }_
+1. Adding a project to the project list.
+    1. Prerequisites: No project in the list named `Project 1`, `Project 2`, `Project 3` or `Project 4`.
+
+    1. Test case: `addpj n/Project 1 h/project-1 r/ProjectOne d/29/04/22-0900 m/24/03/22-1400`<br>
+       Expected: Project with the project name `Project 1`, repo host `project-1`, repo name `ProjectOne`, deadline `29/04/22-0900` & meeting `24/03/22-1400` is added to the project list.
+
+    1. Test case: `addpj n/Project 2 h/project-1 r/ProjectOne d/29/04/22-0900 m/24/03/22-1400`<br>
+       Expected: Project with the project name `Project 2`, repo host `project-1`, repo name `ProjectOne`, deadline `29/04/22-0900` & meeting `24/03/22-1400` is added to the project list.
+
+    1. Test case: `addpj n/Project 3 h/project-1 r/ProjectOne d/29/04/22-0900`<br>
+       Expected: Project with the project name `Project 1`, repo host `project-1`, repo name `ProjectOne` & deadline `29/04/22-0900` is added to the project list.
+
+    1. Test case: `addpj n/Project 4 h/project-4 r/ProjectThree`<br>
+       Expected:  No project is added to the project list as deadline value is missing.
 
 ### Editing a project
 
@@ -1257,19 +1320,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing a project while all projects are being shown
    1. Prerequisites: At least one project in the shown list.
-   
+
    1. Test case: `removepj 1 h/`<br>
       Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
-   
+
    1. Test case: `removepj 1 h/ r/`<br>
       Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
-   
+
    1. Test case: `removepj 1 r/first-project`<br>
       Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
-   
+
    1. Test case: `removepj 0 h/`<br>
       Expected: No project field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
-   
+
    1. Test case: `removepj 0`<br>
       Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
@@ -1302,7 +1365,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Assigning a contact to a project
 
-1. _{ more test cases …​ }_
+1.  Assigning a person contact to a project while all contacts & projects are being shown.
+    1. Prerequisites: At least one contacts & exactly two project in their shown list.
+
+    1. Test case: `assign 1 1`<br>
+       Expected: First contact in the contact list is assigned to the first project in the project list.
+
+    1. Test case: `assign 1 3`<br>
+       Expected: First contact in the contact list is not assigned to any project in the project list. An error message is shown as the index provided for the project list is invalid.
+
+    1. Test case: `assign a 1`<br>
+       Expected: An error message is shown as the given syntax is invalid.
+
+    1. Test case: `assign 1 b`<br>
+       Expected: An error message is shown as the given syntax is invalid.
 
 ### Unassigning a contact from a project
 

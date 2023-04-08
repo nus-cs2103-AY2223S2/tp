@@ -175,10 +175,10 @@ Format: `remove INDEX [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGU
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 You can use the remove command to just remove specific tags/language and keep the rest unedited.
+</div>
 
 <div markdown="span" class="alert alert-primary"> :exclamation: Warning:
 If no keyword is provided, `remove` will still **execute successfully** on an empty field.
-
 </div>
 
 Examples:
@@ -240,10 +240,6 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANG
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
     * e.g. `find t/friend` will return contacts who have either tag `friend` or `best friend` or both.
 
-<div markdown="span" class="alert alert-primary">:exclamation: Warning:
-If no field is specified, zero contacts will be returned!
-</div>
-
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
 <br/><br/>
@@ -252,6 +248,10 @@ Example:
   <i>Result of the <code>find n/alex david</code> command</i>
   <br>
   </p>
+
+<div markdown="span" class="alert alert-primary">:exclamation: Warning:
+If no field is specified, zero contacts will be returned!
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -313,7 +313,7 @@ Format: `sort [CATEGORY]`
 This command will sort the and display the full contact list.
 </div>
 
-Examples: 
+Examples:
 * `sort` Sort contacts by **Name**.
 <br/><br/>
   <p align="center"><img src="images/SortByName.png" width="450"/></p>
@@ -657,26 +657,26 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                     |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| Action          | Format, Examples                                                                                                                                                                 |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Add**         | `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
-| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                                        |
-| **Delete**      | `delete INDEX`                                                                                                                                                                                       |
-| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                                |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                  |
-| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                            |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                                      |
-| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                   |
-| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                             |
-| **Clear Projects** | `clearpj`                                                                                                                                                                                            |
-| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                     |
-| **Remove Project** | `removepj INDEX [h/[REPO_HOST]] [r/[REPO_NAME]] [d/[DEADLINE]] [m/[MEETING]]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                        |    
-| **Edit Project** | `editpj INDEX [n/PROJECT_NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                             |
-| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                           |
-| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                            |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                       | 
-| **View**        | `view INDEX`                                                                                                                                                                                         |
-| **Undo**        | `undo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>Z</kbd>                                                                                                          |
-| **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                                        |
-| **Help**        | `help`<br>Keyboard Shortcut: <kbd>F1</kbd>                                                                                                                                                           |
-| **Exit**        | `exit`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Q</kbd> / <kbd>command</kbd>+<kbd>Q</kbd>                                                                                                          |
+| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                    |
+| **Delete**      | `delete INDEX`                                                                                                                                                                   |
+| **Remove**      | `remove INDEX [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                        |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                              |
+| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                        |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                  |
+| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                               |
+| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                         |
+| **Clear Projects** | `clearpj`                                                                                                                                                                        |
+| **Delete Project** | `deletepj INDEX`                                                                                                                                                                 |
+| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                            |    
+| **Edit Project** | `editpj INDEX [n/PROJECT_NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                         |
+| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                       |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                        |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                   | 
+| **View**        | `view INDEX`                                                                                                                                                                     |
+| **Undo**        | `undo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>Z</kbd>                                                                                      |
+| **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                    |
+| **Help**        | `help`<br>Keyboard Shortcut: <kbd>F1</kbd>                                                                                                                                       |
+| **Exit**        | `exit`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Q</kbd> / <kbd>command</kbd>+<kbd>Q</kbd>                                                                                      |
