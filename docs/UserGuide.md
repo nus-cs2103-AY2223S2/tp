@@ -211,7 +211,7 @@ Adds a delivery job to the delivery job system.
 * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
 * Delivery slots must start from 1 (i.e. `slot/1` - delivery slots only start from 10AM), however, could also be larger than 5 (i.e. `slot/6`).
 * Delivery slots larger than 5 (outside valid range, i.e. `slot/6`) will be classified as "Extra hours (4PM++)". These delivery slots are still considered invalid slots.
-* Earning **must be a double** and could contain more than 2 decimal inputs. 
+* Earning **must be a double** and could contain more than 2 decimal inputs, Earning cannot be larger than 99999 (validation not configured as of v1.4). 
 
 Examples:
 * `add_job si/ALESAM ri/DAVSAM earn/1.1`
@@ -286,7 +286,8 @@ or `edit_job ji/JOB_ID [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [s
 * Edits the delivery job at the specified `INDEX` or `JOB_ID` provided by user.
 * The index refers to the index number shown in the displayed job list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Refer to `list_job` for argument constrains.
+* Editing a completed job will reset the job to pending status.
+* Refer to `add_job` for argument constrains.
 
 Examples:
 * `edit_job 1 slot/4`
