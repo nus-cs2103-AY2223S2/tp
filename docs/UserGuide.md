@@ -35,9 +35,9 @@ This User Guide is split into multiple important sections:
 * The [Getting Started](#getting-started) section provides step-by-step instructions to download and get started with MyLib.
 * The [Key Definitions](#key-definitions) section provides a concise explanation of the various key terms used in this User Guide. It will explain what a bookmark is in the context of MyLib.
 * The [Graphical User Interface](#graphical-user-interface) section provides a quick rundown of the different components of MyLib's user interface.
-* The [Features](#features) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
+* The [Commands](#commands) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
 
-If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Features](#features) section or the [Command Summary](#command-summary) table. The [Features](#features) section will provide a detailed explanation of each feature. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
+If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Commands](#commands) section or the [Command Summary](#command-summary) table. The [Commands](#commands) section will provide a detailed explanation of each command. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
 
 
 The user guide will contain certain visuals to aid in conveying information more effectively. These include:
@@ -88,7 +88,7 @@ The user guide will contain certain visuals to aid in conveying information more
 
    * Next, use `exit` to exit the application.
 
-4. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
+4. You will be able to find a detailed guide on the list of available commands in the [Commands](#commands) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Key Definitions
@@ -160,8 +160,8 @@ The bookmark in the BookmarkList panel will only contain the:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
-This section provides an in-depth explanation of MyLib's features. For a quick reference of the available commands, use the [Command Summary](#command-summary) table.
+## Commands
+This section provides an in-depth explanation of MyLib's commands. For a quick reference of the available commands, use the [Command Summary](#command-summary) table.
 
 <div markdown="block" class="alert alert-info">
 
