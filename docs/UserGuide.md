@@ -131,7 +131,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* >**Note:**
+* >**Note:** <br/>
   > InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
   > All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
 
