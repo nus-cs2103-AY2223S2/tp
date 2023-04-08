@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a customer identified using it's displayed index from viewcustomer or listcustomers.
+ * Deletes a customer identified using its id.
  */
 public class DeleteCustomerCommand extends Command {
 

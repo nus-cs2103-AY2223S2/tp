@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a service  identified using it's displayed index from viewservice and listservices.
+ * Deletes a service identified using its id.
  */
 public class DeleteServiceCommand extends Command {
 

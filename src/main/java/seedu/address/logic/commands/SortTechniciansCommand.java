@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entity.person.Technician;
 
 /**
- * Manages Sorting of technicians
+ * Sorts displayed list of technicians
  */
 public class SortTechniciansCommand extends Command {
     public static final String COMMAND_WORD = "sorttechnicians";

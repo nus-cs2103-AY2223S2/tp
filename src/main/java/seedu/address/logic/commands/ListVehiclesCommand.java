@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 import seedu.address.model.Model;
 
 /**
- * Lists all vehicles in the AutoM8 system to the user.
+ * Lists all vehicles in the shop to the user.
  */
 public class ListVehiclesCommand extends Command {
 

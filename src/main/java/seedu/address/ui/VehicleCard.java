@@ -11,7 +11,7 @@ import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
 
 /**
- * An UI component that displays information of a {@code Customer}.
+ * An UI component that displays information of a {@code Vehicle}.
  */
 public class VehicleCard extends UiPart<Region> {
 

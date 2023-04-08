@@ -17,7 +17,7 @@ import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
 
 /**
- * An UI component that displays information of a {@code Vehicle}.
+ * An UI component that displays information of a {@code Service}.
  */
 public class ServiceDetailsPanel extends UiPart<Region> {
 

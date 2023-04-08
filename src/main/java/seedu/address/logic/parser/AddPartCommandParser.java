@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.PartMap;
 
 /**
  * Parses input arguments and creates new AddPartCommand object
@@ -30,8 +29,8 @@ public class AddPartCommandParser implements Parser<AddPartCommand> {
         }
 
         String partName = argMultimap.getValue(PREFIX_PART_NAME).get();
-        if (!PartMap.isValidName(partName)) {
-            throw new ParseException(PartMap.MESSAGE_CONSTRAINTS);
+        if (!ParserUtil.isValidPartName(partName)) {
+            throw new ParseException(ParserUtil.PART_MESSAGE_CONSTRAINTS);
         }
         int qty = ParserUtil.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
 

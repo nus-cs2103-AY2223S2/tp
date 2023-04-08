@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * A UI component that displays information of a part.
+ * Panel containing the list of parts.
  */
 public class PartListPanel extends UiPart<Region> {
 

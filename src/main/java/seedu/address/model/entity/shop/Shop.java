@@ -55,7 +55,7 @@ import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * A Shop is an entity that usually buy sells things.
+ * A Shop is an entity that represents the repair shop.
  */
 public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
     public static final String MSG_RUNTIME_ERROR =

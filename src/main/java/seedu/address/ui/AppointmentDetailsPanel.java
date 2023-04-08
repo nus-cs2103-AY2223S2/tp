@@ -8,12 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.util.UiUtil;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * An UI component that displays information of a {@code Vehicle}.
+ * A UI component that displays information of an {@code Appointment}.
  */
 public class AppointmentDetailsPanel extends UiPart<Region> {
 
@@ -61,7 +62,7 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
         datetime.setText(appointment.getTimeDate().format(dtf));
         customerId.setText(appointment.getCustomerId() + "");
         asOf.setText("(as of " + LocalDateTime.now().format(dtf) + ")");
-        setDateStatus(appointment.getDateStatus());
+        UiUtil.setDateStatus(dateStatus, appointment.getDateStatus());
 
         List<Technician> technicians = dataMap.getAppointmentTechnicians(appointment);
         appointmentStaffLabel.setText("Staff (" + technicians.size() + ")");
@@ -71,22 +72,6 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
             Label tLabel = new Label(t.getId() + ". " + t.getName().fullName);
             tLabel.getStyleClass().add("details-info");
             appointmentStaff.getChildren().add(tLabel);
-        }
-    }
-
-    private void setDateStatus(Appointment.DateStatus status) {
-        switch (status) {
-        case PASSED:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("passed-tag");
-            break;
-        case UPCOMING:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("upcoming-tag");
-            break;
-        default:
-            dateStatus.setText(status.name());
-            dateStatus.getStyleClass().add("today-tag");
         }
     }
 

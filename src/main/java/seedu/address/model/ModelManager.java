@@ -26,7 +26,7 @@ import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the AutoM8 data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -46,7 +46,6 @@ public class ModelManager implements Model {
     private final SortedList<Appointment> sortedFilteredAppointments;
     private final FilteredList<Map.Entry<String, Integer>> filteredParts;
     private final Shop shop;
-
     private Customer selectedCustomer;
     private Vehicle selectedVehicle;
     private Service selectedService;

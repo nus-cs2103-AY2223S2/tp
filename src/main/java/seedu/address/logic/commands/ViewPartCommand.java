@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Finds and returns the part details of the provided id.
+ * Finds and selects a specified part identified by its name
  */
 public class ViewPartCommand extends Command {
 

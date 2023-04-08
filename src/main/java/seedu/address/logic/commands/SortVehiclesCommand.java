@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
 /**
- * Manages Sorting of vehicles
+ * Sorts displayed list of vehicles
  */
 public class SortVehiclesCommand extends Command {
     public static final String COMMAND_WORD = "sortvehicles";

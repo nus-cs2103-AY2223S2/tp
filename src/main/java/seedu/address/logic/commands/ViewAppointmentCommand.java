@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Finds and returns the appointment details of the provided id.
+ * Finds and selects a specified appointment identified by its id
  */
 public class ViewAppointmentCommand extends Command {
 
