@@ -1262,7 +1262,7 @@ Before every test case, ensure that the patient "John Doe" does not exist. This 
 
 ### Patient attribute validation
 
-Before every test case, ensure that the there are no patients and vaccinations.
+Before every test case, ensure that the there are no patients.
 
 `patient clear --force true`
 
@@ -1345,6 +1345,17 @@ Before every test case, ensure that the there are no patients and vaccinations.
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfurcatfurcatfurcatfurcatfurcatfur --v covax`
 
 ### Viewing details of a patient
+
+#### Prerequisites
+
+Before every test case, ensure that the patient "John Doe" does not exist. This can be done by executing the following before every test case:
+
+1. `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+1. `patient detail 1`
+
+#### Expected
+
+![Expected display](images/patient/dg/PatientAdd_NotBlank.png)
 
 ### Listing all patients
 
