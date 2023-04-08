@@ -209,7 +209,7 @@ Feel free to play around with the sample data to familiarise yourself with the c
 ### Current Working Context
 
 Le Tracker organises content using a **hierarchical structure** (Modules -> Lectures -> Videos).
-When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module CS2040S and lecture Week 1.
+When you are studying a specific lecture topic (e.g. Week 1 of CS2040S), you may find yourself frequently performing commands that are related to the module "CS2040S" and lecture "Week 1".
 
 To avoid the need to constantly specify the module and lecture parameters for such commands, the navigation system allows you to specify a **current working context** instead.
 
@@ -223,9 +223,9 @@ Type of contexts
 
 You can specify a current working context by **navigating**.
 
-- There two ways of **navigating** - **relatively** or **directly**.
+- There are two ways of **navigating** - **relatively** or **directly**.
 
-For example, you can navigate to the **lecture context** - lecture Week 1 of the module CS2040S by
+For example, you can navigate to the **lecture context** - lecture "Week 1" of the module "CS2040S" by
 
 - Navigating **relatively** from the **root context**
   <img src="images/RootContext.png" height="20" />
@@ -237,41 +237,41 @@ For example, you can navigate to the **lecture context** - lecture Week 1 of the
 
 - Navigating **directly** from any **context**
   <img src="images/RootContext.png" height="20" /> <img src="images/ModContext.png" height="20" /> <img src="images/LectureContext.png" height="20" />
-  1. Navigate directly to the lecture Week 1 of the module CS2040S.
+  1. Navigate directly to the lecture "Week 1" of the module "CS2040S".
   > `nav /mod CS2040S /lec Week 1`
 
 ### Navigation Injection
 
-After navigating to a lecture or module context, the navigation system will **inject** the required module and lecture parameters (i.e. `/mod CS2040S`, `/lec Week`) into commands so you don't have to!
+After navigating to a lecture or module context, the navigation system will **inject** the required module and lecture parameters (i.e. `/mod CS2040S`, `/lec Week 1`) into commands so you don't have to!
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture "Week 1" of module "CS2040S".
   > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture "Week 1" of module "CS2040S".
   > `list` -> `list /mod CS2040S /lec Week 1`
-  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture "Week 1" of module "CS2040S".
   > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
-To specify your own context for a command without any [injection](#navigation-injection), you can use the `/r`, `/mod`, `lec` prefixes in your commands.
+To specify your own context for a command without any [injection](#navigation-injection), you can use the `/r`, `/mod`, `/lec` arguments in your commands.
 
 The following can be performed at **any** [current working context](#current-working-context)
 
-- Including the `/r` prefix will perform a command from the **root context**.
+- Including the `/r` argument will perform a command from the **root context**.
   - e.g. List all modules at the root context.
   > `list /r` -> `list`
-- Including the `/mod` prefix will perform a command from the **module context**.
-  - e.g. Add lecture "Week 10" for module CS2040S.
+- Including the `/mod` argument will perform a command from the **module context**.
+  - e.g. Add lecture "Week 10" for module "CS2040S".
   > `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
-- Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
-  - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
+- Including the `/mod` and `/lec` arguments will perform a command from the **lecture context**.
+  - e.g. Add video "BST Challenge" for lecture "Week 5" of module "CS2040S".
   > `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
 
-To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
+To make it easier to specify a lecture context which shares the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
-- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture "Week 5" of module "CS2040S".
 > `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
@@ -284,43 +284,42 @@ To make it easier to specify that share the same module code as your current wor
 #### Navigate to the Root Context
 
 > `nav`
-
 Navigate to the root context from any context.
 
-#### Navigate From Root Context to Module Context
+#### Navigate from Root Context to Module Context
 
 > `nav {module_code}`
 
 Navigates from the root context to a module context.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must belong to an existing module in Le Tracker
 
-#### Navigate From Module Context to Lecture Context
+#### Navigate from Module Context to Lecture Context
 
 > `nav {lecture_name}`
 
 Navigates from a module context to a lecture context.
 
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
-  - Must belong to an existing lecture in the module of the current working context (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module of the current working context
 
 #### Navigate Directly
 
-> `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+> `nav /mod {module_code} [/lec {lecture_name}]`
 
-Navigates directly to the specified module or lecture context
+Navigates directly to the specified module or lecture context.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must belong to an existing module in Le Tracker
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
-  - Must belong to an existing lecture in the module specified in `module_code` (:exclamation:Lecture name matching is case sensitive)
+  - Must belong to an existing lecture in the module specified in `module_code`
 
 #### Navigate Backwards
 
 > `navb`
 
-Navigates backwards to the a parent context unless already at root context
+Navigates backwards to a higher context unless already at root context.
 
 ### List
 
@@ -884,7 +883,7 @@ Examples:
 
 ---
 
-## Note
+## Notes
 
 - Saving the data\
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
