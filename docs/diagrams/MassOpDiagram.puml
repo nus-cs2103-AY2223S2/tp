@@ -26,7 +26,7 @@ LogicManager -> AddressBookParser : parseCommand("mass tag gay")
 activate AddressBookParser
 
 create MassOpCommandParser
-AddressBookParser -> MassOpCommandParser : 
+AddressBookParser -> MassOpCommandParser :
 activate MassOpCommandParser
 
 MassOpCommandParser --> AddressBookParser
@@ -91,7 +91,7 @@ loop for i in lastShownList.size()
     create TagCommandParser
     classAddressBookParser -> TagCommandParser
     activate TagCommandParser
-    
+
     create TagCommand
     TagCommandParser --> TagCommand
     activate TagCommand
