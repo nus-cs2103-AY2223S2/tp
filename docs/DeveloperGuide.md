@@ -285,11 +285,11 @@ The `event add` command allows users to add instances of `Event` to a selected `
 
 Below is an example usage. 
 
- 1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
+1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
 
- 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
+2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
 
-    * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
+  * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
 
   The *Activity Diagram* for the above logic flow is below: 
 
@@ -605,6 +605,8 @@ Use Case Ends.
    internship listing via keyboard).
 
 *{More to be added}*
+
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
