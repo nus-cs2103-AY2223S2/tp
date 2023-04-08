@@ -13,7 +13,6 @@ This guide is intended to provide developers with a comprehensive overview of th
 
 Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
 
-<!-- prettier-ignore -->
 :information_source: **Le Tracker** GUI is built with *JavaFX* so you are highly recommended to develop in **Java**.
 
 ---
@@ -966,154 +965,149 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wants to see all modules and executes list modules command.
-2. User .
-3. A list of module is populated.
+1. A list of module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list command is invalid.
+- 1a. The list command is invalid.
 
-  - 2a1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: List module's lectures**
+#### Use case: List module's lectures
 
 **MSS**
 
-1. User wants to see all lectures of a module.
-2. User supplies a module and executes list lectures command.
-3. A list of lectures of specified module is populated.
+1. User wants to see all lectures of a module and executes list lectures command with module supplied.
+1. A list of lectures of specified module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The module does not exists.
+- 1a. The module does not exists.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The list command is invalid.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: List lecture's videos**
+- 1b. The list command is invalid.
+
+  - 1b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: List lecture's videos
 
 **MSS**
 
-1. User wants to see all videos of a lecture in a module.
-2. User supplies a module and a lecture and executes list videos command.
-3. A list of videos of the specified lecture in the specified module is populated.
+1. User wants to see all videos of a lecture in a module and executes list videos command with a module and a lecture supplied.
+1. A list of videos of the specified lecture in the specified module is populated.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The module does not exists.
+- 1a. The module does not exists.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The lecture does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The list command is invalid.
+- 1b. The lecture does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find module**
+- 1c. The list command is invalid.
+
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find module
 
 **MSS**
 
-1. User wants to find modules that starts with a keyword.
-2. User supplies the keyword and executes find modules command.
-3. A list of modules relevant to the keyword is populated.
+1. User wants to find modules that starts with a keyword and executes find modules command with keyword supplied.
+1. A list of modules relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The find command is invalid.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find lecture**
+- 1b. The find command is invalid.
+
+  - 1b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find lecture
 
 **MSS**
 
-1. User wants to find lectures in a module that starts with a keyword.
-2. User supplies the keyword and a module and executes find lecture command.
-3. A list of lectures in the specified module which are relevant to the keyword is populated.
+1. User wants to find lectures in a module that starts with a keyword and executes find lecture command with module and keyword supplied.
+1. A list of lectures in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The module does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The find command is invalid.
+- 1b. The module does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-**Use case: Find video**
+- 1c. The find command is invalid.
+
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Find video
 
 **MSS**
 
-1. User wants to find videos in a lecture belonging in a module that starts with a keyword.
-2. User supplies the keyword and a lecture and a module and executes find video command.
-3. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
+1. User wants to find videos in a lecture belonging in a module that starts with a keyword and executes find video command
+with module, lecture and keyword supplied.
+1. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
 
-- 2a. The keyword is in wrong format.
+- 1a. The keyword is in wrong format.
 
-  - 2a1. LeTracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. The module does not exists.
-
-  - 2b1. LeTracker shows an error message.
+  - 1a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. The lecture does not exists.
+- 1b. The module does not exists.
 
-  - 2c1. LeTracker shows an error message.
+  - 1b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2d. The find command is invalid.
+- 1c. The lecture does not exists.
 
-  - 2d1. LeTracker shows an error message.
+  - 1c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 1d. The find command is invalid.
+
+  - 1d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
