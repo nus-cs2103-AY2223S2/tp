@@ -29,17 +29,17 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_STATUS = "Complaining";
     private static final String INVALID_REMARK = "";
 
-    private static final String VALID_NAME = ZAYDEN.getName().toString();
-    private static final String VALID_PHONE = ZAYDEN.getPhone().toString();
-    private static final String VALID_EMAIL = ZAYDEN.getEmail().toString();
+    private static final String VALID_NAME = ZAYDEN.getName().getValue();
+    private static final String VALID_PHONE = ZAYDEN.getPhone().getValue();
+    private static final String VALID_EMAIL = ZAYDEN.getEmail().getValue();
     private static final List<JsonAdaptedTag> VALID_TAGS = ZAYDEN.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final String VALID_HEIGHT = ZAYDEN.getHeight().getValue();
     private static final String VALID_WEIGHT = ZAYDEN.getWeight().getValue();
     private static final String VALID_DIAGNOSIS = ZAYDEN.getDiagnosis().getValue();
-    private static final String VALID_STATUS = ZAYDEN.getStatus().toString();
-    private static final String VALID_REMARK = ZAYDEN.getRemark().toString();
+    private static final String VALID_STATUS = ZAYDEN.getStatus().getValue();
+    private static final String VALID_REMARK = ZAYDEN.getRemark().getValue();
 
     @Test
     public void toModelType_validPatientDetails_returnsPatient() throws Exception {
