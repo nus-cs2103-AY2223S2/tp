@@ -1197,6 +1197,63 @@ please add dummy applications by executing the `add-app` command.
    Error message `Unknown command` will be displayed in the status message.
 
 
+### Adding a task
+Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications 
+do not have a task. 
+
+1. Test case 1: `add-task 1 d/Interview by/31-03-2023` 
+
+   Expected: A new task is added to the first application on the list. Details of the newly added task shown in the 
+   status message.
+
+2. Test case 2: `add-task 2`
+
+   Expected: No task is added due to **Invalid Command Format**. The `Description` and `Deadline` prefixes and inputs
+   are missing from the command. `Description` and `Deadline` are compulsory input parameters for the add task command. 
+   Error details shown in the status message. 
+
+3. Test case 3: `add-task 2 d/Online Assessment by/33-05-2023`
+
+   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the status message.
+
+### Editing a task
+Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications
+have an existing task. 
+
+1. Test case 1: `edit-task 1 by/Online Interview`
+
+   Expected: The description of the task for the first application is updated to "Online Interview". 
+
+2. Test case 2: `edit-task 2`
+
+    Expected: The task for the second application is not edited due to **Invalid Command Format**. Edit task command
+    needs at least one of `Deadline` and `Description` parameters to be provided. Error details shown in the status
+    message. 
+
+3. Test case 3: `edit-task 2 by/20042023`
+
+   Expected: The task for the second application is not edited due to invalid date input (incorrect format). Error 
+   details shown in the status message.
+
+### Deleting a task
+
+Prerequisites for test cases: there are at least 2 applications in the internship book, the first application has
+an existing task and the second application does not have an existing task.
+
+1. Test case 1: `delete-task 1`
+
+   Expected: The task for the first application is deleted. Details of the deleted task shown in the status message.
+   Timestamp in the status bar is updated.
+
+2. Test case 2: `delete-task 2`
+
+   Expected: No task is deleted (no existing task). Error details shown in the status message. 
+
+3. Test case 3: `delete-task 0`
+
+   Expected: No task is deleted (invalid index). 
+
+
 ### Exiting sprINT
 Before each test scenario, ensure that sprINT application is launched and opened on your device.
 
