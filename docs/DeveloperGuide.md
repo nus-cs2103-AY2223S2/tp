@@ -611,5 +611,7 @@ testers are expected to do more *exploratory* testing.
 ### **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Event**: A task with a starting time and an ending time
+* **Ongoing Event**: An event that has started, but not ended
+* **Upcoming Event**: An event that has not started
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
