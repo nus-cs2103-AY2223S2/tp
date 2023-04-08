@@ -315,6 +315,8 @@ respectively. It is as simple as that!
 
 ## Person-Related Commands
 
+In this subsection, you may find all the commands that are related to contacts.
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -454,6 +456,8 @@ Duplicate values will still be ignored, but you can be assured the value is adde
 Format: `import JSON [f/]`
 
 ## Meeting-Related Commands
+
+In this subsection, you may find all the commands that are related to meetings.
 
 ### Adding a Meeting : `addm`
 
