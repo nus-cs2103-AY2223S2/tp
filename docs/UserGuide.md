@@ -556,7 +556,7 @@ Deletes the specified module(s) and all its embodied content from the applicatio
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
-When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
+When in a module or lecture context, the navigation system will automatically inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Delete Lecture
 
