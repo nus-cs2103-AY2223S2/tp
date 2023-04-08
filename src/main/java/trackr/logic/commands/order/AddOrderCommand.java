@@ -74,11 +74,11 @@ public class AddOrderCommand extends Command {
         Order validOrder = new Order(existingItem, toAdd.getOrderDeadline(), toAdd.getOrderStatus(),
                                      toAdd.getOrderQuantity(), toAdd.getCustomer());
         if (model.hasItem(validOrder, modelEnum)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum, validOrder));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum, modelEnum));
         }
 
         model.addItem(validOrder, modelEnum);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, validOrder));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, modelEnum));
     }
 
     @Override
