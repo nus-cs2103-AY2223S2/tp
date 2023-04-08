@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * [Star icon](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/images/star.png) created by [Pixel perfect - Flaticon](https://www.flaticon.com/free-icons/star).
+* [Module code list](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/data/modules.json) adapted from [NUSMods API](https://api.nusmods.com/v2/).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **NeoBook**
