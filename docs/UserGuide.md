@@ -505,7 +505,7 @@ more information.
 
 ![schedule notification](images/scheduleNotification.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Alert:**
 This is not a command!
 </div>
 
