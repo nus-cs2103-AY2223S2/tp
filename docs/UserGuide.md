@@ -26,6 +26,8 @@ title: FastTrack User Guide
 8. [Saving the data](#saving-the-data)
 9. [Editing the data file (For Advanced Users)](#editing-the-data-file)
 10. [Frequently Asked Questions](#frequently-asked-questions)
+
+
 --------------------------------------------------------------------------------------------------------------------
 # Introduction to FastTrack
 
@@ -271,7 +273,7 @@ FastTrack offers a variety of commands that you can use to take advantage of its
 | [**Add Expense**](#adding-an-expense-add)                            | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
 | [**Delete Expense**](#deleting-an-expense-delete)                    | `delete INDEX`                                                                        | `delete 1`                                                     |
 | [**Edit Expense**](#editing-an-expense-edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                   | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
-| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             || [**List Recurring Expense**](#listing-recurring-expense-lrec)        | `lrec`                                                                                | `lrec`                                                         |
+| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             |
 | [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
 | [**Add Recurring Expense**](#adding-a-recurring-expense-addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`   | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
 | [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
@@ -361,13 +363,13 @@ Format: `delcat INDEX`
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`   | The index number shown in the displayed category list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...<br/><br/>Expenses previously categorised under the specified category will be automatically re-categorized under the `Misc` category.<br/> |
 
-<div>
-**:information_source: Info**<br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:**<br>
 
 If you delete a category that has existing expenses associated with it, those expenses will be automatically reassigned to the default internal `Misc` category. But don't worry! You can still re-assign them later with the [edit expense command](#editing-an-expense-edexp). To avoid losing track of expenses, we recommend that you review and update your categories periodically, rather than deleting them altogether.
 
 </div>
-
 
 
 ### Examples
@@ -625,6 +627,15 @@ Note that once a recurring expense is added, it automatically adds a series of e
 </div>
 
 
+<div markdown="block" class="alert alert-primary">:bulb: Tip:
+
+FastTrack's recurring expense feature is designed to help you keep track of regular expenses that occur at a fixed interval, such as monthly subscription fees or cloud storage bills. 
+By setting up a recurring expense, you save precious time and effort by automating the process of adding these expenses to FastTrack.
+
+</div>
+
+
+
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution**<br>
@@ -769,6 +780,13 @@ Give it a try and see how much time you can save with this feature!
 - Press `ENTER` to autocomplete the selected category name.
 - If the category you're looking for is conveniently at the bottom of the list, simply press `TAB` to autocomplete the first suggested category without having to navigate through the list manually!
 - If you decide not to use any of the suggested categories, just continue typing your own category name as per normal.
+
+<div markdown="block" class="alert alert-primary">:bulb: Tip:
+
+Want to use `TAB` directly without navigating inside the suggestion list?
+Narrow down the list of suggested categories by typing the first few words of your desired category name. Once the option appears at the bottom of the list, simply press `TAB` for autocompletion.
+
+</div>
 
 
 <div markdown="block" class="alert alert-warning">
