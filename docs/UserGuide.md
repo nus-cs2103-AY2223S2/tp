@@ -8,7 +8,7 @@ the desire to **store**, **access** and **share** your recipes easily?
 
 ***RIZZ***ipe is a **command-based recipe database** that is designed just for chefs _LIKE YOU_ to manage recipes at the touch of a finger!
 
-**RIZZ**ipe comes equipped with multiple features but stars **3** main ones:
+***RIZZ***ipe comes equipped with multiple features but stars **3** main ones:
 1. Versatile **tagging** and powerful **searching** function
 2. Recipe **sharing**
 3. Search function for **ingredient substitutions**
@@ -16,8 +16,8 @@ the desire to **store**, **access** and **share** your recipes easily?
 Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
 
 ## Using this Guide
-* If you want to run **RIZZ**ipe for the first time, check out our handy [Quick Start guide](#quick-start).
-* If you want to learn how to use **RIZZ**ipe, refer to our [Features](#features) section for a detailed guide on 
+* If you want to run ***RIZZ***ipe for the first time, check out our handy [Quick Start guide](#quick-start).
+* If you want to learn how to use ***RIZZ***ipe, refer to our [Features](#features) section for a detailed guide on 
 * how to run each different command.
 * If you are an experienced developer and want to learn more about our design decisions, refer to our Developer Guide.
 
@@ -129,11 +129,11 @@ butter s/Serve and enjoy.`
 
 <div markdown="block" class="alert alert-info">
 
-* :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
+:bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 
-* :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
+:bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
 
-* :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
+:bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 
 * Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 
@@ -152,11 +152,11 @@ Use our interactive form feature to add your favorite recipe to the recipe book 
 Format: 
 `addf`
 
-<div markdown="block" class="addf-info">
+<div markdown="block" class="alert alert-info">
 
 * An empty pop-up form as shown in the image below will appear!
 
-* ![AddCommandWindow](images/addfCommand.png)
+![AddCommandWindow](images/addfCommand.png)
 
 * Tab to move on to the next input field, and shift+tab to go to the previous field!
 
@@ -176,13 +176,13 @@ simply want to pick a recipe at random? Just run the `list` command!
 Format:
 `list`
 
-<div markdown="block" class="list-info">
+<div markdown="block" class="alert alert-info">
 
 * Lists all recipes that are in the storage, in the chronological order they were added.
 
 * Depending on the size of the window, the user may add multiple columns to display more recipes.
 
-* :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+:bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 
 * In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
 
@@ -202,7 +202,7 @@ Don't fret, for the `edit` command is here for you to supplement these new detai
 Format: 
 `edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`  
 
-<div markdown="block" class="edit-info">
+<div markdown="block" class="alert alert-info">
 
 * Edits the recipe at the specified index. The index refers to the index number shown in the displayed recipe list. 
  
@@ -214,7 +214,7 @@ Format:
  
 * You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
  
-* :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+:bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
  
@@ -249,7 +249,7 @@ Example(s) of usage:
 * `find tag western` returns all recipes with the tag `western`
 * `find ingredient tofu` returns all recipes with the ingredient `tofu`
 
-<div markdown="block" class="find-info">
+<div markdown="block" class="alert alert-info">
 
 * Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 
@@ -276,7 +276,7 @@ Example(s) of usage:
 * `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
 *  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
-<div markdown="block" class="delete-info">
+<div markdown="block" class="alert alert-info">
 
 * Deletes the dish at the specified `INDEX` of the latest list that was displayed.
 
@@ -300,11 +300,12 @@ Format:
 Example(s) of usage:
 * `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
 
-<div markdown="block" class="sub-info">
+<div markdown="block" class="alert alert-info">
 
 * `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 
-* :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
+
+  :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
 
 * The search is case-insensitive, i.e. `sub salt` will return all stored substitutions for `Salt` and `salt` across recipes.
 
@@ -332,7 +333,7 @@ Unsure or unable to remember our list of commands and how to format your inputs?
 Format:
 `help`
 
-<div markdown="block" class="help-info">
+<div markdown="block" class="alert alert-info">
 
 * :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
 ![HelpCommandUI](images/HelpCommandUI.png)
