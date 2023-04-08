@@ -350,7 +350,8 @@ drug of CareFlow.
 ### Exit the program
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
 * **Format:** `g exit`
-<div markdown="block" class="alert alert-info">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window</div>
+<div markdown="block" class="alert alert-info">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window
+</div>
 <br/>
 
 [↑ Back to top](#top)
@@ -398,8 +399,10 @@ ___
         <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:100%">
       </p>
       <br/>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate patient information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc). </div>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.</div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate patient information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc).
+</div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.
+</div>
 
 <br/>
 
@@ -548,7 +551,8 @@ ___
     * You can click on either record to see detailed information.
 
 <br/>
-* <span markdown="span" class="alert alert-info">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.</span>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.
+</div>
 
 <br/>
 
@@ -589,7 +593,7 @@ The full detail of the retrieved patient will be shown on the right side of the 
 
 * Wish to terminate your subscription with CareFlow and move to another system? :pensive:
 You can also clear all patient records.
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Use this with command with caution!
 </div>
   \
@@ -661,7 +665,8 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:100%">
       </p>
-* <div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters. </div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters.
+</div>
 
 <br/>
 
@@ -729,7 +734,8 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
-* <div markdown="block" class="alert alert-info">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.</div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.
+</div>
 
 <br/>
 
@@ -769,7 +775,8 @@ by specifying the trade name.
         <br/>
 <div markdown="block" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
 </div>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values of 0 and 499 respectively, without reporting an error.</div>
+<div markdown="block" class="alert alert-info">:information_source: **Note:** The storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values of 0 and 499 respectively, without reporting an error.
+</div>
 <br/>
 
 [↑ Go to Drug Commands](#43-drug-commands)
@@ -815,7 +822,9 @@ by specifying the trade name.
 
 ### Clear all drug entries
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**Use this with command with caution!</div>
+<div markdown="block" class="alert alert-warning">
+  :exclamation: **Caution:**Use this with command with caution!
+</div>
   \
   &nbsp;
 * **Format:** `d clear`
@@ -850,7 +859,9 @@ by specifying the trade name.
             <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br/>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as`d list hellothere` or `d list 1234?!` will not cause any errors in the system.</div>
+<div markdown="block" class="alert alert-info">
+  :information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as`d list hellothere` or `d list 1234?!` will not cause any errors in the system.
+</div>
 <br />
 
 [↑ Go to Drug Commands](#43-drug-commands)
