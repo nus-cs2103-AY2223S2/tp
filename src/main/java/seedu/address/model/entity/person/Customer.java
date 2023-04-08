@@ -13,7 +13,7 @@ import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * The Customer class represents a Customer.
+ * The Customer class represents a Customer. It is an extension of existing Person class.
  */
 public class Customer extends Person implements DeepCopy<Customer> {
 
