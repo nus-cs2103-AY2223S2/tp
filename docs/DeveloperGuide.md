@@ -715,14 +715,29 @@ testers are expected to do more *exploratory* testing.
 1. Viewing the save files
 
     1. Exit the app by typing `exit` or `e`.<br>Expected: A new folder called `data` is created in the folder where your jar file is at
-
     2. Double-click the `data` folder.<br>Expected: 2 files, `petpal.json` (which includes sample data) and `archive.json` is present in the `data` folder
 
-2. Dealing with missing/corrupted data files
+2. Dealing with missing data files
 
-   1. To simulate a missing data file, go to the `data` folder and delete `petpal.json` and/or `archive.json`
+    1. To simulate a missing data file, go to the `data` folder and delete `petpal.json` and/or `archive.json`
+    2. Restart PetPal and type `exit`
+    3. The missing files are re-created in the `data` folder with the sample data populated.
 
-3. _{ more test cases … }_
+    <div markdown="block" class="alert alert-block alert-success">
+    
+    * :bulb: **Note:**
+    `archive.json` does not contain any pet entries by default
+    </div>
+
+3. Dealing with corrupted data files
+    1. To simulate a corrupted data file, go to the `data` folder and edit the `petpal.json` and/or `archive.json` with random strings not of json format
+    2. Start PetPal, the corrupted data file is replaced with the sample data
+    3. The corrupted files are re-created in the `data` folder with sample data
+    <div markdown="block" class="alert alert-block alert-success">
+
+     * :bulb: **Note:**
+       `archive.json` does not contain any pet entries by default
+     </div>
 
 [Return to Table of Contents](#table-of-contents)
 
