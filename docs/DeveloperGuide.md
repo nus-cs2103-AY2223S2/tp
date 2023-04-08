@@ -297,10 +297,10 @@ The following sequence diagram illustrates how the delete patient operation work
 {: .no_toc}
 
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
-the personal information of the doctor or patient. Therefore, the right-most column within
+the information related to the doctor or patient. Therefore, the right-most column within
 Docedex has been reserved to show the personal information of the selected doctor or patient.
 
-![](images/enlarged-contact-card-display.png)
+![](images/NewUi.png)
 
 ##### Brief introduction to the components involved
 {: .no_toc}
@@ -310,9 +310,10 @@ displayed for a doctor compared to a patient has a few differences. Thus, two di
 are required - one to display patient information and one to display doctor information.
 
 Let's call these cards `EnlargedDoctorInfoCard` and `EnlargedPatientInfoCard`. However, we
-only have one `StackPane` to display the information of the queried doctor or patient.
-So, we need a way to toggle between displaying either card, depending on whether the user
-has selected a doctor or patient to view.
+only have one `StackPane` to display the information of the queried doctor or patient. This 
+`StackPane` spans over the right-most column seen in the GUI above, and serves as a placeholder
+for the info cards. So, we now need a way to toggle between displaying either card, depending
+on whether the user has selected a doctor or patient to view.
 
 ##### Exploring the user journey
 {: .no_toc}
@@ -320,7 +321,7 @@ has selected a doctor or patient to view.
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
 representing a doctor, though the ideas below can be extended to the user clicking on a
 `PatientListViewCell`, as well as other ways of querying for a doctor or patient
-(ie. through select-doc or select-ptn command).
+(ie. through [`sd`](./UserGuide.md#select-doctor) or [`sp`](./UserGuide.md#select-patient) command).
 
 Below, we see the sequence diagram of how a mouse click from the user on the `DoctorListViewCell`
 causes the display of information related to the doctor card through the `EnlargedDoctorInfoCard`.
@@ -330,28 +331,38 @@ causes the display of information related to the doctor card through the `Enlarg
 ##### More details on implementation
 {: .no_toc}
 
-When the user clicks on a `DoctorListViewCell`, the `displayDoctor()` call sets the state of the
-`EnlargedInfoCardDisplayController` to show the doctor. After which, the `ContactDisplay`
-is prompted to feedback this change to the user, by displaying the `EnlargedDoctorInfoCard`
-containing the information of the doctor represented by the clicked `DoctorListViewCell`.
+Before diving into the details, here are a few key points to note:
+- The `ContactDisplay` contains all three columns shown in the middle of the GUI.
+These columns represent the doctors list, patients list and an info card respectively,
+from left to right.
+- There is always only one instance of the `EnlargedDoctorInfoCard`,
+`EnlargedPatientInfoCard`, `ContactDisplay` and placeholder `StackPane`.
 
-A similar process happens when the user clicks on a `PatientListViewCell`.
+When the user clicks on a `DoctorListViewCell`, the `setFeedbackUponSelectingDoctor()`
+call initiates the process of updating the relevant UI components to display
+information about the doctor. As part of this function, the `ContactDisplay` updates the
+doctor displayed in the `EnlargedDoctorInfoCard`. Lastly, the `ContactDisplay` clears the
+current display within the placeholder `StackPane`, and adds the `EnlargedDoctorInfoCard`
+as the child node of the `StackPane`.
 
-##### How is the state of the application stored
-{: .no_toc}
+At the end of this journey, the `EnlargedDoctorInfoCard` containing the information
+of the selected doctor is displayed on the right-most column on the Docedex GUI.
 
-Within `EnlargedInfoCardDisplayController`, two booleans corresponding to displaying doctor
-and patient information respectively store the state of the application.
-
-<div markdown="span" class="alert alert-primary">
-These booleans should never contain the same value for the following reasons:
-1) If both booleans are `false`, then no information is displayed.
-2) If both booleans are `true`, then both doctor and patient information will be
-displayed over each other.
-</div>
+A similar process happens when the user clicks on a `PatientListViewCell`, with
+the `EnlargedPatientInfoCard` being populated with the appropriate data and displayed instead.
 
 ##### Alternatives considered
-*_This section is still in progress_*
+{: .no_toc}
+
+In the past, we had a different implementation of this feature, where the `DoctorListViewCell`
+called a function in a controller named `EnlargedInfoCardController` instead of the `ContactDisplay`.
+The controller would be in charge of keeping the state of whether to display the doctor or patient.
+All UI components would then refer to this controller to update themselves.
+
+However, upon implementation, it was realised that the `ContactDisplay` contained all the UI components
+that needs to be updated when a user selects a doctor or patient. Therefore, it was simpler and more
+purposeful to let the `ContactDisplay` handle this update. Hence, the controller was removed and the
+current design was favoured.
 
 --------------------------------------------------------------------------------------------------------------------
 
