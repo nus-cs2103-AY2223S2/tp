@@ -8,11 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import seedu.address.commons.util.UiUtil;
 import seedu.address.model.service.Service;
-import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
 
