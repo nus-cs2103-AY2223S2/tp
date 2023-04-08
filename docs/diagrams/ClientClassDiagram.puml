@@ -4,9 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Client *--> Name
-Client *--> "0..1" Phone
-Client *--> "0..1" Email
-Client *--> "projects" UniqueProjectList
+show attributes
+hide empty attributes
+
+Client : name
+Client : phone
+Client : email
+Client : UniqueProjectList projects
 Client *-->"*" Tag
 @enduml

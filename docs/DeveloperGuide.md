@@ -149,93 +149,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `arb.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Projects
 
@@ -270,10 +190,14 @@ Users have the ability to link projects to clients.
 
 #### Implementation
 
+{_object diagram for an example of two linked clients/projects_}
+
 #### Future improvements
 Currently, projects are only allowed to be linked to a single client. This was done to avoid introducing too much complexity such that it was feasible to complete this feature before the deadline.
 
 In future, projects could be linked to multiple clients. This could be implemented by storing a list of `Client` objects, perhaps using a `UniqueClientList`. The below class diagram showcases this  implementation.
+
+{_class diagram showing the new implementation_}
 
 ### Better filtering
 
@@ -381,35 +305,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* *` | artist with many ongoing commissioned projects to keep track of | view my current commissioned projects in order of deadline recency | not miss any deadlines |
 | `*` | artist inexperienced in command line commands | use commands that are closer to natural language | better understand and more effectively use commands |
-| `* * *` | user | add a deadline to a project | record when a project needs to be done |
+| `* * *` | artist | add a deadline to a project | record when a project needs to be done |
 | `*` | artist working with commissions | import a list of clients from a CSV file | use an editable format |
 | `* *` | first-time user of the application | view a guide on how to use the app | learn how to use the app |
 | `*` | artist who wants to increase my earnings | add a large number of commissioned projects at any time | increase my income |
 | `*` | expert in using the application | setup shortcuts for commands I often use | execute them quickly |
 | `* *` | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have | deliver for my clients |
-| `* *` | user | tag projects in the list | filter by the tags if necessary |
-| `* *` | user | see projects by their deadlines | finish work on time |
+| `* *` | artist | tag clients in the list | filter by the tags if necessary |
+| `* *` | artist | tag projects in the list | filter by the tags if necessary |
 | `*` | inexperienced user | undo commands | remedy mistakes |
 | `* *` | first-time user of the application | see sample data in the application | understand what the application can do |
 | `* * *` | artist | add clients to the application | keep track of all of my clients |
-| `* * *` | user | remove clients from my list | keep the list accurate |
-| `* *` | user | edit client info | keep client info up to date in case of changes |
-| `* *` | user | edit project info | keep project info up to date in case of changes |
+| `* * *` | artist | remove clients from my list | keep the list accurate |
+| `* *` | artist | edit client info | keep client info up to date in case of changes |
+| `* *` | artist | edit project info | keep project info up to date in case of changes |
 | `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
+| `* *` | artist | add to a project how much money it will make me | know the profit of my projects |
 | `* *` | artist | search for clients using keywords | find specific clients quickly |
-| `* *` | user | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
+| `* *` | artist | ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
 | `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
+| `* *` | artist | see how much profit a client has made me so far | know which client is making me the most profit |
+| `* *` | artist | sort clients by how much profit they have made me so far | know which clients are making me the most profit |
 | `* *` | artist | sort clients by the number of times they have commissioned me before | know if a given client and I have a long-standing relationship |
 | `* * *`| artist | add contact info to clients | know how to reach them if needed |
 | `*` | artist | blacklist certain clients | know who to avoid |
-| `* *` | artist | add projects to clients | know what projects are for what clients |
+| `* *` | artist | link projects to clients | know what projects are for what clients |
 | `* *` | artist | get asked if I am sure I want to delete an ongoing project | be prevented from accidentally deleting an ongoing project |
 | `* * *`| artist | mark a certain project as done | know it is no longer ongoing |
 | `*` | user | easily generate text to share client information | send it to someone else if required |
-| `* * *` | user | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
+| `* * *` | artist | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
 | `*` | artist | add dates in different formats without being asked to give it in a certain format | not have to memorize providing dates in a certain format |
 | `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
 | `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
+| `* *` | artist | see all tags I have used | know what tags to use to find clients/projects |
+| `*` | experienced user | directly edit the data file | change stored information without having to open the app |
+| `* *` | artist | find specific clients | see their information |
+| `* *`| artist | find specific projects | see their information |
+| `* *` | artist | search for projects using keywords | find specific projects quickly |
+| `* *` | busy artist | see what projects are due in a certain timeframe | better plan my schedule |
 
 ### Use cases
 
@@ -438,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Use case - Delete Project**
+**Use case: Delete Project**
 
 **MSS**:
 1. User enters command for deleting project of certain client.
@@ -454,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Use case ends.
 
 
-**Use case: Use case - Edit Project**
+**Use case: Edit Project**
 
 **MSS**:
 1. User enters command to editing project, including project ID and details to edit
@@ -475,43 +408,46 @@ Use case ends.
 
 Use case ends.
 
-**Use case: Use case - Find Project**
+**Use case: Find Project**
 
 **MSS**:
-1. User enters command to find projects, including parameters such as name, deadline, tags or linked clients
-2. ArB lists all projects that match the provided parameters<br>
+1. User enters command to find projects, including parameters such as name, deadline, tags or linked clients.
+2. ArB lists all projects that match the provided parameters.<br>
    Use case ends.
 
 **Extension**:
 
-* 1a. ArB detects that none of the parameters provided are valid
-  * 1a1. ArB informs user that no valid parameters were provided<br>
+* 1a. ArB detects that none of the parameters provided are valid.
+  * 1a1. ArB informs user that no valid parameters were provided.<br>
   Use case ends.
 
-**Use case: Use case - Find Client**
+**Use case: Find Client**
 
 **MSS**:
-1. User enters command to find clients, including parameters such as name or tags
-2. ArB lists all clients that match the provided parameters<br>
+1. User enters command to find clients, including parameters such as name or tags.
+2. ArB lists all clients that match the provided parameters.<br>
    Use case ends.
 
 **Extension**:
-* 1a. ArB detects that none of the parameters provided are valid
-  * 1a1. ArB informs user that no valid parameters were provided<br>
+* 1a. ArB detects that none of the parameters provided are valid.
+  * 1a1. ArB informs user that no valid parameters were provided.<br>
   Use case ends.
 
-**Use case: Use case - Link Project To Client**
+**Use case: Link Project To Client**
 
 **MSS**:
-1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords
-2. ArB lists all clients that match the provided client name keywords
-3. User selects the client they want to link the project to
-4. ArB links the project to the selected client<br>
+1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords.
+2. ArB lists all clients that match the provided client name keywords.
+3. User selects the client they want to link the project to.
+4. ArB links the project to the selected client.<br>
    Use case ends.
 
 **Extension**:
-* 3a. User chooses to cancel the linking<br>
+* 3a. User chooses to cancel the linking.<br>
   Use case ends.
+* 3b. User makes an invalid selection.
+  * 3b1. ArB shows an error message.<br>
+    Use case resumes at step 3.
 
 ### Non-Functional Requirements
 

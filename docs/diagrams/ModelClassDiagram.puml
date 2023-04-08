@@ -22,6 +22,9 @@ class UniqueTagMappingList
 class TagMapping
 }
 
+show attributes
+hide empty attributes
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
@@ -36,16 +39,32 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueClientList
 AddressBook *--> "1" UniqueProjectList
 AddressBook *--> "1" UniqueTagMappingList
-UniqueClientList --> "~* all" Client
-UniqueProjectList --> "*~* all" Project
-UniqueTagMappingList --> "~* all" TagMapping
+UniqueClientList --> "*" Client : all
+UniqueProjectList --> "*" Project : all
+UniqueTagMappingList --> "*" TagMapping : all
 
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 
-ModelManager -->"~* filtered" Client
-ModelManager -->"~* sorted" Client
-ModelManager -->"~* filtered" Project
-ModelManager -->"~* sorted" Project
-ModelManager -->"~* all" TagMapping
+ModelManager -->"*" Client : filtered
+ModelManager -->"*" Client : sorted
+ModelManager -->"*" Project : filtered
+ModelManager -->"*" Project : sorted
+ModelManager -->"*" TagMapping : all
+
+Client : Name name
+Client : Phone phone
+Client : Email email
+Client : UniqueProjectList projects
+Client : Set<Tag> tags
+
+TagMapping : Tag tag
+
+Project : Title title
+Project : Deadline deadline
+Project : Price price
+Project : Status status
+Project : Set<Tag> tags
+Project -->"0..1 linkedClient" Client
+
 @enduml
