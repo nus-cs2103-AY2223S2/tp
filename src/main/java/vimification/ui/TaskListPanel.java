@@ -40,6 +40,14 @@ public class TaskListPanel extends UiPart<VBox> {
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
+    public TaskListPanel(UiTaskList taskList, MainScreen mainScreen) {
+        super(FXML);
+        this.taskList = taskList;
+        this.mainScreen = mainScreen;
+        taskListView.setItems(taskList.getUiSource());
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
+    }
+
     public void setMainScreen(MainScreen parent) {
         this.mainScreen = parent;
     }
@@ -149,5 +157,10 @@ public class TaskListPanel extends UiPart<VBox> {
 
         TaskDetailPanel taskDetailPanel = new TaskDetailPanel(selectedTask);
         mainScreen.loadRightComponent(taskDetailPanel);
+    }
+
+
+    public UiTaskList getUiTaskList() {
+        return taskList;
     }
 }

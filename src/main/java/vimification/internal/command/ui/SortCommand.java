@@ -42,7 +42,7 @@ public class SortCommand extends UiCommand {
         default:
             throw new CommandException("Should not reach here!");
         }
-        mainScreen.getTaskTabPanel()
+        mainScreen.getTaskListPanel()
                 .getUiTaskList()
                 .setComparator(comparator);
         return new CommandResult(SUCCESS_MESSAGE);

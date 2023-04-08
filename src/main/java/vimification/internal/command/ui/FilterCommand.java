@@ -63,7 +63,7 @@ public class FilterCommand extends UiCommand {
         default:
             throw new CommandException("Should not reach here!");
         }
-        mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
+        mainScreen.getTaskListPanel().searchForTask(predicate);
         return new CommandResult(SUCCESS_MESSAGE);
     }
 
