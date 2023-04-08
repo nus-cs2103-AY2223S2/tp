@@ -6,9 +6,11 @@ title: User Guide
 <br>
 <img src="images/logo.png" width="200px"><br>
 
-Are you a university student struggling to manage your modules and your degree progression? Introducing to you, **MODTrek**, here to ease the process and your worries!<br><br>
-**MODTrek** is a desktop application for managing your modules and degree progression, optimised for use via a Command Line Interface (CLI). Equipped with an eye-catching Graphical User Interface (GUI), the app provides a convenient platform for you to easily access and update your modules within presses of a keyboard. Module and degree progression tracking have never been easier!<br><br>
-Disclaimer: This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. To other students, fret not! We plan to expand our application's scope in the coming years, so do keep a lookout!
+Are you a university student struggling to manage your modules or classes and track your degree progress? Introducing **MODTrek**, here to help you with that!
+
+**MODTrek** is a desktop application for managing your modules and degree progress, optimised for Command Line Interface (CLI) users who prefer typing over using their mouse. Equipped with an eye-catching Graphical User Interface (GUI), the app provides a convenient platform for you to access and update your modules within presses of a keyboard. Module and degree progress tracking have never been easier!
+
+Disclaimer: This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort. To other students, fret not! We plan to expand our application’s scope to more majors, cohorts and universities in the coming years, so keep a lookout!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,22 +41,22 @@ Disclaimer: This application is currently geared towards NUS Computer Science St
 
 ## 1. How to Use This Guide <a name="how-to"></a>
 
-Not sure how you may begin using **MODTrek**? This user guide will give you all the information you need so
-that you can utilise **MODTrek** to its full potential.
+Not sure how to begin using **MODTrek**? This user guide will give you all the information you need so
+that you can use **MODTrek** to its full potential.
 
-To get started, we have prepared a [Quick Start](#quick-start) section in this user guide to offer you a seamless set-up process.
+To get started, we have prepared a [Quick Start](#quick-start) section to help you set up the **MODTrek** with ease.
 
 You may also familiarize yourself with the GUI in our [GUI Overview](#gui-overview) section where you will get a 
 quick breakdown of our GUI.
 
-Confused about how to get rolling within **MODTrek**? We have composed a [Short Tutorial](#short-tutorial) to help you kick-start your module tracking endeavour.
+Confused about how to get rolling within **MODTrek**? We have composed a [Short Tutorial](#short-tutorial) to help you kick-start your module tracking.
 
 Not sure what features **MODTrek** has or how to use them? Our [Features](#features) section provides an in depth
 explanation of **MODTrek** can do and how you can use them effectively. Alternatively, you can go to our [Command Summary](#command-summary)
 section for a quick overview of all the commands.
 
 Commonly asked questions and answers can be found in our [FAQ](#faq) but if you are still unable to find what you are
-looking for, feel free to contact us at our [GitHub](https://github.com/AY2223S2-CS2103T-T13-1/tp).
+looking for, feel free to contact us via our [GitHub page](https://github.com/AY2223S2-CS2103T-T13-1/tp).
 
 Before going any further, here are some useful notations that you should know.
 
@@ -98,11 +100,11 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 3. Copy the file to the folder you want to use as the _home folder_ for **MODTrek**.
 4. Launch the app by double-clicking the file or by navigating to the folder containing the file using your command terminal, and
 running `java -jar modtrek.jar` in your terminal. 
-5. A GUI similar to the one below should appear in a few seconds. 
+5. An interface similar to the one below should appear in a few seconds. 
 ![Ui QuickStart](images/Ui-quickstart2.png)
 <p align="center"><em>GUI of MODTrek</em><br></p>
 
-6. Great! You are now within **MODTrek** and ready to track your modules. You may type commands within the CLI and press enter to execute them. For a list of executable commands, refer to the [Command Summary](#command-summary) section.
+6. Great! **MODTrek** is running and ready to track your modules. You may type commands into the text box on the bottom right and press enter to execute them. For a list of executable commands, refer to the [Command Summary](#command-summary) section.
 We recommend you to follow our [Short Tutorial](#short-tutorial) to start off.
 
 [Back to Table of Contents](#toc)
@@ -152,7 +154,7 @@ Excited to try **MODTrek** out? Here is a sequence of basic commands to help you
 5. `delete /m MA1521`: Deletes the module MA1521 from the list. The Module Card for MA1521 should no longer exist.
 6. `exit`: Exits **MODTrek**. Don't worry, your data is saved automatically for you, so the next time you start up **MODTrek**, your data should be successfully restored.
 
-Congratulations, the tutorial has come to an end! Do continue exploring the functions within **MODTrek**. For the complete list of commands, you may refer to the [Command Summary](#command-summary) section. For more details about each command, you may refer to the next section on [Features](#features).
+Congratulations, you have completed this tutorial! Do continue exploring the functions within **MODTrek**. For the complete list of commands, you can refer to the [Command Summary](#command-summary) section. For more details about each command, you can refer to the next section on [Features](#features).
 
 [Back to Table of Contents](#toc)
 
@@ -166,7 +168,7 @@ Congratulations, the tutorial has come to an end! Do continue exploring the func
 
 :information_source: **Notes about command format:**<br>
 
-* Words enclosed by `<>` are the parameters to be supplied by the user.<br>
+* Words enclosed by `<>` are the parameters you, as the user, should provide.<br>
 E.g. In `add /m <code>`, `<code>` is a parameter which can be replaced by `CS2030S` to give the command `add /m CS2030S`.
   
 * Parameters encapsulated in between round brackets are optional.<br>
@@ -175,7 +177,7 @@ E.g. In `delete /m <code1> (/m <code2>...)`, one or more modules can be deleted.
 * Parameters with `...` after them can be used 1 or more times.<br>
 E.g. In `(/t <tag>...)`, one or more tags can be provided. It can be used as `/t ULR`, `/t ULR /t CSF`.
 
-* Extraneous parameters for single-word commands that do not take in parameters (such as `exit`, `help`) will be ignored.
+* Extra parameters for single-word commands that do not take in parameters (such as `exit`, `help`) will be ignored.
 E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 </div>
 
@@ -183,14 +185,14 @@ E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 
 #### 5.1 Add a module : `add` <a name="add-module"></a>
 
-Adds a module to the module list in **MODTrek**. This will kickstart your **MODTrek** journey.
-For instance, you may choose to add completed or planned modules.
+Like all students, you would have taken or are currently taking some classes (hopefully) that you would like to add to your tracker. To add a module to the module list in **MODTrek**. This will kickstart your **MODTrek** journey.
+
 
 **Syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
 Additional details:
 * `<code>` refers to the module code. Format of module code should be <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
-* `<credits>` refers to the module's modular credits
+* `<credits>` refers to the module's credits (usually this in an integer from 1 to 12). We only support positive integers.
 * `<year-semester>` refers to the year and semester the module is taken. We only support years from 0 to 5 and semesters s1, s2, st1 and st2.
 * `<grade>` refers to the grade obtained for the module. Ranges from A+ to U, excluding the W, CS, CU grade.
 * `<tag>` refers to the requirement that the module fulfils. This includes:
@@ -199,7 +201,7 @@ Additional details:
    * `CSBD` Computer Science Breadth & Depth
    * `UE` Unrestricted Electives
    * `ITP` IT Professionalism
-   * `MS` Math & Science
+   * `MS` Mathematics & Sciences
 
 <div markdown="span" class="alert alert-primary">
 
@@ -208,7 +210,7 @@ Additional details:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** To add a planned module, simply omit the grade. Then it won't be counted to your degree progression!
+:bulb: **Tip:** To add a planned module, simply omit the grade. Then it won't be counted to your degree progression! You can always add the grade later with the `edit` command so don't worry.
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -225,8 +227,8 @@ If there are reasons you need to add a module with the same module code (e.g. re
 
 #### 5.2 Delete module(s) : `delete` <a name="delete-module"></a>
 
-Deletes the specified module(s) from the module list. You may also choose to delete all the modules from the module list.
-For instance, you may want to delete a planned module which you have decided not to take.
+As students, it is ok to make mistakes, even when tracking your modules! You can delete specific module(s) from the module list. You may also choose to delete all the modules from the module list.
+For example, you may want to delete a planned module which you have decided not to take.
 
 **Syntax:**
 * _To delete specific modules:_ `delete /m <code1> (/m <code2>...)`
@@ -234,7 +236,7 @@ For instance, you may want to delete a planned module which you have decided not
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You may use the same instance of the delete command to delete more than 1 module at a time but at least
+:bulb: **Tip:** You may use a single delete command to delete more than 1 module at a time but at least
 1 module to be deleted must be specified.
 </div>
 
@@ -247,8 +249,7 @@ For instance, you may want to delete a planned module which you have decided not
 
 #### 5.3 Edit a module : `edit` <a name="edit-module"></a>
 
-Edits an existing module in the module list. You may use this command to rectify any mistakes or add in any details you have omitted.
-For instance, you may want to add in the grade for a module you have just completed.
+Perhaps you want to key in your recent grades into your module tracker right when you get them? You may use this command to rectify any mistakes or add in any details you have omitted. This command edits details of a module you have previously added.
 
 **Syntax:** `edit <existing code> <toEdit>...`
 
@@ -261,7 +262,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:** Past data will be overridden and not be saved
+:exclamation: **Caution:** Previous module information will be overwritten and not be saved!
 </div>
 
 **Example:**
@@ -272,8 +273,10 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 #### 5.4 Tag a module : `tag` <a name="tag-module"></a>
 
-Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module may or may not fulfil.
-For instance, after completing a planned module, you may want to include a tag for the module. <br>
+How does **MODTrek** track which requirements I have fulfilled? Here at **MODTrek**, we know that requirements that modules fall under can change from time to time so we give you a flexible way to track this with tags! 
+
+Tag a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module may or may not fulfil.
+For example, after completing a planned module, you may want to include a tag for the module with up-to-date tags of degree requirements it fulfills. <br>
 Refer to [Add a module](#add-module) for the tags that you can use.
 
 **Syntax:**
@@ -288,9 +291,11 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 #### 5.5 Find module(s) by keyword(s) : `find` <a name="find-module"></a>
 
-Displays specific module(s) and their details previously logged by the user satisfying the keyword(s) queried.
+Life as a student can be pretty hectic and sometimes you just need information on specific modules quickly! Well, **MODTrek** can do exactly that. 
+
+Display specific module(s) and their details previously logged by the user satisfying the keyword(s) you include with this command.
 You may use this command to find modules that match the keywords you are interested in without needing to manually scroll through the list of modules.
-For instance, you may want to find out the core modules which you obtained a good grade (A+, A, A-) for, so that you can choose your strongest area to potentially specialise in.
+For example, you may want to find out the core modules which you obtained a good grade (A+, A, A-) for, so that you can choose your strongest area to potentially specialise in.
 
 **Syntax:** `find <keyword>...` or `find <module-code>`
 
@@ -301,7 +306,7 @@ Specify one or more parameters in `<keyword>...` that you want to find your modu
 * `/g <grade>`
 * `/t <tag>`
 
-Alternatively, you may find a specific module by its module code.
+Alternatively, you may find a specific module by its module code. You might need this when you just to need to make sure you keyed in some information right in one of those late night study sessions when you half asleep zzz.
 
 <div markdown="span" class="alert alert-info">
 
@@ -326,9 +331,9 @@ Using more keywords from the same category will return you all the modules that 
 
 #### 5.6 Sort all modules : `sort` <a name="sort-module"></a>
 
-Sorts the modules according to the category indicated by the user. You may use this command if you want to view the modules
+Sometimes, you want your module list to look a certain way. Sort the modules according to the category indicated by the user. You may use this command if you want to view the modules
 for each level of the category that you are interested in.
-For instance, you may want to sort the modules by grade to have a clearer view of all the modules in terms of how well you fared for each.
+For example, you may want to sort your modules by tag to see which degree requirements you need to take classes for next semester!
 
 **Syntax:** `sort <category>`
 
@@ -353,7 +358,7 @@ category to sort by when **MODTrek** is in the module list screen.
 
 #### 5.7 Toggle screens : `view` <a name="change-view"></a>
 
-Toggles between the display of degree progress or module list. You may either view your degree progression or list of modules recorded.
+Changing between interfaces is simple in **MODTrek**! Toggle between the display of degree progress or module list with this command. You may either view your degree progression or list of modules recorded.
 
 **Syntax:**
 * _To view degree progress:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
@@ -397,7 +402,7 @@ Specify exactly one parameter in `<command>`. This can be from one of the comman
 
 #### 5.9 Exit MODTrek : `exit` <a name="exit-app"></a>
 
-Exits the program. Alternatively, you may exit the program by clicking the top-right X button to close the window.
+Once your done keying in your modules and their details, you can use this command to exit **MODTrek**. Alternatively, you may exit by clicking the top-right X button to close the window.
 
 **Syntax:** `exit`
 
@@ -405,7 +410,7 @@ Exits the program. Alternatively, you may exit the program by clicking the top-r
 
 #### 5.10 Save MODTrek data <a name="save-data"></a>
 
-Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
+As a student, we often have limited time. We cannot be re-entering information again and again! The modified data regarding the modules is saved into the hard disk automatically after any command that changes the data is executed. There is no need to save it manually through any other method.
 
 [Back to Table of Contents](#toc)
 
