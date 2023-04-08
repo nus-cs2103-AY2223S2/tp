@@ -253,7 +253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
-<details markdown="span">
+<details open markdown="block">
 <summary>
 <strong>Use case: Add an event</strong>
 </summary>
