@@ -193,28 +193,25 @@ see all the text.
 
 Examples:
 
-- Suppose you want to copy the second person, `Bernice Yu`, entering the command `copy 2` will copy all information into
-  your clipboard.
+- `copy 2` will show this when your clipboard is accessible
+    ![result for 'copy 2'](images/copy2Result.png)
 
-![result for 'copy 2'](images/copy2Result.png)
+    The following text will be copied into your clipboard.
 
-After running the command, the following text is copied into your clipboard.
+    ```text
+    Rank: CPL
+    Name: Bernice Yu
+    Unit: 1 GDS
+    Company: Charlie
+    Platoon: 2
+    Phone: 99272758
+    Email: berniceyu@example.com
+    Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+    Tags: [colleagues][friends]
+     ```
 
-```text
-Rank: CPL
-Name: Bernice Yu
-Unit: 1 GDS
-Company: Charlie
-Platoon: 2
-Phone: 99272758
-Email: berniceyu@example.com
-Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
-Tags: [colleagues][friends]
- ```
-
-- In the scenario where your clipboard is not accessible by AIMS, the information will be displayed so that you can
-  manually select and copy it instead.
-  ![no clipboard for `copy 2` width=800](images/copy2_noclipboard.png)
+- `copy 2` will show this when your clipboard is not accessible.
+  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
 <div markdown="span" class="alert alert-primary">
 
