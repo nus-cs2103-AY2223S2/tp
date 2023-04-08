@@ -9,8 +9,8 @@ PetPal is a desktop pet management application used for teaching Software Engine
 The user interacts with it using a CLI, and information is displayed on a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.
 
-The main target users for PetPal are pet daycare owners who have a large pet clientele to manage and provides a
-open-source, free-to-use application for them to do so.
+The main target users for PetPal are pet daycare owners who have a large pet clientele to manage and provides
+an open-source, free-to-use application for them to do so.
 
 PetPal can also be scaled to target users such as pet shelters, pet shops, pet walkers and more
 
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     * Contributed test codes for Archive Command and other java classes
 
 * **Project management**:
-    * Managed releases `v1.3` on GitHub
+    * Managed release `v1.3` on GitHub
 
 
 * **Enhancements to existing features**:
