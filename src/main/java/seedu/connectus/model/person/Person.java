@@ -131,7 +131,12 @@ public class Person {
 
     public String getAllFieldsAsString() {
         return String.format("%s %s %s %s %s %s %s %s %s %s",
-                name, phone, email, address, birthday, socialMedia, remarks, modules, ccas, majors);
+                name, phone.map(Phone::toString).orElse(""),
+                email.map(Email::toString).orElse(""),
+                address.map(Address::toString).orElse(""),
+                birthday.map(Birthday::toString).orElse(""),
+                socialMedia.map(SocialMedia::getHandles).orElse(""),
+                remarks, modules, ccas, majors);
     }
 
     /**
