@@ -1066,6 +1066,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. OfficeConnect shows an error message.
 
     Use case ends.
+
+
 ---
 ### 6.4 Non-Functional Requirements
 
@@ -1079,9 +1081,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-  - ##### All: 
+  - ##### All
     - All task and person.
-  - ##### Assign: 
+  - ##### Assign
     - Assign a task to a person.
 
 #### *M*
@@ -1089,9 +1091,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - ##### Mainstream OS: Windows, Linux, Unix, OS-X
 
 #### *P*
-  - ##### P: 
+  - ##### P
     - A person.
-  - ##### PI: 
+  - ##### PI
     - View a person's details.
   - ##### Private contact detail: 
     - A contact detail that is not meant to be shared with others
@@ -1101,19 +1103,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Launch the application with sample data.
 
 #### *T*
-  - ##### T: 
+  - ##### T
     - A Task.
-  - ##### TI: 
+  - ##### TI
     - View a task's details.
 
 #### *U*
-  - ##### Unassign: 
+  - ##### Unassign
     - Unassign a task from a person.
-  - ##### Unmark: 
+  - ##### Unmark
     - Unmark a completed task.
 
 #### *V*
-  - ##### View : 
+  - ##### View
     - A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
 
 
