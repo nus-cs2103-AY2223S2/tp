@@ -15,7 +15,6 @@ import seedu.address.ui.UiPart;
  */
 public class ParentListPanel extends UiPart<Region> {
     private static final String FXML = "ParentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ParentListPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Parent> parentListView;

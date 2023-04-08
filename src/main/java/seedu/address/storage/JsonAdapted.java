@@ -12,5 +12,5 @@ public interface JsonAdapted<T> {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public T toModelType() throws IllegalValueException;
+    T toModelType() throws IllegalValueException;
 }

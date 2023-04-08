@@ -15,7 +15,6 @@ import seedu.address.ui.UiPart;
  */
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Student> studentListView;

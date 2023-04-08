@@ -120,46 +120,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the user prefs' parent file path.
-     */
-    @Override
-    public Path getParentFilePath() {
-        return userPrefs.getParentsFilePath();
-    }
-
-    /**
-     * Sets the user prefs' address book file path.
-     *
-     * @param pcClassFilePath
-     */
-    @Override
-    public void setPcClassFilePath(Path pcClassFilePath) {
-        requireNonNull(pcClassFilePath);
-        userPrefs.setPcClassFilePath(pcClassFilePath);
-    }
-
-    /**
-     * Sets the user prefs' parent file path.
-     *
-     * @param parentFilePath
-     */
-    @Override
-    public void setParentFilePath(Path parentFilePath) {
-        requireNonNull(parentFilePath);
-        userPrefs.setParentsFilePath(parentFilePath);
-    }
-
-    /**
-     * Replaces pcclass data with the data in {@code pcclass}.
-     *
-     * @param readOnlyPcClass
-     */
-    @Override
-    public void setPcClass(ReadOnlyPcClass readOnlyPcClass) {
-        this.pcClass.resetData(readOnlyPcClass);
-    }
-
-    /**
      * Replaces parent data with the data in {@code parent}.
      *
      * @param readOnlyParents

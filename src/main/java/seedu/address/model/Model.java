@@ -19,8 +19,6 @@ import seedu.address.model.person.student.Student;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Parent> PREDICATE_SHOW_ALL_PARENTS = unused -> true;
 
@@ -48,26 +46,6 @@ public interface Model {
      * Returns the user prefs' pcclass file path.
      */
     Path getPcClassFilePath();
-
-    /**
-     * Returns the user prefs' parent file path.
-     */
-    Path getParentFilePath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setPcClassFilePath(Path pcClassFilePath);
-
-    /**
-     * Sets the user prefs' parent file path.
-     */
-    void setParentFilePath(Path parentFilePath);
-
-    /**
-     * Replaces pcclass data with the data in {@code pcclass}.
-     */
-    void setPcClass(ReadOnlyPcClass readOnlyPcClass);
 
     /**
      * Replaces parent data with the data in {@code parent}.

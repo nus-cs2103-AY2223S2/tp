@@ -84,14 +84,6 @@ public class LogicManager implements Logic {
         return model.getPcClassFilePath();
     }
 
-    /**
-     * Returns the user prefs' parents file path.
-     */
-    @Override
-    public Path getParentsFilePath() {
-        return model.getParentFilePath();
-    }
-
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
