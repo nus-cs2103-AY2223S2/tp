@@ -30,10 +30,11 @@ import seedu.sprint.logic.commands.FindCommand;
 import seedu.sprint.logic.commands.HelpCommand;
 import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.RedoCommand;
+import seedu.sprint.logic.commands.SortCommand;
 import seedu.sprint.logic.commands.UndoCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.application.Application;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.ApplicationBuilder;
 import seedu.sprint.testutil.ApplicationUtil;
 import seedu.sprint.testutil.EditApplicationDescriptorBuilder;
@@ -122,7 +123,7 @@ public class InternshipBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ApplicationContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -141,6 +142,12 @@ public class InternshipBookParserTest {
     public void parseCommand_redo() throws Exception {
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " a alphabetical") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " d deadline") instanceof SortCommand);
     }
 
     @Test

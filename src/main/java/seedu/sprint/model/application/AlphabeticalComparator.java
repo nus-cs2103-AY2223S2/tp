@@ -44,4 +44,11 @@ public class AlphabeticalComparator implements Comparator<Application> {
             return -compareAscending(appOne, appTwo);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AlphabeticalComparator // instanceof handles nulls
+                && sortingSequence.equals(((AlphabeticalComparator) other).sortingSequence)); // sequence check
+    }
 }

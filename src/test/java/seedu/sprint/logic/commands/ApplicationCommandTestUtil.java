@@ -21,7 +21,7 @@ import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.application.Application;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.EditApplicationDescriptorBuilder;
 
 /**
@@ -154,6 +154,7 @@ public class ApplicationCommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredApplicationList());
         assertEquals(expectedCommandHistory, actualCommandHistory);
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s internship book.
@@ -163,7 +164,7 @@ public class ApplicationCommandTestUtil {
 
         Application application = model.getFilteredApplicationList().get(targetIndex.getZeroBased());
         String companyName = application.getCompanyName().name;
-        model.updateFilteredApplicationList(new NameContainsKeywordsPredicate(Arrays.asList(companyName)));
+        model.updateFilteredApplicationList(new ApplicationContainsKeywordsPredicate(Arrays.asList(companyName)));
 
         assertEquals(1, model.getFilteredApplicationList().size());
     }

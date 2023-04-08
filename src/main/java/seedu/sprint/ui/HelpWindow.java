@@ -18,19 +18,19 @@ import seedu.sprint.commons.core.LogsCenter;
  * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
-    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
+    public static final String USER_GUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
     private static final ObservableList<HelpCommand> helpCommands =
             FXCollections.observableArrayList(
                     new HelpCommand("Add app",
-                            "add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]\n"),
+                            "add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]\u200B\n"),
                     new HelpCommand("Edit app",
-                            "edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]\n"),
+                            "edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]\n"),
                     new HelpCommand("Delete app",
                             "delete-app INDEX \n"),
                     new HelpCommand("Add app task",
-                            "add-task d/DESCRIPTION by/DEADLINE\n"),
+                            "add-task INDEX d/DESCRIPTION by/DEADLINE\n"),
                     new HelpCommand("Edit app task",
                             "edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]\n"),
                     new HelpCommand("Delete app task",
@@ -60,14 +60,14 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private TableView<HelpCommand> helpTable;
 
-
     /**
      * Creates a new HelpWindow.
-     *
      * @param root Stage to use as the root of the HelpWindow.
      */
+    @SuppressWarnings("unchecked")
     public HelpWindow(Stage root) {
         super(FXML, root);
+        helpTable = new TableView<>();
         helpTable.setEditable(true);
         commandColumn.setCellValueFactory(
                 new PropertyValueFactory<>("command"));
@@ -136,7 +136,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(USER_GUIDE_URL);
         clipboard.setContent(url);
     }
 }

@@ -12,12 +12,14 @@ import seedu.sprint.commons.exceptions.IllegalValueException;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.application.Application;
+import seedu.sprint.model.application.exceptions.DuplicateApplicationException;
 
 /**
  * An Immutable InternshipBook that is serializable to JSON format.
  */
 @JsonRootName(value = "internshipbook")
 class JsonSerializableInternshipBook {
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "Operation would result in duplicate entries.";
 
     private final List<JsonAdaptedApplication> jsonAdaptedApplications = new ArrayList<>();
 
@@ -52,7 +54,11 @@ class JsonSerializableInternshipBook {
             Application application = jsonAdaptedApplication.toModelType();
             applications.add(application);
         }
-        internshipBook.setApplications(applications);
+        try {
+            internshipBook.setApplications(applications);
+        } catch (DuplicateApplicationException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
         return internshipBook;
     }
 
