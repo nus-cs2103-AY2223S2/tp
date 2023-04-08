@@ -3,15 +3,15 @@ package seedu.techtrack.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.techtrack.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.techtrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.techtrack.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.techtrack.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.EXPERIENCE_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.techtrack.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
-import static seedu.techtrack.logic.commands.CommandTestUtil.WEBSITE;
+import static seedu.techtrack.logic.commands.CommandTestUtil.WEBSITE_DESC_AMY;
 import static seedu.techtrack.testutil.Assert.assertThrows;
 import static seedu.techtrack.testutil.TypicalRoles.AMY;
 
@@ -84,8 +84,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + JOBDESCRIPTION_DESC_AMY + WEBSITE
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + CONTACT_DESC_AMY + EMAIL_DESC_AMY
+                + COMPANY_DESC_AMY + JOBDESCRIPTION_DESC_AMY + WEBSITE_DESC_AMY
                 + SALARY_DESC_AMY + DEADLINE_DESC_AMY + EXPERIENCE_DESC_AMY;
         Role expectedRole = new RoleBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

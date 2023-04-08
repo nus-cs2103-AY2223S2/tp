@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.techtrack.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
@@ -31,6 +33,6 @@ public class DeadlineTest {
 
         // valid deadline
         assertTrue(Deadline.isValidDeadline("2023-10-20"));
-        assertTrue(Deadline.isValidDeadline("2019-10-20")); // past the current date of today
+        assertTrue(Deadline.isValidDeadline(LocalDate.now().toString())); // past the current date of today
     }
 }
