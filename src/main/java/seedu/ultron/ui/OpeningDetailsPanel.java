@@ -41,7 +41,7 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         company.setText("Company: " + opening.getCompany().fullCompany);
         status.setText("Status: " + opening.getStatus().fullStatus);
         email.setText("Email: " + opening.getEmail().value);
-        if (opening.getRemark().value != "") {
+        if (!opening.getRemark().value.equals("")) {
             remark.setText(String.format("Remark: %s", opening.getRemark().value));
         } else {
             remark.setText("");
