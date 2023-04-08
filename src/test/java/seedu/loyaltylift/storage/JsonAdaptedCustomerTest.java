@@ -5,10 +5,6 @@ import static seedu.loyaltylift.storage.JsonAdaptedCustomer.MISSING_FIELD_MESSAG
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalCustomers.BENSON;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;

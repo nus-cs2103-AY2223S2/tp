@@ -1,7 +1,6 @@
 package seedu.loyaltylift.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;

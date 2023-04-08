@@ -8,7 +8,6 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalCustomers.BOB;
 

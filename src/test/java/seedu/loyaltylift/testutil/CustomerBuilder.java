@@ -1,7 +1,5 @@
 package seedu.loyaltylift.testutil;
 
-import java.util.HashSet;
-
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
