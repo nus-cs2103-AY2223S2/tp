@@ -2,16 +2,30 @@
 layout: page
 title: User Guide
 ---
+## About coNtactUS
 
-Contact nUS is a **desktop app that NUS computing students can use to track their modules and schedules.**
-It is optimized for use via typing with a Command Line Interface (CLI) rather than clicking which is
-usually associated with a Graphical User Interface (GUI). However, it provides benefits of both interfaces.
-NUS computing students can be considered tech-savvy individuals who are also generally fast typists. As such,
-they stand to gain from the productivity boost that Contact nUS has to offer.
+Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of your problems. 
 
-This guide serves to help NUS computing students familiarise themselves with the use of Contact nUS.
+coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like you. It is a module tracker that lets you store information related to your modules like: 
+
+1) Lecture and tutorial timeslots
+2) Lecture and tutorial venues
+3) Deadlines
+4) Module official resources 
+5) Module notes
+6) Contact details of Professors and Teaching assistants
+
+and more.... 
+
+in a centralised location that is easily accessible by you, so you will not forget them ever again. 
+
+What is even better is that coNtactUS is optimised for use via typing instead of clicking, which allows you to store and retrieve information faster than ever before. Now, you can become the most productive version of yourself, bringing you one step closer to achieving your goals. 
+
+So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
+
+
 
 ## Table of Contents
 
