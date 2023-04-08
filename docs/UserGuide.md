@@ -557,18 +557,19 @@ When in a module or lecture context, the navigation system will automatically in
 
 Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-- <span style="color:#e46c0a">`lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...</span>: The Names of Lectures to be deleted
-  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Must exist in Module of `module_code`
+- <span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>: The names of lectures
+  - Must belong to an existing lecture in the module specified in `module_code`
   - Must not contain duplicates
-- <span style="color:#e46c0a">`module_code`</span>: The Code of Module to delete Lectures from
-  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
+- <span style="color:#e46c0a">`module_code`</span>: The code of module that contains the lectures specified by the names of lectures
+  - Must belong to an existing module in Le Tracker
 
-Examples:
-
-- `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
-- `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
+<details>
+<summary>Examples:</summary>
+- <code>delete lecture 1 /mod CS2040</code>
+  - deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
+- <code>delete lecture 1, lecture 2 /mod ST2334</code>
+  - deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+</details>
 
 #### Delete Video
 
