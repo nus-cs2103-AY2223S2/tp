@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_ORDERS_ONLY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
@@ -67,7 +68,7 @@ public class ListOrderCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         CommandResult expectedCommandResult = new CommandResult(
-                ListOrderCommand.MESSAGE_SUCCESS, false, false, false, true);
+                ListOrderCommand.MESSAGE_SUCCESS, LIST_ORDERS_ONLY);
         assertCommandSuccess(new ListOrderCommand(), model, expectedCommandResult, expectedModel);
     }
 
@@ -75,7 +76,7 @@ public class ListOrderCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showOrderAtIndex(model, INDEX_FIRST);
         CommandResult expectedCommandResult = new CommandResult(
-                ListOrderCommand.MESSAGE_SUCCESS, false, false, false, true);
+                ListOrderCommand.MESSAGE_SUCCESS, LIST_ORDERS_ONLY);
         assertCommandSuccess(new ListOrderCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showOrderAtIndex;
@@ -33,7 +34,7 @@ public class ViewOrderCommandTest {
         ViewOrderCommand viewOrderCommand = new ViewOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(viewOrderCommand.MESSAGE_VIEW_ORDER_SUCCESS, orderToView);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, null, 0);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
 
         assertCommandSuccess(viewOrderCommand, model, expectedCommandResult, model);
     }

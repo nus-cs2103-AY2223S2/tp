@@ -45,6 +45,8 @@ public class MainWindow extends UiPart<Stage> {
     private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CustomerInfo customerInfo;
+    private OrderInfo orderInfo;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -238,24 +240,36 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowCustomerSelection() && commandResult.isShowOrderSelection()) {
-                throw new CommandException("Cannot display both customer and order at once!");
+            if (commandResult.isShowCustomerInfo() && commandResult.isShowOrderInfo()) {
+                throw new CommandException("Cannot display both customer and order information at once!");
             }
 
-            if (commandResult.isShowCustomerSelection()) {
+            if (commandResult.isShowCustomerList() && commandResult.isShowOrderList()) {
+                throw new CommandException("Cannot display both customer and order list  at once!");
+            }
+
+            if (commandResult.isClearInfoView()) {
+                clearInformationPanel();
+            }
+
+            if (commandResult.isShowCustomerList()) {
                 tableTabPane.getSelectionModel().select(customerTab);
             }
 
-            if (commandResult.isShowOrderSelection()) {
+            if (commandResult.isShowOrderList()) {
                 tableTabPane.getSelectionModel().select(orderTab);
             }
 
-            if (commandResult.hasCustomerIndex()) {
-                customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
+            if (commandResult.isShowCustomerInfo()) {
+                Customer customerToDisplay = logic.getCustomerToDisplay();
+                showCustomerInfo(customerToDisplay);
+                customerListPanel.getSelectionModel().select(customerToDisplay);
             }
 
-            if (commandResult.hasOrderIndex()) {
-                orderListPanel.getSelectionModel().select(commandResult.getOrderIndex());
+            if (commandResult.isShowOrderInfo()) {
+                Order orderToDisplay = logic.getOrderToDisplay();
+                showOrderInfo(orderToDisplay);
+                orderListPanel.getSelectionModel().select(orderToDisplay);
             }
 
             return commandResult;
@@ -273,10 +287,10 @@ public class MainWindow extends UiPart<Stage> {
     private void showCustomerInfo(Customer customer) {
         // ensure order table cell is selectable again
         orderListPanel.getSelectionModel().clearSelection();
-        infoPane.getChildren().clear();
+        clearInformationPanel();
 
         logic.updateFilteredCustomerOrderList(customer);
-        CustomerInfo customerInfo = new CustomerInfo(customer, logic.getFilteredCustomerOrderList());
+        customerInfo = new CustomerInfo(customer, logic.getFilteredCustomerOrderList());
         infoPane.getChildren().add(customerInfo.getRoot());
     }
 
@@ -287,9 +301,13 @@ public class MainWindow extends UiPart<Stage> {
     private void showOrderInfo(Order order) {
         // ensure customer table cell is selectable again
         customerListPanel.getSelectionModel().clearSelection();
-        infoPane.getChildren().clear();
+        clearInformationPanel();
 
-        OrderInfo orderInfo = new OrderInfo(order);
+        orderInfo = new OrderInfo(order);
         infoPane.getChildren().add(orderInfo.getRoot());
+    }
+
+    private void clearInformationPanel() {
+        infoPane.getChildren().clear();
     }
 }

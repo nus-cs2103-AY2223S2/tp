@@ -9,6 +9,15 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    /** Represents the actions the UI should do with respect to the ListView UI components**/
+    public enum ListViewGuiAction {
+        LIST_CUSTOMERS_ONLY,
+        LIST_ORDERS_ONLY,
+        LIST_AND_SHOW_CUSTOMER,
+        LIST_AND_SHOW_ORDER,
+        REMOVE_INFO_FROM_VIEW,
+    };
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -17,24 +26,15 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should select & view a specific customer */
-    private final Integer customerIndex;
-
-    /** The application should select & view a specific order */
-    private final Integer orderIndex;
-
-    /** The application should show the customer list */
-    private final boolean showCustomerSelection;
-
-    /** The application should show the order list */
-    private final boolean showOrderSelection;
+    /** The application should display customers / orders **/
+    private final ListViewGuiAction listViewGuiAction;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, null, null);
+        this(feedbackToUser, false, false, null);
     }
 
     /**
@@ -42,79 +42,32 @@ public class CommandResult {
      * {@code showHelp}, and {@code exit}, and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false, null, null);
+        this(feedbackToUser, showHelp, exit, null);
     }
 
     /**
-     * Constructs a {@code CommandResult} to show the customer/order list.
+     * Constructs a {@code CommandResult} list customer / orders and/or display
+     * customer or order in the information panel.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showCustomerSelection, boolean showOrderSelection) {
-        this(requireNonNull(feedbackToUser), showHelp, exit,
-                showCustomerSelection, showOrderSelection,
-                null, null);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} show a specific customer/order index.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         Integer customerIndex, Integer orderIndex) {
-        this(requireNonNull(feedbackToUser), showHelp, exit,
-                false, false,
-                customerIndex, orderIndex);
+    public CommandResult(String feedbackToUser, ListViewGuiAction listViewGuiAction) {
+        this(requireNonNull(feedbackToUser), false, false, listViewGuiAction);
     }
 
     /**
      * Private constructor for a {@code CommandResult} with all fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showCustomerSelection, boolean showOrderSelection,
-                         Integer customerIndex, Integer orderIndex) {
+                         ListViewGuiAction listViewGuiAction) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.customerIndex = customerIndex;
-        this.orderIndex = orderIndex;
-        this.showCustomerSelection = showCustomerSelection;
-        this.showOrderSelection = showOrderSelection;
+        this.listViewGuiAction = listViewGuiAction;
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    /**
-     * The index of the customer in the current displayed listview to display.
-     * @return The index of the customer in the current listview, 0-indexed.
-     */
-    public Integer getCustomerIndex() {
-        return customerIndex;
-    }
-
-    /**
-     * The index of the order in the current displayed listview to display.
-     * @return The index of the order in the current listview, 0-indexed.
-     */
-    public Integer getOrderIndex() {
-        return orderIndex;
-    }
-
-    /**
-     * Returns {@code true} if the customer index is set.
-     * @return {@code true} if the customer index is set.
-     */
-    public boolean hasCustomerIndex() {
-        return customerIndex != null;
-    }
-
-    /**
-     * Returns {@code false} if the order index is set.
-     * @return {@code false} if the order index is set.
-     */
-    public boolean hasOrderIndex() {
-        return orderIndex != null;
-    }
 
     public boolean isShowHelp() {
         return showHelp;
@@ -124,12 +77,41 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isShowCustomerSelection() {
-        return showCustomerSelection || hasCustomerIndex();
+    /**
+     * Returns true if UI should put the customer listview in focus
+     */
+    public boolean isShowCustomerList() {
+        return listViewGuiAction == ListViewGuiAction.LIST_CUSTOMERS_ONLY
+                || listViewGuiAction == ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
     }
 
-    public boolean isShowOrderSelection() {
-        return showOrderSelection || hasOrderIndex();
+    /**
+     * Returns true if UI should put the order listview in focus
+     */
+    public boolean isShowOrderList() {
+        return listViewGuiAction == ListViewGuiAction.LIST_ORDERS_ONLY
+                || listViewGuiAction == ListViewGuiAction.LIST_AND_SHOW_ORDER;
+    }
+
+    /**
+     * Returns true if UI should display a customer in the information panel
+     */
+    public boolean isShowCustomerInfo() {
+        return listViewGuiAction == ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
+    }
+
+    /**
+     * Returns true if UI should display an order in the information panel
+     */
+    public boolean isShowOrderInfo() {
+        return listViewGuiAction == ListViewGuiAction.LIST_AND_SHOW_ORDER;
+    }
+
+    /**
+     * Returns true if UI should clear the information panel
+     */
+    public boolean isClearInfoView() {
+        return listViewGuiAction == ListViewGuiAction.REMOVE_INFO_FROM_VIEW;
     }
 
     @Override
@@ -147,15 +129,12 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && Objects.equals(customerIndex, otherCommandResult.customerIndex)
-                && Objects.equals(orderIndex, otherCommandResult.orderIndex)
-                && Objects.equals(showCustomerSelection, otherCommandResult.showCustomerSelection)
-                && Objects.equals(showOrderSelection, otherCommandResult.showOrderSelection);
+                && Objects.equals(listViewGuiAction, otherCommandResult.listViewGuiAction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, customerIndex, orderIndex);
+        return Objects.hash(feedbackToUser, showHelp, exit, listViewGuiAction);
     }
 
 }
