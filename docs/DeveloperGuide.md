@@ -1083,53 +1083,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-  - ##### **addt**: Add a new task to the list.
-  - ##### **assign**: Assign a task to a person.
-
-#### *D*
-  - ##### **deletep**: Delete a person from the list.
-  - ##### **deletet**: Delete a task from the list.
-
-#### *E*
-  - ##### **editp**: Edit the details of a person.
-  - ##### **editt**: Edit the details of a task.
-
-#### *F*
-  - ##### **filterp**: Filter persons by a specific tag.
-  - ##### **findp**: Search for a person by their name.
-  - ##### **findt**: Search for a task by its title.
-
-#### *H*
-  - ##### **help**: Display help information.
-
-#### *L*
-  - ##### **listall**: List all persons and tasks.
-  - ##### **listp**: List all persons.
-  - ##### **listt**: List all tasks.
+  - ##### All: All task and person.
+  - ##### Assign: Assign a task to a person.
 
 #### *M*
-  - ##### **mark**: Mark a task as completed.
-  - ##### **Mainstream OS**: Windows, Linux, Unix, OS-X
+  - ##### Mark: Mark a task as completed.
+  - ##### Mainstream OS: Windows, Linux, Unix, OS-X
 
 #### *P*
-  - ##### **pi**: View a person's details.
-  - ##### **Private contact detail**: A contact detail that is not meant to be shared with others
-  - ##### **quickstart**: Launch the application with sample data.
+  - ##### P: A person.
+  - ##### PI: View a person's details.
+  - ##### Private contact detail: A contact detail that is not meant to be shared with others
+
+#### *P*
+  - ##### Quickstart: Launch the application with sample data.
 
 #### *T*
-  - ##### **ti**: View a task's details.
+  - ##### T: A Task.
+  - ##### TI: View a task's details.
 
 #### *U*
-  - ##### **unassign**: Unassign a task from a person.
-  - ##### **unmark**: Unmark a completed task.
+  - ##### Unassign: Unassign a task from a person.
+  - ##### Unmark: Unmark a completed task.
 
 #### *V*
-  - ##### **viewassignedall**: View all assigned persons and tasks.
-  - ##### **viewassignedp**: View assigned persons.
-  - ##### **viewassignedt**: View assigned tasks.
-  - ##### **viewunassignedall**: View all unassigned persons and tasks.
-  - ##### **viewunassignedp**: View unassigned persons.
-  - ##### **viewunassignedt**: View unassigned tasks.
+  - ##### View : A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
 
 
 --------------------------------------------------------------------------------------------------------------------
