@@ -1,24 +1,38 @@
 package seedu.internship.logic.parser;
 
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.internship.logic.commands.CommandTestUtil.POSITION_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_FUN;
+import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_IMPORTANT;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_STATUS_ML1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_STATUS_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
-import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.EditCommand;
+
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
-import seedu.internship.testutil.EditInternshipDescriptorBuilder;
 import seedu.internship.testutil.FilterInternshipDescriptorBuilder;
-
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.commands.CommandTestUtil.*;
-import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.internship.testutil.TypicalIndexes.*;
-import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 public class FindCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -66,7 +80,8 @@ public class FindCommandParserTest {
         String userInput = DESCRIPTION_DESC_SE1 + TAG_DESC_IMPORTANT
                 + POSITION_DESC_ML1 + COMPANY_DESC_ML1 + STATUS_DESC_ML1 + TAG_DESC_FUN;
 
-        FindCommand.FilterInternshipDescriptor descriptor = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1)
+        FindCommand.FilterInternshipDescriptor descriptor = new FilterInternshipDescriptorBuilder()
+                .withPosition(VALID_POSITION_ML1)
                 .withCompany(VALID_COMPANY_ML1).withStatus(VALID_STATUS_ML1).withDescription(VALID_DESCRIPTION_SE1)
                 .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
         FindCommand expectedCommand = new FindCommand(descriptor);
@@ -107,11 +122,6 @@ public class FindCommandParserTest {
         expectedCommand = new FindCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-//        // description
-//        userInput = DESCRIPTION_DESC_ML1;
-//        descriptor = new FilterInternshipDescriptorBuilder().withDescription(VALID_DESCRIPTION_ML1).build();
-//        expectedCommand = new FindCommand(descriptor);
-//        assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = TAG_DESC_FUN;
@@ -120,22 +130,6 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-//    @Test
-//    public void parse_multipleRepeatedFields_acceptsLast() {
-//        String userInput = COMPANY_DESC_ML1 + STATUS_DESC_ML1 + DESCRIPTION_DESC_ML1
-//                + TAG_DESC_FUN + COMPANY_DESC_ML1 + STATUS_DESC_ML1 + DESCRIPTION_DESC_ML1 + TAG_DESC_FUN
-//                + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1 + TAG_DESC_IMPORTANT;
-//
-//        FindCommand.FilterInternshipDescriptor descriptor = new FilterInternshipDescriptorBuilder()
-//                .withCompany(VALID_COMPANY_SE1)
-//                .withStatus(VALID_STATUS_SE1)
-//                .withDescription(VALID_DESCRIPTION_SE1)
-//                .withTags(VALID_TAG_FUN, VALID_TAG_IMPORTANT)
-//                .build();
-//        FindCommand expectedCommand = new FindCommand(descriptor);
-//
-//        assertParseSuccess(parser, userInput, expectedCommand);
-//    }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {

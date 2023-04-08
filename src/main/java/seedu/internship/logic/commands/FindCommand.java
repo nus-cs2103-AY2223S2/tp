@@ -3,7 +3,11 @@ package seedu.internship.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.internship.commons.util.CollectionUtil;
@@ -11,7 +15,11 @@ import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.CliSyntax;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
-import seedu.internship.model.internship.*;
+import seedu.internship.model.internship.Company;
+import seedu.internship.model.internship.Description;
+import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Position;
+import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
 /**
@@ -56,6 +64,9 @@ public class FindCommand extends Command {
         Predicate<Internship> filterStat = unused -> true;
         Predicate<Internship> filterDesc = unused -> true;
         Predicate<Internship> filterTags = unused -> true;
+        if (!this.filterInternshipDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         if (filterInternshipDescriptor.getPosition().isPresent()) {
             filterPos = x -> x.getPosition().positionName.toLowerCase().contains(filterInternshipDescriptor
                     .getPosition().get().positionName.toLowerCase());
@@ -69,8 +80,8 @@ public class FindCommand extends Command {
         }
 
         if (filterInternshipDescriptor.getDescription().isPresent()) {
-            filterDesc = x -> x.getDescription().descriptionMessage.toLowerCase().contains(filterInternshipDescriptor.
-                    getDescription().get().descriptionMessage.toLowerCase());
+            filterDesc = x -> x.getDescription().descriptionMessage.toLowerCase().contains(filterInternshipDescriptor
+                    .getDescription().get().descriptionMessage.toLowerCase());
         }
 
         if (filterInternshipDescriptor.getTags().isPresent()) {
