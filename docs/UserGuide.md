@@ -660,7 +660,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
-2. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
-3. Long date: Date in the format YYYY-MM-DD HHMM
-4. Short date: Date in the format YYYY-MM-DD
-3. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
+1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
+2. Long date: Date in the format YYYY-MM-DD HHMM
+3. Short date: Date in the format YYYY-MM-DD
+4. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
