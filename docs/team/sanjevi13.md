@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Added the initial book object in v1.1 that was modified in later milestones, and also modified JSON property ([Glen's commit](https://github.com/nus-cs2103-AY2223S2/tp/commit/668f87ca849a2cc850b409df46d3e0dcc555df82)) 
   * Refactored code base to show difference in commands for person and book ([#82](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/82))
   * Update find commands ([#107](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/107))
-  * Resolved some bugs from PED and added test cases
+  * Resolved some bugs from PED and added test cases([#181](https://github.com/AY2223S2-CS2103T-T12-3/tp/pull/181))
 
 * **Project management**:
   * Reviewed pull requests from Jarrett 
