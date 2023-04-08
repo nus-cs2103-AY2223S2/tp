@@ -835,8 +835,8 @@ Preconditions:
 
 **MSS**
 
-1. TA starts TrAcker desktop application.
-2. TA enters command to list notes.
+1. TA starts the TrAcker desktop application.
+2. TA trigger note listing for an event.
 3. TrAcker displays notes listed for that event.
 
 Use case ends.
@@ -844,8 +844,7 @@ Use case ends.
 **Extensions**
 
 * 2a. No notes found for events.
-    * 2a1. TrAcker displays an empty card.
-
+    * 2a1. TrAcker displays a sign for empty note history.
     Use case ends.
 
 System: Software System (TrAcker)
@@ -862,35 +861,29 @@ Preconditions:
 **MSS**
 
 1. TA starts TrAcker desktop application.
-2. TA enters command to add notes.
-3. TrAcker prompts for TA to enter note in a window.
-4. TA enters notes.
-5. TrAcker requests for TA to select the event to enter the note to.
-6. TA enters target event.
-7. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
+2. TA enters command to add note contents to an associated event.
+3. TrAcker adds notes to the specified event
+4. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
 
 Use case ends.
 
 **Extensions**
 
-* 4a. TA enters nothing
-    * 4a1. TrAcker requests for more input from the TA.
-    * 4a2. TA enters details.
+* 4a. TA enters nothing or a stream of empty spaces
+    * 4a1. TrAcker flags it as an empty note and makes the flag as note contents.
     
-  Steps 4a1 - 4a2 are repeated until there is a non-empty text in the note.
-  <br>
   Use case resumes from step 5.
 
 * 6a. TA enters invalid target event
-    * 6a1. TrAcker requests for valid event.
+    * 6a1. TrAcker shows error message and requests for valid event.
     * 6a2. TA enters details.
 
   Steps 6a1 - 6a2 are repeated until a valid event is entered.
   <br>
   Use case resumes from step 7.
 
-* a. At any time, TA decides to cancel note adding.
-    * a1. TrAcker cancels addition of note.
+* a. At any time, TA decides to stop note adding by entering an invalid command.
+    * a1. TrAcker stops addition of note.
 
     Use case ends
 
@@ -909,17 +902,15 @@ Preconditions:
 
 1. TA starts TrAcker desktop application.
 2. TA enters command to edit note for a specific event.
-3. TrAcker returns window with existing note.
-4. TA edit the notes and confirms finish.
-5. TrAcker saves the new edited note.
-6. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
+3. TrAcker saves the new edited note.
+4. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
 
 Use case ends.
 
 **Extensions**
 
-* a. At any time, TA decides to cancel note-editing.
-    * a1. TrAcker cancels note editing.
+* a. At any time, TA decides to stop note adding by entering an invalid command.
+    * a1. TrAcker stops addition of note.
 
     Use case ends
 
@@ -938,18 +929,18 @@ Preconditions:
 
 1. TA starts TrAcker desktop application.
 2. TA enters command to delete note for a specific event.
-3. TrAcker requests to confirm on the deletion.
-4. TrAcker deletes the note.
-5. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
+3. TrAcker deletes the note.
+4. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
 
 Use case ends.
 
 **Extensions**
 
-* a. At any time, TA decides to cancel note-deletion.
-    * a1. TrAcker cancels note deletion.
+* a. At any time, TA decides to stop note adding by entering an invalid command.
+    * a1. TrAcker stops addition of note.
 
     Use case ends
+
 ---
 
 ### Non-Functional Requirements
@@ -969,7 +960,7 @@ Use case ends.
 13. There should be maximum 2 seconds keyboard input lag at any time.
 14. Displaying a student profile picture should take at most 5 seconds.
 15. Data should be saved to local storage after any data change has been made within the application.
-16. Event notes should be pure texts (no images or videos).
+16. Event notes should be text-only (no images or videos).
 
 ---
 

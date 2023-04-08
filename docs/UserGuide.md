@@ -386,6 +386,8 @@ Examples:
 * `deleteNote type/Tutorial name/Tut1 index/1`
 * `deleteNote type/Lab name/Lab1 index/1`
 
+![Ui](images/DeleteNoteSuccess.png)
+
 <div id='edit-note-in-event'></div>
 
 ### Edit note in event: `editNote`
@@ -401,6 +403,8 @@ Examples:
 
 * `editNote content/Bring apple pencil type/Tutorial name/Tut1 index/1`
 * `editNote content/Bring goggles and lab coat type/Lab name/Lab1 index/1`
+
+![Ui](images/EditNoteSuccess.png)
 
 --------------------------------------------------------------------
 
