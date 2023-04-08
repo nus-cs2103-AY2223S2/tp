@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Star icon](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/images/star.png) created by [Pixel perfect - Flaticon](https://www.flaticon.com/free-icons/star).
+* [Module code list](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/data/modules.json) adapted from [NUSMods API](https://api.nusmods.com/v2/).
 
 --------------------------------------------------------------------------------------------------------------------
 ## **NeoBook**
@@ -214,7 +215,7 @@ The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2
 
 ![Structure of `TabUtil`](images/TabClassDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 There are two ways to switch between tabs:
 * **Method 1:** Click on individual tabs in the tabs bar
@@ -241,7 +242,7 @@ Low-level details of the parsing of select command in logic is omitted as it has
 Upon execution, the `selectedPerson` field of AddressBook would be updated, allowing the GUI to access it
 and display changes accordingly.
 
-#### Design considerations:
+#### Design considerations
 
 There are two ways to select a contact:
 * **Method 1:** Click on the contact in the current displayed contact list
@@ -351,7 +352,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -572,7 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
