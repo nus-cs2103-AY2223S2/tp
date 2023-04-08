@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import org.junit.jupiter.api.BeforeAll;
 
-import javafx.application.Platform;
+import com.sun.javafx.application.PlatformImpl;
 
 /**
  * Starts up the JavaFX platform to prevent "Toolkit not initialised" errors.
@@ -12,8 +12,7 @@ import javafx.application.Platform;
 public abstract class FxTest {
     @BeforeAll
     static void initJfxRuntime() {
-        System.setProperty("jdk.gtk.version", "2");
-        Platform.startup(() -> {
+        PlatformImpl.startup(() -> {
         });
     }
 }
