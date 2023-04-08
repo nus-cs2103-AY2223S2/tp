@@ -37,8 +37,8 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
 
         if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
-            throw new ParseException(String.format(AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED,
-                    AddStudentToEventCommand.MESSAGE_USAGE));
+            throw new ParseException(AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
+                    + AddStudentToEventCommand.MESSAGE_USAGE);
         }
 
         try {

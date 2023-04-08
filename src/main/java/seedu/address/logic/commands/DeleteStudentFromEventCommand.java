@@ -59,6 +59,9 @@ public class DeleteStudentFromEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
+        assert(studentIndex != null);
+        assert(eventIndex != null);
+        assert(eventType != null);
         if (studentIndex.getZeroBased() < 0) {
             throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
         }

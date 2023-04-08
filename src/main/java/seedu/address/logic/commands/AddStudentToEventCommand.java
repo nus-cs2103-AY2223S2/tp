@@ -16,9 +16,9 @@ import seedu.address.model.Model;
 public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
-    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an"
-            + "event type or the event type that you have entered"
-            + " cannot be recognized!\n";
+    public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "Either you did not enter an "
+            + "event type or the event type that you have entered "
+            + "cannot be recognized!\n";
     public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you "
             + "have entered cannot be 0 or less";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
