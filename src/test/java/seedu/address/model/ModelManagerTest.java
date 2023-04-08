@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_CARDS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCards.*;
+import static seedu.address.testutil.TypicalCards.LOOP;
+import static seedu.address.testutil.TypicalCards.VARIABLE;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
