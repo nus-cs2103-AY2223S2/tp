@@ -404,7 +404,7 @@ The TagCommand feature allows the user to filter tags based on a given keyword. 
 user can filter the role list by tag which shows all roles pertaining to a certain tag.
 
 The TagCommand follows a similar structure as [`CompanyCommand`](#company-command-feature). Replace `company` with `tag`
-for how TagCommand functions.
+in [`CompanyCommand`](#company-command-feature) for how TagCommand functions.
 
 The following sequence diagram shows how the `tag` command works:
 
@@ -426,7 +426,7 @@ user can filter the role list by name which shows all roles pertaining to a cert
 The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
 
 The NameCommand follows a similar structure as [`CompanyCommand`](#company-command-feature). Replace `company` with `name`
-for how TagCommand functions.
+in [`CompanyCommand`](#company-command-feature) for how NameCommand functions.
 
 The following sequence diagram shows how the `name` command works:
 
