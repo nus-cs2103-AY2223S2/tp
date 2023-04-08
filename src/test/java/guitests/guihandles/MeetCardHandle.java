@@ -2,11 +2,11 @@ package guitests.guihandles;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import seedu.address.model.person.Person;
+import seedu.address.model.recommendation.Recommendation;
 
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a meet card in the meet list panel.
  */
 public class MeetCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -35,9 +35,10 @@ public class MeetCardHandle extends NodeHandle<Node> {
 
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code recommendation}.
      */
-    public boolean equals(Person person) {
-        return getPlace().equals(person.getName().getValue());
+    public boolean equals(Recommendation recommendation) {
+        return getPlace().equals(recommendation.getLocation().getName()
+                + " : " + recommendation.getTimePeriod().getUiDisplay());
     }
 }
