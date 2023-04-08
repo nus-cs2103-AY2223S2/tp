@@ -2,6 +2,7 @@ package seedu.dengue.model.predicate;
 
 import java.util.Optional;
 
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
@@ -32,7 +33,7 @@ public class DeleteDatePredicate extends PredicateUtil<Person> {
      * @param date (Optional) Date input passed in by user.
      */
 
-    public DeleteDatePredicate(Optional<Date> date) {
+    public DeleteDatePredicate(Optional<Date> date) throws ParseException {
         this.date = date;
         this.range = ContinuousData.generateRange(
                 new StartDate(Optional.empty()),

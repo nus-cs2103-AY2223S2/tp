@@ -22,6 +22,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
@@ -61,8 +62,11 @@ public class FindCommandTest {
     private Range<Date> testDateRange;
     private Range<Age> testAgeRange;
 
+    public FindCommandTest() throws ParseException {
+    }
+
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws ParseException {
         this.testName = Optional.of(new Name("ALICE"));
         this.testSubPostal = Optional.of(new SubPostal("s12"));
         this.testAge = Optional.of(new Age("21"));

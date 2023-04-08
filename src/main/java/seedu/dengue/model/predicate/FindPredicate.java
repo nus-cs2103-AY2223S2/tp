@@ -46,8 +46,26 @@ public class FindPredicate extends PredicateUtil<Person> {
         this.ageRange = ageRange;
     }
 
+<<<<<<< HEAD
+=======
+    private boolean isEveryPrefixEmpty(Optional<Name> name, Optional<SubPostal> subPostal,
+                                       Optional<Age> age, Optional<Date> date, Set<Variant> variants,
+                                       Range<Date> dateRange, Range<Age> ageRange) {
+        boolean isNameEmpty = name.isEmpty();
+        boolean isSubPostalEmpty = subPostal.isEmpty();
+        boolean isAgeEmpty = age.isEmpty();
+        boolean isDateEmpty = date.isEmpty();
+        boolean isVariantsEmpty = variants.isEmpty();
+        boolean isDateRangeEmpty = dateRange.isRangeEmpty();
+        boolean isAgeRangeEmpty = ageRange.isRangeEmpty();
+        return isNameEmpty && isSubPostalEmpty && isAgeEmpty && isDateEmpty && isVariantsEmpty && isDateRangeEmpty
+                && isAgeRangeEmpty;
+    }
+
+>>>>>>> 068753cd (Add more abstraction from delete's parser and find's parser to ParserUtil)
     @Override
     public boolean test(Person person) {
+        assert !(isEveryPrefixEmpty(name, subPostal, age, date, variants, dateRange, ageRange));
         PersonContainsNamePredicate hasName = new PersonContainsNamePredicate(name);
         PersonContainsAgePredicate hasAge = new PersonContainsAgePredicate(age);
         PersonContainsPostalPredicate hasPostal = new PersonContainsPostalPredicate(subPostal);

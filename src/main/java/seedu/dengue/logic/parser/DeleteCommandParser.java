@@ -1,7 +1,6 @@
 package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_RANGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
@@ -13,12 +12,9 @@ import java.util.stream.Stream;
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.DeleteCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
-import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.predicate.DeleteDatePredicate;
-import seedu.dengue.model.range.EndDate;
 import seedu.dengue.model.range.Range;
-import seedu.dengue.model.range.StartDate;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -65,20 +61,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     private DeleteCommand parseDate(ArgumentMultimap argMultimap) throws ParseException {
         Optional<Date> date = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
-        Range<Date> dateRange = getDateRange(argMultimap);
+        Range<Date> dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_STARTDATE),
+                argMultimap.getValue(PREFIX_ENDDATE));
         DeleteDatePredicate predicate = new DeleteDatePredicate(date, dateRange);
         return new DeleteCommand(predicate);
-    }
-
-    private static Range<Date> getDateRange(ArgumentMultimap argumentMultimap) throws ParseException {
-        StartDate startDate = new StartDate(ParserUtil.parseOptionalDate(argumentMultimap
-                .getValue(PREFIX_STARTDATE)));
-        EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argumentMultimap
-                .getValue(PREFIX_ENDDATE)));
-        if (!(startDate.isValidStartDate(endDate) && endDate.isValidEndDate(startDate))) {
-            throw new ParseException(MESSAGE_INVALID_RANGE);
-        }
-        return ContinuousData.generateRange(startDate, endDate);
     }
 
     /**
