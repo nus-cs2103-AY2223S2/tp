@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MarkCustomerCommand" as MarkCustomerCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "markedCustomer:Customer" as MarkedCustomer MODEL_COLOR
+end box
+
+[-> MarkCustomerCommand : execute(model)
+activate MarkCustomerCommand
+
+MarkCustomerCommand -> Model : getFilteredCustomerList()
+activate Model
+
+Model --> MarkCustomerCommand : lastShownList
+deactivate Model
+
+MarkCustomerCommand -> MarkCustomerCommand : createMarkedCustomer(customerToMark)
+activate MarkCustomerCommand
+
+create MarkedCustomer
+MarkCustomerCommand -> MarkedCustomer
+activate MarkedCustomer
+
+MarkCustomerCommand <-- MarkedCustomer
+deactivate MarkedCustomer
+
+MarkCustomerCommand --> MarkCustomerCommand : markedCustomer
+deactivate MarkCustomerCommand
+
+MarkCustomerCommand -> Model : setCustomer(customerToMark, markedCustomer)
+activate Model
+
+Model --> MarkCustomerCommand
+deactivate Model
+
+create CommandResult
+MarkCustomerCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCustomerCommand
+deactivate CommandResult
+
+[<-- MarkCustomerCommand : result
+deactivate MarkCustomerCommand
+
+@enduml
