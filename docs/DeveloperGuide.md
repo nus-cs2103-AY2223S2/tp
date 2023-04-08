@@ -549,9 +549,7 @@ fuzzy searching. This is illustrated in the activity diagram below.
 
 ## Command Handling
 
-### Commands
-
-#### Command Sequence
+### Command Sequence
 
 When the command box is in `CommandMode`, the user can enter commands to perform various operations in Mycelium. The following sequence diagram shows how the command is handled.
 
@@ -566,7 +564,7 @@ The `MainWindow` updates the `CommandLog` based on the feedback from `CommandRes
 
 The `CommandMode` then clears the `CommandBox` input and is now ready for accepting the next command.
 
-#### UiActions
+### UiActions
 
 The `UiAction` class is an abstract class that represents an action to be performed by the `MainWindow`. Every `CommandResult` returned from a `Command` execution contains a `UiAction` that is to be executed by the `MainWindow`.
 
