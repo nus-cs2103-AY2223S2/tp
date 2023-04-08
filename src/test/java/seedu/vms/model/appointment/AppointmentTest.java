@@ -2,7 +2,6 @@ package seedu.vms.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
@@ -15,13 +14,13 @@ import seedu.vms.model.GroupName;
 
 public class AppointmentTest {
 
-    Index patientId = Index.fromOneBased(1);
-    LocalDateTime startTime = LocalDateTime.now();
-    LocalDateTime endTime = LocalDateTime.now().plusHours(1);
-    GroupName vaccine = new GroupName("Test Vaccine");
-    Boolean isCompleted = false;
+    private final Index patientId = Index.fromOneBased(1);
+    private final LocalDateTime startTime = LocalDateTime.now();
+    private final LocalDateTime endTime = LocalDateTime.now().plusHours(1);
+    private final GroupName vaccine = new GroupName("Test Vaccine");
+    private final Boolean isCompleted = false;
 
-    Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
+    private final Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
 
 
     @Test
