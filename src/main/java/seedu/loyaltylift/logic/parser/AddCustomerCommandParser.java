@@ -6,9 +6,7 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
@@ -19,7 +17,6 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCustomerCommand object
@@ -33,7 +30,7 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
      */
     public AddCustomerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_CUSTOMER_TYPE);
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CUSTOMER_TYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,11 +40,10 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         CustomerType customerType = ParserUtil.parseCustomerType(
                 argMultimap.getValue(PREFIX_CUSTOMER_TYPE).or(() -> java.util.Optional.of("INDIVIDUAL")).get());
 
-        Customer customer = new Customer(customerType, name, phone, email, address, tagList);
+        Customer customer = new Customer(customerType, name, phone, email, address);
 
         return new AddCustomerCommand(customer);
     }

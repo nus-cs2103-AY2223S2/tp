@@ -5,7 +5,6 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
@@ -21,7 +20,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Adds the reward points of a customer
@@ -86,7 +84,6 @@ public class AddPointsCommand extends Command {
         Phone phone = customerToEdit.getPhone();
         Email email = customerToEdit.getEmail();
         Address address = customerToEdit.getAddress();
-        Set<Tag> tags = customerToEdit.getTags();
         Points points = customerToEdit.getPoints();
         Marked marked = customerToEdit.getMarked();
         Note note = customerToEdit.getNote();
@@ -98,7 +95,7 @@ public class AddPointsCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_POINTS);
         }
 
-        return new Customer(customerType, name, phone, email, address, tags, newPoints, marked, note);
+        return new Customer(customerType, name, phone, email, address, newPoints, marked, note);
     }
 
 

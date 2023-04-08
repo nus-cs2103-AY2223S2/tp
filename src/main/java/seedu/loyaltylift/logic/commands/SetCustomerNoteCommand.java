@@ -5,7 +5,6 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
@@ -20,7 +19,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Overwrites the note of an existing customer in the address book.
@@ -82,12 +80,11 @@ public class SetCustomerNoteCommand extends Command {
         Phone phone = customerToEdit.getPhone();
         Email email = customerToEdit.getEmail();
         Address address = customerToEdit.getAddress();
-        Set<Tag> tags = customerToEdit.getTags();
         CustomerType customerType = customerToEdit.getCustomerType();
         Points points = customerToEdit.getPoints();
         Marked marked = customerToEdit.getMarked();
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
+        return new Customer(customerType, name, phone, email, address, points, marked, note);
     }
 
     @Override

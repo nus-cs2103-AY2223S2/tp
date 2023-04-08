@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCustomerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCustomer(expectedCustomer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

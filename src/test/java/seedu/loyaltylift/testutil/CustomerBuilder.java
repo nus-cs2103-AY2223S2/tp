@@ -1,7 +1,6 @@
 package seedu.loyaltylift.testutil;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
@@ -12,8 +11,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
-import seedu.loyaltylift.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Customer objects.
@@ -34,7 +31,6 @@ public class CustomerBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
     private CustomerType customerType;
     private Points points;
     private Marked marked;
@@ -48,7 +44,6 @@ public class CustomerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
         customerType = DEFAULT_CUSTOMER_TYPE;
         points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         marked = new Marked(DEFAULT_MARKED);
@@ -63,7 +58,6 @@ public class CustomerBuilder {
         phone = customerToCopy.getPhone();
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
-        tags = new HashSet<>(customerToCopy.getTags());
         customerType = customerToCopy.getCustomerType();
         points = customerToCopy.getPoints();
         marked = customerToCopy.getMarked();
@@ -75,14 +69,6 @@ public class CustomerBuilder {
      */
     public CustomerBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Customer} that we are building.
-     */
-    public CustomerBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -143,7 +129,7 @@ public class CustomerBuilder {
     }
 
     public Customer build() {
-        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
+        return new Customer(customerType, name, phone, email, address, points, marked, note);
     }
 
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalCustomers.BOB;
@@ -42,7 +41,7 @@ public class UniqueCustomerListTest {
     @Test
     public void contains_customerWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         assertTrue(uniqueCustomerList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueCustomerListTest {
     @Test
     public void setCustomer_editedCustomerHasSameIdentity_success() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .build();
         uniqueCustomerList.setCustomer(ALICE, editedAlice);
         UniqueCustomerList expectedUniqueCustomerList = new UniqueCustomerList();
