@@ -23,6 +23,9 @@ public class FieldsUtil {
      * @param text The initial text for the TextArea.
      * @return The created dynamic TextArea.
      */
+    private static final String INGREDIENT_PROMPT = "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
+    private static final String STEP_PROMPT = "Add a step";
+
     public static TextArea createDynamicTextArea(String text) {
         //Styling
         TextArea textArea = new TextArea(text);
@@ -148,6 +151,12 @@ public class FieldsUtil {
         // Check if it's the last TextArea in the VBox
         if (parentBox.getChildren().indexOf(textArea) == lastIndex) {
             TextArea newField = createDynamicTextArea("");
+            System.out.println(parentBox.getId());
+            newField.setPromptText(
+                parentBox.getId().equals("stepsBox")
+                    ? STEP_PROMPT
+                    : INGREDIENT_PROMPT
+            );
             parentBox.getChildren().add(newField);
         }
     };

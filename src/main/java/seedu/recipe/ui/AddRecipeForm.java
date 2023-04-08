@@ -10,7 +10,7 @@ import seedu.recipe.ui.util.FieldsUtil;
  */
 public class AddRecipeForm extends RecipeForm {
     private static final String title = "Add New Recipe";
-    private static final String INGREDIENT_PROMPT = "(i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`";
+    private static final String INGREDIENT_PROMPT = "(i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
 
     /**
      * Creates a new AddRecipeForm.
