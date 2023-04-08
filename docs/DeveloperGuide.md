@@ -101,10 +101,10 @@ using the `LogicManager.java` class which follows the `Logic` interface. All 4 c
 ### 2.2 UI component
 
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
-![Structure of the UI Component](images/UiClassDiagram.png)
+[`Ui.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
+![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+The UI consists of a `MainWindow` that is made up of Ui parts that will be encapsulated here as `UiComponents`. Examples of its members are visual elements that you will see on screen e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `HelpWindow`, `QuickstartWindow`
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
@@ -113,7 +113,7 @@ files that are in the `src/main/resources/view` folder. For example, the layout 
 is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-executes user commands using the `Logic` component. listens for changes to `Model` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+executes user commands using the `Logic` component. listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
 
 ### 2.3 Logic component
 
@@ -1287,3 +1287,18 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
+OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group, F10-1, has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
+Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and in AB3.
+
+In this section, we will detail some of the hurdles that we faced through the iterations of our tP.
+### 8.1 Design Challenges
+Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some of the big design changes were:
+* Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
+* Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
+* next pt
+* next pt
+### 8.2 Technical Challenges
+* First pt
+   - sub point
+   - sub point
+* Next pt
