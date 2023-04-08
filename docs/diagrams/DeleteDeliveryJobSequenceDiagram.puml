@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DukeDriverParser" as DukeDriverParser LOGIC_COLOR
+participant ":DeleteDeliveryJobCommandParser" as DeleteDeliveryJobCommandParser LOGIC_COLOR
+participant "d:DeleteDeliveryJobCommand" as DeleteDeliveryJobCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete_job ABCDEF", g -> !g.equals(CommandGroup.PERSON))
+activate LogicManager
+
+LogicManager -> DukeDriverParser : parseCommandGroup("delete_job ABCDEF")
+activate DukeDriverParser
+
+DukeDriverParser --> LogicManager : CommandGroup of "delete_job ABCDEF"
+
+
+    LogicManager -> DukeDriverParser : parse("delete_job ABCDEF")
+    create DeleteDeliveryJobCommandParser
+    DukeDriverParser -> DeleteDeliveryJobCommandParser
+    activate DeleteDeliveryJobCommandParser
+
+    DeleteDeliveryJobCommandParser --> DukeDriverParser
+    deactivate DeleteDeliveryJobCommandParser
+
+    DukeDriverParser -> DeleteDeliveryJobCommandParser : parse("ABCDEF")
+    activate DeleteDeliveryJobCommandParser
+
+    create DeleteDeliveryJobCommand
+    DeleteDeliveryJobCommandParser -> DeleteDeliveryJobCommand
+    activate DeleteDeliveryJobCommand
+
+    DeleteDeliveryJobCommand --> DeleteDeliveryJobCommandParser : d
+    deactivate DeleteDeliveryJobCommand
+
+    DeleteDeliveryJobCommandParser --> DukeDriverParser : d
+    deactivate DeleteDeliveryJobCommandParser
+    'Hidden arrow to position the destroy marker below the end of the activation bar.
+    DeleteDeliveryJobCommandParser -[hidden]-> DukeDriverParser
+    destroy DeleteDeliveryJobCommandParser
+
+    DukeDriverParser --> LogicManager : d
+    deactivate DukeDriverParser
+
+    LogicManager -> DeleteDeliveryJobCommand : execute()
+    activate DeleteDeliveryJobCommand
+
+    DeleteDeliveryJobCommand -> Model : deleteDeliveryJob("ABCDEF")
+    activate Model
+
+    Model --> DeleteDeliveryJobCommand
+    deactivate Model
+
+    create CommandResult
+    DeleteDeliveryJobCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> DeleteDeliveryJobCommand
+    deactivate CommandResult
+
+    DeleteDeliveryJobCommand --> LogicManager : result
+    deactivate DeleteDeliveryJobCommand
+
+    [<--LogicManager
+    deactivate LogicManager
+
+
+
+@enduml

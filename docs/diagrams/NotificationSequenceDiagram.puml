@@ -28,8 +28,8 @@ create NotificationManager
 UI-> NotificationManager
 activate NotificationManager
 
-NotificationManager -> NotificationManager : checkReminderList()
-NotificationManager -> NotificationManager : checkNowSchedule()
+NotificationManager -> NotificationManager : checkReminderList() & display notification
+NotificationManager -> NotificationManager : checkNowSchedule() & display notification
 
 create BackgroundNotificationScheduler
 UI -> BackgroundNotificationScheduler
@@ -43,16 +43,27 @@ activate Timer1
 create Timer2
 BackgroundNotificationScheduler -> Timer2
 activate Timer2
+deactivate BackgroundNotificationScheduler
 
-loop for the respective Timer schedules
+loop every minute
 create BackgroundReminderTask
-Timer1 -> BackgroundReminderTask : every minute
-BackgroundReminderTask -> NotificationManager : checkReminderList()
+Timer1 -> BackgroundReminderTask :  run()
+deactivate Timer1
+activate BackgroundReminderTask
+BackgroundReminderTask -> NotificationManager : checkReminderList() & display notification
+deactivate BackgroundReminderTask
 
+end loop
+
+loop every 20 minutes before next schedule slot
 create BackgroundScheduleTask
-Timer2 -> BackgroundScheduleTask : 20 minutes before next schedule slot
-BackgroundScheduleTask -> NotificationManager : checkNextSchedule()
+Timer2 -> BackgroundScheduleTask : run()
+activate BackgroundScheduleTask
+BackgroundScheduleTask -> NotificationManager : checkNextSchedule() & display notification
+deactivate BackgroundScheduleTask
 
+
+deactivate Timer2
 end loop
 
 @enduml
