@@ -3,18 +3,14 @@ layout: page
 title: dsja612's Project Portfolio Page
 ---
 
+* Table of Contents
+  {:toc}
 
 ## Project: TechTrack
 
 {{ site.data.techtrack.about.summary }}
 
 I worked on the entire stack, both frontend and backend. I was mainly in charge of refactoring and working on the new UI.
-
-## Table of Contents
-* [Contributions](#contributions)
-* [Enhancements](#enhancements)
-* [Bug Fixes](#bug-fixes)
-* [Links to Contributions](#links-to-contributions)
 
 ## Contributions
 
@@ -39,12 +35,12 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
   * Justification: Displaying all 10 fields of a `Role` would not look aesthetically pleasing, especially with longer fields
   like `JobDescription`. We decided to refactor the UI to support multiple displays. As of now, we only need 2 types
   of displays from output of commands: one for `String`, another for `Role`. The type of display can be easily made extendible in the future, if needed.
-  * Highlights:
   
     | Old UI                                                              | New UI                                    |  
     |------------------------------------------------------------------|----------------------------------------------------------------|
     | <img src="https://nus-cs2103-ay2223s2.github.io/tp/images/Ui.png" width=800> | <img src="../images/UICommandImages/ViewCommand0.png" width=800> |
-     
+
+* **Testing**: Refactored old variables in test classes to reflect the changes in TechTrack.
 
 ## Enhancements
 
@@ -57,14 +53,22 @@ I worked on the entire stack, both frontend and backend. I was mainly in charge 
 * Fixed a bug where TechTrack crashes if a `Deadline` field in `TechTrack.json` is past the current date
 * Fixed a bug where loading sample data on a fresh installation of TechTrack would cause the program to crash
 
-* **Documentation** [Coming soon]:
+* **Documentation**:
   * User Guide:
     * Constructed outline of UG for team members to edit easily, and fixed bugs
-  * Developer Guide (TO BE ADDED):
-    * ...
+    * Proofread UG
+  * Developer Guide:
+    * Proofread DG
+    * Added the `view command`, `UI Enhancement` section
+    * Updated manual tests for `tag`, `name`, `clear`, `help`, `list`, `exit` command.
+    * Checked for bugs in UML diagrams.\
+    * Wrote the `Planned enhancements for Feature Flaws` section
 
 ## Links to Contributions
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dsja612&breakdown=true)
+
 [Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=dsja612)
+
 [Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Adsja612)
+
 [Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+author%3Adsja612)
