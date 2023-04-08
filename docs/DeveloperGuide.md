@@ -1002,10 +1002,22 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `exit x` (where x is any string) <br>
    Expected: Should exit SudoHR.
 
-### Saving data
+#### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Planned Enhancements
+
+Here are a list of fixes we plan to add in the near future to counter known feature flaws.
+
+#### 1. Department name constraints
+
+* Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
+For example, 'Marketing' and 'marketing' are clearly the same department.
+
+* Department names will also allow special characters such as '(', ')' and ',' to account for department names with
+labels. For example, 'Sales, Singapore' can be a valid department name.
