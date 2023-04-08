@@ -18,10 +18,55 @@ Whether you are an experienced developer looking to expand your skillset or a ne
 
 ---
 
-<!-- TODO: Add this after everything is finalised  -->
-
-- Table of Contents
-  {:toc}
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add module, lecture, and video feature](#add-module-lecture-and-video-feature)
+  - [Edit module, lecture, and video feature](#edit-module-lecture-and-video-feature)
+  - [Delete module, lecture, and video feature](#delete-module-lecture-and-video-feature)
+  - [Mark / UnMark video feature](#mark--unmark-video-feature)
+  - [List module, lecture and video feature](#list-module-lecture-and-video-feature)
+  - [Find module, lecture and video feature](#find-module-lecture-and-video-feature)
+  - [Navigation feature](#navigation-feature)
+  - [Tag module, lecture, and video feature](#tag-module-lecture-and-video-feature)
+  - [Untag module, lecture, and video feature](#untag-module-lecture-and-video-feature)
+  - [Import archived data feature](#import-archived-data-feature)
+  - [Exporting data feature](#exporting-data-feature)
+  - [Clear feature](#clear-feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [List Modules](#list-modules)
+  - [List Lectures of a Module](#list-lectures-of-a-module)
+  - [List Videos of a Lecture](#list-videos-of-a-lecture)
+  - [Find Modules](#find-modules)
+  - [Find Modules by Tag](#find-modules-by-tag)
+  - [Find Lectures of a Module](#find-lectures-of-a-module)
+  - [Find Lectures of a Module by Tag](#find-lectures-of-a-module-by-tag)
+  - [Find Videos of a Lecture](#find-videos-of-a-lecture)
+  - [Find Videos of a Lecture by Tag](#find-videos-of-a-lecture-by-tag)
+  - [Tag a Module](#tag-a-module)
+  - [Tag a Lecture](#tag-a-lecture)
+  - [Tag a Video](#tag-a-video)
+  - [Untag a Module](#untag-a-module)
+  - [Untag a Lecture](#untag-a-lecture)
+  - [Untag a Video](#untag-a-video)
+  - [Export All Modules to a File](#export-all-modules-to-a-file)
+  - [Import Modules from a File](#import-modules-from-a-file)
 
 ---
 
@@ -92,7 +137,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -101,7 +146,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Module`, `Lecture`, `Video` objects residing in the `Model`.
 
 ### Logic component
 
@@ -113,16 +158,20 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, several observers subscribe to the `TrackerEventSystem.`
+1. The command text is first pre-processed (e.g. `NavigationInjector` could modify the command text by inserting `/mod CS2040S /lec Week 1`).
+1. `Logic` then uses the `TrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a module).
+1. The result of the command execution is encapsulated as a `CommandResult`.
+1. Based on the `CommandResult`, several systems such as `Navigation` are notified through the `TrackerEventSystem`.
+1. The `CommandResult` object is then returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add CS2040S")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add CS2040S` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -131,8 +180,32 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Navigation component
+
+**API**: [`Navigation.java`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/model/Navigation.java)
+
+Here's a (partial) class diagram of the `Navigation` component:
+
+<img src="images/NavigationClassDiagram.png" width="550"/>
+
+\*\* This class diagram omits some classes and dependencies in the `Navigation` component for the purpose of simplicity.
+
+What the `Navigation` component does:
+
+- Tracking the current working context.
+- Tracking navigation through the hierarchy.
+- Enforcing valid navigation between adjacent layers in the module-lecture-video hierarchy.
+
+What the `Navigation` component is **NOT RESPONSIBLE** for:
+
+- Ensuring that modules or lectures exist in the `Model` component.
+  - This avoids circular dependency as the `Model` component already depends on the `Navigation` component.
+  - This enforces the single responsibility principle as the `Navigation` component does not need to verify the existence of actual module or lecture data in the Tracker system.
+
+For more information on the Navigation system and how to develop **context-sensitive** commands that work with the Navigation system, please refer the [navigation feature](#navigation-feature).
 
 ### Model component
 
@@ -148,7 +221,7 @@ The `Model` component,
 - stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate *filteredModules* list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate *filteredLectures* list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate *filteredVideos* list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
+- stores the [navigation component](#navigation-component) which tracks the current working context.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
@@ -170,9 +243,70 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Navigation feature
+
+> The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
+
+#### How the navigation system works
+
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
+
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
+
+#### Navigation injection
+
+Here's a (partial) class diagram for the `NavigationInjector` component.
+
+![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+
+How `NavigationInjector` injects the correct arguments into the command based on the current working context:
+
+1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
+
+2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
+
+3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
+
+4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
+
+#### Usage scenario
+
+Given below is an example usage scenario and how the navigation system behaves at each step.
+
+Steps:
+
+1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
+
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
+   ![FindActivityDiagram](images/NavSequenceDiagram0.png)
+
+3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+
+#### Designing context-sensitive commands
+
+We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
+
+Hence, we define a common format for context-sensitive commands:
+> `command [/mod {module_code}] [/lec {lecture_name}]`
+
+Parsing context-specifying arguments to determine context:
+
+| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+| -----------------   | -----------------   | ------------------   | ----------------------   |
+|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
+
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
+
+For concrete examples on how to implement a context-sensitive command, you can refer to the
+[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
 
 ### Add module, lecture, and video feature
 
@@ -603,30 +737,6 @@ The following is a description of the code execution flow:
 
 5. If no errors occur (no exceptions are thrown), the command succeeds in finding the module/lecture/video associated to the keyword.
 
-### Navigation feature
-
-> The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
-
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for commands related to the current context.
-
-Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
-
-**Usage scenario**
-
-Given below is an example usage scenario and how the navigation system behaves at each step.
-
-Steps:
-
-1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
-
-2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
-
-   ![FindActivityDiagram](images/NavSequenceDiagram0.png)
-
-3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
-
-4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
-
 ### Tag module, lecture, and video feature
 
 The `tag` command supports:
@@ -943,12 +1053,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                    |
 | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                | <!-- TODO: Verify by hingen -->    |
-| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         |                                    |
+| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        |                                    |
 | `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                         | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                  | <!-- TODO: Verify by lennoxtr -->  |
-| `* *`    | forgetful user   | be reminded of where to find the guide                                             | recall how to use the app                                                                                             | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | TODO:                                                                                                                 | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                            |                                    |
+| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command.                                                       |                                    |
 | `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |    |
 | `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   |    |
 | `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     |    |
@@ -962,6 +1072,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Navigate to a lecture context**
+
+**MSS**
+
+1. User requests to navigate to a specific lecture belonging to a specific module.
+2. Le Tracker navigates to the specified lecture and displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The user does not enter sufficient details for the lecture.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The specified lecture or module does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
 
 **Use case: List modules**
 
@@ -2200,13 +2334,17 @@ Maintainability:
 
 ### Glossary
 
+- **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
+- **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
+- **Lecture**: A lecture of a module
+- **Lecture Name**: A name given to a lecture by the user
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Module Code**: Unique code identifier for each module
-- **Lecture Name**: Unique name identifier for each lecture
-- **Video Name**: Unique name identifier for each video
-- **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
-- **Tag**: a single word, alphanumeric label attached to a module, lecture, or video to give more info about said
-  module, lecture, or video
+- **Module**: A module or course in NUS
+- **Module Code**: The unique official code assigned to a module by NUS (e.g. CS2103)
+- **Navigate**: To specify a current working context
+- **Timestamp**: The timestamp of a video, representing a specific point in the video, specified in hours, minutes, and seconds
+- **Video**: A video recording of a lecture
+- **Video Name**: A name given to a video by the user
 
 ## Appendix: Instructions for manual testing
 
@@ -2261,6 +2399,24 @@ TODO: to be removed
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_ -->
+
+### Current working context affected by deletion
+
+1. `nav CS2040S`
+1. `delete /r CS2040S`
+
+Expected:
+
+- Current working context should be "/r".
+
+### Current working context affected by edit
+
+1. `nav CS2040S`
+1. `edit CS2040S /r /code CS2040`
+
+Expected:
+
+- Current working context should be "/r/CS2040".
 
 ### List Modules
 
@@ -2338,6 +2494,75 @@ TODO: to be removed
 | `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
 | 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
 
+### Mark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `mark Vid 1 /mod CS2040S /lec Week 1`        | Vid 1 of CS2040S Week 1 marked as watched |
+| 1. `nav CS2040S` <br> 2. `mark Vid 1 /lec Week 1` | Same as previous | <!--TODO: do we need this?-->
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `mark Vid 1` | Same as previous |
+| `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as watched |
+| 1. `mark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of CS2040S were already marked as watched |
+| `mark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `mark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Unmark a Video
+
+| Test Case                                    | Expected Result |
+| -------------------------------------------- | --------------- |
+| `unmark Vid 1 /mod CS2040S /lec Week 1`      | Vid 1 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of CS2040S were already marked as unwatched |
+| `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of CS2040S Week 1 marked as unwatched |
+| 1. `unmark Vid 1 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` <br> 2. `unmark Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| `unmark Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Alert user that duplicate Vid 1 was specified |
+| `unmark Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+
+### Delete Module(s)
+
+| Test Case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete CS2040S`                            | CS2040S is deleted |
+| 1. `nav CS2040S` <br> 2. `delete CS2040S /r`| Same as previous |
+| `delete CS2040S, ST2334`                    | CS2040S and ST2334 are deleted |
+| 1. `nav CS2040S` <br> 2. `delete CS2040S, ST2334 /r`| Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete CS2040S` | Alert user that CS2040S does not exist and cannot be deleted. No change made to LeTracker |
+| 1. `delete CS2040S` <br> 2. `delete CS2040S, ST2334` | Same as previous |
+| 1. `delete CS2040S, ST2334` <br> 2. `delete CS2040S, ST2334` | Alert user that CS2040S and ST2334 do not exist and cannot be deleted. No change made to LeTracker |
+
+### Delete Lecture(s)
+
+| Test Case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete Week 1 /mod CS2040S`                | Week 1 of CS2040S is deleted |
+| 1. `nav CS2040S` <br> 2. `delete Week 1`    | Same as previous |
+| `delete Week 1, Week 2 /mod CS2040S`        | Week 1 and Week 2 of CS2040S are deleted |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that Week 1 of CS2040S does not exist and cannot be deleted |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
+| 1. `delete Week 1, Week 2 /mod CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Alert user that Week 1 and Week 2 of CS2040S do not exist and cannot be deleted |
+| `delete Week 1, Week 1, Week 3 /mod CS2040S` | Alert user that Week 1 was duplicated in command |
+| `delete Week 1, Week 1, Week 1 /mod CS2040S` | Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete Week 1 /mod CS2040S` | Alert user that CS2040S does not exist |
+| 1. `delete CS2040S` <br> 2. `delete Week 1, Week 2 /mod CS2040S` | Same as previous |
+
+### Delete Video(s)
+
+| Test case                                   | Expected Result |
+| ------------------------------------------- | --------------- |
+| `delete Vid 1 /mod CS2040S /lec Week 1`     | Vid 1 of Week 1 of CS2040S is deleted |
+| `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Vid 1 and Vid 2 of Week 1 of CS2040S are deleted |
+| 1. `delete Vid 1 /mod CS2040S /lec Week 1` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 of Week 1 of CS2040S does not exist and cannot be deleted |
+| 1. `delete Vid 1 /mod CS2040S /lec Week 1` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1`  <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Alert user that Vid 1 and Vid 2 of Week 1 of CS2040S do not exist and cannot be deleted |
+| `delete Vid 1, Vid 3, Vid 1 /mod CS2040S /lec Week 1` | Alert user that Vid 1 was duplicated in command |
+| `delete Vid 1, Vid 1, Vid 1 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that CS2040S does not exist |
+| 1. `delete CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1 /mod CS2040S /lec Week 1` | Alert user that Week 1 of CS2040S does not exist |
+| 1. `delete Week 1 /mod CS2040S` <br> 2. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | Same as previous |
+
 ### Tag a Module
 
 | Test Case                       |                   Expected Result                    |
@@ -2386,7 +2611,7 @@ TODO: to be removed
 
 | Test Case                                                                                                                             |                 Expected Result                 |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
-| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] | 
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] |
 | 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
 | 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
 | 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
@@ -2408,4 +2633,10 @@ TODO: to be removed
 | 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
 | 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
 
+### Clear
 
+| Test Case | Expected Result |
+| --------- | --------------- |
+| `clear`   | All modules deleted from LeTracker |
+| 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
+| 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |

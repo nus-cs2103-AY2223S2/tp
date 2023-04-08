@@ -14,8 +14,11 @@ import seedu.address.logic.commands.Command;
  * Adds a module, lecture, or video to the tracker.
  */
 public abstract class AddCommand extends Command {
+
+    /* The command word for the add command. */
     public static final String COMMAND_WORD = "add";
 
+    /* A message describing how the add command can be used. */
     public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
             + "(1) Adds a module to the tracker.\n"
             + "Parameters: "
@@ -47,4 +50,5 @@ public abstract class AddCommand extends Command {
             + PREFIX_WATCH + " "
             + PREFIX_TAG + " Intro, Short\n\n"
             + MESSAGE_CONTEXT_USAGE;
+
 }

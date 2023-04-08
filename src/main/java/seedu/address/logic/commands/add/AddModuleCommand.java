@@ -13,13 +13,16 @@ import seedu.address.model.module.Module;
  */
 public class AddModuleCommand extends AddCommand {
 
+    /** The message for when a {@code Module} is successfully added. */
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
+
+    /** The error message for when a duplicate {@code Module} is detected. */
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker.";
 
     private final Module toAdd;
 
     /**
-     * Creates an {@code AddModuleCommand} to add {@code module} to the tracker.
+     * Constructs an {@code AddModuleCommand} to add {@code module} to the tracker.
      *
      * @param module The module to be added.
      */
@@ -32,13 +35,11 @@ public class AddModuleCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
-        }
+        validateModuleIsNotDuplicate(model);
 
         model.addModule(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
-                new ModuleEditInfo(null, toAdd));
+
+        return createSuccessResult();
     }
 
     @Override
@@ -46,6 +47,19 @@ public class AddModuleCommand extends AddCommand {
         return other == this
                 || (other instanceof AddModuleCommand
                         && toAdd.equals(((AddModuleCommand) other).toAdd));
+    }
+
+    private void validateModuleIsNotDuplicate(Model model) throws CommandException {
+        if (model.hasModule(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
+    }
+
+    private CommandResult createSuccessResult() {
+        String message = String.format(MESSAGE_SUCCESS, toAdd);
+        ModuleEditInfo editInfo = new ModuleEditInfo(null, toAdd);
+
+        return new CommandResult(message, editInfo);
     }
 
 }

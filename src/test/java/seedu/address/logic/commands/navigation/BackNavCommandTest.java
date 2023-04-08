@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Navigation;
+import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
@@ -20,7 +21,7 @@ public class BackNavCommandTest {
     void execute_backFromModule_navToRoot() throws CommandException {
         Module mod = TypicalModules.getCs2040s();
 
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         nav.navigateTo(mod.getCode());
         Model model = new ModelStubWithNavigation(nav);
 
@@ -36,7 +37,7 @@ public class BackNavCommandTest {
         Module mod = TypicalModules.getCs2040s();
         Lecture lec = TypicalLectures.getCs2040sWeek1();
 
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         nav.navigateTo(mod.getCode(), lec.getName());
         Model model = new ModelStubWithNavigation(nav);
 
@@ -50,7 +51,7 @@ public class BackNavCommandTest {
 
     @Test
     void execute_backAtRoot_noChange() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
 
         BackNavCommand cmd = new BackNavCommand();

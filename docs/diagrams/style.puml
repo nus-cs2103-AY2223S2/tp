@@ -31,6 +31,9 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define NAV_COLOR #E37A2E
+!define NAV_COLOR_T4 #F3A66D
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF

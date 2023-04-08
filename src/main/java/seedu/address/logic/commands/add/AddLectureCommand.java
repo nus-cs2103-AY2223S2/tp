@@ -17,14 +17,17 @@ import seedu.address.model.module.ReadOnlyModule;
  */
 public class AddLectureCommand extends AddCommand {
 
+    /** The message for when a {@code Lecture} is successfully added. */
     public static final String MESSAGE_SUCCESS = "New lecture added to module %s: %s";
+
+    /** The error message for when a duplicate {@code Lecture} is detected. */
     public static final String MESSAGE_DUPLICATE_LECTURE = "This lecture already exists in module %s.";
 
     private final ModuleCode moduleCode;
     private final Lecture toAdd;
 
     /**
-     * Creates an {@code AddLectureCommand} to add {@code lecture} to the module with code {@code moduleCode}.
+     * Constructs an {@code AddLectureCommand} to add {@code lecture} to the module with code {@code moduleCode}.
      *
      * @param moduleCode The code of the module to add the lecture to.
      * @param lecture The lecture to be added.
@@ -40,19 +43,13 @@ public class AddLectureCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
-        }
+        ReadOnlyModule module = getContainingModule(model);
 
-        if (model.hasLecture(moduleCode, toAdd.getName())) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
-        }
+        validateLectureIsNotDuplicate(module);
 
-        ReadOnlyModule module = model.getModule(moduleCode);
         model.addLecture(module, toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, toAdd),
-                new LectureEditInfo(moduleCode, null, toAdd));
+        return createSuccessResult();
     }
 
     @Override
@@ -69,6 +66,27 @@ public class AddLectureCommand extends AddCommand {
 
         return moduleCode.equals(otherCommand.moduleCode)
                 && toAdd.equals(otherCommand.toAdd);
+    }
+
+    private ReadOnlyModule getContainingModule(Model model) throws CommandException {
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+        }
+
+        return model.getModule(moduleCode);
+    }
+
+    private void validateLectureIsNotDuplicate(ReadOnlyModule module) throws CommandException {
+        if (module.hasLecture(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
+        }
+    }
+
+    private CommandResult createSuccessResult() {
+        String message = String.format(MESSAGE_SUCCESS, moduleCode, toAdd);
+        LectureEditInfo editInfo = new LectureEditInfo(moduleCode, null, toAdd);
+
+        return new CommandResult(message, editInfo);
     }
 
 }

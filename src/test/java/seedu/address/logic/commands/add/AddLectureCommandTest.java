@@ -1,184 +1,107 @@
 package seedu.address.logic.commands.add;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.lecture.Lecture;
-import seedu.address.model.lecture.LectureName;
-import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.testutil.ModelStub;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ObjectUtil;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
+/**
+ * Contains integration tests (interaction with the {@code Model}) and unit tests for {@code AddLectureCommand}.
+ */
 public class AddLectureCommandTest {
+
+    private final Module module = TypicalModules.getCs2040s();
+    private final Lecture lecture = TypicalLectures.getSt2334Topic1();
+
+    private final Model model = new ModelManager();
 
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () ->
-                new AddLectureCommand(null, TypicalLectures.getCs2040sWeek1()));
+        assertThrows(NullPointerException.class, () -> new AddLectureCommand(null, lecture));
     }
 
     @Test
     public void constructor_nullLecture_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddLectureCommand(TypicalModules.getCs2040s().getCode(), null));
+                new AddLectureCommand(module.getCode(), null));
     }
 
     @Test
-    public void execute_lectureAcceptedByModel_addSuccessful() throws CommandException {
-        Module module = TypicalModules.getCs2040s();
-        ModuleCode moduleCode = module.getCode();
-        Lecture lecture = TypicalLectures.getSt2334Topic1();
+    public void execute_lectureAcceptedByModel_success() throws CommandException {
+        /* Setup */
+        AddLectureCommand command = new AddLectureCommand(module.getCode(), lecture);
+        model.addModule(module);
 
-        ModelStubAcceptingLectureAdded modelStub = new ModelStubAcceptingLectureAdded();
+        /* Create expected results */
+        // Create expected command result
+        String expectedMessage = String.format(AddLectureCommand.MESSAGE_SUCCESS, module.getCode(), lecture);
+        LectureEditInfo expectedEditInfo = new LectureEditInfo(module.getCode(), null, lecture);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedEditInfo);
 
-        CommandResult result = new AddLectureCommand(moduleCode, lecture).execute(modelStub);
+        // Create expected model
+        Model expectedModel = new ModelManager();
+        Module editedModule = new ModuleBuilder(module).build();
+        editedModule.addLecture(lecture);
+        expectedModel.addModule(editedModule);
 
-        assertEquals(String.format(AddLectureCommand.MESSAGE_SUCCESS, moduleCode, lecture), result.getFeedbackToUser());
-        assertEquals(Arrays.asList(module), modelStub.modulesAddedTo);
-        assertEquals(Arrays.asList(lecture), modelStub.lecturesAdded);
+        /* Execute test */
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        AddLectureCommand command =
-                new AddLectureCommand(TypicalModules.getCs2040s().getCode(), TypicalLectures.getCs2040sWeek1());
-
+        AddLectureCommand command = new AddLectureCommand(module.getCode(), lecture);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
-    public void execute_moduleDoesNotExist_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
-        ModelStub modelStub = new ModelStubNoModule();
-        AddLectureCommand command = new AddLectureCommand(moduleCode, TypicalLectures.getCs2040sWeek1());
-
+    public void execute_moduleDoesNotExist_failure() {
+        AddLectureCommand command = new AddLectureCommand(module.getCode(), lecture);
         assertThrows(CommandException.class,
-                String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), ()
-                        -> command.execute(modelStub));
+                String.format(MESSAGE_MODULE_DOES_NOT_EXIST, module.getCode()), () -> command.execute(model));
     }
 
     @Test
-    public void execute_duplicateLecture_throwsCommandException() {
-        Module module = TypicalModules.getCs2040s();
-        ModuleCode moduleCode = module.getCode();
-        Lecture lecture = TypicalLectures.getCs2040sWeek1();
+    public void execute_duplicateLecture_failure() {
+        /* Setup */
+        AddLectureCommand command = new AddLectureCommand(module.getCode(), lecture);
+        module.addLecture(lecture);
+        model.addModule(module);
 
-        ModelStub modelStub = new ModelStubWithLecture(module, lecture);
-        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
+        /* Create expected results */
+        String expectedMessage = String.format(AddLectureCommand.MESSAGE_DUPLICATE_LECTURE, module.getCode());
 
-        assertThrows(CommandException.class,
-                String.format(AddLectureCommand.MESSAGE_DUPLICATE_LECTURE, moduleCode), () ->
-                command.execute(modelStub));
+        /* Execute test */
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
-        AddLectureCommand addCs2040sW1LectureCommand =
-                new AddLectureCommand(moduleCode, TypicalLectures.getCs2040sWeek1());
-        AddLectureCommand addCs2040sW2LectureCommand =
-                new AddLectureCommand(moduleCode, TypicalLectures.getCs2040sWeek2());
+        AddLectureCommand command = new AddLectureCommand(module.getCode(), lecture);
 
-        // same object -> returns true
-        assertTrue(addCs2040sW1LectureCommand.equals(addCs2040sW1LectureCommand));
+        AddLectureCommand commandWithSameValue = new AddLectureCommand(module.getCode(), lecture);
 
-        // same values -> returns true
-        AddLectureCommand addCs2040sW1LectureCommandCopy =
-                new AddLectureCommand(moduleCode, TypicalLectures.getCs2040sWeek1());
-        assertTrue(addCs2040sW1LectureCommand.equals(addCs2040sW1LectureCommandCopy));
+        AddLectureCommand commandWithDiffModuleCode = new AddLectureCommand(
+                TypicalModules.getSt2334().getCode(), lecture);
+        AddLectureCommand commandWithDiffLecture = new AddLectureCommand(
+                module.getCode(), TypicalLectures.getSt2334Topic2());
 
-        // different types -> returns false
-        assertFalse(addCs2040sW1LectureCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addCs2040sW1LectureCommand.equals(null));
-
-        // different lecture -> return false
-        assertFalse(addCs2040sW1LectureCommand.equals(addCs2040sW2LectureCommand));
-    }
-
-    /**
-     * A {@code Model} stub that always accepts the lecture being added.
-     */
-    private class ModelStubAcceptingLectureAdded extends ModelStub {
-        private final ArrayList<ReadOnlyModule> modulesAddedTo = new ArrayList<>();
-        private final ArrayList<Lecture> lecturesAdded = new ArrayList<>();
-
-        @Override
-        public ReadOnlyModule getModule(ModuleCode code) {
-            return TypicalModules.getTypicalTracker().getModule(code);
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode moduleCode) {
-            return true;
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-            return false;
-        }
-
-        @Override
-        public void addLecture(ReadOnlyModule module, Lecture toAdd) {
-            requireAllNonNull(module, toAdd);
-
-            modulesAddedTo.add(module);
-            lecturesAdded.add(toAdd);
-        }
-    }
-
-    /**
-     * A {@code Model} stub that contains no module.
-     */
-    private class ModelStubNoModule extends ModelStub {
-        @Override
-        public boolean hasModule(ModuleCode code) {
-            return false;
-        }
-    }
-
-    /**
-     * A {@code Model} stub that contains a single lecture.
-     */
-    private class ModelStubWithLecture extends ModelStub {
-        private final ReadOnlyModule module;
-        private final ReadOnlyLecture lecture;
-
-        public ModelStubWithLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
-            this.module = module;
-            this.lecture = lecture;
-        }
-
-        @Override
-        public ReadOnlyModule getModule(ModuleCode code) {
-            return TypicalModules.getTypicalTracker().getModule(code);
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode code) {
-            return true;
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-            return module.getCode().equals(moduleCode) && lecture.getName().equals(lectureName);
-        }
+        ObjectUtil.testEquals(command, commandWithSameValue, 1,
+                commandWithDiffModuleCode, commandWithDiffLecture);
     }
 
 }

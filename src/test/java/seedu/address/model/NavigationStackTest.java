@@ -14,9 +14,9 @@ import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalNavigationContexts;
 
-public class NavigationTest {
+public class NavigationStackTest {
 
-    private Navigation navigation = new Navigation();
+    private Navigation navigation = new NavigationStack();
 
     @Test
     public void constructor_startAtRoot() {
