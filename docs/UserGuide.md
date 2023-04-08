@@ -188,9 +188,13 @@ Format:
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
 Keyboard shortcut: 
 To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
 While the recipe to that you want to zoom in to is being selected, simply type <kbd>p</kbd> to view that particular recipe's details! 
+
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -222,9 +226,13 @@ Format:
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
 Keyboard shortcut:
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
 While the recipe to that you want to edit is being selected, simply type <kbd>f</kbd> to display the popup form for that particular recipe!
+
+</div>
 
 ### Finding a recipe by name: `find`
 
@@ -284,9 +292,13 @@ Example(s) of usage:
 
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
 Keyboard shortcut:
 While the recipe you want to delete is being selected, simply hit the <kbd>Delete</kbd> or 
 <kbd>Backspace</kbd> key and click on confirm to delete that particular recipe!
+
+</div>
 
 ### Searching for substitutions for an ingredient: `sub`
 
