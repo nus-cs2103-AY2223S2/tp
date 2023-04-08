@@ -71,8 +71,13 @@ public class AssignTaskCommand extends Command {
 
         Task taskToAssign = lastShownList.get(toAssignTask.getZeroBased());
         Person personToAssign = lastShownPersonList.get(toAssignMember.getZeroBased());
+
         if (personToAssign.getRole() == null) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_ASSIGNED_ROLE);
+        }
+
+        if (taskToAssign.isDone()) {
+            throw new CommandException(Messages.MESSAGE_TASK_ALREADY_DONE);
         }
 
         Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign);
