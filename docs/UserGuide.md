@@ -101,12 +101,28 @@ A bookmark in MyLib contains:
 * Title - the title of the content that is being tracked by this bookmark
 * Author - the author of the content that is being tracked by this bookmark
 * Progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
-* [Genre](#genre) - the genre your content falls under. Examples genres include your typical book genres such as Action and Fantasy.
-* Rating - to indicate how much you enjoyed the content being tracked by this bookmark
-* [Tags](#tags) - a custom label attached to a bookmark for categorization purposes.
+* Genre - the genre your content falls under. More details can be found [here](#genre).
+* Rating - to indicate how much you enjoyed the content being tracked by this bookmark.
+* Tags - a custom labels attached to a bookmark for custom categorization purposes. More details can be found [here](#tags).
 * URL - to hold the URL of the website that the content being tracked by this bookmark is hosted at.
 
 For a bookmark in MyLib, everything except for title and genre is optional.
+
+
+### Genre
+As mentioned in [Bookmark](#bookmark), a genre in a bookmark indicates the genre of the content the bookmark is tracking.
+
+In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
+
+To find out how to view this fixed list of genres, go [here](#genre) for the `genre` command.
+
+
+### Tags
+As mentioned in [Bookmark](#bookmark), tags are custom labels that you can attach to a bookmark to categorize them.
+
+MyLib has a tag list, which is a list of all available tags that can be attached to a bookmark. MyLib provides a default set of tags in this tag list that you can use to tag your bookmarks. In addition, you may also view, add and delete tags from the tag list. Your tag list will be saved along with your bookmarks when you close the application.
+
+The commands to modify your tag list can be found at [Tag Commands](#tag-commands).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -177,19 +193,14 @@ This section provides an in-depth explanation of MyLib's features. For a quick r
 </div>
 <div style="page-break-after: always;"></div>
 
-
-### Tags:
-Tags are custom labels that you can attach to a bookmark. Only tags that are in your tag list can be added to a bookmark.
-This section will cover the commands you can use to view your tag list, adding tags to it and deleting tags from it.
-
-#### Viewing tags
+### Viewing tags
 To view your list of tags, use the `tags` command.
 
 The format for the command is simply: `tags`.
 
 Since MyLib comes with a default set of tags, you can expect a non-empty list of tags even as a new user.
 
-#### Adding tags
+### Adding tags
 To add new tags to your tag list, use the `addtag` command.
 
 The format for the `addtag` command is as follows:
@@ -200,7 +211,7 @@ Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-#### Deleting a tag
+### Deleting a tag
 To delete a tag from your tag list, use the `dtag` command.
 
 Format: `dtag TAG`
@@ -208,14 +219,10 @@ Format: `dtag TAG`
 Example:
 * `dtag MaleProtagonist`
 
-### Genres:
-A genre in a bookmark indicates the genre of the content the bookmark is tracking.
+### Genres
+You can view MyLib's fixed list of genres using the `genre` command.
 
-In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib. This fixed list of genres can be viewed using the `genre` command. 
-
-The format for the command is as follows: 
-
-`genre`
+The format for the command is simply: `genre`
 
 The command should display the list of available genres in the `Result Box`.
 
