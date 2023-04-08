@@ -5,7 +5,7 @@ skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
 
-package Ui UI_COLOR_T1 {
+package Ui {
     Class ResultDisplay UI_COLOR {
         -messageQueue: LinkedBlockingDeque<CommandMessage>
         +queueMessages(messages: List<CommandMessage>)
@@ -14,19 +14,13 @@ package Ui UI_COLOR_T1 {
 }
 show ResultDisplay members
 
-package Logic LOGIC_COLOR_T1 {
+package Logic {
     Class CommandMessage LOGIC_COLOR
-}
-
-package JavaFX {
-    Class "{abstract}\nNode" as Node #000000
 }
 
 ResultDisplay .down.> ResultMessageBox : uses >
 ResultDisplay .left.> CommandMessage : displays >
-ResultDisplay -right-> Node
 
 ResultMessageBox .left.> CommandMessage
-ResultMessageBox .up.> Node : creates >
 
 @enduml
