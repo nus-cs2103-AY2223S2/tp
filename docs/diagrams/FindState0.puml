@@ -1,19 +1,42 @@
 @startuml
 !include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
 
-skinparam ClassFontColor #000000
-skinparam ClassBorderColor #000000
+package Logic {
 
-title Initial state
+Class FitBookParser
+Class FindCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
 
-package States {
-    class State1 as "__fb0:FitBook__" #FFFF00
-    class State2 as "__fb1:FitBook__"
+
+Class "<<interface>>\nLogic" as Logic1
+Class LogicManager
 }
 
-State1 -[hidden]right-> State2
-hide State2
+package FitBookModel{
+Class HiddenFitBookModel #FFFFFF
+}
 
-class Pointer as "Current State"
-Pointer -up-> State1
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic1
+LogicManager -right->"1" FitBookParser
+FitBookParser ..> FindCommand : creates >
+
+FindCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+
+
+Command .right.> FitBookModel
+
+Logic1 ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
 @enduml

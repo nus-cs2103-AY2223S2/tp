@@ -176,89 +176,41 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Past 30 days weight data graph
 #### Implementation
-The edit appointments feature allows users to view appointments in the upcoming dates.
-
-This feature is implemented using a panel on the main window with a list of clients names
-that is updated with every command that may affect appointment set.
-
-One situation that trigger the edit appointments feature is when a user edits an appointment.
-
+The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
+with data from XYChart.Series. The data is obtained from the logic component, which provides only past 30 days of weight data in the WeightHistory class.
+.
 The following details explain how it works:
 
-*  What it does:
-    * When an appointment is edited in the clients list, it is automatically added to the
-      list of appointments.
-    * The list is automatically sorted in increasing order of the appointment data time.
+* The `WeightHistory` class stores the list of weights and dateTime.
+* The GraphPopup class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
+* Ensure the XYChart.Series that populates the graph with data is always updated with the most recent data.
+* The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window.
 
-* Details:
-    * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
-      class.
-    * In the *EditCommand* class, the data entered by user is parsed.
-    * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
-    * This function, in turn, calls editCommand() function in FitBook.
-    * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
-      appointment date time are valid.
-    * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
-      Otherwise, an error message is returned.
+Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by hvaing the MainWindow class call handle statistics 
+on startup and after execution of commands.
 
+Sequence Diagram for Graph feature.
+
+Step 1: MainWindow requests for a graph pop-up window.
+
+Step 2: Logic call the WeightHistory class to generate a list of `Date` date mapped to `Double` weight over 30 days. `handleStatistics` method is called to generate 
+graph. `updateSeries` method is called to ensure the data populating the graph is up-to-date.
 
 * Example Usage Scenario
 
-  Below is an example usage scenario of how the appointment list mechanism behaves at each step:
+  Below is an example usage scenario of how the weight data graph behaves at each step:
     * The user launches the application for the first time.
-    * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
-      checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
+    * The user executes the  `addWeight` command to add weights and dates. The execution of the `addWeight` command also
+      checks whether the date is valid in the date list. If it is, the weight and date are added to the weight and date list. Otherwise, an error is displayed.
+    * The user executes the `graph` command to generate weight data graph in the pop-up windows.
 
 
 * Design Considerations
 
-  One important design consideration is how to handle expired appointment dates and times. The current choice is to
-  automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-    * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
-    * cons: expired date time cannot be updated immediately unless the user reopen the application.
-
-### Add weights feature
-#### Implementation
-The add weights feature allows users to store weights in an array in the upcoming dates.
-
-This feature is implemented using a panel on the main window with a list of clients names
-that is updated with every command that may affect appointment set.
-
-One situation that trigger the edit appointments feature is when a user edits an appointment.
-
-The following details explain how it works:
-
-*  What it does:
-    * When an appointment is edited in the clients list, it is automatically added to the
-      list of appointments.
-    * The list is automatically sorted in increasing order of the appointment data time.
-
-* Details:
-    * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
-      class.
-    * In the *EditCommand* class, the data entered by user is parsed.
-    * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
-    * This function, in turn, calls editCommand() function in FitBook.
-    * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
-      appointment date time are valid.
-    * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
-      Otherwise, an error message is returned.
-
-
-* Example Usage Scenario
-
-  Below is an example usage scenario of how the appointment list mechanism behaves at each step:
-    * The user launches the application for the first time.
-    * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
-      checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
-
-
-* Design Considerations
-
-  One important design consideration is how to handle expired appointment dates and times. The current choice is to
-  automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-    * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
-    * cons: expired date time cannot be updated immediately unless the user reopen the application.
+  One important design consideration is how to display the weight data graph. Our approach is to
+  generate each graph in a separate pop-up windows.
+    * pros: Users can easily view multiple clients' weight data graphs side-by-side without having to switch between different views.
+    * cons: If the user opens multiple pop-up windows to view different weight data graphs, this may clutter the user's desktop and make it difficult to manage.
 
 ### Edit appointments feature
 #### Implementation
