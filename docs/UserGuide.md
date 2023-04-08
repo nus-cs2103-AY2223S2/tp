@@ -425,7 +425,6 @@ You can `undo` an `undo` command
 
 
 
-
 ### Exiting the program : `exit`
 
 Exits the program. Data is [automatically saved](#saving-the-data)
@@ -483,15 +482,15 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 <br><br>
 
-**Q**: When I run the `archive` command, nothing happens
-
-**A**: This is most likely because the pet you are trying to archive already exists in `archive.json`, if that is the case, just delete that entry from your PetPal
-
-<br><br>
-
 **Q**: Why there are some pets highlighted even though the deadline is already passed?
 
 **A**: If you have already done the task, run `mark` function to mark it as done and remove the highlight.
+
+<br><br>
+**Q**: PetPal says the index is invalid even though the pet exists in the PetPal list
+
+**A**: Index of each pet is based on your **currently viewable** pet list index, so if your currently viewable pet list is empty, the index will be invalid<br>
+Run `list` or `l` to view all the pets in the list before executing the command again.
 
 <br><br>
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
@@ -503,16 +502,16 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 ## Glossary
 
-| Term                     | Definition                                                                                                                                                                                                                                                                                                               |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                |
-| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                           |
-| YYYY-MM-DD hh:mm:ss      | Date format whereby  `YYYY` refers to the 4 digits years, `MM` refers to the 2 digit months, `DD` refers to the 2 digit days, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes, 'ss' refers to the 2 digits seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
-| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                     |
-| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                 |
-| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                   |
-| JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                     |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                         |
+| Term                     | Definition                                                                                                                                                                                                                                                                                                                        |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                         |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                                    |
+| YYYY-MM-DD hh:mm:ss      | Date format whereby `YYYY` refers to the year using 4 digits, `MM` refers to the months in 2 digits, `DD` refers to the days in 2 digits, `hh` refers to the 2 digit hours, `mm` refers to the 2 digit minutes, 'ss' refers to the 2 digit seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                              |
+| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                          |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                            |
+| JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                              |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                                  |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -538,6 +537,10 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                  |                       |
 
 [Return to Table of Contents](#table-of-contents)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Acknowledgements
 
