@@ -5,18 +5,19 @@ import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Ward's name in MedInfo.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidWardName(String)}
  */
 public class WardName {
 
-    public static final String MESSAGE_CONSTRAINTS = "Ward names should only contain alphanumeric characters"
+    public static final String MESSAGE_CONSTRAINTS = "Ward names should be 40 characters or less,"
+            + "should only contain alphanumeric characters"
             + "and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,39}";
 
     public final String wardName;
 
@@ -27,14 +28,14 @@ public class WardName {
      */
     public WardName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidWardName(name), MESSAGE_CONSTRAINTS);
         wardName = name;
     }
 
     /**
      * Returns true if a given string is a valid ward name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidWardName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

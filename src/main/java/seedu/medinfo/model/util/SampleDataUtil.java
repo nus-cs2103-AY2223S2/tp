@@ -1,5 +1,7 @@
 package seedu.medinfo.model.util;
 
+import seedu.medinfo.commons.exceptions.DataConversionException;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.patient.Name;
@@ -35,7 +37,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyMedInfo getSampleMedInfo() {
+    public static ReadOnlyMedInfo getSampleMedInfo() throws CommandException {
         MedInfo sampleAb = new MedInfo();
         for (Ward sampleWard : getSampleWards()) {
             sampleAb.addWard(sampleWard);

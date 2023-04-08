@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.UniquePatientList;
 import seedu.medinfo.model.ward.UniqueWardList;
@@ -108,7 +109,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Adds a patient to the medinfo book.
      * The patient must not already exist in the medinfo book.
      */
-    public void addPatient(Patient p) {
+    public void addPatient(Patient p) throws CommandException {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException();
         }
@@ -123,7 +124,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException{
         requireAllNonNull(target, editedPatient);
         patients.setPatient(target, editedPatient);
         wards.setPatient(target, editedPatient);

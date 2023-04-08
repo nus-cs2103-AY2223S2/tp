@@ -169,7 +169,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
 }
 
 .status-STABLE {
@@ -177,7 +177,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
 }
 
 .status-SERIOUS {
@@ -185,7 +185,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
 }
 
 .status-CRITICAL {
@@ -193,7 +193,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
 }
 
 .status-bar .label {

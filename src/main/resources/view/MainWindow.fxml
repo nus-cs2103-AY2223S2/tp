@@ -51,10 +51,10 @@
           </StackPane>
 
             <SplitPane VBox.vgrow="ALWAYS">
-              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+              <VBox id="listView" styleClass="pane-with-border" minWidth="250" prefWidth="200" VBox.vgrow="ALWAYS">
                 <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </VBox>
-              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+              <VBox id="listView" styleClass="pane-with-border" minWidth="250" prefWidth="200" VBox.vgrow="ALWAYS">
                 <StackPane fx:id="wardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               </VBox>
             </SplitPane>

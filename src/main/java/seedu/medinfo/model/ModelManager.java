@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.medinfo.commons.core.GuiSettings;
 import seedu.medinfo.commons.core.LogsCenter;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.ward.Ward;
 
@@ -112,14 +113,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPatient(Patient patient) {
+    public void addPatient(Patient patient) throws CommandException {
         medInfo.addPatient(patient);
-        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
+//        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+//        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
     }
 
     @Override
-    public void setPatient(Patient target, Patient editedPatient) {
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireAllNonNull(target, editedPatient);
         medInfo.setPatient(target, editedPatient);
     }

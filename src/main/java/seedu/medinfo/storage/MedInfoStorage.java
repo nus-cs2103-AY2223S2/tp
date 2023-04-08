@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.medinfo.commons.exceptions.DataConversionException;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 
@@ -24,12 +25,12 @@ public interface MedInfoStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException;
+    Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException, CommandException;
 
     /**
      * @see #getMedInfoFilePath()
      */
-    Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, IOException, CommandException;
 
     /**
      * Saves the given {@link ReadOnlyMedInfo} to the storage.

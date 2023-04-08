@@ -25,14 +25,14 @@
               <Region fx:constant="USE_PREF_SIZE" />
             </minWidth>
           </Label>
-          <Label fx:id="name" styleClass="cell_big_label" />
+          <Label fx:id="name" styleClass="cell_big_label" wrapText="true"/>
 
         </HBox>
         <Label fx:id="nric" styleClass="cell_small_label" />
         <Label fx:id="ward" styleClass="cell_small_label" />
         <Label fx:id="discharge" text="No discharge date set" styleClass="cell_small_label" />
       </VBox>
-      <Label fx:id="status" />
+      <Label fx:id="status" minWidth="100"/>
     </HBox>
   </GridPane>
 </HBox>

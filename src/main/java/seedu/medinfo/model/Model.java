@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.medinfo.commons.core.GuiSettings;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.ward.Ward;
 
@@ -73,7 +74,7 @@ public interface Model {
      * Adds the given patient.
      * {@code patient} must not already exist in the medinfo book.
      */
-    void addPatient(Patient patient);
+    void addPatient(Patient patient) throws CommandException;
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
@@ -81,7 +82,7 @@ public interface Model {
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
      */
-    void setPatient(Patient target, Patient editedPatient);
+    void setPatient(Patient target, Patient editedPatient) throws CommandException;
 
     /**
      * Sorts the list of patients by given {@code comparator}

@@ -15,6 +15,8 @@ import seedu.medinfo.commons.util.ConfigUtil;
 import seedu.medinfo.commons.util.StringUtil;
 import seedu.medinfo.logic.Logic;
 import seedu.medinfo.logic.LogicManager;
+import seedu.medinfo.logic.commands.Command;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
@@ -77,8 +79,16 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MedInfo");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleMedInfo);
-        } catch (DataConversionException e) {
+            Optional<ReadOnlyMedInfo> sampleData = Optional.ofNullable(SampleDataUtil.getSampleMedInfo());
+            initialData = addressBookOptional.orElseGet(() -> {
+                try {
+                    return SampleDataUtil.getSampleMedInfo();
+                } catch (CommandException e) {
+                    logger.warning("Data file not in the correct format. Will be starting with an empty MedInfo");
+                    return new MedInfo();
+                }
+            });
+        } catch (CommandException | DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty MedInfo");
             initialData = new MedInfo();
         } catch (IOException e) {
