@@ -2,24 +2,25 @@
 layout: page
 title: Developer Guide
 ---
-## **NeoBook**
-NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized. 
-The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently. 
-
-This Developer Guide aims to provide technical documentation for developers who want to contribute to NeoBook's development. 
-The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details. 
-
-The target readers of this Developer Guide are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
-
-
----
+## Table Of Contents
 * Table of Contents
-  {:toc}
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+--------------------------------------------------------------------------------------------------------------------
+## **NeoBook**
+### Introduction
+NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized.
+The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently.
+### Purpose
+This Developer Guide aims to provide technical documentation for developers who want to contribute to NeoBook's development.
+The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details.
+### Target Audience
+The target readers of this Developer Guide are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -571,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -579,6 +580,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+## General
 
 ### Launch and shutdown
 
@@ -588,36 +591,185 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+## Address-book related
+
+### Adding a person
+1. Adding a person while all persons/no persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
+         - Testing for: Command successful execution
+         - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
+      
+      2. **Test case 2**: `add p/91238917 a/Serangoon Central` 
+         - Testing for: No name specified
+         - Expected: No contact is added. Error details show in the status message.
+      3. **Test case 3**: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
+         - Testing for: Invalid fields
+         - Expected: Same as test case 2
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test Cases
+      1. **Test case 1**: `delete 1`
+         - Testing for: Command successful execution
+         - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      2. **Test case 2**: `delete 0`
+         - Testing for: Erroneous index results in command failure
+         - Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
+         - Testing for: Erroneous index results in command failure
+         - Expected: Similar to test case 2.
 
-1. _{ more test cases …​ }_
+### Editing data of a contact
+1. Edit data of contact.
+    1. Prerequisites: Non-empty address-book. Navigate to the `Address book` tab using `tab 1`
+    2. Test Cases
+        1. Test case 1: `edit N n/Pierce`, `edit N a/Serangoon Central`, ... where N is a number between 1 and the number of contacts in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first contact updates to that specified in the command
+        2. Test case 2: `edit 1 n/@#`, `edit 1 e/123`, ...
+            - Testing for: Invalid fields results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        3. Test case 3: `edit 1 x n/Pierce`, ... where x is anything that does not have a field specifier and is not a number between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        4. Test case 4: `edit M n/Pierce`, ... where M is a number not between 1 and the number of contacts in the list
+            - Testing for: Unspecified field results in command failure
+            - Expected: Contacts do not update. Error details shown in the status message.
+        5. Test case 4: `edit`
+            - Testing for: No fields specified results in command failure
+            - Expected: User does not update. Error details shown in the status message.
+
+### Finding a person
+1. Finding a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. Test case 1: `find n/Pi`
+         - Testing for: Command successful execution 
+         - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
+      2. Test case 2: `find n/Stan n/Pierce`
+        
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
+      3. Test case 3: `find n/Pie m/Comp`
+        
+         - Testing for: Command successful execution
+         - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
+      4. Test case 4: `find`
+        
+         - Testing for: No fields specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+      5. Test case 5: `find 1 n/Pi`
+         
+         - Testing for: Index specified results in command failure
+         - Expected: List does not update. Error details shown in the status message.
+2. Find a contact when there are no contacts
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. Test case 1: `find n/pierce`
+          - Testing for: Successful command execution
+          - Expected: Command executes, but list does not change as there are no contacts.
+      3. Test case 5: `find 1 n/Pierce`
+          - Testing for: Index specified results in command failure
+          - Expected: List does not update. Error details shown in the status message.
+
+### Favouriting/Unfavouriting a contact
+
+### Selecting a contact
+
+
+
+## Events-related
+
+### Adding an event
+
+### Deleting an event
+
+### Editing an event
+
+### Tagging/Untagging a contact to an event
+
+
+## User-related
+### Editing data of User
+1. Edit data of User specified in Me tab.
+    1. Prerequisites: Navigate to Me tab using `tab 3`
+    2. Test Cases
+       1. Test case 1: `edituser n/Pierce`, `edituser a/Serangoon Central`, ...
+           - Testing for: Successful command execution
+           - Expected: Field of user updates to that specified in the command
+       2. Test case 2: `edituser n/@#`, `edituser e/123`, ...
+          - Testing for: Invalid fields results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       3. Test case 3: `edituser x`, `edituser x n/Pierce`, ... where x is anything that does not have a field specifier.
+          - Testing for: Unspecified field results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+       4. Test case 4: `edituser`
+          - Testing for: No fields specified results in command failure
+          - Expected: User does not update. Error details shown in the status message.
+
+## UI-related
+### Light/Dark mode
+1. Set UI to light mode from dark mode
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+    2. Test Cases
+       1. Test case 1: `light`
+          - Testing for: Successful command execution
+          - Expected: UI updates to light mode
+1. Set UI to light mode from light mode
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+    2. Test Cases
+        1. Test case 1: `light`
+            - Testing for: Successful command execution
+            - Expected: UI updates to light mode
+1. Set UI to dark mode from light mode
+    1. Prerequisites: UI currently in light mode (can be switched using the `light` command)
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
+1. Set UI to light mode from light mode
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
+
+
+### Moving to another tab in NeoBook
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. _{ more test cases …​ }_
 
-1. _{ more test cases …​ }_
+## **Appendix: Effort**
+
+
+## **Appendix: Planned enhancements**
+
+1. For commands that take an index in the preamble, the current error message when integers of 0 or less is `Invalid command format!` followed by the usage message of the command, which is too general. We plan to change the error message to reference the incorrect index instead: `The provided index should be greater than 0`.
+2. For commands that take prefixes, providing an invalid prefix after a valid one results in an error message regarding the constraints of the valid prefix, which could be confusing. We plan to change the error message to point out the invalid prefix and show the command usage.
+3. Inputs in the app currently have inconsistent character handling for languages other than English. We plan to unify this handling behaviour throughout the app.
+4. The user is currently able to fill nonsensical information into certain fields (e.g., `Psychology` as Major with `Computing` as Faculty, or `McSpicy` as Gender). We plan to use readily available information to build a series of checks that would warn the user for such discrepancies.
+5. The `Tags` and `Favourite` fields for the user currently exist but are not reflected in the `Me` tab as we felt it to be irrelevant from the perspective of the user. However, they can be useful with the introduction of contact import and export features, hence we plan to build a section for the user to customise such information when they export their `Me` page for others to import as a contact.
+6. Events happening on the same day are currently ordered by their index. We plan to adopt a chronological order instead as it is more intuitive to the user.
+7. The command line currently requires users to know the command formats exactly, which steepens the learning curve and may slow down some users. We plan to add fuzzy command recognition and autocomplete features for a better user experience.

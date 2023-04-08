@@ -36,4 +36,10 @@ public class Description {
     public String toString() {
         return this.description;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || ((other instanceof Description)
+                && description.equals(((Description) other).description));
+    }
 }

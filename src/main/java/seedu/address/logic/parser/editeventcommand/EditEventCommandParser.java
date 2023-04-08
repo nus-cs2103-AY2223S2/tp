@@ -8,17 +8,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditEventCommand object
  */
-public class EditEventCommandParser {
+public class EditEventCommandParser implements Parser<EditEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -38,7 +38,7 @@ public class EditEventCommandParser {
      * and returns an EditEventDescriptor for edit commands to use.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventDescriptor parseForTags(String args) throws ParseException {
+    private EventDescriptor parseForTags(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
@@ -74,16 +74,17 @@ public class EditEventCommandParser {
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditEventCommand.MESSAGE_NOT_EDITED);
         }
 
         return editEventDescriptor;
     }
 
-    public Index parseIndex(String index) throws ParseException {
+    private Index parseIndex(String index) throws ParseException {
         return ParserUtil.parseIndex(index);
     }
-    protected String getMessageUsage() {
+
+    private String getMessageUsage() {
         return EditEventCommand.MESSAGE_USAGE;
     }
 }

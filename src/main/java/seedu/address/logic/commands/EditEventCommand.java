@@ -45,9 +45,11 @@ public class EditEventCommand extends Command {
                     PREFIX_END_DATE_TIME + "2023-03-10 1800",
                     PREFIX_RECURRENCE + "weekly");
 
-    private static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    private static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
+    public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";
+
+    public static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
             + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
             + PREFIX_START_DATE_TIME + ")";
 
