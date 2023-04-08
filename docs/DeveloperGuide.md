@@ -240,7 +240,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Can be very messy to implement.
 
 
-### Data archiving
+### Data import and export
 
 DengueHotspotTracker data is stored in a csv file format.
 
