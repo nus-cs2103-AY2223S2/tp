@@ -7,8 +7,6 @@ title: Eugene Tang's Project Portfolio Page
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
 It is optimized for typing where it allows you to complete internship management tasks much more efficiently
 via the keyboard as compared to using traditional Graphical User Interface (GUI) applications.
-If you are a fast typist who is seeking a one-stop platform to systematically organise your internship
-applications, then InternBuddy is the perfect buddy to accompany you during your internship hunt.
 
 ## Project Contributions
 My code contributions can be found on 
@@ -26,8 +24,7 @@ My code contributions can be found on
   [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78),
   [\#191](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/191)
   * Created a new look for the List Panel.
-  * Implemented a new View Panel for the viewing of internship information.
-  * Ensured that the UI is responsive where the wrapping width of text scales with Window size.
+  * Implemented a new responsive View Panel for the viewing of internship information.
 
 - **Implemented feature to add optional field,** `COMMENT`
   [\#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79)
@@ -61,12 +58,6 @@ My code contributions can be found on
   * Worked with my teammate, Christopher, to implement this.
   * GUI testing improved code coverage for InternBuddy.
 
-### Project Management
-- Set up milestones `v1.2`, `v1.2b`, `v1.3`, `v1.3b` and `v1.4`.
-- Managed releases for `v1.3.1` and `v1.3.3`.
-
-<div style="page-break-after: always;"></div>
-
 ### Documentation
 - **Updated README**
   [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13),
@@ -86,8 +77,7 @@ My code contributions can be found on
   * Documented the explanation for the different parts in InternBuddy's GUI, accompanied by a graphic.
   * Wrote up the command information, explaining the format and constraints of commands and
     fields in InternBuddy.
-  * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands,
-    as well as on the sections on `Saving Internship Data` and `Loading the Data`.
+  * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands.
   * Created the appendices to explain to users how to install Java 11, manually edit the `internbuddy.json` file
     and populate InternBuddy with sample data.
 - **Contributed to Developer Guide**
@@ -100,7 +90,6 @@ My code contributions can be found on
   * Defined product scope by identifying InternBuddy's target audience and value proposition.
   * Drafted user stories on how Computing undergraduates would use InternBuddy.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
-  * Created the appendix on `Effort` to illustrate the challenges and achievements of the InternBuddy project.
 
   
 ### Others
