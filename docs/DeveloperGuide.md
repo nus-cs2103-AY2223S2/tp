@@ -684,9 +684,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## 8.3 Use cases
 
-(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
+(For all <u>use cases</u> below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise). Use case will be referred to as UCXX, where XX is the use case numbering.
 
-**Use case: Add a contact**
+**UC01: Add a contact**
 
 **<u>Main Success Scenario (MSS)</u>**
 
@@ -712,7 +712,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: Delete a contact**
+**UC02: Delete a contact**
 
 **MSS**
 
@@ -731,9 +731,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
-**Use case: Edit a contact**
+**UC03: Edit a contact**
 
 **MSS**
 
@@ -747,22 +748,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+
+  Use case ends
 
 * 3a. The given index is invalid.
     * 3a1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
 * 3b. There is an error in the given information.
     * 3b1. ConnectUS shows an error message.
+  
       Use case resumes at step 2.
 
-
-**Use case: Find a contact**
+**UC04: Add tags to a contact**
 
 **MSS**
 
-1. User requests to find a contact by keywords
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
+4. ConnectUS edits the person's tags.
+
+   Use case ends.
+
+**Extensions**
+
+* UC04's extensions are the same as UC03: Edit a contact.
+
+**UC06: Delete a tag from a contact**
+
+**MSS**
+
+1. User requests to list persons.
+2. ConnectUS shows a list of persons.
+3. User requests to add tags to a specific person's information from the list by giving the tag type to be added, and the tag information.
+4. ConnectUS edits the person's tags.
+
+   Use case ends.
+
+**Extensions**
+
+* UC05's extensions are the same as UC03: Edit a contact.
+
+**UC06: Search for a contact**
+
+**MSS**
+
+1. User requests to search for a contact by keywords
 2. ConnectUS displays confirmation message
 3. ConnectUS displays all contacts with keywords in name
 
@@ -772,19 +805,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. No keywords are provided
     * 1a1. ConnectUS displays error message
+  
     Use case ends
 
-* 1b. User requests to find a contact by tag
+* 1b. User requests to find a contact by specific tag type
   * 1b1. ConnectUS displays confirmation message
-  * 1b2. ConnectUS displays all contacts with given tag
+  * 1b2. ConnectUS displays all contacts with given tag type
+  
   Use case ends
 
-* 1c. User requests to find a contact by contact information
+* 1c. User requests to find a contact by specific contact information fields
   * 1c1. ConnectUS displays confirmation message
-  * 1c2. ConnectUS displays all contacts with given confirmation message
+  * 1c2. ConnectUS displays all contacts with given contact information fields
+  
   Use case ends
 
-**Use case: List all contacts**
+**UC07: List all contacts**
 
 **MSS**
 
@@ -798,9 +834,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. There is an error in the request
   * 1a1. ConnectUS displays error message
+  
   Use case ends
 
-*{More to be added}*
+**UC08: Viewing help for a specific command**
+
+**MSS**
+
+1. User requests for help regarding usage format of a specific command
+2. ConnectUS displays confirmation message
+3. ConnectUS displays usage format of the given command
+
+   Use case ends
+
+**Extensions**
+
+* 1a. No keywords are provided
+    * 1a1. ConnectUS displays general help message
+  
+      Use case ends
 
 <div style="page-break-after: always"></div>
 
