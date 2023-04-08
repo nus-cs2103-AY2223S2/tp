@@ -87,9 +87,9 @@ This section explains some common components you may find in a command.
 |---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Parameter**             | `QUESTION`, `ANSWER` | Parameters are placeholders where you have to insert your input.<br/> <br/>Suppose `add q\QUESTION a\ANSWER` is a valid command to add a card. You can simply replace `QUESTION` and `ANSWER` with the question and answer of your choice.                                                                               |  
 | **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
-| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
+| **Optional Component**    | `[t\TAG]`            | Optional components can be **omitted** in certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory. The last component `t\TAG` is optional.                                                |
 | **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
-| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                            |
+| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be a positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                          |
 | **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as **easy** only.                                                                                                                                            |
 
 <div markdown="block" class="alert alert-info">
@@ -142,10 +142,10 @@ Editing a deck name will not affect the cards stored inside it.
 Format: `editDeck INDEX DECK_NAME`
 - `INDEX` is the index of the deck you want to edit.
 - `DECK_NAME` is the new name you want to assign to the specified deck.
-  - The new deck name cannot be the name of an existing deck.
+  - The new deck name must not match any existing deck names (Deck names are case-sensitive).
 
 Example: 
-- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to Chemistry.
+- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to "Chemistry".
 
 ### 3.3.3. Deleting a Deck : `deleteDeck`
 
@@ -156,7 +156,7 @@ Be careful, a deck once deleted cannot be retrieved!
 Format: `deleteDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
 
-Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
+Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in that deck. 
 
 ### 3.3.4. Finding Decks by Keywords: `findDecks`
 
@@ -166,12 +166,13 @@ Format: `findDecks KEYWORD...`
 - You can include multiple KEYWORDS - as long as a deck's name contains at least one keyword, the deck will be found.
 - At least one KEYWORD must be given.
 - This command does not support partial words, e.g., `findDecks program` will not return the same list of decks as `findDecks programming`, despite `program` being a partial word of `programming`.
-- Keywords are case-insensitive. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
+- Keywords are **case-insensitive**. `findDecks programming` and `findDecks PROGRAMMING` will return the same filtered decks.
 - Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
 - `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`.
-  ![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
+
+![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
