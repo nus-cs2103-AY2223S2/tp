@@ -352,12 +352,6 @@ The following sequence diagram shows how `add` works:
 
 <div style="page-break-after: always"></div>
 
-The following sequence diagram provides details on how the `informationFields` are being parsed:
-
-![AddCommandParseInformationFieldsDiagram](images/AddCommandParseInformationFieldsDiagram.png)
-
-<div style="page-break-after: always"></div>
-
 ## 4.2 Edit Command
 
 **Overview:**
