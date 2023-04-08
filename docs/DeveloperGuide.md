@@ -227,7 +227,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+<div style="page-break-after: always"></div>
+
+The `UI` component:
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -404,6 +406,8 @@ The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w
 4. If the index is not in valid range of the contact list provided, an error is thrown. The user is prompted to re-enter the command correctly.
 5. The `Person` is cross-referenced in the `Model` to check if it already exists. If it does, then an error is raised as feedback to the user.
 6. If step 6 completes without exceptions, the new `Person` will be successfully edited and stored inside the contact list.
+
+<div style="page-break-after: always"></div>
 
 The following activity diagram shows the logic of editing an existing `Person` in the contact list.
 
@@ -658,8 +662,6 @@ These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
-
-<div style="page-break-after: always"></div>
 
 ## 7.1 Launch and shutdown
 
@@ -1036,7 +1038,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## 8.4 Non-Functional Requirements
 
-1. Should work on any <u>_mainstream OS_</u> as long as it has <u>Java `11`</u> or above installed.
+1. Should work on any <u>mainstream OS</u> as long as it has <u>Java <code>11</code></u> installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be for a single user i.e. (not a multi-user product).
@@ -1083,6 +1085,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > **CS2103T:**
 > The module code for a Software Engineering module in the National University of Singapore.
 
+<div style="page-break-after: always"></div>
+
 ### F
 > **Format:**
 > In this Developer Guide, the format of a command is the correct input usage of a command.
@@ -1115,6 +1119,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 >
 > **Module:**
 > Modules are courses that students take at the National University of Singapore.
+
+<div style="page-break-after: always"></div>
 
 ### N
 > **NUS:**
