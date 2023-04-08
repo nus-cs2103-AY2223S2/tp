@@ -5,7 +5,7 @@ import java.util.HashSet;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.OneTimeEvent;
 import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.event.EventList;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
@@ -52,7 +52,7 @@ public class UserBuilder {
     protected CommunicationChannel comms;
 
     protected Faculty faculty;
-    protected UniqueEventList events;
+    protected EventList events;
 
     /**
      * Creates a {@code UserBuilder} with the default details.
@@ -69,7 +69,7 @@ public class UserBuilder {
         this.race = new Race(DEFAULT_RACE);
         this.comms = new CommunicationChannel(DEFAULT_COMMS);
         this.faculty = new Faculty(DEFAULT_FACULTY);
-        this.events = new UniqueEventList();
+        this.events = new EventList();
     }
 
     /**
@@ -105,7 +105,7 @@ public class UserBuilder {
         this.race = userToCopy.getRace();
         this.comms = userToCopy.getComms();
         this.faculty = userToCopy.getFaculty();
-        this.events = new UniqueEventList();
+        this.events = new EventList();
     }
 
     /**

@@ -16,7 +16,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.event.EventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.ui.result.ResultDisplay;
@@ -82,7 +82,7 @@ public class EditUserCommand extends EditPersonCommand {
     private static User createEditedUser(User user, PersonDescriptor editPersonDescriptor) {
         assert user != null;
         Person updatedUser = createEditedPerson(user, editPersonDescriptor);
-        UniqueEventList currentEvents = user.getEvents();
+        EventList currentEvents = user.getEvents();
 
         return new User(updatedUser, currentEvents);
     }

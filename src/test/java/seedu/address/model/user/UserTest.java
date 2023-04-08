@@ -12,14 +12,36 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.Event;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.enums.Interval;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.UserBuilder;
 
 public class UserTest {
+
+    private static final Description DESCRIPTION = new Description("Hello world!");
+    private static final DateTime START_DATE_TIME = new DateTime("2023-01-01 0000");
+    private static final DateTime END_DATE_TIME = new DateTime("2023-01-01 1200");
+    private static final Recurrence RECURRENCE = new Recurrence(Interval.DAILY);
+    private static final Set<Person> PEOPLE = Set.of(DANIEL, ELLE);
+    private static final Event ONE_TIME_EVENT = new OneTimeEvent(DESCRIPTION,
+            START_DATE_TIME, END_DATE_TIME, PEOPLE);
+    private static final Event RECURRING_EVENT = new RecurringEvent(DESCRIPTION,
+            START_DATE_TIME, END_DATE_TIME, RECURRENCE, PEOPLE);
+
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         User user = new UserBuilder().build();
@@ -98,62 +120,127 @@ public class UserTest {
     }
 
     @Test
-    public void hasEvent() {
-        Event oneTimeEvent = SampleDataUtil.EVENT_1;
-        Event recurringEvent = SampleDataUtil.EVENT_2;
+    public void hasEvent_noEvents() {
 
         User user = new UserBuilder().build();
 
         // Fresh user has no events.
-        assertFalse(user.hasEvent(oneTimeEvent));
-        assertFalse(user.hasEvent(recurringEvent));
-
-        //Add one time event, user contains one-time-event and not recurring event.
-        user = new UserBuilder().withEvents(oneTimeEvent).build();
-        assertTrue(user.hasEvent(oneTimeEvent));
-        assertFalse(user.hasEvent(recurringEvent));
-
-        //Add recurring event, user contains recurring event and not one-time-event.
-        user = new UserBuilder().withEvents(recurringEvent).build();
-        assertFalse(user.hasEvent(oneTimeEvent));
-        assertTrue(user.hasEvent(recurringEvent));
-
-        //Add both events, user contains both recurring event and one-time-event.
-        user = new UserBuilder().withEvents(recurringEvent).withEvents(oneTimeEvent).build();
-        assertTrue(user.hasEvent(oneTimeEvent));
-        assertTrue(user.hasEvent(recurringEvent));
+        assertFalse(user.hasEvent(ONE_TIME_EVENT));
+        assertFalse(user.hasEvent(RECURRING_EVENT));
     }
 
     @Test
-    public void addEvent() {
-        Event oneTimeEvent = SampleDataUtil.EVENT_1;
-        Event recurringEvent = SampleDataUtil.EVENT_2;
-
-        User user = new UserBuilder().build();
-
-        // Fresh user has no events.
-        assertFalse(user.getEvents().contains(oneTimeEvent));
-        assertFalse(user.getEvents().contains(recurringEvent));
+    public void hasEvent_oneTimeEvent() {
 
         //Add one time event, user contains one-time-event and not recurring event.
-        user = new UserBuilder().build();
-        user.addEvent(oneTimeEvent);
-        assertTrue(user.getEvents().contains(oneTimeEvent));
-        assertFalse(user.getEvents().contains(recurringEvent));
+        User user = new UserBuilder().withEvents(ONE_TIME_EVENT).build();
+        assertTrue(user.hasEvent(ONE_TIME_EVENT));
+        assertFalse(user.hasEvent(RECURRING_EVENT));
+    }
 
+    @Test
+    public void hasEvent_recurringEvent() {
         //Add recurring event, user contains recurring event and not one-time-event.
-        user = new UserBuilder().build();
-        user.addEvent(recurringEvent);
-        assertFalse(user.getEvents().contains(oneTimeEvent));
-        assertTrue(user.getEvents().contains(recurringEvent));
+        User user = new UserBuilder().withEvents(RECURRING_EVENT).build();
+        assertFalse(user.hasEvent(ONE_TIME_EVENT));
+        assertTrue(user.hasEvent(RECURRING_EVENT));
+    }
 
-        //Add oneTimeEvent twice. Duplicate events are allowed.
+    @Test
+    public void hasEvent_multipleEvents() {
+        //Add both events, user contains both recurring event and one-time-event.
+        User user = new UserBuilder().withEvents(RECURRING_EVENT).withEvents(ONE_TIME_EVENT).build();
+        assertTrue(user.hasEvent(ONE_TIME_EVENT));
+        assertTrue(user.hasEvent(RECURRING_EVENT));
+    }
+
+    @Test
+    public void addEvent_oneTimeEvent() {
+
+        //Add one time event, user contains one-time-event and not recurring event.
+        User user = new UserBuilder().build();
+        user.addEvent(ONE_TIME_EVENT);
+        assertTrue(user.hasEvent(ONE_TIME_EVENT));
+        assertFalse(user.hasEvent(RECURRING_EVENT));
+    }
+
+    @Test
+    public void addEvent_RecurringEvent() {
+        //Add recurring event, user contains recurring event and not one-time-event.
+        User user = new UserBuilder().build();
+        user.addEvent(RECURRING_EVENT);
+        assertFalse(user.hasEvent(ONE_TIME_EVENT));
+        assertTrue(user.hasEvent(RECURRING_EVENT));
+    }
+    @Test
+    public void addEvent_multipleEvents() {
+        //Add recurring event and one time event, user contains both recurring event and one-time-event.
+        User user = new UserBuilder().build();
+        user.addEvent(RECURRING_EVENT);
+        user.addEvent(ONE_TIME_EVENT);
+        assertTrue(user.hasEvent(ONE_TIME_EVENT));
+        assertTrue(user.hasEvent(RECURRING_EVENT));
+    }
+
+    @Test
+    public void addEvent_duplicateEvent() {
+        //Add ONE_TIME_EVENT twice. Duplicate events are allowed.
         User finalUser = new UserBuilder().build();
-        finalUser.addEvent(oneTimeEvent);
-        finalUser.addEvent(oneTimeEvent);
-        assertTrue(finalUser.hasEvent(oneTimeEvent));
-        finalUser.deleteEvent(oneTimeEvent);
-        //Should still have one more oneTimeEvent.
-        assertTrue(finalUser.hasEvent(oneTimeEvent));
+        finalUser.addEvent(ONE_TIME_EVENT);
+        finalUser.addEvent(ONE_TIME_EVENT);
+        int count = 0;
+        for (Event e: finalUser.getEvents()) {
+            if (e.equals(ONE_TIME_EVENT)) {
+                count += 1;
+            }
+        }
+        assertEquals(2, count);
+    }
+
+    @Test
+    public void deleteEvent_throwsEventNotFoundException() {
+        User user = new UserBuilder().build();
+
+        // Fresh user has no events. Throws EventNotFoundException.
+        assertFalse(user.getEvents().contains(ONE_TIME_EVENT));
+        assertThrows(EventNotFoundException.class, () -> user.deleteEvent(ONE_TIME_EVENT));
+
+        // User with one time event, does not have recurring event.
+        User userWithOneTimeEvent = new UserBuilder().withEvents(ONE_TIME_EVENT).build();
+        assertThrows(EventNotFoundException.class, () -> userWithOneTimeEvent.deleteEvent(RECURRING_EVENT));
+
+        // User with one time event, does not have recurring event.
+        User userWithRecurringEvent = new UserBuilder().withEvents(RECURRING_EVENT).build();
+        assertThrows(EventNotFoundException.class, () -> userWithRecurringEvent.deleteEvent(ONE_TIME_EVENT));
+    }
+
+    @Test
+    public void deleteEvent_oneTimeEvent() {
+        // User with one time event can delete one time event.
+        User userWithOneTimeEvent = new UserBuilder().withEvents(ONE_TIME_EVENT).build();
+        assertTrue(userWithOneTimeEvent.hasEvent(ONE_TIME_EVENT));
+        userWithOneTimeEvent.deleteEvent(ONE_TIME_EVENT);
+        assertFalse(userWithOneTimeEvent.hasEvent(ONE_TIME_EVENT));
+    }
+
+    @Test
+    public void deleteEvent_recurringEvent() {
+        // User with recurring event can delete recurring event but not one time event.
+        User userWithRecurringEvent = new UserBuilder().withEvents(RECURRING_EVENT).build();
+        assertTrue(userWithRecurringEvent.hasEvent(RECURRING_EVENT));
+        userWithRecurringEvent.deleteEvent(RECURRING_EVENT);
+        assertFalse(userWithRecurringEvent.hasEvent(RECURRING_EVENT));
+    }
+
+    @Test
+    public void deleteEvent_multipleEvents() {
+        // User with both recurring event and one time event can delete both events.
+        User userWithBothEvents = new UserBuilder().withEvents(RECURRING_EVENT).withEvents(ONE_TIME_EVENT).build();
+        assertTrue(userWithBothEvents.hasEvent(RECURRING_EVENT));
+        assertTrue(userWithBothEvents.hasEvent(ONE_TIME_EVENT));
+        userWithBothEvents.deleteEvent(RECURRING_EVENT);
+        userWithBothEvents.deleteEvent(ONE_TIME_EVENT);
+        assertFalse(userWithBothEvents.hasEvent(RECURRING_EVENT));
+        assertFalse(userWithBothEvents.hasEvent(ONE_TIME_EVENT));
     }
 }
