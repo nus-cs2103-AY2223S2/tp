@@ -33,7 +33,7 @@ public class HelpConsultationCommand extends HelpCommand {
             + "deleteStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_INDEX_IN_CONSULTATION_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
-            + "addNote note content/NOTE type/Consultation name/CONSULTATION_NAME";
+            + "addNote content/NOTE type/Consultation name/CONSULTATION_NAME";
 
     public static final String EDIT_NOTE = "Edit Note:          "
             + "editNote content/NEW_NOTE type/Consultation name/CONSULTATION_NAME index/NOTE_INDEX";
