@@ -652,7 +652,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts a `tag` command execution for adding a `Tag` object to a `Module` object in a 
 `Tracker` object.
 
-![TagSequenceDiagram](images/TagSequenceDiagram.png)
+![TagSequenceDiagram](images/TagSequenceDiagrm.png)
 
 Below is an activity diagram that showcase the events that occurs when a `tag` command is executed.
 
@@ -715,7 +715,7 @@ The feature utilises the following classes:
 The following sequence diagram depicts an `untag` command execution for removing a `Tag` object from a `Module` object 
 in a `Tracker` object.
 
-![TagSequenceDiagram](images/UntagSequenceDiagram.png)
+![TagSequenceDiagram](images/UntagSequenceDiagrm.png)
 
 Below is an activity diagram that showcase the events that occurs when an `untag` command is executed.
 
