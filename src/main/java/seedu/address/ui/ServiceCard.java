@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import seedu.address.commons.util.UiUtil;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
@@ -23,11 +24,6 @@ public class ServiceCard extends UiPart<Region> {
     private static final String FXML = "ServiceListCard.fxml";
     private static final Image CarIcon = new Image("/images/car_white_icon.png");
     private static final Image MotorbikeIcon = new Image("/images/motorbike_white_icon.png");
-    private static final Color toRepair = Color.rgb(61, 167, 201);
-    private static final Color inProgress = Color.rgb(252, 159, 39);
-    private static final Color complete = Color.rgb(89, 201, 61);
-    private static final Color cancelled = Color.rgb(236, 46, 46);
-    private static final Color onHold = Color.rgb(255, 230, 0);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -80,26 +76,7 @@ public class ServiceCard extends UiPart<Region> {
         vehicleInfo.setText(serviceVehicle.getBrand() + ", " + serviceVehicle.getPlateNumber());
         estimatedFinishDate.setText("Estimated Finish Date: " + service.getEstimatedFinishDate().format(dtf));
         status.setText("Status: " + service.getStatus().getValue());
-        setStatusCircle(service.getStatus());
-    }
-
-    private void setStatusCircle(ServiceStatus status) {
-        switch (status) {
-        case TO_REPAIR:
-            statusCircle.setFill(toRepair);
-            break;
-        case IN_PROGRESS:
-            statusCircle.setFill(inProgress);
-            break;
-        case COMPLETE:
-            statusCircle.setFill(complete);
-            break;
-        case CANCELLED:
-            statusCircle.setFill(cancelled);
-            break;
-        default:
-            statusCircle.setFill(onHold);
-        }
+        UiUtil.setStatusCircle(statusCircle, service.getStatus());
     }
 
     @Override
