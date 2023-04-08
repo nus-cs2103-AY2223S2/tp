@@ -52,8 +52,8 @@ class JsonAdaptedPatient extends JsonAdaptedPerson {
         this.height = source.getHeight().getValue();
         this.weight = source.getWeight().getValue();
         this.diagnosis = source.getDiagnosis().getValue();
-        this.status = source.getStatus().toString();
-        this.remark = source.getRemark().toString();
+        this.status = source.getStatus().getValue();
+        this.remark = source.getRemark().getValue();
     }
 
     /**
