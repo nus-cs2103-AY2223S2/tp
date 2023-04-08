@@ -769,9 +769,9 @@ The feature utilises the following classes:
 The following sequence diagram depicts a `import` command execution for importing a single module from a specified 
 file path to the current `Tracker` object
 
-![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+![ImportSequenceDiagram](images/ImportSequenceDiagra.png)
 
-![ImportSequenceDiagramRef](images/ImportSequenceDiagramRef.png)
+![ImportSequenceDiagramRef](images/ImportSequenceDiagramRe.png)
 
 
 The following is a description of the code execution flow:
