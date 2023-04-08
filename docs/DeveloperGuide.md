@@ -678,11 +678,12 @@ Hence, we define a common format for context-sensitive commands:
 > `command [/mod {module_code}] [/lec {lecture_name}]`
 
 Parsing context-specifying arguments to determine context:
-  | Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
-  | -----------------   | -----------------   | ------------------   | ----------------------   |
-  |         No          |         No          | Root Context         |  `XYZModuleCommand`      |
-  |         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
-  |         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+| -----------------   | -----------------   | ------------------   | ----------------------   |
+|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
 
 If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
 
