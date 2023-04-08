@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
@@ -64,10 +65,15 @@ public class ImportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, InvalidPathException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Path archivePath;
 
-        Path archivePath = Paths.get("data", fileName);
+        try {
+            archivePath = Paths.get("data", fileName);
+        } catch (InvalidPathException pathException) {
+            throw new CommandException(MESSAGE_INVALID_FILE_NAME);
+        }
 
         List<String> moduleCodeList = moduleCodeSet.stream()
                 .map(moduleCode -> moduleCode.code).collect(Collectors.toList());
