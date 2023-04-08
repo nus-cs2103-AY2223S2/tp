@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.Person;
 
@@ -45,9 +44,6 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public void add(Event toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateEventException();
-        }
         internalList.add(toAdd);
     }
 
@@ -69,9 +65,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
-        if (!eventsAreUnique(events)) {
-            throw new DuplicateEventException();
-        }
+
 
         internalList.setAll(events);
     }
@@ -149,6 +143,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Tags the given Person {@code taggingPerson} to the event at {@code index}.
      */
     public void tagPersonToEvent(Index index, Person taggingPerson) {
+        requireAllNonNull(index, taggingPerson);
         Event eventCopy = getEvent(index).addTaggedPerson(taggingPerson);
         internalList.set(index.getZeroBased(), eventCopy);
     }
@@ -157,6 +152,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Untags the given Person {@code taggingPerson} from the event at {@code index}.
      */
     public void untagPersonToEvent(Index index, Person taggingPerson) {
+        requireAllNonNull(index, taggingPerson);
         Event eventCopy = getEvent(index).deleteTaggedPerson(taggingPerson);
         internalList.set(index.getZeroBased(), eventCopy);
     }

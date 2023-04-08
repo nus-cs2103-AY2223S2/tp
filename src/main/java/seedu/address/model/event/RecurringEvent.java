@@ -2,6 +2,7 @@ package seedu.address.model.event;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.event.fields.DateTime;
@@ -53,6 +54,12 @@ public class RecurringEvent extends Event {
 
     @Override
     public Event copy() {
-        return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
+        return new RecurringEvent(
+                new Description(description.toString()),
+                new DateTime(startDateTime.toString()),
+                new DateTime(endDateTime.toString()),
+                new Recurrence(recurrence.interval),
+                new HashSet<>(taggedPeople)
+        );
     }
 }

@@ -238,7 +238,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
-    private static NusMod parseModule(String module) throws ParseException {
+    public static NusMod parseModule(String module) throws ParseException {
         if (module == null) {
             return null;
         }
