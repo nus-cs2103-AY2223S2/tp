@@ -3,42 +3,65 @@ layout: page
 title: Ryan's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: *Fish Ahoy!*
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+*Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
+Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
+
+*Fish Ahoy!* **streamlines** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and
+**weekly tasks**, such as feeding and cleaning.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Fish Sort command**: Added a sorting function for user to sort fish.
+  * What it does: allows the user to sort fish by a given attribute.
+  * Justification: This feature improves the product significantly because a user can sort his fishes to his own preference, 
+    and change the ordering of the fishes.
+  * Highlights: This enhancement builds upon existing FilteredList functionality through integrating a SortedList. 
+    It required a study of design alternatives and Java FilteredList and SortedList implementations.
+    
+* **Improved Task Sorting**: Added a sorting based off priority to Tasks.
+  * What it does: allows the user to easily view tasks based off priority.
+  * Justification: This feature improves the product because a user can now see the most urgent tasks first and focus on them,
+    improving the benefits of the tasks feature for the user.
+  * Highlights: This enhancement also uses SortedLists to sort the tasks by priority. To facilitate this, I also added 
+    enums for priority to allow for easier sorting. (Pull Requests [\#119](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/119), [\#214](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/214))
+    
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ryanchua00&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Fish Sort command**: Added a sorting function for user to sort fish
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.2` - `v1.3` (2 releases) on GitHub
-
+* **Project management/Contributions to team-based tasks**:
+  * Managed releases `v1.3` - `v1.3.1` (2 releases) on GitHub.
+  * Checked, approved and merged 32+ PRs, handling conflicts and helped fix group mates' PRs: 
+    * Thoroughly reviewed PRs: [\#49](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/49)
+      [\#63](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/63) - `v1.1 - v1.4`
+  * Created 28 and closed 53 issues, of which the latter 40 was assigned and closed by me.
+  * Ensure project progress is on schedule.
+  * Summarise and delegate tasks at every project meeting, see [Project notes](https://docs.google.com/document/d/1SKZt5__jKFv3l1Zu2YpQm-VNddbT2NYJlIxam2Zethk/edit#bookmark=id.pnxemekevmpi).
+  
 * **Enhancements to existing features**:
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#67](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/67), [\#39](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/39))
+  * **Improved Help page**: Added a JavaFX WebView to load the UserGuide.
+    * What it does: allows the user to seek for help from the application.
+    * Justification: This feature improves the product because a user can now access the help page from the application,
+      and also a local html version of the help page if there is not internet access.
+    * Highlights: This enhancement uses JavaFX WebView to load the help page.
+    * Credits: After coming up with the idea to use JavaFX WebView, I referenced an already existing implementation of a
+      help page built on JavaFX WebView from [AY2223S1-CS2103- F14-1](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/66)
+      
 * **Documentation**:
   * User Guide:
-    * Added all Ui images
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Created and added all Ui images, including feature screenshots.
+    * Update features to latest command format (Pull Request [\#55](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/55)).    
+    * Update descriptions for (Pull Request [\#80](https://github.com/AY2223S2-CS2103T-T17-4/tp/pull/80)):
+      * Tanks, Fishes and Tasks.
+      * Feature `fish sort`.
+      * Introduction section.
   * Developer Guide:
-    * Added implementation details of the `fish sort` feature.
+    * Add implementation details of the `fish sort` feature.
+    * Add sequence diagram for `fish sort`.
+    * Add acknowledgements section.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Contributed to forum discussions ([\#296](https://github.com/nus-cs2103-AY2223S2/forum/issues/296))
+  * Helped team clarify an issue in `v1.4` feature freeze ([\#334](https://github.com/nus-cs2103-AY2223S2/forum/issues/334))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
