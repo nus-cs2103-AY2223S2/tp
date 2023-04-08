@@ -4,9 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-show attributes
-hide empty attributes
-
 Client : name
 Client : phone
 Client : email
