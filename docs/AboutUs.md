@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/immanuelhume.md)]
 
 * Role: Developer
-* Responsibilities: Project entity and CRUD
+* Responsibilities: Functionality and test for `Project` entity and CRUD, and fuzzy search
 
 ### Stanley Neoh
 
