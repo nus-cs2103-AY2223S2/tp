@@ -8,6 +8,22 @@ title: User Guide
 *  **[Quick start](#quick-start)**
 *  **[User interface layout](#user-interface-layout)**
 *  **[User input restrictions](#user-input-restrictions)**
+   *  **[Student contact](#student-contact)**
+      *  [Name](#name)
+      *  [Phone/Contact Number](#phonecontact-number)
+      *  [Email](#email)
+      *  [Address](#address)
+      *  [Tags](#tags)
+   *  **[Task](#task)**
+      *  [Name/Title](#nametitle)
+   *  **[Score](#score)**
+      *  [Label](#label)
+      *  [Value](#value)
+      *  [Date](#date)
+   *  **[General fields](#general-fields)**
+      *  [Index](#index)
+      *  [File path for export](#file-path-for-export)
+      *  [File path for import](#file-path-for-import)
 *  **[Features](#features)**
    *  **[Managing student contact](#managing-student-contact)**
       *  [Adding a student: `add`](#1-adding-a-student-add)
@@ -171,7 +187,7 @@ A **label** can only contain **alphanumeric** characters and **spaces**.
 
 [Back to top](#table-of-contents)
 
-### Value
+#### Value
 A **value** can be any integer or a number with one decimal place from **0 to 100 (inclusive)**.
 
 [Back to top](#table-of-contents)
@@ -195,11 +211,14 @@ An index must be a **positive integer** 1, 2, 3, ... (one-based index).
   * e.g. Windows uses backward slash and Mac uses forward slash
 * Export path should be a **directory**, not a file!
 
+[Back to top](#table-of-contents)
+
 #### File path for import
 * File path separator (e.g. backward/forward slash) should **follow your operating system**.
     * e.g. Windows uses backward slash and Mac uses forward slash
 * Export path should be a **file**, not a directory!
 
+[Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -365,15 +384,15 @@ Filters students whose tags match with any of the given keywords.
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-insensitive. e.g. `primary` will match `Primary`
-* The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
+* The order of the keywords does not matter. e.g. `primaryprimary4` will match `primary4primary`
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
-  e.g. `primary primary4` will return `primary`, `primary4`, and `primary primary4`.
+  e.g. `primary primary4` will return students with tags of either `primary`, `primary4`, or both.
 
 Examples:
 * `filter primary` returns tag `primary`, `Primary`.
-* `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
+* `filter secondary secondary2` returns students with tags of either `secondary`, `secondary2`, or both.
     ![Filter students](images/Filter%20students.png)
 
 [Back to top](#table-of-contents)
@@ -566,11 +585,16 @@ Exports all the student's data out. Users can export with or without specifying 
 The default exported position for CLI will be under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
-Format: There we support using CLI or mouse.
+Format:
 
 **CLI**<br> `export [FILE_PATH]`
 
-**Mouse**<br> Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+**GUI**<br> 
+Click the "File" on the top menu, then choose "Export" under the drop-down list. 
+
+An export window will pop up, the user is required to specify which folder to store the exported file.
+
+![Export the data of the students.png](images/Export%20the%20data%20of%20the%20students.png)
 
 Examples:
 * `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
@@ -594,11 +618,13 @@ Examples:
 Imports student data into the application. Users can import the file by dragging the file in or choosing the file path.
 The imported file must be in `.json` format.
 
-Format: There we support using CLI or mouse.
+Format:
 
 **CLI**<br> - `import FILE_PATH`
 
-**Mouse**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+**GUI**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+
+![Import the data of the students.png](images/Import%20the%20data%20of%20the%20students.png)
 
 Examples:
 * For Windows users
@@ -621,11 +647,11 @@ Examples:
 Exports the specified student progress into a PDF file. Users can export without specifying the path. The default
 exported position for CLI will be under the _home folder_.
 
-Format: We support CLI or mouse. 
+Format:
 
 **CLI**<br>`exportp INDEX [p/FILE_PATH]`
 
-**Mouse**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
+**GUI**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
 up, the user is required to specify which folder to store the exported file.
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
@@ -634,6 +660,8 @@ up, the user is required to specify which folder to store the exported file.
 * `FILE_PATH` should be a valid path to a **directory**.
 * The exported file name is `[STUDENT_NAME]'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
 * Sample PDF output file: [Alex Yeoh's Progress Report.pdf](pdfs/Alex Yeoh's Progress Report.pdf)
+
+![Exporting the progress of a student](images/Exporting%20the%20progress%20of%20a%20student.png)
 
 Examples:
 
@@ -662,7 +690,12 @@ Examples:
 Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING.
 For more detailed information such as how to use the syntax, please refer to the help page.
 
-Format: `help`
+Format:
+
+**CLI**<br> `help`
+
+**GUI**<br>
+Click the "Help" on the top menu, then choose "Help" again under the drop-down list.
 
 ![Viewing help](images/Viewing%20help.png)
 
@@ -673,6 +706,8 @@ Format: `help`
 Clears all entries from the MATHUTORING.
 
 Format: `clear`
+
+![Clear all entries](images/Clear%20all%20entries.png)
 
 [Back to top](#table-of-contents)
 
