@@ -23,7 +23,7 @@ public class DeleteDoctorCommandParser implements Parser<DeleteDoctorCommand> {
             return new DeleteDoctorCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format("%s\n%s", pe.getMessage(), DeleteDoctorCommand.MESSAGE_USAGE), pe);
+                    String.format("%s\n%s", pe.getMessage(), DeleteDoctorCommand.getCommandUsage()), pe);
         }
     }
 }

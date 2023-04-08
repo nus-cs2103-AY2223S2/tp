@@ -15,7 +15,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started._](https://ay2223s2-cs2103t-f12-1.github.io/tp/SettingUp)
+Refer to the guide [_Setting up and getting started._](./SettingUp.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -58,9 +58,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `del-doc 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagramUpdated.png" width="574" alt="ArchitectureSeqDiagramUpdated" />
 
 Each of the four main components (also shown in the diagram above),
 

@@ -41,7 +41,7 @@ public class EditDoctorCommandParser implements Parser<EditDoctorCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format("%s\n%s", pe.getMessage(),
-                    EditDoctorCommand.MESSAGE_USAGE), pe);
+                    EditDoctorCommand.getCommandUsage()), pe);
         }
 
         EditDoctorDescriptor editDoctorDescriptor = new EditDoctorDescriptor();
@@ -63,7 +63,7 @@ public class EditDoctorCommandParser implements Parser<EditDoctorCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editDoctorDescriptor::setTags);
 
         if (!editDoctorDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditDoctorCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditDoctorCommand.getMessageFailure());
         }
 
         return new EditDoctorCommand(index, editDoctorDescriptor);

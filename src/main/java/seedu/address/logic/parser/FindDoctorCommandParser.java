@@ -35,7 +35,8 @@ public class FindDoctorCommandParser implements Parser<FindDoctorCommand> {
         if (!hasAtLeastOnePrefix(argMultimap, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_SPECIALTY, PREFIX_YOE, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDoctorCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindDoctorCommand.getCommandUsage()));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
@@ -49,7 +50,8 @@ public class FindDoctorCommandParser implements Parser<FindDoctorCommand> {
 
         if (name.isEmpty() && phone.isEmpty() && email.isEmpty()
                 && specialty.isEmpty() && yoe.isEmpty() && tagList.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDoctorCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindDoctorCommand.getCommandUsage()));
         }
 
         DoctorFilter doctorFilter = new DoctorFilter(name, phone, email, specialty, yoe, tagList);

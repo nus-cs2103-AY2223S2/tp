@@ -38,13 +38,13 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing patient in the address book.
  */
-public class EditPatientCommand extends Command {
+public class EditPatientCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "edit-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "ep";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patients list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -64,9 +64,9 @@ public class EditPatientCommand extends Command {
             + PREFIX_HEIGHT + "1.63 ";
 
 
-    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
+    private static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
+    private static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    private static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -81,6 +81,22 @@ public class EditPatientCommand extends Command {
 
         this.index = index;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_EDIT_PATIENT_SUCCESS;
+    }
+
+    public static String getMessageDuplicate() {
+        return MESSAGE_DUPLICATE_PATIENT;
+    }
+
+    public static String getMessageFailure() {
+        return MESSAGE_NOT_EDITED;
     }
 
     @Override

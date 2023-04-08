@@ -18,13 +18,13 @@ import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
  * At least one parameter is required
  * Tags are matched fully
  */
-public class FindDoctorCommand extends Command {
+public class FindDoctorCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "find-doc";
     public static final String SHORTHAND_COMMAND_WORD = "fd";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Finds a doctor in the address book. "
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
@@ -42,6 +42,14 @@ public class FindDoctorCommand extends Command {
 
     public FindDoctorCommand(DoctorContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW;
     }
 
     @Override

@@ -18,11 +18,11 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Adds a patient to the address book.
  */
-public class AddPatientCommand extends Command {
+public class AddPatientCommand extends Command implements CommandInterface {
     public static final String COMMAND_WORD = "add-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "ap";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Adds a patient to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -43,12 +43,12 @@ public class AddPatientCommand extends Command {
             + PREFIX_DIAGNOSIS + "Fever "
             + PREFIX_STATUS + "Outpatient "
             + PREFIX_REMARK + "No known allergies "
-            + PREFIX_TAG + "friends";
+            + PREFIX_TAG + "pendingReview";
 
 
 
-    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book";
+    private static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    private static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book";
 
     private final Patient toAdd;
 
@@ -59,6 +59,19 @@ public class AddPatientCommand extends Command {
         requireNonNull(patient);
         toAdd = patient;
     }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_SUCCESS;
+    }
+
+    public static String getMessageDuplicatePatient() {
+        return MESSAGE_DUPLICATE_PATIENT;
+    }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

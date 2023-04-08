@@ -23,7 +23,7 @@ public class AssignPatientCommandParser implements Parser<AssignPatientCommand> 
             if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_DOCTOR)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AssignPatientCommand.MESSAGE_USAGE));
+                        AssignPatientCommand.getCommandUsage()));
             }
 
             Index patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get());
@@ -31,7 +31,7 @@ public class AssignPatientCommandParser implements Parser<AssignPatientCommand> 
             return new AssignPatientCommand(patientIndex, doctorIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignPatientCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignPatientCommand.getCommandUsage()), pe);
         }
     }
 

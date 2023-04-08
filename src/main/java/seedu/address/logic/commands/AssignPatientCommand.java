@@ -17,7 +17,7 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Assigns a patient to a doctor in the address book.
  */
-public class AssignPatientCommand extends Command {
+public class AssignPatientCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "assign-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "asn";
@@ -29,8 +29,8 @@ public class AssignPatientCommand extends Command {
             + "Parameters: "
             + PREFIX_PATIENT + "PATIENT_INDEX (must be a positive integer) "
             + PREFIX_DOCTOR + "DOCTOR_INDEX (must be a positive integer) ";
-    public static final String MESSAGE_ASSIGN_PATIENT_SUCCESS = "Assigned Patient %1s to Doctor %2s.";
-    public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient %1s is already assigned to Doctor %2s.";
+    private static final String MESSAGE_ASSIGN_PATIENT_SUCCESS = "Assigned Patient %1s to Doctor %2s.";
+    private static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient %1s is already assigned to Doctor %2s.";
     private final Index patientIndex;
     private final Index doctorIndex;
 
@@ -42,6 +42,16 @@ public class AssignPatientCommand extends Command {
         this.patientIndex = patientIndex;
         this.doctorIndex = doctorIndex;
     }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    //TODO: Implement tests that invoke this method
+    public static String getMessageSuccess() {
+        return MESSAGE_ASSIGN_PATIENT_SUCCESS;
+    }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -66,8 +76,8 @@ public class AssignPatientCommand extends Command {
         model.setDoctor(doctorToAssign, doctorWithAssign);
         model.setPatient(patientToAssign, patientWithAssign);
         return new CommandResult(String.format(MESSAGE_ASSIGN_PATIENT_SUCCESS,
-                patientToAssign.getName().fullName,
-                doctorToAssign.getName().fullName), patientWithAssign);
+                patientToAssign.getName().getValue(),
+                doctorToAssign.getName().getValue()), patientWithAssign);
     }
 
     private static Doctor createDoctorWithAssign(Doctor doctorToAssign, Patient patientToAssign)
@@ -78,8 +88,8 @@ public class AssignPatientCommand extends Command {
 
         if (patientsSet.contains(patientToAssign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
-                    patientToAssign.getName().fullName,
-                    doctorToAssign.getName().fullName));
+                    patientToAssign.getName().getValue(),
+                    doctorToAssign.getName().getValue()));
         }
 
         patientsSet.add(patientToAssign);
@@ -102,8 +112,8 @@ public class AssignPatientCommand extends Command {
 
         if (doctorsSet.contains(doctorToAssign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
-                    patientToAssign.getName().fullName,
-                    doctorToAssign.getName().fullName));
+                    patientToAssign.getName().getValue(),
+                    doctorToAssign.getName().getValue()));
         }
 
         doctorsSet.add(doctorToAssign);

@@ -40,9 +40,9 @@ public class DoctorCard extends ContactCard {
         super(FXML);
         this.doctor = doctor;
         id.setText(displayedIndex + ". ");
-        name.setText(doctor.getName().fullName);
-        phone.setText(doctor.getPhone().value);
-        email.setText(doctor.getEmail().value);
+        name.setText(doctor.getName().getValue());
+        phone.setText(doctor.getPhone().getValue());
+        email.setText(doctor.getEmail().getValue());
         doctor.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);

@@ -44,7 +44,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format("%s\n%s", pe.getMessage(),
-                    EditPatientCommand.MESSAGE_USAGE), pe);
+                    EditPatientCommand.getCommandUsage()), pe);
         }
 
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
@@ -76,7 +76,7 @@ public class EditPatientCommandParser implements Parser<EditPatientCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditPatientCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditPatientCommand.getMessageFailure());
         }
         return new EditPatientCommand(index, editPatientDescriptor);
     }

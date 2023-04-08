@@ -28,8 +28,8 @@ public class JsonAdaptedDoctorTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = ALICE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_SPECIALTY = ALICE.getSpecialty().specialty;
-    private static final String VALID_YOE = ALICE.getYoe().value;
+    private static final String VALID_SPECIALTY = ALICE.getSpecialty().getValue();
+    private static final String VALID_YOE = ALICE.getYoe().getValue();
     private static final List<JsonAdaptedPatient> VALID_PATIENTS = ALICE.getPatients().stream()
             .map(JsonAdaptedPatient::new)
             .collect(Collectors.toList());

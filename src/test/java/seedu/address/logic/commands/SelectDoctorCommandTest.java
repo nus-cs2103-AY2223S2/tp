@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -44,6 +45,23 @@ public class SelectDoctorCommandTest {
         SelectDoctorCommand selectDoctorCommand = new SelectDoctorCommand(outOfBoundIndex);
 
         assertCommandFailure(selectDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = SelectDoctorCommand.COMMAND_WORD
+                + ": Selects the doctor identified by the index number used in the displayed doctor list.\n"
+                + "Parameters: INDEX (must be a positive integer)\n"
+                + "Example: " + SelectDoctorCommand.COMMAND_WORD + " 1";
+
+        assertEquals(messageUsage, SelectDoctorCommand.getCommandUsage());
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        String messageSuccess = "Selected doctor %1$s";
+
+        assertEquals(messageSuccess, SelectDoctorCommand.getMessageSuccess());
     }
 
     @Test
