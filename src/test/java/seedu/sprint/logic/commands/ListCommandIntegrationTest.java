@@ -22,10 +22,10 @@ import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.AlphabeticalComparator;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.model.application.ApplicationHasTaskPredicate;
 import seedu.sprint.model.application.DeadlineComparator;
 import seedu.sprint.model.application.DefaultComparator;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with other commands like Sort and Find) for ListCommand.
@@ -89,7 +89,7 @@ public class ListCommandIntegrationTest {
      * This test executes a list command after finding with a specific keyword.
      */
     public void execute_listAfterFindKeyword() {
-        NameContainsKeywordsPredicate predicate = preparePredicate("Google");
+        ApplicationContainsKeywordsPredicate predicate = preparePredicate("Google");
         model.updateFilteredApplicationList(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertEquals(Arrays.asList(GOOGLE), model.getSortedApplicationList());
@@ -104,7 +104,7 @@ public class ListCommandIntegrationTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ApplicationContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new ApplicationContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

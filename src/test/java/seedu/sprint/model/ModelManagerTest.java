@@ -16,7 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.core.GuiSettings;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.InternshipBookBuilder;
 
 public class ModelManagerTest {
@@ -168,7 +168,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = BYTEDANCE.getCompanyName().name.split("\\s+");
-        modelManager.updateFilteredApplicationList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredApplicationList(new ApplicationContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(internshipBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

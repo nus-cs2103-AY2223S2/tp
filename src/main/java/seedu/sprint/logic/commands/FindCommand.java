@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.sprint.commons.core.Messages;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 
 /**
  * Finds and lists all internship applications in internship book which has company names
@@ -18,12 +18,12 @@ public class FindCommand extends Command {
             + "OR find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)] \n"
             + "Example: " + COMMAND_WORD + " r/SWE Intern c/Meta s/Offered";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ApplicationContainsKeywordsPredicate predicate;
 
     /**
      * Creates an FindCommand to find applications that fulfil the given predicate.
      */
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(ApplicationContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

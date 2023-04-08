@@ -14,7 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.commands.FindCommand;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -31,30 +31,31 @@ public class FindCommandParserTest {
     public void parse_validArgsWithoutPrefix_returnsFindCommand() {
         // No leading and trailing whitespaces for Company Name keywords
         FindCommand expectedFindCommandForCompanyName =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Google", "Meta")));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList("Google", "Meta")));
         assertParseSuccess(parser, "Google Meta", expectedFindCommandForCompanyName);
 
         // Role keywords
         FindCommand expectedFindCommandForRole =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("SWE", "Intern")));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList("SWE", "Intern")));
         assertParseSuccess(parser, "SWE Intern", expectedFindCommandForRole);
 
         // Status keywords
         FindCommand expectedFindCommandForStatus =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Offered", "Interested")));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList("Offered", "Interested")));
         assertParseSuccess(parser, "Offered Interested", expectedFindCommandForStatus);
 
         // Role, Status and Company Name keywords
         FindCommand expectedFindCommandForRoleStatusAndCompany =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Offered", "SWE", "Google")));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList("Offered", "SWE", "Google")));
         assertParseSuccess(parser, "Offered SWE Google", expectedFindCommandForRoleStatusAndCompany);
 
         // Multiple whitespaces between keywords
         FindCommand expectedFindCommandWithWhitespaces =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Offered", "SWE", "Google")));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(Arrays.asList("Offered", "SWE", "Google")));
         assertParseSuccess(parser, " \n Offered \n \t SWE  \n Google  \t", expectedFindCommandWithWhitespaces);
     }
 
+    /* Tests the parser when there is/are prefix(es) specified for find command. */
     @Test
     public void parse_validArgsWithPrefix_returnsFindCommand() {
         List<String> role = Arrays.asList("Intern");
@@ -71,7 +72,6 @@ public class FindCommandParserTest {
                 put(PREFIX_ROLE, role);
             }
         };
-
         HashMap<Prefix, List<String>> prefixCompanyNameMap = new HashMap<>() {
             {
                 put(PREFIX_COMPANY_NAME, companyName);
@@ -92,7 +92,6 @@ public class FindCommandParserTest {
                 put(PREFIX_COMPANY_NAME, companyNames);
             }
         };
-
         HashMap<Prefix, List<String>> prefixStatusesMap = new HashMap<>() {
             {
                 put(PREFIX_STATUS, statuses);
@@ -108,38 +107,37 @@ public class FindCommandParserTest {
 
         // Find Role keyword
         FindCommand expectedFindCommandForRolePrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixRoleMap));
-
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixRoleMap));
         assertParseSuccess(parser, " r/Intern", expectedFindCommandForRolePrefix);
 
         // Find Company Name keyword
         FindCommand expectedFindCommandForCompanyNamePrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixCompanyNameMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixCompanyNameMap));
         assertParseSuccess(parser, " c/Amazon", expectedFindCommandForCompanyNamePrefix);
 
         // Find Status keyword
         FindCommand expectedFindCommandForStatusPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixStatusMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixStatusMap));
         assertParseSuccess(parser, " s/Interested", expectedFindCommandForStatusPrefix);
 
         // Find Role keywords
         FindCommand expectedFindCommandForRolesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixRolesMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixRolesMap));
         assertParseSuccess(parser, " r/Testing Intern", expectedFindCommandForRolesPrefix);
 
         // Find Company Name keywords
         FindCommand expectedFindCommandForCompanyNamesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixCompanyNamesMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixCompanyNamesMap));
         assertParseSuccess(parser, " c/Amazon Meta", expectedFindCommandForCompanyNamesPrefix);
 
         // Find Status keywords
         FindCommand expectedFindCommandForStatusesPrefix =
-                new FindCommand(new NameContainsKeywordsPredicate(prefixStatusesMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(prefixStatusesMap));
         assertParseSuccess(parser, " s/Interested Offered", expectedFindCommandForStatusesPrefix);
 
         // Find Roles, Company Names and Statuses
         FindCommand expectedFindCommandForMultiplePrefixes =
-                new FindCommand(new NameContainsKeywordsPredicate(multiplePrefixesMap));
+                new FindCommand(new ApplicationContainsKeywordsPredicate(multiplePrefixesMap));
         assertParseSuccess(parser, " r/Testing Intern c/Amazon Meta s/Interested Offered",
                 expectedFindCommandForMultiplePrefixes);
     }

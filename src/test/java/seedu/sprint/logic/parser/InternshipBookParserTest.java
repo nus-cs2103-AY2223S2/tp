@@ -34,7 +34,7 @@ import seedu.sprint.logic.commands.SortCommand;
 import seedu.sprint.logic.commands.UndoCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.application.Application;
-import seedu.sprint.model.application.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.ApplicationContainsKeywordsPredicate;
 import seedu.sprint.testutil.ApplicationBuilder;
 import seedu.sprint.testutil.ApplicationUtil;
 import seedu.sprint.testutil.EditApplicationDescriptorBuilder;
@@ -123,7 +123,7 @@ public class InternshipBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ApplicationContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

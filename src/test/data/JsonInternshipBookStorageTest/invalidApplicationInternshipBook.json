@@ -1,9 +1,13 @@
 {
-  "companyName" : "Company with invalid name field: Go@gle",
-  "companyEmail" : "goggle_careers@gmail.com",
-  "status" : "Interested",
-  "role" : "Software Engineer Intern",
-  "taskDescription" : null,
-  "taskDeadline" : null,
-  "tagged" : [ ]
+  "jsonAdaptedApplications": [
+    {
+      "companyName": "Company with invalid name field: Go@gle",
+      "companyEmail": "goggle_careers@gmail.com",
+      "status": "Interested",
+      "role": "Software Engineer Intern",
+      "taskDescription": null,
+      "taskDeadline": null,
+      "tagged": []
+    }
+  ]
 }
