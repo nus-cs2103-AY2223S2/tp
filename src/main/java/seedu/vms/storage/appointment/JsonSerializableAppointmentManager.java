@@ -78,6 +78,7 @@ class JsonSerializableAppointmentManager {
     }
 
 
+    // @@author nusE0726844
     private boolean isDuplicate(AppointmentManager manager, IdData<Appointment> appointmentData) {
         if (appointmentData.getValue().getStatus()) {
             return false;

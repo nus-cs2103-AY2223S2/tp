@@ -58,7 +58,7 @@ public class JsonAdaptedGroupName {
      * Returns the {@code GroupName} that this {@code JsonAdaptedGroupName}
      * represents.
      *
-     * @throws IllegalValueException if the name is not value.
+     * @throws IllegalValueException if the name is not valid.
      */
     public GroupName toModelType() throws IllegalValueException {
         if (!GroupName.isValidName(name)) {

@@ -107,12 +107,7 @@ public class Requirement {
 
     @Override
     public int hashCode() {
-        int result = 17;
-
-        result = 37 * result + reqType.hashCode();
-        result = 37 * result + reqSet.hashCode();
-
-        return result;
+        return Objects.hash(reqType, reqSet);
     }
 
 

@@ -214,7 +214,7 @@ public class ParserUtil {
      * Parses a requirement type.
      */
     public static Requirement.RequirementType parseReqType(String reqTypeString)
-            throws ParseException {
+                throws ParseException {
         try {
             return Requirement.RequirementType.valueOf(reqTypeString.toUpperCase());
         } catch (IllegalArgumentException illArgEx) {
@@ -241,9 +241,11 @@ public class ParserUtil {
         }
 
         if (argParts.size() > 1) {
+            // if 2 parts
             retrieverType = argParts.get(0);
             retrieverValue = argParts.get(1);
         } else if (retrieverValue.matches("\\d+")) {
+            // if one part and is digits
             retrieverType = RETRIEVER_TYPE_INDEX;
         }
 
@@ -339,7 +341,6 @@ public class ParserUtil {
         try {
             return Integer.parseInt(intString);
         } catch (NumberFormatException numEx) {
-            // TODO: make this nicer
             throw new ParseException("Must be an integer between -2147483647 to 2147483647");
         }
     }
