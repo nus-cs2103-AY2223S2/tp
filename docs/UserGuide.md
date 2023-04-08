@@ -539,11 +539,10 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 > `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
 Deletes the specified module(s) and all its embodied content from the application
-- `module_code_1`, `module_code_2`, `module_code_3`, ... : The codes of modules to be deleted
+- <span style="color:#e46c0a">`module_code_1`, `module_code_2`, `module_code_3`, ...</span>: The codes of modules to be deleted
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - must exist in Le Tracker
-  - must not contain duplicates
-  - Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
+  - Must exist in Le Tracker
+  - Must not contain duplicates
 
 Examples:
 
@@ -561,14 +560,13 @@ When in a module or lecture context, the navigation system will automatically in
 
 Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: The Names of Lectures to be deleted
+- <span style="color:#e46c0a">`lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...</span>: The Names of Lectures to be deleted
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
-  - must exist in Module of `module_code`
-  - must not contain duplicates
-- `module_code`: The Code of Module to delete Lectures from
+  - Must exist in Module of `module_code`
+  - Must not contain duplicates
+- <span style="color:#e46c0a">`module_code`</span>: The Code of Module to delete Lectures from
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - must exist in Le Tracker
+  - Must exist in Le Tracker
 
 Examples:
 
@@ -581,17 +579,16 @@ Examples:
 
 Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: The Names of Videos to be deleted
+- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be deleted
   - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
-  - must exist in the Lecture of `lecture_name` in the Module of `module_code`
-  - must not contain duplicates
-- `module_code`: The Code of the Module that contains the lecture to delete from
+  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+  - Must not contain duplicates
+- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module that contains the lecture to delete from
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - must exist in Le Tracker
-- `lecture_name`: The Name of the Lecture to delete from
+  - Must exist in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture to delete from
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - must exist in the Module of `module_code`
+  - Must exist in the Module of `module_code`
 
 Examples:
 
@@ -609,16 +606,15 @@ Marks video(s) as **watched** in lecture of its specified module
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: The Names of Videos to be marked
+- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be marked
   - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-  - Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
-  - must exist in the Lecture of `lecture_name` in the Module of `module_code`
-- `module_code`: The Code of the Module containing the lecture that contains the videos
+  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module containing the lecture that contains the videos
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - must exist in Le Tracker
-- `lecture_name`: The Name of the Lecture containing the videos
+  - Must exist in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture containing the videos
   - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
-  - must exist in the Module of `module_code`
+  - Must exist in the Module of `module_code`
 
 Examples:
 
