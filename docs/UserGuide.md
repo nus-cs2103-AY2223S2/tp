@@ -35,9 +35,9 @@ This User Guide is split into multiple important sections:
 * The [Getting Started](#getting-started) section provides step-by-step instructions to download and get started with MyLib.
 * The [Key Definitions](#key-definitions) section provides a concise explanation of the various key terms used in this User Guide. It will explain what a bookmark is in the context of MyLib.
 * The [Graphical User Interface](#graphical-user-interface) section provides a quick rundown of the different components of MyLib's user interface.
-* The [Features](#features) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
+* The [Commands](#commands) section provides detailed explanations of all the various features in MyLib to help you bookmark your content.
 
-If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Features](#features) section or the [Command Summary](#command-summary) table. The [Features](#features) section will provide a detailed explanation of each feature. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
+If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Commands](#commands) section or the [Command Summary](#command-summary) table. The [Commands](#commands) section will provide a detailed explanation of each command. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
 
 
 The user guide will contain certain visuals to aid in conveying information more effectively. These include:
@@ -88,29 +88,41 @@ The user guide will contain certain visuals to aid in conveying information more
 
    * Next, use `exit` to exit the application.
 
-4. You will be able to find a detailed guide on the list of available commands in the [Features](#features) section.
+4. You will be able to find a detailed guide on the list of available commands in the [Commands](#commands) section.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Key Definitions**
 This section provides explanations of important terms that will be used in this User Guide.
 
-### Content
-
-Content refers to anything that is tracked with bookmarks. These include, but are not limited to, novels, blogs, reddit posts, manga and web novels.
-
 ### Bookmark
-A bookmark is the primary entity in MyLib and is used to track all your content for all your bookmarking tasks in MyLib. 
+As a bookmarking application, MyLib naturally uses bookmarks to bookmark your content. While MyLib was originally intended to be used for tracking webnovels and comics, its bookmarking features are general enough that your content can basically be anything.
 
-A bookmark may contain:
-* A title - the title of the content that is being tracked by this bookmark
-* An author - the author of the content that is being tracked by this bookmark
-* A progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
-* A genre - the genre your content falls under. Examples genres include your typical book genres such as Action and Fantasy.
-* A rating - to indicate how much you enjoyed the content being tracked by this bookmark
-* Tag - a custom label attached to a bookmark for categorization purposes.
+A bookmark in MyLib contains:
+* Title - the title of the content that is being tracked by this bookmark
+* Author - the author of the content that is being tracked by this bookmark
+* Progress - consists of volume, chapter and page, and is used to track your progress with the content being tracked by this bookmark.
+* Genre - the genre your content falls under. More details can be found [here](#genre).
+* Rating - to indicate how much you enjoyed the content being tracked by this bookmark.
+* Tags - a custom labels attached to a bookmark for custom categorization purposes. More details can be found [here](#tags).
 * URL - to hold the URL of the website that the content being tracked by this bookmark is hosted at.
 
 For a bookmark in MyLib, everything except for title and genre is optional.
+
+
+### Genre
+As mentioned in [Bookmark](#bookmark), a genre in a bookmark indicates the genre of the content the bookmark is tracking.
+
+In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
+
+To find out how to view this fixed list of genres, go [here](#viewing-genres-genre).
+
+
+### Tags
+As mentioned in [Bookmark](#bookmark), tags are custom labels that you can attach to a bookmark to categorize them.
+
+MyLib has a tag list, which is a list of all available tags that can be attached to a bookmark. MyLib provides a default set of tags in this tag list that you can use to tag your bookmarks. In addition, you may also view, add and delete tags from the tag list. Your tag list will be saved along with your bookmarks when you close the application.
+
+The commands to modify your tag list can be found at [Tag Commands](#tag-commands).
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -148,8 +160,8 @@ The bookmark in the BookmarkList panel will only contain the:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
-This section provides an in-depth explanation of MyLib's features. For a quick reference of the available commands, use the [Command Summary](#command-summary) table.
+## Commands
+This section provides an in-depth explanation of MyLib's commands. For a quick reference of the available commands, use the [Command Summary](#command-summary) table.
 
 <div markdown="block" class="alert alert-info">
 
@@ -181,30 +193,30 @@ This section provides an in-depth explanation of MyLib's features. For a quick r
 </div>
 <div style="page-break-after: always;"></div>
 
+### Tag Commands
+This section goes through the commands for viewing and modifying your tag list.
 
-### Tags:
-Tags are custom labels that you can attach to a bookmark. Only tags that are in your tag list can be added to a bookmark.
-This section will cover the commands you can use to view your tag list, adding tags to it and deleting tags from it.
-
-#### Viewing tags
+#### Viewing tags: `tags`
 To view your list of tags, use the `tags` command.
 
 The format for the command is simply: `tags`.
 
 Since MyLib comes with a default set of tags, you can expect a non-empty list of tags even as a new user.
 
-#### Adding tags
+#### Adding tags: `addtag`
 To add new tags to your tag list, use the `addtag` command.
 
 The format for the `addtag` command is as follows:
 
 `addtag [t/TAG]…`
 
+`TAG` must be alphanumeric (must only contain english letters and numbers).
+
 Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-#### Deleting a tag
+#### Deleting a tag: `dtag`
 To delete a tag from your tag list, use the `dtag` command.
 
 Format: `dtag TAG`
@@ -212,14 +224,10 @@ Format: `dtag TAG`
 Example:
 * `dtag MaleProtagonist`
 
-### Genres:
-A genre in a bookmark indicates the genre of the content the bookmark is tracking.
+### Viewing genres: `genre`
+You can view MyLib's fixed list of genres using the `genre` command.
 
-In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib. This fixed list of genres can be viewed using the `genre` command. 
-
-The format for the command is as follows: 
-
-`genre`
+The format for the command is simply: `genre`
 
 The command should display the list of available genres in the `Result Box`.
 
@@ -227,7 +235,7 @@ The command should display the list of available genres in the `Result Box`.
 
 <div style="page-break-after: always;"></div>
 
-### Adding a bookmark
+### Adding a bookmark: `add`
 
 To create a new bookmark and add it to your bookmark library you will need to use the `add` command.
 
@@ -242,10 +250,10 @@ The `add` command accepts the following items as user input:
 |  `n/`  |   TITLE   | This is the title that you want to give to the bookmark. Usually, this is the name of the content the bookmark is tracking. <br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/>   ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                        |
 |  `a/`  |  AUTHOR   | This is the author of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>The title can contain any characters be it alphabets, numbers or symbols.<br/><br/> ❗ **Caution**: certain non-English alphabets or symbols may not display correctly in the application.                                                                                                                                                                                                                                                                |
 |  `p/`  | PROGRESS  | This is used to remember your progress with the content being tracked by this bookmark. For example, if the bookmark is tracking a novel, the progress can be used to denote the latest read chapter.<br/><br/>**Restrictions:**<br/>PROGRESS should have the format: `VOLUME CHAPTER PAGE`. <br/><br/> `VOLUME`, `CHAPTER` and `PAGE` should either be a positive number (without +) or `~`.<br/><br/> `~` is used to denote an empty `VOLUME`, `CHAPTER` and `PAGE`. For example, if you only want to use `CHAPTER` to track your progress you would do: `~ CHAPTER ~`. At least one of `VOLUME`, `CHAPTER` and `PAGE` must not be `~`.|
-|  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go to the [Genres](#genres) section.                   |
+|  `g/`  |   GENRE   | The genre of the content the bookmark is tracking.<br/><br/>**Restrictions:**<br/>MyLib provides a fixed list of genres.<br/> Only genres in that list can be used as the genre of a bookmark.<br/> To find out more about this list, go [here](#viewing-genres-genre).                   |
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
 |  `r/`  |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                             |
-|  `t/`  |    TAG    | This is a tag that you want to attach to the bookmark. <br/><br/>**Restrictions:**<br/>Only tags that are in your tag list can be added to a bookmark.<br/> For more information on how to modify your tag list, go to the [Tags](#tags) section.                                                                                                                                                                                |
+|  `t/`  |    TAG    | This is a tag that you want to attach to the bookmark. <br/><br/>**Restrictions:**<br/>Only tags that are in your tag list can be added to a bookmark.<br/> For more information on how to modify your tag list, go to the [Tag Commands](#tag-commands) section.                                                                                                                                                                                |
 
 Examples:
 * `add n/Solo Leveling a/Chugong p/~ 110 ~ r/4 g/Fantasy t/Novel` 

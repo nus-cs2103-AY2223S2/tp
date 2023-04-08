@@ -1,5 +1,6 @@
 package seedu.library.model.bookmark;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_AUTHOR_BOB;
@@ -8,7 +9,8 @@ import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.testutil.Assert.assertThrows;
-import static seedu.library.testutil.TypicalBookmarks.ALICE;
+import static seedu.library.testutil.TypicalBookmarks.AOT;
+import static seedu.library.testutil.TypicalBookmarks.AOTString;
 import static seedu.library.testutil.TypicalBookmarks.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -26,19 +28,19 @@ public class BookmarkTest {
     @Test
     public void isSameBookmark() {
         // same object -> returns true
-        assertTrue(ALICE.isSameBookmark(ALICE));
+        assertTrue(AOT.isSameBookmark(AOT));
 
         // null -> returns false
-        assertFalse(ALICE.isSameBookmark(null));
+        assertFalse(AOT.isSameBookmark(null));
 
-        // same name, all other attributes different -> retu    rns true
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB)
+        // same name, all other attributes different -> returns true
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB)
                 .withAuthor(VALID_AUTHOR_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameBookmark(editedAlice));
+        assertTrue(AOT.isSameBookmark(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
-        assertFalse(ALICE.isSameBookmark(editedAlice));
+        editedAlice = new BookmarkBuilder(AOT).withTitle(VALID_TITLE_BOB).build();
+        assertFalse(AOT.isSameBookmark(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Bookmark editedBob = new BookmarkBuilder(BOB).withTitle(VALID_TITLE_BOB.toLowerCase()).build();
@@ -53,27 +55,33 @@ public class BookmarkTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Bookmark aliceCopy = new BookmarkBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Bookmark aliceCopy = new BookmarkBuilder(AOT).build();
+        assertTrue(AOT.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(AOT.equals(AOT));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(AOT.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(AOT.equals(5));
 
         // different bookmark -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(AOT.equals(BOB));
 
         // different name -> returns false
-        Bookmark editedAlice = new BookmarkBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Bookmark editedAlice = new BookmarkBuilder(AOT).withTitle(VALID_TITLE_BOB).build();
+        assertFalse(AOT.equals(editedAlice));
 
         // different genre -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withGenre(VALID_GENRE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new BookmarkBuilder(AOT).withGenre(VALID_GENRE_BOB).build();
+        assertFalse(AOT.equals(editedAlice));
+    }
+
+    @Test
+    public void validToString() {
+        Bookmark bookmark = new BookmarkBuilder(AOT).build();
+        assertEquals(AOTString, bookmark.toString());
     }
 }
