@@ -171,88 +171,129 @@ Classes used by multiple components are in the `seedu.recipebook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add feature
 
-#### Proposed Implementation
+#### What is it?
+The `add` command is a fundamental feature of CookHub and it allows users to easily manage add recipes to their recipe book.
+By typing this command with the correct command flags, users can add their own recipes, which contain the title, description, steps, ingredients, and tags.
 
-* Currently, we are not doing undo/redo mechanism
-The proposed undo/redo mechanism is facilitated by `VersionedCookHub`. It extends `CookHub` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Usage
+The `add` command format is as shown below:
 
-* `VersionedCookHub#commit()` — Saves the current address book state in its history.
-* `VersionedCookHub#undo()` — Restores the previous address book state from its history.
-* `VersionedCookHub#redo()` — Restores a previously undone address book state from its history.
+`add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
-These operations are exposed in the `Model` interface as `Model#commitCookHub()`, `Model#undoCookHub()` and `Model#redoCookHub()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The meanings of each prefix is as shown below:
+- `t/` signifies the title of the recipe
+- `d/` signifies the description of the recipe
+- `i/` signifies the ingredient of the recipe
+- `s/` signifies the step of the recipe
+- `tag/` signifies the tag of the recipe
 
-Step 1. The user launches the application for the first time. The `VersionedCookHub` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Implementation 
+The add application mechanism is facilitated by the Ui, Logic and Model components of CookHub.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
 
-Step 2. The user executes `delete 5` command to delete the 5th recipe in the recipe book. The `delete` 
-command calls `Model#commitCookHub()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `AddCommandParser` that is responsible for the specific purpose of
+   parsing user commands for adding applications.
+5. The `CookHubParser` then passes the string input to the `AddCommandParser` via the `parse()` method.
+6. The `AddCommandParser` then identifies the different prefixes in the string and creates respective recipe components.
+7. The recipe components in turn make up a `Recipe` instance.
+8. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instances
+   is returned back to `LogicManager`.
+9. The `LogicManager` then calls the `execute()` method of the `AddCommand`. 
+10. An instance of `CommandResult` is returned, signifying a successful command execution.
+11. The Ui component displays the contents of the `CommandResult` to the User.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The sequence diagram for the `add` command is as shown below:
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-Step 3. The user executes `add n/David …​` to add a new recipe. The `add` command also calls 
-`Model#commitCookHub()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCookHub()`, so the address book state will not be saved into the `addressBookStateList`.
+### Find feature
 
-</div>
+#### What is it? 
+The `find` command helps users search recipes according to which component of the recipe they are looking for.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCookHub()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Users can find the application by using the command flags. The command flags specifies signifies which component
+of a recipe you are searching through.
 
-![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CookHub state, then there are no previous CookHub states to restore. The `undo` command uses `Model#canUndoCookHub()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### Usage 
+The `find` command format is as shown below:
 
-</div>
+`find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
-The following sequence diagram shows how the undo operation works:
+The meaning of each prefix is as shown below:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+- the flag `r/` searches through the entire recipe and its components
+- the flag `t/` searches only through the recipe's title
+- the flag `s/` searches only through the recipe's steps
+- the flag `i/` seaches only through the recipe's ingredient names
+- the flag `tag/` searches only through the recipe's tags
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+#### Implementation
 
-</div>
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `FindCommandParser`.
+5. The `CookHubParser` then passes the string input to the `FindCommandParser` via the `parse()` method.
+6. The `FindCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
+7. A subtype of `ContainsKeywordsPredicate` is created depending on the different prefixes.
+8. The `parse()` method will return a `FindCommand()` with the subtype of `ContainsKeywordsPredicate` as the parameter
+9. This `FindCommand` is returned back to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `FindCommand`.
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
+13. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+14. The Ui component displays the contents of the `CommandResult` to the User.
 
-The `redo` command does the opposite — it calls `Model#redoCookHub()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The sequence diagram for the `find` command is as shown below:
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone CookHub states to restore. The `redo` command uses `Model#canRedoCookHub()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-</div>
+### Only feature
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitCookHub()`, `Model#undoCookHub()` or `Model#redoCookHub()`. Thus, the `addressBookStateList` remains unchanged.
+#### What is it?
+The `only` feature helps users gather a list of recipes that can be made with only a limited set of ingredients.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Users can type in a list of ingredients. A list of recipes that can be made with those ingredients, or less will be displayed.
 
-Step 6. The user executes `clear`, which calls `Model#commitCookHub()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+#### Usage 
+The `only` command format is as shown below:
 
-![UndoRedoState5](images/UndoRedoState5.png)
+`only INGREDIENT...`
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### Implementation 
+1. The Ui component receives the user command from the `CommandBox` of the GUI.
+2. The command is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `CookHubParser` via the `parseCommand()` method.
+4. The `CookHubParser` in turn creates an `OnlyCommandParser` that is responsible for the specific purpose of
+   parsing user commands for finding applications.
+5. The `CookHubParser` then passes the string input to the `OnlyCommandParser` via the `parse()` method.
+6. The `OnlyCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
+7. A subtype of `RecipeIngredientsSubsetPredicate` is created depending on the different prefixes.
+8. The `parse()` method will return a `OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter
+9. This `OnlyCommand` is returned back to `LogicManager`.
+10. The `LogicManager` then calls the `execute()` method of the `OnlyCommand`. 
+11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
+12. `setCurrentPredicate(predicate)` called on `Model`. It updates the predicate that filters through the recipe list.
+12. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+13. The Ui component displays the contents of the `CommandResult` to the User.
+    
+The sequence diagram for the `only` command is as shown below:
+![OnlyCommandSequenceDiagram](images/OnlyCommandSequenceDiagram.png)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
 
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 

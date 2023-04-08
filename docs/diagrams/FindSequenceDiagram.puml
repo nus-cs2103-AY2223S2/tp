@@ -1,0 +1,92 @@
+
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":ContainsKeywordsPredicate" as ContainsKeywordsPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"find t/Corndogs")
+activate LogicManager
+
+
+LogicManager -> CookHubParser : parseCommand("find t/Corndogs")
+activate CookHubParser
+
+create FindCommandParser
+CookHubParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> CookHubParser
+deactivate FindCommandParser
+
+CookHubParser -> FindCommandParser : parse("t/Corndogs")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+
+activate FindCommand
+
+create ContainsKeywordsPredicate
+FindCommand -> ContainsKeywordsPredicate
+
+activate ContainsKeywordsPredicate
+
+ContainsKeywordsPredicate --> FindCommand : predicate
+
+deactivate ContainsKeywordsPredicate
+
+FindCommand --> FindCommandParser : findCommand
+
+deactivate FindCommand
+
+FindCommandParser --> CookHubParser : findCommand
+
+deactivate FindCommandParser
+
+CookHubParser --> LogicManager : findCommand
+
+deactivate CookHubParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredTaskList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : setCurrentPredicate(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand : result
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml
+

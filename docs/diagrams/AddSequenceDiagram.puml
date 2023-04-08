@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CookHubParser" as CookHubParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "d:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Recipe" as Recipe MODEL_COLOR
+end box
+
+note left of LogicManager
+let {str} be "t/Corndogs
+ d/Yummy
+s/Mix batter
+i/Flour, 20, g, 0.10"
+end note
+
+[-> LogicManager : execute("add {str}")
+activate LogicManager
+
+LogicManager -> CookHubParser : parseCommand("add {str}")
+activate CookHubParser
+
+create AddCommandParser
+CookHubParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> CookHubParser
+deactivate AddCommandParser
+
+CookHubParser -> AddCommandParser : parse("{str}")
+activate AddCommandParser
+
+create Recipe
+AddCommandParser -> Recipe
+activate Recipe
+
+Recipe --> AddCommandParser : recipe
+deactivate Recipe
+
+create AddCommand
+AddCommandParser -> AddCommand : new AddCommand(recipe)
+activate AddCommand
+
+AddCommand --> AddCommandParser : addCommand
+deactivate AddCommand
+
+AddCommandParser --> CookHubParser : addCommand
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> CookHubParser
+destroy AddCommandParser
+
+CookHubParser --> LogicManager : addCommand
+deactivate CookHubParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addRecipe(recipe)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+
