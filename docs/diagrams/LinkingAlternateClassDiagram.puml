@@ -2,9 +2,9 @@
 !include style.puml
 skinparam classBackgroundColor MODEL_COLOR
 
-Class Client 
+Class Client
 
-Class Project 
+Class Project
 
 Class UniqueClientList
 

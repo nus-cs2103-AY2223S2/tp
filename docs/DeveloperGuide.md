@@ -529,7 +529,7 @@ testers are expected to do more *exploratory* testing.
    1. Delete a client from the client list. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The client should remain deleted. 
+      Expected: The client should remain deleted.
 
 ### Listing all clients
 
@@ -634,7 +634,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First client's details are edited. Details of edited client shown in status message.
 
    1. Test case: `edit-client 0 name/John Doe`<br>
-      Expected: No client is edited. Error details shown in the status message. 
+      Expected: No client is edited. Error details shown in the status message.
 
    1. Other incorrect edit commands to try: `edit-client`, `edit-client x name/John`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -672,7 +672,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First project's details are edited. Details of edited project shown in status message.
 
    1. Test case: `edit-project 0 name/Sky Painting`<br>
-      Expected: No project is edited. Error details shown in the status message. 
+      Expected: No project is edited. Error details shown in the status message.
 
    1. Other incorrect edit commands to try: `edit-project`, `edit-project x name/Sky Painting`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -798,7 +798,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find-client name/Alice`<br>
       Expected: Client list with one client is shown. Status message states that one client was found.
-   
+
    1. Test case: `find-client`<br>
       Expected: Error message is shown.
 
@@ -810,7 +810,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find-project name/self`<br>
       Expected: Project list with one project is shown. Status message states that one project was found.
-   
+
    1. Test case: `find-project`<br>
       Expected: Error message is shown.
 
@@ -853,7 +853,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: delete the data file<br>
       Delete the JSON file in the `data` folder that is found in the same folder the jar file before launching the app.<br>
       Expected: Status message should state that a data file could not be found. The app should be filled with sample data.
-   
+
    1. Test case: corrupt the data file<br>
       Open the JSON file and delete the `name` attribute of a client before launching the app.<br>
       Expected: Status message should state that the data file was not in the correct format. The app should start with no data.
@@ -865,7 +865,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other edits to try: Editing other attributes such as phone number<br>
       Expected: Similar to previous.
-      
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
