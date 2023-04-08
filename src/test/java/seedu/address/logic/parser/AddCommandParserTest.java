@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLATOON_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RANK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_LENGTH;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -162,9 +163,13 @@ public class AddCommandParserTest {
                         + RANK_DESC_BOB + INVALID_PLATOON_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Platoon.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
+        // invalid tag description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + RANK_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_ALPHANUMERIC_CONSTRAINTS);
+
+        // invalid tag length
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + RANK_DESC_BOB + INVALID_TAG_LENGTH + VALID_TAG_FRIEND, Tag.MESSAGE_LENGTH_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,
