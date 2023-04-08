@@ -27,14 +27,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
- **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ 
 </div>
 
 
 ### Architecture
 
+<p align="center">
+
 <img src="images/ArchitectureDiagram.png" width="280" />
 
+ </p> 
+ 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -59,8 +64,12 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
+<p align="center">
+
 <img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
 
+ </p> 
+ 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -70,8 +79,12 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
+<p align="center">
+
 <img src="images/ComponentManagers.png" width="300" />
 
+</p> 
+ 
 The following sections give more details of each component.
 
 <div style="page-break-after: always;"></div>
@@ -80,8 +93,12 @@ The following sections give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java). The partial Class Diagram below showcases the main classes that reside in UI.
 
+<p align="center">
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+ </p>
+ 
 The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
@@ -97,16 +114,24 @@ The abstract `Page` class represents the part of the GUI that displays informati
 
 Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. The Class Diagram below outlines the different concrete subclasses of `Page` and the subcomponents they depend on. 
 
+<p align="center">
+
 ![Subclasses of Page abstract class](images/PageClasses.png)
 
+ </p>
+ 
 <div style="page-break-after: always;"></div>
 
 The generation of a `Page` is as such: 
 
 When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The Sequence Diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
 
+<p align="center">
+
 ![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
 
+ </p>
+ 
 <div style="page-break-after: always;"></div>
 
 
@@ -116,8 +141,12 @@ When the user executes a command, `Page` factory method `of` will be called and 
 
 Here's a (partial) class diagram of the `Logic` component:
 
+<p align="center">
+
 <img src="images/LogicClassDiagram.png" width="550"/>
 
+ </p>
+ 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternshipCatalogueParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
@@ -133,8 +162,12 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
+<p align="center">
+
 <img src="images/ParserClasses.png" width="600"/>
 
+ </p>
+ 
 How the parsing works:
 * When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -142,8 +175,11 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
+<p align="center">
+
 <img src="images/ModelClassDiagram.png" width="450" />
 
+ </p>
 
 The `Model` component,
 
@@ -160,14 +196,21 @@ Also, to make insertions and deletions of events easier, each event instance sto
 associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
 events are deleted as well.
 
+<p align="center">
 
 <img src="images/InternshipEventModelClassDiagram.png" width="250" />
 
+ </p>
+ 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+<p align="center">
+
 <img src="images/StorageClassDiagram.png" width="550" />
+
+</p>
 
 The `Storage` component,
 * can save internship catalogue data, event catalogue data and user preference data in json format, and read them back
@@ -233,7 +276,11 @@ The Add Event Event feature allows Users to Add Events/Deadlines to their select
 
 The Activity Diagram for Add event is
 
+<p align="center">
+
 ![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
+
+</p>
 
 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
 4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
@@ -243,8 +290,13 @@ The Activity Diagram for Add event is
 8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
 
 The Sequence Diagram for the adding the event is
+
+<p align="center">
+
 ![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
 
+ </p>
+ 
 ### Select command feature
 
 #### Implementation
@@ -273,8 +325,12 @@ Step 7. Finally, a `CommandResult` is created containing that `Internship` and i
 
 The following sequence diagram shows how the select command works:
 
+<p align="center">
+
 ![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
 
+ </p>
+ 
 Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
 lifeline reaches the end of diagram.
 
