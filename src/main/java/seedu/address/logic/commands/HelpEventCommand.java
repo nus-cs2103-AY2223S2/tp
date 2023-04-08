@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.model.Model;
 
 /**
  * Displays the different Event helps available and
@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
  */
 public class HelpEventCommand extends HelpCommand {
 
-    private static final Pattern BASIC_HELP_FORMAT = Pattern.compile("(?<eventCategory>\\S+)(?<arguments>.*)");
-
     public static final String COMMAND_WORD = "event";
 
     public static final String EVENT_CATEGORIES = "Event categories:\n"
             + "help event tutorial\n"
             + "help event lab\n"
             + "help event consultation";
+
+    private static final Pattern BASIC_HELP_FORMAT = Pattern.compile("(?<eventCategory>\\S+)(?<arguments>.*)");
 
     /**
      * Checks the argument and return the desired event help command
