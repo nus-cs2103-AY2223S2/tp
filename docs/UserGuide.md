@@ -489,9 +489,15 @@ Edit the details of a module.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the module
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit CS2040S /code CS2040 /name DSAG /tags Heavy, Math, Analysis</code><br/>
+    Edit the module with code "CS2040S". The module's code is updated to "CS2040", it's name updated to "DSAG" and it's tags are updated to "Heavy", "Math" and "Analysis".
+    </li>
+</ul>
+</details>
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
@@ -512,9 +518,15 @@ Edit the details of a lecture.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important</code><br/>
+    Edit the lecture named "Week 1" in the module with code "CS2040S". The lecture's name is updated to "Week 01 Introduction" and it's tags are updated to "Intro" and "Important".
+    </li>
+</ul>
+</details>
 
 #### Edit a Video
 
@@ -538,9 +550,15 @@ Edit the details of a video.
 - <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as "not watched"
   - If this argument is specified, then `/watch` should not be specified
 
-Examples:
-
-- `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
+<details open>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /tags Intro, Short /watch</code><br/>
+    Edit the video named "Video 1" in the lecture named "Week 1" which belongs to the module with code "CS2040S". The video's name is updated to "Video 01 Grade Breakdown", it's timestamp updated to "01:04:20" and it's tags are updated to "Intro" and "Short". The video is also marked as watched.
+    </li>
+</ul>
+</details>
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
