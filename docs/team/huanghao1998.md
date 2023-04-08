@@ -13,25 +13,25 @@ Given below are my contributions to the project.
     * What it does: Allows users to remove specific field value based on the input command.
     * Justification: Users are able to remove any field value of the contact information without excess typing.
     * Highlights: `to be added soon`
-    * Credits: *{`to be added soon`}*
+    * Credits: *{-}*
 
 * **New Feature**: `view` command [\#108](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/108)
   * What it does: Allows users to view a specific contact detail.
   * Justification: Users are able to view detailed information of a contact by `view` command or click on the contact card.
   * Highlights: `to be added soon`
-  * Credits: *{`to be added soon`}*
+  * Credits: *{-}*
 
 * **New Feature**: `clearpj` command [\#154](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/154)
     * What it does: Allows users to clear off all the project in the project list
     * Justification: Users are able to clear all projects in a single command.
     * Highlights: `to be added soon`
-    * Credits: *{`to be added soon`}*
+    * Credits: *{This feature idea was adopted from `clear` command}*
 
 * **New Feature**: Added keyboard shortcut [\#203](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/203)
   * What it does: Allows users to perform `undo`, `redo` and `exit` command using keyboard shortcut
   * Justification: Users are able to do undo/redo/exit similar to other commonly used applications.
   * Highlights: `to be added soon`
-  * Credits: *{This feature idea was adopted from `HELP` keyboard shortcut of AddressBook-Level3}*
+  * Credits: *{This feature idea was adopted from `help` keyboard shortcut of AddressBook-Level3}*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huanghao1998&breakdown=true)
 
@@ -52,14 +52,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view`.
-        * Added "GUI of SOCKet" under Quick start section
-        * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command.
+        * Added documentation for the feature `remove`, `clear`, `clearpj`, `view` [\#52](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/52), [\#91](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/91), [\#111](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/111), [\#179](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/179)
+        * Added "GUI of SOCKet" image under Quick start section [\#179](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/179)
+        * Added screenshot to `add`, `edit`, `remove`, `find`, `sort`, `addpj`, `editpj`, `removepj`, `sortpj`, `assign`, `unassign` and `help` command [\#255](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/255)
     * Developer Guide:
         * Added use cases `UC06`, `UC13`, `UC17`.
         * Updated existing UI class diagram with `ProjectListPanel`, `ProjectCard`, `PersonDetailPanel` and `PersonDetailCard`.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): ().
-    * Contributed to forum discussions: ().
+    * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/89)
+    * Contributed to forum discussions: [\#78](https://github.com/nus-cs2103-AY2223S2/forum/issues/78#issuecomment-1406976199).
 
