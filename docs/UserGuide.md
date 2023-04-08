@@ -25,6 +25,7 @@ For **experienced users**, you may refer to the [Command summary](#command-summa
 for a summarised table of all the commands and keyboard shortcuts available.
 
 ## Table of Contents
+* Table of Contents
 {:toc}
 
 ---
