@@ -46,6 +46,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     FindCommand.MESSAGE_USAGE));
         }
 
+        assert isValidFormat(argMultimap);
+
         Optional<Name> name = ParserUtil.parseOptionalName(argMultimap.getValue(PREFIX_NAME));
         Optional<SubPostal> subPostal = ParserUtil.parseOptionalSubPostal(
                 argMultimap.getValue(PREFIX_POSTAL));
