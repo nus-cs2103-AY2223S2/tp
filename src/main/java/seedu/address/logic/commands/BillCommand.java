@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,27 +40,8 @@ public class BillCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (!model.hasPatientByNric(nric)) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-        Patient patientToEdit = null;
-        for (Person person : lastShownList) {
-            if (person.isDoctor()) {
-                continue;
-            }
-            if (person.getNric().equals(nric)) {
-                patientToEdit = (Patient) person;
-            }
-        }
-
-        if (patientToEdit == null) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
-        }
-
-
+        Patient patientToEdit = getPatientFromModel(model);
 
         return new CommandResult(generateSuccessMessage(patientToEdit.getPrescriptions()));
     }
@@ -73,5 +53,34 @@ public class BillCommand extends Command {
         float sum = prescriptions.stream().map(prescription -> prescription.getCost().getValue())
                 .reduce(Float.valueOf(0), (x, y) -> x + y);
         return String.format(MESSAGE_SUCCESS, sum);
+    }
+
+    private Patient getPatientFromModel(Model model) throws CommandException {
+        if (!model.hasPatientByNric(nric)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        Person personToEdit = model.getPersonByNric(nric);
+        if (!personToEdit.isPatient()) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+        return (Patient) personToEdit;
+    }
+
+
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof BillCommand)) {
+            return false;
+        }
+
+        // state check
+        return ((BillCommand) other).nric.equals(nric);
     }
 }
