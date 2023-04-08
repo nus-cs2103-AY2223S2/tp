@@ -36,12 +36,15 @@ public class HelpCommandParser {
             return new HelpEventCommand().parse(arguments);
 
         case HelpStudentCommand.COMMAND_WORD:
+            assert arguments.equals("") : "Additional Input Detected";
             return new HelpStudentCommand();
 
         case HelpOrganisationCommand.COMMAND_WORD:
+            assert arguments.equals("") : "Additional Input Detected";
             return new HelpOrganisationCommand();
 
         default:
+            assert false : "Incorrect Category";
             return new HelpCommand();
         }
     }

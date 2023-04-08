@@ -695,32 +695,37 @@ Preconditions:
 
 1. TA starts TrAcker desktop application.
 2. TA enters help command.
-3. TA confirms the help command.
-4. Help categories displayed.
+3. Help categories (Student, Event and Organisation) displayed.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. TA enters help tutorial command
-    * 3a1. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+* 2a. TA decides receive help from TrAcker's UserGuide and selects UserGuide.
+    * 2a1. TrAcker displays URL to UserGuide.
+  
+    User case ends
+
+* 3a. TA enters 'help student' command
+    * 3a1. TrAcker displays instructions and syntaxes for all valid student related commands.
     
     Use case ends.
 
-* 3b. TA enters help lab command.
-    * 3b1. TrAcker displays instructions and syntaxes for all valid lab related commands.
+* 3b. TA enters 'help event' command.
+    * 3b1. TrAcker displays event help categories (Tutorial, Lab and Consultation.
+      * 3b1-1. TA enters 'help event tutorial'
+        * 3b1-1a. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+      * 3b1-2. TA enters 'help event lab'
+        * 3b1-2a. TrAcker displays instructions and syntaxes for all valid lab related commands.
+      * 3b1-3. TA enters 'help event consultation'
+        * 3b1-3a. TrAcker displays instructions and syntaxes for all valid consultation related commands.
 
     Use case ends.
 
-* 3c. TA enters help consultation command.
-    * 3c1. TrAcker displays instructions and syntaxes for all valid consultation related commands.
+* 3c. TA enters 'help organisation' command.
+    * 3c1. TrAcker displays instructions and syntaxes for all valid organisational related commands.
 
     Use case ends.
-
-* 2a. TA decides not to have help from TrAcker.
-    * 2a1. TA removes input from TrAcker.
-
-    Use case ends
 
 ---
 
