@@ -77,7 +77,7 @@ Given below are my contributions to the project.
     * Added use case `UC21` [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
     * Added UML sequence diagram to show how updates are made to the associated `Project` object when updates are made to `Person` objects [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
     * Updated "Appendix: Instructions for manual testing" with instructions for testing `add`, `edit`, `deletepj`, Saving data [\#191](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/191)
-    * Added "Appendix: Planned Enhancements" with planned enhancements to validation for `Name`, `Phone` fields and overdue checks for `ProjectDeadline` [\#249](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/249)
+    * Added "Appendix: Planned Enhancements" with planned enhancements to validation for `Name`, `Phone` and `Language` fields, as well as enhancements adding overdue checks for `ProjectDeadline` and `ProjectMeeting`, and enhancements to allow multiple `ProjectMeeting` fields for a `Project` [\#249](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/249), [\#269](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/269)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#78](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/78), [\#85](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/85), [\#88](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/88), [\#91](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/91), [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100), [\#157](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/157), [\#169](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/169), [\#171](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/171)

@@ -13,7 +13,7 @@ title: User Guide
 
 SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
 
-With the use of the CLI (Command Line Interface), you can manage contacts in SOCket without needing to move your mouse, allowing you to get your contact management tasks done faster than traditional GUI (Graphical User Interface) apps.
+SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With the use of the CLI, you can manage contacts in SOCket without needing to move your mouse, allowing you to get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,7 +267,7 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed contact list.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-You can use the find command or list command to narrow down your contact list first before performing delete based on the filtered list.
+You can use the find command or list command to narrow down your contact list before performing delete based on the filtered list.
 </div>
 
 Examples:
@@ -600,7 +600,7 @@ Keyboard Shortcut:
 
 * A message is shown if no undone changes exist.
 
-<div markdown="span" class="alert alert-primary"> :bulb: Tip
+<div markdown="span" class="alert alert-primary"> :bulb: Tip:
 Changes made to SOCket are **not** saved upon exit.
 </div>
 
@@ -640,7 +640,7 @@ SOCket data is saved in the hard disk automatically after any command that chang
 
 SOCket data is saved as a JSON file `[JAR file location]/data/socket.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
 If your changes to the data file makes its format invalid, SOCket will discard all data and start with an empty data file at the next run.
 </div>
 
