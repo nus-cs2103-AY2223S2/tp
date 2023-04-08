@@ -73,7 +73,7 @@ Danger zone! Do pay attention to the information here carefully.
 
 The following icons are used in FriendlyLink. For more information about what they represent, refer to the [Fields](#fields) section.
 
-<img src="images/userGuide/icons/calendar.png" width="20"/> : available dates<br />
+<img src="images/userGuide/icons/calendar.png" width="20"/> : Available dates<br />
 
 <img src="images/userGuide/icons/region.png" width="20"/> : Region<br />
 
@@ -99,15 +99,15 @@ The following terms are commonly used in this guide.
 A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the [Features](#features) section.
 
 #### Prefix
-Prefixes are the characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
-* Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
+Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
+* Prefixes should be entered in all **lower case** (E.g. n/Abdul instead of N/Abdul)
 * Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
 
 #### Field
-Fields are the information following the slash in a command, to provide appropriate information to FriendlyLink, such as indicating a volunteer's name, phone number, email and other information.
+Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
 * For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
 * Fields can be entered in any order.
-    * E.g. If a command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+    * E.g. Specifying `n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
 * If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
     * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -201,9 +201,9 @@ An elderly can have any number of [tags](#tags) and available dates.
 </div>
 
 Examples:
-* `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` Adds an elderly named `Betsy Crowe` with [NRIC](#nric)
+* `add_elderly n/Betsy Crowe p/98765432 a/John street ic/S5034567C bd/1950-02-03 r/HIGH` adds an elderly named `Betsy Crowe` with [NRIC](#nric)
   `S5034567C` to FriendlyLink, with [birth date](#birthdate) `1950-02-03`, [address](#address) `John street`, [risk level](#risk-level) `HIGH` and [phone number](#phone-number) `98765432`.
-* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` Adds an elderly named `Sarah Zest` with [NRIC](#nric)
+* `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` adds an elderly named `Sarah Zest` with [NRIC](#nric)
   `S3334567C` to FriendlyLink, with [birth date](#birthdate) `1933-02-03`.
 
 ![](images/userGuide/addElderly.png)
@@ -225,8 +225,8 @@ A volunteer can have any number of [tags](#tags), [medical qualifications](#medi
 
 Examples:
 
-* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/99887432 ic/S9054567D` adds a volunteer named `John Wick` with [NRIC](#nric)
-  `S9054567D` to FriendlyLink, with [birth date](#birthdate) `1990-11-05`, [address](#address) `New yourk`, [email address](#email) `johnwick@example.com` and [phone number](#phone-number) `99887432`.
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New york p/99887432 ic/S9054567D` adds a volunteer named `John Wick` with [NRIC](#nric)
+  `S9054567D` to FriendlyLink, with [birth date](#birthdate) `1990-11-05`, [address](#address) `New york`, [email address](#email) `johnwick@example.com` and [phone number](#phone-number) `99887432`.
 * `add_volunteer n/Sally White bd/1989-03-11 ic/S8957677H` adds a volunteer named `Sally White` with [NRIC](#nric)
   `S8957677H` to FriendlyLink, with [birth date](#birthdate) `1989-03-11`.
 
@@ -234,7 +234,7 @@ Examples:
 
 #### Pair volunteer and elderly: `pair`
 
-Add a pairing between an existing elderly and volunteer.
+Adds a pairing between an existing elderly and volunteer.
 This allows you to track which elderly members are assigned to which volunteers.
 
 Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
@@ -294,7 +294,7 @@ starting point.
 
 ### Editing records
 
-Edit the information of an existing elderly or volunteer in FriendlyLink, based on their [index](#index) or [NRIC](#nric).
+Edits the information of an existing elderly or volunteer in FriendlyLink, based on their [index](#index) or [NRIC](#nric).
 
 #### Editing an elderly by index : `edit_elderly`
 
@@ -361,10 +361,8 @@ Format: `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 (as volunteers do not have a [Risk Level](#risk-level)).
 
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
-
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of [tags](#tags), [medical qualifications](#medical-qualification) or [available dates](#available-dates) will overwrite previous ones instead of being cumulative. 
-
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -372,7 +370,7 @@ You can remove all the person's tags by typing `t/` without specifying any tags 
 </div>
 Examples:
 
-* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
+* `edit S2568212B t/Overseas t/Undergrad` replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
 
     **Before editing:**
 
@@ -382,8 +380,8 @@ Examples:
 
     <img src="images/userGuide/editAfter.png" width="1000" />
 
-* `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
-* `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored (since volunteers do not have a risk level).
+* `edit S2233556T p/91642345 re/NORTH` edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
+* `edit S8833657U re/CENTRAL r/HIGH` edits the [region](#region) and [risk level](#risk-level) of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored (since volunteers do not have a risk level).
 
 [Back to top](#table-of-contents)
 
@@ -391,7 +389,7 @@ Examples:
 
 ### Deleting records
 
-Delete the specific existing elderly or volunteer in FriendlyLink with the given [NRIC](#nric).
+Deletes the specific existing elderly or volunteer in FriendlyLink with the given [NRIC](#nric).
 
 #### Deleting an elderly: `delete_elderly`
 
@@ -515,7 +513,7 @@ to specify more attributes like `t/`, the recommendation will be done on a case-
 Example:
 
 * Typing `add_volunteer n/Harry p/12345686 `, FriendlyLink will
-  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]` as
+  suggest `ic/NRIC bd/BIRTH_DATE re/[REGION] a/[ADDRESS] e/[EMAIL] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]` as
   these fields have not been filled.
 * Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17`
   will not suggest anything by default as all possible fields have at least one value.
@@ -524,8 +522,8 @@ Example:
 
 **:information_source: Notes on Command Recommendation**<br>
 
-* The order of fields specified here may not be what is reflected in the application.
 * When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
+* You can see the warning in the terminal used to open this application.
 
 </div>
 
@@ -598,11 +596,11 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 ## Fields
 This section describes the format and specifications of each field.
 
-<div class="alert alert-info">
-:information_source: **Note on character limits** <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note on character limits** 
 
 There is <em>no</em> max character limit enforced on most fields. The reasoning behind this is that we do not want to unnecessarily restrict you from entering possible long fields (For example, a long name). 
 We recommend using entering fields of length at most 100.
+
 </div>
 
 ### Name
@@ -635,7 +633,7 @@ The phone number of a person.
 ### Email
 The email of a person.
 
-Emails should be of the format local-part@domain and adhere to the following constraints:
+Emails should be of the format `local-part@domain` and adhere to the following constraints:
 
 The `local-part` must
 * only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).
@@ -754,6 +752,8 @@ The following features are planned for the coming update
 
 ## Glossary
 
+### Non-Technical
+
 These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [Terminology](#terminology) and the [Fields](#fields) section.
 
 | Term                  | Meaning                                                                                                                                                     |
@@ -767,17 +767,26 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
 | Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
-| JSON                  | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                         |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
 | Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
+| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents.                                        |
 | Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
 | Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
 | Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
 | Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
 | VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
+
+
+### Technical
+
+| Term     | Meaning                                                                                                                                                                                  |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |
+| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
+| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| Java     | Java is a programming language that FriendlyLink is written in. It is required to run the application.                                                                                   |
 
 [Back to top](#table-of-contents)
 
