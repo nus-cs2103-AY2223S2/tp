@@ -76,7 +76,7 @@ The following sections give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java). The partial Class Diagram below showcases the main classes that reside in UI.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,15 +93,19 @@ The `UI` component,
 
 The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
-Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc.
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. The Class Diagram below outlines the different concrete subclasses of `Page` and the subcomponents they depend on. 
 
 ![Subclasses of Page abstract class](images/PageClasses.png)
 
-When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
+<div style="page-break-after: always;"></div>
+
+The generation of a `Page` is as such: 
+
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The Sequence Diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
 
 ![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
 
-
+<div style="page-break-after: always;"></div>
 
 
 ### Logic component
