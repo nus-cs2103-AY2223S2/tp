@@ -712,7 +712,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-
 **UC02: Delete a contact**
 
 **MSS**
