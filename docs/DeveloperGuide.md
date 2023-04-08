@@ -274,49 +274,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 </details>
 
-**Use case: Delete an event**
+<details open markdown="block">
+<summary>
+<strong>Use case: Delete an event</strong>
+</summary>
 
 **MSS**
-
 1.  User requests to list events
 2.  System shows a list of events
 3.  User requests to delete a specific event in the list
-4.  System deletes the event
-
+4.  System deletes the event  
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-
   Use case ends.
 
 * 2a. The given index is invalid.
-
-    * 2a1. System shows an error message.
-
+    * 2a1. System shows an error message.  
       Use case resumes at step 2.
+</details>
 
+<details open markdown="block">
+<summary markdown="span">
 **Use case: Undo a delete**
+</summary>
 
 **MSS**
-
 1. User requests to undo the recent delete
-2. System restores the most recent delete
-
+2. System restores the most recent delete  
     Use case ends.
 
 **Extensions**
-
 * 1a. New event added duplicate of recent deleted event.
-
-    * 1a1. System shows an error message.
-
+    * 1a1. System shows an error message.  
       Use case ends.
 
-* 2a. The list is empty.
-
+* 2a. The list is empty.  
   Use case ends.
+
+</details>
+
+
 
 **Use case: Find event by name**
 
