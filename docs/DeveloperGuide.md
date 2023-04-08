@@ -146,9 +146,10 @@ Each section of these components will describe the smaller subcomponents within 
 
 Finally, the [Commons](#36-common-classes) section covers classes that are used by multiple components in ConnectUS.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:** <br>
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -243,7 +244,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -269,7 +272,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br> 
+
+An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -564,7 +569,9 @@ We plan to address this constraint in the next iteration of this product (V1.5).
 
 Given below are instructions to test the app manually.
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="block" class="alert alert-info">:information_source: **Note:**<br>
+
+These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
