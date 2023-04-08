@@ -45,6 +45,16 @@ public class ModelManager implements Model {
         this(new ExecutiveProDb(), new UserPrefs());
     }
 
+    public ModelManager(Model model) {
+        requireAllNonNull(model);
+        userPrefs = new UserPrefs(model.getUserPrefs());
+        executiveProDb = new ExecutiveProDb(model.getExecutiveProDb());
+        filteredEmployees = new FilteredList<>(this.executiveProDb.getEmployeeList());
+        allEmployees = new FilteredList<>(model.getFullEmployeeList());
+    }
+
+
+
     //=========== UserPrefs ==================================================================================
 
     @Override
