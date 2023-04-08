@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -764,7 +763,7 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-### Sort all roles by salary
+### Sort roles by salary
 
 Prerequisite: There are roles stored in RoleBook with different salaries.
 
@@ -774,9 +773,9 @@ Expected Output in the Role List Box : Roles are sorted in ascending order start
 
 Expected Output Command Output Box : Salaries sorted in asc.
 
-### Sort all roles by deadline
+### Sort roles by deadline
 
-Similar to the manual testing of [sort all roles by salary section](#Sort all roles by salary).
+Similar to the manual testing of [sort roles by salary section](#sort-roles-by-salary).
 
 ### View the information of a Role
 
