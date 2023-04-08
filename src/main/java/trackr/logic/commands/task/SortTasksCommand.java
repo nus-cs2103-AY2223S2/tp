@@ -24,7 +24,11 @@ public class SortTasksCommand extends Command {
 
     private SortTasksComparator sortTasksComparator;
 
+    /**
+     * Creates a {@code SortTasksCommand} based on the given {@code sortTasksComparator}
+     */
     public SortTasksCommand(SortTasksComparator sortTasksComparator) {
+        requireNonNull(sortTasksComparator);
         this.sortTasksComparator = sortTasksComparator;
     }
 
