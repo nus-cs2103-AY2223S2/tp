@@ -906,7 +906,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting different types of tasks
 
-   1. Prerequisites: Add 1 of `Events`, `Deadline`, `SimpleTask` in the order stated with a tag of liking to it. Then, repeat it again, but with no tags assigned to each.
+   1. Prerequisites: Add 1 each of `Events`, `Deadline`, `SimpleTask` in the order stated with a tag of liking to it. Then, repeat it again, but with no tags assigned to each.
 
    1. Test case: `sort`<br>
      Expected: The order of the tags will be as follows: `SimpleTask` with no tag, `SimpleTask` with tag, `Deadline` with no tags, `Deadline` with tags, `Event` with no tags, `Event` with tags.
