@@ -78,7 +78,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added use case for  `edit` feature. [\#79](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/79/files)
     * Added use case for `listRoutines`, `export`, `exportRoutines`,`clearRoutines`, `deleteRoutine`, `deleteExercise`,`findRoutine`. [\#115](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/115/files)
-    * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`,
+    * Added Implementation for `export`, `addExercie`, `deleteRoutine`. [\#136](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/136/files)
+    * Added manual testing for `delete`, `addRoutine`,`findRoutine`,`deleteExercise`[\#202](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/202/files)
 * **Community**:
    * PRs reviewed: [\#162](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/162), [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117), [\#105](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/105), [\#99](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/99), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#84](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/84), [\#88](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/88), [\#82](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/82), [\#77](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/77), [\#74](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/74), [\#57](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/57)
    * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/dfordarius/ped))
