@@ -216,7 +216,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Command
 
-The `add` command is used to create a new role in the app and set the necessary fields for that role,
+The `add` command is used to create a new role in TechTrack and set the necessary fields for that role,
 namely they are the: `Name`, `Contact`, `Email`, `Company`, `Job Description`, `Tag`, `Website`, `Salary`, `Deadline`,
 `Experience` fields. Note that the `Tag` field is not necessary, while the rest of the fields are necessary for the
 command to work.
@@ -244,7 +244,7 @@ The following sequence diagram shows how the argument parsing for the `add` comm
 
 ### Edit Command
 
-The `edit` command is used to change the information of an existing patient in the app. The fields supported are:
+The `edit` command is used to change the information of an existing role in TechTrack. The fields supported are:
 `Name`, `Contact`, `Email`, `Company`, `JobDescription`,`Tag`, `Website`, `Salary`,
 `Deadline` and `Experience`. Note that the `Tag` field can be inputted with multiple tags (`t/java t/python`) while the
 rest does not.
@@ -270,6 +270,28 @@ The following sequence diagram shows how the `edit` command works:
 The following sequence diagram shows how the argument parsing for the `edit` command works:
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
+
+### Delete Command
+
+The `delete` command is used to delete the information of an existing role in TechTrack. The command takes in
+an `INDEX` as argument, which corresponds to the role to be deleted. Note that `delete` command uses the
+`FilteredRoleList` for deletion, we can therefore delete roles by their index after invoking other commands such as sorting and filtering.
+
+The format for the `delete` command can be
+seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#deleting-a-role-edit).
+
+When `delete INDEX` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls
+the `RoleBookParser` to parse the
+input. An instance of the `DeleteCommandParser` to parse the `INDEX` is created through the `parseIndex` static
+method in `ParserUtil`.
+
+The `RoleBookParser` will instantiate the `DeleteCommandParser` object and call the parse method with `INDEX` as arguments.
+The parse method will create and return a new `DeleteCommand`. The `LogicManager` then executes the `DeleteCommand`, which deletes and updates 
+the `Role` from the `Model` based on the `INDEX`.
+
+The following sequence diagram shows how the `delete` command works:
+
+![Delete Command Sequence Diagram](images/DeleteCommandSequenceDiagram.png)
 
 ### Salary and Deadline Command Feature
 
@@ -328,19 +350,30 @@ will sort both views.
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
 
-The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
+Given below is an example usage of how CompanyCommand and its dependencies is being used in the following steps.
 
-Given below is an example usage of how CompanyCommand is being used in the following steps.
-
-1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book.
+1. The user launches TechTrack, and initializes its role book from preexisting data files.
 
 2. The user can choose to use the `Company Command` to filter companies.
-    - The user executes `company <keyword>` command to filter roles by their company.
+    - The user executes `company {keyword}` command to filter roles with the given company name in the form of `keyword`.
+
+3. When `company {keyword}` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
+input. This then creates an instance of the `CompanyCommandParser` to parse the keyword. 
+
+4. Invoking the parse method 
+of `CompanyCommandParser` creates a `CompanyContainsKeywordsPredicate` object that implements the `predicate<Role>` interface.
+`CompanyContainsKeywordsPredicate` is used to check if any of the company field of the rolelist contains the keyword.
+If any of the inputs formats are invalid, a `ParseException` will be thrown.
+
+4. The `CompanyCommandParser` then creates a `CompanyCommand` which uses `Model` interface's `Model#updateFilteredRoleList()` 
+to filter the roles based on the `predicate`, which in this case is the keyword.
+
+5. `LogicManager` executes the returned `CompanyCommand` and updates the filtered role list in `Model`. Subsequently, the `CommandResult` 
+is returned.
 
 The following sequence diagram shows how the `company` command works:
 
-<img src="images/CompanyCommandSequenceDiagram.png" width="800" />
+![Company Command Sequence Diagram](images/CompanyCommandSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -348,11 +381,18 @@ The following sequence diagram shows how the `company` command works:
 
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
+    * Cons: More CLI arguments need to be added if more attributes are needed to filter the list.
 
-* **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
+* **Alternative 2 (alternative choice):** Filter roles by extending a generic find command.
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
+
+#### Limitations:
+
+The `keyword` used to filter the roles in the Company Command must contain at least one non-space character and filtering
+is not case-sensitive.
+
+E.g.: `company Google` is equivalent to `company google`
 
 ### Tag Command Feature
 
@@ -559,7 +599,7 @@ Use case ends.
 
 **Extensions**
 
-* 3a. Job exists.
+* 3a. Job is valid.
     * 3a1. TechTrack resumes.
 
       Use case resumes at step 3b.
