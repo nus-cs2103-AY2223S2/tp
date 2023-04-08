@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.DeleteServiceCommand.MESSAGE_DELETE_S
 import static seedu.address.logic.commands.DeleteTechnicianCommand.MESSAGE_DELETE_TECHNICIAN_SUCCESS;
 import static seedu.address.logic.commands.DeleteVehicleCommand.MESSAGE_DELETE_VEHICLE_SUCCESS;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -62,10 +61,7 @@ public class AutoM8DeleteCommandTest {
      */
     @Test
     public void deleteCustomer_success() throws CommandException {
-        /**
-         *  Attempt to run command normally.
-         *  Check if cascades.
-         */
+        // Attempt to run command normally + Check if cascades.
 
         Model model = new TypicalShop().getTypicalModel();
 
@@ -186,8 +182,8 @@ public class AutoM8DeleteCommandTest {
 
             try {
                 AutoM8CommandTestUtil.getAppointment(appointmentId, model);
-                throw new AssertionError("Command reported appointment delete success " +
-                        "but Appointment exists!");
+                throw new AssertionError("Command reported appointment delete success "
+                        + "but Appointment exists!");
             } catch (AppointmentNotFoundException e) {
                 assertEquals(e.getMessage(), new AppointmentNotFoundException(appointmentId).getMessage());
             }
@@ -200,8 +196,8 @@ public class AutoM8DeleteCommandTest {
                     throw new AssertionError("Delete Appointment command not cascading to customer ");
                 }
             } catch (CustomerNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteAppointment_success - Failed. Cascading " +
-                        "check on Customer failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteAppointment_success - Failed. Cascading "
+                        + "check on Customer failed." + e.getMessage());
             }
 
             // check if staff affected
@@ -213,8 +209,8 @@ public class AutoM8DeleteCommandTest {
                     throw new AssertionError("Delete Appointment command not cascading to technician");
                 }
             } catch (TechnicianNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteAppointment_success - Failed. Cascading " +
-                        "check on Technician failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteAppointment_success - Failed. Cascading "
+                        + "check on Technician failed." + e.getMessage());
             }
 
         } catch (AppointmentNotFoundException | CommandException e) {
@@ -230,32 +226,32 @@ public class AutoM8DeleteCommandTest {
         Model model = new TypicalShop().getTypicalModel();
 
         try {
-            int vehicle_id = 4;
-            Vehicle markForDelete = AutoM8CommandTestUtil.getVehicle(vehicle_id, model);
+            int vehicleId = 4;
+            Vehicle markForDelete = AutoM8CommandTestUtil.getVehicle(vehicleId, model);
             DeleteVehicleCommand deleteXCommand = new DeleteVehicleCommand(markForDelete.getId());
             CommandResult result = deleteXCommand.execute(model);
 
-            assertEquals(result, new CommandResult(String.format(MESSAGE_DELETE_VEHICLE_SUCCESS, vehicle_id),
+            assertEquals(result, new CommandResult(String.format(MESSAGE_DELETE_VEHICLE_SUCCESS, vehicleId),
                     Tab.VEHICLES));
 
             try {
-                AutoM8CommandTestUtil.getVehicle(vehicle_id, model);
-                throw new AssertionError("Command reported vehicle delete success " +
-                        "but Vehicle exists!");
+                AutoM8CommandTestUtil.getVehicle(vehicleId, model);
+                throw new AssertionError("Command reported vehicle delete success "
+                        + "but Vehicle exists!");
             } catch (VehicleNotFoundException e) {
-                assertEquals(e.getMessage(), new VehicleNotFoundException(vehicle_id).getMessage());
+                assertEquals(e.getMessage(), new VehicleNotFoundException(vehicleId).getMessage());
             }
 
             int customerId = 3;
 
             try {
                 Customer customer = AutoM8CommandTestUtil.getCustomer(customerId, model);
-                if (customer.getVehicleIds().contains(vehicle_id)) {
+                if (customer.getVehicleIds().contains(vehicleId)) {
                     throw new AssertionError("Delete Vehicle command not cascading to customer ");
                 }
             } catch (CustomerNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteVehicle_success - Failed. Cascading " +
-                        "check on Customer failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteVehicle_success - Failed. Cascading "
+                        + "check on Customer failed." + e.getMessage());
             }
 
             // check if service affected
@@ -263,12 +259,12 @@ public class AutoM8DeleteCommandTest {
 
             try {
                 Service service = AutoM8CommandTestUtil.getService(serviceId, model);
-                if (service.getVehicleId() == vehicle_id) {
+                if (service.getVehicleId() == vehicleId) {
                     throw new AssertionError("Delete Vehicle command not cascading to service ");
                 }
             } catch (ServiceNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteVehicle_success - Failed. Cascading " +
-                        "check on Technician failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteVehicle_success - Failed. Cascading "
+                        + "check on Technician failed." + e.getMessage());
             }
 
         } catch (VehicleNotFoundException | CommandException e) {
@@ -294,8 +290,8 @@ public class AutoM8DeleteCommandTest {
 
             try {
                 AutoM8CommandTestUtil.getService(serviceId, model);
-                throw new AssertionError("Command reported vehicle delete success " +
-                        "but Vehicle exists!");
+                throw new AssertionError("Command reported vehicle delete success "
+                        + "but Vehicle exists!");
             } catch (ServiceNotFoundException e) {
                 assertEquals(e.getMessage(), new ServiceNotFoundException(serviceId).getMessage());
             }
@@ -308,8 +304,8 @@ public class AutoM8DeleteCommandTest {
                     throw new AssertionError("Delete Service command not cascading to vehicle. ");
                 }
             } catch (VehicleNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteService_success - Failed. Cascading " +
-                        "check on Vehicle failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteService_success - Failed. Cascading "
+                        + "check on Vehicle failed." + e.getMessage());
             }
 
             // check if service affected
@@ -321,8 +317,8 @@ public class AutoM8DeleteCommandTest {
                     throw new AssertionError("Delete Service command not cascading to Technicians ");
                 }
             } catch (TechnicianNotFoundException e) {
-                throw new AssertionError("JUnitTest: deleteService_success - Failed. Cascading " +
-                        "check on Technician failed." + e.getMessage());
+                throw new AssertionError("JUnitTest: deleteService_success - Failed. Cascading "
+                        + "check on Technician failed." + e.getMessage());
             }
 
         } catch (ServiceNotFoundException | CommandException e) {
@@ -334,7 +330,7 @@ public class AutoM8DeleteCommandTest {
      * Delete existing Part.
      */
     @Test
-    public void deletePart_success() throws CommandException{
+    public void deletePart_success() throws CommandException {
         Model model = new TypicalShop().getTypicalModel();
 
         try {
@@ -349,8 +345,8 @@ public class AutoM8DeleteCommandTest {
 
             try {
                 AutoM8CommandTestUtil.getPartQty(partName, model);
-                throw new AssertionError("Command reported part delete success " +
-                        "but Part exists!");
+                throw new AssertionError("Command reported part delete success "
+                        + "but Part exists!");
             } catch (PartNotFoundException e) {
                 assertEquals(e.getMessage(), new PartNotFoundException(partName).getMessage());
             } catch (EmptyInputException e) {

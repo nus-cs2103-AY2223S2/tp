@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.format.DateTimeFormatter;
+
 import org.opentest4j.AssertionFailedError;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entity.person.Customer;
@@ -17,13 +20,13 @@ import seedu.address.model.entity.shop.exception.VehicleNotFoundException;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
-import seedu.address.testutil.TypicalShop;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class AutoM8CommandTestUtil {
 
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
 
     public static void assertFailure(Command command, Model model, Exception exception) {
         assertFailure(command, model, exception.getMessage());
@@ -36,11 +39,11 @@ public class AutoM8CommandTestUtil {
      * @param command The command to be executed
      * @param model The model to reference
      * @param msg Expected CommandResult
-     * @return Whether executed command returns command result's message.
      */
 
     public static void assertFailure(Command command, Model model, String msg) {
         CommandResult result = null;
+
         try {
             result = command.execute(model);
             throw new AssertionFailedError("Assert Failure returns non-failure condition!");
@@ -64,14 +67,13 @@ public class AutoM8CommandTestUtil {
      * @param command The command to be executed
      * @param model The model to reference
      * @param msg Expected CommandResult
-     * @return Whether executed command returns command result's message.
      */
     public static void assertSuccess(Command command, Model model, String msg) {
         CommandResult result = null;
         try {
             result = command.execute(model);
             String posMsg = result.getFeedbackToUser();
-            assertTrue (posMsg != null && msg != null
+            assertTrue(posMsg != null && msg != null
                     && posMsg.hashCode() == msg.hashCode()
                     && posMsg.equals(msg));
 
@@ -149,4 +151,7 @@ public class AutoM8CommandTestUtil {
         return model.getShop().getPartQty(partName);
     }
 
+    public static DateTimeFormatter getDtf() {
+        return dtf;
+    }
 }
