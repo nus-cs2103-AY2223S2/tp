@@ -182,31 +182,35 @@ This section provides an in-depth explanation of MyLib's features. For a quick r
 <div style="page-break-after: always;"></div>
 
 
-### Adding a tag: `addtag`
+### Tags:
+Tags are custom labels that you can attach to a bookmark. Only tags that are in your tag list can be added to a bookmark.
+This section will cover the commands you can use to view your tag list, adding tags to it and deleting tags from it.
 
-Adds a tag to the list of tags.
+#### Viewing tags
+To view your list of tags, use the `tags` command.
 
-:bulb: **Tip:** You need to add a tag to the tag list first before using it. 
+The format for the command is simply: `tags`.
 
-Format: `addtag [t/TAG]…`
+Since MyLib comes with a default set of tags, you can expect a non-empty list of tags even as a new user.
+
+#### Adding tags
+To add new tags to your tag list, use the `addtag` command.
+
+The format for the `addtag` command is as follows:
+
+`addtag [t/TAG]…`
 
 Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
-### Deleting a tag: `dtag`
+#### Deleting a tag
+To delete a tag from your tag list, use the `dtag` command.
 
-Deletes a tag from the tag list.
-
-Format: `dtag TAGNAME`
+Format: `dtag TAG`
 
 Example:
 * `dtag MaleProtagonist`
-
-### Listing all tags: `tags`
-Lists all tags in the tag list.
-
-Format: `tags`
 
 ### Genres:
 A genre in a bookmark indicates the genre of the content the bookmark is tracking.
