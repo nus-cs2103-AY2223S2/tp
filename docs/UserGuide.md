@@ -5,8 +5,8 @@ Greetings! Welcome to PowerConnect! <br>
 Are you looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
 
-PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
-features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Managment System (LMS)](#glossary) tools currently in the market. <br>
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features, so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
+features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Management System (LMS)](#glossary) tools currently in the market. <br>
 
 We aim to make PowerConnect as simple as possible for you to use with a focus on command line interface where you don't
 have to navigate complex user menus to access the features you need, especially if you can type fast. <br>
@@ -68,7 +68,7 @@ Without further ado, let's get started!
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. In the same folder, create a new folder named “images” and another folder named "student" and "parent" in the "images folder". eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`. More details [here.](#images)
+4. In the same folder, create a new folder named “images” and another folder named "student" and "parent" in the "images folder". e.g. student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`. More details [here.](#images)
 
 5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -318,7 +318,7 @@ This date can be set to: <br>
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (0000 hours). Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will futher improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
+Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (0000 hours). Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will further improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
 Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
 </div>
 
@@ -378,7 +378,7 @@ Deletes a test OR homework grade for the student corresponding to the `INDEX_NUM
 Duplicate test/homework is checked through having the same name.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Please specifiy only one test or homework name. Multiple names would result in PowerConnect taking the last name.
+Please specify only one test or homework name. Multiple names would result in PowerConnect taking the last name.
 </div>
 
 Format:
@@ -673,7 +673,7 @@ Examples:
 ![parent_delete_success](images/parentDeleteSuccess.png)
 
 **Note:**
-1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
+1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BOUND* to him/her. System will display an error message for this. <br><br>
    ![parent_delete_attach_fail](images/parentdeleteattach.png)
 [Back to Table of Contents](#table-of-contents)
 
@@ -790,7 +790,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
     Location of where images folder should be at. (Same directory of PowerConnect.jar)
 ![image message](images/images1.png)
 
-3. Inside the images folder, create a folder called `student` and `parent` if it does not exist.
+3. Inside the images' folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
     Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
@@ -808,7 +808,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 ## FAQ
 
-Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform) and we will get back to you as soon as possible.
+Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform), and we will get back to you as soon as possible.
 
 --------------------------------------------------------------------------------------------------------------------
 
