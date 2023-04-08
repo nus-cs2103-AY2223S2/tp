@@ -170,14 +170,14 @@ Format: `findDecks KEYWORD...`
 - Deck names matching at least one keyword will be returned (i.e. `OR` search).
 
 Example:
-- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`.
+- `findDecks science programming` filters decks whose names match keywords `science` **or** `programming`. Below is the application display right after this command is executed.
 
 ![FindCardsCommandDisplay](images/FindDecksCommandDisplay.png)
 
 <div markdown="block" class="alert alert-info">
 
 💡 **Tip:** 
-- Notice how there is a small text box `Finding Decks with keyword: science programming` below the filtered list of questions. This text box is to help you remember what you have previously searched for!
+- Notice there is a small text box `Finding Decks with keyword(s): science programming` below the filtered list of decks. This text box is displayed as long as the decks are filtered. It is to help you remember what you have previously searched for!
 - Notice that the result display will show how many decks have been listed.
 
 </div>
