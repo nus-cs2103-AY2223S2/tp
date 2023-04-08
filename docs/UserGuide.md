@@ -64,9 +64,10 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
+* Emails must abide by RFC5322 standard. For more details, refer to section 3.4.1 of the RFC5322 protocol found here 
+https://www.rfc-editor.org/rfc/rfc5322
+* You can also refer to the help message which will appear if you key in an invalid email
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:**
 A person can have any number of tags. (including 0)
 </div>
