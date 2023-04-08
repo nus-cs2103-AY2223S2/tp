@@ -679,61 +679,110 @@ specified otherwise)
 
 **MSS**
 
-1. Actor inputs the client’s personal information
-2. System confirms and creates the client profile
-3. Use case ends
+1. User inputs the client’s personal information
+2. Advis.io confirms and creates the client profile
+
+    Use case ends.
 
 **Extensions**
 
-* 1a. The financial advisor input the wrong format for the client’s information and tags
-* 1b. The system requests for the actor to input the correct data.
-* 1c. Steps 1a-1b are repeated until the data entered are correct.
-* 1d. Use case resumes from step 2.
+* 1a. The user inputs the wrong format for the client’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
 
-**Use case: Manage client’s policy**
+    Steps 1a1-1b are repeated until the data entered are correct.
+  
+    Use case resumes from step 2.
 
-**MSS**
-
-1. Actor inputs client’s personal information
-2. System confirms and creates the client profile
-3. Use case ends
-
-**Use case: Create Reminder**
+**Use case: Manage client’s policy information**
 
 **MSS**
 
-1. The financial advisor selects the client for whom they want to create a reminder.
-2. The system requests for the type of reminder and the date and time it should be set for.
-3. The financial advisor enters the details of the reminder.
-4. The system saves the reminder and confirms the creation of the reminder.
-5. Use case ends.
+1. User inputs the client’s policy information
+2. Advis.io confirms and creates the policy under the client's profile
+
+      Use case ends.
 
 **Extensions**
 
-* 3a. The financial advisor enters an invalid type of reminder or an invalid date and time.
-* 3a1. The system requests for the correct data.
-* 3a2. The financial advisor enters the correct data.
-* 3a3. Steps 3a1-3a2 are repeated until the data entered are correct.
-* 3a4. Use case resumes from step 4.
+* 1a. The user inputs the wrong format for the policy’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
+
+    Steps 1a1-1b are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
 
 **Use case: Find Client**
 
 **MSS**
 
-1. The financial advisor enters the name, account number, or any other relevant information of the client they want to
-   find
-2. The system searches for the client based on the entered information.
-3. The system displays a list of clients matching the entered information.
-4. The financial advisor selects the desired client from the list.
-5. The system displays the client's information and account details.
-6. Use case ends.
+1. The user enters the name, phone number or any other identifying information of the client.
+2. Advis.io searches for the client based on the entered information.
+3. Advis.io displays a list of clients matching the entered information.
+4. The user selects the desired client from the list.
+5. Advis.io displays the client's information and policy details.
+
+    Use case ends.
 
 **Extensions**
 
-* 2a. The system does not find any clients matching the entered information.
-* 2a1. The system displays a message indicating that no clients were found and prompts the financial advisor to enter
-  different information.
-* 2a2. Use case resumes from step 1.
+* 2a. Advis.io does not find any clients matching the entered information.
+  * 2a1. Advis.io displays a message indicating that no clients were found.
+
+    Use case resumes from step 1.
+
+**Use case: Undo and redo actions**
+
+**MSS**
+
+1. The user performs an action within Advis.io. 
+2. The user selects the "undo" command within Advis.io. 
+3. Advis.io undoes the last action taken by the user. 
+4. The user selects the "redo" command within Advis.io. 
+5. Advis.io redoes the previously undone action.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has not performed any actions within Advis.io that can be undone.
+  * 2a1. Advis.io displays a message indicating that there is no action to be undone.
+  
+    Use case ends
+
+* 4a. The user has not undone any actions within Advis.io that can be redone.
+  * 4a1. Advis.io displays a message indicating that there is no action to be redone.
+    
+    Use case ends
+
+**Use case: Creating Appointment for Client**
+
+**MSS**
+
+1. The user creates a new appointment for a client, with an appointment name and date.
+2. Advis.io confirms the appointment creation and saves it to the client's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user does not enter an appointment name or date.
+  * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
+  * 1a2. The user enters a new appointment name and date.
+    
+  Use case ends
+
+
+* 1b. Advis.io adds an invalid appointment date.
+  * 1b1. Advis.io displays a message indicating that the appointment date is invalid.
+  * 1b2. The user inputs a new appointment date.
+  
+  Steps 1b1-1b2 are repeated until the date entered is valid.
+  
+  Use case ends.
+
+
 
 ### Non-Functional Requirements
 
