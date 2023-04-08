@@ -723,7 +723,9 @@ Format: `exit`
 
 ### Saving the data
 
-MATHUTORING data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* MATHUTORING data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* If the user would like to save the MATHUTORING data in a different location, they can use the [`export`](#1-exporting-the-data-of-the-students-export)
+command.
 
 [Back to top](#table-of-contents)
 
@@ -741,9 +743,11 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 
 ## GUI display restrictions
 We have set up a few GUI display restrictions in order to avoid the GUI being affect by extreme inputs (e.g. super long name) or small screen size, and thus hinder the user experience.
-* If the student name is more than 29 letters, we will display the full student name inside student list. However, the task list will only display at most the first 29 letters, the remaining letters will show as ellipsis.
+* If the student name is more than 29 letters, the full student name will be displayed in the student list. However, the
+task list will only display the first 29 letters, with the remaining letters shown as ellipsis.
 
-* If the exam label is more than 11 letters, we will display the full exam label inside score list, text panel. However, the chart tooltip will only display at most the first 11 letters, the remaining letters will show as ellipsis.
+* If the exam label is more than 11 letters, the full exam label will be displayed in the score list, text panel.
+However, the chart tooltip will only display the first 11 letters, with the remaining letters shown as ellipsis.
 
 --------------------------------------------------------------------------------------------------------------------
 
