@@ -39,5 +39,4 @@ class JsonAdaptedAppointmentTest {;
         assertEquals(appointment.getVaccination(), loadedAppointment.getVaccination());
         assertEquals(appointment.getStatus(), loadedAppointment.getStatus());
     }
-    
 }
