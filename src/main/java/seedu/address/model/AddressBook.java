@@ -249,6 +249,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    public Person getPersonByNric(Nric nric) {
+        return persons.getPersonByNric(nric);
+    }
+    /**
      * Returns true if a patient with the same identity as {@code person} by NRIC exists in the address book.
      */
     public boolean hasPatientByNric(Nric nric) {
