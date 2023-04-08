@@ -1,7 +1,6 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
