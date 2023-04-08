@@ -1,29 +1,39 @@
-@startuml AddPatientSequenceDiagram
+@startuml AddPatientParsingSequenceDiagram
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Model" as Model LOGIC_COLOR
 participant ":VmsParser" as VmsParser LOGIC_COLOR
 participant ":PatientParser" as PatientParser LOGIC_COLOR
-participant "a:AddCommandParser" as AddCommandParser LOGIC_COLOR
-participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":Patient" as Patient LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-[-> LogicManager : execute("patient add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
-activate LogicManager
+' box Model MODEL_COLOR_T1
+' participant ":Model" as Model MODEL_COLOR
+' end box
+[-> Model : processCommand("patient add \n˗˗n John Doe \n˗˗p 98765432...")
+activate Model
 
-LogicManager -> VmsParser : parseCommand("patient add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+Model -> VmsParser : parseCommand("patient add \n˗˗n John Doe \n˗˗p 98765432...")
 activate VmsParser
 
-VmsParser -> PatientParser : parse("add \n˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+VmsParser -> PatientParser : parse("add \n˗˗n John Doe \n˗˗p 98765432...")
 activate PatientParser
 
 create AddCommandParser
-PatientParser -> AddCommandParser : parse("˗˗n John Doe \n˗˗p 98765432 \n˗˗d 2001-03-19 \n˗˗b B+ \n˗˗a catfur, pollen \n˗˗v covax")
+PatientParser -> AddCommandParser : parse("˗˗n John Doe \n˗˗p 98765432...")
 activate AddCommandParser
+
+note right of AddCommandParser: ParseUtil details ommited,\n see activity diagram
+
+create Patient
+AddCommandParser -> Patient
+activate Patient
+
+Patient --> AddCommandParser
+deactivate Patient
 
 create AddCommand
 AddCommandParser -> AddCommand
@@ -32,32 +42,29 @@ activate AddCommand
 AddCommand --> AddCommandParser
 deactivate AddCommand
 
-AddCommandParser --> PatientParser : a
+AddCommandParser --> PatientParser : command
 deactivate AddCommandParser
-AddCommandParser -[hidden]-> PatientParser : a
-destroy AddCommandParser
+AddCommandParser -[hidden]-> PatientParser
 
-PatientParser --> VmsParser : a
+PatientParser --> VmsParser : command
 deactivate PatientParser
 
-VmsParser --> LogicManager : a
+VmsParser --> Model : parseResult
 deactivate VmsParser
 
-LogicManager -> AddCommand : execute()
-activate AddCommand
+' Model -> AddCommand : execute()
+' activate AddCommand
 
-AddCommand -> Model : addPatient()
-activate Model
+' AddCommand -> Model : addPatient()
+' activate Model
 
 
-Model --> AddCommand
+' Model --> AddCommand
 deactivate Model
 
-AddCommand --> LogicManager : result
-deactivate AddCommand
-AddCommand -[hidden]-> LogicManager : result
-destroy AddCommand
+' AddCommand --> Model : commandMessage
+' deactivate AddCommand
 
-[<--LogicManager
-deactivate LogicManager
+[<--Model : parseResult
+deactivate Model
 @enduml
