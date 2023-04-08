@@ -55,6 +55,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n Offered \n \t SWE  \n Google  \t", expectedFindCommandWithWhitespaces);
     }
 
+    /* Tests the parser when there is/are prefix(es) specified for find command. */
     @Test
     public void parse_validArgsWithPrefix_returnsFindCommand() {
         List<String> role = Arrays.asList("Intern");
@@ -71,7 +72,6 @@ public class FindCommandParserTest {
                 put(PREFIX_ROLE, role);
             }
         };
-
         HashMap<Prefix, List<String>> prefixCompanyNameMap = new HashMap<>() {
             {
                 put(PREFIX_COMPANY_NAME, companyName);
@@ -92,7 +92,6 @@ public class FindCommandParserTest {
                 put(PREFIX_COMPANY_NAME, companyNames);
             }
         };
-
         HashMap<Prefix, List<String>> prefixStatusesMap = new HashMap<>() {
             {
                 put(PREFIX_STATUS, statuses);
@@ -109,7 +108,6 @@ public class FindCommandParserTest {
         // Find Role keyword
         FindCommand expectedFindCommandForRolePrefix =
                 new FindCommand(new ApplicationContainsKeywordsPredicate(prefixRoleMap));
-
         assertParseSuccess(parser, " r/Intern", expectedFindCommandForRolePrefix);
 
         // Find Company Name keyword

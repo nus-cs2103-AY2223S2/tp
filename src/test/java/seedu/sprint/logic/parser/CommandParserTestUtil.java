@@ -6,7 +6,7 @@ import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**
- * Contains helper methods and variables for testing command parsers.
+ * Contains helper methods for testing command parsers.
  */
 public class CommandParserTestUtil {
 
