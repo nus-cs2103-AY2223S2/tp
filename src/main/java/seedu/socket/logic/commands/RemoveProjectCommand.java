@@ -34,13 +34,13 @@ public class RemoveProjectCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the field of the project identified "
             + "by the index number used in the displayed project list. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_REPO_HOST + "[REPO HOST]] "
-            + "[" + PREFIX_REPO_NAME + "[REPO NAME]] "
+            + "[" + PREFIX_REPO_HOST + "[REPO_HOST]] "
+            + "[" + PREFIX_REPO_NAME + "[REPO_NAME]] "
             + "[" + PREFIX_DEADLINE + "[DEADLINE]] "
             + "[" + PREFIX_MEETING + "[MEETING]]\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + " "
-            + PREFIX_MEETING + "01/01/2023-2359";
+            + PREFIX_MEETING + "01/01/23-2359";
 
     public static final String MESSAGE_REMOVE_FIELD_SUCCESS = "Remove field: %1$s";
 
