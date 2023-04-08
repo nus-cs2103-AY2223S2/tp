@@ -1193,10 +1193,12 @@ such as `32-02-2023`, but just not for the case of specific dates that may be va
 3. Enhancing the `edit` command to check for changing an interview date to a date in the past should throw a warning to alert the user that the edited interview date time is in the past. This should not be the case
 when the user edits the interview date time of an applicant and hence should be warned to the user, but still allow the change to execute.
 4. Enhancing the GUI to show more information such as the Application DateTime of an applicant more easily instead of having to execute a command to view information. 
-Currently out GUI hides these information and is only available for the user after the user executes a relevant command that changes these information. This might be inconvenient for users and is a room for improvment
+Currently out GUI hides these information and is only available for the user after the user executes a relevant command that changes these information. This might be inconvenient for users and is a room for improvement
 in future enhancements.
 5. Enhancing the `add` and `edit` command to warn the user if duplicate phone numbers are used in the new or edited entries. While phone numbers are unique, there is the slight possibility that a new applicant is using the phone number 
 of an old applicant (who has changed his/her phone number). Hence, we shall not deny these commands to throw an error but rather we should warn the user when these commands are executed so that the user aware of it.
+6. Adding a feature that allows for importing of csv files so that users can transfer existing data into HMHero, instead of having to re-key all the existing entries
+manually into HMHero at the start.
 
 
 
