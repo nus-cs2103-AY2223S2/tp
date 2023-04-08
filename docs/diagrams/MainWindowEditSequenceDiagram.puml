@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+end box
+
+box Logic LOGIC_COLOR_T1
+participant "logic:LogicManager" as logic LOGIC_COLOR_T3
+participant "parser:RecipeBookParser" as parser LOGIC_COLOR_T3
+participant ":EditCommandParser" as editParser LOGIC_COLOR_T3
+participant ":EditCommand" as command LOGIC_COLOR_T3
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:ModelManager" as model MODEL_COLOR
+end box
+
+[-> MainWindow : editRecipeEvent
+activate MainWindow
+
+MainWindow -> MainWindow : handleEditRecipeEvent
+activate MainWindow
+
+MainWindow -> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+MainWindow -> logic : execute(commandText)
+activate logic
+
+logic -> parser : parseCommand(commandText)
+activate parser
+
+create editParser
+parser -> editParser : new EditParser()
+activate editParser
+
+editParser -> parser
+deactivate editParser
+
+parser -> editParser : parse(arguments)
+activate editParser
+
+create command
+editParser -> command : new EditCommand(index, recipeDescriptor)
+activate command
+command -> editParser
+deactivate command
+editParser -> parser
+deactivate editParser
+
+parser -> logic : command
+deactivate parser
+
+logic -> command : execute(model)
+activate command
+
+command -> model : setRecipe
+activate model
+deactivate model
+
+command -> logic : commandResult
+deactivate command
+
+logic -> MainWindow : commandResult
+deactivate logic
+
+deactivate MainWindow
+
+deactivate MainWindow
+
+deactivate MainWindow
+
+@enduml

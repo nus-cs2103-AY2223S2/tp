@@ -1,0 +1,107 @@
+@startuml
+!include style.puml
+
+Actor User as user ARCHI_USER_COLOR
+
+box Ui UI_COLOR_T1
+participant "cardPane:Hbox" as cardPane UI_COLOR_T3
+participant "form:EditRecipeForm" as EditRecipeForm UI_COLOR_T3
+participant "window:Stage" as window UI_COLOR_T3
+participant ":TextInput" as TextInput UI_COLOR_T3
+participant "editEvent:EditRecipeEvent" as editEvent UI_COLOR_T3
+end box
+
+[-> cardPane : setOnKeyPressed(eventHandler)
+activate cardPane
+deactivate cardPane
+
+user -> cardPane : "F" key
+activate cardPane
+
+create EditRecipeForm
+cardPane -> EditRecipeForm : new EditRecipeForm(recipe, displayedIndex, data)
+activate EditRecipeForm
+
+EditRecipeForm -> cardPane : form
+deactivate EditRecipeForm
+
+cardPane -> EditRecipeForm : display()
+activate EditRecipeForm
+
+user -> TextInput : edit text
+activate TextInput
+TextInput -> TextInput : save
+activate TextInput
+deactivate TextInput
+
+deactivate TextInput
+
+alt User closes the window
+  user -> EditRecipeForm : "close" or "esc" key
+  activate EditRecipeForm
+
+  EditRecipeForm -> window : close()
+  activate window
+  deactivate window
+
+  deactivate EditRecipeForm
+
+else User performs a save
+  user -> EditRecipeForm : "save" or "enter" key
+
+  activate EditRecipeForm
+
+  EditRecipeForm -> EditRecipeForm : saveRecipe()
+  activate EditRecipeForm
+
+  EditRecipeForm -> EditRecipeForm : getFormData()
+
+  activate EditRecipeForm
+
+  EditRecipeForm -> TextInput : getText()
+  activate TextInput
+  deactivate TextInput
+
+  'getFormData
+  deactivate EditRecipeForm
+
+  EditRecipeForm -> EditRecipeForm : handle(changedValues)
+  activate EditRecipeForm
+  deactivate EditRecipeForm
+
+  EditRecipeForm -> EditRecipeForm : closeForm()
+  activate EditRecipeForm
+
+  EditRecipeForm -> window : close()
+  activate window
+  deactivate window
+
+  deactivate EditRecipeForm
+
+  'saveRecipe
+  deactivate EditRecipeForm
+
+  deactivate EditRecipeForm
+
+end
+
+deactivate EditRecipeForm
+
+opt data is not empty
+  create editEvent
+  cardPane -> editEvent : new EditRecipeEvent(commandText)
+
+  activate editEvent
+
+  editEvent -> cardPane : editEvent
+  deactivate editEvent
+
+  [-> cardPane : fire(editEvent)
+  activate cardPane
+  deactivate cardPane
+
+  deactivate cardPane
+end
+
+
+@enduml
