@@ -24,9 +24,11 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
     systemProperties = [
+            'testfx.robot': 'glass',
             'testfx.headless': 'true',
             'prism.order': 'sw',
             'prism.text': 't2k',
+            'illegal-access': 'permit'
     ]
 }
 
