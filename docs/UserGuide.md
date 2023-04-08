@@ -199,7 +199,23 @@ Examples:
 
 Sorts all the patients with the specified field and order in the system.
 
+The fields that you can sort by include:
+- patient name (`name/`)
+- status (`s/`)
+- discharge date (`d/`)
+- ward name (`w/`)
+
+You can sort in one of two orders:
+- ascending (`asc`)
+- descending (`desc`)
+
 Format: `sort FIELD/ORDER`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about sort:**<br>
+- You can only sort by one field in a command.
+</div>
 
 Examples:
 
