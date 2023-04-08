@@ -2065,10 +2065,13 @@ Maintainability:
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Module Code**: Unique code identifier for each module
-- **Lecture Name**: Unique name identifier for each lecture
-- **Video Name**: Unique name identifier for each video
-- **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
+- **Module**: A module or course in NUS
+- **Lecture**: A lecture of a module
+- **Video**: A video recording of a lecture
+- **Module Code**: The unique official code assigned to a module by NUS (e.g. CS2103)
+- **Lecture Name**: A name given to a lecture by the user
+- **Video Name**: A name given to a video by the user
+- **Timestamp**: The timestamp of a video, representing a specific point in the video, specified in hours, minutes, and seconds
 
 ## Appendix: Instructions for manual testing
 
