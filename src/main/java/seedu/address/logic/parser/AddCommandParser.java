@@ -45,36 +45,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             return AddModuleCommandParserUtil.parse(argMultimap);
         } else if (AddLectureCommandParserUtil.isArgumentsForAddingLecture(argMultimap)) {
             return AddLectureCommandParserUtil.parse(argMultimap);
-        } else if (isAddVideo(argMultimap)) {
-            return parseAddVideoCommand(argMultimap);
+        } else if (AddVideoCommandParserUtil.isArgumentsForAddingVideo(argMultimap)) {
+            return AddVideoCommandParserUtil.parse(argMultimap);
         } else {
             throw createInvalidCommandFormatException();
         }
-    }
-
-    private boolean isAddVideo(ArgumentMultimap argMultimap) {
-        return !argMultimap.getPreamble().isEmpty()
-                && argMultimap.getValue(PREFIX_MODULE).isPresent()
-                && argMultimap.getValue(PREFIX_LECTURE).isPresent();
-    }
-
-    private AddCommand parseAddVideoCommand(ArgumentMultimap argMultimap) throws ParseException {
-        String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
-        String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
-        String videoNameStr = argMultimap.getPreamble();
-        String videoTimestampStr = argMultimap.getValue(PREFIX_TIMESTAMP).orElse(VideoTimestamp.DEFAULT_TIMESTAMP);
-        String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
-
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
-        VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
-        VideoTimestamp timestamp = ParserUtil.parseVideoTimestamp(videoTimestampStr);
-        Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
-
-        boolean hasWatched = argMultimap.getValue(PREFIX_WATCH).isPresent();
-
-        Video video = new Video(videoName, hasWatched, timestamp, tags);
-        return new AddVideoCommand(moduleCode, lectureName, video);
     }
 
     private ParseException createInvalidCommandFormatException() {
@@ -225,6 +200,83 @@ public class AddCommandParser implements Parser<AddCommand> {
      * from it.
      */
     private static class AddVideoCommandParserUtil {
+        /**
+         * Returns true if {@code argMultimap} contains arguments that reflect that the intent is to add a video.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return True if {@code argMultimap} contains arguments that reflect that the intent is to add a
+         *         video. Otherwise, false.
+         */
+        public static boolean isArgumentsForAddingVideo(ArgumentMultimap argMultimap) {
+            requireNonNull(argMultimap);
 
+            return !argMultimap.getPreamble().isEmpty()
+                    && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                    && argMultimap.getValue(PREFIX_LECTURE).isPresent();
+        }
+
+        /**
+         * Parses the arguments in {@code argMultimap} and use it to create an {@code AddVideoCommand} object.
+         *
+         * @param argMultimap A map of the arguments and their values.
+         * @return The {@code AddVideoCommand} object created from the arguments.
+         * @throws ParseException Indicates that an argument value did not conform to the expected format.
+         */
+        public static AddVideoCommand parse(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            ModuleCode moduleCode = extractModuleCode(argMultimap);
+            LectureName lectureName = extractLectureName(argMultimap);
+            Video video = createVideo(argMultimap);
+
+            return new AddVideoCommand(moduleCode, lectureName, video);
+        }
+
+        private static ModuleCode extractModuleCode(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
+            return ParserUtil.parseModuleCode(moduleCodeStr);
+        }
+
+        private static LectureName extractLectureName(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
+            return ParserUtil.parseLectureName(lectureNameStr);
+        }
+
+        private static Video createVideo(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            VideoName videoName = extractVideoName(argMultimap);
+            VideoTimestamp timestamp = extractVideoTimestamp(argMultimap);
+            Set<Tag> tags = AddCommandParserUtil.extractTags(argMultimap);
+            boolean hasWatched = hasWatchedExtract(argMultimap);
+
+            return new Video(videoName, hasWatched, timestamp, tags);
+        }
+
+        private static VideoName extractVideoName(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String videoNameStr = argMultimap.getPreamble();
+            return ParserUtil.parseVideoName(videoNameStr);
+        }
+
+        private static VideoTimestamp extractVideoTimestamp(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            String videoTimestampStr = argMultimap.getValue(PREFIX_TIMESTAMP).orElse(VideoTimestamp.DEFAULT_TIMESTAMP);
+            return ParserUtil.parseVideoTimestamp(videoTimestampStr);
+        }
+
+        // A more fitting name might be "extractWatchStatus", however, that would not comply with the boolean
+        // naming convention.
+        private static boolean hasWatchedExtract(ArgumentMultimap argMultimap) throws ParseException {
+            requireNonNull(argMultimap);
+
+            return argMultimap.getValue(PREFIX_WATCH).isPresent();
+        }
     }
 }
