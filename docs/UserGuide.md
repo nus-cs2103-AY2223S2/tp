@@ -39,7 +39,7 @@ this user guide has everything you need. Head over to the [Getting started](#get
 ## Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
