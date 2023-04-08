@@ -12,8 +12,8 @@ participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager
-LogicManager -> FindClientCommand : execute()
 activate LogicManager
+LogicManager -> FindClientCommand : execute()
 activate FindClientCommand
 
 FindClientCommand -> Model : updateFilteredClientList(c)

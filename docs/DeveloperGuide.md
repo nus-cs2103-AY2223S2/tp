@@ -220,7 +220,7 @@ When parsing find commands, the parser parses each possible parameter one-by-one
 
 The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
 
-<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" />
+<img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" height="300" />
 
 `CombinedPredicate` inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. This makes use of the `Command` design pattern, as the `FindClientCommand` and `FindProjectCommand` do not need to know which predicates specifically are involved., and only need to test the `CombinedPredicate`. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `CombinedPredicate` which can have any number of `Predicate`s.
 
@@ -889,4 +889,11 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-1. {_some feature flaw and how we plan to fix it in future_}
+1. Error messages for invalid indexes are vague, only stating `The provided index is invalid`. In future, we can display clearer error messages corresponding to each case:
+   1. Index provided is not a number: `The index you provided was not a number! Index must be a positive number, e.g. 1, 2, 3...`
+   1. Index provided is not a positive number: `The index you provided was not a positive number! Index must be a positive number, e.g. 1, 2, 3...`
+   1. Index provided is larger than the currently visible list: `The index you provided was larger than the currently visible list!`
+1. Client list and project list are not displayed together, which can inconvenience users as they have to constantly switch between the lists with an additional commands.
+   1. The client and project list could be displayed on one screen, with special care taken to ensure that the size of the information never becomes too small.
+1. Checking for duplicate client names is not case-sensitive. However, most people consider `alice` and `Alice` to be the same person and may input `alice` intending for the name to be `Alice`.
+   1. Parsing for client names should be made insensitive. User input for names should be parsed to title case, as should data in the JSON file.
