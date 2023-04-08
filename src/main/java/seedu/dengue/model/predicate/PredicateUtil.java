@@ -84,8 +84,6 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
      * @return true if the start date begins after the end date, false otherwise.
      */
     public static boolean isDateRangeValid(Date start, Date end) {
-        assert start != null;
-        assert end != null;
         requireNonNull(start);
         requireNonNull(end);
         LocalDate d1 = LocalDate.parse(start.value);
