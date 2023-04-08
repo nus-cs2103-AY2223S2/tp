@@ -45,8 +45,8 @@ Feel free to check out at our individual project portfolios listed below, and if
 
 <img src="images/9fc70c892.png" width="200px">
 
-[[GitHub](https://github.com/9fc70c892)]
-[[Portfolio](team/edwin.md)]
+[[github](https://github.com/9fc70c892)]
+[[portfolio](team/9fc70c892.md)]
 
 * Role: Developer
 * Responsibilities: Model, Basic Command Logic, Code Quality
