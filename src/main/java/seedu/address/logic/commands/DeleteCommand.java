@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
+
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -41,6 +44,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+
+        ObservableList<Session> sessions = model.getFilteredSessionList();
+
+        for (Session session: sessions) {
+            model.removePersonFromSession(personToDelete, session);
+        }
+
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
