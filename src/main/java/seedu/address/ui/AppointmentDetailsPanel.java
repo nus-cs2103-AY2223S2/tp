@@ -14,7 +14,7 @@ import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * An UI component that displays information of a {@code Vehicle}.
+ * A UI component that displays information of an {@code Appointment}.
  */
 public class AppointmentDetailsPanel extends UiPart<Region> {
 

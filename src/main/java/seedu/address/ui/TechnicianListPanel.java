@@ -12,7 +12,7 @@ import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.TechnicianDataMap;
 
 /**
- * Panel containing the list of customers.
+ * Panel containing the list of technicians.
  */
 public class TechnicianListPanel extends UiPart<Region> {
     private static final String FXML = "TechnicianListPanel.fxml";
