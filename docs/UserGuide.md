@@ -231,14 +231,14 @@ For example, you can navigate to the **lecture context** - lecture Week 1 of the
   <img src="images/RootContext.png" height="20" />
 
   1. Navigate to the module context from the root context.
-  - `nav CS2040S`
+  > `nav CS2040S`
   2. Navigate to the lecture context from the module context.
-  - `nav Week 1`
+  > `nav Week 1`
 
 - Navigating **directly** from any **context**
   <img src="images/RootContext.png" height="20" /> <img src="images/ModContext.png" height="20" /> <img src="images/LectureContext.png" height="20" />
   1. Navigate directly to the lecture Week 1 of the module CS2040S.
-  - `nav /mod CS2040S /lec Week 1`
+  > `nav /mod CS2040S /lec Week 1`
 
 ### Navigation Injection
 
@@ -246,15 +246,12 @@ After navigating to a lecture or module context, the navigation system will **in
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-  1. <img src="images/LectureContext.png" height="20" />
-    Add "Video 2" to the lecture Week 1 of module CS2040S.
-    - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-  2. <img src="images/LectureContext.png" height="20" />
-    List the videos of lecture Week 1 of module CS2040S.
-    - `list` -> `list /mod CS2040S /lec Week 1`
-  3. <img src="images/LectureContext.png" height="20" />
-    Add "Video 1" to lecture Week 1 of module CS2040S.
-    - `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
+  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+  > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+  > `list` -> `list /mod CS2040S /lec Week 1`
+  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+  > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
@@ -264,13 +261,13 @@ The following can be performed at **any** [current working context](#current-wor
 
 - Including the `/r` prefix will perform a command from the **root context**.
   - e.g. List all modules at the root context.
-  - `list /r` -> `list`
+  > `list /r` -> `list`
 - Including the `/mod` prefix will perform a command from the **module context**.
   - e.g. Add lecture "Week 10" for module CS2040S.
-  - `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
+  > `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
 - Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
   - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
-  - `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
+  > `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
 
 To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
