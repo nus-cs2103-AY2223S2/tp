@@ -1,0 +1,15 @@
+@startuml AddPatientActivityDiagram
+start
+if() then ([valid input])
+    :Create new patient;
+    if() then ([within patient limit])
+        :Store patient into PatientManager;
+    else ([else])
+        :Throw CommandExeception;
+    endif;
+else ([else])
+    :Throw ParseException;
+endif;
+:Display message to user;
+stop
+@enduml
