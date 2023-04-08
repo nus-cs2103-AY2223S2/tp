@@ -368,6 +368,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details open markdown="block">
+<summary markdown="span">**Use case: Show next event(s) by name**</summary>
+
+**MSS**
+
+1. User requests to show next x number of event(s)
+2. System displays the next x number of events in chronological order<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
 <summary markdown="span">**Use case: Undo a delete**</summary>
 
 **MSS**
