@@ -13,7 +13,7 @@ import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the InternBuddy level
  * Duplicates are not allowed (by .isSameInternship comparison)
  */
 public class InternBuddy implements ReadOnlyInternBuddy {
@@ -63,7 +63,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     //// internship-level operations
 
     /**
-     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in InternBuddy.
      */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
@@ -71,8 +71,8 @@ public class InternBuddy implements ReadOnlyInternBuddy {
     }
 
     /**
-     * Adds an internship to the address book.
-     * The internship must not already exist in the address book.
+     * Adds an internship to InternBuddy
+     * The internship must not already exist in InternBuddy.
      */
     public void addInternship(Internship p) {
         internships.add(p);
@@ -82,7 +82,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the intern buddy.
      * The internship identity of {@code editedInternship} must not be the same as another existing internship
-     * in the address book.
+     * in InternBuddy.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);

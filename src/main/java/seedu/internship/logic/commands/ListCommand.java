@@ -6,7 +6,7 @@ import static seedu.internship.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import seedu.internship.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all internships in InternBuddy to the user.
  */
 public class ListCommand extends Command {
 

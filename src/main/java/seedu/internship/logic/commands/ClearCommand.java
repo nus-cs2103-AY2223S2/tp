@@ -6,7 +6,7 @@ import seedu.internship.model.InternBuddy;
 import seedu.internship.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the data in InternBuddy.
  */
 public class ClearCommand extends Command {
 
