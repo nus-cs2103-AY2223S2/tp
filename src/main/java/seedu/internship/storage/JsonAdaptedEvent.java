@@ -1,9 +1,12 @@
 package seedu.internship.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.internship.commons.exceptions.IllegalValueException;
+import seedu.internship.commons.util.DateTimeUtil;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.EventDescription;
@@ -45,8 +48,8 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         this.name = source.getName().name;
-        this.start = source.getStart().startDateTime;
-        this.end = source.getEnd().endDateTime;
+        this.start = source.getStart().getNumericDateTimeString();
+        this.end = source.getEnd().getNumericDateTimeString();
         this.description = source.getDescription().descriptionMessage;
         this.internship = new JsonAdaptedInternship(source.getInternship());
     }
@@ -70,18 +73,18 @@ public class JsonAdaptedEvent {
         if (start == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Start.class.getSimpleName()));
         }
-        final Start modelStart = new Start(start);
-        if (!modelStart.isValidStart()) {
+        if (!DateTimeUtil.isValidLocalDateTimeString(start, Start.NUMERIC_DATE_TIME_FORMATTER)) {
             throw new IllegalValueException(Start.MESSAGE_CONSTRAINTS);
         }
+        final Start modelStart = new Start(LocalDateTime.parse(start, Start.NUMERIC_DATE_TIME_FORMATTER));
 
         if (end == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, End.class.getSimpleName()));
         }
-        final End modelEnd = new End(end);
-        if (!modelEnd.isValidEnd()) {
+        if (!DateTimeUtil.isValidLocalDateTimeString(end, End.NUMERIC_DATE_TIME_FORMATTER)) {
             throw new IllegalValueException(End.MESSAGE_CONSTRAINTS);
         }
+        final End modelEnd = new End(LocalDateTime.parse(end, End.NUMERIC_DATE_TIME_FORMATTER));
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

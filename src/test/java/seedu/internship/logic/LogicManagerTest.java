@@ -26,9 +26,11 @@ import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.UserPrefs;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.storage.JsonEventCatalogueStorage;
 import seedu.internship.storage.JsonInternshipCatalogueStorage;
 import seedu.internship.storage.JsonUserPrefsStorage;
 import seedu.internship.storage.StorageManager;
@@ -48,8 +50,11 @@ public class LogicManagerTest {
     public void setUp() {
         JsonInternshipCatalogueStorage internshipCatalogueStorage =
                 new JsonInternshipCatalogueStorage(temporaryFolder.resolve("internshipcatalogue.json"));
+        JsonEventCatalogueStorage eventCatalogueStorage =
+                new JsonEventCatalogueStorage(temporaryFolder.resolve("eventcatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage,
+                eventCatalogueStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,9 +82,13 @@ public class LogicManagerTest {
         JsonInternshipCatalogueStorage internshipCatalogueStorage =
                 new JsonInternshipCatalogueIoExceptionThrowingStub(temporaryFolder
                         .resolve("ioExceptionInternshipCatalogue.json"));
+        JsonEventCatalogueStorage eventCatalogueStorage =
+                new JsonEventCatalogueIoExceptionThrowingStub(temporaryFolder
+                        .resolve("ioExceptionInternshipCatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(internshipCatalogueStorage, userPrefsStorage,
+                eventCatalogueStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -133,7 +142,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -160,6 +170,21 @@ public class LogicManagerTest {
 
         @Override
         public void saveInternshipCatalogue(ReadOnlyInternshipCatalogue internshipCatalogue, Path filePath)
+                throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonEventCatalogueIoExceptionThrowingStub extends JsonEventCatalogueStorage {
+        private JsonEventCatalogueIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveEventCatalogue(ReadOnlyEventCatalogue eventCatalogue, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

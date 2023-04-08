@@ -15,15 +15,15 @@ import seedu.internship.model.internship.Internship;
  */
 public class Event {
     private final Name name;
-    private final Start start;
-    private final End end;
+    private final DateTime start;
+    private final DateTime end;
     private final EventDescription eventDescription;
     private Internship internship;
 
     /**
      * Every Field must be present and not null.
      */
-    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
+    public Event(Name name, DateTime start, DateTime end, EventDescription eventDescription, Internship internship) {
         requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
@@ -56,11 +56,11 @@ public class Event {
         return name;
     }
 
-    public Start getStart() {
+    public DateTime getStart() {
         return start;
     }
 
-    public End getEnd() {
+    public DateTime getEnd() {
         return end;
     }
 
@@ -95,29 +95,41 @@ public class Event {
                 && otherEvent.getInternship().equals(getInternship());
     }
 
+    /**
+     * Checks if an Event clashes in timing with another Event
+     *
+     * @param otherEvent Other Event to compare with
+     * @return True if the two Events clashes in timing
+     */
     public boolean isClash(Event otherEvent) {
-        return !this.equals(otherEvent) &&
-                (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
+        return !this.equals(otherEvent)
+                && (this.start.equals(otherEvent.start) || this.end.equals(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
                 || this.end.isBetween(otherEvent.start, otherEvent.end))
                 || otherEvent.start.isBetween(this.start, this.end)
                 || otherEvent.end.isBetween(this.start, this.end);
     }
 
+    /**
+     * Returns the timing of which two events clash
+     *
+     * @param otherEvent Other Event to compare with
+     * @return null if there is no clash in events; List of start and end clash timing if events clash
+     */
     public List<LocalDateTime> clashingTimings(Event otherEvent) {
         if (!this.isClash(otherEvent)) {
             return null;
         } else {
             List<LocalDateTime> timings = new ArrayList<>();
             if (this.start.compareTo(otherEvent.start) >= 0) {
-                timings.add(this.start.getLdt());
+                timings.add(this.start.getLocalDateTime());
             } else {
-                timings.add(otherEvent.start.getLdt());
+                timings.add(otherEvent.start.getLocalDateTime());
             }
             if (this.end.compareTo(otherEvent.end) <= 0) {
-                timings.add(this.end.getLdt());
+                timings.add(this.end.getLocalDateTime());
             } else {
-                timings.add(otherEvent.end.getLdt());
+                timings.add(otherEvent.end.getLocalDateTime());
             }
             return timings;
         }
@@ -127,7 +139,7 @@ public class Event {
      * Returns true if start date of event lies between the specified date inclusive.
      */
     public boolean isBetweenDate(LocalDate start, LocalDate end) {
-        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
+        return !(getStart().getLocalDate().isBefore(start) || getStart().getLocalDate().isAfter(end));
     }
 
     /**
@@ -140,7 +152,7 @@ public class Event {
             return true;
         }
 
-        if (!(other instanceof Internship)) {
+        if (!(other instanceof Event)) {
             return false;
         }
 
@@ -153,6 +165,12 @@ public class Event {
                 && otherEvent.getName().equals(getName());
     }
 
+    /**
+     * Compares two events to see which events should be ordered first in list
+     *
+     * @param otherEvent Other Event to compare with
+     * @return integer value describing whether this event is ordered before or after other event
+     */
     public int compareTo(Event otherEvent) {
         if (this.start.compareTo(otherEvent.start) == 0) {
             // Start Timings are the same, if one event ends earlier than the other put it first
