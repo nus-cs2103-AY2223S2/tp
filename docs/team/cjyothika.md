@@ -5,7 +5,8 @@ title: Jyothika's Project Portfolio Page
 
 ### Project: ModTrek
 
-ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). We envision the app to be convenient so that students can easily access and update their modules within presses of a keyboard.
+ModTrek is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI).
+The app is provides a convenient platform for students to easily access and update their modules within presses of a keyboard.
 
 Given below are my contributions to the project.
 
@@ -32,12 +33,16 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * 
+        * Edited tone of UG to be friendlier
+        * Added some clarifying notes on validity of module codes and year-semester user inputs
     * Developer Guide:
-        * to be added soon
+        * Wrote the implementation of the Delete Command feature and designed the sequence and activity diagrams
+        * Added some use cases
+        * Edited AB3 diagrams to remove traces of AB3 in Developer Guide
 
-* **Community**:
-  to be added soon
+* **Review/mentoring contributions**:
+   * Reviewed PRs (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/192), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/195), [3](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/84))
 
-* **Review/Mentoring Contributions**:
-to be added soon
+* **Tools**:
+    * Java (for code)
+    * PlantUML (for diagrams)
