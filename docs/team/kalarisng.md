@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly as it allows the user to generate a weight history graph that can show their client's progress throughout their time with them.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-* **New Feature**: Add **WeightHistory** class to client.
+* **New Class**: Add **WeightHistory** class to client.
   * What it does: allows the user to store their weight history.
   * Justification: This feature improves the product significantly as it allows the user to store a client's weight history. Clients may view their fitness progress with their weight history.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
