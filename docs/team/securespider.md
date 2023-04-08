@@ -1,8 +1,9 @@
 ---
 layout: page
-title: [Vincent Pang's Project Portfolio Page](https://github.com/securespider)
+title: Vincent Pang's Project Portfolio Page
 ---
 
+[github](https://github.com/securespider)
 ### Project: PowerConnect
 
 PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
