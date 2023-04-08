@@ -2,10 +2,37 @@
 layout: page
 title: Developer Guide
 ---
+
+## About ExecutivePro
+
+--------------------------------------------------------------------------------------------------------------------
+_ExecutivePro (EP)_ is a **desktop app** for **Human Resource (HR) managers** to manage their employee information, optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+
+It allows HR Managers to:
+1. Manage employees and their details
+2. Find or filter employees according to various criterion
+3. Export and import data from _ExecutivePro_ to other formats
+
+The purpose of this Developer Guide is to record the design and development of _ExecutivePro_, with the intention of assisting developers in understanding the thought process behind each feature. Alongside this, the guide offers a comprehensive overview of the architecture of _ExecutivePro_, both at a macro and micro level, aimed at aiding new developers in navigating through the code base.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Symbols and Syntax
+
+Here are some of the symbols to take note of when going through this user guide:
+
+| Symbol               | Meaning                                                           |
+|----------------------|-------------------------------------------------------------------|
+| `code`               | Text relevant to commands or name of a file.                      |
+| [`code`]             | The brackets around the code indicate that the field is optional. |
+| :bulb:               | Tips for ExecutivePro Users.                                      |
+| :warning:            | Be wary and proceed with caution.                                 |
+| :information_source: | Take note.                                                        |
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+
 
 ## **Acknowledgements**
 

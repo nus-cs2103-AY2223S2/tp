@@ -31,6 +31,7 @@ and `filter` command, such as `FilterByPayrollPredicate`, `NameContainsAllKeywor
 - Added the _Glossary_ section.
 - Added multiple _Use Cases_.
 - Helped adapt the DG from the previous _AddressBook_ implementation to our _ExecutivePro_ implementation.
+- Wrote the introductory sections about the target audience and purpose of the DG.
 
 **Contributions to team-based tasks :**
 - Played active role in the brainstorming sessions to come up with new features.
