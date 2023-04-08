@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSONS_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INPUT_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.ArrayList;
@@ -262,8 +261,10 @@ public class ParserUtil {
                 indexes.add(ind);
             }
             return indexes;
-        } catch (NumberFormatException e) {
-            throw new ParseException(MESSAGE_INVALID_INPUT_INDEX);
+        } catch (NumberFormatException // Not an int, thrown by 'Integer.parseInt'.
+                | IndexOutOfBoundsException e // Not positive int, thrown by 'Index.fromOneBased'.
+        ) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
 }
