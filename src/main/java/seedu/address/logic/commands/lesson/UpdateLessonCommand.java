@@ -100,7 +100,12 @@ public class UpdateLessonCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Lesson lessonToUpdate = student.getLesson(index);
+        Lesson lessonToUpdate;
+        try {
+            lessonToUpdate = student.getLesson(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+        }
 
         String newLessonName = this.lessonName.orElse(lessonToUpdate.getTitle());
         LocalDateTime newStartTime = this.startTime.orElse(lessonToUpdate.getStartTime());
