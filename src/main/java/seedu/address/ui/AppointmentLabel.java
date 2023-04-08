@@ -37,6 +37,16 @@ public class AppointmentLabel extends UiPart<Region> {
         appointmentMeetUpDate.setText(client.getAppointment().getMeetupDate().getDisplayString());
     }
 
+    /**
+     * Creates an empty AppointmentLabel
+     */
+    public AppointmentLabel() {
+        super(FXML);
+        this.client = null;
+        appointmentName.setText("");
+        appointmentMeetUpDate.setText("");
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -52,6 +62,6 @@ public class AppointmentLabel extends UiPart<Region> {
         // state check
         AppointmentLabel card = (AppointmentLabel) other;
         return appointmentName.getText().equals(card.appointmentName.getText())
-                && client.equals(card.client);
+            && client.equals(card.client);
     }
 }
