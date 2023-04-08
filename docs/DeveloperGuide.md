@@ -1266,18 +1266,83 @@ Before every test case, ensure that the there are no patients and vaccinations.
 
 `patient clear --force true`
 
-
 #### Test: Name validation
+
+##### Valid Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John   Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John   Doe2 --p 98765432 --d 2001-03-19 --b B+`
+
+##### Invalid Name
+
+* `patient add --n John-Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n    --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John D. --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John s/o Alex --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n --p 98765432 --d 2001-03-19 --b B+`
 
 #### Test: Phone validation
 
+##### Valid Phone
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 999 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 12345678912345 --d 2001-03-19 --b B+`
+
+##### Invalid Phone
+
+* `patient add --n John Doe --p +65 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 99 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 123-456 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p (123) 2345 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p --d 2001-03-19 --b B+`
+
 #### Test: Dob validation
+
+##### Valid Dob
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 0800 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 1600 --b B+`
+
+##### Invalid Dob
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19T2000 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-50 --b B+`
+* `patient add --n John Doe --p 98765432 --d 2040-03-19 --b B+`
+* `patient add --n John Doe --p 98765432 --d --b B+`
 
 #### Test: Blood Type validation
 
-#### Test: Allergies validation
+##### Valid Blood Type
 
-#### Test: Vaccines validation
+*List of valid Blood Type test non exhaustive*
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b A-`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b AB+`
+
+##### Invalid Blood Type
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b C+`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b C*`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b`
+
+#### Test: Group Name validation
+
+`GroupName` validation will include both allergies and vaccination as their underlying type is the same `GroupName` type
+
+##### Valid Group Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur, pollen --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a cat(fur) --a pol-len --v covax`
+
+##### Invalid Group Name
+
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a poll*en --v covax`
+* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfurcatfurcatfurcatfurcatfurcatfur --v covax`
 
 ### Viewing details of a patient
 
