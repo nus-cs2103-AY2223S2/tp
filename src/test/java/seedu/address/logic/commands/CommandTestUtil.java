@@ -90,6 +90,10 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_TRANSACTION_COUNT_DECIMAL_DESC = " " + PREFIX_TRANSACTION_COUNT + "0.1";
+    public static final String INVALID_TRANSACTION_COUNT_OVERFLOW_DESC = " " + PREFIX_TRANSACTION_COUNT
+            + "92233720368547758071";
+    public static final String INVALID_TRANSACTION_COUNT_NEGATIVE_DESC = " " + PREFIX_TRANSACTION_COUNT + "-1";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
