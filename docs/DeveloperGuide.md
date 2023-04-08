@@ -370,15 +370,24 @@ testers are expected to do more *exploratory* testing.
 **Action:**
 1. Download the jar file and copy into an empty folder
 2. Double-click the jar file
+3. Ensure that it is launched in `Java 11`
 
-**Result:**  Displays the GUI with the window size set to full-screen
+**Result:**  Displays the GUI with the application opened to full-screen
 
-#### Scenario 2 
+#### Scenario 2
+{: .no_toc}  
+**Context:** Normal launch
+
+**Action:** Launch the application again (follow from scenario 1 step 2)
+
+**Result:**  Displays the GUI with the application opened to full-screen
+
+#### Scenario 3
 {: .no_toc}  
 **Context:**  Restarting the application with existing data
 
 **Action:**
-1. Right-click on the 'X' button located in the top-right corner of the screen
+1. Click on the 'X' button located in the top-right corner of the screen
 2. Double-click the jar file
 
 **Result:**  The existing data should remain unchanged
