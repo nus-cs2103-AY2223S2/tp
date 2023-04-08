@@ -941,14 +941,14 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case ends.
 
-#### UC-APT-003 - Update appointment
+#### UC-APT-003 - Edit appointment
 
 ##### MSS
 
 1. User requests to list appointments.
 2. VMS shows a list of appointments.
-3. User requests to update a specific appointment in the list using the ID with the args.
-4. VMS update the appointment.
+3. User requests to edit a specific appointment in the list using the ID with the args.
+4. VMS edit the appointment.
 
     Use case ends.
 
@@ -1024,12 +1024,12 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case resumes from step 1.
 
-#### UC-VAC-003 - Update vaccination
+#### UC-VAC-003 - Edit vaccination
 
 ##### MSS
 
-1. User enters command to update a vaccination.
-2. VMS updates the vaccination.
+1. User enters command to edit a vaccination.
+2. VMS edits the vaccination.
 
     Use case ends.
 
@@ -1040,7 +1040,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
     Use case resumes from step 1.
 
-* 1b. User requested to update a vaccination that does not exist.
+* 1b. User requested to edit a vaccination that does not exist.
   * 1a1. VMS shows an error message.
 
     Use case ends.
