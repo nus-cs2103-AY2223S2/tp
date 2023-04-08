@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSONS_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -251,12 +251,20 @@ public class ParserUtil {
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String[] indexStrings = oneBasedIndexes.trim().split("\\s+");
         try {
-            return Arrays.stream(indexStrings)
-                    .map(Integer::parseInt)
-                    .map(Index::fromOneBased)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new ParseException("One or more index values are not positive integers.");
+            List<Index> indexes = new ArrayList<>();
+            for (String index : indexStrings) {
+                int indexNo = Integer.parseInt(index);
+                Index ind = Index.fromOneBased(indexNo);
+                if (indexes.contains(ind)) {
+                    throw new ParseException(MESSAGE_DUPLICATE_PERSONS_INDEX);
+                }
+                indexes.add(ind);
+            }
+            return indexes;
+        } catch (NumberFormatException // Not an int, thrown by 'Integer.parseInt'.
+                | IndexOutOfBoundsException e // Not positive int, thrown by 'Index.fromOneBased'.
+        ) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
 }
