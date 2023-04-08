@@ -240,10 +240,6 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANG
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
     * e.g. `find t/friend` will return contacts who have either tag `friend` or `best friend` or both.
 
-<div markdown="span" class="alert alert-primary">:exclamation: Warning:
-If no field is specified, zero contacts will be returned!
-</div>
-
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
 <br/><br/>
@@ -252,6 +248,10 @@ Example:
   <i>Result of the <code>find n/alex david</code> command</i>
   <br>
   </p>
+
+<div markdown="span" class="alert alert-primary">:exclamation: Warning:
+If no field is specified, zero contacts will be returned!
+</div>
 
 <div style="page-break-after: always;"></div>
 
