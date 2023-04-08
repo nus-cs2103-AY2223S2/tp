@@ -51,7 +51,7 @@ Given below are my contributions to the project.
   * Updated the Summary Window sizes and label texts to fit accordingly
   * Made sure all same-spelt contact names are equal regardless of capitalisation (Pull requests [\#137](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/137))
   * Fixed bugs pertaining to contact names, the comparison of contact names and parsing commands (Pull requests [\#137](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/137))
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#158](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/158))
 
 * **Documentation**:
   * User Guide:
