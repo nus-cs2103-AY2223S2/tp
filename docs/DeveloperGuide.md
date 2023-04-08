@@ -141,9 +141,9 @@ The above sequence is similar across each page navigation sequence.
 
 *Figure 5: Screenshot of Attendance Page*
 
-In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectfully.
+In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
 The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
-However, the current page shown in Figure 5 is still treated as an Attendance Page, hence only commands applicable to the Attendance Page is accepted.
+However, the current page shown in Figure 5 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
 This also applies to the Grades Page, when the `GradesListPanel` is displayed alongside the `SessionListPanel`.
 
 Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
