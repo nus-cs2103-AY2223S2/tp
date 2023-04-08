@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
  */
 public class FieldsUtil {
     private static final String INGREDIENT_PROMPT =
-    "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
+        "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
     private static final String STEP_PROMPT = "Add a step";
 
     /**
