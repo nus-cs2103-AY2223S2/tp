@@ -2,20 +2,21 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents {:toc}
-* [Acknowledgements](#Acknowledgements)
-* [Design](#Design)
-* [Implementation](#Implementation)
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Mockito](https://site.mockito.org/), [Apache PDFBox](https://pdfbox.apache.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,6 +157,8 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
+
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -588,6 +591,12 @@ of the student's scores. In future implementation, a student's performance will 
 
 ## **Appendix: Instructions for manual testing**
 
+### Launch and shutdown
+
+### Deleting a student
+
+### Saving data
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
@@ -649,12 +658,3 @@ Nevertheless, we should consider to allow student to have the same name.
 
 * Instead of not allowing students to have the same name, we do not allow any students to have both the same name and the 
 same email.
-
-
---------------------------------------------------------------------------------------------------------------------
-
-### Launch and shutdown
-
-### Deleting a student
-
-### Saving data

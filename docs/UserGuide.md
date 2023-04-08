@@ -8,31 +8,47 @@ title: User Guide
 *  **[Quick start](#quick-start)**
 *  **[User interface layout](#user-interface-layout)**
 *  **[User input restrictions](#user-input-restrictions)**
+   *  **[Student contact](#student-contact)**
+      *  [Name](#name)
+      *  [Phone/Contact Number](#phonecontact-number)
+      *  [Email](#email)
+      *  [Address](#address)
+      *  [Tags](#tags)
+   *  **[Task](#task)**
+      *  [Name/Title](#nametitle)
+   *  **[Score](#score)**
+      *  [Label](#label)
+      *  [Value](#value)
+      *  [Date](#date)
+   *  **[General fields](#general-fields)**
+      *  [Index](#index)
+      *  [File path for export](#file-path-for-export)
+      *  [File path for import](#file-path-for-import)
 *  **[Features](#features)**
    *  **[Managing student contact](#managing-student-contact)**
-      *  **[Adding a student: `add`](#1-adding-a-student-add)**
-      *  **[Deleting a student: `delete`](#2-deleting-a-student-delete)**
-      *  **[Editing a student: `edit`](#3-editing-a-student-edit)**
-      *  **[Checking a student: `check`](#4-checking-a-student-check)**
-      *  **[Finding a student: `find`](#5-finding-a-student-find)**
-      *  **[Filtering students: `filter`](#6-filtering-students-filter)**
-      *  **[Listing all students: `list`](#7-listing-all-students-list)**
+      *  [Adding a student: `add`](#1-adding-a-student-add)
+      *  [Deleting a student: `delete`](#2-deleting-a-student-delete)
+      *  [Editing a student: `edit`](#3-editing-a-student-edit)
+      *  [Checking a student: `check`](#4-checking-a-student-check)
+      *  [Finding a student: `find`](#5-finding-a-student-find)
+      *  [Filtering students: `filter`](#6-filtering-students-filter)
+      *  [Listing all students: `list`](#7-listing-all-students-list)
    *  **[Managing task list of a student](#managing-task-list-of-a-student)**
-      *  **[Adding a task for a student: `addtask`](#1-adding-a-task-for-a-student-addtask)**
-      *  **[Deleting a task of a student: `deletetask`](#2-deleting-a-task-of-a-student-deletetask)**
-      *  **[Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`](#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)**
+      *  [Adding a task for a student: `addtask`](#1-adding-a-task-for-a-student-addtask)
+      *  [Deleting a task of a student: `deletetask`](#2-deleting-a-task-of-a-student-deletetask)
+      *  [Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`](#3-marking-a-task-of-a-student-markcomplete-markinprogress-marklate)
    *  **[Managing score list of a student](#managing-score-list-of-a-student)**
-      *  **[Adding a score for a student: `addscore`](#1-adding-a-score-for-a-student-addscore)**
-      *  **[Deleting a score of a student: `deletescore`](#2-deleting-a-score-of-a-student-deletescore)**
-      *  **[Switching between score tabs: `switch`](#3-switching-between-score-tabs-switch)**
+      *  [Adding a score for a student: `addscore`](#1-adding-a-score-for-a-student-addscore)
+      *  [Deleting a score of a student: `deletescore`](#2-deleting-a-score-of-a-student-deletescore)
+      *  [Switching between score tabs: `switch`](#3-switching-between-score-tabs-switch)
    *  **[Managing the data of the students](#managing-the-data-of-the-students)**
-       *  **[Exporting the data of the students: `export`](#1-exporting-the-data-of-the-students-export)**
-       *  **[Importing the data of the students: `import`](#2-importing-the-data-of-the-students-import)**
-       *  **[Exporting the progress of a student: `exportp`](#3-exporting-the-progress-of-a-student-exportp)**
+       *  [Exporting the data of the students: `export`](#1-exporting-the-data-of-the-students-export)
+       *  [Importing the data of the students: `import`](#2-importing-the-data-of-the-students-import)
+       *  [Exporting the progress of a student: `exportp`](#3-exporting-the-progress-of-a-student-exportp)
    *  **[General commands](#general-commands)**
-       *  **[Viewing help: `help`](#1-viewing-help-help)**
-       *  **[Clearing all entries: `clear`](#2-clearing-all-entries-clear)**
-       *  **[Exiting the program: `exit`](#3-exiting-the-program-exit)**
+       *  [Viewing help: `help`](#1-viewing-help-help)
+       *  [Clearing all entries: `clear`](#2-clearing-all-entries-clear)
+       *  [Exiting the program: `exit`](#3-exiting-the-program-exit)
 *  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
@@ -85,7 +101,7 @@ If you need to switch to a new device, you can also export and import your previ
 
    * `exit` : Exits the app.
 
-6. Recommended minimum screen size: 740 x 700.
+6. Recommended minimum screen size: 740x700.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -95,18 +111,113 @@ If you need to switch to a new device, you can also export and import your previ
 
 ## User interface layout
 
-![Layout](images/Layout.png)
+There are two options to display a student's scores (__score list__ and __score chart__) by clicking the *Text* and *Chart* buttons (referred as Switch Display Button below) respectively.
+
+[Back to top](#table-of-contents)
+
+### Layout with score list
+
+![Layout with Score List](images/Layout.png)
+
+[Back to top](#table-of-contents)
+
+### Layout with score chart
+
+![Layout with Score Chart](images/Layout2.png)
 
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## User input restrictions
-To achieve the best performance, we have set a few restrictions regarding the user input.
+To achieve the best performance, we have set **restrictions** for your command input.<br><br>
+Here is the **summary** for input restrictions. You are advised to skim through all the restrictions to avoid command input mistakes.
 
-* Phone number must have at least 3 digits and no more than 15 digits.
-* A tag should not have more than 20 letters.
-   
+[Back to top](#table-of-contents)
+
+### Student contact
+
+#### Name
+A **name** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+#### Phone/Contact number
+* A **phone/contact number** must have at least **3 digits** and no more than **15 digits**.
+
+[Back to top](#table-of-contents)
+
+#### Email
+An **email** should be of the format `local-part@domain` and adheres to the following constraints:
+1. The **local-part** should only contain **alphanumeric characters** and **these special characters**, excluding the parentheses, (+_.-). <br>
+    The **local-part** may not start or end with any special characters.
+2. This is followed by a **'@'** and then a domain name. The domain name is made up of domain labels separated by periods.
+   The **domain name** must:
+    - end with a domain label at least **2 characters** long
+    - have each domain label start and end with **alphanumeric** characters
+    - have each domain label consist of alphanumeric characters, separated only by **hyphens**, if any.
+
+[Back to top](#table-of-contents)
+
+#### Address
+No restrictions.
+
+[Back to top](#table-of-contents)
+
+#### Tags
+A **tag** can only contain **alphanumeric** characters and should not contain more than **20 characters**.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Task
+
+#### Name/Title
+A **name** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Score
+
+#### Label
+A **label** can only contain **alphanumeric** characters and **spaces**.
+
+[Back to top](#table-of-contents)
+
+#### Value
+A **value** can be any integer or a number with one decimal place from **0 to 100 (inclusive)**.
+
+[Back to top](#table-of-contents)
+
+#### Date
+The format of a **date** must be in **`yyyy-MM-DD`**, and must not be in the future.
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### General fields
+
+#### Index
+An index must be a **positive integer** 1, 2, 3, ... (one-based index).
+
+[Back to top](#table-of-contents)
+
+#### File path for export
+* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+  * e.g. Windows uses backward slash and Mac uses forward slash
+* Export path should be a **directory**, not a file!
+
+[Back to top](#table-of-contents)
+
+#### File path for import
+* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+    * e.g. Windows uses backward slash and Mac uses forward slash
+* Export path should be a **file**, not a directory!
+
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -140,6 +251,8 @@ To achieve the best performance, we have set a few restrictions regarding the us
 
 </div>
 
+[Back to top](#table-of-contents)
+
 ### Managing student contact
 
 ### 1. Adding a student: `add`
@@ -150,20 +263,30 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: Tips:<br>
+**:bulb: Tips:**<br>
 * A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
 * If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
 * A student can have any number of tags (including 0)
 </div>
 
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
+* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name).
+* If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about the avatars (profile pictures):**<br>
+* The avatar will change if the student has a "gender" tag.
+* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
+</div>
+
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
-
-<div markdown="span" class="alert alert-warning">:exclamation:
-Caution:<br>
-In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
-</div>
+    ![Add a student](images/Add%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -178,7 +301,11 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.
+* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.<br>
+    Before `delete 2` is executed, the student `Bernice Yu` is shown in the Student List.
+    ![Delete a student (before)](images/Delete%20a%20student%20(before).png)
+    After `delete 2` is executed, the student `Bernice Yu` is deleted from the Student List.
+    ![Delete a student (after)](images/Delete%20a%20student%20(after).png)
 * `find Betsy` followed by `delete 1` deletes the 1st student (if the student exists) in the results of the `find` command.
 * `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
@@ -200,7 +327,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.<br>
+    Before command execution:
+    ![Edit a student (before)](images/Edit%20a%20student%20(before).png)
+    After command execution:
+    ![Edit a student (after)](images/Edit%20a%20student%20(after).png)
 
 [Back to top](#table-of-contents)
 
@@ -215,7 +346,14 @@ Format: `check INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.
+* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
+    Before command execution:
+    ![Check a student (before)](images/Check%20a%20student%20(before).png)
+    After command execution:<br>
+    * Student has no tasks and scores:
+        ![Check a student with no tasks and scores](images/Check%20a%20student%20Empty%20Lists.png)
+    * Student has tasks and scores:
+        ![Check a student with tasks and scores](images/Check%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -235,6 +373,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+    ![Find a student](images/Find%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -245,19 +384,16 @@ Filters students whose tags match with any of the given keywords.
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-insensitive. e.g. `primary` will match `Primary`
-* The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
+* The order of the keywords does not matter. e.g. `primaryprimary4` will match `primary4primary`
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
-  e.g. `primary primary4` will return `primary`, `primary4`, and `primary primary4`.
+  e.g. `primary primary4` will return students with tags of either `primary`, `primary4`, or both.
 
 Examples:
 * `filter primary` returns tag `primary`, `Primary`.
-* `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
-
-Addition:
-* The avatar will change if the student has a "gender" tag.
-* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
+* `filter secondary secondary2` returns students with tags of either `secondary`, `secondary2`, or both.
+    ![Filter students](images/Filter%20students.png)
 
 [Back to top](#table-of-contents)
 
@@ -266,6 +402,8 @@ Addition:
 Lists all the students in the student list.
 
 Format: `list`
+
+![List all students](images/List%20all%20students.png)
 
 [Back to top](#table-of-contents)
 
@@ -277,7 +415,7 @@ Format: `list`
 
 Adds a task to a specific student.
 
-Format: `addtask INDEX t/TASK_NAME`
+Format: `addtask INDEX t/TASK_TITLE`
 
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -289,7 +427,9 @@ Format: `addtask INDEX t/TASK_NAME`
 Examples:
 
 * `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
-  student list.
+  student list.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    ![Add a task](images/Add%20a%20task.png)
 * `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
@@ -308,8 +448,13 @@ Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 Examples:
 
-* `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
+* `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Delete a task (before)](images/Delete%20a%20task%20(before).png)
+    After command execution:
+    ![Delete a task (after)](images/Delete%20a%20task%20(after).png)
+* `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
 
@@ -330,7 +475,18 @@ Format:
 
 Examples:
 
-* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.
+* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    After command execution:
+    ![Mark a task complete (after)](images/Mark%20a%20task%20complete%20(after)png)
+* `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
+    The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+    Before command execution:
+    ![Mark a task (before)](images/Mark%20a%20task%20(before).png)
+    After command execution:
+    ![Mark a task late (after)](images/Mark%20a%20task%20late%20(after).png)
 * `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
@@ -366,7 +522,12 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 Examples:
 
 * `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
-  value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.
+  value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.<br>
+  The following result assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  * Current display for score tab is using score list.
+    ![Add a score Score List](images/Add%20a%20score%20Score%20List.png)
+  * Current display for score tab is using score chart.
+    ![Add a score Score Chart](images/Add%20a%20score%20Score%20Chart.png)
 * `check 5` followed by `addscore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
 
@@ -386,6 +547,17 @@ Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 Examples:
 
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
+  The following results assumes that you have [checked](#4-checking-a-student-check) the student before.<br>
+  * Current display for score tab is using score list.<br>
+    Before command execution:
+    ![Delete a score Score List (before)](images/Delete%20a%20score%20Score%20List%20(before).png)
+    After command execution:
+    ![Delete a score Score List (after)](images/Delete%20a%20score%20Score%20List%20(after).png)
+  * Current display for score tab is using score chart.<br>
+    Before command execution:
+    ![Delete a score Score Chart (before)](images/Delete%20a%20score%20Score%20Chart%20(before).png)
+    After command execution:
+    ![Delete a score Score Chart (after)](images/Delete%20a%20score%20Score%20Chart%20(after).png)
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 [Back to top](#table-of-contents)
@@ -394,11 +566,12 @@ Examples:
 
 Switches between the score list and score chart tabs.
 
-Format: There we support using CLI or mouse.
+Format: There we support using CLI or GUI.
 
 **CLI**<br> `switch`
 
-**Mouse**<br> click the tab.
+**GUI**<br> Click the **Text** or **Chart** button to switch to score list and score chart tabs respectively.
+![Switch between Score Tabs](images/Switch%20between%20Score%20Tabs.png)
 
 [Back to top](#table-of-contents)
 
@@ -412,11 +585,16 @@ Exports all the student's data out. Users can export with or without specifying 
 The default exported position for CLI will be under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
-Format: There we support using CLI or mouse.
+Format:
 
 **CLI**<br> `export [FILE_PATH]`
 
-**Mouse**<br> Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+**GUI**<br> 
+Click the "File" on the top menu, then choose "Export" under the drop-down list. 
+
+An export window will pop up, the user is required to specify which folder to store the exported file.
+
+![Export the data of the students.png](images/Export%20the%20data%20of%20the%20students.png)
 
 Examples:
 * `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
@@ -440,11 +618,13 @@ Examples:
 Imports student data into the application. Users can import the file by dragging the file in or choosing the file path.
 The imported file must be in `.json` format.
 
-Format: There we support using CLI or mouse.
+Format:
 
 **CLI**<br> - `import FILE_PATH`
 
-**Mouse**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+**GUI**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+
+![Import the data of the students.png](images/Import%20the%20data%20of%20the%20students.png)
 
 Examples:
 * For Windows users
@@ -467,11 +647,11 @@ Examples:
 Exports the specified student progress into a PDF file. Users can export without specifying the path. The default
 exported position for CLI will be under the _home folder_.
 
-Format: We support CLI or mouse. 
+Format:
 
 **CLI**<br>`exportp INDEX [p/FILE_PATH]`
 
-**Mouse**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
+**GUI**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
 up, the user is required to specify which folder to store the exported file.
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
@@ -480,6 +660,8 @@ up, the user is required to specify which folder to store the exported file.
 * `FILE_PATH` should be a valid path to a **directory**.
 * The exported file name is `[STUDENT_NAME]'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
 * Sample PDF output file: [Alex Yeoh's Progress Report.pdf](pdfs/Alex Yeoh's Progress Report.pdf)
+
+![Exporting the progress of a student](images/Exporting%20the%20progress%20of%20a%20student.png)
 
 Examples:
 
@@ -508,9 +690,14 @@ Examples:
 Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING.
 For more detailed information such as how to use the syntax, please refer to the help page.
 
-<img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
+Format:
 
-Format: `help`
+**CLI**<br> `help`
+
+**GUI**<br>
+Click the "Help" on the top menu, then choose "Help" again under the drop-down list.
+
+![Viewing help](images/Viewing%20help.png)
 
 [Back to top](#table-of-contents)
 
@@ -519,6 +706,8 @@ Format: `help`
 Clears all entries from the MATHUTORING.
 
 Format: `clear`
+
+![Clear all entries](images/Clear%20all%20entries.png)
 
 [Back to top](#table-of-contents)
 
