@@ -188,7 +188,7 @@ Format: `help`
 
 ### 3.2 Person Commands
 
-#### 3.2.1 Adding a person: `addp`
+#### 3.2.1 Adding a Person: `addp`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0).
@@ -202,7 +202,7 @@ Examples:
 * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addp n/Betsy Crowe tag/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
-#### 3.2.2 Deleting a person : `deletep`
+#### 3.2.2 Deleting a Person : `deletep`
 
 Deletes the specified person from OfficeConnect.
 
@@ -216,7 +216,7 @@ Examples:
 * `listp` followed by `deletep 2` deletes the 2nd person in the address book.
 * `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `findp` command.
 
-#### 3.2.3 Editing a person : `editp`
+#### 3.2.3 Editing a Person : `editp`
 
 Edits an existing person in OfficeConnect.
 
@@ -233,13 +233,13 @@ Examples:
 *  `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `editp 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-#### 3.2.4 Listing all persons : `listp`
+#### 3.2.4 Listing all Persons : `listp`
 
 Shows a list of all persons in OfficeConnect.
 
 Format: `listp`
 
-#### 3.2.5 Locating persons by name: `findp`
+#### 3.2.5 Locating Persons by name: `findp`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -301,8 +301,7 @@ Examples:
 - `listt` followed by `editt 2 t/Submit report` edits the title of the 2nd task in the task list.
 - `findt book` followed by `editt 1 c/Claim $200 from Bob` edits the content of the 1st task in the results of the `findt` command.
 
-
-#### 3.3.4 Listing the Tasks: `listt`
+#### 3.3.4 Listing all Tasks: `listt`
 
 Shows a list of all tasks in OfficeConnect.
 
@@ -316,6 +315,29 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 - `findt complete`
+
+#### 3.3.6 Marking a Task as completed: `mark`
+
+Marks an existing task in OfficeConnect.
+
+Format: `mark INDEX`
+
+* Changes the status of the task at the specified index to completed.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+- `mark 2` marks task 2 as completed.
+
+#### 3.3.7 Unmarking a Task: `unmark`
+
+Unmarks a task in OfficeConnect
+
+Format: `unmark INDEX`
+
+* Changes the status of the task at the specified index to uncompleted.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive integer 1, 2, 3...
 
 ### 3.4 Assignment and Marking Commands
 
@@ -345,38 +367,15 @@ Format: `unassign ti/INDEX pi/INDEX`
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
 
-#### 3.4.3 Marking a Task as completed: `mark`
+### 3.5 Filter Commands
 
-Marks an existing task in OfficeConnect.
-
-Format: `mark INDEX`
-
-* Changes the status of the task at the specified index to completed.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3...
-
-Examples:
-- `mark 2` marks task 2 as completed.
-
-#### 3.4.4 Unmarking a Task: `unmark`
-
-Unmarks a task in OfficeConnect
-
-Format: `unmark INDEX`
-
-* Changes the status of the task at the specified index to uncompleted.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive integer 1, 2, 3...
-
-### 3.5 Filter Functions
-
-#### 3.6.1 List all Persons and Tasks: `listall`
+#### 3.5.1 List all Persons and Tasks: `listall`
 
 Shows a list of all personals and tasks in OfficeConnect.
 
 Format: `listall`
 
-#### 3.6.2 View Assigned Persons: `viewassignedp`
+#### 3.5.2 View Assigned Persons: `viewassignedp`
 
 Displays a list of all persons who have been assigned to a task.
 
@@ -385,7 +384,7 @@ Format: `viewassignedp`
 Example:
 - `viewassignedp` displays a list of all persons who have been assigned to a task.
 
-#### 3.6.3 View Assigned Tasks: `viewassignedt`
+#### 3.5.3 View Assigned Tasks: `viewassignedt`
 
 Displays a list of all tasks that have been assigned to a person.
 
@@ -394,7 +393,7 @@ Format: `viewassignedt`
 Example:
 - `viewassignedt` displays a list of all tasks that have been assigned to a person.
 
-#### 3.6.4 View Unassigned Persons: `viewunassignedp`
+#### 3.5.4 View Unassigned Persons: `viewunassignedp`
 
 Displays a list of all persons who have not been assigned to any task.
 
@@ -403,7 +402,7 @@ Format: `viewunassignedp`
 Example:
 - `viewunassignedp` displays a list of all persons who have not been assigned to any task.
 
-#### 3.6.5 View Unassigned Tasks: `viewunassignedt`
+#### 3.5.5 View Unassigned Tasks: `viewunassignedt`
 
 Displays a list of all tasks that have not been assigned to any person.
 
@@ -412,7 +411,7 @@ Format: `viewunassignedt`
 Example:
 - `viewunassignedt` displays a list of all tasks that have not been assigned to any person.
 
-#### 3.6.6 View Assigned Person and Task: `viewassignedall`
+#### 3.5.6 View Assigned Person and Task: `viewassignedall`
 
 Displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
 
@@ -421,7 +420,7 @@ Format: `viewassignedall`
 Example:
 - `viewassignedall` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
 
-#### 3.6.7 View Unassigned: `viewunassignedall`
+#### 3.5.7 View Unassigned: `viewunassignedall`
 
 Displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
@@ -431,7 +430,7 @@ Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
 
-#### 3.6.8 Filter Persons: `filterp`
+#### 3.5.8 Filter Persons: `filterp`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input.
 
@@ -439,7 +438,7 @@ Format: `filterp tag/TAG`
 
 Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
 
-#### 3.6.9 Viewing a person : `pi`
+#### 3.5.9 Viewing a person : `pi`
 
 Shows a list of tasks assigned to a person according to the displayed index.
 
@@ -452,7 +451,7 @@ Format: `pi INDEX`
 Example:
 - `pi 2` displays person 2 and all tasks assigned to that person
 
-#### 3.6.10 Viewing a task : `ti`
+#### 3.5.10 Viewing a task : `ti`
 
 Shows a list of persons assigned to a task according to the displayed index.
 
@@ -466,9 +465,9 @@ Example:
 - `ti 1` displays task 1 and all persons assigned to that task
 
 
-### 3.7 Others
+### 3.6 Others
 
-#### 3.7.1 Exiting the program : `exit`
+#### 3.6.1 Exiting the program : `exit`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keyboard shortcut for the help function is assigned to the F1 key.
 </div>
@@ -477,11 +476,11 @@ Exits the program.
 
 Format: `exit`
 
-#### 3.7.2 Saving the data
+#### 3.6.2 Saving the data
 
 OfficeConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 3.7.3 Editing the data file
+#### 3.6.3 Editing the data file
 
 OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconnect.json`. Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
 
@@ -489,7 +488,7 @@ OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconn
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-#### 3.7.4 Light theme support
+#### 3.6.4 Light theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keyboard shortcut for the help function is assigned to the F2 key.
 </div>
@@ -501,7 +500,7 @@ Sets the overall theme of OfficeConnect to light mode. This mode is chosen as th
 <em>The Days</em>
 </p><br/>
 
-#### 3.7.5  Dark theme support
+#### 3.6.5  Dark theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keyboard shortcut for the help function is assigned to the F3 key.
 </div>
@@ -513,11 +512,11 @@ Sets the overall theme of OfficeConnect to dark mode.
 <em>The Nights</em>
 </p><br/>
 
-### 3.8 Archiving data files `[coming in v1.5]`
+### 3.7 Archiving data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
-### 3.9 Clearing data files `[coming in v1.5]`
+### 3.8 Clearing data files `[coming in v1.5]`
 
 _Details coming soon ..._
 

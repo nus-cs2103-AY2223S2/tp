@@ -12,19 +12,16 @@ LogicManager .up.|> LogicC
 
 }
 
-package Model{
-Class "<<interface>>\nModel" as ModelC
-Class ModelManager
-ModelManager .up.|> ModelC
 
-}
-
-package OfficeConnectModel{
-Class OfficeConnectModel
+package OfficeConnectModel {
+Class "OfficeConnectModel"  as model
 Class "RepositoryModelManager<Task>"  as repoTask
 Class "RepositoryModelManager<AssignTask>" as repoAssign
-OfficeConnectModel --> repoTask
-OfficeConnectModel --> repoAssign
+Class "Model" as personModel
+model --> repoTask
+model --> repoAssign
+model --> personModel
+
 Class "RepositoryModelManager<T>" as repo
 repoTask ..up.|> "<<bind>>T::Task" repo
 repoAssign ..up.|> "<<bind>>T::AssignTask" repo
@@ -40,11 +37,10 @@ StorageManager .up.|> StorageC
 
 }
 
-rectangle HiddenOutside #FFFFFF
+LogicManager --> StorageC
+LogicManager --> model
+class HiddenOutside #FFFFFF
 HiddenOutside ..> LogicC
 
 
-LogicManager ---> ModelC
-LogicManager -> OfficeConnectModel
-LogicManager ---> StorageC
 @enduml

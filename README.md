@@ -16,17 +16,24 @@ workloads. This enables managers to delegate tasks efficiently and in an organiz
 managers can streamline their task management process, which leads to improved productivity and a more effective 
 and productive work environment.
 
-## Features
+## Features overview
 
-- Manage tasks for employees
-- Overview of all tasks
-- Quick locate of important tasks
-- Assign tasks to specific employees
-- Find tasks related to certain employees
+Our features can be broadly divided into 6 categories:
+1. Utility Commands - Commands that assist the user in operating OfficeConnect.
+2. Person Commands - Commands that involve Persons stored in OfficeConnect.
+3. Task Commands - Commands that involve Tasks stored in OfficeConnect.
+4. Assignment Commands - Commands that involve assignment of Tasks to Persons.
+5. Filter Commands - Commands that involve filtering Tasks or Persons.
+6. Others - Miscellaneous commands 
+
+For a more comprehensive list of our commands, please refer to our [User Guide](https://ay2223s2-cs2103-f10-1.github.io/tp/UserGuide). 
+
 
 ## Getting Started
 
-- Check out our [OfficeConnect Website](https://ay2223s2-cs2103-f10-1.github.io/tp/)
+- Check out our [OfficeConnect Website](https://ay2223s2-cs2103-f10-1.github.io/tp/).
+- Check out our [User Guide](https://ay2223s2-cs2103-f10-1.github.io/tp/UserGuide).
+- Check out our [Developer Guide](https://ay2223s2-cs2103-f10-1.github.io/tp/DeveloperGuide)
 - Download our latest release from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases)
 
 ## Contributing
