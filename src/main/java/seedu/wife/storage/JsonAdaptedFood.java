@@ -86,7 +86,7 @@ class JsonAdaptedFood {
         if (unit == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Unit.class.getSimpleName()));
         }
-        if (!Unit.isValid(unit)) {
+        if (!Unit.isValidUnit(unit)) {
             throw new IllegalValueException(Unit.MESSAGE_CONSTRAINTS);
         }
         final Unit modelUnit = new Unit(unit);

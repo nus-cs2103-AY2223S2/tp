@@ -28,15 +28,15 @@ public class UnitTest {
     @Test
     public void isValid() {
         // null Unit number
-        assertThrows(NullPointerException.class, () -> Unit.isValid(null));
+        assertThrows(NullPointerException.class, () -> Unit.isValidUnit(null));
 
         // invalid Unit numbers
-        assertFalse(Unit.isValid("")); // empty string
-        assertFalse(Unit.isValid(" ")); // spaces only
-        assertFalse(Unit.isValid("u2312nit")); // digits within alphabets
+        assertFalse(Unit.isValidUnit("")); // empty string
+        assertFalse(Unit.isValidUnit(" ")); // spaces only
+        assertFalse(Unit.isValidUnit("u2312nit")); // digits within alphabets
 
         // valid Unit numbers
-        assertTrue(Unit.isValid("Unit"));
-        assertTrue(Unit.isValid("unit"));
+        assertTrue(Unit.isValidUnit("Unit"));
+        assertTrue(Unit.isValidUnit("unit"));
     }
 }
