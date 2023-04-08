@@ -447,25 +447,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-### **Use cases**
+### Use cases
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
-#### **Use case: Ask for help**
+#### Use case: Ask for help
 
 **MSS (Main Success Scenario)**
 
-1. Chef requests for help
-2. Book shows URL to User Guide of recipe book
+1. Chef requests for help.
+2. Book shows URL to User Guide of recipe book.
 
     Use case ends.
 
-#### **Use case: List all recipes**
+#### Use case: List all recipes
 
 **MSS**
 
-1.  Chef requests to list recipes
-2.  Book shows a list of ***all*** recipes
+1.  Chef requests to list recipes.
+2.  Book shows a list of ***all*** recipes.
 
     Use case ends.
 
@@ -475,76 +475,71 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 2b. The storage file is invalid.
-
-    * 2b1. Book shows an error message, with a button that displays <kbd>File Fixed</kbd> to check again if the file is valid.
-    * 2b2. Chef rectifies/fixes error with the file.
-    * 2b3. Chef clicks the <kbd>File Fixed</kbd> button
-
-      Use case resumes from step 2.
-
 <div style="page-break-after: always;"></div>
 
-#### **Use case: Add a recipe**
+#### Use case: Add a recipe
 
 **MSS**
 
-1.  Chef requests to add a recipe
-2.  Book prompts the user for the name, duration, portion, tags, ingredients and steps for the recipe
-3.  Chef keys in details for each section in a single input, following the specified format
-4.  Book adds the recipe to a database
+1.  Chef requests to add a recipe.
+2.  Book prompts the user for the name, duration, portion, tags, ingredients and steps for the recipe.
+3.  Chef keys in details for each section in a single input, following the specified format.
+4.  Book adds the recipe to a database.
+
+    Use case ends.
 
 **Extensions**
 
-* 3a. The name inputted by chef is missing
+* 3a. The name inputted by chef is missing.
     * 3a1. Book shows an error message.
-    * 3a2. Book requests for the name of the recipe to be keyed in
+    * 3a2. Book requests for the name of the recipe to be keyed in.
 
-      Use case resumes from step 3.
+    Use case resumes from step 3.
 
-* 3b. The fields inputted by chef is in the wrong format
+* 3b. The fields inputted by chef is in the wrong format.
     * 3b1. Book shows an error message.
-    * 3b2. Book requests for the fields to be input in an appropriate format
+    * 3b2. Book requests for the fields to be input in an appropriate format.
   
-      Use case resumes from step 3.
+    Use case resumes from step 3.
 
-* 4a. The given recipe is a duplicate. The name, duration, portion, tags, ingredients and steps coincide with another recipe
-    * 4a1. Book shows a message that states there already exist such recipe.
-    * 4a2. The recipe keyed is not added.
+* 4a. The given recipe has a name that coincides with another recipe.
+    * 4a1. Book shows a message that states such a recipe already exists.
+    * 4a2. The given recipe is not added.
 
-      Use case ends.
+    Use case ends.
 
 <div style="page-break-after: always;"></div>
 
-#### **Use case: View a recipe**
+#### Use case: View a recipe
 
 **MSS**
 
-1. Chef requests to view a specific recipe in the list
-2. Book return the specified recipe
+1. Chef requests to view a specific recipe in the list.
+2. Book return the specified recipe.
+
    Use case ends.
 
 **Extensions**
 
-* 1a. The current list is empty
+* 1a. The current list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. Book shows an error message.
 
-      Use case resumes from step 2.
+  Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
-#### **Use case: Delete a recipe**
+#### Use case: Delete a recipe
 
 **MSS**
 
-1. Chef requests to list recipes
-2. Book shows a list of ***all*** recipes
-3. Chef requests to delete a specific recipe in the list
-4. Book deletes the recipe
+1. Chef requests to list recipes.
+2. Book shows a list of ***all*** recipes.
+3. Chef requests to delete a specific recipe in the list.
+4. Book deletes the recipe.
 
    Use case ends.
 
@@ -557,38 +552,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
     * 3a1. Book shows an error message.
 
-      Use case resumes from step 2.
+  Use case resumes from step 2.
 
 <div style="page-break-after: always;"></div>
 
-#### **Use case: Find a recipe by name**
+#### Use case: Find a recipe by name
 
 **MSS**
 
-1. Chef requests to search for all recipes which name matches a keyword
-2. Book shows a list of such recipes
+1. Chef requests to search for all recipes which name matches a keyword.
+2. Book shows a list of such recipes.
 
     Use case ends.
 
 **Extensions**
-* 1a. The keyword input is invalid
+* 1a. The keyword input is invalid.
     * 1a1. Book shows an error message.
     
-    Use case resumes from step 1.
+  Use case resumes from step 1.
 
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
-#### **Use case: Find a recipe by tag**
+#### Use case: Find a recipe by tag
 
 **MSS**
 
-1. Chef requests to search for all recipes which contain a specific tag
-2. Book shows a list of such recipes
+1. Chef requests to search for all recipes which contain a specific tag.
+2. Book shows a list of such recipes.
 
 **Extensions**
-* 1a. The tag input is invalid
+* 1a. The tag input is invalid.
     * 1a1. Book shows an error message.
 
   Use case resumes from step 1.
@@ -599,37 +594,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <div style="page-break-after: always;"></div>
 
-#### **Use case: Find an ingredient substitute**
+#### Use case: Find an ingredient substitute
 
 **MSS**
 
-1. Chef requests to find all substitutes for an ingredient
-2. Book shows a list of such substitutes
+1. Chef requests to find all substitutes for an ingredient.
+2. Book shows a list of such substitutes.
 
     Use case ends.
 
 **Extensions**
-* 1a. The ingredient input is invalid
+* 1a. The ingredient input is invalid.
     * 1a1. Book shows an error message.
 
   Use case resumes from step 1.
 
 * 2a. The list is empty.
-    * 2a1. Book shows a message that states that no substitutes exist for this ingredient
+    * 2a1. Book shows a message that states that no substitutes exist for this ingredient.
 
   Use case ends.
 
-#### **Use case: Clear recipe book**  
+#### Use case: Clear recipe book
 
 **MSS**
 
-1. Chef requests to clear the Book
+1. Chef requests to clear the Book.
 2. The Book clears all recipes and returns to an empty state.
 3. Book shows a message that states that the Book has been cleared.
 
 **Extensions**
-* 2a. Book is already empty
-    * 2a1. Book proceeds normally.
+* 2a. Book is already empty.
 
   Use case resumes from step 3.
 
