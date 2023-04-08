@@ -6,7 +6,6 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
-import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.commands.event.EventFindCommand.FilterEventDescriptor;
 import seedu.internship.logic.parser.ArgumentMultimap;

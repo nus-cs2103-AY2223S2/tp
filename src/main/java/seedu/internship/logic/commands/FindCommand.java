@@ -5,7 +5,6 @@ import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -13,7 +12,6 @@ import java.util.function.Predicate;
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.CliSyntax;
-import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;

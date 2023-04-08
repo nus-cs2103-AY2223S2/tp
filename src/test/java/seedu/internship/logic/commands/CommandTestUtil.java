@@ -3,7 +3,15 @@ package seedu.internship.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.internship.logic.parser.CliSyntax.*;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalInternships.ML1;
 
@@ -11,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
@@ -107,7 +114,9 @@ public class CommandTestUtil {
     public static final String NAME_DESC_EM11 = " " + PREFIX_EVENT_NAME + VALID_NAME_EM11;
     public static final String START_DESC_EM11 = " " + PREFIX_EVENT_START + VALID_START_EM11;
     public static final String END_DESC_EM11 = " " + PREFIX_EVENT_END + VALID_END_EM11;
-    public static final String EVENT_DESCRIPTION_DESC_EM11 = " " + PREFIX_EVENT_DESCRIPTION + VALID_EVENT_DESCRIPTION_EM11;
+    public static final String EVENT_DESCRIPTION_DESC_EM11 = " "
+            + PREFIX_EVENT_DESCRIPTION
+            + VALID_EVENT_DESCRIPTION_EM11;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_EVENT_NAME + "";
     public static final String INVALID_START_DESC = " " + PREFIX_EVENT_START + "invalid start";
@@ -140,17 +149,6 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
     }
 
-//    public static final EventFindCommand.FilterEventDescriptor EDESC_EM11;
-//    public static final EventFindCommand.FilterEventDescriptor EDESC_SE1;
-//
-//    static {
-//        EDESC_EM11 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1)
-//                .withCompany(VALID_COMPANY_ML1).withStatus(VALID_STATUS_ML1).withDescription(VALID_DESCRIPTION_ML1)
-//                .withTags(VALID_TAG_IMPORTANT).build();
-//        FDESC_SE1 = new FilterInternshipDescriptorBuilder().withPosition(VALID_POSITION_SE1)
-//                .withCompany(VALID_COMPANY_SE1).withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1)
-//                .withTags(VALID_TAG_IMPORTANT, VALID_TAG_FUN).build();
-//    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

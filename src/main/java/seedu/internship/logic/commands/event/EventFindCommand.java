@@ -11,10 +11,8 @@ import java.util.function.Predicate;
 
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.CommandResult;
-import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
 import seedu.internship.model.event.End;
 import seedu.internship.model.event.Event;
@@ -85,7 +83,7 @@ public class EventFindCommand extends EventCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof EventFindCommand)) {
             return false;
         }
 
@@ -144,12 +142,12 @@ public class EventFindCommand extends EventCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof FindCommand.FilterInternshipDescriptor)) {
+            if (!(other instanceof EventFindCommand.FilterEventDescriptor)) {
                 return false;
             }
 
             // state check
-            FilterEventDescriptor f = (FilterEventDescriptor) other;
+            FilterEventDescriptor f = (EventFindCommand.FilterEventDescriptor) other;
 
             return getName().equals(f.getName())
                     && getStart().equals(f.getStart())
