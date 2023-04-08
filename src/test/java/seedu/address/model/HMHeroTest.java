@@ -49,7 +49,7 @@ public class HMHeroTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withNotes(VALID_NOTE_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        HMHeroStub newData = new HMHeroStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> HMHero.resetData(newData));
     }
@@ -86,10 +86,10 @@ public class HMHeroTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class HMHeroStub implements ReadOnlyHMHero {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        HMHeroStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

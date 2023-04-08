@@ -1,0 +1,43 @@
+.main-body {
+  -fx-background-color: #F0FFFF;
+  -fx-padding: 16;
+}
+
+.menu-bar {
+  -fx-alignment: center-right;
+  -fx-background-color: #00BFFF;
+  -fx-text-fill: black;
+}
+
+.menu {
+}
+
+.command-placeholder,
+.list-placeholder,
+.result-placeholder {
+  -fx-border-color: black;
+  -fx-border-radius: 5;
+  -fx-border-width: 1;
+  -fx-padding: 5;
+
+  -fx-min-width: 340;
+  -fx-pref-width: 1000;
+}
+
+.command-placeholder {
+  -fx-background-color: white;
+}
+
+.list-placeholder,
+.result-placeholder {
+  -fx-background-color: white;
+}
+
+.result-placeholder {
+  -fx-min-height: 300;
+  -fx-pref-height: 300;
+}
+
+
+
+

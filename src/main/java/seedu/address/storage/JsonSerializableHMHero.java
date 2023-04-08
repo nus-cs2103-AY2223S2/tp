@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyHMHero;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable HMHero that is serializable to JSON format.
+ * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableHMHero {
@@ -24,7 +24,7 @@ class JsonSerializableHMHero {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHMHero} with the given persons.
      */
     @JsonCreator
     public JsonSerializableHMHero(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
@@ -41,7 +41,7 @@ class JsonSerializableHMHero {
     }
 
     /**
-     * Converts this address book into the model's {@code HMhero} object.
+     * Converts this address book into the model's {@code HMHero} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

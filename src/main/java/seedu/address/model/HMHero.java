@@ -13,7 +13,7 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-public class HMHero implements ReadOnlyAddressBook {
+public class HMHero implements ReadOnlyHMHero {
 
     private final UniquePersonList persons;
 
@@ -33,7 +33,7 @@ public class HMHero implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public HMHero(ReadOnlyAddressBook toBeCopied) {
+    public HMHero(ReadOnlyHMHero toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +51,7 @@ public class HMHero implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyHMHero newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

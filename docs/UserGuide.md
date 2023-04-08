@@ -173,9 +173,8 @@ are already familiar with the application!
 
 ## 5. Quick Start
 This section covers everything you should know about HMHero, as well as a tutorial on 
-[trying your first command](#54-trying-your-first-command). The special note is the 
-[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, 
-which covers essential knowledge to using HMHero's features.
+[trying your first command](#54-trying-your-first-command). Take note that  the
+[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections covers essential knowledge to using HMHero's features.
 
 
 ### 5.1 User Interface
@@ -183,14 +182,14 @@ When you launch HMHero, HMHero appears on your screen as a Graphical User Interf
 layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
-1. [Command Input Box](#command-input-box)
-2. [Command Output Box](#command-output-box)
-3. [Applicant List Box](#applicant-list-box)
+1. [Command Input Box](#command-input-box): Input command text field
+2. [Command Output Box](#command-output-box): Command result
+3. [Applicant List Box](#applicant-list-box): List of applicants 
 
 The following picture of the main window shows the three components, numbered accordingly:
 ![components.png](images%2Fcomponents.png)
 
-Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
+HMHero also has the Help Window. It is not part of the main GUI and is only
 shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
 The Help Window looks like the following:
@@ -217,7 +216,7 @@ The following are the attributes stored for each `Applicant`
 * Interview Date
 * Notes
 
-Applicants are unique by name and phone number and are Case Sensitive.
+Applicants are unique by name and phone number and are case sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
 
@@ -236,7 +235,7 @@ are optional.
 
 Feel free to make use of notes as you fit to highlight skill-sets of an applicant. Examples of such notes
 can include:
-* Highlight applicant's:
+
   * Technical proficiency, e.g. `Python`, `Java`, `Flask`
   * Soft Skills, e.g. `Project Management`, `Event Planning`
 
@@ -257,48 +256,36 @@ You may find the following image taken from the subsequent <a href="#53-command-
 <img src="./images/CommandExample.png">
 </div>
 
-Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
-| Action   | Corresponding Placeholder |
-|----------|---------------------------|
-| n/       | `NAME`                    |
-| p/       | `PHONE`                   |
-| e/       | `EMAIL`                   |
-| a/       | `ADDRESS`                 |
-| note/    | `NOTE`                    |
-| d/       | `INTERVIEW DATETIME`      |
-| applied/ | `APPLICATION DATETIME`    |
-
-Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
-and [Placeholders](#524-placeholders) are used together.
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 #### 5.2.4 Placeholders
-Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+Placeholders refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
 Please refer to the subsequent [Command Format](#53-command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder  | Corresponding Flag | Description                                                                                                      |
-|--------------|--------------------|------------------------------------------------------------------------------------------------------------------|
-| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                     |
-| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                                            |
-| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                     |
-| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                            |
-| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant. Notes cannot be longer than 45 characters long. |
-| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.                                 |
+| Placeholder          | Corresponding Flag | Description                                                                                                        | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX                | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                       | The INDEX is restricted to the number of applicants in HMHero and cannot be negative.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| NAME                 | n/                 | The NAME is the text we use to identify an Applicant.                                                              | The NAME of an applicant must be alphabetic characters and no numbers are allowed.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| PHONE                | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                       | The PHONE of an applicant must have at least 3 numbers and must be numeric characters.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| EMAIL                | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                              | EMAIL must be in the format username@domain  <br><br>   `username`:    <li>Should only contain alphanumeric characters and these special characters (`+`, `_`, `.`, `-`) </li>     <li>Should not start or end with any special characters. </li>  <br> `domain`:   <li>Should be at least 2 characters long. </li>    <li>Each domain label should start and end with alphanumeric characters. </li>    <li>Each domain label consists of alphanumeric characters, separated only by hyphens, if any.</li>|
+| NOTE                 | note/              | The NOTE is the text we use to identify a skill of an Applicant.                                                   | NOTE cannot be longer than 45 characters long.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| APPLICATION DATETIME | applied/           | The APPLICATION DATETIME is the text we use to represent the date and time that the Applicant applied for the job. | Format of datetime is `DD-MM-YYYY HH:mm`                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| INTERVIEW DATETIME   | d/                 | The INTERVIEW DATETIME is the text we use to represent the date and time of the Applicant's interview.             | Format of datetime is `DD-MM-YYYY HH:mm` <br><br> INTERVIEW DATETIME can only be scheduled after the APPLICATION DATETIME.                                                                                                                                                                                                                                                                                                                                                                |
 
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
 ### 5.3 Command Format
-You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
 
 Here is an example:
@@ -1027,7 +1014,7 @@ Documentation dependencies:
 > The EMAIL is a text representing the email address of the applicants.
 > <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Email
-> The email address of the applicant provided by the user.
+> The email address of the applicant provided by the user. Emails should end with a valid domain name (e.g. gmail.com, hotmail.com, etc.)
 
 ### F
 > #### Flags

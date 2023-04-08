@@ -281,7 +281,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -322,11 +322,10 @@ The `advance` command advances an `Person` in HMHero, which advances the `Status
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `advance n/NAME p/PHONE [d/INTERVIEWDATETIME]` <br>
 Refer to [Glossary](#glossary) for more information on Command format and applicant status.
 </div>
-
 
 Here is the activity diagram showing the process of the `advance` command:
 ![Advance activity diagram](images/AdvanceActivityDiagram.png)
@@ -360,7 +359,7 @@ The `reject` command rejects a `Person` in HMHero, which changes the `status` of
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `reject n/NAME p/PHONE` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -398,14 +397,14 @@ Fields have to be denoted by flags. Allowed fields for filtering are `name` and 
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `find [n/NAME] [p/PHONE]` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `find [n/NAME] [p/PHONE]` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -421,8 +420,8 @@ The sequence diagram for `find n/John` in HMHero is as such:
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Note:<strong>
-The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML<strong>, the lifeline reaches the end of the diagram.
+:information_source: <strong>Note:</strong>
+The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML</strong>, the lifeline reaches the end of the diagram.
 Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
 
@@ -447,14 +446,13 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong>
+:information_source: <strong>Command Format:</strong>
 `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
-
 Here is the activity diagram showing the process of the `edit` command:
-[EditApplicantActivityDiagram]()
+![EditApplicantActivityDiagram]()
 
 
 ##### Feature Details
@@ -823,17 +821,15 @@ Precondition: There are shortlisted applicants in HMHero.
 
 **MSS**
 
-1.  User requests to list applicants.
-2.  HMHero shows a list of applicants.
-3.  User enters the command to view interview dates and times of all **Shortlisted** applicants.
-4.  HMHero shows the interview date and times of all **Shortlisted** applicants, sorted from earliest to latest.
+1.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
+2.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. HMHero detects that the command entered is of invalid formatting.
-    * 3a1. HMHero shows an error message
+* 1a. HMHero detects that the command entered is of invalid formatting.
+    * 1a1. HMHero shows an error message
 
       Use case resumes at step 3.
 
@@ -1142,8 +1138,6 @@ to latest.
 
 ### View summary statistics
 
-Precondition: There are applicants added into HMHero.
-
 Test case: `summary`<br>
 Expected: Statistic of overall hiring process is shown in output box.
 
@@ -1208,6 +1202,8 @@ in future enhancements.
 of an old applicant (who has changed his/her phone number). Hence, we shall not deny these commands to throw an error but rather we should warn the user when these commands are executed so that the user aware of it.
 6. Adding a feature that allows for importing of csv files so that users can transfer existing data into HMHero, instead of having to re-key all the existing entries
 manually into HMHero at the start.
+7. Enhancing the `summary` command to produce useful charts and graphs for Hiring Managers to have a better visualisation of the hiring process.
+8. Enhancing the checking of emails to have a valid domain name such as `@gmail.com` or `@nus.edu.sg` instead of just checking for the presence of `@` in the email.
 
 
 
