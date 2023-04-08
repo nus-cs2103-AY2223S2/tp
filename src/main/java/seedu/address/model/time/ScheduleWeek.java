@@ -4,6 +4,8 @@ import static java.util.Arrays.asList;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,16 +61,12 @@ public class ScheduleWeek {
      * @return a populated array of data in a single day
      */
     public ArrayList<Status> populateData(ArrayList<Integer> freeTimeSlots) {
+        Set<Integer> freeSlots = new HashSet<>(freeTimeSlots);
         ArrayList<Status> timeSlot = new ArrayList<>();
 
-        int count = 0;
         for (int i = 0; i < 24; i++) {
-            int currFreeTimeSlotId = freeTimeSlots.get(count);
-            if (currFreeTimeSlotId == i) {
+            if (freeSlots.contains(i)) {
                 timeSlot.add(Status.FREE);
-                if (count < freeTimeSlots.size() - 1) {
-                    count++;
-                }
             } else {
                 timeSlot.add(Status.BUSY);
             }
