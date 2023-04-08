@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -39,9 +40,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private CommandBox commandBox;
-    private ModuleListPanel moduleListPanel;
-    private LectureListPanel lectureListPanel;
-    private VideoListPanel videoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -146,25 +144,28 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets the list displayed on UI based on {@code level} type.
      */
-    @SuppressWarnings("unchecked")
     private void setListPanelPlaceholder(DisplayListLevel level) {
-        if (level.equals(DisplayListLevel.MODULE)) {
-            this.moduleListPanel = new ModuleListPanel(
-                (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
-            listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
-        }
-        if (level.equals(DisplayListLevel.LECTURE)) {
-            this.lectureListPanel = new LectureListPanel(
-                (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
-            listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
-        }
-        if (level.equals(DisplayListLevel.VIDEO)) {
-            this.videoListPanel = new VideoListPanel(
-                (ObservableList<Video>) logic.getFilteredVideoList());
-            listPanelPlaceholder.getChildren().add(videoListPanel.getRoot());
+        ObservableList<Node> listChildren = listPanelPlaceholder.getChildren();
+        listChildren.clear();
+
+        Node panelRoot = getPanelRoot(level);
+        if (panelRoot != null) {
+            listChildren.add(panelRoot);
         }
     }
 
+    @SuppressWarnings("unchecked")
+    private Node getPanelRoot(DisplayListLevel level) {
+        if (level.equals(DisplayListLevel.MODULE)) {
+            return new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList()).getRoot();
+        } else if (level.equals(DisplayListLevel.LECTURE)) {
+            return new LectureListPanel((ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList()).getRoot();
+        } else if (level.equals(DisplayListLevel.VIDEO)) {
+            return new VideoListPanel((ObservableList<Video>) logic.getFilteredVideoList()).getRoot();
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -194,10 +195,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ModuleListPanel getModuleListPanel() {
-        return moduleListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -206,16 +203,10 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            DisplayListLevel listLevel = commandResult.getLevel();
-            if (listLevel == null) {
-                listLevel = logic.getLastListLevel();
-            }
-            setListPanelPlaceholder(listLevel);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            ReadOnlyNavigation nav = logic.getNavigation();
-            commandBox.setContextLabel(nav.getCurrentContext().getCommandPrefixes());
+            updateListPanel(commandResult);
+            displayResult(commandResult);
+            updateContextLabel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -231,5 +222,25 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void updateListPanel(CommandResult commandResult) {
+        DisplayListLevel listLevel = commandResult.getLevel();
+
+        if (listLevel == null) {
+            listLevel = logic.getLastListLevel();
+        }
+
+        setListPanelPlaceholder(listLevel);
+    }
+
+    private void updateContextLabel() {
+        ReadOnlyNavigation nav = logic.getNavigation();
+        commandBox.setContextLabel(nav.getCurrentContext().getCommandPrefixes());
+    }
+
+    private void displayResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
     }
 }

@@ -72,5 +72,5 @@ public interface ReadOnlyModule {
      * @param other The module to check if this module is the same with.
      * @return True if both modules have the same code. Otherwise, false.
      */
-    public boolean isSameModule(Module other);
+    public boolean isSameModule(ReadOnlyModule other);
 }

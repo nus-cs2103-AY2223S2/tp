@@ -17,17 +17,17 @@ import seedu.address.model.video.VideoTimestamp;
  */
 public class EditVideoDescriptorBuilder {
 
-    private EditVideoDescriptor descriptor;
+    private final EditVideoDescriptor descriptor;
 
     /**
-     * Creates a {@code EditVideoDescriptorBuilder}.
+     * Constructs an {@code EditVideoDescriptorBuilder}.
      */
     public EditVideoDescriptorBuilder() {
         descriptor = new EditVideoDescriptor();
     }
 
     /**
-     * Creates a {@code EditVideoDescriptorBuilder} with the data of {@code descriptor}.
+     * Constructs an {@code EditVideoDescriptorBuilder} with the data of {@code descriptor}.
      *
      * @param descriptor The {@code EditVideoDescriptor} containing the data to copy.
      */
@@ -38,9 +38,9 @@ public class EditVideoDescriptorBuilder {
     }
 
     /**
-     * Creates a {@code EditVideoDescriptorBuilder} with fields containing the {@code video} details.
+     * Constructs an {@code EditVideoDescriptorBuilder} with fields containing the details of {@code video}.
      *
-     * @param video The video.
+     * @param video The video whose details will be used.
      */
     public EditVideoDescriptorBuilder(Video video) {
         requireNonNull(video);

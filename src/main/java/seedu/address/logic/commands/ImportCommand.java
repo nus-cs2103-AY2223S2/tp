@@ -44,7 +44,7 @@ public class ImportCommand extends Command {
             + PREFIX_OVERWRITE + "\n"
             + "Example: " + COMMAND_WORD + " hello.json " + PREFIX_MODULE + " EG2310, EG1311 " + PREFIX_OVERWRITE;
 
-    public static final String MESSAGE_SUCCESS = "Modules %1$s imported to Le Tracker";
+    public static final String MESSAGE_SUCCESS = "Modules imported to Le Tracker";
 
     private final String fileName;
     private final Set<ModuleCode> moduleCodeSet;
@@ -76,7 +76,7 @@ public class ImportCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(", ", moduleCodeList)), archivePath,
                     isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
         } else {
-            return new CommandResult("Modules imported to Le Tracker", archivePath,
+            return new CommandResult(MESSAGE_SUCCESS, archivePath,
                     isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
         }
     }

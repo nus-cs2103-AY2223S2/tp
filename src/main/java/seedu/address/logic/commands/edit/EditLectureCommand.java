@@ -5,8 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -29,7 +27,10 @@ import seedu.address.model.video.Video;
  */
 public class EditLectureCommand extends EditCommand {
 
+    /** The message for when a {@code Lecture} is successfully edited. */
     public static final String MESSAGE_SUCCESS = "Edited lecture of module %s: %s";
+
+    /** The error message for when a duplicate {@code Lecture} is detected. */
     public static final String MESSAGE_DUPLICATE_LECTURE = "This lecture already exists in %s.";
 
     private final ModuleCode moduleCode;
@@ -37,7 +38,7 @@ public class EditLectureCommand extends EditCommand {
     private final EditLectureDescriptor editLectureDescriptor;
 
     /**
-     * Creates an {@code EditLectureCommand} to edit the details of a lecture whose name is {@code lectureName} in
+     * Constructs an {@code EditLectureCommand} to edit the details of a lecture whose name is {@code lectureName} in
      * the module whose code is {@code moduleCode}.
      *
      * @param moduleCode The code of the module containing the lecture.
@@ -58,25 +59,15 @@ public class EditLectureCommand extends EditCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasModule(moduleCode)) {
-            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
-        }
-
-        if (!model.hasLecture(moduleCode, lectureName)) {
-            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
-        }
-
-        ReadOnlyModule module = model.getModule(moduleCode);
-        ReadOnlyLecture lectureToEdit = module.getLecture(lectureName);
+        ReadOnlyModule module = getModuleContainingLecture(model);
+        ReadOnlyLecture lectureToEdit = getLectureToEdit(module);
         Lecture editedLecture = createEditedLecture(lectureToEdit);
 
-        if (!lectureToEdit.isSameLecture(editedLecture) && module.hasLecture(editedLecture)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
-        }
+        validateLectureIsNotDuplicate(module, lectureToEdit, editedLecture);
 
         model.setLecture(module, lectureToEdit, editedLecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, editedLecture),
-                new LectureEditInfo(moduleCode, lectureToEdit, editedLecture));
+
+        return createSuccessResult(lectureToEdit, editedLecture);
     }
 
     @Override
@@ -96,6 +87,26 @@ public class EditLectureCommand extends EditCommand {
                 && editLectureDescriptor.equals(otherCommand.editLectureDescriptor);
     }
 
+    private ReadOnlyModule getModuleContainingLecture(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+        }
+
+        return model.getModule(moduleCode);
+    }
+
+    private ReadOnlyLecture getLectureToEdit(ReadOnlyModule module) throws CommandException {
+        requireNonNull(module);
+
+        if (!module.hasLecture(lectureName)) {
+            throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
+        }
+
+        return module.getLecture(lectureName);
+    }
+
     private Lecture createEditedLecture(ReadOnlyLecture lectureToEdit) {
         requireNonNull(lectureToEdit);
 
@@ -107,15 +118,40 @@ public class EditLectureCommand extends EditCommand {
         return new Lecture(updatedName, updatedTags, videos);
     }
 
+    private void validateLectureIsNotDuplicate(ReadOnlyModule module, ReadOnlyLecture lectureToEdit,
+            ReadOnlyLecture editedLecture) throws CommandException {
+
+        requireAllNonNull(module, lectureToEdit, editedLecture);
+
+        if (!lectureToEdit.isSameLecture(editedLecture)
+                && module.hasLecture(editedLecture)) {
+
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
+        }
+    }
+
+    private CommandResult createSuccessResult(ReadOnlyLecture lectureToEdit, ReadOnlyLecture editedLecture) {
+        requireAllNonNull(lectureToEdit, editedLecture);
+
+        String message = String.format(MESSAGE_SUCCESS, moduleCode, editedLecture);
+        LectureEditInfo editInfo = new LectureEditInfo(moduleCode, lectureToEdit, editedLecture);
+
+        return new CommandResult(message, editInfo);
+    }
+
     /**
      * Stores the details to edit the lecture with.<p>
      * Each non-empty field value will replace the corresponding field value of the lecture.
      */
-    public static class EditLectureDescriptor {
+    public static class EditLectureDescriptor extends EditEntityDescriptor {
         private LectureName name;
-        private Set<Tag> tags;
 
-        public EditLectureDescriptor() {}
+        /**
+         * Constructs an {@code EditLectureDescriptor}.
+         */
+        public EditLectureDescriptor() {
+            super();
+        }
 
         /**
          * Copy constructor.
@@ -123,17 +159,11 @@ public class EditLectureCommand extends EditCommand {
          * @param toCopy The {@code EditLectureDescriptor} to copy.
          */
         public EditLectureDescriptor(EditLectureDescriptor toCopy) {
-            setName(toCopy.name);
-            setTags(toCopy.tags);
-        }
+            super(toCopy);
 
-        /**
-         * Returns true if at least one field is edited.
-         *
-         * @return True if at least one field is edited. Otherwise, false.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, tags);
+            requireNonNull(toCopy);
+
+            setName(toCopy.name);
         }
 
         public Optional<LectureName> getName() {
@@ -144,26 +174,10 @@ public class EditLectureCommand extends EditCommand {
             this.name = name;
         }
 
-        /**
-         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
-         * {@code UnsupportedOperationException} if modification is attempted.<p>
-         *
-         * Else, returns an {@code Optional#empty()}.
-         *
-         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
-         *         {@code Optional#empty()}.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
-        }
-
-        /**
-         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
-         *
-         * @param newTags The new tags.
-         */
-        public void setTags(Set<Tag> newTags) {
-            this.tags = newTags == null ? null : new HashSet<>(newTags);
+        @Override
+        public boolean isAnyFieldEdited() {
+            return super.isAnyFieldEdited()
+                    || CollectionUtil.isAnyNonNull(name);
         }
 
         @Override
@@ -178,8 +192,8 @@ public class EditLectureCommand extends EditCommand {
 
             EditLectureDescriptor descriptor = (EditLectureDescriptor) other;
 
-            return getName().equals(descriptor.getName())
-                    && getTags().equals(descriptor.getTags());
+            return super.equals(other)
+                    && getName().equals(descriptor.getName());
         }
     }
 }

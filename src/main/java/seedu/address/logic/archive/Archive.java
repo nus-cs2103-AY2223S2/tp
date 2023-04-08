@@ -3,6 +3,7 @@ package seedu.address.logic.archive;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,7 +11,10 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.trackereventsystem.TrackerEventSystem;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.module.Module;
@@ -68,9 +72,10 @@ public class Archive {
      * @param isOverwriting whether the command will be overwriting existing modules in tracker
      * @throws CommandException
      */
-    public void importFromArchive(Path archivedPath, Model model, boolean isImportingWholeArchive,
-                                  boolean isOverwriting,
-                                  Set<ModuleCode> moduleCodeToImport) throws CommandException {
+    public CommandResult importFromArchive(Path archivedPath, Model model, boolean isImportingWholeArchive,
+                                           boolean isOverwriting,
+                                           Set<ModuleCode> moduleCodeToImport,
+                                           TrackerEventSystem trackerEventSystem) throws CommandException {
 
         if (!Files.exists(archivedPath) || !Files.isRegularFile(archivedPath)) {
             throw new CommandException(String.format(Messages.MESSAGE_FILE_DOES_NOT_EXIST));
@@ -95,6 +100,8 @@ public class Archive {
         checkIfModuleExistInArchive(moduleCodeToImport, archiveTracker);
         checkIfModuleExistInCurrentTracker(moduleCodeToImport, model.getTracker(), isOverwriting);
 
+        List<CommandResult.ModuleEditInfo> moduleEditInfoList = new ArrayList<>();
+
         for (ModuleCode moduleCode : moduleCodeToImport) {
             ReadOnlyModule module = archiveTracker.getModule(moduleCode);
             Module moduleToAdd = new Module(module.getCode(),
@@ -102,10 +109,15 @@ public class Archive {
             if (model.hasModule(moduleToAdd.getCode())) {
                 ReadOnlyModule replacedModule = model.getModule(moduleToAdd.getCode());
                 model.setModule(replacedModule, moduleToAdd);
+                moduleEditInfoList.add(new CommandResult.ModuleEditInfo(replacedModule, moduleToAdd));
             } else {
                 model.addModule(moduleToAdd);
             }
         }
+
+        return new CommandResult(ImportCommand.MESSAGE_SUCCESS, archivedPath, isImportingWholeArchive, isOverwriting,
+                moduleCodeToImport,
+                moduleEditInfoList);
     }
 
     private void checkIfModuleExistInCurrentTracker(Set<ModuleCode> moduleCodeSet, ReadOnlyTracker currentTracker,

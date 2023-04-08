@@ -3,6 +3,23 @@ layout: page
 title: Developer Guide
 ---
 
+![Logo](images/LogoWordmark.png)
+
+## **Le Tracker** Development ~
+
+Welcome to the Developer's Guide for **Le Tracker**!
+
+This guide is intended to provide developers with a comprehensive overview of the **Le Tracker** system, as well as a detailed breakdown of the design pattern and features implementation required to build and customize the application.
+
+Whether you are an experienced developer looking to expand your skillset or a newcomer to the world of software development, this guide will provide you with the knowledge and tools you need to build a robust and efficient **Le Tracker** system.
+
+<!-- prettier-ignore -->
+:information_source: **Le Tracker** GUI is built with *JavaFX* so you are highly recommended to develop in **Java**.
+
+---
+
+<!-- TODO: Add this after everything is finalised  -->
+
 - Table of Contents
   {:toc}
 
@@ -16,15 +33,15 @@ title: Developer Guide
 
 ## Setting up, getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/docs/diagrams) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -32,7 +49,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -54,13 +71,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete CS2040S`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="733" />
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
+- defines its *API* in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -75,7 +92,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F10-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -84,7 +101,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Module`, `Lecture`, `Video` objects residing in the `Model`.
 
 ### Logic component
 
@@ -96,16 +113,20 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, several observers subscribe to the `TrackerEventSystem.`
+1. The command text is first pre-processed (e.g. `NavigationInjector` could modify the command text by inserting `/mod CS2040S /lec Week 1`).
+1. `Logic` then uses the `TrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a module).
+1. The result of the command execution is encapsulated as a `CommandResult`.
+1. Based on the `CommandResult`, several systems such as `Navigation` are notified through the `TrackerEventSystem`.
+1. The `CommandResult` object is then returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add CS2040S")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add CS2040S` Command](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -114,8 +135,32 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `TrackerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddVideoCommand`) which the `TrackerParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `NavCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Navigation component
+
+**API**: `Navigation.java`
+
+Here's a (partial) class diagram of the `Navigation` component:
+
+<img src="images/NavigationClassDiagram.png" width="550"/>
+
+\*\* This class diagram omits some classes and dependencies in the `Navigation` component for the purpose of simplicity.
+
+What the `Navigation` component does:
+
+- Tracking the current working context.
+- Tracking navigation through the hierarchy.
+- Enforcing valid navigation between adjacent layers in the module-lecture-video hierarchy.
+
+What the `Navigation` component is **NOT RESPONSIBLE** for:
+
+- Ensuring that modules or lectures exist in the `Model` component.
+  - This avoids circular dependency as the `Model` component already depends on the `Navigation` component.
+  - This enforces the single responsibility principle as the `Navigation` component does not need to verify the existence of actual module or lecture data in the Tracker system.
+
+For more information on the Navigation system and how to develop **context-sensitive** commands that work with the Navigation system, please refer the [navigation feature](#navigation-feature).
 
 ### Model component
 
@@ -128,7 +173,9 @@ How the parsing works:
 The `Model` component,
 
 - stores the tracker data i.e., all `Module` objects which are contained in a `UniqueModuleList` object, along with the `Lecture` objects contained in the `UniqueLectureList` objects of said `Module` objects, as well as the `Video` objects contained in the `UniqueVideoList` objects of said `Lecture` objects.
-- <!-- TODO: Update this @leeshaowee -->stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate *filteredModules* list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Lecture` objects (e.g., results of a search query) as a separate *filteredLectures* list which is exposed to outsiders as an unmodifiable `ObservableList<Lecture>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Video` objects (e.g., results of a search query) as a separate *filteredVideos* list which is exposed to outsiders as an unmodifiable `ObservableList<Video>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - <!-- TODO: Include details on Navigation @jedidiahC -->TODO: Navigation
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -272,10 +319,11 @@ The feature utilises the following classes:
 - `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
 - `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
 - `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+- `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
-![DeleteCommandClassDiagram](images/delete/deleteCommandClass.png)
+![DeleteCommandClassDiagram](images/delete/deleteCommandClassDiagram.png)
 
 The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
 
@@ -322,6 +370,9 @@ The following is a description of the code execution flow
 **Possible further implementation**
 
 - encapsulate conditional checks in each delete command execution
+- capture the essence of DeleteMultipleModulesCommand in DeleteModuleCommand
+- capture the essence of DeleteMultipleLecturesCommand in DeleteLectureCommand
+- capture the essence of DeleteMultipleVideosCommand in DeleteVideoCommand
 
 ### Mark / UnMark video feature
 
@@ -330,20 +381,27 @@ The `mark` command supports:
 - Marking unmarked videos as watched
 - Marking marked videos as unwatched
 - Marking multiple videos in 1. and 2.
-  - E.g.: User wishes to mark a video "Vid 1" in lecture "Week 1" of module "CS2040S" as watched.\
-    Executing `mark Vid 1 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
+  - E.g.: User wishes to mark multile videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
+    Executing `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (CS2040S) does not exist in the Tracker
     2. the lecture (Week 1) does not exist in the module (CS2040S)
-    3. the video (Vid 1) does not exist in the lecture of the module (CS2040S > Week 1)
-    4. the video (CS2040S > Week 1 > Vid 1) has already been marked as watched
+    3. either of the videos (Vid 1, Vid 2) does not exist in the lecture of the module (CS2040S > Week 1)
+    4. either of the videos (Vid 1, Vid 2) has already been marked as watched
   - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.\
-    Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either on of the following conditions are true:
+    Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (ST2334) doese not exist in the Tracker
     2. the lecture (Topic 1) does not exist in the module (ST2334)
     3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
-    4. either of the videos (Vid 3, Vid 4, Lecture Summary) has already been marked as unwatched
+  - E.g.: User wishes to mark a single video "Vid 1" in lecture "Topic 4" of module "ST2334" as unwatched.\
+    Executing `unmark Vid 1 /mod ST2334 /lec Topic 4` would allow the user to do so, unless either one of the following conditions are true:
+    1. the module (ST2334) does not exist in the Tracker
+    2. the lecture (Topic 4) does not exist in the module (ST2334)
+    3. the video (Vid 1) is already unmarked
+    4. the video (Vid 1) does not exist in the lecture of the module (ST2334 > Topic 4)
 
 This feature's behaviour is dependent on the arguments provided by the user, as well as the state of Le Tracker.
+
+Note the difference between mark multiple and unmark multiple. As of current implementation, unmark multiple does not alert the user if video was already unmarked. However, unmark a single video does.
 
 **Implementation Details**
 
@@ -355,10 +413,11 @@ The feature utilises the following classes:
 - `MarkAsUnwatchedCommandParser`: parses arguments appropriately for `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` to be returned to be executed
 - `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
 - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
+- `MultipleEventsParser`: Interface that parses string for commands that can be executed on multiple objects at once
 
 The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
 
-![MarkAsWatched](diagrams/MarkAsWatchedSequenceDiagram.png)
+![MarkAsWatched](images/mark/MarkAsWatchedSequenceDiagram.png)
 
 The following is a description of the code execution flow
 
@@ -366,10 +425,9 @@ The following is a description of the code execution flow
 
    | Parser                         | Has Multiple Videos | Command                          |
    | ------------------------------ | ------------------- | -------------------------------- |
-   | `MarkAsWatchedCommandParser`   | --                  | `MarkAsWatchedCommand`           |
+   | `MarkAsWatchedCommandParser`   | Yes / No              | `MarkAsWatchedCommand`           |
    | `MarkAsUnwatchedCommandParser` | Yes                 | `MarkAsUnwatchedCommand`         |
-   |                                | No                  | `MarkMultipleAsUnwatchedCommand` |
-   | ---                            | ---                 | ---                              |
+   | `MarkAsUnwatchedCommandParser` | No                  | `MarkMultipleAsUnwatchedCommand` |
 
 2. The argument values are then checked on as such:
 
@@ -406,6 +464,7 @@ The following is a description of the code execution flow
 
 **Possible further implementation**
 
+- Update command result of `MarkMultipleAsUnwatchedCommand` to catch when this command is called when the videos are already marked as unwatched, similar to `MarkAsUnwatchedCommand` and `MarkAsWatchedCommand`
 - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
 
 ### List module, lecture and video feature
@@ -576,25 +635,62 @@ The following is a description of the code execution flow:
 
 > The navigation system was designed to eliminate the need for users to repeat the same /mod /lec arguments for multiple commands. This is based on the observation that users often make multiple commands from the same context (i.e. tracking a specific module or lecture).
 
-Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation family of commands allows the user to navigate through the hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the /mod or /lec arguments for commands related to the current context.
+#### How the navigation system works
 
-Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
+Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
 
-**Usage scenario**
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
+
+#### Navigation injection
+
+Here's a (partial) class diagram for the `NavigationInjector` component.
+
+![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+
+How `NavigationInjector` injects the correct arguments into the command based on the current working context:
+
+1. When `Logic` is called upon to execute a command, the command text string is first passed to the `Injector` object via its `inject(String, Model)` method.
+
+2. The `NavigationInjector` implementation of `Injector` then obtains the `NavigationContext` object which represents the current working context by communicating with the `Model`.
+
+3. The `NavigationInjector` then injects the appropriate `/mod` and `/lec` arguments that represent the current working context into the command text string based on the arguments obtained from the `NavigationContext` object.
+
+4. The modified command text string is then returned back from `NavigationInjector` to `Logic`.
+
+#### Usage scenario
 
 Given below is an example usage scenario and how the navigation system behaves at each step.
 
 Steps:
 
-1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+1. The user launches the application. The Navigation system is initialized with a root context as the current working context.
 
-2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
-
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command. The following sequence diagram depicts `nav CS2040S`'s execution:
    ![FindActivityDiagram](images/NavSequenceDiagram0.png)
 
 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
 
-4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
+#### Designing context-sensitive commands
+
+We want to reduce the need for similar sounding command names such as `add-module`, `add-lecture`, `add-video` which all involve the "adding" operation. Hence, these context-sensitive commands share a single command name such as `add`. To determine whether a module, lecture or video is being processed for a given command, we instead parse the context-specifying arguments such as `/mod`, `/lec` to instantiate the **context specific command**.
+
+Hence, we define a common format for context-sensitive commands:
+> `command [/mod {module_code}] [/lec {lecture_name}]`
+
+Parsing context-specifying arguments to determine context:
+
+| Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
+| -----------------   | -----------------   | ------------------   | ----------------------   |
+|         No          |         No          | Root Context         |  `XYZModuleCommand`      |
+|         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
+|         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
+
+If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
+
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
+
+For concrete examples on how to implement a context-sensitive command, you can refer to the
+[add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
 
 ### Tag module, lecture, and video feature
 
@@ -687,6 +783,25 @@ The following is a description of the code execution flow:
 
 - The user need to save storage space after finished studying a module. The UI will also be less packed
 
+### Clear feature
+
+The `clear` feature supports clearing the entire tracker of all modules, lectures and videos
+
+The feature utilises the following classes:
+- `ClearCommand` - executable command to clear modules, lectures and videos in the tracker
+
+The following is a description of the code execution flow:
+1. `TrackerParser#parseCommand` parses based on the command word `clear` to identify that the Clear feature is being called.
+2. `ClearCommand#execute(Model)` calls `Model#clearTracker` to clear the tracker
+
+**Reasons for such implementation**
+
+- This implementation allows for adherence to basic Object Oriented Programming principles
+
+**Possible further implementation**
+
+- add a prompt to check with user whether they really want to clear everything since the command is irreversible
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
@@ -731,51 +846,75 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                       |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      | <!-- TODO: Verify by hingen -->    |
+| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                     |
+| -------- | ---------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              |                                    |     |
+| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      |
 | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                           | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing lectures                                                  | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
 | `* * *`  | user             | edit details of existing videos                                                    | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
-| `* * *`  | user             | delete specific modules                                                            | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)         | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | delete specific lectures                                                           | remove lectures that were added by accident                                                                           | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                             | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | mark videos that I have watched                                                    | track which videos I have watched                                                                                     | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
-| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          | <!-- TODO: Verify by shaowee -->   |
-| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           | <!-- TODO: Verify by shaowee -->   |
-| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 | <!-- TODO: Verify by shaowee -->   |
+| `* * *`  | user             | delete specific modules                                                          | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)         |
+| `* * *`  | user             | delete specific lectures                                                         | remove lectures that were added by accident                                                                           |
+| `* * *`  | user             | delete specific videos                                                           | remove videos that were added by accident                                                                             |
+| `* * *`  | user             | mark videos that I have watched                                                  | keep track of which videos I have watched                                                                             |
+| `* * *`  | user             | unmark videos that I have previously marked as watched                           | correct my mistakes when I mark a video by accident                                                                   |
+| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     |                                    |
+| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          |                                    |
+| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           |                                    |
+| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 |                                    |
 | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                        | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
-| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over                                                              | <!-- TODO: Verify by joytqt -->    |
+| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                    |
 | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                | <!-- TODO: Verify by hingen -->    |
-| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         |                                    |
+| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        |                                    |
 | `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                         | <!-- TODO: Verify by lennoxtr -->  |
 | `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                  | <!-- TODO: Verify by lennoxtr -->  |
-| `* *`    | forgetful user   | be reminded of where to find the guide                                             | recall how to use the app                                                                                             | <!-- TODO: Verify by jedidiahC --> |
-| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | TODO:                                                                                                                 | <!-- TODO: Verify by jedidiahC --> |
-| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                      | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                        | <!-- TODO: Verify by joytqt -->    |
-| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         | <!-- TODO: Verify by shaowee -->   |
-| `*`      | unmotivated user | feel rewarded for making progress in watching lectures videos                      | be motivated to keep up or catch up                                                                                   | <!-- TODO: Verify by shaowee -->   |
-| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      | <!-- TODO: Verify by shaowee -->   |
-| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   | <!-- TODO: Verify by shaowee -->   |
+| `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                            |                                    |
+| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command.                                                       |                                    |
+| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |    |
+| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   |    |
+| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     |    |
+| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                    |
+| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                      |
+| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         |                                    |
+| `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                 |                                    |
+| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      |                                    |
+| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   |                                    |
 
 ### Use cases
 
 (For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Navigate to a lecture context**
+
+**MSS**
+
+1. User requests to navigate to a specific lecture belonging to a specific module.
+2. Le Tracker navigates to the specified lecture and displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The user does not enter sufficient details for the lecture.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The specified lecture or module does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
 
 **Use case: List modules**
 
@@ -1163,152 +1302,365 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Mark/Unmark a video**
 
-**Preconditions**: User has added a module and a lecture and a video
+**Preconditions**: User has added a module, a lecture and a video
 
 **MSS**
 
-1. User requests to mark/unmark a video as watched.
-2. User specifies the module code, lecture index number and video index number to mark/unmark.
-3. Video shows a marked/unmarked indicator.
+1. User wants to mark/unmark a video
+2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
+3. LeTracker marks/unmarks the video as watched/unwatched
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Module code does not exist.
+- 2a. Invalid module code that does not follow module code format is supplied.
 
   - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2b. Lecture index does not exist.
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
 
   - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. Video index does not exist.
+- 2c. Invalid video name that does not follow video name format is supplied.
 
-  - 2b1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Video name does not exist in lecture of lecture name in module of module code.
+
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 3a. Video to mark is already marked as watched.
 
-  3a1. LeTracker shows an error message.
+  - 3a1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 3b. Video to unmark is already unmarked.
 
-  3b1. LeTracker shows an error message.
+  - 3b1. LeTracker shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
+
+**Use case: Mark/Unmark multiple videos**
+
+**Preconditions**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
+2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
+3. LeTracker marks/unmarks the videos as watched/unwatched.
+
+  Use case ends
+
+**Extensions**
+
+- 2a. Invalid module code that does not follow module code format is supplied.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of video names supplied does not follow video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names contain duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
+
+  - 2g1. LeTracker shows an error message.
+
+- 3a. At least one of the videos to mark is already marked as watched.
+
+  - 3a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Module**
 
+**Preconditions**: User has added a module
+
 **MSS**
 
-1. User requests to list modules
-2. Le Tracker shows a list of modules
-3. User requests to delete a specific module in the list
-4. Le Tracker deletes the module
+1. User wants to delete a module
+2. User requests to delete the specific module by specifying the module code
+3. LeTracker deletes the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There are no modules.
+- 2a. The given module code does not follow the module code format.
 
-  Use case ends.
+  - 2a1. LeTracker shows an error message.
 
-- 4a. The given module code is invalid. (does not exist or does not follow the module code format)
+    Use case resumes at step 1.
 
-  4a1. Le Tracker shows an error message.
+  2b. Module of module code does not exist in LeTracker.
 
-  Use case resumes at step 1.
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Modules**
+
+**Preconditions**: User has added a few modules
+
+**MSS**
+
+1. User wants to delete multiple modules
+2. User requests to delete specific modules by specifying their respective module codes
+3. LeTracker deletes the specified modules
+
+**Extensions**
+
+- 2a. At least one of module codes supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Module codes supplied contains duplicates.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one Module of module codes do not exist in LeTracker.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
 
+**Preconditions**: User has added a module and a lecture
+
 **MSS**
 
-1. User requests to list lectures of a specific module
-2. Le Tracker shows a list of lectures of the specified module
-3. User requests to delete a specific lecture in the list, while citing the correct _module code_
-4. Le Tracker deletes the lecture
+1. User wants to delete a lecture
+2. User requests to delete a specific lecture by specifying a module code and lecture name
+3. LeTracker deletes the lecture
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no lecture in the specified module.
+- 2a. The supplied module code does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index is invalid.
+- 2b. The supplied lecture name does not follow the lecture name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given module code is invalid.
+- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-**Use case: Delete a Lecture Video**
+- 2d. The lecture of lecture name does not exist in module of module code.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Lectures**
+
+**Preconditions**: User has added a module and a few lectures
 
 **MSS**
 
-1. User requests to list lecture videos of a specific lecture of a specific module
-2. Le Tracker shows a list of lecture videos of such specifications
-3. User requests to delete a specific video in the list, while citing the correct _module code_ and \_lecture id
-4. Le Tracker deletes the lecture video
+1. User wants to delete multiple lectures under the same module
+2. User specifies multiple lecture names to be deleted and a module code
+3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
+
+**Extensions**
+
+- 2a. The module code specified does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. At least one of the lecture names supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. Lecture names supplied contains duplicates.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case ends.
+
+- 2d. The Module of module code does not exist in LeTracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete a Video**
+
+**Preconditions**: User has added a module, a lecture and a video
+
+**MSS**
+
+1. User wants to delete a specific video in a lecture of a module
+2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
+3. Le Tracker deletes the video from the lecture of the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. There is no video in the specified module lecture.
+- 2a. Module code supplied does not follow the module code format.
 
-  Use case ends.
-
-- 2b. There is no such lecture in the module.
-
-  - 2b1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. There is no such module.
+- 2b. Lecture name supplied does not follow the lecture name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 3a. The given index of the video is invalid.
+- 2c. Video name supplied does not follow the video name format.
 
-  - 3a1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3b. The given index of the lecture is invalid.
+- 2d. There is no such module of module code in LeTracker.
 
-  - 3b1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 3c. The given index of the module is invalid.
+- 2e. There is no such lecture in the module.
 
-  - 3c1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
+
+- 2f. There is no such video in the lecture.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Delete multiple Videos**
+
+**Precondition**: User has added a module, a lecture and a few videos
+
+**MSS**
+
+1. User wants to delete multiple videos under the same lecture of the same module
+2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
+3. LeTracker deletes the specified videos from the lecture of the module.
+
+**Extensions**
+
+- 2a. Module code supplied does not follow the module code format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. Lecture name supplied does not follow the lecture name format.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. At least one of the video names supplied does not follow the video name format.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The video names supplied contains duplicates.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2e. There is no such module of module code in LeTracker.
+
+  - 2e1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. There is no such lecture in the module.
+
+  - 2f1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2g. At least one of the videos do not exist in the lecture.
+
+  - 2g1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Tag a module**
 
@@ -1760,6 +2112,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+**Use Case: Clear all Modules**
+**MSS**
+1. User requests to clear all modules
+2. Le Tracker clears all modules
+
 ### Non-Functional Requirements
 
 Usability:
@@ -1788,7 +2145,7 @@ Scalability:
 
 Compatibility:
 
-- The app should work on any _mainstream OS_ as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
+- The app should work on any *mainstream OS* as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
 
 Maintainability:
 
@@ -1796,8 +2153,11 @@ Maintainability:
 
 ### Glossary
 
+- **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
+- **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Module Code**: Unique code identifier for each module
+- **Navigate**: To specify a current working context
 - **Lecture Name**: Unique name identifier for each lecture
 - **Video Name**: Unique name identifier for each video
 - **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
@@ -1806,8 +2166,12 @@ Maintainability:
 
 Given below are instructions to test the app manually.
 
-**Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more _exploratory_ testing.
+:exclamation:**Note**: These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
+
+Prerequisites:
+
+- Ensure your [data](../data/leTracker.json) is up-to-date with the [original test data](../src/test/data/JsonSerializableTrackerTest/typicalTracker.json)
+- Each test case assumes that you start from the root context
 
 ### Launch and shutdown
 
@@ -1824,7 +2188,8 @@ testers are expected to do more _exploratory_ testing.
    1. Re-launch the app by double-clicking the jar file.
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+<!--
+TODO: to be removed
 
 ### Deleting a person
 
@@ -1849,4 +2214,168 @@ testers are expected to do more _exploratory_ testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }_ -->
+
+### Current working context affected by deletion
+
+1. `nav CS2040S`
+1. `delete /r CS2040S`
+
+Expected:
+
+- Current working context should be "/r".
+
+### Current working context affected by edit
+
+1. `nav CS2040S`
+1. `edit CS2040S /r /code CS2040`
+
+Expected:
+
+- Current working context should be "/r/CS2040".
+
+### List Modules
+
+| Test Case  | Expected Result                                          |
+| ---------- | -------------------------------------------------------- |
+| `list`     | List should show modules with code [`CS2040S`, `ST2334`] |
+| `list /r`  | Same as previous                                         |
+| `list foo` | Same as previous                                         |
+
+### List Lectures of a Module
+
+| Test Case                     | Expected Result                                                          |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| 1.`nav CS2040S`<br/> 2.`list` | List should show lectures with name [`Week 1`, `Week 2`, ... , `Week 7`] |
+| `list /mod CS2040S`           | Same as previous                                                         |
+
+### List Videos of a Lecture
+
+| Test Case                                        | Expected Result                             |
+| ------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`list` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`list /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`list`    | Same as previous                            |
+| `list /mod CS2040S /lec Week 1`                  | Same as previous                            |
+
+### Find Modules
+
+| Test Case    | Expected Result                                |
+| ------------ | ---------------------------------------------- |
+| `find cs`    | List should show modules with code [`CS2040S`] |
+| `find cs /r` | Same as previous                               |
+| `find foo`   | An empty list is shown                         |
+
+### Find Modules by Tag
+
+| Test Case             | Expected Result                                          |
+| --------------------- | -------------------------------------------------------- |
+| `find intro /byTag`   | List should show modules with code [`CS2040S`, `ST2334`] |
+| `find prob /r /byTag` | List should show modules with code [`ST2334`]            |
+| `find foo /byTag`     | An empty list is shown                                   |
+
+### Find Lectures of a Module
+
+| Test Case                            | Expected Result                                |
+| ------------------------------------ | ---------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find week 1` | List should show lectures with name [`Week 1`] |
+| `find week 1 /mod CS2040S`           | Same as previous                               |
+| `find wk /mod CS2040S`               | An empty list is shown                         |
+
+### Find Lectures of a Module by Tag
+
+| Test Case                                | Expected Result                                          |
+| ---------------------------------------- | -------------------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`find arr /byTag` | List should show lectures with name [`Week 2`, `Week 4`] |
+| `find arr /mod CS2040S /byTag`           | Same as previous                                         |
+| `find arry /mod CS2040S /byTag`          | An empty list is shown                                   |
+
+### Find Videos of a Lecture
+
+| Test Case                                              | Expected Result                             |
+| ------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 1`<br/>3.`find vid 3` | List should show videos with name [`Vid 3`] |
+| 1.`nav CS2040S`<br/> 2.`find vid 3 /lec Week 1`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find vid 3`    | Same as previous                            |
+| `find vid 3 /mod CS2040S /lec Week 1`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 1`<br/>2.`find`          | Invalid command                             |
+
+### Find Videos of a Lecture by Tag
+
+| Test Case                                                    | Expected Result                             |
+| ------------------------------------------------------------ | ------------------------------------------- |
+| 1.`nav CS2040S`<br/> 2.`nav Week 2`<br/>3.`find math /byTag` | List should show videos with name [`Vid 2`] |
+| 1.`nav CS2040S`<br/> 2.`find math /lec Week 2 /byTag`        | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find math /byTag`    | Same as previous                            |
+| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
+| 1.`nav /mod CS2040S /lec Week 2`<br/>2.`find`                | Invalid command                             |
+
+### Tag a Module
+
+| Test Case                       |                   Expected Result                    |
+|:--------------------------------|:----------------------------------------------------:|
+| `tag CS2040S /tags fun, cool`   |    CS2040S should be tagged with [`fun`, `cool`]     |
+| `tag CS2040S /tags Heavy`       | There should be no change no current tags of CS2040S |
+| `tag CS2040S /tags cool, cool`  |   CS2040S should only be tagged with [`cool`] once   |
+| `tag CS2040S /tags @@`          |          `Tag(s) @@ should be alphanumeric`          |
+| `tag CS2040S`                   |                   Invalid command                    |
+
+### Tag a Lecture
+
+| Test Case                                                                           |               Expected Result                |
+|:------------------------------------------------------------------------------------|:--------------------------------------------:|
+| 1. `tag Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav CS2040S`                 | Week 1 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool`                              |               Same as previous               |
+| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` <br/> 3. `nav /mod CS2040S`  |               Same as previous               |
+
+### Tag a Video
+
+| Test Case                                                                                                                               |               Expected Result               |
+|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------:|
+| 1. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should be tagged with [`fun`, `cool`] |
+| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` <br/> 3. `nav Week 1`                                                 |              Same as previous               |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                                                  |              Same as previous               |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 3. `nav /lec Week 1 /mod CS2040S` |              Same as previous               |
+
+### Untag a Module
+
+| Test Case                          |                      Expected Result                      |
+|:-----------------------------------|:---------------------------------------------------------:|
+| `untag CS2040S /tags Heavy, Math`  | CS2040S should no longer be tagged with [`Heavy`, `Math`] |
+| `untag CS2040S /tags Heavy, Hehe`  |        `Tag Hehe of Module CS2040S does not exist`        |
+| `untag CS2040S /tags Heavy, Heavy` |     CS2040S should no longer be tagged with [`Heavy`]     |
+| `untag CS2040S`                    |                      Invalid Command                      |
+
+### Untag a Lecture
+
+| Test Case                                                                                    |                Expected Result                 |
+|:---------------------------------------------------------------------------------------------|:----------------------------------------------:|
+| 1. `untag Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav CS2040S`                            | Week 1 should no long be tagged with [`Intro`] |
+| 1. `nav CS2040S` <br/> 2. `untag Week 1 /tags Intro`                                         |                Same as previous                |
+| 1. `nav ST2334` <br/> 2. `untag Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /mod CS2040S` |                Same as previous                |
+
+### Untag a Video
+
+| Test Case                                                                                                                             |                 Expected Result                 |
+|:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] |
+| 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
+
+### Export All Modules to a File
+
+| Test Case                                                |                                      Expected Result                                       |
+|:---------------------------------------------------------|:------------------------------------------------------------------------------------------:|
+| `export hello.json`                                      |                A hello.json file should appear in {JAR_file_location}/data                 |
+| 1. `export hi.json` <br/> 2. `export hi.json`            | `File already exist. If you want to overwrite this file, insert /overwrite in the command` |
+| 1. `export ha.json` <br/> 2. `export ha.json /overwrite` |                             `All modules archived to ha.json`                              |
+| `export letracker.json /overwrite`                       |               `Cannot export to the current working directory of Le Tracker`               |
+
+### Import Modules from a File
+
+| Test Case                                                                             |                                                  Expected Result                                                  |
+|:--------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|
+| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
+| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
+| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |

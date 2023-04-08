@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+Class "<<interface>>\nInjector" as Injector
+Class NavigationInjector
+}
+
+package Model{
+Class HiddenModel #FFFFFF
+Class NavigationContext
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .up.|> Logic
+LogicManager --> Model
+LogicManager -right> "1" Injector : injects into command >
+
+NavigationInjector .up.|> Injector
+NavigationInjector ..> NavigationContext
+
+@enduml

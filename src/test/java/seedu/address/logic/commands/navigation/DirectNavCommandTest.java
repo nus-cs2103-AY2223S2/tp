@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Navigation;
+import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
@@ -27,7 +28,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_fromRootWithMod_success() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         Optional<ModuleCode> modOpt = Optional.of(mod.getCode());
         Optional<LectureName> lecOpt = Optional.empty();
@@ -42,7 +43,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_fromRootWithLecAndMod_success() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         Optional<ModuleCode> modOpt = Optional.of(mod.getCode());
         Optional<LectureName> lecOpt = Optional.of(lec.getName());
@@ -57,7 +58,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_fromRootWithLecNoMod_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         Optional<ModuleCode> modOpt = Optional.empty();
         Optional<LectureName> lecOpt = Optional.of(lec.getName());
@@ -68,7 +69,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_fromLecWithLecNoMod_success() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         nav.navigateTo(mod.getCode(), lec.getName());
         Model model = new ModelStubWithNavigation(nav);
 
@@ -84,7 +85,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_missingModule_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         Optional<ModuleCode> modOpt = Optional.of(TypicalModules.getCs2107().getCode());
         Optional<LectureName> lecOpt = Optional.empty();
@@ -95,7 +96,7 @@ public class DirectNavCommandTest {
 
     @Test
     void execute_missingLecture_throwsCommandException() throws CommandException {
-        Navigation nav = new Navigation();
+        Navigation nav = new NavigationStack();
         Model model = new ModelStubWithNavigation(nav);
         Optional<ModuleCode> modOpt = Optional.of(TypicalModules.getCs2040s().getCode());
         Optional<LectureName> lecOpt = Optional.of(TypicalLectures.getCs2040sWeek2().getName());

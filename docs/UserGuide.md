@@ -76,7 +76,7 @@ Now it's time to **CONQUER** the semester!
 
 ### User Interface and Getting Started
 
-![GettingAround](images/GettingAround.png)
+<img src="images/GettingAround.png" width="1024" />
 
 1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to toggle through the texts you have typed.
 
@@ -95,7 +95,7 @@ Current Working Context Indicator
 
 - Here are some ways you can **navigate** between different contexts.
 
-![NavDiagram](images/NavDiagram.png)
+<img src="images/NavDiagram.png" width="763" />
 
 For more information on **navigation**, please view the [navigation section](#navigation).
 
@@ -213,9 +213,9 @@ To avoid the need to constantly specify the module and lecture parameters for su
 
 Type of contexts
 
-- ![RootContext](images/RootContext.png) **Root context**: The default and top-most context.
-- ![ModContext](images/ModContext.png) **Module context**: Represents a specified module.
-- ![LectureContext](images/LectureContext.png) **Lecture context**: Represents a specified lecture that belongs to a specified module.
+- <img src="images/RootContext.png" height="20" /> **Root context**: The default and top-most context.
+- <img src="images/ModContext.png" height="20" /> **Module context**: Represents a specified module.
+- <img src="images/LectureContext.png" height="20" /> **Lecture context**: Represents a specified lecture that belongs to a specified module.
 
 ### Two Ways of Navigating
 
@@ -226,17 +226,17 @@ You can specify a current working context by **navigating**.
 For example, you can navigate to the **lecture context** - lecture Week 1 of the module CS2040S by
 
 - Navigating **relatively** from the **root context**
-  ![RootContext](images/RootContext.png)
+  <img src="images/RootContext.png" height="20" />
 
   1. Navigate to the module context from the root context.
-  - `nav CS2040S`
+  > `nav CS2040S`
   2. Navigate to the lecture context from the module context.
-  - `nav Week 1`
+  > `nav Week 1`
 
 - Navigating **directly** from any **context**
-  ![RootContext](images/RootContext.png)![ModContext](images/ModContext.png)![LectureContext](images/LectureContext.png)
+  <img src="images/RootContext.png" height="20" /> <img src="images/ModContext.png" height="20" /> <img src="images/LectureContext.png" height="20" />
   1. Navigate directly to the lecture Week 1 of the module CS2040S.
-  - `nav /mod CS2040S /lec Week 1`
+  > `nav /mod CS2040S /lec Week 1`
 
 ### Navigation Injection
 
@@ -244,15 +244,12 @@ After navigating to a lecture or module context, the navigation system will **in
 
 Here are some **examples** of how the navigation system injects the necessary context-related parameters into your commands:
 
-  1. ![LectureContext](images/LectureContext.png)
-    Add "Video 2" to the lecture Week 1 of module CS2040S.
-    - `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
-  2. ![LectureContext](images/LectureContext.png)
-    List the videos of lecture Week 1 of module CS2040S.
-    - `list` -> `list /mod CS2040S /lec Week 1`
-  3. ![LectureContext](images/LectureContext.png)
-    Add "Video 1" to lecture Week 1 of module CS2040S.
-    - `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
+  1. <img src="images/LectureContext.png" height="20" /> Add "Video 2" to the lecture Week 1 of module CS2040S.
+  > `add Video 2` -> `add Video 2 /mod CS2040S /lec Week 1`
+  2. <img src="images/LectureContext.png" height="20" /> List the videos of lecture Week 1 of module CS2040S.
+  > `list` -> `list /mod CS2040S /lec Week 1`
+  3. <img src="images/LectureContext.png" height="20" /> Add "Video 1" to lecture Week 1 of module CS2040S.
+  > `add Video 1 /lec Week 1` -> `add Video 1 /mod CS2040S /lec Week 1`
 
 ### Specifying Your Own Context In Commands
 
@@ -262,18 +259,18 @@ The following can be performed at **any** [current working context](#current-wor
 
 - Including the `/r` prefix will perform a command from the **root context**.
   - e.g. List all modules at the root context.
-  - `list /r` -> `list`
+  > `list /r` -> `list`
 - Including the `/mod` prefix will perform a command from the **module context**.
   - e.g. Add lecture "Week 10" for module CS2040S.
-  - `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
+  > `add Week 10 /mod CS2040S` -> `add Week 10 /mod CS2040S` (No injection)
 - Including the `/mod` and `/lec` prefixes will perform a command from the **lecture context**.
   - e.g. Add video "BST Challenge" for lecture Week 5 of module CS2040S.
-  - `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
+  > `add BST Challenge /mod CS2040S /lec Week 5` -> `add BST Challenge /mod CS2040S /lec Week 5` (No injection)
 
 To make it easier to specify that share the same module code as your current working context, the `/mod` prefix can be injected when only the `/lec` prefix is specified.
 
-- e.g. List videos of lecture Week 5 of module CS2040S
-- ![LectureContext](images/LectureContext.png) `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
+- e.g. <img src="images/LectureContext.png" height="20" /> List videos of lecture Week 5 of module CS2040S
+> `list /lec Week 5` -> `list /mod CS2040S /lec Week 5`
 - Note that the lecture week is different from the current working context and that only the `/mod` prefix has been injected into the command input.
 
 ---
@@ -331,11 +328,11 @@ Navigates backwards to the a parent context unless already at root context
 
 > `list`
 
-![RootContext](images/RootContext.png)
+<img src="images/RootContext.png" height="20" />
 has to be appended at the end of the command if you are not in the root context.
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [List Lectures](#list-lectures) or [List Videos](#list-videos)
 
 (refer to [Navigation](#navigation) for more information)
@@ -393,8 +390,8 @@ Examples:
 
 - `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Add a Lecture
@@ -444,8 +441,8 @@ Examples:
 
 - `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Edit
@@ -471,8 +468,8 @@ Examples:
 
 - `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation Injection](#navigation-injection) for more information).
 
 #### Edit a Lecture
@@ -528,8 +525,8 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
 ### Delete
@@ -773,11 +770,11 @@ E.g:
 
 Find all modules whose code starts with any of the keyword(s).
 
-![RootContext](images/RootContext.png)
+images/RootContext.png)
 has to be appended at the end of the command if you are not in the root context.
 
-![ModContext](images/ModContext.png)
-![LectureContext](images/LectureContext.png)
+<img src="images/ModContext.png" height="20" />
+<img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the navigation system will inject the `/mod` and `/lec` arguments transforming the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
 
 (refer to [Navigation](#navigation) for more information)

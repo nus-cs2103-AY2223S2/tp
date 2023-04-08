@@ -78,23 +78,24 @@ public class LogicManager implements Logic {
         Command command = trackerParser.parseCommand(commandText);
         CommandResult commandResult = command.execute(model);
 
+        if (!commandResult.getPath().isEmpty()) {
+            if (commandResult.isExporting()) {
+                archive.exportToArchive(commandResult.getPath().get(),
+                        model.getTracker(), commandResult.isOverwriting(), storage.getTrackerFilePath());
+            } else {
+                // modify CommandResult object to include ModuleEditInfo objects to update trackerEventSystem
+                commandResult = archive.importFromArchive(commandResult.getPath().get(), model,
+                        commandResult.isImportingWholeArchive(),
+                        commandResult.isOverwriting(), commandResult.getModuleCodesToImport(), trackerEventSystem);
+            }
+        }
+
         triggerTrackerEvents(commandResult);
 
         // Unsubscribe to tracker system
         this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
-
-        if (!commandResult.getPath().isEmpty()) {
-            if (commandResult.isExporting()) {
-                archive.exportToArchive(commandResult.getPath().get(),
-                        model.getTracker(), commandResult.isOverwriting(), storage.getTrackerFilePath());
-            } else {
-                archive.importFromArchive(commandResult.getPath().get(), model,
-                        commandResult.isImportingWholeArchive(),
-                        commandResult.isOverwriting(), commandResult.getModuleCodesToImport());
-            }
-        }
 
         try {
             storage.saveTracker(model.getTracker());

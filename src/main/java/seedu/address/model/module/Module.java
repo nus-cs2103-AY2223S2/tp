@@ -94,7 +94,7 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
     }
 
     @Override
-    public boolean isSameModule(Module other) {
+    public boolean isSameModule(ReadOnlyModule other) {
         if (other == this) {
             return true;
         }

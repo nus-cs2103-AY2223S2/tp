@@ -16,17 +16,17 @@ import seedu.address.model.tag.Tag;
  */
 public class EditLectureDescriptorBuilder {
 
-    private EditLectureDescriptor descriptor;
+    private final EditLectureDescriptor descriptor;
 
     /**
-     * Creates a {@code EditLectureDescriptorBuilder}.
+     * Constructs an {@code EditLectureDescriptorBuilder}.
      */
     public EditLectureDescriptorBuilder() {
         descriptor = new EditLectureDescriptor();
     }
 
     /**
-     * Creates a {@code EditLectureDescriptorBuilder} with the data of {@code descriptor}.
+     * Constructs an {@code EditLectureDescriptorBuilder} with the data of {@code descriptor}.
      *
      * @param descriptor The {@code EditLectureDescriptor} containing the data to copy.
      */
@@ -37,9 +37,9 @@ public class EditLectureDescriptorBuilder {
     }
 
     /**
-     * Creates a {@code EditLectureDescriptorBuilder} with fields containing the {@code lecture} details.
+     * Constructs an {@code EditLectureDescriptorBuilder} with fields containing the details of {@code lecture}.
      *
-     * @param lecture The lecture.
+     * @param lecture The lecture whose details will be used.
      */
     public EditLectureDescriptorBuilder(Lecture lecture) {
         requireNonNull(lecture);
