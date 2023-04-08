@@ -15,6 +15,7 @@ import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.PageType;

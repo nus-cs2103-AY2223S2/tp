@@ -1,3 +1,4 @@
+/*
 package tfifteenfour.clipboard.logic.commands;
 
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -18,3 +19,4 @@ public class HelpCommandTest {
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }
+*/

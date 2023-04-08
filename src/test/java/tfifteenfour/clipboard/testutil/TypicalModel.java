@@ -19,6 +19,9 @@ public class TypicalModel {
     private Model typicalModel;
 
 
+    /**
+     * Creates a {@code TypicalModel} using sample data.
+     */
     public TypicalModel() {
         Path sampleFilePath = Paths.get("src", "test", "data", "sampleRoster.json");
         ReadOnlyRoster sampleRoster = SampleDataUtil.getSampleRoster(sampleFilePath, null);
@@ -28,10 +31,14 @@ public class TypicalModel {
         CurrentSelection typicalCurrentSelection = new CurrentSelection();
 
         typicalCurrentSelection.selectCourse(typicalRoster.getUnmodifiableCourseList().get(0));
-        typicalCurrentSelection.selectGroup(typicalCurrentSelection.getSelectedCourse().getUnmodifiableGroupList().get(0));
-        typicalCurrentSelection.selectStudent(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredStudentList().get(0));
-        typicalCurrentSelection.selectSession(typicalCurrentSelection.getSelectedGroup().getUnmodifiableFilteredSessionList().get(0));
-        typicalCurrentSelection.selectTask(typicalCurrentSelection.getSelectedGroup().getUnmodifiableTaskList().get(0));
+        typicalCurrentSelection.selectGroup(typicalCurrentSelection.getSelectedCourse()
+                .getUnmodifiableGroupList().get(0));
+        typicalCurrentSelection.selectStudent(typicalCurrentSelection.getSelectedGroup()
+                .getUnmodifiableFilteredStudentList().get(0));
+        typicalCurrentSelection.selectSession(typicalCurrentSelection.getSelectedGroup()
+                .getUnmodifiableFilteredSessionList().get(0));
+        typicalCurrentSelection.selectTask(typicalCurrentSelection.getSelectedGroup()
+                .getUnmodifiableTaskList().get(0));
 
         this.typicalModel = new ModelManager(typicalRoster, new UserPrefs(), typicalCurrentSelection);
     }

@@ -86,7 +86,8 @@
 //     @Test
 //     public void setStudent_editedStudentHasSameIdentity_success() {
 //         uniqueStudentList.add(ALICE);
-//         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
+//         Student editedAlice = new StudentBuilder(ALICE)
+//                 .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_MODULE_CS2105)
 //                 .build();
 //         uniqueStudentList.setStudent(ALICE, editedAlice);
 //         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
@@ -160,7 +161,8 @@
 //     @Test
 //     public void setStudents_listWithDuplicateStudents_throwsDuplicateStudentException() {
 //         List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
-//         assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudents(listWithDuplicateStudents));
+//         assertThrows(DuplicateStudentException.class, ()
+//         -> uniqueStudentList.setStudents(listWithDuplicateStudents));
 //     }
 
 //     @Test
