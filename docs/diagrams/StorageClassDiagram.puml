@@ -1,9 +1,20 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.05
-'skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 skinparam RoundCorner 0
+
+hide <<hidden>> stereotype
+
+<style>
+    .hidden {
+        BackGroundColor transparent
+        BorderColor transparent
+        FontColor transparent
+        LineColor transparent
+        StereotypeFontColor transparent
+    }
+</style>
 
 package Storage{
     Class StorageManager
