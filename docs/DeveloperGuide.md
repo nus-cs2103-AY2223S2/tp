@@ -822,8 +822,6 @@ Precondition: There are shortlisted applicants in HMHero.
 
 **Use case: View summary statistics of hiring cycle**
 
-Precondition: There are applicants added into HMHero.
-
 **MSS**
 
 1. User enters the command to view summary statistics.
