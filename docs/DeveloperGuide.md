@@ -156,7 +156,7 @@ What the `Navigation` component does:
 
 What the `Navigation` component is **NOT RESPONSIBLE** for:
 
-- Ensuring that contexts exists in the `Model` component.
+- Ensuring that modules or lectures exist in the `Model` component.
   - This avoids circular dependency as the `Model` component already depends on the `Navigation` component.
   - This enforces the single responsibility principle as the `Navigation` component does not need to verify the existence of actual module or lecture data in the Tracker system.
 
@@ -639,13 +639,13 @@ The following is a description of the code execution flow:
 
 Similar to the `cd` command which changes the current working directory in Unix-based systems, the navigation commands (i.e. `nav`, `navb`) allows the user to navigate through the module-lecture-video hierarchy to a specified module or lecture. Once the user has navigated to a context, they do not need to include the `/mod` or `/lec` arguments for commands related to the current context.
 
-Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
+Instead, the navigation system will inject `/mod` or `/lec` arguments into the user's command based on the current working context. Hence, context-sensitive commands will be able to infer the specified module or lecture from these arguments without being directly coupled to the navigation system.
 
 #### Navigation injection
 
 Here's a (partial) class diagram for the `NavigationInjector` component.
 
-[NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
+![NavigationInjectorClassDiagram](images//NavigationInjectorClassDiagram.png)
 
 How `NavigationInjector` injects the correct arguments into the command based on the current working context:
 
@@ -679,7 +679,7 @@ Hence, we define a common format for context-sensitive commands:
 
 Parsing context-specifying arguments to determine context:
   | Has `/mod` argument | Has `/lec` argument |        Context       | Context Specific Command |
-  | :-----------------: | :-----------------: | :------------------: | :-------------------:    |
+  | -----------------   | -----------------   | ------------------   | ----------------------   |
   |         No          |         No          | Root Context         |  `XYZModuleCommand`      |
   |         Yes         |         No          | Module Context       |  `XYZLectureCommand`     |
   |         Yes         |         Yes         | Lecture Context      |  `XYZVideoCommand`       |
@@ -689,7 +689,7 @@ If you are *confused* about why there appears to be a mismatch between Context a
 For concrete examples on how to implement a context-sensitive command, you can refer to the
 [add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
 
-Implementing your context-sensitive command based on this standard will ensure seamless integration with the navigation system.
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
 
 ### Tag module, lecture, and video feature
 
