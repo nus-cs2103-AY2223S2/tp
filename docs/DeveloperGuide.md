@@ -176,33 +176,21 @@ The CRUD (Create, Read, Update and Delete) mechanism for events is facilitated b
 * Edit an event (tutorial, lab, consultation) which will be saved in the current address book state in its history.
 
 The following activity diagram summarizes what happens when a TA executes an add event.
-Do take note that whether the event is recurring or not is included as well:
+For simplicity, it is assumed that valid data format is keyed in by the TA.
 
 <img src="images/TrAcker-activity-diagrams/AddEventActivityDiagram.png" width="250" />
 
-The following activity diagram summarizes what happens when a TA executes an delete event:
+The activity diagram for edit event is similar to the add event, except that the first action is execute edit event.
 
-<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="550" />
 
-The following activity diagram summarizes what happens when a TA executes an edit event:
+The following activity diagram summarizes what happens when a TA executes an delete event.
+For simplicity, it is assumed that valid data format is keyed in by the TA.
 
-<img src="images/TrAcker-activity-diagrams/EditEventActivityDiagram.png" width="550" />
-
-The following activity diagram summarizes what happens when a TA executes an add student to event:
-
-<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
-
-The following activity diagram summarizes what happens when a TA executes an edit student in event:
-
-<img src="images/TrAcker-activity-diagrams/EditStudentInEventActivityDiagram.png" width="550" />
-
-The following activity diagram summarizes what happens when a TA executes an delete student from event:
-
-<img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
+<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
-**Aspect: How CRUD (non-recurring) events executes:**
+**Aspect: How CRUD events executes:**
 
 * **Alternative 1 (current choice):** Save Tutorial, Lab and Consultation as separate events.
     * Pros: Easy to implement, better abstraction.
@@ -213,16 +201,15 @@ The following activity diagram summarizes what happens when a TA executes an del
     * Pros: Will use less memory since less code is written,
     * Cons: Involves checking the content of the event such as the title, which does not obey to Software Principles.
 
-**Aspect: How CRUD (recurring) events executes:**
+**Aspect: How is overlapping events is checked:**
 
-* **1:** Increments Tutorial, Lab and Consultation only by date.
-    * Pros: Ensures consistency and no duplicates due to mishandled / unhandles cases.
-    * Cons: There can be a recurring event based by name. For example, the head TA can be in charge of multiple tutorials occurring at the same time,
-  but TrAcker does not allow this since only one event can occur during a period of time (i.e. no timing overlap of events ).
-  
-  
-This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
-  a lot of cases which is why it is not allowed for now.
+* **Alternative 1 (current choice):** Store a master list of current time frame that the TA is occupied for.
+    * Pros: Easy to implement, easy to check if TA is busy by comparing start time and end time of other events.
+    * Cons: Slightly more coupling involved.
+
+* **Alternative 2:** Compare with every events everytime a new event time is added or changed.
+    * Pros: Fewer bugs involved since comparison with every event is always done.
+    * Cons: Will be too slow if there are too many events to be compared to and the algorithm is not optimized.
 
 ### Add Students to Events feature
 
@@ -251,7 +238,7 @@ Step 3. The user executes `touch Tutorial/tut` to add an Event.
 
 Step 4. The user executes `addStudent 1 Tutorial/1` to add the first student in the Person list into the tutorial at first index of the tutorial list. 
 
-The following activity diagram summarizes what happens when a TA executes an add student to event:
+The following activity diagram summarizes what happens from Step 4 when a TA executes an add student to event, assuming that the student has not yet been added to the event. Assume valid command format as well.
 
 <img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
 
@@ -266,8 +253,6 @@ The following activity diagram summarizes what happens when a TA executes an add
 * **Alternative 2:** Enter student details for every addStudent command.
     * Pros: Do not have to maintain a student list (can get messy with lots of students)
     * Cons: More troublesome to key in 1 student to multiple Events compared to Alternative 1.
-
-_{more aspects and alternatives to be added}_
 
 ### Delete Operation for Students within Event
 
@@ -290,28 +275,39 @@ Step 1. The user launches the application. The user has already used the applica
 
 Step 2. The user executes `deleteStudent 1 Tutorial/1` to delete the student at index 1 (1-based) of the student list of the tutorial at index 1 (1-based) of the `Tutorial` list.
 
-The following activity diagram summarizes what happens when a TA executes an delete student from event:
+The following activity diagram summarizes what happens when a TA executes delete student from event from step 2. Assume valid command format.
 
 <img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
 
 #### Design considerations:
 
-_{more aspects and alternatives to be added}_
+**Aspect: How the command input is structured**
+
+* **Alternative 1 (current choice):** Chooses the student index from a list of students in the event.
+    * Pros: Easier for TA to refer to.
+    * Cons: More difficult to implement as student index reference needs to be changes.
+
+* **Alternative 2:** Choose the student index from the list of students in the student tab.
+    * Pros: Easier to implement since same student index reference can be used.
+    * Cons: More troublesome for the TA since changing of tabs needs to be done to find the student index.
 
 
-### \[Proposed\] Help feature
+### Help feature
 
 #### Proposed Implementation
 
-The proposed Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
-and asking the user to visit the webpage to view the commands, this new Help feature will display the commands in the
+The Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
+and asking the user to visit the webpage to view the commands only, this new Help feature will display the commands in the
 result box. This facilitates the user's usage by providing easy in-app reference instead of having to refer to an
 external window. Switch-Case will be used to identify subsequent commands and parse() method will be implemented
 for helps with deeper abstractions.
 
+
+The following activity diagram summarizes what happens when a user executes a help command, assuming valid command format.
+
 <img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="550" />
 
-As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Sort/Filter(Organisation).
+As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Organisation.
 
 #### Usage Example
 
@@ -321,22 +317,22 @@ To choose the desired category, user will have to chain down the command by ente
 
 #### Design Considerations
 
-Why Command Chaining was used?
+**Aspect: How the command input is structured**
 
-PROS
-* Seasoned users will be able to pinpoint the help they require in the future in 1 command
-* Specific syntax will be displayed instead of displaying everything and letting the user find themselves
-* Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire
+* **Alternative 1 (current choice):** Use command chaining.
+    * Pros
+      * Seasoned users will be able to pinpoint the help they require in the future in 1 command.
+      * Specific syntax will be displayed instead of displaying everything and letting the user find themselves.
+      * Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire.
+    * Cons: User will have to type quite a bit.
 
-CONS
-* User will have to type quite a bit
 
 #### Possible Updates
 
 Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
 more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
 
-### \[Proposed\] Filter feature
+### Filter feature
 
 #### Proposed Implementation
 
@@ -352,9 +348,7 @@ and detect that it is a "filter" command that is being called.
 
 3. Our system finally displays all the Person objects in the form of a table to the user.
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-Todo: add clean image of activity diagram
+The following activity diagram summarizes what happens when a user executes a new command, assuming valid command format.
 
 #### Design considerations:
 
@@ -370,7 +364,7 @@ Todo: add clean image of activity diagram
     * Pros: Will use less space and uses previously implemented code for abstraction.
     * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
 
-### \[Proposed\] Note feature
+### Note feature
 
 #### Proposed Implementation
 
