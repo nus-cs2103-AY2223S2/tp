@@ -68,7 +68,7 @@ public class CommandResult {
         this.selectedDrug = selectedDrug;
         this.displayDrug = true;
         this.feedbackToUser = feedbackToUser;
-        this.displayPatient = true;
+        this.displayPatient = false;
     }
 
     public String getFeedbackToUser() {

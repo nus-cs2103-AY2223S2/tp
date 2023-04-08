@@ -57,7 +57,8 @@ public class UpdateCommand extends Command {
             + PREFIX_DRUG_ALLERGY + " Aspirin "
             + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
-    public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s.";
+    public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s. "
+            + "\nPlease select the patient again to view changes if not displayed.";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT_NAME = "This patient already exists in the careflow storage.";
     public static final String MESSAGE_DUPLICATE_PATIENT_IC = "This NRIC already exists in the careflow storage.";

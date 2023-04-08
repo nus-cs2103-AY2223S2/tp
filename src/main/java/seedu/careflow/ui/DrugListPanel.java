@@ -116,6 +116,23 @@ public class DrugListPanel extends UiPart<Region> {
     }
 
     /**
+     * Update the display inside {@code drugDetailDisplay} in response to view command
+     * @param selectedDrug the drug to be displayed
+     */
+    public void updateViewCommandDisplay(Drug selectedDrug) {
+        drugListView.getSelectionModel().select(drugListView.getItems().indexOf(selectedDrug));
+        Label[] fields = new Label[]{
+            activeIngredientField, directionField, purposesField,
+            sideEffectsField, storageCountField};
+        Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient,
+            selectedDirection, selectedPurposes,
+            selectedSideEffects, selectedStorageCount};
+        setupStyle();
+        setDrugFieldsDisplay(fields);
+        updateDisplayedDrugDetail(selectedDrug, details);
+    }
+
+    /**
      * Set drug display to empty
      */
     public void updateNullDisplay() {
