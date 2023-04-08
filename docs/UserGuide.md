@@ -64,7 +64,7 @@ ExpressLibrary is a **desktop app created for librarians to better manage librar
 Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
-
+* You will not be able to add a person with either the same email or phone number as an existing person 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
