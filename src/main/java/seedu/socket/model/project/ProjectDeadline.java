@@ -6,16 +6,19 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Project's deadline in SOCket.
  * Guarantees: immutable
  */
 public class ProjectDeadline {
-    public static final String DATE_TIME_FORMAT = "dd/MM/yy-HHmm";
+    public static final String DATE_TIME_FORMAT = "dd/MM/uu-HHmm";
     public static final String MESSAGE_CONSTRAINTS =
-        "Date should be in format dd/MM/yy-HHmm";
-    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+        "Date should be a valid date in the format dd/MM/yy-HHmm";
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter
+        .ofPattern(DATE_TIME_FORMAT)
+        .withResolverStyle(ResolverStyle.STRICT);
     public final String deadline;
 
     /**

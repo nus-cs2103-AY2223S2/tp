@@ -25,7 +25,7 @@ public class ProjectDeadlineTest {
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
-        String invalidDeadline = " ";
+        String invalidDeadline = "31/02/2019-2359";
         assertThrows(IllegalArgumentException.class, () -> new ProjectDeadline(invalidDeadline));
     }
 

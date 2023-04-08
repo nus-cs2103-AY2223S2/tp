@@ -38,14 +38,14 @@ public class EditProjectCommand extends Command {
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_REPO_HOST + "REPO HOST] "
-            + "[" + PREFIX_REPO_NAME + "REPO NAME] "
+            + "[" + PREFIX_NAME + "PROJECT_NAME] "
+            + "[" + PREFIX_REPO_HOST + "REPO_HOST] "
+            + "[" + PREFIX_REPO_NAME + "REPO_NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_MEETING + "MEETING]\n "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Socket2.0 "
-            + PREFIX_DEADLINE + "02/01/2023-2359";
+            + PREFIX_NAME + "Socket Project "
+            + PREFIX_DEADLINE + "02/01/23-2359";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

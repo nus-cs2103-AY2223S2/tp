@@ -124,6 +124,7 @@ public class Socket implements ReadOnlySocket {
      * @throws NullPointerException if {@code predicate} is null.
      */
     public boolean removeAllPerson(Predicate<Person> predicate) {
+        projects.removeAllMemberInProject(predicate);
         return persons.removeAll(predicate);
     }
 

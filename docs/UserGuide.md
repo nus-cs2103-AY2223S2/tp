@@ -13,7 +13,7 @@ title: User Guide
 
 SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
 
-SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are proficient at typing, SOCket can get your contact management tasks done faster than traditional GUI apps.
+With the use of the CLI (Command Line Interface), you can manage contacts in SOCket without needing to move your mouse, allowing you to get your contact management tasks done faster than traditional GUI (Graphical User Interface) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,10 +73,12 @@ You can use the links in the Table of Contents to quickly navigate through this 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Keywords in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
-  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.
+  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.<br>
+  **Note:** If keyword is left empty, SOCket will assume that it has removed an empty field so an error message will not be shown even if there is a wrong keyword in a subsequent prefix.
 
 * Fields in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.<br>
+  e.g `[p/[PHONE]]` can be used as `p/`.
 
 * Fields with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -125,9 +127,11 @@ Examples:
 
 #### Editing a contact : `edit`
 
+*For when you make a mistake in the details or to update new details of a contact.*
+
 Edits an existing contact in SOCket.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE]…​ [t/TAG]…​`
 
 * Edits the information of the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -156,9 +160,11 @@ Examples:
 
 #### Removing a contact's field : `remove`
 
+*When you just want to wipe a value completely or remove specific values only.*
+
 Removes the specific field value based on the given contact.
 
-Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
+Format: `remove INDEX [p/PHONE] [p/GITHUBPROFILE] [e/EMAIL] [a/ADDRESS] [l/LANGUAGE] [t/TAG]...`
 
 * Removes field value of the contact at the specific `INDEX`.
 * At least one of the optional fields must be provided.
@@ -166,6 +172,14 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
   * e.g. `l/Java` will remove `Java` from the languages of the contact.
 * Clears the field value(s) when no keyword is provided for the field.
   * e.g. `t/` will remove all the tags associated with the contact.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+You can use the remove command to just remove specific tags/language and keep the rest unedited.
+
+<div markdown="span" class="alert alert-primary"> :exclamation: Warning:
+If no keyword is provided, `remove` will still **execute successfully** on an empty field.
+
+</div>
 
 Examples:
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
@@ -176,40 +190,11 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
-
-#### Deleting a contact : `delete`
-
-Deletes the specified contact from SOCket.
-
-Format: `delete INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-#### Clearing all contacts or tags : `clear`
-
-Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
-
-Format: `clear [t/TAG]...`
-
-* Removes all contacts with the specified tags.
-* Any tag included is **case-insensitive**.
-  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
-* The tags **must exist** in SOCket.
-* If tags are provided, only remove existing tags.
-  * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
-* If no tag field is provided, remove all contacts in SOCket.
-* A confirmation prompt will appear before removal of contacts.
-
 <div style="page-break-after: always;"></div>
 
 #### Listing all contacts : `list`
+
+*For when you would like to look at a specific group of contacts.*
 
 Lists all contacts in SOCket based on language and tag.
 
@@ -229,10 +214,13 @@ Format: `list [l/LANGUAGE] [t/TAG]`
 
 #### Locating contacts by keyword(s): `find`
 
+*If you ever need to search out contacts that you have forgot parts of its details.*
+
 Find contacts stored in SOCket based on the given keyword(s) for the respective fields.
 
-Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
+* The search is carried out on ***all*** contacts stored in SOCket, not just the currently displayed list of contacts.
 * The search for keyword(s) is case-insensitive.
     * e.g `find n/hans` will match `find n/Hans`.
     * e.g `find t/cs2103t` will match `find t/CS2103T`.
@@ -251,7 +239,10 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
     * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`.
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
     * e.g. `find t/friend` will return contacts who have either tag `friend` or `best friend` or both.
-* If no field is specified, zero contacts will be returned.
+
+<div markdown="span" class="alert alert-primary">:exclamation: Warning:
+If no field is specified, zero contacts will be returned!
+</div>
 
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
@@ -262,6 +253,43 @@ Example:
   <br>
   </p>
 
+<div style="page-break-after: always;"></div>
+
+#### Deleting a contact : `delete`
+
+*Maybe if you want to tidy up your contacts.*
+
+Deletes the specified contact from SOCket.
+
+Format: `delete INDEX`
+
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+You can use the find command or list command to narrow down your contact list first before performing delete based on the filtered list.
+</div>
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+
+#### Clearing all contacts or tags : `clear`
+
+*Deleting contacts one by one is a hassle, clear can solve that hassle.*
+
+Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
+
+Format: `clear [t/TAG]...`
+
+* Removes all contacts with the specified tags.
+* Any tag included is **case-insensitive**.
+  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
+* The tags **must exist** in SOCket.
+* If tags are provided, only remove existing tags.
+  * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
+* If no tag field is provided, remove all contacts in SOCket.
+* A confirmation prompt will appear before removal of contacts.
 
 <div style="page-break-after: always;"></div>
 
@@ -274,6 +302,16 @@ Format: `sort [CATEGORY]`
 * If no category is provided, the contacts are sorted by their names alphanumerically.
 * If a category is provided, the contacts are sorted by that category alphanumerically.
     * e.g. `sort address` will sort the contacts by their addresses alphanumerically. Contacts without addresses will be at the bottom.
+* The available categories are:
+  * name
+  * github
+  * phone
+  * address
+  * email
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+This command will sort the and display the full contact list.
+</div>
 
 Examples: 
 * `sort` Sort contacts by **Name**.
@@ -297,6 +335,8 @@ Examples:
 
 
 #### Viewing a contact's detailed information: `view`
+
+*When you need to see the full details of a particular contact.*
 
 Views the details of a contact present in the list.
 
@@ -350,9 +390,11 @@ Examples:
 
 #### Editing a project: `editpj`
 
+*For when you make a mistake in the details or to update new details of a project.*
+
 Edits an existing project in SOCket.
 
-Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeting]`
+Format: `editpj INDEX [n/PROJECT_NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
 
 * Edits the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed project list.
@@ -373,9 +415,11 @@ Examples:
 
 #### Removing a project's field: `removepj`
 
+*When you just want to wipe a value completely or remove specific values only.*
+
 Removes the specific field based on the given project in SOCket.
 
-Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
+Format: `removepj INDEX [h/[REPO_HOST]] [r/[REPO_NAME]] [d/[DEADLINE]] [m/[MEETING]]`
 
 * Removes field value of project at the specific `INDEX`.
 * At least one of the optional fields must be provided.
@@ -407,6 +451,8 @@ Examples:
 
 #### Deleting a project: `deletepj`
 
+*Maybe if you want to tidy up your projects.*
+
 Deletes the specified project from SOCket.
 
 Format: `deletepj INDEX`
@@ -434,6 +480,16 @@ Format: `sortpj [CATEGORY]`
 * If no category is provided, the projects are sorted by their deadlines alphanumerically.
 * If a category is provided, the projects are sorted by that category alphanumerically.
     * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+* The available categories are:
+  * name
+  * reponame
+  * repohost
+  * deadline
+  * meeting
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Use the deadline category to sort your projects based on the nearest due dates!
+</div>
 
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
@@ -528,8 +584,8 @@ Undoes the last change made to SOCket.
 
 Format: `undo`
 Keyboard Shortcut:
-1. `Ctrl+Z` __(Windows)__.
-2. `Command+Z` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>Z</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>Z</kbd> __(Mac)__.
 
 * A message is shown if no changes were made to SOCket.
 
@@ -539,8 +595,8 @@ Restores a previously undone change made to SOCket.
 
 Format: `redo`
 Keyboard Shortcut:
-1. `Ctrl+Shift+Z` __(Windows)__.
-2. `Command+Shift+Z` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> __(Mac)__.
 
 * A message is shown if no undone changes exist.
 
@@ -555,8 +611,8 @@ Exits the program.
 Format: `exit`
 
 Shortcut key:
-1. `Ctrl+Q` __(Windows)__.
-2. `Command+Q` __(Mac)__.
+1. <kbd>ctrl</kbd>+<kbd>Q</kbd> __(Windows)__.
+2. <kbd>command</kbd>+<kbd>Q</kbd>  __(Mac)__.
 
 <div style="page-break-after: always;"></div>
 
@@ -572,7 +628,7 @@ Displays window showing the list of commands and a clickable URL to access help 
 
 Format: `help`
 
-Keyboard Shortcut: `F1`
+Keyboard Shortcut: <kbd>F1</kbd>
 
 <div style="page-break-after: always;"></div>
 
@@ -601,26 +657,26 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                            |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| **Add**         | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
-| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                                               |
-| **Delete**      | `delete INDEX`                                                                                                                                                                                              |
-| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                                       |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                  |
-| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                   |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                                             |
-| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                          |
-| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                                    |
-| **Clear Projects** | `clearpj`                                                                                                                                                                                                   |
-| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                            |
-| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                                       |    
-| **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                                            |
-| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                                  |
-| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                                   |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                              | 
-| **View**        | `view INDEX`                                                                                                                                                                                                |
-| **Undo**        | `undo`<br>Keyboard Shortcut: `Ctrl+Z`/ `Command+Z`                                                                                                                                                          |
-| **Redo**        | `redo`<br>Keyboard Shortcut: `Ctrl+Shift+Z`/ `Command+Shift+Z`                                                                                                                                              |
-| **Help**        | `help`<br>Keyboard Shortcut: `F1`                                                                                                                                                                           |
-| **Exit**        | `exit`<br>Keyboard Shortcut: `Ctrl+Q`/ `Command+Q`                                                                                                                                                          |
+| Action          | Format, Examples                                                                                                                                                                                     |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| **Add**         | `add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…​` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python` |
+| **Clear**       | `clear [t/TAG]...`<br> e.g. `clear t/cs2103t`                                                                                                                                                        |
+| **Delete**      | `delete INDEX`                                                                                                                                                                                       |
+| **Remove**      | `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]…​` <br> e.g. `remove 1 t/ l/Java e/`                                                                |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                  |
+| **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                            |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g. `find James Jake t/cs2103t`                                                                                                                      |
+| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                   |
+| **Add Project** | `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`<br> e.g. `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`                                                             |
+| **Clear Projects** | `clearpj`                                                                                                                                                                                            |
+| **Delete Project** | `deletepj INDEX`                                                                                                                                                                                     |
+| **Remove Project** | `removepj INDEX [h/[REPO_HOST]] [r/[REPO_NAME]] [d/[DEADLINE]] [m/[MEETING]]` <br> e.g. `removepj 2 r/ d/ m/`                                                                                        |    
+| **Edit Project** | `editpj INDEX [n/PROJECT_NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g. `editpj 2 n/Project Bravo r/bravo-project`                                                             |
+| **Assign**      | `assign CONTACT_INDEX PROJECT_INDEX`<br> e.g. `assign 1 1`                                                                                                                                           |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                            |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                       | 
+| **View**        | `view INDEX`                                                                                                                                                                                         |
+| **Undo**        | `undo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>Z</kbd>                                                                                                          |
+| **Redo**        | `redo`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd> / <kbd>command</kbd>+<kbd>shift</kbd>+<kbd>Z</kbd>                                                                        |
+| **Help**        | `help`<br>Keyboard Shortcut: <kbd>F1</kbd>                                                                                                                                                           |
+| **Exit**        | `exit`<br>Keyboard Shortcut: <kbd>ctrl</kbd>+<kbd>Q</kbd> / <kbd>command</kbd>+<kbd>Q</kbd>                                                                                                          |
