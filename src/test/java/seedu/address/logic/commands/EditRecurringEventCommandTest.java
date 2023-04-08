@@ -44,9 +44,9 @@ public class EditRecurringEventCommandTest {
         RecurringEvent expectedEvent = new RecurringEvent("Jogging", DayOfWeek.WEDNESDAY,
                 TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime());
 
-        String expectedMessage = String.format(editCommand.MESSAGE_SUCCESS, expectedEvent)
-                + " for " + editedPerson.getName() + "\n"
-                + "Original Event: " + BIKING_RECURRING_EVENT + " for " + editedPerson.getName();
+        String expectedMessage = String.format("Original Event: " + BIKING_RECURRING_EVENT + " for "
+                + editedPerson.getName() + "\n" + editCommand.MESSAGE_SUCCESS, expectedEvent + " for "
+                + editedPerson.getName());
 
         assertEquals(expectedMessage, editCommand.execute(model).getFeedbackToUser());
 

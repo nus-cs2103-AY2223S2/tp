@@ -26,9 +26,8 @@ public class FindTimeCommand extends Command {
             + " The start date can also be specified and time slots generated would be within a week from that date.\n"
             + "Parameters: " + "INDEX (must be a positive integer)" + " [" + PREFIX_STARTDATETIME + "START DATE]\n"
             + "Example: " + COMMAND_WORD + " 1\n"
-            + COMMAND_WORD + " 2 " + PREFIX_STARTDATETIME + "09/03/2023 00:00\n";
+            + COMMAND_WORD + " 2 " + PREFIX_STARTDATETIME + "09/03/2023\n";
 
-    // TODO: Consider using another prefix for date instead of dateTime
     public static final String MESSAGE_SUCCESS = "Timetable generated! It may take some time for the table to display.";
 
     private final Index index;
