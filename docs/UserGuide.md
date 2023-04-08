@@ -3,36 +3,148 @@ layout: page
 title: FastTrack User Guide
 ---
 
-FastTrack is an easy-to-use **financial management desktop application** designed for NUS SoC undergraduate students who are living on a tight budget.
-With a combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), our app provides a user-friendly and efficient way to track your expenses and manage your finances.
-
-* Table of Contents
-  {:toc}
-1. [Quick Start](#quick-start)
-2. Getting Familiar with CLI
-3. [Features](#features)
-    1. Commands
-        1. [Viewing Help](#viewing-help--help)
-        2. [Adding a Category](#adding-a-category-addcat)
-        3. [Deleting a Category](#deleting-a-category-delcat)
-        4. [Adding an Expense](#deleting-an-expense--delete)
-        5. [Deleting an Expense](#deleting-an-expense--delete)
-        6. [Listing Categories](#listing-categories-lcat)
-        7. [Listing Expenses](#listing-expenses--list)
-        8. [Editing a Category](#editing-a-category--ecat)
-        9. [Editing an Expense](#editing-an-expense--eexp)
-        10. [Searching for an expense by name](#search-for-an-expense-by-name-find)
-        11. [Clearing all Entries](#clearing-all-entries--clear)
-        12. [Exiting the Program](#exiting-the-program--exit)
-    2. [Saving Data](#saving-the-data)
-    3. [Editing the Data File](#editing-the-data-file)
-    4. [Archiving Data Files](#archiving-data-files-coming-in-v20)
-4. [Frequently Asked Questions](#faq)
-5. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+
+# **Table of Contents**
+{:toc}
+1. Introduction to FastTrack
+2. [Why You Should Use FastTrack](#why-you-should-use-fasttrack)
+3. [Purpose of this guide](#purpose-of-this-guide)
+4. [Quick Start and Installation](#quick-start-and-installation)
+5. [How to understand this guide](#understanding-this-guide)
+    1. Warnings
+    2. Tooltips (Advice)
+    3. Info
+    4. Terminologies
+    5. Syntax (Formatting in the guide)
+6. [GUI walkthrough](#graphical-user-interface-gui-walkthrough)
+7. Features
+    1. Expense Commands
+        1. Add Expense
+        2. Add Recurring Expense
+    2. Category Commands
+    3. General Commands
+    4. Summary Statistics
+    5. Autocomplete
+    6. Budget
+8. Saving the data
+9. Editing the data file (For Advanced Users)
+10. Frequently Asked Questions
+--------------------------------------------------------------------------------------------------------------------
+# Introduction to FastTrack
+
+
+FastTrack is an easy-to-use **financial management desktop application** designed for NUS SoC undergraduate students who are living on a tight budget.
+
+With a combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), our app provides a user-friendly and efficient way to track your expenses and manage your finances.
+
+FastTrack prioritizes speed and efficiency to save your precious time and money, so you have more resources to spend on the important things in life.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## Why you should use FastTrack
+
+**FastTrack** is an expense tracking app that helps computing students keep track of their expenses by providing a simple and convenient command-line interface. Here are some reasons why you should consider using FastTrack:
+1. **Simplicity:** FastTrack provides a _simple_ and _easy-to-use_ command-line interface that allows you to quickly add and track your expenses. This makes it ideal for computing students who prefer to use the command line to work with data.<br/><br/>
+2. **Speed:** FastTrack prioritizes speed and efficiency. With its command-line interface and all commands being a simple and one-line, it skips the hassle of clicking through screens like other expense tracking apps. The entire interface is shown in one screen.<br/><br/>
+3. **Convenience:** FastTrack can be used on any platform, including Windows, Mac, and Linux, making it convenient for computing students to track their expenses regardless of the platform they are using.<br/><br/>
+4. **Customizable:** FastTrack is highly customizable, allowing you to tailor it to your specific needs. You can add categories, set budgets, add recurring expenses, and even see statistics on your expenses.<br/><br/>
+5. **Security:** FastTrack is a locally hosted app that allows you to keep your expenses and financial information private. It does not require any personal information or financial details to use, ensuring that your information remains secure.<br/><br/>
+6. **Free and Open Source:** FastTrack is a free and open-source app, meaning that it is available for download and use by anyone.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Purpose of this Guide
+
+This User Guide provides information on how to use FastTrack. It includes:
+* [Installation](#quick-start-and-installation) and setup of app
+* Detailing features of the app
+* Usage of app and its commands
+* Tips, tricks and warnings on usage of commands
+* Troubleshooting tips
+* Frequently Asked Questions
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Understanding this guide
+
+## Icons
+Throughout FastTrack's user guide, you may encounter unfamiliar symbols. This is a quick overview of what these symbols
+mean and what to look out for.
+
+| **Icon**             | **Meaning** |
+|----------------------|-------------|
+| :warning:            | Warning     |
+| :information_source: | Information |
+| :bulb:               | Tip         |
+
+#### Warning Box
+
+<div markdown="block" class="alert alert-danger">:warning: Warning:
+Danger zone! Do pay attention to the information here carefully. Careless usage of this function may cause certain
+things to not work as expected.
+</div>
+
+#### Information Box
+
+<div markdown="span" class="alert alert-info">:information_source: Info:
+This provides additional useful information that may help you with using FastTrack's features.
+</div>
+
+#### Tip Box
+
+<div markdown="block" class="alert alert-primary">:bulb: Tip:
+This provides some quick and convenient hacks that you can use to optimize your experience with FastTrack.
+</div>
+
+## Terminologies
+The following table contains descriptions of key terminologies used in FastTrack.
+
+| **Terminology**   | **Description**                                                                                                                                                                                 |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Expense           | Also referred to as a **one-time expense**.<br/><br/>This indicates a single expense entry which comprises the name of the expense, its _price_, associated _category_ and _date_.              |
+| Recurring Expense | A Recurring Expense helps track expenses that occur on a recurring basis on specific intervals.<br/><br/>Examples include monthly installments, software subscriptions and daily transport fees |
+| Category          | An expense category, which comprises a _name_ and _summary_ - a short description of the category. <br/><br/> Each category can contain expenses, in order to sort them.                        |
+
+
+
+## Syntax
+First-time users may have difficulty understanding the syntax described in the command instructions. 
+
+If you have never used a **Command Line Interface** before, please read this quick guide before using the application.
+Familiarization with the CLI will be beneficial for entering commands for expenses more efficiently,
+saving time in the long run over the usage of FastTrack.
+
+The **Command Line Interface (CLI)** is interacted primarily through single-line text commands. This means that any expense
+can be added with just one line.
+
+Here is a quick guide on how to read the syntax mentioned in the User Guide for using FastTrack's commands.
+
+```
+command tag1/ ARGUMENT1 tag2/ ARGUMENT2 [tag3/ ARGUMENT3]
+```
+
+| Element    | Format                                       | Usage                                                                                                             |
+|------------|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| `command`  | Name of command <br/> eg. `add`, `find`      | Specifies the command to be executed.                                                                             |
+| `tag/`     | Prefix for a field, followed by `/`          | Specifies which field given input argument is for                                                                 |
+| `ARGUMENT` | All capitalized                              | Specifies User input for field specified by `tag/`                                                                |
+| `[]`       | Square brackets around `tag/` and `ARGUMENT` | Indicates that field specified by `tag/` is optional. <br/><br/>If left unspecified, it will be set to a default. |
+
+For example, the command format for `add`:
+```
+add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]
+```
+* `add` is the `command` name.
+* `c/`, `n/`, `p/`, `d/` are `tag/`s to denote fields of _category_, _name_, _price_ and _date_ respectively.
+* `CATEGORY_NAME`, `ITEM_NAME`, `PRICE`, `DATE` are `ARGUMENTS` to be supplied to the aforementioned `tag/`s.
+* `[d/DATE]` indicates that the field for the date is optional.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## Quick start and Installation
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -42,19 +154,17 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 
 4. Double-click the FastTrack JAR file to run the application.
 
-5. Alternatively, you can open the file through a command terminal like Windows Powershell on Windows, Terminal on MacOS.
-    1. Open your command terminal.
-    2. `cd` into the folder you put the jar file in and press Enter. Example: `cd [FILEPATH]`, where `[FILEPATH]` can be obatined from checking the *Properties* of your fastTrack.jar file by right-clicking.
-    3. Use the `java -jar fastTrack.jar` command and press Enter to run the application.
+       
+   A Graphical User Interface (pictured below) will appear. Note how the app contains some sample data.<br>
 
-   After Step 4 or Step 5, A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+![Ui](images/Ui_Revised.png)
 
-![Ui](images/Ui.png)
-
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all expenses
+   
+    * `clear` : Clears the sample data
 
     * `add c/groceries n/milk p/4.50 d/14/2/23` : Adds an expense named `milk` to the expenses list with a price of $4.50 and a date of 14/02/2023
 
@@ -62,73 +172,37 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 
     * `exit` : Exits the app
 
+
 7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Familiar with the Command Line Interface (CLI)
+# Graphical User Interface (GUI) Walkthrough
 
-If you have never used a **Command Line Interface** before, please read this quick guide before using the application.
-Familiarization with the CLI will be beneficial for entering commands for expenses more efficiently,
-saving time in the long run over the usage of FastTrack.
-
-The **Command Line Interface (CLI)** is interacted primarily through single-line text commands. This means that any expense
-can be added with just one line.
-
-Commands are in the form
-```
-command [tag][parameter for tag] [tag2][parameter] ...
-```
-
-The name of the command, the first word in the text specifies what command you wish the application to execute, while
-the following tags behind and their parameters further provide information for the program to execute the program
-properly.
-
-For example, adding an expense into FastTrack:
-```
-add n/Apple p/2.0 c/Food d/1/1/23
-```
-`add` is the **name** of the command you wish to execute, in this case, adding an expense.
-</br>
-`n/` is a **tag** to specify which parameter the further instructions you add are referring to. In this case, we are
-specifying that the next words we enter will be the **name** of the expense, Apple.
-
-Similarly, `p/`, `c/` and `d/` are also **tags** to specify that we are entering the values for the _Price_, _Category_ and _Date_
-respectively.
-
-For some commands, some of these **tags** are optional. Therefore, if the **tag** is not present in the command text,
-FastTrack will use a _default_ option, with no need to specify the values.
-
-
-
-## About
-This section gives an overview of the layout of FastTrack and defines terminologies and conventions used throughout this user guide.
-
-### Graphical User Interface (GUI)
 The following diagrams highlight the different sections of the _Graphical User Interface (GUI)_ of FastTrack.
+
 ![FastTrack GUI](images/fasttrack_labeled_1.png)
+The **main display**. It displays all added expenses on the left, showing each expense's price, category and date added.
+
 ![FastTrack GUI](images/fasttrack_labeled_2.png)
+The **Category display**. It shows all currently added Categories for expenses. This display is shown only after using the 
+command to list categories.
+
 ![FastTrack GUI](images/fasttrack_labeled_3.png)
+The **Recurring Expense display**. It shows all currently added Recurring Expenses. This display is shown only after using the
+command to list recurring expenses.
 
 
-| Part of FastTrack         | Description                                                                                                                                                                                       |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| One-time Expense Display  | Displays the list of saved one-time expenses with filters applied (if any). This display occupies the _Main View_ section.                                                                        |
-| Category Display          | Displays the list of saved categories, including the number of expenses associated with each category. This display occupies the _Main View_ section.                                             |
-| Recurring Expense Display | Displays the list of saved recurring expenses. This display occupies the _Main View_ section.                                                                                                     |
-| Results Display           | Displays the feedback from the application after entering a command, which can be used to indicate that a command has succeeded or failed. It's role is to provide textual guidance for the user. |
-| Command Box               | A text input field where the user can type in a command for FastTrack to execute.                                                                                                                 |
-| Expense Summary Display   | A visual display containing spending statistics (Refer to the feature [Expense Summary](#Expense Summary) below for details on these statistics.                                                  |
-| Toolbar                   | Contains clickable buttons which allow the user to access the user guide and exit from the application.                                                                                           |
+| **FastTrack UI Part**     | **Description**                                                                                                                                                                                                           |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| One-time Expense Display  | Displays the list of saved one-time expenses with filters applied (if any). This display occupies the _Main View_ section.                                                                                                |
+| Category Display          | Displays the list of saved categories, including the number of expenses associated with each category. This display occupies the _Main View_ section.                                                                     |
+| Recurring Expense Display | Displays the list of saved recurring expenses. This display occupies the _Main View_ section.                                                                                                                             |
+| Results Display           | Displays the feedback from the application after entering a command, which can be used to indicate that a command has succeeded or failed. It provides textual guidance for the user, especially if a command has failed. |
+| Command Box               | A text input field where you can type in a command for FastTrack to execute.                                                                                                                                              |
+| Expense Summary Display   | A visual display containing spending statistics (Refer to the feature [Expense Summary](#Expense Summary) below for details on these statistics.                                                                          |
+| Toolbar                   | Contains clickable buttons which allow you to access the user guide and exit from the application.                                                                                                                        |
 
-### Terminologies
-The following table contains descriptions of key terminologies used in FastTrack.
-
-| Terminology       | Description                                                                                                                                                             |
-|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Expense           | Also referred to as a one-time expense, this indicates a single expense entry which comprises the name of the expense, it's amount, associated category and date.       |
-| Recurring Expense | An entry representing an expense which is automatically generates one-time expenses at specified intervals, for example, monthly installments or software subscriptions |
-| Category          | An expense category, which comprises a name and summary - a short description of the category                                                                           |
 
 
 ## FastTrack Features
