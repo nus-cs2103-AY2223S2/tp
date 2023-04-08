@@ -536,9 +536,9 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 > `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
 Deletes the specified module(s) and all its embodied content from the application
-- <span style="color:#e46c0a">`module_code_1`, `module_code_2`, `module_code_3`, ...</span>: The codes of modules to be deleted
+- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>: The codes of the modules
   - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
-  - Must exist in Le Tracker
+  - Must exist in Modules in Le Tracker
   - Must not contain duplicates
 
 Examples:
@@ -829,10 +829,7 @@ Examples:
 
 > `clear`
 
-Clears all information (modules, lectures, videos, tags) from Le Tracker
-
-- any following term entered after `clear` is ignored
-- calling `clear` will result in an empty Tracker
+Clears all data from Le Tracker
 
 ### Exit the App
 
