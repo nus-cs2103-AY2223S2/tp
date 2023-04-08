@@ -705,6 +705,7 @@ In the table below, **_user_** refers to the triage admin staff.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​ | I want to …​                                                              | So that I can…​                                                                  |
 |----------|---------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | user    | add doctor/patient contacts into my address book                          | store their contacts in case I need them in the future                           |
