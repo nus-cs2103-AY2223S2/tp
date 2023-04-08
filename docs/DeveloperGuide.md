@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Instructions for Manual Testing**
 
-Presented below are a series of instructions, organized in **Context-Action-Result (CAR) format**, 
+Presented below are a series of instructions, organized in **Context, Prerequisites, Action, Result** format, 
 that can be followed to perform manual testing of the application.
 
 <div markdown="span" class="alert alert-info">
@@ -363,17 +363,17 @@ testers are expected to do more *exploratory* testing.
 
 #### **Launch and Shutdown**
 
-#### Scenario 1
-{: .no_toc}
-**Context:** Initial launch
+#### Scenario 1  
+{: .no_toc}  
+**Context:** Initial launch  
 **Action:**
 1. Download the jar file and copy into an empty folder
-2. Double-click the jar file
+2. Double-click the jar file  
 **Result:**  Displays the GUI with the window size set to full-screen
 
 #### Scenario 2 
-{: .no_toc}
-**Context:**  This is the first time you are attempting to shut down the application  
+{: .no_toc}  
+**Context:**  Restarting the application  
 **Action:**
 1. Right-click on the X button located in the top-right corner of the screen
 2. Double-click the jar file  
@@ -382,56 +382,73 @@ testers are expected to do more *exploratory* testing.
 #### **Adding an Event**
 
 #### Scenario 1
-{: .no_toc}
+{: .no_toc}  
 **Context:** The `Event` has not yet been added to _Ez-Schedule_  
 **Action:** Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`   
-**Result:** The new `Event` has been successfully added to Ez-Schedule
+**Result:** The new `Event` has been successfully added to _Ez-Schedule_
 
 #### Scenario 2
-{: .no_toc}
+{: .no_toc}  
 **Context:** An identical `Event` to the one being added, already exists in _Ez-Schedule_  
 **Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
 **Result:** Response Box will display the message "This event already exists in the scheduler"
 
 #### Scenario 3
-{: .no_toc}
-**Context:** The selected time slot for the `Event` is already occupied by another `Event` in _Ez-Schedule_  
+{: .no_toc}  
+**Context:** The selected time slot is already occupied by another `Event` in _Ez-Schedule_  
 **Action:**  Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`  
 **Result:** Response Box will display the message "Another event already exists at the chosen time"
 
 #### **Recurring an Event**
 
 #### Scenario 1
-{: .no_toc}
-**Context:** There are no conflicting `Event` scheduled during the recurring time frame specified for the `Event` being added.
+{: .no_toc}  
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified  
 **Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
 **Result:** The `Event` will be added to _Ez-Schedule_ repeatedly until the specified end date
 
 #### Scenario 2
-{: .no_toc}
-**Context:** Another `Event` already exist during the recurring time frame specified for the `Event` being added  
+{: .no_toc}  
+**Context:** Another `Event` already exist in the recurring time frame specified for the `Event` being added  
 **Action:** Execute the command: `recur 1 d/2023-05-10 every/day`  
 **Result:** Response Box will display the message "Unable to recur. 10 May has a clashing event."
 
 #### **Editing an Event**
 
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_  
+**Action:** Execute the command: `edit 1 n/Basketball`  
+**Result:** The name of the `Event` has been updated to "Basketball"
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** Modify an `Event` to make it identical to another `Event` already present in _Ez-Schedule_  
+**Action:** Execute `edit` command with the arguments identical to another existing event  
+**Result:** Response Box will display the message "This event already exists in the scheduler"
+
 #### **Deleting Events**
 
-1. Deleting a event while all events are shown
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists an `Event` with the `index` 1 in _Ez-Schedule_  
+**Action:** Execute the command: `delete 1`  
+**Result:** The `Event` is removed from _Ez-Schedule_.
+Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
-   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists multiple `Event` with the indexes 1, 2 and 3 in _Ez-Schedule_  
+**Action:** Execute the command: `delete 1 2 3`  
+**Result:** All the `Event` is removed from _Ez-Schedule_.
+Details of the `Event` is also removed from the Events List Panel, Upcoming Events Panel, and the Calendar
 
-   1. Test case: `delete 1`<br>
-      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. 
-      Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
+#### Scenario 3
+{: .no_toc}  
+**Context:** One of the specified indexes, `index` 10, does not exist in _Ez-Schedule_  
+**Action:** Execute the command: `delete 1 2 3 10`  
+**Result:** Response Box will display the message "The event index 10 provided is invalid", 
+and none of the events will be deleted from _Ez-Schedule_
 
 #### **Finding Events**
 
