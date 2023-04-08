@@ -40,9 +40,7 @@ Now it's time to **CONQUER** the semester!
   - [List](#list)
   - [Add](#add)
   - [Edit](#edit)
-  - [Delete Module](#delete-module)
-  - [Delete Lecture](#delete-lecture)
-  - [Delete Video](#delete-video)
+  - [Delete](#delete)
   - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
@@ -111,7 +109,7 @@ Scenario 1 - Tracking a new module CS2103:
 1. To add a video, run `add Vid 1 /mod CS2103 /lec Week 1`.
 1. To add a timestamp, run `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
 1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
-1. To delete this module, run `delete CS2103`.
+1. To delete the module, run `delete CS2103`.
 
 Scenario 2 - Navigating, finding & archiving data:
 
@@ -531,48 +529,63 @@ Examples:
 <img src="images/LectureContext.png" height="20" />
 When in a module or lecture context, the `/mod` argument will be injected if only the `/mod` argument is omitted in the original command (refer to [Navigation Injection](#navigation-injection) for more information).
 
-### Delete Module
+### Delete
 
-> Deletes the specified module(s) and all its embodied content from the application
+#### Delete Module
 
-Format: `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
+> `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-- `module_code_1`, `module_code_2`, `module_code_3`, ...: Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
-- Module codes must be of valid format
-- If any module specified does not exist, nothing changes within the model
+Deletes the specified module(s) and all its embodied content from the application
+- <span style="color:#e46c0a">`module_code_1`, `module_code_2`, `module_code_3`, ...</span>: The codes of modules to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must exist in Le Tracker
+  - Must not contain duplicates
 
 Examples:
 
 - `delete CS2040`
 - `delete CS2040, ST2334`
 
-### Delete Lecture
+![ModContext](images/ModContext.png)
+![LectureContext](images/LectureContext.png)
+When in a module or lecture context, the navigation system will automatically inject the `/mod` and/or `/lec` arguments, transforming the user's command into the command specified in [Delete Lecture](#delete-lecture) or [Delete Video](#delete-video) (refer to [Navigation Injection](#navigation-injection) for more information)
 
-> Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`
+#### Delete Lecture
 
-- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
-- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
-- Lecture names must be of valid format
-- If any lecture specified does not exist within specified module, nothing changes within the model
+> `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
+
+Deletes the specified lecture(s) and all its embodied content from the same specified module
+
+- <span style="color:#e46c0a">`lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...</span>: The Names of Lectures to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Must exist in Module of `module_code`
+  - Must not contain duplicates
+- <span style="color:#e46c0a">`module_code`</span>: The Code of Module to delete Lectures from
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must exist in Le Tracker
 
 Examples:
 
 - `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
 - `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
 
-### Delete Video
+#### Delete Video
 
-> Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
+> `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Format: `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
+Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
-- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
-- `lecture_name` must be of valid format and have a lecture of `lecture_name` exist in module of `module_code`
-- Video names must be of valid format
-- If any video specified does not exist within the specified lecture of the specified module, nothing changes within the model
+- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be deleted
+  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
+  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+  - Must not contain duplicates
+- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module that contains the lecture to delete from
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must exist in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture to delete from
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Must exist in the Module of `module_code`
 
 Examples:
 
@@ -581,25 +594,26 @@ Examples:
 
 ### Mark or Unmark Video
 
-> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
+> `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Format:
+Marks video(s) as **watched** in lecture of its specified module
 
-- `mark {video_name} /mod {module_name} /lec {lecture_index}`
-- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
+> `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Parameters:
+Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- `mark` marks `{video_name}` as watched
-- `unmark` marks `{video_name}` as unwatched
-- `{video_name}` can be names of multiple videos, separated by commas (",")
-- if `{video_name}` contains repeated names, the repeats will be ignored
 
-Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
+- <span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>: The Names of Videos to be marked
+  - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
+  - Must exist in the Lecture of `lecture_name` in the Module of `module_code`
+- <span style="color:#e46c0a">`module_code`</span>: The Code of the Module containing the lecture that contains the videos
+  - Refer to [Argument Formats](#argument-formats) for the "Module Code" format
+  - Must exist in Le Tracker
+- <span style="color:#e46c0a">`lecture_name`</span>: The Name of the Lecture containing the videos
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
+  - Must exist in the Module of `module_code`
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
-- Video Names must be of valid format
-- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
+Examples:
 
 - `mark Vid 1 /mod CS2040 /lec Week 1`
 - `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
@@ -813,11 +827,9 @@ Examples:
 
 ### Clear all Modules
 
-> Clears all information (modules, lectures, videos, tags) from Le Tracker
+> `clear`
 
-Format:
-
-- `clear`
+Clears all information (modules, lectures, videos, tags) from Le Tracker
 
 - any following term entered after `clear` is ignored
 - calling `clear` will result in an empty Tracker
