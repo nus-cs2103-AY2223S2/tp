@@ -5,13 +5,13 @@ title: Developer Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is a **contact management system** that enables <u>NUS School of Computing (SoC)</u> students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
+ConnectUS is a **contact management system** that enables NUS School of Computing (SoC) students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
 ConnectUS focuses on:
-- **Efficiency**: Optimized for use via a <u>Command Line Interface (CLI)</u>, **easily view and edit contacts** with the **contact management system**.
-- **User-friendliness**: With the benefits of having a <u>Graphical User Interface (GUI)</u>, **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), **easily view and edit contacts** with the **contact management system**.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
-This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the <u>architecture</u> of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
+This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the architecture of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
 You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
@@ -295,7 +295,7 @@ This section describes some noteworthy details on how certain features are imple
 
 **Overview:**
 
-The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u>`Module`</u>, <u>`CCA`</u>, <u>`Major`</u> and `Remark` fields.
+The `add` command is used to create a new `Person` in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) such as <u><code>Module</code></u>, <u><code>CCA</code></u>, <u><code>Major</code></u> and `Remark` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
@@ -485,6 +485,8 @@ However, such an Instagram username would be considered valid in real life.
 Currently, English is the only language that is supported by our application.
 
 As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
+
+We plan to address and improve language support in V1.6.
 
 ## 5.4 More Social Media Support
 
@@ -823,6 +825,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 # 9. Glossary
 
 ### A
+> **Alphanumeric:**
+> English alphabet letters and numbers only.
+> 
 > **Architecture:**
 > The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
 
@@ -890,6 +895,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### S
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
+> 
+> **Special Characters:**
+> Characters that are not alphabetic or numeric.
 
 ### U
 > **Use Case:**
