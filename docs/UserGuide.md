@@ -190,6 +190,17 @@ An index must be a **positive integer** 1, 2, 3, ... (one-based index).
 
 [Back to top](#table-of-contents)
 
+#### File path for export
+* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+  * e.g. Windows uses backward slash and Mac uses forward slash
+* Export path should be a **directory**, not a file!
+
+#### File path for import
+* File path separator (e.g. backward/forward slash) should **follow your operating system**.
+    * e.g. Windows uses backward slash and Mac uses forward slash
+* Export path should be a **file**, not a directory!
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -233,21 +244,30 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: Tips:<br>
+**:bulb: Tips:**<br>
 * A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
 * If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
 * A student can have any number of tags (including 0)
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
+* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name).
+* If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about the avatars (profile pictures):**<br>
+* The avatar will change if the student has a "gender" tag.
+* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
     ![Add a student](images/Add%20a%20student.png)
-
-<div markdown="span" class="alert alert-warning">:exclamation:
-Caution:<br>
-In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
-</div>
 
 [Back to top](#table-of-contents)
 
@@ -288,7 +308,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.<br>
+    Before command execution:
+    ![Edit a student (before)](images/Edit%20a%20student%20(before).png)
+    After command execution:
+    ![Edit a student (after)](images/Edit%20a%20student%20(after).png)
 
 [Back to top](#table-of-contents)
 
@@ -303,7 +327,14 @@ Format: `check INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.
+* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
+    Before command execution:
+    ![Check a student (before)](images/Check%20a%20student%20(before).png)
+    After command execution:<br>
+    * Student has no tasks and scores:
+        ![Check a student with no tasks and scores](images/Check%20a%20student%20Empty%20Lists.png)
+    * Student has tasks and scores:
+        ![Check a student with tasks and scores](images/Check%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -323,6 +354,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+    ![Find a student](images/Find%20a%20student.png)
 
 [Back to top](#table-of-contents)
 
@@ -342,10 +374,7 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `filter primary` returns tag `primary`, `Primary`.
 * `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
-
-Addition:
-* The avatar will change if the student has a "gender" tag.
-* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
+    ![Filter students](images/Filter%20students.png)
 
 [Back to top](#table-of-contents)
 
@@ -354,6 +383,8 @@ Addition:
 Lists all the students in the student list.
 
 Format: `list`
+
+![List all students](images/List%20all%20students.png)
 
 [Back to top](#table-of-contents)
 
