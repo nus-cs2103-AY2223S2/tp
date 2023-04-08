@@ -13,6 +13,10 @@ Package " "<<Rectangle>>{
     Class Commons LOGIC_COLOR_T2
 }
 
+skinparam User {
+    border 0
+}
+
 Class "<$user>" as User ARCHI_USER_COLOR
 Class "<$documents>" as File ARCHI_FS_COLOR
 

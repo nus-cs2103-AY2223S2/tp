@@ -127,7 +127,7 @@ Format:
 
 > An empty pop-up form as shown in the image below will appear!
 > 
-> ![AddCommandWindow](images/addfCommand.jpg)
+> ![AddCommandWindow](images/addfCommand.png)
 >
 > Tab to move on to the next input field, and shift+tab to go to the previous field!
 >
