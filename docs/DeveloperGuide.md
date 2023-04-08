@@ -253,7 +253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
-<details>
+<details markdown="span">
 <summary>
 <strong>Use case: Add an event</strong>
 </summary>
@@ -361,7 +361,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### **Appendix B: Planned Enhancements**
 
-<div style="page-break-after: always;"></div>
+* Verify data during loading from data file
+
 
 ### **Appendix C: Instructions for Manual Testing**
 
