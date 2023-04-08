@@ -45,8 +45,8 @@ in.
 
 Symbols are used in the user guide to facilitate your understanding of the content.
 
-<div markdown="span" class="alert alert-primary"> :bulb: This indicates a useful tip that you may wish to take note of.
-take note of. </div>
+<div markdown="span" class="alert alert-primary"> :bulb: This indicates a useful tip that you may wish to take note of. 
+</div>
 
 <div markdown="span" class="alert alert-primary"> :exclamation: This indicates an important piece of information 
 that you should pay attention to. </div>
@@ -59,6 +59,7 @@ that you should pay attention to. </div>
 * [**How to use this User Guide**](#how-to-use-this-user-guide)
 * [**Getting started**](#getting-started)
 * [**Familiarising yourself with the user interface**](#familiarising-yourself-with-the-user-interface)
+* [**Familiarising yourself with a module**](#familiarising-yourself-with-a-module)
 * [**Familiarising yourself with the commands**](#familiarising-yourself-with-the-commands)
 * [**Main Features**](#features)
     * [Listing all modules: `list`](#listing-all-modules--list)
@@ -72,7 +73,9 @@ that you should pay attention to. </div>
     * [Exiting Contact nUS: `exit`](#exits-the-module-tracker--exit)
 * [**Additional Features**](#additional-features)
   * [Reminder for modules](#reminder-for-items)
-* [**Valid and invalid data**](#valid-and-invalid-data)
+* [**Format Restrictions**](#format-restrictions)
+* [**Further information about commands**](#further-information-about-commands)
+* [**Valid and invalid data**](#more-examples-of-valid-and-invalid-input-values)
 * [**Data storage**](#data-storage)
   * [**Saving the data**](#saving-the-data)
   * [**Editing the data file**](#editing-the-data-file)
@@ -257,8 +260,7 @@ Examples of invalid usages:
 * `edit 1` - There must be at least one field provided to edit.
 
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
-`d/DEADLINE`.
-Please refer to [format restrictions](#format-restrictions) to find out more.
+`d/DEADLINE`. Please refer to [format restrictions](#format-restrictions) to find out more.
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a module: `find`
 
@@ -307,12 +309,11 @@ to use the commands.
 
 * This is a straight-forward command, and all you have to type is `help`
 
-<center> <image src = 
+<div style="text-align: center;"> <image src = 
 "images/helpMessage.png"></image>
-</center>
+</div>
 
-<Center> Figure : An example of the help window  </Center>
-
+<div style="text-align: center;"> Figure : An example of the help window  </div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Exiting the module tracker: `exit`
@@ -341,11 +342,11 @@ window will show the module as well.
 to enjoy its benefits! 
 
 
-<center> <image src = 
+<div style="text-align: center;"> <image src = 
 "https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png"></image>
-</center>
+</div>
 
-<Center> Figure : An example of the reminder window  </Center>
+<div style="text-align: center;"> Figure : An example of the reminder window  </div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Format Restrictions
@@ -420,7 +421,7 @@ You can refer to this section for more examples of valid and invalid input value
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
+**:exclamation: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
 know what information are considered valid and what are not.<br>
 
 :bulb: ` ` refers to a blank value.
