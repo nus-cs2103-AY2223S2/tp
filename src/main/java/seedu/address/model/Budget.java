@@ -29,6 +29,6 @@ public class Budget {
 
     @Override
     public String toString() {
-        return "$" + this.monthBudget;
+        return Double.toString(this.monthBudget);
     }
 }
