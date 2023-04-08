@@ -143,6 +143,19 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+Reading data from JSON:
+* MainApp.initModelManager()
+  * JsonTaaStorage.readTaaData()
+    * JsonUtil.readJsonFile()
+    * JsonSerializableTaaData.toModelType()
+
+Saving data to JSON:
+* LogicManager.execute()
+  * ModelManager.getTaaData()
+  * JsonTaaStorage.saveTaaData())
+    * JsonUtil.saveJsonFile()
+    * JsonSerializableTaaData.new()
+
 ### Common classes
 
 Classes used by multiple components are in the `taa.commons` package.

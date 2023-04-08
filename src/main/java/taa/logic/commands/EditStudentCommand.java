@@ -16,6 +16,7 @@ import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
@@ -73,7 +74,8 @@ public class EditStudentCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
-        model.initAssignmentsFromStorage(); // updates the assignments to link to the new student.
+        // TODO suboptimal. updates the assignments to link to the new student.
+        model.initAssignmentsFromStorage(AssignmentList.INSTANCE.getAssignments());
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 

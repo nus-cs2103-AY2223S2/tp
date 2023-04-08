@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import taa.commons.exceptions.IllegalValueException;
 import taa.commons.util.JsonUtil;
 import taa.model.ClassList;
+import taa.model.ReadOnlyStudentList;
 import taa.testutil.Assert;
 import taa.testutil.TypicalPersons;
 
@@ -25,7 +26,7 @@ public class JsonSerializableClassListTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableTaaData dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTaaData.class).get();
-        ClassList classListFromFile = dataFromFile.toModelType();
+        ReadOnlyStudentList classListFromFile = dataFromFile.toModelType().studentList;
         ClassList typicalPersonsClassList = TypicalPersons.getTypicalTaaData();
         assertEquals(classListFromFile, typicalPersonsClassList);
     }

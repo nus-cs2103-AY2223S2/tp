@@ -45,6 +45,7 @@ import taa.commons.util.CollectionUtil;
 import taa.logic.commands.enums.ChartType;
 import taa.model.alarm.Alarm;
 import taa.model.alarm.AlarmList;
+import taa.model.assignment.Assignment;
 import taa.model.assignment.AssignmentList;
 import taa.model.assignment.exceptions.AssignmentException;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
@@ -56,6 +57,7 @@ import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
+import taa.storage.TaaData;
 
 /**
  * Represents the in-memory model of the student listdata.
@@ -73,20 +75,21 @@ public class ModelManager implements Model {
     private final AssignmentList assignmentList = AssignmentList.INSTANCE;
     private Predicate<ClassList> activeClassListPredicate;
 
+
     /**
      * Initializes a ModelManager with the given classList and userPrefs.
      */
-    public ModelManager(ReadOnlyStudentList studentList, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(studentList, userPrefs);
+    public ModelManager(TaaData taaData, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(taaData, taaData.studentList, userPrefs);
 
-        logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student list: " + taaData.studentList + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.classList = new ClassList(studentList);
+        this.classList = new ClassList(taaData.studentList);
         UniqueClassLists temp = new UniqueClassLists(this.classList);
         this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
         this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
-        this.filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
+        this.filteredClassLists = new FilteredList<>(this.tutor.getClassList());
         this.activeClassListPredicate = null;
         this.alarmList = new AlarmList();
 
@@ -94,21 +97,22 @@ public class ModelManager implements Model {
             addStudentToTaggedClasses(student);
         }
 
+        initAssignmentsFromStorage(taaData.asgnArr);
     }
 
     public ModelManager() {
-        this(new ClassList(), new UserPrefs());
+        this(new TaaData(), new UserPrefs());
+    }
+
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     @Override
@@ -134,19 +138,35 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTaaData(ReadOnlyStudentList taaData) {
-        this.classList.resetData(taaData);
+    public TaaData getTaaData() {
+        return new TaaData(classList, assignmentList.getAssignments());
     }
 
     @Override
-    public ReadOnlyStudentList getTaaData() {
-        return classList;
+    public void setTaaData(TaaData taaData) {
+        this.classList.resetData(taaData.studentList);
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return classList.hasStudent(student);
+    }
+
+    /**
+     * Check whether the tutor already has the class.
+     *
+     * @param classList the class name to be checked.
+     * @return Boolean variable indicating whether it's contained.
+     */
+    public boolean hasClassList(ClassList classList) {
+        requireNonNull(classList);
+        return tutor.containsClassList(classList);
+    }
+
+    @Override
+    public int getClassListSize() {
+        return this.filteredStudents.size();
     }
 
     @Override
@@ -165,6 +185,15 @@ public class ModelManager implements Model {
         }
     }
 
+
+    //=========== ClassList ================================================================================
+
+    @Override
+    public void addClassList(ClassList toAdd) {
+        tutor.addClass(toAdd);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
     @Override
     public void updateStudent(Student target) {
         classList.updateStudent(target);
@@ -177,41 +206,11 @@ public class ModelManager implements Model {
         classList.setStudent(target, editedStudent);
     }
 
-
-    //=========== ClassList ================================================================================
-
-    /**
-     * Check whether the tutor already has the class.
-     * @param classList the class name to be checked.
-     * @return Boolean variable indicating whether it's contained.
-     */
-    public boolean hasClassList(ClassList classList) {
-        requireNonNull(classList);
-        return tutor.containsClassList(classList);
-    }
-
-    @Override
-    public void addClassList(ClassList toAdd) {
-        tutor.addClass(toAdd);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-    }
-
-    @Override
-    public void addStudentToTaggedClasses(Student student) {
-        requireNonNull(student);
-
-        Set<Tag> classTags = student.getClassTags();
-        for (Tag tag : classTags) {
-            String className = tag.tagName;
-            this.tutor.addStudentToClass(student, className);
-        }
-    }
-
     //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of {@code
+     * versionedAddressBook}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -244,36 +243,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getClassListSize() {
-        return this.filteredStudents.size();
-    }
+    public void addStudentToTaggedClasses(Student student) {
+        requireNonNull(student);
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
+        Set<Tag> classTags = student.getClassTags();
+        for (Tag tag : classTags) {
+            String className = tag.tagName;
+            this.tutor.addStudentToClass(student, className);
         }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return classList.equals(other.classList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
     }
-
-    //=========== AssignmentList Helpers =============================================================
 
     @Override
     public boolean hasAssignment(String assignmentName) {
         requireNonNull(assignmentName);
         return assignmentList.contains(assignmentName);
     }
+
+    //=========== AssignmentList Helpers =============================================================
 
     @Override
     public void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException {
@@ -305,6 +291,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String listAssignments() {
+        return assignmentList.list();
+    }
+
+    @Override
     public void ungrade(String assignmentName, int studentId) throws AssignmentException {
         Student student;
         try {
@@ -314,24 +305,6 @@ public class ModelManager implements Model {
         }
         assignmentList.ungrade(assignmentName, student);
         updateStudent(student);
-    }
-
-    @Override
-    public String listAssignments() {
-        return assignmentList.list();
-    }
-
-    @Override
-    public void deleteStudentSubmission(Student studentToDelete) {
-        assignmentList.deleteStudent(studentToDelete);
-    }
-
-    /**
-     * @param stu student to be added to assignmentList
-     */
-    public void addStudentAssignment(Student stu) {
-        assignmentList.addStudent(stu);
-        updateStudent(stu);
     }
 
     //Solution below adapted from ChatGPT
@@ -363,18 +336,25 @@ public class ModelManager implements Model {
         this.alarmList.addAlarm(alarm);
     }
 
-    //Solution below adapted from ChatGPT
     @Override
-    public String listAlarms() {
-        if (AlarmList.getAlarmCount() == 0) {
-            return "There is no alarm as of now.";
-        }
-        return this.alarmList.list();
+    public void deleteStudentSubmission(Student studentToDelete) {
+        assignmentList.deleteStudent(studentToDelete);
     }
 
     @Override
-    public void deleteAlarm(int index) {
-        AlarmList.deleteTheAlarm(index);
+    public void initAssignmentsFromStorage(Assignment[] asgnArr) {
+        assignmentList.initFromStorage(filteredStudents, asgnArr);
+        for (Student stu : filteredStudents) {
+            updateStudent(stu);
+        }
+    }
+
+    /**
+     * @param stu student to be added to assignmentList
+     */
+    public void addStudentAssignment(Student stu) {
+        assignmentList.addStudent(stu);
+        updateStudent(stu);
     }
 
     @Override
@@ -405,6 +385,39 @@ public class ModelManager implements Model {
         ChartFrame frame = new ChartFrame(title, chart);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    //Solution below adapted from ChatGPT
+    @Override
+    public String listAlarms() {
+        if (AlarmList.getAlarmCount() == 0) {
+            return "There is no alarm as of now.";
+        }
+        return this.alarmList.list();
+    }
+
+    @Override
+    public void deleteAlarm(int index) {
+        AlarmList.deleteTheAlarm(index);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return classList.equals(other.classList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredStudents.equals(other.filteredStudents);
     }
 
     private JFreeChart generateGradeDistribution(String assignmentName)
@@ -517,13 +530,5 @@ public class ModelManager implements Model {
         }
 
         return new IntStatistics(grades);
-    }
-
-    @Override
-    public void initAssignmentsFromStorage() {
-        assignmentList.initFromStorage(filteredStudents);
-        for (Student stu : filteredStudents) {
-            updateStudent(stu);
-        }
     }
 }

@@ -1,8 +1,7 @@
 package taa.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static taa.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
@@ -15,14 +14,16 @@ import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
 import taa.model.student.NameContainsKeywordsPredicate;
+import taa.storage.TaaData;
 import taa.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final Model model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+    private final Model model = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
+    private final Model expectedModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()),
+            new UserPrefs());
 
     @Test
     public void equals() {
@@ -35,20 +36,20 @@ public class FindCommandTest {
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertNotEquals(1, findFirstCommand);
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertNotEquals(null, findFirstCommand);
 
         // different student -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test

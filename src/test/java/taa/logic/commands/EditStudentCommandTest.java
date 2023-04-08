@@ -1,6 +1,7 @@
 package taa.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
 import taa.model.student.Student;
+import taa.storage.TaaData;
 import taa.testutil.EditPersonDescriptorBuilder;
 import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalIndexes;
@@ -22,7 +24,7 @@ import taa.testutil.TypicalPersons;
  */
 public class EditStudentCommandTest {
 
-    private final Model model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+    private final Model model = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -32,7 +34,8 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaaData(new ClassList(model.getTaaData().studentList)),
+                new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -54,7 +57,8 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaaData(new ClassList(model.getTaaData().studentList)),
+                new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -68,7 +72,8 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaaData(new ClassList(model.getTaaData().studentList)),
+                new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
@@ -86,7 +91,8 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TaaData(new ClassList(model.getTaaData().studentList)),
+                new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -106,7 +112,7 @@ public class EditStudentCommandTest {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
 
         // edit student in filtered list into a duplicate in address book
-        Student studentInList = model.getTaaData().getStudentList()
+        Student studentInList = model.getTaaData().studentList.getStudentList()
                 .get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
         EditStudentCommand editStudentCommand = new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(studentInList).build());
@@ -127,15 +133,14 @@ public class EditStudentCommandTest {
     }
 
     /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * Edit filtered list where index is larger than size of filtered list, but smaller than size of address book
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaaData().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaaData().studentList.getStudentList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
@@ -156,24 +161,24 @@ public class EditStudentCommandTest {
         EditStudentCommand commandWithSameValues = new EditStudentCommand(
                 TypicalIndexes.INDEX_FIRST_PERSON,
                 copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditStudentCommand(TypicalIndexes.INDEX_SECOND_PERSON,
-                CommandTestUtil.DESC_AMY)));
+        assertNotEquals(standardCommand, new EditStudentCommand(TypicalIndexes.INDEX_SECOND_PERSON,
+                CommandTestUtil.DESC_AMY));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                CommandTestUtil.DESC_BOB)));
+        assertNotEquals(standardCommand, new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON,
+                CommandTestUtil.DESC_BOB));
     }
 
 }

@@ -2,6 +2,7 @@ package taa.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import taa.commons.core.GuiSettings;
 import taa.model.student.NameContainsKeywordsPredicate;
+import taa.storage.TaaData;
 import taa.testutil.Assert;
 import taa.testutil.ClassListBuilder;
 import taa.testutil.TypicalPersons;
@@ -25,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new ClassList(), new ClassList(modelManager.getTaaData()));
+        assertEquals(new ClassList(), new ClassList(modelManager.getTaaData().studentList));
     }
 
     @Test
@@ -101,26 +103,26 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(classList, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(classList, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        modelManager = new ModelManager(new TaaData(classList), userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(new TaaData(classList), userPrefs);
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different classList -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentClassList, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(new TaaData(differentClassList), userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(classList, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(new TaaData(classList), userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
@@ -128,6 +130,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTaaDataFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(classList, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(new TaaData(classList), differentUserPrefs));
     }
 }

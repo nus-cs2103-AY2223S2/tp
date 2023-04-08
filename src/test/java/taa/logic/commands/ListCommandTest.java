@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import taa.model.Model;
 import taa.model.ModelManager;
 import taa.model.UserPrefs;
+import taa.storage.TaaData;
 import taa.testutil.TypicalIndexes;
 import taa.testutil.TypicalPersons;
 
@@ -22,7 +23,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+        model = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
         expectedModel = new ModelManager(model.getTaaData(), new UserPrefs());
     }
 

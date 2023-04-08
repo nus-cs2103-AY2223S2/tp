@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -28,8 +29,9 @@ public class JsonClassListStorageTest {
         Assert.assertThrows(NullPointerException.class, () -> readTaaData(null));
     }
 
-    private java.util.Optional<ReadOnlyStudentList> readTaaData(String filePath) throws Exception {
-        return new JsonTaaStorage(Paths.get(filePath)).readTaaData(addToTestDataPathIfNotNull(filePath));
+    private Optional<ReadOnlyStudentList> readTaaData(String filePath) throws Exception {
+        return new JsonTaaStorage(Paths.get(filePath)).readTaaData(addToTestDataPathIfNotNull(filePath))
+                .map(data -> data.studentList);
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -68,21 +70,21 @@ public class JsonClassListStorageTest {
         JsonTaaStorage jsonTaaDataStorage = new JsonTaaStorage(filePath);
 
         // Save in new file and read back
-        jsonTaaDataStorage.saveTaaData(original, filePath);
-        ReadOnlyStudentList readBack = jsonTaaDataStorage.readTaaData(filePath).get();
+        jsonTaaDataStorage.saveTaaData(new TaaData(original), filePath);
+        ReadOnlyStudentList readBack = jsonTaaDataStorage.readTaaData(filePath).get().studentList;
         assertEquals(original, new ClassList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(TypicalPersons.HOON);
         original.removeStudent(TypicalPersons.ALICE);
-        jsonTaaDataStorage.saveTaaData(original, filePath);
-        readBack = jsonTaaDataStorage.readTaaData(filePath).get();
+        jsonTaaDataStorage.saveTaaData(new TaaData(original), filePath);
+        readBack = jsonTaaDataStorage.readTaaData(filePath).get().studentList;
         assertEquals(original, new ClassList(readBack));
 
         // Save and read without specifying file path
         original.addStudent(TypicalPersons.IDA);
-        jsonTaaDataStorage.saveTaaData(original); // file path not specified
-        readBack = jsonTaaDataStorage.readTaaData().get(); // file path not specified
+        jsonTaaDataStorage.saveTaaData(new TaaData(original)); // file path not specified
+        readBack = jsonTaaDataStorage.readTaaData().get().studentList; // file path not specified
         assertEquals(original, new ClassList(readBack));
 
     }
@@ -96,10 +98,10 @@ public class JsonClassListStorageTest {
     /**
      * Saves TAA data at the specified {@code filePath}.
      */
-    private void saveTaaData(ReadOnlyStudentList taaData, String filePath) {
+    private void saveTaaData(ReadOnlyStudentList studentList, String filePath) {
         try {
             new JsonTaaStorage(Paths.get(filePath))
-                    .saveTaaData(taaData, addToTestDataPathIfNotNull(filePath));
+                    .saveTaaData(new TaaData(studentList), addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
