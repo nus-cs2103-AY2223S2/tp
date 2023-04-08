@@ -853,7 +853,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC09 - Delete Routine**
+> **Use case: UC10 - Delete Routine**
 
 **MSS**
 
@@ -876,7 +876,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC10 - Delete Exercise**
+> **Use case: UC11 - Delete Exercise**
 
 **MSS**
 
@@ -905,7 +905,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-> **Use case: UC11 - Find Routine**
+> **Use case: UC12 - Find Routine**
 
 **MSS**
 
@@ -1027,19 +1027,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC18 - Generate weight graph for selected client**
+> **Use case: UC18 - Add weight**
 
 **MSS**
 
-1. User requests to generate weight graph for selected client.
-2. FitBook shows selected client's weight graph for 30 days.
+1. User request to add weight to a client.
+2. FitBook adds weight to the specified client.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User request have missing client index number field.
-    * 1a1. FitBook shows an error for missing client index number.
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
+
+      Use case ends.
+
+* 1b. The date specified is not in the correct format.
+    * 1b1. FitBook shows an error for invalid date format.
+
+      Use case ends.
+
+* 1c. The user adds a different weight to the same date and time of an existing weight in the database.
+    * 1c1. FitBook shows an error for duplicate weight.
+
+      Use case ends.
+
+> **Use case: UC19 - Plot weight history graph**
+
+**MSS**
+
+1. User request to plot weight history graph of a client.
+2. FitBook shows weight history graph of the specified client.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The client does not exist in the FitBook.
+    * 1a1. FitBook shows an error for invalid client.
 
       Use case ends.
 
@@ -1118,6 +1144,42 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
+
+### Adding a Routine
+1. Adding a Routine while all routines are being shown
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `addRoutine r/Cardio2 ex/push-ups`<br>
+   Expected: Adds a routine with exercise push-ups to the current list of routines
+
+   C. Test case: `addRoutine r/Cardio3`<br>
+   Expected: Adds a routine with **no** exercises to the current list of routines
+
+### Adding an Exercise
+1. Deleting an exercise while all routines are being shown
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `addExercise 1 ex/Swimming`<br>
+   Expected: Adds a `Swimming` exercise to the first routine in the list. Details of the added exercise shown in the status message.
+
+   C. Test case: `addExercise 0 `<br>
+   Expected: No exercise is added. Error details shown in the status message.
+
+   D. Other incorrect delete commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Finding a Routine
+1. Finds a Routine by keywords
+
+   A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+   B. Test case: `findRoutine Cardio`<br>
+   Expected: Displays all Routines matching `Cardio`, Routines names that consist of `Cardio` will be matched. (i.e `Cardio1`, `Cardio2` etc...)
+
+   C. Test case: `findRoutine`<br>
+   Expected: Error details shown in the status message.
 
 ### Exit
 
