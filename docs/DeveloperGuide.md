@@ -242,18 +242,18 @@ In addition, it implements the following operations:
 * `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
 * `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
 * `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by calling `EditRecipeEvent`.
-* `RecipeForm#display` —  Displays the prepopulated form with corresponding UI components such as `Save Changes` button and `TextField` rows.
+* `RecipeForm#display` —  Displays the pre-populated form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` rows.
 * `RecipeForm#closeForm()` —  Closes the form without saving any changes.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 #### Example Usage Scenario
 
-Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
+Step 1. The user selects a recipe and presses the <kbd>F</kbd> key, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
 
 Step 2. The user modifies the recipe's details in the form fields, such as changing the name, duration, portions, ingredients, steps, or tags.
 
-Step 3. The user clicks on the "Save" button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
+Step 3. The user clicks on the <kbd>Save</kbd> button, causing the `RecipeForm#saveRecipe()` method to be called. This method checks which fields have been changed by comparing their current values with the initial values stored in the `initialValues` HashMap. Changed values are stored in a new `changedValues` HashMap.
 
 Step 4. The `changedValues` HashMap, along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
@@ -268,7 +268,7 @@ The following activity diagram summarizes the process when a user edits a recipe
 _EditFormActivityDiagram
 
 Notes
-If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
+If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>ESC</kbd> key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
 <div style="page-break-after: always;"></div>
@@ -393,9 +393,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. The storage file is invalid.
 
-    * 2b1. Book shows an error message, with a button that displays "file fixed" to check again if the file is valid.
+    * 2b1. Book shows an error message, with a button that displays <kbd>File Fixed</kbd> to check again if the file is valid.
     * 2b2. Chef rectifies/fixes error with the file.
-    * 2b3. Chef clicks the "file fixed" button
+    * 2b3. Chef clicks the <kbd>File Fixed</kbd> button
 
       Use case resumes from step 2.
 
@@ -603,7 +603,7 @@ testers are expected to do more *exploratory* testing.
    
 #### Test case 1.3: Shutdown
 **Status**: Accepted _(All expected behaviour is displayed)_
-1. When the app is open, type `exit` into the command bar and press the "enter" key.
+1. When the app is open, type `exit` into the command bar and press <kbd>Enter</kbd>.
    <br>**Expected:** The app closes.
 
 ### 2. Navigation
@@ -641,7 +641,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Test case 3.1: Adding recipes via form (`addf` command)
 **Status**: Accepted _(All expected behaviour is displayed)_
-1. Type `addf` in the command box and enter.
+1. Type `addf` in the command box and press <kbd>Enter</kbd>.
    <br>**Expected:** A form appears, containing empty text input fields for name, duration, portion, ingredients, steps,
    and tags, as well as the <kbd>Cancel</kbd> and <kbd>Save</kbd> buttons on the bottom right.
 2. Fill up the form with a sample recipe given in the user guide.
