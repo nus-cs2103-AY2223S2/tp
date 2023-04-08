@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -31,7 +32,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_UNIT = "%!@#";
     private static final String INVALID_COMPANY = "%!@#";
     private static final String INVALID_PLATOON = "%!@#";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG_NAME = "#friend";
+    private static final String INVALID_TAG_LENGTH = RandomStringUtils.randomAlphanumeric(61);
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -170,9 +172,19 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
+    public void toModelType_invalidTagName_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG_NAME));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_RANK, VALID_NAME, VALID_UNIT, VALID_COMPANY, VALID_PLATOON,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, false);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTagLength_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG_LENGTH));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_RANK, VALID_NAME, VALID_UNIT, VALID_COMPANY, VALID_PLATOON,
                         VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, false);
