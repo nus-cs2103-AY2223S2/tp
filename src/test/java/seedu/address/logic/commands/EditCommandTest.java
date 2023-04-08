@@ -169,7 +169,7 @@ public class EditCommandTest {
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).withTank("1").build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     /**
@@ -189,7 +189,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).withTank("1").build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_FISH_INDEX_OUTOFBOUNDS);
     }
 
     @Test

@@ -58,7 +58,7 @@ public class FishSortCommand extends FishCommand {
         if (tankIndex != null) {
             List<Tank> lastShownList = model.getFilteredTankList();
             if (tankIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_TANK_INDEX_OUTOFBOUNDS);
             }
             Tank tankToView = lastShownList.get(tankIndex.getZeroBased());
             // display filtered fish only
