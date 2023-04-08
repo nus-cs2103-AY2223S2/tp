@@ -16,6 +16,7 @@ import seedu.dengue.commons.util.FileUtil;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.person.exceptions.PersonHasNullAttributesException;
 
 /**
  * A class to access DengueHotspotTracker data stored as a csv file on the hard disk.
@@ -24,7 +25,7 @@ public class CsvDengueHotspotStorage implements DengueHotspotStorage {
 
     private static final Logger logger = LogsCenter.getLogger(CsvDengueHotspotStorage.class);
 
-    private static String[] headers = new String[]{"Patient Name", "Age", "Date", "Postal Code", "Variants"};
+    private static String[] headers = Person.getHeaders();
     private Path filePath;
 
     public CsvDengueHotspotStorage(Path filePath) {
@@ -47,7 +48,7 @@ public class CsvDengueHotspotStorage implements DengueHotspotStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyDengueHotspotTracker> readDengueHotspotTracker(Path filePath)
-            throws DataConversionException {
+            throws DataConversionException, PersonHasNullAttributesException {
         requireNonNull(filePath);
         try {
             Optional<List<Person>> optionalList = CsvUtil.readCsvFile(
@@ -55,11 +56,23 @@ public class CsvDengueHotspotStorage implements DengueHotspotStorage {
             if (!optionalList.isPresent()) {
                 return Optional.empty();
             }
+            checkNonNullPersons(optionalList.get());
             DengueHotspotTracker readOnly = new DengueHotspotTracker();
             readOnly.setPersons(optionalList.get());
             return Optional.of(readOnly);
-        } catch (DataConversionException e) {
+        } catch (DataConversionException | PersonHasNullAttributesException e) {
             throw e;
+        }
+    }
+
+    /**
+     * Check if any of the persons in personList contains null attributes
+     * @param personList takes in personList
+     * @throws PersonHasNullAttributesException if any person has null attributes
+     */
+    public void checkNonNullPersons(List<Person> personList) throws PersonHasNullAttributesException {
+        for (Person person : personList) {
+            person.isNonNullAttributesPerson();
         }
     }
 

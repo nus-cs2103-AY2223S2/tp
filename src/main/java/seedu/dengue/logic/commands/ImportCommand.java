@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
+import seedu.dengue.model.person.exceptions.PersonHasNullAttributesException;
 
 /**
  * Sorts the Dengue Hotspot Tracker.
@@ -47,7 +48,7 @@ public class ImportCommand extends Command {
 
         try {
             model.importCsv(filePath);
-        } catch (DataConversionException e) {
+        } catch (DataConversionException | PersonHasNullAttributesException e) {
             return new CommandResult(String.format(MESSAGE_FAILURE_IMPORT, this.filePath.toString()));
         } catch (IOException e) {
             return new CommandResult(String.format(MESSAGE_FAILURE_EXIST, this.filePath.toString()));
