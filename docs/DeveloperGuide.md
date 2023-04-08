@@ -586,154 +586,141 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is the TechTrack and the Actor is the user, unless specified otherwise)
 
-**Use case: Add a job**
-
-**MSS**
+**Use case: UC1 - Running TechTrack <br>**
+**Actor: User <br>**
+**MSS:**
 
 1. User opens the program
-2. TechTrack shows the list of jobs.
-3. User enters "add" with the required parameters to add a job.
-4. TechTrack adds a job to its list.
+2. TechTrack shows the list of roles and the list of available commands.<br>
+   Step 2 is repeated until another command is entered.
+   Use case ends.
 
+**Extensions**
+
+* 1a. Invalid data detected in the json file.
+    * 1a1. TechTrack clears that role.
+
+      Use case resumes at step 2.
+
+**Use case: UC2 - Add a role <br>**
+**Actor: User <br>**
+**MSS:**
+
+1. TechTrack is running (UC1).
+2. User enters "add" with the required parameters to add a role.
+3. TechTrack displays success message and the resulting list of roles.<br>
 Use case ends.
 
 **Extensions**
 
-* 3a. Job is valid.
-    * 3a1. TechTrack resumes.
-
-      Use case resumes at step 3b.
-* 3b. Save job.
-    * 3b1. Job is auto-saved.
-
-      Use case resumes at step 4.
-* 3c. Duplicate job detected.
-    * 3c1. TechTrack outputs error for duplicate jobs.
+* 2a. Duplicate role detected.
+    * 2a1. TechTrack outputs error message for duplicate roles.
 
       Use case ends.
-* 3d. Invalid data detected.
-    * 3d1. TechTrack outputs error for invalid data.
+* 2b. Invalid data detected.
+    * 2b1. TechTrack outputs error message for invalid data.
 
       Use case ends.
 
-**Use case: Edit a job**
+**Use case: UC3 - Edit a role <br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
-**MSS**
-
-1. User opens the program
-2. TechTrack shows the list of jobs.
-3. User enters "edit" followed by an index to edit the job.
-4. TechTrack updates the corresponding job and saves the new job list.
-
+1. TechTrack is running (UC1).
+2. User enters "edit" followed by an index to edit the role.
+3. TechTrack updates the corresponding role and displays the new role list.<br>
 Use case ends.
 
 **Extensions**
 
-* 3a. Index does not exist.
-    * 3a1. TechTrack outputs an error message for invalid index.
+* 2a. Index does not exist.
+    * 2a1. TechTrack outputs an error message for invalid index.
 
       Use case ends.
 
-* 3b. Invalid data detected.
-    * 3b1. TechTrack outputs an error for invalid data.
+* 2b. Invalid data detected.
+    * 2b1. TechTrack outputs an error message for invalid data.
 
       Use case ends.
 
-**Use case: View a job**
-**MSS**
+**Use case: UC4 - View a role<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
-1. User opens the application.
-2. TechTrack shows the list of jobs.
-3. User enters the “view {index}” command.
-4. UI displays more specific details on the jobs saved based on the index.
-
+1. TechTrack is running (UC1).
+2. User enters the “view {index}” command.
+3. UI displays more specific details on the roles saved based on the index.<br>
 Use case ends.
 
 **Extensions:**
 
-* 2a. List is empty.
-  Use case ends.
-
-* 3a. Index entered is invalid.
-    * 2a1. TechTrack outputs error.
+* 2a. Index entered is invalid.
+    * 2a1. TechTrack outputs error message.
 
       Use case ends.
 
-**Use case: Delete a job**
+**Use case: UC5 - Delete a role<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
-**MSS**
-
-1. User opens the application.
-2. TechTrack shows the list of jobs.
-3. UI display the list of jobs with its index.
-4. User enters the “delete {job ID}” to delete the jobs.
-5. UI will respond with the selected jobs being deleted.
-
+1. TechTrack is running (UC1).
+2. User enters the “delete {job ID}” to delete the roles.
+3. UI will respond with the selected roles being deleted.<br>
 Use case ends.
 
 **Extensions**
 
-* 3a. The displayed list is empty.
-
-  Use case ends.
-
-* 4a. The given index is invalid.
-    * 4a1. TechTrack shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. TechTrack shows an error message.
 
       Use case ends.
 
-* 4a. The given index is valid.
-    * 4a1. joblist is saved to the data file.
+**Use case: UC6 - Sorting a role by salary<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
-      Use case resumes at step 5.
-
-**Use case: Sort jobs by salary**
-
-**MSS**
-
-1. User opens the application
-2. TechTrack shows the list of jobs.
-3. User enters the “salary {asc/desc}"
-4. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
-
+1. TechTrack is running (UC1)
+2. User enters the “salary {asc/desc}"
+3. UI display the list of jobs sorted by salaries in either ascending or descending order.<br>
 Use case ends.
 
 **Extensions**
-
-* 3a. The list is empty.
-  Use case ends.
-* 3b. The given second command is invalid e.g "ascending".
-    * 3b1. TechTrack shows an error message.
+* 3a. The given second command is invalid e.g "ascending".
+    * 3a1. TechTrack shows an error message.
 
       Use case ends.
 
-**Use case: Sort jobs by deadline**
-
-**MSS**
+**Use case: UC7 - Sorting a role by deadline<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
 * MSS is similar to sorting salaries. Replace `salary` in the previous MSS with `deadline` for the MSS of the deadline
   command.
 
-**Use case: find jobs by company**
+**Use case: UC8 - Finding a role by Company name<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 
-**MSS**
-
-1. User opens the application
-2. TechTrack shows the list of jobs.
-3. User enters the "company {keyword}" command
-4. UI display the list of jobs with companies that contains the keyword.
-
+1. TechTrack is running (UC1).
+2. User enters the "company {keyword}" command.
+3. UI display the list of jobs with companies that contains the keyword.<br>
 Use case ends.
 
 **Extensions**
+* 2a. the keyword entered is empty.
+    * 2a1. TechTrack shows an error message.<br>
+    Use case ends.
 
-* 3a. The list is empty.
-  Use case ends.
-
-**Use case: find jobs by their tags**
-
-**MSS**
-
+**Use case: UC9 - Finding a role by Tags<br>**
+**Actor: User <br>**
+**Preconditions: At least 1 role is added in TechTrack <br>**
+**MSS:**
 * MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag
   command.
 
