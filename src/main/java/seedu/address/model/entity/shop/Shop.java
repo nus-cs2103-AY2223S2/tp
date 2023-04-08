@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -665,11 +666,11 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         try {
-            for (int i : toRemove.getVehicleIds()) {
+            for (int i : List.copyOf(toRemove.getVehicleIds())) {
                 this.removeVehicle(i);
                 this.undoStack.pop();
             }
-            for (int i : toRemove.getAppointmentIds()) {
+            for (int i : List.copyOf(toRemove.getAppointmentIds())) {
                 this.removeAppointment(i);
                 this.undoStack.pop();
             }
@@ -695,7 +696,7 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
         this.redoStack.clear();
         try {
             Customer customer = this.getCustomer(toRemove.getOwnerId());
-            for (int i : toRemove.getServiceIds()) {
+            for (int i : List.copyOf(toRemove.getServiceIds())) {
                 this.removeService(i);
                 this.undoStack.pop();
             }
