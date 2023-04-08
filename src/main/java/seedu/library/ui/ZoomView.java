@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Rating;
+import seedu.library.model.bookmark.Url;
 
 
 /**
@@ -79,16 +80,31 @@ public class ZoomView extends UiPart<Region> {
         this.bookmark = bookmark;
         this.isGuiAction = false;
         viewTitle.setText("Title: " + bookmark.getTitle().value);
+
         String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
         authorView.setText("Author: " + authorString);
         authorBox.setMinHeight(authorView.getMaxHeight());
+
         genreView.setText("Genre: " + bookmark.getGenre().value);
+
         String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
         progressView.setText("Progress: " + progressString);
-        urlLink.setText("Url: " + bookmark.getUrl().value);;
+
+        Url url = bookmark.getUrl();
+        String urlString = url.toString();
+        if (urlString.equals("")) {
+            urlString = "-";
+        }
+        urlLink.setText("Url: " + urlString);
         hyperBox.setMinHeight(urlLink.getMaxHeight());
-        bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+
+        if (bookmark.getTags().size() == 0 ) {
+            zoomTag.setText("Tags: -");
+        } else {
+            bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+        }
+
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
         avatar.setImage(new Image(image));
         urlLink.setOnAction(e -> {
