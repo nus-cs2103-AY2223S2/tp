@@ -309,7 +309,7 @@ The following activity diagram summarizes the process when a user edits a recipe
 
 _EditFormActivityDiagram
 
-Notes
+:information_source: Note:
 If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>ESC</kbd> key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
@@ -369,6 +369,47 @@ This list is created in the form of a `HashSet` such that any duplicates will no
 
 The display of the results will be in the command result box which is different from the other commands, since the 
 results of the `sub` command return ingredients instead of recipes. 
+
+### Feature: Import RecipeBook
+
+#### Overview
+The `import` command allows the user to select a file in JSON format. If the file parses correctly into a RecipeBook,
+the recipes in the JSON file are successfully imported while ignoring duplicates. If the file does not parse correctly,
+the import will fail and be cancelled.
+
+<img class="diagram" src="images/ImportSequenceDiagram.png" width="1128" />
+
+#### Implementation
+The `import` command goes through the standard command execution pipeline, skipping the parser phase. 
+
+During the execution of the import command, we will call `execute()` on `ImportManager` class which is a part of 
+the `Storage` package which allows the user to select a JSON file that parses correctly into a RecipeBook. The parsing
+is done by the parse methods in `JsonUtil` class.
+Afterwards, we will check with our own RecipeBook to filter out duplicates and add the remaining non-duplicate recipes.
+
+:information_source: Note: If the user clicks the "Cancel" button or closes the file explorer when selecting the JSON
+file, the RecipeBook will remain unchanged.
+
+### Feature: Export RecipeBook
+
+#### Overview
+The `export` command allows the user to select a file path to export the current Recipe Book in JSON format, similar to
+how we would normally save the recipes in a JSON file. 
+
+
+<img class="diagram" src="images/ExportSequenceDiagram.png" width="1128" />
+
+#### Implementation
+The `export` command goes through the standard command execution pipeline, skipping the parser phase.
+
+During the execution of the export command, we will call `execute()` on `ExportManager` class which is a part of
+the `Storage` package which allows the user to select an existing file path for the export operation. 
+The export is done by copying the current saved RecipeBook JSON file and exporting the copy of it. If the RecipeBook
+Json file is not found, parsing of the current recipes will be done and exported as a JSON file.
+The parsing is done by the parse methods in `JsonUtil` class.
+
+:information_source: Note: If the user clicks the "Cancel" button or closes the file explorer when selecting the file
+path, nothing will be exported.
 
 --------------------------------------------------------------------------------------------------------------------
 

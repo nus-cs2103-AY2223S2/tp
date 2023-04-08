@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "i:ImportCommand" as ImportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":ImportManager" as ImportManager STORAGE_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(importCommand)
+activate LogicManager
+create ImportCommand
+LogicManager -> ImportCommand
+
+activate ImportCommand
+ImportCommand --> LogicManager : i
+
+
+LogicManager -> ImportCommand : execute()
+create ImportManager
+ImportCommand -> ImportManager : execute()
+
+activate ImportManager
+ImportManager -> Model
+
+
+activate Model
+Model --> ImportManager
+deactivate Model
+ImportManager --> ImportCommand
+deactivate ImportManager
+
+create CommandResult
+ImportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ImportCommand
+deactivate CommandResult
+
+ImportCommand --> LogicManager : result
+deactivate ImportCommand
+
+
+
+
+
+@enduml
