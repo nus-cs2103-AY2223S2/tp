@@ -86,7 +86,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `ExercisePanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -233,6 +233,45 @@ The following sequence diagram shows how the add operation works:
     * Pros: Will use less memory (e.g. for `edit`, just allocate an array for any edits of the same client before adding the latest edit of that client only).
     * Cons: Each command implementation must be correct which is hard to maintain.
 
+### Past 30 days weight data graph
+#### Implementation
+The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
+with data from XYChart.Series. The data is obtained from the logic component, which provides only past 30 days of weight data in the WeightHistory class.
+.
+The following details explain how it works:
+
+* The `WeightHistory` class stores the list of weights and dateTime.
+* The GraphPopup class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
+* Ensure the XYChart.Series that populates the graph with data is always updated with the most recent data.
+* The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window.
+
+Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by hvaing the MainWindow class call handle statistics 
+on startup and after execution of commands.
+
+Sequence Diagram for Graph feature.
+
+Step 1: MainWindow requests for a graph pop-up window.
+
+Step 2: Logic call the WeightHistory class to generate a list of `Date` date mapped to `Double` weight over 30 days. `handleStatistics` method is called to generate 
+graph. `updateSeries` method is called to ensure the data populating the graph is up-to-date.
+
+* Example Usage Scenario
+
+  Below is an example usage scenario of how the weight data graph behaves at each step:
+    * The user launches the application for the first time.
+    * The user executes the  `addWeight` command to add weights and dates. The execution of the `addWeight` command also
+      checks whether the date is valid in the date list. If it is, the weight and date are added to the weight and date list. Otherwise, an error is displayed.
+    * The user executes the `graph` command to generate weight data graph in the pop-up windows.
+
+
+* Design Considerations
+
+  One important design consideration is how to display the weight data graph. Our approach is to
+  generate each graph in a separate pop-up windows.
+    * pros: Users can easily view multiple clients' weight data graphs side-by-side without having to switch between different views.
+    * cons: If the user opens multiple pop-up windows to view different weight data graphs, this may clutter the user's desktop and make it difficult to manage.
+
+
 ### Edit appointments feature
 #### Implementation
 The edit appointments feature allows users to view appointments in the upcoming dates.
@@ -290,14 +329,29 @@ These operations are exposed in the  `FitBookModel` interface as `FitBookModel#g
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
-FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly.
+FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
 
 ![FindState0](images/FindState0.png)
 
 Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
-FitBook. The `find` command calls `FindCommandParser`, causing the command to be parsed and checked for any errors 
-before executing the command and calling FindCommand:execute()) to execute the command to find the relevant people
-in the FitBook list of clients.
+FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
+modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
+`currentStatePointer` is shifted to the newly inserted FitBook state.
+
+![FindState1](images/FindState1.png)
+
+Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
+`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
+`fitBookStateList`.
+
+![FindState2](images/FindState2.png)
+
+![FindState3](images/FindState3.png)
+
+Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
+the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
+
+![FindState3](images/FindState4.png)
 
 The following sequence diagram shows how the find operation works:
 
@@ -306,6 +360,10 @@ The following sequence diagram shows how the find operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -342,7 +400,7 @@ which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#
 
 ![AddExerciseState1](images/AddExerciseState1.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddExerciseCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
-
+</div>
 
 The following sequence diagram shows how the add exercise operation works:
 
@@ -410,7 +468,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
     * Pros: Might be faster.
     * Cons: Will be risky as it does not maintain accuracy of data in the model.
 
-### Export client
+### Export client/routine list
 
 #### Implementation
 This feature allows the user to extract data efficiently from FitBook to be used for other purposes such as statistical analysis.
@@ -818,13 +876,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The format for the find command is wrong.
-    * 1b1. FitBook displays an error that the find format is wrong.
+* 2a. The list is empty in the database.
+    * 2a1. FitBook displays that there are no matches.
 
       Use case ends.
 
-* 2a. The list is empty in the database.
-    * 2a1. FitBook displays that there are no matches.
+* 3a. The find command has incorrect format.
+    * 3a1. FitBook displays an error that the find format is wrong.
 
       Use case ends.
 
@@ -1019,7 +1077,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC17 - Add weight**
+> **Use case: UC17 - View selected client's summary information**
+
+**MSS**
+
+1. User requests to view selected client's summary information.
+2. FitBook shows selected client's summary information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing client index number field.
+    * 1a1. FitBook shows an error for missing client index number.
+
+      Use case ends.
+
+> **Use case: UC18 - Add weight**
 
 **MSS**
 
@@ -1045,7 +1119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC18 - Plot weight history graph**
+> **Use case: UC19 - Plot weight history graph**
 
 **MSS**
 
@@ -1091,7 +1165,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -1108,7 +1181,6 @@ testers are expected to do more *exploratory* testing.
 
    B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
 
 ### Deleting a client
 
@@ -1145,10 +1217,10 @@ testers are expected to do more *exploratory* testing.
    A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
 
    B. Test case: `addRoutine r/Cardio2 ex/push-ups`<br>
-       Expected: Adds a routine with exercise push-ups to the current list of routines 
+   Expected: Adds a routine with exercise push-ups to the current list of routines
 
    C. Test case: `addRoutine r/Cardio3`<br>
-       Expected: Adds a routine with **no** exercises to the current list of routines
+   Expected: Adds a routine with **no** exercises to the current list of routines
 
 ### Adding an Exercise
 1. Deleting an exercise while all routines are being shown
@@ -1156,13 +1228,13 @@ testers are expected to do more *exploratory* testing.
    A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
 
    B. Test case: `addExercise 1 ex/Swimming`<br>
-      Expected: Adds a `Swimming` exercise to the first routine in the list. Details of the added exercise shown in the status message.
+   Expected: Adds a `Swimming` exercise to the first routine in the list. Details of the added exercise shown in the status message.
 
    C. Test case: `addExercise 0 `<br>
-      Expected: No exercise is added. Error details shown in the status message.
+   Expected: No exercise is added. Error details shown in the status message.
 
    D. Other incorrect delete commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   Expected: Similar to previous.
 
 ### Finding a Routine
 1. Finds a Routine by keywords
@@ -1175,12 +1247,24 @@ testers are expected to do more *exploratory* testing.
    C. Test case: `findRoutine`<br>
    Expected: Error details shown in the status message.
 
+### Exit
+
+1. Exits from the application
+
+   A. Prerequisites: Launch the application.
+   B. Test case: Enter 'exit' command
+      Expected: It exits the application.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   A. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   A. Prerequisites: Delete the "fitbook.json" file from data folder.
+   B. Test case: Launch the application
+      Expected: Shows the GUI with a quick start page with default data.
+   C. Prerequisites: Modify the "fitbook.json" file from data folder which contains invalid data. This could be done by removing the HH:mm in appointment field.
+   D. Test case: Launch the application
+      Expected: Application launches successfully but has no data.
 
 >## **Appendix: Effort**
  

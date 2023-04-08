@@ -94,12 +94,14 @@ Panels are _empty_ when the data for that specific panel is _empty_.
   
 
   ![Schedule Panel](images/schedule.png)
+
 #### Exercise
 * Left panel (`Exercise` Panel) displays the list of clients basic information including weight, average calories, goal, any unique routines and exercises.
 * Right panel (`Exercise` Panel) displays the list of routines added.
 
 
   ![Exercise Panel](images/exercise.png)
+
 #### Summary
 * Left panel (`Sumamary` Panel) displays the list of clients basic information including name and schedule appointments.
 * Right panel (`Summary` Panel) displays all information about the selected client. (Using the view command)
