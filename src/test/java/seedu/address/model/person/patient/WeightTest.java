@@ -1,5 +1,6 @@
 package seedu.address.model.person.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,5 +42,23 @@ public class WeightTest {
         assertTrue(Weight.isValidWeight("600000")); // large numbers
         assertTrue(Weight.isValidWeight("60.1")); // nonzero decimal fraction
         assertTrue(Weight.isValidWeight("100.5")); // larger value
+    }
+
+    @Test
+    public void getValue_validWeight_returnsWeight() {
+        //valid weights
+        Weight weight1 = new Weight("0.1");
+        Weight weight2 = new Weight("1.0");
+        Weight weight3 = new Weight("60");
+        Weight weight4 = new Weight("600000");
+        Weight weight5 = new Weight("60.1");
+        Weight weight6 = new Weight("100.5");
+
+        assertEquals("0.1", weight1.getValue());
+        assertEquals("1.0", weight2.getValue());
+        assertEquals("60", weight3.getValue());
+        assertEquals("600000", weight4.getValue());
+        assertEquals("60.1", weight5.getValue());
+        assertEquals("100.5", weight6.getValue());
     }
 }

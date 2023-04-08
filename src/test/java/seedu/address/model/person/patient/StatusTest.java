@@ -1,6 +1,7 @@
 package seedu.address.model.person.patient;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,5 +37,23 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("")); // empty string
         assertFalse(Status.isValidStatus(" ")); // spaces only
         assertFalse(Status.isValidStatus("Invalid Status")); // invalid status string
+    }
+
+    @Test
+    public void getValue_validStatus_returnsStatus() {
+        //valid statuses
+        Status status1 = new Status("Inpatient");
+        Status status2 = new Status("Outpatient");
+        Status status3 = new Status("Observation");
+        Status status4 = new Status("Emergency Department");
+        Status status5 = new Status("Intensive Care Unit");
+        Status status6 = new Status("Transitional Care");
+
+        assertEquals("Inpatient", status1.getValue());
+        assertEquals("Outpatient", status2.getValue());
+        assertEquals("Observation", status3.getValue());
+        assertEquals("Emergency Department", status4.getValue());
+        assertEquals("Intensive Care Unit", status5.getValue());
+        assertEquals("Transitional Care", status6.getValue());
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.person.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,5 +38,12 @@ public class RemarkTest {
         assertTrue(Remark.isValidRemark("Diabetes")); // alphanumeric only
         assertTrue(Remark.isValidRemark("Asthma and allergies")); // alphanumeric and spaces
         assertTrue(Remark.isValidRemark("Acute Upper Respiratory Infection")); // long remark
+    }
+
+    @Test
+    public void getValue_validRemark_returnsRemark() {
+        String remark = "Asthma";
+        Remark validRemark = new Remark(remark);
+        assertEquals(validRemark.getValue(), remark);
     }
 }
