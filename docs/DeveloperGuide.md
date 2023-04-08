@@ -1087,8 +1087,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Assign a task to a person.
 
 #### *M*
-  - ##### Mark: Mark a task as completed.
-  - ##### Mainstream OS: Windows, Linux, Unix, OS-X
+  - ##### Mark
+    - Mark a task as completed.
+  - ##### Mainstream OS
+    - Windows, Linux, Unix, OS-X
 
 #### *P*
   - ##### P
