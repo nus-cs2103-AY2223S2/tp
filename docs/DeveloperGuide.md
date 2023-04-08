@@ -369,33 +369,39 @@ Use case ends.
 
 **Extensions**
 
-- 1a. PlanEase detects that no fields are provided for the edit.
+- 1a. The given event index is invalid.
 
     - 1a1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1b. PlanEase detects the event name is empty or invalid.
+- 1b. PlanEase detects that no fields are provided for the edit.
 
     - 1b1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1c. PlanEase detects that the datetime range or format is not valid.
+- 1c. PlanEase detects the event name is empty or invalid.
 
     - 1c1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1d. PlanEase detects that the User has used invalid prefix(es).
+- 1d. PlanEase detects that the datetime range or format is not valid.
 
     - 1d1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1e. PlanEase detects that event already exists.
+- 1e. PlanEase detects that the User has used invalid prefix(es).
 
     - 1e1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1f. PlanEase detects that event already exists.
+
+    - 1f1. PlanEase shows an error message.
 
   Use case ends.
 
