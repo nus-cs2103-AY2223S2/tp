@@ -164,6 +164,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+Unless otherwise stated, the actor for the activity diagram is the CS2040 TA.
 
 ### Event feature
 
@@ -350,11 +351,13 @@ and detect that it is a "filter" command that is being called.
 
 The following activity diagram summarizes what happens when a user executes a new command, assuming valid command format.
 
+<img src="images/TrAcker-activity-diagrams/FilterStudentsActivityDiagram.png" width="550" />
+
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How filter executes:**
 
-* **Alternative 1 (current choice):** Iterates through the existing list and manually filters the desired ones.
+* **Alternative 1 (current choice):** Iterates through the entire student list and manually filters the desired ones.
     * Pros: Easy to implement.
     * Cons: Takes up extra space.
 
@@ -368,10 +371,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Proposed Implementation
 
-The proposed CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `add note`, `list note`, `delete note`, and `edit note`. The Teaching Assistant (TA) using the application will be able to:
+The proposed CRUD (Create, Read, Update and Delete) mechanism for notes is facilitated by `addNote`, `deleteNote`, and `editNote`. The Teaching Assistant (TA) using the application will be able to:
 
 * Add a new note to an event which will be saved in the corresponding event's current address book state in its history.
-* List all notes for an event which are saved in the corresponding event's current address book state in its history.
 * Delete a note for an event which is saved in the corresponding event's current address book state in its history.
 * Edit/Update a note for an event which is saved in the corresponding event's current address book state in its history.
 
