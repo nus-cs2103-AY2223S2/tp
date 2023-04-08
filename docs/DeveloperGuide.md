@@ -46,7 +46,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+At the highest level, the App has two classes called [`Main`](https://github.com/ShanHng/tp/blob/master/src/main/java/seedu/internship/Main.java) and [`MainApp`](https://github.com/ShanHng/tp/blob/master/src/main/java/seedu/internship/MainApp.java). They are responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -73,7 +73,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point (`{Component Name}` is a placeholder for the four main components).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the partial *Class Diagram* below.
 
@@ -99,7 +99,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
  
 The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -122,7 +122,7 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 **How a `Page` is generated** 
 
-When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The *Sequence Diagram* below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The *Sequence Diagram* below illustrates the chain of method calls whenever a new `Page` is constructed to be displayed in the UI.
 
 <p align="center">
 
@@ -188,10 +188,10 @@ How the parsing works:
 
 The `Model` component,
 
-* Stores independent instances of `Entity` which represents data stored by TinS (`Entity` is a placeholder for `Internship` and `Event`).
-  * The `Model` contains a catalogue for each `Entity`. An `Entity` catalogue stores the instances of `Entity` in a `UniqueEntityList` object.
+* Stores independent instances of `Internship` and `Event` which represents data stored by TinS.
+  * The `Model` contains a catalogue for each of the two `{Entity}`  (`{Entity}` is a placeholder for `Internship` and `Event`). An `{Entity}Catalogue` stores the instances of `{Entity}` in a `Unique{Entity}List` object.
 * Stores currently 'selected' `Internship` that results from a `select` command 
-* Stores (e.g. results of a find query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores (e.g. results of a find query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList{Entity}` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 
