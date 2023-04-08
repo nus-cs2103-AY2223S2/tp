@@ -404,9 +404,16 @@ Add a module to Le Tracker.
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to apply to the module
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+<details>
+<summary>Example</summary>
+<ul>
+    <li>
+    <code>add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis</code><br/>
+    Add to Le Tracker, a module with code "CS2040S", name "Data Structures and Algorithms", and tags "Heavy", "Math", and "Analysis".
+    </li>
+</ul>
+</details>
+<br/>
 
 ![ModContext](images/ModContext.png)
 ![LectureContext](images/LectureContext.png)
