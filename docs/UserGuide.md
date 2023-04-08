@@ -4,11 +4,13 @@ title: User Guide
 ---
 
 ## Introduction
-MedInfo is a desktop application for **private hospital administrative staff**. It helps manage your patients,
-their status, discharge and ward, and your wards.
+Welcome to the MedInfo User Guide!
 
-This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
-with its features and using it. If this is your first time using this Guide, you may refer to this segment
+MedInfo is a desktop application for **private hospital administrative staff** to 
+help manage patients and wards.
+
+This User Guide will guide you through installing the app, getting familiarised with its features and using it.
+If this is your first time using this Guide, you may refer to this segment
 on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ## Table of Contents
@@ -17,33 +19,45 @@ on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ---
 ## About MedInfo
-MedInfo is a very simple and intuitive application that will help you manage your patients' **status, ward,
-discharge date** and your wards' **occupancies**. <br>
+MedInfo is a simple application that will help you manage your patients' **statuses, wards, 
+discharge dates**, and ward **occupancies**. <br>
 <br>
-With the time-critical nature of a private hospital's services, patient and ward management are
+Considering the time-critical nature of hospital services, patient and ward management are
 of utmost priority, where the smallest delays or lapses in updating information can affect
-how your hospital attends to your patients. **MedInfo** has simplified, focused patient and ward management down to a
-tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
+how your hospital attends to your patients. **MedInfo** was designed with this in mind.
+It has simplified and optimized patient and ward management, allowing you to in-process, update, and move patients 
+around while still being able to view overall stats of the hospital at a glance.<br>
 <br>
 [Back to Table of Contents](#table-of-contents)
 
 ---
 
-## Quick start
+## Getting Started
+Below, you'll find everything you need to install and set up MedInfo.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### System Requirements
+For the best possible experience, we recommend that you use MedInfo on one of the following operating systems:
+- Windows
+- macOS
+- Linux
 
-1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases/tag/v1.3-trial).
+To run MedInfo, you will need to have Java 11 or above installed on your system. If you don't, you can find the 
+appropriate version for your system [here](https://www.oracle.com/java/technologies/downloads/).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+### Quick Start
+1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases).
 
-1. Run the application by
-   2. Double-clicking the jar file or 
-   2. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar` command to run the application.<br>
-1. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+2. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+
+3. Run the application by
+   2. Double-clicking the `.jar` file or 
+   3. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar`
+command to run the application.<br>
+4. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
       ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing 
+<kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
    - `list` : Lists all patients.
@@ -54,7 +68,7 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
    - `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) section below for details on each command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -65,7 +79,7 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
 The main GUI has 7 sections as highlighted above.
 - **_Menu Bar_**: File and Help buttons to exit or get help.
-- **_Command Input_**: Key in commands here and press <kbd>enter</kbd> to execute.
+- **_Command Input_**: Key in commands here and press <kbd>Enter</kbd> to execute.
 - **_Result Display_**: Responses from the application including error and success messages appear here.
 - **_Adjustable Panels_**: Click and drag on the purple highlighted areas to customize the panel sizes to your preference.
 - **_Patient List_**: List of patients you have.
@@ -77,13 +91,32 @@ The main GUI has 7 sections as highlighted above.
 ---
 ## How to use the User Guide
 
-This Guide contains detailed explanations on the **commmands** available and what they do.
-The [**Table of Contents**](#table-of-contents) at the top provide a quick way to navigate to any section you want,
-and a [Back to Table of Contents](#table-of-contents) tag is provided at the footer of each section to take you back
-to the Table of Contents. To further augment your navigation, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
-<br><br>
-Our commands follow a certain format for ease of use. Below are some notes on how you should interpret each command
-format.
+### Navigation
+This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to 
+any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
+Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to 
+take you back to the Table of Contents.
+
+If you know what you're looking for, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search anywhere within this Guide 
+for a keyword.
+
+### Symbols used
+
+| Symbol               | Meaning                                                     |
+|----------------------|-------------------------------------------------------------|
+| :information_source: | General information/notes.                                  |
+| :bulb:               | Tips that will optimize your usage of MedInfo.              |
+| :exclamation:        | Information that is crucial to know before using a command. |
+
+## Features
+
+The section below describes the commands available in MedInfo. The commands fall under 3 categories:
+- [Patient Features](#patient-features)
+- [Ward Features](#ward-features)
+- [Utility Features](#utility-features)
+
+Our commands follow a certain format for ease of use. If you are new to MedInfo, do take some time to familiarise 
+yourself with the command format from the notes below.
 
 <div markdown="block" class="alert alert-info">
 
@@ -102,18 +135,15 @@ format.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `name/NAME s/STATUS`, `s/STATUS name/NAME` is also acceptable.
 
-- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
   e.g. if you specify `nric/S1234567X nric/S1234567A`, only `nric/S1234567A` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be ignored.<br>
+- Commands that do not take in parameters (such as `help`, `list`, and `exit`) will ignore any parameters supplied
+  along with it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-## Features
-
-These are all the commands available in MedInfo. It is mainly classified into **Patient** and 
-**Ward** commands.
 
 ## Patient Features
 ### Adding a patient to the system: `add`
@@ -169,7 +199,23 @@ Examples:
 
 Sorts all the patients with the specified field and order in the system.
 
+The fields that you can sort by include:
+- patient name (`name/`)
+- status (`s/`)
+- discharge date (`d/`)
+- ward name (`w/`)
+
+You can sort in one of two orders:
+- ascending (`asc`)
+- descending (`desc`)
+
 Format: `sort FIELD/ORDER`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about sort:**<br>
+- You can only sort by one field in a command.
+</div>
 
 Examples:
 
@@ -201,6 +247,10 @@ Examples:
 
 
 ### Deleting a patient from the system: `delete`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a patient cannot be recovered.
+</div>
 
 Deletes a patient by index.
 
@@ -256,6 +306,10 @@ Examples:
 
 ### Deleting a ward from the system: `deleteward`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once deleted, a ward cannot be recovered.
+</div>
+
 Deletes a ward by index.
 
 Format: `deleteward INDEX`
@@ -269,12 +323,17 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 ## Utility Features
-### Exiting the program : `exit`
+### Clearing all data : `clear`
 
-Exits the program.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once cleared, MedInfo data cannot be recovered!
+</div>
 
-Format: `exit`
+Clears all data (patients and wards) stored in MedInfo.
 
+Format: `clear`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Viewing help : `help`
 
@@ -285,6 +344,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+[Back to Table of Contents](#table-of-contents)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -297,10 +363,11 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
+MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, MedInfo will not be able to run.
+Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing 
+all data and starting anew.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -335,15 +402,16 @@ the file that contains the data of your previous MedInfo home folder.<br>
 | Action          | Format, Examples                                                                           |
 |-----------------|--------------------------------------------------------------------------------------------|
 | **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
+| **List**        | `list`                                                                                     |
 | **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                               |
 | **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
 | **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
 | **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
 | **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
-| **List**        | `list`                                                                                     |
+| **Clear**       | `clear`                                                                                    |
 | **Help**        | `help`                                                                                     |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
+| **Exit**        | `exit`                                                                                     |
 
 [Back to Table of Contents](#table-of-contents)

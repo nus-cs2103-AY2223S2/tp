@@ -4,6 +4,7 @@ import static seedu.medinfo.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.medinfo.model.ward.Ward.wardWithName;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 import seedu.medinfo.model.ward.Ward;
@@ -148,7 +149,7 @@ public class Patient {
      * Returns the discharge date as LocalDateTime.
      * @return LocalDateTime representing the discharge date-time.
      */
-    public LocalDateTime getDischargeDateTime() {
+    public Date getDischargeDateTime() {
         return discharge.getDateTime();
     }
 
@@ -227,6 +228,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByDischargeAsc(Patient patient) {
+        // System.out.println(this.getDischargeDateTime().toString());
         return this.getDischargeDateTime().compareTo(patient.getDischargeDateTime());
     }
 

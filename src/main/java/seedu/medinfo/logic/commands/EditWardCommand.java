@@ -36,7 +36,7 @@ public class EditWardCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_WARD = "This ward already exists in MedInfo.";
     public static final String MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY = "The given capacity is insufficient for this ward.";
-
+    public static final String MESSAGE_WAITING_ROOM_NAME_EDIT = "Waiting Room name cannot be edited.";
     private final Index index;
     private final EditWardDescriptor editWardDescriptor;
 

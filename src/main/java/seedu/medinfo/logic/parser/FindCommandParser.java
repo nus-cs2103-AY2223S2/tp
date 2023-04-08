@@ -14,7 +14,7 @@ import seedu.medinfo.logic.parser.exceptions.ParseException;
 import seedu.medinfo.model.patient.NameContainsKeywordsPredicate;
 import seedu.medinfo.model.patient.NricContainsKeywordsPredicate;
 import seedu.medinfo.model.patient.StatusContainsKeywordsPredicate;
-import seedu.medinfo.model.patient.WardNameContainsKeywordsPredicate;
+import seedu.medinfo.model.ward.WardNameContainsKeywordsPredicate;
 
 
 
