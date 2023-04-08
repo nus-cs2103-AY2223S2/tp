@@ -431,11 +431,10 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how NameCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/startUp.png" width="800" />
+   current role book.
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
-      <img src="images/UICommandImages/NameCommand.png" width="800" />
 
 The following sequence diagram shows how the `name` command works:
 
