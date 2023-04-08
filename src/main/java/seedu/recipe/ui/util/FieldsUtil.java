@@ -14,6 +14,10 @@ import javafx.scene.layout.VBox;
  * A utility class containing methods for working with TextArea components.
  */
 public class FieldsUtil {
+    private static final String INGREDIENT_PROMPT =
+        "Add an ingredient (i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
+    private static final String STEP_PROMPT = "Add a step";
+
     /**
      * Creates a dynamic TextArea with the specified initial text.
      * The TextArea will support UP, DOWN, and TAB navigation.
@@ -36,6 +40,20 @@ public class FieldsUtil {
             }
             int currentIndex = ((VBox) textArea.getParent()).getChildren().indexOf(textArea);
             handleNavigation(event, textArea, currentIndex);
+        });
+
+        // If 'CTRL' is pressed down, trigger paste for 'V' and copy for 'C' key.
+        textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.isControlDown() || event.isMetaDown()) {
+                if (event.getCode() == KeyCode.V) {
+                    textArea.paste();
+                    event.consume();
+                }
+                if (event.getCode() == KeyCode.C) {
+                    textArea.copy();
+                    event.consume();
+                }
+            }
         });
 
         //Text field listener for automatically adding/removing new input rows
@@ -134,6 +152,12 @@ public class FieldsUtil {
         // Check if it's the last TextArea in the VBox
         if (parentBox.getChildren().indexOf(textArea) == lastIndex) {
             TextArea newField = createDynamicTextArea("");
+            System.out.println(parentBox.getId());
+            newField.setPromptText(
+                parentBox.getId().equals("stepsBox")
+                    ? STEP_PROMPT
+                    : INGREDIENT_PROMPT
+            );
             parentBox.getChildren().add(newField);
         }
     };

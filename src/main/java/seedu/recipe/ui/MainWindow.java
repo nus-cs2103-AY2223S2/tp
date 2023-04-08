@@ -5,6 +5,7 @@ import static seedu.recipe.ui.events.EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -200,6 +201,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        // Request focus for the CommandBox
+        Platform.runLater(() -> commandBox.getRoot().requestFocus());
     }
 
     /**

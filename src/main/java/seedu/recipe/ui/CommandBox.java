@@ -49,7 +49,6 @@ public class CommandBox extends UiPart<Region> {
 
     private void handleEnterKey() {
         String textValue = commandTextArea.getText();
-        commandTextArea.textProperty().set(textValue.substring(0, textValue.length() - 1));
         commandTextArea.positionCaret(textValue.length());
         handleCommandEntered();
     }
@@ -59,6 +58,8 @@ public class CommandBox extends UiPart<Region> {
      */
     private void handleCommandEntered() {
         String commandText = commandTextArea.getText().replace("\n\\", " ");
+        commandText = commandText.replace("\n", "");
+
         if (commandText.equals("")) {
             return;
         }
