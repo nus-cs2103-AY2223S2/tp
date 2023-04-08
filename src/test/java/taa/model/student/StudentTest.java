@@ -1,5 +1,6 @@
 package taa.model.student;
 
+import static taa.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -70,5 +71,19 @@ public class StudentTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND).build();
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void getName() {
+        // Test pre-built Students
+        Assertions.assertTrue(TypicalPersons.AMY.getName().equals(new Name(VALID_NAME_AMY)));
+        Assertions.assertTrue(TypicalPersons.BOB.getName().equals(new Name(VALID_NAME_BOB)));
+
+        // Test fresh copies of Students
+        Student amyCopy = new PersonBuilder(TypicalPersons.AMY).build();
+        Assertions.assertTrue(amyCopy.getName().equals(new Name(VALID_NAME_AMY)));
+
+        Student bobCopy = new PersonBuilder(TypicalPersons.BOB).build();
+        Assertions.assertTrue(bobCopy.getName().equals(new Name(VALID_NAME_BOB)));
     }
 }
