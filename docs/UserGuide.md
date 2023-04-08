@@ -382,6 +382,7 @@ Format: `add_reminder [d/DESCRIPTION] time/YYYY-MM-DD HH:mm`
 * Adds a reminder with the specified `DESCRIPTION` and `time`. 
 * User will be notified at the specified `time`.
 * The reminder will be reminded from the date time specified in `time/YYYY-MM-DD HH:mm`.
+* If not snoozed, the reminder notification will refresh itself and pop up every 1 minute.
 * Date must be valid.
 * `DESCRIPTION` can be left empty (optional).
 * `DESCRIPTION` is limited to 50 characters including space.
