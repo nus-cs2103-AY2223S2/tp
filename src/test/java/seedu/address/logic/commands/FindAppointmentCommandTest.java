@@ -27,7 +27,7 @@ import seedu.address.testutil.FxTest;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
  */
-public class FindAppointmentCommandTest extends FxTest {
+public class FindAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
     private Model expectedModel =
         new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
