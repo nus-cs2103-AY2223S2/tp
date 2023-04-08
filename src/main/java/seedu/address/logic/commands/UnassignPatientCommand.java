@@ -17,21 +17,21 @@ import seedu.address.model.person.patient.Patient;
 /**
  * Unassigns a patient to a doctor in the address book.
  */
-public class UnassignPatientCommand extends Command {
+public class UnassignPatientCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "unassign-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "uasn";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Removes the assignment of "
             + "patient identified by the patient index number used in the displayed patients list "
             + "with the doctor identified by the doctor index number used in the displayed doctor list.\n"
             + "Parameters: "
             + PREFIX_PATIENT + "PATIENT_INDEX (must be a positive integer) "
             + PREFIX_DOCTOR + "DOCTOR_INDEX (must be a positive integer) ";
-    public static final String MESSAGE_UNASSIGN_PATIENT_SUCCESS = "Unassigned Patient %1s to Doctor %2s.";
-    public static final String MESSAGE_PATIENT_NOT_ASSIGNED = "Patient %1s is not assigned to Doctor %2s.";
+    private static final String MESSAGE_UNASSIGN_PATIENT_SUCCESS = "Unassigned Patient %1s to Doctor %2s.";
+    private static final String MESSAGE_PATIENT_NOT_ASSIGNED = "Patient %1s is not assigned to Doctor %2s.";
     private final Index patientIndex;
     private final Index doctorIndex;
 
@@ -42,6 +42,18 @@ public class UnassignPatientCommand extends Command {
     public UnassignPatientCommand(Index patientIndex, Index doctorIndex) {
         this.patientIndex = patientIndex;
         this.doctorIndex = doctorIndex;
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_UNASSIGN_PATIENT_SUCCESS;
+    }
+
+    public static String getMessagePatientNotAssigned() {
+        return MESSAGE_PATIENT_NOT_ASSIGNED;
     }
 
     @Override
@@ -68,8 +80,8 @@ public class UnassignPatientCommand extends Command {
         model.setPatient(patientToUnassign, patientWithoutAssign);
 
         return new CommandResult(String.format(MESSAGE_UNASSIGN_PATIENT_SUCCESS,
-                patientToUnassign.getName().fullName,
-                doctorToUnassign.getName().fullName), patientWithoutAssign);
+                patientToUnassign.getName().getValue(),
+                doctorToUnassign.getName().getValue()), patientWithoutAssign);
     }
 
     private static Doctor createDoctorWithoutAssign(Doctor doctorToUnassign, Patient patientToUnassign)
@@ -81,8 +93,8 @@ public class UnassignPatientCommand extends Command {
 
         if (!patientsSet.contains(patientToUnassign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_NOT_ASSIGNED,
-                    patientToUnassign.getName().fullName,
-                    doctorToUnassign.getName().fullName));
+                    patientToUnassign.getName().getValue(),
+                    doctorToUnassign.getName().getValue()));
         }
 
         patientsSet.remove(patientToUnassign);
@@ -104,8 +116,8 @@ public class UnassignPatientCommand extends Command {
 
         if (!doctorsSet.contains(doctorToUnassign)) {
             throw new CommandException(String.format(MESSAGE_PATIENT_NOT_ASSIGNED,
-                    patientToUnassign.getName().fullName,
-                    doctorToUnassign.getName().fullName));
+                    patientToUnassign.getName().getValue(),
+                    doctorToUnassign.getName().getValue()));
         }
 
         doctorsSet.remove(doctorToUnassign);

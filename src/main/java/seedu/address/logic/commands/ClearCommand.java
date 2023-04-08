@@ -8,11 +8,20 @@ import seedu.address.model.Model;
 /**
  * Clears the address book.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all entries from the address book.\n"
+            + "Example: " + COMMAND_WORD;
+    private static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+    public static String getMessageSuccess() {
+        return MESSAGE_SUCCESS;
+    }
 
     @Override
     public CommandResult execute(Model model) {

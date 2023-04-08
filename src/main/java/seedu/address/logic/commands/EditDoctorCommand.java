@@ -32,7 +32,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing doctor in the address book.
  */
-public class EditDoctorCommand extends Command {
+public class EditDoctorCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "edit-doc";
     public static final String SHORTHAND_COMMAND_WORD = "ed";
@@ -55,9 +55,9 @@ public class EditDoctorCommand extends Command {
             + PREFIX_SPECIALTY + "Family Medicine ";
 
 
-    public static final String MESSAGE_EDIT_DOCTOR_SUCCESS = "Edited Doctor: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book.";
+    private static final String MESSAGE_EDIT_DOCTOR_SUCCESS = "Edited Doctor: %1$s";
+    private static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    private static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book.";
 
     private final Index index;
     private final EditDoctorDescriptor editDoctorDescriptor;
@@ -72,6 +72,22 @@ public class EditDoctorCommand extends Command {
 
         this.index = index;
         this.editDoctorDescriptor = new EditDoctorDescriptor(editDoctorDescriptor);
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_EDIT_DOCTOR_SUCCESS;
+    }
+
+    public static String getMessageDuplicate() {
+        return MESSAGE_DUPLICATE_DOCTOR;
+    }
+
+    public static String getMessageFailure() {
+        return MESSAGE_NOT_EDITED;
     }
 
     @Override

@@ -13,21 +13,29 @@ import seedu.address.model.person.doctor.Doctor;
 /**
  * Lists a specific doctor in Docedex to the user.
  */
-public class SelectDoctorCommand extends Command {
+public class SelectDoctorCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "sd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Selects the doctor identified by the index number used in the displayed doctor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_DOCTOR_SUCCESS = "Selected doctor %1$s";
+    private static final String MESSAGE_SELECT_DOCTOR_SUCCESS = "Selected doctor %1$s";
 
     private Index targetIndex;
 
     public SelectDoctorCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_SELECT_DOCTOR_SUCCESS;
     }
 
     @Override

@@ -15,12 +15,12 @@ import seedu.address.model.person.doctor.Doctor;
 /**
  * Adds a doctor to the address book.
  */
-public class AddDoctorCommand extends Command {
+public class AddDoctorCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "add-doc";
     public static final String SHORTHAND_COMMAND_WORD = "ad";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Adds a doctor to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -37,10 +37,11 @@ public class AddDoctorCommand extends Command {
             + PREFIX_YOE + "5 "
             + PREFIX_TAG + "surgeon";
 
-    public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book";
+    private static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
+    private static final String MESSAGE_DUPLICATE_DOCTOR = "This doctor already exists in the address book";
 
     private final Doctor toAdd;
+
 
     /**
      * Creates an AddDoctorCommand to add the specified {@code Doctor}
@@ -61,6 +62,18 @@ public class AddDoctorCommand extends Command {
         model.addDoctor(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 toAdd);
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return MESSAGE_SUCCESS;
+    }
+
+    public static String getMessageDuplicateDoctor() {
+        return MESSAGE_DUPLICATE_DOCTOR;
     }
 
     @Override

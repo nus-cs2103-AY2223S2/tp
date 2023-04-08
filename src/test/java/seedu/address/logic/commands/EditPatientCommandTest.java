@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PTN_AMY;
@@ -15,6 +16,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPatients.getTypicalPatientsOnlyAddressBook;
@@ -45,7 +55,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.getMessageSuccess(), editedPatient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
@@ -70,7 +80,7 @@ public class EditPatientCommandTest {
                 .withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditPatientCommand editCommand = new EditPatientCommand(indexLastPatient, descriptor);
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.getMessageSuccess(), editedPatient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPatient(lastPatient, editedPatient);
@@ -83,7 +93,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_FIRST_PERSON, new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.getMessageSuccess(), editedPatient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -99,7 +109,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditPatientCommand.getMessageSuccess(), editedPatient);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
@@ -113,7 +123,7 @@ public class EditPatientCommandTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(firstPatient).build();
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, EditPatientCommand.getMessageDuplicate());
     }
 
     @Test
@@ -125,7 +135,7 @@ public class EditPatientCommandTest {
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder(patientInList).build());
 
-        assertCommandFailure(editCommand, model, EditPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, EditPatientCommand.getMessageDuplicate());
     }
 
     @Test
@@ -152,6 +162,49 @@ public class EditPatientCommandTest {
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_getCommandUsageSuccessful() {
+        String messageUsage = EditPatientCommand.COMMAND_WORD + " (short form: "
+                + EditPatientCommand.SHORTHAND_COMMAND_WORD + ")"
+                + ": Edits the details of the patient identified "
+                + "by the index number used in the displayed patients list. "
+                + "Existing values will be overwritten by the input values.\n"
+                + "Parameters: INDEX (must be a positive integer) "
+                + PREFIX_NAME + "NAME "
+                + PREFIX_PHONE + "PHONE "
+                + PREFIX_EMAIL + "EMAIL "
+                + PREFIX_HEIGHT + "HEIGHT "
+                + PREFIX_WEIGHT + "WEIGHT "
+                + PREFIX_DIAGNOSIS + "DIAGNOSIS "
+                + PREFIX_STATUS + "STATUS "
+                + PREFIX_REMARK + "REMARK "
+                + "[" + PREFIX_TAG + "TAG]...\n"
+                + "Example: " + EditPatientCommand.COMMAND_WORD + " 1 "
+                + PREFIX_PHONE + "91234567 "
+                + PREFIX_EMAIL + "johndoe@example.com "
+                + PREFIX_HEIGHT + "1.63 ";
+    }
+
+    @Test
+    public void execute_getMessageSuccessSuccessful() {
+        Patient editedPatient = new PatientBuilder().build();
+        String messageSuccess = "Edited Patient: %1$s";
+        assertEquals(String.format(EditPatientCommand.getMessageSuccess(), editedPatient),
+                String.format(messageSuccess, editedPatient));
+    }
+
+    @Test
+    public void execute_getMessageDuplicateSuccessful() {
+        String messageDuplicate = "This patient already exists in the address book.";
+        assertEquals(EditPatientCommand.getMessageDuplicate(), messageDuplicate);
+    }
+
+    @Test
+    public void execute_getMessageFailureSuccessful() {
+        String messageFailure = "At least one field to edit must be provided.";
+        assertEquals(EditPatientCommand.getMessageFailure(), messageFailure);
     }
 
     @Test

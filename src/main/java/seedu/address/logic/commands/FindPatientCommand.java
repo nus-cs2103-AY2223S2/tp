@@ -21,7 +21,7 @@ import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
  * At least one parameter is required
  * Tags are matched fully
  */
-public class FindPatientCommand extends Command {
+public class FindPatientCommand extends Command implements CommandInterface {
 
     public static final String COMMAND_WORD = "find-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "fp";
@@ -47,6 +47,14 @@ public class FindPatientCommand extends Command {
 
     public FindPatientCommand(PatientContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+    }
+
+    public static String getCommandUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    public static String getMessageSuccess() {
+        return Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
     }
 
     @Override

@@ -18,7 +18,7 @@ import seedu.address.model.person.doctor.DoctorFilter;
 public class FindDoctorCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindDoctorCommand.MESSAGE_USAGE);
+            FindDoctorCommand.getCommandUsage());
 
     private FindDoctorCommandParser parser = new FindDoctorCommandParser();
 
@@ -68,18 +68,18 @@ public class FindDoctorCommandParserTest {
     public void parse_validArgs_returnsFindDoctorCommand() {
 
         // Exact Strings
-        DoctorFilter expectedDoctorFilter = new DoctorFilter(ALICE.getName().fullName,
-                ALICE.getPhone().value,
-                ALICE.getEmail().value,
-                ALICE.getSpecialty().specialty,
-                ALICE.getYoe().value,
+        DoctorFilter expectedDoctorFilter = new DoctorFilter(ALICE.getName().getValue(),
+                ALICE.getPhone().getValue(),
+                ALICE.getEmail().getValue(),
+                ALICE.getSpecialty().getValue(),
+                ALICE.getYoe().getValue(),
                 new HashSet<>());
 
-        String userInput = " n/" + ALICE.getName().fullName
-                + " p/" + ALICE.getPhone().value
-                + " e/" + ALICE.getEmail().value
-                + " s/" + ALICE.getSpecialty().specialty
-                + " y/" + ALICE.getYoe().value;
+        String userInput = " n/" + ALICE.getName().getValue()
+                + " p/" + ALICE.getPhone().getValue()
+                + " e/" + ALICE.getEmail().getValue()
+                + " s/" + ALICE.getSpecialty().getValue()
+                + " y/" + ALICE.getYoe().getValue();
 
         FindDoctorCommand expectedFindDoctorCommand =
                 new FindDoctorCommand(new DoctorContainsKeywordsPredicate(expectedDoctorFilter));

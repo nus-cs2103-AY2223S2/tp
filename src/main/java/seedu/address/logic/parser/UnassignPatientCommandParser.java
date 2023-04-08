@@ -24,7 +24,7 @@ public class UnassignPatientCommandParser implements Parser<UnassignPatientComma
             if (!arePrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_DOCTOR)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AssignPatientCommand.MESSAGE_USAGE));
+                        AssignPatientCommand.getCommandUsage()));
             }
 
             Index patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get());
@@ -32,7 +32,7 @@ public class UnassignPatientCommandParser implements Parser<UnassignPatientComma
             return new UnassignPatientCommand(patientIndex, doctorIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignPatientCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignPatientCommand.getCommandUsage()), pe);
         }
     }
 

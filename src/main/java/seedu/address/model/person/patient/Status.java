@@ -19,7 +19,7 @@ public class Status {
             "Status should be one of the following: Inpatient, Outpatient, Observation, Emergency Department,"
                     + " Intensive Care Unit, Transitional Care";
 
-    public static final String VALIDATION_REGEX = "(?i)^(Inpatient|Outpatient|Observation|Emergency Department"
+    private static final String VALIDATION_REGEX = "(?i)^(Inpatient|Outpatient|Observation|Emergency Department"
             + "|Intensive Care Unit|Transitional Care)$";
 
     private static final Logger logger = LogsCenter.getLogger(Status.class);
@@ -28,7 +28,7 @@ public class Status {
             List.of("Inpatient", "Outpatient", "Observation", "Emergency Department",
                     "Intensive Care Unit", "Transitional Care"));
 
-    public final String status;
+    private final String status;
 
     /**
      * Constructs a {@code Status}.
@@ -113,5 +113,9 @@ public class Status {
     @Override
     public int hashCode() {
         return status.toLowerCase().hashCode();
+    }
+
+    public String getValue() {
+        return status;
     }
 }

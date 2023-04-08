@@ -22,7 +22,7 @@ public class SelectPatientCommandParser implements Parser<SelectPatientCommand> 
             return new SelectPatientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPatientCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPatientCommand.getCommandUsage()), pe);
         }
     }
 

@@ -67,11 +67,11 @@ public class EnlargedDoctorInfoCard extends EnlargedInfoCard {
             return;
         }
 
-        name.setText(selectedDoctor.getName().fullName);
-        phone.setText(selectedDoctor.getPhone().value);
-        email.setText(selectedDoctor.getEmail().value);
-        specialty.setText(selectedDoctor.getSpecialty().specialty);
-        yearsOfExperience.setText(selectedDoctor.getYoe().value);
+        name.setText(selectedDoctor.getName().getValue());
+        phone.setText(selectedDoctor.getPhone().getValue());
+        email.setText(selectedDoctor.getEmail().getValue());
+        specialty.setText(selectedDoctor.getSpecialty().getValue());
+        yearsOfExperience.setText(selectedDoctor.getYoe().getValue());
         selectedDoctor.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);
