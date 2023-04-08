@@ -40,9 +40,9 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePatient(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Patient editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePatient(editedBob));
+        assertTrue(BOB.isSamePatient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
