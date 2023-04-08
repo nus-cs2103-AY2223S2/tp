@@ -1,9 +1,10 @@
-package seedu.medinfo.model.patient;
+package seedu.medinfo.model.ward;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.medinfo.commons.util.StringUtil;
+import seedu.medinfo.model.patient.Patient;
 
 /**
  * Tests that a {@code Patient}'s {@code Status} matches any of the keywords
