@@ -268,18 +268,18 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 
 **Aspect: Handling invalid indexes in delete**
 
-* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that (some) indexes are invalid.
+* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're invalid indexes.
   * Pros:
-    * Potentially save the user time they may have had to spend re-adding their `Student` entries
-    * Allows user the opportunity to edit the command input without having to re-type the entire command again
+    * Invalid indexes might mean the command contain other erroneous indexes.
+    * Allows user to edit the erroneous command input _(as the command isn't cleared from the input box)_.
   * Cons:
-    * May be cumbersome for users to find the invalid index and correct it.
+    * Harder for users to find the invalid index and correct it.
 * **Alternative 2:** Delete all valid `Student` entries out of the given indexes.
   * Pros:
-    * Potentially save the user time editing their command if there was only a minor typo.
+    * If command had only minor typos, it might saves the user time editing their command.
   * Cons:
-    * Harder to implement as we have to keep track of the valid indexes to be deleted.
-    * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is needed to re-enter the entry or `undo` the command.
+    * Harder to implement as we have to keep track of the valid indexes.
+    * If command unintentionally deletes wrong user, it'll costs the user more time to correct the mistake + retype their correct delete command.
 
 [↑ Back to top](#table-of-contents)
 
