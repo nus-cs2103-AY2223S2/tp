@@ -827,25 +827,45 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to add patient.
+1. User enters command to add a patient.
 2. VMS adds the patient.
 
-  Use case ends.
+    Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
 
 #### UC-PAT-002 - Detail patient
 
 ##### MSS
 
-1. User requests to view details of a patient.
+1. User enters command to view details of a patient.
 2. VMS shows the details of the patient requested.
 
   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
+
+* 1b. User requested to detail a patient that does not exist.
+  * 1a1. VMS shows an error message.
+
+    Use case ends.
 
 #### UC-PAT-003 - List patients
 
 ##### MSS
 
-1. User requests to list patients.
+1. User enters command to list patients.
 2. VMS shows the list of patients with their corresponding IDs.
 
   Use case ends.
@@ -854,54 +874,66 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows the list of patients with their corresponding IDs.
+1. User enter command to find patients.
+2. VMS shows the list of matched patients with their corresponding IDs.
 
   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
+
+    Use case resumes from step 1.
 
 #### UC-PAT-005 - Edit patient
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows the list of patients with their corresponding IDs.
-3. User requests to edit a specific patient in the list with the args.
-4. VMS edits the patients
+1. User enters command to edit a specific patient.
+2. VMS edits the patients
 
     Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to edit a patient that does not exist.
+  * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
 
 #### UC-PAT-006 - Delete patient
 
 ##### MSS
 
-1. User requests to list patients.
-2. VMS shows the list of patients with their corresponding IDs.
-3. User requests to delete a specific patient in the list.
-4. VMS soft deletes the patient.
+1. User requests to delete a specific patient in the list.
+2. VMS deletes the patient.
 
     Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+  * 1a1. VMS shows an error message.
 
-  Use case ends.
+    Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to delete a patient that does not exist.
+  * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+    Use case ends.
+
+* 1c. VMS detects that some appointments will become invalid after deletion.
+  * 1c1. VMS requests user to force the change.
+  * 1c2. User enters command to force the change.
+  * 1c3. VMS deletes the patient and all invalid appointments.
+
+    Use case ends.
 
 #### UC-PAT-007 - Clear patients
 
