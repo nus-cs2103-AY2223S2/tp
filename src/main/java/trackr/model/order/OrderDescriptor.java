@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import trackr.commons.util.CollectionUtil;
 import trackr.model.item.ItemDescriptor;
+import trackr.model.menu.MenuItem;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
@@ -19,6 +20,7 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
     private PersonName customerName;
     private PersonPhone customerPhone;
     private PersonAddress customerAddress;
+    private MenuItem orderItem;
 
     public OrderDescriptor() {}
 
@@ -97,6 +99,14 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
 
     public Optional<OrderStatus> getOrderStatus() {
         return Optional.ofNullable(orderStatus);
+    }
+
+    public void setOrderItem(MenuItem orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Optional<MenuItem> getOrderItem() {
+        return Optional.ofNullable(orderItem);
     }
 
     @Override
