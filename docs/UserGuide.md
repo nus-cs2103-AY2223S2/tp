@@ -256,11 +256,11 @@ Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
 Examples:
 * `addCard q\What is chemical symbol for Oxygen? a\O` adds an untagged card with the given question and answer to the deck.
-* `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` adds a card tagged as Easy with the given question and answer to the deck.
+* `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` adds a card tagged as "easy" with the given question and answer to the deck.
 
 ### 3.4.2. Deleting a Card : `deleteCard`
 
-You can easily delete an existing card from the current selected deck with this command. 
+You can swiftly delete an existing card from the current selected deck with this command. 
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
@@ -275,8 +275,7 @@ Example:
 
 ### 3.4.3. Editing a Card : `editCard`
 
-You realised you made some mistakes after creating a card. 
-Worry not, as you can easily edit any existing card with this command!
+If you made mistakes while creating a card, no problem! You can easily edit any existing card using this command.
 
 Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
 
@@ -296,7 +295,7 @@ This command allows you to find specific flashcards you want to interact with ba
 
 It shows all the cards in the selected deck whose **questions** contain **any** of the given keyword(s).
 
-You can interact with the filtered cards using their new indices, through commands such as `editCard` and `deleteCard`.
+You may interact with the filtered cards using their new indices, through commands such as `editCard` and `deleteCard`.
 
 Format: `findCards KEYWORD...`
 - You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found.
@@ -348,7 +347,8 @@ While a limit is set, the review deck will be truncated to the card limit.
 You can set the limit back to 'none' to view all cards in the deck for future reviews.
 
 Format: `setLimit LIMIT_NUM` or `setLimit none`
-- LIMIT_NUM must be an integer between 1 and 2147483647 inclusive. 
+- `LIMIT_NUM` must be an integer between 1 and 2147483647 inclusive. 
+- If `LIMIT_NUM` is greater than the number of cards inside the deck to be reviewed, you will review **all** the cards in that deck.
 
 Examples:
 * `setLimit 30`
@@ -358,7 +358,7 @@ Examples:
 
 ## 3.6. Review Mode
 
-Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test - e.g. you just want test medium and hard cards only.
+Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test, e.g., you just want test medium and hard cards only.
 
 ![ReviewModeComponent](images/ReviewModeComponent.png)
 
@@ -384,7 +384,7 @@ Format: `review INDEX [-e] [-m] [-h]`
   - Omit any flags to test all cards in the deck
 
 Examples:
-* `review 5 -e -h` lets you review all the cards tagged as Easy or Hard in the 5th deck.
+* `review 5 -e -h` lets you review all the cards tagged as "easy" or "hard" in the 5th deck.
 * `review 2` lets you review all the cards in the 2nd deck.
 
 ### 3.6.2. Ending the Review: `endReview`
@@ -398,10 +398,10 @@ Format: `endReview`
 ![ReviewKeystrokes](images/ReviewKeystrokes.png)
 
 The diagram above shows the keystrokes you will use to interact with the cards in the Review mode. 
-Notice that the keys are all close to the enter key so that you can breeze through decks of cards with ease!
+Notice that the keys are all close to the Enter key so that you can breeze through decks of cards ergonomically!
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
-- You must press the enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card. 
+- You must press the Enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card. 
 
 ### 3.6.4. Flipping the Card: `p`
 
@@ -469,9 +469,11 @@ PCs data are saved in the hard disk automatically after any command that changes
 
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="span" class="alert alert-warning">
 
-- If your changes to the data file make its format invalid, PowerCards will start with an empty data file at the next run. 
+:exclamation: **Caution:**<br>  
+
+- If your changes to the data file make its format invalid, PowerCards will start with an empty data file on the next run. 
 - Do **not** type in any command as this will overwrite and discard your previous data! Simply close the application manually and edit the data file again until it is in valid format. 
 
 </div>
@@ -487,7 +489,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
-**A**: Go to where you have downloaded your `powercards.jar` file, there a `/data` folder will be created and the data will be saved under `masterdeck.json`.
+**A**: If you have run PowerCard at least once, there will be a folder named `data` inside the folder you store the application. The save data can be found as `masterdeck.json` in the `data` folder.
 
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.
