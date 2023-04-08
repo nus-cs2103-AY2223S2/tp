@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 # Welcome to PetPal!
-![Logo](images/UI/logo.png)
+![Logo](images/UI/AlternateLogo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI!
 You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
@@ -326,7 +326,7 @@ Additional example:
 
 ### Marking a deadline as done : `mark`
 
-The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done. 
+The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done.
 
 Pets that are already marked will not be highlighted.
 
@@ -378,13 +378,6 @@ Note that:
 * The index is based on the **currently displayed** PetPal list, which might change depending on prior commands used
   (e.g. `find`)
 
-<div markdown="block" class="alert alert-block alert-danger">
-
-* :heavy_exclamation_mark: **Caution:**
-The current iteration of PetPal **DOES NOT** support `undo` on the `archive` command, undoing an archive command currently
-will cause issues with re-archiving the same Pet
-</div>
-
 Format: `archive INDEX`
 
 ![archive](images/UG/archive.png)
@@ -429,7 +422,6 @@ Format: `undo`
 You can `undo` an `undo` command
 
 </div>
-
 
 
 
@@ -490,16 +482,15 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 <br><br>
 
-**Q**: When I run the `archive` command, nothing happens
-
-**A**: If you have previously run `undo` on an `archive` command on that specific Pet, delete that pet entry from the PetPal.
-If you do not want the entry in the archive, you will need to manually delete the entry from `archive.json` and restart PetPal.
-
-<br><br>
-
 **Q**: Why there are some pets highlighted even though the deadline is already passed?
 
-**A**: If you already done the task, run `mark` function to mark it as done and remove the highlight.
+**A**: If you have already done the task, run `mark` function to mark it as done and remove the highlight.
+
+<br><br>
+**Q**: PetPal says the index is invalid even though the pet exists in the PetPal list
+
+**A**: Index of each pet is based on your **currently viewable** pet list index, so if your currently viewable pet list is empty, the index will be invalid<br>
+Run `list` or `l` to view all the pets in the list before executing the command again.
 
 <br><br>
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
@@ -511,16 +502,16 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 ## Glossary
 
-| Term                     | Definition                                                                                                                                                                                                                                                                                                               |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                |
-| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                           |
-| YYYY-MM-DD hh:mm:ss      | Date format whereby  `YYYY` refers to the 4 digits years, `MM` refers to the 2 digit months, `DD` refers to the 2 digit days, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes, 'ss' refers to the 2 digits seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
-| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                     |
-| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                 |
-| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                   |
-| JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                     |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                         |
+| Term                     | Definition                                                                                                                                                                                                                                                                                                                        |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                         |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                                    |
+| YYYY-MM-DD hh:mm:ss      | Date format whereby `YYYY` refers to the year using 4 digits, `MM` refers to the months in 2 digits, `DD` refers to the days in 2 digits, `hh` refers to the 2 digit hours, `mm` refers to the 2 digit minutes, 'ss' refers to the 2 digit seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                              |
+| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                          |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                            |
+| JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                              |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                                  |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -537,7 +528,7 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Edit**        | `edit p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG...]`<br> e.g `Example: edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`                                                                                                       |                       |
 | **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
 | **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
-| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            | 
+| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            |                       | 
 | **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    | `f`                   |
 | **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
 | **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |
@@ -547,9 +538,13 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 [Return to Table of Contents](#table-of-contents)
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
-* The logo used makes use of the [Dog icons created by Flat Icons - Flaticon] (https://www.flaticon.com/free-icons/dog)
+* The logo used references the [Dog icons created by Flat Icons - Flaticon](https://www.flaticon.com/free-icons/dog)
 
 [Return to Table of Contents](#table-of-contents)

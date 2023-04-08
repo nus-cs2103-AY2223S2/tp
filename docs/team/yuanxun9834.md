@@ -10,7 +10,7 @@ PetPal is your **furry and dependable assistant** who **reminds you of deadlines
 Given below are my contributions to the project.
 
 * **Remind/Deadline Feature**: Added the ability to add deadlines for pets.
-  * Justification: Users have many pets to manage and might forget important tasks due for certain pets. 
+  * Justification: Users have many pets to manage and might forget important tasks due for certain pets.
   * Highlights: Deadlines that are due soon are highlighted in the GUI and the user is reminded of them.
   * PRs : [#44](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/44), [#45](https://github.com/AY2223S2-CS2103T-T14-2/tp/pull/45)
   * Credits:
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * [Issues](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues?q=is%3Aissue+is%3Aclosed+author%3AYuanXun9834) added by me
 
 * **Enhancements to existing features**:
-  * Changed previous commands from AB3 to suit PetPal's needs as well as added functionality to include adding and editing of deadlines. 
+  * Changed previous commands from AB3 to suit PetPal's needs as well as added functionality to include adding and editing of deadlines.
 * **Documentation**:
   * User Guide:
     * Wrote introduction section of UG
