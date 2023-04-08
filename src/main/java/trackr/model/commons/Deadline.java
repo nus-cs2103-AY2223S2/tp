@@ -56,7 +56,13 @@ public abstract class Deadline {
      *         0 if both deadlines are the same.
      */
     public int compare(Deadline other) {
-        return deadline.compareTo(other.deadline);
+        int compareVal = deadline.compareTo(other.deadline);
+
+        if (compareVal == 0) {
+            return 0;
+        } else {
+            return compareVal / Math.abs(compareVal);
+        }
     }
 
     /**

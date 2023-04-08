@@ -1,4 +1,4 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.person.PersonNameContainsKeywordsPredicate;
 import trackr.testutil.SupplierBuilder;
 
 public class PersonPersonNameContainsKeywordsPredicateTest {
@@ -40,6 +39,13 @@ public class PersonPersonNameContainsKeywordsPredicateTest {
 
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void test_null_returnsFalse() {
+        PersonNameContainsKeywordsPredicate predicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertFalse(predicate.test(null));
     }
 
     @Test
@@ -77,6 +83,6 @@ public class PersonPersonNameContainsKeywordsPredicateTest {
         predicate =
                 new PersonNameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new SupplierBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+                                           .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 }

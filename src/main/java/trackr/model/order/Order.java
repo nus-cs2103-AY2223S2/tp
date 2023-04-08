@@ -21,6 +21,9 @@ import trackr.model.person.Customer;
  */
 public class Order extends Item {
 
+    private static final MenuItem INVALID_MENU_ITEM =
+            new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
+
     // Data fields
     private final OrderName orderName;
     private final OrderDeadline orderDeadline;
@@ -39,17 +42,8 @@ public class Order extends Item {
      */
     public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer) {
-        super(ModelEnum.ORDER);
-        requireAllNonNull(orderItem, orderDeadline, orderQuantity, orderStatus, customer);
-        this.orderItem = orderItem;
-        this.orderName = new OrderName(orderItem
-                                            .getItemName()
-                                            .toString());
-        this.orderDeadline = orderDeadline;
-        this.orderStatus = orderStatus;
-        this.orderQuantity = orderQuantity;
-        this.customer = customer;
-        timeAdded = LocalDateTime.now();
+        this(orderItem, new OrderName(orderItem.getItemName().toString()), orderDeadline, orderStatus, orderQuantity,
+                customer, LocalDateTime.now());
     }
 
     /**
@@ -57,15 +51,7 @@ public class Order extends Item {
      */
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer) {
-        super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
-        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
-        this.orderName = orderName;
-        this.orderDeadline = orderDeadline;
-        this.orderStatus = orderStatus;
-        this.orderQuantity = orderQuantity;
-        this.customer = customer;
-        timeAdded = LocalDateTime.now();
+        this(INVALID_MENU_ITEM, orderName, orderDeadline, orderStatus, orderQuantity, customer, LocalDateTime.now());
     }
 
     /**
@@ -73,15 +59,7 @@ public class Order extends Item {
      */
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
-        super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
-        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
-        this.orderName = orderName;
-        this.orderDeadline = orderDeadline;
-        this.orderStatus = orderStatus;
-        this.orderQuantity = orderQuantity;
-        this.customer = customer;
-        this.timeAdded = timeAdded;
+        this(INVALID_MENU_ITEM, orderName, orderDeadline, orderStatus, orderQuantity, customer, timeAdded);
     }
 
 
@@ -90,12 +68,19 @@ public class Order extends Item {
      */
     public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
+        this(orderItem, new OrderName(orderItem.getItemName().toString()), orderDeadline, orderStatus, orderQuantity,
+                customer, timeAdded);
+    }
+
+    /**
+     * Every field must be present and not null
+     */
+    public Order(MenuItem orderItem, OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
         super(ModelEnum.ORDER);
-        requireAllNonNull(orderItem, orderDeadline, orderStatus, customer);
+        requireAllNonNull(orderItem, orderName, orderDeadline, orderStatus, orderQuantity, customer, timeAdded);
         this.orderItem = orderItem;
-        this.orderName = new OrderName(orderItem
-                                            .getItemName()
-                                            .toString());
+        this.orderName = orderName;
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;
         this.orderQuantity = orderQuantity;
@@ -259,7 +244,7 @@ public class Order extends Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(customer, orderName, orderDeadline, orderStatus);
+        return Objects.hash(customer, orderName, orderDeadline, orderStatus, orderQuantity);
     }
 
     @Override

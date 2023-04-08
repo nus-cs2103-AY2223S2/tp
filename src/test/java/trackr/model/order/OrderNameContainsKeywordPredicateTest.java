@@ -1,6 +1,8 @@
 package trackr.model.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
 
@@ -33,7 +35,7 @@ public class OrderNameContainsKeywordPredicateTest {
         OrderContainsKeywordsPredicate secondPredicate;
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
         OrderContainsKeywordsPredicate firstPredicateCopy =
@@ -47,20 +49,20 @@ public class OrderNameContainsKeywordPredicateTest {
                                 .withCustomerPhone("12345678")
                                 .build();
 
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        assertEquals(firstPredicate, firstPredicateCopy);
 
         firstPredicateCopy = new OrderPredicateBuilder(firstPredicate).build();
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        assertEquals(firstPredicate, firstPredicateCopy);
 
         secondPredicate = new OrderPredicateBuilder().build();
         OrderContainsKeywordsPredicate secondPredicateCopy = new OrderPredicateBuilder(secondPredicate).build();
-        assertTrue(secondPredicate.equals(secondPredicateCopy));
+        assertEquals(secondPredicate, secondPredicateCopy);
 
         // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertNotEquals(1, firstPredicate);
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertNotEquals(null, firstPredicate);
 
         // different person -> returns false
 
@@ -75,7 +77,14 @@ public class OrderNameContainsKeywordPredicateTest {
                         .withCustomerPhone("12345678")
                         .build();
 
-        assertFalse(firstPredicate.equals(secondPredicate));
+        assertNotEquals(firstPredicate, secondPredicate);
+    }
+
+    @Test
+    public void test_null_returnsFalse() {
+        OrderContainsKeywordsPredicate predicate =
+                new OrderPredicateBuilder().withOrderNameKeywords(Collections.singletonList("Chocolate")).build();
+        assertFalse(predicate.test(null));
     }
 
     @Test

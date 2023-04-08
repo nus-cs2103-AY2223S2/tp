@@ -1,6 +1,8 @@
 package trackr.model.menu;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.testutil.Assert.assertThrows;
 
@@ -40,7 +42,6 @@ public class MenuItemPriceTest {
         assertFalse(ItemPrice.isValidPrice("-10.00")); // more than 2 decimal places
 
 
-
         // valid price
         assertTrue(ItemPrice.isValidPrice("1")); // no decimal places
         assertTrue(ItemPrice.isValidPrice("1.0")); // exactly 1 decimal places
@@ -53,13 +54,47 @@ public class MenuItemPriceTest {
         ItemPrice itemPrice = new ItemPrice("10.00");
         ItemPrice differentItemPrice = new ItemPrice("21.00");
 
-        assertTrue(itemPrice.equals(itemPrice)); // same object
-        assertTrue(itemPrice.equals(new ItemPrice("10.00")));
-        assertTrue(itemPrice.equals(new ItemPrice("10")));
-        assertTrue(itemPrice.equals(new ItemPrice("10.0")));
+        assertEquals(itemPrice, itemPrice); // same object
 
-        assertFalse(itemPrice.equals(null));
-        assertFalse(itemPrice.equals(differentItemPrice));
-        assertFalse(itemPrice.equals(1));
+        // same value -> true
+        assertEquals(itemPrice, new ItemPrice("10.00"));
+        assertEquals(itemPrice, new ItemPrice("10"));
+        assertEquals(itemPrice, new ItemPrice("10.0"));
+
+        assertEquals(itemPrice, new ItemPrice(10.00));
+        assertEquals(itemPrice, new ItemPrice(10.0));
+
+        // different type -> false
+        assertNotEquals(null, itemPrice);
+        assertNotEquals(1, itemPrice);
+
+        // different value -> false
+        assertNotEquals(itemPrice, differentItemPrice);
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals("10.00", new ItemPrice("10.00").toString());
+        assertEquals("10.00", new ItemPrice("10.0").toString());
+        assertEquals("10.00", new ItemPrice("10").toString());
+
+        assertNotEquals("10", new ItemPrice("10.00").toString());
+    }
+
+    @Test
+    public void getFormattedValueTest() {
+        assertEquals("10.00", new ItemPrice("10.00").getFormattedValue());
+        assertEquals("10.00", new ItemPrice("10.0").getFormattedValue());
+        assertEquals("10.00", new ItemPrice("10").getFormattedValue());
+
+        assertNotEquals("10", new ItemPrice("10.00").getFormattedValue());
+    }
+
+    @Test
+    public void hashCode_success() {
+        Double val = 10.0;
+        int hashCode = Double.hashCode(val);
+        assertEquals(new ItemPrice(val).hashCode(), hashCode);
+    }
+
 }
