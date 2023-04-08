@@ -68,7 +68,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The .puml files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 [Back to Table of Contents](#toc)
@@ -995,15 +995,12 @@ For more details regarding the usage, refer to [Exit MODTrek](UserGuide.md#exit-
 1. Dealing with corrupted data files
 
    1. Open `modtrek.jar` through the `java -jar modtrek.jar` command. Using commands supported on MODTrek, make changes to the module list, leaving at least one module in list.
-
    2. Close `modtrek.jar` and edit the `data/degreeprogression.json` file by making any one of the following dummy changes that causes the file to be corrupted, i.e. of an invalid format:
       * Change the "grade" attribute of one of the modules to "Z".
       * For one of the modules, add an extra attribute "Professor" with the value "James Tan" assigned to it.
       * Make any other illogical or nonsensical change to the file.
-
    3. Re-open `modtrek.jar` again. Expected: MODTrek will start with a clean slate, with an empty module list. 
    
-<br>
 
 2. Dealing with missing data files
    1. Test case: Delete the `data/degreeprogression.json` file.<br>
