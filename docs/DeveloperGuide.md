@@ -1038,3 +1038,21 @@ testers are expected to do more *exploratory* testing.
    ii. To simulate a corrupted data file: Close TrAkcer, type random characters in addressbook.json that makes the json file invalid. Relaunch TrAcker.
    
    iii. Expected behaviour: Empty student list in student tab and empty events in event tab. TrAcker only expects valid json file and data, and is not responsible for json file manipulations that render the json file data invalid.
+
+### Planned Enhancements
+
+1. The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
+be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
+is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
+
+<img src="images/SameProfile.png" width="550" />
+   
+We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
+for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
+However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
+changing from icons to fetching from a simulated database that ensures a unique photo is always fetched for a new unique student, which slightly pivots to more backend heavy tasks.
+
+2. The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
+    We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
+    is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
+    data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
