@@ -7,7 +7,8 @@ import seedu.wife.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a Food's quantity in the fridge.
- * Guarantees: mutable with {@link #updateQuantity(Integer)}; quantity is validated in {@link #isValid(Integer)}
+ * Guarantees: mutable with {@link #increaseQuantity(Quantity)} and {@link #decreaseQuantity(Quantity)};
+ * quantity is validated in {@link #isValidQuantity(String)}
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity must be a value larger than 0";
@@ -28,7 +29,7 @@ public class Quantity {
     }
 
     /**
-     * Getter method to get the quantity amount.
+     * Returns the quantity value of food.
      *
      * @return The quantity value.
      */
@@ -47,16 +48,8 @@ public class Quantity {
     }
 
     /**
-     * Updates the quantity to another valid integer.
-     * @param newQuantity Value of new quantity.
-     */
-    public void updateQuantity(String newQuantity) {
-        checkArgument(isValidQuantity(newQuantity), MESSAGE_CONSTRAINTS);
-        this.quantity = Integer.parseInt(newQuantity);
-    }
-
-    /**
      * Increases the current quantity by a valid integer.
+     *
      * @param increasedQuantity Value of the quantity to increase by.
      * @return The new quantity value.
      */
@@ -67,6 +60,7 @@ public class Quantity {
 
     /**
      * Decreases the current quantity by a valid integer.
+     *
      * @param decreasedQuantity Value of the quantity to decrease by.
      * @return The new quantity value.
      */
