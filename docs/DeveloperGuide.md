@@ -664,7 +664,7 @@ Use case ends.
 **MSS:**
 
 1. TechTrack is running (UC1).
-2. User enters the “delete {job ID}” to delete the roles.
+2. User enters the “delete {role ID}” to delete the roles.
 3. UI will respond with the selected roles being deleted.<br>
 Use case ends.
 
@@ -682,7 +682,7 @@ Use case ends.
 
 1. TechTrack is running (UC1)
 2. User enters the “salary {asc/desc}"
-3. UI display the list of jobs sorted by salaries in either ascending or descending order.<br>
+3. UI display the list of roles sorted by salaries in either ascending or descending order.<br>
 Use case ends.
 
 **Extensions**
@@ -706,7 +706,7 @@ Use case ends.
 
 1. TechTrack is running (UC1).
 2. User enters the "company {keyword}" command.
-3. UI display the list of jobs with companies that contains the keyword.<br>
+3. UI display the list of roles with companies that contains the keyword.<br>
 Use case ends.
 
 **Extensions**
