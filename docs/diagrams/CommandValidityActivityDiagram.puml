@@ -5,10 +5,10 @@ start
 :Check validity of command in current application mode;
 if () then ([command is valid])
     :Execute command;
-    :Display Command Result on Result Display;
+    :Display success message;
 else ([else])
     :Throw ParseException;
-    :Display error message on Result Display;
+    :Display error message;
 
 endif
 
