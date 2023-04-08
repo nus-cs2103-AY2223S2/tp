@@ -77,7 +77,7 @@ CommandResult --> UntagCommand : r
 deactivate CommandResult
 
 UntagCommand --> LogicManager : r
-deactivate CommandResult
+deactivate UntagCommand
 
 LogicManager -->[
 deactivate LogicManager

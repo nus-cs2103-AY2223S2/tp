@@ -654,10 +654,6 @@ The following sequence diagram depicts a `tag` command execution for adding a `T
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
-Below is an activity diagram that showcase the events that occurs when a `tag` command is executed.
-
-TODO: ADD ACTIVITY DIAGRAM
-
 The following is a description of the code execution flow:
 
 1. `TagCommandParser#parse()` takes in the user input and determine whether the user wanted to tag a module,
@@ -716,10 +712,6 @@ The following sequence diagram depicts an `untag` command execution for removing
 in a `Tracker` object.
 
 ![UntagSequenceDiagram](images/UntagSequenceDiagram.png)
-
-Below is an activity diagram that showcase the events that occurs when an `untag` command is executed.
-
-TODO: ADD ACTIVITY DIAGRAM
 
 The following is a description of the code execution flow:
 
@@ -828,9 +820,10 @@ The feature utilises the following classes:
 
 **Execution**
 
-Below is an activity diagram that showcase the events that occurs when an `export` command is executed.
+The following sequence diagram depicts a `export` command execution for exporting a `Tracker` object to a specified 
+file path
 
-TODO: ADD ACTIVITY DIAGRAM
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
 The following is a description of the code execution flow:
 
