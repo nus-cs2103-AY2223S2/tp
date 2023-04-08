@@ -52,4 +52,11 @@ public class EndAge implements End<Age> {
     public Age get() {
         return age.get();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EndAge // instanceof handles nulls
+                && age.equals(((EndAge) other).age));
+    }
 }

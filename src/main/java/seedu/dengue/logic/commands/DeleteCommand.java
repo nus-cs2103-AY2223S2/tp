@@ -17,11 +17,8 @@ import seedu.dengue.commons.core.Messages;
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
-import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.predicate.PersonContainsDatePredicate;
-import seedu.dengue.model.predicate.RangeContainsPersonPredicate;
-import seedu.dengue.model.range.Range;
+import seedu.dengue.model.predicate.DeleteDatePredicate;
 
 /**
  * Deletes a person identified using its displayed index from the Dengue Hotspot Tracker.
@@ -45,68 +42,45 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_RANGE_SUCCESS = "%1$s cases from %2$s to %3$s deleted";
 
     private final Optional<List<Index>> targetIndexes;
-    private final Optional<Date> date;
-    private final Optional<Range<Date>> range;
-
-    // possibly separate into three different commands? index, date, range
+    private final Optional<DeleteDatePredicate> predicate;
 
     /**
-     * Deletes the person at the targets {@code targetIndexes} in the Dengue Hotspot Tracker
+     * Deletes the cases at the targets {@code targetIndexes} in the Dengue Hotspot Tracker
      * @param targetIndexes
      */
     public DeleteCommand(List<Index> targetIndexes) {
         this.targetIndexes = Optional.of(targetIndexes);
-        this.date = Optional.empty();
-        this.range = Optional.empty();
+        this.predicate = Optional.empty();
     }
 
-    // for test cases to be happy, to delete
-
     /**
-     * Deletes the person at the target {@code targetIndex} in the Dengue Hotspot Tracker
+     * Deletes the case at the target {@code targetIndex} in the Dengue Hotspot Tracker
      * @param targetIndex
      */
     public DeleteCommand(Index targetIndex) {
-        this.targetIndexes = Optional.of(List.<Index>of(targetIndex));
-        this.date = Optional.empty();
-        this.range = Optional.empty();
+        this((List.<Index>of(targetIndex)));
     }
 
     /**
-     * Deletes people at the target {@code date} in the Dengue Hotspot Tracker
-     * @param date
+     * Deletes cases found by the {@code predicate} in the Dengue Hotspot Tracker
+     * @param predicate A predicate.
      */
-    public DeleteCommand(Date date) {
+    public DeleteCommand(DeleteDatePredicate predicate) {
         this.targetIndexes = Optional.empty();
-        this.date = Optional.of(date);
-        this.range = Optional.empty();
-    }
-
-    /**
-     * Deletes people within the {@code range} dates in the Dengue Hotspot Tracker
-     * @param range
-     */
-    public DeleteCommand(Range<Date> range) {
-        this.targetIndexes = Optional.empty();
-        this.date = Optional.empty();
-        this.range = Optional.of(range);
+        this.predicate = Optional.of(predicate);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert !(targetIndexes.isPresent() & date.isPresent());
-        assert !(date.isPresent() & range.isPresent());
-        assert !(targetIndexes.isPresent() & range.isPresent());
+        assert !(targetIndexes.isPresent() & predicate.isPresent());
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndexes.isPresent()) {
             return executeIndexes(model, lastShownList);
-        } else if (date.isPresent()) {
-            return executeDate(model, lastShownList);
         } else {
-            return executeRange(model, lastShownList);
+            return executeDate(model, lastShownList);
         }
     }
 
@@ -133,28 +107,22 @@ public class DeleteCommand extends Command {
 
 
     private CommandResult executeDate(Model model, List<Person> lastShownList) {
-        assert date.isPresent();
-        List<Person> referenceCopy = new ArrayList<>(lastShownList);
+        assert predicate.isPresent();
 
-        PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date);
-        List<Person> toDelete = getPersonsToDelete(referenceCopy, predicate);
+        List<Person> referenceCopy = new ArrayList<>(lastShownList);
+        DeleteDatePredicate pred = predicate.get();
+
+        List<Person> toDelete = getPersonsToDelete(referenceCopy, pred);
 
         deleteAll(model, toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, toDelete.size(), date.get()));
+
+        if (pred.date.isPresent()) {
+            return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, toDelete.size(), pred.date.get()));
+        } else {
+            return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
+                    toDelete.size(), pred.range.getStart(), pred.range.getEnd()));
+        }
     }
-
-    private CommandResult executeRange(Model model, List<Person> lastShownList) {
-        assert range.isPresent();
-        List<Person> referenceCopy = new ArrayList<>(lastShownList);
-
-        RangeContainsPersonPredicate predicate = new RangeContainsPersonPredicate(range.get());
-        List<Person> toDelete = getPersonsToDelete(referenceCopy, predicate);
-
-        deleteAll(model, toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
-                toDelete.size(), range.get().getStart().toString(), range.get().getEnd().toString()));
-    }
-
     private List<Person> getPersonsToDelete(List<Person> reference, Predicate<Person> predicate) {
         List<Person> toDelete = new ArrayList<>();
         for (Person person : reference) {
@@ -184,7 +152,6 @@ public class DeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndexes.equals(((DeleteCommand) other).targetIndexes)
-                && date.equals(((DeleteCommand) other).date)
-                && range.equals(((DeleteCommand) other).range)); // state check
+                && predicate.equals(((DeleteCommand) other).predicate));
     }
 }

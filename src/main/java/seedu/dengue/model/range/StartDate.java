@@ -63,4 +63,11 @@ public class StartDate implements Start<Date> {
             return "the beginning of time";
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StartDate // instanceof handles nulls
+                && date.equals(((StartDate) other).date));
+    }
 }
