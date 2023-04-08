@@ -48,16 +48,16 @@ public class StringUtil {
         return t.getMessage() + "\n" + sw.toString();
     }
 
-    public static boolean isInteger(String s) {
-        requireNonNull(s);
-
-        try {
-            int value = Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
+//    public static boolean isInteger(String s) {
+//        requireNonNull(s);
+//
+//        try {
+//            int value = Integer.parseInt(s);
+//            return true;
+//        } catch (NumberFormatException nfe) {
+//            return false;
+//        }
+//    }
 
     /**
      * Checks if String input is an Integer
