@@ -387,6 +387,45 @@ this behaviour with all patients being deleted. (Note: This problem exists if yo
   - **Solution:** The title of the patients list will be updated to display "XXX's Patients", where XXX is the
 name of the newly added doctor. The same fix will be done for the title of the doctors list to support
 a similar behaviour when adding patients.
+- **Problem:** The command usage message is not consistent across the UserGuide and EditXYZCommands
+- **Solution:** Update the `MESSAGE_USAGE` field in [`EditDoctorCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/commands/EditDoctorCommand.java), [`EditPatientCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditPatientCommand.java) and associated tests ([`EditDoctorCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditDoctorCommandTest.java), [`EditPatientCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditPatientCommandTest.java)) with the following code fragments:
+  - `EditDoctorCommand`, `EditDoctorCommandTest`
+  ```
+  COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+            + ": Edits the details of the doctor identified "
+            + "by the index number used in the displayed doctors list.\n "
+            + "Existing values will be overwritten by the input values.\n"
+            + "At least one parameter other than index must be provided.\n"
+            + "Parameters: INDEX (must be a positive integer) ["
+            + PREFIX_NAME + "NAME] ["
+            + PREFIX_PHONE + "PHONE] ["
+            + PREFIX_EMAIL + "EMAIL] ["
+            + PREFIX_SPECIALTY + "SPECIALTY] ["
+            + PREFIX_YOE + "YEARS OF EXPERIENCE] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PHONE + "91234567 "
+  ```
+    - `EditPatientCommand`, `EditPatientCommandTest`
+  ```
+  COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+    + ": Edits the details of the patient identified "
+      + "by the index number used in the displayed patients list.\n "
+      + "Existing values will be overwritten by the input values.\n"
+      + "At least one parameter other than index must be provided.\n"
+      + "Parameters: INDEX (must be a positive integer) ["
+      + PREFIX_NAME + "NAME] ["
+      + PREFIX_PHONE + "PHONE] ["
+      + PREFIX_EMAIL + "EMAIL] ["
+      + PREFIX_HEIGHT + "HEIGHT] ["
+      + PREFIX_WEIGHT + "WEIGHT] ["
+      + PREFIX_DIAGNOSIS + "DIAGNOSIS] ["
+      + PREFIX_STATUS + "STATUS] ["
+      + PREFIX_REMARK + "REMARK] ["
+      + "[" + PREFIX_TAG + "TAG]...\n"
+      + "Example: " + COMMAND_WORD + " 1 "
+      + PREFIX_PHONE + "91234567 "
+   ```
 
 ### Appendix B: Product scope
 
