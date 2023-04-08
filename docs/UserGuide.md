@@ -754,7 +754,9 @@ Format `set p/AMOUNT`
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution**<br>
+
 FastTrack does not allow setting a budget of $0
+
 </div>
 
 
@@ -801,8 +803,9 @@ If there's any other text in front of `c/`, the autocompletion feature will be d
 
 1. Enter `list c/` into the command box
 2. A list of suggested categories appear in a popup above the command box
-3. Navigate into the suggestion list and press `ENTER` on the desired category `Transportation`. 
+3. Navigate into the suggestion list using the `UP` arrow key and press `ENTER` on the desired category `Transportation`. 
 4. This autocompletes the category name
+5. If you need to navigate out of the suggestion list, press the `DOWN` arrow key until the cursor returns to the command box
 
 ![FastTrack autocomplete_a1](images/demo/general/autocomplete_a1.png)
 ![FastTrack autocomplete_a2](images/demo/general/autocomplete_a2.png)
