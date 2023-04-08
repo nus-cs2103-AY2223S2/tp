@@ -86,7 +86,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `ExercisePanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -173,6 +173,92 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 >## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Past 30 days weight data graph
+#### Implementation
+The edit appointments feature allows users to view appointments in the upcoming dates.
+
+This feature is implemented using a panel on the main window with a list of clients names
+that is updated with every command that may affect appointment set.
+
+One situation that trigger the edit appointments feature is when a user edits an appointment.
+
+The following details explain how it works:
+
+*  What it does:
+    * When an appointment is edited in the clients list, it is automatically added to the
+      list of appointments.
+    * The list is automatically sorted in increasing order of the appointment data time.
+
+* Details:
+    * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
+      class.
+    * In the *EditCommand* class, the data entered by user is parsed.
+    * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
+    * This function, in turn, calls editCommand() function in FitBook.
+    * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
+      appointment date time are valid.
+    * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
+      Otherwise, an error message is returned.
+
+
+* Example Usage Scenario
+
+  Below is an example usage scenario of how the appointment list mechanism behaves at each step:
+    * The user launches the application for the first time.
+    * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
+      checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
+
+
+* Design Considerations
+
+  One important design consideration is how to handle expired appointment dates and times. The current choice is to
+  automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
+    * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
+    * cons: expired date time cannot be updated immediately unless the user reopen the application.
+
+### Add weights feature
+#### Implementation
+The add weights feature allows users to store weights in an array in the upcoming dates.
+
+This feature is implemented using a panel on the main window with a list of clients names
+that is updated with every command that may affect appointment set.
+
+One situation that trigger the edit appointments feature is when a user edits an appointment.
+
+The following details explain how it works:
+
+*  What it does:
+    * When an appointment is edited in the clients list, it is automatically added to the
+      list of appointments.
+    * The list is automatically sorted in increasing order of the appointment data time.
+
+* Details:
+    * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
+      class.
+    * In the *EditCommand* class, the data entered by user is parsed.
+    * If there is no error, the Appointment object is created which triggers the getAppointment() function in Model.
+    * This function, in turn, calls editCommand() function in FitBook.
+    * These functions call isValidDate() and isValidAppointment() functions in Appointment to confirm whether the
+      appointment date time are valid.
+    * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
+      Otherwise, an error message is returned.
+
+
+* Example Usage Scenario
+
+  Below is an example usage scenario of how the appointment list mechanism behaves at each step:
+    * The user launches the application for the first time.
+    * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
+      checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
+
+
+* Design Considerations
+
+  One important design consideration is how to handle expired appointment dates and times. The current choice is to
+  automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
+    * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
+    * cons: expired date time cannot be updated immediately unless the user reopen the application.
 
 ### Edit appointments feature
 #### Implementation
@@ -302,7 +388,7 @@ which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#
 
 ![AddExerciseState1](images/AddExerciseState1.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddExerciseCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
-
+</div>
 
 The following sequence diagram shows how the add exercise operation works:
 
@@ -973,6 +1059,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+> **Use case: UC17 - View selected client's summary information**
+
+**MSS**
+
+1. User requests to view selected client's summary information.
+2. FitBook shows selected client's summary information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing client index number field.
+    * 1a1. FitBook shows an error for missing client index number.
+
+      Use case ends.
+
+> **Use case: UC18 - Generate weight graph for selected client**
+
+**MSS**
+
+1. User requests to generate weight graph for selected client.
+2. FitBook shows selected client's weight graph for 30 days.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing client index number field.
+    * 1a1. FitBook shows an error for missing client index number.
+
+      Use case ends.
+
 ---
 ### Non-Functional Requirements
 
@@ -1003,7 +1121,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -1020,8 +1137,6 @@ testers are expected to do more *exploratory* testing.
 
    B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ### Deleting a client
 
@@ -1052,12 +1167,22 @@ testers are expected to do more *exploratory* testing.
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Exit
+
+1. Exits from the application
+
+   A. Prerequisites: Launch the application.
+   B. Test case: Enter 'exit' command
+      Expected: It exits the application.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   A. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   A. Prerequisites: Delete the "fitbook.json" file from data folder.
+   B. Test case: Launch the application
+      Expected: Shows the GUI with a quick start page with default data.
+   C. Prerequisites: Modify the "fitbook.json" file from data folder which contains invalid data. This could be done by removing the HH:mm in appointment field.
+   D. Test case: Launch the application
+      Expected: Application launches successfully but has no data.
 
-2. _{ more test cases …​ }_
