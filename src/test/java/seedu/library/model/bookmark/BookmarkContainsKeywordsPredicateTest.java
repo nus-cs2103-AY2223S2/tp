@@ -145,7 +145,7 @@ public class BookmarkContainsKeywordsPredicateTest {
         BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
                 null, null, null, Collections.singletonList("Carol")
         );
-        assertFalse(predicate.test(new BookmarkBuilder().build()));
+        assertFalse(predicate.test(new BookmarkBuilder().withAuthor(null).build()));
     }
 
     @Test
