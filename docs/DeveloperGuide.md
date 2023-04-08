@@ -933,7 +933,7 @@ long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` caus
 - Ideally, this wrap-text would be implemented on all text fields
 
 
-### [7.2 Enabling `find` by subsection]()
+### 7.2 Enabling `find` by subsection
 
 - As brought up by issue [#173](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/173), the application currently does not support finding
 a task by its subsection name or description.
