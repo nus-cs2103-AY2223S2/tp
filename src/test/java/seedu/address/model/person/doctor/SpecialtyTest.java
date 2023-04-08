@@ -1,5 +1,6 @@
 package seedu.address.model.person.doctor;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,5 +37,12 @@ public class SpecialtyTest {
         assertTrue(Specialty.isValidSpecialty("general medicine 2nd year")); // alphanumeric characters
         assertTrue(Specialty.isValidSpecialty("General Medicine")); // with capital letters
         assertTrue(Specialty.isValidSpecialty("general medicine and family medicine")); // long names
+    }
+
+    @Test
+    public void getValue_validSpecialty_returnsSpecialty() {
+        String validSpecialty = "General Medicine";
+        Specialty specialty = new Specialty(validSpecialty);
+        assertEquals(specialty.getValue(), validSpecialty);
     }
 }

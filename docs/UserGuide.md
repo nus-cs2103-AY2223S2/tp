@@ -210,12 +210,11 @@ This is a tutorial for **first-time** Docedex users.
      ![AddDoc](images/AddDoc.png)
 3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/pendingReview` in the command box.
    - Note: On adding a new patient, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-     ![AddPtnBef](images/AddPtn.png)
+     ![AddPtn](images/AddPtn.png)
 4. Add a few more doctors and patients to Docedex!
 5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
    - Note: On assigning a patient to a doctor, the doctors' list is filtered to show only doctors associated with the patient. To view all doctor records, simply type `list-doc` in the command box.
-     ![AssignPtnBef](images/AssignPtnBef.png)
-     ![AssignPtnAft](images/AssignPtnAft.png)
+     ![AssignPtn](images/AssignPtnAft.png)
 6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
    - Note: On selecting the doctor, the patients' list is filtered to display only patients associated with the doctor. To view all patients use `list-ptn`.
      ![SelectDoctor](images/SelectDoctor.png)
@@ -224,9 +223,7 @@ This is a tutorial for **first-time** Docedex users.
 8. Let us try **undoing the assignment of the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
    ![UnassignPtn](images/UnassignPtn.png)
 9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
-   ![FindDocTut](images/FindDocTut.png)
 10. Let us try **finding a patient** with the name Patrick. Enter `find-ptn n/Patrick` in the command box.
-    ![FindPtnTut](images/FindPtnTut.png)
 11. Let us try **deleting a doctor** from Docedex. Enter the command `del-doc 1` in the command box. This removes the first displayed doctor in the doctors' list.
 12. Let us try **deleting a patient** from Docedex. Enter the command `del-ptn 1` in the command box. This removes the first displayed patient in the patients' list.
 13. Let us try **listing all doctors**. Enter the command `list-doc` in the command box. This lists all the doctors within Docedex.
@@ -254,7 +251,7 @@ This is a tutorial for **first-time** Docedex users.
     - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
     - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
 If no patients appear in the patients list, it is because none have been assigned to the doctor.
 
@@ -282,6 +279,13 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
     - `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
+
+<div markdown="span" class="alert alert-info">
+Edit doctor command, also calls select doctor to display the recently updated information in the Enlarged Contact Card.
+If no patients appear in the patients list, it is because none have been assigned to the doctor.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -379,6 +383,13 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
+<div markdown="span" class="alert alert-heading">
+Assign patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
+The doctors that appear in the doctors list, are those that the patient has been assigned to.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Undoing assignment of a patient from a doctor
@@ -389,6 +400,13 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Possible use cases: Transferring a patient's case from one doctor to another
 - Examples:
   - `unassign-ptn ptn/1 doc/1` undoes the assignment of the first patient from the first doctor.
+
+<div markdown="span" class="alert alert-heading">
+Unassign (undo assignment) patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
+The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient is assigned to no doctors).
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -411,6 +429,13 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
     - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
     - `edit-ptn 2 n/Daenerys Targaryen st/Inpatient t/` Edits the name and status of the 2nd patient to be `Daenerys Targaryen` and `Inpatient` respectively. Adding t/ also clears all existing tags.
+
+<div markdown="span" class="alert alert-heading">
+Edit patient command, also calls select patient to display the recently updated information in the Enlarged Contact Card.
+The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient has not been assigned to any doctor). 
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -458,7 +483,7 @@ Examples:
 - Note to user:
     - The index refers to the index number shown in the displayed patient list.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
 If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
 
