@@ -2,11 +2,13 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.testutil.TypicalShop;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class AutoM8CommandTestUtil {
+
 
     public static boolean assertFailure(Command command, Model model, Exception exception) {
         return assertFailure(command, model, exception.getMessage());
@@ -60,5 +62,6 @@ public class AutoM8CommandTestUtil {
                 && posMsg.hashCode() == msg.hashCode()
                 && posMsg.equals(msg);
     }
+
 
 }
