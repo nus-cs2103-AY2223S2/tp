@@ -44,7 +44,7 @@ alt Main_Selected_Mode
     deactivate DeleteCardCommandParser
     'Hidden arrow to position the destroy marker below the end of the activation bar.
     DeleteCardCommandParser -[hidden]-> MasterDeckParser
-
+    destroy DeleteCardCommandParser
     MasterDeckParser --> LogicManager : d
     deactivate MasterDeckParser
 
