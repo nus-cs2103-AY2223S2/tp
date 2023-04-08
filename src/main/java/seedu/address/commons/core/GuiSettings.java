@@ -20,6 +20,7 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_Y = 17;
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
+    //"Icons made by Freepik from www.flaticon.com"
     private static final String DEFAULT_PHOTO_PATH = "/images/studentProfiles/student_";
     private static final String DEFAULT_MORE_PHOTO = "/images/more_icon.png";
     private static final String DEFAULT_PHOTO_FORMAT = ".png";
