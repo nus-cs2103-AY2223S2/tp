@@ -131,8 +131,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
-  All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
+* >**Note:**
+  > InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
+  > All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
 
 </div>
 
@@ -356,7 +357,8 @@ Clear all relevant internship application entries from the internship tracker wi
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
 * Clears all internship applications with the specified keyword - `COMPANY_NAME`, `JOB_TITLE` or `STATUS`.
-* Three types of clear_by features are provided, but can only execute independently.
+* As a protective approach, only internship applications with desired particulars that are **fully matched** with the entire, case-sensitive keyword will be cleared.
+* Three types of clear_by features are provided, they can only be executed independently.
 
 Examples:
 * `clear_by n/Meta` Clears all application with COMPANY_NAME as Meta.
@@ -472,11 +474,11 @@ Searches the recorded lists of todos and notes by keyword (company name in todos
 
 Format: `find_task KEYWORD`
 
-Searches for the todos or notes with the specified `KEYWORD`.
+Searches for the todos or notes with the specified case-insensitive `KEYWORD`.
 The keyword refers to the company name in todos or the note content in notes that the user intends to look for.
 
 Examples:
-`find_task test` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` as test.
+`find_task test week` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` that contain `test` or `week`.
 
 ### Display a list of todo internship applications : `list_todo`
 

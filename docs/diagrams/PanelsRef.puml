@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Panels <<rectangle>> {
+Class "{abstract}\nUiPart" as UiPart
+Class MixedPanel #CF2765
+Class ApplicationListPanel #CF2765
+Class StatsInformationListPanel
+Class StatsInformationCard
+Class MainWindow
+}
+
+MainWindow *-down-> "1" ApplicationListPanel
+MainWindow *-down-> "1" StatsInformationListPanel
+MainWindow *-down-> "1" MixedPanel
+
+MixedPanel --|> UiPart
+ApplicationListPanel --|> UiPart
+StatsInformationListPanel --|> UiPart
+StatsInformationCard --|> UiPart
+
+StatsInformationListPanel -down-> StatsInformationCard
+
+StatsInformationCard .right.> Model
+
+@enduml

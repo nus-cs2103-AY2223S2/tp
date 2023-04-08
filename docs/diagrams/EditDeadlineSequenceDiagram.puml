@@ -14,14 +14,14 @@ box Model MODEL_COLOR_T1
 participant "model:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_deadline 1 by/dt")
+[-> LogicManager : execute(input)
 activate LogicManager
 
-note right: dt = new deadline
-LogicManager -> InternEaseParser : parseCommand("edit_deadline 1 by/dt")
+note right: input = "edit_deadline 1 by/newDate" \n cmd = "edit_deadline" \n args = "1 by/dt"
+LogicManager -> InternEaseParser : parseCommand(input)
 activate InternEaseParser
 
-InternEaseParser -> TaskParser : parseTaskCommand("edit_deadline", "1 by/dt")
+InternEaseParser -> TaskParser : parseTaskCommand(cmd, args)
 activate TaskParser
 
 create EditDeadlineCommandParser
@@ -31,7 +31,7 @@ activate EditDeadlineCommandParser
 EditDeadlineCommandParser --> TaskParser
 deactivate EditDeadlineCommandParser
 
-TaskParser -> EditDeadlineCommandParser : parse(1, dt)
+TaskParser -> EditDeadlineCommandParser : parse(1, newDate)
 activate EditDeadlineCommandParser
 
 create EditDeadlineCommand
@@ -55,15 +55,7 @@ deactivate InternEaseParser
 LogicManager -> EditDeadlineCommand : execute(model)
 activate EditDeadlineCommand
 
-EditDeadlineCommand -> Model : getFilteredTodoList()
-activate Model
-
-Model --> EditDeadlineCommand
-deactivate Model
-
-EditDeadlineCommand -> EditDeadlineCommand : createUpdatedTodo(todo, update) : updatedTodo
-
-EditDeadlineCommand -> Model : setTodo(originalTodo, updatedTodo)
+EditDeadlineCommand -> Model : setTodo(original, updated)
 activate Model
 
 Model --> EditDeadlineCommand
