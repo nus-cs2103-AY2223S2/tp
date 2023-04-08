@@ -458,9 +458,12 @@ Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
 Example: 
 
 Our initial recipe book:
+<p align="center" width="100%">
+    <img src="images/GroceriesStart.png" width=500 height=400>
+</p>
 
-
-Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the output box along with their quantities.
+Expected outcome: A list of ingredients for recipes with index 1, 3 and 4, will be displayed in the result 
+display along with their quantities.
 <p align="center" width="100%">
     <img src="images/GroceriesResult.png" width=500 height=400>
 </p>

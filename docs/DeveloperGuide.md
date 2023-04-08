@@ -834,8 +834,8 @@ In the near future, we hope to be able to enhance our application as stated belo
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
-Our team has put in substantial effort into developing this application. Knowing who our product is 
-targeted towards and determining how our product will meet their needs and solve their challenges are of 
+Our team has put in substantial effort into developing this application. Knowing **who** our product is 
+targeted towards and determining **how** our product will meet their needs and solve their challenges are of 
 utmost importance to us. As such, we have developed an extensive list of 31 [user stories](#user-stories) to 
 generate the features we want to include in our application.
 
@@ -845,15 +845,16 @@ various classes and fields (e.g. changing the `email` field of the `Person` obje
 for the `Recipe` object), and as a result, many test cases broke. However, we understood that this was part of the experience of understanding 
 the codebase of AB3. As such, we devoted a significant amount of time fixing the test cases and morphing the code to follow our application's agenda.
 
-We wanted to offer flexibility for users yet maintain a sense of structure and consistency with our 
-application. Thus, a challenge was deciding on the right balance between how rigid we wanted to model the 
-various fields of the `Recipe` object and how flexible user inputs can be. For instance, for the 
+We wanted to offer flexibility for users yet maintain a sense of structure and consistency in our 
+application. Thus, a challenge was deciding on the right balance between how **rigid** we wanted to model the 
+various fields of the `Recipe` object and how **flexible** user inputs can be. For instance, for the 
 `Ingredient` class, we initially implemented it to simply take in an entire `String` with no check constraints. However, after 
 careful deliberation and reflection on the issues that this imposed (e.g. the issue that users can input 
 whatever they want into this field), we decided to structure the 
 `Ingredient` field to take in a `String` that follows the format: `INGREDIENT_NAME, 
 QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT`. This allowed us 
-to ensure structure in our codebase by doing a check on the various subfields of the `Ingredient` field 
+to ensure structure in our codebase by enforcing constraints on the various subfields of the `Ingredient` 
+field 
 (e.g. `QUANTITY` must be numeric while `INGREDIENT_NAME` must be a word or sentence).
 
 Wanting to model a `Recipe` object in our application meant that we had to implement an extra panel to
@@ -864,4 +865,4 @@ tools it offers. We also made extra effort to ensure that the UI was responsive,
 Overall, despite the limited time frame we had to work with to develop our product, we were able to 
 prioritize the most essential features and functionalities, which allowed us to deliver a quality product. 
 Not only that, we also developed a deeper understanding of the various software engineering methods, as 
-well as honing our skills in areas such as brainstorming, testing and debugging. 
+well as honed our skills in areas such as brainstorming, testing and debugging. 
