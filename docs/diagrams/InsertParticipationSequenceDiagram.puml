@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAA" as TAA LOGIC_COLOR
+participant ":InsertParticipationParser" as InsertParticipationParser LOGIC_COLOR
+participant "d:InsertParticipationCommand" as InsertParticipationCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("insertPP 1 w/1 pp/200")
+activate LogicManager
+
+LogicManager -> TAA : parseCommand("insertPP 1 w/1 pp/200")
+activate TAA
+
+create InsertParticipationParser
+TAA -> InsertParticipationParser
+activate InsertParticipationParser
+
+InsertParticipationParser --> TAA
+deactivate InsertParticipationParser
+
+TAA -> InsertParticipationParser : parse("1 w/1 pp/200")
+activate InsertParticipationParser
+
+create InsertParticipationCommand
+InsertParticipationParser -> InsertParticipationCommand
+activate InsertParticipationCommand
+
+InsertParticipationCommand --> InsertParticipationParser : d
+deactivate InsertParticipationCommand
+
+InsertParticipationParser --> TAA : d
+deactivate InsertParticipationParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+InsertParticipationParser -[hidden]-> TAA
+destroy InsertParticipationParser
+
+TAA --> LogicManager : d
+deactivate TAA
+
+LogicManager -> InsertParticipationCommand : execute()
+activate InsertParticipationCommand
+
+InsertParticipationCommand -> Model : updateStudent(student)
+activate Model
+
+Model --> InsertParticipationCommand
+deactivate Model
+
+create CommandResult
+InsertParticipationCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> InsertParticipationCommand
+deactivate CommandResult
+
+InsertParticipationCommand --> LogicManager : result
+deactivate InsertParticipationCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
