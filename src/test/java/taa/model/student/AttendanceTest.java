@@ -1,11 +1,10 @@
 package taa.model.student;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
 
 public class AttendanceTest {
     private static final String INVALID_PP_STORAGE_STRING = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
@@ -95,18 +94,18 @@ public class AttendanceTest {
     @Test
     void listAtdString() {
         Attendance atd = new Attendance(BASIC_ATTENDANCE_STRING, BASIC_PP_STRING);
-        String res = "Week 1: [X]\nWeek 2: [X]\nWeek 3: [ ]\n" +
-                "Week 4: [ ]\nWeek 5: [ ]\nWeek 6: [ ]\nWeek 7: [ ]\nWeek 8: [ ]\n" +
-                "Week 9: [ ]\nWeek 10: [ ]\nWeek 11: [ ]\nWeek 12: [ ]\n";
+        String res = "Week 1: [X]\nWeek 2: [X]\nWeek 3: [ ]\n"
+                + "Week 4: [ ]\nWeek 5: [ ]\nWeek 6: [ ]\nWeek 7: [ ]\nWeek 8: [ ]\n"
+                + "Week 9: [ ]\nWeek 10: [ ]\nWeek 11: [ ]\nWeek 12: [ ]\n";
         assertEquals(atd.listAtdString(), res);
     }
 
     @Test
     void listPpString() {
         Attendance atd = new Attendance(BASIC_ATTENDANCE_STRING, BASIC_PP_STRING);
-        String res = "Week 1: [120]\nWeek 2: [240]\nWeek 3: [-1]\n" +
-                "Week 4: [-1]\nWeek 5: [-1]\nWeek 6: [-1]\nWeek 7: [-1]\nWeek 8: [-1]\n" +
-                "Week 9: [-1]\nWeek 10: [-1]\nWeek 11: [-1]\nWeek 12: [-1]\n";
+        String res = "Week 1: [120]\nWeek 2: [240]\nWeek 3: [-1]\n"
+                + "Week 4: [-1]\nWeek 5: [-1]\nWeek 6: [-1]\nWeek 7: [-1]\nWeek 8: [-1]\n"
+                + "Week 9: [-1]\nWeek 10: [-1]\nWeek 11: [-1]\nWeek 12: [-1]\n";
         assertEquals(atd.listPpString(), res);
     }
 

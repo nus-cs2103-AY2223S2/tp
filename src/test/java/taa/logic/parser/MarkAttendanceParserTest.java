@@ -1,6 +1,7 @@
 package taa.logic.parser;
 
 import org.junit.jupiter.api.Test;
+
 import taa.model.student.Attendance;
 
 public class MarkAttendanceParserTest {
