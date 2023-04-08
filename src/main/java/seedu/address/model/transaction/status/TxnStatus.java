@@ -20,10 +20,8 @@ public class TxnStatus extends Status {
     public static final String MESSAGE_CONSTRAINTS =
             "Transaction status should only be " + OPEN + " or " + CLOSED + ", and should not be blank.";
 
-    /* The input should be "open" or "closed" */
-
-    public final TxnStatusName statusName;
-    public final Instant timestamp;
+    private final TxnStatusName statusName;
+    private final Instant timestamp;
 
     /**
      * Construct a {@code TxnStatus}, given a valid String key for a TxnStatusName.

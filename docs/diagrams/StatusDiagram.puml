@@ -1,0 +1,39 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+
+class Person
+class LeadStatus
+abstract class Status
+class Transaction
+class TxnStatus
+
+Status <|-- LeadStatus
+Status <|-- TxnStatus
+LeadStatus "1" <-- Person
+TxnStatus "1" <-- Transaction
+
+class Status {
+//timestamp:Instant//
+//+getTimestamp()//
+//+getDurationSinceLastUpdate()//
++formatDuration()
++isValidTimestamp()
+}
+
+class Person {
+}
+
+class LeadStatus {
+-timestamp:Instant
+-statusName:LeadStatusName
+}
+
+class TxnStatus {
+-timestamp:Instant
+-statusName:TxnStatusName
+
+}
+
+@enduml

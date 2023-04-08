@@ -4,33 +4,69 @@
 
 
 participant ":StatusCommand" as StatusCommand LOGIC_COLOR
+participant "**<<class>>**\nStatusCommand" as StatusCommandClass LOGIC_COLOR
 participant ":Model" as Model LOGIC_COLOR
-
-
-
+participant "lastShownList:\nList<Person>" as List LOGIC_COLOR
+participant ":Person" as Person LOGIC_COLOR
+participant ":LeadStatus" as LeadStatus LOGIC_COLOR
+participant ":AddressBook" as AddressBook LOGIC_COLOR
 -> StatusCommand: execute()
+activate StatusCommand
 
 StatusCommand -> Model: getFilteredPersonList()
+activate Model
 Model --> StatusCommand: List<person> lastShownList
-
-alt index exceeds lastShownList.size()
+deactivate Model
+note over Person: **Sequence diagram for StatusCommand**\nThis is the general execution sequence for StatusCommand. \nStatusCommand follows a similar route to the EditCommand,\nwith the most distinctive difference being the\ncheck for the same status throwing an error.
+alt index >=\n lastShownList.size()
     <--- StatusCommand: CommandException
 end
 
-StatusCommand -> Model: getZeroBased(index)
-StatusCommand <-- Model: toBeUpdated:Person
+StatusCommand -> List: getZeroBased(index)
+activate List
+StatusCommand <-- List: toBeUpdated:Person
+deactivate List
 
 alt lead status is the same as\nlead status of toBeUpdated
     <-- StatusCommand: CommandException
 end
 
-StatusCommand -> StatusCommand : createPersonWithNewStatus()\n return:updatedPerson
 
-StatusCommand -> Model : setPerson(updatedPerson)
+StatusCommand -> StatusCommandClass : createPersonWithNewStatus()
+activate StatusCommandClass
+
+StatusCommandClass -> Person ** : new Person()
+note left: A new person is created with all same attributes\nexcept for their lead status
+activate Person
+Person -> LeadStatus ** : new LeadStatus()
+note left: New LeadStatus with new timestamp created and \nplaced in the person with same original attributes
+activate LeadStatus
+
+LeadStatus --> Person : newLeadStatus:LeadStatus
+deactivate LeadStatus
+
+Person --> StatusCommandClass : updatedPerson:Person
+deactivate Person
+StatusCommandClass --> StatusCommand
+deactivate StatusCommandClass
+
+
+
+StatusCommand -> Model : setPerson(toBeUpdated, updatedPerson)
+activate Model
+Model -> AddressBook : setPerson(toBeUpdated, updatedPerson)
+activate AddressBook
+AddressBook --> Model
+deactivate AddressBook
 Model --> StatusCommand
+deactivate Model
+
 
 StatusCommand -> Model : updateFilteredPersonList()
+activate Model
 Model --> StatusCommand
+deactivate Model
+deactivate StatusCommand
 
 box
 @enduml
