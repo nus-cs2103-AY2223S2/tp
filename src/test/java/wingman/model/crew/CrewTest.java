@@ -21,7 +21,7 @@ public class CrewTest {
     private final Crew crew1 = new Crew(name1, rank1);
     private final Crew crew2 = new Crew(name2, rank1);
     private final Crew crew3 = new Crew(name1, rank2);
-    private final Crew crew4 = new Crew(name2, rank2);
+    private final Crew crew4 = new Crew(name1, rank1);
 
     @Test
     public void testCrew() {
