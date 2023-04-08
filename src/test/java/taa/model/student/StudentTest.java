@@ -2,11 +2,14 @@ package taa.model.student;
 
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static taa.logic.commands.CommandTestUtil.VALID_TAG_LAB02;
 import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import taa.model.tag.Tag;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
 import taa.testutil.TypicalPersons;
@@ -85,5 +88,22 @@ public class StudentTest {
 
         Student bobCopy = new PersonBuilder(TypicalPersons.BOB).build();
         Assertions.assertTrue(bobCopy.getName().equals(new Name(VALID_NAME_BOB)));
+    }
+
+    @Test
+    public void getClassTags() {
+        // no tags provided --> size of set returned should be 0
+        Assertions.assertEquals(TypicalPersons.CARL.getClassTags().size(), 0);
+
+        // 1 tag provided --> returned set should contain one and only one tag with the given name
+        Set<Tag> amyClassTags = TypicalPersons.AMY.getClassTags();
+        Assertions.assertEquals(amyClassTags.size(), 1);
+        Assertions.assertTrue(amyClassTags.contains(new Tag(VALID_TAG_LAB02)));
+
+        // 2 tags provided --> both tags should be present in returned set, and nothing else
+        Set<Tag> bobClassTags = TypicalPersons.BOB.getClassTags();
+        Assertions.assertEquals(bobClassTags.size(), 2);
+        Assertions.assertTrue(bobClassTags.contains(new Tag(VALID_TAG_LAB02)));
+        Assertions.assertTrue(bobClassTags.contains(new Tag(VALID_TAG_TUT_15)));
     }
 }
