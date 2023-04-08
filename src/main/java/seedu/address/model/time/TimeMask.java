@@ -115,7 +115,7 @@ public class TimeMask {
         int startBits = Integer.parseInt("1".repeat(23 - starHour + 1), 2);
         int mask = startBits << starHour;
         weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
-        curr = curr == 6 ? 0 : curr+1;
+        curr = curr == 6 ? 0 : curr + 1;
 
         while (curr < endDay) {
             startBits = Integer.parseInt("1".repeat(24), 2);
