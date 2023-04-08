@@ -500,14 +500,10 @@ Examples:
 
 #### Edit a Video
 
-> `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}[, {tag_2}[, ...]]]`
+> `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/tags {tag_1}[, {tag_2}[, ...]]] [/watch] [/unwatch]`
 
 Edit the details of a video.
 
-- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched"
-  - If this argument is specified, then `/unwatch` should not be specified
-- <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as "not watched"
-  - If this argument is specified, then `/watch` should not be specified
 - [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video to be edited
   - Must belong to an existing video in the lecture specified in `lecture_name`
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
@@ -519,6 +515,10 @@ Edit the details of a video.
 - [<span style="color:#e46c0a">`updated_timestamp`</span>](#timestamp-format) : The updated timestamp of the video where the user last stopped watching at
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags that will replace the current tags applied to the lecture
   - Repeated tags (if any) will be ignored
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched"
+  - If this argument is specified, then `/unwatch` should not be specified
+- <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as "not watched"
+  - If this argument is specified, then `/watch` should not be specified
 
 Examples:
 
