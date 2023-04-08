@@ -441,9 +441,6 @@ Given below is an sequence diagram that illustrates the **Adding a Patient** mec
 
 <img src="images/patient/dg/AddPatientSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 #### Detailing Patients
 
 The **Detailing Patients** mechanism is facilitated by `VMS`. It will update the UI with the Patient requested.
@@ -466,9 +463,6 @@ Given below is an sequence diagram that illustrates the **Detailing Patients** m
 
 <img src="images/patient/dg/DetailPatientsSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 #### Listing Patients
 
 The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
@@ -489,9 +483,6 @@ The activity diagram below summarises the action when the patient `ListCommand` 
 Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
 
 <img src="images/patient/dg/ListPatientsSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 #### Finding a Patient
 
@@ -530,9 +521,6 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 <img src="images/patient/dg/FindPatientSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 `FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
 
 #### Editing a Patient
@@ -568,9 +556,6 @@ Given below is an example usage scenario and how **Editing a Patient** mechanism
 
 <img src="images/patient/dg/EditPatientSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 #### Deleting a Patient
 
 The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
@@ -593,9 +578,6 @@ Given below is an sequence diagram that illustrates the **Deleting a Patient** m
 
 <img src="images/patient/dg/DeletePatientSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 #### Clearing Patients
 
 The **Clearing Patients** mechanism is facilitated by `VMS`. It will set the patient manager with a new empty patient manager, effectively clearing all the Patients
@@ -617,9 +599,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 <img src="images/patient/dg/ClearPatientSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 ### Appointment
 
 #### Adding a Appointment
@@ -629,9 +608,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/appointment/AddAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/AddAppointmentSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Listing a Appointment
@@ -641,9 +617,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/appointment/ListAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/ListAppointmentSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Finding a Appointment
@@ -653,9 +626,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/appointment/FindAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 ### Vaccination
@@ -667,9 +637,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/vaccination/AddVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/AddVaxTypeSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Listing a VaxType
@@ -679,9 +646,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/vaccination/ListVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/ListVaxTypeSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Finding a VaxType
@@ -691,9 +655,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/vaccination/FindVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/FindVaxTypeSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 ### Keyword
@@ -705,9 +666,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Listing a Keyword
@@ -717,9 +675,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 #### Finding a Keyword
@@ -729,9 +684,6 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 <!-- TODO
 <img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 -->
 
 
