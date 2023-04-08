@@ -234,6 +234,8 @@ Here's a (partial) class diagram of the `Logic` component:
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ConnectUsParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
@@ -390,6 +392,7 @@ The sequence of the `edit` command is as follows:
 7. A `Command Result` is returned with the result of the execution.
 
 The following sequence diagram shows how `edit` works:
+
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
 The following sequence diagram provides details on how the `informationFields` are being parsed:
@@ -469,13 +472,13 @@ The following activity diagram shows the logic of the `help` command.
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
 
-<div style="page-break-after: always"></div>
-
 ## 5.1 Improve Edit Command
 
 Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
 
 The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
+
+<div style="page-break-after: always"></div>
 
 ## 5.2 Better Information Field Validation
 
@@ -531,13 +534,13 @@ For example, our testers have noted that:
 
 We plan to address and improve our UI in V1.6.
 
+<div style="page-break-after: always"></div>
+
 ## 5.6 Improve Tag Deletion Command
 
 Currently, the `delete-t` command can only delete tags one at a time. This may be inefficient if a users wants to delete multiple tags of differing tag types, especially if said user has contacts with many assigned tags.
 
 We plan to address this constraint in the next iteration of this product (V1.5).
-
-<div style="page-break-after: always"></div>
 
 ## 5.7 Improve Consistency of Command Feedback
 
