@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -34,9 +35,11 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     private static final String FXML = "DeliveryJobListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
 
-    private BiConsumer<Integer, DeliveryJob> onSelectHandler;
-    private Consumer<DeliveryJob> onCheckHandler;
-    private Optional<BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>>> sortHandler;
+    private Optional<BiConsumer<Integer, DeliveryJob>> onSelectHandler = Optional.empty();
+    private Optional<Consumer<DeliveryJob>> onCheckHandler = Optional.empty();
+    private Optional<Consumer<DeliveryJob>> onDeleteHandler = Optional.empty();
+    private Optional<BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>>> sortHandler = Optional
+            .empty();
 
     private boolean isSortByAsc = false;
 
@@ -57,85 +60,86 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     @FXML
     private ToggleGroup toggleGroup;
 
+    private EventHandler<KeyEvent> listKeyEventHandler = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode().equals(KeyCode.DELETE)) {
+                onDeleteHandler.ifPresent(handler -> {
+                    logger.info("[DeliveryJobListPanel] KeyPressed: "
+                            + deliveryJobListView.getSelectionModel().getSelectedIndex());
+                    handler.accept(deliveryJobListView.getSelectionModel().getSelectedItem());
+                });
+                return;
+            }
+            if (event.getCode().equals(KeyCode.UP) || event.getCode().equals(KeyCode.DOWN)) {
+                selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+                return;
+            }
+            if (event.isControlDown() && event.getCode().equals(KeyCode.C)) {
+                copyToClipboard();
+            }
+        }
+    };
+
+    private ListChangeListener<DeliveryJob> listChangeHandler = new ListChangeListener<DeliveryJob>() {
+        @Override
+        public void onChanged(Change<? extends DeliveryJob> c) {
+            logger.info("[DeliveryJobListPanel] list update event");
+            selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+        }
+    };
+
+    private EventHandler<Event> listClickEventHandler = new EventHandler<Event>() {
+        @Override
+        public void handle(Event event) {
+            logger.info("[DeliveryJobListPanel] MouseClicked: "
+                    + deliveryJobListView.getSelectionModel().getSelectedIndex());
+            selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+        }
+    };
+
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList,
-            BiConsumer<Integer, DeliveryJob> selectHandler,
-            Consumer<DeliveryJob> checkHandler,
-            Consumer<DeliveryJob> deleteHandler) {
+    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
         deliveryJobListView.setCellFactory(listView -> new DeliveryJobListViewCell());
-        this.onSelectHandler = selectHandler;
 
-        deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
+        deliveryJobListView.setOnMouseClicked(listClickEventHandler);
 
-            @Override
-            public void handle(Event event) {
-                selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
-            }
-
-        });
-
-        deliveryJobListView.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.DELETE)) {
-                    deleteHandler.accept(deliveryJobListView.getSelectionModel().getSelectedItem());
-                    selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
-                    return;
-                }
-                if (event.getCode().equals(KeyCode.UP) || event.getCode().equals(KeyCode.DOWN)) {
-                    selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
-                    return;
-                }
-                if (event.isControlDown() && event.getCode().equals(KeyCode.C)) {
-                    copyToClipboard();
-                }
-            }
-
-        });
-
-        onCheckHandler = checkHandler;
+        deliveryJobListView.setOnKeyPressed(listKeyEventHandler);
+        jobList.addListener(listChangeHandler);
     }
 
     /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}
-     * without any event handler.
+     * Selects first applicable item in the job list.
+     *
      */
-    public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
-        this(jobList, (job, idx) -> {}, (job) -> {}, (job) -> {});
+    public void selectDefault() {
+        selectItem(0);
     }
 
     /**
-     * selectItem
+     * Selects the item in the job list.
      *
      * @param idx
      */
-    public void selectItem(int idx) {
+    private void selectItem(int idx) {
+        if (onSelectHandler.isEmpty()) {
+            return;
+        }
         if (deliveryJobListView.getItems().size() > 0) {
-            logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+            logger.info("[selectItem] selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
             if (idx < 0) {
                 idx = 0;
             }
-            deliveryJobListView.getSelectionModel().select(idx);
-            onSelectHandler.accept(idx + 1, deliveryJobListView.getSelectionModel().getSelectedItem());
+            if (onSelectHandler.isPresent()) {
+                onSelectHandler.get().accept(idx + 1, deliveryJobListView.getItems().get(idx));
+            }
         } else {
-            onSelectHandler.accept(-1, null);
-        }
-    }
-
-    /**
-     * selectPrevious.
-     */
-    public void selectAvailable() {
-        if (this.size() > 0) {
-            if (deliveryJobListView.getSelectionModel().getSelectedIndex() != this.size() - 1) {
-                deliveryJobListView.getSelectionModel().selectNext();
-            } else {
-                deliveryJobListView.getSelectionModel().selectPrevious();
+            if (onSelectHandler.isPresent()) {
+                onSelectHandler.get().accept(-1, null);
             }
         }
     }
@@ -154,7 +158,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new DeliveryJobCard(job, getIndex() + 1, check -> {
-                    onCheckHandler.accept(check);
+                    onCheckHandler.ifPresent(handler -> handler.accept(check));
                 }).getRoot());
             }
         }
@@ -175,10 +179,30 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     }
 
     /**
-     * Triggers update event for child elements.
+     * Sets the select handler.
+     *
+     * @param handler
      */
-    public void refresh() {
-        selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+    public void setSelectHandler(BiConsumer<Integer, DeliveryJob> handler) {
+        this.onSelectHandler = Optional.of(handler);
+    }
+
+    /**
+     * Sets the check status complete handler.
+     *
+     * @param handler
+     */
+    public void setCheckHandler(Consumer<DeliveryJob> handler) {
+        this.onCheckHandler = Optional.of(handler);
+    }
+
+    /**
+     * Sets the delete handler.
+     *
+     * @param handler
+     */
+    public void setDeleteHandler(Consumer<DeliveryJob> handler) {
+        this.onDeleteHandler = Optional.of(handler);
     }
 
     /**
