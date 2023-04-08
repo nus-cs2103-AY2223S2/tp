@@ -812,7 +812,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The person has no Instagram record.
   * 3a1. ConnectUS displays error message.
-  Use case ends
+  Use case ends.
+  
+**Use case: Open a contact's WhatsApp with prefilled message**
+
+**MSS**
+
+1. User requests to list persons
+2. ConnectUS shows a list of persons
+3. User requests to open the WhatsApp page of a specific person in the list with provided message
+4. ConnectUS launches desired WhatsApp with message prefilled
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The person has no WhatsApp record.
+  * 3a1. ConnectUS displays error message.
+  Use case ends.
+
+* 4a. WhatsApp is launched but it does not fill the message.
+  Use case resumes from step 3.
 
 *{More to be added}*
 
