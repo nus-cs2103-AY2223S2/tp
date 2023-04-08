@@ -172,6 +172,9 @@ How the parsing works:
 * When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+ 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
@@ -180,15 +183,13 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="450" />
 
  </p>
- 
-<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
-* Model Stores Independent Entities(`Internship` and `Events`) which interact with each other to give the features of intern's ship
+* Stores independent entities (`Internship` and `Events`) that represent data stored by TinS
 * For each entity :
-  * model stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
-  * model stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+  * `Model` stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
+  * `Model` stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 
