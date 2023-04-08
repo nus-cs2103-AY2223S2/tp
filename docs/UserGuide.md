@@ -23,7 +23,7 @@ Let's get you _rizzed_ up in the fastest way possible!
    rizzipe.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note that our experienced chefs have crafted
 some sample recipes for you already.<br/><br/>
-![UI QuickStart](images/UiQuickStart.png)
+![UI QuickStart](images/UiQuickStart.png)<br/><br/>
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
 7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
 8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
