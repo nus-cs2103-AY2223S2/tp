@@ -1083,54 +1083,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-* **addp**: Add a new person to the list.
-* **addt**: Add a new task to the list.
-* **assign**: Assign a task to a person.
+  - ##### **addt**: Add a new task to the list.
+  - ##### **assign**: Assign a task to a person.
 
 #### *D*
-* **deletep**: Delete a person from the list.
-* **deletet**: Delete a task from the list.
+  - ##### **deletep**: Delete a person from the list.
+  - ##### **deletet**: Delete a task from the list.
 
 #### *E*
-* **editp**: Edit the details of a person.
-* **editt**: Edit the details of a task.
+  - ##### **editp**: Edit the details of a person.
+  - ##### **editt**: Edit the details of a task.
 
 #### *F*
-* **filterp**: Filter persons by a specific tag.
-* **findp**: Search for a person by their name.
-* **findt**: Search for a task by its title.
+  - ##### **filterp**: Filter persons by a specific tag.
+  - ##### **findp**: Search for a person by their name.
+  - ##### **findt**: Search for a task by its title.
 
 #### *H*
-* **help**: Display help information.
+  - ##### **help**: Display help information.
 
 #### *L*
-* **listall**: List all persons and tasks.
-* **listp**: List all persons.
-* **listt**: List all tasks.
+  - ##### **listall**: List all persons and tasks.
+  - ##### **listp**: List all persons.
+  - ##### **listt**: List all tasks.
 
 #### *M*
-* **mark**: Mark a task as completed.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+  - ##### **mark**: Mark a task as completed.
+  - ##### **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 #### *P*
-* **pi**: View a person's details.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **quickstart**: Launch the application with sample data.
+  - ##### **pi**: View a person's details.
+  - ##### **Private contact detail**: A contact detail that is not meant to be shared with others
+  - ##### **quickstart**: Launch the application with sample data.
 
 #### *T*
-* **ti**: View a task's details.
+  - ##### **ti**: View a task's details.
 
 #### *U*
-* **unassign**: Unassign a task from a person.
-* **unmark**: Unmark a completed task.
+  - ##### **unassign**: Unassign a task from a person.
+  - ##### **unmark**: Unmark a completed task.
 
 #### *V*
-* **viewassignedall**: View all assigned persons and tasks.
-* **viewassignedp**: View assigned persons.
-* **viewassignedt**: View assigned tasks.
-* **viewunassignedall**: View all unassigned persons and tasks.
-* **viewunassignedp**: View unassigned persons.
-* **viewunassignedt**: View unassigned tasks.
+  - ##### **viewassignedall**: View all assigned persons and tasks.
+  - ##### **viewassignedp**: View assigned persons.
+  - ##### **viewassignedt**: View assigned tasks.
+  - ##### **viewunassignedall**: View all unassigned persons and tasks.
+  - ##### **viewunassignedp**: View unassigned persons.
+  - ##### **viewunassignedt**: View unassigned tasks.
 
 
 --------------------------------------------------------------------------------------------------------------------
