@@ -110,7 +110,9 @@ The `UI` component,
 
 The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
-Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. The Class Diagram below outlines the different concrete subclasses of `Page` and the subcomponents they depend on. 
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
+
+The *Class Diagram* below outlines the different concrete subclasses of `Page` and the subcomponents they depend on. 
 
 <p align="center">
 
@@ -118,9 +120,9 @@ Different types of information are rendered by different components, each of whi
 
  </p>
 
-**How is a `Page` generated** 
+**How a `Page` is generated** 
 
-When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The Sequence Diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The *Sequence Diagram* below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI.
 
 <p align="center">
 
@@ -186,15 +188,15 @@ How the parsing works:
 
 The `Model` component,
 
-* Stores independent entities (`Internship` and `Events`) that represent data stored by TinS
-* For each entity :
-  * `Model` stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
-  * `Model` stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* `Model` also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* Stores independent entities (`Internship` and `Event`) that represent data stored by TinS
+  * The `Model` contains a catalogue for both `Internship` and `Event`. The `Internship` catalogue stores the instances of `Internship` in a `UniqueInternshipList` object, while the `Event` cataglou stores the instances of `Event` in a `UniqueEventList`.
+* Stores currently 'selected' `Internship` that results from a `select` command 
+* Stores (e.g. results of a find query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 
 
 **Relationship Between `Internship` and `Event` entities**
-Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
+Events cannot exist without its corresponding internship, thus there exists a composite relationship between the two.
 Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
 associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
 events are deleted as well.
