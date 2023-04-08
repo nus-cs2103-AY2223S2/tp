@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentWithGrades;
-import tfifteenfour.clipboard.model.student.UniqueStudentList;
+import tfifteenfour.clipboard.model.student.UniqueStudentsList;
 import tfifteenfour.clipboard.model.task.exceptions.StudentNotInPageException;
 
 
@@ -111,7 +111,7 @@ public class Task {
      *
      * @param students The list of students who are in the task students page.
      */
-    public void setStudents(UniqueStudentList students) {
+    public void setStudents(UniqueStudentsList students) {
         assert gradeList != null : "Grade List should not be null!";
         Map<Student, Integer> newGradeList = new HashMap<>();
         for (Student student : students) {

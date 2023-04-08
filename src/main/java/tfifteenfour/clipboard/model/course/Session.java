@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentWithAttendance;
-import tfifteenfour.clipboard.model.student.UniqueStudentList;
+import tfifteenfour.clipboard.model.student.UniqueStudentsList;
 
 
 
@@ -100,7 +100,7 @@ public class Session {
      *
      * @param students The list of students who are in the session.
      */
-    public void setStudents(UniqueStudentList students) {
+    public void setStudents(UniqueStudentsList students) {
         assert attendance != null : "Attendance should not be null!";
         Map<Student, Integer> newAttendance = new HashMap<>();
         for (Student student : students) {

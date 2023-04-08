@@ -20,11 +20,11 @@ import tfifteenfour.clipboard.model.student.exceptions.StudentNotFoundException;
  *
  * @see Student#isSameStudent(Student)
  */
-public class UniqueStudentList extends UniqueList<Student> {
+public class UniqueStudentsList extends UniqueList<Student> {
 
     @Override
-    public UniqueStudentList copy() {
-        UniqueStudentList copy = new UniqueStudentList();
+    public UniqueStudentsList copy() {
+        UniqueStudentsList copy = new UniqueStudentsList();
         this.internalList.forEach(student -> copy.add(student.copy()));
 
         return copy;
@@ -77,8 +77,8 @@ public class UniqueStudentList extends UniqueList<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(((UniqueStudentList) other).internalList));
+                || (other instanceof UniqueStudentsList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentsList) other).internalList));
     }
 
     /**
