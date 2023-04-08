@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.EmployeeId;

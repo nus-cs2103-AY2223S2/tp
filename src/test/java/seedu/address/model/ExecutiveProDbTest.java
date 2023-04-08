@@ -73,7 +73,8 @@ public class ExecutiveProDbTest {
     @Test
     public void hasEmployee_employeeWithSameIdentityFieldsInExecutiveProDb_returnsTrue() {
         executiveProDb.addEmployee(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SOFTWARE_ENGINEER)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER)
                 .build();
         assertTrue(executiveProDb.hasEmployee(editedAlice));
     }

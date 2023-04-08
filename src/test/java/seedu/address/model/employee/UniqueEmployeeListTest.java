@@ -42,8 +42,8 @@ public class UniqueEmployeeListTest {
     @Test
     public void contains_employeeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEmployeeList.add(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SOFTWARE_ENGINEER)
-                .build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
         assertTrue(uniqueEmployeeList.contains(editedAlice));
     }
 
@@ -85,8 +85,8 @@ public class UniqueEmployeeListTest {
     @Test
     public void setEmployee_editedEmployeeHasSameIdentity_success() {
         uniqueEmployeeList.add(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SOFTWARE_ENGINEER)
-                .build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER).build();
         uniqueEmployeeList.setEmployee(ALICE, editedAlice);
         UniqueEmployeeList expectedUniqueEmployeeList = new UniqueEmployeeList();
         expectedUniqueEmployeeList.add(editedAlice);

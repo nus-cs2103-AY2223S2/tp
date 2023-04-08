@@ -8,12 +8,10 @@ import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_TWO;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.LeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.LeaveCounter;
-import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
 public class LeaveCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

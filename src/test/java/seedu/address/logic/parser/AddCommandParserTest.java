@@ -44,39 +44,46 @@ public class AddCommandParserTest {
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER, new AddCommand(expectedEmployee));
+                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER,
+                new AddCommand(expectedEmployee));
 
         // multiple names - last name accepted
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER, new AddCommand(expectedEmployee));
+                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER,
+                new AddCommand(expectedEmployee));
 
         // multiple phones - last phone accepted
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER, new AddCommand(expectedEmployee));
+                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER,
+                new AddCommand(expectedEmployee));
 
         // multiple emails - last email accepted
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER, new AddCommand(expectedEmployee));
+                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER,
+                new AddCommand(expectedEmployee));
 
         // multiple addresses - last address accepted
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER, new AddCommand(expectedEmployee));
+                + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_MANAGER,
+                new AddCommand(expectedEmployee));
 
         // multiple tags - all accepted
         EmployeeBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
-        Employee expectedEmployeeMultipleTags = new EmployeeBuilder(BOB).withTags(VALID_TAG_MANAGER, VALID_TAG_SOFTWARE_ENGINEER)
+        Employee expectedEmployeeMultipleTags = new EmployeeBuilder(BOB)
+                .withTags(VALID_TAG_MANAGER, VALID_TAG_SOFTWARE_ENGINEER)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + DEPARTMENT_DESC_BOB + PAYROLL_DESC_BOB + PAYROLL_DESC_BOB + LEAVE_COUNTER_DESC_BOB
-                        + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_SOFTWARE_ENGINEER + TAG_DESC_MANAGER,
+                        + DATE_OF_BIRTH_DESC_BOB + DATE_OF_JOINING_DESC_BOB + TAG_DESC_SOFTWARE_ENGINEER
+                        + TAG_DESC_MANAGER,
                 new AddCommand(expectedEmployeeMultipleTags));
     }
 

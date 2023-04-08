@@ -77,7 +77,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + "  "; // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + "  ";
+    // empty string not allowed for addresses
     public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT;
     // empty string not allowed for departments
     public static final String INVALID_PAYROLL_DESC = " " + PREFIX_PAYROLL + "-1 90";
@@ -104,7 +105,8 @@ public class CommandTestUtil {
                 .withDepartment(VALID_DEPARTMENT_BOB).withPayroll(CommandTestUtil.VALID_PAYROLL_AMY)
                 .withLeaveCounter(CommandTestUtil.VALID_LEAVE_COUNTER_AMY)
                 .withDateOfBirth(CommandTestUtil.VALID_DATE_OF_BIRTH_AMY)
-                .withDateOfJoining(CommandTestUtil.VALID_DATE_OF_JOINING_AMY).withTags(VALID_TAG_SOFTWARE_ENGINEER, VALID_TAG_MANAGER).build();
+                .withDateOfJoining(CommandTestUtil.VALID_DATE_OF_JOINING_AMY)
+                .withTags(VALID_TAG_SOFTWARE_ENGINEER, VALID_TAG_MANAGER).build();
     }
 
     /**
