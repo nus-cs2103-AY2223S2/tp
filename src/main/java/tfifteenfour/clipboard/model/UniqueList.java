@@ -10,13 +10,11 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import tfifteenfour.clipboard.model.course.ElementNotFoundException;
-import tfifteenfour.clipboard.model.course.UniqueCoursesList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 
 
 /**
- * A list that enforces its items to be unique
+ * A list that enforces its items to be uniques
  */
 public abstract class UniqueList<T> implements Iterable<T> {
 
@@ -27,15 +25,15 @@ public abstract class UniqueList<T> implements Iterable<T> {
     protected final FilteredList<T> filteredList = new FilteredList<>(internalList);
 
     /**
-     * Returns true if the list contains an equivalent course as the given argument.
+     * Returns true if the list contains an equivalent item as the given argument.
      */
     public abstract boolean contains(T toCheck);
 
     public abstract UniqueList<T> copy();
 
     /**
-     * Adds a course to the list.
-     * The course must not already exist in the list.
+     * Adds a item to the list.
+     * The item must not already exist in the list.
      */
     public abstract void add(T toAdd);
 
@@ -105,11 +103,7 @@ public abstract class UniqueList<T> implements Iterable<T> {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueCoursesList // instanceof handles nulls
-                && internalList.equals(((UniqueCoursesList) other).internalList));
-    }
+    public abstract boolean equals(Object other);
 
     @Override
     public int hashCode() {

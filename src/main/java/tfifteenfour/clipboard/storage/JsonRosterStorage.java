@@ -52,10 +52,6 @@ public class JsonRosterStorage implements RosterStorage {
     public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        // Optional<JsonSerializableRoster> jsonRoster = JsonUtil.readJsonFile(
-        //         filePath, JsonSerializableRoster.class);
-
-
         File file = new File(filePath.toString());
 
         try {
@@ -69,19 +65,6 @@ public class JsonRosterStorage implements RosterStorage {
             e.printStackTrace();
             return Optional.empty();
         }
-        //to add: handling for problematic file load (incorrect format / does not exist?)
-
-
-
-        // if (!jsonRoster.isPresent()) {
-        //     return Optional.empty();
-        // }
-        // try {
-        //     return Optional.of(jsonRoster.get().toModelType());
-        // } catch (IllegalValueException ive) {
-        //     logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-        //     throw new DataConversionException(ive);
-        // }
     }
 
     @Override
@@ -99,12 +82,6 @@ public class JsonRosterStorage implements RosterStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-
-        //     IM USING MY OWN IMPLEMENTATION OF SAVING JSON BECAUSE I HAVE NO IDEA HOW THIS WORKS.
-        // MEANS THIS COMMENTED CODE HAVE TO TRACE BACK ALL THE WAY CUZ ITS UNUSED
-
-        // JsonUtil.saveJsonFile(new JsonSerializableRoster(roster), filePath);
-
 
         String rosterJson = rosterToJson(roster);
         writeJsonToFile(rosterJson, filePath);

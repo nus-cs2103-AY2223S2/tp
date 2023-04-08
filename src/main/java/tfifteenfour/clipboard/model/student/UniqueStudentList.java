@@ -3,7 +3,6 @@ package tfifteenfour.clipboard.model.student;
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Iterator;
 import java.util.List;
 
 import tfifteenfour.clipboard.model.UniqueList;
@@ -34,6 +33,7 @@ public class UniqueStudentList extends UniqueList<Student> {
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
+    @Override
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameStudent);
@@ -73,21 +73,12 @@ public class UniqueStudentList extends UniqueList<Student> {
         internalList.set(index, editedStudent);
     }
 
-    @Override
-    public Iterator<Student> iterator() {
-        return internalList.iterator();
-    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueStudentList // instanceof handles nulls
                         && internalList.equals(((UniqueStudentList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
     }
 
     /**
