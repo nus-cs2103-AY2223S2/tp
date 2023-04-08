@@ -84,7 +84,7 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         this.isRecipeSelected = isSelected;
         cardPane.setFocusTraversable(true);
-        id.setText(displayedIndex + ". ");  
+        id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().recipeName);
 
         //Duration
