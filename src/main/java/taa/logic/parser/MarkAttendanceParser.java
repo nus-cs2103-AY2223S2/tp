@@ -5,16 +5,10 @@ import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import taa.commons.core.index.Index;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
-import taa.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new MarkAttendanceCommand object
