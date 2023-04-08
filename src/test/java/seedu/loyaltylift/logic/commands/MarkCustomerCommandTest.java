@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
@@ -52,12 +53,14 @@ public class MarkCustomerCommandTest {
                 new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
 
-        assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -86,12 +89,15 @@ public class MarkCustomerCommandTest {
                 new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
+        expectedModel.sortFilteredCustomerList(Customer.SORT_POINTS);
 
-        assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
