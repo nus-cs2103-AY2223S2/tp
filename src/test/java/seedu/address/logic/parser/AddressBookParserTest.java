@@ -41,15 +41,6 @@ public class AddressBookParserTest {
         assertEquals(new FishDeleteCommand(INDEX_FIRST_FISH), command);
     }
 
-    //    @Test commented bc unable to test since EditFishDescriptor requires model
-    //    public void parseCommand_edit() throws Exception {
-    //        Fish fish = new FishBuilder().build();
-    //        EditFishDescriptor descriptor = new EditFishDescriptorBuilder(fish).build();
-    //        FishEditCommand command = (FishEditCommand) parser.parseCommand(FishEditCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_FISH.getOneBased() + " " + FishUtil.getEditFishDescriptorDetails(descriptor));
-    //        assertEquals(new FishEditCommand(INDEX_FIRST_FISH, descriptor), command);
-    //    }
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
