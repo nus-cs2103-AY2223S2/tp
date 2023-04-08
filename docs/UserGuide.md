@@ -199,12 +199,13 @@ Format: `update-info [index/INDEX] [field/NEW_INFO] ...`
   * `school/` 
   * `level/`<br>
   And their respective new values.
-* At least one updated parameter has to be present.
+* At least one updated parameter has to be present.<br>
+
+  :bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes.
 
 Examples:
-* `update-info index/1 name/John` Displays all students with the name “John” and prompts the user for clarification
-* `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
-* `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
+* `update-info index/1 name/John` Changes the name of the student at index 1 to `John`.
+* `update-info index/2 name/John address/Block 414` Changes the name and address of student at index 2 to `John` and `Block 414` respectively.
 
 #### Delete a Student Profile
 
