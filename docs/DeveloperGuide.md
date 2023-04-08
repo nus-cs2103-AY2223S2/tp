@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -15,10 +16,6 @@ title: Developer Guide
 The TechTrack software application is developed using Java 11 and employs JavaFX for constructing its graphical user
 interface.
 Gradle serves as the project management and build tool. JUnit is utilized for conducting software testing.
-
-### Features
-
-### Functions
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -33,11 +30,8 @@ Third-party software used in this project:
 * [Codecov](https://codecov.io/)
 * [JavaFx](https://openjfx.io/)
 * [JUnit](https://junit.org/)
+* [PlantUML](https://plantuml.com/)
 
-Documentation referred from:
-
-* https://github.com/kxrt/tp/blob/master/docs/DeveloperGuide.md
-* https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,7 +165,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 
 The `Model` component,
@@ -189,7 +183,7 @@ The `Model` component,
 is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. This allows `RoleBook` to only require one 
 `Tag` object per unique tag, instead of each `Role` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="750" />
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
@@ -197,7 +191,7 @@ is given below. It has a `Tag` list in the `RoleBook`, which `Role` references. 
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-2/tp/tree/master/src/main/java/seedu/techtrack/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 
@@ -231,9 +225,9 @@ seen [here](https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html#adding-a-r
 When `add ...` string is inputted, the UI calls the `LogicManager`. `LogicManager` then calls the `RoleBookParser` to
 parse the
 input. An instance of the `AddCommandParser` to parse the `args` is created through the respective static
-`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/John n/Tom`), only the last
+`ParserUtil` functions. In addition, if duplicate parameters are inputted (e.g. `add n/SWE n/Data Analyst`), only the last
 instance is taken,
-similar to how [`edit`](#edit-command) are executed.
+similar to how [`edit`](#edit-command) is executed.
 
 The `AddCommandParser` will then create the corresponding `Role` object, parsing to a `AddCommand` object it
 creates and returns. The `LogicManager` then executes the `AddCommand`, which adds the `Role` to the model.
@@ -241,6 +235,12 @@ creates and returns. The `LogicManager` then executes the `AddCommand`, which ad
 The following sequence diagram shows how the `add` command works:
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+In this diagram,
+* `userInput` represents a valid text representation of an `add` command.
+* `toAdd` represents the newly created `Role` object that will be added into the model.
+
+<br>
 
 The following sequence diagram shows how the argument parsing for the `add` command works:
 
@@ -299,27 +299,24 @@ The following sequence diagram shows how the `delete` command works:
 
 ### Salary and Deadline Command Feature
 
-The `salary` command feature is designed to enable the user to sort the roles based on the salaries in either ascending
+The `salary` command feature is designed to enable the user to sort roles in TechTrack based on their 
+salaries, in either ascending or descending order.
+
+The salary command accepts input in the format `salary ORDER`, where `ORDER` is a string that must be either `asc` or `desc`. 
+The purpose of the `ORDER` parameter is to specify whether the sorting of roles based on salary should be in ascending 
 or descending order.
 
-When the user launches the application for the first time, the RoleBook is initialized with the current role book from
-the storage and loads it. The user can then choose to use it by executing either the `salary asc` command to sort
-the salaries in ascending order or `salary desc` command to sort the salaries in descending order.
+When a user enters the command `salary ORDER` in the UI, the `LogicManager` handles the input by calling the `RoleBookParser` 
+to parse it. The `RoleBookParser` then creates an instance of the `SalaryCommandParser`, which is responsible for parsing the 
+`ORDER` of the command using ParserUtil's `parseOrder` method. If the input format is invalid, a ParseException is thrown.
 
-The format accepted by the `salary` command is `salary ORDER` where `ORDER` have to be either `asc` or `desc`.
+The `SalaryCommandParser` creates a `SalaryCommand`, which implements the `Command` interface and uses the `Model` 
+interface to sort the roles based on salary. Specifically, the `displaySortedSalaryList()` method of the Model interface 
+is used to perform the sorting.
 
-When `salary ORDER` is inputted, the UI calls the `LogicManager` which then calls the `RoleBookParser` to parse the
-input. This then creates an instance of the `SalaryCommandParser` to parse the `ORDER` of `parseOrder`from `ParserUtil`.
-If any of the inputs formats are invalid, a `ParseException` will be thrown.
-
-The `SalaryCommandParser` then creates a `SalaryCommand` which will use operations in the `Model` interface
-as `Model#displaySortedSalaryList()` to sort the roles based on the salary of the given `ORDER`.
-
-The `deadline` command implementation is similar to `salary` command by replacing `deadline` with `salary` in the
-command line to achieve the sorting of roles based on the deadline of the given `ORDER`.
-
-E.g.: Executing `deadline asc` will sort the roles from the earliest deadline to the latest deadline and vice versa for
-`deadline desc`.
+The implementation of the deadline command is similar to that of the salary command, except that the command 
+keyword is replaced with `deadline`, and the method of the `Model` interface used is `displaySortedDeadlineList()`.
+This allows for the sorting of roles based on deadline instead of salary.
 
 The following sequence diagram shows how the `salary` command works:
 
@@ -331,23 +328,28 @@ The following sequence diagram shows how the `deadline` command works:
 
 #### Design considerations:
 
-**Aspect: How `salary` and `deadline` Command executes:**
+**Aspect: How `salary` and `deadline` command executes:**
 
-* **Alternative 1 (current choice):** Sort `salary` or `deadline` of the roles in asc/desc.
+* **Alternative 1 (current choice):** Each attribute of a `Role` has its own specific sorting command (for instance, 
+we have both `salary` and `deadline` commands)
     * Pros: Easy to implement.
-    * Cons: More CLI needs to be added if more attributes are needed to sort.
+    * Cons: 
+      * More commands would have to be implemented. 
+      * The user can only sort roles by one attribute at a time.
 
-* **Alternative 2:** One sort command with the given attribute.
-    * Pros: Easy CLI for the user to use.
-    * Cons: Can be harder to implement and debug if more attributes are being sorted.
+* **Alternative 2:** One sort command with the given attribute (for instance, `sort d/ORDER $/ORDER` to sort the
+roles in TechTrack by deadline first, then salary with `sort` as the command keyword)
+    * Pros: 
+      * Only one command, which potentially is easier for the user to use.
+      * User is free to customize the sorting of roles in TechTrack. 
+    * Cons: Implementation would be more complex.
 
 #### Limitations:
 
-The sorting algorithm for `salary` and `deadline` will sort based on the order given. This will sort the current and old
-view of the roles.
+The current implementation of sorting commands would sort the entire `roleList` in the model. This means that if the user
+used a filtering command like `name` followed by executing `deadline`, it would appear as if only the filtered `roleList`
+is sorted. However, in fact, the entire `roleList` is sorted.
 
-E.g.: filtering the roles based on name, tag and applying this command `salary asc/desc` or `deadline asc/desc`
-will sort both views.
 
 ### Company Command Feature
 
