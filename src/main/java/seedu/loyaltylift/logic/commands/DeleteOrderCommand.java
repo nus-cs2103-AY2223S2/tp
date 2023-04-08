@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.REMOVE_INFO_FROM_VIEW;
 
 import java.util.List;
 
@@ -40,8 +41,11 @@ public class DeleteOrderCommand extends Command {
         }
 
         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+
         model.deleteOrder(orderToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
+        boolean isDisplayed = orderToDelete.isSameOrder(model.getOrderToDisplay());
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete),
+                isDisplayed ? REMOVE_INFO_FROM_VIEW : null);
     }
 
     @Override
