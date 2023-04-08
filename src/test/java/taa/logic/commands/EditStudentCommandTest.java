@@ -48,11 +48,11 @@ public class EditStudentCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastStudent);
         Student editedStudent = personInList.withName(CommandTestUtil.VALID_NAME_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_TUT_15).build();
 
         EditStudentCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_TUT_15).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);

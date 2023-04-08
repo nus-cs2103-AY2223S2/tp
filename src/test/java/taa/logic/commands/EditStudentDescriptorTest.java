@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taa.logic.commands.CommandTestUtil.DESC_AMY;
 import static taa.logic.commands.CommandTestUtil.DESC_BOB;
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_TUT_15).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

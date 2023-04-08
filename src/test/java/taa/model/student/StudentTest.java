@@ -2,7 +2,7 @@ package taa.model.student;
 
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static taa.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static taa.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static taa.logic.commands.CommandTestUtil.VALID_TAG_TUT_15;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new PersonBuilder(TypicalPersons.ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_TUT_15).build();
         Assertions.assertTrue(TypicalPersons.ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -69,7 +69,7 @@ public class StudentTest {
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15).build();
         Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
     }
 
