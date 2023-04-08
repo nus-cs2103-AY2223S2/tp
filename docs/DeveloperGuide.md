@@ -963,8 +963,28 @@ Similar to **UC04 Sort Contacts**, except,
 <div style="page-break-after: always;"></div>
 
 **Use case: UC20 Assigning a member from a project**
-1. _{ to be added }_
+1. User requests to add a contact to a project.
+2. SOCket adds the contact to the project.
 
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen contact is already assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+  
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
+
+* 2c. The chosen contact does not exist.
+    * 2c1. SOCket shows an error message.
+
+      Use case ends.
+  
 **Use case: UC21 Unassigning a member from a project**
 1. User requests to remove a member from a project.
 2. SOCket removes the member from the project.
@@ -977,12 +997,20 @@ Similar to **UC04 Sort Contacts**, except,
     * 2a1. SOCket shows an error message.
 
       Use case ends.
+  
 * 2b. The chosen project does not exist.
     * 2b1. SOCket shows an error message.
 
       Use case ends.
 
-**Use case: UC22 Delete a project**
+**Use case: UC22 - Add a project**
+
+Similar to **UC01 Add a contact**, except,
+* A projects is added instead of contact.
+* Only meeting date is an optional field, all other fields are compulsory.
+
+
+**Use case: UC23 Delete a project**
 
 Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
