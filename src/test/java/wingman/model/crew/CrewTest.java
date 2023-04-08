@@ -1,11 +1,15 @@
 package wingman.model.crew;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static wingman.model.crew.CrewRank.CREW_MEMBER;
+import static wingman.model.crew.CrewRank.JUNIOR_CREW_MEMBER;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static wingman.model.crew.CrewRank.*;
+import org.junit.jupiter.api.Test;
 
 public class CrewTest {
     private final String name1 = "name";
