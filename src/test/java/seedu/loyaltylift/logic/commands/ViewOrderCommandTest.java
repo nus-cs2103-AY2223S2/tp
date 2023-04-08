@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showOrderAtIndex;
@@ -12,7 +13,6 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
@@ -43,7 +43,8 @@ public class ViewOrderCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
         ViewOrderCommand viewOrderCommand = new ViewOrderCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(viewOrderCommand, model,
+                String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, ViewOrderCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -56,7 +57,8 @@ public class ViewOrderCommandTest {
 
         ViewOrderCommand viewOrderCommand = new ViewOrderCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(viewOrderCommand, model,
+                String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, ViewOrderCommand.MESSAGE_USAGE));
     }
 
     @Test

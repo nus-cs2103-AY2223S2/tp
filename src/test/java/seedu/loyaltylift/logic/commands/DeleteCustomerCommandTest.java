@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
@@ -11,7 +12,6 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
@@ -44,7 +44,8 @@ public class DeleteCustomerCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
         DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, DeleteCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class DeleteCustomerCommandTest {
 
         DeleteCustomerCommand deleteCustomerCommand = new DeleteCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, DeleteCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test

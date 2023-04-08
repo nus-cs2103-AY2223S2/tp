@@ -1,10 +1,10 @@
 package seedu.loyaltylift.logic.commands;
 
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -43,7 +43,7 @@ public class CancelOrderCommand extends Command {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Order orderToCancel = lastShownList.get(index.getZeroBased());

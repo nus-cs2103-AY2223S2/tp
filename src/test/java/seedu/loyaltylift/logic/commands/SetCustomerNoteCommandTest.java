@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -14,7 +15,6 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
@@ -78,7 +78,8 @@ public class SetCustomerNoteCommandTest {
         SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(
                 outOfBoundIndex, new Note(VALID_NOTE_BOB));
 
-        assertCommandFailure(setCustomerNoteCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(setCustomerNoteCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, SetCustomerNoteCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -95,7 +96,8 @@ public class SetCustomerNoteCommandTest {
         SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(
                 outOfBoundIndex, new Note(VALID_NOTE_BOB));
 
-        assertCommandFailure(setCustomerNoteCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(setCustomerNoteCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, SetCustomerNoteCommand.MESSAGE_USAGE));
     }
 
     @Test
