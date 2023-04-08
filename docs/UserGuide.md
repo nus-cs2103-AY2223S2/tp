@@ -77,7 +77,7 @@ Example:  ![RequireOptional](images/RequireOptional.png)
 
 Example:  ![moreThanOneTag](images/moreThanOneTag.png)
 
-In the example above, [tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.
+`In the example above, [tag/TAG]*  can be used as   (i.e. 0 times), tag/friend, tag/friend tag/family etc.`
 
 * Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
 
