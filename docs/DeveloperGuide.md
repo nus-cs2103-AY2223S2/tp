@@ -205,13 +205,22 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
 
 ### Adding an appointment
 
-The add appointment mechanism is facilitated by `MediConnect`.
+The add appointment mechanism is facilitated by the `Appointment` package, which is packaged within `Model`.
+
+`Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
+* Patient's `Nric` of the `Patient` scheduled for an appointment
+* `Booking` consisting the date of the appointment
+* Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
+
+{add a sequence diagram}
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.
 
-Step 2. The user executes `appointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to add an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `appointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `appointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
+
+{add a object diagram}
 
 ### \[Proposed\] Deleting an appointment
 
