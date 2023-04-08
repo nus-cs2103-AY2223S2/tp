@@ -24,16 +24,38 @@ What is even better is that coNtactUS is optimised for use via typing instead of
 So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide! 
 
 --------------------------------------------------------------------------------------------------------------------
+## About this user guide 
 
+If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
+familiarise yourself with the features of coNtactUS. It also shows you how to set up coNtactUS effortlessly
+on your computer.
 
+Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are unsure of
+how to use.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use this user guide
+
+A [table of contents](#table-of-contents) is provided in this user guide, containing hyperlinks to each section of 
+the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are interested in. 
+
+Symbols are used in the user guide to facilitate your understanding of the content.
+
+<div markdown="span" class="alert alert-primary"> :bulb: This indicates a useful tip that you may wish to take note of.
+take note of. </div>
+
+<div markdown="span" class="alert alert-primary"> :exclamation-mark: This indicates an important piece of information 
+that you should pay attention to. </div>
+
+--------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 
-* [**Before you read**](#before-you-read)
-* [**How to use this user guide**](#how-to-use-the-user-guide)
-* [**Quick start**](#quick-start)
-* [**User interface**](#user-interface)
-* [**Definitions**](#definitions)
+* [**About coNtactUS**](#about-contactus)
+* [**About this User Guide**](#about-this-user-guide)
+* [**How to use this User Guide**](#how-to-use-this-user-guide)
+* [**Getting started**](#getting-started)
+* [**Familiarising yourself with the user interface**](#familiarising-yourself-with-the-user-interface)
 * [**Features**](#features)
   * [Modules](#modules)
     * [Adding a module: `add`](#adding-a-module--add)
@@ -57,57 +79,48 @@ So, what are you waiting for? Read on to find out more about how to use coNtactU
 * [**Command summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-## Before you read
+## Getting started
 
-This user guide aims to provide a brief overview of what `Contact nUS` is and the features it has.
-This user guide is mainly targeted for first-time users who are new to `Contact nUS` for their daily usage, but
-experienced users are welcome to use this for reference.
-<br>
+1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer to
+[how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
-In the user guide, you can find instructions for [setting up your very own Contact nUS](#quick-start),
-[a guide to use a particular feature](#features). You may also refer to some sample valid and invalid data to see
-what type of data you can key into the software.
-<br>
 
-Alternatively, you may use this user guide as a [quick reference](#command-summary) for all the commands
-the software has.
-<br>
+2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
+that the file is named `coNtactUs.jar`
 
-Are you new to `Contact nUS`, or is this your first time reading the user guide? You are encouraged to read further
-to find out how to use this user guide!
 
---------------------------------------------------------------------------------------------------------------------
-## How to use the user guide
+   <div markdown="span" class="alert alert-primary"> :exclamation-mark: Make sure to remember the destination folder
+on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div> 
 
-Some text here
+4. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
 
---------------------------------------------------------------------------------------------------------------------
-## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. To check if you have Java `11`,
-open up the `terminal` application (for both Windows and macOS users) and type in the command `java -version` and
-press enter. You should see `java version 11` with additional numbers at the back.
+5. You should now see a window similar to the one shown below. 
 
-2. Download the latest `Contact nUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your module tracker.
-This can be `Desktop` for example.
-
-4. Again, open up the `terminal` application. You should be in a directory. If you are not in the folder
-that you have `Contact nUS.jar` downloaded to, you can use the command `cd` to move into that folder.
-An example would be `cd Desktop`.
-
-5. Now that you are in the same folder as `Contact nUS.jar`, type in the command `java -jar Contact nUS.jar` to run
-the application.
-
-<br> A screen similar to the one below should appear in a few seconds. Note how there are
-already some sample data included.<br>
+  <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
+for your reference. </div>
 
 ![Ui](images/Ui.png)
+Figure 1 : The starting window for the coNtactUS application.
 
-6. You should see a command box. You can now type commands into it and start using Contact nUS!
+--------------------------------------------------------------------------------------------------------------------
+## Familiarising yourself with the user interface 
 
-   A brief introduction of the commands List of commands available:
+In case you are unsure of what you see in front of you now, we have come up with annotations to
+introduce you to the user interface. Do have a look at Figure 2 shown below. 
+
+
+
+![Ui](images/User_Interface.png)
+Figure 2: Annotations about the user interface
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Familiarising yourself with the commands
+
+
+Here is a brief introduction of the available commands for you to use. To see detailed information about each
+command, click [here](#features).
 
    * `list` : Shows all the modules.
 
@@ -121,117 +134,83 @@ already some sample data included.<br>
 
    * `sort` : Sorts the modules based on the timeslot or deadline of the module.
 
-   * `clear` : Clears all the modules in the list. Do this only if you are sure!
+   * `clear` : Clears all the modules in the list. 
+    
+   * `help` : Opens a help window containing details about how to use each command. 
 
    * `exit` : Exits the application.
 
-
-7. Refer to the [Features](#features) below for further details of each command.
-
-8. To understand the interface of Contact nUS, read the [next section](#user-interface).
+<div markdown="span" class="alert alert-primary"> :exclamation-mark: The clear command removes all the modules in the 
+list. Only use it if you are sure! </div> 
 
 --------------------------------------------------------------------------------------------------------------------
-## User interface
-
-When starting the module tracker for the first time, you will be greeted with a screen similar to the one below.
-
-![Ui](images/User_Interface.png)
---------------------------------------------------------------------------------------------------------------------
-
-## Definitions
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-    * e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
-
-* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in
-DateTime format, **ddMMyyyy HH:mm**.
-
-* Items in square brackets are optional.<br>
-    * e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  * e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc.
-
-* Parameters can be in any order.<br>
-* e.g. if the command specifies `n/MODULE_NAME t/TAG`, `t/TAG n/MODULE_NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
-of the parameter will be taken.<br>
-  * e.g. if you specify `e/280323 10:00 e/290323 12:00`, only `e/290323 12:00` will be taken.
-
-<!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
-will be ignored.<br>
-  * e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
-
-* **MODULE_NAME** is the name of the module to be added into the module tracker.
-
-* **TAG** represents the type of event associated to the module you want to track.
-  * For example, it can be Lecture, Tutorial, Lab, Quiz, Oral Presentation, Exam, etc.
-
-* **TIMESLOT** represents when the event takes place.
-
-* **VENUE** is the location of the classroom or auditorium the class is held.
-
-* **TEACHER** is the name of the lecturer or TA conducting the class.
-
-* **DEADLINE** contain the details of a task with deadline.
-
-* **REMARK** are additional details about the class you want to add.
-
-* **RESOURCE** can be the module website on Canvas, or any other external links.
-
---------------------------------------------------------------------------------------------------------------------
-</div>
-
 ## Features
 
-The following commands deal with handling the details of a module in Contact nUS. You can use them to:
+This section introduces you to detailed information about how to use each command.
+
+* [List modules](#listing-all-modules--list)
 * [Add a module](#adding-a-module--add)
-* [Edit a module](#editing-a-module--edit)
-* [List all modules](#listing-all-modules--list)
-* [Find a specific module](#finding-a-module--find)
 * [Delete a module](#deleting-a-module--delete)
-<br>
+* [Edit a module](#editing-a-module--edit)
+* [Find a module](#finding-a-module--find)
+* [Sort modules]()
+* [Clear modules]()
+* [Help command]()
+* [Exit command]()
+  <br>
 
 ### Adding a module: `add`
 
-Adds a new module to the module tracker.
+By using the `add` command, you can add a new module to the module tracker. 
 
-Format: `add n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+Take note of the format: `add n/MODULE_NAME t/DESCRIPTION [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A module can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:exclamation-mark: You must supply the module name and description when 
+adding a new module. The rest of the fields, such as timeslot, venue, and teacher etc. are optional.
 </div>
 
-Examples:
+Examples of valid usages:
 * `add n/CS2103T t/Lecture`
 * `add n/CS1101S t/Tutorial e/Monday 10:00 12:00 a/COM1-0217 s/Sam Wan`
 * `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
 
+Examples of invalid usages: 
+* `add n/CS2103T` - there is no description provided.
+* `add t/Tutorial` - there is no module name provided.
+
+Note that there are format restrictions for some fields like `e/TIMESLOT`, `d/DEADLINE`. Please refer to 
+[format restrictions]() to find out more.
 
 ### Editing a module: `edit`
 
-Edits the details of an existing module in the module tracker.
+By using the `edit` command, you can edit the information for a module that is already listed in the 
+module tracker. 
 
-Format: `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+Take note of the format: `edit INDEX [n/MODULE_NAME] [t/DESCRIPTION] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
 
-* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list.
-  The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing the fields, the existing fields of the module will be removed i.e adding of fields is not cumulative.
+* This command edits the module at the specified index in the displayed module list. 
+* For example, if you wanted to edit a module placed first in the
+list, you would type  `edit 1`
+* The index provided by you  must be a positive integer (eg. 1, 2, 3...)
+* There must be a module at the index you have provided.
+* You must provide at least one field to be edited.
+* Existing values will be updated to the input values that you have provided. 
 
-Examples:
-* `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial`
-  respectively.
+Examples of valid usages: 
+* `edit 1 n/CS2101 t/Tutorial` Edits the name and description of the first module in the list to be `CS2101` and 
+`Tutorial` respectively.
+
+
 * `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd
-  item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
-* `edit 5 n/CS1231S d/02042023 23:59` Edits the module name and deadline of the 5th item to be `CS1231S`
-  and `02042023 23:59` respectively.
+  module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
+
+  
+Examples of invalid usages:
+* `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
+
+
+* `edit 1` - There must be at least one field provided to edit.
+
 
 ### Listing all modules: `list`
 
@@ -269,7 +248,7 @@ Format: `delete INDEX`
 
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
-<br>
+   <br>
 
 ## Schedules
 The following features deal with the time slot and/or deadline of a module in the module tracker. You can use them to:
@@ -325,6 +304,60 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+
+
+
+
+## Important notes 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+    * e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
+
+* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in
+DateTime format, **ddMMyyyy HH:mm**.
+
+* Items in square brackets are optional.<br>
+    * e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  * e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc.
+
+* Parameters can be in any order.<br>
+* e.g. if the command specifies `n/MODULE_NAME t/TAG`, `t/TAG n/MODULE_NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
+of the parameter will be taken.<br>
+  * e.g. if you specify `e/280323 10:00 e/290323 12:00`, only `e/290323 12:00` will be taken.
+
+<!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+will be ignored.<br>
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
+
+* **MODULE_NAME** is the name of the module to be added into the module tracker.
+
+* **TAG** represents the type of event associated to the module you want to track.
+  * For example, it can be Lecture, Tutorial, Lab, Quiz, Oral Presentation, Exam, etc.
+
+* **TIMESLOT** represents when the event takes place.
+
+* **VENUE** is the location of the classroom or auditorium the class is held.
+
+* **TEACHER** is the name of the lecturer or TA conducting the class.
+
+* **DEADLINE** contain the details of a task with deadline.
+
+* **REMARK** are additional details about the class you want to add.
+
+* **RESOURCE** can be the module website on Canvas, or any other external links.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Valid and invalid data
 
