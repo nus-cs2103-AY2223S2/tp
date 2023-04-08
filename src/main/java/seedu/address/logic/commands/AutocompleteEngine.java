@@ -156,6 +156,8 @@ public class AutocompleteEngine {
      * @return New user input.
      */
     public String autocompleteCommand(String userInput, String commandSuggestion) {
+        assert commandSuggestion.length() >= userInput.length()
+                : "'commandSuggestion' should be longer than 'userInput'";
         // Command suggested but not yet entered by user
         String remainingSuggestion = commandSuggestion.substring(userInput.length());
         Pattern nextAutocompleteRegex = Pattern.compile("^ *\\[*[a-z0-9_]*\\/*", Pattern.CASE_INSENSITIVE);
