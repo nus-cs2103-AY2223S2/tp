@@ -431,11 +431,10 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how NameCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `RoleBook` will be initialized with the
-   current role book. <img src="images/startUp.png" width="800" />
+   current role book.
 
 2. The user can choose to use the `Name Command` to filter names.
     - The user executes `name <keyword>` command to filter roles by their name.
-      <img src="images/UICommandImages/NameCommand.png" width="800" />
 
 The following sequence diagram shows how the `name` command works:
 
@@ -559,11 +558,9 @@ this is shown below in the form of a class diagram:
 
 **Target user profile**:
 
-* Students studying computing-related courses looking for internships
-* Reasonably comfortable using CLI apps
-* Has a need to manage a significant number of internship positions
+* TechTrack is a powerful internship/job tracking application designed for computing students who are searching for internships in the technology industry. The users are familiar with command line interfaces, exploiting them to search for their job efficiently.
 
-**Value Proposition**: manage jobs faster than a typical mouse/GUI driven app
+**Value Proposition**: Manage jobs faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -732,9 +729,11 @@ Use case ends.
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. The CLI should be easy to use, with intuitive commands and clear error messages.
 5. The CLI should be reliable and stable, with no crashes or data corruption unless a user corrupts the data file.
-6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
-7. The CLI should be accessible to users with different abilities and needs, including support for assistive
-   technologies and localization.
+6. The Program and Data stored should be functional to users with other OSes and versions of the application.
+7. The application should load up within 3-5 seconds.
+8. Users must be able to access the application without an internet connection.
+9. A user should be able to use the app after reading the help instructions.
+10. A user must be able to view at least 3 roles with minimal scrolling.
 
 --------------------------------------------------------------------------------------------------------------------
 
