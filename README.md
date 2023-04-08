@@ -2,6 +2,7 @@
 
 ![Ui](docs/images/UiOriginal.png)
 ![Ui](docs/images/Ui2.png)
+![Ui](docs/images/Ui3.png)
 
 * This is **event tracker project for NUS CS2040 Teaching Assistants (TA)**.<br>
   Example usages:
