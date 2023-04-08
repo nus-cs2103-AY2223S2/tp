@@ -25,7 +25,8 @@ public class OnlyCommandParser implements Parser<OnlyCommand> {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, OnlyCommand.MESSAGE_USAGE));
         }
         String[] keywords = trimmedArgs.split("\\s+");
-        RecipeIngredientsSubsetPredicate recipePredicate = new RecipeIngredientsSubsetPredicate(Arrays.asList(keywords));
+        RecipeIngredientsSubsetPredicate recipePredicate =
+                new RecipeIngredientsSubsetPredicate(Arrays.asList(keywords));
         return new OnlyCommand(recipePredicate);
     }
 
