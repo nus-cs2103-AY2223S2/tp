@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F11-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -79,7 +79,7 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 
 ![Structure of the Main Window](images/UiClassDiagramMainWindow.png)
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -99,7 +99,7 @@ The `Job System` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -130,7 +130,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -153,7 +153,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -164,7 +164,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -250,8 +250,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Timetable feature
-#### Proposed Implementation
+### Timetable feature
+#### Implementation
 
 Given below is an example usage scenario and how the timetable mechanism behaves at each step.
 
@@ -307,8 +307,8 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory.
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Statistics feature
-#### Proposed Implementation
+### Statistics feature
+#### Implementation
 
 Given below is an example usage scenario and how the statistics mechanism behaves at each step.
 
@@ -342,8 +342,8 @@ The following sequence diagram shows how the statistics operation works:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Delivery Job System
-#### Proposed Implementation
+### Delivery Job System
+#### Implementation
 
 Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
 
@@ -448,21 +448,22 @@ Design considerations:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                        |
-|----------|-----------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                 |
-| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                           |
-| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                          |
-| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                   |
+| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                       |
+|----------|-----------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                |
+| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                          |
+| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                         |
+| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                  |
 | `* * *`  | organised delivery driver                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                     |
-| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                              |
-| `* *`    | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                  |
-| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident                |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                 |
-| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency    |
-| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                            |
+| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                    |
+| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                             |
+| `* * *`  | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                 |
+| `* * *`  | busy person                                                     | view list of completed and unscheduled jobs  | keep track of my work                                                 |
+| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident               |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                |
+| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency   |
+| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                           |
 
 ### Use cases
 
@@ -713,7 +714,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
@@ -775,3 +776,41 @@ has been activated.
    1. Prerequisites: Assign a job to an appropriate timetable slot.
    2. Test case: Once current time is 20 minutes before the next timetable slot (e.g. 10:40 to 10:59), a notification would pop up for the number of jobs assigned to the next timetable slot.
 
+### Timetable
+
+1. Display timetable for specific week containing a specific date from Main Window
+    1. Prerequisites: None.
+    2. Command: `timetable` (Show timetable of current week - LocalDate.now()) or `timetable date date/YYYY-mm-DD`. The date should not be left empty. Alternative, for `timetable` command, user can use GUI mode instead: Menu bar > Timetable > Scheduled jobs.
+    3. The output box in the window should show a message confirming that Timetable window is opened for the specific week containing the input date.
+    4. The system should open Timetable for the specific week, showing job list in respective day and slot (if there are any jobs for that day - else, the column for the day will be empty).
+
+2. Display list of unscheduled jobs (i.e. jobs with invalid date and slot)
+    1. Prerequisites: None.
+    2. Command: `timetable_unscheduled` or GUI mode: Menu bar > Timetable > Unscheduled jobs.
+    3. The output box in the Main window should show a message confirming that Unscheduled job is opened for the specific week.
+    4. The system should open the Unscheduled Window, showing list of unscheduled jobs and total number of unscheduled jobs.
+
+3. Display list of completed jobs 
+    1. Prerequisites: None.
+    2. Command: `timetable_completed` or GUI mode: Menu bar > Timetable > Completed jobs.
+    3. The output box in the Main window should show a message confirming that Completed job is opened for the specific week.
+    4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
+
+4. Display timetable for specific week containing a specific date from Timetable Window
+    1. Prerequisites: Opened Timetable window using `timetable` command from Main Window. Timetable of current week is shown in current Timetable Window.
+    2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
+    3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
+    4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
+
+
+
+### Appendix: Effort
+As our application contains different windows and features, such as Timetable Window, Statistics Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on how to display each and every window that we have. This was quite challenging as we had to learn and design the structures of the windows and components so that it follows a good design principles. In order to make sure that Duke Driver is friendly to users who prefer typing, asides from including buttons on GUI mode, we tried to include commands for users to switch to different windows. 
+
+Moreover, AB3 code base only consists of features supporting only `Person` class, meanwhile for Duke Driver, we had to work with and update the code base to support different entity types - for example, `Delivery Job` and `Reminder`. With the extensions that we planned to do, we also had to update the Parser to support a much larger set of commands, as we were working with numerous commands from different windows (Timetable, Reminder, Statistics,...).
+
+For Timetable Window, we wanted users to be able to structure their plans for the week, thus we added a Timetable feature. However, as Timetable is directly linked with the delivery job list, thus changes made in the existing functions could affect the features directly. Moreover, the implementation was also challenging as it required changes to the existing commands. We also had to decide on the design of the Timetable Window, and learn to use the `ListView` class in our timetable.
+
+Overall, the Team Project for us was quite challenging, as it requires us to learn to work together and help each other. We had to divide the work among ourselves so that everyone can get a grasp of and understand the code base. Understanding and updating the code base was quite tough at first, due to high levels of abstraction and the amount of classes that AB3 has. We tried to break it down into small tasks and understand it little by little each week. These small improvements day-by-day helped us get used to the codebase and the workload eventually. 
+
+We also learnt to work as a team and contributed, reviewed and helped to debug each other's work through weekly meetings and constant updates. Distributing the work and assigning small task to each member helped us gain more confidence throughout the project. 
