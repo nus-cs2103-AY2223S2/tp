@@ -122,18 +122,18 @@ The following is an annotated breakdown of **MODTrek's** GUI:
 messages and results.
 3. **Results Section:** This panel shows your degree progression by default. This panel can be changed using the `view` command
 to toggle between the module list in **MODTrek** or the user's degree progression. Using the `find` command when making 
-a query on the module list will navigate you to the module search screen.
+a query on the module list will navigate you to the module search screen.<br><br><br><br>
 
-The following is the annotated breakdown of the Results Section of **MODTrek's** GUI:
-![UI subsection](images/Ui-subsections-detailed.png)
-<p align="center"><em>Breakdown of Results Section</em><br></p>
+The following shows the various screens of the Results Section in **MODTrek's** GUI:
+![UI subsection](images/Ui-Dashboard.png)
+<p align="center"><em>Screens of Results Section</em><br></p>
 
-1. **Doughnut Chart:** This will be shown in the degree progress section. It shows your completion progress of the degree
-and individual sub requirements of the degree. Your total MCs completed and CAP are also displayed.
-2. **Module List:** This will be shown in both the module list section and module search section. In the module list section, all the modules in the list are shown. In the module search section, all the modules in the list are shown by default. If a filter is applied by the find command, only filtered modules are shown.
-3. **Module Group:** This will be shown in both the module list section and module search section. In the module list section, the modules in each group
-belonging to a sub category are shown (sorted by year-sem by default). In the module search section, all the relevant modules are shown as a single group.
-4. **Module Card:** This will be shown in both the module list section and module search section. Each module card shows the detail of each module.
+1. **Degree Progress Screen:** This screen shows the completion progress of the degree and individual sub requirements of the 
+degree. Your total MCS completed and CAP are also displayed in a doughnut chart.
+2. **Module List Screen:** This screen shows all your current modules tracked by MODTrek. Here, you can customise the 
+way you want to categorise your modules. Refer to the section on [Sort all modules](#sort-module) for more details!
+3. **Module Search Screen:** This screen shows your filtered list of modules. You can customise the filters to search
+for your target modules. Refer to the section on [Find module(s) by keyword(s)](#find-module) for more details!
 
 [Back to Table of Contents](#toc)
 
@@ -141,7 +141,7 @@ belonging to a sub category are shown (sorted by year-sem by default). In the mo
 
 <div style="page-break-after: always;"></div>
 
-## 4. Short Tutorial <a name="tutorial"></a>
+## 4. Short Tutorial <a name="short-tutorial"></a>
 
 Excited to try **MODTrek** out? Here is a sequence of basic commands to help you start tracking your modules:
 
@@ -183,7 +183,7 @@ E.g. If the command specifies `exit 123`, it will be interpreted as `exit.`
 
 #### 5.1 Add a module : `add` <a name="add-module"></a>
 
-Adds a module to the module list in **MODTrek**. This will kick start your **MODTrek** journey.
+Adds a module to the module list in **MODTrek**. This will kickstart your **MODTrek** journey.
 For instance, you may choose to add completed or planned modules.
 
 **Syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
@@ -356,8 +356,8 @@ category to sort by when **MODTrek** is in the module list screen.
 Toggles between the display of degree progress or module list. You may either view your degree progression or list of modules recorded.
 
 **Syntax:**
-* _To view degree progression:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
-<p align="center"><em>Degree progression screen</em><br></p>
+* _To view degree progress:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
+<p align="center"><em>Degree progress screen</em><br></p>
 
 * _To view module list:_ `view modules` ![Ui modules](images/Ui-viewmodules.png)
 <p align="center"><em>Module list screen</em><br></p>
@@ -382,14 +382,14 @@ Displays a list of help commands or a summary of a specific command's usage and 
 * _To display a summary of a specific command's usage and format:_ `help <command>`
 
 Specify exactly one parameter in `<command>`. This can be from one of the commands:
-* add
-* delete
-* edit
-* tag
-* find
-* sort
-* view
-* exit
+* `add`
+* `delete`
+* `edit`
+* `tag`
+* `find`
+* `sort`
+* `view`
+* `exit`
 
 **Example**: `help add`
 
@@ -413,9 +413,9 @@ Saves the modified data regarding the modules into the hard disk automatically a
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-info">
 
-:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application!
+:information_source: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application!
 </div>
 
 <div markdown="span" class="alert alert-warning">
