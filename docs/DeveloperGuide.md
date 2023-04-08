@@ -733,6 +733,10 @@ The following is a description of the code execution flow:
 
 - This implementation allows for adherence to basic Object Oriented Programming principles
 
+**Possible further implementation**
+
+- add a prompt to check with user whether they really want to clear everything since the command is irreversible
+
 ## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
@@ -1309,7 +1313,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: Delete a Lecture Video**
+**Use case: Delete a Video**
 
 **MSS**
 
