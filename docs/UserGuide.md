@@ -155,8 +155,8 @@ An employee possesses the following attributes:
 Employees are identified by their IDs. An employee's ID is a unique identification number assigned by the company.
 So, no two employees should share the same ID.
 
-Similarly, email address and phone number are fields that are not intended for sharing.
-SudoHR enforces uniqueness for these two fields as well.
+Similarly, email address and phone number are fields that are not intended for sharing. 
+SudoHR enforces uniqueness for these two fields as well. However, do note that emails are case-sensitive.
 
 You cannot add an employee that share any of the following fields with a different employee in SudoHR:
 1. ID
@@ -240,7 +240,6 @@ It consists of:
 # 4. Commands
 
 ## 4.1. Employee Commands
-
 
 
 ### 4.1.1. Adding an employee: `add`
