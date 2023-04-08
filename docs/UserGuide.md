@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 ---
 SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
+
 <div style="page-break-after: always;"></div>
 
 * Table of Contents 

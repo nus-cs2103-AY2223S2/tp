@@ -63,3 +63,4 @@ Added the ability to undo and redo previously entered commands.
     * Integrated a third party library * to the project ([\#42]())
 
 * _{you can add/remove categories in the list above}_
+

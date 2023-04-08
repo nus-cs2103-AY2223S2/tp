@@ -665,7 +665,7 @@ one tag is created and added to the contact list.
 
 1. Coach requests to view the calendar events.
 2. SportSync displays the calendar events on the interface.
-3. Coach interacts with the calendar events as desired. 
+3. Coach interacts with the calendar events as desired.
 
     Use case ends.
 
