@@ -128,7 +128,7 @@ Parameters refer to the upper-cased words used to represent required user inputs
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **Graphical User Interface**<br>
+##Graphical User Interface<br>
 
    <img width="680" src="images/annotated-UI.png">
 
