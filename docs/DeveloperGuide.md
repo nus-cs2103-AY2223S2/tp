@@ -101,7 +101,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Module`, `Lecture`, `Video` objects residing in the `Model`.
 
 ### Logic component
 
@@ -117,7 +117,7 @@ How the `Logic` component works:
 1. The command text is first pre-processed (e.g. `NavigationInjector` could modify the command text by inserting `/mod CS2040S /lec Week 1`).
 1. `Logic` then uses the `TrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a module).
 1. The result of the command execution is encapsulated as a `CommandResult`.
 1. Based on the `CommandResult`, several systems such as `Navigation` are notified through the `TrackerEventSystem`.
 1. The `CommandResult` object is then returned back from `Logic`.
@@ -687,10 +687,10 @@ Parsing context-specifying arguments to determine context:
 
 If you are *confused* about why there appears to be a mismatch between Context and Context Specific Command (i.e. Module Context -> `XYZLectureCommand`), remember that a context specific command does **NOT** manipulate the **context** itself but the objects that are **contained** under that context (i.e. modules contain lectures).
 
+Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
+
 For concrete examples on how to implement a context-sensitive command, you can refer to the
 [add command](#add-module-lecture-and-video-feature) or [edit command](#edit-module-lecture-and-video-feature).
-
-Implementing your context-sensitive command based on this format will ensure seamless integration with the navigation system.
 
 ### Tag module, lecture, and video feature
 

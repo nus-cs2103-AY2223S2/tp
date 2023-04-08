@@ -11,8 +11,12 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ModuleListPanel
+Class LectureListPanel
+Class VideoListPanel
+Class ModuleCard
+Class LectureCard
+Class VideoCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -32,26 +36,38 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" ModuleListPanel
+MainWindow *-down-> "1" LectureListPanel
+MainWindow *-down-> "1" VideoListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+ModuleListPanel -down-> "*" ModuleCard
+LectureListPanel -down-> "*" LectureCard
+VideoListPanel -down-> "*" VideoCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ModuleListPanel --|> UiPart
+LectureListPanel --|> UiPart
+VideoListPanel --|> UiPart
+ModuleCard --|> UiPart
+LectureCard --|> UiPart
+VideoCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+ModuleCard ..> Model
+LectureCard ..> Model
+VideoCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ModuleListPanel -[hidden]left- HelpWindow
+LectureListPanel -[hidden]left- HelpWindow
+VideoListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
