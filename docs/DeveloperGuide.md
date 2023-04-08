@@ -1273,8 +1273,8 @@ Before each test scenario, ensure that sprINT application is launched and opened
 
 ## **10. Appendix: Planned Enhancements**
 
-Currently, there a few feature flaws with the application. Here are them and some proposed fixes to address them
-and improve functionality for the user:
+There are a few known feature flaws in the application currently. Here are some proposed fixes we intend to 
+implement in a future iteration to address them and improve functionality for our users:
 
 #### 1. Command to sort by deadline does not inform user when there are no applications with deadlines to display and sort
 
@@ -1285,7 +1285,49 @@ an empty list shows up.
 Note that this is the expected behaviour as `SortCommand` first filters out applications with no tasks before sorting.
 
 **Potential Enhancement and Suggested Implementation:** <br> 
-It would be good to inform the user through the Command Result Box that the list is empty because they currently do not have applications with deadlines.
+In the future, we plan to inform the user through the Command Result Box that the list is empty because they currently do not have applications with deadlines.
 
 In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
 as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
+
+#### 2. Edit operations display misleading status message when edited values are the same as the original values 
+
+At present, the application treats any edit made by the user to a task or application as a modification, **regardless of 
+whether the new value is identical to the original value**. As a result, the status message displayed after a user 
+carries out such an operation suggests that the task or application was edited, even though the fields remain the same 
+in reality. While this does not affect the functionality of the commands themselves, it could potentially confuse 
+the user.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to make a distinction between changes that result in a new value and those that preserve 
+the original value by displaying a different command result message (`No changes detected.`) to the user in the latter 
+scenario.   
+
+#### 3. UI does not scale down responsively
+
+When a user scales down sprINT's UI to below a certain height and width, the "Total Number of Internship Applications" 
+label gets truncated while the pie chart overflows past its container as seen in the screenshot below. 
+
+![Non-Reponsive UI](images/NonResponsiveUi.png)
+
+While this does not affect sprINT's main functionalities and can be resolved simply by enlarging the application window, 
+it could bring about some inconvenience to users, especially when they wish to work with a smaller window.
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to update the UI such that text within the "Total Number of Internship Applications" label 
+wraps around when the window is resized below a certain width. This way, users can still view how many internships
+they have applied to. We also plan to increase the minimum window height to ensure that the pie chart stays within
+the Statistics Display Panel. 
+
+#### 4. Role of application gets truncated if it exceeds a certain length
+
+When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be 
+viewed by the user. This is illustrated in the screenshot below.
+
+![LongRoleName.png](images/LongRoleName.png)
+
+While such role names of such length are uncommon, it is not impossible. 
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
+length to provide better readability. 
