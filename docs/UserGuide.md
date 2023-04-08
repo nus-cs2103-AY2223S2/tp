@@ -395,7 +395,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 ```edit-ptn [INDEX] [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the patient at the specified `INDEX`. 
+- What it does: Edits the patient at the specified `INDEX`.
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command overwrites existing data within Docedex, proceed with caution.
 </div>
