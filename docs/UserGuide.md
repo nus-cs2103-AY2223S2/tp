@@ -222,8 +222,7 @@ This command clears all the existing decks and their associated cards from the a
 
 Format: `clear`
 - Upon executing the command, a pop-up alert will appear and request you to confirm your decision.
-
-![clear confirm](./images/ClearConfirm.png)
+  ![clear confirm](./images/ClearConfirm.png)
 
 - Selecting `Yes` will clear all data.  
 
