@@ -30,16 +30,16 @@ public class PositionTest {
         assertFalse(Position.isValidPosition("")); // empty string
         assertFalse(Position.isValidPosition(" ")); // spaces only
         assertFalse(Position.isValidPosition("&")); // only non-alphanumeric characters
-//        assertFalse(Position.isValidPosition("123")); // numbers only
+        assertFalse(Position.isValidPosition("Data-analyst 10")); // with non-alphanumeric characters and numbers
+        assertFalse(Position.isValidPosition("data-analyst")); // with non-alphanumeric characters, but no numbers
+        assertFalse(Position.isValidPosition("analyst & engineer")); // non-alphanumeric characters, no numbers
 
 
         // valid position
-//        assertTrue(Position.isValidPosition("Engineer 10")); // with numbers
-//        assertTrue(Position.isValidPosition("Data-analyst 10")); // with non-alphanumeric characters and numbers
+        assertTrue(Position.isValidPosition("Engineer 10")); // with numbers
+        assertTrue(Position.isValidPosition("123")); // numbers only
         assertTrue(Position.isValidPosition("analyst")); // alphabets only
         assertTrue(Position.isValidPosition("Intern")); // with capital letters
-//        assertTrue(Position.isValidPosition("data-analyst")); // with non-alphanumeric characters, but no numbers
-//        assertTrue(Position.isValidPosition("analyst & engineer")); // non-alphanumeric characters, no numbers
-//        assertTrue(Position.isValidPosition("software engineer for integrated processing")); // long positions
+        assertTrue(Position.isValidPosition("software engineer for integrated processing")); // long positions
     }
 }

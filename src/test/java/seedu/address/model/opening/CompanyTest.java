@@ -30,14 +30,14 @@ public class CompanyTest {
         assertFalse(Company.isValidCompany("")); // empty string
         assertFalse(Company.isValidCompany(" ")); // spaces only
         assertFalse(Company.isValidCompany("&")); // only non-alphanumeric characters
+        assertFalse(Company.isValidCompany("a&w")); // with non-alphanumeric characters
+        assertFalse(Company.isValidCompany("7-eleven")); // with non-alphanumeric characters
 
         // valid company
         assertTrue(Company.isValidCompany("shopee")); // alphabets only
         assertTrue(Company.isValidCompany("123")); // numbers only
         assertTrue(Company.isValidCompany("21st century fox")); // alphanumeric characters
         assertTrue(Company.isValidCompany("Google")); // with capital letters
-//      assertTrue(Company.isValidCompany("a&w")); // with non-alphanumeric characters
-//      assertTrue(Company.isValidCompany("7-eleven")); // with non-alphanumeric characters
         assertTrue(Company.isValidCompany("international consolidated airlines group sa")); // long companies
     }
 }

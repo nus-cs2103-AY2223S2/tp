@@ -11,7 +11,7 @@ public class UpcomingCommand extends Command {
     public static final String COMMAND_WORD = "upcoming";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens a window which displays upcoming events for the next DAYS days\n"
+            + ": Opens a window which displays upcoming events for the next DAYS days.\n"
             + "Parameters: DAYS (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

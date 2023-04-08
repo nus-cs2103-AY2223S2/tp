@@ -15,11 +15,11 @@ public class RemarkTest {
         assertThrows(NullPointerException.class, () -> new Remark(null));
     }
 
-    @Test
-    public void constructor_invalidRemarkName_throwsIllegalArgumentException() {
-        String invalidRemarkName = "";
+//    @Test
+//    public void constructor_invalidRemarkName_throwsIllegalArgumentException() {
+//        String invalidRemarkName = "";
 //        assertThrows(IllegalArgumentException.class, () -> new Remark(invalidRemarkName));
-    }
+//    }
 
     @Test
     public void isValidRemark() {

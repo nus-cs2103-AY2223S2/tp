@@ -47,13 +47,17 @@ public class Keydate implements Comparable<Keydate> {
         if (test.length != 2 || test[0] == null || test[1] == null) {
             return false;
         }
-        if (test[0].strip().isEmpty()) {
+        if (test[0].strip().isEmpty() || !test[0].matches(VALIDATION_REGEX_KEY)) {
+            return false;
+        }
+        String check_date = test[1].strip();
+        if (check_date.length() != 10 || check_date.charAt(4) != '-' || check_date.charAt(7) != '-') {
             return false;
         }
         try {
             df.setLenient(false);
-            df.parse(test[1]);
-            return true && test[0].matches(VALIDATION_REGEX_KEY);
+            Date d = df.parse(check_date);
+            return true;
         } catch (ParseException e) {
             return false;
         }
