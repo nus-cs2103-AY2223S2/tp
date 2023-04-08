@@ -31,6 +31,9 @@ public class UniqueLabList implements Iterable<Lab> {
 
     /**
      * Returns true if the list contains an equivalent lab as the given argument.
+     *
+     * @param toCheck the lab to be checked on.
+     * @return        the boolean result if the current list of labs contain the lab.
      */
     public boolean contains(Lab toCheck) {
         requireNonNull(toCheck);
@@ -65,6 +68,10 @@ public class UniqueLabList implements Iterable<Lab> {
         return this.internalList.get(index);
     }
 
+    /**
+     * Gets the number of labs.
+     * @return the number of labs.
+     */
     public int size() {
         return this.internalList.size();
     }
@@ -72,6 +79,8 @@ public class UniqueLabList implements Iterable<Lab> {
     /**
      * Adds a lab to the list.
      * The lab must not already exist in the list.
+     *
+     * @param toAdd the lab to be added.
      */
     public void add(Lab toAdd) {
         requireNonNull(toAdd);
@@ -85,6 +94,9 @@ public class UniqueLabList implements Iterable<Lab> {
      * Replaces the lab {@code target} in the list with {@code editedLab}.
      * {@code target} must exist in the list.
      * The lab identity of {@code editedLab} must not be the same as another existing lab in the list.
+     *
+     * @param target        the target lab to be replaced.
+     * @param editedLab     the edited lab to replace the target lab.
      */
     public void setLab(Lab target, Lab editedLab) {
         requireAllNonNull(target, editedLab);
@@ -104,6 +116,8 @@ public class UniqueLabList implements Iterable<Lab> {
     /**
      * Removes the equivalent lab from the list.
      * The lab must exist in the list.
+     *
+     * @param toRemove the lab to be removed.
      */
     public void remove(Lab toRemove) {
         requireNonNull(toRemove);
@@ -112,6 +126,11 @@ public class UniqueLabList implements Iterable<Lab> {
         }
     }
 
+    /**
+     * Sets the list of unique labs to a new list of unique labs.
+     *
+     * @param replacement the new list of unique labs.
+     */
     public void setLabs(UniqueLabList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -120,6 +139,8 @@ public class UniqueLabList implements Iterable<Lab> {
     /**
      * Replaces the contents of this list with {@code labs}.
      * {@code labs} must not contain duplicate labs.
+     *
+     * @param labs the new list of labs.
      */
     public void setLabs(List<Lab> labs) {
         requireAllNonNull(labs);
@@ -156,6 +177,9 @@ public class UniqueLabList implements Iterable<Lab> {
 
     /**
      * Returns true if {@code labs} contains only unique labs.
+     *
+     * @param labs the labs to be checked for uniqueness.
+     * @return     the boolean status of whether any of the labs are unique.
      */
     private boolean labsAreUnique(List<Lab> labs) {
         for (int i = 0; i < labs.size() - 1; i++) {

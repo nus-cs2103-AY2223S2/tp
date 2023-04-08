@@ -66,6 +66,7 @@ Let's clear a little confusion that might arise:
 - Tutorial duration is fixed at 1 hour.
 - Lab duration is fixed at 2 hours.
 - Consultation duration is fixed at 1 hour.
+- Invalid date error will be shown if the start date is before 1900 or after 2099.
 
 ----------------------------------------------------------------------
 

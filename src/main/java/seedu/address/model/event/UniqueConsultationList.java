@@ -31,6 +31,9 @@ public class UniqueConsultationList implements Iterable<Consultation> {
 
     /**
      * Returns true if the list contains an equivalent consultation as the given argument.
+     *
+     * @param toCheck the consultation to check.
+     * @return        if the list contains the consultation.
      */
     public boolean contains(Consultation toCheck) {
         requireNonNull(toCheck);
@@ -72,6 +75,8 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     /**
      * Adds a consultation to the list.
      * The consultation must not already exist in the list.
+     *
+     * @param toAdd the consultation to be added.
      */
     public void add(Consultation toAdd) {
         requireNonNull(toAdd);
@@ -86,6 +91,9 @@ public class UniqueConsultationList implements Iterable<Consultation> {
      * {@code target} must exist in the list.
      * The consultation identity of {@code editedConsultation} must not be the same
      * as another existing consultation in the list.
+     *
+     * @param target                the target consultation.
+     * @param editedConsultation    the edited consultation.
      */
     public void setConsultation(Consultation target, Consultation editedConsultation) {
         requireAllNonNull(target, editedConsultation);
@@ -105,6 +113,8 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     /**
      * Removes the equivalent consultation from the list.
      * The consultation must exist in the list.
+     *
+     * @param toRemove the consultation to remove.
      */
     public void remove(Consultation toRemove) {
         requireNonNull(toRemove);
@@ -113,6 +123,11 @@ public class UniqueConsultationList implements Iterable<Consultation> {
         }
     }
 
+    /**
+     * Replaces the consultation with a new consultation.
+     *
+     * @param replacement the consultation to replace the old consultation.
+     */
     public void setConsultations(UniqueConsultationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -121,6 +136,8 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     /**
      * Replaces the contents of this list with {@code consultations}.
      * {@code consultations} must not contain duplicate consultations.
+     *
+     * @param consultations the list of consultations to replace the old consultations list.
      */
     public void setConsultations(List<Consultation> consultations) {
         requireAllNonNull(consultations);
@@ -157,6 +174,9 @@ public class UniqueConsultationList implements Iterable<Consultation> {
 
     /**
      * Returns true if {@code consultations} contains only unique consultations.
+     *
+     * @param consultations the consultations to be checked for uniqueness.
+     * @return              the boolean result if any one of the consultations are not unique.
      */
     private boolean consultationsAreUnique(List<Consultation> consultations) {
         for (int i = 0; i < consultations.size() - 1; i++) {

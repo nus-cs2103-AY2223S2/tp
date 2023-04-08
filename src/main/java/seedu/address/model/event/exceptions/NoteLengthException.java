@@ -1,7 +1,7 @@
 package seedu.address.model.event.exceptions;
 
 /**
- * The added note has illegal length.
+ * Ensures added note has illegal length.
  */
 public class NoteLengthException extends RuntimeException {
     public NoteLengthException(int limit, int length) {
