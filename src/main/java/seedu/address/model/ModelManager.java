@@ -191,7 +191,7 @@ public class ModelManager implements Model {
     public ObservableList<Policy> getFilteredPolicyList() {
         Client selectedClient = getSelectedClient();
 
-        if (selectedClient == null) {
+        if (selectedClient.equals(new Client())) {
             return FXCollections.observableArrayList();
         }
         return selectedClient.getFilteredPolicyList();
@@ -244,6 +244,9 @@ public class ModelManager implements Model {
      */
     public Client getSelectedClient() {
         ObservableList<Client> updatedClientList = this.addressBook.getClientList();
+        if (selectedClientIndex.getOneBased() > updatedClientList.size()) {
+            return new Client();
+        }
         return updatedClientList.get(selectedClientIndex.getZeroBased());
     }
 
@@ -277,7 +280,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs);
+            && userPrefs.equals(other.userPrefs);
         //&& filteredClients.equals(other.filteredClients);
     }
 
