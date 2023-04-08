@@ -436,21 +436,22 @@ Design considerations:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                        |
-|----------|-----------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                 |
-| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                           |
-| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                          |
-| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                   |
+| Priority | As a …​                                                         | I want to …​                                 | So that I can…​                                                       |
+|----------|-----------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | new delivery driver and Duke Driver user                        | see usage instructions                       | refer to instructions when I forget how to use the App                |
+| `* * *`  | delivery driver                                                 | add/delete jobs                              | keep track of my upcoming and old jobs                                |
+| `* * *`  | delivery driver                                                 | mark/unmark jobs                             | keep track of completed jobs                                          |
+| `* * *`  | delivery driver                                                 | add a new person                             | keep in touch with my clients                                         |
+| `* * *`  | delivery driver                                                 | delete a person                              | remove entries that I no longer need                                  |
 | `* * *`  | organised delivery driver                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                     |
-| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                              |
-| `* *`    | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                  |
-| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident                |
-| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                 |
-| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency    |
-| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                            |
+| `* * *`  | forgetful person                                                | be reminded of upcoming tasks and deadlines  | complete all my jobs on time and not forget a task                    |
+| `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines | plan for my next schedule                                             |
+| `* * *`  | busy person                                                     | view timetable of my tasks in a week         | organise my timetable and complete everything on time                 |
+| `* * *`  | busy person                                                     | view list of completed and unscheduled jobs  | keep track of my work                                                 |
+| `* *`    | delivery driver                                                 | hide private contact details                 | minimize chance of someone else seeing them by accident               |
+| `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information               | track my earnings and other statistics                                |
+| `*`      | delivery driver with many customers in the address book         | sort persons by name                         | locate a person/client easily and thus increase delivery efficiency   |
+| `*`      | user                                                            | adjust how my notifications are shown        | have a clutter free desktop                                           |
 
 ### Use cases
 
