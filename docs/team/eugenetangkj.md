@@ -79,8 +79,7 @@ My code contributions can be found on
   [\#86](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/86),
   [\#119](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/119)
   * Explained implementation and design considerations for `add` and `view` commands, supplementing the explanations with sequence diagrams.
-  * Defined product scope by identifying InternBuddy's target audience and value proposition.
-  * Drafted user stories on how Computing undergraduates would use InternBuddy.
+  * Defined product scope by identifying InternBuddy's target audience and value proposition, as well as drafted user stories.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
 
   
