@@ -6,7 +6,6 @@ import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
@@ -54,35 +53,20 @@ public class Discharge {
         }
     }
 
-
-    /**
-     * Returns true if a given discharge date-time is valid and in the future.
-     */
-
-    public static boolean isValidFutureDischarge(String date) {
-        if (date.equals(DEFAULT_DISCHARGE)) {
-            return true;
-        }
-        try {
-            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-            df.setLenient(false);
-            return df.parse(date).compareTo(new Date()) > 0;
-        } catch (ParseException e) {
-            return false;
-        }
-
-    }
-
     /**
      * Returns the dateTime.
+     *
      * @return LocalDateTime
      */
-    public LocalDateTime getDateTime() {
+    public Date getDateTime() {
         try {
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            return LocalDateTime.parse(value, format);
-        } catch (DateTimeParseException e) {
-            return LocalDateTime.MIN;
+            // DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            df.setLenient(false);
+            // return LocalDateTime.parse(value, format);
+            return df.parse(value);
+        } catch (ParseException e) {
+            return new Date();
         }
     }
 
