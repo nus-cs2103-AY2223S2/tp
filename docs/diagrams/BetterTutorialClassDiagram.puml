@@ -16,7 +16,7 @@ Tutorial -up-|> Event
 
 Tutorial *--> "1" Name
 Tutorial *--> "1" LocalDateTime
-Tutorial *--> "*" Note
-Tutorial *--> "*" Person
+Tutorial --> "*" Note
+Tutorial --> "*" Person
 
 @enduml
