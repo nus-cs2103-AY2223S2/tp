@@ -294,7 +294,7 @@ Step 3. On execution of the filter command, the filter checks and returns a list
 Step 4. For example, `filter car insurance` returns a list of persons which have both `car` and `insurance` as tags, any person with only one of the two tags will not be included
 
 The following sequence diagram shows how the filter operation works:
-![FilterSequenceDiagram](images/FilterSeqDiag.png)
+![FilterSequenceDiagram](images/filterSeqDiag.png)
 
 #### Design considerations:
 
@@ -315,35 +315,60 @@ The following sequence diagram shows how the filter operation works:
 
 #### Why this implementation
 We would like users to be able to narrow down search by filtering more and more categories,
-hence we allow multiple arguments input and require that all arguments are satisfied
+hence we allow multiple arguments input and require that all arguments are satisfied. Depending on customer feedback,
+we may change to the other alternative of a broad search, where we output all contacts that contain any of the specified tags.
 
 
 
 ### Sort feature
 
 #### Implementation
-The proposed feature will allow users to sort persons 3 ways:
-1. Ascending Business Size `sortAsc`
-2. Descending Business Size `sortDesc`
-3. Name in alphabetical order `sortName`
+The proposed feature will allow users to sort their contacts in multiple ways according to fields:
+1. Name `name`
+2. Potential Sale Value `size`
+3. Past Transaction Count `trans`
+4. Priority `priority`
 
+The feature allows users to sort contacts according to one of the above fields at a time, in 2 directions:
+1. Ascending `asc`
+2. Descending `desc`
 
-Given below is an example usage scenario and how the `sort` mechanism behaves at each step.
+Note that the sort feature updates the original contact list to be sorted accordingly.
 
-Step 1. User inputs command `sort[Asc | Desc | name]`
+Given below is an example usage scenario and how the `Sort` mechanism behaves at each step.
 
-Step 2. The respective sort command will be parsed, creating a sort command which is executable
+Step 1. User inputs command `sort FIELD DIRECTION` example `sort size asc`
 
-Step 3. On execution of the sort command, the database of contacts is sorted accordingly and the new list is displayed.
+Step 2. The respective sort command will be parsed, taking into account the FIELD and DIRECTION to sort by
+* The sort command parser takes in the arguments and is case-insensitive
+* meaning `SOrt PRIORITY DeSc` for example is equivalent to `sort priority desc`
 
+Step 3. After which the parser creates the respective sort command which is executable.
 
-#### Design considerations:
+Step 4. On execution of the sort command, the database of contacts is sorted accordingly using the Java `Collections` library and the new list is displayed.
 
-1. Users would like to be able to sort by the size of leads
-   1. ascending order - to allow salesman to focus on improving weak leads
-   2. descending order - to allow salesman to focus on capitalising on the best opportunities
-   3. Name - for admin purposes
-2. Users would also be able to edit their clients/persons lead size
+The following sequence diagram shows how the filter operation works:
+![FilterSequenceDiagram](images/filterSeqDiag.png) #TODO
+
+_Notes:_
+_In our example, `sort size asc` sorts the list of contacts by ascending potential business size,
+which means that contacts with smaller potential business will appear near the top.
+This could prove useful for our target users - Salesmen - where they would like to focus more attention on clients who potentially bring in more business.
+The sort feature allows them to quickly view their contacts by business size accordingly._
+
+#### Design considerations
+
+1. Users would like to be able to sort by:
+   1. the potential size of leads/business
+      1. ascending order - to allow salesman to focus on improving weak leads
+      2. descending order - to allow salesman to focus on capitalising on the best opportunities
+   2. Name - for admin purposes
+   3. Past transaction count
+      1. History: Being able to keep track of transaction counts allows the salesman to see who are his most loyal or familiar clients.
+   4. Priority
+      1. Having specified the priority of which to take action, sorting by highest priority quickly lets the salesman see his most important clients.
+2. Users would also be able to edit their clients/persons details
+   1. This would be achievable with the [`edit` feature](#edit) 
 
 #### Why this implementation
 
