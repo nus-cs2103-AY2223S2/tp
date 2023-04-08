@@ -16,7 +16,7 @@ import seedu.address.model.person.patient.PatientFilter;
 public class FindPatientCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindPatientCommand.MESSAGE_USAGE);
+            FindPatientCommand.getCommandUsage());
 
     private FindPatientCommandParser parser = new FindPatientCommandParser();
 
@@ -71,24 +71,24 @@ public class FindPatientCommandParserTest {
     public void parse_validArgs_returnsFindPatientCommand() {
 
         // Exact Strings
-        PatientFilter expectedPatientFilter = new PatientFilter(ZAYDEN.getName().fullName,
-                ZAYDEN.getPhone().value,
-                ZAYDEN.getEmail().value,
-                ZAYDEN.getHeight().value,
-                ZAYDEN.getWeight().value,
-                ZAYDEN.getDiagnosis().diagnosis,
-                ZAYDEN.getStatus().status,
-                ZAYDEN.getRemark().remark,
+        PatientFilter expectedPatientFilter = new PatientFilter(ZAYDEN.getName().getValue(),
+                ZAYDEN.getPhone().getValue(),
+                ZAYDEN.getEmail().getValue(),
+                ZAYDEN.getHeight().getValue(),
+                ZAYDEN.getWeight().getValue(),
+                ZAYDEN.getDiagnosis().getValue(),
+                ZAYDEN.getStatus().getValue(),
+                ZAYDEN.getRemark().getValue(),
                 new HashSet<>());
 
-        String userInput = " n/" + ZAYDEN.getName().fullName
-                + " p/" + ZAYDEN.getPhone().value
-                + " e/" + ZAYDEN.getEmail().value
-                + " h/" + ZAYDEN.getHeight().value
-                + " w/" + ZAYDEN.getWeight().value
-                + " d/" + ZAYDEN.getDiagnosis().diagnosis
-                + " st/" + ZAYDEN.getStatus().status
-                + " r/" + ZAYDEN.getRemark().remark;
+        String userInput = " n/" + ZAYDEN.getName().getValue()
+                + " p/" + ZAYDEN.getPhone().getValue()
+                + " e/" + ZAYDEN.getEmail().getValue()
+                + " h/" + ZAYDEN.getHeight().getValue()
+                + " w/" + ZAYDEN.getWeight().getValue()
+                + " d/" + ZAYDEN.getDiagnosis().getValue()
+                + " st/" + ZAYDEN.getStatus().getValue()
+                + " r/" + ZAYDEN.getRemark().getValue();
 
         FindPatientCommand expectedFindPatientCommand =
                 new FindPatientCommand(new PatientContainsKeywordsPredicate(expectedPatientFilter));

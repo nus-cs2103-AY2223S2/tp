@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -80,13 +82,18 @@ class JsonSerializableAddressBook {
             }
             addressBook.addDoctor(doctor);
 
+            Set<Patient> patientsAdded = new HashSet<>();
             for (Patient patient : doctor.getPatients()) {
                 // Do not perform a check for duplicate patients here
                 // as the patients are bound to be stored multiple
                 // times under the different doctors they are assigned to.
+                if (patientsAdded.contains(patient)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
+                }
                 if (!addressBook.hasPatient(patient)) {
                     addressBook.addPatient(patient);
                 }
+                patientsAdded.add(patient);
             }
         }
     }

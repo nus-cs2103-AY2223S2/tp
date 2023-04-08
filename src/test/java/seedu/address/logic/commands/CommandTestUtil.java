@@ -34,7 +34,6 @@ import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
 import seedu.address.model.person.patient.PatientFilter;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -113,8 +112,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_AMY;
     public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_BOB;
     public static final EditPatientCommand.EditPatientDescriptor DESC_PTN_AMY;
@@ -123,11 +120,6 @@ public class CommandTestUtil {
 
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_DR_AMY = new EditDoctorDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withSpecialty(VALID_SPECIALTY_AMY)
                 .withYoe(VALID_YOE_AMY).withTags(VALID_TAG_FRIEND).build();
@@ -216,7 +208,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().getValue().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
@@ -229,7 +221,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDoctorList().size());
 
         Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
-        final String[] splitName = doctor.getName().fullName.split("\\s+");
+        final String[] splitName = doctor.getName().getValue().split("\\s+");
         model.updateFilteredDoctorList(new DoctorContainsKeywordsPredicate(new DoctorFilter(splitName[0], "",
                 "", "", "", new HashSet<>())));
 
@@ -243,7 +235,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
         Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
-        final String[] splitName = patient.getName().fullName.split("\\s+");
+        final String[] splitName = patient.getName().getValue().split("\\s+");
         model.updateFilteredPatientList(new PatientContainsKeywordsPredicate(new PatientFilter(splitName[0], "",
                 "", "", "", "", "", "", new HashSet<>())));
 

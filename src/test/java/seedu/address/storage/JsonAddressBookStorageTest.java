@@ -47,17 +47,44 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidDoctorAddressBook.json"));
+    public void readAddressBook_invalidDoctorAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("invalidDoctorAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidDoctorAddressBook.json"));
+    public void readAddressBook_invalidAndValidDoctorAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("invalidAndValidDoctorAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidPatientAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("invalidPatientAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidAndValidPatientAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("invalidAndValidPatientAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_noUnassignedPatientsAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("noUnassignedPatientsAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_noDoctorsAddressBook_throwDataConversionException() {
+        assertThrows(
+                DataConversionException.class, () -> readAddressBook("noDoctorsAddressBook.json"));
     }
 
     @Test
@@ -87,7 +114,8 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+        assertThrows(
+                NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
     }
 
     /**
