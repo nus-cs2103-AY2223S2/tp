@@ -547,12 +547,6 @@ _{More to be added}_
 
    Use case ends.
 
-**Extensions**
-
-- 1a. There are no departments with any of the keywords.
-
-  Use case ends.
-
 **Use case: Adding a department**
 
 **MSS**
